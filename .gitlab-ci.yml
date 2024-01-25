@@ -10,13 +10,12 @@
  format-check:
   stage: check
   tags:
-  - "server3"
+    - "server"
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_TYPE != "merge_test_schedule"'
-    when: never
+      when: never
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-    - if: '$CI_COMMIT_BRANCH == "rt584_driver_examples"'
-    # - if: '$CI_COMMIT_BRANCH == "main"'
+    - if: '$CI_COMMIT_BRANCH == "main"'
     # - if: '$CI_COMMIT_BRANCH == "Release_v1"'
      
   script:
