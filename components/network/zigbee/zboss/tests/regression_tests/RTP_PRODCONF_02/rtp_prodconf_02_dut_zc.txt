@@ -1,0 +1,55 @@
+# Parameters are key-value pairs
+
+[common]
+# Device type
+device_type = generic_device
+
+#
+# TX power settings block
+# 
+# This is optional block, default MAC TX power value if not specified, is 0 dBm for all channels per a page.
+# Power settings can be override: the latest declared parameter overwrites previous
+# The most convenient way to declare TX power is to declare default tx power, then specify tx power for a whole selected page,
+# then handle separate channels:
+# default_mac_tx_power -> default_mac_tx_power_pageX -> mac_tx_power = page,channel,value
+
+# Default MAC TX power for all channel pages (in dBm), optional, overrides default value (0 dBm)
+default_mac_tx_power = 2
+
+# Default MAC TX power for page28 (in dBm), optional
+default_mac_tx_power_page28 = 3
+
+# Default MAC TX power for page29 (in dBm), optional
+default_mac_tx_power_page29 = 4
+
+# Default MAC TX power for page30 (in dBm), optional
+default_mac_tx_power_page30 = 5
+
+# Default MAC TX power for page31 (in dBm), optional
+default_mac_tx_power_page31 = 6
+
+#
+# Per channel MAC TX power, optional, overrides 
+# Parameter format: page, channel, tx_power
+# 
+mac_tx_power = 0, 15, 7
+
+# For page 28 channels are in range 0-26
+mac_tx_power = 28, 0, 8
+
+# For page 29 channels are in range 27-34,62 
+# channel value 0 corresponds to channel 27
+# channel value 7 corresponds to channel 34
+# channel value 8 corresponds to channel 62
+mac_tx_power = 29, 0, -40
+mac_tx_power = 29, 7, -20
+mac_tx_power = 29, 8, -16
+
+# For page 30 channels are in range 35-61
+# channel value 0 corresponds to channel 35
+# channel value 26 corresponds to channel 61
+mac_tx_power = 30, 0, -12
+mac_tx_power = 30, 26, -8
+
+# For page 31 channels are in range 0-26
+mac_tx_power = 31, 0, 9

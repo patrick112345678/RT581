@@ -1,0 +1,14 @@
+--style=bsd
+--mode=c
+--indent=spaces=4
+--convert-tabs
+--indent-col1-comments
+--pad-oper
+--pad-header
+--align-pointer=name
+--align-reference=name
+--add-braces
+--break-closing-braces
+--attach-closing-while
+--recursive
+--suffix=none

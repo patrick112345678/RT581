@@ -1,0 +1,106 @@
+# Parameters are key-value pairs
+
+[common]
+# Device type
+device_type = network_coprocessor
+
+# channel_page mask as hexadecimal 32-bit value for a page, optional, default value equals to full channel mask for a given page
+# Page 0 supported channels are 11-26
+# bit 11 corresponds to channel 11
+# bit 26 corresponds to channel 26
+# Example: 0008000 corresponds to channel 19
+aps_channel_mask_page0  = 0080000
+
+# Page 28 supported channels are 0-26
+# bit 0 corresponds to channel 0
+# bit 26 corresponds to channel 26
+# Example: 6000000 corresponds to channels 25 and 26
+aps_channel_mask_page28 = 0
+
+# Page 29 supported channels are 27-34,62
+# bit 0 corresponds to channel 27
+# ...
+# bit 7 corresponds to channel 34
+# bit 8 corresponds to channel 62
+# Example: 0000018 corresponds to channels 34 and 62
+aps_channel_mask_page29 = 0
+
+# Page 30 supported channels are 35-61
+# bit 0 corresponds to channel 35
+# bit 26 corresponds to channel 61
+# Example: 7ffffff corresponds to channels 35-61
+aps_channel_mask_page30 = 0
+
+# Page 31 supported channels are 0-26
+# Example: 7ffffff corresponds to channels 0-26
+aps_channel_mask_page31 = 0
+
+# Extended MAC address as hexadecimal 8-byte array, mandatory
+extended_address = 0a0b0c0d0e0f1012
+
+#
+# TX power settings block
+# 
+# This is optional block, default MAC TX power value if not specified, is 0 dBm for all channels per a page.
+# Power settings can be override: the latest declared parameter overwrites previos
+# The most convinient way to declare TX power is to declare default tx power, then specify tx power for a whole selected page,
+# then handle separate channels:
+# default_mac_tx_power -> default_mac_tx_power_pageX -> mac_tx_power = page,channel,value
+
+# Default MAC TX power for all channel pages (in dBm), optional, overrides default value (0 dBm)
+default_mac_tx_power = 1
+
+# Default MAC TX power for page0 (in dBm), optional
+default_mac_tx_power_page0 = 2
+
+# Default MAC TX power for page28 (in dBm), optional
+default_mac_tx_power_page28 = 3
+
+# Default MAC TX power for page29 (in dBm), optional
+default_mac_tx_power_page29 = 4
+
+# Default MAC TX power for page30 (in dBm), optional
+default_mac_tx_power_page30 = 5
+
+# Default MAC TX power for page31 (in dBm), optional
+default_mac_tx_power_page31 = 6
+
+#
+# Per channel MAC TX power, optional, overrides 
+# Parameter format: page, channel, tx_power
+# 
+mac_tx_power = 0, 11, 7
+mac_tx_power = 0, 26, 8
+
+# For page 28 channels are in range 0-26
+mac_tx_power = 28, 10, 9
+
+# For page 29 channels are in range 27-34,62 
+# channel value 0 corresponds to channel 27
+# channel value 7 corresponds to channel 34
+# channel value 8 corresponds to channel 62
+mac_tx_power = 29, 3, 10
+
+# For page 30 channels are in range 35-61
+# channel value 0 corresponds to channel 35
+# channel value 26 corresponds to channel 61
+mac_tx_power = 30, 25, 11
+
+# For page 31 channels are in range 0-26
+mac_tx_power = 31, 15, 12
+
+# install code as hexadecimal 16-byte array
+installcode = 966b9f3ef98ae6059708
+
+# cs1_key_material and cs2_key_material blocks should be declared in strict order
+[cs2_key_material]
+# All parameters in hex
+publisher_public_key = 0207a445022d9f39f49bdc38380026a27a9e0a1799313ab28c5c1a1c6b605154db1dff6752
+certificate = 0084A933B37F018DEC0D081112131415161718005292A38AFFFFFFFF0A0B0C0D0E0F10128803076277E2F7E2252B16A0E92B6E8771BB3F207946CBD4A45D9A9DF6EDAB8C796A48E89DEC
+private_key = 00F2561ADB39EF49C1D62EF5186C6E0C158A5A45BFCE38660931ACC3694592D5ACDE9006
+
+##############################################################
+# Application specific starts here
+[application]
+serial_number = 123400005678ffff
+vendor_data = abcdabcd123123abcdabcd123123face

@@ -1,0 +1,379 @@
+/**
+ * @file app_uart.c
+ * @author Jiemin Cao (jiemin.cao@rafaelmicro.com)
+ * @brief 
+ * @version 0.1
+ * @date 2023-08-02
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+
+#include <stdlib.h>
+#include <stdint.h>
+
+#include <FreeRTOS.h>
+#include <task.h>
+#include <semphr.h>
+#include "queue.h"
+#include <hosal_uart.h>
+#include "log.h"
+#include "main.h"
+
+//=============================================================================
+//                  Constant Definition
+//=============================================================================
+#define UART_NOTIFY_ISR(ebit)                 (g_uart_evt_var |= ebit); __uart_signal()
+#define UART_NOTIFY(ebit)                     enter_critical_section(); g_uart_evt_var |= ebit; leave_critical_section(); __uart_signal()
+#define UART_GET_NOTIFY(ebit)                 enter_critical_section(); ebit = g_uart_evt_var; g_uart_evt_var = UART_EVENT_NONE; ; leave_critical_section()
+
+#define UART1_OPERATION_PORT 1
+HOSAL_UART_DEV_DECL(uart1_dev, UART1_OPERATION_PORT, 4, 5, UART_BAUDRATE_19200)
+
+#if (CONFIG_UART_STDIO_PORT == 0)
+#define UART2_OPERATION_PORT 2
+HOSAL_UART_DEV_DECL(uart2_dev, UART2_OPERATION_PORT, 6, 7, UART_BAUDRATE_115200)
+#else
+#define UART2_OPERATION_PORT 0
+HOSAL_UART_DEV_DECL(uart2_dev, UART2_OPERATION_PORT, 17, 16, UART_BAUDRATE_115200)
+#endif
+//=============================================================================
+//                  Macro Definition
+//=============================================================================
+#define RX_BUFF_SIZE                    484
+#define TX_BUFF_SIZE                    RX_BUFF_SIZE
+#define TX_BUFF_MASK                    (TX_BUFF_SIZE -1)
+//=============================================================================
+//                  Structure Definition
+//=============================================================================
+typedef struct uart_io
+{
+    uint16_t start;
+    uint16_t end;
+
+    uint32_t recvLen;
+    uint8_t uart_cache[RX_BUFF_SIZE];
+} uart_io_t;
+
+typedef enum
+{
+    UART_EVENT_NONE                       = 0,
+
+    UART1_EVENT_UART_IN                    = 0x00000002,
+    UART2_EVENT_UART_IN                    = 0x00000004,
+    UART_EVENT_UART_OUT                    = 0x00000008,
+    UART_EVENT_UART_OUT_DONE               = 0x00000010,
+
+    UART_EVENT_ALL                         = 0xffffffff,   
+} uart_event_t;
+
+
+typedef struct 
+{
+    uint8_t port;
+    uint16_t dlen;
+    uint8_t *pdata;
+} _app_uart_data_t ;
+
+//=============================================================================
+//                  Global Data Definition
+//=============================================================================
+static uart_event_t g_uart_evt_var;
+static TaskHandle_t app_uart_taskHandle = NULL;
+static QueueHandle_t app_uart_handle;
+static uart_io_t g_uart1_rx_io = { .start = 0, .end = 0, };
+static uart_io_t g_uart2_rx_io = { .start = 0, .end = 0, };
+static uint8_t g_tx_buf[TX_BUFF_SIZE];
+static uint8_t g_tmp_buff[RX_BUFF_SIZE];
+static hosal_uart_dma_cfg_t txdam_cfg = {
+    .dma_buf = g_tx_buf,
+    .dma_buf_size = sizeof(g_tx_buf),
+};
+
+//=============================================================================
+//                  Private Function Definition
+//=============================================================================
+static void __uart_signal(void)
+{
+    if (xPortIsInsideInterrupt())
+    {
+        BaseType_t pxHigherPriorityTaskWoken = pdTRUE;
+        vTaskNotifyGiveFromISR( app_uart_taskHandle, &pxHigherPriorityTaskWoken);
+    }
+    else
+    {
+        xTaskNotifyGive(app_uart_taskHandle);
+    }
+}
+
+static int __uart_tx_callback(void *p_arg)
+{
+    UART_NOTIFY_ISR(UART_EVENT_UART_OUT_DONE);
+    return 0;
+}
+
+static void __uart_queue_send(uart_event_t evt)
+{
+    _app_uart_data_t uart_data;
+    static uint32_t __tx_done = 1;
+
+    if((UART_EVENT_UART_OUT_DONE & evt))
+    {
+        __tx_done = 1;
+        return;
+    }
+
+    if(__tx_done == 1)
+    {
+        if(xQueueReceive(app_uart_handle, (void*)&uart_data, 0) == pdPASS)
+        {
+            memcpy(txdam_cfg.dma_buf, uart_data.pdata, uart_data.dlen);
+            txdam_cfg.dma_buf_size = uart_data.dlen;
+            if(UART1_OPERATION_PORT == uart_data.port)
+            {
+                hosal_uart_ioctl(&uart1_dev, HOSAL_UART_DMA_TX_START, &txdam_cfg);
+                log_debug_hexdump("uart1 Tx", uart_data.pdata, uart_data.dlen);
+            }
+            else if(UART2_OPERATION_PORT == uart_data.port)
+            {
+                hosal_uart_ioctl(&uart2_dev, HOSAL_UART_DMA_TX_START, &txdam_cfg);
+                log_debug_hexdump("uart2 Tx", uart_data.pdata, uart_data.dlen);
+            }
+            __tx_done = 0;
+            if(uart_data.pdata) vPortFree(uart_data.pdata);
+        }
+    }
+}  
+
+/*uart 1 use*/
+static int __uart1_read(uint8_t *p_data)
+{
+    uint32_t byte_cnt = 0;
+    hosal_uart_ioctl(&uart1_dev, HOSAL_UART_DISABLE_INTERRUPT, (void *)NULL);
+
+    if (g_uart1_rx_io.start != g_uart1_rx_io.end)
+    {
+        if (g_uart1_rx_io.start > g_uart1_rx_io.end)
+        {
+            memcpy(p_data, g_uart1_rx_io.uart_cache + g_uart1_rx_io.end, g_uart1_rx_io.start - g_uart1_rx_io.end);
+            byte_cnt = g_uart1_rx_io.start - g_uart1_rx_io.end;
+            g_uart1_rx_io.end = g_uart1_rx_io.start;
+        }
+        else
+        {
+            memcpy(p_data, g_uart1_rx_io.uart_cache + g_uart1_rx_io.end, RX_BUFF_SIZE - g_uart1_rx_io.end);
+            byte_cnt = RX_BUFF_SIZE - g_uart1_rx_io.end;
+            g_uart1_rx_io.end = RX_BUFF_SIZE - 1;
+
+            if (g_uart1_rx_io.start)
+            {
+                memcpy(&p_data[byte_cnt], g_uart1_rx_io.uart_cache, g_uart1_rx_io.start);
+                byte_cnt += g_uart1_rx_io.start;
+                g_uart1_rx_io.end = (RX_BUFF_SIZE + g_uart1_rx_io.start - 1) % RX_BUFF_SIZE;
+            }
+        }
+    }
+
+    g_uart1_rx_io.start = g_uart1_rx_io.end = 0;
+    g_uart1_rx_io.recvLen = 0;
+    hosal_uart_ioctl(&uart1_dev, HOSAL_UART_ENABLE_INTERRUPT, (void *)NULL);
+    return byte_cnt;
+}
+
+static int __uart1_rx_callback(void *p_arg)
+{
+    uint32_t len = 0;
+    if (g_uart1_rx_io.start >= g_uart1_rx_io.end)
+    {
+        g_uart1_rx_io.start += hosal_uart_receive(p_arg, g_uart1_rx_io.uart_cache + g_uart1_rx_io.start,
+                              RX_BUFF_SIZE - g_uart1_rx_io.start - 1);
+        if (g_uart1_rx_io.start == (RX_BUFF_SIZE - 1))
+        {
+            g_uart1_rx_io.start = hosal_uart_receive(p_arg, g_uart1_rx_io.uart_cache,
+                                                    (RX_BUFF_SIZE + g_uart1_rx_io.end - 1) % RX_BUFF_SIZE);
+        }
+    }
+    else if (((g_uart1_rx_io.start + 1) % RX_BUFF_SIZE) != g_uart1_rx_io.end)
+    {
+        g_uart1_rx_io.start += hosal_uart_receive(p_arg, g_uart1_rx_io.uart_cache,
+                              g_uart1_rx_io.end - g_uart1_rx_io.start - 1);
+    }
+
+    if (g_uart1_rx_io.start != g_uart1_rx_io.end)
+    {
+
+        len = (g_uart1_rx_io.start + RX_BUFF_SIZE - g_uart1_rx_io.end) % RX_BUFF_SIZE;
+        if (g_uart1_rx_io.recvLen != len)
+        {
+            g_uart1_rx_io.recvLen = len;
+            UART_NOTIFY_ISR(UART1_EVENT_UART_IN);
+        }
+    }
+
+    return 0;
+}
+
+void __uart1_data_parse()
+{
+    uint16_t len = 0;
+    len = __uart1_read(g_tmp_buff);
+    log_info_hexdump("uart 1 parse", g_tmp_buff, len);
+    udf_Meter_received_task(g_tmp_buff, len);
+}
+
+
+/*uart 2 use*/
+static int __uart2_read(uint8_t *p_data)
+{
+    uint32_t byte_cnt = 0;
+    hosal_uart_ioctl(&uart2_dev, HOSAL_UART_DISABLE_INTERRUPT, (void *)NULL);
+
+    if (g_uart2_rx_io.start != g_uart2_rx_io.end)
+    {
+        if (g_uart2_rx_io.start > g_uart2_rx_io.end)
+        {
+            memcpy(p_data, g_uart2_rx_io.uart_cache + g_uart2_rx_io.end, g_uart2_rx_io.start - g_uart2_rx_io.end);
+            byte_cnt = g_uart2_rx_io.start - g_uart2_rx_io.end;
+            g_uart2_rx_io.end = g_uart2_rx_io.start;
+        }
+        else
+        {
+            memcpy(p_data, g_uart2_rx_io.uart_cache + g_uart2_rx_io.end, RX_BUFF_SIZE - g_uart2_rx_io.end);
+            byte_cnt = RX_BUFF_SIZE - g_uart2_rx_io.end;
+            g_uart2_rx_io.end = RX_BUFF_SIZE - 1;
+
+            if (g_uart2_rx_io.start)
+            {
+                memcpy(&p_data[byte_cnt], g_uart2_rx_io.uart_cache, g_uart2_rx_io.start);
+                byte_cnt += g_uart2_rx_io.start;
+                g_uart2_rx_io.end = (RX_BUFF_SIZE + g_uart2_rx_io.start - 1) % RX_BUFF_SIZE;
+            }
+        }
+    }
+
+    g_uart2_rx_io.start = g_uart2_rx_io.end = 0;
+    g_uart2_rx_io.recvLen = 0;
+    hosal_uart_ioctl(&uart2_dev, HOSAL_UART_ENABLE_INTERRUPT, (void *)NULL);
+    return byte_cnt;
+}
+
+static int __uart2_rx_callback(void *p_arg)
+{
+    uint32_t len = 0;
+    if (g_uart2_rx_io.start >= g_uart2_rx_io.end)
+    {
+        g_uart2_rx_io.start += hosal_uart_receive(p_arg, g_uart2_rx_io.uart_cache + g_uart2_rx_io.start,
+                              RX_BUFF_SIZE - g_uart2_rx_io.start - 1);
+        if (g_uart2_rx_io.start == (RX_BUFF_SIZE - 1))
+        {
+            g_uart2_rx_io.start = hosal_uart_receive(p_arg, g_uart2_rx_io.uart_cache,
+                                                    (RX_BUFF_SIZE + g_uart2_rx_io.end - 1) % RX_BUFF_SIZE);
+        }
+    }
+    else if (((g_uart2_rx_io.start + 1) % RX_BUFF_SIZE) != g_uart2_rx_io.end)
+    {
+        g_uart2_rx_io.start += hosal_uart_receive(p_arg, g_uart2_rx_io.uart_cache,
+                              g_uart2_rx_io.end - g_uart2_rx_io.start - 1);
+    }
+
+    if (g_uart2_rx_io.start != g_uart2_rx_io.end)
+    {
+
+        len = (g_uart2_rx_io.start + RX_BUFF_SIZE - g_uart2_rx_io.end) % RX_BUFF_SIZE;
+        if (g_uart2_rx_io.recvLen != len)
+        {
+            g_uart2_rx_io.recvLen = len;
+            UART_NOTIFY_ISR(UART2_EVENT_UART_IN);
+        }
+    }
+
+    return 0;
+}
+
+void __uart2_data_parse()
+{
+    uint16_t len = 0;
+    len = __uart2_read(g_tmp_buff);
+#if (CONFIG_UART_STDIO_PORT == 0)
+    log_info_hexdump("uart 2 parse", g_tmp_buff, len);
+#else
+    log_info_hexdump("uart 0 parse", g_tmp_buff, len);
+    das_hex_cmd_received_task(g_tmp_buff, len);
+#endif    
+}
+
+static void __uart_task(void *parameters_ptr)
+{
+    uart_event_t sevent = UART_EVENT_NONE;
+    /* Configure UART Rx interrupt callback function */
+    hosal_uart_callback_set(&uart1_dev, HOSAL_UART_RX_CALLBACK, __uart1_rx_callback, &uart1_dev);
+    hosal_uart_callback_set(&uart1_dev, HOSAL_UART_TX_DMA_CALLBACK, __uart_tx_callback, &uart1_dev);
+
+    hosal_uart_callback_set(&uart2_dev, HOSAL_UART_RX_CALLBACK, __uart2_rx_callback, &uart2_dev);
+    hosal_uart_callback_set(&uart2_dev, HOSAL_UART_TX_DMA_CALLBACK, __uart_tx_callback, &uart2_dev);
+
+    /* Configure UART to interrupt mode */
+    hosal_uart_ioctl(&uart1_dev, HOSAL_UART_MODE_SET, (void *)HOSAL_UART_MODE_INT_RX);
+    hosal_uart_ioctl(&uart2_dev, HOSAL_UART_MODE_SET, (void *)HOSAL_UART_MODE_INT_RX);
+
+    __NVIC_SetPriority(Uart1_IRQn, 2);
+    __NVIC_SetPriority(Uart2_IRQn, 2);
+
+    for(;;)
+    {
+        UART_GET_NOTIFY(sevent);
+
+        if ((UART_EVENT_UART_OUT & sevent) || (UART_EVENT_UART_OUT_DONE & sevent)) 
+        {
+            __uart_queue_send(sevent);
+        }
+
+        if (UART1_EVENT_UART_IN & sevent) 
+        {
+            __uart1_data_parse();
+        }
+
+        if (UART2_EVENT_UART_IN & sevent) 
+        {
+            __uart2_data_parse();
+        }
+
+        ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+    }
+    
+}
+
+int app_uart_data_send(uint8_t u_port, uint8_t *p_data, uint16_t data_len)
+{
+    _app_uart_data_t uart_data;
+
+    uart_data.pdata =  pvPortMalloc(data_len);
+    if(uart_data.pdata)
+    {
+        memcpy(uart_data.pdata, p_data, data_len);
+        uart_data.port = u_port;
+        uart_data.dlen = data_len;
+        while(xQueueSend(app_uart_handle, (void *)&uart_data, portMAX_DELAY) != pdPASS);
+
+        UART_NOTIFY(UART_EVENT_UART_OUT);
+    }
+
+    return 0;
+}
+
+void app_uart_init(void)
+{
+    BaseType_t xReturned;
+
+    /*Init UART In the first place*/
+    hosal_uart_init(&uart1_dev);
+    hosal_uart_init(&uart2_dev);
+
+    app_uart_handle = xQueueCreate(16, sizeof(_app_uart_data_t));
+
+    xReturned = xTaskCreate(__uart_task, "app_uart_task", 512, NULL, configMAX_PRIORITIES - 2, &app_uart_taskHandle);
+    if( xReturned != pdPASS )
+    {
+        log_error("task create fail\n");
+    }
+}

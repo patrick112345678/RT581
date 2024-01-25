@@ -1,0 +1,5 @@
+Due to the problem with the packed attribute (https://gcc.gnu.org/bugzilla/show_bug.cgi?id=52991) it is not possible to correctly compile dump_converter under MinGW32.
+
+Need to use older MinGW32 versions, 4.6.1 and less. These can be found here (http://tdm-gcc.tdragon.net/download), in the "Old versions" section.
+
+Also, prefer to use zb_vendor_cfg_mingw.h for building under MinGW.

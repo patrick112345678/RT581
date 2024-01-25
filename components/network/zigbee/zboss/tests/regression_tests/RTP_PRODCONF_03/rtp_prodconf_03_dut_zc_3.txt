@@ -1,0 +1,17 @@
+# Parameters are key-value pairs
+
+[common]
+# Device type
+device_type = generic_device
+
+#
+# TX power settings block
+# 
+# This is optional block, default MAC TX power value if not specified, is 0 dBm for all channels per a page.
+# Power settings can be override: the latest declared parameter overwrites previous
+# The most convenient way to declare TX power is to declare default tx power, then specify tx power for a whole selected page,
+# then handle separate channels:
+# default_mac_tx_power -> default_mac_tx_power_pageX -> mac_tx_power = page,channel,value
+
+# Default MAC TX power for all channel pages (in dBm), optional, overrides default value (0 dBm)
+default_mac_tx_power = 50

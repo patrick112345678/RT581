@@ -1,0 +1,23 @@
+--create .\Objects\thread_lib.lib
+.\objects\ot_alarm.o
+.\objects\ot_entropy.o
+.\objects\ot_flash.o
+.\objects\ot_freertos.o
+.\objects\ot_logging.o
+.\objects\ot_memory.o
+.\objects\ot_misc.o
+.\objects\ot_ota_handler.o
+.\objects\ot_radio.o
+.\objects\ot_settings.o
+.\objects\ot_system.o
+.\objects\ot_uart.o
+.\objects\soft_source_match_table.o
+.\objects\comm_subsystem_drv.o
+.\objects\rf_common_init.o
+.\objects\rf_mcu.o
+.\objects\rf_mcu_ahb.o
+.\objects\rf_mcu_spi.o
+.\objects\rt569mp_fw.o
+.\objects\rt569mp_init.o
+.\objects\lmac15p4_1.o
+.\objects\subg_ctrl.o

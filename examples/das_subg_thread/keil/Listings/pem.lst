@@ -1,0 +1,1651 @@
+	.text
+	.syntax unified
+	.eabi_attribute	67, "2.09"	@ Tag_conformance
+	.cpu	cortex-m3
+	.eabi_attribute	6, 10	@ Tag_CPU_arch
+	.eabi_attribute	7, 77	@ Tag_CPU_arch_profile
+	.eabi_attribute	8, 0	@ Tag_ARM_ISA_use
+	.eabi_attribute	9, 2	@ Tag_THUMB_ISA_use
+	.eabi_attribute	34, 1	@ Tag_CPU_unaligned_access
+	.eabi_attribute	17, 1	@ Tag_ABI_PCS_GOT_use
+	.eabi_attribute	20, 2	@ Tag_ABI_FP_denormal
+	.eabi_attribute	21, 0	@ Tag_ABI_FP_exceptions
+	.eabi_attribute	23, 1	@ Tag_ABI_FP_number_model
+	.eabi_attribute	24, 1	@ Tag_ABI_align_needed
+	.eabi_attribute	25, 1	@ Tag_ABI_align_preserved
+	.eabi_attribute	38, 1	@ Tag_ABI_FP_16bit_format
+	.eabi_attribute	18, 4	@ Tag_ABI_PCS_wchar_t
+	.eabi_attribute	26, 2	@ Tag_ABI_enum_size
+	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
+	.file	"pem.c"
+	.section	.text.mbedtls_pem_init,"ax",%progbits
+	.hidden	mbedtls_pem_init                @ -- Begin function mbedtls_pem_init
+	.globl	mbedtls_pem_init
+	.p2align	1
+	.type	mbedtls_pem_init,%function
+	.code	16                              @ @mbedtls_pem_init
+	.thumb_func
+mbedtls_pem_init:
+.Lfunc_begin0:
+	.file	1 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c"
+	.loc	1 45 0                          @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:45:0
+	.fnstart
+	.cfi_sections .debug_frame
+	.cfi_startproc
+@ %bb.0:
+	@DEBUG_VALUE: mbedtls_pem_init:ctx <- $r0
+	movs	r1, #0
+	@DEBUG_VALUE: mbedtls_pem_init:ctx <- $r0
+.Ltmp0:
+	.loc	1 46 5 prologue_end             @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:46:5
+	strd	r1, r1, [r0]
+	str	r1, [r0, #8]
+	.loc	1 47 1                          @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:47:1
+	bx	lr
+.Ltmp1:
+.Lfunc_end0:
+	.size	mbedtls_pem_init, .Lfunc_end0-mbedtls_pem_init
+	.cfi_endproc
+	.cantunwind
+	.fnend
+                                        @ -- End function
+	.section	.text.mbedtls_pem_read_buffer,"ax",%progbits
+	.hidden	mbedtls_pem_read_buffer         @ -- Begin function mbedtls_pem_read_buffer
+	.globl	mbedtls_pem_read_buffer
+	.p2align	2
+	.type	mbedtls_pem_read_buffer,%function
+	.code	16                              @ @mbedtls_pem_read_buffer
+	.thumb_func
+mbedtls_pem_read_buffer:
+.Lfunc_begin1:
+	.loc	1 228 0                         @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:228:0
+	.fnstart
+	.cfi_startproc
+@ %bb.0:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:ctx <- $r0
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:header <- $r1
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:footer <- $r2
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:data <- $r3
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:data <- $r3
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:footer <- $r2
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:header <- $r1
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:ctx <- $r0
+	.save	{r4, r5, r6, r7, r8, r9, r10, r11, lr}
+	push.w	{r4, r5, r6, r7, r8, r9, r10, r11, lr}
+	.cfi_def_cfa_offset 36
+	.cfi_offset lr, -4
+	.cfi_offset r11, -8
+	.cfi_offset r10, -12
+	.cfi_offset r9, -16
+	.cfi_offset r8, -20
+	.cfi_offset r7, -24
+	.cfi_offset r6, -28
+	.cfi_offset r5, -32
+	.cfi_offset r4, -36
+	.pad	#12
+	sub	sp, #12
+	.cfi_def_cfa_offset 48
+.Ltmp2:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:use_len <- [DW_OP_plus_uconst 56] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwdlen <- [DW_OP_plus_uconst 52] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwd <- [DW_OP_plus_uconst 48] [$sp+0]
+	movw	r11, #60288
+.Ltmp3:
+	.loc	1 243 9 prologue_end            @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:243:9
+	cmp	r0, #0
+	movt	r11, #65535
+	beq	.LBB1_9
+.Ltmp4:
+@ %bb.1:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:data <- $r3
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:footer <- $r2
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:header <- $r1
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:ctx <- $r0
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwd <- [DW_OP_plus_uconst 48] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwdlen <- [DW_OP_plus_uconst 52] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:use_len <- [DW_OP_plus_uconst 56] [$sp+0]
+	.loc	1 0 9 is_stmt 0                 @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:0:9
+	mov	r9, r0
+.Ltmp5:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:ctx <- $r9
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:ctx <- $r9
+	.loc	1 246 28 is_stmt 1              @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:246:28
+	mov	r0, r3
+	mov	r6, r3
+.Ltmp6:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:data <- $r6
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:data <- $r6
+	.loc	1 0 28 is_stmt 0                @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:0:28
+	mov	r10, r2
+.Ltmp7:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:footer <- $r10
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:footer <- $r10
+	mov	r4, r1
+.Ltmp8:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:header <- $r4
+	.loc	1 246 28                        @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:246:28
+	bl	strstr
+.Ltmp9:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s1 <- $r0
+	.loc	1 248 9 is_stmt 1               @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:248:9
+	cmp	r0, #0
+	.loc	1 0 0 is_stmt 0                 @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:0:0
+	add.w	r5, r11, #1024
+	.loc	1 248 9                         @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:248:9
+	beq	.LBB1_10
+.Ltmp10:
+@ %bb.2:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:footer <- $r10
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:ctx <- $r9
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:data <- $r6
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:header <- $r4
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s1 <- $r0
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwd <- [DW_OP_plus_uconst 48] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwdlen <- [DW_OP_plus_uconst 52] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:use_len <- [DW_OP_plus_uconst 56] [$sp+0]
+	.loc	1 0 0                           @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:0:0
+	mov	r7, r0
+.Ltmp11:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s1 <- $r7
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s1 <- $r7
+	.loc	1 251 28 is_stmt 1              @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:251:28
+	mov	r0, r6
+	mov	r1, r10
+	bl	strstr
+.Ltmp12:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s2 <- $r0
+	.loc	1 253 20                        @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:253:20
+	cmp	r0, r7
+	bls	.LBB1_10
+.Ltmp13:
+@ %bb.3:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:footer <- $r10
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:ctx <- $r9
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s1 <- $r7
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:data <- $r6
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:header <- $r4
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s2 <- $r0
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwd <- [DW_OP_plus_uconst 48] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwdlen <- [DW_OP_plus_uconst 52] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:use_len <- [DW_OP_plus_uconst 56] [$sp+0]
+	.loc	1 0 0 is_stmt 0                 @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:0:0
+	mov	r8, r0
+.Ltmp14:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s2 <- $r8
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s2 <- $r8
+	.loc	1 256 11 is_stmt 1              @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:256:11
+	mov	r0, r4
+	bl	strlen
+.Ltmp15:
+	.loc	1 256 8 is_stmt 0               @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:256:8
+	add	r0, r7
+.Ltmp16:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s1 <- $r0
+	.loc	1 257 9 is_stmt 1               @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:257:9
+	mov	r1, r0
+	ldrb	r2, [r1], #1
+.Ltmp17:
+	.loc	1 257 9 is_stmt 0               @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:257:9
+	cmp	r2, #32
+	it	ne
+	movne	r1, r0
+.Ltmp18:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s1 <- $r1
+	.loc	1 258 9 is_stmt 1               @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:258:9
+	mov	r0, r1
+	ldrb	r2, [r0], #1
+.Ltmp19:
+	.loc	1 258 9 is_stmt 0               @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:258:9
+	cmp	r2, #13
+	it	ne
+	movne	r0, r1
+.Ltmp20:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s1 <- $r0
+	.loc	1 259 9 is_stmt 1               @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:259:9
+	ldrb	r1, [r0]
+.Ltmp21:
+	.loc	1 259 9 is_stmt 0               @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:259:9
+	cmp	r1, #10
+	bne	.LBB1_10
+.Ltmp22:
+@ %bb.4:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:footer <- $r10
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:ctx <- $r9
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s2 <- $r8
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:data <- $r6
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:header <- $r4
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s1 <- $r0
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwd <- [DW_OP_plus_uconst 48] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwdlen <- [DW_OP_plus_uconst 52] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:use_len <- [DW_OP_plus_uconst 56] [$sp+0]
+	.loc	1 0 9                           @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:0:9
+	ldr	r7, [sp, #56]
+.Ltmp23:
+	.loc	1 259 25                        @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:259:25
+	adds	r5, r0, #1
+.Ltmp24:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:end <- $r8
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s1 <- $r5
+	.loc	1 263 12 is_stmt 1              @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:263:12
+	mov	r0, r10
+	bl	strlen
+.Ltmp25:
+	.loc	1 263 9 is_stmt 0               @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:263:9
+	add	r0, r8
+.Ltmp26:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:end <- $r0
+	.loc	1 264 9 is_stmt 1               @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:264:9
+	mov	r1, r0
+	ldrb	r2, [r1], #1
+.Ltmp27:
+	.loc	1 271 12                        @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:271:12
+	sub.w	r4, r8, r5
+.Ltmp28:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:header <- [DW_OP_LLVM_entry_value 1] $r1
+	.loc	1 264 9                         @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:264:9
+	cmp	r2, #32
+	it	ne
+	movne	r1, r0
+.Ltmp29:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:end <- $r1
+	.loc	1 265 9                         @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:265:9
+	mov	r0, r1
+	ldrb	r2, [r0], #1
+.Ltmp30:
+	.loc	1 265 9 is_stmt 0               @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:265:9
+	cmp	r2, #13
+	it	ne
+	movne	r0, r1
+.Ltmp31:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:end <- $r0
+	.loc	1 266 9 is_stmt 1               @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:266:9
+	mov	r1, r0
+	ldrb	r2, [r1], #1
+.Ltmp32:
+	.loc	1 266 9 is_stmt 0               @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:266:9
+	cmp	r2, #10
+	it	ne
+	movne	r1, r0
+.Ltmp33:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:end <- $r1
+	.loc	1 267 20 is_stmt 1              @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:267:20
+	subs	r0, r1, r6
+.Ltmp34:
+	.loc	1 271 23                        @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:271:23
+	cmp	r4, #22
+.Ltmp35:
+	.loc	1 267 14                        @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:267:14
+	str	r0, [r7]
+.Ltmp36:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:enc <- 0
+	.loc	1 271 23                        @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:271:23
+	blt	.LBB1_6
+.Ltmp37:
+@ %bb.5:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:footer <- $r10
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:ctx <- $r9
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s2 <- $r8
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:data <- $r6
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s1 <- $r5
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:end <- $r1
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwd <- [DW_OP_plus_uconst 48] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwdlen <- [DW_OP_plus_uconst 52] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:use_len <- [DW_OP_plus_uconst 56] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:enc <- 0
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:header <- [DW_OP_LLVM_entry_value 1] $r1
+	.loc	1 271 26 is_stmt 0              @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:271:26
+	adr	r1, .LCPI1_0
+.Ltmp38:
+	mov	r0, r5
+	movs	r2, #22
+	bl	memcmp
+.Ltmp39:
+	.loc	1 271 9                         @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:271:9
+	cbz	r0, .LBB1_15
+.Ltmp40:
+.LBB1_6:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:footer <- $r10
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:ctx <- $r9
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s2 <- $r8
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:data <- $r6
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s1 <- $r5
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwd <- [DW_OP_plus_uconst 48] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwdlen <- [DW_OP_plus_uconst 52] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:use_len <- [DW_OP_plus_uconst 56] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:enc <- 0
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:header <- [DW_OP_LLVM_entry_value 1] $r1
+	.loc	1 340 9 is_stmt 1               @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:340:9
+	cmp	r5, r8
+	bhs	.LBB1_11
+.Ltmp41:
+@ %bb.7:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:footer <- $r10
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:ctx <- $r9
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s2 <- $r8
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:data <- $r6
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s1 <- $r5
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwd <- [DW_OP_plus_uconst 48] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwdlen <- [DW_OP_plus_uconst 52] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:use_len <- [DW_OP_plus_uconst 56] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:enc <- 0
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:header <- [DW_OP_LLVM_entry_value 1] $r1
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:len <- [DW_OP_plus_uconst 8, DW_OP_deref] $sp
+	.loc	1 0 9 is_stmt 0                 @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:0:9
+	add	r2, sp, #8
+	.loc	1 343 11 is_stmt 1              @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:343:11
+	movs	r0, #0
+	movs	r1, #0
+	mov	r3, r5
+	str	r4, [sp]
+	bl	mbedtls_base64_decode
+.Ltmp42:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:ret <- $r0
+	.loc	1 345 9                         @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:345:9
+	adds	r0, #44
+.Ltmp43:
+	bne	.LBB1_12
+.Ltmp44:
+@ %bb.8:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:footer <- $r10
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:ctx <- $r9
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s2 <- $r8
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:data <- $r6
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s1 <- $r5
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:len <- [DW_OP_plus_uconst 8, DW_OP_deref] $sp
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwd <- [DW_OP_plus_uconst 48] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwdlen <- [DW_OP_plus_uconst 52] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:use_len <- [DW_OP_plus_uconst 56] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:enc <- 0
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:header <- [DW_OP_LLVM_entry_value 1] $r1
+	.loc	1 0 9 is_stmt 0                 @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:0:9
+	add.w	r5, r11, #852
+.Ltmp45:
+	b	.LBB1_10
+.Ltmp46:
+.LBB1_9:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:data <- $r3
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:footer <- $r2
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:header <- $r1
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:ctx <- $r0
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwd <- [DW_OP_plus_uconst 48] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwdlen <- [DW_OP_plus_uconst 52] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:use_len <- [DW_OP_plus_uconst 56] [$sp+0]
+	mov	r5, r11
+.Ltmp47:
+.LBB1_10:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwd <- [DW_OP_plus_uconst 48] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwdlen <- [DW_OP_plus_uconst 52] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:use_len <- [DW_OP_plus_uconst 56] [$sp+0]
+	.loc	1 417 1 is_stmt 1               @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:417:1
+	mov	r0, r5
+	add	sp, #12
+	pop.w	{r4, r5, r6, r7, r8, r9, r10, r11, pc}
+.Ltmp48:
+.LBB1_11:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:footer <- $r10
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:ctx <- $r9
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s2 <- $r8
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:data <- $r6
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s1 <- $r5
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwd <- [DW_OP_plus_uconst 48] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwdlen <- [DW_OP_plus_uconst 52] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:use_len <- [DW_OP_plus_uconst 56] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:enc <- 0
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:header <- [DW_OP_LLVM_entry_value 1] $r1
+	.loc	1 0 1 is_stmt 0                 @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:0:1
+	add.w	r5, r11, #896
+.Ltmp49:
+	b	.LBB1_10
+.Ltmp50:
+.LBB1_12:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:footer <- $r10
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:ctx <- $r9
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s2 <- $r8
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:data <- $r6
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s1 <- $r5
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:len <- [DW_OP_plus_uconst 8, DW_OP_deref] $sp
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwd <- [DW_OP_plus_uconst 48] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwdlen <- [DW_OP_plus_uconst 52] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:use_len <- [DW_OP_plus_uconst 56] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:enc <- 0
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:header <- [DW_OP_LLVM_entry_value 1] $r1
+	.loc	1 348 36 is_stmt 1              @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:348:36
+	ldr	r1, [sp, #8]
+.Ltmp51:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:len <- $r1
+	.loc	1 348 17 is_stmt 0              @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:348:17
+	movs	r0, #1
+	bl	mbedtls_calloc
+.Ltmp52:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:buf <- $r0
+	.loc	1 348 9                         @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:348:9
+	cbz	r0, .LBB1_16
+.Ltmp53:
+@ %bb.13:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:footer <- $r10
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:ctx <- $r9
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s2 <- $r8
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:data <- $r6
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s1 <- $r5
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:buf <- $r0
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwd <- [DW_OP_plus_uconst 48] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwdlen <- [DW_OP_plus_uconst 52] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:use_len <- [DW_OP_plus_uconst 56] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:enc <- 0
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:header <- [DW_OP_LLVM_entry_value 1] $r1
+	.loc	1 351 45 is_stmt 1              @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:351:45
+	ldr	r1, [sp, #8]
+.Ltmp54:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:len <- [DW_OP_plus_uconst 8, DW_OP_deref] $sp
+	.loc	1 0 45 is_stmt 0                @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:0:45
+	add	r2, sp, #8
+	.loc	1 351 17                        @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:351:17
+	mov	r3, r5
+.Ltmp55:
+	.loc	1 0 0                           @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:0:0
+	mov	r6, r0
+.Ltmp56:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:data <- [DW_OP_LLVM_entry_value 1] $r3
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:buf <- $r6
+	.loc	1 351 17                        @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:351:17
+	str	r4, [sp]
+	bl	mbedtls_base64_decode
+.Ltmp57:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:ret <- $r0
+	.loc	1 351 9                         @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:351:9
+	cbz	r0, .LBB1_17
+.Ltmp58:
+@ %bb.14:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:footer <- $r10
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:ctx <- $r9
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s2 <- $r8
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:buf <- $r6
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s1 <- $r5
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:ret <- $r0
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:len <- [DW_OP_plus_uconst 8, DW_OP_deref] $sp
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwd <- [DW_OP_plus_uconst 48] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwdlen <- [DW_OP_plus_uconst 52] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:use_len <- [DW_OP_plus_uconst 56] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:data <- [DW_OP_LLVM_entry_value 1] $r3
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:enc <- 0
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:header <- [DW_OP_LLVM_entry_value 1] $r1
+	.loc	1 353 40 is_stmt 1              @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:353:40
+	ldr	r1, [sp, #8]
+.Ltmp59:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:len <- $r1
+	.loc	1 0 0 is_stmt 0                 @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:0:0
+	mov	r4, r0
+.Ltmp60:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:ret <- $r4
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:ret <- $r4
+	.loc	1 353 9                         @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:353:9
+	mov	r0, r6
+	bl	mbedtls_platform_zeroize
+.Ltmp61:
+	.loc	1 354 9 is_stmt 1               @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:354:9
+	mov	r0, r6
+	bl	mbedtls_free
+.Ltmp62:
+	@DEBUG_VALUE: mbedtls_error_add:line <- undef
+	@DEBUG_VALUE: mbedtls_error_add:file <- undef
+	@DEBUG_VALUE: mbedtls_error_add:low <- $r4
+	@DEBUG_VALUE: mbedtls_error_add:high <- -4352
+	.file	2 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/include\\mbedtls/error.h"
+	.loc	2 169 18                        @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/include\mbedtls/error.h:169:18
+	sub.w	r5, r4, #4352
+.Ltmp63:
+	.loc	2 0 18 is_stmt 0                @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/include\mbedtls/error.h:0:18
+	b	.LBB1_10
+.Ltmp64:
+.LBB1_15:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:footer <- $r10
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:ctx <- $r9
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s2 <- $r8
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:data <- $r6
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s1 <- $r5
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwd <- [DW_OP_plus_uconst 48] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwdlen <- [DW_OP_plus_uconst 52] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:use_len <- [DW_OP_plus_uconst 56] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:enc <- 0
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:header <- [DW_OP_LLVM_entry_value 1] $r1
+	add.w	r5, r11, #128
+.Ltmp65:
+	b	.LBB1_10
+.Ltmp66:
+.LBB1_16:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:footer <- $r10
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:ctx <- $r9
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s2 <- $r8
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:data <- $r6
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s1 <- $r5
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:buf <- $r0
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwd <- [DW_OP_plus_uconst 48] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwdlen <- [DW_OP_plus_uconst 52] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:use_len <- [DW_OP_plus_uconst 56] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:enc <- 0
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:header <- [DW_OP_LLVM_entry_value 1] $r1
+	add.w	r5, r11, #768
+.Ltmp67:
+	b	.LBB1_10
+.Ltmp68:
+.LBB1_17:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:footer <- $r10
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:ctx <- $r9
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s2 <- $r8
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:buf <- $r6
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:s1 <- $r5
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:ret <- $r0
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:len <- [DW_OP_plus_uconst 8, DW_OP_deref] $sp
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwd <- [DW_OP_plus_uconst 48] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:pwdlen <- [DW_OP_plus_uconst 52] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:use_len <- [DW_OP_plus_uconst 56] [$sp+0]
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:data <- [DW_OP_LLVM_entry_value 1] $r3
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:enc <- 0
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:header <- [DW_OP_LLVM_entry_value 1] $r1
+	.loc	1 414 19 is_stmt 1              @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:414:19
+	ldr	r0, [sp, #8]
+.Ltmp69:
+	@DEBUG_VALUE: mbedtls_pem_read_buffer:len <- $r0
+	.loc	1 0 19 is_stmt 0                @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:0:19
+	movs	r5, #0
+.Ltmp70:
+	.loc	1 413 14 is_stmt 1              @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:413:14
+	strd	r6, r0, [r9]
+	b	.LBB1_10
+.Ltmp71:
+	.p2align	2
+@ %bb.18:
+	.loc	1 0 14 is_stmt 0                @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:0:14
+.LCPI1_0:
+.L.str:
+	.asciz	"Proc-Type: 4,ENCRYPTED\000"
+.Lfunc_end1:
+	.size	mbedtls_pem_read_buffer, .Lfunc_end1-mbedtls_pem_read_buffer
+	.cfi_endproc
+	.cantunwind
+	.fnend
+                                        @ -- End function
+	.section	.text.mbedtls_pem_free,"ax",%progbits
+	.hidden	mbedtls_pem_free                @ -- Begin function mbedtls_pem_free
+	.globl	mbedtls_pem_free
+	.p2align	1
+	.type	mbedtls_pem_free,%function
+	.code	16                              @ @mbedtls_pem_free
+	.thumb_func
+mbedtls_pem_free:
+.Lfunc_begin2:
+	.loc	1 420 0 is_stmt 1               @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:420:0
+	.fnstart
+	.cfi_startproc
+@ %bb.0:
+	@DEBUG_VALUE: mbedtls_pem_free:ctx <- $r0
+	.save	{r4, lr}
+	push	{r4, lr}
+	.cfi_def_cfa_offset 8
+	.cfi_offset lr, -4
+	.cfi_offset r4, -8
+	mov	r4, r0
+.Ltmp72:
+	@DEBUG_VALUE: mbedtls_pem_free:ctx <- $r4
+	.loc	1 421 15 prologue_end           @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:421:15
+	ldr	r0, [r0]
+.Ltmp73:
+	.loc	1 421 10 is_stmt 0              @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:421:10
+	cbz	r0, .LBB2_2
+.Ltmp74:
+@ %bb.1:
+	@DEBUG_VALUE: mbedtls_pem_free:ctx <- $r4
+	.loc	1 423 50 is_stmt 1              @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:423:50
+	ldr	r1, [r4, #4]
+	.loc	1 423 9 is_stmt 0               @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:423:9
+	bl	mbedtls_platform_zeroize
+.Ltmp75:
+	.loc	1 424 28 is_stmt 1              @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:424:28
+	ldr	r0, [r4]
+	.loc	1 424 9 is_stmt 0               @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:424:9
+	bl	mbedtls_free
+.Ltmp76:
+.LBB2_2:
+	@DEBUG_VALUE: mbedtls_pem_free:ctx <- $r4
+	.loc	1 426 24 is_stmt 1              @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:426:24
+	ldr	r0, [r4, #8]
+	.loc	1 426 5 is_stmt 0               @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:426:5
+	bl	mbedtls_free
+.Ltmp77:
+	.loc	1 428 5 is_stmt 1               @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/pem.c:428:5
+	mov	r0, r4
+	movs	r1, #12
+	pop.w	{r4, lr}
+.Ltmp78:
+	@DEBUG_VALUE: mbedtls_pem_free:ctx <- [DW_OP_LLVM_entry_value 1] $r0
+	b	mbedtls_platform_zeroize
+.Ltmp79:
+.Lfunc_end2:
+	.size	mbedtls_pem_free, .Lfunc_end2-mbedtls_pem_free
+	.cfi_endproc
+	.file	3 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/include\\mbedtls/platform_util.h"
+	.cantunwind
+	.fnend
+                                        @ -- End function
+	.file	4 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/include\\mbedtls/pem.h"
+	.file	5 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdio.h"
+	.section	.debug_loc,"",%progbits
+.Ldebug_loc0:
+	.long	-1
+	.long	.Lfunc_begin1                   @   base address
+	.long	.Lfunc_begin1-.Lfunc_begin1
+	.long	.Ltmp5-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	80                              @ DW_OP_reg0
+	.long	.Ltmp5-.Lfunc_begin1
+	.long	.Ltmp46-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	89                              @ DW_OP_reg9
+	.long	.Ltmp46-.Lfunc_begin1
+	.long	.Ltmp47-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	80                              @ DW_OP_reg0
+	.long	.Ltmp48-.Lfunc_begin1
+	.long	.Ltmp71-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	89                              @ DW_OP_reg9
+	.long	0
+	.long	0
+.Ldebug_loc1:
+	.long	-1
+	.long	.Lfunc_begin1                   @   base address
+	.long	.Lfunc_begin1-.Lfunc_begin1
+	.long	.Ltmp8-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	81                              @ DW_OP_reg1
+	.long	.Ltmp8-.Lfunc_begin1
+	.long	.Ltmp28-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	84                              @ DW_OP_reg4
+	.long	.Ltmp28-.Lfunc_begin1
+	.long	.Ltmp46-.Lfunc_begin1
+	.short	4                               @ Loc expr size
+	.byte	243                             @ DW_OP_GNU_entry_value
+	.byte	1                               @ 1
+	.byte	81                              @ DW_OP_reg1
+	.byte	159                             @ DW_OP_stack_value
+	.long	.Ltmp46-.Lfunc_begin1
+	.long	.Ltmp47-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	81                              @ DW_OP_reg1
+	.long	.Ltmp48-.Lfunc_begin1
+	.long	.Ltmp71-.Lfunc_begin1
+	.short	4                               @ Loc expr size
+	.byte	243                             @ DW_OP_GNU_entry_value
+	.byte	1                               @ 1
+	.byte	81                              @ DW_OP_reg1
+	.byte	159                             @ DW_OP_stack_value
+	.long	0
+	.long	0
+.Ldebug_loc2:
+	.long	-1
+	.long	.Lfunc_begin1                   @   base address
+	.long	.Lfunc_begin1-.Lfunc_begin1
+	.long	.Ltmp7-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	82                              @ DW_OP_reg2
+	.long	.Ltmp7-.Lfunc_begin1
+	.long	.Ltmp46-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	90                              @ DW_OP_reg10
+	.long	.Ltmp46-.Lfunc_begin1
+	.long	.Ltmp47-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	82                              @ DW_OP_reg2
+	.long	.Ltmp48-.Lfunc_begin1
+	.long	.Ltmp71-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	90                              @ DW_OP_reg10
+	.long	0
+	.long	0
+.Ldebug_loc3:
+	.long	-1
+	.long	.Lfunc_begin1                   @   base address
+	.long	.Lfunc_begin1-.Lfunc_begin1
+	.long	.Ltmp6-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	83                              @ DW_OP_reg3
+	.long	.Ltmp6-.Lfunc_begin1
+	.long	.Ltmp46-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	86                              @ DW_OP_reg6
+	.long	.Ltmp46-.Lfunc_begin1
+	.long	.Ltmp47-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	83                              @ DW_OP_reg3
+	.long	.Ltmp48-.Lfunc_begin1
+	.long	.Ltmp56-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	86                              @ DW_OP_reg6
+	.long	.Ltmp56-.Lfunc_begin1
+	.long	.Ltmp64-.Lfunc_begin1
+	.short	4                               @ Loc expr size
+	.byte	243                             @ DW_OP_GNU_entry_value
+	.byte	1                               @ 1
+	.byte	83                              @ DW_OP_reg3
+	.byte	159                             @ DW_OP_stack_value
+	.long	.Ltmp64-.Lfunc_begin1
+	.long	.Ltmp68-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	86                              @ DW_OP_reg6
+	.long	.Ltmp68-.Lfunc_begin1
+	.long	.Ltmp71-.Lfunc_begin1
+	.short	4                               @ Loc expr size
+	.byte	243                             @ DW_OP_GNU_entry_value
+	.byte	1                               @ 1
+	.byte	83                              @ DW_OP_reg3
+	.byte	159                             @ DW_OP_stack_value
+	.long	0
+	.long	0
+.Ldebug_loc4:
+	.long	-1
+	.long	.Lfunc_begin1                   @   base address
+	.long	.Ltmp9-.Lfunc_begin1
+	.long	.Ltmp11-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	80                              @ DW_OP_reg0
+	.long	.Ltmp11-.Lfunc_begin1
+	.long	.Ltmp16-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	87                              @ DW_OP_reg7
+	.long	.Ltmp16-.Lfunc_begin1
+	.long	.Ltmp18-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	80                              @ DW_OP_reg0
+	.long	.Ltmp18-.Lfunc_begin1
+	.long	.Ltmp20-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	81                              @ DW_OP_reg1
+	.long	.Ltmp20-.Lfunc_begin1
+	.long	.Ltmp24-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	80                              @ DW_OP_reg0
+	.long	.Ltmp24-.Lfunc_begin1
+	.long	.Ltmp45-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	85                              @ DW_OP_reg5
+	.long	.Ltmp48-.Lfunc_begin1
+	.long	.Ltmp49-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	85                              @ DW_OP_reg5
+	.long	.Ltmp50-.Lfunc_begin1
+	.long	.Ltmp63-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	85                              @ DW_OP_reg5
+	.long	.Ltmp64-.Lfunc_begin1
+	.long	.Ltmp65-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	85                              @ DW_OP_reg5
+	.long	.Ltmp66-.Lfunc_begin1
+	.long	.Ltmp67-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	85                              @ DW_OP_reg5
+	.long	.Ltmp68-.Lfunc_begin1
+	.long	.Ltmp70-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	85                              @ DW_OP_reg5
+	.long	0
+	.long	0
+.Ldebug_loc5:
+	.long	-1
+	.long	.Lfunc_begin1                   @   base address
+	.long	.Ltmp12-.Lfunc_begin1
+	.long	.Ltmp14-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	80                              @ DW_OP_reg0
+	.long	.Ltmp14-.Lfunc_begin1
+	.long	.Ltmp46-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	88                              @ DW_OP_reg8
+	.long	.Ltmp48-.Lfunc_begin1
+	.long	.Ltmp71-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	88                              @ DW_OP_reg8
+	.long	0
+	.long	0
+.Ldebug_loc6:
+	.long	-1
+	.long	.Lfunc_begin1                   @   base address
+	.long	.Ltmp24-.Lfunc_begin1
+	.long	.Ltmp26-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	88                              @ DW_OP_reg8
+	.long	.Ltmp26-.Lfunc_begin1
+	.long	.Ltmp29-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	80                              @ DW_OP_reg0
+	.long	.Ltmp29-.Lfunc_begin1
+	.long	.Ltmp31-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	81                              @ DW_OP_reg1
+	.long	.Ltmp31-.Lfunc_begin1
+	.long	.Ltmp33-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	80                              @ DW_OP_reg0
+	.long	.Ltmp33-.Lfunc_begin1
+	.long	.Ltmp38-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	81                              @ DW_OP_reg1
+	.long	0
+	.long	0
+.Ldebug_loc7:
+	.long	-1
+	.long	.Lfunc_begin1                   @   base address
+	.long	.Ltmp36-.Lfunc_begin1
+	.long	.Ltmp46-.Lfunc_begin1
+	.short	3                               @ Loc expr size
+	.byte	17                              @ DW_OP_consts
+	.byte	0                               @ 0
+	.byte	159                             @ DW_OP_stack_value
+	.long	.Ltmp48-.Lfunc_begin1
+	.long	.Ltmp71-.Lfunc_begin1
+	.short	3                               @ Loc expr size
+	.byte	17                              @ DW_OP_consts
+	.byte	0                               @ 0
+	.byte	159                             @ DW_OP_stack_value
+	.long	0
+	.long	0
+.Ldebug_loc8:
+	.long	-1
+	.long	.Lfunc_begin1                   @   base address
+	.long	.Ltmp41-.Lfunc_begin1
+	.long	.Ltmp46-.Lfunc_begin1
+	.short	2                               @ Loc expr size
+	.byte	125                             @ DW_OP_breg13
+	.byte	8                               @ 8
+	.long	.Ltmp50-.Lfunc_begin1
+	.long	.Ltmp51-.Lfunc_begin1
+	.short	2                               @ Loc expr size
+	.byte	125                             @ DW_OP_breg13
+	.byte	8                               @ 8
+	.long	.Ltmp51-.Lfunc_begin1
+	.long	.Ltmp52-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	81                              @ DW_OP_reg1
+	.long	.Ltmp54-.Lfunc_begin1
+	.long	.Ltmp59-.Lfunc_begin1
+	.short	2                               @ Loc expr size
+	.byte	125                             @ DW_OP_breg13
+	.byte	8                               @ 8
+	.long	.Ltmp59-.Lfunc_begin1
+	.long	.Ltmp61-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	81                              @ DW_OP_reg1
+	.long	.Ltmp68-.Lfunc_begin1
+	.long	.Ltmp69-.Lfunc_begin1
+	.short	2                               @ Loc expr size
+	.byte	125                             @ DW_OP_breg13
+	.byte	8                               @ 8
+	.long	.Ltmp69-.Lfunc_begin1
+	.long	.Ltmp71-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	80                              @ DW_OP_reg0
+	.long	0
+	.long	0
+.Ldebug_loc9:
+	.long	-1
+	.long	.Lfunc_begin1                   @   base address
+	.long	.Ltmp42-.Lfunc_begin1
+	.long	.Ltmp43-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	80                              @ DW_OP_reg0
+	.long	.Ltmp57-.Lfunc_begin1
+	.long	.Ltmp60-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	80                              @ DW_OP_reg0
+	.long	.Ltmp60-.Lfunc_begin1
+	.long	.Ltmp64-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	84                              @ DW_OP_reg4
+	.long	.Ltmp68-.Lfunc_begin1
+	.long	.Ltmp69-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	80                              @ DW_OP_reg0
+	.long	0
+	.long	0
+.Ldebug_loc10:
+	.long	-1
+	.long	.Lfunc_begin1                   @   base address
+	.long	.Ltmp52-.Lfunc_begin1
+	.long	.Ltmp56-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	80                              @ DW_OP_reg0
+	.long	.Ltmp56-.Lfunc_begin1
+	.long	.Ltmp64-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	86                              @ DW_OP_reg6
+	.long	.Ltmp66-.Lfunc_begin1
+	.long	.Ltmp68-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	80                              @ DW_OP_reg0
+	.long	.Ltmp68-.Lfunc_begin1
+	.long	.Ltmp71-.Lfunc_begin1
+	.short	1                               @ Loc expr size
+	.byte	86                              @ DW_OP_reg6
+	.long	0
+	.long	0
+.Ldebug_loc11:
+	.long	-1
+	.long	.Lfunc_begin2                   @   base address
+	.long	.Lfunc_begin2-.Lfunc_begin2
+	.long	.Ltmp72-.Lfunc_begin2
+	.short	1                               @ Loc expr size
+	.byte	80                              @ DW_OP_reg0
+	.long	.Ltmp72-.Lfunc_begin2
+	.long	.Ltmp78-.Lfunc_begin2
+	.short	1                               @ Loc expr size
+	.byte	84                              @ DW_OP_reg4
+	.long	.Ltmp78-.Lfunc_begin2
+	.long	.Lfunc_end2-.Lfunc_begin2
+	.short	4                               @ Loc expr size
+	.byte	243                             @ DW_OP_GNU_entry_value
+	.byte	1                               @ 1
+	.byte	80                              @ DW_OP_reg0
+	.byte	159                             @ DW_OP_stack_value
+	.long	0
+	.long	0
+	.section	.debug_abbrev,"",%progbits
+	.byte	1                               @ Abbreviation Code
+	.byte	17                              @ DW_TAG_compile_unit
+	.byte	1                               @ DW_CHILDREN_yes
+	.byte	37                              @ DW_AT_producer
+	.byte	14                              @ DW_FORM_strp
+	.byte	19                              @ DW_AT_language
+	.byte	5                               @ DW_FORM_data2
+	.byte	3                               @ DW_AT_name
+	.byte	14                              @ DW_FORM_strp
+	.byte	16                              @ DW_AT_stmt_list
+	.byte	23                              @ DW_FORM_sec_offset
+	.byte	27                              @ DW_AT_comp_dir
+	.byte	14                              @ DW_FORM_strp
+	.byte	17                              @ DW_AT_low_pc
+	.byte	1                               @ DW_FORM_addr
+	.byte	85                              @ DW_AT_ranges
+	.byte	23                              @ DW_FORM_sec_offset
+	.byte	0                               @ EOM(1)
+	.byte	0                               @ EOM(2)
+	.byte	2                               @ Abbreviation Code
+	.byte	15                              @ DW_TAG_pointer_type
+	.byte	0                               @ DW_CHILDREN_no
+	.byte	73                              @ DW_AT_type
+	.byte	19                              @ DW_FORM_ref4
+	.byte	0                               @ EOM(1)
+	.byte	0                               @ EOM(2)
+	.byte	3                               @ Abbreviation Code
+	.byte	36                              @ DW_TAG_base_type
+	.byte	0                               @ DW_CHILDREN_no
+	.byte	3                               @ DW_AT_name
+	.byte	14                              @ DW_FORM_strp
+	.byte	62                              @ DW_AT_encoding
+	.byte	11                              @ DW_FORM_data1
+	.byte	11                              @ DW_AT_byte_size
+	.byte	11                              @ DW_FORM_data1
+	.byte	0                               @ EOM(1)
+	.byte	0                               @ EOM(2)
+	.byte	4                               @ Abbreviation Code
+	.byte	38                              @ DW_TAG_const_type
+	.byte	0                               @ DW_CHILDREN_no
+	.byte	73                              @ DW_AT_type
+	.byte	19                              @ DW_FORM_ref4
+	.byte	0                               @ EOM(1)
+	.byte	0                               @ EOM(2)
+	.byte	5                               @ Abbreviation Code
+	.byte	46                              @ DW_TAG_subprogram
+	.byte	1                               @ DW_CHILDREN_yes
+	.byte	17                              @ DW_AT_low_pc
+	.byte	1                               @ DW_FORM_addr
+	.byte	18                              @ DW_AT_high_pc
+	.byte	6                               @ DW_FORM_data4
+	.byte	64                              @ DW_AT_frame_base
+	.byte	24                              @ DW_FORM_exprloc
+	.ascii	"\227B"                         @ DW_AT_GNU_all_call_sites
+	.byte	25                              @ DW_FORM_flag_present
+	.byte	3                               @ DW_AT_name
+	.byte	14                              @ DW_FORM_strp
+	.byte	58                              @ DW_AT_decl_file
+	.byte	11                              @ DW_FORM_data1
+	.byte	59                              @ DW_AT_decl_line
+	.byte	11                              @ DW_FORM_data1
+	.byte	39                              @ DW_AT_prototyped
+	.byte	25                              @ DW_FORM_flag_present
+	.byte	63                              @ DW_AT_external
+	.byte	25                              @ DW_FORM_flag_present
+	.byte	0                               @ EOM(1)
+	.byte	0                               @ EOM(2)
+	.byte	6                               @ Abbreviation Code
+	.byte	5                               @ DW_TAG_formal_parameter
+	.byte	0                               @ DW_CHILDREN_no
+	.byte	2                               @ DW_AT_location
+	.byte	24                              @ DW_FORM_exprloc
+	.byte	3                               @ DW_AT_name
+	.byte	14                              @ DW_FORM_strp
+	.byte	58                              @ DW_AT_decl_file
+	.byte	11                              @ DW_FORM_data1
+	.byte	59                              @ DW_AT_decl_line
+	.byte	11                              @ DW_FORM_data1
+	.byte	73                              @ DW_AT_type
+	.byte	19                              @ DW_FORM_ref4
+	.byte	0                               @ EOM(1)
+	.byte	0                               @ EOM(2)
+	.byte	7                               @ Abbreviation Code
+	.byte	46                              @ DW_TAG_subprogram
+	.byte	1                               @ DW_CHILDREN_yes
+	.byte	3                               @ DW_AT_name
+	.byte	14                              @ DW_FORM_strp
+	.byte	58                              @ DW_AT_decl_file
+	.byte	11                              @ DW_FORM_data1
+	.byte	59                              @ DW_AT_decl_line
+	.byte	11                              @ DW_FORM_data1
+	.byte	39                              @ DW_AT_prototyped
+	.byte	25                              @ DW_FORM_flag_present
+	.byte	73                              @ DW_AT_type
+	.byte	19                              @ DW_FORM_ref4
+	.byte	32                              @ DW_AT_inline
+	.byte	11                              @ DW_FORM_data1
+	.byte	0                               @ EOM(1)
+	.byte	0                               @ EOM(2)
+	.byte	8                               @ Abbreviation Code
+	.byte	5                               @ DW_TAG_formal_parameter
+	.byte	0                               @ DW_CHILDREN_no
+	.byte	3                               @ DW_AT_name
+	.byte	14                              @ DW_FORM_strp
+	.byte	58                              @ DW_AT_decl_file
+	.byte	11                              @ DW_FORM_data1
+	.byte	59                              @ DW_AT_decl_line
+	.byte	11                              @ DW_FORM_data1
+	.byte	73                              @ DW_AT_type
+	.byte	19                              @ DW_FORM_ref4
+	.byte	0                               @ EOM(1)
+	.byte	0                               @ EOM(2)
+	.byte	9                               @ Abbreviation Code
+	.byte	46                              @ DW_TAG_subprogram
+	.byte	1                               @ DW_CHILDREN_yes
+	.byte	17                              @ DW_AT_low_pc
+	.byte	1                               @ DW_FORM_addr
+	.byte	18                              @ DW_AT_high_pc
+	.byte	6                               @ DW_FORM_data4
+	.byte	64                              @ DW_AT_frame_base
+	.byte	24                              @ DW_FORM_exprloc
+	.ascii	"\227B"                         @ DW_AT_GNU_all_call_sites
+	.byte	25                              @ DW_FORM_flag_present
+	.byte	3                               @ DW_AT_name
+	.byte	14                              @ DW_FORM_strp
+	.byte	58                              @ DW_AT_decl_file
+	.byte	11                              @ DW_FORM_data1
+	.byte	59                              @ DW_AT_decl_line
+	.byte	11                              @ DW_FORM_data1
+	.byte	39                              @ DW_AT_prototyped
+	.byte	25                              @ DW_FORM_flag_present
+	.byte	73                              @ DW_AT_type
+	.byte	19                              @ DW_FORM_ref4
+	.byte	63                              @ DW_AT_external
+	.byte	25                              @ DW_FORM_flag_present
+	.byte	0                               @ EOM(1)
+	.byte	0                               @ EOM(2)
+	.byte	10                              @ Abbreviation Code
+	.byte	5                               @ DW_TAG_formal_parameter
+	.byte	0                               @ DW_CHILDREN_no
+	.byte	2                               @ DW_AT_location
+	.byte	23                              @ DW_FORM_sec_offset
+	.byte	3                               @ DW_AT_name
+	.byte	14                              @ DW_FORM_strp
+	.byte	58                              @ DW_AT_decl_file
+	.byte	11                              @ DW_FORM_data1
+	.byte	59                              @ DW_AT_decl_line
+	.byte	11                              @ DW_FORM_data1
+	.byte	73                              @ DW_AT_type
+	.byte	19                              @ DW_FORM_ref4
+	.byte	0                               @ EOM(1)
+	.byte	0                               @ EOM(2)
+	.byte	11                              @ Abbreviation Code
+	.byte	52                              @ DW_TAG_variable
+	.byte	0                               @ DW_CHILDREN_no
+	.byte	2                               @ DW_AT_location
+	.byte	23                              @ DW_FORM_sec_offset
+	.byte	3                               @ DW_AT_name
+	.byte	14                              @ DW_FORM_strp
+	.byte	58                              @ DW_AT_decl_file
+	.byte	11                              @ DW_FORM_data1
+	.byte	59                              @ DW_AT_decl_line
+	.byte	11                              @ DW_FORM_data1
+	.byte	73                              @ DW_AT_type
+	.byte	19                              @ DW_FORM_ref4
+	.byte	0                               @ EOM(1)
+	.byte	0                               @ EOM(2)
+	.byte	12                              @ Abbreviation Code
+	.byte	29                              @ DW_TAG_inlined_subroutine
+	.byte	1                               @ DW_CHILDREN_yes
+	.byte	49                              @ DW_AT_abstract_origin
+	.byte	19                              @ DW_FORM_ref4
+	.byte	17                              @ DW_AT_low_pc
+	.byte	1                               @ DW_FORM_addr
+	.byte	18                              @ DW_AT_high_pc
+	.byte	6                               @ DW_FORM_data4
+	.byte	88                              @ DW_AT_call_file
+	.byte	11                              @ DW_FORM_data1
+	.byte	89                              @ DW_AT_call_line
+	.byte	5                               @ DW_FORM_data2
+	.byte	87                              @ DW_AT_call_column
+	.byte	11                              @ DW_FORM_data1
+	.byte	0                               @ EOM(1)
+	.byte	0                               @ EOM(2)
+	.byte	13                              @ Abbreviation Code
+	.byte	5                               @ DW_TAG_formal_parameter
+	.byte	0                               @ DW_CHILDREN_no
+	.byte	28                              @ DW_AT_const_value
+	.byte	13                              @ DW_FORM_sdata
+	.byte	49                              @ DW_AT_abstract_origin
+	.byte	19                              @ DW_FORM_ref4
+	.byte	0                               @ EOM(1)
+	.byte	0                               @ EOM(2)
+	.byte	14                              @ Abbreviation Code
+	.byte	5                               @ DW_TAG_formal_parameter
+	.byte	0                               @ DW_CHILDREN_no
+	.byte	2                               @ DW_AT_location
+	.byte	24                              @ DW_FORM_exprloc
+	.byte	49                              @ DW_AT_abstract_origin
+	.byte	19                              @ DW_FORM_ref4
+	.byte	0                               @ EOM(1)
+	.byte	0                               @ EOM(2)
+	.byte	15                              @ Abbreviation Code
+	.byte	5                               @ DW_TAG_formal_parameter
+	.byte	0                               @ DW_CHILDREN_no
+	.byte	49                              @ DW_AT_abstract_origin
+	.byte	19                              @ DW_FORM_ref4
+	.byte	0                               @ EOM(1)
+	.byte	0                               @ EOM(2)
+	.byte	16                              @ Abbreviation Code
+	.byte	46                              @ DW_TAG_subprogram
+	.byte	1                               @ DW_CHILDREN_yes
+	.byte	17                              @ DW_AT_low_pc
+	.byte	1                               @ DW_FORM_addr
+	.byte	18                              @ DW_AT_high_pc
+	.byte	6                               @ DW_FORM_data4
+	.byte	64                              @ DW_AT_frame_base
+	.byte	24                              @ DW_FORM_exprloc
+	.ascii	"\227B"                         @ DW_AT_GNU_all_call_sites
+	.byte	25                              @ DW_FORM_flag_present
+	.byte	3                               @ DW_AT_name
+	.byte	14                              @ DW_FORM_strp
+	.byte	58                              @ DW_AT_decl_file
+	.byte	11                              @ DW_FORM_data1
+	.byte	59                              @ DW_AT_decl_line
+	.byte	5                               @ DW_FORM_data2
+	.byte	39                              @ DW_AT_prototyped
+	.byte	25                              @ DW_FORM_flag_present
+	.byte	63                              @ DW_AT_external
+	.byte	25                              @ DW_FORM_flag_present
+	.byte	0                               @ EOM(1)
+	.byte	0                               @ EOM(2)
+	.byte	17                              @ Abbreviation Code
+	.byte	5                               @ DW_TAG_formal_parameter
+	.byte	0                               @ DW_CHILDREN_no
+	.byte	2                               @ DW_AT_location
+	.byte	23                              @ DW_FORM_sec_offset
+	.byte	3                               @ DW_AT_name
+	.byte	14                              @ DW_FORM_strp
+	.byte	58                              @ DW_AT_decl_file
+	.byte	11                              @ DW_FORM_data1
+	.byte	59                              @ DW_AT_decl_line
+	.byte	5                               @ DW_FORM_data2
+	.byte	73                              @ DW_AT_type
+	.byte	19                              @ DW_FORM_ref4
+	.byte	0                               @ EOM(1)
+	.byte	0                               @ EOM(2)
+	.byte	18                              @ Abbreviation Code
+	.ascii	"\211\202\001"                  @ DW_TAG_GNU_call_site
+	.byte	0                               @ DW_CHILDREN_no
+	.byte	49                              @ DW_AT_abstract_origin
+	.byte	19                              @ DW_FORM_ref4
+	.ascii	"\225B"                         @ DW_AT_GNU_tail_call
+	.byte	25                              @ DW_FORM_flag_present
+	.byte	17                              @ DW_AT_low_pc
+	.byte	1                               @ DW_FORM_addr
+	.byte	0                               @ EOM(1)
+	.byte	0                               @ EOM(2)
+	.byte	19                              @ Abbreviation Code
+	.byte	46                              @ DW_TAG_subprogram
+	.byte	1                               @ DW_CHILDREN_yes
+	.byte	3                               @ DW_AT_name
+	.byte	14                              @ DW_FORM_strp
+	.byte	58                              @ DW_AT_decl_file
+	.byte	11                              @ DW_FORM_data1
+	.byte	59                              @ DW_AT_decl_line
+	.byte	11                              @ DW_FORM_data1
+	.byte	39                              @ DW_AT_prototyped
+	.byte	25                              @ DW_FORM_flag_present
+	.byte	60                              @ DW_AT_declaration
+	.byte	25                              @ DW_FORM_flag_present
+	.byte	63                              @ DW_AT_external
+	.byte	25                              @ DW_FORM_flag_present
+	.byte	0                               @ EOM(1)
+	.byte	0                               @ EOM(2)
+	.byte	20                              @ Abbreviation Code
+	.byte	5                               @ DW_TAG_formal_parameter
+	.byte	0                               @ DW_CHILDREN_no
+	.byte	73                              @ DW_AT_type
+	.byte	19                              @ DW_FORM_ref4
+	.byte	0                               @ EOM(1)
+	.byte	0                               @ EOM(2)
+	.byte	21                              @ Abbreviation Code
+	.byte	15                              @ DW_TAG_pointer_type
+	.byte	0                               @ DW_CHILDREN_no
+	.byte	0                               @ EOM(1)
+	.byte	0                               @ EOM(2)
+	.byte	22                              @ Abbreviation Code
+	.byte	22                              @ DW_TAG_typedef
+	.byte	0                               @ DW_CHILDREN_no
+	.byte	73                              @ DW_AT_type
+	.byte	19                              @ DW_FORM_ref4
+	.byte	3                               @ DW_AT_name
+	.byte	14                              @ DW_FORM_strp
+	.byte	58                              @ DW_AT_decl_file
+	.byte	11                              @ DW_FORM_data1
+	.byte	59                              @ DW_AT_decl_line
+	.byte	11                              @ DW_FORM_data1
+	.byte	0                               @ EOM(1)
+	.byte	0                               @ EOM(2)
+	.byte	23                              @ Abbreviation Code
+	.byte	19                              @ DW_TAG_structure_type
+	.byte	1                               @ DW_CHILDREN_yes
+	.byte	3                               @ DW_AT_name
+	.byte	14                              @ DW_FORM_strp
+	.byte	11                              @ DW_AT_byte_size
+	.byte	11                              @ DW_FORM_data1
+	.byte	58                              @ DW_AT_decl_file
+	.byte	11                              @ DW_FORM_data1
+	.byte	59                              @ DW_AT_decl_line
+	.byte	11                              @ DW_FORM_data1
+	.byte	0                               @ EOM(1)
+	.byte	0                               @ EOM(2)
+	.byte	24                              @ Abbreviation Code
+	.byte	13                              @ DW_TAG_member
+	.byte	0                               @ DW_CHILDREN_no
+	.byte	3                               @ DW_AT_name
+	.byte	14                              @ DW_FORM_strp
+	.byte	73                              @ DW_AT_type
+	.byte	19                              @ DW_FORM_ref4
+	.byte	58                              @ DW_AT_decl_file
+	.byte	11                              @ DW_FORM_data1
+	.byte	59                              @ DW_AT_decl_line
+	.byte	11                              @ DW_FORM_data1
+	.byte	56                              @ DW_AT_data_member_location
+	.byte	11                              @ DW_FORM_data1
+	.byte	0                               @ EOM(1)
+	.byte	0                               @ EOM(2)
+	.byte	0                               @ EOM(3)
+	.section	.debug_info,"",%progbits
+.Lcu_begin0:
+	.long	.Ldebug_info_end0-.Ldebug_info_start0 @ Length of Unit
+.Ldebug_info_start0:
+	.short	4                               @ DWARF version number
+	.long	.debug_abbrev                   @ Offset Into Abbrev. Section
+	.byte	4                               @ Address Size (in bytes)
+	.byte	1                               @ Abbrev [1] 0xb:0x244 DW_TAG_compile_unit
+	.long	.Linfo_string0                  @ DW_AT_producer
+	.short	12                              @ DW_AT_language
+	.long	.Linfo_string1                  @ DW_AT_name
+	.long	.Lline_table_start0             @ DW_AT_stmt_list
+	.long	.Linfo_string2                  @ DW_AT_comp_dir
+	.long	0                               @ DW_AT_low_pc
+	.long	.Ldebug_ranges0                 @ DW_AT_ranges
+	.byte	2                               @ Abbrev [2] 0x26:0x5 DW_TAG_pointer_type
+	.long	43                              @ DW_AT_type
+	.byte	3                               @ Abbrev [3] 0x2b:0x7 DW_TAG_base_type
+	.long	.Linfo_string3                  @ DW_AT_name
+	.byte	8                               @ DW_AT_encoding
+	.byte	1                               @ DW_AT_byte_size
+	.byte	2                               @ Abbrev [2] 0x32:0x5 DW_TAG_pointer_type
+	.long	55                              @ DW_AT_type
+	.byte	4                               @ Abbrev [4] 0x37:0x5 DW_TAG_const_type
+	.long	60                              @ DW_AT_type
+	.byte	3                               @ Abbrev [3] 0x3c:0x7 DW_TAG_base_type
+	.long	.Linfo_string4                  @ DW_AT_name
+	.byte	8                               @ DW_AT_encoding
+	.byte	1                               @ DW_AT_byte_size
+	.byte	5                               @ Abbrev [5] 0x43:0x1f DW_TAG_subprogram
+	.long	.Lfunc_begin0                   @ DW_AT_low_pc
+	.long	.Lfunc_end0-.Lfunc_begin0       @ DW_AT_high_pc
+	.byte	1                               @ DW_AT_frame_base
+	.byte	93
+                                        @ DW_AT_GNU_all_call_sites
+	.long	.Linfo_string13                 @ DW_AT_name
+	.byte	1                               @ DW_AT_decl_file
+	.byte	44                              @ DW_AT_decl_line
+                                        @ DW_AT_prototyped
+                                        @ DW_AT_external
+	.byte	6                               @ Abbrev [6] 0x54:0xd DW_TAG_formal_parameter
+	.byte	1                               @ DW_AT_location
+	.byte	80
+	.long	.Linfo_string16                 @ DW_AT_name
+	.byte	1                               @ DW_AT_decl_file
+	.byte	44                              @ DW_AT_decl_line
+	.long	503                             @ DW_AT_type
+	.byte	0                               @ End Of Children Mark
+	.byte	7                               @ Abbrev [7] 0x62:0x39 DW_TAG_subprogram
+	.long	.Linfo_string5                  @ DW_AT_name
+	.byte	2                               @ DW_AT_decl_file
+	.byte	159                             @ DW_AT_decl_line
+                                        @ DW_AT_prototyped
+	.long	155                             @ DW_AT_type
+	.byte	1                               @ DW_AT_inline
+	.byte	8                               @ Abbrev [8] 0x6e:0xb DW_TAG_formal_parameter
+	.long	.Linfo_string7                  @ DW_AT_name
+	.byte	2                               @ DW_AT_decl_file
+	.byte	159                             @ DW_AT_decl_line
+	.long	155                             @ DW_AT_type
+	.byte	8                               @ Abbrev [8] 0x79:0xb DW_TAG_formal_parameter
+	.long	.Linfo_string8                  @ DW_AT_name
+	.byte	2                               @ DW_AT_decl_file
+	.byte	159                             @ DW_AT_decl_line
+	.long	155                             @ DW_AT_type
+	.byte	8                               @ Abbrev [8] 0x84:0xb DW_TAG_formal_parameter
+	.long	.Linfo_string9                  @ DW_AT_name
+	.byte	2                               @ DW_AT_decl_file
+	.byte	160                             @ DW_AT_decl_line
+	.long	50                              @ DW_AT_type
+	.byte	8                               @ Abbrev [8] 0x8f:0xb DW_TAG_formal_parameter
+	.long	.Linfo_string10                 @ DW_AT_name
+	.byte	2                               @ DW_AT_decl_file
+	.byte	160                             @ DW_AT_decl_line
+	.long	155                             @ DW_AT_type
+	.byte	0                               @ End Of Children Mark
+	.byte	3                               @ Abbrev [3] 0x9b:0x7 DW_TAG_base_type
+	.long	.Linfo_string6                  @ DW_AT_name
+	.byte	5                               @ DW_AT_encoding
+	.byte	4                               @ DW_AT_byte_size
+	.byte	9                               @ Abbrev [9] 0xa2:0x10f DW_TAG_subprogram
+	.long	.Lfunc_begin1                   @ DW_AT_low_pc
+	.long	.Lfunc_end1-.Lfunc_begin1       @ DW_AT_high_pc
+	.byte	1                               @ DW_AT_frame_base
+	.byte	93
+                                        @ DW_AT_GNU_all_call_sites
+	.long	.Linfo_string14                 @ DW_AT_name
+	.byte	1                               @ DW_AT_decl_file
+	.byte	225                             @ DW_AT_decl_line
+                                        @ DW_AT_prototyped
+	.long	155                             @ DW_AT_type
+                                        @ DW_AT_external
+	.byte	10                              @ Abbrev [10] 0xb7:0xf DW_TAG_formal_parameter
+	.long	.Ldebug_loc0                    @ DW_AT_location
+	.long	.Linfo_string16                 @ DW_AT_name
+	.byte	1                               @ DW_AT_decl_file
+	.byte	225                             @ DW_AT_decl_line
+	.long	503                             @ DW_AT_type
+	.byte	10                              @ Abbrev [10] 0xc6:0xf DW_TAG_formal_parameter
+	.long	.Ldebug_loc1                    @ DW_AT_location
+	.long	.Linfo_string22                 @ DW_AT_name
+	.byte	1                               @ DW_AT_decl_file
+	.byte	225                             @ DW_AT_decl_line
+	.long	50                              @ DW_AT_type
+	.byte	10                              @ Abbrev [10] 0xd5:0xf DW_TAG_formal_parameter
+	.long	.Ldebug_loc2                    @ DW_AT_location
+	.long	.Linfo_string23                 @ DW_AT_name
+	.byte	1                               @ DW_AT_decl_file
+	.byte	225                             @ DW_AT_decl_line
+	.long	50                              @ DW_AT_type
+	.byte	10                              @ Abbrev [10] 0xe4:0xf DW_TAG_formal_parameter
+	.long	.Ldebug_loc3                    @ DW_AT_location
+	.long	.Linfo_string24                 @ DW_AT_name
+	.byte	1                               @ DW_AT_decl_file
+	.byte	226                             @ DW_AT_decl_line
+	.long	575                             @ DW_AT_type
+	.byte	6                               @ Abbrev [6] 0xf3:0xe DW_TAG_formal_parameter
+	.byte	2                               @ DW_AT_location
+	.byte	145
+	.byte	48
+	.long	.Linfo_string27                 @ DW_AT_name
+	.byte	1                               @ DW_AT_decl_file
+	.byte	226                             @ DW_AT_decl_line
+	.long	575                             @ DW_AT_type
+	.byte	6                               @ Abbrev [6] 0x101:0xe DW_TAG_formal_parameter
+	.byte	2                               @ DW_AT_location
+	.byte	145
+	.byte	52
+	.long	.Linfo_string26                 @ DW_AT_name
+	.byte	1                               @ DW_AT_decl_file
+	.byte	227                             @ DW_AT_decl_line
+	.long	564                             @ DW_AT_type
+	.byte	6                               @ Abbrev [6] 0x10f:0xe DW_TAG_formal_parameter
+	.byte	2                               @ DW_AT_location
+	.byte	145
+	.byte	56
+	.long	.Linfo_string25                 @ DW_AT_name
+	.byte	1                               @ DW_AT_decl_file
+	.byte	227                             @ DW_AT_decl_line
+	.long	585                             @ DW_AT_type
+	.byte	11                              @ Abbrev [11] 0x11d:0xf DW_TAG_variable
+	.long	.Ldebug_loc4                    @ DW_AT_location
+	.long	.Linfo_string28                 @ DW_AT_name
+	.byte	1                               @ DW_AT_decl_file
+	.byte	232                             @ DW_AT_decl_line
+	.long	575                             @ DW_AT_type
+	.byte	11                              @ Abbrev [11] 0x12c:0xf DW_TAG_variable
+	.long	.Ldebug_loc5                    @ DW_AT_location
+	.long	.Linfo_string29                 @ DW_AT_name
+	.byte	1                               @ DW_AT_decl_file
+	.byte	232                             @ DW_AT_decl_line
+	.long	575                             @ DW_AT_type
+	.byte	11                              @ Abbrev [11] 0x13b:0xf DW_TAG_variable
+	.long	.Ldebug_loc6                    @ DW_AT_location
+	.long	.Linfo_string30                 @ DW_AT_name
+	.byte	1                               @ DW_AT_decl_file
+	.byte	232                             @ DW_AT_decl_line
+	.long	575                             @ DW_AT_type
+	.byte	11                              @ Abbrev [11] 0x14a:0xf DW_TAG_variable
+	.long	.Ldebug_loc7                    @ DW_AT_location
+	.long	.Linfo_string31                 @ DW_AT_name
+	.byte	1                               @ DW_AT_decl_file
+	.byte	229                             @ DW_AT_decl_line
+	.long	155                             @ DW_AT_type
+	.byte	11                              @ Abbrev [11] 0x159:0xf DW_TAG_variable
+	.long	.Ldebug_loc8                    @ DW_AT_location
+	.long	.Linfo_string32                 @ DW_AT_name
+	.byte	1                               @ DW_AT_decl_file
+	.byte	230                             @ DW_AT_decl_line
+	.long	564                             @ DW_AT_type
+	.byte	11                              @ Abbrev [11] 0x168:0xf DW_TAG_variable
+	.long	.Ldebug_loc9                    @ DW_AT_location
+	.long	.Linfo_string33                 @ DW_AT_name
+	.byte	1                               @ DW_AT_decl_file
+	.byte	229                             @ DW_AT_decl_line
+	.long	155                             @ DW_AT_type
+	.byte	11                              @ Abbrev [11] 0x177:0xf DW_TAG_variable
+	.long	.Ldebug_loc10                   @ DW_AT_location
+	.long	.Linfo_string17                 @ DW_AT_name
+	.byte	1                               @ DW_AT_decl_file
+	.byte	231                             @ DW_AT_decl_line
+	.long	38                              @ DW_AT_type
+	.byte	12                              @ Abbrev [12] 0x186:0x2a DW_TAG_inlined_subroutine
+	.long	98                              @ DW_AT_abstract_origin
+	.long	.Ltmp62                         @ DW_AT_low_pc
+	.long	.Ltmp64-.Ltmp62                 @ DW_AT_high_pc
+	.byte	1                               @ DW_AT_call_file
+	.short	355                             @ DW_AT_call_line
+	.byte	17                              @ DW_AT_call_column
+	.byte	13                              @ Abbrev [13] 0x197:0x7 DW_TAG_formal_parameter
+	.ascii	"\200^"                         @ DW_AT_const_value
+	.long	110                             @ DW_AT_abstract_origin
+	.byte	14                              @ Abbrev [14] 0x19e:0x7 DW_TAG_formal_parameter
+	.byte	1                               @ DW_AT_location
+	.byte	84
+	.long	121                             @ DW_AT_abstract_origin
+	.byte	15                              @ Abbrev [15] 0x1a5:0x5 DW_TAG_formal_parameter
+	.long	132                             @ DW_AT_abstract_origin
+	.byte	15                              @ Abbrev [15] 0x1aa:0x5 DW_TAG_formal_parameter
+	.long	143                             @ DW_AT_abstract_origin
+	.byte	0                               @ End Of Children Mark
+	.byte	0                               @ End Of Children Mark
+	.byte	16                              @ Abbrev [16] 0x1b1:0x2c DW_TAG_subprogram
+	.long	.Lfunc_begin2                   @ DW_AT_low_pc
+	.long	.Lfunc_end2-.Lfunc_begin2       @ DW_AT_high_pc
+	.byte	1                               @ DW_AT_frame_base
+	.byte	93
+                                        @ DW_AT_GNU_all_call_sites
+	.long	.Linfo_string15                 @ DW_AT_name
+	.byte	1                               @ DW_AT_decl_file
+	.short	419                             @ DW_AT_decl_line
+                                        @ DW_AT_prototyped
+                                        @ DW_AT_external
+	.byte	17                              @ Abbrev [17] 0x1c3:0x10 DW_TAG_formal_parameter
+	.long	.Ldebug_loc11                   @ DW_AT_location
+	.long	.Linfo_string16                 @ DW_AT_name
+	.byte	1                               @ DW_AT_decl_file
+	.short	419                             @ DW_AT_decl_line
+	.long	503                             @ DW_AT_type
+	.byte	18                              @ Abbrev [18] 0x1d3:0x9 DW_TAG_GNU_call_site
+	.long	477                             @ DW_AT_abstract_origin
+                                        @ DW_AT_GNU_tail_call
+	.long	.Ltmp79                         @ DW_AT_low_pc
+	.byte	0                               @ End Of Children Mark
+	.byte	19                              @ Abbrev [19] 0x1dd:0x12 DW_TAG_subprogram
+	.long	.Linfo_string11                 @ DW_AT_name
+	.byte	3                               @ DW_AT_decl_file
+	.byte	246                             @ DW_AT_decl_line
+                                        @ DW_AT_prototyped
+                                        @ DW_AT_declaration
+                                        @ DW_AT_external
+	.byte	20                              @ Abbrev [20] 0x1e4:0x5 DW_TAG_formal_parameter
+	.long	495                             @ DW_AT_type
+	.byte	20                              @ Abbrev [20] 0x1e9:0x5 DW_TAG_formal_parameter
+	.long	496                             @ DW_AT_type
+	.byte	0                               @ End Of Children Mark
+	.byte	21                              @ Abbrev [21] 0x1ef:0x1 DW_TAG_pointer_type
+	.byte	3                               @ Abbrev [3] 0x1f0:0x7 DW_TAG_base_type
+	.long	.Linfo_string12                 @ DW_AT_name
+	.byte	7                               @ DW_AT_encoding
+	.byte	4                               @ DW_AT_byte_size
+	.byte	2                               @ Abbrev [2] 0x1f7:0x5 DW_TAG_pointer_type
+	.long	508                             @ DW_AT_type
+	.byte	22                              @ Abbrev [22] 0x1fc:0xb DW_TAG_typedef
+	.long	519                             @ DW_AT_type
+	.long	.Linfo_string21                 @ DW_AT_name
+	.byte	4                               @ DW_AT_decl_file
+	.byte	73                              @ DW_AT_decl_line
+	.byte	23                              @ Abbrev [23] 0x207:0x2d DW_TAG_structure_type
+	.long	.Linfo_string21                 @ DW_AT_name
+	.byte	12                              @ DW_AT_byte_size
+	.byte	4                               @ DW_AT_decl_file
+	.byte	67                              @ DW_AT_decl_line
+	.byte	24                              @ Abbrev [24] 0x20f:0xc DW_TAG_member
+	.long	.Linfo_string17                 @ DW_AT_name
+	.long	38                              @ DW_AT_type
+	.byte	4                               @ DW_AT_decl_file
+	.byte	69                              @ DW_AT_decl_line
+	.byte	0                               @ DW_AT_data_member_location
+	.byte	24                              @ Abbrev [24] 0x21b:0xc DW_TAG_member
+	.long	.Linfo_string18                 @ DW_AT_name
+	.long	564                             @ DW_AT_type
+	.byte	4                               @ DW_AT_decl_file
+	.byte	70                              @ DW_AT_decl_line
+	.byte	4                               @ DW_AT_data_member_location
+	.byte	24                              @ Abbrev [24] 0x227:0xc DW_TAG_member
+	.long	.Linfo_string20                 @ DW_AT_name
+	.long	38                              @ DW_AT_type
+	.byte	4                               @ DW_AT_decl_file
+	.byte	71                              @ DW_AT_decl_line
+	.byte	8                               @ DW_AT_data_member_location
+	.byte	0                               @ End Of Children Mark
+	.byte	22                              @ Abbrev [22] 0x234:0xb DW_TAG_typedef
+	.long	496                             @ DW_AT_type
+	.long	.Linfo_string19                 @ DW_AT_name
+	.byte	5                               @ DW_AT_decl_file
+	.byte	53                              @ DW_AT_decl_line
+	.byte	2                               @ Abbrev [2] 0x23f:0x5 DW_TAG_pointer_type
+	.long	580                             @ DW_AT_type
+	.byte	4                               @ Abbrev [4] 0x244:0x5 DW_TAG_const_type
+	.long	43                              @ DW_AT_type
+	.byte	2                               @ Abbrev [2] 0x249:0x5 DW_TAG_pointer_type
+	.long	564                             @ DW_AT_type
+	.byte	0                               @ End Of Children Mark
+.Ldebug_info_end0:
+	.section	.debug_ranges,"",%progbits
+.Ldebug_ranges0:
+	.long	.Lfunc_begin0
+	.long	.Lfunc_end0
+	.long	.Lfunc_begin1
+	.long	.Lfunc_end1
+	.long	.Lfunc_begin2
+	.long	.Lfunc_end2
+	.long	0
+	.long	0
+	.section	.debug_str,"MS",%progbits,1
+.Linfo_string0:
+	.asciz	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]" @ string offset=0
+.Linfo_string1:
+	.asciz	"../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library\\pem.c" @ string offset=55
+.Linfo_string2:
+	.asciz	"D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" @ string offset=145
+.Linfo_string3:
+	.asciz	"unsigned char"                 @ string offset=207
+.Linfo_string4:
+	.asciz	"char"                          @ string offset=221
+.Linfo_string5:
+	.asciz	"mbedtls_error_add"             @ string offset=226
+.Linfo_string6:
+	.asciz	"int"                           @ string offset=244
+.Linfo_string7:
+	.asciz	"high"                          @ string offset=248
+.Linfo_string8:
+	.asciz	"low"                           @ string offset=253
+.Linfo_string9:
+	.asciz	"file"                          @ string offset=257
+.Linfo_string10:
+	.asciz	"line"                          @ string offset=262
+.Linfo_string11:
+	.asciz	"mbedtls_platform_zeroize"      @ string offset=267
+.Linfo_string12:
+	.asciz	"unsigned int"                  @ string offset=292
+.Linfo_string13:
+	.asciz	"mbedtls_pem_init"              @ string offset=305
+.Linfo_string14:
+	.asciz	"mbedtls_pem_read_buffer"       @ string offset=322
+.Linfo_string15:
+	.asciz	"mbedtls_pem_free"              @ string offset=346
+.Linfo_string16:
+	.asciz	"ctx"                           @ string offset=363
+.Linfo_string17:
+	.asciz	"buf"                           @ string offset=367
+.Linfo_string18:
+	.asciz	"buflen"                        @ string offset=371
+.Linfo_string19:
+	.asciz	"size_t"                        @ string offset=378
+.Linfo_string20:
+	.asciz	"info"                          @ string offset=385
+.Linfo_string21:
+	.asciz	"mbedtls_pem_context"           @ string offset=390
+.Linfo_string22:
+	.asciz	"header"                        @ string offset=410
+.Linfo_string23:
+	.asciz	"footer"                        @ string offset=417
+.Linfo_string24:
+	.asciz	"data"                          @ string offset=424
+.Linfo_string25:
+	.asciz	"use_len"                       @ string offset=429
+.Linfo_string26:
+	.asciz	"pwdlen"                        @ string offset=437
+.Linfo_string27:
+	.asciz	"pwd"                           @ string offset=444
+.Linfo_string28:
+	.asciz	"s1"                            @ string offset=448
+.Linfo_string29:
+	.asciz	"s2"                            @ string offset=451
+.Linfo_string30:
+	.asciz	"end"                           @ string offset=454
+.Linfo_string31:
+	.asciz	"enc"                           @ string offset=458
+.Linfo_string32:
+	.asciz	"len"                           @ string offset=462
+.Linfo_string33:
+	.asciz	"ret"                           @ string offset=466
+	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
+	.section	".note.GNU-stack","",%progbits
+	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals
+	.ARM_attribute	16, 1	@ Tag_AV_eba
+	.section	.debug_line,"",%progbits
+.Lline_table_start0:

@@ -1,0 +1,1 @@
+In this test, ZR sends address conflict NWK status in 5 sec after device_annce.

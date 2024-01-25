@@ -1,0 +1,1 @@
+In this test, ZC sends ZDO requests to a children

@@ -1,0 +1,2 @@
+7.2.5	CS-NFS-TC-05A: ZC behavior when a known node joins, DUT: ZC with bdbJoinUsesInstallCodeKey = TRUE
+This test verifies the following behavior: If a node that has already exchanged its Trust Center link key attempts to join the Trust Center with bdbJoinUsesInstallCodeKey =TRUE for a second time, the Trust Center SHALL allow the node to join but in a fresh state and use the initial link key appropriate for the node when transferring the network key, i.e. the IC-derived TCLK, if stored.
