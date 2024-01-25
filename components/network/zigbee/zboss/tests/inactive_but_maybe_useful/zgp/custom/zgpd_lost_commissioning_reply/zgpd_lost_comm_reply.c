@@ -37,7 +37,7 @@ void commiss_reply_ind_test_cb(zb_uint8_t param);
 
 zb_zgpd_test_callbacks_t test_cbs =
 {
-  .zgpd_commiss_reply_ind_test_cb = commiss_reply_ind_test_cb,
+    .zgpd_commiss_reply_ind_test_cb = commiss_reply_ind_test_cb,
 };
 
 zb_uint8_t g_lost_comm_reply_packets_num = 0;
@@ -45,92 +45,92 @@ zb_uint8_t g_lost_comm_reply_packets_num = 0;
 
 void comm_cb(zb_uint8_t param)
 {
-  zb_buf_t *buf = ZB_BUF_FROM_REF(param);
-  zb_uint8_t comm_result = buf->u.hdr.status;
+    zb_buf_t *buf = ZB_BUF_FROM_REF(param);
+    zb_uint8_t comm_result = buf->u.hdr.status;
 
-  if (comm_result == ZB_ZGPD_COMM_SUCCESS)
-  {
-    TRACE_MSG(TRACE_APP1, "Test finished. Status: OK", (FMT__0));
-  }
+    if (comm_result == ZB_ZGPD_COMM_SUCCESS)
+    {
+        TRACE_MSG(TRACE_APP1, "Test finished. Status: OK", (FMT__0));
+    }
 }
 
 
 void commiss_reply_ind_test_cb(zb_uint8_t param)
 {
-  if (g_lost_comm_reply_packets_num < LOST_COMM_REPLY_PACKETS_NUM)
-  {
-    ++g_lost_comm_reply_packets_num;
-    TRACE_MSG(TRACE_APP1, "lost comm reply packet; g_lost_comm_reply_packets_num %i",
-              (FMT__H, g_lost_comm_reply_packets_num));
-    zb_free_buf(ZB_BUF_FROM_REF(param));
-  }
-  else
-  {
-    zgpd_commiss_reply_ind(param);
-  }
+    if (g_lost_comm_reply_packets_num < LOST_COMM_REPLY_PACKETS_NUM)
+    {
+        ++g_lost_comm_reply_packets_num;
+        TRACE_MSG(TRACE_APP1, "lost comm reply packet; g_lost_comm_reply_packets_num %i",
+                  (FMT__H, g_lost_comm_reply_packets_num));
+        zb_free_buf(ZB_BUF_FROM_REF(param));
+    }
+    else
+    {
+        zgpd_commiss_reply_ind(param);
+    }
 }
 
 void zgpd_startup_complete(zb_uint8_t param)
 {
-  zb_buf_t *buf = ZB_BUF_FROM_REF(param);
+    zb_buf_t *buf = ZB_BUF_FROM_REF(param);
 
-  TRACE_MSG(TRACE_APP2, ">> zgpd_startup_complete status %d", (FMT__D, (int)buf->u.hdr.status));
+    TRACE_MSG(TRACE_APP2, ">> zgpd_startup_complete status %d", (FMT__D, (int)buf->u.hdr.status));
 
-  if (buf->u.hdr.status == RET_OK)
-  {
-    TRACE_MSG(TRACE_APP2, "ZGPD Device STARTED OK", (FMT__0));
+    if (buf->u.hdr.status == RET_OK)
+    {
+        TRACE_MSG(TRACE_APP2, "ZGPD Device STARTED OK", (FMT__0));
 
-    zb_zgpd_start_commissioning(&comm_cb);
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device start FAILED", (FMT__0));
-  }
+        zb_zgpd_start_commissioning(&comm_cb);
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device start FAILED", (FMT__0));
+    }
 
-  zb_free_buf(buf);
+    zb_free_buf(buf);
 }
 
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
-  ZB_INIT("zgpd");
+    /* Init device, load IB values from nvram or set it to default */
+    ZB_INIT("zgpd");
 
-  /*******************************/
-  ZB_ZGPD_INIT_ZGPD_CTX(ZB_ZGP_APP_ID_0000, ZB_ZGPD_COMMISSIONING_BIDIR, ZB_ZGP_MANUF_SPECIFIC_DEV_ID);
-  ZB_ZGPD_SET_MANUF_SPECIFIC_DEV(ZB_ZGPD_DEF_MANUFACTURER_ID, ZB_ZGP_MS_DOOR_SENSOR_DEV_ID);
+    /*******************************/
+    ZB_ZGPD_INIT_ZGPD_CTX(ZB_ZGP_APP_ID_0000, ZB_ZGPD_COMMISSIONING_BIDIR, ZB_ZGP_MANUF_SPECIFIC_DEV_ID);
+    ZB_ZGPD_SET_MANUF_SPECIFIC_DEV(ZB_ZGPD_DEF_MANUFACTURER_ID, ZB_ZGP_MS_DOOR_SENSOR_DEV_ID);
 
-  ZB_ZGPD_USE_MAINTENANCE_FRAME_FOR_CHANNEL_REQ();
-  ZB_ZGPD_SET_SRC_ID(g_zgpd_srcId);
-  ZB_ZGPD_SET_SECURITY(ZB_ZGP_SEC_LEVEL_FULL_WITH_ENC, ZB_ZGP_SEC_KEY_TYPE_ZGPD_INDIVIDUAL, g_zgpd_key);
+    ZB_ZGPD_USE_MAINTENANCE_FRAME_FOR_CHANNEL_REQ();
+    ZB_ZGPD_SET_SRC_ID(g_zgpd_srcId);
+    ZB_ZGPD_SET_SECURITY(ZB_ZGP_SEC_LEVEL_FULL_WITH_ENC, ZB_ZGP_SEC_KEY_TYPE_ZGPD_INDIVIDUAL, g_zgpd_key);
 
-  zgpd_register_test_callbacks(&test_cbs);
+    zgpd_register_test_callbacks(&test_cbs);
 
-  if (zb_zgpd_dev_start(zgpd_startup_complete) != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "Device start FAILED", (FMT__0));
-  }
-  else
-  {
-    zgpd_main_loop();
-  }
+    if (zb_zgpd_dev_start(zgpd_startup_complete) != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "Device start FAILED", (FMT__0));
+    }
+    else
+    {
+        zgpd_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 #else //defined ZB_ENABLE_ZGP && defined ZB_ZGPD_ROLE
 
 MAIN()
 {
-  ARGV_UNUSED;
-  
-  printf("ZB_ENABLE_ZGP and ZB_ZGPD_ROLE should be defined in zb_config.h");
+    ARGV_UNUSED;
 
-  MAIN_RETURN(1);
+    printf("ZB_ENABLE_ZGP and ZB_ZGPD_ROLE should be defined in zb_config.h");
+
+    MAIN_RETURN(1);
 }
 
 #endif //defined ZB_ENABLE_ZGP && defined ZB_ZGPD_ROLE

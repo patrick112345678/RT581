@@ -29,7 +29,7 @@
 /**
  * AES MMO construction
  *
- * @param M      an octet message M 
+ * @param M      an octet message M
  * @param Mlen   the length of the message M in bits (Mlen < 2^32)
  * @param h      the hash value of the message M (128 bits)
  * succeed       return 1

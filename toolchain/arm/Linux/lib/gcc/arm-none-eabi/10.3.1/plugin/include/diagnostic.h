@@ -28,28 +28,28 @@ along with GCC; see the file COPYING3.  If not see
 
 enum diagnostics_output_format
 {
-  /* The default: textual output.  */
-  DIAGNOSTICS_OUTPUT_FORMAT_TEXT,
+    /* The default: textual output.  */
+    DIAGNOSTICS_OUTPUT_FORMAT_TEXT,
 
-  /* JSON-based output.  */
-  DIAGNOSTICS_OUTPUT_FORMAT_JSON
+    /* JSON-based output.  */
+    DIAGNOSTICS_OUTPUT_FORMAT_JSON
 };
 
 /* An enum for controlling how diagnostic_paths should be printed.  */
 enum diagnostic_path_format
 {
-  /* Don't print diagnostic_paths.  */
-  DPF_NONE,
+    /* Don't print diagnostic_paths.  */
+    DPF_NONE,
 
-  /* Print diagnostic_paths by emitting a separate "note" for every event
-     in the path.  */
-  DPF_SEPARATE_EVENTS,
+    /* Print diagnostic_paths by emitting a separate "note" for every event
+       in the path.  */
+    DPF_SEPARATE_EVENTS,
 
-  /* Print diagnostic_paths by consolidating events together where they
-     are close enough, and printing such runs of events with multiple
-     calls to diagnostic_show_locus, showing the individual events in
-     each run via labels in the source.  */
-  DPF_INLINE_EVENTS
+    /* Print diagnostic_paths by consolidating events together where they
+       are close enough, and printing such runs of events with multiple
+       calls to diagnostic_show_locus, showing the individual events in
+       each run via labels in the source.  */
+    DPF_INLINE_EVENTS
 };
 
 /* A diagnostic is described by the MESSAGE to send, the FILE and LINE of
@@ -57,22 +57,22 @@ enum diagnostic_path_format
    list in diagnostic.def.  */
 struct diagnostic_info
 {
-  /* Text to be formatted.  */
-  text_info message;
+    /* Text to be formatted.  */
+    text_info message;
 
-  /* The location at which the diagnostic is to be reported.  */
-  rich_location *richloc;
+    /* The location at which the diagnostic is to be reported.  */
+    rich_location *richloc;
 
-  /* An optional bundle of metadata associated with the diagnostic
-     (or NULL).  */
-  const diagnostic_metadata *metadata;
+    /* An optional bundle of metadata associated with the diagnostic
+       (or NULL).  */
+    const diagnostic_metadata *metadata;
 
-  /* Auxiliary data for client.  */
-  void *x_data;
-  /* The kind of diagnostic it is about.  */
-  diagnostic_t kind;
-  /* Which OPT_* directly controls this diagnostic.  */
-  int option_index;
+    /* Auxiliary data for client.  */
+    void *x_data;
+    /* The kind of diagnostic it is about.  */
+    diagnostic_t kind;
+    /* Which OPT_* directly controls this diagnostic.  */
+    int option_index;
 };
 
 /* Each time a diagnostic's classification is changed with a pragma,
@@ -80,235 +80,238 @@ struct diagnostic_info
    these structs.  */
 struct diagnostic_classification_change_t
 {
-  location_t location;
-  int option;
-  diagnostic_t kind;
+    location_t location;
+    int option;
+    diagnostic_t kind;
 };
 
 /*  Forward declarations.  */
 typedef void (*diagnostic_starter_fn) (diagnostic_context *,
-				       diagnostic_info *);
+                                       diagnostic_info *);
 
 typedef void (*diagnostic_start_span_fn) (diagnostic_context *,
-					  expanded_location);
+        expanded_location);
 
 typedef void (*diagnostic_finalizer_fn) (diagnostic_context *,
-					 diagnostic_info *,
-					 diagnostic_t);
+        diagnostic_info *,
+        diagnostic_t);
 
 class edit_context;
-namespace json { class value; }
+namespace json
+{
+class value;
+}
 
 /* This data structure bundles altogether any information relevant to
    the context of a diagnostic message.  */
 struct diagnostic_context
 {
-  /* Where most of the diagnostic formatting work is done.  */
-  pretty_printer *printer;
+    /* Where most of the diagnostic formatting work is done.  */
+    pretty_printer *printer;
 
-  /* The number of times we have issued diagnostics.  */
-  int diagnostic_count[DK_LAST_DIAGNOSTIC_KIND];
+    /* The number of times we have issued diagnostics.  */
+    int diagnostic_count[DK_LAST_DIAGNOSTIC_KIND];
 
-  /* True if it has been requested that warnings be treated as errors.  */
-  bool warning_as_error_requested;
+    /* True if it has been requested that warnings be treated as errors.  */
+    bool warning_as_error_requested;
 
-  /* The number of option indexes that can be passed to warning() et
-     al.  */
-  int n_opts;
+    /* The number of option indexes that can be passed to warning() et
+       al.  */
+    int n_opts;
 
-  /* For each option index that can be passed to warning() et al
-     (OPT_* from options.h when using this code with the core GCC
-     options), this array may contain a new kind that the diagnostic
-     should be changed to before reporting, or DK_UNSPECIFIED to leave
-     it as the reported kind, or DK_IGNORED to not report it at
-     all.  */
-  diagnostic_t *classify_diagnostic;
+    /* For each option index that can be passed to warning() et al
+       (OPT_* from options.h when using this code with the core GCC
+       options), this array may contain a new kind that the diagnostic
+       should be changed to before reporting, or DK_UNSPECIFIED to leave
+       it as the reported kind, or DK_IGNORED to not report it at
+       all.  */
+    diagnostic_t *classify_diagnostic;
 
-  /* History of all changes to the classifications above.  This list
-     is stored in location-order, so we can search it, either
-     binary-wise or end-to-front, to find the most recent
-     classification for a given diagnostic, given the location of the
-     diagnostic.  */
-  diagnostic_classification_change_t *classification_history;
+    /* History of all changes to the classifications above.  This list
+       is stored in location-order, so we can search it, either
+       binary-wise or end-to-front, to find the most recent
+       classification for a given diagnostic, given the location of the
+       diagnostic.  */
+    diagnostic_classification_change_t *classification_history;
 
-  /* The size of the above array.  */
-  int n_classification_history;
+    /* The size of the above array.  */
+    int n_classification_history;
 
-  /* For pragma push/pop.  */
-  int *push_list;
-  int n_push;
+    /* For pragma push/pop.  */
+    int *push_list;
+    int n_push;
 
-  /* True if we should print the source line with a caret indicating
-     the location.  */
-  bool show_caret;
+    /* True if we should print the source line with a caret indicating
+       the location.  */
+    bool show_caret;
 
-  /* Maximum width of the source line printed.  */
-  int caret_max_width;
+    /* Maximum width of the source line printed.  */
+    int caret_max_width;
 
-  /* Character used for caret diagnostics.  */
-  char caret_chars[rich_location::STATICALLY_ALLOCATED_RANGES];
+    /* Character used for caret diagnostics.  */
+    char caret_chars[rich_location::STATICALLY_ALLOCATED_RANGES];
 
-  /* True if we should print any CWE identifiers associated with
-     diagnostics.  */
-  bool show_cwe;
+    /* True if we should print any CWE identifiers associated with
+       diagnostics.  */
+    bool show_cwe;
 
-  /* How should diagnostic_path objects be printed.  */
-  enum diagnostic_path_format path_format;
+    /* How should diagnostic_path objects be printed.  */
+    enum diagnostic_path_format path_format;
 
-  /* True if we should print stack depths when printing diagnostic paths.  */
-  bool show_path_depths;
+    /* True if we should print stack depths when printing diagnostic paths.  */
+    bool show_path_depths;
 
-  /* True if we should print the command line option which controls
-     each diagnostic, if known.  */
-  bool show_option_requested;
+    /* True if we should print the command line option which controls
+       each diagnostic, if known.  */
+    bool show_option_requested;
 
-  /* True if we should raise a SIGABRT on errors.  */
-  bool abort_on_error;
+    /* True if we should raise a SIGABRT on errors.  */
+    bool abort_on_error;
 
-  /* True if we should show the column number on diagnostics.  */
-  bool show_column;
+    /* True if we should show the column number on diagnostics.  */
+    bool show_column;
 
-  /* True if pedwarns are errors.  */
-  bool pedantic_errors;
+    /* True if pedwarns are errors.  */
+    bool pedantic_errors;
 
-  /* True if permerrors are warnings.  */
-  bool permissive;
+    /* True if permerrors are warnings.  */
+    bool permissive;
 
-  /* The index of the option to associate with turning permerrors into
-     warnings.  */
-  int opt_permissive;
+    /* The index of the option to associate with turning permerrors into
+       warnings.  */
+    int opt_permissive;
 
-  /* True if errors are fatal.  */
-  bool fatal_errors;
+    /* True if errors are fatal.  */
+    bool fatal_errors;
 
-  /* True if all warnings should be disabled.  */
-  bool dc_inhibit_warnings;
+    /* True if all warnings should be disabled.  */
+    bool dc_inhibit_warnings;
 
-  /* True if warnings should be given in system headers.  */
-  bool dc_warn_system_headers;
+    /* True if warnings should be given in system headers.  */
+    bool dc_warn_system_headers;
 
-  /* Maximum number of errors to report.  */
-  int max_errors;
+    /* Maximum number of errors to report.  */
+    int max_errors;
 
-  /* This function is called before any message is printed out.  It is
-     responsible for preparing message prefix and such.  For example, it
-     might say:
-     In file included from "/usr/local/include/curses.h:5:
-                      from "/home/gdr/src/nifty_printer.h:56:
-                      ...
-  */
-  diagnostic_starter_fn begin_diagnostic;
+    /* This function is called before any message is printed out.  It is
+       responsible for preparing message prefix and such.  For example, it
+       might say:
+       In file included from "/usr/local/include/curses.h:5:
+                        from "/home/gdr/src/nifty_printer.h:56:
+                        ...
+    */
+    diagnostic_starter_fn begin_diagnostic;
 
-  /* This function is called by diagnostic_show_locus in between
-     disjoint spans of source code, so that the context can print
-     something to indicate that a new span of source code has begun.  */
-  diagnostic_start_span_fn start_span;
+    /* This function is called by diagnostic_show_locus in between
+       disjoint spans of source code, so that the context can print
+       something to indicate that a new span of source code has begun.  */
+    diagnostic_start_span_fn start_span;
 
-  /* This function is called after the diagnostic message is printed.  */
-  diagnostic_finalizer_fn end_diagnostic;
+    /* This function is called after the diagnostic message is printed.  */
+    diagnostic_finalizer_fn end_diagnostic;
 
-  /* Client hook to report an internal error.  */
-  void (*internal_error) (diagnostic_context *, const char *, va_list *);
+    /* Client hook to report an internal error.  */
+    void (*internal_error) (diagnostic_context *, const char *, va_list *);
 
-  /* Client hook to say whether the option controlling a diagnostic is
-     enabled.  Returns nonzero if enabled, zero if disabled.  */
-  int (*option_enabled) (int, unsigned, void *);
+    /* Client hook to say whether the option controlling a diagnostic is
+       enabled.  Returns nonzero if enabled, zero if disabled.  */
+    int (*option_enabled) (int, unsigned, void *);
 
-  /* Client information to pass as second argument to
-     option_enabled.  */
-  void *option_state;
+    /* Client information to pass as second argument to
+       option_enabled.  */
+    void *option_state;
 
-  /* Client hook to return the name of an option that controls a
-     diagnostic.  Returns malloced memory.  The first diagnostic_t
-     argument is the kind of diagnostic before any reclassification
-     (of warnings as errors, etc.); the second is the kind after any
-     reclassification.  May return NULL if no name is to be printed.
-     May be passed 0 as well as the index of a particular option.  */
-  char *(*option_name) (diagnostic_context *, int, diagnostic_t, diagnostic_t);
+    /* Client hook to return the name of an option that controls a
+       diagnostic.  Returns malloced memory.  The first diagnostic_t
+       argument is the kind of diagnostic before any reclassification
+       (of warnings as errors, etc.); the second is the kind after any
+       reclassification.  May return NULL if no name is to be printed.
+       May be passed 0 as well as the index of a particular option.  */
+    char *(*option_name) (diagnostic_context *, int, diagnostic_t, diagnostic_t);
 
-  /* Client hook to return a URL describing the option that controls
-     a diagnostic.  Returns malloced memory.  May return NULL if no URL
-     is available.  May be passed 0 as well as the index of a
-     particular option.  */
-  char *(*get_option_url) (diagnostic_context *, int);
+    /* Client hook to return a URL describing the option that controls
+       a diagnostic.  Returns malloced memory.  May return NULL if no URL
+       is available.  May be passed 0 as well as the index of a
+       particular option.  */
+    char *(*get_option_url) (diagnostic_context *, int);
 
-  void (*print_path) (diagnostic_context *, const diagnostic_path *);
-  json::value *(*make_json_for_path) (diagnostic_context *, const diagnostic_path *);
+    void (*print_path) (diagnostic_context *, const diagnostic_path *);
+    json::value *(*make_json_for_path) (diagnostic_context *, const diagnostic_path *);
 
-  /* Auxiliary data for client.  */
-  void *x_data;
+    /* Auxiliary data for client.  */
+    void *x_data;
 
-  /* Used to detect that the last caret was printed at the same location.  */
-  location_t last_location;
+    /* Used to detect that the last caret was printed at the same location.  */
+    location_t last_location;
 
-  /* Used to detect when the input file stack has changed since last
-     described.  */
-  const line_map_ordinary *last_module;
+    /* Used to detect when the input file stack has changed since last
+       described.  */
+    const line_map_ordinary *last_module;
 
-  int lock;
+    int lock;
 
-  /* A copy of lang_hooks.option_lang_mask ().  */
-  unsigned lang_mask;
+    /* A copy of lang_hooks.option_lang_mask ().  */
+    unsigned lang_mask;
 
-  bool inhibit_notes_p;
+    bool inhibit_notes_p;
 
-  /* When printing source code, should the characters at carets and ranges
-     be colorized? (assuming colorization is on at all).
-     This should be true for frontends that generate range information
-     (so that the ranges of code are colorized),
-     and false for frontends that merely specify points within the
-     source code (to avoid e.g. colorizing just the first character in
-     a token, which would look strange).  */
-  bool colorize_source_p;
+    /* When printing source code, should the characters at carets and ranges
+       be colorized? (assuming colorization is on at all).
+       This should be true for frontends that generate range information
+       (so that the ranges of code are colorized),
+       and false for frontends that merely specify points within the
+       source code (to avoid e.g. colorizing just the first character in
+       a token, which would look strange).  */
+    bool colorize_source_p;
 
-  /* When printing source code, should labelled ranges be printed?  */
-  bool show_labels_p;
+    /* When printing source code, should labelled ranges be printed?  */
+    bool show_labels_p;
 
-  /* When printing source code, should there be a left-hand margin
-     showing line numbers?  */
-  bool show_line_numbers_p;
+    /* When printing source code, should there be a left-hand margin
+       showing line numbers?  */
+    bool show_line_numbers_p;
 
-  /* If printing source code, what should the minimum width of the margin
-     be?  Line numbers will be right-aligned, and padded to this width.  */
-  int min_margin_width;
+    /* If printing source code, what should the minimum width of the margin
+       be?  Line numbers will be right-aligned, and padded to this width.  */
+    int min_margin_width;
 
-  /* Usable by plugins; if true, print a debugging ruler above the
-     source output.  */
-  bool show_ruler_p;
+    /* Usable by plugins; if true, print a debugging ruler above the
+       source output.  */
+    bool show_ruler_p;
 
-  /* If true, print fixits in machine-parseable form after the
-     rest of the diagnostic.  */
-  bool parseable_fixits_p;
+    /* If true, print fixits in machine-parseable form after the
+       rest of the diagnostic.  */
+    bool parseable_fixits_p;
 
-  /* If non-NULL, an edit_context to which fix-it hints should be
-     applied, for generating patches.  */
-  edit_context *edit_context_ptr;
+    /* If non-NULL, an edit_context to which fix-it hints should be
+       applied, for generating patches.  */
+    edit_context *edit_context_ptr;
 
-  /* How many diagnostic_group instances are currently alive.  */
-  int diagnostic_group_nesting_depth;
+    /* How many diagnostic_group instances are currently alive.  */
+    int diagnostic_group_nesting_depth;
 
-  /* How many diagnostics have been emitted since the bottommost
-     diagnostic_group was pushed.  */
-  int diagnostic_group_emission_count;
+    /* How many diagnostics have been emitted since the bottommost
+       diagnostic_group was pushed.  */
+    int diagnostic_group_emission_count;
 
-  /* Optional callbacks for handling diagnostic groups.  */
+    /* Optional callbacks for handling diagnostic groups.  */
 
-  /* If non-NULL, this will be called immediately before the first
-     time a diagnostic is emitted within a stack of groups.  */
-  void (*begin_group_cb) (diagnostic_context * context);
+    /* If non-NULL, this will be called immediately before the first
+       time a diagnostic is emitted within a stack of groups.  */
+    void (*begin_group_cb) (diagnostic_context *context);
 
-  /* If non-NULL, this will be called when a stack of groups is
-     popped if any diagnostics were emitted within that group.  */
-  void (*end_group_cb) (diagnostic_context * context);
+    /* If non-NULL, this will be called when a stack of groups is
+       popped if any diagnostics were emitted within that group.  */
+    void (*end_group_cb) (diagnostic_context *context);
 
-  /* Callback for final cleanup.  */
-  void (*final_cb) (diagnostic_context *context);
+    /* Callback for final cleanup.  */
+    void (*final_cb) (diagnostic_context *context);
 };
 
 static inline void
-diagnostic_inhibit_notes (diagnostic_context * context)
+diagnostic_inhibit_notes (diagnostic_context *context)
 {
-  context->inhibit_notes_p = true;
+    context->inhibit_notes_p = true;
 }
 
 
@@ -356,8 +359,8 @@ extern diagnostic_context *global_dc;
 #define sorrycount diagnostic_kind_count (global_dc, DK_SORRY)
 
 /* Returns nonzero if warnings should be emitted.  */
-#define diagnostic_report_warnings_p(DC, LOC)				\
-  (!(DC)->dc_inhibit_warnings						\
+#define diagnostic_report_warnings_p(DC, LOC)               \
+  (!(DC)->dc_inhibit_warnings                       \
    && !(in_system_header_at (LOC) && !(DC)->dc_warn_system_headers))
 
 /* Override the option index to be used for reporting a
@@ -366,7 +369,7 @@ extern diagnostic_context *global_dc;
 static inline void
 diagnostic_override_option_index (diagnostic_info *info, int optidx)
 {
-  info->option_index = optidx;
+    info->option_index = optidx;
 }
 
 /* Diagnostic related functions.  */
@@ -376,35 +379,35 @@ extern void diagnostic_urls_init (diagnostic_context *, int value = -1);
 extern void diagnostic_finish (diagnostic_context *);
 extern void diagnostic_report_current_module (diagnostic_context *, location_t);
 extern void diagnostic_show_locus (diagnostic_context *,
-				   rich_location *richloc,
-				   diagnostic_t diagnostic_kind);
+                                   rich_location *richloc,
+                                   diagnostic_t diagnostic_kind);
 extern void diagnostic_show_any_path (diagnostic_context *, diagnostic_info *);
 
 /* Force diagnostics controlled by OPTIDX to be kind KIND.  */
 extern diagnostic_t diagnostic_classify_diagnostic (diagnostic_context *,
-						    int /* optidx */,
-						    diagnostic_t /* kind */,
-						    location_t);
+        int /* optidx */,
+        diagnostic_t /* kind */,
+        location_t);
 extern void diagnostic_push_diagnostics (diagnostic_context *, location_t);
 extern void diagnostic_pop_diagnostics (diagnostic_context *, location_t);
 extern bool diagnostic_report_diagnostic (diagnostic_context *,
-					  diagnostic_info *);
+        diagnostic_info *);
 #ifdef ATTRIBUTE_GCC_DIAG
 extern void diagnostic_set_info (diagnostic_info *, const char *, va_list *,
-				 rich_location *, diagnostic_t) ATTRIBUTE_GCC_DIAG(2,0);
+                                 rich_location *, diagnostic_t) ATTRIBUTE_GCC_DIAG(2, 0);
 extern void diagnostic_set_info_translated (diagnostic_info *, const char *,
-					    va_list *, rich_location *,
-					    diagnostic_t)
-     ATTRIBUTE_GCC_DIAG(2,0);
+        va_list *, rich_location *,
+        diagnostic_t)
+ATTRIBUTE_GCC_DIAG(2, 0);
 extern void diagnostic_append_note (diagnostic_context *, location_t,
-                                    const char *, ...) ATTRIBUTE_GCC_DIAG(3,4);
+                                    const char *, ...) ATTRIBUTE_GCC_DIAG(3, 4);
 #endif
 extern char *diagnostic_build_prefix (diagnostic_context *, const diagnostic_info *);
 void default_diagnostic_starter (diagnostic_context *, diagnostic_info *);
 void default_diagnostic_start_span_fn (diagnostic_context *,
-				       expanded_location);
+                                       expanded_location);
 void default_diagnostic_finalizer (diagnostic_context *, diagnostic_info *,
-				   diagnostic_t);
+                                   diagnostic_t);
 void diagnostic_set_caret_max_width (diagnostic_context *context, int value);
 void diagnostic_action_after_output (diagnostic_context *, diagnostic_t);
 void diagnostic_check_max_errors (diagnostic_context *, bool flush = false);
@@ -417,17 +420,17 @@ int get_terminal_width (void);
    specifies which location. By default, expand the first one.  */
 
 static inline location_t
-diagnostic_location (const diagnostic_info * diagnostic, int which = 0)
+diagnostic_location (const diagnostic_info *diagnostic, int which = 0)
 {
-  return diagnostic->message.get_location (which);
+    return diagnostic->message.get_location (which);
 }
 
 /* Return the number of locations to be printed in DIAGNOSTIC.  */
 
 static inline unsigned int
-diagnostic_num_locations (const diagnostic_info * diagnostic)
+diagnostic_num_locations (const diagnostic_info *diagnostic)
 {
-  return diagnostic->message.m_richloc->get_num_locations ();
+    return diagnostic->message.m_richloc->get_num_locations ();
 }
 
 /* Expand the location of this diagnostic. Use this function for
@@ -435,9 +438,9 @@ diagnostic_num_locations (const diagnostic_info * diagnostic)
    expand the first one.  */
 
 static inline expanded_location
-diagnostic_expand_location (const diagnostic_info * diagnostic, int which = 0)
+diagnostic_expand_location (const diagnostic_info *diagnostic, int which = 0)
 {
-  return diagnostic->richloc->get_expanded_location (which);
+    return diagnostic->richloc->get_expanded_location (which);
 }
 
 /* This is somehow the right-side margin of a caret line, that is, we
@@ -451,10 +454,10 @@ const int CARET_LINE_MARGIN = 10;
 
 static inline bool
 diagnostic_same_line (const diagnostic_context *context,
-		       expanded_location s1, expanded_location s2)
+                      expanded_location s1, expanded_location s2)
 {
-  return s2.column && s1.line == s2.line 
-    && context->caret_max_width - CARET_LINE_MARGIN > abs (s1.column - s2.column);
+    return s2.column && s1.line == s2.line
+           && context->caret_max_width - CARET_LINE_MARGIN > abs (s1.column - s2.column);
 }
 
 extern const char *diagnostic_get_color_for_kind (diagnostic_t kind);
@@ -465,7 +468,7 @@ extern char *file_name_as_prefix (diagnostic_context *, const char *);
 extern char *build_message_string (const char *, ...) ATTRIBUTE_PRINTF_1;
 
 extern void diagnostic_output_format_init (diagnostic_context *,
-					   enum diagnostics_output_format);
+        enum diagnostics_output_format);
 
 /* Compute the number of digits in the decimal representation of an integer.  */
 extern int num_digits (int);

@@ -34,30 +34,30 @@
 /* Private functions */
 void light_zc_hal_device_started()
 {
-  bsp_board_led_on(BULB_LED_POVER);
+    bsp_board_led_on(BULB_LED_POVER);
 }
 
 void light_zc_hal_gpio_init()
 {
-  bsp_board_init(BSP_INIT_LEDS | BSP_INIT_BUTTONS);
+    bsp_board_init(BSP_INIT_LEDS | BSP_INIT_BUTTONS);
 }
 
 /* Public interface */
 void light_zc_hal_init()
 {
-  volatile  zb_uint16_t i = 0;
-  for (i = 16000; i>0; i--)
-  {
-   light_zc_hal_gpio_init();
-  }
-  light_zc_hal_gpio_init();
+    volatile  zb_uint16_t i = 0;
+    for (i = 16000; i > 0; i--)
+    {
+        light_zc_hal_gpio_init();
+    }
+    light_zc_hal_gpio_init();
 
-  light_zc_hal_device_started();
+    light_zc_hal_device_started();
 }
 
 zb_bool_t light_zc_hal_is_button_pressed()
 {
-  zb_bool_t ret = ZB_FALSE;
-  ret = (zb_bool_t) bsp_board_button_state_get(BULB_BUTTON_2);
-  return ret;
+    zb_bool_t ret = ZB_FALSE;
+    ret = (zb_bool_t) bsp_board_button_state_get(BULB_BUTTON_2);
+    return ret;
 }

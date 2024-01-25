@@ -30,16 +30,17 @@
 #define IEEE_ADDR_THE1 {0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
 
 static const zb_uint8_t g_nwk_key[16] = {0xab, 0xcd, 0xef, 0x01, 0x23, 0x45, 0x67, 0x89,
-                            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+                                         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+                                        };
 
 static const zb_uint16_t TEST_DUT_ZR_SHORT_ADDR = 0x2bbb;
 static const zb_uint16_t TEST_PAN_ID = 0x1AAA;
 
-#define TEST_ZED1_GET_PEER_ADDR_REQ_DELAY		(5 * ZB_TIME_ONE_SECOND)
+#define TEST_ZED1_GET_PEER_ADDR_REQ_DELAY       (5 * ZB_TIME_ONE_SECOND)
 
 /* All delays is relative */
-#define TEST_ZED1_MGMT_PERMIT_JOIN_180_THR1_DELAY      	(200 * ZB_TIME_ONE_SECOND)
-#define TEST_ZED1_MGMT_PERMIT_JOIN_180_DUT_DELAY   	(20 * ZB_TIME_ONE_SECOND)
-#define TEST_ZED1_MGMT_PERMIT_JOIN_00_DUT_DELAY    	(20 * ZB_TIME_ONE_SECOND)
+#define TEST_ZED1_MGMT_PERMIT_JOIN_180_THR1_DELAY       (200 * ZB_TIME_ONE_SECOND)
+#define TEST_ZED1_MGMT_PERMIT_JOIN_180_DUT_DELAY    (20 * ZB_TIME_ONE_SECOND)
+#define TEST_ZED1_MGMT_PERMIT_JOIN_00_DUT_DELAY     (20 * ZB_TIME_ONE_SECOND)
 
 #endif /* __CN_NSA_TC_01D_ */

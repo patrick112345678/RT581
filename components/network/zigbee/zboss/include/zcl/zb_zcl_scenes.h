@@ -45,42 +45,42 @@
  */
 enum zb_zcl_scene_attr_e
 {
-  /*! Number of scenes currently in the device's scene table */
-  ZB_ZCL_ATTR_SCENES_SCENE_COUNT_ID   = 0x0000,
-  /*! Scene ID of the scene last invoked */
-  ZB_ZCL_ATTR_SCENES_CURRENT_SCENE_ID = 0x001,
-  /*! @brief Group ID of the scene last invoked
+    /*! Number of scenes currently in the device's scene table */
+    ZB_ZCL_ATTR_SCENES_SCENE_COUNT_ID   = 0x0000,
+    /*! Scene ID of the scene last invoked */
+    ZB_ZCL_ATTR_SCENES_CURRENT_SCENE_ID = 0x001,
+    /*! @brief Group ID of the scene last invoked
 
-      Can hold 0x0000 if the scene last invoked is not associated with a group
-  */
-  ZB_ZCL_ATTR_SCENES_CURRENT_GROUP_ID = 0x002,
-  /*! @brief Indicates whether the state of the device corresponds to
-      that associated with the CurrentScene and CurrentGroup attributes
-      @li TRUE indicates that these attributes are valid
-      @li FALSE indicates that they are not valid
-  */
-  ZB_ZCL_ATTR_SCENES_SCENE_VALID_ID   = 0x003,
-  /* TODO Remove default value for Name support attribute when scene name
-     support will be provided
-  */
-  /*! @brief Indicates support for scene names
+        Can hold 0x0000 if the scene last invoked is not associated with a group
+    */
+    ZB_ZCL_ATTR_SCENES_CURRENT_GROUP_ID = 0x002,
+    /*! @brief Indicates whether the state of the device corresponds to
+        that associated with the CurrentScene and CurrentGroup attributes
+        @li TRUE indicates that these attributes are valid
+        @li FALSE indicates that they are not valid
+    */
+    ZB_ZCL_ATTR_SCENES_SCENE_VALID_ID   = 0x003,
+    /* TODO Remove default value for Name support attribute when scene name
+       support will be provided
+    */
+    /*! @brief Indicates support for scene names
 
-      The most significant bit of the NameSupport attribute indicates whether or
-      not scene names are supported
-      @li 1 indicates that they are supported
-      @li 0 indicates that they are not supported
-      @note Currently scene names are not supported
-  */
-  ZB_ZCL_ATTR_SCENES_NAME_SUPPORT_ID  = 0x004,
-  /*! @brief specifies the IEEE address of the device that last configured the
-      scene table
+        The most significant bit of the NameSupport attribute indicates whether or
+        not scene names are supported
+        @li 1 indicates that they are supported
+        @li 0 indicates that they are not supported
+        @note Currently scene names are not supported
+    */
+    ZB_ZCL_ATTR_SCENES_NAME_SUPPORT_ID  = 0x004,
+    /*! @brief specifies the IEEE address of the device that last configured the
+        scene table
 
-      The value 0xffffffffffffffff indicates that the device has not been
-      configured, or that the address of the device that last configured the
-      scenes cluster is not known
-      @attention The attribute is not supported!
-  */
-  ZB_ZCL_ATTR_SCENES_LAST_CONFIGURED_BY_ID = 0x005
+        The value 0xffffffffffffffff indicates that the device has not been
+        configured, or that the address of the device that last configured the
+        scenes cluster is not known
+        @attention The attribute is not supported!
+    */
+    ZB_ZCL_ATTR_SCENES_LAST_CONFIGURED_BY_ID = 0x005
 };
 
 /** @brief Mask to extract Name support bit */
@@ -128,30 +128,30 @@ enum zb_zcl_scene_attr_e
 /*! @brief Fixed-size part of the Scene table */
 typedef ZB_PACKED_PRE struct zb_zcl_scene_table_record_fixed_s
 {
-  /*! @brief Group identifier for the scene
+    /*! @brief Group identifier for the scene
 
-      Can be zero if the scene is not associated with any group @attention Since
-      value of 0xffff is not appropriate as a group identifier, it is being used
-      as a free record marker in a form of @ref ZB_ZCL_SCENES_FREE_SCENE_TABLE_RECORD
-      macro
-  */
-  zb_uint16_t group_id;
-  /*! @brief Scene transition time */
-  zb_uint16_t transition_time;
-  /*! @brief Scene identifier */
-  zb_uint8_t scene_id;
-  /*! @brief Field set length
+        Can be zero if the scene is not associated with any group @attention Since
+        value of 0xffff is not appropriate as a group identifier, it is being used
+        as a free record marker in a form of @ref ZB_ZCL_SCENES_FREE_SCENE_TABLE_RECORD
+        macro
+    */
+    zb_uint16_t group_id;
+    /*! @brief Scene transition time */
+    zb_uint16_t transition_time;
+    /*! @brief Scene identifier */
+    zb_uint8_t scene_id;
+    /*! @brief Field set length
 
-      Actual length of the field sets. While the maximal length of the field
-      sets is known, its actual length should be figured out in order to finish reading at
-      a proper point. E. g.: as stated in ZCL spec, subclause 3.7.2.4.1.1, it is
-      not mandatory for a field set to be included in the command for every
-      cluster on the endpoint that has a defined field set. This field can provide
-      and actual length of the field sets thus being able to read
-      only the info required.
-  */
-  zb_uint8_t field_sets_length;
-  zb_uint8_t transition_time_100ms;
+        Actual length of the field sets. While the maximal length of the field
+        sets is known, its actual length should be figured out in order to finish reading at
+        a proper point. E. g.: as stated in ZCL spec, subclause 3.7.2.4.1.1, it is
+        not mandatory for a field set to be included in the command for every
+        cluster on the endpoint that has a defined field set. This field can provide
+        and actual length of the field sets thus being able to read
+        only the info required.
+    */
+    zb_uint8_t field_sets_length;
+    zb_uint8_t transition_time_100ms;
 } ZB_PACKED_STRUCT zb_zcl_scene_table_record_fixed_t;
 
 /*! @brief Declares a "free record" marker for a scene table
@@ -165,8 +165,8 @@ typedef ZB_PACKED_PRE struct zb_zcl_scene_table_record_fixed_s
 /*! @brief Common part of the field set definition */
 typedef ZB_PACKED_PRE struct zb_zcl_scenes_fieldset_common_s
 {
-  zb_uint16_t cluster_id;     /*!< Cluster identifier */
-  zb_uint8_t fieldset_length; /*!< Length of the field set's variable part */
+    zb_uint16_t cluster_id;     /*!< Cluster identifier */
+    zb_uint8_t fieldset_length; /*!< Length of the field set's variable part */
 } ZB_PACKED_STRUCT zb_zcl_scenes_fieldset_common_t;
 
 /*! @brief Declares Scenes attribute list
@@ -264,29 +264,29 @@ void zb_zcl_scenes_remove_all_scenes_in_all_endpoints(zb_uint8_t param);
 */
 enum zb_zcl_scenes_cmd_e
 {
-  /** Add scene command */
-  ZB_ZCL_CMD_SCENES_ADD_SCENE             = 0x00,
-  /** View scene command */
-  ZB_ZCL_CMD_SCENES_VIEW_SCENE            = 0x01,
-  /** Remove scene command */
-  ZB_ZCL_CMD_SCENES_REMOVE_SCENE          = 0x02,
-  /** Remove all scenes command */
-  ZB_ZCL_CMD_SCENES_REMOVE_ALL_SCENES     = 0x03,
-  /** Store scene command */
-  ZB_ZCL_CMD_SCENES_STORE_SCENE           = 0x04,
-  /** Recall scene command */
-  ZB_ZCL_CMD_SCENES_RECALL_SCENE          = 0x05,
-  /** Get scene membership command */
-  ZB_ZCL_CMD_SCENES_GET_SCENE_MEMBERSHIP  = 0x06,
-  /** The Enhanced Add Scene command allows a scene to be added using a finer scene
-   *  transition time than the Add Scene command. */
-  ZB_ZCL_CMD_SCENES_ENHANCED_ADD_SCENE    = 0x40,
-  /** The Enhanced View Scene command allows a scene to be retrieved using
-   *  a finer scene transition time than the View Scene command. */
-  ZB_ZCL_CMD_SCENES_ENHANCED_VIEW_SCENE   = 0x41,
-  /** The Copy Scene command allows a device to efficiently copy scenes from
-   *  one group/scene identifier pair to another group/scene identifier pair. */
-  ZB_ZCL_CMD_SCENES_COPY_SCENE            = 0x42,
+    /** Add scene command */
+    ZB_ZCL_CMD_SCENES_ADD_SCENE             = 0x00,
+    /** View scene command */
+    ZB_ZCL_CMD_SCENES_VIEW_SCENE            = 0x01,
+    /** Remove scene command */
+    ZB_ZCL_CMD_SCENES_REMOVE_SCENE          = 0x02,
+    /** Remove all scenes command */
+    ZB_ZCL_CMD_SCENES_REMOVE_ALL_SCENES     = 0x03,
+    /** Store scene command */
+    ZB_ZCL_CMD_SCENES_STORE_SCENE           = 0x04,
+    /** Recall scene command */
+    ZB_ZCL_CMD_SCENES_RECALL_SCENE          = 0x05,
+    /** Get scene membership command */
+    ZB_ZCL_CMD_SCENES_GET_SCENE_MEMBERSHIP  = 0x06,
+    /** The Enhanced Add Scene command allows a scene to be added using a finer scene
+     *  transition time than the Add Scene command. */
+    ZB_ZCL_CMD_SCENES_ENHANCED_ADD_SCENE    = 0x40,
+    /** The Enhanced View Scene command allows a scene to be retrieved using
+     *  a finer scene transition time than the View Scene command. */
+    ZB_ZCL_CMD_SCENES_ENHANCED_VIEW_SCENE   = 0x41,
+    /** The Copy Scene command allows a device to efficiently copy scenes from
+     *  one group/scene identifier pair to another group/scene identifier pair. */
+    ZB_ZCL_CMD_SCENES_COPY_SCENE            = 0x42,
 };
 
 /*! @brief Command response identifiers for Scenes Cluster
@@ -294,28 +294,28 @@ enum zb_zcl_scenes_cmd_e
 */
 enum zb_zcl_scenes_cmd_resp_e
 {
-  /** Add scene response */
-  ZB_ZCL_CMD_SCENES_ADD_SCENE_RESPONSE            = 0x00,
-  /** View scene response */
-  ZB_ZCL_CMD_SCENES_VIEW_SCENE_RESPONSE           = 0x01,
-  /** Remove scene response */
-  ZB_ZCL_CMD_SCENES_REMOVE_SCENE_RESPONSE         = 0x02,
-  /** Remove all scenes response */
-  ZB_ZCL_CMD_SCENES_REMOVE_ALL_SCENES_RESPONSE    = 0x03,
-  /** Store scene response */
-  ZB_ZCL_CMD_SCENES_STORE_SCENE_RESPONSE          = 0x04,
-  /** Get scene membership response */
-  ZB_ZCL_CMD_SCENES_GET_SCENE_MEMBERSHIP_RESPONSE = 0x06,
-  /** The Enhanced Add Scene Response command allows a device to respond
-   *  to an Enhanced Add Scene command.*/
-  ZB_ZCL_CMD_SCENES_ENHANCED_ADD_SCENE_RESPONSE   = 0x40,
-  /** The Enhanced View Scene Response command allows a device to respond
-   *  to an Enhanced View Scene command using a finer scene transition time
-   *  that was available in the ZCL. */
-  ZB_ZCL_CMD_SCENES_ENHANCED_VIEW_SCENE_RESPONSE  = 0x41,
-  /** The Copy Scene Response command allows a device to respond
-   *  to a Copy Scene command.*/
-  ZB_ZCL_CMD_SCENES_COPY_SCENE_RESPONSE           = 0x42,
+    /** Add scene response */
+    ZB_ZCL_CMD_SCENES_ADD_SCENE_RESPONSE            = 0x00,
+    /** View scene response */
+    ZB_ZCL_CMD_SCENES_VIEW_SCENE_RESPONSE           = 0x01,
+    /** Remove scene response */
+    ZB_ZCL_CMD_SCENES_REMOVE_SCENE_RESPONSE         = 0x02,
+    /** Remove all scenes response */
+    ZB_ZCL_CMD_SCENES_REMOVE_ALL_SCENES_RESPONSE    = 0x03,
+    /** Store scene response */
+    ZB_ZCL_CMD_SCENES_STORE_SCENE_RESPONSE          = 0x04,
+    /** Get scene membership response */
+    ZB_ZCL_CMD_SCENES_GET_SCENE_MEMBERSHIP_RESPONSE = 0x06,
+    /** The Enhanced Add Scene Response command allows a device to respond
+     *  to an Enhanced Add Scene command.*/
+    ZB_ZCL_CMD_SCENES_ENHANCED_ADD_SCENE_RESPONSE   = 0x40,
+    /** The Enhanced View Scene Response command allows a device to respond
+     *  to an Enhanced View Scene command using a finer scene transition time
+     *  that was available in the ZCL. */
+    ZB_ZCL_CMD_SCENES_ENHANCED_VIEW_SCENE_RESPONSE  = 0x41,
+    /** The Copy Scene Response command allows a device to respond
+     *  to a Copy Scene command.*/
+    ZB_ZCL_CMD_SCENES_COPY_SCENE_RESPONSE           = 0x42,
 };
 
 /** @cond internals_doc */
@@ -349,14 +349,14 @@ enum zb_zcl_scenes_cmd_resp_e
  */
 typedef ZB_PACKED_PRE struct zb_zcl_scenes_add_scene_req_s
 {
-  zb_uint16_t group_id;         /**< Scene group identifier */
-  zb_uint8_t scene_id;          /**< Scene identifier */
-  zb_uint16_t transition_time;  /**< Scene transition time */
-  /*! @brief Scene name
+    zb_uint16_t group_id;         /**< Scene group identifier */
+    zb_uint8_t scene_id;          /**< Scene identifier */
+    zb_uint16_t transition_time;  /**< Scene transition time */
+    /*! @brief Scene name
 
-      Has zero length (for compatibility) as unsupported attribute.
-  */
-  zb_uint8_t scene_name[1];
+        Has zero length (for compatibility) as unsupported attribute.
+    */
+    zb_uint8_t scene_name[1];
 } ZB_PACKED_STRUCT zb_zcl_scenes_add_scene_req_t;
 
 
@@ -534,8 +534,8 @@ typedef ZB_PACKED_PRE struct zb_zcl_scenes_add_scene_req_s
 /*! @brief View scene command payload structure */
 typedef ZB_PACKED_PRE struct zb_zcl_scenes_view_scene_req_s
 {
-  zb_uint16_t group_id; /*!< Scene group identifier */
-  zb_uint8_t scene_id;  /*!< Scene identifier */
+    zb_uint16_t group_id; /*!< Scene group identifier */
+    zb_uint8_t scene_id;  /*!< Scene identifier */
 } ZB_PACKED_STRUCT zb_zcl_scenes_view_scene_req_t;
 
 /*! @brief Send View Scene command
@@ -610,8 +610,8 @@ typedef ZB_PACKED_PRE struct zb_zcl_scenes_view_scene_req_s
 /*! @brief Remove scene command payload structure */
 typedef ZB_PACKED_PRE struct zb_zcl_scenes_remove_scene_req_s
 {
-  zb_uint16_t group_id; /*!< Scene group identifier */
-  zb_uint8_t scene_id;  /*!< Scene identifier */
+    zb_uint16_t group_id; /*!< Scene group identifier */
+    zb_uint8_t scene_id;  /*!< Scene identifier */
 } ZB_PACKED_STRUCT zb_zcl_scenes_remove_scene_req_t;
 
 /*! @brief Send Remove scene command
@@ -688,7 +688,7 @@ typedef ZB_PACKED_PRE struct zb_zcl_scenes_remove_scene_req_s
 /*! @brief Remove all scenes command payload structure */
 typedef ZB_PACKED_PRE struct zb_zcl_scenes_remove_all_scenes_req_s
 {
-  zb_uint16_t group_id; /*!< Scene group identifier */
+    zb_uint16_t group_id; /*!< Scene group identifier */
 } ZB_PACKED_STRUCT zb_zcl_scenes_remove_all_scenes_req_t;
 
 /*! @brief Send Remove all scenes command
@@ -763,8 +763,8 @@ typedef ZB_PACKED_PRE struct zb_zcl_scenes_remove_all_scenes_req_s
 /*! @brief Store scene command payload structure */
 typedef ZB_PACKED_PRE struct zb_zcl_scenes_store_scene_req_s
 {
-  zb_uint16_t group_id; /*!< Group identifier */
-  zb_uint8_t scene_id;  /*!< Scene identifier */
+    zb_uint16_t group_id; /*!< Group identifier */
+    zb_uint8_t scene_id;  /*!< Scene identifier */
 } ZB_PACKED_STRUCT zb_zcl_scenes_store_scene_req_t;
 
 /*! @brief Send Store Scene command
@@ -844,14 +844,14 @@ typedef ZB_PACKED_PRE struct zb_zcl_scenes_store_scene_req_s
 /*! @brief Recall scene command payload structure */
 typedef ZB_PACKED_PRE struct zb_zcl_scenes_recall_scene_req_s
 {
-  zb_uint16_t group_id; /*!< Scene group identifier */
-  zb_uint8_t scene_id;  /*!< Scene identifier */
+    zb_uint16_t group_id; /*!< Scene group identifier */
+    zb_uint8_t scene_id;  /*!< Scene identifier */
 } ZB_PACKED_STRUCT zb_zcl_scenes_recall_scene_req_t;
 
 /*! @brief Recall scene command transition_time payload structure */
 typedef ZB_PACKED_PRE struct zb_zcl_scenes_recall_scene_transition_time_req_s
 {
-  zb_uint16_t transition_time; /*!< Scene group identifier */
+    zb_uint16_t transition_time; /*!< Scene group identifier */
 } ZB_PACKED_STRUCT zb_zcl_scenes_recall_scene_transition_time_req_t;
 
 /*! @brief Send Recall scene command
@@ -962,7 +962,7 @@ typedef ZB_PACKED_PRE struct zb_zcl_scenes_recall_scene_transition_time_req_s
 /*! @brief Get scene membership command payload structure */
 typedef ZB_PACKED_PRE struct zb_zcl_scenes_get_scene_membership_req_s
 {
-  zb_uint16_t group_id; /*!< Scene group identifier */
+    zb_uint16_t group_id; /*!< Scene group identifier */
 } ZB_PACKED_STRUCT zb_zcl_scenes_get_scene_membership_req_t;
 
 /*! @brief Send Remove all scenes command
@@ -1037,9 +1037,9 @@ typedef ZB_PACKED_PRE struct zb_zcl_scenes_get_scene_membership_req_s
 /*! @brief Add scene response payload structure */
 typedef ZB_PACKED_PRE struct zb_zcl_scenes_add_scene_res_s
 {
-  zb_uint8_t status;    /*!< Add scene status */
-  zb_uint16_t group_id; /*!< Scene group identifier */
-  zb_uint8_t scene_id;  /*!< Scene identifier */
+    zb_uint8_t status;    /*!< Add scene status */
+    zb_uint16_t group_id; /*!< Scene group identifier */
+    zb_uint8_t scene_id;  /*!< Scene identifier */
 } ZB_PACKED_STRUCT zb_zcl_scenes_add_scene_res_t;
 
 /*! @brief Send Add Scene response
@@ -1117,22 +1117,22 @@ typedef ZB_PACKED_PRE struct zb_zcl_scenes_add_scene_res_s
 /** @brief Mandatory part of the Scenes.ViewSceneResponse payload */
 typedef ZB_PACKED_PRE struct zb_zcl_scenes_view_scene_res_fixed_size_s
 {
-  zb_uint8_t status;    /*!< Command execution status */
-  zb_uint16_t group_id; /*!< Scene group identifier */
-  zb_uint8_t scene_id;  /*!< Scene identifier */
-  /** @brief Scene transition time
-      @attention Valid if status is @ref ZB_ZCL_STATUS_SUCCESS only
-  */
-  zb_uint16_t transition_time;
-  /** @brief Scene name field.
+    zb_uint8_t status;    /*!< Command execution status */
+    zb_uint16_t group_id; /*!< Scene group identifier */
+    zb_uint8_t scene_id;  /*!< Scene identifier */
+    /** @brief Scene transition time
+        @attention Valid if status is @ref ZB_ZCL_STATUS_SUCCESS only
+    */
+    zb_uint16_t transition_time;
+    /** @brief Scene name field.
 
-      Since scene names are not supported, will contain only zero length byte on
-      formation. If received packet with scene name filled from some other
-      stack, the fields will be skipped during packet parsing, and length byte
-      will be set to zero.
-      @attention Valid if status is @ref ZB_ZCL_STATUS_SUCCESS only
-  */
-  zb_uint8_t scene_name[1];
+        Since scene names are not supported, will contain only zero length byte on
+        formation. If received packet with scene name filled from some other
+        stack, the fields will be skipped during packet parsing, and length byte
+        will be set to zero.
+        @attention Valid if status is @ref ZB_ZCL_STATUS_SUCCESS only
+    */
+    zb_uint8_t scene_name[1];
 } ZB_PACKED_STRUCT zb_zcl_scenes_view_scene_res_fixed_size_t;
 
 /*! @brief Start filling View scene response frame
@@ -1262,9 +1262,9 @@ typedef ZB_PACKED_PRE struct zb_zcl_scenes_view_scene_res_fixed_size_s
 /*! @brief Remove scene response payload structure */
 typedef ZB_PACKED_PRE struct zb_zcl_scenes_remove_scene_res_s
 {
-  zb_uint8_t status;    /** Command execution status */
-  zb_uint16_t group_id; /** Scene group identifier */
-  zb_uint8_t scene_id;  /** Scene identifier */
+    zb_uint8_t status;    /** Command execution status */
+    zb_uint16_t group_id; /** Scene group identifier */
+    zb_uint8_t scene_id;  /** Scene identifier */
 } ZB_PACKED_STRUCT zb_zcl_scenes_remove_scene_res_t;
 
 /*! @brief Send Remove Scene response
@@ -1342,8 +1342,8 @@ typedef ZB_PACKED_PRE struct zb_zcl_scenes_remove_scene_res_s
 /** @brief Remove all scenes response payload structure */
 typedef ZB_PACKED_PRE struct zb_zcl_scenes_remove_all_scenes_res_s
 {
-  zb_uint8_t status;    /** Command execution status */
-  zb_uint16_t group_id; /** Group identifier */
+    zb_uint8_t status;    /** Command execution status */
+    zb_uint16_t group_id; /** Group identifier */
 } ZB_PACKED_STRUCT zb_zcl_scenes_remove_all_scenes_res_t;
 
 /*! @brief Send Remove all scenes response
@@ -1418,9 +1418,9 @@ typedef ZB_PACKED_PRE struct zb_zcl_scenes_remove_all_scenes_res_s
 /** @brief Store scene response payload structure */
 typedef ZB_PACKED_PRE struct zb_zcl_scenes_store_scene_res_s
 {
-  zb_uint8_t status;    /*!< Command execution status */
-  zb_uint16_t group_id; /*!< Scene group identifier */
-  zb_uint8_t scene_id;  /*!< Scene identifier */
+    zb_uint8_t status;    /*!< Command execution status */
+    zb_uint16_t group_id; /*!< Scene group identifier */
+    zb_uint8_t scene_id;  /*!< Scene identifier */
 } ZB_PACKED_STRUCT zb_zcl_scenes_store_scene_res_t;
 
 /*! @brief Send Store scene response
@@ -1508,48 +1508,48 @@ typedef ZB_PACKED_PRE struct zb_zcl_scenes_store_scene_res_s
    representation */
 typedef ZB_PACKED_PRE struct zb_zcl_scenes_get_scene_membership_res_mandatory_s
 {
-  /** @brief Command execution status
+    /** @brief Command execution status
 
-      Appropriate values are:
-      @li ZB_ZCL_STATUS_SUCCESS - successfully executed
-      @li ZB_ZCL_STATUS_INVALID_FIELD - group is not present in the Group Table
-      see @ref zcl_status enumeration
-  */
-  zb_uint8_t status;
-  /** @brief Scene table capacity
+        Appropriate values are:
+        @li ZB_ZCL_STATUS_SUCCESS - successfully executed
+        @li ZB_ZCL_STATUS_INVALID_FIELD - group is not present in the Group Table
+        see @ref zcl_status enumeration
+    */
+    zb_uint8_t status;
+    /** @brief Scene table capacity
 
-      Permitted values are:
-      @li 0..0xfd direct scene table capacity
-      @li @ref ZB_ZCL_SCENES_CAPACITY_ONE_MORE at least one more scene can be added
-      @li @ref ZB_ZCL_SCENES_CAPACITY_UNKNOWN scene table capacity is unknown
-  */
-  zb_uint8_t capacity;
-  zb_uint16_t group_id; /**< Group identifier */
+        Permitted values are:
+        @li 0..0xfd direct scene table capacity
+        @li @ref ZB_ZCL_SCENES_CAPACITY_ONE_MORE at least one more scene can be added
+        @li @ref ZB_ZCL_SCENES_CAPACITY_UNKNOWN scene table capacity is unknown
+    */
+    zb_uint8_t capacity;
+    zb_uint16_t group_id; /**< Group identifier */
 } ZB_PACKED_STRUCT zb_zcl_scenes_get_scene_membership_res_mandatory_t;
 
 /** @brief Get scene membership response optional payload part
    representation */
 typedef ZB_PACKED_PRE struct zb_zcl_scenes_get_scene_membership_res_optional_s
 {
-  /** @brief Number of scenes in the response.
-      @note Valid if status has ZB_ZCL_STATUS_SUCCESS value only.
-  */
-  zb_uint8_t scene_count;
-  /** @brief Array of scenes corresponding to the group identifier.
+    /** @brief Number of scenes in the response.
+        @note Valid if status has ZB_ZCL_STATUS_SUCCESS value only.
+    */
+    zb_uint8_t scene_count;
+    /** @brief Array of scenes corresponding to the group identifier.
 
-      Array contains strictly @ref scene_count elements.
-      @note Valid if status has ZB_ZCL_STATUS_SUCCESS value only.
-  */
-  zb_uint8_t scene_list[1];
+        Array contains strictly @ref scene_count elements.
+        @note Valid if status has ZB_ZCL_STATUS_SUCCESS value only.
+    */
+    zb_uint8_t scene_list[1];
 } ZB_PACKED_STRUCT zb_zcl_scenes_get_scene_membership_res_optional_t;
 
 /** @brief Get scene membership response */
 typedef ZB_PACKED_PRE struct zb_zcl_scenes_get_scene_membership_res_s
 {
-  /** @brief Mandatory payload part */
-  zb_zcl_scenes_get_scene_membership_res_mandatory_t mandatory;
-  /** @brief Optional payload part */
-  zb_zcl_scenes_get_scene_membership_res_optional_t optional;
+    /** @brief Mandatory payload part */
+    zb_zcl_scenes_get_scene_membership_res_mandatory_t mandatory;
+    /** @brief Optional payload part */
+    zb_zcl_scenes_get_scene_membership_res_optional_t optional;
 } ZB_PACKED_STRUCT zb_zcl_scenes_get_scene_membership_res_t;
 
 /** @brief Start filling Get scene membership response frame
@@ -1669,11 +1669,11 @@ typedef ZB_PACKED_PRE struct zb_zcl_scenes_get_scene_membership_res_s
 
 /** @cond internals_doc */
 
-zb_uint8_t zb_zcl_scenes_process_store_scene(zb_uint8_t param, zb_zcl_scenes_store_scene_req_t* req, const zb_zcl_parsed_hdr_t *cmd_info);
+zb_uint8_t zb_zcl_scenes_process_store_scene(zb_uint8_t param, zb_zcl_scenes_store_scene_req_t *req, const zb_zcl_parsed_hdr_t *cmd_info);
 
-zb_uint8_t zb_zcl_scenes_process_recall_scene(zb_uint8_t param, zb_zcl_scenes_recall_scene_req_t* req, const zb_zcl_parsed_hdr_t *cmd_info);
+zb_uint8_t zb_zcl_scenes_process_recall_scene(zb_uint8_t param, zb_zcl_scenes_recall_scene_req_t *req, const zb_zcl_parsed_hdr_t *cmd_info);
 
-zb_uint8_t zb_zcl_scenes_process_remove_all_scenes(zb_uint8_t param, zb_zcl_scenes_remove_all_scenes_req_t* req, const zb_zcl_parsed_hdr_t *cmd_info);
+zb_uint8_t zb_zcl_scenes_process_remove_all_scenes(zb_uint8_t param, zb_zcl_scenes_remove_all_scenes_req_t *req, const zb_zcl_parsed_hdr_t *cmd_info);
 
 /** @endcond */
 

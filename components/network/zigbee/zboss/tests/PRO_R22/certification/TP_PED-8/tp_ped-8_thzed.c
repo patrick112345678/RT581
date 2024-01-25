@@ -48,103 +48,103 @@ static void start_fixed_poll(zb_time_t ms);
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  ZB_SET_TRAF_DUMP_ON();
-  {
+    ZB_SET_TRAF_DUMP_ON();
+    {
 
-    ZB_INIT("zdo_thzed");
-#if UART_CONTROL	
-	test_control_init();
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+        ZB_INIT("zdo_thzed");
+#if UART_CONTROL
+        test_control_init();
+        zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 #endif
 
-   }
+    }
 
-  /* set ieee addr */
-  zb_set_long_address(g_ieee_addr_thzed);
+    /* set ieee addr */
+    zb_set_long_address(g_ieee_addr_thzed);
 
 #if 0
-  zb_set_use_extended_pan_id(g_ext_pan_id);
+    zb_set_use_extended_pan_id(g_ext_pan_id);
 #endif
 
-  zb_cert_test_set_common_channel_settings();
-  zb_cert_test_set_zed_role();
-  zb_set_rx_on_when_idle(ZB_FALSE);
+    zb_cert_test_set_common_channel_settings();
+    zb_cert_test_set_zed_role();
+    zb_set_rx_on_when_idle(ZB_FALSE);
 
-  zb_zdo_set_aps_unsecure_join(ZB_TRUE);
-  zdo_set_aging_timeout(ED_AGING_TIMEOUT_10SEC); /* 10 seconds */
+    zb_zdo_set_aps_unsecure_join(ZB_TRUE);
+    zdo_set_aging_timeout(ED_AGING_TIMEOUT_10SEC); /* 10 seconds */
 
 #ifdef SECURITY_LEVEL
-  zb_cert_test_set_security_level(SECURITY_LEVEL);
+    zb_cert_test_set_security_level(SECURITY_LEVEL);
 #endif
 
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  switch (sig)
-  {
+    switch (sig)
+    {
     case ZB_ZDO_SIGNAL_DEFAULT_START:
-      if (status == 0)
-      {
-        TRACE_MSG(TRACE_APS1, "Device started OK, status %d", (FMT__D, status));
-        ZB_SCHEDULE_ALARM(test_change_poll_interval_delayed, 0, ZB_TIME_ONE_SECOND * 12);
-        zb_zdo_set_lpd_cmd_timeout(180);
-      }
-      else
-      {
-        TRACE_MSG(TRACE_APS1, "Device started, status %d", (FMT__D, status));
-      }
-      break; /* ZB_ZDO_SIGNAL_DEFAULT_START */
+        if (status == 0)
+        {
+            TRACE_MSG(TRACE_APS1, "Device started OK, status %d", (FMT__D, status));
+            ZB_SCHEDULE_ALARM(test_change_poll_interval_delayed, 0, ZB_TIME_ONE_SECOND * 12);
+            zb_zdo_set_lpd_cmd_timeout(180);
+        }
+        else
+        {
+            TRACE_MSG(TRACE_APS1, "Device started, status %d", (FMT__D, status));
+        }
+        break; /* ZB_ZDO_SIGNAL_DEFAULT_START */
 
     default:
-      TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
-      break;
-  }
+        TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 
 static void test_change_poll_interval_delayed(zb_uint8_t param)
 {
-  ZVUNUSED(param);
-  start_fixed_poll(120000);
+    ZVUNUSED(param);
+    start_fixed_poll(120000);
 }
 
 static void start_fixed_poll(zb_time_t ms)
 {
-  TRACE_MSG(TRACE_ZDO1, ">>start_fixed_poll: new_poll = %ld ms", (FMT__L, ms));
+    TRACE_MSG(TRACE_ZDO1, ">>start_fixed_poll: new_poll = %ld ms", (FMT__L, ms));
 
 #ifndef NCP_MODE_HOST
-  ZDO_CTX().pim.poll_in_progress = ZB_FALSE;
-  zb_zdo_pim_stop_poll(0);
-  zb_zdo_pim_set_long_poll_interval(ms);
-  zb_zdo_pim_permit_turbo_poll(ZB_FALSE); /* prohibit adaptive poll */
-  zb_zdo_pim_start_poll(0);
+    ZDO_CTX().pim.poll_in_progress = ZB_FALSE;
+    zb_zdo_pim_stop_poll(0);
+    zb_zdo_pim_set_long_poll_interval(ms);
+    zb_zdo_pim_permit_turbo_poll(ZB_FALSE); /* prohibit adaptive poll */
+    zb_zdo_pim_start_poll(0);
 #else
-  ZB_ASSERT(ZB_FALSE && "TODO: use NCP API here");
+    ZB_ASSERT(ZB_FALSE && "TODO: use NCP API here");
 #endif
 
-  TRACE_MSG(TRACE_ZDO1, "<<start_fixed_poll", (FMT__0));
+    TRACE_MSG(TRACE_ZDO1, "<<start_fixed_poll", (FMT__0));
 }

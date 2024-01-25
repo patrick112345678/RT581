@@ -25,39 +25,39 @@ along with GCC; see the file COPYING3.  If not see
 
 enum cxx_pretty_printer_flags
 {
-  /* Ask for a qualified-id.  */
-  pp_cxx_flag_default_argument = 1 << pp_c_flag_last_bit
+    /* Ask for a qualified-id.  */
+    pp_cxx_flag_default_argument = 1 << pp_c_flag_last_bit
 };
 
 class cxx_pretty_printer : public c_pretty_printer
 {
 public:
-  cxx_pretty_printer ();
+    cxx_pretty_printer ();
 
-  pretty_printer *clone () const OVERRIDE;
+    pretty_printer *clone () const OVERRIDE;
 
-  void constant (tree);
-  void id_expression (tree);
-  void primary_expression (tree);
-  void postfix_expression (tree);
-  void unary_expression (tree);
-  void multiplicative_expression (tree);
-  void conditional_expression (tree);
-  void assignment_expression (tree);
-  void expression (tree);
-  void type_id (tree);
-  void statement (tree);
-  void declaration (tree);
-  void declaration_specifiers (tree);
-  void simple_type_specifier (tree);
-  void function_specifier (tree);
-  void declarator (tree);
-  void direct_declarator (tree);
-  void abstract_declarator (tree);
-  void direct_abstract_declarator (tree);
+    void constant (tree);
+    void id_expression (tree);
+    void primary_expression (tree);
+    void postfix_expression (tree);
+    void unary_expression (tree);
+    void multiplicative_expression (tree);
+    void conditional_expression (tree);
+    void assignment_expression (tree);
+    void expression (tree);
+    void type_id (tree);
+    void statement (tree);
+    void declaration (tree);
+    void declaration_specifiers (tree);
+    void simple_type_specifier (tree);
+    void function_specifier (tree);
+    void declarator (tree);
+    void direct_declarator (tree);
+    void abstract_declarator (tree);
+    void direct_abstract_declarator (tree);
 
-  /* This is the enclosing scope of the entity being pretty-printed.  */
-  tree enclosing_scope;
+    /* This is the enclosing scope of the entity being pretty-printed.  */
+    tree enclosing_scope;
 };
 
 #define pp_cxx_cv_qualifier_seq(PP, T)   \
@@ -65,22 +65,22 @@ public:
 #define pp_cxx_cv_qualifiers(PP, CV, FT) \
    pp_c_cv_qualifiers (PP, CV, FT)
 
-#define pp_cxx_whitespace(PP)		pp_c_whitespace (PP)
-#define pp_cxx_left_paren(PP)		pp_c_left_paren (PP)
-#define pp_cxx_right_paren(PP)		pp_c_right_paren (PP)
-#define pp_cxx_left_brace(PP)		pp_c_left_brace (PP)
-#define pp_cxx_right_brace(PP)		pp_c_right_brace (PP)
-#define pp_cxx_left_bracket(PP)		pp_c_left_bracket (PP)
-#define pp_cxx_right_bracket(PP)	pp_c_right_bracket (PP)
-#define pp_cxx_dot(PP)			pp_c_dot (PP)
-#define pp_cxx_ampersand(PP)		pp_c_ampersand (PP)
-#define pp_cxx_star(PP)			pp_c_star (PP)
-#define pp_cxx_arrow(PP)		pp_c_arrow (PP)
-#define pp_cxx_semicolon(PP)		pp_c_semicolon (PP)
-#define pp_cxx_complement(PP)		pp_c_complement (PP)
+#define pp_cxx_whitespace(PP)       pp_c_whitespace (PP)
+#define pp_cxx_left_paren(PP)       pp_c_left_paren (PP)
+#define pp_cxx_right_paren(PP)      pp_c_right_paren (PP)
+#define pp_cxx_left_brace(PP)       pp_c_left_brace (PP)
+#define pp_cxx_right_brace(PP)      pp_c_right_brace (PP)
+#define pp_cxx_left_bracket(PP)     pp_c_left_bracket (PP)
+#define pp_cxx_right_bracket(PP)    pp_c_right_bracket (PP)
+#define pp_cxx_dot(PP)          pp_c_dot (PP)
+#define pp_cxx_ampersand(PP)        pp_c_ampersand (PP)
+#define pp_cxx_star(PP)         pp_c_star (PP)
+#define pp_cxx_arrow(PP)        pp_c_arrow (PP)
+#define pp_cxx_semicolon(PP)        pp_c_semicolon (PP)
+#define pp_cxx_complement(PP)       pp_c_complement (PP)
 
-#define pp_cxx_ws_string(PP, I)		pp_c_ws_string (PP, I)
-#define pp_cxx_identifier(PP, I)	pp_c_identifier (PP, I)
+#define pp_cxx_ws_string(PP, I)     pp_c_ws_string (PP, I)
+#define pp_cxx_identifier(PP, I)    pp_c_identifier (PP, I)
 #define pp_cxx_tree_identifier(PP, T) \
   pp_c_tree_identifier (PP, T)
 

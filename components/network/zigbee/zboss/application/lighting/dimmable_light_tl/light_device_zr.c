@@ -54,7 +54,7 @@ zb_uint16_t g_attr_on_time  = 0;
 zb_uint16_t g_attr_off_wait_time  = 0;
 
 ZB_ZCL_DECLARE_ON_OFF_ATTRIB_LIST_EXT(on_off_attr_list, &g_attr_on_off,
-    &g_attr_global_scene_ctrl, &g_attr_on_time, &g_attr_off_wait_time);
+                                      &g_attr_global_scene_ctrl, &g_attr_on_time, &g_attr_off_wait_time);
 
 //! [BASIC_CLUSTER_DECLARE]
 /* Basic cluster attributes data */
@@ -71,9 +71,9 @@ zb_char_t g_attr_location_id[] = "\x02" "us";
 zb_uint8_t g_attr_ph_env = ZB_ZCL_BASIC_ENV_UNSPECIFIED;
 
 ZB_ZCL_DECLARE_BASIC_ATTRIB_LIST_EXT(basic_attr_list, &g_attr_zcl_version, &g_attr_app_version,
-    &g_attr_stack_version, &g_attr_hardware_version, &g_attr_manufacturer_name, &g_attr_model_id,
-    &g_attr_date_code, &g_attr_power_source, &g_attr_location_id, &g_attr_ph_env,
-    &g_attr_sw_build_id);
+                                     &g_attr_stack_version, &g_attr_hardware_version, &g_attr_manufacturer_name, &g_attr_model_id,
+                                     &g_attr_date_code, &g_attr_power_source, &g_attr_location_id, &g_attr_ph_env,
+                                     &g_attr_sw_build_id);
 //! [BASIC_CLUSTER_DECLARE] */
 
 /* Identify cluster attributes data */
@@ -94,8 +94,8 @@ zb_uint8_t g_attr_scenes_scene_valid = ZB_ZCL_SCENES_SCENE_VALID_DEFAULT_VALUE;
 zb_uint8_t g_attr_scenes_name_support = ZB_ZCL_SCENES_NAME_SUPPORT_DEFAULT_VALUE;
 
 ZB_ZCL_DECLARE_SCENES_ATTRIB_LIST(scenes_attr_list, &g_attr_scenes_scene_count,
-    &g_attr_scenes_current_scene, &g_attr_scenes_current_group,
-    &g_attr_scenes_scene_valid, &g_attr_scenes_name_support);
+                                  &g_attr_scenes_current_scene, &g_attr_scenes_current_group,
+                                  &g_attr_scenes_scene_valid, &g_attr_scenes_name_support);
 
 /* Level cluster attribute data */
 
@@ -118,129 +118,129 @@ ZB_TL_DECLARE_DIMMABLE_LIGHT_CTX(dimmable_light_ctx, dimmable_light_ep);
 
 MAIN()
 {
-  zb_uint32_t primary_channel_set;
-  zb_uint32_t secondary_channel_set;
+    zb_uint32_t primary_channel_set;
+    zb_uint32_t secondary_channel_set;
 
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  ZB_SET_TRACE_ON();
-  ZB_SET_TRAF_DUMP_ON();
+    ZB_SET_TRACE_ON();
+    ZB_SET_TRAF_DUMP_ON();
 
-  ZB_INIT("light_device_zr");
+    ZB_INIT("light_device_zr");
 
-  zb_set_long_address(g_zr_addr);
-  zb_set_network_router_role(1L << TEST_CHANNEL);
-  zb_set_nvram_erase_at_start(ZB_FALSE);
-  zb_set_bdb_commissioning_mode(ZB_BDB_TOUCHLINK_TARGET);
+    zb_set_long_address(g_zr_addr);
+    zb_set_network_router_role(1L << TEST_CHANNEL);
+    zb_set_nvram_erase_at_start(ZB_FALSE);
+    zb_set_bdb_commissioning_mode(ZB_BDB_TOUCHLINK_TARGET);
 
-  /* Trace current primary and secondary channel masks */
-  primary_channel_set = zb_get_bdb_primary_channel_set();
-  secondary_channel_set = zb_get_bdb_secondary_channel_set();
-  TRACE_MSG(TRACE_APP1, "Primary channel mask 0x%lx", (FMT__L, primary_channel_set));
-  TRACE_MSG(TRACE_APP1, "Secondary channel mask 0x%lx", (FMT__L, secondary_channel_set));
+    /* Trace current primary and secondary channel masks */
+    primary_channel_set = zb_get_bdb_primary_channel_set();
+    secondary_channel_set = zb_get_bdb_secondary_channel_set();
+    TRACE_MSG(TRACE_APP1, "Primary channel mask 0x%lx", (FMT__L, primary_channel_set));
+    TRACE_MSG(TRACE_APP1, "Secondary channel mask 0x%lx", (FMT__L, secondary_channel_set));
 
-  /* Set new masks (same in this example) */
-  zb_set_bdb_primary_channel_set(primary_channel_set);
-  zb_set_bdb_secondary_channel_set(secondary_channel_set);
+    /* Set new masks (same in this example) */
+    zb_set_bdb_primary_channel_set(primary_channel_set);
+    zb_set_bdb_secondary_channel_set(secondary_channel_set);
 
-  ZB_AF_REGISTER_DEVICE_CTX(&dimmable_light_ctx);
-  ZB_ZCL_REGISTER_DEVICE_CB(test_device_interface_cb);
+    ZB_AF_REGISTER_DEVICE_CTX(&dimmable_light_ctx);
+    ZB_ZCL_REGISTER_DEVICE_CB(test_device_interface_cb);
 
 #ifdef ZB_USE_BUTTONS
-  zb_button_register_handler(0, 0, button_press_handler);
+    zb_button_register_handler(0, 0, button_press_handler);
 #endif
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "ERROR zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zboss_main_loop();
-  }
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "ERROR zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zboss_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 void button_press_handler(zb_uint8_t param)
 {
-  ZVUNUSED(param);
-  TRACE_MSG(TRACE_APP1, "button is pressed, do nothing", (FMT__0));
+    ZVUNUSED(param);
+    TRACE_MSG(TRACE_APP1, "button is pressed, do nothing", (FMT__0));
 }
 
 void zboss_signal_handler(zb_uint8_t param)
 {
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  switch(sig)
-  {
+    switch (sig)
+    {
     case ZB_BDB_SIGNAL_TOUCHLINK_TARGET:
-      TRACE_MSG(TRACE_APP1, "Device STARTED OK", (FMT__0));
-      TRACE_MSG(TRACE_APP1, "Touchlink target started", (FMT__0));
-      break;
+        TRACE_MSG(TRACE_APP1, "Device STARTED OK", (FMT__0));
+        TRACE_MSG(TRACE_APP1, "Touchlink target started", (FMT__0));
+        break;
     case ZB_BDB_SIGNAL_TOUCHLINK_NWK:
-      TRACE_MSG(TRACE_APP1, "Touchlink target : network started", (FMT__0));
-      break;
+        TRACE_MSG(TRACE_APP1, "Touchlink target : network started", (FMT__0));
+        break;
     case ZB_BDB_SIGNAL_TOUCHLINK_TARGET_FINISHED:
-      TRACE_MSG(TRACE_APP1, "Touchlink target finished", (FMT__0));
-      zb_bdb_finding_binding_target(ENDPOINT);
-      break;
+        TRACE_MSG(TRACE_APP1, "Touchlink target finished", (FMT__0));
+        zb_bdb_finding_binding_target(ENDPOINT);
+        break;
     default:
-      TRACE_MSG(TRACE_APP1, "Unknown signal %hd status %hd", (FMT__H_H, sig, ZB_GET_APP_SIGNAL_STATUS(param)));
-      break;
-  }
-  if (param)
-  {
-    zb_buf_free(param);
-  }
+        TRACE_MSG(TRACE_APP1, "Unknown signal %hd status %hd", (FMT__H_H, sig, ZB_GET_APP_SIGNAL_STATUS(param)));
+        break;
+    }
+    if (param)
+    {
+        zb_buf_free(param);
+    }
 }
 
 void test_device_interface_cb(zb_uint8_t param)
 {
-  zb_bufid_t buffer = param;
-  zb_zcl_device_callback_param_t *device_cb_param =
-    ZB_BUF_GET_PARAM(buffer, zb_zcl_device_callback_param_t);
+    zb_bufid_t buffer = param;
+    zb_zcl_device_callback_param_t *device_cb_param =
+        ZB_BUF_GET_PARAM(buffer, zb_zcl_device_callback_param_t);
 
-  TRACE_MSG(TRACE_APP1, "> test_device_interface_cb param %hd id %hd", (FMT__H_H,
-      param, device_cb_param->device_cb_id));
+    TRACE_MSG(TRACE_APP1, "> test_device_interface_cb param %hd id %hd", (FMT__H_H,
+              param, device_cb_param->device_cb_id));
 
-  device_cb_param->status = RET_OK;
+    device_cb_param->status = RET_OK;
 
-  switch (device_cb_param->device_cb_id)
-  {
+    switch (device_cb_param->device_cb_id)
+    {
     case ZB_ZCL_SET_ATTR_VALUE_CB_ID:
-      if (device_cb_param->cb_param.set_attr_value_param.cluster_id == ZB_ZCL_CLUSTER_ID_ON_OFF &&
-          device_cb_param->cb_param.set_attr_value_param.attr_id == ZB_ZCL_ATTR_ON_OFF_ON_OFF_ID)
-      {
-        if (device_cb_param->cb_param.set_attr_value_param.values.data8)
+        if (device_cb_param->cb_param.set_attr_value_param.cluster_id == ZB_ZCL_CLUSTER_ID_ON_OFF &&
+                device_cb_param->cb_param.set_attr_value_param.attr_id == ZB_ZCL_ATTR_ON_OFF_ON_OFF_ID)
         {
-          TRACE_MSG(TRACE_APP1, "set ON", (FMT__0));
+            if (device_cb_param->cb_param.set_attr_value_param.values.data8)
+            {
+                TRACE_MSG(TRACE_APP1, "set ON", (FMT__0));
 #ifdef ZB_USE_BUTTONS
-          zb_osif_led_on(0);
+                zb_osif_led_on(0);
 #endif
+            }
+            else
+            {
+                TRACE_MSG(TRACE_APP1, "set OFF", (FMT__0));
+#ifdef ZB_USE_BUTTONS
+                zb_osif_led_off(0);
+#endif
+            }
         }
-        else
+        else if (device_cb_param->cb_param.set_attr_value_param.cluster_id == ZB_ZCL_CLUSTER_ID_LEVEL_CONTROL &&
+                 device_cb_param->cb_param.set_attr_value_param.attr_id == ZB_ZCL_ATTR_LEVEL_CONTROL_CURRENT_LEVEL_ID)
         {
-          TRACE_MSG(TRACE_APP1, "set OFF", (FMT__0));
-#ifdef ZB_USE_BUTTONS
-          zb_osif_led_off(0);
-#endif
+            TRACE_MSG(TRACE_APP1, "set current level to %hd", (FMT__H, device_cb_param->cb_param.set_attr_value_param.values.data8));
+            /* TODO: Set level on HW */
         }
-      }
-      else if (device_cb_param->cb_param.set_attr_value_param.cluster_id == ZB_ZCL_CLUSTER_ID_LEVEL_CONTROL &&
-               device_cb_param->cb_param.set_attr_value_param.attr_id == ZB_ZCL_ATTR_LEVEL_CONTROL_CURRENT_LEVEL_ID)
-      {
-        TRACE_MSG(TRACE_APP1, "set current level to %hd", (FMT__H, device_cb_param->cb_param.set_attr_value_param.values.data8));
-        /* TODO: Set level on HW */
-      }
-      break;
+        break;
 
     default:
-      device_cb_param->status = RET_ERROR;
-      break;
-  }
+        device_cb_param->status = RET_ERROR;
+        break;
+    }
 
-  TRACE_MSG(TRACE_APP1, "< test_device_interface_cb %hd", (FMT__H, device_cb_param->status));
+    TRACE_MSG(TRACE_APP1, "< test_device_interface_cb %hd", (FMT__H, device_cb_param->status));
 }

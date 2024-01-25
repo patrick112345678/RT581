@@ -116,19 +116,19 @@ typedef zb_uint8_t zb_kec_key_suite_t;
 /**
  *  @brief Key Establishment cluster attributes
  */
- typedef struct zb_zcl_kec_attrs_s
- {
-   /** @copydoc ZB_ZCL_ATTR_KEY_ESTABLISHMENT_SUITE_ID
-    * @see ZB_ZCL_ATTR_KEY_ESTABLISHMENT_SUITE_ID
-    */
-   zb_uint16_t kec_suite;
- } zb_zcl_kec_attrs_t;
+typedef struct zb_zcl_kec_attrs_s
+{
+    /** @copydoc ZB_ZCL_ATTR_KEY_ESTABLISHMENT_SUITE_ID
+     * @see ZB_ZCL_ATTR_KEY_ESTABLISHMENT_SUITE_ID
+     */
+    zb_uint16_t kec_suite;
+} zb_zcl_kec_attrs_t;
 
 
- /** @brief Declare attribute list for Key Establishment cluster
- *  @param[in]  attr_list - attribute list variable name
- *  @param[in]  attrs - pointer to @ref zb_zcl_kec_attrs_s structure
- */
+/** @brief Declare attribute list for Key Establishment cluster
+*  @param[in]  attr_list - attribute list variable name
+*  @param[in]  attrs - pointer to @ref zb_zcl_kec_attrs_s structure
+*/
 #define ZB_ZCL_DECLARE_KEC_ATTR_LIST(attr_list, attrs)  \
   ZB_ZCL_DECLARE_KEC_ATTRIB_LIST(attr_list, &attrs.kec_suite)
 

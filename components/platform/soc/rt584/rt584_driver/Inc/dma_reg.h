@@ -24,12 +24,13 @@
     Memory Mapped Structure for DMA
 @{ */
 
-typedef struct {
+typedef struct
+{
     __IO  uint32_t   DMA_SRC_ADR;            //0x0
     __IO  uint32_t   DMA_DEST_ADR;           //0x4
     __IO  uint32_t   DMA_BYTES_NUM;          //0x8
     __IO  uint32_t   DMA_CONTROL;            //0xC
-    __IO  uint32_t   DMA_INT;                //0x10     
+    __IO  uint32_t   DMA_INT;                //0x10
     __IO  uint32_t   DMA_PORT;               //0x14
 } DMA_T;
 

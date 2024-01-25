@@ -46,19 +46,19 @@
 */
 enum zb_zcl_illuminance_measurement_attr_e
 {
-  /** @brief MeasuredValue, ZCL spec 4.2.2.2.1.1 */
-  ZB_ZCL_ATTR_ILLUMINANCE_MEASUREMENT_MEASURED_VALUE_ID     = 0x0000,
-  /** @brief MinMeasuredValue, ZCL spec 4.2.2.2.1.2 */
-  ZB_ZCL_ATTR_ILLUMINANCE_MEASUREMENT_MIN_MEASURED_VALUE_ID = 0x0001,
-  /** @brief MaxMeasuredValue, ZCL spec 4.2.2.2.1.3 */
-  ZB_ZCL_ATTR_ILLUMINANCE_MEASUREMENT_MAX_MEASURED_VALUE_ID = 0x0002,
-  /** The Tolerance attribute SHALL indicate the magnitude of the
-   *  possible error that is associated with MeasuredValue, using the
-   *  same units and resolution. */
-  ZB_ZCL_ATTR_ILLUMINANCE_MEASUREMENT_TOLERANCE_ID          = 0x0003,
-  /** The LightSensorType attribute specifies the electronic type of
-   *  the light sensor. */
-  ZB_ZCL_ATTR_ILLUMINANCE_MEASUREMENT_LIGHT_SENSOR_TYPE_ID  = 0x0004,
+    /** @brief MeasuredValue, ZCL spec 4.2.2.2.1.1 */
+    ZB_ZCL_ATTR_ILLUMINANCE_MEASUREMENT_MEASURED_VALUE_ID     = 0x0000,
+    /** @brief MinMeasuredValue, ZCL spec 4.2.2.2.1.2 */
+    ZB_ZCL_ATTR_ILLUMINANCE_MEASUREMENT_MIN_MEASURED_VALUE_ID = 0x0001,
+    /** @brief MaxMeasuredValue, ZCL spec 4.2.2.2.1.3 */
+    ZB_ZCL_ATTR_ILLUMINANCE_MEASUREMENT_MAX_MEASURED_VALUE_ID = 0x0002,
+    /** The Tolerance attribute SHALL indicate the magnitude of the
+     *  possible error that is associated with MeasuredValue, using the
+     *  same units and resolution. */
+    ZB_ZCL_ATTR_ILLUMINANCE_MEASUREMENT_TOLERANCE_ID          = 0x0003,
+    /** The LightSensorType attribute specifies the electronic type of
+     *  the light sensor. */
+    ZB_ZCL_ATTR_ILLUMINANCE_MEASUREMENT_LIGHT_SENSOR_TYPE_ID  = 0x0004,
 };
 
 /** @brief MeasuredValue attribute too-low value */

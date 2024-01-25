@@ -71,8 +71,8 @@ DECLARE_TH_CLUSTER_LIST(rtp_zcl_19_th_zc_device_clusters,
                         rtp_zcl_19_th_zc_basic_attr_list);
 
 DECLARE_TH_EP(rtp_zcl_19_th_zc_device_ep,
-               TH_ENDPOINT,
-               rtp_zcl_19_th_zc_device_clusters);
+              TH_ENDPOINT,
+              rtp_zcl_19_th_zc_device_clusters);
 
 DECLARE_TH_CTX(rtp_zcl_19_th_zc_device_ctx, rtp_zcl_19_th_zc_device_ep);
 /*************************************************************************/
@@ -88,81 +88,81 @@ static void read_active_text_attribute(zb_uint8_t param);
 
 MAIN()
 {
-  ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
-  ZB_SET_TRACE_LEVEL(4);
-  ARGV_UNUSED;
+    ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
+    ZB_SET_TRACE_LEVEL(4);
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("zdo_th_zc");
+    ZB_INIT("zdo_th_zc");
 
 
-  zb_set_long_address(g_ieee_addr_th_zc);
+    zb_set_long_address(g_ieee_addr_th_zc);
 
-  zb_reg_test_set_common_channel_settings();
-  zb_set_network_coordinator_role((1l << TEST_CHANNEL));
-  zb_secur_setup_nwk_key(g_nwk_key, 0);
+    zb_reg_test_set_common_channel_settings();
+    zb_set_network_coordinator_role((1l << TEST_CHANNEL));
+    zb_secur_setup_nwk_key(g_nwk_key, 0);
 
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  ZB_AF_REGISTER_DEVICE_CTX(&rtp_zcl_19_th_zc_device_ctx);
+    ZB_AF_REGISTER_DEVICE_CTX(&rtp_zcl_19_th_zc_device_ctx);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 
 /***********************************Implementation**********************************/
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  switch (sig)
-  {
+    switch (sig)
+    {
     case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
-      }
-      break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
+        TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
+        }
+        break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
 
     case ZB_BDB_SIGNAL_STEERING:
-      TRACE_MSG(TRACE_APS1, "signal: ZB_BDB_SIGNAL_STEERING, status %d", (FMT__D, status));
-      break; /* ZB_BDB_SIGNAL_STEERING */
+        TRACE_MSG(TRACE_APS1, "signal: ZB_BDB_SIGNAL_STEERING, status %d", (FMT__D, status));
+        break; /* ZB_BDB_SIGNAL_STEERING */
 
     case ZB_ZDO_SIGNAL_DEVICE_ANNCE:
-      TRACE_MSG(TRACE_APS1, "signal: ZB_ZDO_SIGNAL_DEVICE_ANNCE, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        test_step_register(trigger_fb_initiator, 0, RTP_ZCL_19_STEP_1_TIME_ZC);
-        test_step_register(read_active_text_attribute, 0, RTP_ZCL_19_STEP_2_TIME_ZC);
-        test_step_register(write_active_text_attribute, 0, RTP_ZCL_19_STEP_3_TIME_ZC);
-        test_step_register(read_active_text_attribute, 0, RTP_ZCL_19_STEP_4_TIME_ZC);
+        TRACE_MSG(TRACE_APS1, "signal: ZB_ZDO_SIGNAL_DEVICE_ANNCE, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            test_step_register(trigger_fb_initiator, 0, RTP_ZCL_19_STEP_1_TIME_ZC);
+            test_step_register(read_active_text_attribute, 0, RTP_ZCL_19_STEP_2_TIME_ZC);
+            test_step_register(write_active_text_attribute, 0, RTP_ZCL_19_STEP_3_TIME_ZC);
+            test_step_register(read_active_text_attribute, 0, RTP_ZCL_19_STEP_4_TIME_ZC);
 
-        test_control_start(TEST_MODE, RTP_ZCL_19_STEP_1_DELAY_ZC);
-      }
-      break; /* ZB_ZDO_SIGNAL_DEVICE_ANNCE */
+            test_control_start(TEST_MODE, RTP_ZCL_19_STEP_1_DELAY_ZC);
+        }
+        break; /* ZB_ZDO_SIGNAL_DEVICE_ANNCE */
 
     default:
-      TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
-      break;
-  }
+        TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 
@@ -171,88 +171,88 @@ static zb_bool_t finding_binding_cb(zb_int16_t status,
                                     zb_uint8_t ep,
                                     zb_uint16_t cluster)
 {
-  TRACE_MSG(TRACE_APS1, "finding_binding_cb status %d addr " TRACE_FORMAT_64 " ep %hd cluster %d",
-            (FMT__D_A_H_D, status, TRACE_ARG_64(addr), ep, cluster));
-  return ZB_TRUE;
+    TRACE_MSG(TRACE_APS1, "finding_binding_cb status %d addr " TRACE_FORMAT_64 " ep %hd cluster %d",
+              (FMT__D_A_H_D, status, TRACE_ARG_64(addr), ep, cluster));
+    return ZB_TRUE;
 }
 
 
 static void trigger_fb_initiator(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  zb_bdb_finding_binding_initiator(TH_ENDPOINT, finding_binding_cb);
+    zb_bdb_finding_binding_initiator(TH_ENDPOINT, finding_binding_cb);
 }
 
 
 static void write_active_text_attribute(zb_uint8_t param)
 {
-  zb_bufid_t buffer = param;
-  zb_uint8_t *cmd_ptr;
-  zb_char_t payload_string[] = "two words";
-  zb_char_t basic_location_description_def[ZB_ARRAY_SIZE(payload_string) + 1];
-  zb_uint16_t dst_addr = 0;
-  zb_uint8_t i = 0;
+    zb_bufid_t buffer = param;
+    zb_uint8_t *cmd_ptr;
+    zb_char_t payload_string[] = "two words";
+    zb_char_t basic_location_description_def[ZB_ARRAY_SIZE(payload_string) + 1];
+    zb_uint16_t dst_addr = 0;
+    zb_uint8_t i = 0;
 
-  if (param == 0)
-  {
-    zb_buf_get_out_delayed(write_active_text_attribute);
-    return;
-  }
+    if (param == 0)
+    {
+        zb_buf_get_out_delayed(write_active_text_attribute);
+        return;
+    }
 
-  TRACE_MSG(TRACE_APP1, ">> write_active_text_attribute, param %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_APP1, ">> write_active_text_attribute, param %hd", (FMT__H, param));
 
-  basic_location_description_def[0] = ZB_ARRAY_SIZE(payload_string);
+    basic_location_description_def[0] = ZB_ARRAY_SIZE(payload_string);
 
-  for (i = 0; i < ZB_ARRAY_SIZE(payload_string); i++)
-  {
-    basic_location_description_def[i + 1] = payload_string[i];
-  }
+    for (i = 0; i < ZB_ARRAY_SIZE(payload_string); i++)
+    {
+        basic_location_description_def[i + 1] = payload_string[i];
+    }
 
-  ZB_ZCL_GENERAL_INIT_WRITE_ATTR_REQ((buffer), cmd_ptr, ZB_ZCL_ENABLE_DEFAULT_RESPONSE);
-  ZB_ZCL_GENERAL_ADD_VALUE_WRITE_ATTR_REQ(cmd_ptr,
-                                          ZB_ZCL_ATTR_BINARY_INPUT_ACTIVE_TEXT_ID,
-                                          ZB_ZCL_ATTR_TYPE_CHAR_STRING,
-                                          (zb_uint8_t *)&basic_location_description_def);
-  ZB_ZCL_GENERAL_SEND_WRITE_ATTR_REQ((buffer), cmd_ptr, dst_addr,
-                                     ZB_APS_ADDR_MODE_DST_ADDR_ENDP_NOT_PRESENT,
-                                     DUT_ENDPOINT,
-                                     TH_ENDPOINT,
-                                     ZB_AF_HA_PROFILE_ID,
-                                     ZB_ZCL_CLUSTER_ID_BINARY_INPUT,
-                                     NULL);
+    ZB_ZCL_GENERAL_INIT_WRITE_ATTR_REQ((buffer), cmd_ptr, ZB_ZCL_ENABLE_DEFAULT_RESPONSE);
+    ZB_ZCL_GENERAL_ADD_VALUE_WRITE_ATTR_REQ(cmd_ptr,
+                                            ZB_ZCL_ATTR_BINARY_INPUT_ACTIVE_TEXT_ID,
+                                            ZB_ZCL_ATTR_TYPE_CHAR_STRING,
+                                            (zb_uint8_t *)&basic_location_description_def);
+    ZB_ZCL_GENERAL_SEND_WRITE_ATTR_REQ((buffer), cmd_ptr, dst_addr,
+                                       ZB_APS_ADDR_MODE_DST_ADDR_ENDP_NOT_PRESENT,
+                                       DUT_ENDPOINT,
+                                       TH_ENDPOINT,
+                                       ZB_AF_HA_PROFILE_ID,
+                                       ZB_ZCL_CLUSTER_ID_BINARY_INPUT,
+                                       NULL);
 
-  TRACE_MSG(TRACE_APP1, "<< write_active_text_attribute", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "<< write_active_text_attribute", (FMT__0));
 }
 
 
 static void read_active_text_attribute(zb_uint8_t param)
 {
-  zb_uint8_t *cmd_ptr;
-  zb_uint16_t addr = 0;
+    zb_uint8_t *cmd_ptr;
+    zb_uint16_t addr = 0;
 
-  if (param == 0)
-  {
-    zb_buf_get_out_delayed(read_active_text_attribute);
-    return;
-  }
+    if (param == 0)
+    {
+        zb_buf_get_out_delayed(read_active_text_attribute);
+        return;
+    }
 
-  TRACE_MSG(TRACE_APP1, ">> read_active_text_attribute, param %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_APP1, ">> read_active_text_attribute, param %hd", (FMT__H, param));
 
-  ZB_ZCL_GENERAL_INIT_READ_ATTR_REQ_A(param, cmd_ptr,
-                                      ZB_ZCL_FRAME_DIRECTION_TO_SRV,
-                                      ZB_ZCL_ENABLE_DEFAULT_RESPONSE);
-  ZB_ZCL_GENERAL_ADD_ID_READ_ATTR_REQ(cmd_ptr, ZB_ZCL_ATTR_BINARY_INPUT_ACTIVE_TEXT_ID);
-  ZB_ZCL_GENERAL_SEND_READ_ATTR_REQ(param, cmd_ptr,
-                                   addr,
-                                   ZB_APS_ADDR_MODE_DST_ADDR_ENDP_NOT_PRESENT,
-                                   DUT_ENDPOINT,
-                                   TH_ENDPOINT,
-                                   ZB_AF_HA_PROFILE_ID,
-                                   ZB_ZCL_CLUSTER_ID_BINARY_INPUT,
-                                   NULL);
+    ZB_ZCL_GENERAL_INIT_READ_ATTR_REQ_A(param, cmd_ptr,
+                                        ZB_ZCL_FRAME_DIRECTION_TO_SRV,
+                                        ZB_ZCL_ENABLE_DEFAULT_RESPONSE);
+    ZB_ZCL_GENERAL_ADD_ID_READ_ATTR_REQ(cmd_ptr, ZB_ZCL_ATTR_BINARY_INPUT_ACTIVE_TEXT_ID);
+    ZB_ZCL_GENERAL_SEND_READ_ATTR_REQ(param, cmd_ptr,
+                                      addr,
+                                      ZB_APS_ADDR_MODE_DST_ADDR_ENDP_NOT_PRESENT,
+                                      DUT_ENDPOINT,
+                                      TH_ENDPOINT,
+                                      ZB_AF_HA_PROFILE_ID,
+                                      ZB_ZCL_CLUSTER_ID_BINARY_INPUT,
+                                      NULL);
 
-  TRACE_MSG(TRACE_APP1, "<< read_active_text_attribute", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "<< read_active_text_attribute", (FMT__0));
 }
 
 /*! @} */

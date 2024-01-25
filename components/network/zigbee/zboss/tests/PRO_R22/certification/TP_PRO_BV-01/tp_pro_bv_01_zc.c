@@ -42,73 +42,73 @@ static zb_ieee_addr_t g_ieee_addr = {0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
-  ZB_INIT("zdo_1_zc");
-#if UART_CONTROL	
-	test_control_init();
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    /* Init device, load IB values from nvram or set it to default */
+    ZB_INIT("zdo_1_zc");
+#if UART_CONTROL
+    test_control_init();
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 #endif
-	
-  zb_set_long_address(g_ieee_addr);
-  zb_cert_test_set_common_channel_settings();
-  zb_cert_test_set_zc_role();
 
-  zb_set_pan_id(TEST_PAN_ID);
+    zb_set_long_address(g_ieee_addr);
+    zb_cert_test_set_common_channel_settings();
+    zb_cert_test_set_zc_role();
 
-  /* turn off security */
-  /* zb_cert_test_set_security_level(0); */
+    zb_set_pan_id(TEST_PAN_ID);
 
-  zb_set_max_children(20);
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    /* turn off security */
+    /* zb_cert_test_set_security_level(0); */
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zboss_main_loop();
-  }
+    zb_set_max_children(20);
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  TRACE_DEINIT();
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zboss_main_loop();
+    }
 
-  MAIN_RETURN(0);
+    TRACE_DEINIT();
+
+    MAIN_RETURN(0);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_APP1, "zboss_signal_handler: status %hd signal %hd",
-            (FMT__H_H, status, sig));
+    TRACE_MSG(TRACE_APP1, "zboss_signal_handler: status %hd signal %hd",
+              (FMT__H_H, status, sig));
 
-  if (0 == status)
-  {
-    switch(sig)
+    if (0 == status)
     {
-      case ZB_ZDO_SIGNAL_DEFAULT_START:
-      case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      case ZB_BDB_SIGNAL_DEVICE_REBOOT:
-        TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
-        break;
+        switch (sig)
+        {
+        case ZB_ZDO_SIGNAL_DEFAULT_START:
+        case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
+        case ZB_BDB_SIGNAL_DEVICE_REBOOT:
+            TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
+            break;
 
-      default:
-        break;
+        default:
+            break;
+        }
     }
-  }
-  else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
-  {
-    TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device start FAILED status %d",
-              (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
-  }
+    else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
+    {
+        TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device start FAILED status %d",
+                  (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 

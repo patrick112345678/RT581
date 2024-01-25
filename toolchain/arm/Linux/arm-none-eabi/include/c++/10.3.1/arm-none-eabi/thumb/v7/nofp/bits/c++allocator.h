@@ -35,17 +35,17 @@
 #if __cplusplus >= 201103L
 namespace std
 {
-  /**
-   *  @brief  An alias to the base class for std::allocator.
-   *
-   *  Used to set the std::allocator base class to
-   *  __gnu_cxx::new_allocator.
-   *
-   *  @ingroup allocators
-   *  @tparam  _Tp  Type of allocated object.
-    */
-  template<typename _Tp>
-    using __allocator_base = __gnu_cxx::new_allocator<_Tp>;
+/**
+ *  @brief  An alias to the base class for std::allocator.
+ *
+ *  Used to set the std::allocator base class to
+ *  __gnu_cxx::new_allocator.
+ *
+ *  @ingroup allocators
+ *  @tparam  _Tp  Type of allocated object.
+  */
+template<typename _Tp>
+using __allocator_base = __gnu_cxx::new_allocator<_Tp>;
 }
 #else
 // Define new_allocator as the base class to std::allocator.

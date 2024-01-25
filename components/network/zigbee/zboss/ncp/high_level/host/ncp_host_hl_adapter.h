@@ -43,7 +43,7 @@ void ncp_host_secur_adapter_init_ctx(void);
 zb_bool_t ncp_host_nvram_dataset_is_supported(zb_nvram_dataset_types_t t);
 
 zb_ret_t ncp_host_nvram_read_dataset(zb_nvram_dataset_types_t type,
-                                     zb_uint8_t* buf, zb_uint16_t ds_len,
+                                     zb_uint8_t *buf, zb_uint16_t ds_len,
                                      zb_uint16_t ds_ver, zb_nvram_ver_t nvram_ver);
 
 #endif /* NCP_HOST_HL_ADAPTER_H */

@@ -25,10 +25,10 @@ along with GCC; see the file COPYING3.  If not see
 /* Random guesstimation given names.
    PROB_VERY_UNLIKELY should be small enough so basic block predicted
    by it gets below HOT_BB_FREQUENCY_FRACTION.  */
-#define PROB_VERY_UNLIKELY	(REG_BR_PROB_BASE / 2000 - 1)
-#define PROB_EVEN		(REG_BR_PROB_BASE / 2)
-#define PROB_VERY_LIKELY	(REG_BR_PROB_BASE - PROB_VERY_UNLIKELY)
-#define PROB_ALWAYS		(REG_BR_PROB_BASE)
+#define PROB_VERY_UNLIKELY  (REG_BR_PROB_BASE / 2000 - 1)
+#define PROB_EVEN       (REG_BR_PROB_BASE / 2)
+#define PROB_VERY_LIKELY    (REG_BR_PROB_BASE - PROB_VERY_UNLIKELY)
+#define PROB_ALWAYS     (REG_BR_PROB_BASE)
 #define PROB_UNLIKELY           (REG_BR_PROB_BASE / 5 - 1)
 #define PROB_LIKELY             (REG_BR_PROB_BASE - PROB_UNLIKELY)
 #define PROB_UNINITIALIZED      (-1)
@@ -38,14 +38,14 @@ enum br_predictor
 {
 #include "predict.def"
 
-  /* Upper bound on non-language-specific builtins.  */
-  END_PREDICTORS
+    /* Upper bound on non-language-specific builtins.  */
+    END_PREDICTORS
 };
 #undef DEF_PREDICTOR
 enum prediction
 {
-   NOT_TAKEN,
-   TAKEN
+    NOT_TAKEN,
+    TAKEN
 };
 
 /* In emit-rtl.c.  */

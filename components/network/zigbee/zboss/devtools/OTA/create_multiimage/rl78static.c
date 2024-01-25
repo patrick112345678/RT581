@@ -26,33 +26,33 @@
 
 int
 main(
-  int argc,
-  char **argv)
+    int argc,
+    char **argv)
 {
-  uint32_t size;
-  uint16_t crc;
-  int ret;
-  int c;
-  int first = 1;
-  FILE *f = fopen(argv[1], "r");
-  ret = fread(&size, 1, sizeof(size), f);
-  printf("#define RL78SIZE %d\n", size);
-  printf("static const zb_uint8_t s_rl78img[RL78SIZE] = {");
-  while (size && (c = getc(f)) != EOF)
-  {
-    size--;
-    if (first)
+    uint32_t size;
+    uint16_t crc;
+    int ret;
+    int c;
+    int first = 1;
+    FILE *f = fopen(argv[1], "r");
+    ret = fread(&size, 1, sizeof(size), f);
+    printf("#define RL78SIZE %d\n", size);
+    printf("static const zb_uint8_t s_rl78img[RL78SIZE] = {");
+    while (size && (c = getc(f)) != EOF)
     {
-      first = 0;
+        size--;
+        if (first)
+        {
+            first = 0;
+        }
+        else
+        {
+            printf(",");
+        }
+        printf("0x%02x", c & 0xff);
     }
-    else
-    {
-      printf(",");
-    }
-    printf("0x%02x", c & 0xff);
-  }
-  printf("};\n");
-  ret = fread(&crc, 1, sizeof(crc), f);
-  printf("#define RL78CRC 0x%04x\n", crc & 0xffff);
-  return 0;
+    printf("};\n");
+    ret = fread(&crc, 1, sizeof(crc), f);
+    printf("#define RL78CRC 0x%04x\n", crc & 0xffff);
+    return 0;
 }

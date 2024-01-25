@@ -42,17 +42,17 @@ static zb_ieee_addr_t g_zgpd_addr = TH_GPD_IEEE_ADDR;
 /*! Program states according to test scenario */
 enum test_states_e
 {
-  TEST_STATE_INITIATE,
-  TEST_STATE_COMMISSIONING,
-  TEST_STATE_SEND_SET_MAC_DSN_C3_1,
-  TEST_STATE_SEND_CMD_TOGGLE1,
-  TEST_STATE_SEND_SET_MAC_DSN_C3_2,
-  TEST_STATE_SEND_CMD_TOGGLE2,
-  TEST_STATE_SEND_SET_MAC_DSN_C2,
-  TEST_STATE_SEND_CMD_TOGGLE3,
-  TEST_STATE_SEND_SET_MAC_DSN_C9,
-  TEST_STATE_SEND_CMD_TOGGLE4,
-  TEST_STATE_FINISHED
+    TEST_STATE_INITIATE,
+    TEST_STATE_COMMISSIONING,
+    TEST_STATE_SEND_SET_MAC_DSN_C3_1,
+    TEST_STATE_SEND_CMD_TOGGLE1,
+    TEST_STATE_SEND_SET_MAC_DSN_C3_2,
+    TEST_STATE_SEND_CMD_TOGGLE2,
+    TEST_STATE_SEND_SET_MAC_DSN_C2,
+    TEST_STATE_SEND_CMD_TOGGLE3,
+    TEST_STATE_SEND_SET_MAC_DSN_C9,
+    TEST_STATE_SEND_CMD_TOGGLE4,
+    TEST_STATE_FINISHED
 };
 
 ZB_ZGPD_DECLARE_SIMPLE_TEST_TEMPLATE(TEST_DEVICE_CTX, 1000)
@@ -83,75 +83,75 @@ static void set_dsn_and_call_comm(zb_uint8_t param)
 
 static void perform_next_state(zb_uint8_t param)
 {
-  ZVUNUSED(param);
-  TEST_DEVICE_CTX.test_state++;
+    ZVUNUSED(param);
+    TEST_DEVICE_CTX.test_state++;
 
-  switch (TEST_DEVICE_CTX.test_state)
-  {
+    switch (TEST_DEVICE_CTX.test_state)
+    {
     case TEST_STATE_COMMISSIONING:
-      ZB_GET_OUT_BUF_DELAYED(set_dsn_and_call_comm);
-      ZB_ZGPD_SET_PAUSE(2);
-      ZB_ZGP_SET_PASSED_STATE_SEQUENCE();
-      break;
+        ZB_GET_OUT_BUF_DELAYED(set_dsn_and_call_comm);
+        ZB_ZGPD_SET_PAUSE(2);
+        ZB_ZGP_SET_PASSED_STATE_SEQUENCE();
+        break;
     case TEST_STATE_SEND_SET_MAC_DSN_C3_1:
     case TEST_STATE_SEND_SET_MAC_DSN_C3_2:
-      ZGPD->mac_dsn = 0xc3;
-      ZB_GET_OUT_BUF_DELAYED(set_dsn_and_call);
-      ZB_ZGPD_SET_PAUSE(3);
-      break;
+        ZGPD->mac_dsn = 0xc3;
+        ZB_GET_OUT_BUF_DELAYED(set_dsn_and_call);
+        ZB_ZGPD_SET_PAUSE(3);
+        break;
     case TEST_STATE_SEND_SET_MAC_DSN_C2:
-      ZGPD->mac_dsn = 0xc2;
-      ZB_GET_OUT_BUF_DELAYED(set_dsn_and_call);
-      ZB_ZGPD_SET_PAUSE(3);
-      break;
+        ZGPD->mac_dsn = 0xc2;
+        ZB_GET_OUT_BUF_DELAYED(set_dsn_and_call);
+        ZB_ZGPD_SET_PAUSE(3);
+        break;
     case TEST_STATE_SEND_SET_MAC_DSN_C9:
-      ZGPD->mac_dsn = 0xc9;
-      ZB_GET_OUT_BUF_DELAYED(set_dsn_and_call);
-      ZB_ZGPD_SET_PAUSE(3);
-      break;
+        ZGPD->mac_dsn = 0xc9;
+        ZB_GET_OUT_BUF_DELAYED(set_dsn_and_call);
+        ZB_ZGPD_SET_PAUSE(3);
+        break;
     case TEST_STATE_FINISHED:
-      TRACE_MSG(TRACE_APP1, "Test finished. Status: OK", (FMT__0));
-      break;
+        TRACE_MSG(TRACE_APP1, "Test finished. Status: OK", (FMT__0));
+        break;
     default:
-      ZB_SCHEDULE_ALARM(test_send_command, 0, ZB_TIME_ONE_SECOND);
-  };
+        ZB_SCHEDULE_ALARM(test_send_command, 0, ZB_TIME_ONE_SECOND);
+    };
 }
 static void make_gpdf(zb_buf_t *buf, zb_uint8_t **ptr)
 {
-  ZVUNUSED(buf);
-  switch (TEST_DEVICE_CTX.test_state)
-  {
+    ZVUNUSED(buf);
+    switch (TEST_DEVICE_CTX.test_state)
+    {
     case TEST_STATE_SEND_CMD_TOGGLE1:
     case TEST_STATE_SEND_CMD_TOGGLE2:
     case TEST_STATE_SEND_CMD_TOGGLE3:
     case TEST_STATE_SEND_CMD_TOGGLE4:
-      ZB_GPDF_PUT_UINT8(*ptr, ZB_GPDF_CMD_TOGGLE);
-    break;
-  };
+        ZB_GPDF_PUT_UINT8(*ptr, ZB_GPDF_CMD_TOGGLE);
+        break;
+    };
 }
 
 static void zgp_custom_startup()
 {
-  #if ! (defined KEIL || defined ZB_PLATFORM_LINUX_ARM_2400)
+#if ! (defined KEIL || defined ZB_PLATFORM_LINUX_ARM_2400)
 #endif
 
-/* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("th_gpd");
+    ZB_INIT("th_gpd");
 
 
-  ZB_ZGPD_INIT_ZGPD_CTX(ZB_ZGP_APP_ID_0000, ZB_ZGPD_COMMISSIONING_BIDIR, ZB_ZGP_ON_OFF_SWITCH_DEV_ID);
+    ZB_ZGPD_INIT_ZGPD_CTX(ZB_ZGP_APP_ID_0000, ZB_ZGPD_COMMISSIONING_BIDIR, ZB_ZGP_ON_OFF_SWITCH_DEV_ID);
 
-  ZB_ZGPD_SET_SRC_ID(g_zgpd_srcId);
-  ZB_IEEE_ADDR_COPY(&g_zgpd_ctx.id.addr.ieee_addr, &g_zgpd_addr);
+    ZB_ZGPD_SET_SRC_ID(g_zgpd_srcId);
+    ZB_IEEE_ADDR_COPY(&g_zgpd_ctx.id.addr.ieee_addr, &g_zgpd_addr);
 
-  ZB_ZGPD_SET_SECURITY_LEVEL(ZB_ZGP_SEC_LEVEL_NO_SECURITY);
-  ZB_ZGPD_SET_SECURITY_KEY_TYPE(ZB_ZGP_SEC_KEY_TYPE_NO_KEY);
-  ZB_ZGPD_SET_OOB_KEY(g_oob_key);
+    ZB_ZGPD_SET_SECURITY_LEVEL(ZB_ZGP_SEC_LEVEL_NO_SECURITY);
+    ZB_ZGPD_SET_SECURITY_KEY_TYPE(ZB_ZGP_SEC_KEY_TYPE_NO_KEY);
+    ZB_ZGPD_SET_OOB_KEY(g_oob_key);
 
-  ZB_ZGPD_USE_RANDOM_SEQ_NUM();
+    ZB_ZGPD_USE_RANDOM_SEQ_NUM();
 
-  ZGPD->channel = TEST_CHANNEL;
+    ZGPD->channel = TEST_CHANNEL;
 }
 
 #endif /* ZB_CERTIFICATION_HACKS */

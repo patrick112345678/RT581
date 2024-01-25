@@ -105,27 +105,27 @@
 /* Since that structire used to save into nvram, pack it! */
 typedef ZB_PACKED_PRE struct zb_aps_secur_common_data_s
 {
-  zb_uint8_t coordinator_version;
-  zb_uint8_t align[3];
+    zb_uint8_t coordinator_version;
+    zb_uint8_t align[3];
 } ZB_PACKED_STRUCT zb_aps_secur_common_data_t;
 
 typedef ZB_PACKED_PRE struct zb_aps_device_key_pair_set_s
 {
-  zb_ieee_addr_t  device_address;               /*!< Partner address */
-  zb_uint8_t      link_key[ZB_CCM_KEY_SIZE];         /*!< Link key, see Spec. Not use in current
+    zb_ieee_addr_t  device_address;               /*!< Partner address */
+    zb_uint8_t      link_key[ZB_CCM_KEY_SIZE];         /*!< Link key, see Spec. Not use in current
                                                       * release */
-  /* 4.4.1.1[2] Security Processing of Outgoing[Incoming] Frames */
-/* Moved to zb_aps_device_key_pair_array_t */
-/* This fields were commented out after discussion with EE.
- * ZB spec does not require to save APS key frame counters into NVRAM.
- */
+    /* 4.4.1.1[2] Security Processing of Outgoing[Incoming] Frames */
+    /* Moved to zb_aps_device_key_pair_array_t */
+    /* This fields were commented out after discussion with EE.
+     * ZB spec does not require to save APS key frame counters into NVRAM.
+     */
 #ifndef ZB_LITE_NO_GLOBAL_VS_UNIQUE_KEYS
-  zb_bitfield_t   aps_link_key_type:1; /*!< @ref secur_aps_link_key_type  */
+    zb_bitfield_t   aps_link_key_type: 1; /*!< @ref secur_aps_link_key_type  */
 #endif
-  zb_bitfield_t   key_source:1;        /*!< how the key was obtained @ref secur_key_sources */
-  zb_bitfield_t   key_attributes:2;    /*!< attributes of the key @ref secur_key_attributes */
-  zb_bitfield_t   reserved:4;
-  zb_uint8_t      align[3];
+    zb_bitfield_t   key_source: 1;       /*!< how the key was obtained @ref secur_key_sources */
+    zb_bitfield_t   key_attributes: 2;   /*!< attributes of the key @ref secur_key_attributes */
+    zb_bitfield_t   reserved: 4;
+    zb_uint8_t      align[3];
 } ZB_PACKED_STRUCT zb_aps_device_key_pair_set_t;
 
 typedef zb_aps_device_key_pair_set_t zb_aps_device_key_pair_nvram_t;
@@ -138,23 +138,23 @@ ZB_ASSERT_IF_NOT_ALIGNED_TO_4(zb_aps_device_key_pair_nvram_t);
 
 typedef struct zb_aps_device_key_pair_storage_s
 {
-  zb_uint8_t  nvram_page;
-  zb_uint8_t cached_i;
-  zb_aps_device_key_pair_set_t cached;
+    zb_uint8_t  nvram_page;
+    zb_uint8_t cached_i;
+    zb_aps_device_key_pair_set_t cached;
 #ifndef ZB_CONFIGURABLE_MEM
-  zb_aps_device_key_pair_array_t key_pair_set[ZB_N_APS_KEY_PAIR_ARR_MAX_SIZE]; /*!< APS Application Key pair table */
+    zb_aps_device_key_pair_array_t key_pair_set[ZB_N_APS_KEY_PAIR_ARR_MAX_SIZE]; /*!< APS Application Key pair table */
 #else
-  zb_aps_device_key_pair_array_t *key_pair_set;
+    zb_aps_device_key_pair_array_t *key_pair_set;
 #endif
 } zb_aps_device_key_pair_storage_t;
 
 typedef ZB_PACKED_PRE struct zb_aps_device_key_pair_set_nvram_1_0_s
 {
-  zb_ieee_addr_t  device_address;               /*!< Partner address */
-  zb_uint8_t master_key[ZB_CCM_KEY_SIZE];       /*!< Master key */
-  zb_uint8_t global_link_key;                   /*!< 1 - Global key, 0 - Unique key  */
+    zb_ieee_addr_t  device_address;               /*!< Partner address */
+    zb_uint8_t master_key[ZB_CCM_KEY_SIZE];       /*!< Master key */
+    zb_uint8_t global_link_key;                   /*!< 1 - Global key, 0 - Unique key  */
 #ifdef ZB_PLATFORM_CORTEX_M3
-  zb_uint8_t  aligned[3];
+    zb_uint8_t  aligned[3];
 #endif /* ZB_PLATFORM_CORTEX_M3 */
 } ZB_PACKED_STRUCT zb_aps_device_key_pair_set_nvram_1_0_t;
 
@@ -164,13 +164,13 @@ typedef ZB_PACKED_PRE struct zb_aps_device_key_pair_set_nvram_1_0_s
  */
 typedef ZB_PACKED_PRE struct zb_aps_installcode_nvram_s
 {
-  zb_ieee_addr_t  device_address;               /*!< Partner address */
-  /*AEV:Here data was a filler: align[2]; - remove it for storage of IC type for now.
-    options lowest 2 bits [0-1]: 00-48, 01-64, 10-96, 11-128 bits ic type.*/
-  zb_uint8_t      options;
-  zb_uint8_t      align;
-  zb_uint8_t      installcode[ZB_CCM_KEY_SIZE+ZB_CCM_KEY_CRC_SIZE];       /*!< 16b installcode +2b crc */
-  /*hint:we can remove 2b crc at the end of installcode, but we must keep ic type, thus align to dword and don't change it*/
+    zb_ieee_addr_t  device_address;               /*!< Partner address */
+    /*AEV:Here data was a filler: align[2]; - remove it for storage of IC type for now.
+      options lowest 2 bits [0-1]: 00-48, 01-64, 10-96, 11-128 bits ic type.*/
+    zb_uint8_t      options;
+    zb_uint8_t      align;
+    zb_uint8_t      installcode[ZB_CCM_KEY_SIZE + ZB_CCM_KEY_CRC_SIZE];     /*!< 16b installcode +2b crc */
+    /*hint:we can remove 2b crc at the end of installcode, but we must keep ic type, thus align to dword and don't change it*/
 } ZB_PACKED_STRUCT zb_aps_installcode_nvram_t;
 
 extern const zb_uint8_t zb_ic_size_by_type[ZB_IC_TYPE_MAX];
@@ -184,10 +184,10 @@ extern const zb_uint8_t zb_ic_size_by_type[ZB_IC_TYPE_MAX];
 
 typedef struct zb_secur_ic_add_s
 {
-  zb_uint8_t *address;
-  zb_uint8_t *ic;
-  zb_uint8_t do_update;
-  zb_uint8_t type;
+    zb_uint8_t *address;
+    zb_uint8_t *ic;
+    zb_uint8_t do_update;
+    zb_uint8_t type;
 } zb_secur_ic_add_t;
 
 
@@ -288,10 +288,10 @@ typedef zb_uint8_t zb_secur_key_id_t;
  */
 typedef ZB_PACKED_PRE struct zb_nwk_aux_frame_hdr_s
 {
-  zb_uint8_t     secur_control;         /*!< Security Control Field */
-  zb_uint32_t    frame_counter;         /*!< Frame Counter */
-  zb_ieee_addr_t source_address;        /*!< Extended Source */
-  zb_uint8_t     key_seq_number;        /*!< Key Sequence Number */
+    zb_uint8_t     secur_control;         /*!< Security Control Field */
+    zb_uint32_t    frame_counter;         /*!< Frame Counter */
+    zb_ieee_addr_t source_address;        /*!< Extended Source */
+    zb_uint8_t     key_seq_number;        /*!< Key Sequence Number */
 } ZB_PACKED_STRUCT zb_nwk_aux_frame_hdr_t;
 
 
@@ -303,9 +303,9 @@ typedef ZB_PACKED_PRE struct zb_nwk_aux_frame_hdr_s
  */
 typedef ZB_PACKED_PRE struct zb_aps_nwk_aux_frame_hdr_s
 {
-  zb_uint8_t     secur_control;      /*!< Security Control Field */
-  zb_uint32_t    frame_counter;      /*!< Frame Counter */
-  zb_uint8_t     key_seq_number;     /*!< Key Sequence Number */
+    zb_uint8_t     secur_control;      /*!< Security Control Field */
+    zb_uint32_t    frame_counter;      /*!< Frame Counter */
+    zb_uint8_t     key_seq_number;     /*!< Key Sequence Number */
 } ZB_PACKED_STRUCT zb_aps_nwk_aux_frame_hdr_t;
 
 /**
@@ -316,8 +316,8 @@ typedef ZB_PACKED_PRE struct zb_aps_nwk_aux_frame_hdr_s
  */
 typedef ZB_PACKED_PRE struct zb_aps_data_aux_frame_hdr_s
 {
-  zb_uint8_t     secur_control;     /*!< Security Control Field */
-  zb_uint32_t    frame_counter;     /*!< Frame Counter */
+    zb_uint8_t     secur_control;     /*!< Security Control Field */
+    zb_uint32_t    frame_counter;     /*!< Frame Counter */
 } ZB_PACKED_STRUCT zb_aps_data_aux_frame_hdr_t;
 
 /**
@@ -328,9 +328,9 @@ typedef ZB_PACKED_PRE struct zb_aps_data_aux_frame_hdr_s
  */
 typedef ZB_PACKED_PRE struct zb_aps_data_aux_nonce_frame_hdr_s
 {
-  zb_uint8_t     secur_control;     /*!< Security Control Field */
-  zb_uint32_t    frame_counter;     /*!< Frame Counter */
-  zb_ieee_addr_t source_address;    /*!< Extended Source */
+    zb_uint8_t     secur_control;     /*!< Security Control Field */
+    zb_uint32_t    frame_counter;     /*!< Frame Counter */
+    zb_ieee_addr_t source_address;    /*!< Extended Source */
 } ZB_PACKED_STRUCT zb_aps_data_aux_nonce_frame_hdr_t;
 
 
@@ -340,9 +340,9 @@ typedef ZB_PACKED_PRE struct zb_aps_data_aux_nonce_frame_hdr_s
  */
 typedef ZB_PACKED_PRE struct zb_secur_ccm_nonce_s
 {
-  zb_ieee_addr_t source_address;    /*!< Extended Source */
-  zb_uint32_t    frame_counter;     /*!< Frame Counter */
-  zb_uint8_t     secur_control;     /*!< Security Control Field */
+    zb_ieee_addr_t source_address;    /*!< Extended Source */
+    zb_uint32_t    frame_counter;     /*!< Frame Counter */
+    zb_uint8_t     secur_control;     /*!< Security Control Field */
 } ZB_PACKED_STRUCT zb_secur_ccm_nonce_t;
 
 /**
@@ -462,7 +462,7 @@ zb_bool_t zb_sec_b6_hash(zb_uint8_t *input, zb_uint32_t input_len, zb_uint8_t *o
    @return Key Pair Set structure
  */
 zb_aps_device_key_pair_set_t *zb_secur_get_link_key_by_address(zb_ieee_addr_t address,
-                                                               zb_secur_key_attributes_t attr);
+        zb_secur_key_attributes_t attr);
 
 /**
    Search for link key index by pair address and attribute.
@@ -476,7 +476,7 @@ zb_aps_device_key_pair_set_t *zb_secur_get_link_key_by_address(zb_ieee_addr_t ad
    @return keypair index if link key exists, -1 otherwise
  */
 zb_uint16_t zb_aps_keypair_get_index_by_addr(zb_ieee_addr_t dev_addr,
-                                             zb_secur_key_attributes_t attr);
+        zb_secur_key_attributes_t attr);
 
 #ifndef ZB_HW_ZB_AES128
 /*
@@ -519,13 +519,13 @@ void zb_aes128_dec(zb_uint8_t *key, zb_uint8_t *msg, zb_uint8_t *c);
  */
 zb_ret_t
 zb_ccm_encrypt_n_auth(
-  zb_uint8_t *key,
-  zb_uint8_t *nonce,
-  zb_uint8_t *string_a,
-  zb_uint32_t string_a_len,
-  zb_uint8_t *string_m,
-  zb_uint32_t string_m_len,
-  zb_bufid_t crypted_text);
+    zb_uint8_t *key,
+    zb_uint8_t *nonce,
+    zb_uint8_t *string_a,
+    zb_uint32_t string_a_len,
+    zb_uint8_t *string_m,
+    zb_uint32_t string_m_len,
+    zb_bufid_t crypted_text);
 
 
 /**
@@ -543,11 +543,11 @@ zb_ccm_encrypt_n_auth(
  */
 zb_ret_t
 zb_ccm_decrypt_n_auth(
-  zb_uint8_t *key,
-  zb_uint8_t *nonce,
-  zb_bufid_t buf,
-  zb_uint32_t string_a_len,
-  zb_uint32_t string_c_len);
+    zb_uint8_t *key,
+    zb_uint8_t *nonce,
+    zb_bufid_t buf,
+    zb_uint32_t string_a_len,
+    zb_uint32_t string_c_len);
 
 
 /**
@@ -561,14 +561,14 @@ zb_ccm_decrypt_n_auth(
 
 
 void zb_ccm_auth_trans(
-  zb_ushort_t ccm_m,
-  zb_uint8_t *key,
-  zb_uint8_t *nonce,
-  zb_uint8_t *string_a,
-  zb_uint32_t string_a_len,
-  zb_uint8_t *string_m,
-  zb_uint32_t string_m_len,
-  zb_uint8_t *t);
+    zb_ushort_t ccm_m,
+    zb_uint8_t *key,
+    zb_uint8_t *nonce,
+    zb_uint8_t *string_a,
+    zb_uint32_t string_a_len,
+    zb_uint8_t *string_m,
+    zb_uint32_t string_m_len,
+    zb_uint8_t *t);
 
 /*
 void encrypt_trans(
@@ -697,8 +697,8 @@ zb_ret_t zb_mac_unsecure_frame(zb_uint8_t param);
  */
 typedef struct zb_apsme_transport_key_req_s
 {
-  zb_addr_u dest_address;  /*!< destination address  */
-  zb_uint8_t addr_mode;    /*!< The type of destination address supplied by
+    zb_addr_u dest_address;  /*!< destination address  */
+    zb_uint8_t addr_mode;    /*!< The type of destination address supplied by
                              the DstAddr parameter - see @ref address_modes.
                              This field is non-standard: according to table 4.11
                              dest_address can be 64-bit only.
@@ -706,30 +706,31 @@ typedef struct zb_apsme_transport_key_req_s
                              TC must issue APSME-TRANSPORT-KEY.request with
                              broadcast address - means, need 16-bit address here!
                            */
-  zb_uint8_t key_type;          /*!< @see @ref secur_key_types  */
-  union key_holder_u {
-    struct apsme_transport_key_nwk_s
+    zb_uint8_t key_type;          /*!< @see @ref secur_key_types  */
+    union key_holder_u
     {
-      zb_uint8_t key[ZB_CCM_KEY_SIZE];     /*!< Key */
-      zb_uint8_t key_seq_number;           /*!< Sequence Number */
-      zb_uint8_t use_parent;               /*!< Use parent - see 4.6.3 */
-      zb_ieee_addr_t parent_address;       /*!< Parent Address */
-    } nwk;                                 /*!< Use for transmit NWK key */
-    struct apsme_transport_key_app_s
-    {
-      zb_uint8_t key[ZB_CCM_KEY_SIZE];      /*!< Key */
-      zb_ieee_addr_t partner_address;       /*!< Partner address */
-      zb_uint8_t initiator;                 /*!< Is initiator.
+        struct apsme_transport_key_nwk_s
+        {
+            zb_uint8_t key[ZB_CCM_KEY_SIZE];     /*!< Key */
+            zb_uint8_t key_seq_number;           /*!< Sequence Number */
+            zb_uint8_t use_parent;               /*!< Use parent - see 4.6.3 */
+            zb_ieee_addr_t parent_address;       /*!< Parent Address */
+        } nwk;                                 /*!< Use for transmit NWK key */
+        struct apsme_transport_key_app_s
+        {
+            zb_uint8_t key[ZB_CCM_KEY_SIZE];      /*!< Key */
+            zb_ieee_addr_t partner_address;       /*!< Partner address */
+            zb_uint8_t initiator;                 /*!< Is initiator.
                                                  @note Exisis in r20, no in r21, seems, still necessary. */
-    } app;                                  /*!< Use for transmit Application key */
-  } key;
-  /* mega-hack: zb_aps_secure_frame uses dest_address to seek APS key. But,
-     zb_aps_secure_frame is called from MAC when NWK also put parameter into
-     buffer tail. Let's reserve a space for mcps data request parameters.
-     Agree, this is ugly solution. The alternative is to parse packet contents,
-     but is is more complex: must analyze for tunnel/direct send.
- */
-  zb_uint8_t filler[sizeof(zb_mcps_data_req_params_t) > sizeof(union key_holder_u) ? sizeof(zb_mcps_data_req_params_t) - sizeof(union key_holder_u) : 4];
+        } app;                                  /*!< Use for transmit Application key */
+    } key;
+    /* mega-hack: zb_aps_secure_frame uses dest_address to seek APS key. But,
+       zb_aps_secure_frame is called from MAC when NWK also put parameter into
+       buffer tail. Let's reserve a space for mcps data request parameters.
+       Agree, this is ugly solution. The alternative is to parse packet contents,
+       but is is more complex: must analyze for tunnel/direct send.
+    */
+    zb_uint8_t filler[sizeof(zb_mcps_data_req_params_t) > sizeof(union key_holder_u) ? sizeof(zb_mcps_data_req_params_t) - sizeof(union key_holder_u) : 4];
 } zb_apsme_transport_key_req_t;
 
 /**
@@ -737,9 +738,9 @@ typedef struct zb_apsme_transport_key_req_s
  */
 typedef ZB_PACKED_PRE struct zb_transport_key_nwk_pkt_s
 {
-  zb_uint8_t     seq_number;        /*!< Sequence Number */
-  zb_ieee_addr_t dest_address;      /*!< Destination address */
-  zb_ieee_addr_t source_address;    /*!< Source address */
+    zb_uint8_t     seq_number;        /*!< Sequence Number */
+    zb_ieee_addr_t dest_address;      /*!< Destination address */
+    zb_ieee_addr_t source_address;    /*!< Source address */
 } ZB_PACKED_STRUCT zb_transport_key_nwk_pkt;
 
 /**
@@ -747,8 +748,8 @@ typedef ZB_PACKED_PRE struct zb_transport_key_nwk_pkt_s
  */
 typedef ZB_PACKED_PRE struct zb_transport_key_tc_pkt_s
 {
-  zb_ieee_addr_t dest_address;      /*!< Destination address */
-  zb_ieee_addr_t source_address;    /*!< Source address */
+    zb_ieee_addr_t dest_address;      /*!< Destination address */
+    zb_ieee_addr_t source_address;    /*!< Source address */
 } ZB_PACKED_STRUCT zb_transport_key_tc_pkt;
 
 /**
@@ -756,8 +757,8 @@ typedef ZB_PACKED_PRE struct zb_transport_key_tc_pkt_s
  */
 typedef ZB_PACKED_PRE struct zb_transport_key_app_pkt_s
 {
-  zb_ieee_addr_t partner_address;   /*!< Partner address */
-  zb_uint8_t initiator;             /*!< Is initiator */
+    zb_ieee_addr_t partner_address;   /*!< Partner address */
+    zb_uint8_t initiator;             /*!< Is initiator */
 }  ZB_PACKED_STRUCT zb_transport_key_app_pkt;
 
 /**
@@ -767,15 +768,16 @@ typedef ZB_PACKED_PRE struct zb_transport_key_app_pkt_s
  */
 typedef ZB_PACKED_PRE struct zb_transport_key_dsc_pkt_s
 {
-  zb_uint8_t     key_type;       /*!< indeed, not part of the nwk key descriptor,
+    zb_uint8_t     key_type;       /*!< indeed, not part of the nwk key descriptor,
                                   * but it simplifies code  */
 
-  zb_uint8_t     key[ZB_CCM_KEY_SIZE];  /*!< Key*/
-  ZB_PACKED_PRE union {
-    zb_transport_key_nwk_pkt nwk;       /*!< Variable part for translate NWK key */
-    zb_transport_key_tc_pkt tc;         /*!< Variable part for translate TC key */
-    zb_transport_key_app_pkt app;       /*!< Variable part for translate Application key */
-  } key_data;
+    zb_uint8_t     key[ZB_CCM_KEY_SIZE];  /*!< Key*/
+    ZB_PACKED_PRE union
+    {
+        zb_transport_key_nwk_pkt nwk;       /*!< Variable part for translate NWK key */
+        zb_transport_key_tc_pkt tc;         /*!< Variable part for translate TC key */
+        zb_transport_key_app_pkt app;       /*!< Variable part for translate Application key */
+    } key_data;
 } ZB_PACKED_STRUCT zb_transport_key_dsc_pkt_t;
 
 /**
@@ -783,9 +785,9 @@ typedef ZB_PACKED_PRE struct zb_transport_key_dsc_pkt_s
  */
 typedef ZB_PACKED_PRE struct zb_apsme_update_device_pkt_s
 {
-  zb_ieee_addr_t device_address;            /*!< 64-bit address of update device */
-  zb_uint16_t    device_short_address;      /*!< 16-bit address of update device */
-  zb_uint8_t     status;                    /*!< @see @ref secur_upd_device_status  */
+    zb_ieee_addr_t device_address;            /*!< 64-bit address of update device */
+    zb_uint16_t    device_short_address;      /*!< 16-bit address of update device */
+    zb_uint8_t     status;                    /*!< @see @ref secur_upd_device_status  */
 } ZB_PACKED_STRUCT zb_apsme_update_device_pkt_t;
 
 #ifdef ZB_FORMATION
@@ -802,10 +804,10 @@ void zb_apsme_transport_key_request(zb_uint8_t param);
  */
 typedef struct zb_apsme_update_device_req_s
 {
-  zb_ieee_addr_t dest_address;               /*!< 64-bit Destination address */
-  zb_ieee_addr_t device_address;             /*!< 64-bit address of update device */
-  zb_uint16_t    device_short_address;       /*!< 16-bit address of update device */
-  zb_uint8_t     status;                     /*!< @see @ref secur_upd_device_status  */
+    zb_ieee_addr_t dest_address;               /*!< 64-bit Destination address */
+    zb_ieee_addr_t device_address;             /*!< 64-bit address of update device */
+    zb_uint16_t    device_short_address;       /*!< 16-bit address of update device */
+    zb_uint8_t     status;                     /*!< @see @ref secur_upd_device_status  */
 } zb_apsme_update_device_req_t;
 
 
@@ -815,10 +817,10 @@ typedef struct zb_apsme_update_device_req_s
  */
 typedef struct zb_apsme_update_device_ind_s
 {
-  zb_ieee_addr_t src_address;               /*!< 64-bit Destination address */
-  zb_ieee_addr_t device_address;            /*!< 64-bit address of update device */
-  zb_uint16_t    device_short_address;      /*!< 16-bit address of update device */
-  zb_uint8_t     status;                    /*!< @see @ref secur_upd_device_status  */
+    zb_ieee_addr_t src_address;               /*!< 64-bit Destination address */
+    zb_ieee_addr_t device_address;            /*!< 64-bit address of update device */
+    zb_uint16_t    device_short_address;      /*!< 16-bit address of update device */
+    zb_uint8_t     status;                    /*!< @see @ref secur_upd_device_status  */
 } zb_apsme_update_device_ind_t;
 
 
@@ -829,8 +831,8 @@ typedef struct zb_apsme_update_device_ind_s
  */
 typedef struct zb_apsme_switch_key_req_s
 {
-  zb_ieee_addr_t dest_address;   /*!< Destination address  */
-  zb_uint8_t key_seq_number;     /*!< Sequence Number */
+    zb_ieee_addr_t dest_address;   /*!< Destination address  */
+    zb_uint8_t key_seq_number;     /*!< Sequence Number */
 } zb_apsme_switch_key_req_t;
 
 
@@ -848,7 +850,7 @@ void zb_apsme_switch_key_request(zb_uint8_t param);
  */
 typedef ZB_PACKED_PRE struct zb_apsme_switch_key_pkt_s
 {
-  zb_uint8_t key_seq_number;     /*!< Key Number */
+    zb_uint8_t key_seq_number;     /*!< Key Number */
 } ZB_PACKED_STRUCT zb_apsme_switch_key_pkt_t;
 
 
@@ -857,8 +859,8 @@ typedef ZB_PACKED_PRE struct zb_apsme_switch_key_pkt_s
  */
 typedef struct zb_apsme_switch_key_ind_s
 {
-  zb_ieee_addr_t src_address;       /*!< Source Address*/
-  zb_uint8_t key_seq_number;        /*!< Key Number */
+    zb_ieee_addr_t src_address;       /*!< Source Address*/
+    zb_uint8_t key_seq_number;        /*!< Key Number */
 } zb_apsme_switch_key_ind_t;
 
 
@@ -870,8 +872,8 @@ void zb_aps_in_switch_key(zb_uint8_t param);
  */
 typedef ZB_PACKED_PRE struct zb_apsme_remove_device_req_s
 {
-  zb_ieee_addr_t parent_address;    /*!< Parent Address*/
-  zb_ieee_addr_t child_address;     /*!< Child Address*/
+    zb_ieee_addr_t parent_address;    /*!< Parent Address*/
+    zb_ieee_addr_t child_address;     /*!< Child Address*/
 } ZB_PACKED_STRUCT zb_apsme_remove_device_req_t;
 
 
@@ -880,7 +882,7 @@ typedef ZB_PACKED_PRE struct zb_apsme_remove_device_req_s
  */
 typedef ZB_PACKED_PRE struct zb_apsme_remove_device_pkt_s
 {
-  zb_ieee_addr_t child_address;     /*!< Child Address*/
+    zb_ieee_addr_t child_address;     /*!< Child Address*/
 } ZB_PACKED_STRUCT zb_apsme_remove_device_pkt_t;
 
 
@@ -889,8 +891,8 @@ typedef ZB_PACKED_PRE struct zb_apsme_remove_device_pkt_s
  */
 typedef ZB_PACKED_PRE struct zb_apsme_remove_device_ind_s
 {
-  zb_ieee_addr_t src_address;       /*!< Source Address */
-  zb_ieee_addr_t child_address;     /*!< Child Address */
+    zb_ieee_addr_t src_address;       /*!< Source Address */
+    zb_ieee_addr_t child_address;     /*!< Child Address */
 } ZB_PACKED_STRUCT zb_apsme_remove_device_ind_t;
 
 #ifdef ZB_COORDINATOR_ROLE
@@ -918,15 +920,15 @@ void zb_aps_in_remove_device(zb_uint8_t param);
  */
 typedef ZB_PACKED_PRE struct zb_apsme_request_key_req_s
 {
-  zb_ieee_addr_t dest_address;      /*!< Destination address */
-  zb_uint8_t     key_type;          /*!< \see secur_request_key_types  */
-  zb_ieee_addr_t partner_address;   /*!< Partner address */
+    zb_ieee_addr_t dest_address;      /*!< Destination address */
+    zb_uint8_t     key_type;          /*!< \see secur_request_key_types  */
+    zb_ieee_addr_t partner_address;   /*!< Partner address */
 } ZB_PACKED_STRUCT zb_apsme_request_key_req_t;
 
 typedef ZB_PACKED_PRE struct zb_apsme_request_key_pkt_s
 {
-  zb_uint8_t     key_type;          /*!< \see secur_request_key_types  */
-  zb_ieee_addr_t partner_address;   /*!< Partner address */
+    zb_uint8_t     key_type;          /*!< \see secur_request_key_types  */
+    zb_ieee_addr_t partner_address;   /*!< Partner address */
 } ZB_PACKED_STRUCT zb_apsme_request_key_pkt_t;
 
 /**
@@ -934,11 +936,11 @@ typedef ZB_PACKED_PRE struct zb_apsme_request_key_pkt_s
  */
 typedef ZB_PACKED_PRE struct zb_apsme_request_key_ind_s
 {
-  zb_ieee_addr_t src_address;       /*!< Source address */
-  zb_uint8_t     key_type;          /*!< \see secur_request_key_types  */
-  zb_ieee_addr_t partner_address;   /*!< Partner address */
+    zb_ieee_addr_t src_address;       /*!< Source address */
+    zb_uint8_t     key_type;          /*!< \see secur_request_key_types  */
+    zb_ieee_addr_t partner_address;   /*!< Partner address */
 
-  zb_uint16_t    keypair_i;     /*!< index of keypair used to decrypt cmd */
+    zb_uint16_t    keypair_i;     /*!< index of keypair used to decrypt cmd */
 } ZB_PACKED_STRUCT zb_apsme_request_key_ind_t;
 
 /**
@@ -948,8 +950,8 @@ typedef ZB_PACKED_PRE struct zb_apsme_request_key_ind_s
  */
 typedef struct zb_apsme_verify_key_req_s
 {
-  zb_ieee_addr_t dest_address;  /*!< Destination address. ONly TC is valid  */
-  zb_uint8_t key_type;          /*!< key type. Only ZB_TC_LINK_KEY is legal.  */
+    zb_ieee_addr_t dest_address;  /*!< Destination address. ONly TC is valid  */
+    zb_uint8_t key_type;          /*!< key type. Only ZB_TC_LINK_KEY is legal.  */
 } zb_apsme_verify_key_req_t;
 
 
@@ -958,9 +960,9 @@ typedef struct zb_apsme_verify_key_req_s
  */
 typedef ZB_PACKED_PRE struct zb_apsme_verify_key_pkt_s
 {
-  zb_uint8_t key_type;          /*!< key type. Only ZB_TC_LINK_KEY is legal.  */
-  zb_ieee_addr_t src_address;  /*!< Source address. */
-  zb_uint8_t key_hash[ZB_CCM_KEY_SIZE]; /*!< Initiator Verify-Key Hash Value  */
+    zb_uint8_t key_type;          /*!< key type. Only ZB_TC_LINK_KEY is legal.  */
+    zb_ieee_addr_t src_address;  /*!< Source address. */
+    zb_uint8_t key_hash[ZB_CCM_KEY_SIZE]; /*!< Initiator Verify-Key Hash Value  */
 } ZB_PACKED_STRUCT zb_apsme_verify_key_pkt_t;
 
 
@@ -969,9 +971,9 @@ typedef ZB_PACKED_PRE struct zb_apsme_verify_key_pkt_s
  */
 typedef struct zb_apsme_verify_key_ind_s
 {
-  zb_ieee_addr_t src_address;  /*!< Source address. */
-  zb_uint8_t key_type;          /*!< key type. Only ZB_TC_LINK_KEY is legal.  */
-  zb_uint8_t key_hash[ZB_CCM_KEY_SIZE]; /*!< Initiator Verify-Key Hash Value  */
+    zb_ieee_addr_t src_address;  /*!< Source address. */
+    zb_uint8_t key_type;          /*!< key type. Only ZB_TC_LINK_KEY is legal.  */
+    zb_uint8_t key_hash[ZB_CCM_KEY_SIZE]; /*!< Initiator Verify-Key Hash Value  */
 } ZB_PACKED_STRUCT zb_apsme_verify_key_ind_t;
 
 /**
@@ -979,9 +981,9 @@ typedef struct zb_apsme_verify_key_ind_s
  */
 typedef struct zb_apsme_confirm_key_req_s
 {
-  zb_uint8_t status;          /*!< A value indicating the success or failure of a pre-vious attempt to verify the trust center link key. See Table 2.27*/
-  zb_ieee_addr_t dest_address;  /*!< Destination address.   */
-  zb_uint8_t key_type;          /*!< key type. Only ZB_TC_LINK_KEY is legal.  */
+    zb_uint8_t status;          /*!< A value indicating the success or failure of a pre-vious attempt to verify the trust center link key. See Table 2.27*/
+    zb_ieee_addr_t dest_address;  /*!< Destination address.   */
+    zb_uint8_t key_type;          /*!< key type. Only ZB_TC_LINK_KEY is legal.  */
 } zb_apsme_confirm_key_req_t;
 
 
@@ -990,10 +992,10 @@ typedef struct zb_apsme_confirm_key_req_s
  */
 typedef ZB_PACKED_PRE struct zb_apsme_confirm_key_pkt_s
 {
-  zb_uint8_t status; /*!< A value indicating the success or failure of a pre-vious attempt to
+    zb_uint8_t status; /*!< A value indicating the success or failure of a pre-vious attempt to
                              verify the trust center link key. See Table 2.27*/
-  zb_uint8_t key_type;    /*!< key type. Only ZB_TC_LINK_KEY is legal.  */
-  zb_ieee_addr_t dest_address; /*!< Dest address. */
+    zb_uint8_t key_type;    /*!< key type. Only ZB_TC_LINK_KEY is legal.  */
+    zb_ieee_addr_t dest_address; /*!< Dest address. */
 } ZB_PACKED_STRUCT zb_apsme_confirm_key_pkt_t;
 
 
@@ -1002,10 +1004,10 @@ typedef ZB_PACKED_PRE struct zb_apsme_confirm_key_pkt_s
  */
 typedef struct zb_apsme_confirm_key_ind_s
 {
-  zb_uint8_t status; /*!< A value indicating the success or failure of a pre-vious attempt to
+    zb_uint8_t status; /*!< A value indicating the success or failure of a pre-vious attempt to
                              verify the trust center link key. See Table 2.27*/
-  zb_uint8_t key_type;    /*!< key type. Only ZB_TC_LINK_KEY is legal.  */
-  zb_ieee_addr_t src_address; /*!< The extended 64-bit address of the device that sent the
+    zb_uint8_t key_type;    /*!< key type. Only ZB_TC_LINK_KEY is legal.  */
+    zb_ieee_addr_t src_address; /*!< The extended 64-bit address of the device that sent the
                                  verify-key command. */
 } zb_apsme_confirm_key_ind_t;
 
@@ -1080,12 +1082,12 @@ zb_uint8_t *secur_nwk_key_by_seq(zb_ushort_t key_seq_number);
   See tp_pro_bv-56 sample
 
  */
-zb_aps_device_key_pair_set_t * zb_secur_update_key_pair(zb_ieee_addr_t address,
-                                                        zb_uint8_t* key,
-                                                        zb_uint8_t key_type,
-                                                        zb_uint8_t key_attr,
-                                                        zb_uint8_t key_source
-                                                        );
+zb_aps_device_key_pair_set_t *zb_secur_update_key_pair(zb_ieee_addr_t address,
+        zb_uint8_t *key,
+        zb_uint8_t key_type,
+        zb_uint8_t key_attr,
+        zb_uint8_t key_source
+                                                      );
 
 /**
    Get address from link key pair by specified index.
@@ -1101,7 +1103,7 @@ void zb_aps_keypair_get_addr_by_idx(zb_uint_t idx, zb_uint8_t *dev_addr);
    @param idx - index from link key pair set
    @return pointer to the keypair if it is found and NULL otherwise
  */
-zb_aps_device_key_pair_set_t* zb_aps_keypair_get_ent_by_idx(zb_uint_t idx);
+zb_aps_device_key_pair_set_t *zb_aps_keypair_get_ent_by_idx(zb_uint_t idx);
 
 /**
   Write/add key pair to AIB Key-Pair table
@@ -1135,24 +1137,25 @@ zb_ret_t zb_aps_keypair_read_by_idx(zb_uint_t idx, zb_aps_device_key_pair_nvram_
  */
 typedef struct zb_apsme_transport_key_indication_s
 {
-  zb_ieee_addr_t src_address;               /*!< Source address */
-  zb_uint8_t key_type;                      /*!< @see @ref secur_key_types  */
-  union {
-    struct apsme_transport_key_nwk_ind_s
+    zb_ieee_addr_t src_address;               /*!< Source address */
+    zb_uint8_t key_type;                      /*!< @see @ref secur_key_types  */
+    union
     {
-      zb_uint8_t key[ZB_CCM_KEY_SIZE];      /*!< Key */
-      zb_uint8_t key_seq_number;            /*!< Sequence number */
-    } nwk;
-    struct apsme_transport_key_app_ind_s
-    {
-      zb_uint8_t key[ZB_CCM_KEY_SIZE];      /*!< app link Key */
-      zb_ieee_addr_t partner_address;       /*!< The extended 64-bit address of the device that was also sent this link key. */
-    } app;
-    struct apsme_transport_key_tc_ind_s
-    {
-      zb_uint8_t key[ZB_CCM_KEY_SIZE];      /*!< TC LiKey */
-    } tc;
-  } key;
+        struct apsme_transport_key_nwk_ind_s
+        {
+            zb_uint8_t key[ZB_CCM_KEY_SIZE];      /*!< Key */
+            zb_uint8_t key_seq_number;            /*!< Sequence number */
+        } nwk;
+        struct apsme_transport_key_app_ind_s
+        {
+            zb_uint8_t key[ZB_CCM_KEY_SIZE];      /*!< app link Key */
+            zb_ieee_addr_t partner_address;       /*!< The extended 64-bit address of the device that was also sent this link key. */
+        } app;
+        struct apsme_transport_key_tc_ind_s
+        {
+            zb_uint8_t key[ZB_CCM_KEY_SIZE];      /*!< TC LiKey */
+        } tc;
+    } key;
 } zb_apsme_transport_key_indication_t;
 
 
@@ -1315,7 +1318,7 @@ zb_ret_t zb_secur_ic_get_key_by_address(zb_ieee_addr_t address, zb_uint8_t *key)
 zb_int8_t zb_secur_ic_get_from_tc_storage(zb_ieee_addr_t address, zb_uint8_t *ic_type, zb_uint8_t *buf);
 #endif
 
-zb_uint8_t *zb_secur_ic_get_from_client_storage(zb_uint8_t* ic_type);
+zb_uint8_t *zb_secur_ic_get_from_client_storage(zb_uint8_t *ic_type);
 
 zb_ret_t zb_secur_ic_check_crc(zb_uint8_t ic_type, zb_uint8_t *ic);
 

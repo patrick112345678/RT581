@@ -37,9 +37,9 @@
 
 typedef struct zb_test_table_s
 {
-  char *test_name;
-  void (*main_p)();
-  void (*startup_complete_p)(zb_uint8_t param);
+    char *test_name;
+    void (*main_p)();
+    void (*startup_complete_p)(zb_uint8_t param);
 }
 zb_test_table_t;
 
@@ -68,42 +68,42 @@ char **g_argv;
 
 MAIN()
 {
-  unsigned char test_name[60];
-  zb_uint_t i;
+    unsigned char test_name[60];
+    zb_uint_t i;
 
-  ZB_BZERO(test_name, sizeof(test_name));
+    ZB_BZERO(test_name, sizeof(test_name));
 #ifdef UNIX
-  get_test_name(argc, argv, (char *)test_name);
+    get_test_name(argc, argv, (char *)test_name);
 #else
-  zb_console_monitor_init();
-  zb_console_monitor_get_cmd(test_name, sizeof(test_name));
+    zb_console_monitor_init();
+    zb_console_monitor_get_cmd(test_name, sizeof(test_name));
 #endif
 
-  for (i = 0 ;
-       i < ZB_ARRAY_SIZE(s_tests_table)
-         && strcmp(s_tests_table[i].test_name, (char const *)test_name);
-       ++i)
-  {
-  }
-  if (i < ZB_ARRAY_SIZE(s_tests_table))
-  {
-    s_test_i = i;
-    g_argc = argc;
-    g_argv = argv;
-    (*s_tests_table[i].main_p)();
-  }
-  else
-  {
+    for (i = 0 ;
+            i < ZB_ARRAY_SIZE(s_tests_table)
+            && strcmp(s_tests_table[i].test_name, (char const *)test_name);
+            ++i)
+    {
+    }
+    if (i < ZB_ARRAY_SIZE(s_tests_table))
+    {
+        s_test_i = i;
+        g_argc = argc;
+        g_argv = argv;
+        (*s_tests_table[i].main_p)();
+    }
+    else
+    {
 #ifdef UNIX
-    printf("Oops! strange test name %s\n", test_name);
+        printf("Oops! strange test name %s\n", test_name);
 #endif
-  }
+    }
 }
 
 
 void zb_zdo_startup_complete(zb_uint8_t param)
 {
-  (*s_tests_table[s_test_i].startup_complete_p)(param);
+    (*s_tests_table[s_test_i].startup_complete_p)(param);
 }
 
 
@@ -114,22 +114,22 @@ static void construct_test_name_component(char *name, char *testname);
 #ifdef UNIX
 static void get_test_name(int argc, char **argv, char *test_name)
 {
-  if (argc > 2
-      && !strcmp(argv[1], "-t"))
-  {
-    strcpy(test_name, argv[2]);
-  }
-  else
-  {
-    char wd[512];
+    if (argc > 2
+            && !strcmp(argv[1], "-t"))
+    {
+        strcpy(test_name, argv[2]);
+    }
+    else
+    {
+        char wd[512];
 
-    getcwd(wd, sizeof(wd)-1);
-    /* Test name in the array converted to uppercase concatenation of dir name
-     * and executable name, with - changed to _ */
-    construct_test_name_component(wd, test_name);
-    strcat(test_name, "_");
-    construct_test_name_component(argv[0], test_name + strlen(test_name));
-  }
+        getcwd(wd, sizeof(wd) - 1);
+        /* Test name in the array converted to uppercase concatenation of dir name
+         * and executable name, with - changed to _ */
+        construct_test_name_component(wd, test_name);
+        strcat(test_name, "_");
+        construct_test_name_component(argv[0], test_name + strlen(test_name));
+    }
 }
 #endif
 
@@ -137,28 +137,28 @@ static void get_test_name(int argc, char **argv, char *test_name)
 #ifdef UNIX
 static void construct_test_name_component(char *name, char *testname)
 {
-  char *p;
+    char *p;
 
-  p = strrchr(name, '/');
-  if (p)
-  {
-    p++;
-  }
-  else
-  {
-    p = name;
-  }
-  while (*p)
-  {
-    if (*p == '-')
+    p = strrchr(name, '/');
+    if (p)
     {
-      *testname++ = '_';
+        p++;
     }
     else
     {
-      *testname++ = toupper(*p);
+        p = name;
     }
-    p++;
-  }
+    while (*p)
+    {
+        if (*p == '-')
+        {
+            *testname++ = '_';
+        }
+        else
+        {
+            *testname++ = toupper(*p);
+        }
+        p++;
+    }
 }
 #endif

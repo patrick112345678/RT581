@@ -31,9 +31,9 @@
 
 typedef ZB_PACKED_PRE struct zb_stack_information_s
 {
-  zb_uint8_t version[ZB_MAX_VERSION_LENGTH];
-  zb_uint_t revision;
-} ZB_PACKED_STRUCT 
+    zb_uint8_t version[ZB_MAX_VERSION_LENGTH];
+    zb_uint_t revision;
+} ZB_PACKED_STRUCT
 zb_stack_information_t;
 
 void zb_get_stack_information(zb_stack_information_t *stack_info);

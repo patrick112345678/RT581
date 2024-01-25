@@ -42,29 +42,29 @@ typedef int fenv_t;
 typedef int fexcept_t;
 
 /* Exception flags */
-#define	FE_INVALID	0x0001
-#define	FE_DIVBYZERO	0x0002
-#define	FE_OVERFLOW	0x0004
-#define	FE_UNDERFLOW	0x0008
-#define	FE_INEXACT	0x0010
+#define FE_INVALID  0x0001
+#define FE_DIVBYZERO    0x0002
+#define FE_OVERFLOW 0x0004
+#define FE_UNDERFLOW    0x0008
+#define FE_INEXACT  0x0010
 #ifndef __SOFTFP__
-#define	FE_DENORMAL	0x0080
-#define	FE_ALL_EXCEPT	(FE_DIVBYZERO | FE_INEXACT | \
-			 FE_INVALID | FE_OVERFLOW | FE_UNDERFLOW | FE_DENORMAL)
+#define FE_DENORMAL 0x0080
+#define FE_ALL_EXCEPT   (FE_DIVBYZERO | FE_INEXACT | \
+             FE_INVALID | FE_OVERFLOW | FE_UNDERFLOW | FE_DENORMAL)
 #else
-#define	FE_ALL_EXCEPT	(FE_DIVBYZERO | FE_INEXACT | \
-			 FE_INVALID | FE_OVERFLOW | FE_UNDERFLOW)
+#define FE_ALL_EXCEPT   (FE_DIVBYZERO | FE_INEXACT | \
+             FE_INVALID | FE_OVERFLOW | FE_UNDERFLOW)
 #endif
 
 /* Rounding modes */
-#define	FE_TONEAREST		0x00000000
-#define	FE_UPWARD		0x00400000
-#define	FE_DOWNWARD		0x00800000
-#define	FE_TOWARDZERO		0x00c00000
+#define FE_TONEAREST        0x00000000
+#define FE_UPWARD       0x00400000
+#define FE_DOWNWARD     0x00800000
+#define FE_TOWARDZERO       0x00c00000
 
 /* Default floating-point environment */
-extern const fenv_t	*_fe_dfl_env;
-#define	FE_DFL_ENV	(_fe_dfl_env)
+extern const fenv_t *_fe_dfl_env;
+#define FE_DFL_ENV  (_fe_dfl_env)
 
 int feclearexcept(int);
 int fegetexceptflag(fexcept_t *, int);
@@ -87,4 +87,4 @@ int fegetexcept(void);
 }
 #endif
 
-#endif	/* _SYS_FENV_H_ */ 
+#endif  /* _SYS_FENV_H_ */

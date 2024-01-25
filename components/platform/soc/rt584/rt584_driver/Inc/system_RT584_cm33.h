@@ -1,7 +1,7 @@
 
 /** @defgroup    Sytem_RT584_cm33_mcu
  *  @ingroup     peripheral_group
- *  @breif 
+ *  @breif
  *  @{
  *  @details   System Initialization header file for RT584-CM3 device based on CMSIS-CORE
 */

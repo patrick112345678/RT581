@@ -20,12 +20,12 @@ Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA 02110-1301, USA. 
 
    ANSI C is assumed if __STDC__ is #defined.
 
-   Macro		ANSI C definition	Traditional C definition
-   -----		---- - ----------	----------- - ----------
-   PTR			`void *'		`char *'
-   const		not defined		`'
-   volatile		not defined		`'
-   signed		not defined		`'
+   Macro        ANSI C definition   Traditional C definition
+   -----        ---- - ----------   ----------- - ----------
+   PTR          `void *'        `char *'
+   const        not defined     `'
+   volatile     not defined     `'
+   signed       not defined     `'
 
    For ease of writing code which uses GCC extensions but needs to be
    portable to other compilers, we provide the GCC_VERSION macro that
@@ -33,8 +33,8 @@ Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA 02110-1301, USA. 
    wrappers around __attribute__.  Also, __extension__ will be #defined
    to nothing if it doesn't work.  See below.  */
 
-#ifndef	_ANSIDECL_H
-#define _ANSIDECL_H	1
+#ifndef _ANSIDECL_H
+#define _ANSIDECL_H 1
 
 #ifdef __cplusplus
 extern "C" {
@@ -70,7 +70,7 @@ So instead we use the macro below and test it against specific values.  */
    C++ compilers, does not define __STDC__, though it acts as if this
    was so. (Verified versions: 5.7, 6.2, 6.3, 6.5) */
 
-#define PTR		void *
+#define PTR     void *
 
 #undef const
 #undef volatile
@@ -89,9 +89,9 @@ So instead we use the macro below and test it against specific values.  */
 # endif
 #endif
 
-#else	/* Not ANSI C.  */
+#else   /* Not ANSI C.  */
 
-#define PTR		char *
+#define PTR     char *
 
 /* some systems define these in header files for non-ansi mode */
 #undef const
@@ -103,7 +103,7 @@ So instead we use the macro below and test it against specific values.  */
 #define signed
 #define inline
 
-#endif	/* ANSI C.  */
+#endif  /* ANSI C.  */
 
 /* Define macros for some gcc attributes.  This permits us to use the
    macros freely, and know that they will come into play for the
@@ -379,8 +379,8 @@ So instead we use the macro below and test it against specific values.  */
 
 #if defined __cplusplus
 # if __cplusplus >= 201103
-   /* C++11 claims to be available: use it.  Final/override were only
-      implemented in 4.7, though.  */
+/* C++11 claims to be available: use it.  Final/override were only
+   implemented in 4.7, though.  */
 #  if GCC_VERSION < 4007
 #   define OVERRIDE
 #   define FINAL
@@ -389,16 +389,16 @@ So instead we use the macro below and test it against specific values.  */
 #   define FINAL final
 #  endif
 # elif GCC_VERSION >= 4007
-   /* G++ 4.7 supports __final in C++98.  */
+/* G++ 4.7 supports __final in C++98.  */
 #  define OVERRIDE
 #  define FINAL __final
 # else
-   /* No C++11 support; leave the macros empty.  */
+/* No C++11 support; leave the macros empty.  */
 #  define OVERRIDE
 #  define FINAL
 # endif
 #else
-  /* No C++11 support; leave the macros empty.  */
+/* No C++11 support; leave the macros empty.  */
 # define OVERRIDE
 # define FINAL
 #endif
@@ -420,12 +420,12 @@ So instead we use the macro below and test it against specific values.  */
    so that most attempts at copy are caught at compile-time.  */
 
 #if __cplusplus >= 201103
-#define DISABLE_COPY_AND_ASSIGN(TYPE)		\
-  TYPE (const TYPE&) = delete;			\
+#define DISABLE_COPY_AND_ASSIGN(TYPE)       \
+  TYPE (const TYPE&) = delete;          \
   void operator= (const TYPE &) = delete
-  #else
-#define DISABLE_COPY_AND_ASSIGN(TYPE)		\
-  TYPE (const TYPE&);				\
+#else
+#define DISABLE_COPY_AND_ASSIGN(TYPE)       \
+  TYPE (const TYPE&);               \
   void operator= (const TYPE &)
 #endif /* __cplusplus >= 201103 */
 
@@ -433,4 +433,4 @@ So instead we use the macro below and test it against specific values.  */
 }
 #endif
 
-#endif	/* ansidecl.h	*/
+#endif  /* ansidecl.h   */

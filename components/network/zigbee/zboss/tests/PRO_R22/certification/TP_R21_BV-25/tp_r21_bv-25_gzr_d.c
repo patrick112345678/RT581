@@ -60,115 +60,152 @@ static int s_transmit_started = 0;
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  ZB_INIT("zdo_2_gzr_d");
-#if UART_CONTROL	
-	test_control_init();
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    ZB_INIT("zdo_2_gzr_d");
+#if UART_CONTROL
+    test_control_init();
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 #endif
-	
-  zb_set_long_address(g_ieee_addr_gzr);
-  zb_aib_set_trust_center_address(g_unknown_ieee_addr);
-  zb_zdo_set_aps_unsecure_join(ZB_TRUE);
 
-  zb_set_pan_id(TEST_PAN_ID);
-  zb_cert_test_set_network_addr(0x2bbb);
+    zb_set_long_address(g_ieee_addr_gzr);
+    zb_aib_set_trust_center_address(g_unknown_ieee_addr);
+    zb_zdo_set_aps_unsecure_join(ZB_TRUE);
 
-  zb_secur_setup_nwk_key((zb_uint8_t*) g_nwk_key, 0);
+    zb_set_pan_id(TEST_PAN_ID);
+    zb_cert_test_set_network_addr(0x2bbb);
+
+    zb_secur_setup_nwk_key((zb_uint8_t *) g_nwk_key, 0);
 
 
 #ifdef SECURITY_LEVEL
-  zb_cert_test_set_security_level(SECURITY_LEVEL);
+    zb_cert_test_set_security_level(SECURITY_LEVEL);
 #endif
 
 #if defined ZB_SUBGHZ_BAND_ENABLED
-  {
-    zb_channel_list_t channel_list;
-    zb_channel_list_init(channel_list);
-    zb_channel_list_add(channel_list, TEST_PAGE, (1L << TEST_CHANNEL));
-    zb_channel_page_list_copy(ZB_AIB().aps_channel_mask_list, channel_list);
-  }
+    {
+        zb_channel_list_t channel_list;
+        zb_channel_list_init(channel_list);
+        zb_channel_list_add(channel_list, TEST_PAGE, (1L << TEST_CHANNEL));
+        zb_channel_page_list_copy(ZB_AIB().aps_channel_mask_list, channel_list);
+    }
 
-  zb_cert_test_set_device_type(ZB_NWK_DEVICE_TYPE_ROUTER);
+    zb_cert_test_set_device_type(ZB_NWK_DEVICE_TYPE_ROUTER);
 #else
-  zb_cert_test_set_common_channel_settings();
-  zb_cert_test_set_zr_role();
+    zb_cert_test_set_common_channel_settings();
+    zb_cert_test_set_zr_role();
 #endif /* ZB_SUBGHZ_BAND_ENABLED */
 
-  zb_cert_test_set_permit_join_duration(ZB_DEFAULT_PERMIT_JOINING_DURATION);
+    zb_cert_test_set_permit_join_duration(ZB_DEFAULT_PERMIT_JOINING_DURATION);
 
-  /* ZB_CERT_HACKS().aps_security_off = ZB_TRUE; */
+    /* ZB_CERT_HACKS().aps_security_off = ZB_TRUE; */
 
-  zb_set_nvram_erase_at_start(ZB_TRUE);
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zboss_main_loop();
-  }
+    zb_set_nvram_erase_at_start(ZB_TRUE);
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zboss_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_ERROR, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_ERROR, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  if (0 == status)
-  {
-    switch(sig)
+    if (0 == status)
     {
-      case ZB_ZDO_SIGNAL_DEFAULT_START:
-      case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      case ZB_BDB_SIGNAL_DEVICE_REBOOT:
-        TRACE_MSG(TRACE_ERROR, "Device STARTED OK", (FMT__0));
-        ZB_SCHEDULE_ALARM(send_reset_packet_count_msg, 0, TEST_SEND_RESET_PCK_CNT_MSG_DELAY);
-        break;
+        switch (sig)
+        {
+        case ZB_ZDO_SIGNAL_DEFAULT_START:
+        case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
+        case ZB_BDB_SIGNAL_DEVICE_REBOOT:
+            TRACE_MSG(TRACE_ERROR, "Device STARTED OK", (FMT__0));
+            ZB_SCHEDULE_ALARM(send_reset_packet_count_msg, 0, TEST_SEND_RESET_PCK_CNT_MSG_DELAY);
+            break;
 
-      default:
-        TRACE_MSG(TRACE_ERROR, "Unknown signal %hd", (FMT__H, sig));
+        default:
+            TRACE_MSG(TRACE_ERROR, "Unknown signal %hd", (FMT__H, sig));
+        }
     }
-  }
-  else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
-  {
-    TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, status));
-  }
+    else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
+    {
+        TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, status));
+    }
 
-  if (param)
-  {
-    zb_buf_free(param);
-  }
+    if (param)
+    {
+        zb_buf_free(param);
+    }
 }
 
 
 static void send_reset_packet_count_msg(zb_uint8_t param)
 {
-  zb_bufid_t buf = zb_buf_get_out();
+    zb_bufid_t buf = zb_buf_get_out();
 
-  ZVUNUSED(param);
+    ZVUNUSED(param);
 
-  TRACE_MSG(TRACE_APS3, ">>send_reset_packet_count_msg", (FMT__0));
+    TRACE_MSG(TRACE_APS3, ">>send_reset_packet_count_msg", (FMT__0));
 
-  if (buf)
-  {
-    s_dut_short_addr = zb_address_short_by_ieee((zb_uint8_t*) g_ieee_addr_dut);
+    if (buf)
+    {
+        s_dut_short_addr = zb_address_short_by_ieee((zb_uint8_t *) g_ieee_addr_dut);
 
-    //ZB_BUF_REUSE(param);
-    tp_send_req_by_short(TP_RESET_PACKET_COUNT_CLID,
-                         buf,//param
+        //ZB_BUF_REUSE(param);
+        tp_send_req_by_short(TP_RESET_PACKET_COUNT_CLID,
+                             buf,//param
+                             ZB_TEST_PROFILE_ID,
+                             s_dut_short_addr,
+                             ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
+                             ZB_TEST_PROFILE_EP,
+                             ZB_TEST_PROFILE_EP,
+                             ZB_APSDE_TX_OPT_ACK_TX,
+                             MAX_NWK_RADIUS);
+
+        ZB_SCHEDULE_ALARM(send_retrieve_packet_count_msg_delayed, 0, 2 * ZB_TIME_ONE_SECOND);
+    }
+    else
+    {
+        TRACE_MSG(TRACE_APS3, "TEST FAILED: Could not get out buf!", (FMT__0));
+    }
+
+    TRACE_MSG(TRACE_APS3, "<<send_reset_packet_count_msg", (FMT__0));
+}
+
+
+static void send_retrieve_packet_count_msg_delayed(zb_uint8_t param)
+{
+    ZVUNUSED(param);
+    zb_buf_get_out_delayed(send_retrieve_packet_count_msg);
+}
+
+
+static void send_retrieve_packet_count_msg(zb_uint8_t param)
+{
+    TRACE_MSG(TRACE_APS3, ">>send_retrieve_packet_count_msg param %h", (FMT__H, param));
+
+    if (s_transmit_started)
+    {
+        zb_buf_reuse(param);
+    }
+
+    tp_send_req_by_short(TP_RETRIEVE_PACKET_COUNT_CLID,
+                         param,
                          ZB_TEST_PROFILE_ID,
                          s_dut_short_addr,
                          ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
@@ -177,79 +214,42 @@ static void send_reset_packet_count_msg(zb_uint8_t param)
                          ZB_APSDE_TX_OPT_ACK_TX,
                          MAX_NWK_RADIUS);
 
-    ZB_SCHEDULE_ALARM(send_retrieve_packet_count_msg_delayed, 0, 2 * ZB_TIME_ONE_SECOND);
-  }
-  else
-  {
-    TRACE_MSG(TRACE_APS3, "TEST FAILED: Could not get out buf!", (FMT__0));
-  }
-
-  TRACE_MSG(TRACE_APS3, "<<send_reset_packet_count_msg", (FMT__0));
-}
+    if (!s_transmit_started)
+    {
+        ZB_SCHEDULE_ALARM(start_transmit_counted_packets_delayed, 0, 2 * ZB_TIME_ONE_SECOND);
+    }
 
 
-static void send_retrieve_packet_count_msg_delayed(zb_uint8_t param)
-{
-  ZVUNUSED(param);
-  zb_buf_get_out_delayed(send_retrieve_packet_count_msg);
-}
-
-
-static void send_retrieve_packet_count_msg(zb_uint8_t param)
-{
-  TRACE_MSG(TRACE_APS3, ">>send_retrieve_packet_count_msg param %h", (FMT__H, param));
-
-  if (s_transmit_started)
-  {
-    zb_buf_reuse(param);
-  }
-
-  tp_send_req_by_short(TP_RETRIEVE_PACKET_COUNT_CLID,
-                       param,
-                       ZB_TEST_PROFILE_ID,
-                       s_dut_short_addr,
-                       ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
-                       ZB_TEST_PROFILE_EP,
-                       ZB_TEST_PROFILE_EP,
-                       ZB_APSDE_TX_OPT_ACK_TX,
-                       MAX_NWK_RADIUS);
-
-  if (!s_transmit_started)
-  {
-    ZB_SCHEDULE_ALARM(start_transmit_counted_packets_delayed, 0, 2 * ZB_TIME_ONE_SECOND);
-  }
-
-
-  TRACE_MSG(TRACE_APS3, "<<send_retrieve_packet_count_msg", (FMT__0));
+    TRACE_MSG(TRACE_APS3, "<<send_retrieve_packet_count_msg", (FMT__0));
 }
 
 
 static void start_transmit_counted_packets_delayed(zb_uint8_t param)
 {
-  ZVUNUSED(param);
-  zb_buf_get_out_delayed(start_transmit_counted_packets);
+    ZVUNUSED(param);
+    zb_buf_get_out_delayed(start_transmit_counted_packets);
 }
 
 
 static void start_transmit_counted_packets(zb_uint8_t param)
 {
-  zb_tp_transmit_counted_packets_param_t *params;
+    zb_tp_transmit_counted_packets_param_t *params;
 
-  TRACE_MSG(TRACE_APS3, ">>start_transmit_counted_packets param %h", (FMT__H, param));
+    TRACE_MSG(TRACE_APS3, ">>start_transmit_counted_packets param %h", (FMT__H, param));
 
-  params = zb_buf_get_tail(param,
-			   sizeof(zb_tp_transmit_counted_packets_param_t));
+    params = zb_buf_get_tail(param,
+                             sizeof(zb_tp_transmit_counted_packets_param_t));
 
-  BUFFER_COUNTED_TEST_REQ_SET_DEFAULT(params);
-  params->packets_number = 10;
-  params->len = TEST_PACKET_SIZE;
-  params->dst_addr = s_dut_short_addr;
-  params->idle_time = 1000;
+    BUFFER_COUNTED_TEST_REQ_SET_DEFAULT(params);
+    params->packets_number = 10;
+    params->len = TEST_PACKET_SIZE;
+    params->dst_addr = s_dut_short_addr;
+    params->idle_time = 1000;
 
-  s_transmit_started = 1;
-  zb_tp_transmit_counted_packets_req_ext(param, send_retrieve_packet_count_msg);
+    s_transmit_started = 1;
+    zb_tp_transmit_counted_packets_req_ext(param, send_retrieve_packet_count_msg);
 
-  TRACE_MSG(TRACE_APS3, "<<start_transmit_counted_packets", (FMT__0));
+    TRACE_MSG(TRACE_APS3, "<<start_transmit_counted_packets", (FMT__0));
 }
 
 

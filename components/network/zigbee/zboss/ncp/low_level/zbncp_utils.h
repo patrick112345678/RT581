@@ -61,7 +61,7 @@ zbncp_uint16_t zbncp_crc16(zbncp_uint16_t init, const void *data, zbncp_size_t s
  */
 static inline zbncp_size_t size_min(zbncp_size_t lhs, zbncp_size_t rhs)
 {
-  return ((lhs < rhs) ? lhs : rhs);
+    return ((lhs < rhs) ? lhs : rhs);
 }
 
 /**
@@ -74,7 +74,7 @@ static inline zbncp_size_t size_min(zbncp_size_t lhs, zbncp_size_t rhs)
  */
 static inline zbncp_size_t size_max(zbncp_size_t lhs, zbncp_size_t rhs)
 {
-  return ((lhs > rhs) ? lhs : rhs);
+    return ((lhs > rhs) ? lhs : rhs);
 }
 
 #endif /* ZBNCP_INCLUDE_GUARD_UTILS_H */

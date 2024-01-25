@@ -2243,15 +2243,15 @@
 #define HAVE_atomic_compare_and_swapt1hi_1 ((TARGET_HAVE_LDREXBH && TARGET_HAVE_MEMORY_BARRIER) && (TARGET_THUMB1))
 #define HAVE_atomic_compare_and_swap32si_1 ((TARGET_HAVE_LDREX && TARGET_HAVE_MEMORY_BARRIER) && (TARGET_32BIT))
 #define HAVE_atomic_compare_and_swap32di_1 ((TARGET_HAVE_LDREXD && ARM_DOUBLEWORD_ALIGN \
-	&& TARGET_HAVE_MEMORY_BARRIER) && (TARGET_32BIT))
+    && TARGET_HAVE_MEMORY_BARRIER) && (TARGET_32BIT))
 #define HAVE_atomic_compare_and_swapt1si_1 ((TARGET_HAVE_LDREX && TARGET_HAVE_MEMORY_BARRIER) && (TARGET_THUMB1))
 #define HAVE_atomic_compare_and_swapt1di_1 ((TARGET_HAVE_LDREXD && ARM_DOUBLEWORD_ALIGN \
-	&& TARGET_HAVE_MEMORY_BARRIER) && (TARGET_THUMB1))
+    && TARGET_HAVE_MEMORY_BARRIER) && (TARGET_THUMB1))
 #define HAVE_atomic_exchangeqi (TARGET_HAVE_LDREXBH && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_exchangehi (TARGET_HAVE_LDREXBH && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_exchangesi (TARGET_HAVE_LDREX && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_exchangedi (TARGET_HAVE_LDREXD && ARM_DOUBLEWORD_ALIGN \
-	&& TARGET_HAVE_MEMORY_BARRIER)
+    && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_addqi (TARGET_HAVE_LDREXBH && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_subqi (TARGET_HAVE_LDREXBH && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_orqi (TARGET_HAVE_LDREXBH && TARGET_HAVE_MEMORY_BARRIER)
@@ -2268,20 +2268,20 @@
 #define HAVE_atomic_xorsi (TARGET_HAVE_LDREX && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_andsi (TARGET_HAVE_LDREX && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_adddi (TARGET_HAVE_LDREXD && ARM_DOUBLEWORD_ALIGN \
-	&& TARGET_HAVE_MEMORY_BARRIER)
+    && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_subdi (TARGET_HAVE_LDREXD && ARM_DOUBLEWORD_ALIGN \
-	&& TARGET_HAVE_MEMORY_BARRIER)
+    && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_ordi (TARGET_HAVE_LDREXD && ARM_DOUBLEWORD_ALIGN \
-	&& TARGET_HAVE_MEMORY_BARRIER)
+    && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_xordi (TARGET_HAVE_LDREXD && ARM_DOUBLEWORD_ALIGN \
-	&& TARGET_HAVE_MEMORY_BARRIER)
+    && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_anddi (TARGET_HAVE_LDREXD && ARM_DOUBLEWORD_ALIGN \
-	&& TARGET_HAVE_MEMORY_BARRIER)
+    && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_nandqi (TARGET_HAVE_LDREXBH && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_nandhi (TARGET_HAVE_LDREXBH && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_nandsi (TARGET_HAVE_LDREX && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_nanddi (TARGET_HAVE_LDREXD && ARM_DOUBLEWORD_ALIGN \
-	&& TARGET_HAVE_MEMORY_BARRIER)
+    && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_fetch_addqi (TARGET_HAVE_LDREXBH && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_fetch_subqi (TARGET_HAVE_LDREXBH && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_fetch_orqi (TARGET_HAVE_LDREXBH && TARGET_HAVE_MEMORY_BARRIER)
@@ -2298,20 +2298,20 @@
 #define HAVE_atomic_fetch_xorsi (TARGET_HAVE_LDREX && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_fetch_andsi (TARGET_HAVE_LDREX && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_fetch_adddi (TARGET_HAVE_LDREXD && ARM_DOUBLEWORD_ALIGN \
-	&& TARGET_HAVE_MEMORY_BARRIER)
+    && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_fetch_subdi (TARGET_HAVE_LDREXD && ARM_DOUBLEWORD_ALIGN \
-	&& TARGET_HAVE_MEMORY_BARRIER)
+    && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_fetch_ordi (TARGET_HAVE_LDREXD && ARM_DOUBLEWORD_ALIGN \
-	&& TARGET_HAVE_MEMORY_BARRIER)
+    && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_fetch_xordi (TARGET_HAVE_LDREXD && ARM_DOUBLEWORD_ALIGN \
-	&& TARGET_HAVE_MEMORY_BARRIER)
+    && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_fetch_anddi (TARGET_HAVE_LDREXD && ARM_DOUBLEWORD_ALIGN \
-	&& TARGET_HAVE_MEMORY_BARRIER)
+    && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_fetch_nandqi (TARGET_HAVE_LDREXBH && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_fetch_nandhi (TARGET_HAVE_LDREXBH && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_fetch_nandsi (TARGET_HAVE_LDREX && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_fetch_nanddi (TARGET_HAVE_LDREXD && ARM_DOUBLEWORD_ALIGN \
-	&& TARGET_HAVE_MEMORY_BARRIER)
+    && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_add_fetchqi (TARGET_HAVE_LDREXBH && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_sub_fetchqi (TARGET_HAVE_LDREXBH && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_or_fetchqi (TARGET_HAVE_LDREXBH && TARGET_HAVE_MEMORY_BARRIER)
@@ -2328,20 +2328,20 @@
 #define HAVE_atomic_xor_fetchsi (TARGET_HAVE_LDREX && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_and_fetchsi (TARGET_HAVE_LDREX && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_add_fetchdi (TARGET_HAVE_LDREXD && ARM_DOUBLEWORD_ALIGN \
-	&& TARGET_HAVE_MEMORY_BARRIER)
+    && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_sub_fetchdi (TARGET_HAVE_LDREXD && ARM_DOUBLEWORD_ALIGN \
-	&& TARGET_HAVE_MEMORY_BARRIER)
+    && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_or_fetchdi (TARGET_HAVE_LDREXD && ARM_DOUBLEWORD_ALIGN \
-	&& TARGET_HAVE_MEMORY_BARRIER)
+    && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_xor_fetchdi (TARGET_HAVE_LDREXD && ARM_DOUBLEWORD_ALIGN \
-	&& TARGET_HAVE_MEMORY_BARRIER)
+    && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_and_fetchdi (TARGET_HAVE_LDREXD && ARM_DOUBLEWORD_ALIGN \
-	&& TARGET_HAVE_MEMORY_BARRIER)
+    && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_nand_fetchqi (TARGET_HAVE_LDREXBH && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_nand_fetchhi (TARGET_HAVE_LDREXBH && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_nand_fetchsi (TARGET_HAVE_LDREX && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_nand_fetchdi (TARGET_HAVE_LDREXD && ARM_DOUBLEWORD_ALIGN \
-	&& TARGET_HAVE_MEMORY_BARRIER)
+    && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_arm_load_exclusiveqi (TARGET_HAVE_LDREXBH)
 #define HAVE_arm_load_exclusivehi (TARGET_HAVE_LDREXBH)
 #define HAVE_arm_load_acquire_exclusiveqi (TARGET_HAVE_LDACQ)
@@ -2354,7 +2354,7 @@
 #define HAVE_arm_store_exclusivehi (TARGET_HAVE_LDREXBH && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_arm_store_exclusivesi (TARGET_HAVE_LDREX && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_arm_store_exclusivedi (TARGET_HAVE_LDREXD && ARM_DOUBLEWORD_ALIGN \
-	&& TARGET_HAVE_MEMORY_BARRIER)
+    && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_arm_store_release_exclusivedi (TARGET_HAVE_LDACQEXD && ARM_DOUBLEWORD_ALIGN)
 #define HAVE_arm_store_release_exclusiveqi (TARGET_HAVE_LDACQ)
 #define HAVE_arm_store_release_exclusivehi (TARGET_HAVE_LDACQ)
@@ -4579,116 +4579,116 @@
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V2SFmode)))
 #define HAVE_movv8hf (TARGET_NEON || TARGET_HAVE_MVE_FLOAT)
 #define HAVE_addv16qi3 ((TARGET_NEON && ((V16QImode != V2SFmode && V16QImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V16QImode)) \
    || (TARGET_HAVE_MVE && VALID_MVE_SI_MODE(V16QImode)) \
    || (TARGET_HAVE_MVE_FLOAT && VALID_MVE_SF_MODE(V16QImode)))
 #define HAVE_addv8hi3 ((TARGET_NEON && ((V8HImode != V2SFmode && V8HImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V8HImode)) \
    || (TARGET_HAVE_MVE && VALID_MVE_SI_MODE(V8HImode)) \
    || (TARGET_HAVE_MVE_FLOAT && VALID_MVE_SF_MODE(V8HImode)))
 #define HAVE_addv4si3 ((TARGET_NEON && ((V4SImode != V2SFmode && V4SImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V4SImode)) \
    || (TARGET_HAVE_MVE && VALID_MVE_SI_MODE(V4SImode)) \
    || (TARGET_HAVE_MVE_FLOAT && VALID_MVE_SF_MODE(V4SImode)))
 #define HAVE_addv4sf3 ((TARGET_NEON && ((V4SFmode != V2SFmode && V4SFmode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V4SFmode)) \
    || (TARGET_HAVE_MVE && VALID_MVE_SI_MODE(V4SFmode)) \
    || (TARGET_HAVE_MVE_FLOAT && VALID_MVE_SF_MODE(V4SFmode)))
 #define HAVE_addv8hf3 ((TARGET_HAVE_MVE_FLOAT && VALID_MVE_SF_MODE(V8HFmode)) \
    || (TARGET_NEON_FP16INST && flag_unsafe_math_optimizations))
 #define HAVE_addv2si3 ((TARGET_NEON && ((V2SImode != V2SFmode && V2SImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V2SImode)))
 #define HAVE_addv4hi3 ((TARGET_NEON && ((V4HImode != V2SFmode && V4HImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V4HImode)))
 #define HAVE_addv8qi3 ((TARGET_NEON && ((V8QImode != V2SFmode && V8QImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V8QImode)))
 #define HAVE_addv2sf3 ((TARGET_NEON && ((V2SFmode != V2SFmode && V2SFmode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V2SFmode)))
 #define HAVE_addv2di3 ((TARGET_NEON && ((V2DImode != V2SFmode && V2DImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V2DImode)))
 #define HAVE_subv2di3 ((TARGET_NEON && ((V2DImode != V2SFmode && V2DImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V2DImode)))
 #define HAVE_subv2si3 ((TARGET_NEON && ((V2SImode != V2SFmode && V2SImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V2SImode)))
 #define HAVE_subv4hi3 ((TARGET_NEON && ((V4HImode != V2SFmode && V4HImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V4HImode)))
 #define HAVE_subv8qi3 ((TARGET_NEON && ((V8QImode != V2SFmode && V8QImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V8QImode)))
 #define HAVE_subv2sf3 ((TARGET_NEON && ((V2SFmode != V2SFmode && V2SFmode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V2SFmode)))
 #define HAVE_subv4si3 ((TARGET_NEON && ((V4SImode != V2SFmode && V4SImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V4SImode)))
 #define HAVE_subv8hi3 ((TARGET_NEON && ((V8HImode != V2SFmode && V8HImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V8HImode)))
 #define HAVE_subv16qi3 ((TARGET_NEON && ((V16QImode != V2SFmode && V16QImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V16QImode)))
 #define HAVE_subv4sf3 ((TARGET_NEON && ((V4SFmode != V2SFmode && V4SFmode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V4SFmode)))
 #define HAVE_mulv2si3 ((TARGET_NEON && ((V2SImode != V2SFmode && V2SImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (V2SImode == V4HImode && TARGET_REALLY_IWMMXT))
 #define HAVE_mulv4hi3 ((TARGET_NEON && ((V4HImode != V2SFmode && V4HImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (V4HImode == V4HImode && TARGET_REALLY_IWMMXT))
 #define HAVE_mulv8qi3 ((TARGET_NEON && ((V8QImode != V2SFmode && V8QImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (V8QImode == V4HImode && TARGET_REALLY_IWMMXT))
 #define HAVE_mulv2sf3 ((TARGET_NEON && ((V2SFmode != V2SFmode && V2SFmode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (V2SFmode == V4HImode && TARGET_REALLY_IWMMXT))
 #define HAVE_mulv4si3 ((TARGET_NEON && ((V4SImode != V2SFmode && V4SImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (V4SImode == V4HImode && TARGET_REALLY_IWMMXT))
 #define HAVE_mulv8hi3 ((TARGET_NEON && ((V8HImode != V2SFmode && V8HImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (V8HImode == V4HImode && TARGET_REALLY_IWMMXT))
 #define HAVE_mulv16qi3 ((TARGET_NEON && ((V16QImode != V2SFmode && V16QImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (V16QImode == V4HImode && TARGET_REALLY_IWMMXT))
 #define HAVE_mulv4sf3 ((TARGET_NEON && ((V4SFmode != V2SFmode && V4SFmode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (V4SFmode == V4HImode && TARGET_REALLY_IWMMXT))
 #define HAVE_sminv2si3 ((TARGET_NEON && ((V2SImode != V2SFmode && V2SImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V2SImode)))
 #define HAVE_sminv4hi3 ((TARGET_NEON && ((V4HImode != V2SFmode && V4HImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V4HImode)))
 #define HAVE_sminv8qi3 ((TARGET_NEON && ((V8QImode != V2SFmode && V8QImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V8QImode)))
 #define HAVE_sminv2sf3 ((TARGET_NEON && ((V2SFmode != V2SFmode && V2SFmode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V2SFmode)))
 #define HAVE_sminv4si3 ((TARGET_NEON && ((V4SImode != V2SFmode && V4SImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V4SImode)))
 #define HAVE_sminv8hi3 ((TARGET_NEON && ((V8HImode != V2SFmode && V8HImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V8HImode)))
 #define HAVE_sminv16qi3 ((TARGET_NEON && ((V16QImode != V2SFmode && V16QImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V16QImode)))
 #define HAVE_sminv4sf3 ((TARGET_NEON && ((V4SFmode != V2SFmode && V4SFmode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V4SFmode)))
 #define HAVE_uminv2si3 (TARGET_NEON \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V2SImode)))
@@ -4703,28 +4703,28 @@
 #define HAVE_uminv16qi3 (TARGET_NEON \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V16QImode)))
 #define HAVE_smaxv2si3 ((TARGET_NEON && ((V2SImode != V2SFmode && V2SImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V2SImode)))
 #define HAVE_smaxv4hi3 ((TARGET_NEON && ((V4HImode != V2SFmode && V4HImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V4HImode)))
 #define HAVE_smaxv8qi3 ((TARGET_NEON && ((V8QImode != V2SFmode && V8QImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V8QImode)))
 #define HAVE_smaxv2sf3 ((TARGET_NEON && ((V2SFmode != V2SFmode && V2SFmode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V2SFmode)))
 #define HAVE_smaxv4si3 ((TARGET_NEON && ((V4SImode != V2SFmode && V4SImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V4SImode)))
 #define HAVE_smaxv8hi3 ((TARGET_NEON && ((V8HImode != V2SFmode && V8HImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V8HImode)))
 #define HAVE_smaxv16qi3 ((TARGET_NEON && ((V16QImode != V2SFmode && V16QImode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V16QImode)))
 #define HAVE_smaxv4sf3 ((TARGET_NEON && ((V4SFmode != V2SFmode && V4SFmode != V4SFmode) \
-		    || flag_unsafe_math_optimizations)) \
+            || flag_unsafe_math_optimizations)) \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V4SFmode)))
 #define HAVE_umaxv2si3 (TARGET_NEON \
    || (TARGET_REALLY_IWMMXT && VALID_IWMMXT_REG_MODE (V2SImode)))
@@ -5447,7 +5447,7 @@
 #define HAVE_atomic_compare_and_swaphi (TARGET_HAVE_LDREXBH && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_compare_and_swapsi (TARGET_HAVE_LDREX && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_atomic_compare_and_swapdi (TARGET_HAVE_LDREXD && ARM_DOUBLEWORD_ALIGN \
-	&& TARGET_HAVE_MEMORY_BARRIER)
+    && TARGET_HAVE_MEMORY_BARRIER)
 #define HAVE_addv4qq3 (TARGET_INT_SIMD)
 #define HAVE_addv2hq3 (TARGET_INT_SIMD)
 #define HAVE_addv2ha3 (TARGET_INT_SIMD)
@@ -5790,7 +5790,7 @@ static inline rtx gen_pic_offset_arm                                 (rtx, rtx, 
 static inline rtx
 gen_pic_offset_arm(rtx ARG_UNUSED (a), rtx ARG_UNUSED (b), rtx ARG_UNUSED (c))
 {
-  return 0;
+    return 0;
 }
 extern rtx        gen_arm_cond_branch                                (rtx, rtx, rtx);
 extern rtx        gen_restore_pic_register_after_call                (rtx, rtx);

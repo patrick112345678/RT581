@@ -60,90 +60,90 @@ static void trigger_steering(zb_uint8_t unused);
 
 MAIN()
 {
-  ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
-  ZB_SET_TRACE_LEVEL(4);
-  ARGV_UNUSED;
+    ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
+    ZB_SET_TRACE_LEVEL(4);
+    ARGV_UNUSED;
 
-  ZB_INIT("zdo_th_zr");
+    ZB_INIT("zdo_th_zr");
 
-  zb_set_long_address(g_ieee_addr_th_zr);
+    zb_set_long_address(g_ieee_addr_th_zr);
 
-  zb_reg_test_set_common_channel_settings();
-  zb_set_network_router_role((1l << TEST_CHANNEL));
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    zb_reg_test_set_common_channel_settings();
+    zb_set_network_router_role((1l << TEST_CHANNEL));
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  switch (sig)
-  {
+    switch (sig)
+    {
     case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        ZB_SCHEDULE_CALLBACK(trigger_steering, 0);
+        TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            ZB_SCHEDULE_CALLBACK(trigger_steering, 0);
 
-        test_step_register(test_send_mgmt_lqi_req, 0, RTP_NVRAM_02_STEP_1_TIME_ZR);
+            test_step_register(test_send_mgmt_lqi_req, 0, RTP_NVRAM_02_STEP_1_TIME_ZR);
 
-        test_control_start(TEST_MODE, RTP_NVRAM_02_STEP_1_DELAY_ZR);
-      }
-      break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
+            test_control_start(TEST_MODE, RTP_NVRAM_02_STEP_1_DELAY_ZR);
+        }
+        break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
 
     default:
-      TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
-      break;
-  }
+        TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 static void trigger_steering(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
+    bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
 }
 
 
 static void test_send_mgmt_lqi_req(zb_uint8_t param)
 {
-  zb_zdo_mgmt_lqi_param_t *req_param;
-  zb_uint16_t dst_addr = 0x0000;
+    zb_zdo_mgmt_lqi_param_t *req_param;
+    zb_uint16_t dst_addr = 0x0000;
 
-  if (param == ZB_BUF_INVALID)
-  {
-    zb_buf_get_out_delayed(test_send_mgmt_lqi_req);
-    return;
-  }
+    if (param == ZB_BUF_INVALID)
+    {
+        zb_buf_get_out_delayed(test_send_mgmt_lqi_req);
+        return;
+    }
 
-  TRACE_MSG(TRACE_APP1, ">> test_send_mgmt_lqi_req buf = %d", (FMT__D, param));
+    TRACE_MSG(TRACE_APP1, ">> test_send_mgmt_lqi_req buf = %d", (FMT__D, param));
 
-  req_param = ZB_BUF_GET_PARAM(param, zb_zdo_mgmt_lqi_param_t);
+    req_param = ZB_BUF_GET_PARAM(param, zb_zdo_mgmt_lqi_param_t);
 
-  req_param->dst_addr = dst_addr;
-  req_param->start_index = 0;
+    req_param->dst_addr = dst_addr;
+    req_param->start_index = 0;
 
-  zb_zdo_mgmt_lqi_req(param, NULL);
+    zb_zdo_mgmt_lqi_req(param, NULL);
 
-  TRACE_MSG(TRACE_APP1, "<< test_send_mgmt_lqi_req", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "<< test_send_mgmt_lqi_req", (FMT__0));
 }
 
 /*! @} */

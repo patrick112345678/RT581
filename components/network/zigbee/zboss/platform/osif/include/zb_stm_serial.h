@@ -39,18 +39,18 @@ ZB_RING_BUFFER_DECLARE(serial_iobuf, zb_uint8_t, 254);
 
 typedef struct zb_serial_ctx_s
 {
-  zb_uint8_t inited;
-  volatile zb_uint8_t tx_in_progress; /* if set, we are waiting for tx complete int */
-  serial_iobuf_t tx_buf;
-  zb_byte_array_t *p_tx_buf;
-  zb_ushort_t tx_buf_cap;
-  zb_callback_t byte_received_cb;
+    zb_uint8_t inited;
+    volatile zb_uint8_t tx_in_progress; /* if set, we are waiting for tx complete int */
+    serial_iobuf_t tx_buf;
+    zb_byte_array_t *p_tx_buf;
+    zb_ushort_t tx_buf_cap;
+    zb_callback_t byte_received_cb;
 }
 zb_serial_ctx_t;
 
 typedef struct zb_io_ctx_s
 {
-  zb_serial_ctx_t serial_ctx;
+    zb_serial_ctx_t serial_ctx;
 }
 zb_io_ctx_t;
 

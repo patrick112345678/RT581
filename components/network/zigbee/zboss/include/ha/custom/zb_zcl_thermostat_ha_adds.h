@@ -47,38 +47,38 @@
 */
 enum zb_zcl_thermostat_attr_ha_e
 {
-  /*! @brief Start of Week attribute */
-  ZB_ZCL_ATTR_THERMOSTAT_START_OF_WEEK_ID                 = 0x0020,
+    /*! @brief Start of Week attribute */
+    ZB_ZCL_ATTR_THERMOSTAT_START_OF_WEEK_ID                 = 0x0020,
 };
 
 /*! @brief Values for System Mode attribute,
     @see HA ZCL spec, subclause 10.1.3.2.2.2 */
 enum zb_zcl_thermostat_system_mode_ha_e
 {
-  /*! Dry value */
-  ZB_ZCL_THERMOSTAT_SYSTEM_MODE_DRY               = 0x08,
-  /*! Sleep value */
-  ZB_ZCL_THERMOSTAT_SYSTEM_MODE_SLEEP             = 0x09,
+    /*! Dry value */
+    ZB_ZCL_THERMOSTAT_SYSTEM_MODE_DRY               = 0x08,
+    /*! Sleep value */
+    ZB_ZCL_THERMOSTAT_SYSTEM_MODE_SLEEP             = 0x09,
 };
 
 /*! @brief Values for Start of Week attribute,
     @see ZCL spec, subclause 6.4.2.2.1 */
 enum zb_zcl_thermostat_start_of_week_e
 {
-  /*! Sunday value */
-  ZB_ZCL_THERMOSTAT_START_OF_WEEK_SUNDAY         = 0x00,
-  /*! Monday value */
-  ZB_ZCL_THERMOSTAT_START_OF_WEEK_MONDAY         = 0x01,
-  /*! Tuesday value */
-  ZB_ZCL_THERMOSTAT_START_OF_WEEK_TUESDAY        = 0x02,
-  /*! Wednesday value */
-  ZB_ZCL_THERMOSTAT_START_OF_WEEK_WEDNESDAY      = 0x03,
-  /*! Thursday value */
-  ZB_ZCL_THERMOSTAT_START_OF_WEEK_THURSDAY       = 0x04,
-  /*! Friday value */
-  ZB_ZCL_THERMOSTAT_START_OF_WEEK_FRIDAY         = 0x05,
-  /*! Saturday value */
-  ZB_ZCL_THERMOSTAT_START_OF_WEEK_SATURDAY       = 0x06,
+    /*! Sunday value */
+    ZB_ZCL_THERMOSTAT_START_OF_WEEK_SUNDAY         = 0x00,
+    /*! Monday value */
+    ZB_ZCL_THERMOSTAT_START_OF_WEEK_MONDAY         = 0x01,
+    /*! Tuesday value */
+    ZB_ZCL_THERMOSTAT_START_OF_WEEK_TUESDAY        = 0x02,
+    /*! Wednesday value */
+    ZB_ZCL_THERMOSTAT_START_OF_WEEK_WEDNESDAY      = 0x03,
+    /*! Thursday value */
+    ZB_ZCL_THERMOSTAT_START_OF_WEEK_THURSDAY       = 0x04,
+    /*! Friday value */
+    ZB_ZCL_THERMOSTAT_START_OF_WEEK_FRIDAY         = 0x05,
+    /*! Saturday value */
+    ZB_ZCL_THERMOSTAT_START_OF_WEEK_SATURDAY       = 0x06,
 };
 
 /* Default value for Start Of Week attribute */
@@ -95,14 +95,14 @@ enum zb_zcl_thermostat_start_of_week_e
 */
 enum zb_zcl_thermostat_cmd_ha_e
 {
-  /** Set Weekly Schedule command */
-  ZB_ZCL_CMD_THERMOSTAT_SET_WEEKLY_SCHEDULE   = 0x01,
-  /** Get Weekly Schedule command */
-  ZB_ZCL_CMD_THERMOSTAT_GET_WEEKLY_SCHEDULE   = 0x02,
-  /** Clear Weekly Schedule command */
-  ZB_ZCL_CMD_THERMOSTAT_CLEAR_WEEKLY_SCHEDULE = 0x03,
-  /** Get Relay Status Log command */
-  ZB_ZCL_CMD_THERMOSTAT_GET_RELAY_STATUS_LOG  = 0x04
+    /** Set Weekly Schedule command */
+    ZB_ZCL_CMD_THERMOSTAT_SET_WEEKLY_SCHEDULE   = 0x01,
+    /** Get Weekly Schedule command */
+    ZB_ZCL_CMD_THERMOSTAT_GET_WEEKLY_SCHEDULE   = 0x02,
+    /** Clear Weekly Schedule command */
+    ZB_ZCL_CMD_THERMOSTAT_CLEAR_WEEKLY_SCHEDULE = 0x03,
+    /** Get Relay Status Log command */
+    ZB_ZCL_CMD_THERMOSTAT_GET_RELAY_STATUS_LOG  = 0x04
 };
 
 /*! @brief Thermostat cluster command identifiers
@@ -110,10 +110,10 @@ enum zb_zcl_thermostat_cmd_ha_e
 */
 enum zb_zcl_thermostat_cmd_resp_ha_e
 {
-  /** Get Weekly Schedule response command */
-  ZB_ZCL_CMD_THERMOSTAT_GET_WEEKLY_SCHEDULE_RESP  = 0x00,
-  /** Get Relay Status Log response command */
-  ZB_ZCL_CMD_THERMOSTAT_GET_RELAY_STATUS_LOG_RESP = 0x01
+    /** Get Weekly Schedule response command */
+    ZB_ZCL_CMD_THERMOSTAT_GET_WEEKLY_SCHEDULE_RESP  = 0x00,
+    /** Get Relay Status Log response command */
+    ZB_ZCL_CMD_THERMOSTAT_GET_RELAY_STATUS_LOG_RESP = 0x01
 };
 
 
@@ -183,9 +183,9 @@ enum zb_zcl_thermostat_cmd_resp_ha_e
  */
 typedef ZB_PACKED_PRE struct zb_zcl_thermostat_weekly_schedule_point_pair_s
 {
-  zb_uint16_t transition_time;
-  zb_uint16_t heat_set_point;
-  zb_uint16_t cool_set_point;
+    zb_uint16_t transition_time;
+    zb_uint16_t heat_set_point;
+    zb_uint16_t cool_set_point;
 } ZB_PACKED_STRUCT zb_zcl_thermostat_weekly_schedule_point_pair_t;
 
 #define ZB_ZCL_THERMOSTAT_WEEKLY_SCHEDULE_POINT_PAIR_FULL_SIZE \
@@ -200,14 +200,14 @@ typedef ZB_PACKED_PRE struct zb_zcl_thermostat_weekly_schedule_point_pair_s
     @see ZCL spec, subclause 10.1.3.3.1.4 */
 enum zb_zcl_thermostat_weekly_schedule_mode_for_seq_e
 {
-  /*! Heat value */
-  ZB_ZCL_THERMOSTAT_WEEKLY_SCHEDULE_MODE_FOR_SEQ_HEAT     = 0x01,
-  /*! Cool value */
-  ZB_ZCL_THERMOSTAT_WEEKLY_SCHEDULE_MODE_FOR_SEQ_COOL     = 0x02,
-  /*! Both (Heat and Cool) value */
-  ZB_ZCL_THERMOSTAT_WEEKLY_SCHEDULE_MODE_FOR_SEQ_BOTH     = 0x03,
+    /*! Heat value */
+    ZB_ZCL_THERMOSTAT_WEEKLY_SCHEDULE_MODE_FOR_SEQ_HEAT     = 0x01,
+    /*! Cool value */
+    ZB_ZCL_THERMOSTAT_WEEKLY_SCHEDULE_MODE_FOR_SEQ_COOL     = 0x02,
+    /*! Both (Heat and Cool) value */
+    ZB_ZCL_THERMOSTAT_WEEKLY_SCHEDULE_MODE_FOR_SEQ_BOTH     = 0x03,
 
-  ZB_ZCL_THERMOSTAT_WEEKLY_SCHEDULE_MODE_FOR_SEQ_RESERVED = 0x04
+    ZB_ZCL_THERMOSTAT_WEEKLY_SCHEDULE_MODE_FOR_SEQ_RESERVED = 0x04
 };
 
 /** @brief Add attribute value to command payload
@@ -279,9 +279,9 @@ enum zb_zcl_thermostat_weekly_schedule_mode_for_seq_e
 
 typedef ZB_PACKED_PRE struct zb_zcl_thermostat_set_weekly_schedule_req_s
 {
-  zb_uint8_t num_of_transitions;
-  zb_uint8_t day_of_week;
-  zb_uint8_t mode_for_seq;
+    zb_uint8_t num_of_transitions;
+    zb_uint8_t day_of_week;
+    zb_uint8_t mode_for_seq;
 } ZB_PACKED_STRUCT zb_zcl_thermostat_set_weekly_schedule_req_t;
 
 #define ZB_ZCL_THERMOSTAT_SET_WEEKLY_SCHEDULE_REQ_SIZE \
@@ -379,8 +379,8 @@ typedef ZB_PACKED_PRE struct zb_zcl_thermostat_set_weekly_schedule_req_s
 
 typedef ZB_PACKED_PRE struct zb_zcl_thermostat_get_weekly_schedule_req_s
 {
-  zb_uint8_t days_to_return;
-  zb_uint8_t mode_to_return;
+    zb_uint8_t days_to_return;
+    zb_uint8_t mode_to_return;
 } ZB_PACKED_STRUCT zb_zcl_thermostat_get_weekly_schedule_req_t;
 
 #define ZB_ZCL_THERMOSTAT_GET_WEEKLY_SCHEDULE_REQ_PAYLOAD_LEN \
@@ -444,9 +444,9 @@ typedef ZB_PACKED_PRE struct zb_zcl_thermostat_get_weekly_schedule_req_s
  */
 typedef ZB_PACKED_PRE struct zb_zcl_thermostat_get_weekly_schedule_resp_s
 {
-  zb_uint8_t num_of_transitions;
-  zb_uint8_t day_of_week;
-  zb_uint8_t mode_for_seq;
+    zb_uint8_t num_of_transitions;
+    zb_uint8_t day_of_week;
+    zb_uint8_t mode_for_seq;
 } ZB_PACKED_STRUCT zb_zcl_thermostat_get_weekly_schedule_resp_t;
 
 /** @brief Initialize Get Weekly Schedule resp command
@@ -564,12 +564,12 @@ typedef ZB_PACKED_PRE struct zb_zcl_thermostat_get_weekly_schedule_resp_s
 
 typedef ZB_PACKED_PRE struct zb_zcl_thermostat_get_relay_status_log_resp_s
 {
-  zb_uint16_t time_of_day;
-  zb_uint16_t relay_status;
-  zb_int16_t local_temperature;
-  zb_uint8_t humidity_in_percentage;
-  zb_int16_t set_point;
-  zb_uint16_t unread_entries;
+    zb_uint16_t time_of_day;
+    zb_uint16_t relay_status;
+    zb_int16_t local_temperature;
+    zb_uint8_t humidity_in_percentage;
+    zb_int16_t set_point;
+    zb_uint16_t unread_entries;
 } ZB_PACKED_STRUCT zb_zcl_thermostat_get_relay_status_log_resp_t;
 
 #define ZB_ZCL_THERMOSTAT_GET_RELAY_STATUS_LOG_RESP_SIZE \
@@ -685,32 +685,32 @@ typedef ZB_PACKED_PRE struct zb_zcl_thermostat_get_relay_status_log_resp_s
 #define ZB_WEEK_TIME_SUBTRACT(a, b) ((a) > (b)) ? ((a) - (b)) : ((a) + ZB_SECOND_PER_WEEK - (b))
 
 #ifdef ZB_TIMER_32
-  // 1 day (24h)
+// 1 day (24h)
 /** @brief Maximum period of Thermostat process loop */
-  #define ZB_ZCL_THERMOSTAT_TIMER_MAX          (24*60*60)
+#define ZB_ZCL_THERMOSTAT_TIMER_MAX          (24*60*60)
 #else
-  // 5 min
+// 5 min
 /** @brief Maximum period of Thermostat process loop */
-  #define ZB_ZCL_THERMOSTAT_TIMER_MAX          (5*60)
+#define ZB_ZCL_THERMOSTAT_TIMER_MAX          (5*60)
 #endif
 
 
 /** @brief Struct with one Weekly Schedule attribute */
 typedef struct zb_zcl_thermostat_weekly_schedule_record_s
 {
-  zb_uint8_t  days;             /*< days, ZB_ZCL_THERMOSTAT_WEEKLY_FREE_RECORD (0) - free record */
-  zb_uint32_t start_time;       /*< seconds after midnight */
-  zb_uint8_t mode;              /*< Mode for Sequence */
-  zb_uint16_t heat_setpoint;    /*< Heat Set Point */
-  zb_uint16_t cool_setpoint;    /*< Cool Set Point */
+    zb_uint8_t  days;             /*< days, ZB_ZCL_THERMOSTAT_WEEKLY_FREE_RECORD (0) - free record */
+    zb_uint32_t start_time;       /*< seconds after midnight */
+    zb_uint8_t mode;              /*< Mode for Sequence */
+    zb_uint16_t heat_setpoint;    /*< Heat Set Point */
+    zb_uint16_t cool_setpoint;    /*< Cool Set Point */
 }
 zb_zcl_thermostat_weekly_schedule_record_t;
 
 /** @brief Struct with Context Thermostat cluster */
 typedef struct zb_zcl_thermostat_context_ha_s
 {
-  zb_zcl_thermostat_weekly_schedule_record_t schedule_table[ZB_ZCL_THERMOSTAT_WEEKLY_SCHEDULE_TABLE_SIZE];
-  zb_uint8_t setpoint_mode;
+    zb_zcl_thermostat_weekly_schedule_record_t schedule_table[ZB_ZCL_THERMOSTAT_WEEKLY_SCHEDULE_TABLE_SIZE];
+    zb_uint8_t setpoint_mode;
 }
 zb_zcl_thermostat_context_ha_t;
 

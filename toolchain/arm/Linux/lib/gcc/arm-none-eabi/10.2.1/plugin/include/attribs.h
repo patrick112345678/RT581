@@ -39,8 +39,8 @@ extern tree get_attribute_namespace (const_tree);
 extern void apply_tm_attr (tree, tree);
 extern tree make_attribute (const char *, const char *, tree);
 
-extern struct scoped_attributes* register_scoped_attributes (const struct attribute_spec *,
-							     const char *);
+extern struct scoped_attributes *register_scoped_attributes (const struct attribute_spec *,
+        const char *);
 
 extern char *sorted_attr_string (tree);
 extern bool common_function_versions (tree, tree);
@@ -104,11 +104,11 @@ extern int attribute_list_contained (const_tree, const_tree);
    The function is called from lookup_attribute in order to optimize
    for size.  */
 extern tree private_lookup_attribute (const char *attr_name, size_t attr_len,
-				      tree list);
+                                      tree list);
 
 extern unsigned decls_mismatched_attributes (tree, tree, tree,
-					     const char* const[],
-					     pretty_printer*);
+        const char *const[],
+        pretty_printer *);
 
 extern void maybe_diag_alias_attributes (tree, tree);
 
@@ -118,13 +118,15 @@ extern void maybe_diag_alias_attributes (tree, tree);
 static inline tree
 canonicalize_attr_name (tree attr_name)
 {
-  const size_t l = IDENTIFIER_LENGTH (attr_name);
-  const char *s = IDENTIFIER_POINTER (attr_name);
+    const size_t l = IDENTIFIER_LENGTH (attr_name);
+    const char *s = IDENTIFIER_POINTER (attr_name);
 
-  if (l > 4 && s[0] == '_' && s[1] == '_' && s[l - 1] == '_' && s[l - 2] == '_')
-    return get_identifier_with_length (s + 2, l - 4);
+    if (l > 4 && s[0] == '_' && s[1] == '_' && s[l - 1] == '_' && s[l - 2] == '_')
+    {
+        return get_identifier_with_length (s + 2, l - 4);
+    }
 
-  return attr_name;
+    return attr_name;
 }
 
 /* Compare attribute identifiers ATTR1 and ATTR2 with length ATTR1_LEN and
@@ -132,9 +134,9 @@ canonicalize_attr_name (tree attr_name)
 
 static inline bool
 cmp_attribs (const char *attr1, size_t attr1_len,
-	     const char *attr2, size_t attr2_len)
+             const char *attr2, size_t attr2_len)
 {
-  return attr1_len == attr2_len && strncmp (attr1, attr2, attr1_len) == 0;
+    return attr1_len == attr2_len && strncmp (attr1, attr2, attr1_len) == 0;
 }
 
 /* Compare attribute identifiers ATTR1 and ATTR2.  */
@@ -142,7 +144,7 @@ cmp_attribs (const char *attr1, size_t attr1_len,
 static inline bool
 cmp_attribs (const char *attr1, const char *attr2)
 {
-  return cmp_attribs (attr1, strlen (attr1), attr2, strlen (attr2));
+    return cmp_attribs (attr1, strlen (attr1), attr2, strlen (attr2));
 }
 
 /* Given an identifier node IDENT and a string ATTR_NAME, return true
@@ -151,8 +153,8 @@ cmp_attribs (const char *attr1, const char *attr2)
 static inline bool
 is_attribute_p (const char *attr_name, const_tree ident)
 {
-  return cmp_attribs (attr_name, strlen (attr_name),
-		      IDENTIFIER_POINTER (ident), IDENTIFIER_LENGTH (ident));
+    return cmp_attribs (attr_name, strlen (attr_name),
+                        IDENTIFIER_POINTER (ident), IDENTIFIER_LENGTH (ident));
 }
 
 /* Given an attribute name ATTR_NAME and a list of attributes LIST,
@@ -166,17 +168,19 @@ is_attribute_p (const char *attr_name, const_tree ident)
 static inline tree
 lookup_attribute (const char *attr_name, tree list)
 {
-  gcc_checking_assert (attr_name[0] != '_');
-  /* In most cases, list is NULL_TREE.  */
-  if (list == NULL_TREE)
-    return NULL_TREE;
-  else
+    gcc_checking_assert (attr_name[0] != '_');
+    /* In most cases, list is NULL_TREE.  */
+    if (list == NULL_TREE)
     {
-      size_t attr_len = strlen (attr_name);
-      /* Do the strlen() before calling the out-of-line implementation.
-	 In most cases attr_name is a string constant, and the compiler
-	 will optimize the strlen() away.  */
-      return private_lookup_attribute (attr_name, attr_len, list);
+        return NULL_TREE;
+    }
+    else
+    {
+        size_t attr_len = strlen (attr_name);
+        /* Do the strlen() before calling the out-of-line implementation.
+        In most cases attr_name is a string constant, and the compiler
+         will optimize the strlen() away.  */
+        return private_lookup_attribute (attr_name, attr_len, list);
     }
 }
 
@@ -188,33 +192,37 @@ lookup_attribute (const char *attr_name, tree list)
 static inline tree
 lookup_attribute_by_prefix (const char *attr_name, tree list)
 {
-  gcc_checking_assert (attr_name[0] != '_');
-  /* In most cases, list is NULL_TREE.  */
-  if (list == NULL_TREE)
-    return NULL_TREE;
-  else
+    gcc_checking_assert (attr_name[0] != '_');
+    /* In most cases, list is NULL_TREE.  */
+    if (list == NULL_TREE)
     {
-      size_t attr_len = strlen (attr_name);
-      while (list)
-	{
-	  size_t ident_len = IDENTIFIER_LENGTH (get_attribute_name (list));
+        return NULL_TREE;
+    }
+    else
+    {
+        size_t attr_len = strlen (attr_name);
+        while (list)
+        {
+            size_t ident_len = IDENTIFIER_LENGTH (get_attribute_name (list));
 
-	  if (attr_len > ident_len)
-	    {
-	      list = TREE_CHAIN (list);
-	      continue;
-	    }
+            if (attr_len > ident_len)
+            {
+                list = TREE_CHAIN (list);
+                continue;
+            }
 
-	  const char *p = IDENTIFIER_POINTER (get_attribute_name (list));
-	  gcc_checking_assert (attr_len == 0 || p[0] != '_');
+            const char *p = IDENTIFIER_POINTER (get_attribute_name (list));
+            gcc_checking_assert (attr_len == 0 || p[0] != '_');
 
-	  if (strncmp (attr_name, p, attr_len) == 0)
-	    break;
+            if (strncmp (attr_name, p, attr_len) == 0)
+            {
+                break;
+            }
 
-	  list = TREE_CHAIN (list);
-	}
+            list = TREE_CHAIN (list);
+        }
 
-      return list;
+        return list;
     }
 }
 
@@ -224,18 +232,18 @@ lookup_attribute_by_prefix (const char *attr_name, tree list)
 
 struct attr_access
 {
-  /* The attribute pointer argument.  */
-  tree ptr;
-  /* The size of the pointed-to object or NULL when not specified.  */
-  tree size;
+    /* The attribute pointer argument.  */
+    tree ptr;
+    /* The size of the pointed-to object or NULL when not specified.  */
+    tree size;
 
-  /* The zero-based number of each of the formal function arguments.  */
-  unsigned ptrarg;
-  unsigned sizarg;
+    /* The zero-based number of each of the formal function arguments.  */
+    unsigned ptrarg;
+    unsigned sizarg;
 
-  /* The access mode.  */
-  enum access_mode { read_only, write_only, read_write };
-  access_mode mode;
+    /* The access mode.  */
+    enum access_mode { read_only, write_only, read_write };
+    access_mode mode;
 };
 
 #endif // GCC_ATTRIBS_H

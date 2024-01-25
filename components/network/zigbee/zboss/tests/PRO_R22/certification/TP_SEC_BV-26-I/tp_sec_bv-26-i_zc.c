@@ -64,184 +64,184 @@ static void send_key_switch(zb_uint8_t param);
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  ZB_SET_TRAF_DUMP_ON();
-  ZB_INIT("zdo_1_zc");
-#if UART_CONTROL	
-	test_control_init();
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    ZB_SET_TRAF_DUMP_ON();
+    ZB_INIT("zdo_1_zc");
+#if UART_CONTROL
+    test_control_init();
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 #endif
 
 
-  zb_set_long_address(g_ieee_addr_c);
-  zb_cert_test_set_common_channel_settings();
-  zb_cert_test_set_zc_role();
+    zb_set_long_address(g_ieee_addr_c);
+    zb_cert_test_set_common_channel_settings();
+    zb_cert_test_set_zc_role();
 
-  MAC_ADD_VISIBLE_LONG((zb_uint8_t*) g_ieee_addr_r1);
+    MAC_ADD_VISIBLE_LONG((zb_uint8_t *) g_ieee_addr_r1);
 
-  zb_set_pan_id(TEST_PAN_ID);
+    zb_set_pan_id(TEST_PAN_ID);
 
-  zb_set_max_children(2);
+    zb_set_max_children(2);
 
-  zb_secur_setup_nwk_key((zb_uint8_t*) g_key0, 0);
-  zb_secur_setup_nwk_key((zb_uint8_t*) g_key1, 1);
+    zb_secur_setup_nwk_key((zb_uint8_t *) g_key0, 0);
+    zb_secur_setup_nwk_key((zb_uint8_t *) g_key1, 1);
 
 #ifdef SECURITY_LEVEL
-  zb_cert_test_set_security_level(SECURITY_LEVEL);
+    zb_cert_test_set_security_level(SECURITY_LEVEL);
 #endif
 
-  zb_zdo_set_aps_unsecure_join(INSECURE_JOIN_ZC);
+    zb_zdo_set_aps_unsecure_join(INSECURE_JOIN_ZC);
 
-  zb_set_nvram_erase_at_start(ZB_TRUE);
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zboss_main_loop();
-  }
+    zb_set_nvram_erase_at_start(ZB_TRUE);
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zboss_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_zdo_app_signal_hdr_t *sg_p = NULL;
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, &sg_p);
+    zb_zdo_app_signal_hdr_t *sg_p = NULL;
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, &sg_p);
 
-  TRACE_MSG(TRACE_APP1, "zboss_signal_handler: status %hd signal %hd",
-            (FMT__H_H, ZB_GET_APP_SIGNAL_STATUS(param), sig));
+    TRACE_MSG(TRACE_APP1, "zboss_signal_handler: status %hd signal %hd",
+              (FMT__H_H, ZB_GET_APP_SIGNAL_STATUS(param), sig));
 
-  switch (sig)
-  {
+    switch (sig)
+    {
 #ifdef TEST_ENABLED
     case ZB_ZDO_SIGNAL_DEVICE_ANNCE:
-      /* If both ZR and ZED have joined the network, start test procedure. */
-      if (++dev_joined_cnt == 2)
-      {
-      /* send Transport Key */
-      test_step_register(send_tk, 0, TP_SEC_BV_26_I_STEP_1_TIME_ZC);
-      /* send Key Switch */
-      test_step_register(send_key_switch, 0, TP_SEC_BV_26_I_STEP_3_TIME_ZC);
-      /* send Test Buffer Request by the addr 0xFFFF */
-      test_step_register(send_data_bc, 0, TP_SEC_BV_26_I_STEP_5_TIME_ZC);
+        /* If both ZR and ZED have joined the network, start test procedure. */
+        if (++dev_joined_cnt == 2)
+        {
+            /* send Transport Key */
+            test_step_register(send_tk, 0, TP_SEC_BV_26_I_STEP_1_TIME_ZC);
+            /* send Key Switch */
+            test_step_register(send_key_switch, 0, TP_SEC_BV_26_I_STEP_3_TIME_ZC);
+            /* send Test Buffer Request by the addr 0xFFFF */
+            test_step_register(send_data_bc, 0, TP_SEC_BV_26_I_STEP_5_TIME_ZC);
 
-      test_control_start(TEST_MODE, TP_SEC_BV_26_I_STEP_1_DELAY_ZC);
-      }
-      break;
-#endif	/* TEST_ENABLED */
+            test_control_start(TEST_MODE, TP_SEC_BV_26_I_STEP_1_DELAY_ZC);
+        }
+        break;
+#endif  /* TEST_ENABLED */
 
     case ZB_ZDO_SIGNAL_DEFAULT_START:
-      if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
-      {
-	TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
-      }
-      else
-      {
-	TRACE_MSG(TRACE_ERROR, "Device start FAILED status %d",
-		  (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
-      }
-      break; /* ZB_ZDO_SIGNAL_DEFAULT_START */
+        if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
+        {
+            TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
+        }
+        else
+        {
+            TRACE_MSG(TRACE_ERROR, "Device start FAILED status %d",
+                      (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
+        }
+        break; /* ZB_ZDO_SIGNAL_DEFAULT_START */
 
     default:
-      if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
-      {
-	TRACE_MSG(TRACE_APS1, "zboss_signal_handler: status OK, status %d",
-		  (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
-      }
-      else
-      {
-	TRACE_MSG(TRACE_ERROR, "zboss_signal_handler: status FAILED, status %d",
-		  (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
-      }
-      break;
-  }
+        if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
+        {
+            TRACE_MSG(TRACE_APS1, "zboss_signal_handler: status OK, status %d",
+                      (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
+        }
+        else
+        {
+            TRACE_MSG(TRACE_ERROR, "zboss_signal_handler: status FAILED, status %d",
+                      (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
+        }
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 static void send_data_cb(zb_uint8_t param)
 {
-  if (!param)
-  {
-    TRACE_MSG(TRACE_INFO1, "send_data_cb: status OK", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(TRACE_INFO1, "send_data_cb: status FAILED", (FMT__0));
-  }
+    if (!param)
+    {
+        TRACE_MSG(TRACE_INFO1, "send_data_cb: status OK", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(TRACE_INFO1, "send_data_cb: status FAILED", (FMT__0));
+    }
 }
 
 static void send_data_bc_delayed(zb_bufid_t buf)
 {
-  zb_buffer_test_req_param_t *req_param;
+    zb_buffer_test_req_param_t *req_param;
 
-  TRACE_MSG(TRACE_APP3, "send_data to 0xFFFF", (FMT__0));
-  if (!buf)
-  {
-    TRACE_MSG(TRACE_ERROR, "send_data: unable to get data buffer", (FMT__0));
-    ZB_EXIT(1);
-  }
+    TRACE_MSG(TRACE_APP3, "send_data to 0xFFFF", (FMT__0));
+    if (!buf)
+    {
+        TRACE_MSG(TRACE_ERROR, "send_data: unable to get data buffer", (FMT__0));
+        ZB_EXIT(1);
+    }
 
-  req_param = ZB_BUF_GET_PARAM(buf, zb_buffer_test_req_param_t);
-  BUFFER_TEST_REQ_SET_DEFAULT(req_param);
-  req_param->dst_addr = zb_address_short_by_ieee((zb_uint8_t*)g_ieee_addr_r1);
+    req_param = ZB_BUF_GET_PARAM(buf, zb_buffer_test_req_param_t);
+    BUFFER_TEST_REQ_SET_DEFAULT(req_param);
+    req_param->dst_addr = zb_address_short_by_ieee((zb_uint8_t *)g_ieee_addr_r1);
 
-  zb_tp_buffer_test_request(buf, send_data_cb);
+    zb_tp_buffer_test_request(buf, send_data_cb);
 }
 
 static void send_data_bc(zb_uint8_t param)
 {
-  ZVUNUSED(param);
+    ZVUNUSED(param);
 
-  zb_buf_get_out_delayed(send_data_bc_delayed);
+    zb_buf_get_out_delayed(send_data_bc_delayed);
 }
 
 static void send_tk_delayed(zb_bufid_t buf)
 {
-  zb_apsme_transport_key_req_t *req = NULL;
-  zb_uint8_t *key = NULL;
+    zb_apsme_transport_key_req_t *req = NULL;
+    zb_uint8_t *key = NULL;
 
-  TRACE_MSG(TRACE_APP3, ">>send_tk", (FMT__0));
+    TRACE_MSG(TRACE_APP3, ">>send_tk", (FMT__0));
 
-  if (!buf)
-  {
-    TRACE_MSG(TRACE_ERROR, "send_tk: error - unable to get data buffer", (FMT__0));
-    ZB_EXIT(1);
-  }
+    if (!buf)
+    {
+        TRACE_MSG(TRACE_ERROR, "send_tk: error - unable to get data buffer", (FMT__0));
+        ZB_EXIT(1);
+    }
 
-  req = ZB_BUF_GET_PARAM(buf, zb_apsme_transport_key_req_t);
-  req->addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
-  req->dest_address.addr_short = 0xFFFF;
-  req->key.nwk.use_parent = ZB_FALSE;
-  req->key_type = ZB_STANDARD_NETWORK_KEY;
-  req->key.nwk.key_seq_number = 1;
-  key = secur_nwk_key_by_seq(1);
-  if (!key)
-  {
-    TRACE_MSG(TRACE_ERROR, "send_tk: error - no nwk", (FMT__0));
-    ZB_EXIT(1);
-  }
-  ZB_MEMCPY(req->key.nwk.key, key, ZB_CCM_KEY_SIZE);
-  ZB_SCHEDULE_CALLBACK(zb_apsme_transport_key_request, buf);
+    req = ZB_BUF_GET_PARAM(buf, zb_apsme_transport_key_req_t);
+    req->addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
+    req->dest_address.addr_short = 0xFFFF;
+    req->key.nwk.use_parent = ZB_FALSE;
+    req->key_type = ZB_STANDARD_NETWORK_KEY;
+    req->key.nwk.key_seq_number = 1;
+    key = secur_nwk_key_by_seq(1);
+    if (!key)
+    {
+        TRACE_MSG(TRACE_ERROR, "send_tk: error - no nwk", (FMT__0));
+        ZB_EXIT(1);
+    }
+    ZB_MEMCPY(req->key.nwk.key, key, ZB_CCM_KEY_SIZE);
+    ZB_SCHEDULE_CALLBACK(zb_apsme_transport_key_request, buf);
 
-  TRACE_MSG(TRACE_APP3, "<<send_tk", (FMT__0));
+    TRACE_MSG(TRACE_APP3, "<<send_tk", (FMT__0));
 }
 
 static void send_tk(zb_uint8_t param)
 {
-  ZVUNUSED(param);
+    ZVUNUSED(param);
 
-  zb_buf_get_out_delayed(send_tk_delayed);
+    zb_buf_get_out_delayed(send_tk_delayed);
 }
 
 static void send_key_switch(zb_uint8_t param)
 {
-  ZVUNUSED(param);
+    ZVUNUSED(param);
 
-  zb_buf_get_out_delayed(zb_secur_switch_nwk_key_br);
+    zb_buf_get_out_delayed(zb_secur_switch_nwk_key_br);
 }

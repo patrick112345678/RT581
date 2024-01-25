@@ -59,7 +59,7 @@ zb_nwk_device_type_t ncp_host_state_get_device_type(void);
 zb_uint8_t ncp_host_state_get_max_children(void);
 
 
-zb_uint8_t* ncp_host_state_get_ic(void);
+zb_uint8_t *ncp_host_state_get_ic(void);
 
 
 zb_uint8_t ncp_host_state_get_ic_type(void);
@@ -159,7 +159,7 @@ void ncp_host_state_set_pan_id(zb_uint16_t pan_id);
 void ncp_host_state_set_coordinator_version(zb_uint8_t version);
 
 
-zb_aps_group_table_t* ncp_host_state_get_group_table(void);
+zb_aps_group_table_t *ncp_host_state_get_group_table(void);
 
 
 void ncp_host_state_set_rejoin_active(zb_bool_t is_active);

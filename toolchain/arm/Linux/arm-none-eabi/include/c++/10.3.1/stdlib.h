@@ -40,10 +40,10 @@ using std::atexit;
 using std::exit;
 #if __cplusplus >= 201103L
 # ifdef _GLIBCXX_HAVE_AT_QUICK_EXIT
-  using std::at_quick_exit;
+using std::at_quick_exit;
 # endif
 # ifdef _GLIBCXX_HAVE_QUICK_EXIT
-  using std::quick_exit;
+using std::quick_exit;
 # endif
 #endif
 

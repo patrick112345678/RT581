@@ -42,138 +42,138 @@ static const zb_ieee_addr_t g_ed_ieee_addr = {0x01, 0x00, 0x00, 0x00, 0x00, 0x00
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("zdo_1_zc");
-#if UART_CONTROL	
-	test_control_init();
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    ZB_INIT("zdo_1_zc");
+#if UART_CONTROL
+    test_control_init();
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 #endif
-	
 
-  /* let's always be coordinator */
-  zb_cert_test_set_common_channel_settings();
-  zb_cert_test_set_zc_role();
 
-  zb_set_pan_id(0x1aaa);
-  zb_set_long_address(g_ieee_addr);
+    /* let's always be coordinator */
+    zb_cert_test_set_common_channel_settings();
+    zb_cert_test_set_zc_role();
 
-  zb_set_max_children(1);
+    zb_set_pan_id(0x1aaa);
+    zb_set_long_address(g_ieee_addr);
 
-  /* turn off security */
-  /* zb_cert_test_set_security_level(0); */
+    zb_set_max_children(1);
 
-  MAC_ADD_VISIBLE_LONG((zb_uint8_t*) g_zr_addr);
+    /* turn off security */
+    /* zb_cert_test_set_security_level(0); */
 
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    MAC_ADD_VISIBLE_LONG((zb_uint8_t *) g_zr_addr);
 
-  if ( zboss_start() != RET_OK )
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zboss_main_loop();
-  }
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  TRACE_DEINIT();
+    if ( zboss_start() != RET_OK )
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zboss_main_loop();
+    }
 
-  MAIN_RETURN(0);
+    TRACE_DEINIT();
+
+    MAIN_RETURN(0);
 }
 
 
 static void packets_sent_cb(zb_uint8_t param)
 {
-  ZVUNUSED(param);
-  TRACE_MSG(TRACE_APS3, "packets_sent_cb", (FMT__0));
+    ZVUNUSED(param);
+    TRACE_MSG(TRACE_APS3, "packets_sent_cb", (FMT__0));
 }
 
 static void start_packet_send(zb_uint8_t param, zb_uint16_t len)
 {
-  TRACE_MSG(TRACE_INFO3, "###start_packet_send", (FMT__0));
+    TRACE_MSG(TRACE_INFO3, "###start_packet_send", (FMT__0));
 
-/*  ZVUNUSED(param);*/
+    /*  ZVUNUSED(param);*/
 
-  TRACE_MSG(TRACE_APS3, "start_packet_send", (FMT__0));
+    TRACE_MSG(TRACE_APS3, "start_packet_send", (FMT__0));
 
-  if (!param)
-  {
-    zb_buf_get_out_delayed_ext(start_packet_send, len, 0);
-  }
-  else
-  {
-    zb_tp_transmit_counted_packets_param_t *params;
+    if (!param)
+    {
+        zb_buf_get_out_delayed_ext(start_packet_send, len, 0);
+    }
+    else
+    {
+        zb_tp_transmit_counted_packets_param_t *params;
 
-    params = ZB_BUF_GET_PARAM(param, zb_tp_transmit_counted_packets_param_t);
-    BUFFER_COUNTED_TEST_REQ_SET_DEFAULT(params);
-    params->len = len;
-    params->packets_number = 1;
-    params->idle_time = 10;
-    params->dst_addr = zb_address_short_by_ieee((zb_uint8_t*) g_ed_ieee_addr);
-    params->addr_mode = ZB_APS_ADDR_MODE_16_ENDP_PRESENT;
+        params = ZB_BUF_GET_PARAM(param, zb_tp_transmit_counted_packets_param_t);
+        BUFFER_COUNTED_TEST_REQ_SET_DEFAULT(params);
+        params->len = len;
+        params->packets_number = 1;
+        params->idle_time = 10;
+        params->dst_addr = zb_address_short_by_ieee((zb_uint8_t *) g_ed_ieee_addr);
+        params->addr_mode = ZB_APS_ADDR_MODE_16_ENDP_PRESENT;
 
-    TRACE_MSG(TRACE_APS3, "dst addr %d", (FMT__D, params->dst_addr));
-    zb_tp_transmit_counted_packets_req(param, packets_sent_cb);
-  }
+        TRACE_MSG(TRACE_APS3, "dst addr %d", (FMT__D, params->dst_addr));
+        zb_tp_transmit_counted_packets_req(param, packets_sent_cb);
+    }
 }
 
 
 static void start_packet_send_2_param(zb_uint8_t len)
 {
-  zb_buf_get_out_delayed_ext(start_packet_send, len, 0);
+    zb_buf_get_out_delayed_ext(start_packet_send, len, 0);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_hdr_t *sg_p = NULL;
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, &sg_p);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_hdr_t *sg_p = NULL;
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, &sg_p);
 
-  TRACE_MSG(TRACE_APP1, "zboss_signal_handler: status %hd signal %hd",
-            (FMT__H_H, ZB_GET_APP_SIGNAL_STATUS(param), sig));
+    TRACE_MSG(TRACE_APP1, "zboss_signal_handler: status %hd signal %hd",
+              (FMT__H_H, ZB_GET_APP_SIGNAL_STATUS(param), sig));
 
-  if (status == 0)
-  {
-    switch(sig)
+    if (status == 0)
     {
-      case ZB_ZDO_SIGNAL_DEFAULT_START:
-      case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      case ZB_BDB_SIGNAL_DEVICE_REBOOT:
-        TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
-        break;
+        switch (sig)
+        {
+        case ZB_ZDO_SIGNAL_DEFAULT_START:
+        case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
+        case ZB_BDB_SIGNAL_DEVICE_REBOOT:
+            TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
+            break;
 
-      case ZB_ZDO_SIGNAL_DEVICE_ANNCE:
-      {
-          zb_zdo_signal_device_annce_params_t *params;
+        case ZB_ZDO_SIGNAL_DEVICE_ANNCE:
+        {
+            zb_zdo_signal_device_annce_params_t *params;
 
-          TRACE_MSG(TRACE_APP1, "signal: ZB_ZDO_SIGNAL_DEVICE_ANNCE", (FMT__0));
+            TRACE_MSG(TRACE_APP1, "signal: ZB_ZDO_SIGNAL_DEVICE_ANNCE", (FMT__0));
 
-          params = ZB_ZDO_SIGNAL_GET_PARAMS(sg_p, zb_zdo_signal_device_annce_params_t);
+            params = ZB_ZDO_SIGNAL_GET_PARAMS(sg_p, zb_zdo_signal_device_annce_params_t);
 
-          if (ZB_IEEE_ADDR_CMP(params->ieee_addr, g_ed_ieee_addr))
-          {
-            ZB_SCHEDULE_ALARM(start_packet_send_2_param, 0x0A, 25*ZB_TIME_ONE_SECOND);
-            ZB_SCHEDULE_ALARM(start_packet_send_2_param, 0x20, 25*ZB_TIME_ONE_SECOND + ZB_ZDO_INDIRECT_POLL_TIMER + ZB_TIME_ONE_SECOND);
-            ZB_SCHEDULE_ALARM(start_packet_send_2_param, 0x20, 26*ZB_TIME_ONE_SECOND + ZB_ZDO_INDIRECT_POLL_TIMER + ZB_TIME_ONE_SECOND);
-          }
+            if (ZB_IEEE_ADDR_CMP(params->ieee_addr, g_ed_ieee_addr))
+            {
+                ZB_SCHEDULE_ALARM(start_packet_send_2_param, 0x0A, 25 * ZB_TIME_ONE_SECOND);
+                ZB_SCHEDULE_ALARM(start_packet_send_2_param, 0x20, 25 * ZB_TIME_ONE_SECOND + ZB_ZDO_INDIRECT_POLL_TIMER + ZB_TIME_ONE_SECOND);
+                ZB_SCHEDULE_ALARM(start_packet_send_2_param, 0x20, 26 * ZB_TIME_ONE_SECOND + ZB_ZDO_INDIRECT_POLL_TIMER + ZB_TIME_ONE_SECOND);
+            }
         }
-        break; /* ZB_ZDO_SIGNAL_DEVICE_ANNCE */
+            break; /* ZB_ZDO_SIGNAL_DEVICE_ANNCE */
 
-      default:
-        break;
+        default:
+            break;
+        }
     }
-  }
-  else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
-  {
-    TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device start FAILED status %d",
-                        (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
-  }
+    else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
+    {
+        TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device start FAILED status %d",
+                  (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }

@@ -165,11 +165,11 @@ void zb_zdo_pim_permit_turbo_poll(zb_bool_t permit);
 void *nwk_alloc_and_fill_cmd(zb_bufid_t buf, zb_uint8_t cmd, zb_uint8_t cmd_size);
 zb_ret_t zb_nwk_neighbor_get_by_short(zb_uint16_t short_addr, zb_neighbor_tbl_ent_t **nbt);
 
-zb_aps_device_key_pair_set_t * zb_secur_update_key_pair(zb_ieee_addr_t address,
-                                                        zb_uint8_t* key,
-                                                        zb_uint8_t key_type,
-                                                        zb_uint8_t key_attr,
-                                                        zb_uint8_t key_source);
+zb_aps_device_key_pair_set_t *zb_secur_update_key_pair(zb_ieee_addr_t address,
+        zb_uint8_t *key,
+        zb_uint8_t key_type,
+        zb_uint8_t key_attr,
+        zb_uint8_t key_source);
 
 void tp_send_req_by_short(zb_uint16_t command_id, zb_uint8_t param, zb_uint16_t profile_id, zb_uint16_t addr, zb_uint8_t addr_mode, zb_uint8_t src_ep, zb_uint8_t dst_ep, zb_uint8_t tx_options, zb_uint8_t radius);
 
@@ -195,9 +195,9 @@ void zb_set_default_ffd_descriptor_values(zb_logical_type_t device_type);
 
 void zb_mcps_data_request(zb_uint8_t param);
 void zb_mcps_build_data_request(zb_bufid_t buf, zb_uint16_t src_addr_param, zb_uint16_t dst_addr_param,
-  zb_uint8_t tx_options_param, zb_uint8_t msdu_hande_param);
+                                zb_uint8_t tx_options_param, zb_uint8_t msdu_hande_param);
 zb_uint8_t zdo_send_req_by_short(zb_uint16_t command_id, zb_uint8_t param, zb_callback_t cb, zb_uint16_t addr,
-                           zb_uint8_t resp_counter);
+                                 zb_uint8_t resp_counter);
 
 void zb_fcf_set_src_addressing_mode(zb_uint8_t *p_fcf, zb_uint8_t addr_mode);
 void zb_tp_transmit_counted_packets_req_ext(zb_uint8_t param, zb_callback_t cb);

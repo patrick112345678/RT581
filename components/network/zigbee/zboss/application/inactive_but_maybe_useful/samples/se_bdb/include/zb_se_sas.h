@@ -44,7 +44,7 @@
 #define ZB_SE_SAS_CHANNEL_MASK ZB_DEFAULT_APS_CHANNEL_MASK/* ZB_TRANSCEIVER_ALL_CHANNELS_MASK */
 
 /* 2 (Zigbee and later) */
-#define ZB_SE_SAS_PROTO_VER	STACK_PRO
+#define ZB_SE_SAS_PROTO_VER STACK_PRO
 
 /* 1 (Zigbee) or 2 (Zigbee PRO) */
 #define ZB_SE_SAS_STACK_PROFILE ZB_PROTOCOL_VERSION
@@ -67,7 +67,7 @@
 /* If the Key Establishment Cluster is being used to
    install a link key Installer provided if using preconfigured link keys. */
 /* FIXME: It is unclear how to use it! */
-#define ZB_SE_SAS_LINK_LEY	"\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01"
+#define ZB_SE_SAS_LINK_LEY  "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01"
 
 /* If no pre-installed key present. */
 /* FIXME: It is unclear how to use it! */
@@ -150,7 +150,7 @@
  * works only with Max Window Size == 1. */
 /* Fragmentation parameter - the maximum number of unacknowledged frames that can be active at once
  * (see [B3] sub-clause 2.2.8.4.5) */
-#define ZB_SE_SAS_APS_MAX_WINDOW_SIZE	1
+#define ZB_SE_SAS_APS_MAX_WINDOW_SIZE   1
 
 /* FIXME: Connect with fragmentation branch. */
 /* In addition the Maximum Incoming Transfer Size Field in the Node descriptor defines the

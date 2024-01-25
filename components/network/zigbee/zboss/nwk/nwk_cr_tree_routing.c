@@ -37,7 +37,7 @@
 
 void zb_nwk_tree_routing_init()
 {
-  ZB_NIB().cskip = 0xFFFF;
+    ZB_NIB().cskip = 0xFFFF;
 }
 
 /**
@@ -47,76 +47,76 @@ void zb_nwk_tree_routing_init()
  */
 static zb_neighbor_tbl_ent_t *zb_nwk_tree_routing_find_router(zb_uint16_t dest_address)
 {
-  zb_neighbor_tbl_ent_t *ret = NULL;
-  zb_address_ieee_ref_t ieee_ref;
-  zb_uint16_t lower_address, upper_address;
-  zb_ushort_t i;
+    zb_neighbor_tbl_ent_t *ret = NULL;
+    zb_address_ieee_ref_t ieee_ref;
+    zb_uint16_t lower_address, upper_address;
+    zb_ushort_t i;
 
-  TRACE_MSG(TRACE_NWK1, ">>zb_nwk_tree_routing_find_router dest_address %d", (FMT__D, dest_address));
+    TRACE_MSG(TRACE_NWK1, ">>zb_nwk_tree_routing_find_router dest_address %d", (FMT__D, dest_address));
 
-  /* try to find exact address first */
-  if ( zb_address_by_short(dest_address, ZB_FALSE, ZB_FALSE, &ieee_ref) == RET_OK
-       && ZG->nwk.neighbor.addr_to_neighbor[ieee_ref] != (zb_uint8_t)-1 )
-  {
-    ret = &ZG->nwk.neighbor.base_neighbor[ ZG->nwk.neighbor.addr_to_neighbor[ieee_ref] ];
-  }
-
-  if ( !ret )
-  {
-    /* We need find a child router whose address allocation contains the
-     * destination address. Means router address space contains destination
-     * address */
-    for ( i = 0; i < ZB_NIB().max_routers; i++ )
+    /* try to find exact address first */
+    if ( zb_address_by_short(dest_address, ZB_FALSE, ZB_FALSE, &ieee_ref) == RET_OK
+            && ZG->nwk.neighbor.addr_to_neighbor[ieee_ref] != (zb_uint8_t) -1 )
     {
-      lower_address = (zb_uint16_t)(ZB_NIB().cskip * i + 1);
-      upper_address = lower_address + ZB_NIB().cskip;
-
-      if ( dest_address > lower_address
-           && dest_address < upper_address )
-      {
-        if ( zb_address_by_short(lower_address, ZB_FALSE, ZB_FALSE, &ieee_ref) == RET_OK
-             && ZG->nwk.neighbor.addr_to_neighbor[ieee_ref] != (zb_uint8_t)-1 )
-        {
-          ret = &ZG->nwk.neighbor.base_neighbor[ ZG->nwk.neighbor.addr_to_neighbor[ieee_ref] ];
-        }
-
-        /* stop address space is found */
-        break;
-      }
+        ret = &ZG->nwk.neighbor.base_neighbor[ ZG->nwk.neighbor.addr_to_neighbor[ieee_ref] ];
     }
-  }
 
-  TRACE_MSG(TRACE_NWK1, "<<zb_nwk_tree_routing_find_router %p", (FMT__P, ret));
-  return ret;
+    if ( !ret )
+    {
+        /* We need find a child router whose address allocation contains the
+         * destination address. Means router address space contains destination
+         * address */
+        for ( i = 0; i < ZB_NIB().max_routers; i++ )
+        {
+            lower_address = (zb_uint16_t)(ZB_NIB().cskip * i + 1);
+            upper_address = lower_address + ZB_NIB().cskip;
+
+            if ( dest_address > lower_address
+                    && dest_address < upper_address )
+            {
+                if ( zb_address_by_short(lower_address, ZB_FALSE, ZB_FALSE, &ieee_ref) == RET_OK
+                        && ZG->nwk.neighbor.addr_to_neighbor[ieee_ref] != (zb_uint8_t) -1 )
+                {
+                    ret = &ZG->nwk.neighbor.base_neighbor[ ZG->nwk.neighbor.addr_to_neighbor[ieee_ref] ];
+                }
+
+                /* stop address space is found */
+                break;
+            }
+        }
+    }
+
+    TRACE_MSG(TRACE_NWK1, "<<zb_nwk_tree_routing_find_router %p", (FMT__P, ret));
+    return ret;
 }
 
 
 zb_neighbor_tbl_ent_t *zb_nwk_tree_routing_route(zb_uint16_t dest_address)
 {
-  zb_neighbor_tbl_ent_t *ret = NULL;
-  zb_uint16_t cskip_parent;
-  zb_bool_t route_down;
+    zb_neighbor_tbl_ent_t *ret = NULL;
+    zb_uint16_t cskip_parent;
+    zb_bool_t route_down;
 
-  TRACE_MSG(TRACE_NWK1, ">>zb_nwk_tree_routing_route dest_address %d", (FMT__D, dest_address));
+    TRACE_MSG(TRACE_NWK1, ">>zb_nwk_tree_routing_route dest_address %d", (FMT__D, dest_address));
 
-  /* To route packet up we should calculate parent Cskip value, but if we are
-   * the coordinator it's useless cause we will route only down */
-  cskip_parent = ( ZB_NIB().depth ) ? zb_nwk_daa_calc_cskip(ZB_NIB().depth - 1) : 0;
+    /* To route packet up we should calculate parent Cskip value, but if we are
+     * the coordinator it's useless cause we will route only down */
+    cskip_parent = ( ZB_NIB().depth ) ? zb_nwk_daa_calc_cskip(ZB_NIB().depth - 1) : 0;
 
-  /* Route direction */
-  route_down = ( (dest_address > ZB_PIBCACHE_NETWORK_ADDRESS()) && (dest_address < ZB_PIBCACHE_NETWORK_ADDRESS() + cskip_parent) );
+    /* Route direction */
+    route_down = ( (dest_address > ZB_PIBCACHE_NETWORK_ADDRESS()) && (dest_address < ZB_PIBCACHE_NETWORK_ADDRESS() + cskip_parent) );
 
-  if ( (ZB_PIBCACHE_NETWORK_ADDRESS() == 0) || route_down )
-  {
-    ret = zb_nwk_tree_routing_find_router(dest_address);
-  }
-  else
-  {
-    zb_nwk_neighbor_get(ZG->nwk.handle.parent, ZB_FALSE, &ret);
-  }
+    if ( (ZB_PIBCACHE_NETWORK_ADDRESS() == 0) || route_down )
+    {
+        ret = zb_nwk_tree_routing_find_router(dest_address);
+    }
+    else
+    {
+        zb_nwk_neighbor_get(ZG->nwk.handle.parent, ZB_FALSE, &ret);
+    }
 
-  TRACE_MSG(TRACE_NWK1, "<<zb_nwk_tree_routing_route %p", (FMT__P, ret));
-  return ret;
+    TRACE_MSG(TRACE_NWK1, "<<zb_nwk_tree_routing_route %p", (FMT__P, ret));
+    return ret;
 }
 
 /*! @} */

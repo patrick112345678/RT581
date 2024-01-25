@@ -32,6 +32,6 @@
 #define TEST_RX_ON_WHEN_IDLE        1
 #define TEST_ASSOCIATION_CAP_INFO   0x80           /* 80 - "allocate address" */
 #define TEST_MSDU_LENGTH            10
-#define TEST_PACKETS_COUNT	    30
+#define TEST_PACKETS_COUNT      30
 
 #endif /* TP_154_MAC_CHANNEL_ACCESS_02_COMMON_H */

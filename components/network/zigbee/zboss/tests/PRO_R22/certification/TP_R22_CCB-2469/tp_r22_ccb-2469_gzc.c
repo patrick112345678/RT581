@@ -38,10 +38,10 @@
 
 enum test_step_e
 {
-  TS_TEST_BUF_REQ_FFFF,
-  TS_TEST_BUF_REQ_FFFD,
-  TS_TEST_BUF_REQ_FFFC,
-  TEST_STEPS_COUNT
+    TS_TEST_BUF_REQ_FFFF,
+    TS_TEST_BUF_REQ_FFFD,
+    TS_TEST_BUF_REQ_FFFC,
+    TEST_STEPS_COUNT
 };
 
 static zb_uint8_t g_step_idx;
@@ -53,128 +53,128 @@ static const zb_ieee_addr_t g_ieee_addr_gzc = IEEE_ADDR_gZC;
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  ZB_INIT("zdo_gzc");
-#if UART_CONTROL	
-	test_control_init();
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    ZB_INIT("zdo_gzc");
+#if UART_CONTROL
+    test_control_init();
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 #endif
-	
-  /* let's always be coordinator */
-  zb_cert_test_set_common_channel_settings();
-  zb_cert_test_set_zc_role();
-  zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  /* set ieee addr */
-  zb_set_long_address(g_ieee_addr_gzc);
-  zb_set_pan_id(TEST_PAN_ID);
+    /* let's always be coordinator */
+    zb_cert_test_set_common_channel_settings();
+    zb_cert_test_set_zc_role();
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  /* accept only one child */
-  zb_set_max_children(1);
+    /* set ieee addr */
+    zb_set_long_address(g_ieee_addr_gzc);
+    zb_set_pan_id(TEST_PAN_ID);
+
+    /* accept only one child */
+    zb_set_max_children(1);
 
 #ifdef SECURITY_LEVEL
-  zb_cert_test_set_security_level(SECURITY_LEVEL);
+    zb_cert_test_set_security_level(SECURITY_LEVEL);
 #endif
 
-  if ( zboss_start() != RET_OK )
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    if ( zboss_start() != RET_OK )
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  switch (sig)
-  {
+    switch (sig)
+    {
     case ZB_ZDO_SIGNAL_DEFAULT_START:
-      TRACE_MSG(TRACE_APS1, "Device started, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        ZB_CERT_HACKS().aps_mcast_addr_overridden = ZB_TRUE;
-        ZB_SCHEDULE_ALARM(test_buffer_request_delayed, 0, TEST_GZC_STARTUP_DELAY);
-      }
-      break; /* ZB_ZDO_SIGNAL_DEFAULT_START */
+        TRACE_MSG(TRACE_APS1, "Device started, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            ZB_CERT_HACKS().aps_mcast_addr_overridden = ZB_TRUE;
+            ZB_SCHEDULE_ALARM(test_buffer_request_delayed, 0, TEST_GZC_STARTUP_DELAY);
+        }
+        break; /* ZB_ZDO_SIGNAL_DEFAULT_START */
 
     default:
-      TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
-      break;
-  }
+        TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 static void test_buffer_request_delayed(zb_uint8_t do_next_ts)
 {
-  TRACE_MSG(TRACE_APP1, ">>test_buffer_request_delayed", (FMT__0));
+    TRACE_MSG(TRACE_APP1, ">>test_buffer_request_delayed", (FMT__0));
 
-  if (do_next_ts)
-  {
-    g_step_idx++;
-  }
-
-  TRACE_MSG(TRACE_APP1, "test_buffer_request_delayed: step %d", (FMT__D, g_step_idx));
-
-  if (g_step_idx < TEST_STEPS_COUNT)
-  {
-    switch (g_step_idx)
+    if (do_next_ts)
     {
-      case TS_TEST_BUF_REQ_FFFF:
-        ZB_CERT_HACKS().aps_mcast_nwk_dst_addr = ZB_NWK_BROADCAST_ALL_DEVICES;
-        break;
-      case TS_TEST_BUF_REQ_FFFD:
-        ZB_CERT_HACKS().aps_mcast_nwk_dst_addr = ZB_NWK_BROADCAST_RX_ON_WHEN_IDLE;
-        break;
-      case TS_TEST_BUF_REQ_FFFC:
-        ZB_CERT_HACKS().aps_mcast_nwk_dst_addr = ZB_NWK_BROADCAST_ROUTER_COORDINATOR;
-        break;
-      default:
-        /* [Max]: CR: This is a bad coding style to make a decision in default branch.
-         * Generally, default branch should be used for error handling */
-        ZB_CERT_HACKS().aps_mcast_addr_overridden = ZB_FALSE;
-        break;
+        g_step_idx++;
     }
 
-    if (zb_buf_get_out_delayed(test_buffer_request) != RET_OK)
-    {
-      TRACE_MSG(TRACE_ERROR, "test_buffer_request_delayed: zb_buf_get_out_delayed failed", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "test_buffer_request_delayed: step %d", (FMT__D, g_step_idx));
 
-      ZB_SCHEDULE_ALARM(test_buffer_request_delayed, 0, TEST_GZC_NEXT_TS_DELAY);
-    }
-    else
+    if (g_step_idx < TEST_STEPS_COUNT)
     {
-      ZB_SCHEDULE_ALARM(test_buffer_request_delayed, 1, TEST_GZC_NEXT_TS_DELAY);
-    }
-  }
+        switch (g_step_idx)
+        {
+        case TS_TEST_BUF_REQ_FFFF:
+            ZB_CERT_HACKS().aps_mcast_nwk_dst_addr = ZB_NWK_BROADCAST_ALL_DEVICES;
+            break;
+        case TS_TEST_BUF_REQ_FFFD:
+            ZB_CERT_HACKS().aps_mcast_nwk_dst_addr = ZB_NWK_BROADCAST_RX_ON_WHEN_IDLE;
+            break;
+        case TS_TEST_BUF_REQ_FFFC:
+            ZB_CERT_HACKS().aps_mcast_nwk_dst_addr = ZB_NWK_BROADCAST_ROUTER_COORDINATOR;
+            break;
+        default:
+            /* [Max]: CR: This is a bad coding style to make a decision in default branch.
+             * Generally, default branch should be used for error handling */
+            ZB_CERT_HACKS().aps_mcast_addr_overridden = ZB_FALSE;
+            break;
+        }
 
-  TRACE_MSG(TRACE_APP1, "<<test_buffer_request_delayed", (FMT__0));
+        if (zb_buf_get_out_delayed(test_buffer_request) != RET_OK)
+        {
+            TRACE_MSG(TRACE_ERROR, "test_buffer_request_delayed: zb_buf_get_out_delayed failed", (FMT__0));
+
+            ZB_SCHEDULE_ALARM(test_buffer_request_delayed, 0, TEST_GZC_NEXT_TS_DELAY);
+        }
+        else
+        {
+            ZB_SCHEDULE_ALARM(test_buffer_request_delayed, 1, TEST_GZC_NEXT_TS_DELAY);
+        }
+    }
+
+    TRACE_MSG(TRACE_APP1, "<<test_buffer_request_delayed", (FMT__0));
 }
 
 static void test_buffer_request(zb_uint8_t param)
 {
-  zb_buffer_test_req_param_t *req_param = NULL;
+    zb_buffer_test_req_param_t *req_param = NULL;
 
-  TRACE_MSG(TRACE_APS1, ">>test_buffer_request", (FMT__0));
+    TRACE_MSG(TRACE_APS1, ">>test_buffer_request", (FMT__0));
 
-  req_param = ZB_BUF_GET_PARAM(param, zb_buffer_test_req_param_t);
-  BUFFER_TEST_REQ_SET_DEFAULT(req_param);
-  req_param->addr_mode = ZB_APS_ADDR_MODE_16_GROUP_ENDP_NOT_PRESENT;
-  req_param->dst_addr = GROUP_ADDR;
+    req_param = ZB_BUF_GET_PARAM(param, zb_buffer_test_req_param_t);
+    BUFFER_TEST_REQ_SET_DEFAULT(req_param);
+    req_param->addr_mode = ZB_APS_ADDR_MODE_16_GROUP_ENDP_NOT_PRESENT;
+    req_param->dst_addr = GROUP_ADDR;
 
-  zb_tp_buffer_test_request(param, NULL);
+    zb_tp_buffer_test_request(param, NULL);
 
-  TRACE_MSG(TRACE_APS1, "<<test_buffer_request", (FMT__0));
+    TRACE_MSG(TRACE_APS1, "<<test_buffer_request", (FMT__0));
 }

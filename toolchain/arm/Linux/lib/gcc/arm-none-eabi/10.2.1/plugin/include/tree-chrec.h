@@ -38,8 +38,8 @@ along with GCC; see the file COPYING3.  If not see
 static inline bool
 automatically_generated_chrec_p (const_tree chrec)
 {
-  return (chrec == chrec_dont_know
-	  || chrec == chrec_known);
+    return (chrec == chrec_dont_know
+            || chrec == chrec_known);
 }
 
 /* The tree nodes aka. CHRECs.  */
@@ -47,11 +47,15 @@ automatically_generated_chrec_p (const_tree chrec)
 static inline bool
 tree_is_chrec (const_tree expr)
 {
-  if (TREE_CODE (expr) == POLYNOMIAL_CHREC
-      || automatically_generated_chrec_p (expr))
-    return true;
-  else
-    return false;
+    if (TREE_CODE (expr) == POLYNOMIAL_CHREC
+            || automatically_generated_chrec_p (expr))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 
@@ -78,7 +82,7 @@ extern tree reset_evolution_in_loop (unsigned, tree, tree);
 extern tree chrec_merge (tree, tree);
 extern void for_each_scev_op (tree *, bool (*) (tree *, void *), void *);
 extern bool convert_affine_scev (class loop *, tree, tree *, tree *, gimple *,
-				 bool, tree = NULL);
+                                 bool, tree = NULL);
 
 /* Observers.  */
 extern bool eq_evolutions_p (const_tree, const_tree);
@@ -99,13 +103,17 @@ extern bool evolution_function_right_is_integer_cst (const_tree);
 static inline bool
 chrec_zerop (const_tree chrec)
 {
-  if (chrec == NULL_TREE)
+    if (chrec == NULL_TREE)
+    {
+        return false;
+    }
+
+    if (TREE_CODE (chrec) == INTEGER_CST)
+    {
+        return integer_zerop (chrec);
+    }
+
     return false;
-
-  if (TREE_CODE (chrec) == INTEGER_CST)
-    return integer_zerop (chrec);
-
-  return false;
 }
 
 /* Determines whether CHREC is a loop invariant with respect to LOOP_NUM.
@@ -114,55 +122,65 @@ chrec_zerop (const_tree chrec)
 static inline bool
 no_evolution_in_loop_p (tree chrec, unsigned loop_num, bool *res)
 {
-  tree scev;
+    tree scev;
 
-  if (chrec == chrec_not_analyzed_yet
-      || chrec == chrec_dont_know
-      || chrec_contains_symbols_defined_in_loop (chrec, loop_num))
-    return false;
+    if (chrec == chrec_not_analyzed_yet
+            || chrec == chrec_dont_know
+            || chrec_contains_symbols_defined_in_loop (chrec, loop_num))
+    {
+        return false;
+    }
 
-  STRIP_NOPS (chrec);
-  scev = hide_evolution_in_other_loops_than_loop (chrec, loop_num);
-  *res = !tree_contains_chrecs (scev, NULL);
-  return true;
+    STRIP_NOPS (chrec);
+    scev = hide_evolution_in_other_loops_than_loop (chrec, loop_num);
+    *res = !tree_contains_chrecs (scev, NULL);
+    return true;
 }
 
 /* Build a polynomial chain of recurrence.  */
 
 static inline tree
 build_polynomial_chrec (unsigned loop_num,
-			tree left,
-			tree right)
+                        tree left,
+                        tree right)
 {
-  bool val;
+    bool val;
 
-  if (left == chrec_dont_know
-      || right == chrec_dont_know)
-    return chrec_dont_know;
-
-  if (!no_evolution_in_loop_p (left, loop_num, &val)
-      || !val)
-    return chrec_dont_know;
-
-  /* Types of left and right sides of a chrec should be compatible, but
-     pointer CHRECs are special in that the evolution is of ptroff type.  */
-  if (POINTER_TYPE_P (TREE_TYPE (left)))
-    gcc_checking_assert (ptrofftype_p (TREE_TYPE (right)));
-  else
+    if (left == chrec_dont_know
+            || right == chrec_dont_know)
     {
-      /* Pointer types should occur only on the left hand side, i.e. in
-	 the base of the chrec, and not in the step.  */
-      gcc_checking_assert (!POINTER_TYPE_P (TREE_TYPE (right))
-			   && types_compatible_p (TREE_TYPE (left),
-						  TREE_TYPE (right)));
+        return chrec_dont_know;
     }
 
-  if (chrec_zerop (right))
-    return left;
+    if (!no_evolution_in_loop_p (left, loop_num, &val)
+            || !val)
+    {
+        return chrec_dont_know;
+    }
 
-  tree chrec = build2 (POLYNOMIAL_CHREC, TREE_TYPE (left), left, right);
-  CHREC_VARIABLE (chrec) = loop_num;
-  return chrec;
+    /* Types of left and right sides of a chrec should be compatible, but
+       pointer CHRECs are special in that the evolution is of ptroff type.  */
+    if (POINTER_TYPE_P (TREE_TYPE (left)))
+    {
+        gcc_checking_assert (ptrofftype_p (TREE_TYPE (right)));
+    }
+    else
+    {
+        /* Pointer types should occur only on the left hand side, i.e. in
+        the base of the chrec, and not in the step.  */
+        gcc_checking_assert (!POINTER_TYPE_P (TREE_TYPE (right))
+                             && types_compatible_p (TREE_TYPE (left),
+                                     TREE_TYPE (right)));
+    }
+
+    if (chrec_zerop (right))
+    {
+        return left;
+    }
+
+    tree chrec = build2 (POLYNOMIAL_CHREC, TREE_TYPE (left), left, right);
+    CHREC_VARIABLE (chrec) = loop_num;
+    return chrec;
 }
 
 /* Determines whether the expression CHREC is a constant.  */
@@ -170,10 +188,12 @@ build_polynomial_chrec (unsigned loop_num,
 static inline bool
 evolution_function_is_constant_p (const_tree chrec)
 {
-  if (chrec == NULL_TREE)
-    return false;
+    if (chrec == NULL_TREE)
+    {
+        return false;
+    }
 
-  return is_gimple_min_invariant (chrec);
+    return is_gimple_min_invariant (chrec);
 }
 
 /* Determine whether CHREC is an affine evolution function in LOOPNUM.  */
@@ -181,20 +201,26 @@ evolution_function_is_constant_p (const_tree chrec)
 static inline bool
 evolution_function_is_affine_in_loop (const_tree chrec, int loopnum)
 {
-  if (chrec == NULL_TREE)
-    return false;
+    if (chrec == NULL_TREE)
+    {
+        return false;
+    }
 
-  switch (TREE_CODE (chrec))
+    switch (TREE_CODE (chrec))
     {
     case POLYNOMIAL_CHREC:
-      if (evolution_function_is_invariant_p (CHREC_LEFT (chrec), loopnum)
-	  && evolution_function_is_invariant_p (CHREC_RIGHT (chrec), loopnum))
-	return true;
-      else
-	return false;
+        if (evolution_function_is_invariant_p (CHREC_LEFT (chrec), loopnum)
+                && evolution_function_is_invariant_p (CHREC_RIGHT (chrec), loopnum))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
 
     default:
-      return false;
+        return false;
     }
 }
 
@@ -203,12 +229,12 @@ evolution_function_is_affine_in_loop (const_tree chrec, int loopnum)
 static inline bool
 evolution_function_is_affine_p (const_tree chrec)
 {
-  return chrec
-    && TREE_CODE (chrec) == POLYNOMIAL_CHREC
-    && evolution_function_is_invariant_p (CHREC_RIGHT (chrec),
-					  CHREC_VARIABLE (chrec))
-    && (TREE_CODE (CHREC_RIGHT (chrec)) != POLYNOMIAL_CHREC
-	|| evolution_function_is_affine_p (CHREC_RIGHT (chrec)));
+    return chrec
+           && TREE_CODE (chrec) == POLYNOMIAL_CHREC
+           && evolution_function_is_invariant_p (CHREC_RIGHT (chrec),
+                   CHREC_VARIABLE (chrec))
+           && (TREE_CODE (CHREC_RIGHT (chrec)) != POLYNOMIAL_CHREC
+               || evolution_function_is_affine_p (CHREC_RIGHT (chrec)));
 }
 
 /* Determines whether EXPR does not contains chrec expressions.  */
@@ -216,7 +242,7 @@ evolution_function_is_affine_p (const_tree chrec)
 static inline bool
 tree_does_not_contain_chrecs (const_tree expr)
 {
-  return !tree_contains_chrecs (expr, NULL);
+    return !tree_contains_chrecs (expr, NULL);
 }
 
 /* Returns the type of the chrec.  */
@@ -224,28 +250,30 @@ tree_does_not_contain_chrecs (const_tree expr)
 static inline tree
 chrec_type (const_tree chrec)
 {
-  if (automatically_generated_chrec_p (chrec))
-    return NULL_TREE;
+    if (automatically_generated_chrec_p (chrec))
+    {
+        return NULL_TREE;
+    }
 
-  return TREE_TYPE (chrec);
+    return TREE_TYPE (chrec);
 }
 
 static inline tree
 chrec_fold_op (enum tree_code code, tree type, tree op0, tree op1)
 {
-  switch (code)
+    switch (code)
     {
     case PLUS_EXPR:
-      return chrec_fold_plus (type, op0, op1);
+        return chrec_fold_plus (type, op0, op1);
 
     case MINUS_EXPR:
-      return chrec_fold_minus (type, op0, op1);
+        return chrec_fold_minus (type, op0, op1);
 
     case MULT_EXPR:
-      return chrec_fold_multiply (type, op0, op1);
+        return chrec_fold_multiply (type, op0, op1);
 
     default:
-      gcc_unreachable ();
+        gcc_unreachable ();
     }
 
 }

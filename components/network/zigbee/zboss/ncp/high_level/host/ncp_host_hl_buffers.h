@@ -31,22 +31,22 @@
 
 typedef struct ncp_host_hl_rx_buf_handle_s
 {
-  zb_uint8_t *ptr;
-  zb_size_t len;
-  zb_size_t pos;
+    zb_uint8_t *ptr;
+    zb_size_t len;
+    zb_size_t pos;
 } ncp_host_hl_rx_buf_handle_t;
 
 typedef struct ncp_host_hl_tx_buf_handle_s
 {
-  zb_uint8_t *ptr;
-  zb_size_t len;
-  zb_size_t pos;
-  zb_uint8_t buf_id;
+    zb_uint8_t *ptr;
+    zb_size_t len;
+    zb_size_t pos;
+    zb_uint8_t buf_id;
 } ncp_host_hl_tx_buf_handle_t;
 
 zb_ret_t ncp_host_hl_init_indication_body(ncp_hl_ind_header_t *hdr,
-                                          zb_uint16_t len,
-                                          ncp_host_hl_rx_buf_handle_t *handle);
+        zb_uint16_t len,
+        ncp_host_hl_rx_buf_handle_t *handle);
 
 zb_ret_t ncp_host_hl_init_response_body(ncp_hl_response_header_t *hdr,
                                         zb_uint16_t len,

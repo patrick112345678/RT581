@@ -11,7 +11,7 @@
  * IMPORTANT: PLEASE READ THIS NOTICE BEFORE YOU CHANGE ANY DESIGN　CODING
  * SOME FLASH OPERATION will take very long time... like erase or write..
  * we don't want to the whole function to be block in non-sense waiting block
- * so for time-wasting functions. we using async non-block define... 
+ * so for time-wasting functions. we using async non-block define...
  * It means user should check each function finish before a new instruction!
  *
  */
@@ -37,35 +37,38 @@ void flash_read_page(uint32_t buf_addr, uint32_t read_page_addr)
     FLASH->MEM_ADDR  = buf_addr;
     FLASH->PATTERN = FLASH_UNLOCK_PATTER;
     FLASH->START = STARTBIT;
-    
+
     /*Notice: user should check tgus function finish before a new instruction */
     return;
 }
 
 uint8_t flash_read_byte(uint32_t read_addr)
-{    
+{
     FLASH->COMMAND =  CMD_READBYTE;
     FLASH->FLASH_ADDR = read_addr;
 
     FLASH->PATTERN = FLASH_UNLOCK_PATTER;
     FLASH->START = STARTBIT;
 
-    while(flash_check_busy());
+    while (flash_check_busy());
 
     return (FLASH->FLASH_DATA >> 8);
 }
 
 uint32_t flash_erase(flash_erase_mode_t mode, uint32_t flash_addr)
 {
-    if(mode > FLASH_ERASE_SECURE)
+    if (mode > FLASH_ERASE_SECURE)
+    {
         return  STATUS_INVALID_PARAM;
+    }
 
     FLASH->FLASH_ADDR = flash_addr;
 
     /* For Safety reason, we don't implement
      * erase chip command here. */
 
-    switch(mode) {
+    switch (mode)
+    {
     case FLASH_ERASE_PAGE:
         FLASH->COMMAND =  CMD_ERASESECTOR;
         break;
@@ -140,31 +143,34 @@ void flash_write_byte(uint32_t write_addr, uint8_t singlebyte)
 /*get Flash status register*/
 void flash_get_status_reg(flash_status_t *status)
 {
-    if ((status->require_mode)&FLASH_STATUS_RW1) {
+    if ((status->require_mode)&FLASH_STATUS_RW1)
+    {
         FLASH->COMMAND =  CMD_READ_STATUS1;
         FLASH->PATTERN = FLASH_UNLOCK_PATTER;
         FLASH->START = STARTBIT;
 
-         /*this check_busy is very short... it just send command then to receive data*/
-        while(flash_check_busy());   
+        /*this check_busy is very short... it just send command then to receive data*/
+        while (flash_check_busy());
         status->status1 = (uint8_t)((FLASH->FLASH_DATA) >> 8);
     }
 
-    if(status->require_mode&FLASH_STATUS_RW2) {
+    if (status->require_mode & FLASH_STATUS_RW2)
+    {
         FLASH->COMMAND =  CMD_READ_STATUS2;
         FLASH->PATTERN = FLASH_UNLOCK_PATTER;
         FLASH->START = STARTBIT;
 
-        while(flash_check_busy());
+        while (flash_check_busy());
         status->status2 = (uint8_t)((FLASH->FLASH_DATA) >> 8);
     }
 
-    if(status->require_mode&FLASH_STATUS_RW3) {
+    if (status->require_mode & FLASH_STATUS_RW3)
+    {
         FLASH->COMMAND =  CMD_READ_STATUS3;
         FLASH->PATTERN = FLASH_UNLOCK_PATTER;
         FLASH->START = STARTBIT;
 
-        while(flash_check_busy());
+        while (flash_check_busy());
         status->status3 = (uint8_t)((FLASH->FLASH_DATA) >> 8);
     }
 
@@ -173,32 +179,35 @@ void flash_get_status_reg(flash_status_t *status)
 /*set Flash status register*/
 void flash_set_status_reg(const flash_status_t *status)
 {
-    if ((status->require_mode)&FLASH_STATUS_RW1) {
+    if ((status->require_mode)&FLASH_STATUS_RW1)
+    {
         FLASH->COMMAND =  CMD_WRITE_STATUS1;
         FLASH->STATUS  = (status->status1);
         FLASH->PATTERN = FLASH_UNLOCK_PATTER;
         FLASH->START = STARTBIT;
 
-        while(flash_check_busy());
+        while (flash_check_busy());
 
     }
 
-    if(status->require_mode&FLASH_STATUS_RW2) {
+    if (status->require_mode & FLASH_STATUS_RW2)
+    {
         FLASH->COMMAND =  CMD_WRITE_STATUS2;
         FLASH->STATUS  = (uint32_t) ((status->status2) << 8);
         FLASH->PATTERN = FLASH_UNLOCK_PATTER;
         FLASH->START = STARTBIT;
 
-        while(flash_check_busy());
+        while (flash_check_busy());
     }
 
-    if(status->require_mode&FLASH_STATUS_RW3) {
+    if (status->require_mode & FLASH_STATUS_RW3)
+    {
         FLASH->COMMAND =  CMD_WRITE_STATUS3;
         FLASH->STATUS  = (uint32_t) ((status->status3) << 16);
         FLASH->PATTERN = FLASH_UNLOCK_PATTER;
         FLASH->START = STARTBIT;
 
-        while(flash_check_busy());
+        while (flash_check_busy());
     }
 
 }
@@ -210,9 +219,10 @@ uint32_t flash_write_sec_register(uint32_t buf_addr, uint32_t write_reg_addr)
 {
     uint32_t  addr;
     /*first we should check write_reg_addr*/
-    addr = write_reg_addr>>12;
+    addr = write_reg_addr >> 12;
 
-    if((addr<1) ||(addr>3)|| (write_reg_addr & 0xFF)) {
+    if ((addr < 1) || (addr > 3) || (write_reg_addr & 0xFF))
+    {
         /*only support 3 secureity register.*/
         /*We need secure register write to be 256 bytes alignment*/
         return STATUS_INVALID_PARAM;
@@ -234,9 +244,10 @@ uint32_t flash_read_sec_register(uint32_t buf_addr, uint32_t read_reg_addr)
 {
     uint32_t  addr;
     /*first we should check read_reg_addr*/
-    addr = read_reg_addr>>12;
+    addr = read_reg_addr >> 12;
 
-    if((addr<1) ||(addr>3)|| (read_reg_addr & 0xFF)) {
+    if ((addr < 1) || (addr > 3) || (read_reg_addr & 0xFF))
+    {
         /*We need secure register read to be 256 bytes alignment*/
         return STATUS_INVALID_PARAM;
     }
@@ -252,7 +263,7 @@ uint32_t flash_read_sec_register(uint32_t buf_addr, uint32_t read_reg_addr)
 
 
 /* read flash unique ID
- *  flash ID is 128bits/16 bytes. 
+ *  flash ID is 128bits/16 bytes.
  *  if buf_length <16, it will return required length data only.
  *  if buf_length >16, it will return 16 bytes only.
  *  if buf_length = 0 , this function will return STATUS_INVALID_PARAM
@@ -262,14 +273,17 @@ uint32_t flash_get_unique_id(uint32_t flash_id_buf_addr, uint32_t buf_length)
 {
     uint32_t  i;
     uint8_t  temp[16], *ptr;
-    
+
     /*
      * Notice: we don't check flash_id_buf_addr value here..
      * it should be correct address in SRAM!
      */
-    if (buf_length==0) {
+    if (buf_length == 0)
+    {
         return STATUS_INVALID_PARAM;
-    } else if (buf_length >16) {
+    }
+    else if (buf_length > 16)
+    {
         buf_length = 16;
     }
 
@@ -278,18 +292,19 @@ uint32_t flash_get_unique_id(uint32_t flash_id_buf_addr, uint32_t buf_length)
     FLASH->MEM_ADDR  = (uint32_t) temp;
     FLASH->PATTERN = FLASH_UNLOCK_PATTER;
     FLASH->START = STARTBIT;
-    
+
     ptr = (uint8_t *) flash_id_buf_addr;    /*set address*/
-    
-    while(flash_check_busy());
-    
+
+    while (flash_check_busy());
+
     FLASH->PAGE_READ_WORD = 0xFF;   /*restore read one page length by default*/
-        
+
     /*move unique number from stack to assign buffer*/
-    for(i=0; i<buf_length; i++) {
+    for (i = 0; i < buf_length; i++)
+    {
         ptr[i] = temp[i];
     }
-        
+
     return STATUS_SUCCESS;
 }
 
@@ -301,7 +316,7 @@ void flash_timing_init(uint32_t HCLK_MHZ)
     flash_timing_mode_t  flash_timing;
     /*change AHB clock also need change flash timing.*/
     flash_type_id = flash_get_deviceinfo() & FLASH_TYPE_ID_MAKS;
-    
+
     sys_clk = HCLK_MHZ;          /* FIXME: in FPGA, assume 32M.
                                   * In ASIC... change this setting
                                   */

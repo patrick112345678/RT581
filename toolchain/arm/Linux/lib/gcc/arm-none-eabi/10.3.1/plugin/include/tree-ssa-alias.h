@@ -27,41 +27,41 @@
    sets specified by the flags.  */
 struct GTY(()) pt_solution
 {
-  /* Nonzero if points-to analysis couldn't determine where this pointer
-     is pointing to.  */
-  unsigned int anything : 1;
+    /* Nonzero if points-to analysis couldn't determine where this pointer
+       is pointing to.  */
+    unsigned int anything : 1;
 
-  /* Nonzero if the points-to set includes any global memory.  Note that
-     even if this is zero pt_vars can still include global variables.  */
-  unsigned int nonlocal : 1;
+    /* Nonzero if the points-to set includes any global memory.  Note that
+       even if this is zero pt_vars can still include global variables.  */
+    unsigned int nonlocal : 1;
 
-  /* Nonzero if the points-to set includes the local escaped solution by
-     reference.  */
-  unsigned int escaped : 1;
+    /* Nonzero if the points-to set includes the local escaped solution by
+       reference.  */
+    unsigned int escaped : 1;
 
-  /* Nonzero if the points-to set includes the IPA escaped solution by
-     reference.  */
-  unsigned int ipa_escaped : 1;
+    /* Nonzero if the points-to set includes the IPA escaped solution by
+       reference.  */
+    unsigned int ipa_escaped : 1;
 
-  /* Nonzero if the points-to set includes 'nothing', the points-to set
-     includes memory at address NULL.  */
-  unsigned int null : 1;
+    /* Nonzero if the points-to set includes 'nothing', the points-to set
+       includes memory at address NULL.  */
+    unsigned int null : 1;
 
-  /* Nonzero if the vars bitmap includes a variable included in 'nonlocal'.  */
-  unsigned int vars_contains_nonlocal : 1;
-  /* Nonzero if the vars bitmap includes a variable included in 'escaped'.  */
-  unsigned int vars_contains_escaped : 1;
-  /* Nonzero if the vars bitmap includes a anonymous heap variable that
-     escaped the function and thus became global.  */
-  unsigned int vars_contains_escaped_heap : 1;
-  /* Nonzero if the vars bitmap includes a anonymous variable used to
-     represent storage pointed to by a restrict qualified pointer.  */
-  unsigned int vars_contains_restrict : 1;
-  /* Nonzero if the vars bitmap includes an interposable variable.  */
-  unsigned int vars_contains_interposable : 1;
+    /* Nonzero if the vars bitmap includes a variable included in 'nonlocal'.  */
+    unsigned int vars_contains_nonlocal : 1;
+    /* Nonzero if the vars bitmap includes a variable included in 'escaped'.  */
+    unsigned int vars_contains_escaped : 1;
+    /* Nonzero if the vars bitmap includes a anonymous heap variable that
+       escaped the function and thus became global.  */
+    unsigned int vars_contains_escaped_heap : 1;
+    /* Nonzero if the vars bitmap includes a anonymous variable used to
+       represent storage pointed to by a restrict qualified pointer.  */
+    unsigned int vars_contains_restrict : 1;
+    /* Nonzero if the vars bitmap includes an interposable variable.  */
+    unsigned int vars_contains_interposable : 1;
 
-  /* Set of variables that this pointer may point to.  */
-  bitmap vars;
+    /* Set of variables that this pointer may point to.  */
+    bitmap vars;
 };
 
 
@@ -71,32 +71,32 @@ struct GTY(()) pt_solution
 class ao_ref
 {
 public:
-  /* The original full memory reference tree or NULL_TREE if that is
-     not available.  */
-  tree ref;
+    /* The original full memory reference tree or NULL_TREE if that is
+       not available.  */
+    tree ref;
 
-  /* The following fields are the decomposed reference as returned
-     by get_ref_base_and_extent.  */
-  /* The base object of the memory reference or NULL_TREE if all of
-     the following fields are not yet computed.  */
-  tree base;
-  /* The offset relative to the base.  */
-  poly_int64 offset;
-  /* The size of the access.  */
-  poly_int64 size;
-  /* The maximum possible extent of the access or -1 if unconstrained.  */
-  poly_int64 max_size;
+    /* The following fields are the decomposed reference as returned
+       by get_ref_base_and_extent.  */
+    /* The base object of the memory reference or NULL_TREE if all of
+       the following fields are not yet computed.  */
+    tree base;
+    /* The offset relative to the base.  */
+    poly_int64 offset;
+    /* The size of the access.  */
+    poly_int64 size;
+    /* The maximum possible extent of the access or -1 if unconstrained.  */
+    poly_int64 max_size;
 
-  /* The alias set of the access or -1 if not yet computed.  */
-  alias_set_type ref_alias_set;
+    /* The alias set of the access or -1 if not yet computed.  */
+    alias_set_type ref_alias_set;
 
-  /* The alias set of the base object or -1 if not yet computed.  */
-  alias_set_type base_alias_set;
+    /* The alias set of the base object or -1 if not yet computed.  */
+    alias_set_type base_alias_set;
 
-  /* Whether the memory is considered a volatile access.  */
-  bool volatile_p;
+    /* Whether the memory is considered a volatile access.  */
+    bool volatile_p;
 
-  bool max_size_known_p () const;
+    bool max_size_known_p () const;
 };
 
 /* Return true if the maximum size is known, rather than the special -1
@@ -105,7 +105,7 @@ public:
 inline bool
 ao_ref::max_size_known_p () const
 {
-  return known_size_p (max_size);
+    return known_size_p (max_size);
 }
 
 /* In tree-ssa-alias.c  */
@@ -133,23 +133,23 @@ extern bool call_may_clobber_ref_p_1 (gcall *, ao_ref *);
 extern bool stmt_kills_ref_p (gimple *, tree);
 extern bool stmt_kills_ref_p (gimple *, ao_ref *);
 enum translate_flags
-  { TR_TRANSLATE, TR_VALUEIZE_AND_DISAMBIGUATE, TR_DISAMBIGUATE };
+{ TR_TRANSLATE, TR_VALUEIZE_AND_DISAMBIGUATE, TR_DISAMBIGUATE };
 extern tree get_continuation_for_phi (gimple *, ao_ref *, bool,
-				      unsigned int &, bitmap *, bool,
-				      void *(*)(ao_ref *, tree, void *,
-						translate_flags *),
-				      void *, translate_flags
-				        = TR_VALUEIZE_AND_DISAMBIGUATE);
+                                      unsigned int &, bitmap *, bool,
+                                      void *(*)(ao_ref *, tree, void *,
+                                              translate_flags *),
+                                      void *, translate_flags
+                                      = TR_VALUEIZE_AND_DISAMBIGUATE);
 extern void *walk_non_aliased_vuses (ao_ref *, tree, bool,
-				     void *(*)(ao_ref *, tree, void *),
-				     void *(*)(ao_ref *, tree, void *,
-					       translate_flags *),
-				     tree (*)(tree), unsigned &, void *);
+                                     void *(*)(ao_ref *, tree, void *),
+                                     void *(*)(ao_ref *, tree, void *,
+                                             translate_flags *),
+                                     tree (*)(tree), unsigned &, void *);
 extern int walk_aliased_vdefs (ao_ref *, tree,
-			       bool (*)(ao_ref *, tree, void *),
-			       void *, bitmap *,
-			       bool *function_entry_reached = NULL,
-			       unsigned int limit = 0);
+                               bool (*)(ao_ref *, tree, void *),
+                               void *, bitmap *,
+                               bool *function_entry_reached = NULL,
+                               unsigned int limit = 0);
 extern void dump_alias_info (FILE *);
 extern void debug_alias_info (void);
 extern void dump_points_to_solution (FILE *, struct pt_solution *);
@@ -181,22 +181,28 @@ extern GTY(()) struct pt_solution ipa_escaped_pt;
 
 static inline bool
 ranges_overlap_p (HOST_WIDE_INT pos1,
-		  unsigned HOST_WIDE_INT size1,
-		  HOST_WIDE_INT pos2,
-		  unsigned HOST_WIDE_INT size2)
+                  unsigned HOST_WIDE_INT size1,
+                  HOST_WIDE_INT pos2,
+                  unsigned HOST_WIDE_INT size2)
 {
-  if (size1 == 0 || size2 == 0)
-    return false;
-  if (pos1 >= pos2
-      && (size2 == (unsigned HOST_WIDE_INT)-1
-	  || pos1 < (pos2 + (HOST_WIDE_INT) size2)))
-    return true;
-  if (pos2 >= pos1
-      && (size1 == (unsigned HOST_WIDE_INT)-1
-	  || pos2 < (pos1 + (HOST_WIDE_INT) size1)))
-    return true;
+    if (size1 == 0 || size2 == 0)
+    {
+        return false;
+    }
+    if (pos1 >= pos2
+            && (size2 == (unsigned HOST_WIDE_INT) - 1
+                || pos1 < (pos2 + (HOST_WIDE_INT) size2)))
+    {
+        return true;
+    }
+    if (pos2 >= pos1
+            && (size1 == (unsigned HOST_WIDE_INT) - 1
+                || pos2 < (pos1 + (HOST_WIDE_INT) size1)))
+    {
+        return true;
+    }
 
-  return false;
+    return false;
 }
 
 

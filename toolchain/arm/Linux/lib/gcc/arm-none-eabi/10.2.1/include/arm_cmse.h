@@ -38,64 +38,68 @@ extern "C" {
 
 #ifdef __ARM_BIG_ENDIAN
 
-typedef union {
-  struct cmse_address_info {
+typedef union
+{
+    struct cmse_address_info
+    {
 #if __ARM_FEATURE_CMSE & 2
-    unsigned idau_region:8;
-    unsigned idau_region_valid:1;
-    unsigned secure:1;
-    unsigned nonsecure_readwrite_ok:1;
-    unsigned nonsecure_read_ok:1;
+        unsigned idau_region: 8;
+        unsigned idau_region_valid: 1;
+        unsigned secure: 1;
+        unsigned nonsecure_readwrite_ok: 1;
+        unsigned nonsecure_read_ok: 1;
 #else
-    unsigned :12;
+        unsigned : 12;
 #endif
-    unsigned readwrite_ok:1;
-    unsigned read_ok:1;
+        unsigned readwrite_ok: 1;
+        unsigned read_ok: 1;
 #if __ARM_FEATURE_CMSE & 2
-    unsigned sau_region_valid:1;
+        unsigned sau_region_valid: 1;
 #else
-    unsigned :1;
+        unsigned : 1;
 #endif
-    unsigned mpu_region_valid:1;
+        unsigned mpu_region_valid: 1;
 #if __ARM_FEATURE_CMSE & 2
-    unsigned sau_region:8;
+        unsigned sau_region: 8;
 #else
-    unsigned :8;
+        unsigned : 8;
 #endif
-    unsigned mpu_region:8;
-  } flags;
-  unsigned value;
+        unsigned mpu_region: 8;
+    } flags;
+    unsigned value;
 } cmse_address_info_t;
 
 #else
 
-typedef union {
-  struct cmse_address_info {
-    unsigned mpu_region:8;
+typedef union
+{
+    struct cmse_address_info
+    {
+        unsigned mpu_region: 8;
 #if __ARM_FEATURE_CMSE & 2
-    unsigned sau_region:8;
+        unsigned sau_region: 8;
 #else
-    unsigned :8;
+        unsigned : 8;
 #endif
-    unsigned mpu_region_valid:1;
+        unsigned mpu_region_valid: 1;
 #if __ARM_FEATURE_CMSE & 2
-    unsigned sau_region_valid:1;
+        unsigned sau_region_valid: 1;
 #else
-    unsigned :1;
+        unsigned : 1;
 #endif
-    unsigned read_ok:1;
-    unsigned readwrite_ok:1;
+        unsigned read_ok: 1;
+        unsigned readwrite_ok: 1;
 #if __ARM_FEATURE_CMSE & 2
-    unsigned nonsecure_read_ok:1;
-    unsigned nonsecure_readwrite_ok:1;
-    unsigned secure:1;
-    unsigned idau_region_valid:1;
-    unsigned idau_region:8;
+        unsigned nonsecure_read_ok: 1;
+        unsigned nonsecure_readwrite_ok: 1;
+        unsigned secure: 1;
+        unsigned idau_region_valid: 1;
+        unsigned idau_region: 8;
 #else
-    unsigned :12;
+        unsigned : 12;
 #endif
-  } flags;
-  unsigned value;
+    } flags;
+    unsigned value;
 } cmse_address_info_t;
 
 #endif /* __ARM_BIG_ENDIAN */
@@ -108,9 +112,9 @@ typedef void (*__cmse_fptr)(void);
 { \
   cmse_address_info_t __result; \
    __asm__ ("tt" # flags " %0,%1" \
-	   : "=r"(__result) \
-	   : "r"(__p) \
-	   : "memory"); \
+       : "=r"(__result) \
+       : "r"(__p) \
+       : "memory"); \
   return __result; \
 }
 
@@ -167,12 +171,12 @@ __extension__ static __inline int __attribute__ ((__always_inline__))
 __attribute__ ((warn_unused_result))
 cmse_nonsecure_caller (void)
 {
-  return __builtin_arm_cmse_nonsecure_caller ();
+    return __builtin_arm_cmse_nonsecure_caller ();
 }
 
-#define CMSE_AU_NONSECURE	2
-#define CMSE_MPU_NONSECURE	16
-#define CMSE_NONSECURE		18
+#define CMSE_AU_NONSECURE   2
+#define CMSE_MPU_NONSECURE  16
+#define CMSE_NONSECURE      18
 
 #define cmse_nsfptr_create(p) ((__typeof__ ((p))) ((__INTPTR_TYPE__) (p) & ~1))
 
@@ -180,9 +184,9 @@ cmse_nonsecure_caller (void)
 
 #endif /* __ARM_FEATURE_CMSE & 2 */
 
-#define CMSE_MPU_UNPRIV		4
-#define CMSE_MPU_READWRITE	1
-#define CMSE_MPU_READ		8
+#define CMSE_MPU_UNPRIV     4
+#define CMSE_MPU_READWRITE  1
+#define CMSE_MPU_READ       8
 
 __extension__ void *
 __attribute__ ((warn_unused_result))

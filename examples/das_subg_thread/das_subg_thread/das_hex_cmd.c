@@ -133,7 +133,7 @@ static uint8_t das_hex_cmd_store_udpip(uint8_t *Param, uint16_t lens)
 
     }
 
-    das_hex_cmd_udp_ip[i+1] = '\0';
+    das_hex_cmd_udp_ip[i + 1] = '\0';
     das_hex_cmd_udp_ip_set = 1;
 
     return 0;
@@ -143,7 +143,7 @@ static uint8_t das_hex_cmd_store_udpip(uint8_t *Param, uint16_t lens)
 static uint8_t das_hex_cmd_store_udpport(uint8_t *Param, uint16_t lens)
 {
     /*this command isn't used and has been replaced by default*/
-    return 0;    
+    return 0;
 }
 
 /*cmd 0x03*/
@@ -154,10 +154,10 @@ static uint8_t das_hex_cmd_udp_data_send(uint8_t *Param, uint16_t lens)
     otDeviceRole mRole = 0;
     OT_THREAD_SAFE(
         otInstance *instance = otrGetInstance();
-        if(instance)
-        {
-            mRole = otThreadGetDeviceRole(instance);
-        }
+        if (instance)
+{
+    mRole = otThreadGetDeviceRole(instance);
+    }
     )
 
     do
@@ -177,7 +177,7 @@ static uint8_t das_hex_cmd_udp_data_send(uint8_t *Param, uint16_t lens)
         otIp6AddressFromString(das_hex_cmd_udp_ip, &dst_peerAddr);
 
         error = app_udpSend(THREAD_UDP_PORT, dst_peerAddr, Param, lens);
-        
+
     } while (0);
 
     return (error != OT_ERROR_NONE);
@@ -201,7 +201,7 @@ void das_hex_cmd_get_udp_ip(uint8_t *Param, uint16_t lens)
     uint16_t message_len = lens + 5;
     uint8_t *message = pvPortMalloc(message_len);
     uint8_t cmd_crc = 0xff;
-    if(message)
+    if (message)
     {
         message[0] = 0x93;
         message[1] = ((lens + 2) >> 8) & 0xff;
@@ -213,12 +213,15 @@ void das_hex_cmd_get_udp_ip(uint8_t *Param, uint16_t lens)
             message[(4 + i)] = (int)Param[i];
         }
 
-        cmd_crc =  das_hex_cmd_crc_calculate((uint8_t*)message, (message_len - 1));
-        message[message_len-1] = cmd_crc;
+        cmd_crc =  das_hex_cmd_crc_calculate((uint8_t *)message, (message_len - 1));
+        message[message_len - 1] = cmd_crc;
 
         das_hex_cmd_send(message, message_len);
     }
-    if(message) vPortFree(message);
+    if (message)
+    {
+        vPortFree(message);
+    }
 }
 
 /*cmd 0x20*/
@@ -233,7 +236,7 @@ void das_hex_cmd_get_udp_received_data(uint8_t *Param, uint16_t lens)
     uint16_t message_len = lens + 5;
     uint8_t *message = pvPortMalloc(message_len);
     uint8_t cmd_crc = 0xff;
-    if(message)
+    if (message)
     {
         message[0] = 0x93;
         message[1] = ((lens + 2) >> 8) & 0xff;
@@ -245,12 +248,15 @@ void das_hex_cmd_get_udp_received_data(uint8_t *Param, uint16_t lens)
             message[(4 + i)] = (int)Param[i];
         }
 
-        cmd_crc =  das_hex_cmd_crc_calculate((uint8_t*) message, (message_len - 1));
-        message[message_len-1] = cmd_crc;
+        cmd_crc =  das_hex_cmd_crc_calculate((uint8_t *) message, (message_len - 1));
+        message[message_len - 1] = cmd_crc;
 
         das_hex_cmd_send(message, message_len);
     }
-    if(message) vPortFree(message);
+    if (message)
+    {
+        vPortFree(message);
+    }
 }
 
 /*cmd 0x40*/
@@ -292,12 +298,12 @@ static uint8_t das_hex_cmd_get_thread_state(uint8_t *Param, uint16_t lens)
     otDeviceRole mRole = 0;
     OT_THREAD_SAFE(
         otInstance *instance = otrGetInstance();
-        if(instance)
-        {
-            mRole = otThreadGetDeviceRole(instance);
-        }
+        if (instance)
+{
+    mRole = otThreadGetDeviceRole(instance);
+    }
     )
-    
+
     message[0] = 0x93;
     message[1] = 0x0;
     message[2] = 0x03;
@@ -319,10 +325,10 @@ static uint8_t das_hex_cmd_get_link_local_addr(uint8_t *Param, uint16_t lens)
 
     OT_THREAD_SAFE(
         otInstance *instance = otrGetInstance();
-        if(instance)
-        {
-            otIp6AddressToString(otThreadGetLinkLocalIp6Address(instance), string, sizeof(string));
-        }
+        if (instance)
+{
+    otIp6AddressToString(otThreadGetLinkLocalIp6Address(instance), string, sizeof(string));
+    }
     )
 
     message[0] = 0x93;
@@ -332,7 +338,7 @@ static uint8_t das_hex_cmd_get_link_local_addr(uint8_t *Param, uint16_t lens)
 
     while (string[i] != '\0')
     {
-        message[4+i] = (int)string[i];
+        message[4 + i] = (int)string[i];
         cmd_crc += message[(4 + i)];
         i++;
     }
@@ -354,10 +360,10 @@ static uint8_t das_hex_cmd_get_mesh_local_addr(uint8_t *Param, uint16_t lens)
 
     OT_THREAD_SAFE(
         otInstance *instance = otrGetInstance();
-        if(instance)
-        {
-            otIp6AddressToString(otThreadGetMeshLocalEid(instance), string, sizeof(string));
-        }
+        if (instance)
+{
+    otIp6AddressToString(otThreadGetMeshLocalEid(instance), string, sizeof(string));
+    }
     )
 
     message[0] = 0x93;
@@ -367,7 +373,7 @@ static uint8_t das_hex_cmd_get_mesh_local_addr(uint8_t *Param, uint16_t lens)
 
     while (string[i] != '\0')
     {
-        message[4+i] = (int)string[i];
+        message[4 + i] = (int)string[i];
         cmd_crc += message[(4 + i)];
         i++;
     }
@@ -386,10 +392,10 @@ static uint8_t das_hex_cmd_get_routing_locator_addr(uint8_t *Param, uint16_t len
     uint8_t cmd_crc = 0, i = 0;
     OT_THREAD_SAFE(
         otInstance *instance = otrGetInstance();
-        if(instance)
-        {
-            otIp6AddressToString(otThreadGetRloc(instance), string, sizeof(string));
-        }
+        if (instance)
+{
+    otIp6AddressToString(otThreadGetRloc(instance), string, sizeof(string));
+    }
     )
 
     message[0] = 0x93;
@@ -399,7 +405,7 @@ static uint8_t das_hex_cmd_get_routing_locator_addr(uint8_t *Param, uint16_t len
 
     while (string[i] != '\0')
     {
-        message[4+i] = (int)string[i];
+        message[4 + i] = (int)string[i];
         cmd_crc += message[(4 + i)];
         i++;
     }
@@ -476,26 +482,26 @@ static uint8_t das_hex_cmd_meter_id_respone(uint8_t *Param, uint16_t lens)
         extaddr[7] = num & 0xff;
         OT_THREAD_SAFE(
             otInstance *instance = otrGetInstance();
-            if(instance)
+            if (instance)
+    {
+        /* set extaddr to equal eui64*/
+        otExtAddress extAddress;
+        memcpy(extAddress.m8, extaddr, OT_EXT_ADDRESS_SIZE);
+            if (otLinkSetExtendedAddress(instance, &extAddress) != OT_ERROR_NONE)
             {
-                /* set extaddr to equal eui64*/
-                otExtAddress extAddress;
-                memcpy(extAddress.m8, extaddr, OT_EXT_ADDRESS_SIZE);
-                if (otLinkSetExtendedAddress(instance, &extAddress) != OT_ERROR_NONE)
-                {
-                    ret = 1;
-                    break;
-                }
-
-                /* set mle eid to equal eui64*/
-                otIp6InterfaceIdentifier iid;
-                memcpy(iid.mFields.m8, extAddress.m8, OT_EXT_ADDRESS_SIZE);
-                if (otIp6SetMeshLocalIid(instance, &iid) != OT_ERROR_NONE)
-                {
-                    ret = 1;
-                    break;
-                }
+                ret = 1;
+                break;
             }
+
+            /* set mle eid to equal eui64*/
+            otIp6InterfaceIdentifier iid;
+            memcpy(iid.mFields.m8, extAddress.m8, OT_EXT_ADDRESS_SIZE);
+            if (otIp6SetMeshLocalIid(instance, &iid) != OT_ERROR_NONE)
+            {
+                ret = 1;
+                break;
+            }
+        }
         )
         meter_id_is_geted(true);
     } while (0);
@@ -521,7 +527,7 @@ static uint8_t das_hex_cmd_get_build_version(uint8_t *Param, uint16_t lens)
 
     while (string[i] != '\0')
     {
-        message[4+i] = (int)string[i];
+        message[4 + i] = (int)string[i];
         cmd_crc += message[(4 + i)];
         i++;
     }
@@ -539,12 +545,12 @@ static uint8_t das_hex_cmd_get_partitionid(uint8_t *Param, uint16_t lens)
     uint32_t partitionid = 0;
     OT_THREAD_SAFE(
         otInstance *instance = otrGetInstance();
-        if(instance)
-        {
-            partitionid = otThreadGetPartitionId(instance);
-        }
+        if (instance)
+{
+    partitionid = otThreadGetPartitionId(instance);
+    }
     )
-    
+
     uint8_t message[9];
 
     uint8_t cmd_crc = 0, i = 0;
@@ -573,13 +579,16 @@ static uint8_t das_hex_cmd_get_partitionid(uint8_t *Param, uint16_t lens)
 static void das_hex_cmd_to_acsii_comand_process(uint8_t *Param, uint16_t lens)
 {
     char *Rx_Buffer = pvPortMalloc(lens);
-    if(Rx_Buffer)
+    if (Rx_Buffer)
     {
         memcpy(Rx_Buffer, (char *)Param, lens);
         Rx_Buffer[lens] = '\0';
         otCliInputLine(Rx_Buffer);
     }
-    if(Rx_Buffer) vPortFree(Rx_Buffer);
+    if (Rx_Buffer)
+    {
+        vPortFree(Rx_Buffer);
+    }
 }
 
 static void das_hex_cmd_fn_exec(uint8_t cmd_id, uint8_t *Param, uint16_t lens)
@@ -650,14 +659,14 @@ static void das_hex_cmd_process(const uint8_t *aBuf, uint16_t aBufLength)
         cmd_id = aBuf[3];
         cmd_len = aBuf[1] * 256 + aBuf[2];
         /*check crc*/
-        crc = das_hex_cmd_crc_calculate((uint8_t*) aBuf, (aBufLength - 1));
+        crc = das_hex_cmd_crc_calculate((uint8_t *) aBuf, (aBufLength - 1));
         if (crc != aBuf[aBufLength - 1])
         {
             das_hex_command_response(1, aBuf[3]);
         }
         else
         {
-            das_hex_cmd_fn_exec(cmd_id, (uint8_t*)(aBuf + 4), (cmd_len - 2));
+            das_hex_cmd_fn_exec(cmd_id, (uint8_t *)(aBuf + 4), (cmd_len - 2));
         }
     } while (0);
 }
@@ -693,19 +702,19 @@ static void meter_id_is_geted(bool is_geted)
     is_meter_id_geted = is_geted;
     OT_THREAD_SAFE(
         otInstance *instance = otrGetInstance();
-        if(instance)
-        {
-            otIp6SetEnabled(instance, true);
-            otThreadSetEnabled(instance, true);
-        }
+        if (instance)
+{
+    otIp6SetEnabled(instance, true);
+        otThreadSetEnabled(instance, true);
+    }
     )
 }
 
-static void get_meter_id_timer_handler( TimerHandle_t xTimer ) 
+static void get_meter_id_timer_handler( TimerHandle_t xTimer )
 {
     if (is_meter_id_geted)
     {
-        xTimerDelete(get_meter_id_timer,0);
+        xTimerDelete(get_meter_id_timer, 0);
     }
     else
     {
@@ -718,11 +727,11 @@ void das_get_meter_id_init()
 {
     if (NULL == get_meter_id_timer)
     {
-        get_meter_id_timer = xTimerCreate("get_meter_id_timer", 
-                                                (10000), 
-                                                false, 
-                                                ( void * ) 0, 
-                                                get_meter_id_timer_handler);
+        get_meter_id_timer = xTimerCreate("get_meter_id_timer",
+                                          (10000),
+                                          false,
+                                          ( void * ) 0,
+                                          get_meter_id_timer_handler);
 
         xTimerStart(get_meter_id_timer, 0 );
     }

@@ -32,41 +32,41 @@ zb_ret_t check_value_thermostat_ui_config_server(zb_uint16_t attr_id, zb_uint8_t
 
 void zb_zcl_thermostat_ui_config_init_server()
 {
-  zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_THERMOSTAT_UI_CONFIG,
-                              ZB_ZCL_CLUSTER_SERVER_ROLE,
-                              check_value_thermostat_ui_config_server,
-                              (zb_zcl_cluster_write_attr_hook_t)NULL,
-                              (zb_zcl_cluster_handler_t)NULL);
+    zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_THERMOSTAT_UI_CONFIG,
+                                ZB_ZCL_CLUSTER_SERVER_ROLE,
+                                check_value_thermostat_ui_config_server,
+                                (zb_zcl_cluster_write_attr_hook_t)NULL,
+                                (zb_zcl_cluster_handler_t)NULL);
 }
 
 void zb_zcl_thermostat_ui_config_init_client()
 {
-  zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_THERMOSTAT_UI_CONFIG,
-                              ZB_ZCL_CLUSTER_CLIENT_ROLE,
-                              (zb_zcl_cluster_check_value_t)NULL,
-                              (zb_zcl_cluster_write_attr_hook_t)NULL,
-                              (zb_zcl_cluster_handler_t)NULL);
+    zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_THERMOSTAT_UI_CONFIG,
+                                ZB_ZCL_CLUSTER_CLIENT_ROLE,
+                                (zb_zcl_cluster_check_value_t)NULL,
+                                (zb_zcl_cluster_write_attr_hook_t)NULL,
+                                (zb_zcl_cluster_handler_t)NULL);
 }
 
 zb_ret_t check_value_thermostat_ui_config_server(zb_uint16_t attr_id, zb_uint8_t endpoint, zb_uint8_t *value)
 {
-  zb_ret_t ret = ZB_TRUE;
-  ZVUNUSED(endpoint);
+    zb_ret_t ret = ZB_TRUE;
+    ZVUNUSED(endpoint);
 
-  switch( attr_id )
-  {
+    switch ( attr_id )
+    {
     case ZB_ZCL_ATTR_THERMOSTAT_UI_CONFIG_TEMPERATURE_DISPLAY_MODE_ID:
-      ret = (*value < ZB_ZCL_THERMOSTAT_UI_CONFIG_TEMPERATURE_DISPLAY_MODE_RESERVED) ? RET_OK : RET_ERROR;
-      break;
+        ret = (*value < ZB_ZCL_THERMOSTAT_UI_CONFIG_TEMPERATURE_DISPLAY_MODE_RESERVED) ? RET_OK : RET_ERROR;
+        break;
     case ZB_ZCL_ATTR_THERMOSTAT_UI_CONFIG_KEYPAD_LOCKOUT_ID:
-      ret = (*value < ZB_ZCL_THERMOSTAT_UI_CONFIG_KEYPAD_LOCKOUT_RESERVED) ? RET_OK : RET_ERROR;
-      break;
+        ret = (*value < ZB_ZCL_THERMOSTAT_UI_CONFIG_KEYPAD_LOCKOUT_RESERVED) ? RET_OK : RET_ERROR;
+        break;
 
     default:
-      break;
-  }
+        break;
+    }
 
-  TRACE_MSG(TRACE_ZCL1, "check_value_thermostat ret %hd", (FMT__H, ret));
-  return ret;
+    TRACE_MSG(TRACE_ZCL1, "check_value_thermostat ret %hd", (FMT__H, ret));
+    return ret;
 }
 #endif /* ZB_ZCL_SUPPORT_CLUSTER_THERMOSTAT_UI_CONFIG */

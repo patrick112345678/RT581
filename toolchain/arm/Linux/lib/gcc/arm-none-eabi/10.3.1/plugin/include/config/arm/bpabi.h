@@ -1,6 +1,6 @@
 /* Configuration file for ARM BPABI targets.
    Copyright (C) 2004-2020 Free Software Foundation, Inc.
-   Contributed by CodeSourcery, LLC   
+   Contributed by CodeSourcery, LLC
 
    This file is part of GCC.
 
@@ -57,10 +57,10 @@
 
 #define TARGET_FDPIC_ASM_SPEC ""
 
-#define BE8_LINK_SPEC							\
-  "%{!r:%{!mbe32:%:be8_linkopt(%{mlittle-endian:little}"		\
-  "			       %{mbig-endian:big}"			\
-  "			       %{mbe8:be8}"				\
+#define BE8_LINK_SPEC                           \
+  "%{!r:%{!mbe32:%:be8_linkopt(%{mlittle-endian:little}"        \
+  "			       %{mbig-endian:big}"            \
+  "			       %{mbe8:be8}"               \
   "			       %{march=*:arch %*})}}"
 
 /* Tell the assembler to build BPABI binaries.  */
@@ -79,8 +79,8 @@
 
 /* The generic link spec in elf.h does not support shared libraries.  */
 #define BPABI_LINK_SPEC \
-  "%{mbig-endian:-EB} %{mlittle-endian:-EL} "		\
-  "%{static:-Bstatic} %{shared:-shared} %{symbolic:-Bsymbolic} "	\
+  "%{mbig-endian:-EB} %{mlittle-endian:-EL} "       \
+  "%{static:-Bstatic} %{shared:-shared} %{symbolic:-Bsymbolic} "    \
   "-X" SUBTARGET_EXTRA_LINK_SPEC EABI_LINK_SPEC
 
 #undef  LINK_SPEC
@@ -93,11 +93,11 @@
    broken out separately so that it can be used within
    TARGET_OS_CPP_BUILTINS in configuration files for systems based on
    the BPABI.  */
-#define TARGET_BPABI_CPP_BUILTINS()			\
-  do							\
-    {							\
-      builtin_define ("__GXX_TYPEINFO_EQUALITY_INLINE=0");	\
-    }							\
+#define TARGET_BPABI_CPP_BUILTINS()         \
+  do                            \
+    {                           \
+      builtin_define ("__GXX_TYPEINFO_EQUALITY_INLINE=0");  \
+    }                           \
   while (false)
 
 #undef TARGET_OS_CPP_BUILTINS
@@ -121,10 +121,10 @@
 #undef  NO_PROFILE_COUNTERS
 #define NO_PROFILE_COUNTERS 1
 #undef  ARM_FUNCTION_PROFILER
-#define ARM_FUNCTION_PROFILER(STREAM, LABELNO)  			\
-{									\
-  fprintf (STREAM, "\tpush\t{lr}\n");					\
-  fprintf (STREAM, "\tbl\t__gnu_mcount_nc\n");				\
+#define ARM_FUNCTION_PROFILER(STREAM, LABELNO)              \
+{                                   \
+  fprintf (STREAM, "\tpush\t{lr}\n");                   \
+  fprintf (STREAM, "\tbl\t__gnu_mcount_nc\n");              \
 }
 
 #undef SUBTARGET_FRAME_POINTER_REQUIRED

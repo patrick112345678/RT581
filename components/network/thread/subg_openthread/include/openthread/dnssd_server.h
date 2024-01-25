@@ -196,8 +196,8 @@ void otDnssdQuerySetCallbacks(otInstance                     *aInstance,
  *
  */
 void otDnssdQueryHandleDiscoveredServiceInstance(otInstance                 *aInstance,
-                                                 const char                 *aServiceFullName,
-                                                 otDnssdServiceInstanceInfo *aInstanceInfo);
+        const char                 *aServiceFullName,
+        otDnssdServiceInstanceInfo *aInstanceInfo);
 /**
  * This function notifies a discovered host.
  *

@@ -26,11 +26,11 @@
 
 typedef struct prod_cfg_param_s
 {
-  char *ieee;
-  char *power;
-  char *mask;
-  unsigned char g_binary_buffer[1024];
-  unsigned int g_config_len;
+    char *ieee;
+    char *power;
+    char *mask;
+    unsigned char g_binary_buffer[1024];
+    unsigned int g_config_len;
 } prod_cfg_param_t;
 
 int prepare_generic_binary_output(prod_cfg_param_t *prod_cfg_param);

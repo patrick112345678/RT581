@@ -37,28 +37,28 @@
   */
 typedef ZB_PACKED_PRE struct zb_intrp_data_req_s
 {
-  /** @brief The addressing mode for the destination address used in this primitive.
-    *
-    * This parameter can take one of the values from the following list:
-    * @li 0x01 = 16-bit group address
-    * @li 0x02 = 16-bit NWK address, normally the broadcast address 0xffff
-    * @li 0x03 = 64-bit extended address
-    */
-  zb_uint8_t dst_addr_mode;
-  /** The 16-bit Pan identifier of the entity or entities to which the ASDU is being transferred or
-    * the broadcast Pan ID 0xffff.
-    */
-  zb_uint16_t dst_pan_id;
-  /** The address of the entity or entities to which the ASDU is being transferred. */
-  zb_addr_u dst_addr;
-  /** The identifier of the application profile for which this frame is intended. */
-  zb_uint16_t profile_id;
-  /** The identifier of the cluster, within the profile specified by the ProfileId parameter, which
-    * defines the application semantics of the ASDU.
-    */
-  zb_uint16_t cluster_id;
-  /** An integer handle associated with the ASDU to be transmitted. */
-  zb_uint8_t asdu_handle;
+    /** @brief The addressing mode for the destination address used in this primitive.
+      *
+      * This parameter can take one of the values from the following list:
+      * @li 0x01 = 16-bit group address
+      * @li 0x02 = 16-bit NWK address, normally the broadcast address 0xffff
+      * @li 0x03 = 64-bit extended address
+      */
+    zb_uint8_t dst_addr_mode;
+    /** The 16-bit Pan identifier of the entity or entities to which the ASDU is being transferred or
+      * the broadcast Pan ID 0xffff.
+      */
+    zb_uint16_t dst_pan_id;
+    /** The address of the entity or entities to which the ASDU is being transferred. */
+    zb_addr_u dst_addr;
+    /** The identifier of the application profile for which this frame is intended. */
+    zb_uint16_t profile_id;
+    /** The identifier of the cluster, within the profile specified by the ProfileId parameter, which
+      * defines the application semantics of the ASDU.
+      */
+    zb_uint16_t cluster_id;
+    /** An integer handle associated with the ASDU to be transmitted. */
+    zb_uint8_t asdu_handle;
 } ZB_PACKED_STRUCT zb_intrp_data_req_t;
 
 /** @brief Valid values for inter-PAN destination address mode.
@@ -66,12 +66,12 @@ typedef ZB_PACKED_PRE struct zb_intrp_data_req_s
   */
 enum zb_intrp_addr_mode_e
 {
-  /** 16-bit group address */
-  ZB_INTRP_ADDR_GROUP                   = 0x01,
-  /** 16-bit NWK address */
-  ZB_INTRP_ADDR_NETWORK                 = 0x02,
-  /** 64-bit extended device address */
-  ZB_INTRP_ADDR_IEEE                    = 0x03
+    /** 16-bit group address */
+    ZB_INTRP_ADDR_GROUP                   = 0x01,
+    /** 16-bit NWK address */
+    ZB_INTRP_ADDR_NETWORK                 = 0x02,
+    /** 64-bit extended device address */
+    ZB_INTRP_ADDR_IEEE                    = 0x03
 };
 
 /** @brief Inter-PAN broadcast short network address */
@@ -82,29 +82,29 @@ enum zb_intrp_addr_mode_e
   */
 typedef ZB_PACKED_PRE struct zb_intrp_data_ind_s
 {
-  /** @brief Destination address mode.
-    * Valid values are defined by @ref zb_intrp_addr_mode_e enumration.
-    */
-  zb_uint8_t dst_addr_mode;
-  /** @brief Destination Pan identifier.
-    * Should be a valid Pan identifier or a broadcast Pan ID 0xffff.
-    */
-  zb_uint16_t dst_pan_id;
-  /** @brief Destination address. */
-  zb_addr_u dst_addr;
-  /** @brief Source Pan identifier.
-    * Assumed to be a valid Pan identifier in all cases.
-    */
-  zb_uint16_t src_pan_id;
-  /** @brief Source device address. */
-  zb_ieee_addr_t src_addr;
-  /** @brief Profile identifier. */
-  zb_uint16_t profile_id;
-  /** @brief Cluster identifier. */
-  zb_uint16_t cluster_id;
-  /** @brief The link quality observed during the reception of the ASDU. */
-  zb_uint8_t link_quality;
-  zb_uint8_t rssi;
+    /** @brief Destination address mode.
+      * Valid values are defined by @ref zb_intrp_addr_mode_e enumration.
+      */
+    zb_uint8_t dst_addr_mode;
+    /** @brief Destination Pan identifier.
+      * Should be a valid Pan identifier or a broadcast Pan ID 0xffff.
+      */
+    zb_uint16_t dst_pan_id;
+    /** @brief Destination address. */
+    zb_addr_u dst_addr;
+    /** @brief Source Pan identifier.
+      * Assumed to be a valid Pan identifier in all cases.
+      */
+    zb_uint16_t src_pan_id;
+    /** @brief Source device address. */
+    zb_ieee_addr_t src_addr;
+    /** @brief Profile identifier. */
+    zb_uint16_t profile_id;
+    /** @brief Cluster identifier. */
+    zb_uint16_t cluster_id;
+    /** @brief The link quality observed during the reception of the ASDU. */
+    zb_uint8_t link_quality;
+    zb_uint8_t rssi;
 } ZB_PACKED_STRUCT zb_intrp_data_ind_t;
 
 /** @cond DOXYGEN_APS_INTER_PAN_NON_DEFAULT_CHANNEL_FEATURE */
@@ -113,10 +113,10 @@ typedef ZB_PACKED_PRE struct zb_intrp_data_ind_s
   */
 typedef struct zb_mchan_intrp_data_confirm_s
 {
-  zb_channel_page_t channel_status_page_mask;  /*!< Channel Page structure - binary encoded channel page
+    zb_channel_page_t channel_status_page_mask;  /*!< Channel Page structure - binary encoded channel page
                                                 and channels mask as list of channels, indicating on which
                                                 channels the packet was successfully sent. */
-  zb_uint8_t  asdu_handle;  /*!< An integer handle associated with the transmitted frame. */
+    zb_uint8_t  asdu_handle;  /*!< An integer handle associated with the transmitted frame. */
 } zb_mchan_intrp_data_confirm_t;
 
 /**

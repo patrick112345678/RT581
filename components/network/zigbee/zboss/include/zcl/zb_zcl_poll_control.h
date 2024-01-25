@@ -240,10 +240,10 @@ void zb_zcl_poll_controll_register_cb(zb_callback_t cb);
 /*! @brief Structure representation of Client Status attributes */
 typedef ZB_PACKED_PRE struct zb_zcl_poll_control_client_status_s
 {
-  /** Client is In Poll Mode */
-  zb_bool_t is_poll_mode;
-  /** Client Fast Poll timeout*/
-  zb_uint16_t fast_poll_timeout;
+    /** Client is In Poll Mode */
+    zb_bool_t is_poll_mode;
+    /** Client Fast Poll timeout*/
+    zb_uint16_t fast_poll_timeout;
 
 } ZB_PACKED_STRUCT zb_zcl_poll_control_client_status_t;
 
@@ -254,14 +254,14 @@ typedef ZB_PACKED_PRE struct zb_zcl_poll_control_client_status_s
 /* Currently not only address info is stored - also status information */
 typedef struct zb_zcl_poll_control_srv_cfg_data_s
 {
-  /** Short address of the Poll control client */
-  zb_uint16_t poll_addr;
-  /** Endpoint number of the Poll control client */
-  zb_uint8_t poll_ep;
-  /** Flag to check if check-in command is being sent currently */
-  zb_bitfield_t sending_cmd:4;
-  /** Flag to determine fast poll mode / long poll mode */
-  zb_bitfield_t fast_poll_mode:1;
+    /** Short address of the Poll control client */
+    zb_uint16_t poll_addr;
+    /** Endpoint number of the Poll control client */
+    zb_uint8_t poll_ep;
+    /** Flag to check if check-in command is being sent currently */
+    zb_bitfield_t sending_cmd: 4;
+    /** Flag to determine fast poll mode / long poll mode */
+    zb_bitfield_t fast_poll_mode: 1;
 }
 zb_zcl_poll_control_srv_cfg_data_t;
 
@@ -322,7 +322,7 @@ zb_zcl_poll_control_srv_cfg_data_t;
 */
 enum zb_zcl_poll_control_cmd_e
 {
-  ZB_ZCL_CMD_POLL_CONTROL_CHECK_IN_ID    = 0x00   /**< "Check-in" command. HA spec 9.5.4.4 */
+    ZB_ZCL_CMD_POLL_CONTROL_CHECK_IN_ID    = 0x00   /**< "Check-in" command. HA spec 9.5.4.4 */
 };
 
 /*! @brief Poll Control cluster response command identifiers
@@ -330,10 +330,10 @@ enum zb_zcl_poll_control_cmd_e
 */
 enum zb_zcl_poll_control_resp_cmd_e
 {
-  ZB_ZCL_CMD_POLL_CONTROL_CHECK_IN_RESPONSE_ID        = 0x00, /**< "Check-in response" command, HA spec 9.5.5.3 */
-  ZB_ZCL_CMD_POLL_CONTROL_FAST_POLL_STOP_ID           = 0x01, /**< "Fast Poll Stop" command, HA spec 9.5.5.4 */
-  ZB_ZCL_CMD_POLL_CONTROL_SET_LONG_POLL_INTERVAL_ID   = 0x02, /**< "Set Long Poll Interval" command, HA spec 9.5.5.5 */
-  ZB_ZCL_CMD_POLL_CONTROL_SET_SHORT_POLL_INTERVAL_ID  = 0x03, /**< "Set Short Poll Interval" command, HA spec 9.5.5.6 */
+    ZB_ZCL_CMD_POLL_CONTROL_CHECK_IN_RESPONSE_ID        = 0x00, /**< "Check-in response" command, HA spec 9.5.5.3 */
+    ZB_ZCL_CMD_POLL_CONTROL_FAST_POLL_STOP_ID           = 0x01, /**< "Fast Poll Stop" command, HA spec 9.5.5.4 */
+    ZB_ZCL_CMD_POLL_CONTROL_SET_LONG_POLL_INTERVAL_ID   = 0x02, /**< "Set Long Poll Interval" command, HA spec 9.5.5.5 */
+    ZB_ZCL_CMD_POLL_CONTROL_SET_SHORT_POLL_INTERVAL_ID  = 0x03, /**< "Set Short Poll Interval" command, HA spec 9.5.5.6 */
 };
 
 /** @cond internals_doc */
@@ -379,9 +379,9 @@ enum zb_zcl_poll_control_resp_cmd_e
 /*! @brief Parameters to pass to device callback for incoming check in */
 typedef struct zb_zcl_poll_control_check_in_cli_param_s
 {
-  zb_uint16_t fast_poll_timeout;
-  zb_uint16_t short_addr;
-  zb_uint8_t  ep;
+    zb_uint16_t fast_poll_timeout;
+    zb_uint16_t short_addr;
+    zb_uint8_t  ep;
 }
 zb_zcl_poll_control_check_in_cli_param_t;
 
@@ -418,10 +418,10 @@ zb_zcl_poll_control_check_in_cli_param_t;
 /*! @brief Structure representation of Check-in response command payload */
 typedef ZB_PACKED_PRE struct zb_zcl_poll_control_check_in_res_s
 {
-  /** Start Fast Polling */
-  zb_uint8_t is_start;
-  /** Fast Poll Timeout */
-  zb_uint16_t timeout;
+    /** Start Fast Polling */
+    zb_uint8_t is_start;
+    /** Fast Poll Timeout */
+    zb_uint16_t timeout;
 } ZB_PACKED_STRUCT zb_zcl_poll_control_check_in_res_t;
 
 /*! @brief Send "Check-in response" command, see HA spec 9.5.5.3
@@ -505,8 +505,8 @@ typedef ZB_PACKED_PRE struct zb_zcl_poll_control_check_in_res_s
 /*! @brief Structure representation of Set Long Poll Interval command payload */
 typedef ZB_PACKED_PRE struct zb_zcl_poll_control_set_long_poll_interval_req_s
 {
-  /** New Long Poll Interval */
-  zb_uint32_t interval;
+    /** New Long Poll Interval */
+    zb_uint32_t interval;
 } ZB_PACKED_STRUCT zb_zcl_poll_control_set_long_poll_interval_t;
 
 
@@ -562,8 +562,8 @@ typedef ZB_PACKED_PRE struct zb_zcl_poll_control_set_long_poll_interval_req_s
 /*! @brief Structure representation of Set Short Poll Interval command payload */
 typedef ZB_PACKED_PRE struct zb_zcl_poll_control_set_short_poll_interval_req_s
 {
-  /** New Short Poll Interval */
-  zb_uint16_t interval;
+    /** New Short Poll Interval */
+    zb_uint16_t interval;
 } ZB_PACKED_STRUCT zb_zcl_poll_control_set_short_poll_interval_t;
 
 

@@ -59,8 +59,8 @@ typedef struct
     __IO  uint32_t  PWM_INT_CLEAR;           //offset: 0xA0
     __IO  uint32_t  PWM_INT_MASK;            //offset: 0xA4
     __I   uint32_t  PWM_INT_STATUS;          //offset: 0xA8
-		__IO  uint32_t  PWM_REG_D0;          	 //offset: 0xAC	New Register	
-    __IO  uint32_t  PWM_REG_D1;          	 //offset: 0xB0	New Register
+    __IO  uint32_t  PWM_REG_D0;              //offset: 0xAC New Register
+    __IO  uint32_t  PWM_REG_D1;              //offset: 0xB0 New Register
 } pwm_t;
 
 
@@ -91,8 +91,8 @@ typedef struct
 #define PWM_CFG0_PWM_CNT_TRIG_MASK           (0x00000001UL << PWM_CFG0_PWM_CNT_TRIG_SHFT)
 #define PWM_CFG0_SEQ_DMA_AUTO_SHFT           6
 #define PWM_CFG0_SEQ_DMA_AUTO_MASK           (0x00000001UL << PWM_CFG0_SEQ_DMA_AUTO_SHFT)
-#define PWM_CFG0_REG_MODE_SHFT           		 7
-#define PWM_CFG0_REG_MODE_MASK           		 (0x00000001UL << PWM_CFG0_REG_MODE_SHFT)
+#define PWM_CFG0_REG_MODE_SHFT                   7
+#define PWM_CFG0_REG_MODE_MASK                   (0x00000001UL << PWM_CFG0_REG_MODE_SHFT)
 #define PWM_CFG0_CK_DIV_SHFT                 8
 #define PWM_CFG0_CK_DIV_MASK                 (0x0000000FUL << PWM_CFG0_CK_DIV_SHFT)
 #define PWM_CFG0_PWM_ENA_TRIG_SHFT           12
@@ -110,8 +110,8 @@ typedef struct
 #define PWM_CFG0_PWM_CNT_MODE_MASK           (0x00000001UL << PWM_CFG0_PWM_CNT_MODE_SHFT)
 #define PWM_CFG0_PWM_CNT_TRIG_SHFT           5
 #define PWM_CFG0_PWM_CNT_TRIG_MASK           (0x00000001UL << PWM_CFG0_PWM_CNT_TRIG_SHFT)
-#define PWM_CFG0_REG_MODE_SHFT           		 7
-#define PWM_CFG0_REG_MODE_MASK           		 (0x00000001UL << PWM_CFG0_REG_MODE_SHFT)
+#define PWM_CFG0_REG_MODE_SHFT                   7
+#define PWM_CFG0_REG_MODE_MASK                   (0x00000001UL << PWM_CFG0_REG_MODE_SHFT)
 #define PWM_CFG0_REG_MODE_PLAY_NUM_SHFT      20
 #define PWM_CFG0_REG_MODE_PLAY_NUM_MASK      (0x00000001UL << PWM_CFG0_REG_MODE_PLAY_NUM_SHFT)
 
@@ -255,7 +255,7 @@ typedef struct
 #define PWM_TRSEQ_DONE_STATUS_INT_SHFT       6
 #define PWM_TRSEQ_DONE_STATUS_INT_MASK       (0x01UL << PWM_TRSEQ_DONE_STATUS_INT_SHFT)
 #define PWM_REG_MODE_STATUS_INT_SHFT         7
-#define PWM_REG_MODE_STATUS_INT_MASK       	 (0x01UL << PWM_REG_MODE_STATUS_INT_SHFT)
+#define PWM_REG_MODE_STATUS_INT_MASK         (0x01UL << PWM_REG_MODE_STATUS_INT_SHFT)
 
 
 #if defined ( __CC_ARM   )

@@ -27,67 +27,67 @@
 
 void izs_avg_val_calc_avg(izs_avg_data_t *avg_data)
 {
-  zb_uint32_t sum = 0;
-  zb_uint8_t i;
-  zb_uint8_t item_number;
+    zb_uint32_t sum = 0;
+    zb_uint8_t i;
+    zb_uint8_t item_number;
 
-  item_number = (avg_data->count < avg_data->data_size) ?
-    avg_data->count : avg_data->data_size;
+    item_number = (avg_data->count < avg_data->data_size) ?
+                  avg_data->count : avg_data->data_size;
 
-  for (i = 0; i < item_number; i++)
-  {
-    sum += avg_data->data_val[i];
-  }
-  avg_data->avg_val = (zb_uint16_t)(sum / item_number);
-  avg_data->avg_valid = ZB_TRUE;
+    for (i = 0; i < item_number; i++)
+    {
+        sum += avg_data->data_val[i];
+    }
+    avg_data->avg_val = (zb_uint16_t)(sum / item_number);
+    avg_data->avg_valid = ZB_TRUE;
 }
 
 
 void izs_avg_val_put_value(izs_avg_data_t *avg_data, zb_int16_t value)
 {
-  avg_data->data_val[avg_data->index] = value;
-  avg_data->index++;
-  avg_data->index %= avg_data->data_size;
+    avg_data->data_val[avg_data->index] = value;
+    avg_data->index++;
+    avg_data->index %= avg_data->data_size;
 
-  avg_data->count++;
-  if (avg_data->count > avg_data->data_size)
-  {
-    avg_data->count = avg_data->data_size;
-  }
+    avg_data->count++;
+    if (avg_data->count > avg_data->data_size)
+    {
+        avg_data->count = avg_data->data_size;
+    }
 
-  izs_avg_val_calc_avg(avg_data);
+    izs_avg_val_calc_avg(avg_data);
 }
 
 
 void izs_avg_val_calc_signed_avg(izs_avg_data_t *avg_data)
 {
-  zb_int32_t sum = 0;
-  zb_uint8_t i;
-  zb_uint8_t item_number;
+    zb_int32_t sum = 0;
+    zb_uint8_t i;
+    zb_uint8_t item_number;
 
-  item_number = (avg_data->count < avg_data->data_size) ?
-    avg_data->count : avg_data->data_size;
+    item_number = (avg_data->count < avg_data->data_size) ?
+                  avg_data->count : avg_data->data_size;
 
-  for (i = 0; i < item_number; i++)
-  {
-    sum += (zb_int32_t)((zb_int16_t)avg_data->data_val[i]);
-  }
-  avg_data->avg_val = (zb_int16_t)(sum / (zb_int32_t)item_number);
-  avg_data->avg_valid = ZB_TRUE;
+    for (i = 0; i < item_number; i++)
+    {
+        sum += (zb_int32_t)((zb_int16_t)avg_data->data_val[i]);
+    }
+    avg_data->avg_val = (zb_int16_t)(sum / (zb_int32_t)item_number);
+    avg_data->avg_valid = ZB_TRUE;
 }
 
 
 void izs_avg_val_put_signed_value(izs_avg_data_t *avg_data, zb_int16_t value)
 {
-  avg_data->data_val[avg_data->index] = value;
-  avg_data->index++;
-  avg_data->index %= avg_data->data_size;
+    avg_data->data_val[avg_data->index] = value;
+    avg_data->index++;
+    avg_data->index %= avg_data->data_size;
 
-  avg_data->count++;
-  if (avg_data->count > avg_data->data_size)
-  {
-    avg_data->count = avg_data->data_size;
-  }
+    avg_data->count++;
+    if (avg_data->count > avg_data->data_size)
+    {
+        avg_data->count = avg_data->data_size;
+    }
 
-  izs_avg_val_calc_signed_avg(avg_data);
+    izs_avg_val_calc_signed_avg(avg_data);
 }

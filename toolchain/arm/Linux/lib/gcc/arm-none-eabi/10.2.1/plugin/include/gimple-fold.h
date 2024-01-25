@@ -32,29 +32,29 @@ extern bool fold_stmt (gimple_stmt_iterator *);
 extern bool fold_stmt (gimple_stmt_iterator *, tree (*) (tree));
 extern bool fold_stmt_inplace (gimple_stmt_iterator *);
 extern tree maybe_fold_and_comparisons (tree, enum tree_code, tree, tree,
-					enum tree_code, tree, tree);
+                                        enum tree_code, tree, tree);
 extern tree maybe_fold_or_comparisons (tree, enum tree_code, tree, tree,
-				       enum tree_code, tree, tree);
+                                       enum tree_code, tree, tree);
 extern bool optimize_atomic_compare_exchange_p (gimple *);
 extern void fold_builtin_atomic_compare_exchange (gimple_stmt_iterator *);
 extern bool arith_overflowed_p (enum tree_code, const_tree, const_tree,
-				const_tree);
+                                const_tree);
 extern tree no_follow_ssa_edges (tree);
 extern tree follow_single_use_edges (tree);
 extern tree follow_all_ssa_edges (tree);
 extern tree gimple_fold_stmt_to_constant_1 (gimple *, tree (*) (tree),
-					    tree (*) (tree) = no_follow_ssa_edges);
+        tree (*) (tree) = no_follow_ssa_edges);
 extern tree gimple_fold_stmt_to_constant (gimple *, tree (*) (tree));
-extern tree fold_ctor_reference (tree, tree, const poly_uint64&,
-				 const poly_uint64&, tree,
-				 unsigned HOST_WIDE_INT * = NULL);
+extern tree fold_ctor_reference (tree, tree, const poly_uint64 &,
+                                 const poly_uint64 &, tree,
+                                 unsigned HOST_WIDE_INT * = NULL);
 extern tree fold_const_aggregate_ref_1 (tree, tree (*) (tree));
 extern tree fold_const_aggregate_ref (tree);
 extern tree gimple_get_virt_method_for_binfo (HOST_WIDE_INT, tree,
-					      bool *can_refer = NULL);
+        bool *can_refer = NULL);
 extern tree gimple_get_virt_method_for_vtable (HOST_WIDE_INT, tree,
-					       unsigned HOST_WIDE_INT,
-					       bool *can_refer = NULL);
+        unsigned HOST_WIDE_INT,
+        bool *can_refer = NULL);
 extern tree gimple_fold_indirect_ref (tree);
 extern bool gimple_fold_builtin_sprintf (gimple_stmt_iterator *);
 extern bool gimple_fold_builtin_snprintf (gimple_stmt_iterator *);
@@ -67,81 +67,81 @@ extern tree tree_vec_extract (gimple_stmt_iterator *, tree, tree, tree, tree);
    int the provided sequence, matching and simplifying them on-the-fly.
    Supposed to replace force_gimple_operand (fold_buildN (...), ...).  */
 extern tree gimple_build (gimple_seq *, location_t,
-			  enum tree_code, tree, tree);
+                          enum tree_code, tree, tree);
 inline tree
 gimple_build (gimple_seq *seq,
-	      enum tree_code code, tree type, tree op0)
+              enum tree_code code, tree type, tree op0)
 {
-  return gimple_build (seq, UNKNOWN_LOCATION, code, type, op0);
+    return gimple_build (seq, UNKNOWN_LOCATION, code, type, op0);
 }
 extern tree gimple_build (gimple_seq *, location_t,
-			  enum tree_code, tree, tree, tree);
+                          enum tree_code, tree, tree, tree);
 inline tree
 gimple_build (gimple_seq *seq,
-	      enum tree_code code, tree type, tree op0, tree op1)
+              enum tree_code code, tree type, tree op0, tree op1)
 {
-  return gimple_build (seq, UNKNOWN_LOCATION, code, type, op0, op1);
+    return gimple_build (seq, UNKNOWN_LOCATION, code, type, op0, op1);
 }
 extern tree gimple_build (gimple_seq *, location_t,
-			  enum tree_code, tree, tree, tree, tree);
+                          enum tree_code, tree, tree, tree, tree);
 inline tree
 gimple_build (gimple_seq *seq,
-	      enum tree_code code, tree type, tree op0, tree op1, tree op2)
+              enum tree_code code, tree type, tree op0, tree op1, tree op2)
 {
-  return gimple_build (seq, UNKNOWN_LOCATION, code, type, op0, op1, op2);
+    return gimple_build (seq, UNKNOWN_LOCATION, code, type, op0, op1, op2);
 }
 extern tree gimple_build (gimple_seq *, location_t, combined_fn, tree, tree);
 inline tree
 gimple_build (gimple_seq *seq, combined_fn fn, tree type, tree arg0)
 {
-  return gimple_build (seq, UNKNOWN_LOCATION, fn, type, arg0);
+    return gimple_build (seq, UNKNOWN_LOCATION, fn, type, arg0);
 }
 extern tree gimple_build (gimple_seq *, location_t, combined_fn,
-			  tree, tree, tree);
+                          tree, tree, tree);
 inline tree
 gimple_build (gimple_seq *seq, combined_fn fn,
-	      tree type, tree arg0, tree arg1)
+              tree type, tree arg0, tree arg1)
 {
-  return gimple_build (seq, UNKNOWN_LOCATION, fn, type, arg0, arg1);
+    return gimple_build (seq, UNKNOWN_LOCATION, fn, type, arg0, arg1);
 }
 extern tree gimple_build (gimple_seq *, location_t, combined_fn,
-			  tree, tree, tree, tree);
+                          tree, tree, tree, tree);
 inline tree
 gimple_build (gimple_seq *seq, combined_fn fn,
-	      tree type, tree arg0, tree arg1, tree arg2)
+              tree type, tree arg0, tree arg1, tree arg2)
 {
-  return gimple_build (seq, UNKNOWN_LOCATION, fn, type, arg0, arg1, arg2);
+    return gimple_build (seq, UNKNOWN_LOCATION, fn, type, arg0, arg1, arg2);
 }
 
 extern tree gimple_convert (gimple_seq *, location_t, tree, tree);
 inline tree
 gimple_convert (gimple_seq *seq, tree type, tree op)
 {
-  return gimple_convert (seq, UNKNOWN_LOCATION, type, op);
+    return gimple_convert (seq, UNKNOWN_LOCATION, type, op);
 }
 
 extern tree gimple_convert_to_ptrofftype (gimple_seq *, location_t, tree);
 inline tree
 gimple_convert_to_ptrofftype (gimple_seq *seq, tree op)
 {
-  return gimple_convert_to_ptrofftype (seq, UNKNOWN_LOCATION, op);
+    return gimple_convert_to_ptrofftype (seq, UNKNOWN_LOCATION, op);
 }
 
 extern tree gimple_build_vector_from_val (gimple_seq *, location_t, tree,
-					  tree);
+        tree);
 inline tree
 gimple_build_vector_from_val (gimple_seq *seq, tree type, tree op)
 {
-  return gimple_build_vector_from_val (seq, UNKNOWN_LOCATION, type, op);
+    return gimple_build_vector_from_val (seq, UNKNOWN_LOCATION, type, op);
 }
 
 class tree_vector_builder;
 extern tree gimple_build_vector (gimple_seq *, location_t,
-				 tree_vector_builder *);
+                                 tree_vector_builder *);
 inline tree
 gimple_build_vector (gimple_seq *seq, tree_vector_builder *builder)
 {
-  return gimple_build_vector (seq, UNKNOWN_LOCATION, builder);
+    return gimple_build_vector (seq, UNKNOWN_LOCATION, builder);
 }
 
 extern bool gimple_stmt_nonnegative_warnv_p (gimple *, bool *, int = 0);
@@ -149,16 +149,16 @@ extern bool gimple_stmt_integer_valued_real_p (gimple *, int = 0);
 
 /* In gimple-match.c.  */
 extern tree gimple_simplify (enum tree_code, tree, tree,
-			     gimple_seq *, tree (*)(tree));
+                             gimple_seq *, tree (*)(tree));
 extern tree gimple_simplify (enum tree_code, tree, tree, tree,
-			     gimple_seq *, tree (*)(tree));
+                             gimple_seq *, tree (*)(tree));
 extern tree gimple_simplify (enum tree_code, tree, tree, tree, tree,
-			     gimple_seq *, tree (*)(tree));
+                             gimple_seq *, tree (*)(tree));
 extern tree gimple_simplify (combined_fn, tree, tree,
-			     gimple_seq *, tree (*)(tree));
+                             gimple_seq *, tree (*)(tree));
 extern tree gimple_simplify (combined_fn, tree, tree, tree,
-			     gimple_seq *, tree (*)(tree));
+                             gimple_seq *, tree (*)(tree));
 extern tree gimple_simplify (combined_fn, tree, tree, tree, tree,
-			     gimple_seq *, tree (*)(tree));
+                             gimple_seq *, tree (*)(tree));
 
 #endif  /* GCC_GIMPLE_FOLD_H */

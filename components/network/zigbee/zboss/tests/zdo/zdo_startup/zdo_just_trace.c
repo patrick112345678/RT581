@@ -35,25 +35,25 @@
 
 MAIN()
 {
-  zb_uint_t i;
-  ARGV_UNUSED;
+    zb_uint_t i;
+    ARGV_UNUSED;
 
-  ZB_SET_TRACE_ON();
-  ZB_PLATFORM_INIT();
-  TRACE_INIT("");
+    ZB_SET_TRACE_ON();
+    ZB_PLATFORM_INIT();
+    TRACE_INIT("");
 
-  for (i = 0 ; i < 10 ; ++i)
-  {
-    TRACE_MSG(TRACE_ERROR, "trace trace", (FMT__0));
-  }
+    for (i = 0 ; i < 10 ; ++i)
+    {
+        TRACE_MSG(TRACE_ERROR, "trace trace", (FMT__0));
+    }
 
-  while(1)
-  {
-  }
+    while (1)
+    {
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 #if 0

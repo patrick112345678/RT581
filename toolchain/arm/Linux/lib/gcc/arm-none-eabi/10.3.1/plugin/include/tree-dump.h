@@ -34,20 +34,20 @@ typedef struct dump_info *dump_info_p;
 
 typedef struct dump_node_info
 {
-  /* The index for the node.  */
-  unsigned int index;
-  /* Nonzero if the node is a binfo.  */
-  unsigned int binfo_p : 1;
+    /* The index for the node.  */
+    unsigned int index;
+    /* Nonzero if the node is a binfo.  */
+    unsigned int binfo_p : 1;
 } *dump_node_info_p;
 
 /* A dump_queue is a link in the queue of things to be dumped.  */
 
 typedef struct dump_queue
 {
-  /* The queued tree node.  */
-  splay_tree_node node;
-  /* The next node in the queue.  */
-  struct dump_queue *next;
+    /* The queued tree node.  */
+    splay_tree_node node;
+    /* The next node in the queue.  */
+    struct dump_queue *next;
 } *dump_queue_p;
 
 /* A dump_info gives information about how we should perform the dump
@@ -55,26 +55,26 @@ typedef struct dump_queue
 
 struct dump_info
 {
-  /* The stream on which to dump the information.  */
-  FILE *stream;
-  /* The original node.  */
-  const_tree node;
-  /* User flags.  */
-  dump_flags_t flags;
-  /* The next unused node index.  */
-  unsigned int index;
-  /* The next column.  */
-  unsigned int column;
-  /* The first node in the queue of nodes to be written out.  */
-  dump_queue_p queue;
-  /* The last node in the queue.  */
-  dump_queue_p queue_end;
-  /* Free queue nodes.  */
-  dump_queue_p free_list;
-  /* The tree nodes which we have already written out.  The
-     keys are the addresses of the nodes; the values are the integer
-     indices we assigned them.  */
-  splay_tree nodes;
+    /* The stream on which to dump the information.  */
+    FILE *stream;
+    /* The original node.  */
+    const_tree node;
+    /* User flags.  */
+    dump_flags_t flags;
+    /* The next unused node index.  */
+    unsigned int index;
+    /* The next column.  */
+    unsigned int column;
+    /* The first node in the queue of nodes to be written out.  */
+    dump_queue_p queue;
+    /* The last node in the queue.  */
+    dump_queue_p queue_end;
+    /* Free queue nodes.  */
+    dump_queue_p free_list;
+    /* The tree nodes which we have already written out.  The
+       keys are the addresses of the nodes; the values are the integer
+       indices we assigned them.  */
+    splay_tree nodes;
 };
 
 /* Dump the CHILD and its children.  */

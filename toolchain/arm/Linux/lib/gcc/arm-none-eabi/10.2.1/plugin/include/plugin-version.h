@@ -14,5 +14,6 @@ static char revision[] = "";
    One way to do is to add a checksum. */
 
 static struct plugin_gcc_version gcc_version = {basever, datestamp,
-						devphase, revision,
-						configuration_arguments};
+           devphase, revision,
+           configuration_arguments
+};

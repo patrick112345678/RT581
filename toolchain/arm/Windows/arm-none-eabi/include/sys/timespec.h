@@ -1,6 +1,6 @@
 /*-
  * Copyright (c) 1982, 1986, 1993
- *	The Regents of the University of California.  All rights reserved.
+ *  The Regents of the University of California.  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -26,9 +26,9 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  *
- *	@(#)time.h	8.5 (Berkeley) 5/4/95
+ *  @(#)time.h  8.5 (Berkeley) 5/4/95
  * from: FreeBSD: src/sys/sys/time.h,v 1.43 2000/03/20 14:09:05 phk Exp
- *	$FreeBSD$
+ *  $FreeBSD$
  */
 
 #ifndef _SYS_TIMESPEC_H_
@@ -38,16 +38,16 @@
 #include <sys/_timespec.h>
 
 #if __BSD_VISIBLE
-#define	TIMEVAL_TO_TIMESPEC(tv, ts)					\
-	do {								\
-		(ts)->tv_sec = (tv)->tv_sec;				\
-		(ts)->tv_nsec = (tv)->tv_usec * 1000;			\
-	} while (0)
-#define	TIMESPEC_TO_TIMEVAL(tv, ts)					\
-	do {								\
-		(tv)->tv_sec = (ts)->tv_sec;				\
-		(tv)->tv_usec = (ts)->tv_nsec / 1000;			\
-	} while (0)
+#define TIMEVAL_TO_TIMESPEC(tv, ts)                 \
+    do {                                \
+        (ts)->tv_sec = (tv)->tv_sec;                \
+        (ts)->tv_nsec = (tv)->tv_usec * 1000;           \
+    } while (0)
+#define TIMESPEC_TO_TIMEVAL(tv, ts)                 \
+    do {                                \
+        (tv)->tv_sec = (ts)->tv_sec;                \
+        (tv)->tv_usec = (ts)->tv_nsec / 1000;           \
+    } while (0)
 
 #endif /* __BSD_VISIBLE */
 
@@ -55,9 +55,10 @@
  * Structure defined by POSIX.1b to be like a itimerval, but with
  * timespecs. Used in the timer_*() system calls.
  */
-struct itimerspec {
-	struct timespec  it_interval;
-	struct timespec  it_value;
+struct itimerspec
+{
+    struct timespec  it_interval;
+    struct timespec  it_value;
 };
 
 #endif /* _SYS_TIMESPEC_H_ */

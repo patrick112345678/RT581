@@ -129,7 +129,7 @@
   @param cluster_list - endpoint cluster list
  */
 #define DECLARE_ZC_EP(ep_name, ep_id, cluster_list)                                     \
-DECLARE_ZC_SIMPLE_DESC(								                                                  \
+DECLARE_ZC_SIMPLE_DESC(                                                                               \
     ep_name,                                                                            \
     ep_id,                                                                              \
     IN_CLUSTER_NUM,                                                                     \

@@ -625,8 +625,8 @@ typedef enum otTcpIncomingConnectionAction
  *
  */
 typedef otTcpIncomingConnectionAction (*otTcpAcceptReady)(otTcpListener    *aListener,
-                                                          const otSockAddr *aPeer,
-                                                          otTcpEndpoint   **aAcceptInto);
+        const otSockAddr *aPeer,
+        otTcpEndpoint   **aAcceptInto);
 
 /**
  * This callback indicates that the TCP connection is now ready for two-way

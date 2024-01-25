@@ -111,31 +111,31 @@ extern const zb_uint8_t ZB_PR_SIZE[2];      /**< Private key sizes map */
  */
 typedef union zb_kec_icu_u
 {
-  ZB_PACKED_PRE struct zb_kec_cs1_s
-  {
-    zb_uint8_t    public_reconstr_key[22];
-    zb_uint8_t    subject[8];
-    zb_uint8_t    issuer[8];
-    zb_uint8_t    profile_attribute_data[10];
-  } ZB_PACKED_STRUCT cs1;                       /**< 48 bytes icu */
+    ZB_PACKED_PRE struct zb_kec_cs1_s
+    {
+        zb_uint8_t    public_reconstr_key[22];
+        zb_uint8_t    subject[8];
+        zb_uint8_t    issuer[8];
+        zb_uint8_t    profile_attribute_data[10];
+    } ZB_PACKED_STRUCT cs1;                       /**< 48 bytes icu */
 
-  ZB_PACKED_PRE struct zb_kec_cs2_s
-  {
-    zb_uint8_t    type;              /**< 0x00 for Crypto Suite 2*/
-    zb_uint8_t    serial[8];         /**< is an 8-byte representation of the certificate Serial Number; */
-    zb_uint8_t    curve;             /**< is a 1-byte elliptic curve identifier. */
-                                     /**< For the Crypto Suite 2 Cipher Suite this shall be 0x0D indicating the sect283k1 curve is used; */
-    zb_uint8_t    hash;              /**< is a 1-byte hash identifier. */
-                                     /**< For the Crypto Suite 2 Cipher Suite, this shall be 0x08 indicating that AES-MMO is used; */
-    zb_uint8_t    issuer[8];
-    zb_uint8_t    valid_from[5];
-    zb_uint8_t    valid_to[4];
-    zb_uint8_t    subject[8];
-    zb_uint8_t    key_usage;         /**< @ref cs2_key_usage */
-    zb_uint8_t    public_reconstr_key[37];
-  } ZB_PACKED_STRUCT cs2;                       /**< 74-byte icu */
+    ZB_PACKED_PRE struct zb_kec_cs2_s
+    {
+        zb_uint8_t    type;              /**< 0x00 for Crypto Suite 2*/
+        zb_uint8_t    serial[8];         /**< is an 8-byte representation of the certificate Serial Number; */
+        zb_uint8_t    curve;             /**< is a 1-byte elliptic curve identifier. */
+        /**< For the Crypto Suite 2 Cipher Suite this shall be 0x0D indicating the sect283k1 curve is used; */
+        zb_uint8_t    hash;              /**< is a 1-byte hash identifier. */
+        /**< For the Crypto Suite 2 Cipher Suite, this shall be 0x08 indicating that AES-MMO is used; */
+        zb_uint8_t    issuer[8];
+        zb_uint8_t    valid_from[5];
+        zb_uint8_t    valid_to[4];
+        zb_uint8_t    subject[8];
+        zb_uint8_t    key_usage;         /**< @ref cs2_key_usage */
+        zb_uint8_t    public_reconstr_key[37];
+    } ZB_PACKED_STRUCT cs2;                       /**< 74-byte icu */
 
-  zb_uint8_t  u8[74];
+    zb_uint8_t  u8[74];
 } zb_kec_icu_t;
 
 
@@ -144,9 +144,9 @@ typedef union zb_kec_icu_u
  */
 typedef union zb_kec_qe_u
 {
-  zb_uint8_t    cs1[22];            /**< For Crypto Suite 1 */
-  zb_uint8_t    cs2[37];            /**< For Crypto Suite 2 */
-  zb_uint8_t    u8[37];             /**< for access as unsigned 8, max size */
+    zb_uint8_t    cs1[22];            /**< For Crypto Suite 1 */
+    zb_uint8_t    cs2[37];            /**< For Crypto Suite 2 */
+    zb_uint8_t    u8[37];             /**< for access as unsigned 8, max size */
 } zb_kec_qe_t;
 
 
@@ -155,9 +155,9 @@ typedef union zb_kec_qe_u
  */
 typedef union zb_kec_pr_u
 {
-  zb_uint8_t    cs1[21];            /**< For Crypto Suite 1 */
-  zb_uint8_t    cs2[36];            /**< For Crypto Suite 2 */
-  zb_uint8_t    u8[36];             /**< for access as unsigned 8, max size */
+    zb_uint8_t    cs1[21];            /**< For Crypto Suite 1 */
+    zb_uint8_t    cs2[36];            /**< For Crypto Suite 2 */
+    zb_uint8_t    u8[36];             /**< for access as unsigned 8, max size */
 } zb_kec_pr_t;
 
 
@@ -304,55 +304,55 @@ zb_uint8_t *zb_kec_get_issuer(zb_uint8_t suite_no, zb_kec_icu_t *cert);
  */
 typedef ZB_PACKED_PRE struct zb_ke_ctx_s
 {
-  zb_uint8_t      ke_stage;
-  zb_uint8_t      ke_status;
-  zb_uint8_t      curve_id;
-  zb_uint16_t     active_suites;
-  zb_uint16_t     local_ke_suite;
-  zb_uint16_t     remote_ke_suite;
-  zb_uint8_t      ke_suite_num;
+    zb_uint8_t      ke_stage;
+    zb_uint8_t      ke_status;
+    zb_uint8_t      curve_id;
+    zb_uint16_t     active_suites;
+    zb_uint16_t     local_ke_suite;
+    zb_uint16_t     remote_ke_suite;
+    zb_uint8_t      ke_suite_num;
 
-  zb_uint8_t      remote_ephemeral_timeout;
-  zb_uint8_t      remote_confirm_timeout;
+    zb_uint8_t      remote_ephemeral_timeout;
+    zb_uint8_t      remote_confirm_timeout;
 
-  zb_uint8_t      transaction_sequence_number;
-  zb_callback_t   user_cb;
-  zb_callback2_t  server_cb;
-  zb_uint8_t      src_ep;
-  zb_uint8_t      dst_ep;
-  zb_addr_u       dst_addr;
+    zb_uint8_t      transaction_sequence_number;
+    zb_callback_t   user_cb;
+    zb_callback2_t  server_cb;
+    zb_uint8_t      src_ep;
+    zb_uint8_t      dst_ep;
+    zb_addr_u       dst_addr;
 
-  zb_kec_qe_t     local_ephemeral_public_key;
-  zb_kec_pr_t     local_ephemeral_private_key;
-  zb_kec_qe_t     remote_ephemeral_public_key;
+    zb_kec_qe_t     local_ephemeral_public_key;
+    zb_kec_pr_t     local_ephemeral_private_key;
+    zb_kec_qe_t     remote_ephemeral_public_key;
 
-  zb_kec_icu_t    remote_certificate;
-  zb_kec_qe_t     active_certificate_authority_public_key;
+    zb_kec_icu_t    remote_certificate;
+    zb_kec_qe_t     active_certificate_authority_public_key;
 
-  zb_uint16_t     selected_ke_suite;
+    zb_uint16_t     selected_ke_suite;
 
-  /* >>>> Initiate Key Establishment payload: do not modify order of parameters! */
-  zb_uint16_t     selected_ke_suite_le; /* selected_ke_suite in the little-endian format */
-  zb_uint8_t      time_generate_eph;
-  zb_uint8_t      time_confirm_key;
-  zb_kec_icu_t    local_certificate;
-  /* <<<< Initiate Key Establishment payload */
+    /* >>>> Initiate Key Establishment payload: do not modify order of parameters! */
+    zb_uint16_t     selected_ke_suite_le; /* selected_ke_suite in the little-endian format */
+    zb_uint8_t      time_generate_eph;
+    zb_uint8_t      time_confirm_key;
+    zb_kec_icu_t    local_certificate;
+    /* <<<< Initiate Key Establishment payload */
 
-  zb_kec_pr_t     local_private_key;
-  zb_kec_qe_t     local_public_key;
-  zb_kec_qe_t     remote_public_key;
-  zb_ret_t        remote_public_key_retval;
+    zb_kec_pr_t     local_private_key;
+    zb_kec_qe_t     local_public_key;
+    zb_kec_qe_t     remote_public_key;
+    zb_ret_t        remote_public_key_retval;
 
-  zb_kec_pr_t     Z; /* Shared secret (ecc private key) */
-  zb_callback_t   kec_cb;
+    zb_kec_pr_t     Z; /* Shared secret (ecc private key) */
+    zb_callback_t   kec_cb;
 
-  zb_uint8_t      local_mac_data[ZB_KEC_HASH_LEN];
-  zb_uint8_t      mac_key[ZB_KEC_HASH_LEN];
-  zb_uint8_t      key_data[ZB_KEC_HASH_LEN];
+    zb_uint8_t      local_mac_data[ZB_KEC_HASH_LEN];
+    zb_uint8_t      mac_key[ZB_KEC_HASH_LEN];
+    zb_uint8_t      key_data[ZB_KEC_HASH_LEN];
 
-  zb_uint16_t     frag_total;
-  zb_zcl_frame_direction_t zcl_dir;
-  zb_zcl_parsed_hdr_t cmd_info;
+    zb_uint16_t     frag_total;
+    zb_zcl_frame_direction_t zcl_dir;
+    zb_zcl_parsed_hdr_t cmd_info;
 } ZB_PACKED_STRUCT zb_ke_ctx_t;
 
 
@@ -369,7 +369,7 @@ typedef ZB_PACKED_PRE struct zb_ke_ctx_s
  * M                    0x02                              Confirm Key Data Request
  * M                    0x03                              Terminate Key Establishment
  *                      0x04 - 0xFF                       Reserved
- * 
+ *
  * Note: These values were members of `enum zb_kec_server_rcv_cmd_e` type but were converted to a
  * set of macros due to MISRA violations.
  */
@@ -418,10 +418,10 @@ typedef ZB_PACKED_PRE struct zb_ke_ctx_s
  */
 typedef ZB_PACKED_PRE struct zb_kec_init_ke_req_cmd_s
 {
-  zb_uint16_t     ke_suite;            /**< @ref kec_key_suite - Only one suite shall be indicated in the command. */
-  zb_uint8_t      eph_data_gen_time;
-  zb_uint8_t      conf_key_gen_time;
-  zb_kec_icu_t    idu;
+    zb_uint16_t     ke_suite;            /**< @ref kec_key_suite - Only one suite shall be indicated in the command. */
+    zb_uint8_t      eph_data_gen_time;
+    zb_uint8_t      conf_key_gen_time;
+    zb_kec_icu_t    idu;
 } ZB_PACKED_STRUCT zb_kec_init_ke_req_cmd_t;
 
 
@@ -439,7 +439,7 @@ typedef ZB_PACKED_PRE struct zb_kec_init_ke_req_cmd_s
  */
 typedef ZB_PACKED_PRE struct zb_kec_eph_data_req_cmd_s
 {
-  zb_uint8_t      qeu[ZB_KEC_MAX_PUBLIC_KEY_SIZE+1];
+    zb_uint8_t      qeu[ZB_KEC_MAX_PUBLIC_KEY_SIZE + 1];
 } ZB_PACKED_STRUCT zb_kec_eph_data_req_cmd_t;
 
 
@@ -462,7 +462,7 @@ typedef ZB_PACKED_PRE struct zb_kec_eph_data_req_cmd_s
  */
 typedef ZB_PACKED_PRE struct zb_kec_confirm_key_req_cmd_s
 {
-  zb_uint8_t      macu[16];
+    zb_uint8_t      macu[16];
 } ZB_PACKED_STRUCT zb_kec_confirm_key_req_cmd_t;
 
 
@@ -483,9 +483,9 @@ typedef ZB_PACKED_PRE struct zb_kec_confirm_key_req_cmd_s
  */
 typedef ZB_PACKED_PRE struct zb_kec_term_cmd_s
 {
-  zb_uint8_t      status_code;    /**< @ref kec_term_status*/
-  zb_uint8_t      wait_time;
-  zb_uint16_t     key_suite;      /**< @ref kec_key_suite */
+    zb_uint8_t      status_code;    /**< @ref kec_term_status*/
+    zb_uint8_t      wait_time;
+    zb_uint16_t     key_suite;      /**< @ref kec_key_suite */
 } ZB_PACKED_STRUCT zb_kec_term_cmd_t;
 
 /** @} */ /* se_kec_srv_cmds */
@@ -568,7 +568,7 @@ typedef ZB_PACKED_PRE struct zb_kec_init_ke_resp_cmd_s
  */
 typedef ZB_PACKED_PRE struct zb_kec_eph_data_resp_cmd_s
 {
-    zb_uint8_t      qev[ZB_KEC_MAX_PUBLIC_KEY_SIZE+1];
+    zb_uint8_t      qev[ZB_KEC_MAX_PUBLIC_KEY_SIZE + 1];
 } ZB_PACKED_STRUCT zb_kec_eph_data_resp_cmd_t;
 
 
@@ -640,11 +640,11 @@ zb_ret_t zb_kec_activate_suite(zb_uint16_t suite);
  *  @return RET_OK, RET_ERROR
  */
 zb_ret_t zb_kec_load_keys(zb_callback_t cb_done,
-                             zb_uint8_t param,
-                             zb_uint16_t suite,
-                             zb_uint8_t *ca_public_key,
-                             zb_uint8_t *certificate,
-                             zb_uint8_t *private_key);
+                          zb_uint8_t param,
+                          zb_uint16_t suite,
+                          zb_uint8_t *ca_public_key,
+                          zb_uint8_t *certificate,
+                          zb_uint8_t *private_key);
 
 
 /** @fn void zse_kec_set_server_cb(zb_callback2_t cb)
@@ -666,11 +666,11 @@ void zse_kec_set_server_cb(zb_callback2_t cb);
  * @returns ZB error code @ref zb_ret_t
  */
 zb_ret_t zb_se_kec_initiate_key_establishment( zb_uint8_t param,
-                                               zb_uint8_t src_ep,
-                                               zb_uint8_t dst_ep,
-                                               zb_uint16_t dst_addr_short,
-                                               zb_callback_t cb
-                                              );
+        zb_uint8_t src_ep,
+        zb_uint8_t dst_ep,
+        zb_uint16_t dst_addr_short,
+        zb_callback_t cb
+                                             );
 
 
 /** @enum zb_kec_status_e
@@ -678,13 +678,13 @@ zb_ret_t zb_se_kec_initiate_key_establishment( zb_uint8_t param,
  */
 typedef enum zb_kec_status_e
 {
-  ZB_SE_KEY_ESTABLISHMENT_STATE_ERROR = 0x80,
-  ZB_SE_KEY_ESTABLISHMENT_BAD_MESSAGE,
-  ZB_SE_KEY_ESTABLISHMENT_NO_RESOURCES,
-  ZB_SE_KEY_ESTABLISHMENT_UNSUPPORTED_SUITE,
-  ZB_SE_KEY_ESTABLISHMENT_TSN_ERROR,
-  ZB_SE_KEY_ESTABLISHMENT_MAC_VERIFY_FAILED,
-  ZB_SE_KEY_ESTABLISHMENT_KEYS_NOT_LOADED
+    ZB_SE_KEY_ESTABLISHMENT_STATE_ERROR = 0x80,
+    ZB_SE_KEY_ESTABLISHMENT_BAD_MESSAGE,
+    ZB_SE_KEY_ESTABLISHMENT_NO_RESOURCES,
+    ZB_SE_KEY_ESTABLISHMENT_UNSUPPORTED_SUITE,
+    ZB_SE_KEY_ESTABLISHMENT_TSN_ERROR,
+    ZB_SE_KEY_ESTABLISHMENT_MAC_VERIFY_FAILED,
+    ZB_SE_KEY_ESTABLISHMENT_KEYS_NOT_LOADED
 } zb_kec_status_t;
 
 

@@ -45,31 +45,31 @@ along with GCC; see the file COPYING3.  If not see
 
 struct streamer_tree_cache_d
 {
-  /* The mapping between tree nodes and slots into the nodes array.  */
-  hash_map<tree, unsigned> *node_map;
+    /* The mapping between tree nodes and slots into the nodes array.  */
+    hash_map<tree, unsigned> *node_map;
 
-  /* The nodes pickled so far.  */
-  vec<tree> nodes;
-  /* The node hashes (if available).  */
-  vec<hashval_t> hashes;
+    /* The nodes pickled so far.  */
+    vec<tree> nodes;
+    /* The node hashes (if available).  */
+    vec<hashval_t> hashes;
 
-  /* Next index to assign.  */
-  unsigned next_idx;
+    /* Next index to assign.  */
+    unsigned next_idx;
 };
 
 /* In tree-streamer-in.c.  */
 tree streamer_read_string_cst (class data_in *, class lto_input_block *);
 tree streamer_read_chain (class lto_input_block *, class data_in *);
 tree streamer_alloc_tree (class lto_input_block *, class data_in *,
-		          enum LTO_tags);
+                          enum LTO_tags);
 void streamer_read_tree_body (class lto_input_block *, class data_in *, tree);
 tree streamer_get_pickled_tree (class lto_input_block *, class data_in *);
 void streamer_read_tree_bitfields (class lto_input_block *,
-				   class data_in *, tree);
+                                   class data_in *, tree);
 
 /* In tree-streamer-out.c.  */
 void streamer_write_string_cst (struct output_block *,
-				struct lto_output_stream *, tree);
+                                struct lto_output_stream *, tree);
 void streamer_write_chain (struct output_block *, tree, bool);
 void streamer_write_tree_header (struct output_block *, tree);
 void streamer_write_tree_bitfields (struct output_block *, tree);
@@ -80,13 +80,13 @@ void streamer_write_integer_cst (struct output_block *, tree, bool);
 extern unsigned char streamer_mode_table[1 << 8];
 void streamer_check_handled_ts_structures (void);
 bool streamer_tree_cache_insert (struct streamer_tree_cache_d *, tree,
-				 hashval_t, unsigned *);
+                                 hashval_t, unsigned *);
 void streamer_tree_cache_replace_tree (struct streamer_tree_cache_d *, tree,
-				       unsigned);
+                                       unsigned);
 void streamer_tree_cache_append (struct streamer_tree_cache_d *, tree,
-				 hashval_t);
+                                 hashval_t);
 bool streamer_tree_cache_lookup (struct streamer_tree_cache_d *, tree,
-				 unsigned *);
+                                 unsigned *);
 struct streamer_tree_cache_d *streamer_tree_cache_create (bool, bool, bool);
 void streamer_tree_cache_delete (struct streamer_tree_cache_d *);
 
@@ -95,7 +95,7 @@ void streamer_tree_cache_delete (struct streamer_tree_cache_d *);
 static inline tree
 streamer_tree_cache_get_tree (struct streamer_tree_cache_d *cache, unsigned ix)
 {
-  return cache->nodes[ix];
+    return cache->nodes[ix];
 }
 
 /* Return the tree hash value at slot IX in CACHE.  */
@@ -103,22 +103,22 @@ streamer_tree_cache_get_tree (struct streamer_tree_cache_d *cache, unsigned ix)
 static inline hashval_t
 streamer_tree_cache_get_hash (struct streamer_tree_cache_d *cache, unsigned ix)
 {
-  return cache->hashes[ix];
+    return cache->hashes[ix];
 }
 
 static inline void
 bp_pack_machine_mode (struct bitpack_d *bp, machine_mode mode)
 {
-  streamer_mode_table[mode] = 1;
-  bp_pack_enum (bp, machine_mode, 1 << 8, mode);
+    streamer_mode_table[mode] = 1;
+    bp_pack_enum (bp, machine_mode, 1 << 8, mode);
 }
 
 static inline machine_mode
 bp_unpack_machine_mode (struct bitpack_d *bp)
 {
-  return (machine_mode)
-	   ((class lto_input_block *)
-	    bp->stream)->mode_table[bp_unpack_enum (bp, machine_mode, 1 << 8)];
+    return (machine_mode)
+           ((class lto_input_block *)
+            bp->stream)->mode_table[bp_unpack_enum (bp, machine_mode, 1 << 8)];
 }
 
 #endif  /* GCC_TREE_STREAMER_H  */

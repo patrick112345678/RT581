@@ -39,87 +39,87 @@ static zb_ieee_addr_t g_ieee_addr_r2 = IEEE_ADDR_R2;
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  ZB_SET_TRAF_DUMP_ON();
-  ZB_INIT("zdo_zr2");
-#if UART_CONTROL	
-	test_control_init();
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    ZB_SET_TRAF_DUMP_ON();
+    ZB_INIT("zdo_zr2");
+#if UART_CONTROL
+    test_control_init();
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 #endif
 
-  zb_set_long_address(g_ieee_addr_r2);
-  zb_cert_test_set_common_channel_settings();
-  zb_cert_test_set_zr_role();
-  zb_set_max_children(0);
+    zb_set_long_address(g_ieee_addr_r2);
+    zb_cert_test_set_common_channel_settings();
+    zb_cert_test_set_zr_role();
+    zb_set_max_children(0);
 
-  ZB_NIB_SET_USE_MULTICAST(USE_NWK_MULTICAST);
+    ZB_NIB_SET_USE_MULTICAST(USE_NWK_MULTICAST);
 
-  ZB_CERT_HACKS().allow_entry_for_unregistered_ep = 1;
-  /* zb_cert_test_set_security_level(0); */
+    ZB_CERT_HACKS().allow_entry_for_unregistered_ep = 1;
+    /* zb_cert_test_set_security_level(0); */
 
-  zb_set_nvram_erase_at_start(ZB_TRUE);
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zboss_main_loop();
-  }
+    zb_set_nvram_erase_at_start(ZB_TRUE);
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zboss_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 static void add_group_request(zb_uint8_t param)
 {
-  zb_bufid_t req = zb_buf_get_out();
-  zb_apsme_add_group_req_t *req_param = ZB_BUF_GET_PARAM(req, zb_apsme_add_group_req_t);
-  ZB_BZERO(req_param, sizeof(*req_param));
-  (void)param;
+    zb_bufid_t req = zb_buf_get_out();
+    zb_apsme_add_group_req_t *req_param = ZB_BUF_GET_PARAM(req, zb_apsme_add_group_req_t);
+    ZB_BZERO(req_param, sizeof(*req_param));
+    (void)param;
 
-  req_param->group_address = GROUP_ADDR;
-  req_param->endpoint = GROUP_EP;
-  /* Need to disable ZB_ENABLE_ZCL to be able add entry in group table with nonregistered endpoint id */
-  zb_apsme_add_group_request(req);
+    req_param->group_address = GROUP_ADDR;
+    req_param->endpoint = GROUP_EP;
+    /* Need to disable ZB_ENABLE_ZCL to be able add entry in group table with nonregistered endpoint id */
+    zb_apsme_add_group_request(req);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_ERROR, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_ERROR, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  if (0 == status)
-  {
-    switch(sig)
+    if (0 == status)
     {
-      case ZB_ZDO_SIGNAL_DEFAULT_START:
-      case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      case ZB_BDB_SIGNAL_DEVICE_REBOOT:
-        TRACE_MSG(TRACE_ERROR, "Device STARTED OK", (FMT__0));
-        test_step_register(add_group_request, 0, TP_APS_BV_14_I_STEP_3_TIME_ZR2);
-        test_control_start(TEST_MODE, TP_APS_BV_14_I_STEP_3_DELAY_ZR2);
-        break;
+        switch (sig)
+        {
+        case ZB_ZDO_SIGNAL_DEFAULT_START:
+        case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
+        case ZB_BDB_SIGNAL_DEVICE_REBOOT:
+            TRACE_MSG(TRACE_ERROR, "Device STARTED OK", (FMT__0));
+            test_step_register(add_group_request, 0, TP_APS_BV_14_I_STEP_3_TIME_ZR2);
+            test_control_start(TEST_MODE, TP_APS_BV_14_I_STEP_3_DELAY_ZR2);
+            break;
 
-      default:
-        TRACE_MSG(TRACE_ERROR, "Unknown signal %hd", (FMT__H, sig));
+        default:
+            TRACE_MSG(TRACE_ERROR, "Unknown signal %hd", (FMT__H, sig));
+        }
     }
-  }
-  else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
-  {
-    TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, status));
-  }
+    else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
+    {
+        TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, status));
+    }
 
-  if (param)
-  {
-    zb_buf_free(param);
-  }
+    if (param)
+    {
+        zb_buf_free(param);
+    }
 }

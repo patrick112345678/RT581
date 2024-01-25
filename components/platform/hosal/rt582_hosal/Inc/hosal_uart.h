@@ -96,7 +96,8 @@ typedef enum
     UART_DATA_BITS_8       /*!< 8-bits. \hideinitializer */
 } hosal_uart_databits_t;
 
-typedef enum {
+typedef enum
+{
     HOSAL_UART_MODE_POLL,            /**< @brief UART poll mode (default mode) */
     HOSAL_UART_MODE_INT_TX,          /**< @brief UART TX int mode */
     HOSAL_UART_MODE_INT_RX,          /**< @brief UART RX int mode */
@@ -156,21 +157,23 @@ typedef enum {
 //=============================================================================
 //                  Structure Definition
 //=============================================================================
-typedef struct {
-    uint8_t                   uart_id;	    /**< @brief UART id */
-    uint8_t                   tx_pin;		/**< @brief UART tx pin */
-    uint8_t                   rx_pin;		/**< @brief UART rx pin */
-    uint8_t                   cts_pin;	    /**< @brief UART cts pin */
-    uint8_t                   rts_pin;	    /**< @brief UART rts pin */
-    hosal_uart_baudrate_t     baud_rate;	/**< @brief UART baud rate */
-    hosal_uart_databits_t     data_width;	/**< @brief UART data width */
-    hosal_uart_parity_t       parity;		/**< @brief UART parity bit */
-    hosal_uart_stopbit_t    stop_bits;	/**< @brief UART stop btis */
-    hosal_uart_hwfc_t       flow_control;	/**< @brief UART flow control */
+typedef struct
+{
+    uint8_t                   uart_id;      /**< @brief UART id */
+    uint8_t                   tx_pin;       /**< @brief UART tx pin */
+    uint8_t                   rx_pin;       /**< @brief UART rx pin */
+    uint8_t                   cts_pin;      /**< @brief UART cts pin */
+    uint8_t                   rts_pin;      /**< @brief UART rts pin */
+    hosal_uart_baudrate_t     baud_rate;    /**< @brief UART baud rate */
+    hosal_uart_databits_t     data_width;   /**< @brief UART data width */
+    hosal_uart_parity_t       parity;       /**< @brief UART parity bit */
+    hosal_uart_stopbit_t    stop_bits;  /**< @brief UART stop btis */
+    hosal_uart_hwfc_t       flow_control;   /**< @brief UART flow control */
     hosal_uart_mode_t       mode;
 } hosal_uart_config_t;
 
-typedef struct {
+typedef struct
+{
     uint8_t port;
     hosal_uart_config_t     config;
     hosal_uart_callback_t   tx_cb;
@@ -184,7 +187,8 @@ typedef struct {
     void                    *priv;
 } hosal_uart_dev_t;
 
-typedef struct {
+typedef struct
+{
     uint8_t *dma_buf;
     uint32_t dma_buf_size;
 } hosal_uart_dma_cfg_t;
@@ -221,11 +225,11 @@ int hosal_uart_send(hosal_uart_dev_t *uart_dev, const void *data, uint32_t size)
 int hosal_uart_receive(hosal_uart_dev_t *uart_dev, void *data, uint32_t expect_size);
 int hosal_uart_ioctl (hosal_uart_dev_t *uart_dev, int ctl, void *p_arg);
 int hosal_uart_callback_set (hosal_uart_dev_t *uart_dev,
-                           int callback_type,
-                           hosal_uart_callback_t pfn_callback,
-                           void *arg);
+                             int callback_type,
+                             hosal_uart_callback_t pfn_callback,
+                             void *arg);
 
-int hosal_uart_finalize(hosal_uart_dev_t *uart_dev);                           
+int hosal_uart_finalize(hosal_uart_dev_t *uart_dev);
 #ifdef __cplusplus
 }
 #endif

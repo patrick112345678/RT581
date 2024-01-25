@@ -49,16 +49,16 @@
 */
 enum zb_zcl_ias_zone_attr_ha_e
 {
-  /*! @brief ZoneID attribute, HA spec 10.7.4.2.2 */
-  ZB_ZCL_ATTR_IAS_ZONE_ZONEID_HA_ID = 0x0011,
-  /*! @brief NumberOfZoneSensitivityLevelsSupported attribute, Errata to 05-3520-29 Spec, 1.1.23.1.1.1 */
-  ZB_ZCL_ATTR_IAS_ZONE_NUMBER_OF_ZONE_SENSITIVITY_LEVELS_SUPPORTED_ID = 0x0012,
-  /*! @brief CurrentZoneSensitivityLevel attribute, Errata to 05-3520-29 Spec, 1.1.23.1.1.2 */
-  ZB_ZCL_ATTR_IAS_ZONE_CURRENT_ZONE_SENSITIVITY_LEVEL_ID = 0x0013,
+    /*! @brief ZoneID attribute, HA spec 10.7.4.2.2 */
+    ZB_ZCL_ATTR_IAS_ZONE_ZONEID_HA_ID = 0x0011,
+    /*! @brief NumberOfZoneSensitivityLevelsSupported attribute, Errata to 05-3520-29 Spec, 1.1.23.1.1.1 */
+    ZB_ZCL_ATTR_IAS_ZONE_NUMBER_OF_ZONE_SENSITIVITY_LEVELS_SUPPORTED_ID = 0x0012,
+    /*! @brief CurrentZoneSensitivityLevel attribute, Errata to 05-3520-29 Spec, 1.1.23.1.1.2 */
+    ZB_ZCL_ATTR_IAS_ZONE_CURRENT_ZONE_SENSITIVITY_LEVEL_ID = 0x0013,
 
-/* TODO: move this attribute to IAS Zone ZCL implementation */
-  /*! @brief Struct with pointers on User App callbacks */
-  ZB_ZCL_ATTR_IAS_ZONE_INT_CTX_ID = 0xeffe,
+    /* TODO: move this attribute to IAS Zone ZCL implementation */
+    /*! @brief Struct with pointers on User App callbacks */
+    ZB_ZCL_ATTR_IAS_ZONE_INT_CTX_ID = 0xeffe,
 };
 
 /** @brief IAS Zone ZoneID attribute default value */
@@ -82,10 +82,10 @@ enum zb_zcl_ias_zone_attr_ha_e
 */
 enum zb_zcl_ias_zone_zonestatus_ha_e
 {
-  /** Test */
-  ZB_ZCL_IAS_ZONE_ZONE_STATUS_TEST            = 1 << 8,
-  /** Battery Defect */
-  ZB_ZCL_IAS_ZONE_ZONE_STATUS_BATTERY_DEFECT  = 1 << 9,
+    /** Test */
+    ZB_ZCL_IAS_ZONE_ZONE_STATUS_TEST            = 1 << 8,
+    /** Battery Defect */
+    ZB_ZCL_IAS_ZONE_ZONE_STATUS_BATTERY_DEFECT  = 1 << 9,
 };
 
 /*! @internal @name IAS Zone cluster internals
@@ -169,19 +169,19 @@ enum zb_zcl_ias_zone_zonestatus_ha_e
 
 enum zb_zcl_ias_zone_cmd_ha_e
 {
-  /**< "Initiate Normal Operation Mode" command, Errata to 05-3520-29 Spec, 1.1.23.2.1 */
-  ZB_ZCL_CMD_IAS_ZONE_INITIATE_NORMAL_OPERATION_MODE_ID        = 0x01,
-  /**< "Initiate Test Mode" command, Errata to 05-3520-29 Spec, 1.1.23.2.2 */
-  ZB_ZCL_CMD_IAS_ZONE_INITIATE_TEST_MODE_ID        = 0x02,
+    /**< "Initiate Normal Operation Mode" command, Errata to 05-3520-29 Spec, 1.1.23.2.1 */
+    ZB_ZCL_CMD_IAS_ZONE_INITIATE_NORMAL_OPERATION_MODE_ID        = 0x01,
+    /**< "Initiate Test Mode" command, Errata to 05-3520-29 Spec, 1.1.23.2.2 */
+    ZB_ZCL_CMD_IAS_ZONE_INITIATE_TEST_MODE_ID        = 0x02,
 };
 
 /*! @brief Structure representsation of Initiate Test Mode - Errata to 05-3520-29 Spec, 1.1.23.2.2.1 */
 typedef ZB_PACKED_PRE struct zb_zcl_ias_zone_init_test_mode_ha_s
 {
-  /** Test mode duration */
-  zb_uint8_t test_mode_duration;
-  /** Current Zone Sensitivity Level */
-  zb_uint8_t current_zone_sens_level;
+    /** Test mode duration */
+    zb_uint8_t test_mode_duration;
+    /** Current Zone Sensitivity Level */
+    zb_uint8_t current_zone_sens_level;
 } ZB_PACKED_STRUCT zb_zcl_ias_zone_init_test_mode_ha_t;
 
 /** @brief Macro for getting "Initiate Test Mode" command
@@ -262,15 +262,15 @@ typedef ZB_PACKED_PRE struct zb_zcl_ias_zone_init_test_mode_ha_s
  * see HA spec 10.7.4.3.1 */
 typedef ZB_PACKED_PRE struct zb_zcl_ias_zone_status_change_not_ha_s
 {
-  /** Zone Status, see @ref zb_zcl_ias_zone_zonestatus_e*/
-  zb_uint16_t zone_status;
-  /** Extended Status */
-  zb_uint8_t extended_status;
+    /** Zone Status, see @ref zb_zcl_ias_zone_zonestatus_e*/
+    zb_uint16_t zone_status;
+    /** Extended Status */
+    zb_uint8_t extended_status;
 
-  /** Zone ID*/
-  zb_uint8_t zone_id;
-  /** Delay */
-  zb_uint16_t delay;
+    /** Zone ID*/
+    zb_uint8_t zone_id;
+    /** Delay */
+    zb_uint16_t delay;
 } ZB_PACKED_STRUCT zb_zcl_ias_zone_status_change_not_ha_t;
 
 

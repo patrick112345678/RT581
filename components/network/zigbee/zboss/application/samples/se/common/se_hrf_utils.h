@@ -65,11 +65,11 @@ const zb_char_t *se_hrf_metering_unit_of_measure(zb_uint8_t val);
  *  @returns pointer to the formatted value first char within the buffer or NULL if buffer is small
  */
 zb_char_t *se_hrf_metering_format_uint48_value(zb_uint48_t value,
-                                               zb_uint8_t fmt_left,
-                                               zb_uint8_t fmt_right,
-                                               zb_uint8_t fmt_suppr,
-                                               zb_char_t *buf,
-                                               zb_uint8_t buflen);
+        zb_uint8_t fmt_left,
+        zb_uint8_t fmt_right,
+        zb_uint8_t fmt_suppr,
+        zb_char_t *buf,
+        zb_uint8_t buflen);
 
 zb_char_t *se_hrf_format_price(zb_uint32_t raw_price,
                                zb_uint16_t currency,

@@ -35,7 +35,7 @@ void irm_isr(void);
 #define IR_EVELOPE_HIGH (1)
 #define IR_EVELOPE_LOW (0)
 
-////// DEINE FOR NEC ///// 
+////// DEINE FOR NEC /////
 #define NEC_CARRIER_LOW_CNT (1)
 #define NEC_CARRIER_HIGH_CNT (0)
 #define NEC_CARRIER_BASEMENT_CNT (281)
@@ -65,7 +65,7 @@ void irm_isr(void);
 #define NEC_110MS (4400+NEC_OFFSET)//110000us / 25 us = 3520
 #endif
 
-////// DEINE FOR SIRC///// 
+////// DEINE FOR SIRC/////
 #define SIRC_CARRIER_LOW_CNT (1)
 #define SIRC_CARRIER_HIGH_CNT (0)
 #define SIRC_CARRIER_BASEMENT_CNT (267)
@@ -78,7 +78,7 @@ void irm_isr(void);
 #define SIRC_ZERO_LOW (SIRC_START_LOW)
 #define SIRC_END_LOW (400+SIRC_START_LOW)//45000us+600us / 25 us = 1800+24
 
-////// DEINE FOR RC6///// 
+////// DEINE FOR RC6/////
 #define RC6_CARRIER_LOW_CNT (1)
 #define RC6_CARRIER_HIGH_CNT (0)
 #define RC6_CARRIER_BASEMENT_CNT (296)
@@ -110,7 +110,7 @@ typedef enum ir_mode
 {
     NORMAL_MODE,
     AUTO_MODE
-}IR_MODE_t;
+} IR_MODE_t;
 
 typedef enum ir_out_mode
 {
@@ -118,7 +118,7 @@ typedef enum ir_out_mode
     OR,
     NAND,
     NOR
-}IR_OUT_MODE_t;
+} IR_OUT_MODE_t;
 
 typedef enum ir_potocol
 {
@@ -126,20 +126,20 @@ typedef enum ir_potocol
     RC6,
     RC_MN,
     NEC,
-    SIRC_12bits=5,
-    SIRC_15bits=8    
-}IR_POTOCOL_t;
+    SIRC_12bits = 5,
+    SIRC_15bits = 8
+} IR_POTOCOL_t;
 
-typedef union 
+typedef union
 {
     uint32_t u32;
-    struct ir_fifo 
+    struct ir_fifo
     {
         uint16_t  evn_cnt;
-        uint8_t  evenlope:1;
-        uint8_t  evn_int:1;
-        uint8_t  env_last:1;
-        uint16_t  reserve:13;
+        uint8_t  evenlope: 1;
+        uint8_t  evn_int: 1;
+        uint8_t  env_last: 1;
+        uint16_t  reserve: 13;
     } bf;
 } IR_FIFO_t;
 
@@ -147,19 +147,19 @@ typedef union
 
 typedef struct ir_buffer
 {
-    IR_FIFO_t* buf ;
+    IR_FIFO_t *buf ;
     uint16_t  bufsize_mask;
     volatile uint32_t wr_idx;
     volatile uint32_t rd_idx;
     uint32_t total_usage_cnt;
-}IR_BUFFER_t;
+} IR_BUFFER_t;
 
 typedef enum ir_state
 {
     IDLE,
     TRANSMITTING,
     DONE
-}IR_STATE_t;
+} IR_STATE_t;
 
 
 
@@ -169,10 +169,10 @@ typedef enum ir_state
  *
  * @param[in] statue IRM transfer status.
  *
- * @details    This callback function is still running in interrupt mode, so this function 
- *              should be as short as possible. It can NOT call any block function in this 
+ * @details    This callback function is still running in interrupt mode, so this function
+ *              should be as short as possible. It can NOT call any block function in this
  *              callback service routine.
- * 
+ *
  *              This function will be called when IRM finished the transfer envelope, or there
  *              is no envelope in fifo during the transfer (error case).
  *
@@ -181,12 +181,12 @@ typedef void (* irm_proc_cb_t)(uint32_t status);
 
 
 /**
- * @brief 
+ * @brief
  * @details
- *         
+ *
  */
-typedef struct 
-{    
+typedef struct
+{
     irm_proc_cb_t  irm_cb_func;              /*!< irm callback function  \hideinitializer */
     IR_MODE_t op_mode;                       /*!< irm opration mode  \hideinitializer */
     IR_OUT_MODE_t ir_out_mode;               /*!< irm output mode  \hideinitializer */
@@ -197,7 +197,7 @@ typedef struct
 /**
  * @brief Set IRM initialize
  *
- * @param[in]  
+ * @param[in]
  *          irm_cfg  irm config
  *
  * @retval
@@ -205,10 +205,10 @@ typedef struct
  *       STATUS_INVALID_REQUEST   --- I2C master is not in idle mode.
  *
  * @details
- *       Call this function to initail IRM, the whole IRM 
+ *       Call this function to initail IRM, the whole IRM
  *       driver is interrupt-driven, all IRM response are processing
  *       in user "irm_cb_func" callback function. Please Notice the
- *       the function "irm_cb_func" is in ISR context, so finish the 
+ *       the function "irm_cb_func" is in ISR context, so finish the
  *       task ASAP. You can NOT block the function!
  */
 extern uint32_t IRM_open(irm_mode_t *irm_cfg);
@@ -216,11 +216,11 @@ extern uint32_t IRM_open(irm_mode_t *irm_cfg);
 /**
  * @brief Set IRM carrier
  *
- * @param[in]  
- *          carrier_high_cnt    
+ * @param[in]
+ *          carrier_high_cnt
  *          carrier_low_cnt
  *          carrier_base_cnt
- *          
+ *
  *          carrier frequercy = irm_sclk(32M) / (carrier_base_cnt * (carrier_high_cnt + carrier_low_cnt + 2))
  *          duty cycle = (carrier_high_cnt + 1) / (carrier_high_cnt + carrier_low_cnt + 2)
  * @retval
@@ -231,10 +231,10 @@ extern uint32_t IRM_open(irm_mode_t *irm_cfg);
 extern void IR_Carrier_config(uint8_t carrier_high_cnt, uint8_t carrier_low_cnt, uint16_t carrier_base_cnt);
 
 /**
- * @brief Set irm fifo first 
+ * @brief Set irm fifo first
  *
- * @param[in]  
- *          
+ * @param[in]
+ *
  * @retval
  *
  * @details
@@ -243,10 +243,10 @@ extern void IR_Carrier_config(uint8_t carrier_high_cnt, uint8_t carrier_low_cnt,
 extern void IR_BUFFER_fill_in(void);
 
 /**
- * @brief Set irm fifo 
+ * @brief Set irm fifo
  *
- * @param[in]  
- *          
+ * @param[in]
+ *
  * @retval
  *
  * @details
@@ -255,8 +255,8 @@ extern void IR_BUFFER_fill_in(void);
 extern void IR_BUFFER_repeat_fill_in(void);
 
 /**
- *   @brief  Enable irm 
- * 
+ *   @brief  Enable irm
+ *
  *   @details
  *
  */
@@ -264,15 +264,15 @@ extern void IR_enable(void);
 
 /**
  *   @brief  Disable irm
- * 
+ *
  *   @details
  *
  */
 extern void IR_disable(void);
 
 /**
- *   @brief  Start irm 
- * 
+ *   @brief  Start irm
+ *
  *   @details
  *
  */
@@ -280,19 +280,19 @@ extern void IR_start(void);
 
 /**
  *   @brief  Stop irm
- * 
+ *
  *   @details
  *
  */
 extern void IR_stop(void);
 
 /**
- * @brief Send NEC protocol 
+ * @brief Send NEC protocol
  *
- * @param[in]  
- *          cmd         
- *          address     
- *          
+ * @param[in]
+ *          cmd
+ *          address
+ *
  * @retval
  *
  * @details
@@ -301,10 +301,10 @@ extern void IR_stop(void);
 extern void IR_NEC_encoder(uint16_t cmd, uint16_t address);
 
 /**
- * @brief Send NEC protocol repeat command 
+ * @brief Send NEC protocol repeat command
  *
- * @param[in]  
- *          
+ * @param[in]
+ *
  * @retval
  *
  * @details
@@ -313,8 +313,8 @@ extern void IR_NEC_encoder(uint16_t cmd, uint16_t address);
 extern void IR_NEC_repeat_encoder(void);
 
 
-extern void IR_SIRC_encoder(uint8_t cmd, uint8_t address,uint8_t address_length);
-extern void IR_RC6_encoder(uint16_t cmd, uint8_t address,uint8_t RC6_toggle);
+extern void IR_SIRC_encoder(uint8_t cmd, uint8_t address, uint8_t address_length);
+extern void IR_RC6_encoder(uint16_t cmd, uint8_t address, uint8_t RC6_toggle);
 
 
 #ifdef __cplusplus

@@ -19,7 +19,7 @@ static const efd_env default_env_set[] = { { "boot_times", "3", 1 } };
  *
  * @return result
  */
-EfErrCode efd_port_init(efd_env const ** default_env, size_t * default_env_size)
+EfErrCode efd_port_init(efd_env const **default_env, size_t *default_env_size)
 {
     EfErrCode result = EFD_NO_ERR;
 
@@ -39,12 +39,12 @@ EfErrCode efd_port_init(efd_env const ** default_env, size_t * default_env_size)
  *
  * @return result
  */
-EfErrCode efd_port_read(uint32_t addr, uint32_t * buf, size_t size)
+EfErrCode efd_port_read(uint32_t addr, uint32_t *buf, size_t size)
 {
     EfErrCode result = EFD_NO_ERR;
 
     /* You can add your code under here. */
-    uint8_t * ptr     = (uint8_t *) buf;
+    uint8_t *ptr     = (uint8_t *) buf;
     uint8_t start_pos = 0;
     size_t r_size = 0, r_pos = 0, tmp = size;
 
@@ -129,12 +129,12 @@ EfErrCode efd_port_erase(uint32_t addr, size_t size)
  *
  * @return result
  */
-EfErrCode efd_port_write(uint32_t addr, const uint32_t * buf, size_t size)
+EfErrCode efd_port_write(uint32_t addr, const uint32_t *buf, size_t size)
 {
     EfErrCode result = EFD_NO_ERR;
 
     /* You can add your code under here. */
-    uint8_t * ptr     = (uint8_t *) buf;
+    uint8_t *ptr     = (uint8_t *) buf;
     uint8_t start_pos = 0;
     size_t w_size = 0, w_pos = 0, tmp = size;
 
@@ -210,7 +210,7 @@ void efd_port_env_unlock(void)
  * @param ... args
  *
  */
-void efd_log_debug(const char * file, const long line, const char * format, ...)
+void efd_log_debug(const char *file, const long line, const char *format, ...)
 {
 
 #ifdef PRINT_DEBUG
@@ -235,7 +235,7 @@ void efd_log_debug(const char * file, const long line, const char * format, ...)
  * @param format output format
  * @param ... args
  */
-void efd_log_info(const char * format, ...)
+void efd_log_info(const char *format, ...)
 {
 #if 0
     va_list args;
@@ -255,7 +255,7 @@ void efd_log_info(const char * format, ...)
  * @param format output format
  * @param ... args
  */
-void efd_print(const char * format, ...)
+void efd_print(const char *format, ...)
 {
 #if 0
     va_list args;

@@ -35,8 +35,8 @@
  *    Model: One (client) to More (servers)
  */
 
-  /*! @name Ir_Blaster cluster commands
-    @{
+/*! @name Ir_Blaster cluster commands
+  @{
 */
 
 #define ZB_ZCL_IR_BLASTER_IR_SIGNATURE_SIZE 22
@@ -46,17 +46,17 @@
  */
 enum zb_zcl_ir_blaster_cmd_e
 {
-  ZB_ZCL_CMD_IR_BLASTER_TRANSMIT_IR_DATA        = 0x00,
-  ZB_ZCL_CMD_IR_BLASTER_TRANSMISSION_STATUS     = 0x01,
-  ZB_ZCL_CMD_IR_BLASTER_GET_IR_SIGNATURE        = 0x02,
-  ZB_ZCL_CMD_IR_BLASTER_GET_IR_SIGNATURE_RESP   = 0x03,
+    ZB_ZCL_CMD_IR_BLASTER_TRANSMIT_IR_DATA        = 0x00,
+    ZB_ZCL_CMD_IR_BLASTER_TRANSMISSION_STATUS     = 0x01,
+    ZB_ZCL_CMD_IR_BLASTER_GET_IR_SIGNATURE        = 0x02,
+    ZB_ZCL_CMD_IR_BLASTER_GET_IR_SIGNATURE_RESP   = 0x03,
 };
 
 /** Ir_Blaster status */
 typedef enum zb_zcl_ir_blaster_transmission_status_e
 {
-  ZB_ZCL_IR_BLASTER_TRANSMISSION_STATUS_COMPLETED    = 0x30,
-  ZB_ZCL_IR_BLASTER_TRANSMISSION_STATUS_ERROR        = 0x40,
+    ZB_ZCL_IR_BLASTER_TRANSMISSION_STATUS_COMPLETED    = 0x30,
+    ZB_ZCL_IR_BLASTER_TRANSMISSION_STATUS_ERROR        = 0x40,
 }
 zb_zcl_ir_blaster_transmit_status_t;
 
@@ -64,15 +64,15 @@ zb_zcl_ir_blaster_transmit_status_t;
 
 typedef ZB_PACKED_PRE struct zb_zcl_ir_blaster_transmit_ir_data_s
 {
-  zb_uint8_t ir_code_id[16];
+    zb_uint8_t ir_code_id[16];
 }
 ZB_PACKED_STRUCT
 zb_zcl_ir_blaster_transmit_ir_data_t;
 
 typedef struct zb_zcl_ir_blaster_transmit_ir_data_value_param_s
 {
-  zb_zcl_parsed_hdr_t cmd_info;
-  zb_zcl_ir_blaster_transmit_ir_data_t payload;
+    zb_zcl_parsed_hdr_t cmd_info;
+    zb_zcl_ir_blaster_transmit_ir_data_t payload;
 } zb_zcl_ir_blaster_transmit_ir_data_value_param_t;
 
 /*! @brief Send Transfer Data command
@@ -135,15 +135,15 @@ typedef struct zb_zcl_ir_blaster_transmit_ir_data_value_param_s
 
 typedef ZB_PACKED_PRE struct zb_zcl_ir_blaster_transmission_status_s
 {
-  zb_uint8_t status;        /**< enum @ref zb_zcl_ir_blaster_status_e */
+    zb_uint8_t status;        /**< enum @ref zb_zcl_ir_blaster_status_e */
 }
 ZB_PACKED_STRUCT
 zb_zcl_ir_blaster_transmission_status_t;
 
 typedef struct zb_zcl_ir_blaster_transmission_status_value_param_s
 {
-  /* zb_zcl_parsed_hdr_t cmd_info; */
-  zb_zcl_ir_blaster_transmission_status_t payload;
+    /* zb_zcl_parsed_hdr_t cmd_info; */
+    zb_zcl_ir_blaster_transmission_status_t payload;
 } zb_zcl_ir_blaster_transmission_status_value_param_t;
 
 
@@ -200,7 +200,7 @@ typedef struct zb_zcl_ir_blaster_transmission_status_value_param_s
 
 typedef struct zb_zcl_ir_blaster_get_ir_signature_value_param_s
 {
-  zb_zcl_parsed_hdr_t cmd_info;
+    zb_zcl_parsed_hdr_t cmd_info;
 } zb_zcl_ir_blaster_get_ir_signature_value_param_t;
 
 /*! @brief Send Get IR Signature command
@@ -231,16 +231,16 @@ typedef struct zb_zcl_ir_blaster_get_ir_signature_value_param_s
 
 typedef ZB_PACKED_PRE struct zb_zcl_ir_blaster_get_ir_signature_resp_s
 {
-  zb_uint8_t status;
-  zb_uint8_t ir_signature[ZB_ZCL_IR_BLASTER_IR_SIGNATURE_SIZE];
+    zb_uint8_t status;
+    zb_uint8_t ir_signature[ZB_ZCL_IR_BLASTER_IR_SIGNATURE_SIZE];
 }
 ZB_PACKED_STRUCT
 zb_zcl_ir_blaster_get_ir_signature_resp_t;
 
 typedef struct zb_zcl_ir_blaster_get_ir_signature_resp_value_param_s
 {
-  zb_zcl_parsed_hdr_t cmd_info;
-  zb_zcl_ir_blaster_get_ir_signature_resp_t payload;
+    zb_zcl_parsed_hdr_t cmd_info;
+    zb_zcl_ir_blaster_get_ir_signature_resp_t payload;
 } zb_zcl_ir_blaster_get_ir_signature_resp_value_param_t;
 
 

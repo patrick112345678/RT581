@@ -29,8 +29,8 @@
 
 typedef struct zb_zgpd_test_callbacks_s
 {
-  zb_callback_t  zgpd_channel_config_ind_test_cb;
-  zb_callback_t  zgpd_commiss_reply_ind_test_cb;
+    zb_callback_t  zgpd_channel_config_ind_test_cb;
+    zb_callback_t  zgpd_commiss_reply_ind_test_cb;
 }
 zb_zgpd_test_callbacks_t;
 

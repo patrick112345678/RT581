@@ -35,88 +35,88 @@ app_ctx_t app_ctx;
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
 #ifdef LIGHT_SAMPLE_BUTTONS
-  pan_id_conflict_hal_init();
+    pan_id_conflict_hal_init();
 #endif
 
-  ZB_BZERO(&app_ctx, sizeof(app_ctx_t));
+    ZB_BZERO(&app_ctx, sizeof(app_ctx_t));
 
-//! [switch_trace]
-  ZB_SET_TRACE_ON();
-//! [switch_trace]
-  ZB_SET_TRAF_DUMP_ON();
+    //! [switch_trace]
+    ZB_SET_TRACE_ON();
+    //! [switch_trace]
+    ZB_SET_TRAF_DUMP_ON();
 
-  ZB_INIT("pan_id_conflict");
+    ZB_INIT("pan_id_conflict");
 
-  zb_set_long_address(g_zr_addr);
-  zb_set_network_router_role(APP_DEFAULT_APS_CHANNEL_MASK);
-  zb_set_max_children(0);
-  zb_set_nvram_erase_at_start(ZB_FALSE);
-  zb_set_keepalive_timeout(ZB_MILLISECONDS_TO_BEACON_INTERVAL(3000));
+    zb_set_long_address(g_zr_addr);
+    zb_set_network_router_role(APP_DEFAULT_APS_CHANNEL_MASK);
+    zb_set_max_children(0);
+    zb_set_nvram_erase_at_start(ZB_FALSE);
+    zb_set_keepalive_timeout(ZB_MILLISECONDS_TO_BEACON_INTERVAL(3000));
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "ERROR dev_start failed", (FMT__0));
-  }
-  else
-  {
-    zboss_main_loop();
-  }
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "ERROR dev_start failed", (FMT__0));
+    }
+    else
+    {
+        zboss_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 #if defined ZB_CERTIFICATION_HACKS
 static void app_enable_send_incorrect_beacon(zb_uint8_t param)
 {
-  ZVUNUSED(param);
+    ZVUNUSED(param);
 
-  app_ctx.enable_send_incorrect_beacon = !app_ctx.enable_send_incorrect_beacon;
+    app_ctx.enable_send_incorrect_beacon = !app_ctx.enable_send_incorrect_beacon;
 
-  ZG->cert_hacks.set_empty_beacon_payload = app_ctx.enable_send_incorrect_beacon;
+    ZG->cert_hacks.set_empty_beacon_payload = app_ctx.enable_send_incorrect_beacon;
 
-  ZB_GET_OUT_BUF_DELAYED(zb_nwk_update_beacon_payload);
+    ZB_GET_OUT_BUF_DELAYED(zb_nwk_update_beacon_payload);
 
-  ZB_SCHEDULE_ALARM(app_enable_send_incorrect_beacon, 0, ZB_TIME_ONE_SECOND * 10);
+    ZB_SCHEDULE_ALARM(app_enable_send_incorrect_beacon, 0, ZB_TIME_ONE_SECOND * 10);
 }
 #endif
 
 void zboss_signal_handler(zb_uint8_t param)
 {
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
-  {
-    switch(sig)
+    if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
     {
-      case ZB_ZDO_SIGNAL_DEFAULT_START:
-      case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      case ZB_BDB_SIGNAL_DEVICE_REBOOT:
-        TRACE_MSG(TRACE_APP1, "Device STARTED OK", (FMT__0));
+        switch (sig)
+        {
+        case ZB_ZDO_SIGNAL_DEFAULT_START:
+        case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
+        case ZB_BDB_SIGNAL_DEVICE_REBOOT:
+            TRACE_MSG(TRACE_APP1, "Device STARTED OK", (FMT__0));
 #if defined ZB_CERTIFICATION_HACKS
-        ZB_SCHEDULE_ALARM(app_enable_send_incorrect_beacon, 0, ZB_TIME_ONE_SECOND * 10);
+            ZB_SCHEDULE_ALARM(app_enable_send_incorrect_beacon, 0, ZB_TIME_ONE_SECOND * 10);
 #endif
-        break;
+            break;
 
-      case ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY:
-        TRACE_MSG(TRACE_APP1, "Loading application production config", (FMT__0));
-        break;
+        case ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY:
+            TRACE_MSG(TRACE_APP1, "Loading application production config", (FMT__0));
+            break;
 
-      default:
-        TRACE_MSG(TRACE_ERROR, "Unknown signal %hd", (FMT__H, sig));
+        default:
+            TRACE_MSG(TRACE_ERROR, "Unknown signal %hd", (FMT__H, sig));
+        }
     }
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
-  }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
+    }
 
-  if (param)
-  {
-    zb_free_buf(ZB_BUF_FROM_REF(param));
-  }
+    if (param)
+    {
+        zb_free_buf(ZB_BUF_FROM_REF(param));
+    }
 }

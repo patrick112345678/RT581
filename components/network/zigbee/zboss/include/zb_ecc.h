@@ -76,18 +76,18 @@
 
 /*For the curve sect163k1*/
 #ifdef sect163k1
-#define IF1_163(X)	       (X)[0] == 1U && (X)[1] == 0U && (X)[2] == 0U && (X)[3] == 0U && (X)[4] == 0U && (X)[5] == 0U
-#define IFN1_163(X)	       (X)[0] != 1U || (X)[1] != 0U || (X)[2] != 0U || (X)[3] != 0U || (X)[4] != 0U || (X)[5] != 0U
-#define IF0_163(X)	       (X)[0] == 0U && (X)[1] == 0U && (X)[2] == 0U && (X)[3] == 0U && (X)[4] == 0U && (X)[5] == 0U
-#define IFN0_163(X)	       (X)[0] != 0U || (X)[1] != 0U || (X)[2] != 0U || (X)[3] != 0U || (X)[4] != 0U || (X)[5] != 0U
+#define IF1_163(X)         (X)[0] == 1U && (X)[1] == 0U && (X)[2] == 0U && (X)[3] == 0U && (X)[4] == 0U && (X)[5] == 0U
+#define IFN1_163(X)        (X)[0] != 1U || (X)[1] != 0U || (X)[2] != 0U || (X)[3] != 0U || (X)[4] != 0U || (X)[5] != 0U
+#define IF0_163(X)         (X)[0] == 0U && (X)[1] == 0U && (X)[2] == 0U && (X)[3] == 0U && (X)[4] == 0U && (X)[5] == 0U
+#define IFN0_163(X)        (X)[0] != 0U || (X)[1] != 0U || (X)[2] != 0U || (X)[3] != 0U || (X)[4] != 0U || (X)[5] != 0U
 #endif
 
 /*For the curve sect283k1*/
 #ifdef sect283k1
-#define IF1_283(X)	       (X)[0] == 1U && (X)[1] == 0U && (X)[2] == 0U && (X)[3] == 0U && (X)[4] == 0U && (X)[5] == 0U && (X)[6] == 0U && (X)[7] == 0U && (X)[8] == 0U // && X[9] == 0
-#define IFN1_283(X)	       (X)[0] != 1U || (X)[1] != 0U || (X)[2] != 0U || (X)[3] != 0U || (X)[4] != 0U || (X)[5] != 0U || (X)[6] != 0U || (X)[7] != 0U || (X)[8] != 0U // || X[9] != 0
-#define IF0_283(X)	       (X)[0] == 0U && (X)[1] == 0U && (X)[2] == 0U && (X)[3] == 0U && (X)[4] == 0U && (X)[5] == 0U && (X)[6] == 0U && (X)[7] == 0U && (X)[8] == 0U // && X[9] == 0
-#define IFN0_283(X)	       (X)[0] != 0U || (X)[1] != 0U || (X)[2] != 0U || (X)[3] != 0U || (X)[4] != 0U || (X)[5] != 0U || (X)[6] != 0U || (X)[7] != 0U || (X)[8] != 0U // || X[9] != 0
+#define IF1_283(X)         (X)[0] == 1U && (X)[1] == 0U && (X)[2] == 0U && (X)[3] == 0U && (X)[4] == 0U && (X)[5] == 0U && (X)[6] == 0U && (X)[7] == 0U && (X)[8] == 0U // && X[9] == 0
+#define IFN1_283(X)        (X)[0] != 1U || (X)[1] != 0U || (X)[2] != 0U || (X)[3] != 0U || (X)[4] != 0U || (X)[5] != 0U || (X)[6] != 0U || (X)[7] != 0U || (X)[8] != 0U // || X[9] != 0
+#define IF0_283(X)         (X)[0] == 0U && (X)[1] == 0U && (X)[2] == 0U && (X)[3] == 0U && (X)[4] == 0U && (X)[5] == 0U && (X)[6] == 0U && (X)[7] == 0U && (X)[8] == 0U // && X[9] == 0
+#define IFN0_283(X)        (X)[0] != 0U || (X)[1] != 0U || (X)[2] != 0U || (X)[3] != 0U || (X)[4] != 0U || (X)[5] != 0U || (X)[6] != 0U || (X)[7] != 0U || (X)[8] != 0U // || X[9] != 0
 #endif
 
 /**
@@ -95,8 +95,8 @@
  */
 typedef struct zb_ecc_point_aff_s
 {
-  zb_uint32_t x[ZB_ECC_MAX_PUB_KEY_LEN_IN_DWORDS];
-  zb_uint32_t y[ZB_ECC_MAX_PUB_KEY_LEN_IN_DWORDS];
+    zb_uint32_t x[ZB_ECC_MAX_PUB_KEY_LEN_IN_DWORDS];
+    zb_uint32_t y[ZB_ECC_MAX_PUB_KEY_LEN_IN_DWORDS];
 } zb_ecc_point_aff_t;
 
 ZB_ASSERT_IF_NOT_ALIGNED_TO_4(zb_ecc_point_aff_t);
@@ -106,9 +106,9 @@ ZB_ASSERT_IF_NOT_ALIGNED_TO_4(zb_ecc_point_aff_t);
  */
 typedef struct zb_ecc_point_pro_s
 {
-  zb_uint32_t X[ZB_ECC_MAX_PUB_KEY_LEN_IN_DWORDS];
-  zb_uint32_t Y[ZB_ECC_MAX_PUB_KEY_LEN_IN_DWORDS];
-  zb_uint32_t Z[ZB_ECC_MAX_PUB_KEY_LEN_IN_DWORDS];
+    zb_uint32_t X[ZB_ECC_MAX_PUB_KEY_LEN_IN_DWORDS];
+    zb_uint32_t Y[ZB_ECC_MAX_PUB_KEY_LEN_IN_DWORDS];
+    zb_uint32_t Z[ZB_ECC_MAX_PUB_KEY_LEN_IN_DWORDS];
 } zb_ecc_point_pro_t;
 
 ZB_ASSERT_IF_NOT_ALIGNED_TO_4(zb_ecc_point_pro_t);
@@ -138,7 +138,7 @@ void zb_ecc_set_curve(const zb_uint8_t ecc_curve_id);
  * @param input_len  - length of input data
  * @param hash       - MAC computed over security key and given input data
  */
- void zb_ecc_key_hmac(const zb_uint8_t *mac_key, const zb_uint8_t *input, const zb_uint16_t input_len, zb_bufid_t hash);
+void zb_ecc_key_hmac(const zb_uint8_t *mac_key, const zb_uint8_t *input, const zb_uint16_t input_len, zb_bufid_t hash);
 
 #ifdef ECC_SYNC_MODE_ENABLED
 /**
@@ -216,8 +216,8 @@ zb_ret_t zb_ecc_ecmqv(zb_uint8_t *prvA1, zb_uint8_t *prvA2,
  * @return               - return RET_OK in success and return RET_ERROR in fail.
  */
 void zb_ecc_ecmqv_async(zb_callback_t async_cb, const zb_uint8_t async_cb_param,
-                             zb_uint8_t *prvA1, zb_uint8_t *prvA2, zb_uint8_t *pubA2,
-                             zb_uint8_t *pubB1, zb_uint8_t *pubB2, zb_uint8_t *skey);
+                        zb_uint8_t *prvA1, zb_uint8_t *prvA2, zb_uint8_t *pubA2,
+                        zb_uint8_t *pubB1, zb_uint8_t *pubB2, zb_uint8_t *skey);
 
 /*! @} */
 /*! @endcond */

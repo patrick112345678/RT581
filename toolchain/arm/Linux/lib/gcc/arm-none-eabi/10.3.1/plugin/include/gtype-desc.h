@@ -2704,788 +2704,788 @@ extern void gt_pch_nx_vec_ivarref_entry_va_gc_ (void *);
 /* Local pointer-walking routines.  */
 #define gt_pch_p_9tree_node gt_pch_p_14lang_tree_node
 extern void gt_pch_p_9line_maps
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_9cpp_token
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_9cpp_macro
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_13string_concat
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_16string_concat_db
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_38hash_map_location_hash_string_concat__
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_11bitmap_head
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_7rtx_def
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_7rtx_def
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_7rtx_def
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_7rtx_def
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_7rtx_def
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_7rtx_def
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_7rtx_def
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_7rtx_def
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_7rtx_def
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_7rtx_def
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_7rtx_def
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_7rtx_def
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_7rtx_def
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_9rtvec_def
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_11symtab_node
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_11symtab_node
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_11symtab_node
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_11cgraph_edge
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_7section
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_16cl_target_option
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_15cl_optimization
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_8edge_def
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_15basic_block_def
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_16machine_function
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_14bitmap_element
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_34generic_wide_int_wide_int_storage_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_13coverage_data
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_9mem_attrs
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_9reg_attrs
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_12object_block
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_14vec_rtx_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_10real_value
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_11fixed_value
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_23constant_descriptor_rtx
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_8function
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_10target_rtl
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_15cgraph_rtl_info
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_42hash_map_tree_tree_decl_tree_cache_traits_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_42hash_map_tree_tree_type_tree_cache_traits_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_36hash_map_tree_tree_decl_tree_traits_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_12ptr_info_def
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_14range_info_def
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_10die_struct
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_26vec_constructor_elt_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_15vec_tree_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_9lang_type
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_9lang_decl
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_24tree_statement_list_node
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_14target_globals
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_14lang_tree_node
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_8tree_map
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_13tree_decl_map
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_12tree_int_map
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_12tree_vec_map
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_21vec_alias_pair_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_13libfunc_entry
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_26hash_table_libfunc_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_15target_libfuncs
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_14sequence_stack
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_20vec_rtx_insn__va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_18call_site_record_d
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_16vec_uchar_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_27vec_call_site_record_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_9gimple_df
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_11dw_fde_node
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_17rtx_constant_pool
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_11frame_space
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_26vec_callinfo_callee_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_26vec_callinfo_dalloc_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_11stack_usage
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_9eh_status
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_18control_flow_graph
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_5loops
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_17language_function
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_14hash_set_tree_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_24types_used_by_vars_entry
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_28hash_table_used_type_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_13nb_iter_bound
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_9loop_exit
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_4loop
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_10control_iv
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_17vec_loop_p_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_10niter_desc
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_28hash_table_loop_exit_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_22vec_basic_block_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_11rtl_bb_info
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_15vec_edge_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_20vec_ipa_ref_t_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_18section_hash_entry
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_18lto_file_decl_data
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_15ipa_replace_map
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_27vec_ipa_replace_map__va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_21ipa_param_adjustments
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_36vec_ipa_param_performed_split_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_17cgraph_simd_clone
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_28cgraph_function_version_info
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_30hash_table_cgraph_edge_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_25cgraph_indirect_call_info
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_8asm_node
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_12symbol_table
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_31hash_table_section_name_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_26hash_table_asmname_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_42hash_map_symtab_node__symbol_priority_map_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_24constant_descriptor_tree
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_28hash_map_alias_set_hash_int_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_15alias_set_entry
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_27vec_alias_set_entry__va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_35hash_table_function_version_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_17lto_in_decl_state
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_35hash_table_ipa_bit_ggc_hash_traits_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_34hash_table_ipa_vr_ggc_hash_traits_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_15ipa_node_params
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_13ipa_edge_args
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_25ipa_agg_replacement_value
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_14ipa_fn_summary
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_10odr_type_d
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_29vec_ipa_adjusted_param_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_12param_access
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_24vec_param_access__va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_17isra_func_summary
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_26vec_isra_param_desc_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_26ipa_sra_function_summaries
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_8typeinfo
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_11dw_cfi_node
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_17dw_loc_descr_node
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_18dw_loc_list_struct
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_18dw_discr_list_node
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_15dw_cfa_location
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_21vec_dw_cfi_ref_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_16addr_table_entry
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_20indirect_string_node
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_15dwarf_file_data
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_20hash_map_char__tree_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_10dw_cfi_row
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_17reg_saved_in_data
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_21vec_dw_fde_ref_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_34hash_table_indirect_string_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_16comdat_type_node
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_29vec_dw_line_info_entry_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_18dw_line_info_table
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_23vec_dw_attr_node_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_16limbo_die_struct
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_29hash_table_dwarf_file_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_27hash_table_decl_die_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_21vec_dw_die_ref_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_21variable_value_struct
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_33hash_table_variable_value_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_28hash_table_block_die_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_12var_loc_node
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_16var_loc_list_def
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_17call_arg_loc_node
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_27hash_table_decl_loc_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_22cached_dw_loc_list_def
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_30hash_table_dw_loc_list_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_30vec_dw_line_info_table__va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_24vec_pubname_entry_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_24vec_macinfo_entry_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_20vec_dw_ranges_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_29vec_dw_ranges_by_label_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_24vec_die_arg_entry_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_23hash_table_addr_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_27hash_map_tree_sym_off_pair_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_17inline_entry_data
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_36hash_table_inline_entry_data_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_9temp_slot
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_20initial_value_struct
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_22vec_temp_slot_p_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_28hash_table_const_int_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_33hash_table_const_wide_int_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_33hash_table_const_poly_int_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_27hash_table_reg_attr_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_31hash_table_const_double_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_30hash_table_const_fixed_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_11eh_region_d
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_16eh_landing_pad_d
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_10eh_catch_d
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_20vec_eh_region_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_25vec_eh_landing_pad_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_21hash_map_gimple__int_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_29hash_table_insn_cache_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_23temp_slot_address_entry
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_31hash_table_temp_address_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_24hash_map_tree_hash_tree_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_11test_struct
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_14test_of_length
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_10test_other
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_13test_of_union
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_12example_base
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_12example_base
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_12example_base
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_9test_node
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_11user_struct
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_31hash_table_libfunc_decl_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_16string_pool_data
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_9type_hash
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_29hash_table_type_cache_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_26hash_table_int_cst_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_31hash_table_poly_int_cst_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_28hash_table_cl_option_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_38hash_table_tree_decl_map_cache_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_37hash_table_tree_vec_map_cache_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_26hash_table_section_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_31hash_table_object_block_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_34hash_table_tree_descriptor_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_33hash_table_const_rtx_desc_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_27hash_table_tm_clone_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_6gimple
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_15tm_restart_node
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_19hash_map_tree_tree_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_27hash_table_ssa_name_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_29hash_table_tm_restart_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_28vec_mem_addr_template_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_13scev_info_str
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_28hash_table_scev_info_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_20ssa_operand_memory_d
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_28grid_launch_attributes_trees
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_24hash_map_char__unsigned_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_18vec_gimple__va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_26vec_ipa_agg_jf_item_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_8ipa_bits
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_11value_range
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_31vec_ipa_param_descriptor_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_20vec_ipa_bits__va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_17vec_ipa_vr_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_19ipcp_transformation
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_24vec_ipa_jump_func_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_39vec_ipa_polymorphic_call_context_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_17ipa_node_params_t
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_19ipa_edge_args_sum_t
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_38function_summary_ipcp_transformation__
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_29hash_table_tm_wrapper_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_29hash_table_decl_state_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_23vec_expr_eval_op_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_20vec_condition_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_26vec_size_time_entry_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_44fast_function_summary_ipa_fn_summary__va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_13tree_type_map
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_38hash_table_tree_type_map_cache_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_19vec_odr_type_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_38vec_hsa_decl_kernel_map_element_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_35hash_table_value_annotation_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_27vec_Entity_Id_va_gc_atomic_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_19tree_entity_vec_map
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_29hash_table_dummy_type_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_11parm_attr_d
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_20vec_parm_attr_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_10stmt_group
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_9elab_info
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_18range_check_info_d
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_27vec_range_check_info_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_11loop_info_d
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_20vec_loop_info_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_18gnat_binding_level
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_13pad_type_hash
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_27hash_table_pad_type_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_12c_label_vars
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_9c_binding
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_7c_scope
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_15c_goto_bindings
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_28vec_c_goto_bindings_p_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_15c_inline_static
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_18sorted_fields_type
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_23vec_const_char_p_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_22vec_tree_gc_vec_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_11align_stack
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_23vec_pending_weak_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_31vec_pending_redefinition_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_9opt_stack
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_8c_parser
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_18vec_c_token_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_15binding_table_s
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_15binding_entry_s
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_11cxx_binding
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_16cp_binding_level
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_27vec_cp_class_binding_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_14cp_token_cache
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_36vec_qualified_typedef_usage_t_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_28vec_cxx_saved_binding_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_11saved_scope
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_16cxx_int_tree_map
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_17named_label_entry
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_28hash_table_named_label_hash_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_35hash_table_cxx_int_tree_map_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_11tree_pair_s
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_22vec_tree_pair_s_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_27hash_table_named_decl_hash_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_11tinst_level
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_32vec_deferred_access_check_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_10tree_check
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_19vec_cp_token_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_8cp_lexer
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_31vec_cp_default_arg_entry_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_17cp_parser_context
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_38vec_cp_unparsed_functions_entry_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_9cp_parser
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_18hash_map_tree_int_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_16constexpr_fundef
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_35hash_table_constexpr_fundef_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_14constexpr_call
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_33hash_table_constexpr_call_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_9sat_entry
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_22hash_table_sat_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_14coroutine_info
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_33hash_table_coroutine_info_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_27source_location_table_entry
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_44hash_table_source_location_table_entry_hash_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_21named_label_use_entry
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_25vec_incomplete_var_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_27hash_table_typename_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_29hash_table_mangled_decl_hash_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_27vec_pending_noexcept_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_19vec_tree_int_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_28hash_table_conv_type_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_17subsumption_entry
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_30hash_table_subsumption_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_16pending_template
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_10spec_entry
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_23hash_table_spec_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_26hash_map_tree_tree_pair_p_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_18vec_tinfo_s_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_26vec_deferred_access_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_30hash_table_cplus_array_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_23hash_table_list_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_21pending_abstract_type
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_32hash_table_abstract_type_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_9Statement
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_13binding_level
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_17d_label_use_entry
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_34hash_map_Statement__d_label_entry_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_25hash_table_module_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_17module_htab_entry
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_30hash_table_module_decl_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_16objc_map_private
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_12hashed_entry
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_16hashed_attribute
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_9imp_entry
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_17string_descriptor
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_30hash_table_objc_string_hasher_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_27vec_ident_data_tuple_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_23vec_msgref_entry_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_26vec_prot_list_entry_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_24vec_ivarref_entry_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
+(void *, void *, gt_pointer_operator, void *);

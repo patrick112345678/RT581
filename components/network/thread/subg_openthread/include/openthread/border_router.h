@@ -106,8 +106,8 @@ otError otBorderRouterRemoveOnMeshPrefix(otInstance *aInstance, const otIp6Prefi
  *
  */
 otError otBorderRouterGetNextOnMeshPrefix(otInstance            *aInstance,
-                                          otNetworkDataIterator *aIterator,
-                                          otBorderRouterConfig  *aConfig);
+        otNetworkDataIterator *aIterator,
+        otBorderRouterConfig  *aConfig);
 
 /**
  * Add an external route configuration to the local network data.

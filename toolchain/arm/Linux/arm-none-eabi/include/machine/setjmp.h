@@ -31,7 +31,7 @@ _BEGIN_STD_C
  * onsstack,sigmask,sp,pc,npc,psr,g1,o0,wbcnt (sigcontext).
  * All else recovered by under/over(flow) handling.
  */
-#define	_JBLEN	13
+#define _JBLEN  13
 #endif
 
 #ifdef __BFIN__
@@ -49,10 +49,10 @@ _BEGIN_STD_C
 #if defined(__m68k__) || defined(__mc68000__)
 /*
  * onsstack,sigmask,sp,pc,psl,d2-d7,a2-a6,
- * fp2-fp7	for 68881.
+ * fp2-fp7  for 68881.
  * All else recovered by under/over(flow) handling.
  */
-#define	_JBLEN	34
+#define _JBLEN  34
 #endif
 
 #if defined(__mc68hc11__) || defined(__mc68hc12__) || defined(__mc68hc1x__)
@@ -71,7 +71,7 @@ _BEGIN_STD_C
    double-word-aligned.
    Check libc/machine/nds32/setjmp.S for more information.  */
 #if __NDS32_EXT_FPU_SP__ || __NDS32_EXT_FPU_DP__
-#define	_JBLEN 50
+#define _JBLEN 50
 #else
 #define _JBLEN 18
 #endif
@@ -87,17 +87,17 @@ _BEGIN_STD_C
  * onsstack,sigmask,sp,pc,npc,psr,g1,o0,wbcnt (sigcontext).
  * All else recovered by under/over(flow) handling.
  */
-#define	_JBLEN	9
+#define _JBLEN  9
 #endif
 
 #ifdef __i386__
 # if defined(__CYGWIN__) && !defined (_JBLEN)
 #  define _JBLEN (13 * 4)
 # elif defined(__unix__) || defined(__rtems__)
-#  define _JBLEN	9
+#  define _JBLEN    9
 # elif defined(__iamcu__)
 /* Intel MCU jmp_buf only covers callee-saved registers. */
-#  define _JBLEN	6
+#  define _JBLEN    6
 # else
 #  include "setjmp-dj.h"
 # endif
@@ -246,7 +246,7 @@ _BEGIN_STD_C
 #endif
 
 #if (defined(__CR16__) || defined(__CR16C__) ||defined(__CR16CP__))
-/* r6, r7, r8, r9, r10, r11, r12 (r12L, r12H), 
+/* r6, r7, r8, r9, r10, r11, r12 (r12L, r12H),
  * r13 (r13L, r13H), ra(raL, raH), sp(spL, spH) */
 #define _JBLEN 14
 #define _JBTYPE unsigned short
@@ -283,7 +283,7 @@ _BEGIN_STD_C
 #endif
 
 #ifdef __SPU__
-#define _JBLEN 50 
+#define _JBLEN 50
 #define _JBTYPE __vector signed int
 #endif
 
@@ -340,7 +340,7 @@ _BEGIN_STD_C
  *   2) Function-call versions.
  *
  * The built-in versions are used most of the time.  When used, gcc replaces
- * calls to setjmp()/longjmp() with inline assembly code.  The built-in 
+ * calls to setjmp()/longjmp() with inline assembly code.  The built-in
  * versions save/restore a variable number of registers.
 
  * _JBLEN is set to 40 to be ultra-safe with the built-in versions.
@@ -390,9 +390,9 @@ _BEGIN_STD_C
 
 #ifdef _JBLEN
 #ifdef _JBTYPE
-typedef	_JBTYPE jmp_buf[_JBLEN];
+typedef _JBTYPE jmp_buf[_JBLEN];
 #else
-typedef	int jmp_buf[_JBLEN];
+typedef int jmp_buf[_JBLEN];
 #endif
 #endif
 
@@ -407,14 +407,14 @@ extern "C" {
 
 /* POSIX sigsetjmp/siglongjmp macros */
 #ifdef _JBTYPE
-typedef _JBTYPE sigjmp_buf[_JBLEN+1+((sizeof (_JBTYPE) + sizeof (sigset_t) - 1)
-				     /sizeof (_JBTYPE))];
+typedef _JBTYPE sigjmp_buf[_JBLEN + 1 + ((sizeof (_JBTYPE) + sizeof (sigset_t) - 1)
+                                  / sizeof (_JBTYPE))];
 #else
-typedef int sigjmp_buf[_JBLEN+1+(sizeof (sigset_t)/sizeof (int))];
+typedef int sigjmp_buf[_JBLEN + 1 + (sizeof (sigset_t) / sizeof (int))];
 #endif
 
-#define _SAVEMASK	_JBLEN
-#define _SIGMASK	(_JBLEN+1)
+#define _SAVEMASK   _JBLEN
+#define _SIGMASK    (_JBLEN+1)
 
 #ifdef __CYGWIN__
 # define _CYGWIN_WORKING_SIGSETJMP
@@ -473,8 +473,8 @@ extern int sigsetjmp (sigjmp_buf, int);
 extern void _longjmp (jmp_buf, int) __attribute__ ((__noreturn__));
 extern int _setjmp (jmp_buf);
 #else
-#define _setjmp(env)		sigsetjmp ((env), 0)
-#define _longjmp(env, val)	siglongjmp ((env), (val))
+#define _setjmp(env)        sigsetjmp ((env), 0)
+#define _longjmp(env, val)  siglongjmp ((env), (val))
 #endif
 
 #ifdef __cplusplus

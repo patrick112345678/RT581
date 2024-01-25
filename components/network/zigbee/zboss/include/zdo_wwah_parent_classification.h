@@ -53,7 +53,7 @@
 /*
  * TODO: ZDO_WWAH_MIN_RSSI_FOR_RECEIVING_PACKETS is platform dependent!!!
  *
- * Now ZDO_WWAH_MIN_RSSI_FOR_RECEIVING_PACKETS and 
+ * Now ZDO_WWAH_MIN_RSSI_FOR_RECEIVING_PACKETS and
  * ZDO_WWAH_RSSI_FOR_RECEIVING_PACKETS_ADDING are zero to put all
  * beacons in the Good Link Quality group and check only TC Connectivity
  * and Long Uptime flags.
@@ -157,7 +157,7 @@ void zdo_wwah_parent_classification_set(zb_bool_t enable);
  *          @zb_zcl_wwah_parent_priority_t value otherwise
  */
 zb_zcl_wwah_parent_priority_t zdo_wwah_get_parent_priority_by_classification_mask(
-  zb_uint8_t mask);
+    zb_uint8_t mask);
 
 
 /**
@@ -169,7 +169,7 @@ zb_zcl_wwah_parent_priority_t zdo_wwah_get_parent_priority_by_classification_mas
  *  @param nbte_second - pointer to the second neighbor table entry
  */
 zb_bool_t zdo_wwah_compare_neighbors(
-  zb_ext_neighbor_tbl_ent_t *nbte_first, zb_ext_neighbor_tbl_ent_t *nbte_second);
+    zb_ext_neighbor_tbl_ent_t *nbte_first, zb_ext_neighbor_tbl_ent_t *nbte_second);
 
 /** @} */ /* @addtogroup ZDO_WWAH_PARENT_CLASSIFICATION */
 

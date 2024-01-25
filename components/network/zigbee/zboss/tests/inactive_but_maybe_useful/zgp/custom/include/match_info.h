@@ -31,30 +31,30 @@
 
 zgps_manuf_spec_match_rec_t g_manuf_spec_tbl[] =
 {
-  {
-    ZB_ZCL_CLUSTER_ID_IAS_ZONE,
-    ZB_ZCL_CLUSTER_CLIENT_ROLE,
-    {ZB_GPDF_CMD_ATTR_REPORT, ZB_GPDF_CMD_MULTI_CLUSTER_ATTR_REPORT, 0},
-    ZB_ZGPD_DEF_MANUFACTURER_ID,
-    ZB_ZGP_MS_DOOR_SENSOR_DEV_ID,
-  }
+    {
+        ZB_ZCL_CLUSTER_ID_IAS_ZONE,
+        ZB_ZCL_CLUSTER_CLIENT_ROLE,
+        {ZB_GPDF_CMD_ATTR_REPORT, ZB_GPDF_CMD_MULTI_CLUSTER_ATTR_REPORT, 0},
+        ZB_ZGPD_DEF_MANUFACTURER_ID,
+        ZB_ZGP_MS_DOOR_SENSOR_DEV_ID,
+    }
 };
 
 
 zgp_to_zb_cmd_mapping_t g_cmd_mapping[] =
 {
-  {ZB_GPDF_CMD_ATTR_REPORT, ZB_ZCL_CMD_REPORT_ATTRIB},
+    {ZB_GPDF_CMD_ATTR_REPORT, ZB_ZCL_CMD_REPORT_ATTRIB},
 };
 
 
-zb_zgps_match_info_t  g_zgps_match_info = 
+zb_zgps_match_info_t  g_zgps_match_info =
 {
-  0,
-  NULL,
-  ZB_ARRAY_SIZE(g_cmd_mapping),
-  g_cmd_mapping,
-  ZB_ARRAY_SIZE(g_manuf_spec_tbl),
-  g_manuf_spec_tbl
+    0,
+    NULL,
+    ZB_ARRAY_SIZE(g_cmd_mapping),
+    g_cmd_mapping,
+    ZB_ARRAY_SIZE(g_manuf_spec_tbl),
+    g_manuf_spec_tbl
 };
 
 #endif //MATCH_INFO_H

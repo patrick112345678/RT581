@@ -34,80 +34,90 @@ along with GCC; see the file COPYING3.  If not see
 class function_arg_info
 {
 public:
-  function_arg_info ()
-    : type (NULL_TREE), mode (VOIDmode), named (false),
-      pass_by_reference (false)
-  {}
+    function_arg_info ()
+        : type (NULL_TREE), mode (VOIDmode), named (false),
+          pass_by_reference (false)
+    {}
 
-  /* Initialize an argument of mode MODE, either before or after promotion.  */
-  function_arg_info (machine_mode mode, bool named)
-    : type (NULL_TREE), mode (mode), named (named), pass_by_reference (false)
-  {}
+    /* Initialize an argument of mode MODE, either before or after promotion.  */
+    function_arg_info (machine_mode mode, bool named)
+        : type (NULL_TREE), mode (mode), named (named), pass_by_reference (false)
+    {}
 
-  /* Initialize an unpromoted argument of type TYPE.  */
-  function_arg_info (tree type, bool named)
-    : type (type), mode (TYPE_MODE (type)), named (named),
-      pass_by_reference (false)
-  {}
+    /* Initialize an unpromoted argument of type TYPE.  */
+    function_arg_info (tree type, bool named)
+        : type (type), mode (TYPE_MODE (type)), named (named),
+          pass_by_reference (false)
+    {}
 
-  /* Initialize an argument with explicit properties.  */
-  function_arg_info (tree type, machine_mode mode, bool named)
-    : type (type), mode (mode), named (named), pass_by_reference (false)
-  {}
+    /* Initialize an argument with explicit properties.  */
+    function_arg_info (tree type, machine_mode mode, bool named)
+        : type (type), mode (mode), named (named), pass_by_reference (false)
+    {}
 
-  /* Return true if the gimple-level type is an aggregate.  */
-  bool aggregate_type_p () const { return type && AGGREGATE_TYPE_P (type); }
+    /* Return true if the gimple-level type is an aggregate.  */
+    bool aggregate_type_p () const
+    {
+        return type && AGGREGATE_TYPE_P (type);
+    }
 
-  /* Return the size of the gimple-level type, or -1 if the size is
-     variable or otherwise not representable as a poly_int64.
+    /* Return the size of the gimple-level type, or -1 if the size is
+       variable or otherwise not representable as a poly_int64.
 
-     Use this function when MODE is the mode of the type before promotion,
-     or in any context if the target never promotes function arguments.  */
-  poly_int64 type_size_in_bytes () const
-  {
-    if (type)
-      return int_size_in_bytes (type);
-    return GET_MODE_SIZE (mode);
-  }
+       Use this function when MODE is the mode of the type before promotion,
+       or in any context if the target never promotes function arguments.  */
+    poly_int64 type_size_in_bytes () const
+    {
+        if (type)
+        {
+            return int_size_in_bytes (type);
+        }
+        return GET_MODE_SIZE (mode);
+    }
 
-  /* Return the size of the argument after promotion, or -1 if the size
-     is variable or otherwise not representable as a poly_int64.
+    /* Return the size of the argument after promotion, or -1 if the size
+       is variable or otherwise not representable as a poly_int64.
 
-     Use this function when MODE is the mode of the type after promotion.  */
-  poly_int64 promoted_size_in_bytes () const
-  {
-    if (mode == BLKmode)
-      return int_size_in_bytes (type);
-    return GET_MODE_SIZE (mode);
-  }
+       Use this function when MODE is the mode of the type after promotion.  */
+    poly_int64 promoted_size_in_bytes () const
+    {
+        if (mode == BLKmode)
+        {
+            return int_size_in_bytes (type);
+        }
+        return GET_MODE_SIZE (mode);
+    }
 
-  /* True if the argument represents the end of the argument list,
-     as returned by end_marker ().  */
-  bool end_marker_p () const { return mode == VOIDmode; }
+    /* True if the argument represents the end of the argument list,
+       as returned by end_marker ().  */
+    bool end_marker_p () const
+    {
+        return mode == VOIDmode;
+    }
 
-  /* Return a function_arg_info that represents the end of the
-     argument list.  */
-  static function_arg_info end_marker ()
-  {
-    return function_arg_info (void_type_node, /*named=*/true);
-  }
+    /* Return a function_arg_info that represents the end of the
+       argument list.  */
+    static function_arg_info end_marker ()
+    {
+        return function_arg_info (void_type_node, /*named=*/true);
+    }
 
-  /* The type of the argument, or null if not known (which is true for
-     libgcc support functions).  */
-  tree type;
+    /* The type of the argument, or null if not known (which is true for
+       libgcc support functions).  */
+    tree type;
 
-  /* The mode of the argument.  Depending on context, this might be
-     the mode of the argument type or the mode after promotion.  */
-  machine_mode mode;
+    /* The mode of the argument.  Depending on context, this might be
+       the mode of the argument type or the mode after promotion.  */
+    machine_mode mode;
 
-  /* True if the argument is treated as a named argument, false if it is
-     treated as an unnamed variadic argument (i.e. one passed through
-     "...").  See also TARGET_STRICT_ARGUMENT_NAMING.  */
-  unsigned int named : 1;
+    /* True if the argument is treated as a named argument, false if it is
+       treated as an unnamed variadic argument (i.e. one passed through
+       "...").  See also TARGET_STRICT_ARGUMENT_NAMING.  */
+    unsigned int named : 1;
 
-  /* True if we have decided to pass the argument by reference, in which case
-     the function_arg_info describes a pointer to the original argument.  */
-  unsigned int pass_by_reference : 1;
+    /* True if we have decided to pass the argument by reference, in which case
+       the function_arg_info describes a pointer to the original argument.  */
+    unsigned int pass_by_reference : 1;
 };
 
 extern int flags_from_decl_or_type (const_tree);
@@ -127,9 +137,9 @@ extern void fixup_tail_calls (void);
 extern bool pass_by_reference (CUMULATIVE_ARGS *, function_arg_info);
 extern bool pass_va_arg_by_reference (tree);
 extern bool apply_pass_by_reference_rules (CUMULATIVE_ARGS *,
-					   function_arg_info &);
+        function_arg_info &);
 extern bool reference_callee_copied (CUMULATIVE_ARGS *,
-				     const function_arg_info &);
+                                     const function_arg_info &);
 extern void maybe_warn_alloc_args_overflow (tree, tree, tree[2], int[2]);
 extern tree get_attr_nonstring_decl (tree, tree * = NULL);
 extern void maybe_warn_nonstring_arg (tree, tree);

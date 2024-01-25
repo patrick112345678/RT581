@@ -50,42 +50,42 @@
 typedef enum zb_zcl_energy_management_srv_attr_e
 {
 
-  /* (M) */
-  ZB_ZCL_ATTR_ENERGY_MANAGEMENT_LOAD_CONTROL_STATE = 0x0000,  /**< This attribute shall be a BitMap showing the current state of the device.
+    /* (M) */
+    ZB_ZCL_ATTR_ENERGY_MANAGEMENT_LOAD_CONTROL_STATE = 0x0000,  /**< This attribute shall be a BitMap showing the current state of the device.
                                                               * The attribute shall be read-only.
                                                               */
 
-  /* (M) */
-  ZB_ZCL_ATTR_ENERGY_MANAGEMENT_CURRENT_EVENT_ID,            /**< If an event is in progress (current time is between the Effective Start Time
+    /* (M) */
+    ZB_ZCL_ATTR_ENERGY_MANAGEMENT_CURRENT_EVENT_ID,            /**< If an event is in progress (current time is between the Effective Start Time
                                                              * and Effective End Time of an event), this attribute SHALL indicate
                                                              * the Issuer Event ID of the active event.
                                                              */
 
-  /* (M) */
-  ZB_ZCL_ATTR_ENERGY_MANAGEMENT_CURRENT_EVENT_STATUS,        /**< This attribute represents the value returned in the Event Control field of
+    /* (M) */
+    ZB_ZCL_ATTR_ENERGY_MANAGEMENT_CURRENT_EVENT_STATUS,        /**< This attribute represents the value returned in the Event Control field of
                                                              * the latest Report Event Status command (see D.2.3.3.1). This attribute provides
                                                              * a mechanism to allow a remote device to query whether this client device is
                                                              * currently participating in a load control event.
                                                              */
 
-  /* (M) */
-  ZB_ZCL_ATTR_ENERGY_MANAGEMENT_CONFORMANCE_LEVEL,           /**< This is the minimum criticality level of a DRLC event that the device will observe.
+    /* (M) */
+    ZB_ZCL_ATTR_ENERGY_MANAGEMENT_CONFORMANCE_LEVEL,           /**< This is the minimum criticality level of a DRLC event that the device will observe.
                                                              * Events with a criticality level lower than the Conformance Level
                                                              * will be opted out.
                                                              */
 
-  /* (M) */
-  ZB_ZCL_ATTR_ENERGY_MANAGEMENT_MINIMUM_OFF_TIME,            /**< This attribute is measured in seconds and used to determine the duty
+    /* (M) */
+    ZB_ZCL_ATTR_ENERGY_MANAGEMENT_MINIMUM_OFF_TIME,            /**< This attribute is measured in seconds and used to determine the duty
                                                              * cycling times. It is the shortest times the device should be allowed off.
                                                              */
 
-  /* (M) */
-  ZB_ZCL_ATTR_ENERGY_MANAGEMENT_MINIMUM_ON_TIME,             /**< This attribute is measured in seconds and used to determine the duty
+    /* (M) */
+    ZB_ZCL_ATTR_ENERGY_MANAGEMENT_MINIMUM_ON_TIME,             /**< This attribute is measured in seconds and used to determine the duty
                                                               * cycling times. It is the shortest times the device should be allowed on.
                                                               */
 
-  /* (M) */
-  ZB_ZCL_ATTR_ENERGY_MANAGEMENT_MINIMUM_CYCLE_PERIOD         /**< This attribute is measured in seconds and used to determine the duty
+    /* (M) */
+    ZB_ZCL_ATTR_ENERGY_MANAGEMENT_MINIMUM_CYCLE_PERIOD         /**< This attribute is measured in seconds and used to determine the duty
                                                              * cycling times. It is the shortest cycling period allowed for duty cycling
                                                              */
 } zb_zcl_energy_management_srv_attr_t;
@@ -190,43 +190,43 @@ typedef enum zb_zcl_energy_management_srv_attr_e
 typedef struct zb_zcl_energy_management_attr_s
 {
 
-  /** @copydoc ZB_ZCL_ATTR_ENERGY_MANAGEMENT_LOAD_CONTROL_STATE
-   * @see ZB_ZCL_ATTR_ENERGY_MANAGEMENT_LOAD_CONTROL_STATE
-   */
-  zb_uint8_t load_control_state;
+    /** @copydoc ZB_ZCL_ATTR_ENERGY_MANAGEMENT_LOAD_CONTROL_STATE
+     * @see ZB_ZCL_ATTR_ENERGY_MANAGEMENT_LOAD_CONTROL_STATE
+     */
+    zb_uint8_t load_control_state;
 
-  /** @copydoc ZB_ZCL_ATTR_ENERGY_MANAGEMENT_CURRENT_EVENT_ID
-   * @see ZB_ZCL_ATTR_ENERGY_MANAGEMENT_CURRENT_EVENT_ID
-   */
-  zb_uint32_t current_event_id;
+    /** @copydoc ZB_ZCL_ATTR_ENERGY_MANAGEMENT_CURRENT_EVENT_ID
+     * @see ZB_ZCL_ATTR_ENERGY_MANAGEMENT_CURRENT_EVENT_ID
+     */
+    zb_uint32_t current_event_id;
 
-  /** @copydoc ZB_ZCL_ATTR_ENERGY_MANAGEMENT_CURRENT_EVENT_STATUS
-   * @see ZB_ZCL_ATTR_ENERGY_MANAGEMENT_CURRENT_EVENT_STATUS
-   */
-  zb_uint8_t current_event_status;
+    /** @copydoc ZB_ZCL_ATTR_ENERGY_MANAGEMENT_CURRENT_EVENT_STATUS
+     * @see ZB_ZCL_ATTR_ENERGY_MANAGEMENT_CURRENT_EVENT_STATUS
+     */
+    zb_uint8_t current_event_status;
 
-  /** @copydoc ZB_ZCL_ATTR_ENERGY_MANAGEMENT_CONFORMANCE_LEVEL
-   * @see ZB_ZCL_ATTR_ENERGY_MANAGEMENT_CONFORMANCE_LEVEL
-   */
-  zb_uint8_t conformance_level;
+    /** @copydoc ZB_ZCL_ATTR_ENERGY_MANAGEMENT_CONFORMANCE_LEVEL
+     * @see ZB_ZCL_ATTR_ENERGY_MANAGEMENT_CONFORMANCE_LEVEL
+     */
+    zb_uint8_t conformance_level;
 
-  /** @copydoc ZB_ZCL_ATTR_ENERGY_MANAGEMENT_MINIMUM_OFF_TIME
-   *  @note Default values is TBD
-   *  @see ZB_ZCL_ATTR_ENERGY_MANAGEMENT_MINIMUM_OFF_TIME
-   */
-  zb_uint16_t minimum_off_time;
+    /** @copydoc ZB_ZCL_ATTR_ENERGY_MANAGEMENT_MINIMUM_OFF_TIME
+     *  @note Default values is TBD
+     *  @see ZB_ZCL_ATTR_ENERGY_MANAGEMENT_MINIMUM_OFF_TIME
+     */
+    zb_uint16_t minimum_off_time;
 
-  /** @copydoc ZB_ZCL_ATTR_ENERGY_MANAGEMENT_MINIMUM_ON_TIME
-   *  @note Default values is TBD
-   *  @see ZB_ZCL_ATTR_ENERGY_MANAGEMENT_MINIMUM_ON_TIME
-   */
-  zb_uint16_t minimum_on_time;
+    /** @copydoc ZB_ZCL_ATTR_ENERGY_MANAGEMENT_MINIMUM_ON_TIME
+     *  @note Default values is TBD
+     *  @see ZB_ZCL_ATTR_ENERGY_MANAGEMENT_MINIMUM_ON_TIME
+     */
+    zb_uint16_t minimum_on_time;
 
-  /** @copydoc ZB_ZCL_ATTR_ENERGY_MANAGEMENT_MINIMUM_CYCLE_PERIOD
-   *  @note Default values is TBD
-   *  @see ZB_ZCL_ATTR_ENERGY_MANAGEMENT_MINIMUM_CYCLE_PERIOD
-   */
-  zb_uint16_t minimum_cycle_period;
+    /** @copydoc ZB_ZCL_ATTR_ENERGY_MANAGEMENT_MINIMUM_CYCLE_PERIOD
+     *  @note Default values is TBD
+     *  @see ZB_ZCL_ATTR_ENERGY_MANAGEMENT_MINIMUM_CYCLE_PERIOD
+     */
+    zb_uint16_t minimum_cycle_period;
 } zb_zcl_energy_management_attr_t;
 
 
@@ -245,30 +245,30 @@ typedef struct zb_zcl_energy_management_attr_s
  */
 typedef enum zb_zcl_energy_management_load_control_state_encoding_e
 {
-  ZB_ZCL_ENERGY_MANAGEMENT_STATE_RELAY_OPEN           = 1 << 0,  /**< The device being controlled has been turned off and
+    ZB_ZCL_ENERGY_MANAGEMENT_STATE_RELAY_OPEN           = 1 << 0,  /**< The device being controlled has been turned off and
                                                                   * prevented from consuming electric power or another commodity,
                                                                   * either by opening a relay or some other means.
                                                                   */
 
-  ZB_ZCL_ENERGY_MANAGEMENT_STATE_EVENT_IN_PROGRESS    = 1 << 1,  /**< There is an event in progress. The current time is between the Effective Start
+    ZB_ZCL_ENERGY_MANAGEMENT_STATE_EVENT_IN_PROGRESS    = 1 << 1,  /**< There is an event in progress. The current time is between the Effective Start
                                                                   * Time and Effective End Time of the event. When this bit is set, the
                                                                   * CurrentEventStatus attribute is valid.
                                                                   */
 
-  ZB_ZCL_ENERGY_MANAGEMENT_STATE_POWER_STABILIZING    = 1 << 2,  /**< The device has automatically reduced consumption of the commodity for an
+    ZB_ZCL_ENERGY_MANAGEMENT_STATE_POWER_STABILIZING    = 1 << 2,  /**< The device has automatically reduced consumption of the commodity for an
                                                                   * automatic reason, to aid in the stability of the system.
                                                                   */
 
-  ZB_ZCL_ENERGY_MANAGEMENT_STATE_OTHER_LOAD_REDUCTION = 1 << 3,  /**< This bit indicates the device has automatically reduced consumption of
+    ZB_ZCL_ENERGY_MANAGEMENT_STATE_OTHER_LOAD_REDUCTION = 1 << 3,  /**< This bit indicates the device has automatically reduced consumption of
                                                                   * the commodity for some non-consumer-initiated reason.
                                                                   */
 
-  ZB_ZCL_ENERGY_MANAGEMENT_STATE_CURRENT_FLOW         = 1 << 4,  /**< This bit indicates that the device is currently consuming the commodity.
+    ZB_ZCL_ENERGY_MANAGEMENT_STATE_CURRENT_FLOW         = 1 << 4,  /**< This bit indicates that the device is currently consuming the commodity.
                                                                   * The bit not being set means either no commodity being consumption
                                                                   * or the device does not have the ability to detect consumption. Support is optional.
                                                                   */
 
-  ZB_ZCL_ENERGY_MANAGEMENT_STATE_LOAD_CALL            = 1 << 5   /**< This bit is set if there is currently no consumption but the device under
+    ZB_ZCL_ENERGY_MANAGEMENT_STATE_LOAD_CALL            = 1 << 5   /**< This bit is set if there is currently no consumption but the device under
                                                                   * control would consume power if able to. Support is optional.
                                                                   * The bit shall be cleared if not supported.
                                                                   */
@@ -280,28 +280,28 @@ typedef enum zb_zcl_energy_management_load_control_state_encoding_e
  */
 typedef enum zb_zcl_energy_management_current_event_status_encoding_e
 {
-  ZB_ZCL_ENERGY_MANAGEMENT_STATUS_RANDOMIZED_START_TIME         = 1 << 0,  /**< Set if the current event had a randomized start time. */
+    ZB_ZCL_ENERGY_MANAGEMENT_STATUS_RANDOMIZED_START_TIME         = 1 << 0,  /**< Set if the current event had a randomized start time. */
 
-  ZB_ZCL_ENERGY_MANAGEMENT_STATUS_RANDOMIZED_DURATION           = 1 << 1,  /**< Set if the duration of the current event is randomized. */
+    ZB_ZCL_ENERGY_MANAGEMENT_STATUS_RANDOMIZED_DURATION           = 1 << 1,  /**< Set if the duration of the current event is randomized. */
 
-  ZB_ZCL_ENERGY_MANAGEMENT_STATUS_EXTENDED_BITS_PRESENT         = 1 << 2,  /**< This bit will always return 1. This allows the field to be used in DRLC
+    ZB_ZCL_ENERGY_MANAGEMENT_STATUS_EXTENDED_BITS_PRESENT         = 1 << 2,  /**< This bit will always return 1. This allows the field to be used in DRLC
                                                                              * Event Status messages.
                                                                              */
 
-  ZB_ZCL_ENERGY_MANAGEMENT_STATUS_EVENT_ACTIVE                  = 1 << 3,  /**< Set if the current time lies between the Effective Start Time and
+    ZB_ZCL_ENERGY_MANAGEMENT_STATUS_EVENT_ACTIVE                  = 1 << 3,  /**< Set if the current time lies between the Effective Start Time and
                                                                              * Effective End Time of the event identified by the CurrentEventID attribute
                                                                              */
 
-  ZB_ZCL_ENERGY_MANAGEMENT_STATUS_DEVICE_PARTICIPATING_IN_EVENT = 1 << 4,  /**< Set if the device is (or will be when the event starts) participating in
+    ZB_ZCL_ENERGY_MANAGEMENT_STATUS_DEVICE_PARTICIPATING_IN_EVENT = 1 << 4,  /**< Set if the device is (or will be when the event starts) participating in
                                                                              * the event.
                                                                              */
 
-  ZB_ZCL_ENERGY_MANAGEMENT_STATUS_REDUCING_LOAD                 = 1 << 5,  /**< Set if the device is currently shedding load in response to a DR event.
+    ZB_ZCL_ENERGY_MANAGEMENT_STATUS_REDUCING_LOAD                 = 1 << 5,  /**< Set if the device is currently shedding load in response to a DR event.
                                                                              * Set if an active load control event is duty cycling and currently off, or if
                                                                              * the new set points or offsets are lowering demand.
                                                                              */
 
-  ZB_ZCL_ENERGY_MANAGEMENT_STATUS_ON_AT_END_OF_EVENT            = 1 << 6   /**< Set if the device will return to using a normal load after the event has
+    ZB_ZCL_ENERGY_MANAGEMENT_STATUS_ON_AT_END_OF_EVENT            = 1 << 6   /**< Set if the device will return to using a normal load after the event has
                                                                              * completed. For example, this would be False if the device supported the On/Off
                                                                              * cluster and the On/Off attribute was set to OFF.
                                                                              */
@@ -320,7 +320,7 @@ typedef enum zb_zcl_energy_management_current_event_status_encoding_e
  */
 typedef enum zb_zcl_energy_management_cli_cmd_e
 {
-  ZB_ZCL_ENERGY_MANAGEMENT_CLI_CMD_MANAGE_EVENT = 0x00,   /**< The Manage Event command allows a remote device (such as an IHD or web portal)
+    ZB_ZCL_ENERGY_MANAGEMENT_CLI_CMD_MANAGE_EVENT = 0x00,   /**< The Manage Event command allows a remote device (such as an IHD or web portal)
                                                            * to change the behavior of a DRLC cluster client when responding to a
                                                            * DRLC Load Control Event.
                                                            * @see zb_zcl_energy_management_manage_event_payload_s
@@ -333,31 +333,31 @@ typedef enum zb_zcl_energy_management_cli_cmd_e
  */
 typedef ZB_PACKED_PRE struct zb_zcl_energy_management_manage_event_payload_s
 {
-  /* Mandatory fields. */
+    /* Mandatory fields. */
 
-  /** Unique identifier generated by the Energy provider. The value of this field
-   * allows the command to be matched with a specific Load Control Event.
-   */
-  zb_uint32_t issuer_event_id;          /* (M) */
+    /** Unique identifier generated by the Energy provider. The value of this field
+     * allows the command to be matched with a specific Load Control Event.
+     */
+    zb_uint32_t issuer_event_id;          /* (M) */
 
-  /** Bit encoded field representing the DRLC client Device Class to apply the
-   * current Load Control Event. Each bit, if set individually or in combination,
-   * indicates the class of device(s) the Manage Event command is directed at.
-   */
-  zb_uint16_t device_class;             /* (M) */
+    /** Bit encoded field representing the DRLC client Device Class to apply the
+     * current Load Control Event. Each bit, if set individually or in combination,
+     * indicates the class of device(s) the Manage Event command is directed at.
+     */
+    zb_uint16_t device_class;             /* (M) */
 
-  /** The DRLC client Utility Enrollment Group field can be used in conjunction
-   * with the Device Class bits. It provides a mechanism to direct the Manage Event
-   * command to groups of devices.
-   */
-  zb_uint8_t utility_enrollment_group;  /* (M) */
+    /** The DRLC client Utility Enrollment Group field can be used in conjunction
+     * with the Device Class bits. It provides a mechanism to direct the Manage Event
+     * command to groups of devices.
+     */
+    zb_uint8_t utility_enrollment_group;  /* (M) */
 
-  /* Optional fields */
+    /* Optional fields */
 
-  /** Bit encoded field indicating the action(s) to be carried out in regard to
-   * the associated event
-   */
-  zb_uint8_t actions_required;          /* (O) */
+    /** Bit encoded field indicating the action(s) to be carried out in regard to
+     * the associated event
+     */
+    zb_uint8_t actions_required;          /* (O) */
 } ZB_PACKED_STRUCT zb_zcl_energy_management_manage_event_payload_t;
 
 
@@ -366,10 +366,10 @@ typedef ZB_PACKED_PRE struct zb_zcl_energy_management_manage_event_payload_s
  */
 typedef enum zb_zcl_energy_management_actions_required_encoding_e
 {
-  ZB_ZCL_ENERGY_MANAGEMENT_ACTIONS_EVENT_OPT_OUT        = 0,  /**< Opt Out of Event */
-  ZB_ZCL_ENERGY_MANAGEMENT_ACTIONS_OPT_INTO_EVENT       = 1,  /**< Opt Into Event */
-  ZB_ZCL_ENERGY_MANAGEMENT_ACTIONS_DISABLE_DUTY_CYCLING = 2,  /**< Disable Duty Cycling */
-  ZB_ZCL_ENERGY_MANAGEMENT_ACTIONS_ENABLE_DUTY_CYCLING  = 3   /**< Enable Duty Cycling */
+    ZB_ZCL_ENERGY_MANAGEMENT_ACTIONS_EVENT_OPT_OUT        = 0,  /**< Opt Out of Event */
+    ZB_ZCL_ENERGY_MANAGEMENT_ACTIONS_OPT_INTO_EVENT       = 1,  /**< Opt Into Event */
+    ZB_ZCL_ENERGY_MANAGEMENT_ACTIONS_DISABLE_DUTY_CYCLING = 2,  /**< Disable Duty Cycling */
+    ZB_ZCL_ENERGY_MANAGEMENT_ACTIONS_ENABLE_DUTY_CYCLING  = 3   /**< Enable Duty Cycling */
 } zb_zcl_energy_management_actions_required_encoding_t;
 
 
@@ -378,7 +378,7 @@ typedef enum zb_zcl_energy_management_actions_required_encoding_e
  */
 typedef enum zb_zcl_energy_management_srv_cmd_e
 {
-  ZB_ZCL_ENERGY_MANAGEMENT_SRV_CMD_REPORT_EVENT_STATUS = 0x00,    /**< This command is reused from the DRLC cluster. This command is generated
+    ZB_ZCL_ENERGY_MANAGEMENT_SRV_CMD_REPORT_EVENT_STATUS = 0x00,    /**< This command is reused from the DRLC cluster. This command is generated
                                                                    * in response to the Manage Event command.
                                                                    * @see zb_zcl_energy_management_report_event_status_payload_s
                                                                    */
@@ -402,55 +402,55 @@ typedef enum zb_zcl_energy_management_srv_cmd_e
  */
 typedef ZB_PACKED_PRE struct zb_zcl_energy_management_report_event_status_payload_s
 {
-  /* Mandatory fields. */
+    /* Mandatory fields. */
 
-  /** Event ID specified in the Manage Event command or, if the command specified
-   * the current event, then the current running DRLC Issuer Event ID.
-   */
-  zb_uint32_t issuer_event_id;                           /* (M) */
+    /** Event ID specified in the Manage Event command or, if the command specified
+     * the current event, then the current running DRLC Issuer Event ID.
+     */
+    zb_uint32_t issuer_event_id;                           /* (M) */
 
-  /** If the Manage Event command did not change the event, then this field will
-   * contain the last sent Event Status for the event.
-   */
-  zb_uint8_t event_status;                               /* (M) */
+    /** If the Manage Event command did not change the event, then this field will
+     * contain the last sent Event Status for the event.
+     */
+    zb_uint8_t event_status;                               /* (M) */
 
-  /** UTC Timestamp representing when the event status was changed. If the device
-   * does not know the current time but still remembers events, it may return the
-   * value of 0x00000000.
-   */
-  zb_uint32_t event_status_time;                         /* (M) */
+    /** UTC Timestamp representing when the event status was changed. If the device
+     * does not know the current time but still remembers events, it may return the
+     * value of 0x00000000.
+     */
+    zb_uint32_t event_status_time;                         /* (M) */
 
-  /** Criticality Level value applied by the device */
-  zb_uint8_t criticality_level_applied;                  /* (M) */
+    /** Criticality Level value applied by the device */
+    zb_uint8_t criticality_level_applied;                  /* (M) */
 
-  /* Optional fields */
+    /* Optional fields */
 
-  /** Cooling Temperature Set Point value applied by the device, see the
-   * corresponding field in the Load Control Event command for more information.
-   * The value 0x8000 means that this field has not been used by the end device.
-   */
-  zb_uint16_t cooling_temperature_set_point_applied;     /* (O) */
+    /** Cooling Temperature Set Point value applied by the device, see the
+     * corresponding field in the Load Control Event command for more information.
+     * The value 0x8000 means that this field has not been used by the end device.
+     */
+    zb_uint16_t cooling_temperature_set_point_applied;     /* (O) */
 
-  /** Heating Temperature Set Point value applied by the device, see the
-   * corresponding field in the Load Control Event command for more information.
-   * The value 0x8000 means that this field has not been used by the end device.
-   */
-  zb_uint16_t heating_temperature_set_point_applied;     /* (O) */
+    /** Heating Temperature Set Point value applied by the device, see the
+     * corresponding field in the Load Control Event command for more information.
+     * The value 0x8000 means that this field has not been used by the end device.
+     */
+    zb_uint16_t heating_temperature_set_point_applied;     /* (O) */
 
-  /** Average Load Adjustment Percentage value applied by the device, see the
-   *  corresponding field in the Load Control Event command for more information.
-   *  The value 0x80 means that this field has not been used by the end device.
-   */
-  zb_int8_t average_load_adjustment_percentage_applied;  /* (O) */
+    /** Average Load Adjustment Percentage value applied by the device, see the
+     *  corresponding field in the Load Control Event command for more information.
+     *  The value 0x80 means that this field has not been used by the end device.
+     */
+    zb_int8_t average_load_adjustment_percentage_applied;  /* (O) */
 
-  /** Defines the maximum On state duty cycle applied by the device. The value
-   * 0xFF means that this field has not been used by the end device.
-   */
-  zb_uint8_t duty_cycle_applied;                         /* (O) */
+    /** Defines the maximum On state duty cycle applied by the device. The value
+     * 0xFF means that this field has not been used by the end device.
+     */
+    zb_uint8_t duty_cycle_applied;                         /* (O) */
 
-  /* Mandatory field */
-  /** Identifies additional control options for the event. */
-  zb_uint8_t event_control;                              /* (M) */
+    /* Mandatory field */
+    /** Identifies additional control options for the event. */
+    zb_uint8_t event_control;                              /* (M) */
 } ZB_PACKED_STRUCT zb_zcl_energy_management_report_event_status_payload_t;
 
 
@@ -491,12 +491,12 @@ typedef ZB_PACKED_PRE struct zb_zcl_energy_management_report_event_status_payloa
  * @n Handle @ref ZB_ZCL_ENERGY_MANAGEMENT_CLI_CMD_MANAGE_EVENT "ManageEvent" command
  */
 void zb_zcl_energy_management_server_send_report_event_status(zb_uint8_t param,
-                                                             zb_addr_u *dst_addr,
-                                                             zb_aps_addr_mode_t dst_addr_mode,
-                                                             zb_uint8_t dst_ep,
-                                                             zb_uint8_t src_ep,
-                                                             zb_zcl_energy_management_report_event_status_payload_t *payload,
-                                                             zb_callback_t cb);
+        zb_addr_u *dst_addr,
+        zb_aps_addr_mode_t dst_addr_mode,
+        zb_uint8_t dst_ep,
+        zb_uint8_t src_ep,
+        zb_zcl_energy_management_report_event_status_payload_t *payload,
+        zb_callback_t cb);
 
 
 /** Function for send @ref ZB_ZCL_ENERGY_MANAGEMENT_CLI_CMD_MANAGE_EVENT "ManageEvent" command.
@@ -515,10 +515,10 @@ void zb_zcl_energy_management_server_send_report_event_status(zb_uint8_t param,
  * @n Example of sending @ref ZB_ZCL_ENERGY_MANAGEMENT_CLI_CMD_MANAGE_EVENT "ManageEvent" command
  */
 void zb_zcl_energy_management_client_send_manage_event(zb_uint8_t param, zb_addr_u *dst_addr,
-                                                      zb_aps_addr_mode_t dst_addr_mode, zb_uint8_t dst_ep,
-                                                      zb_uint8_t src_ep,
-                                                      zb_zcl_energy_management_manage_event_payload_t *payload,
-                                                      zb_callback_t cb);
+        zb_aps_addr_mode_t dst_addr_mode, zb_uint8_t dst_ep,
+        zb_uint8_t src_ep,
+        zb_zcl_energy_management_manage_event_payload_t *payload,
+        zb_callback_t cb);
 
 /** Macro for call @ref zb_zcl_energy_management_server_send_report_event_status command  */
 #define ZB_ZCL_ENERGY_MANAGEMENT_SEND_CMD_REPORT_EVENT_STATUS(_param, _dst_addr,               \

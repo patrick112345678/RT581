@@ -150,10 +150,10 @@ when needed may result in a crash.  For example,
 template <typename T>
 struct is_a_helper
 {
-  template <typename U>
-  static inline bool test (U *p);
-  template <typename U>
-  static inline T cast (U *p);
+    template <typename U>
+    static inline bool test (U *p);
+    template <typename U>
+    static inline T cast (U *p);
 };
 
 /* Note that we deliberately do not define the 'test' member template.  Not
@@ -170,7 +170,7 @@ template <typename U>
 inline T
 is_a_helper <T>::cast (U *p)
 {
-  return reinterpret_cast <T> (p);
+    return reinterpret_cast <T> (p);
 }
 
 
@@ -184,7 +184,7 @@ template <typename T, typename U>
 inline bool
 is_a (U *p)
 {
-  return is_a_helper<T>::test (p);
+    return is_a_helper<T>::test (p);
 }
 
 /* A generic conversion from a base type U to a derived type T.  See the
@@ -194,8 +194,8 @@ template <typename T, typename U>
 inline T
 as_a (U *p)
 {
-  gcc_checking_assert (is_a <T> (p));
-  return is_a_helper <T>::cast (p);
+    gcc_checking_assert (is_a <T> (p));
+    return is_a_helper <T>::cast (p);
 }
 
 /* Similar to as_a<>, but where the pointer can be NULL, even if
@@ -205,13 +205,15 @@ template <typename T, typename U>
 inline T
 safe_as_a (U *p)
 {
-  if (p)
+    if (p)
     {
-      gcc_checking_assert (is_a <T> (p));
-      return is_a_helper <T>::cast (p);
+        gcc_checking_assert (is_a <T> (p));
+        return is_a_helper <T>::cast (p);
     }
-  else
-    return NULL;
+    else
+    {
+        return NULL;
+    }
 }
 
 /* A generic checked conversion from a base type U to a derived type T.  See
@@ -221,10 +223,14 @@ template <typename T, typename U>
 inline T
 dyn_cast (U *p)
 {
-  if (is_a <T> (p))
-    return is_a_helper <T>::cast (p);
-  else
-    return static_cast <T> (0);
+    if (is_a <T> (p))
+    {
+        return is_a_helper <T>::cast (p);
+    }
+    else
+    {
+        return static_cast <T> (0);
+    }
 }
 
 /* Similar to dyn_cast, except that the pointer may be null.  */
@@ -233,7 +239,7 @@ template <typename T, typename U>
 inline T
 safe_dyn_cast (U *p)
 {
-  return p ? dyn_cast <T> (p) : 0;
+    return p ? dyn_cast <T> (p) : 0;
 }
 
 #endif  /* GCC_IS_A_H  */

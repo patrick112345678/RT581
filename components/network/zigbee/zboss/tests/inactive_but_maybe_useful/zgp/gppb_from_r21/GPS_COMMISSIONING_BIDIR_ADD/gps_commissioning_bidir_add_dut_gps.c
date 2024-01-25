@@ -90,41 +90,41 @@ static void comm_req_cb(
     zb_uint16_t   manuf_model_id,
     zb_ieee_addr_t ieee_addr)
 {
-  TRACE_MSG(TRACE_APP1, ">> comm_req_cb zgpd_id %p, dev_id 0x%hx, manuf_id %d, manuf_model_id 0x%x",
-      (FMT__P_H_D_H, zgpd_id, device_id, manuf_id, manuf_model_id));
+    TRACE_MSG(TRACE_APP1, ">> comm_req_cb zgpd_id %p, dev_id 0x%hx, manuf_id %d, manuf_model_id 0x%x",
+              (FMT__P_H_D_H, zgpd_id, device_id, manuf_id, manuf_model_id));
 
-  ZVUNUSED(manuf_id);
-  ZVUNUSED(manuf_model_id);
-  ZVUNUSED(ieee_addr);
+    ZVUNUSED(manuf_id);
+    ZVUNUSED(manuf_model_id);
+    ZVUNUSED(ieee_addr);
 
-  zb_zgps_accept_commissioning(ZB_TRUE);
+    zb_zgps_accept_commissioning(ZB_TRUE);
 
-  TRACE_MSG(TRACE_APP1, "<< comm_req_cb ", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "<< comm_req_cb ", (FMT__0));
 }
 
 static void comm_ind_cb( zb_zgpd_id_t *zgpd_id, zb_uint8_t param)
 {
-  ZVUNUSED(param);
-  TRACE_MSG(TRACE_APP1, "Commissioning in operational mode callback", (FMT__0));
-  if(zgpd_id->app_id == ZB_ZGP_APP_ID_0000 )
-  {
-    TRACE_MSG(TRACE_APP1, "src: %04x", (FMT__D, zgpd_id->addr.src_id));
-  }
-  if(zgpd_id->app_id == ZB_ZGP_APP_ID_0010 )
-  {
-    TRACE_MSG(TRACE_APP1, "src (ieee): " TRACE_FORMAT_64, (FMT__A, TRACE_ARG_64(zgpd_id->addr.ieee_addr)));
-  }
+    ZVUNUSED(param);
+    TRACE_MSG(TRACE_APP1, "Commissioning in operational mode callback", (FMT__0));
+    if (zgpd_id->app_id == ZB_ZGP_APP_ID_0000 )
+    {
+        TRACE_MSG(TRACE_APP1, "src: %04x", (FMT__D, zgpd_id->addr.src_id));
+    }
+    if (zgpd_id->app_id == ZB_ZGP_APP_ID_0010 )
+    {
+        TRACE_MSG(TRACE_APP1, "src (ieee): " TRACE_FORMAT_64, (FMT__A, TRACE_ARG_64(zgpd_id->addr.ieee_addr)));
+    }
 }
 
 #ifndef ZB_NSNG
 static void comm_done_cb(zb_zgpd_id_t *zgpd_id,
-                  zb_zgp_comm_status_t result)
+                         zb_zgp_comm_status_t result)
 {
-  ZVUNUSED(zgpd_id);
-  ZVUNUSED(result);
-  TRACE_MSG(TRACE_APP1, "commissioning stopped", (FMT__0));
+    ZVUNUSED(zgpd_id);
+    ZVUNUSED(result);
+    TRACE_MSG(TRACE_APP1, "commissioning stopped", (FMT__0));
 #ifdef ZB_USE_BUTTONS
-  zb_led_blink_off(ZB_LED_ARG_CREATE(3, ZB_LED_BLINK_HALF_SEC));
+    zb_led_blink_off(ZB_LED_ARG_CREATE(3, ZB_LED_BLINK_HALF_SEC));
 #endif
 }
 #endif
@@ -132,11 +132,11 @@ static void comm_done_cb(zb_zgpd_id_t *zgpd_id,
 #ifndef ZB_NSNG
 static void stop_comm(zb_uint8_t param)
 {
-  ZVUNUSED(param);
-  TRACE_MSG(TRACE_APP1, "stop commissioning", (FMT__0));
-  zb_zgps_stop_commissioning();
+    ZVUNUSED(param);
+    TRACE_MSG(TRACE_APP1, "stop commissioning", (FMT__0));
+    zb_zgps_stop_commissioning();
 #ifdef ZB_USE_BUTTONS
-  zb_led_blink_off(ZB_LED_ARG_CREATE(3, ZB_LED_BLINK_HALF_SEC));
+    zb_led_blink_off(ZB_LED_ARG_CREATE(3, ZB_LED_BLINK_HALF_SEC));
 #endif
 }
 #endif
@@ -144,12 +144,12 @@ static void stop_comm(zb_uint8_t param)
 #ifndef ZB_NSNG
 static void start_comm(zb_uint8_t param)
 {
-  ZVUNUSED(param);
-  TRACE_MSG(TRACE_APP1, "start commissioning", (FMT__0));
-  ZB_ZGP_REGISTER_COMM_COMPLETED_CB(comm_done_cb);
-  zb_zgps_start_commissioning(ZGP_GPS_GET_COMMISSIONING_WINDOW() * ZB_TIME_ONE_SECOND);
+    ZVUNUSED(param);
+    TRACE_MSG(TRACE_APP1, "start commissioning", (FMT__0));
+    ZB_ZGP_REGISTER_COMM_COMPLETED_CB(comm_done_cb);
+    zb_zgps_start_commissioning(ZGP_GPS_GET_COMMISSIONING_WINDOW() * ZB_TIME_ONE_SECOND);
 #ifdef ZB_USE_BUTTONS
-  zb_led_blink_on(ZB_LED_ARG_CREATE(3, ZB_LED_BLINK_HALF_SEC));
+    zb_led_blink_on(ZB_LED_ARG_CREATE(3, ZB_LED_BLINK_HALF_SEC));
 #endif
 }
 #endif
@@ -158,178 +158,178 @@ static zb_uint8_t zcl_specific_cluster_cmd_handler(zb_uint8_t param);
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
-  ZB_INIT("dut_gps");
+    /* Init device, load IB values from nvram or set it to default */
+    ZB_INIT("dut_gps");
 
-  zb_set_default_ffd_descriptor_values(ZB_ROUTER);
+    zb_set_default_ffd_descriptor_values(ZB_ROUTER);
 
-  /* let's always be coordinator */
-  ZB_AIB().aps_designated_coordinator = 0;
-  /* use channel 11: most GPDs uses it */
-  ZB_AIB().aps_channel_mask = (1<<TEST_CHANNEL);
-  ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_zc_addr);
-  ZB_PIBCACHE_PAN_ID() = TEST_PAN_ID;
+    /* let's always be coordinator */
+    ZB_AIB().aps_designated_coordinator = 0;
+    /* use channel 11: most GPDs uses it */
+    ZB_AIB().aps_channel_mask = (1 << TEST_CHANNEL);
+    ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_zc_addr);
+    ZB_PIBCACHE_PAN_ID() = TEST_PAN_ID;
 
-  ZB_PIBCACHE_RX_ON_WHEN_IDLE() = ZB_B2U(ZB_TRUE);
+    ZB_PIBCACHE_RX_ON_WHEN_IDLE() = ZB_B2U(ZB_TRUE);
 
-  zb_set_default_ed_descriptor_values();
-  
-  ZB_NIB().nwk_use_multicast = ZB_FALSE;
-  
-  /* use well-known key to simplify decrypt in Wireshark */
-  zb_secur_setup_nwk_key(g_key_nwk, 0);
-  ZB_ZGP_SET_MATCH_INFO(&g_zgps_match_info);
-  ZB_ZGP_REGISTER_COMM_REQ_CB(comm_req_cb);
-  
-  TRACE_MSG(TRACE_APP1, "GPS BEGIN0", (FMT__0));
-  
-  /* Need to block GPDF recv if want to work thu the Proxy */
+    zb_set_default_ed_descriptor_values();
+
+    ZB_NIB().nwk_use_multicast = ZB_FALSE;
+
+    /* use well-known key to simplify decrypt in Wireshark */
+    zb_secur_setup_nwk_key(g_key_nwk, 0);
+    ZB_ZGP_SET_MATCH_INFO(&g_zgps_match_info);
+    ZB_ZGP_REGISTER_COMM_REQ_CB(comm_req_cb);
+
+    TRACE_MSG(TRACE_APP1, "GPS BEGIN0", (FMT__0));
+
+    /* Need to block GPDF recv if want to work thu the Proxy */
 #ifdef ZB_ZGP_SKIP_GPDF_ON_NWK_LAYER
-  ZG->nwk.skip_gpdf = 0;
+    ZG->nwk.skip_gpdf = 0;
 #endif
 #ifdef ZB_ZGP_RUNTIME_WORK_MODE_WITH_PROXIES
-  ZGP_CTX().enable_work_with_proxies = 1;
+    ZGP_CTX().enable_work_with_proxies = 1;
 #endif
 
-  ZGP_GPS_COMMUNICATION_MODE = ZGP_COMMUNICATION_MODE_GROUPCAST_DERIVED;
-//  ZGP_GPS_COMMUNICATION_MODE = ZGP_COMMUNICATION_MODE_LIGHTWEIGHT_UNICAST;
-//  ZGP_GPS_COMMISSIONING_EXIT_MODE = ZGP_COMMISSIONING_EXIT_MODE_ON_PAIRING_SUCCESS;
+    ZGP_GPS_COMMUNICATION_MODE = ZGP_COMMUNICATION_MODE_GROUPCAST_DERIVED;
+    //  ZGP_GPS_COMMUNICATION_MODE = ZGP_COMMUNICATION_MODE_LIGHTWEIGHT_UNICAST;
+    //  ZGP_GPS_COMMISSIONING_EXIT_MODE = ZGP_COMMISSIONING_EXIT_MODE_ON_PAIRING_SUCCESS;
 
-  ZGP_GPS_SECURITY_LEVEL = ZB_ZGP_FILL_GPS_SECURITY_LEVEL(
-                            ZB_ZGP_SEC_LEVEL_FULL_NO_ENC,
-//                            ZB_ZGP_SEC_LEVEL_NO_SECURITY,
-                            ZB_ZGP_DEFAULT_SEC_LEVEL_PROTECTION_WITH_GP_LINK_KEY,
-                            ZB_ZGP_DEFAULT_SEC_LEVEL_INVOLVE_TC);
+    ZGP_GPS_SECURITY_LEVEL = ZB_ZGP_FILL_GPS_SECURITY_LEVEL(
+                                 ZB_ZGP_SEC_LEVEL_FULL_NO_ENC,
+                                 //                            ZB_ZGP_SEC_LEVEL_NO_SECURITY,
+                                 ZB_ZGP_DEFAULT_SEC_LEVEL_PROTECTION_WITH_GP_LINK_KEY,
+                                 ZB_ZGP_DEFAULT_SEC_LEVEL_INVOLVE_TC);
 
-  ZB_MEMCPY(ZGP_GP_SHARED_SECURITY_KEY, g_shared_key, ZB_CCM_KEY_SIZE);
-  
-  /*
-  ZB_ZGP_SEC_KEY_TYPE_NO_KEY             = 0x00,  // No key
-  ZB_ZGP_SEC_KEY_TYPE_NWK                = 0x01,  // Zigbee NWK key
-  ZB_ZGP_SEC_KEY_TYPE_GROUP              = 0x02,  // ZGPD group key
-  ZB_ZGP_SEC_KEY_TYPE_GROUP_NWK_DERIVED  = 0x03,  // NWK-key derived ZGPD group key
-  ZB_ZGP_SEC_KEY_TYPE_ZGPD_INDIVIDUAL    = 0x04,  // (Individual) out-of-the-box ZGPD key
-  ZB_ZGP_SEC_KEY_TYPE_DERIVED_INDIVIDUAL = 0x07,  // Derived individual ZGPD key
-  */
+    ZB_MEMCPY(ZGP_GP_SHARED_SECURITY_KEY, g_shared_key, ZB_CCM_KEY_SIZE);
 
-  ZGP_GP_SET_SHARED_SECURITY_KEY_TYPE(TEST_KEY_TYPE);
+    /*
+    ZB_ZGP_SEC_KEY_TYPE_NO_KEY             = 0x00,  // No key
+    ZB_ZGP_SEC_KEY_TYPE_NWK                = 0x01,  // Zigbee NWK key
+    ZB_ZGP_SEC_KEY_TYPE_GROUP              = 0x02,  // ZGPD group key
+    ZB_ZGP_SEC_KEY_TYPE_GROUP_NWK_DERIVED  = 0x03,  // NWK-key derived ZGPD group key
+    ZB_ZGP_SEC_KEY_TYPE_ZGPD_INDIVIDUAL    = 0x04,  // (Individual) out-of-the-box ZGPD key
+    ZB_ZGP_SEC_KEY_TYPE_DERIVED_INDIVIDUAL = 0x07,  // Derived individual ZGPD key
+    */
 
-  ZGP_CTX().device_role = ZGP_DEVICE_COMBO_BASIC;
+    ZGP_GP_SET_SHARED_SECURITY_KEY_TYPE(TEST_KEY_TYPE);
 
-  /****************** Register Device ********************************/
-  ZB_AF_REGISTER_DEVICE_CTX(&SAMPLE_CTX);
-  ZB_AF_SET_ENDPOINT_HANDLER(ENDPOINT, zcl_specific_cluster_cmd_handler);
-  TRACE_MSG(TRACE_APP1, "GPS BEGIN1", (FMT__0));
-  
-  ZB_ZGP_REGISTER_APP_CIC_CB(comm_ind_cb);
+    ZGP_CTX().device_role = ZGP_DEVICE_COMBO_BASIC;
+
+    /****************** Register Device ********************************/
+    ZB_AF_REGISTER_DEVICE_CTX(&SAMPLE_CTX);
+    ZB_AF_SET_ENDPOINT_HANDLER(ENDPOINT, zcl_specific_cluster_cmd_handler);
+    TRACE_MSG(TRACE_APP1, "GPS BEGIN1", (FMT__0));
+
+    ZB_ZGP_REGISTER_APP_CIC_CB(comm_ind_cb);
 #ifdef ZB_USE_BUTTONS
-  /* Left - start comm. mode */
-  zb_button_register_handler(0, 0, start_comm);
-  /* Right - stop comm. mode */
-  zb_button_register_handler(1, 0, stop_comm);
+    /* Left - start comm. mode */
+    zb_button_register_handler(0, 0, start_comm);
+    /* Right - stop comm. mode */
+    zb_button_register_handler(1, 0, stop_comm);
 #endif
-  TRACE_MSG(TRACE_APP1, "GPS BEGIN2", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "GPS BEGIN2", (FMT__0));
 
-  if (zdo_dev_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "dut_gps_start failed", (FMT__0));
-  }
-  else
-  {
-    zcl_main_loop();
-  }
+    if (zdo_dev_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "dut_gps_start failed", (FMT__0));
+    }
+    else
+    {
+        zcl_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 static zb_uint8_t zcl_specific_cluster_cmd_handler(zb_uint8_t param)
 {
-  zb_buf_t *zcl_cmd_buf = (zb_buf_t *)ZB_BUF_FROM_REF(param);
-  zb_zcl_parsed_hdr_t *cmd_info = ZB_GET_BUF_PARAM(zcl_cmd_buf, zb_zcl_parsed_hdr_t);
-  zb_bool_t processed = ZB_FALSE;
-  static int state = 0;
-  
-  TRACE_MSG(TRACE_ZCL1, "test_specific_cluster_cmd_handler %i", (FMT__H, param));
-  ZB_ZCL_DEBUG_DUMP_HEADER(cmd_info);
-  TRACE_MSG(TRACE_ZCL1, "payload size: %i", (FMT__D, ZB_BUF_LEN(zcl_cmd_buf)));
+    zb_buf_t *zcl_cmd_buf = (zb_buf_t *)ZB_BUF_FROM_REF(param);
+    zb_zcl_parsed_hdr_t *cmd_info = ZB_GET_BUF_PARAM(zcl_cmd_buf, zb_zcl_parsed_hdr_t);
+    zb_bool_t processed = ZB_FALSE;
+    static int state = 0;
 
-  switch (cmd_info->cluster_id)
-  {
+    TRACE_MSG(TRACE_ZCL1, "test_specific_cluster_cmd_handler %i", (FMT__H, param));
+    ZB_ZCL_DEBUG_DUMP_HEADER(cmd_info);
+    TRACE_MSG(TRACE_ZCL1, "payload size: %i", (FMT__D, ZB_BUF_LEN(zcl_cmd_buf)));
+
+    switch (cmd_info->cluster_id)
+    {
     case ZB_ZCL_CLUSTER_ID_ON_OFF:
-      if (cmd_info->cmd_direction == ZB_ZCL_FRAME_DIRECTION_TO_SRV)
-      {
-        switch (cmd_info->cmd_id)
+        if (cmd_info->cmd_direction == ZB_ZCL_FRAME_DIRECTION_TO_SRV)
         {
-          case ZB_ZCL_CMD_ON_OFF_ON_ID:
-            TRACE_MSG(TRACE_ZCL1, "ON", (FMT__0));
-#ifdef ZB_USE_BUTTONS
-            zb_osif_led_on(0);
-#endif            
-            state = 1;
-            processed = ZB_TRUE;
-            break;
-          case ZB_ZCL_CMD_ON_OFF_OFF_ID:
-            TRACE_MSG(TRACE_ZCL1, "OFF", (FMT__0));
-#ifdef ZB_USE_BUTTONS
-            zb_osif_led_off(0);
-#endif            
-            state = 0;
-            processed = ZB_TRUE;
-            break;
-          case ZB_ZCL_CMD_ON_OFF_TOGGLE_ID:
-            TRACE_MSG(TRACE_ZCL1, "TOGGLE", (FMT__0));
-#ifdef ZB_USE_BUTTONS
-            if (state)
+            switch (cmd_info->cmd_id)
             {
-              zb_osif_led_on(0);
-            }
-            else
-            {
-              zb_osif_led_off(0);
-            }
+            case ZB_ZCL_CMD_ON_OFF_ON_ID:
+                TRACE_MSG(TRACE_ZCL1, "ON", (FMT__0));
+#ifdef ZB_USE_BUTTONS
+                zb_osif_led_on(0);
 #endif
-            state = !state;
-            processed = ZB_TRUE;
-            break;
+                state = 1;
+                processed = ZB_TRUE;
+                break;
+            case ZB_ZCL_CMD_ON_OFF_OFF_ID:
+                TRACE_MSG(TRACE_ZCL1, "OFF", (FMT__0));
+#ifdef ZB_USE_BUTTONS
+                zb_osif_led_off(0);
+#endif
+                state = 0;
+                processed = ZB_TRUE;
+                break;
+            case ZB_ZCL_CMD_ON_OFF_TOGGLE_ID:
+                TRACE_MSG(TRACE_ZCL1, "TOGGLE", (FMT__0));
+#ifdef ZB_USE_BUTTONS
+                if (state)
+                {
+                    zb_osif_led_on(0);
+                }
+                else
+                {
+                    zb_osif_led_off(0);
+                }
+#endif
+                state = !state;
+                processed = ZB_TRUE;
+                break;
+            }
         }
-      }
-      break;
-  }
+        break;
+    }
 
-  if (processed)
-  {
-    zb_free_buf(ZB_BUF_FROM_REF(param));
-  }
+    if (processed)
+    {
+        zb_free_buf(ZB_BUF_FROM_REF(param));
+    }
 
-  return processed;
+    return processed;
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_buf_t *buf = ZB_BUF_FROM_REF(param);
+    zb_buf_t *buf = ZB_BUF_FROM_REF(param);
 
-  TRACE_MSG(TRACE_ZCL1, "> zb_zdo_startup_complete %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_ZCL1, "> zb_zdo_startup_complete %hd", (FMT__H, param));
 
-  if (buf->u.hdr.status == 0)
-  {
-    TRACE_MSG(TRACE_ZCL1, "DUT-GPS Device STARTED OK", (FMT__0));
+    if (buf->u.hdr.status == 0)
+    {
+        TRACE_MSG(TRACE_ZCL1, "DUT-GPS Device STARTED OK", (FMT__0));
 #ifndef ZB_NSNG
-    zb_osif_led_on(2);
+        zb_osif_led_on(2);
 #endif
-//    ZB_SCHEDULE_ALARM(start_comm, 0, ZB_TIME_ONE_SECOND);
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Error, Device start FAILED status %d",
-              (FMT__D, (int)buf->u.hdr.status));
-  }
-  zb_free_buf(buf);
+        //    ZB_SCHEDULE_ALARM(start_comm, 0, ZB_TIME_ONE_SECOND);
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Error, Device start FAILED status %d",
+                  (FMT__D, (int)buf->u.hdr.status));
+    }
+    zb_free_buf(buf);
 
-  TRACE_MSG(TRACE_ZCL1, "< zb_zdo_startup_complete", (FMT__0));
+    TRACE_MSG(TRACE_ZCL1, "< zb_zdo_startup_complete", (FMT__0));
 }
 
 #else // defined ZB_ENABLE_HA && defined ZB_ENABLE_ZGP_CLUSTER
@@ -337,8 +337,8 @@ ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 #include <stdio.h>
 int main()
 {
-  printf(" HA and ZGP cluster is not supported\n");
-  return 0;
+    printf(" HA and ZGP cluster is not supported\n");
+    return 0;
 }
 
 #endif // defined ZB_ENABLE_HA

@@ -38,15 +38,16 @@ void TP_BCAST_CHAIN_BCAST_CHAIN_ZR4_main();
 void TP_BCAST_CHAIN_BCAST_CHAIN_ZR4_zb_zdo_startup_complete(zb_uint8_t param);
 void NVRAM_ERASE_main();
 
-static const zb_test_table_t s_tests_table[] = {
+static const zb_test_table_t s_tests_table[] =
+{
 #if defined ZB_TEST_GROUP_ZCP_R22_BCAST
-{ "TP_BCAST_CHAIN_BCAST_CHAIN_ZC", TP_BCAST_CHAIN_BCAST_CHAIN_ZC_main, TP_BCAST_CHAIN_BCAST_CHAIN_ZC_zb_zdo_startup_complete },
-{ "TP_BCAST_CHAIN_BCAST_CHAIN_ZR1", TP_BCAST_CHAIN_BCAST_CHAIN_ZR1_main, TP_BCAST_CHAIN_BCAST_CHAIN_ZR1_zb_zdo_startup_complete },
-{ "TP_BCAST_CHAIN_BCAST_CHAIN_ZR2", TP_BCAST_CHAIN_BCAST_CHAIN_ZR2_main, TP_BCAST_CHAIN_BCAST_CHAIN_ZR2_zb_zdo_startup_complete },
-{ "TP_BCAST_CHAIN_BCAST_CHAIN_ZR3", TP_BCAST_CHAIN_BCAST_CHAIN_ZR3_main, TP_BCAST_CHAIN_BCAST_CHAIN_ZR3_zb_zdo_startup_complete },
-{ "TP_BCAST_CHAIN_BCAST_CHAIN_ZR4", TP_BCAST_CHAIN_BCAST_CHAIN_ZR4_main, TP_BCAST_CHAIN_BCAST_CHAIN_ZR4_zb_zdo_startup_complete },
-#endif 
-{ "NVRAM_ERASE", NVRAM_ERASE_main, NULL},
+    { "TP_BCAST_CHAIN_BCAST_CHAIN_ZC", TP_BCAST_CHAIN_BCAST_CHAIN_ZC_main, TP_BCAST_CHAIN_BCAST_CHAIN_ZC_zb_zdo_startup_complete },
+    { "TP_BCAST_CHAIN_BCAST_CHAIN_ZR1", TP_BCAST_CHAIN_BCAST_CHAIN_ZR1_main, TP_BCAST_CHAIN_BCAST_CHAIN_ZR1_zb_zdo_startup_complete },
+    { "TP_BCAST_CHAIN_BCAST_CHAIN_ZR2", TP_BCAST_CHAIN_BCAST_CHAIN_ZR2_main, TP_BCAST_CHAIN_BCAST_CHAIN_ZR2_zb_zdo_startup_complete },
+    { "TP_BCAST_CHAIN_BCAST_CHAIN_ZR3", TP_BCAST_CHAIN_BCAST_CHAIN_ZR3_main, TP_BCAST_CHAIN_BCAST_CHAIN_ZR3_zb_zdo_startup_complete },
+    { "TP_BCAST_CHAIN_BCAST_CHAIN_ZR4", TP_BCAST_CHAIN_BCAST_CHAIN_ZR4_main, TP_BCAST_CHAIN_BCAST_CHAIN_ZR4_zb_zdo_startup_complete },
+#endif
+    { "NVRAM_ERASE", NVRAM_ERASE_main, NULL},
 };
 
 #endif /* ZC_TESTS_TABLE_H */

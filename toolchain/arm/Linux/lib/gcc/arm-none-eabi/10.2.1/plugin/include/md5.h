@@ -58,17 +58,17 @@ typedef uintptr_t md5_uintptr;
 # endif
 
 # if INT_MAX == INT_MAX_32_BITS
-   typedef unsigned int md5_uint32;
+typedef unsigned int md5_uint32;
 # else
 #  if SHRT_MAX == INT_MAX_32_BITS
-    typedef unsigned short md5_uint32;
+typedef unsigned short md5_uint32;
 #  else
 #   if LONG_MAX == INT_MAX_32_BITS
-     typedef unsigned long md5_uint32;
+typedef unsigned long md5_uint32;
 #   else
-     /* The following line is intended to evoke an error.
-        Using #error is not portable enough.  */
-     "Cannot determine unsigned 32-bit data type."
+/* The following line is intended to evoke an error.
+   Using #error is not portable enough.  */
+"Cannot determine unsigned 32-bit data type."
 #   endif
 #  endif
 # endif
@@ -84,14 +84,14 @@ extern "C" {
 /* Structure to save state of computation between the single steps.  */
 struct md5_ctx
 {
-  md5_uint32 A;
-  md5_uint32 B;
-  md5_uint32 C;
-  md5_uint32 D;
+    md5_uint32 A;
+    md5_uint32 B;
+    md5_uint32 C;
+    md5_uint32 D;
 
-  md5_uint32 total[2];
-  md5_uint32 buflen;
-  char buffer[128] ATTRIBUTE_ALIGNED_ALIGNOF(md5_uint32);
+    md5_uint32 total[2];
+    md5_uint32 buflen;
+    char buffer[128] ATTRIBUTE_ALIGNED_ALIGNOF(md5_uint32);
 };
 
 /*

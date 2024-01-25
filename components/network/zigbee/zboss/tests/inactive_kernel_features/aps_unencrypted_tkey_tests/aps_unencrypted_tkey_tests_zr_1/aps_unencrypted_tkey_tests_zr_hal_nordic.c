@@ -33,34 +33,34 @@
 
 void button1_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
 {
-  ZVUNUSED(pin);
-  ZVUNUSED(action);
+    ZVUNUSED(pin);
+    ZVUNUSED(action);
 
-  tests_aps_unencrypted_tkey_zr_button_pressed(LEAVE_NET_BUTTON);
+    tests_aps_unencrypted_tkey_zr_button_pressed(LEAVE_NET_BUTTON);
 }
 
 void aps_unencrypted_tkey_zr_hal_gpio_init()
 {
-  nrf_drv_gpiote_in_config_t in_config = GPIOTE_RAW_CONFIG_IN_SENSE_TOGGLE(true);
+    nrf_drv_gpiote_in_config_t in_config = GPIOTE_RAW_CONFIG_IN_SENSE_TOGGLE(true);
 
-  bsp_board_init(BSP_INIT_LEDS | BSP_INIT_BUTTONS);
+    bsp_board_init(BSP_INIT_LEDS | BSP_INIT_BUTTONS);
 
-  nrf_drv_gpiote_init();
+    nrf_drv_gpiote_init();
 
-  in_config.pull = NRF_GPIO_PIN_PULLUP;
-  nrf_drv_gpiote_in_init(BSP_BUTTON_1, &in_config, button1_handler);
-  nrf_drv_gpiote_in_event_enable(BSP_BUTTON_1, true);
+    in_config.pull = NRF_GPIO_PIN_PULLUP;
+    nrf_drv_gpiote_in_init(BSP_BUTTON_1, &in_config, button1_handler);
+    nrf_drv_gpiote_in_event_enable(BSP_BUTTON_1, true);
 
 }
 
 void aps_unencrypted_tkey_zr_hal_init()
 {
-  aps_unencrypted_tkey_zr_hal_gpio_init();
+    aps_unencrypted_tkey_zr_hal_gpio_init();
 }
 
 zb_bool_t aps_unencrypted_tkey_zc_hal_is_button_pressed()
 {
-  zb_bool_t ret = ZB_FALSE;
-  ret = (zb_bool_t) bsp_board_button_state_get(NVRAM_ERASE_BUTTON);
-  return ret;
+    zb_bool_t ret = ZB_FALSE;
+    ret = (zb_bool_t) bsp_board_button_state_get(NVRAM_ERASE_BUTTON);
+    return ret;
 }

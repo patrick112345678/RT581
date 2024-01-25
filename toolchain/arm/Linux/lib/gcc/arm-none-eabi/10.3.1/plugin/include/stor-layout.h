@@ -23,7 +23,7 @@ along with GCC; see the file COPYING3.  If not see
 extern void set_min_and_max_values_for_integral_type (tree, int, signop);
 extern void fixup_signed_type (tree);
 extern unsigned int update_alignment_for_field (record_layout_info, tree,
-                                                unsigned int);
+        unsigned int);
 extern record_layout_info start_record_layout (tree);
 extern tree bit_from_pos (tree, tree);
 extern tree byte_from_pos (tree, tree);
@@ -76,21 +76,21 @@ extern tree make_accum_type (int, int, int);
 #define make_sat_unsigned_accum_type(P) make_accum_type (P, 1, 1)
 
 #define make_or_reuse_signed_fract_type(P) \
-		make_or_reuse_fract_type (P, 0, 0)
+        make_or_reuse_fract_type (P, 0, 0)
 #define make_or_reuse_unsigned_fract_type(P) \
-		make_or_reuse_fract_type (P, 1, 0)
+        make_or_reuse_fract_type (P, 1, 0)
 #define make_or_reuse_sat_signed_fract_type(P) \
-		make_or_reuse_fract_type (P, 0, 1)
+        make_or_reuse_fract_type (P, 0, 1)
 #define make_or_reuse_sat_unsigned_fract_type(P) \
-		make_or_reuse_fract_type (P, 1, 1)
+        make_or_reuse_fract_type (P, 1, 1)
 #define make_or_reuse_signed_accum_type(P) \
-		make_or_reuse_accum_type (P, 0, 0)
+        make_or_reuse_accum_type (P, 0, 0)
 #define make_or_reuse_unsigned_accum_type(P) \
-		make_or_reuse_accum_type (P, 1, 0)
+        make_or_reuse_accum_type (P, 1, 0)
 #define make_or_reuse_sat_signed_accum_type(P) \
-		make_or_reuse_accum_type (P, 0, 1)
+        make_or_reuse_accum_type (P, 0, 1)
 #define make_or_reuse_sat_unsigned_accum_type(P) \
-		make_or_reuse_accum_type (P, 1, 1)
+        make_or_reuse_accum_type (P, 1, 1)
 
 extern tree make_signed_type (int);
 extern tree make_unsigned_type (int);

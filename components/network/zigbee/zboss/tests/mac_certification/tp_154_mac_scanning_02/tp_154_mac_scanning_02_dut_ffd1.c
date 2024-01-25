@@ -51,108 +51,108 @@ static void test_mlme_scan_request(zb_uint8_t param);
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  ZB_INIT("tp_154_mac_scanning_02_dut_ffd1");
+    ZB_INIT("tp_154_mac_scanning_02_dut_ffd1");
 
-  ZB_SCHEDULE_CALLBACK(test_started_cb, 0);
-	init_RT569_LED();
+    ZB_SCHEDULE_CALLBACK(test_started_cb, 0);
+    init_RT569_LED();
 #if UART_CONTROL
-  test_control_init();
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    test_control_init();
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 #endif
-  while(1)
-  {
-    zb_sched_loop_iteration();
-  }
+    while (1)
+    {
+        zb_sched_loop_iteration();
+    }
 
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 
 static void test_started_cb(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  //TRACE_MSG(TRACE_APP1, "Device STARTED OK", (FMT__0));
+    //TRACE_MSG(TRACE_APP1, "Device STARTED OK", (FMT__0));
 
-  zb_buf_get_out_delayed(test_mlme_reset_request);
+    zb_buf_get_out_delayed(test_mlme_reset_request);
 }
 
 /***************** Test functions *****************/
 static void test_mlme_reset_request(zb_uint8_t param)
 {
-  zb_mlme_reset_request_t *reset_req = ZB_BUF_GET_PARAM(param, zb_mlme_reset_request_t);
-  reset_req->set_default_pib = 1;
+    zb_mlme_reset_request_t *reset_req = ZB_BUF_GET_PARAM(param, zb_mlme_reset_request_t);
+    reset_req->set_default_pib = 1;
 
-  //TRACE_MSG(TRACE_APP1, "MLME-RESET.request()", (FMT__0));
+    //TRACE_MSG(TRACE_APP1, "MLME-RESET.request()", (FMT__0));
 
-  ZB_SCHEDULE_CALLBACK(zb_mlme_reset_request, param);
+    ZB_SCHEDULE_CALLBACK(zb_mlme_reset_request, param);
 }
 
 
 static void test_set_ieee_addr(zb_uint8_t param)
 {
-  zb_mlme_set_request_t *req;
+    zb_mlme_set_request_t *req;
 
-  //TRACE_MSG(TRACE_APP1, "MLME-SET.request() mac IEEE addr", (FMT__0));
+    //TRACE_MSG(TRACE_APP1, "MLME-SET.request() mac IEEE addr", (FMT__0));
 
-  req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + sizeof(zb_ieee_addr_t));
-  ZB_BZERO(req, sizeof(zb_mlme_set_request_t) + sizeof(zb_ieee_addr_t));
+    req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + sizeof(zb_ieee_addr_t));
+    ZB_BZERO(req, sizeof(zb_mlme_set_request_t) + sizeof(zb_ieee_addr_t));
 
-  req->pib_attr = ZB_PIB_ATTRIBUTE_EXTEND_ADDRESS;
-  req->pib_length = sizeof(zb_ieee_addr_t);
-  ZB_MEMCPY((zb_uint8_t *)(req+1), g_ieee_addr_dut_ffd1, sizeof(zb_ieee_addr_t));
+    req->pib_attr = ZB_PIB_ATTRIBUTE_EXTEND_ADDRESS;
+    req->pib_length = sizeof(zb_ieee_addr_t);
+    ZB_MEMCPY((zb_uint8_t *)(req + 1), g_ieee_addr_dut_ffd1, sizeof(zb_ieee_addr_t));
 
-  req->confirm_cb_u.cb = test_mlme_scan_request;
-  zb_mlme_set_request(param);
+    req->confirm_cb_u.cb = test_mlme_scan_request;
+    zb_mlme_set_request(param);
 }
 
 
 static void test_mlme_scan_request(zb_uint8_t param)
 {
 
-  TRACE_MSG(TRACE_APP1, "MLME-SCAN.request() - Active scan", (FMT__0));
-  ZB_MLME_BUILD_SCAN_REQUEST(param, TEST_PAGE, ZB_TRANSCEIVER_ALL_CHANNELS_MASK, TEST_SCAN_TYPE, TEST_SCAN_DURATION);
-	//ZB_MLME_BUILD_SCAN_REQUEST(param, TEST_PAGE, 0x07FBE000, TEST_SCAN_TYPE, TEST_SCAN_DURATION);
-  ZB_SCHEDULE_CALLBACK(zb_mlme_scan_request, param);
+    TRACE_MSG(TRACE_APP1, "MLME-SCAN.request() - Active scan", (FMT__0));
+    ZB_MLME_BUILD_SCAN_REQUEST(param, TEST_PAGE, ZB_TRANSCEIVER_ALL_CHANNELS_MASK, TEST_SCAN_TYPE, TEST_SCAN_DURATION);
+    //ZB_MLME_BUILD_SCAN_REQUEST(param, TEST_PAGE, 0x07FBE000, TEST_SCAN_TYPE, TEST_SCAN_DURATION);
+    ZB_SCHEDULE_CALLBACK(zb_mlme_scan_request, param);
 }
 
 /***************** MAC Callbacks *****************/
 ZB_MLME_RESET_CONFIRM(zb_uint8_t param)
 {
-  //TRACE_MSG(TRACE_APP1, "MLME-RESET.confirm()", (FMT__0));
+    //TRACE_MSG(TRACE_APP1, "MLME-RESET.confirm()", (FMT__0));
 
-  /* Call the next test step */
-  ZB_SCHEDULE_CALLBACK(test_set_ieee_addr, param);
+    /* Call the next test step */
+    ZB_SCHEDULE_CALLBACK(test_set_ieee_addr, param);
 }
 
 
 ZB_MLME_SCAN_CONFIRM(zb_uint8_t param)
 {
-  zb_mac_scan_confirm_t *scan_confirm = 0;
-	scan_confirm = ZB_BUF_GET_PARAM(param, zb_mac_scan_confirm_t);
-	/*
-	TRACE_MSG(TRACE_APP1, "MLME-SCAN.confirm()", (FMT__0));
-	TRACE_MSG(TRACE_APP1, "Status = %x", (FMT__H, scan_confirm->status));
-	TRACE_MSG(TRACE_APP1, "Scan type = %x", (FMT__H, scan_confirm->scan_type));
-	TRACE_MSG(TRACE_APP1, "Channel page = %d", (FMT__H, scan_confirm->channel_page));
-	TRACE_MSG(TRACE_APP1, "UnscannedChannels = %x", (FMT__H, scan_confirm->unscanned_channels));
-	TRACE_MSG(TRACE_APP1, "ResultListSize = %d", (FMT__H, scan_confirm->result_list_size));
-	*/
-	if (scan_confirm->status == 0xea &&
-		  scan_confirm->scan_type == 0x01 &&
-	    scan_confirm->channel_page == 0x00 &&
-	    scan_confirm->result_list_size == 0x00 &&
-	    scan_confirm->unscanned_channels == 0x00000000)
-	{
-		zb_osif_led_on(0); // blue  
-		TRACE_MSG(TRACE_APP1, "Scanning02 success", (FMT__0));
-	}	
-  zb_buf_free(param);
+    zb_mac_scan_confirm_t *scan_confirm = 0;
+    scan_confirm = ZB_BUF_GET_PARAM(param, zb_mac_scan_confirm_t);
+    /*
+    TRACE_MSG(TRACE_APP1, "MLME-SCAN.confirm()", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "Status = %x", (FMT__H, scan_confirm->status));
+    TRACE_MSG(TRACE_APP1, "Scan type = %x", (FMT__H, scan_confirm->scan_type));
+    TRACE_MSG(TRACE_APP1, "Channel page = %d", (FMT__H, scan_confirm->channel_page));
+    TRACE_MSG(TRACE_APP1, "UnscannedChannels = %x", (FMT__H, scan_confirm->unscanned_channels));
+    TRACE_MSG(TRACE_APP1, "ResultListSize = %d", (FMT__H, scan_confirm->result_list_size));
+    */
+    if (scan_confirm->status == 0xea &&
+            scan_confirm->scan_type == 0x01 &&
+            scan_confirm->channel_page == 0x00 &&
+            scan_confirm->result_list_size == 0x00 &&
+            scan_confirm->unscanned_channels == 0x00000000)
+    {
+        zb_osif_led_on(0); // blue
+        TRACE_MSG(TRACE_APP1, "Scanning02 success", (FMT__0));
+    }
+    zb_buf_free(param);
 }
 
 

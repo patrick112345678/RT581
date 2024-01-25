@@ -24,9 +24,10 @@ See dbgcnt.def for usage information.  */
 
 #define DEBUG_COUNTER(a) a,
 
-enum debug_counter {
+enum debug_counter
+{
 #include "dbgcnt.def"
-   debug_counter_number_of_counters
+    debug_counter_number_of_counters
 };
 
 #undef DEBUG_COUNTER

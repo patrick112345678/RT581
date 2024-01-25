@@ -64,7 +64,7 @@
 
 /* True if long double supported and it is equal to double.  */
 #define _LDBL_EQ_DBL 1
- 
+
 /* Define if ivo supported in streamio.  */
 /* #undef _FVWRITE_IN_STREAMIO */
 

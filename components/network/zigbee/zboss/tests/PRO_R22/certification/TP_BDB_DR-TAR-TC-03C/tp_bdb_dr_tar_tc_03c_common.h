@@ -27,7 +27,7 @@
 
 ZB_PACKED_PRE struct dut_nvram_app_dataset_s
 {
-  zb_uint16_t on_off_arr[2];
+    zb_uint16_t on_off_arr[2];
 } ZB_PACKED_STRUCT;
 
 typedef struct dut_nvram_app_dataset_s dut_nvram_app_dataset_t;

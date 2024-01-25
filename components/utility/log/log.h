@@ -1,12 +1,12 @@
 /**
  * @file log.h
  * @author Rex Huang (rex.huang@rafaelmicro.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2023-08-01
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 
 #ifndef __LOG_H__
@@ -213,27 +213,27 @@ DECLARE_F_INFO(__COMPONENT_FILE_NAME_DEQUOTED__, __COMPONENT_FILE_NAMED__);
 #define log_warn(M, ...) printf(M"\r\n", ##__VA_ARGS__)
 
 #define log_debug_hexdump(name, buf, size) do {\
-				printf("%s:\r\n",\
-				name);\
-				for(int i =0; i < size; i++) \
-					printf("%02x ", buf[i]);\
-				printf("\r\n"); \
+                printf("%s:\r\n",\
+                name);\
+                for(int i =0; i < size; i++) \
+                    printf("%02x ", buf[i]);\
+                printf("\r\n"); \
 }while(0)
 
 #define log_info_hexdump(name, buf, size)do {\
-				printf("%s:\r\n",\
-				name);\
-				for(int i =0; i < size; i++) \
-					printf("%02x ", buf[i]);\
-				printf("\r\n"); \
+                printf("%s:\r\n",\
+                name);\
+                for(int i =0; i < size; i++) \
+                    printf("%02x ", buf[i]);\
+                printf("\r\n"); \
 }while(0)
 
 #define log_warn_hexdump(name, buf, size)do {\
-				printf("%s:\r\n",\
-				name);\
-				for(int i =0; i < size; i++) \
-					printf("%02x ", buf[i]);\
-				printf("\r\n"); \
+                printf("%s:\r\n",\
+                name);\
+                for(int i =0; i < size; i++) \
+                    printf("%02x ", buf[i]);\
+                printf("\r\n"); \
 }while(0)
 #else
 #define LOG_DECLARE(name)

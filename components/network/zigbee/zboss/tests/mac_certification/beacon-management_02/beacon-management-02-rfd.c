@@ -53,48 +53,48 @@ static zb_ieee_addr_t g_zc_addr = {0x02, 0x00, 0x00, 0x00, 0x00, 0x48, 0xde, 0xa
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
-  ZB_INIT("mac_bm_02");
-  ZG -> nwk.nib.security_level = 0;
-  ZB_IEEE_ADDR_COPY(ZB_PIB_EXTENDED_ADDRESS(), &g_zc_addr);
-  MAC_PIB().mac_pan_id = TEST_PAN_ID;
+    /* Init device, load IB values from nvram or set it to default */
+    ZB_INIT("mac_bm_02");
+    ZG -> nwk.nib.security_level = 0;
+    ZB_IEEE_ADDR_COPY(ZB_PIB_EXTENDED_ADDRESS(), &g_zc_addr);
+    MAC_PIB().mac_pan_id = TEST_PAN_ID;
 
-  /* let's always be coordinator */
-  ZB_AIB().aps_designated_coordinator = 1;
-  ZB_AIB().aps_channel_mask           = TEST_CHANEL_MASK;
+    /* let's always be coordinator */
+    ZB_AIB().aps_designated_coordinator = 1;
+    ZB_AIB().aps_channel_mask           = TEST_CHANEL_MASK;
 
-  if (zdo_dev_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
-  TRACE_DEINIT();
-  MAIN_RETURN(0);
+    if (zdo_dev_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
+    TRACE_DEINIT();
+    MAIN_RETURN(0);
 }
 
 
 
 void zb_zdo_startup_complete(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_APS3, ">>zb_zdo_startup_complete status %d", (FMT__D, (int)buf -> u.hdr.status));
-  if (buf -> u.hdr.status == 0)
-  {
-    TRACE_MSG(TRACE_APS1, "Device STARTED OK. Update short addr to 0x%x", (FMT__D, ZB_TEST_ADDR));
-    MAC_PIB().mac_short_address = ZB_TEST_ADDR;
-    ZB_UPDATE_SHORT_ADDR();
+    TRACE_MSG(TRACE_APS3, ">>zb_zdo_startup_complete status %d", (FMT__D, (int)buf -> u.hdr.status));
+    if (buf -> u.hdr.status == 0)
+    {
+        TRACE_MSG(TRACE_APS1, "Device STARTED OK. Update short addr to 0x%x", (FMT__D, ZB_TEST_ADDR));
+        MAC_PIB().mac_short_address = ZB_TEST_ADDR;
+        ZB_UPDATE_SHORT_ADDR();
 
-    zb_beacon_request_command();
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device start FAILED status %d", (FMT__D, (int)zb_buf_get_status(param)));
-  }
-  zb_buf_free(param);
+        zb_beacon_request_command();
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device start FAILED status %d", (FMT__D, (int)zb_buf_get_status(param)));
+    }
+    zb_buf_free(param);
 }
 
 

@@ -1,12 +1,12 @@
 /**
  * @file cpc_hdlc.h
  * @author Rex Huang (rex.huang@rafaelmicro.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2023-08-03
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 
 #ifndef CPC_HDLC_H
@@ -66,7 +66,7 @@ extern "C"
  ******************************************************************************/
 inline uint8_t cpc_hdlc_get_flag(const uint8_t *header_buf)
 {
-  return header_buf[CPC_HDLC_FLAG_POS];
+    return header_buf[CPC_HDLC_FLAG_POS];
 }
 
 /***************************************************************************//**
@@ -78,7 +78,7 @@ inline uint8_t cpc_hdlc_get_flag(const uint8_t *header_buf)
  ******************************************************************************/
 inline uint8_t cpc_hdlc_get_address(const uint8_t *header_buf)
 {
-  return header_buf[CPC_HDLC_ADDRESS_POS];
+    return header_buf[CPC_HDLC_ADDRESS_POS];
 }
 
 /***************************************************************************//**
@@ -90,12 +90,12 @@ inline uint8_t cpc_hdlc_get_address(const uint8_t *header_buf)
  ******************************************************************************/
 inline uint16_t cpc_hdlc_get_length(const uint8_t *header_buf)
 {
-  uint16_t length = 0;
+    uint16_t length = 0;
 
-  length  = (uint16_t)header_buf[CPC_HDLC_LENGTH_POS];
-  length |= (uint16_t)header_buf[CPC_HDLC_LENGTH_POS + 1] << 8;
+    length  = (uint16_t)header_buf[CPC_HDLC_LENGTH_POS];
+    length |= (uint16_t)header_buf[CPC_HDLC_LENGTH_POS + 1] << 8;
 
-  return length;
+    return length;
 }
 
 /***************************************************************************//**
@@ -107,7 +107,7 @@ inline uint16_t cpc_hdlc_get_length(const uint8_t *header_buf)
  ******************************************************************************/
 inline uint8_t cpc_hdlc_get_control(const uint8_t *header_buf)
 {
-  return header_buf[CPC_HDLC_CONTROL_POS];
+    return header_buf[CPC_HDLC_CONTROL_POS];
 }
 
 /***************************************************************************//**
@@ -119,12 +119,12 @@ inline uint8_t cpc_hdlc_get_control(const uint8_t *header_buf)
  ******************************************************************************/
 inline uint16_t cpc_hdlc_get_hcs(const uint8_t *header_buf)
 {
-  uint16_t hcs = 0;
+    uint16_t hcs = 0;
 
-  hcs  = (uint16_t)header_buf[CPC_HDLC_HCS_POS];
-  hcs |= (uint16_t)header_buf[CPC_HDLC_HCS_POS + 1] << 8;
+    hcs  = (uint16_t)header_buf[CPC_HDLC_HCS_POS];
+    hcs |= (uint16_t)header_buf[CPC_HDLC_HCS_POS + 1] << 8;
 
-  return hcs;
+    return hcs;
 }
 
 /***************************************************************************//**
@@ -136,12 +136,12 @@ inline uint16_t cpc_hdlc_get_hcs(const uint8_t *header_buf)
  ******************************************************************************/
 inline uint16_t cpc_hdlc_get_fcs(const uint8_t *payload_buf, uint16_t payload_length)
 {
-  uint16_t fcs = 0;
+    uint16_t fcs = 0;
 
-  fcs  = (uint16_t)payload_buf[payload_length];
-  fcs |= (uint16_t)payload_buf[payload_length + 1] << 8;
+    fcs  = (uint16_t)payload_buf[payload_length];
+    fcs |= (uint16_t)payload_buf[payload_length + 1] << 8;
 
-  return fcs;
+    return fcs;
 }
 
 /***************************************************************************//**
@@ -153,13 +153,14 @@ inline uint16_t cpc_hdlc_get_fcs(const uint8_t *payload_buf, uint16_t payload_le
  ******************************************************************************/
 inline uint8_t cpc_hdlc_get_frame_type(uint8_t control)
 {
-  uint8_t type = control >> CPC_HDLC_CONTROL_FRAME_TYPE_SHIFT;
+    uint8_t type = control >> CPC_HDLC_CONTROL_FRAME_TYPE_SHIFT;
 
-  if (type == 1 || type == 0) {
-    type = CPC_HDLC_FRAME_TYPE_DATA;
-  }
+    if (type == 1 || type == 0)
+    {
+        type = CPC_HDLC_FRAME_TYPE_DATA;
+    }
 
-  return type;
+    return type;
 }
 
 /***************************************************************************//**
@@ -171,7 +172,7 @@ inline uint8_t cpc_hdlc_get_frame_type(uint8_t control)
  ******************************************************************************/
 inline uint8_t cpc_hdlc_get_seq(uint8_t control)
 {
-  return (control >> CPC_HDLC_CONTROL_SEQ_SHIFT) & 0x03;
+    return (control >> CPC_HDLC_CONTROL_SEQ_SHIFT) & 0x03;
 }
 
 /***************************************************************************//**
@@ -183,7 +184,7 @@ inline uint8_t cpc_hdlc_get_seq(uint8_t control)
  ******************************************************************************/
 inline uint8_t cpc_hdlc_get_ack(uint8_t control)
 {
-  return control & 0x03;
+    return control & 0x03;
 }
 
 /***************************************************************************//**
@@ -195,7 +196,7 @@ inline uint8_t cpc_hdlc_get_ack(uint8_t control)
  ******************************************************************************/
 inline uint8_t cpc_hdlc_get_supervisory_function(uint8_t control)
 {
-  return (control >> CPC_HDLC_CONTROL_SUPERVISORY_FNCT_ID_SHIFT) & 0x03;
+    return (control >> CPC_HDLC_CONTROL_SUPERVISORY_FNCT_ID_SHIFT) & 0x03;
 }
 
 /***************************************************************************//**
@@ -207,7 +208,7 @@ inline uint8_t cpc_hdlc_get_supervisory_function(uint8_t control)
  ******************************************************************************/
 inline uint8_t cpc_hdlc_get_unumbered_type(uint8_t control)
 {
-  return (control >> CPC_HDLC_CONTROL_UNNUMBERED_TYPE_SHIFT) & CPC_HDLC_CONTROL_UNNUMBERED_TYPE_MASK;
+    return (control >> CPC_HDLC_CONTROL_UNNUMBERED_TYPE_SHIFT) & CPC_HDLC_CONTROL_UNNUMBERED_TYPE_MASK;
 }
 
 /***************************************************************************//**
@@ -221,10 +222,10 @@ inline uint8_t cpc_hdlc_get_unumbered_type(uint8_t control)
  *                    CRC (HCS). Set to false if DMA generates it automatically.
  ******************************************************************************/
 void cpc_hdlc_create_header(uint8_t *header_buf,
-                                uint8_t address,
-                                uint16_t length,
-                                uint8_t control,
-                                bool compute_crc);
+                            uint8_t address,
+                            uint16_t length,
+                            uint8_t control,
+                            bool compute_crc);
 
 /***************************************************************************//**
  * Creates header control value data frame type.
@@ -237,13 +238,13 @@ void cpc_hdlc_create_header(uint8_t *header_buf,
  ******************************************************************************/
 inline uint8_t cpc_hdlc_create_control_data(uint8_t seq, uint8_t ack, bool poll_final)
 {
-  uint8_t control = CPC_HDLC_FRAME_TYPE_DATA << CPC_HDLC_CONTROL_FRAME_TYPE_SHIFT;
+    uint8_t control = CPC_HDLC_FRAME_TYPE_DATA << CPC_HDLC_CONTROL_FRAME_TYPE_SHIFT;
 
-  control |= seq << CPC_HDLC_CONTROL_SEQ_SHIFT;
-  control |= ack;
-  control |= (uint8_t)((uint8_t)poll_final << CPC_HDLC_CONTROL_P_F_SHIFT);
+    control |= seq << CPC_HDLC_CONTROL_SEQ_SHIFT;
+    control |= ack;
+    control |= (uint8_t)((uint8_t)poll_final << CPC_HDLC_CONTROL_P_F_SHIFT);
 
-  return control;
+    return control;
 }
 
 /***************************************************************************//**
@@ -256,12 +257,12 @@ inline uint8_t cpc_hdlc_create_control_data(uint8_t seq, uint8_t ack, bool poll_
  ******************************************************************************/
 inline uint8_t cpc_hdlc_create_control_supervisory(uint8_t ack, uint8_t supervisory_function)
 {
-  uint8_t control = CPC_HDLC_FRAME_TYPE_SUPERVISORY << CPC_HDLC_CONTROL_FRAME_TYPE_SHIFT;
+    uint8_t control = CPC_HDLC_FRAME_TYPE_SUPERVISORY << CPC_HDLC_CONTROL_FRAME_TYPE_SHIFT;
 
-  control |= supervisory_function << CPC_HDLC_CONTROL_SUPERVISORY_FNCT_ID_SHIFT;
-  control |= ack;
+    control |= supervisory_function << CPC_HDLC_CONTROL_SUPERVISORY_FNCT_ID_SHIFT;
+    control |= ack;
 
-  return control;
+    return control;
 }
 
 /***************************************************************************//**
@@ -271,11 +272,11 @@ inline uint8_t cpc_hdlc_create_control_supervisory(uint8_t ack, uint8_t supervis
  ******************************************************************************/
 inline uint8_t cpc_hdlc_create_control_unumbered(uint8_t type)
 {
-  uint8_t control = CPC_HDLC_FRAME_TYPE_UNNUMBERED << CPC_HDLC_CONTROL_FRAME_TYPE_SHIFT;
+    uint8_t control = CPC_HDLC_FRAME_TYPE_UNNUMBERED << CPC_HDLC_CONTROL_FRAME_TYPE_SHIFT;
 
-  control |= type << CPC_HDLC_CONTROL_UNNUMBERED_TYPE_SHIFT;
+    control |= type << CPC_HDLC_CONTROL_UNNUMBERED_TYPE_SHIFT;
 
-  return control;
+    return control;
 }
 
 /***************************************************************************//**
@@ -287,20 +288,21 @@ inline uint8_t cpc_hdlc_create_control_unumbered(uint8_t type)
  ******************************************************************************/
 inline bool cpc_hdlc_is_poll_final(uint8_t control)
 {
-  if (control & (1 << CPC_HDLC_CONTROL_P_F_SHIFT)) {
-    return true;
-  }
-  return false;
+    if (control & (1 << CPC_HDLC_CONTROL_P_F_SHIFT))
+    {
+        return true;
+    }
+    return false;
 }
 
 /***************************************************************************//**
  * Update the ACK number in a frame's header.
  ******************************************************************************/
 inline void cpc_hdlc_set_control_ack(uint8_t *control,
-                                         uint8_t ack)
+                                     uint8_t ack)
 {
-  *control &= ~0x03;
-  *control |= ack;
+    *control &= ~0x03;
+    *control |= ack;
 }
 
 /** @} (end addtogroup cpc) */

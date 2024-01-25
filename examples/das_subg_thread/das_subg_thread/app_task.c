@@ -1,12 +1,12 @@
 /**
  * @file app_task.c
  * @author Rex Huang (rex.huang@rafaelmicro.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2023-07-27
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 
 #include <FreeRTOS.h>
@@ -18,7 +18,7 @@
 
 static SemaphoreHandle_t    appSemHandle          = NULL;
 
-static void ot_stateChangeCallback(otChangedFlags flags, void *p_context) 
+static void ot_stateChangeCallback(otChangedFlags flags, void *p_context)
 {
     otInstance *instance = (otInstance *)p_context;
     uint8_t *p;
@@ -27,44 +27,45 @@ static void ot_stateChangeCallback(otChangedFlags flags, void *p_context)
     {
 
         otDeviceRole role = otThreadGetDeviceRole(p_context);
-        switch(role)
+        switch (role)
         {
-            case OT_DEVICE_ROLE_CHILD:
-                break;
-            case OT_DEVICE_ROLE_ROUTER:
+        case OT_DEVICE_ROLE_CHILD:
+            break;
+        case OT_DEVICE_ROLE_ROUTER:
 #if NET_MGM_ENABLED
-                nwk_mgm_child_register_post();
+            nwk_mgm_child_register_post();
 #endif
-                break;
-            case OT_DEVICE_ROLE_LEADER:
-                break;
+            break;
+        case OT_DEVICE_ROLE_LEADER:
+            break;
 
-            case OT_DEVICE_ROLE_DISABLED:
-            case OT_DEVICE_ROLE_DETACHED:
-            default:
-                break;
+        case OT_DEVICE_ROLE_DISABLED:
+        case OT_DEVICE_ROLE_DETACHED:
+        default:
+            break;
         }
 
-        if (role) {
+        if (role)
+        {
             log_info("Current role       : %s", otThreadDeviceRoleToString(otThreadGetDeviceRole(p_context)));
 
             p = (uint8_t *)(otLinkGetExtendedAddress(instance)->m8);
-            log_info("Extend Address     : %02x%02x-%02x%02x-%02x%02x-%02x%02x", 
-                p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7]);
+            log_info("Extend Address     : %02x%02x-%02x%02x-%02x%02x-%02x%02x",
+                     p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7]);
 
             p = (uint8_t *)(otThreadGetMeshLocalPrefix(instance)->m8);
             log_info("Local Prefx        : %02x%02x:%02x%02x:%02x%02x:%02x%02x",
-                p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7]);
+                     p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7]);
 
             p = (uint8_t *)(otThreadGetLinkLocalIp6Address(instance)->mFields.m8);
             log_info("IPv6 Address       : %02x%02x:%02x%02x:%02x%02x:%02x%02x:%02x%02x:%02x%02x:%02x%02x:%02x%02x",
-                p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12], p[13], p[14], p[15]);
+                     p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12], p[13], p[14], p[15]);
 
             log_info("Rloc16             : %x", otThreadGetRloc16(instance));
 
             p = (uint8_t *)(otThreadGetRloc(instance)->mFields.m8);
             log_info("Rloc               : %02x%02x:%02x%02x:%02x%02x:%02x%02x:%02x%02x:%02x%02x:%02x%02x:%02x%02x",
-                p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12], p[13], p[14], p[15]);
+                     p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12], p[13], p[14], p[15]);
         }
     }
 }
@@ -85,7 +86,10 @@ static void app_udp_cb(otMessage *otMsg, const otMessageInfo *otInfo)
 
     do
     {
-        if(p == NULL) break;
+        if (p == NULL)
+        {
+            break;
+        }
 
         memset(p, 0x0, len);
         otMessageRead(otMsg, otMessageGetOffset(otMsg), p, len);
@@ -95,7 +99,7 @@ static void app_udp_cb(otMessage *otMsg, const otMessageInfo *otInfo)
             log_info("Received ip      : %s ", string);
             log_info("Received port    : %d ", otInfo->mSockPort);
 
-            log_info_hexdump("Received Message ",p, len);
+            log_info_hexdump("Received Message ", p, len);
         }
         else
         {
@@ -131,11 +135,14 @@ static void app_udp_cb(otMessage *otMsg, const otMessageInfo *otInfo)
         }
     } while (0);
 
-    if(p != NULL) vPortFree(p);
+    if (p != NULL)
+    {
+        vPortFree(p);
+    }
 }
 
 
-void otrInitUser(otInstance * instance)
+void otrInitUser(otInstance *instance)
 {
     ota_bootloader_info_check();
 #ifdef CONFIG_NCP
@@ -192,11 +199,11 @@ void otrInitUser(otInstance * instance)
     otDatasetSetActive(instance, &App_Dataset);
 
     log_info("Thread version     : %s", otGetVersionString());
-    
-    log_info("Link Mode           %d, %d, %d", 
-        otThreadGetLinkMode(instance).mRxOnWhenIdle, 
-        otThreadGetLinkMode(instance).mDeviceType, 
-        otThreadGetLinkMode(instance).mNetworkData);
+
+    log_info("Link Mode           %d, %d, %d",
+             otThreadGetLinkMode(instance).mRxOnWhenIdle,
+             otThreadGetLinkMode(instance).mDeviceType,
+             otThreadGetLinkMode(instance).mNetworkData);
     log_info("Network name        : %s", otThreadGetNetworkName(instance));
     log_info("PAN ID              : %x", otLinkGetPanId(instance));
 
@@ -219,15 +226,15 @@ void otrInitUser(otInstance * instance)
 }
 
 
-void app_task (void) 
+void app_task (void)
 {
     appSemHandle = xSemaphoreCreateBinary();
 
-    while (true) 
+    while (true)
     {
         if (xSemaphoreTake(appSemHandle, 10000))
         {
-            
+
         }
     }
 }

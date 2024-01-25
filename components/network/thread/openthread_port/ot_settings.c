@@ -10,7 +10,7 @@
 
 #define OT_MAX_KEY_LEN              20
 #define OT_MAX_ENTRY_NUM            512
-#define OT_MAX_ENTRY_BITMAP         ((OT_MAX_ENTRY_NUM + 31) / 32) 
+#define OT_MAX_ENTRY_BITMAP         ((OT_MAX_ENTRY_NUM + 31) / 32)
 
 void otPlatSettingsInit(otInstance *aInstance, const uint16_t *aSensitiveKeys, uint16_t aSensitiveKeysLength)
 {
@@ -28,28 +28,33 @@ otError otPlatSettingsGet(otInstance *aInstance, uint16_t aKey, int aIndex, uint
 
     efd_port_env_lock();
 
-    do {
-        if (aIndex < 0) {
+    do
+    {
+        if (aIndex < 0)
+        {
             ret = OT_ERROR_NOT_FOUND;
             break;
         }
 
         sprintf(key, "ot-bm-%x", aKey);
         efd_get_env_blob(key, bitmapArray, OT_MAX_ENTRY_BITMAP * 4, (size_t *)&valuLength);
-        if (valuLength != OT_MAX_ENTRY_BITMAP * 4) {
+        if (valuLength != OT_MAX_ENTRY_BITMAP * 4)
+        {
             ret = OT_ERROR_NOT_FOUND;
             break;
         }
 
         i = aIndex >> 5;
         j = aIndex & 0xfffff;
-        if (0 == (bitmapArray[i] & (1 << j))) {
+        if (0 == (bitmapArray[i] & (1 << j)))
+        {
             ret = OT_ERROR_NOT_FOUND;
             break;
         }
 
         sprintf(key, "ot-%x-%x", aKey, aIndex);
-        if (!efd_get_env_obj(key, &obj)) {
+        if (!efd_get_env_obj(key, &obj))
+        {
 
             sprintf(key, "ot-bm-%x", aKey);
             bitmapArray[i] = bitmapArray[i] & (~(1 << j));
@@ -59,12 +64,15 @@ otError otPlatSettingsGet(otInstance *aInstance, uint16_t aKey, int aIndex, uint
             break;
         }
 
-        if (aValueLength) {
-            if (aValue) {
+        if (aValueLength)
+        {
+            if (aValue)
+            {
                 efd_get_env_blob(key, aValue, *aValueLength, (size_t *)&valuLength);
                 memcpy(aValueLength, &valuLength, sizeof(uint16_t));
             }
-            else {
+            else
+            {
                 memcpy(aValueLength, &obj.value_len, sizeof(uint16_t));
             }
         }
@@ -75,8 +83,8 @@ otError otPlatSettingsGet(otInstance *aInstance, uint16_t aKey, int aIndex, uint
     return ret;
 }
 
-static bool otPlatSettingsSet_raw(otInstance *aInstance, uint16_t aKey, const uint8_t *aValue, uint16_t aValueLength, 
-    int index, char * key, uint32_t * bitmapArray) 
+static bool otPlatSettingsSet_raw(otInstance *aInstance, uint16_t aKey, const uint8_t *aValue, uint16_t aValueLength,
+                                  int index, char *key, uint32_t *bitmapArray)
 {
     EfErrCode   ret;
     uint32_t i = index >> 5;
@@ -85,18 +93,20 @@ static bool otPlatSettingsSet_raw(otInstance *aInstance, uint16_t aKey, const ui
     bitmapArray[i] = bitmapArray[i] | (1 << j);
 
     efd_port_env_lock();
-    do {
+    do
+    {
         sprintf(key, "ot-%x-%x", aKey, index);
         ret = efd_set_env_blob(key, aValue, aValueLength);
 
-        if (EFD_NO_ERR == ret) {
+        if (EFD_NO_ERR == ret)
+        {
             sprintf(key, "ot-bm-%x", aKey);
             ret = efd_set_env_blob(key, bitmapArray, OT_MAX_ENTRY_BITMAP * 4);
         }
     } while (0);
     efd_port_env_unlock();
 
-    return EFD_NO_ERR == ret? OT_ERROR_NONE : OT_ERROR_FAILED;
+    return EFD_NO_ERR == ret ? OT_ERROR_NONE : OT_ERROR_FAILED;
 }
 
 otError otPlatSettingsSet(otInstance *aInstance, uint16_t aKey, const uint8_t *aValue, uint16_t aValueLength)
@@ -117,24 +127,30 @@ otError otPlatSettingsAdd(otInstance *aInstance, uint16_t aKey, const uint8_t *a
 
     efd_port_env_lock();
 
-    do {
+    do
+    {
         sprintf(key, "ot-bm-%x", aKey);
         efd_get_env_blob(key, bitmapArray, OT_MAX_ENTRY_BITMAP * 4, (size_t *)&len);
-        if (len != OT_MAX_ENTRY_BITMAP * 4) {
+        if (len != OT_MAX_ENTRY_BITMAP * 4)
+        {
             memset(bitmapArray, 0, OT_MAX_ENTRY_BITMAP * 4);
             ret = otPlatSettingsSet_raw(aInstance, aKey, aValue, aValueLength, 0, key, bitmapArray);
         }
-        else {
+        else
+        {
             entryNum = len * 8;
-            for (index = 0; index < entryNum; index ++) {
+            for (index = 0; index < entryNum; index ++)
+            {
                 i = index >> 5;
                 j = index & 0xfffff;
-                if ((bitmapArray[i] & (1 << j)) == 0) {
+                if ((bitmapArray[i] & (1 << j)) == 0)
+                {
                     break;
                 }
             }
 
-            if (index == entryNum) {
+            if (index == entryNum)
+            {
                 ret = OT_ERROR_NO_BUFS;
                 break;
             }
@@ -158,22 +174,26 @@ otError otPlatSettingsDelete(otInstance *aInstance, uint16_t aKey, int aIndex)
     efd_port_env_lock();
 
     sprintf(key, "ot-bm-%x", aKey);
-    do {
+    do
+    {
 
-        if (aIndex < 0) {
+        if (aIndex < 0)
+        {
             efd_del_env(key);
             break;
         }
 
         efd_get_env_blob(key, bitmapArray, OT_MAX_ENTRY_BITMAP * 4, (size_t *)&len);
-        if (len != OT_MAX_ENTRY_BITMAP * 4) {
+        if (len != OT_MAX_ENTRY_BITMAP * 4)
+        {
             ret = OT_ERROR_NOT_FOUND;
             break;
         }
 
         i = aIndex >> 5;
         j = aIndex & 0xfffff;
-        if (! (bitmapArray[i] & (1 << j))) {
+        if (! (bitmapArray[i] & (1 << j)))
+        {
             ret = OT_ERROR_NOT_FOUND;
             break;
         }

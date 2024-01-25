@@ -64,7 +64,8 @@ typedef zb_uint32_t zb_minimal_vararg_t;
 #define ZB_TASK_PRORITY configMAX_PRIORITIES - 10
 #endif
 
-typedef enum _zb_system_event {
+typedef enum _zb_system_event
+{
     ZB_SYSTEM_EVENT_NONE                                = 0,
 
     ZB_SYSTEM_EVENT_ZB_TASKLET                          = 0x00000001,
@@ -84,15 +85,15 @@ typedef enum _zb_system_event {
     ZB_SYSTEM_EVENT_RADIO_TX_ACKED_PD                   = 0x00000800,
     ZB_SYSTEM_EVENT_RADIO_TX_NO_ACK                     = 0x00001000,
     ZB_SYSTEM_EVENT_RADIO_TX_CCA_FAIL                   = 0x00002000,
-    ZB_SYSTEM_EVENT_RADIO_TX_ALL_MASK                   = ZB_SYSTEM_EVENT_RADIO_TX_DONE_NO_ACK_REQ | 
-        ZB_SYSTEM_EVENT_RADIO_TX_ERROR | ZB_SYSTEM_EVENT_RADIO_TX_ACKED | ZB_SYSTEM_EVENT_RADIO_TX_ACKED_PD | 
-        ZB_SYSTEM_EVENT_RADIO_TX_NO_ACK | ZB_SYSTEM_EVENT_RADIO_TX_CCA_FAIL,
+    ZB_SYSTEM_EVENT_RADIO_TX_ALL_MASK                   = ZB_SYSTEM_EVENT_RADIO_TX_DONE_NO_ACK_REQ |
+            ZB_SYSTEM_EVENT_RADIO_TX_ERROR | ZB_SYSTEM_EVENT_RADIO_TX_ACKED | ZB_SYSTEM_EVENT_RADIO_TX_ACKED_PD |
+            ZB_SYSTEM_EVENT_RADIO_TX_NO_ACK | ZB_SYSTEM_EVENT_RADIO_TX_CCA_FAIL,
 
     ZB_SYSTEM_EVENT_RADIO_RX_NO_BUFF                    = 0x00002000,
     ZB_SYSTEM_EVENT_RADIO_RX_DONE                       = 0x00004000,
     ZB_SYSTEM_EVENT_RADIO_RX_CRC_FIALED                 = 0x00008000,
-    ZB_SYSTEM_EVENT_RADIO_RX_ALL_MASK                   = ZB_SYSTEM_EVENT_RADIO_RX_NO_BUFF | 
-        ZB_SYSTEM_EVENT_RADIO_RX_DONE | ZB_SYSTEM_EVENT_RADIO_RX_CRC_FIALED,
+    ZB_SYSTEM_EVENT_RADIO_RX_ALL_MASK                   = ZB_SYSTEM_EVENT_RADIO_RX_NO_BUFF |
+            ZB_SYSTEM_EVENT_RADIO_RX_DONE | ZB_SYSTEM_EVENT_RADIO_RX_CRC_FIALED,
     ZB_SYSTEM_EVENT_RADIO_ALL_MASK                      = ZB_SYSTEM_EVENT_RADIO_TX_ALL_MASK | ZB_SYSTEM_EVENT_RADIO_RX_ALL_MASK,
 
     ZB_SYSTEM_EVENT_APP                                 = 0xff000000,
@@ -126,7 +127,7 @@ void zbStart(void);
     {                                       \
         __VA_ARGS__;                        \
     } while (0);                            \
-    zbUnlock();                            
+    zbUnlock();
 
 #define ZB_THREAD_SAFE_RET(ret, ...)        \
     do                                      \
@@ -134,7 +135,7 @@ void zbStart(void);
         zbLock();                          \
         (ret) = __VA_ARGS__;                \
         zbUnlock();                        \
-    } while (0)                             
+    } while (0)
 
 
 #define ZB_ENTER_CRITICAL()                 taskENTER_CRITICAL()
@@ -158,20 +159,20 @@ void zbStart(void);
 
 #define ZB_CHECK_TIMER_IS_ON() 1
 
-#define ZB_START_HW_TIMER() 
-#define ZB_STOP_HW_TIMER()    
+#define ZB_START_HW_TIMER()
+#define ZB_STOP_HW_TIMER()
 
 #define ZB_TRANSPORT_NONBLOCK_ITERATION()
-#define ZB_ENABLE_ALL_INTER()           ZB_EXIT_CRITICAL()  
+#define ZB_ENABLE_ALL_INTER()           ZB_EXIT_CRITICAL()
 #define ZB_DISABLE_ALL_INTER()          ZB_ENTER_CRITICAL()
 
 #define ZB_OSIF_GLOBAL_LOCK()           ZB_ENTER_CRITICAL()
-#define ZB_OSIF_GLOBAL_UNLOCK()         ZB_EXIT_CRITICAL()  
+#define ZB_OSIF_GLOBAL_UNLOCK()         ZB_EXIT_CRITICAL()
 
 #define ZB_RADIO_INT_DISABLE()          ZB_ENTER_CRITICAL()
-#define ZB_RADIO_INT_ENABLE()           ZB_EXIT_CRITICAL()  
+#define ZB_RADIO_INT_ENABLE()           ZB_EXIT_CRITICAL()
 
-#define ZB_ABORT 
+#define ZB_ABORT
 //#define ZB_GO_IDLE() CPUwfi()
 /* Have problems with sleep when working without a debugger. Switch it iff temporary */
 #define ZB_GO_IDLE()

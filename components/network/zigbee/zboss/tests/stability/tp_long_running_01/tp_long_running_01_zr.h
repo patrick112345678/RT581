@@ -125,7 +125,7 @@
   @param cluster_list - endpoint cluster list
  */
 #define DECLARE_ZR_EP(ep_name, ep_id, cluster_list)                                     \
-DECLARE_ZR_SIMPLE_DESC(								                                                  \
+DECLARE_ZR_SIMPLE_DESC(                                                                               \
     ep_name,                                                                            \
     ep_id,                                                                              \
     IN_CLUSTER_NUM,                                                                     \

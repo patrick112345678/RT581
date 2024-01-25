@@ -231,8 +231,8 @@ typedef struct otMessageInfo
     uint16_t     mPeerPort; ///< The peer transport-layer port.
     const void  *mLinkInfo; ///< A pointer to link-specific information.
     uint8_t      mHopLimit; ///< The IPv6 Hop Limit value. Only applies if `mAllowZeroHopLimit` is FALSE.
-                            ///< If `0`, IPv6 Hop Limit is default value `OPENTHREAD_CONFIG_IP6_HOP_LIMIT_DEFAULT`.
-                            ///< Otherwise, specifies the IPv6 Hop Limit.
+    ///< If `0`, IPv6 Hop Limit is default value `OPENTHREAD_CONFIG_IP6_HOP_LIMIT_DEFAULT`.
+    ///< Otherwise, specifies the IPv6 Hop Limit.
     uint8_t mEcn : 2;       ///< The ECN status of the packet, represented as in the IPv6 header.
     bool    mIsHostInterface : 1;   ///< TRUE if packets sent/received via host interface, FALSE otherwise.
     bool    mAllowZeroHopLimit : 1; ///< TRUE to allow IPv6 Hop Limit 0 in `mHopLimit`, FALSE otherwise.
@@ -787,10 +787,10 @@ void otIp6SetSlaacPrefixFilter(otInstance *aInstance, otIp6SlaacPrefixFilter aFi
  *
  */
 typedef void (*otIp6RegisterMulticastListenersCallback)(void               *aContext,
-                                                        otError             aError,
-                                                        uint8_t             aMlrStatus,
-                                                        const otIp6Address *aFailedAddresses,
-                                                        uint8_t             aFailedAddressNum);
+        otError             aError,
+        uint8_t             aMlrStatus,
+        const otIp6Address *aFailedAddresses,
+        uint8_t             aFailedAddressNum);
 
 #define OT_IP6_MAX_MLR_ADDRESSES 15 ///< Max number of IPv6 addresses supported by Multicast Listener Registration.
 

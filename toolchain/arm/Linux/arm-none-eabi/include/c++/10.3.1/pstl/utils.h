@@ -26,7 +26,7 @@ __except_handler(_Fp __f)
     {
         return __f();
     }
-    catch (const std::bad_alloc&)
+    catch (const std::bad_alloc &)
     {
         throw; // re-throw bad_alloc according to the standard [algorithms.parallel.exceptions]
     }
@@ -80,8 +80,8 @@ __invoke_if_else(std::false_type, _F1 __f1, _F2 __f2)
 struct __no_op
 {
     template <typename _Tp>
-    _Tp&&
-    operator()(_Tp&& __a) const
+    _Tp &&
+    operator()(_Tp &&__a) const
     {
         return std::forward<_Tp>(__a);
     }
@@ -93,12 +93,12 @@ class __not_pred
 {
     _Pred _M_pred;
 
-  public:
+public:
     explicit __not_pred(_Pred __pred) : _M_pred(__pred) {}
 
     template <typename... _Args>
     bool
-    operator()(_Args&&... __args)
+    operator()(_Args &&... __args)
     {
         return !_M_pred(std::forward<_Args>(__args)...);
     }
@@ -109,12 +109,12 @@ class __reorder_pred
 {
     _Pred _M_pred;
 
-  public:
+public:
     explicit __reorder_pred(_Pred __pred) : _M_pred(__pred) {}
 
     template <typename _FTp, typename _STp>
     bool
-    operator()(_FTp&& __a, _STp&& __b)
+    operator()(_FTp &&__a, _STp &&__b)
     {
         return _M_pred(std::forward<_STp>(__b), std::forward<_FTp>(__a));
     }
@@ -125,12 +125,12 @@ class __reorder_pred
     argument-dependent name lookup by code expecting to find the usual std::equal. */
 class __pstl_equal
 {
-  public:
+public:
     explicit __pstl_equal() {}
 
     template <typename _Xp, typename _Yp>
     bool
-    operator()(_Xp&& __x, _Yp&& __y) const
+    operator()(_Xp &&__x, _Yp &&__y) const
     {
         return std::forward<_Xp>(__x) == std::forward<_Yp>(__y);
     }
@@ -139,12 +139,12 @@ class __pstl_equal
 //! "<" comparison.
 class __pstl_less
 {
-  public:
+public:
     explicit __pstl_less() {}
 
     template <typename _Xp, typename _Yp>
     bool
-    operator()(_Xp&& __x, _Yp&& __y) const
+    operator()(_Xp &&__x, _Yp &&__y) const
     {
         return std::forward<_Xp>(__x) < std::forward<_Yp>(__y);
     }
@@ -154,15 +154,15 @@ class __pstl_less
 template <typename _Tp, typename _Predicate>
 class __equal_value_by_pred
 {
-    const _Tp& _M_value;
+    const _Tp &_M_value;
     _Predicate _M_pred;
 
-  public:
-    __equal_value_by_pred(const _Tp& __value, _Predicate __pred) : _M_value(__value), _M_pred(__pred) {}
+public:
+    __equal_value_by_pred(const _Tp &__value, _Predicate __pred) : _M_value(__value), _M_pred(__pred) {}
 
     template <typename _Arg>
     bool
-    operator()(_Arg&& __arg)
+    operator()(_Arg &&__arg)
     {
         return _M_pred(std::forward<_Arg>(__arg), _M_value);
     }
@@ -172,14 +172,14 @@ class __equal_value_by_pred
 template <typename _Tp>
 class __equal_value
 {
-    const _Tp& _M_value;
+    const _Tp &_M_value;
 
-  public:
-    explicit __equal_value(const _Tp& __value) : _M_value(__value) {}
+public:
+    explicit __equal_value(const _Tp &__value) : _M_value(__value) {}
 
     template <typename _Arg>
     bool
-    operator()(_Arg&& __arg) const
+    operator()(_Arg &&__arg) const
     {
         return std::forward<_Arg>(__arg) == _M_value;
     }
@@ -189,14 +189,14 @@ class __equal_value
 template <typename _Tp>
 class __not_equal_value
 {
-    const _Tp& _M_value;
+    const _Tp &_M_value;
 
-  public:
-    explicit __not_equal_value(const _Tp& __value) : _M_value(__value) {}
+public:
+    explicit __not_equal_value(const _Tp &__value) : _M_value(__value) {}
 
     template <typename _Arg>
     bool
-    operator()(_Arg&& __arg) const
+    operator()(_Arg &&__arg) const
     {
         return !(std::forward<_Arg>(__arg) == _M_value);
     }
@@ -207,7 +207,8 @@ _ForwardIterator
 __cmp_iterators_by_values(_ForwardIterator __a, _ForwardIterator __b, _Compare __comp)
 {
     if (__a < __b)
-    { // we should return closer iterator
+    {
+        // we should return closer iterator
         return __comp(*__b, *__a) ? __b : __a;
     }
     else

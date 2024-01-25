@@ -44,46 +44,46 @@
 */
 enum zb_zcl_thermostat_ui_config_attr_e
 {
-  /** @brief Temperature Display Mode attribute */
-  ZB_ZCL_ATTR_THERMOSTAT_UI_CONFIG_TEMPERATURE_DISPLAY_MODE_ID        = 0x0000,
-  /** @brief Keypad Lockout attribute */
-  ZB_ZCL_ATTR_THERMOSTAT_UI_CONFIG_KEYPAD_LOCKOUT_ID                  = 0x0001,
-  /** The ScheduleProgrammingVisibility attribute is used to hide the weekly
-   *  schedule programming functionality or menu on a thermostat from a user
-   *  to prevent local user programming of the weekly schedule. */
-  ZB_ZCL_ATTR_THERMOSTAT_UI_CONFIG_SCHEDULE_PROGRAMMING_VISIBILITY_ID = 0x0002,
+    /** @brief Temperature Display Mode attribute */
+    ZB_ZCL_ATTR_THERMOSTAT_UI_CONFIG_TEMPERATURE_DISPLAY_MODE_ID        = 0x0000,
+    /** @brief Keypad Lockout attribute */
+    ZB_ZCL_ATTR_THERMOSTAT_UI_CONFIG_KEYPAD_LOCKOUT_ID                  = 0x0001,
+    /** The ScheduleProgrammingVisibility attribute is used to hide the weekly
+     *  schedule programming functionality or menu on a thermostat from a user
+     *  to prevent local user programming of the weekly schedule. */
+    ZB_ZCL_ATTR_THERMOSTAT_UI_CONFIG_SCHEDULE_PROGRAMMING_VISIBILITY_ID = 0x0002,
 };
 
 /*! @brief Values for Temperature Display Mode attribute,
     @see ZCL spec, subclause 6.6.2.2.1 */
 enum zb_zcl_thermostat_ui_config_temperature_display_mode_e
 {
-  /*! Temperature in C value */
-  ZB_ZCL_THERMOSTAT_UI_CONFIG_TEMPERATURE_DISPLAY_MODE_IN_C     = 0x00,
-  /*! Temperature in F value */
-  ZB_ZCL_THERMOSTAT_UI_CONFIG_TEMPERATURE_DISPLAY_MODE_IN_F     = 0x01,
+    /*! Temperature in C value */
+    ZB_ZCL_THERMOSTAT_UI_CONFIG_TEMPERATURE_DISPLAY_MODE_IN_C     = 0x00,
+    /*! Temperature in F value */
+    ZB_ZCL_THERMOSTAT_UI_CONFIG_TEMPERATURE_DISPLAY_MODE_IN_F     = 0x01,
 
-  ZB_ZCL_THERMOSTAT_UI_CONFIG_TEMPERATURE_DISPLAY_MODE_RESERVED = 0x02
+    ZB_ZCL_THERMOSTAT_UI_CONFIG_TEMPERATURE_DISPLAY_MODE_RESERVED = 0x02
 };
 
 /*! @brief Values for Keypad Lockout attribute,
     @see ZCL spec, subclause 6.6.2.2.2 */
 enum zb_zcl_thermostat_ui_config_keypad_lockout_e
 {
-  /*! No Lockout value */
-  ZB_ZCL_THERMOSTAT_UI_CONFIG_KEYPAD_LOCKOUT_NO_LOCKOUT = 0x00,
-  /*! Level 1 Lockout value */
-  ZB_ZCL_THERMOSTAT_UI_CONFIG_KEYPAD_LOCKOUT_LEVEL_1    = 0x01,
-  /*! Level 2 Lockout value */
-  ZB_ZCL_THERMOSTAT_UI_CONFIG_KEYPAD_LOCKOUT_LEVEL_2    = 0x02,
-  /*! Level 3 Lockout value */
-  ZB_ZCL_THERMOSTAT_UI_CONFIG_KEYPAD_LOCKOUT_LEVEL_3    = 0x03,
-  /*! Level 4 Lockout value */
-  ZB_ZCL_THERMOSTAT_UI_CONFIG_KEYPAD_LOCKOUT_LEVEL_4    = 0x04,
-  /*! Level 5 Lockout value */
-  ZB_ZCL_THERMOSTAT_UI_CONFIG_KEYPAD_LOCKOUT_LEVEL_5    = 0x05,
+    /*! No Lockout value */
+    ZB_ZCL_THERMOSTAT_UI_CONFIG_KEYPAD_LOCKOUT_NO_LOCKOUT = 0x00,
+    /*! Level 1 Lockout value */
+    ZB_ZCL_THERMOSTAT_UI_CONFIG_KEYPAD_LOCKOUT_LEVEL_1    = 0x01,
+    /*! Level 2 Lockout value */
+    ZB_ZCL_THERMOSTAT_UI_CONFIG_KEYPAD_LOCKOUT_LEVEL_2    = 0x02,
+    /*! Level 3 Lockout value */
+    ZB_ZCL_THERMOSTAT_UI_CONFIG_KEYPAD_LOCKOUT_LEVEL_3    = 0x03,
+    /*! Level 4 Lockout value */
+    ZB_ZCL_THERMOSTAT_UI_CONFIG_KEYPAD_LOCKOUT_LEVEL_4    = 0x04,
+    /*! Level 5 Lockout value */
+    ZB_ZCL_THERMOSTAT_UI_CONFIG_KEYPAD_LOCKOUT_LEVEL_5    = 0x05,
 
-  ZB_ZCL_THERMOSTAT_UI_CONFIG_KEYPAD_LOCKOUT_RESERVED   = 0x06
+    ZB_ZCL_THERMOSTAT_UI_CONFIG_KEYPAD_LOCKOUT_RESERVED   = 0x06
 };
 
 /** @brief Default value for Temperature Display Mode attribute */

@@ -17,10 +17,12 @@
    @{
 */
 //0x00
-typedef union irm_conf_s {
-    struct irm_conf_b {       
+typedef union irm_conf_s
+{
+    struct irm_conf_b
+    {
         uint32_t RESERVED     : 1;
-        uint32_t OP_MODE      : 1;        
+        uint32_t OP_MODE      : 1;
         uint32_t OUT_MODE     : 2;
         uint32_t NO_CAR       : 1;
         uint32_t CAR_INI      : 1;
@@ -30,10 +32,12 @@ typedef union irm_conf_s {
 } irm_conf_t;
 
 //0x04
-typedef union irm_carrier_s {
-    struct irm_carrier_b {       
+typedef union irm_carrier_s
+{
+    struct irm_carrier_b
+    {
         uint32_t CAR_BASE_CNT     : 16;
-        uint32_t CAR_LOW_CNT      : 4;        
+        uint32_t CAR_LOW_CNT      : 4;
         uint32_t CAR_HIGH_CNT     : 4;
         uint32_t RESERVED         : 8;
     } bit;
@@ -41,10 +45,12 @@ typedef union irm_carrier_s {
 } irm_carrier_t;
 
 //0x08
-typedef union irm_fifo_in_s {
-    struct irm_fifo_in_b {       
+typedef union irm_fifo_in_s
+{
+    struct irm_fifo_in_b
+    {
         uint32_t ENV_CNT      : 16;
-        uint32_t ENV_MARK     : 1;        
+        uint32_t ENV_MARK     : 1;
         uint32_t ENV_INIT     : 1;
         uint32_t ENV_LAST     : 1;
         uint32_t RESERVED     : 13;
@@ -53,10 +59,12 @@ typedef union irm_fifo_in_s {
 } irm_fifo_in_t;
 
 //0x0c
-typedef union irm_status_s {
-    struct irm_status_b {       
+typedef union irm_status_s
+{
+    struct irm_status_b
+    {
         uint32_t FIFO_LVL       : 5;
-        uint32_t FIFO_FULL      : 1;        
+        uint32_t FIFO_FULL      : 1;
         uint32_t FIFO_EMPTY     : 1;
         uint32_t RESERVED       : 25;
     } bit;
@@ -64,10 +72,12 @@ typedef union irm_status_s {
 } irm_status_t;
 
 //0x10
-typedef union irm_cmd_s {
-    struct irm_cmd_b {       
+typedef union irm_cmd_s
+{
+    struct irm_cmd_b
+    {
         uint32_t IR_ENA       : 1;
-        uint32_t IR_DIS       : 1;        
+        uint32_t IR_DIS       : 1;
         uint32_t IR_START     : 1;
         uint32_t IR_RST       : 1;
         uint32_t RESERVED     : 28;
@@ -76,10 +86,12 @@ typedef union irm_cmd_s {
 } irm_cmd_t;
 
 //0x14
-typedef union irm_int_status_s {
-    struct irm_int_status_b {       
+typedef union irm_int_status_s
+{
+    struct irm_int_status_b
+    {
         uint32_t ENV_START_INT      : 1;
-        uint32_t ENV_LAST_INT       : 1;        
+        uint32_t ENV_LAST_INT       : 1;
         uint32_t ENV_UFL_INT        : 1;
         uint32_t RESERVED           : 29;
     } bit;
@@ -87,10 +99,12 @@ typedef union irm_int_status_s {
 } irm_int_status_t;
 
 //0x18
-typedef union irm_int_ena_s {
-    struct irm_int_ena_b {       
+typedef union irm_int_ena_s
+{
+    struct irm_int_ena_b
+    {
         uint32_t ENV_START_ENA      : 1;
-        uint32_t ENV_LAST_ENA       : 1;        
+        uint32_t ENV_LAST_ENA       : 1;
         uint32_t ENV_UFL_ENA        : 1;
         uint32_t RESERVED           : 29;
     } bit;
@@ -98,10 +112,12 @@ typedef union irm_int_ena_s {
 } irm_int_ena_t;
 
 //0x1C
-typedef union irm_int_clr_s {
-    struct irm_int_clr_b {       
+typedef union irm_int_clr_s
+{
+    struct irm_int_clr_b
+    {
         uint32_t ENV_START_CLR      : 1;
-        uint32_t ENV_LAST_CLR       : 1;        
+        uint32_t ENV_LAST_CLR       : 1;
         uint32_t ENV_UFL_CLR        : 1;
         uint32_t RESERVED           : 29;
     } bit;
@@ -113,7 +129,8 @@ typedef union irm_int_clr_s {
     Memory Mapped Structure for IRM Controller
 @{ */
 
-typedef struct {
+typedef struct
+{
     __IO irm_conf_t         IR_CONF;
     __IO irm_carrier_t      CARRIER ;     /*0x04*/
     __IO irm_fifo_in_t      FIFO_IN;      /*0x08*/

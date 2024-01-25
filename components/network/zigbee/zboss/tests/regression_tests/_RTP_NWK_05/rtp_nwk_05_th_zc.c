@@ -51,80 +51,80 @@ zb_uint8_t g_endpoint;
 
 MAIN()
 {
-  /* Trace enable */
-  ZB_SET_TRACE_ON();
-  /* Traffic dump enable*/
-  ZB_SET_TRAF_DUMP_ON();
-  ARGV_UNUSED;
+    /* Trace enable */
+    ZB_SET_TRACE_ON();
+    /* Traffic dump enable*/
+    ZB_SET_TRAF_DUMP_ON();
+    ARGV_UNUSED;
 
-  ZB_INIT("th_zc");
+    ZB_INIT("th_zc");
 
-  zb_set_long_address(g_zc_addr);
-  zb_reg_test_set_common_channel_settings();
-  zb_set_network_coordinator_role((1l << TEST_CHANNEL));
+    zb_set_long_address(g_zc_addr);
+    zb_reg_test_set_common_channel_settings();
+    zb_set_network_coordinator_role((1l << TEST_CHANNEL));
 
-  zb_set_nvram_erase_at_start(ZB_FALSE);
+    zb_set_nvram_erase_at_start(ZB_FALSE);
 
-  zb_set_keepalive_mode(BOTH_KEEPALIVE_METHODS);
-  zb_set_max_children(2);
+    zb_set_keepalive_mode(BOTH_KEEPALIVE_METHODS);
+    zb_set_max_children(2);
 
-  zb_aib_tcpol_set_authenticate_always(ZB_TRUE);
+    zb_aib_tcpol_set_authenticate_always(ZB_TRUE);
 
-  /* Initiate the stack start without starting the commissioning */
-  if (zboss_start_no_autostart() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    /* Call the main loop */
-    zboss_main_loop();
-  }
+    /* Initiate the stack start without starting the commissioning */
+    if (zboss_start_no_autostart() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        /* Call the main loop */
+        zboss_main_loop();
+    }
 
-  /* Deinitialize trace */
-  TRACE_DEINIT();
+    /* Deinitialize trace */
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 
 /* Callback to handle the stack events */
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
-  {
-    switch(sig)
+    if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
     {
-      case ZB_ZDO_SIGNAL_SKIP_STARTUP:
-        zboss_start_continue();
-        break;
+        switch (sig)
+        {
+        case ZB_ZDO_SIGNAL_SKIP_STARTUP:
+            zboss_start_continue();
+            break;
 
-      case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      case ZB_BDB_SIGNAL_DEVICE_REBOOT:
-        TRACE_MSG(TRACE_APP1, "Device STARTED OK", (FMT__0));
-        bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
-        break;
+        case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
+        case ZB_BDB_SIGNAL_DEVICE_REBOOT:
+            TRACE_MSG(TRACE_APP1, "Device STARTED OK", (FMT__0));
+            bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
+            break;
 
-      default:
-        TRACE_MSG(TRACE_APP1, "Unknown signal %d", (FMT__D, (zb_uint16_t)sig));
+        default:
+            TRACE_MSG(TRACE_APP1, "Unknown signal %d", (FMT__D, (zb_uint16_t)sig));
+        }
     }
-  }
-  else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
-  {
-    TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d sig %d", (FMT__D_D, ZB_GET_APP_SIGNAL_STATUS(param), sig));
-  }
+    else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
+    {
+        TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d sig %d", (FMT__D_D, ZB_GET_APP_SIGNAL_STATUS(param), sig));
+    }
 
-  /* Free the buffer if it is not used */
-  if (param)
-  {
-    zb_buf_free(param);
-  }
+    /* Free the buffer if it is not used */
+    if (param)
+    {
+        zb_buf_free(param);
+    }
 }
 
 /*! @} */

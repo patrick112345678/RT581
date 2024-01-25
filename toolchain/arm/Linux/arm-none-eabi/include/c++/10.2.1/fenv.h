@@ -54,24 +54,24 @@
 
 namespace std
 {
-  // types
-  using ::fenv_t;
-  using ::fexcept_t;
+// types
+using ::fenv_t;
+using ::fexcept_t;
 
-  // functions
-  using ::feclearexcept;
-  using ::fegetexceptflag;
-  using ::feraiseexcept;
-  using ::fesetexceptflag;
-  using ::fetestexcept;
+// functions
+using ::feclearexcept;
+using ::fegetexceptflag;
+using ::feraiseexcept;
+using ::fesetexceptflag;
+using ::fetestexcept;
 
-  using ::fegetround;
-  using ::fesetround;
+using ::fegetround;
+using ::fesetround;
 
-  using ::fegetenv;
-  using ::feholdexcept;
-  using ::fesetenv;
-  using ::feupdateenv;
+using ::fegetenv;
+using ::feholdexcept;
+using ::fesetenv;
+using ::feupdateenv;
 } // namespace
 
 #endif // _GLIBCXX_USE_C99_FENV_TR1

@@ -34,17 +34,17 @@
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("zdo_nvram_erase");
+    ZB_INIT("zdo_nvram_erase");
 
 
-  zb_nvram_erase();
-  zb_reset(0);
+    zb_nvram_erase();
+    zb_reset(0);
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }

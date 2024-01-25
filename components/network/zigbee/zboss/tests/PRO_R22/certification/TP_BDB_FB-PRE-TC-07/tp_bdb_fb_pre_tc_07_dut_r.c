@@ -63,7 +63,8 @@
 
 static zb_ieee_addr_t g_ieee_addr_dut = IEEE_ADDR_DUT;
 static zb_uint8_t g_nwk_key[16] = {0xab, 0xcd, 0xef, 0x01, 0x23, 0x45, 0x67, 0x89,
-                            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+                                   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+                                  };
 
 /******************* Declare attributes ************************/
 
@@ -84,26 +85,26 @@ static zb_int16_t  attr_min_temp_value = ZB_ZCL_ATTR_TEMP_MEASUREMENT_MIN_VALUE_
 static zb_int16_t  attr_max_temp_value = ZB_ZCL_ATTR_TEMP_MEASUREMENT_MAX_VALUE_MAX_VALUE;
 static zb_uint16_t attr_temp_tolerance = ZB_ZCL_ATTR_TEMP_MEASUREMENT_TOLERANCE_MAX_VALUE;
 ZB_ZCL_DECLARE_TEMP_MEASUREMENT_ATTRIB_LIST(fb_pre_tc_07_dut_r_temp_meas_attr_list,
-                                            &attr_temp_value,
-                                            &attr_min_temp_value,
-                                            &attr_max_temp_value,
-                                            &attr_temp_tolerance);
+        &attr_temp_value,
+        &attr_min_temp_value,
+        &attr_max_temp_value,
+        &attr_temp_tolerance);
 
 static zb_uint16_t attr_illum_value     = ZB_ZCL_ATTR_ILLUMINANCE_MEASUREMENT_MEASURED_VALUE_DEFAULT;
 static zb_uint16_t attr_min_illum_value = ZB_ZCL_ATTR_ILLUMINANCE_MEASUREMENT_MIN_MEASURED_VALUE_MIN_VALUE;
 static zb_uint16_t attr_max_illum_value = ZB_ZCL_ATTR_ILLUMINANCE_MEASUREMENT_MAX_MEASURED_VALUE_MAX_VALUE;
 ZB_ZCL_DECLARE_ILLUMINANCE_MEASUREMENT_ATTRIB_LIST(fb_pre_tc_07_dut_r_illum_meas_attr_list,
-                                                   &attr_illum_value,
-                                                   &attr_min_illum_value,
-                                                   &attr_max_illum_value);
+        &attr_illum_value,
+        &attr_min_illum_value,
+        &attr_max_illum_value);
 
 static zb_uint16_t attr_rel_humidity_value     = ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_VALUE_UNKNOWN;
 static zb_uint16_t attr_min_rel_humidity_value = ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_MIN_VALUE_MAX_VALUE;
 static zb_uint16_t attr_max_rel_humidity_value = ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_MAX_VALUE_MIN_VALUE;
 ZB_ZCL_DECLARE_REL_HUMIDITY_MEASUREMENT_ATTRIB_LIST(fb_pre_tc_07_dut_r_rel_humidity_meas_attr_list,
-                                                   &attr_rel_humidity_value,
-                                                   &attr_min_rel_humidity_value,
-                                                   &attr_max_rel_humidity_value);
+        &attr_rel_humidity_value,
+        &attr_min_rel_humidity_value,
+        &attr_max_rel_humidity_value);
 
 
 /********************* Declare device **************************/
@@ -131,50 +132,54 @@ static void trigger_fb_initiator(zb_uint8_t unused);
 
 MAIN()
 {
-  ARGV_UNUSED;
-	
-	char command_buffer[100], *command_ptr;
-  char next_cmd[40];
-  zb_bool_t res;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
+    char command_buffer[100], *command_ptr;
+    char next_cmd[40];
+    zb_bool_t res;
 
-  ZB_INIT("zdo_dut");
-#if UART_CONTROL	
-	test_control_init();
+    /* Init device, load IB values from nvram or set it to default */
+
+    ZB_INIT("zdo_dut");
+#if UART_CONTROL
+    test_control_init();
 #endif
 
 
-  zb_set_long_address(g_ieee_addr_dut);
+    zb_set_long_address(g_ieee_addr_dut);
 
-  zb_set_network_router_role((1l << TEST_CHANNEL));
-  zb_secur_setup_nwk_key(g_nwk_key, 0);
-	
-  TRACE_MSG(TRACE_APP1, "Send 'erase' for flash erase or just press enter to be continued \n", (FMT__0));
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_handler);
-  zb_console_monitor_get_cmd((zb_uint8_t*)command_buffer, sizeof(command_buffer));
-  command_ptr = (char *)(&command_buffer);
-  res = parse_command_token(&command_ptr, next_cmd, sizeof(next_cmd));
-  if (strcmp(next_cmd, "erase") == 0)
-    zb_set_nvram_erase_at_start(ZB_TRUE);
-  else
-    zb_set_nvram_erase_at_start(ZB_FALSE);
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    zb_set_network_router_role((1l << TEST_CHANNEL));
+    zb_secur_setup_nwk_key(g_nwk_key, 0);
 
-  ZB_AF_REGISTER_DEVICE_CTX(&fb_pre_tc_07_dut_r_device_ctx);
+    TRACE_MSG(TRACE_APP1, "Send 'erase' for flash erase or just press enter to be continued \n", (FMT__0));
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_handler);
+    zb_console_monitor_get_cmd((zb_uint8_t *)command_buffer, sizeof(command_buffer));
+    command_ptr = (char *)(&command_buffer);
+    res = parse_command_token(&command_ptr, next_cmd, sizeof(next_cmd));
+    if (strcmp(next_cmd, "erase") == 0)
+    {
+        zb_set_nvram_erase_at_start(ZB_TRUE);
+    }
+    else
+    {
+        zb_set_nvram_erase_at_start(ZB_FALSE);
+    }
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    ZB_AF_REGISTER_DEVICE_CTX(&fb_pre_tc_07_dut_r_device_ctx);
 
-  TRACE_DEINIT();
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  MAIN_RETURN(0);
+    TRACE_DEINIT();
+
+    MAIN_RETURN(0);
 }
 
 
@@ -185,41 +190,41 @@ static zb_bool_t finding_binding_cb(zb_int16_t status,
                                     zb_uint8_t ep,
                                     zb_uint16_t cluster)
 {
-  TRACE_MSG(TRACE_ZCL1, "finding_binding_cb status %d addr " TRACE_FORMAT_64 " ep %hd cluster %d",
-            (FMT__D_A_H_D, status, TRACE_ARG_64(addr), ep, cluster));
-  return ZB_TRUE;
+    TRACE_MSG(TRACE_ZCL1, "finding_binding_cb status %d addr " TRACE_FORMAT_64 " ep %hd cluster %d",
+              (FMT__D_A_H_D, status, TRACE_ARG_64(addr), ep, cluster));
+    return ZB_TRUE;
 }
 
 static void trigger_fb_initiator(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
-  ZB_BDB().bdb_commissioning_time = DUT_FB_DURATION;
-  zb_bdb_finding_binding_initiator(DUT_ENDPOINT, finding_binding_cb);
+    ZVUNUSED(unused);
+    ZB_BDB().bdb_commissioning_time = DUT_FB_DURATION;
+    zb_bdb_finding_binding_initiator(DUT_ENDPOINT, finding_binding_cb);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  switch (sig)
-  {
+    switch (sig)
+    {
     case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      TRACE_MSG(TRACE_APS1, "Device started, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        ZB_SCHEDULE_ALARM(trigger_fb_initiator, 0, DUT_FB_INITIATOR_DELAY);
-      }
-      break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
+        TRACE_MSG(TRACE_APS1, "Device started, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            ZB_SCHEDULE_ALARM(trigger_fb_initiator, 0, DUT_FB_INITIATOR_DELAY);
+        }
+        break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
 
     default:
-      TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
-      break;
-  }
+        TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 

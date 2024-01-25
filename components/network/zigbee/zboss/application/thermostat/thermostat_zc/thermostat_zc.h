@@ -150,14 +150,14 @@ void send_thermostat_cmd(zb_uint8_t param);
 void send_thermostat_cmd_cb(zb_uint8_t param);
 
 void send_setpoint_raise_lower_cmd(
-  zb_zcl_thermostat_setpoint_raise_lower_req_t *setpoint_raise_lower_data);
+    zb_zcl_thermostat_setpoint_raise_lower_req_t *setpoint_raise_lower_data);
 
 void send_set_weekly_schedule_cmd(
-  zb_zcl_thermostat_set_weekly_schedule_req_t *set_weekly_schedule_req,
-  zb_zcl_thermostat_weekly_schedule_point_pair_t *weekly_schedule_point_pair);
+    zb_zcl_thermostat_set_weekly_schedule_req_t *set_weekly_schedule_req,
+    zb_zcl_thermostat_weekly_schedule_point_pair_t *weekly_schedule_point_pair);
 
 void send_get_weekly_schedule_cmd(
-  zb_zcl_thermostat_get_weekly_schedule_req_t *get_weekly_schedule_data);
+    zb_zcl_thermostat_get_weekly_schedule_req_t *get_weekly_schedule_data);
 
 void send_clear_weekly_schedule_cmd(void);
 

@@ -29,14 +29,20 @@ along with GCC; see the file COPYING3.  If not see
 
 class diagnostic_metadata
 {
- public:
-  diagnostic_metadata () : m_cwe (0) {}
+public:
+    diagnostic_metadata () : m_cwe (0) {}
 
-  void add_cwe (int cwe) { m_cwe = cwe; }
-  int get_cwe () const { return m_cwe; }
+    void add_cwe (int cwe)
+    {
+        m_cwe = cwe;
+    }
+    int get_cwe () const
+    {
+        return m_cwe;
+    }
 
- private:
-  int m_cwe;
+private:
+    int m_cwe;
 };
 
 #endif /* ! GCC_DIAGNOSTIC_METADATA_H */

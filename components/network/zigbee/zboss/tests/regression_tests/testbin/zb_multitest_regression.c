@@ -67,17 +67,17 @@
 
 void zb_multitest_init(void)
 {
-  zb_reg_test_set_init_globals();
+    zb_reg_test_set_init_globals();
 }
 
 
-const zb_test_table_t* zb_multitest_get_tests_table(void)
+const zb_test_table_t *zb_multitest_get_tests_table(void)
 {
-  return s_tests_table;
+    return s_tests_table;
 }
 
 
 zb_uindex_t zb_multitest_get_tests_table_size(void)
 {
-  return ZB_ARRAY_SIZE(s_tests_table);
+    return ZB_ARRAY_SIZE(s_tests_table);
 }

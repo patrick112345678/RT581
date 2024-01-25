@@ -47,19 +47,19 @@ Change feature, when it is ready.
 
 zb_uint8_t gs_on_off_server_received_commands[] =
 {
-  ZB_ZCL_CLUSTER_ID_ON_OFF_CLIENT_ROLE_GENERATED_CMD_LIST
+    ZB_ZCL_CLUSTER_ID_ON_OFF_CLIENT_ROLE_GENERATED_CMD_LIST
 };
 
 zb_discover_cmd_list_t gs_on_off_client_cmd_list =
 {
-  0, NULL,
-  sizeof(gs_on_off_server_received_commands), gs_on_off_server_received_commands
+    0, NULL,
+    sizeof(gs_on_off_server_received_commands), gs_on_off_server_received_commands
 };
 
 zb_discover_cmd_list_t gs_on_off_server_cmd_list =
 {
-  sizeof(gs_on_off_server_received_commands), gs_on_off_server_received_commands,
-  0, NULL
+    sizeof(gs_on_off_server_received_commands), gs_on_off_server_received_commands,
+    0, NULL
 };
 
 void zb_zcl_on_off_invoke_user_app(zb_uint8_t param);
@@ -70,49 +70,51 @@ zb_bool_t zb_zcl_process_on_off_specific_commands_cli(zb_uint8_t param);
 
 void zb_zcl_on_off_init_server()
 {
-  zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_ON_OFF,
-                              ZB_ZCL_CLUSTER_SERVER_ROLE,
-                              check_value_on_off_server,
-                              (zb_zcl_cluster_write_attr_hook_t)NULL,
-                              zb_zcl_process_on_off_specific_commands_srv);
+    zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_ON_OFF,
+                                ZB_ZCL_CLUSTER_SERVER_ROLE,
+                                check_value_on_off_server,
+                                (zb_zcl_cluster_write_attr_hook_t)NULL,
+                                zb_zcl_process_on_off_specific_commands_srv);
 }
 
 void zb_zcl_on_off_init_client()
 {
-  zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_ON_OFF,
-                              ZB_ZCL_CLUSTER_CLIENT_ROLE,
-                              (zb_zcl_cluster_check_value_t)NULL,
-                              (zb_zcl_cluster_write_attr_hook_t)NULL,
-                              zb_zcl_process_on_off_specific_commands_cli);
+    zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_ON_OFF,
+                                ZB_ZCL_CLUSTER_CLIENT_ROLE,
+                                (zb_zcl_cluster_check_value_t)NULL,
+                                (zb_zcl_cluster_write_attr_hook_t)NULL,
+                                zb_zcl_process_on_off_specific_commands_cli);
 }
 
 zb_ret_t check_value_on_off_server(zb_uint16_t attr_id, zb_uint8_t endpoint, zb_uint8_t *value)
 {
-  ZVUNUSED(endpoint);
-  ZVUNUSED(attr_id);
+    ZVUNUSED(endpoint);
+    ZVUNUSED(attr_id);
 
-  switch (attr_id)
-  {
-    case ZB_ZCL_ATTR_ON_OFF_ON_OFF_ID: case ZB_ZCL_ATTR_ON_OFF_GLOBAL_SCENE_CONTROL:
+    switch (attr_id)
     {
-  return ( ZB_ZCL_CHECK_BOOL_VALUE(*value) )?(RET_OK):(RET_ERROR);
-}
-    case ZB_ZCL_ATTR_ON_OFF_ON_TIME: case ZB_ZCL_ATTR_ON_OFF_OFF_WAIT_TIME:
+    case ZB_ZCL_ATTR_ON_OFF_ON_OFF_ID:
+    case ZB_ZCL_ATTR_ON_OFF_GLOBAL_SCENE_CONTROL:
     {
-      return RET_OK;
+        return ( ZB_ZCL_CHECK_BOOL_VALUE(*value) ) ? (RET_OK) : (RET_ERROR);
+    }
+    case ZB_ZCL_ATTR_ON_OFF_ON_TIME:
+    case ZB_ZCL_ATTR_ON_OFF_OFF_WAIT_TIME:
+    {
+        return RET_OK;
     }
     case ZB_ZCL_ATTR_ON_OFF_START_UP_ON_OFF:
     {
-      return ( (*value) == ZB_ZCL_ON_OFF_START_UP_ON_OFF_IS_OFF ||
-               (*value) == ZB_ZCL_ON_OFF_START_UP_ON_OFF_IS_ON  ||
-               (*value) == ZB_ZCL_ON_OFF_START_UP_ON_OFF_IS_TOGGLE ||
-               (*value) == ZB_ZCL_ON_OFF_START_UP_ON_OFF_IS_PREVIOUS ) ? RET_OK : RET_ERROR;
+        return ( (*value) == ZB_ZCL_ON_OFF_START_UP_ON_OFF_IS_OFF ||
+                 (*value) == ZB_ZCL_ON_OFF_START_UP_ON_OFF_IS_ON  ||
+                 (*value) == ZB_ZCL_ON_OFF_START_UP_ON_OFF_IS_TOGGLE ||
+                 (*value) == ZB_ZCL_ON_OFF_START_UP_ON_OFF_IS_PREVIOUS ) ? RET_OK : RET_ERROR;
     }
     default:
     {
-      return RET_ERROR;
+        return RET_ERROR;
     }
-  }
+    }
 }
 /*! @internal Schedule command Inform User App about set On/Off attribute
  * @param buffer - buffer for schedule, place data for User App and get result
@@ -125,12 +127,12 @@ zb_ret_t check_value_on_off_server(zb_uint16_t attr_id, zb_uint8_t endpoint, zb_
  * */
 void zb_on_off_schedule_user_app(zb_bufid_t buffer, zb_zcl_parsed_hdr_t *pcmd_info, zb_bool_t on_off, zb_bool_t is_run_timer_)
 {
-  zb_on_off_user_app_schedule_t* data =
-          ZB_BUF_GET_PARAM((buffer), zb_on_off_user_app_schedule_t);
-  ZB_MEMMOVE(&(data->cmd_info), (pcmd_info), sizeof(zb_zcl_parsed_hdr_t));
-  data->new_value = (on_off);
-  data->is_run_timer = (zb_bool_t)(is_run_timer_);
-  ZB_SCHEDULE_CALLBACK(zb_zcl_on_off_invoke_user_app, (buffer));
+    zb_on_off_user_app_schedule_t *data =
+        ZB_BUF_GET_PARAM((buffer), zb_on_off_user_app_schedule_t);
+    ZB_MEMMOVE(&(data->cmd_info), (pcmd_info), sizeof(zb_zcl_parsed_hdr_t));
+    data->new_value = (on_off);
+    data->is_run_timer = (zb_bool_t)(is_run_timer_);
+    ZB_SCHEDULE_CALLBACK(zb_zcl_on_off_invoke_user_app, (buffer));
 }
 
 
@@ -163,109 +165,109 @@ void zb_on_off_schedule_user_app(zb_bufid_t buffer, zb_zcl_parsed_hdr_t *pcmd_in
  * */
 void zb_zcl_on_off_timer_handler(zb_uint8_t param)
 {
-  zb_zcl_parsed_hdr_t *cmd_info = ZB_BUF_GET_PARAM(param, zb_zcl_parsed_hdr_t);
-  zb_uint8_t endpoint;
-  zb_uint16_t val,on_time;;
-  zb_zcl_attr_t * attr_desc_on_off;
-  zb_zcl_attr_t * attr_desc_on_time;
-  zb_zcl_attr_t * attr_desc_off_wait_time;
-  zb_bool_t is_set_off = ZB_FALSE;
+    zb_zcl_parsed_hdr_t *cmd_info = ZB_BUF_GET_PARAM(param, zb_zcl_parsed_hdr_t);
+    zb_uint8_t endpoint;
+    zb_uint16_t val, on_time;;
+    zb_zcl_attr_t *attr_desc_on_off;
+    zb_zcl_attr_t *attr_desc_on_time;
+    zb_zcl_attr_t *attr_desc_off_wait_time;
+    zb_bool_t is_set_off = ZB_FALSE;
 
-  TRACE_MSG(TRACE_ZCL1, "> zb_zcl_on_off_timer_handler %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_ZCL1, "> zb_zcl_on_off_timer_handler %hd", (FMT__H, param));
 
-  endpoint = ZB_ZCL_PARSED_HDR_SHORT_DATA(cmd_info).dst_endpoint;
+    endpoint = ZB_ZCL_PARSED_HDR_SHORT_DATA(cmd_info).dst_endpoint;
 
-  attr_desc_on_off = zb_zcl_get_attr_desc_a(endpoint,
-      ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_ON_OFF_ID);
-  attr_desc_on_time = zb_zcl_get_attr_desc_a(endpoint,
-      ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_ON_TIME);
-  attr_desc_off_wait_time = zb_zcl_get_attr_desc_a(endpoint,
-          ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_OFF_WAIT_TIME);
+    attr_desc_on_off = zb_zcl_get_attr_desc_a(endpoint,
+                       ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_ON_OFF_ID);
+    attr_desc_on_time = zb_zcl_get_attr_desc_a(endpoint,
+                        ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_ON_TIME);
+    attr_desc_off_wait_time = zb_zcl_get_attr_desc_a(endpoint,
+                              ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_OFF_WAIT_TIME);
 
-  TRACE_MSG(TRACE_ZCL1, "zb_zcl_on_off_timer_handler %hd", (FMT__H, endpoint));
+    TRACE_MSG(TRACE_ZCL1, "zb_zcl_on_off_timer_handler %hd", (FMT__H, endpoint));
 
-  ZB_ASSERT(attr_desc_on_off);
-  ZB_ASSERT(attr_desc_on_time);
-  ZB_ASSERT(attr_desc_off_wait_time);
+    ZB_ASSERT(attr_desc_on_off);
+    ZB_ASSERT(attr_desc_on_time);
+    ZB_ASSERT(attr_desc_off_wait_time);
 
-  /* Update OnTime and OffWaitTime attributes and set flag "update OnOff", if need */
-  if( ZB_ZCL_GET_ATTRIBUTE_VAL_8(attr_desc_on_off))
-  {
-
-    val = ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_on_time);
-    if (val > 0)
+    /* Update OnTime and OffWaitTime attributes and set flag "update OnOff", if need */
+    if ( ZB_ZCL_GET_ATTRIBUTE_VAL_8(attr_desc_on_off))
     {
-      --val;
-      ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_on_time, val);
-      if (val == 0)
-      {
-        ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_off_wait_time,
-            ZB_ZCL_ON_OFF_ZERO_TIMEOUT);
 
-        is_set_off = ZB_TRUE;
-        val = ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_off_wait_time);
-      }
-    }
-    else if (val == 0 && ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_off_wait_time) > 0)//in delayed off state but turned on by other command
-    {
-      ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_off_wait_time, 0);
-    }
-  }
-  else
-  {
-    val = ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_on_time);
-    if (val > 0)
-    {
-      val=0;
-    }
-    ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_on_time, val);
+        val = ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_on_time);
+        if (val > 0)
+        {
+            --val;
+            ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_on_time, val);
+            if (val == 0)
+            {
+                ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_off_wait_time,
+                                               ZB_ZCL_ON_OFF_ZERO_TIMEOUT);
 
-    val = ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_off_wait_time);
-    if (val > 0)
-    {
-      --val;
+                is_set_off = ZB_TRUE;
+                val = ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_off_wait_time);
+            }
+        }
+        else if (val == 0 && ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_off_wait_time) > 0)//in delayed off state but turned on by other command
+        {
+            ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_off_wait_time, 0);
+        }
     }
     else
     {
-      is_set_off = ZB_TRUE;
-    }
-    ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_off_wait_time, val);
-  }
+        val = ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_on_time);
+        if (val > 0)
+        {
+            val = 0;
+        }
+        ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_on_time, val);
 
-  if (is_set_off)   // if need set OnOff
-  {
-    val = ZB_ZCL_ON_OFF_IS_OFF;
-    ZB_ZCL_SET_ATTRIBUTE(ZB_ZCL_PARSED_HDR_SHORT_DATA(cmd_info).dst_endpoint,
-                         ZB_ZCL_CLUSTER_ID_ON_OFF,
-                         ZB_ZCL_CLUSTER_SERVER_ROLE,
-                         ZB_ZCL_ATTR_ON_OFF_ON_OFF_ID,
-                         (zb_uint8_t *)&val,
-                         ZB_FALSE);
-  }
-  else
-  {
-    if( val>0 ) // schedule this timer again
+        val = ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_off_wait_time);
+        if (val > 0)
+        {
+            --val;
+        }
+        else
+        {
+            is_set_off = ZB_TRUE;
+        }
+        ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_off_wait_time, val);
+    }
+
+    if (is_set_off)   // if need set OnOff
     {
-      ZB_SCHEDULE_ALARM(zb_zcl_on_off_timer_handler, param,
-          ZB_ZCL_ON_OFF_TIMER_BEACON_INTERVAL);
+        val = ZB_ZCL_ON_OFF_IS_OFF;
+        ZB_ZCL_SET_ATTRIBUTE(ZB_ZCL_PARSED_HDR_SHORT_DATA(cmd_info).dst_endpoint,
+                             ZB_ZCL_CLUSTER_ID_ON_OFF,
+                             ZB_ZCL_CLUSTER_SERVER_ROLE,
+                             ZB_ZCL_ATTR_ON_OFF_ON_OFF_ID,
+                             (zb_uint8_t *)&val,
+                             ZB_FALSE);
     }
-  }
+    else
+    {
+        if ( val > 0 ) // schedule this timer again
+        {
+            ZB_SCHEDULE_ALARM(zb_zcl_on_off_timer_handler, param,
+                              ZB_ZCL_ON_OFF_TIMER_BEACON_INTERVAL);
+        }
+    }
 
-  TRACE_MSG(TRACE_ZCL1, "< zb_zcl_on_off_timer_handler", (FMT__0));
+    TRACE_MSG(TRACE_ZCL1, "< zb_zcl_on_off_timer_handler", (FMT__0));
 }
 
 void zb_zcl_on_off_send_default_resp(zb_uint8_t cb_param, zb_uint16_t user_param)
 {
-  if (!cb_param)
-  {
-    zb_buf_get_out_delayed_ext(zb_zcl_on_off_send_default_resp, user_param, 0);
-  }
-  else
-  {
-    zb_zcl_parsed_hdr_t *cmd_info;
-    cmd_info = ZB_BUF_GET_PARAM((zb_uint8_t)user_param, zb_zcl_parsed_hdr_t);
-    ZB_ZCL_PROCESS_COMMAND_FINISH(cb_param, cmd_info, ZB_ZCL_STATUS_SUCCESS);
-  }
+    if (!cb_param)
+    {
+        zb_buf_get_out_delayed_ext(zb_zcl_on_off_send_default_resp, user_param, 0);
+    }
+    else
+    {
+        zb_zcl_parsed_hdr_t *cmd_info;
+        cmd_info = ZB_BUF_GET_PARAM((zb_uint8_t)user_param, zb_zcl_parsed_hdr_t);
+        ZB_ZCL_PROCESS_COMMAND_FINISH(cb_param, cmd_info, ZB_ZCL_STATUS_SUCCESS);
+    }
 }
 
 /* Process On command
@@ -273,65 +275,65 @@ void zb_zcl_on_off_send_default_resp(zb_uint8_t cb_param, zb_uint16_t user_param
  * */
 static zb_ret_t zb_zcl_process_on_off_on_handler(zb_uint8_t param)
 {
-  zb_zcl_parsed_hdr_t *cmd_info = ZB_BUF_GET_PARAM(param, zb_zcl_parsed_hdr_t);
-  zb_uint8_t endpoint = ZB_ZCL_PARSED_HDR_SHORT_DATA(cmd_info).dst_endpoint;
-  zb_zcl_attr_t *attr_desc_on_off = zb_zcl_get_attr_desc_a(endpoint,
-        ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_ON_OFF_ID);
-  zb_zcl_attr_t *attr_desc_on_time = zb_zcl_get_attr_desc_a(endpoint,
-          ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_ON_TIME);
-  zb_zcl_attr_t *attr_desc_off_wait_time = zb_zcl_get_attr_desc_a(endpoint,
-          ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_OFF_WAIT_TIME);
-   zb_zcl_attr_t *attr_desc_global_scene = zb_zcl_get_attr_desc_a(endpoint,
-          ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_GLOBAL_SCENE_CONTROL);
+    zb_zcl_parsed_hdr_t *cmd_info = ZB_BUF_GET_PARAM(param, zb_zcl_parsed_hdr_t);
+    zb_uint8_t endpoint = ZB_ZCL_PARSED_HDR_SHORT_DATA(cmd_info).dst_endpoint;
+    zb_zcl_attr_t *attr_desc_on_off = zb_zcl_get_attr_desc_a(endpoint,
+                                      ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_ON_OFF_ID);
+    zb_zcl_attr_t *attr_desc_on_time = zb_zcl_get_attr_desc_a(endpoint,
+                                       ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_ON_TIME);
+    zb_zcl_attr_t *attr_desc_off_wait_time = zb_zcl_get_attr_desc_a(endpoint,
+            ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_OFF_WAIT_TIME);
+    zb_zcl_attr_t *attr_desc_global_scene = zb_zcl_get_attr_desc_a(endpoint,
+                                            ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_GLOBAL_SCENE_CONTROL);
 
-  zb_bool_t is_need_call_user_app = (ZB_ZCL_GET_ATTRIBUTE_VAL_8(attr_desc_on_off)==ZB_ZCL_ON_OFF_IS_OFF) ? ZB_TRUE : ZB_FALSE;
+    zb_bool_t is_need_call_user_app = (ZB_ZCL_GET_ATTRIBUTE_VAL_8(attr_desc_on_off) == ZB_ZCL_ON_OFF_IS_OFF) ? ZB_TRUE : ZB_FALSE;
 
-  TRACE_MSG(TRACE_ZCL1, "> zb_zcl_process_on_off_on_handler param %hx",
-      (FMT__H, param));
+    TRACE_MSG(TRACE_ZCL1, "> zb_zcl_process_on_off_on_handler param %hx",
+              (FMT__H, param));
 
-  if (attr_desc_on_time && attr_desc_off_wait_time)
-  {
-    if (ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_on_time) == ZB_ZCL_ON_OFF_ZERO_TIMEOUT)
+    if (attr_desc_on_time && attr_desc_off_wait_time)
     {
-      zb_uint16_t val = ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_off_wait_time);
-      if (val)
-      {
-//      --val;
-//      ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_off_wait_time, val);
-//      is_need_call_user_app = ZB_FALSE;
-        ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_off_wait_time, 0);
-        ZB_SCHEDULE_ALARM_CANCEL(zb_zcl_on_off_timer_handler, ZB_ALARM_ANY_PARAM);
-        is_need_call_user_app = ZB_TRUE;
+        if (ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_on_time) == ZB_ZCL_ON_OFF_ZERO_TIMEOUT)
+        {
+            zb_uint16_t val = ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_off_wait_time);
+            if (val)
+            {
+                //      --val;
+                //      ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_off_wait_time, val);
+                //      is_need_call_user_app = ZB_FALSE;
+                ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_off_wait_time, 0);
+                ZB_SCHEDULE_ALARM_CANCEL(zb_zcl_on_off_timer_handler, ZB_ALARM_ANY_PARAM);
+                is_need_call_user_app = ZB_TRUE;
 
-      }
-      else
-      {
-        ZB_SCHEDULE_ALARM_CANCEL(zb_zcl_on_off_timer_handler, ZB_ALARM_ANY_PARAM);
-        is_need_call_user_app = ZB_TRUE;
-      }
+            }
+            else
+            {
+                ZB_SCHEDULE_ALARM_CANCEL(zb_zcl_on_off_timer_handler, ZB_ALARM_ANY_PARAM);
+                is_need_call_user_app = ZB_TRUE;
+            }
+        }
     }
-  }
 
-/* 2019-04-10 According to ZCL spec Revision 7. 3.8.2.2.2 GlobalSceneControl Attribute*/
-  if (attr_desc_global_scene)
-  {
-    if( ZB_ZCL_GET_ATTRIBUTE_VAL_8(attr_desc_global_scene) ==
-        ZB_ZCL_ON_OFF_GLOBAL_SCENE_STORED )
+    /* 2019-04-10 According to ZCL spec Revision 7. 3.8.2.2.2 GlobalSceneControl Attribute*/
+    if (attr_desc_global_scene)
     {
-      ZB_ZCL_SET_DIRECTLY_ATTR_VAL8(attr_desc_global_scene,
-                                    ZB_ZCL_ON_OFF_GLOBAL_SCENE_NA);
+        if ( ZB_ZCL_GET_ATTRIBUTE_VAL_8(attr_desc_global_scene) ==
+                ZB_ZCL_ON_OFF_GLOBAL_SCENE_STORED )
+        {
+            ZB_ZCL_SET_DIRECTLY_ATTR_VAL8(attr_desc_global_scene,
+                                          ZB_ZCL_ON_OFF_GLOBAL_SCENE_NA);
+        }
     }
-  }
 
-/* 2013-01-09 CR:MAJOR:FIXED call user callback only value was changed */
-  if(is_need_call_user_app)
-  {
-    zb_on_off_schedule_user_app(param, cmd_info, ZB_TRUE, ZB_FALSE);
-  }
+    /* 2013-01-09 CR:MAJOR:FIXED call user callback only value was changed */
+    if (is_need_call_user_app)
+    {
+        zb_on_off_schedule_user_app(param, cmd_info, ZB_TRUE, ZB_FALSE);
+    }
 
-  TRACE_MSG(TRACE_ZCL1, "< zb_zcl_process_on_off_on_handler", (FMT__0));
+    TRACE_MSG(TRACE_ZCL1, "< zb_zcl_process_on_off_on_handler", (FMT__0));
 
-  return (is_need_call_user_app==ZB_TRUE) ? RET_BUSY : RET_OK;
+    return (is_need_call_user_app == ZB_TRUE) ? RET_BUSY : RET_OK;
 }
 
 /* Process Off command
@@ -339,30 +341,30 @@ static zb_ret_t zb_zcl_process_on_off_on_handler(zb_uint8_t param)
  * */
 static zb_ret_t zb_zcl_process_on_off_off_handler(zb_uint8_t param)
 {
-  zb_zcl_parsed_hdr_t *cmd_info = ZB_BUF_GET_PARAM(param, zb_zcl_parsed_hdr_t);
-  zb_uint8_t endpoint = ZB_ZCL_PARSED_HDR_SHORT_DATA(cmd_info).dst_endpoint;
-  zb_zcl_attr_t *attr_desc_on_off = zb_zcl_get_attr_desc_a(endpoint,
-          ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_ON_OFF_ID);
-  zb_zcl_attr_t *attr_desc_on_time = zb_zcl_get_attr_desc_a(endpoint,
-          ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_ON_TIME);
+    zb_zcl_parsed_hdr_t *cmd_info = ZB_BUF_GET_PARAM(param, zb_zcl_parsed_hdr_t);
+    zb_uint8_t endpoint = ZB_ZCL_PARSED_HDR_SHORT_DATA(cmd_info).dst_endpoint;
+    zb_zcl_attr_t *attr_desc_on_off = zb_zcl_get_attr_desc_a(endpoint,
+                                      ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_ON_OFF_ID);
+    zb_zcl_attr_t *attr_desc_on_time = zb_zcl_get_attr_desc_a(endpoint,
+                                       ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_ON_TIME);
 
-  zb_bool_t is_need_call_user_app = (ZB_ZCL_GET_ATTRIBUTE_VAL_8(attr_desc_on_off)!=ZB_ZCL_ON_OFF_IS_OFF) ? ZB_TRUE : ZB_FALSE;
+    zb_bool_t is_need_call_user_app = (ZB_ZCL_GET_ATTRIBUTE_VAL_8(attr_desc_on_off) != ZB_ZCL_ON_OFF_IS_OFF) ? ZB_TRUE : ZB_FALSE;
 
-  TRACE_MSG(TRACE_ZCL1, "> zb_zcl_process_on_off_off_handler param %hx",
-      (FMT__H, param));
+    TRACE_MSG(TRACE_ZCL1, "> zb_zcl_process_on_off_off_handler param %hx",
+              (FMT__H, param));
 
-  if (attr_desc_on_time)
-  {
-    ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_on_time, ZB_ZCL_ON_OFF_ZERO_TIMEOUT);
-  }
-/* 2013-01-09 CR:MAJOR call user callback only value was changed */
-  if(is_need_call_user_app)
-  {
-    zb_on_off_schedule_user_app(param, cmd_info, ZB_FALSE, ZB_FALSE);
-  }
-  TRACE_MSG(TRACE_ZCL1, "< zb_zcl_process_on_off_off_handler", (FMT__0));
+    if (attr_desc_on_time)
+    {
+        ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_on_time, ZB_ZCL_ON_OFF_ZERO_TIMEOUT);
+    }
+    /* 2013-01-09 CR:MAJOR call user callback only value was changed */
+    if (is_need_call_user_app)
+    {
+        zb_on_off_schedule_user_app(param, cmd_info, ZB_FALSE, ZB_FALSE);
+    }
+    TRACE_MSG(TRACE_ZCL1, "< zb_zcl_process_on_off_off_handler", (FMT__0));
 
-  return (is_need_call_user_app==ZB_TRUE) ? RET_BUSY : RET_OK;
+    return (is_need_call_user_app == ZB_TRUE) ? RET_BUSY : RET_OK;
 }
 
 /* Process Toggle command
@@ -370,65 +372,65 @@ static zb_ret_t zb_zcl_process_on_off_off_handler(zb_uint8_t param)
  * */
 static zb_ret_t zb_zcl_process_on_off_toggle_handler(zb_uint8_t param)
 {
-  zb_zcl_parsed_hdr_t *cmd_info = ZB_BUF_GET_PARAM(param, zb_zcl_parsed_hdr_t);
-  zb_uint8_t endpoint = ZB_ZCL_PARSED_HDR_SHORT_DATA(cmd_info).dst_endpoint;
-  zb_zcl_attr_t *attr_desc_on_off = zb_zcl_get_attr_desc_a(endpoint,
-      ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_ON_OFF_ID);
-  zb_zcl_attr_t *attr_desc_on_time = zb_zcl_get_attr_desc_a(endpoint,
-          ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_ON_TIME);
-  zb_zcl_attr_t *attr_desc_off_wait_time = zb_zcl_get_attr_desc_a(endpoint,
-          ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_OFF_WAIT_TIME);
+    zb_zcl_parsed_hdr_t *cmd_info = ZB_BUF_GET_PARAM(param, zb_zcl_parsed_hdr_t);
+    zb_uint8_t endpoint = ZB_ZCL_PARSED_HDR_SHORT_DATA(cmd_info).dst_endpoint;
+    zb_zcl_attr_t *attr_desc_on_off = zb_zcl_get_attr_desc_a(endpoint,
+                                      ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_ON_OFF_ID);
+    zb_zcl_attr_t *attr_desc_on_time = zb_zcl_get_attr_desc_a(endpoint,
+                                       ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_ON_TIME);
+    zb_zcl_attr_t *attr_desc_off_wait_time = zb_zcl_get_attr_desc_a(endpoint,
+            ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_OFF_WAIT_TIME);
 
-  zb_bool_t is_need_call_user_app = ZB_TRUE;
+    zb_bool_t is_need_call_user_app = ZB_TRUE;
 
-  zb_uint8_t new_val;
+    zb_uint8_t new_val;
 
-  TRACE_MSG(TRACE_ZCL1, "> zb_zcl_process_on_off_toggle_handler param %hx",
-      (FMT__H, param));
+    TRACE_MSG(TRACE_ZCL1, "> zb_zcl_process_on_off_toggle_handler param %hx",
+              (FMT__H, param));
 
-  ZB_ASSERT(attr_desc_on_off);
+    ZB_ASSERT(attr_desc_on_off);
 
-  new_val = !ZB_ZCL_GET_ATTRIBUTE_VAL_8(attr_desc_on_off);
+    new_val = !ZB_ZCL_GET_ATTRIBUTE_VAL_8(attr_desc_on_off);
 
-  if (attr_desc_on_time && attr_desc_off_wait_time)
-  {
-    if (new_val)
+    if (attr_desc_on_time && attr_desc_off_wait_time)
     {
-      /* ZCL specification, rev 7, 3.8.2.3, Toggle command:
-      if the value of the OnTime attribute is equal to 0x0000,
-      the device SHALL set the OffWaitTime attribute to 0x0000 */
-      if (ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_on_time) == ZB_ZCL_ON_OFF_ZERO_TIMEOUT)
-      {
-        zb_uint16_t val = ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_off_wait_time);
-        if (val)
+        if (new_val)
         {
-          ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_off_wait_time, 0);
-          ZB_SCHEDULE_ALARM_CANCEL(zb_zcl_on_off_timer_handler, ZB_ALARM_ANY_PARAM);
-          is_need_call_user_app = ZB_TRUE;
+            /* ZCL specification, rev 7, 3.8.2.3, Toggle command:
+            if the value of the OnTime attribute is equal to 0x0000,
+            the device SHALL set the OffWaitTime attribute to 0x0000 */
+            if (ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_on_time) == ZB_ZCL_ON_OFF_ZERO_TIMEOUT)
+            {
+                zb_uint16_t val = ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_off_wait_time);
+                if (val)
+                {
+                    ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_off_wait_time, 0);
+                    ZB_SCHEDULE_ALARM_CANCEL(zb_zcl_on_off_timer_handler, ZB_ALARM_ANY_PARAM);
+                    is_need_call_user_app = ZB_TRUE;
+                }
+                else
+                {
+                    /* 2019-04-10 Server receives On command in "Delayed Off" state, so the state machine goes to "On" state */
+                    ZB_SCHEDULE_ALARM_CANCEL(zb_zcl_on_off_timer_handler, ZB_ALARM_ANY_PARAM);
+                    is_need_call_user_app = ZB_TRUE;
+
+                }
+            }
         }
         else
         {
-        /* 2019-04-10 Server receives On command in "Delayed Off" state, so the state machine goes to "On" state */
-          ZB_SCHEDULE_ALARM_CANCEL(zb_zcl_on_off_timer_handler, ZB_ALARM_ANY_PARAM);
-          is_need_call_user_app = ZB_TRUE;
-
+            ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_on_time, ZB_ZCL_ON_OFF_ZERO_TIMEOUT);
         }
-      }
     }
-    else
+
+    if (is_need_call_user_app)
     {
-      ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_on_time, ZB_ZCL_ON_OFF_ZERO_TIMEOUT);
+        zb_on_off_schedule_user_app(param, cmd_info, (zb_bool_t)new_val, ZB_FALSE);
     }
-  }
 
-  if(is_need_call_user_app)
-  {
-    zb_on_off_schedule_user_app(param, cmd_info, (zb_bool_t)new_val, ZB_FALSE);
-  }
+    TRACE_MSG(TRACE_ZCL1, "> zb_zcl_process_on_off_toggle_handler", (FMT__0));
 
-  TRACE_MSG(TRACE_ZCL1, "> zb_zcl_process_on_off_toggle_handler", (FMT__0));
-
-  return (is_need_call_user_app==ZB_TRUE) ? RET_BUSY : RET_OK;
+    return (is_need_call_user_app == ZB_TRUE) ? RET_BUSY : RET_OK;
 }
 
 /* Invoke User App for "Off with effect" command
@@ -439,140 +441,140 @@ static zb_ret_t zb_zcl_process_on_off_toggle_handler(zb_uint8_t param)
  */
 void zb_zcl_on_off_effect_invoke_user_app(zb_uint8_t param)
 {
-  zb_zcl_on_off_effect_user_app_schedule_t* invoke_data = ZB_BUF_GET_PARAM(param, zb_zcl_on_off_effect_user_app_schedule_t);
-  zb_zcl_parsed_hdr_t cmd_info;
-  zb_ret_t result;
-  zb_zcl_attr_t *attr_desc_on_time;
-  zb_uint8_t val = ZB_ZCL_ON_OFF_IS_OFF;
+    zb_zcl_on_off_effect_user_app_schedule_t *invoke_data = ZB_BUF_GET_PARAM(param, zb_zcl_on_off_effect_user_app_schedule_t);
+    zb_zcl_parsed_hdr_t cmd_info;
+    zb_ret_t result;
+    zb_zcl_attr_t *attr_desc_on_time;
+    zb_uint8_t val = ZB_ZCL_ON_OFF_IS_OFF;
 
-  TRACE_MSG(TRACE_ZCL1, "> zb_zcl_on_off_effect_invoke_user_app param %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_ZCL1, "> zb_zcl_on_off_effect_invoke_user_app param %hd", (FMT__H, param));
 
-  ZB_MEMCPY(&cmd_info, &(invoke_data->cmd_info), sizeof(zb_zcl_parsed_hdr_t));
+    ZB_MEMCPY(&cmd_info, &(invoke_data->cmd_info), sizeof(zb_zcl_parsed_hdr_t));
 
-  if (ZCL_CTX().device_cb!=NULL)
-  {
+    if (ZCL_CTX().device_cb != NULL)
+    {
 
-    zb_zcl_device_callback_param_t *user_app_data = ZB_BUF_GET_PARAM(param, zb_zcl_device_callback_param_t);
-    ZB_MEMMOVE(&(user_app_data->cb_param.on_off_set_effect_value_param),
-        &(invoke_data->param),
-        sizeof(zb_zcl_on_off_set_effect_value_param_t));
-    user_app_data->device_cb_id = ZB_ZCL_ON_OFF_WITH_EFFECT_VALUE_CB_ID;
-    user_app_data->endpoint = ZB_ZCL_PARSED_HDR_SHORT_DATA(&cmd_info).dst_endpoint;
-    user_app_data->status = RET_OK;
-    (ZCL_CTX().device_cb)(param);
-    result = user_app_data->status;
-    /* TODO: check - free buffer after a call? */
-  }
-  else
-  {
-    result = RET_ERROR;
-  }
+        zb_zcl_device_callback_param_t *user_app_data = ZB_BUF_GET_PARAM(param, zb_zcl_device_callback_param_t);
+        ZB_MEMMOVE(&(user_app_data->cb_param.on_off_set_effect_value_param),
+                   &(invoke_data->param),
+                   sizeof(zb_zcl_on_off_set_effect_value_param_t));
+        user_app_data->device_cb_id = ZB_ZCL_ON_OFF_WITH_EFFECT_VALUE_CB_ID;
+        user_app_data->endpoint = ZB_ZCL_PARSED_HDR_SHORT_DATA(&cmd_info).dst_endpoint;
+        user_app_data->status = RET_OK;
+        (ZCL_CTX().device_cb)(param);
+        result = user_app_data->status;
+        /* TODO: check - free buffer after a call? */
+    }
+    else
+    {
+        result = RET_ERROR;
+    }
 
-  if (result == RET_OK)
-  {
-/* 2012-12-27 CR:MAJOR:DISCUSS Is this call really needed?
- * zb_zcl_on_off_invoke_user_app() is called.
- * A: YES. Spec 6.6.1.4.4.3 - both paragraf ended "...shall enter its off state
- * and update the OnOff attribute accordingly."
- * */
-/* 2013-01-09 CR:MAJOR:FIXED No need to call user appllication callback zb_zcl_on_off_invoke_user_app()
- * here - need only set attribute value to Off and OnTime attribute
- * to 0x0000
- * A: Not sure, but change*/
+    if (result == RET_OK)
+    {
+        /* 2012-12-27 CR:MAJOR:DISCUSS Is this call really needed?
+         * zb_zcl_on_off_invoke_user_app() is called.
+         * A: YES. Spec 6.6.1.4.4.3 - both paragraf ended "...shall enter its off state
+         * and update the OnOff attribute accordingly."
+         * */
+        /* 2013-01-09 CR:MAJOR:FIXED No need to call user appllication callback zb_zcl_on_off_invoke_user_app()
+         * here - need only set attribute value to Off and OnTime attribute
+         * to 0x0000
+         * A: Not sure, but change*/
 
-    /* Use SET_ATTRIBUTE to report attribute change if needed. */
-    ZB_ZCL_SET_ATTRIBUTE(ZB_ZCL_PARSED_HDR_SHORT_DATA(&cmd_info).dst_endpoint,
-                         ZB_ZCL_CLUSTER_ID_ON_OFF,
-                         ZB_ZCL_CLUSTER_SERVER_ROLE,
-                         ZB_ZCL_ATTR_ON_OFF_ON_OFF_ID,
-                         &val,
-                         ZB_FALSE);
+        /* Use SET_ATTRIBUTE to report attribute change if needed. */
+        ZB_ZCL_SET_ATTRIBUTE(ZB_ZCL_PARSED_HDR_SHORT_DATA(&cmd_info).dst_endpoint,
+                             ZB_ZCL_CLUSTER_ID_ON_OFF,
+                             ZB_ZCL_CLUSTER_SERVER_ROLE,
+                             ZB_ZCL_ATTR_ON_OFF_ON_OFF_ID,
+                             &val,
+                             ZB_FALSE);
 
-    attr_desc_on_time = zb_zcl_get_attr_desc_a(ZB_ZCL_PARSED_HDR_SHORT_DATA(&cmd_info).dst_endpoint,
-            ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_ON_TIME);
-    ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_on_time, 0x0000);
-  }
+        attr_desc_on_time = zb_zcl_get_attr_desc_a(ZB_ZCL_PARSED_HDR_SHORT_DATA(&cmd_info).dst_endpoint,
+                            ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_ON_TIME);
+        ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_on_time, 0x0000);
+    }
 
-  ZB_ZCL_PROCESS_COMMAND_FINISH(param, &cmd_info, result==RET_OK ? ZB_ZCL_STATUS_SUCCESS : ZB_ZCL_STATUS_HW_FAIL);
+    ZB_ZCL_PROCESS_COMMAND_FINISH(param, &cmd_info, result == RET_OK ? ZB_ZCL_STATUS_SUCCESS : ZB_ZCL_STATUS_HW_FAIL);
 
-  TRACE_MSG(TRACE_ZCL1, "< zb_zcl_on_off_effect_invoke_user_app param", (FMT__0));
+    TRACE_MSG(TRACE_ZCL1, "< zb_zcl_on_off_effect_invoke_user_app param", (FMT__0));
 }
 /* Process Off with effect command
  * see Spec 6.6.1.4.4
  * */
 static zb_ret_t zb_zcl_process_on_off_off_with_effect_handler(zb_uint8_t param)
 {
-  zb_zcl_parsed_hdr_t *cmd_info = ZB_BUF_GET_PARAM(param, zb_zcl_parsed_hdr_t);
-  zb_uint8_t endpoint = ZB_ZCL_PARSED_HDR_SHORT_DATA(cmd_info).dst_endpoint;
-  zb_zcl_attr_t *attr_desc_on_time = zb_zcl_get_attr_desc_a(endpoint,
-          ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_ON_TIME);
-  zb_zcl_attr_t *attr_desc_global_scene = zb_zcl_get_attr_desc_a(endpoint,
-          ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_GLOBAL_SCENE_CONTROL);
-  zb_ret_t ret = RET_ERROR;
+    zb_zcl_parsed_hdr_t *cmd_info = ZB_BUF_GET_PARAM(param, zb_zcl_parsed_hdr_t);
+    zb_uint8_t endpoint = ZB_ZCL_PARSED_HDR_SHORT_DATA(cmd_info).dst_endpoint;
+    zb_zcl_attr_t *attr_desc_on_time = zb_zcl_get_attr_desc_a(endpoint,
+                                       ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_ON_TIME);
+    zb_zcl_attr_t *attr_desc_global_scene = zb_zcl_get_attr_desc_a(endpoint,
+                                            ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_GLOBAL_SCENE_CONTROL);
+    zb_ret_t ret = RET_ERROR;
 
-  zb_zcl_on_off_off_with_effect_req_t off_with_effect_payload;
-  zb_zcl_parse_status_t status;
+    zb_zcl_on_off_off_with_effect_req_t off_with_effect_payload;
+    zb_zcl_parse_status_t status;
 
-  TRACE_MSG(TRACE_ZCL1, "> zb_zcl_process_on_off_off_with_effect_handler param %hx",
-      (FMT__H, param));
+    TRACE_MSG(TRACE_ZCL1, "> zb_zcl_process_on_off_off_with_effect_handler param %hx",
+              (FMT__H, param));
 
-  if (attr_desc_on_time && attr_desc_global_scene)
-  {
-    ZB_ZCL_ON_OFF_GET_OFF_WITH_EFFECT_REQ(&off_with_effect_payload, param, status);
-    if (status != ZB_ZCL_PARSE_STATUS_SUCCESS)
+    if (attr_desc_on_time && attr_desc_global_scene)
     {
-      TRACE_MSG(TRACE_ZCL1, "Error payload of ZB_ZCL_ON_OFF_GET_OFF_WITH_EFFECT_REQ",
-                (FMT__0));
-      ret = RET_INVALID_PARAMETER_1;
-    }
-    else
-    {
-/* 2012-12-27 CR:MAJOR:DISCUSS missed check: "accept only when on" should be checked"
- * A: "accept only when on" from another command - "on with timed off" */
-/* 2013-01-09 CR:MAJOR unclear point, provide more details in your
- * comment, need to discuss it */
+        ZB_ZCL_ON_OFF_GET_OFF_WITH_EFFECT_REQ(&off_with_effect_payload, param, status);
+        if (status != ZB_ZCL_PARSE_STATUS_SUCCESS)
+        {
+            TRACE_MSG(TRACE_ZCL1, "Error payload of ZB_ZCL_ON_OFF_GET_OFF_WITH_EFFECT_REQ",
+                      (FMT__0));
+            ret = RET_INVALID_PARAMETER_1;
+        }
+        else
+        {
+            /* 2012-12-27 CR:MAJOR:DISCUSS missed check: "accept only when on" should be checked"
+             * A: "accept only when on" from another command - "on with timed off" */
+            /* 2013-01-09 CR:MAJOR unclear point, provide more details in your
+             * comment, need to discuss it */
 #ifdef ZB_ZCL_SUPPORT_CLUSTER_SCENES
-      if (ZB_ZCL_GET_ATTRIBUTE_VAL_8(attr_desc_global_scene)==
-          ZB_ZCL_ON_OFF_GLOBAL_SCENE_NA)
-      {
-        zb_zcl_parsed_hdr_t cmd_info_copy;
-        zb_zcl_scenes_store_scene_req_t req;
+            if (ZB_ZCL_GET_ATTRIBUTE_VAL_8(attr_desc_global_scene) ==
+                    ZB_ZCL_ON_OFF_GLOBAL_SCENE_NA)
+            {
+                zb_zcl_parsed_hdr_t cmd_info_copy;
+                zb_zcl_scenes_store_scene_req_t req;
 
-        req.group_id = ZB_ZCL_SCENE_GLOBAL_SCENE_GROUP_ID;
-        req.scene_id = ZB_ZCL_SCENE_GLOBAL_SCENE_ID;
+                req.group_id = ZB_ZCL_SCENE_GLOBAL_SCENE_GROUP_ID;
+                req.scene_id = ZB_ZCL_SCENE_GLOBAL_SCENE_ID;
 
-        ZB_ZCL_COPY_PARSED_HEADER(param, &cmd_info_copy);
-        zb_zcl_scenes_process_store_scene(param, &req, &cmd_info_copy);
-        ZB_MEMCPY(cmd_info, &cmd_info_copy, sizeof(zb_zcl_parsed_hdr_t));
+                ZB_ZCL_COPY_PARSED_HEADER(param, &cmd_info_copy);
+                zb_zcl_scenes_process_store_scene(param, &req, &cmd_info_copy);
+                ZB_MEMCPY(cmd_info, &cmd_info_copy, sizeof(zb_zcl_parsed_hdr_t));
 
-        ZB_ZCL_SET_DIRECTLY_ATTR_VAL8(attr_desc_global_scene,
-                                      ZB_ZCL_ON_OFF_GLOBAL_SCENE_STORED);
+                ZB_ZCL_SET_DIRECTLY_ATTR_VAL8(attr_desc_global_scene,
+                                              ZB_ZCL_ON_OFF_GLOBAL_SCENE_STORED);
 
-        ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_on_time, ZB_ZCL_ON_OFF_ZERO_TIMEOUT);
-      }
-      else
-      {
-        //ZB_ZCL_SET_DIRECTLY_ATTR_VAL8(attr_desc_on_off, ZB_FALSE);
-      }
+                ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_on_time, ZB_ZCL_ON_OFF_ZERO_TIMEOUT);
+            }
+            else
+            {
+                //ZB_ZCL_SET_DIRECTLY_ATTR_VAL8(attr_desc_on_off, ZB_FALSE);
+            }
 #endif
-/* 2012-12-27 CR:MAJOR:DISCUSS unclear implemented logic: check it
- * again. When timer is started?
- * A: timer need for to another command - "on with timed off" */
-/* 2013-01-09 CR:MAJOR:DISCUSS unclear point: what timer? add more details;
- * discuss it
- * A: User App play command Off with effect, next send Ack to client
- * Now schedule invoke User App and return with RET_BUSY (not send Ack)
- * */
-      ZB_ZCL_ON_OFF_EFFECT_SCHEDULE_USER_APP(param,
-                                             cmd_info, off_with_effect_payload.effect_id,
-                                             off_with_effect_payload.effect_variant);
-      ret = RET_BUSY;
+            /* 2012-12-27 CR:MAJOR:DISCUSS unclear implemented logic: check it
+             * again. When timer is started?
+             * A: timer need for to another command - "on with timed off" */
+            /* 2013-01-09 CR:MAJOR:DISCUSS unclear point: what timer? add more details;
+             * discuss it
+             * A: User App play command Off with effect, next send Ack to client
+             * Now schedule invoke User App and return with RET_BUSY (not send Ack)
+             * */
+            ZB_ZCL_ON_OFF_EFFECT_SCHEDULE_USER_APP(param,
+                                                   cmd_info, off_with_effect_payload.effect_id,
+                                                   off_with_effect_payload.effect_variant);
+            ret = RET_BUSY;
+        }
     }
-  }
 
-  TRACE_MSG(TRACE_ZCL1, "< zb_zcl_process_on_off_off_with_effect_handler ret %hx",
-      (FMT__H, ret));
-  return ret;
+    TRACE_MSG(TRACE_ZCL1, "< zb_zcl_process_on_off_off_with_effect_handler ret %hx",
+              (FMT__H, ret));
+    return ret;
 }
 
 /* Process Off with effect command
@@ -580,83 +582,83 @@ static zb_ret_t zb_zcl_process_on_off_off_with_effect_handler(zb_uint8_t param)
  * */
 static zb_ret_t zb_zcl_process_on_off_on_with_recall_global_scene_handler(zb_uint8_t param)
 {
-  zb_zcl_parsed_hdr_t *cmd_info = ZB_BUF_GET_PARAM(param, zb_zcl_parsed_hdr_t);
-  zb_uint8_t endpoint = ZB_ZCL_PARSED_HDR_SHORT_DATA(cmd_info).dst_endpoint;
-  zb_zcl_attr_t *attr_desc_on_off = zb_zcl_get_attr_desc_a(endpoint,
-      ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_ON_OFF_ID);
-  zb_zcl_attr_t *attr_desc_on_time = zb_zcl_get_attr_desc_a(endpoint,
-          ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_ON_TIME);
-  zb_zcl_attr_t *attr_desc_off_wait_time = zb_zcl_get_attr_desc_a(endpoint,
-          ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_OFF_WAIT_TIME);
-  zb_zcl_attr_t *attr_desc_global_scene = zb_zcl_get_attr_desc_a(endpoint,
-          ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_GLOBAL_SCENE_CONTROL);
-  zb_bool_t is_need_call_user_app = (ZB_ZCL_GET_ATTRIBUTE_VAL_8(attr_desc_on_off)!=ZB_ZCL_ON_OFF_IS_OFF) ? ZB_TRUE : ZB_FALSE;
+    zb_zcl_parsed_hdr_t *cmd_info = ZB_BUF_GET_PARAM(param, zb_zcl_parsed_hdr_t);
+    zb_uint8_t endpoint = ZB_ZCL_PARSED_HDR_SHORT_DATA(cmd_info).dst_endpoint;
+    zb_zcl_attr_t *attr_desc_on_off = zb_zcl_get_attr_desc_a(endpoint,
+                                      ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_ON_OFF_ID);
+    zb_zcl_attr_t *attr_desc_on_time = zb_zcl_get_attr_desc_a(endpoint,
+                                       ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_ON_TIME);
+    zb_zcl_attr_t *attr_desc_off_wait_time = zb_zcl_get_attr_desc_a(endpoint,
+            ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_OFF_WAIT_TIME);
+    zb_zcl_attr_t *attr_desc_global_scene = zb_zcl_get_attr_desc_a(endpoint,
+                                            ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_GLOBAL_SCENE_CONTROL);
+    zb_bool_t is_need_call_user_app = (ZB_ZCL_GET_ATTRIBUTE_VAL_8(attr_desc_on_off) != ZB_ZCL_ON_OFF_IS_OFF) ? ZB_TRUE : ZB_FALSE;
 
-  zb_ret_t ret = RET_OK;
+    zb_ret_t ret = RET_OK;
 
-  TRACE_MSG(TRACE_ZCL1,
-      "> zb_zcl_process_on_off_on_with_recall_global_scene_handler param %hx",
-      (FMT__H, param));
+    TRACE_MSG(TRACE_ZCL1,
+              "> zb_zcl_process_on_off_on_with_recall_global_scene_handler param %hx",
+              (FMT__H, param));
 
-  if (attr_desc_on_time && attr_desc_off_wait_time && attr_desc_global_scene)
-  {
-    if (ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_on_time) == ZB_ZCL_ON_OFF_ZERO_TIMEOUT)
+    if (attr_desc_on_time && attr_desc_off_wait_time && attr_desc_global_scene)
     {
-      zb_uint16_t val = ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_off_wait_time);
-      if (val)
-      {
-        --val;
-        ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_off_wait_time, val);
-        ZB_SCHEDULE_ALARM(zb_zcl_on_off_timer_handler, param,
-          ZB_ZCL_ON_OFF_TIMER_BEACON_INTERVAL);
-        is_need_call_user_app = ZB_FALSE;
-      }
-      else
-      {
-        ZB_SCHEDULE_ALARM_CANCEL(zb_zcl_on_off_timer_handler, ZB_ALARM_ANY_PARAM);
-        is_need_call_user_app = ZB_TRUE;
-      }
-    }
+        if (ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_on_time) == ZB_ZCL_ON_OFF_ZERO_TIMEOUT)
+        {
+            zb_uint16_t val = ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_off_wait_time);
+            if (val)
+            {
+                --val;
+                ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_off_wait_time, val);
+                ZB_SCHEDULE_ALARM(zb_zcl_on_off_timer_handler, param,
+                                  ZB_ZCL_ON_OFF_TIMER_BEACON_INTERVAL);
+                is_need_call_user_app = ZB_FALSE;
+            }
+            else
+            {
+                ZB_SCHEDULE_ALARM_CANCEL(zb_zcl_on_off_timer_handler, ZB_ALARM_ANY_PARAM);
+                is_need_call_user_app = ZB_TRUE;
+            }
+        }
 
 #ifdef ZB_ZCL_SUPPORT_CLUSTER_SCENES
-    /* Call User App - ON */
-    if (is_need_call_user_app)
-    {
-      zb_on_off_schedule_user_app(param, cmd_info, ZB_TRUE, ZB_FALSE);
-      ret = RET_BUSY;
-    }
+        /* Call User App - ON */
+        if (is_need_call_user_app)
+        {
+            zb_on_off_schedule_user_app(param, cmd_info, ZB_TRUE, ZB_FALSE);
+            ret = RET_BUSY;
+        }
 
-    if( ZB_ZCL_GET_ATTRIBUTE_VAL_8(attr_desc_global_scene) ==
-        ZB_ZCL_ON_OFF_GLOBAL_SCENE_STORED )
-    {
-      zb_zcl_parsed_hdr_t cmd_info_copy;
-      zb_zcl_scenes_recall_scene_req_t req;
+        if ( ZB_ZCL_GET_ATTRIBUTE_VAL_8(attr_desc_global_scene) ==
+                ZB_ZCL_ON_OFF_GLOBAL_SCENE_STORED )
+        {
+            zb_zcl_parsed_hdr_t cmd_info_copy;
+            zb_zcl_scenes_recall_scene_req_t req;
 
-      req.group_id = ZB_ZCL_SCENE_GLOBAL_SCENE_GROUP_ID;
-      req.scene_id = ZB_ZCL_SCENE_GLOBAL_SCENE_ID;
+            req.group_id = ZB_ZCL_SCENE_GLOBAL_SCENE_GROUP_ID;
+            req.scene_id = ZB_ZCL_SCENE_GLOBAL_SCENE_ID;
 
-      ZB_ZCL_SET_DIRECTLY_ATTR_VAL8(attr_desc_global_scene,
-                                    ZB_ZCL_ON_OFF_GLOBAL_SCENE_NA);
+            ZB_ZCL_SET_DIRECTLY_ATTR_VAL8(attr_desc_global_scene,
+                                          ZB_ZCL_ON_OFF_GLOBAL_SCENE_NA);
 
-      ZB_ZCL_COPY_PARSED_HEADER(param, &cmd_info_copy);
-      zb_zcl_scenes_process_recall_scene(param, &req, &cmd_info_copy);
-      ZB_MEMCPY(cmd_info, &cmd_info_copy, sizeof(zb_zcl_parsed_hdr_t));
-    }
-    else
+            ZB_ZCL_COPY_PARSED_HEADER(param, &cmd_info_copy);
+            zb_zcl_scenes_process_recall_scene(param, &req, &cmd_info_copy);
+            ZB_MEMCPY(cmd_info, &cmd_info_copy, sizeof(zb_zcl_parsed_hdr_t));
+        }
+        else
 #endif
-    {
-      /* ZCL7, 3.8.2.3.5.1
-         On receipt of the On With Recall Global Scene command, if the GlobalSceneControl attribute is equal to TRUE, the
-         application on the associated endpoint SHALL discard the command.
-       */
-      /* zb_on_off_schedule_user_app(buf, cmd_info, ZB_TRUE, ZB_FALSE); */
+        {
+            /* ZCL7, 3.8.2.3.5.1
+               On receipt of the On With Recall Global Scene command, if the GlobalSceneControl attribute is equal to TRUE, the
+               application on the associated endpoint SHALL discard the command.
+             */
+            /* zb_on_off_schedule_user_app(buf, cmd_info, ZB_TRUE, ZB_FALSE); */
+        }
     }
-  }
 
-  TRACE_MSG(TRACE_ZCL1,
-      "< zb_zcl_process_on_off_on_with_recall_global_scene_handler ret %d",
-      (FMT__H, ret));
-  return ret;
+    TRACE_MSG(TRACE_ZCL1,
+              "< zb_zcl_process_on_off_on_with_recall_global_scene_handler ret %d",
+              (FMT__H, ret));
+    return ret;
 }
 
 /* Process On with timed off command
@@ -664,110 +666,110 @@ static zb_ret_t zb_zcl_process_on_off_on_with_recall_global_scene_handler(zb_uin
  * */
 static zb_ret_t zb_zcl_process_on_off_on_with_timed_off_handler(zb_uint8_t param)
 {
-  zb_zcl_parsed_hdr_t *cmd_info = ZB_BUF_GET_PARAM(param, zb_zcl_parsed_hdr_t);
-  zb_ret_t ret = RET_ERROR;
+    zb_zcl_parsed_hdr_t *cmd_info = ZB_BUF_GET_PARAM(param, zb_zcl_parsed_hdr_t);
+    zb_ret_t ret = RET_ERROR;
 
-  zb_uint8_t endpoint = ZB_ZCL_PARSED_HDR_SHORT_DATA(cmd_info).dst_endpoint;
-  zb_zcl_attr_t *attr_desc_on_off = zb_zcl_get_attr_desc_a(endpoint,
-      ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_ON_OFF_ID);
-  zb_zcl_attr_t *attr_desc_on_time = zb_zcl_get_attr_desc_a(endpoint,
-          ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_ON_TIME);
-  zb_zcl_attr_t *attr_desc_off_wait_time = zb_zcl_get_attr_desc_a(endpoint,
-          ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_OFF_WAIT_TIME);
-  zb_bool_t is_need_timer;
-  zb_bool_t is_need_set_on = ZB_FALSE;
+    zb_uint8_t endpoint = ZB_ZCL_PARSED_HDR_SHORT_DATA(cmd_info).dst_endpoint;
+    zb_zcl_attr_t *attr_desc_on_off = zb_zcl_get_attr_desc_a(endpoint,
+                                      ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_ON_OFF_ID);
+    zb_zcl_attr_t *attr_desc_on_time = zb_zcl_get_attr_desc_a(endpoint,
+                                       ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_ON_TIME);
+    zb_zcl_attr_t *attr_desc_off_wait_time = zb_zcl_get_attr_desc_a(endpoint,
+            ZB_ZCL_CLUSTER_ID_ON_OFF, ZB_ZCL_CLUSTER_SERVER_ROLE, ZB_ZCL_ATTR_ON_OFF_OFF_WAIT_TIME);
+    zb_bool_t is_need_timer;
+    zb_bool_t is_need_set_on = ZB_FALSE;
 
-  zb_zcl_on_off_on_with_timed_off_req_t on_timed_off_payload;
-  zb_zcl_parse_status_t status;
+    zb_zcl_on_off_on_with_timed_off_req_t on_timed_off_payload;
+    zb_zcl_parse_status_t status;
 
-  TRACE_MSG(TRACE_ZCL1, "> zb_zcl_process_on_off_on_with_timed_off_handler param %hx",
-      (FMT__H, param));
+    TRACE_MSG(TRACE_ZCL1, "> zb_zcl_process_on_off_on_with_timed_off_handler param %hx",
+              (FMT__H, param));
 
-  ZB_ASSERT(attr_desc_on_off);
+    ZB_ASSERT(attr_desc_on_off);
 
-  if (attr_desc_on_time && attr_desc_off_wait_time)
-  {
-    ZB_ZCL_ON_OFF_GET_ON_WITH_TIMED_OFF_REQ(&on_timed_off_payload, param, status);
-    if (status != ZB_ZCL_PARSE_STATUS_SUCCESS)
+    if (attr_desc_on_time && attr_desc_off_wait_time)
     {
-      ret = RET_INVALID_PARAMETER_1;
-    }
-    else
-    {
-      // if payload.on_off==1 and attribute On/Off == 0 then
-      // discarded
-      /*2019-04-10 Condition is changed and checked on the ceritification On/Off Cluster tests */
-      if ( ((on_timed_off_payload.on_off & ZB_ZCL_ON_OFF_ACCEPT_ONLY_WHEN_ON) && ZB_ZCL_GET_ATTRIBUTE_VAL_8(attr_desc_on_off)) ||
-           !(on_timed_off_payload.on_off & ZB_ZCL_ON_OFF_ACCEPT_ONLY_WHEN_ON ) )
-      {
-        // stop timer
-        ZB_SCHEDULE_ALARM_CANCEL(zb_zcl_on_off_timer_handler, ZB_ALARM_ANY_PARAM);
-
-        // update attributes
-        if ( ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_off_wait_time) > ZB_ZCL_ON_OFF_ZERO_TIMEOUT &&
-             !ZB_ZCL_GET_ATTRIBUTE_VAL_8(attr_desc_on_off))
+        ZB_ZCL_ON_OFF_GET_ON_WITH_TIMED_OFF_REQ(&on_timed_off_payload, param, status);
+        if (status != ZB_ZCL_PARSE_STATUS_SUCCESS)
         {
-          // set minimum
-          if ( on_timed_off_payload.off_wait_time <
-               ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_off_wait_time) )
-          {
-            ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_off_wait_time,
-                                           on_timed_off_payload.off_wait_time);
-          }
+            ret = RET_INVALID_PARAMETER_1;
         }
         else
         {
-          // set maximum
-          if ( on_timed_off_payload.on_time >
-               ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_on_time) )
-          {
-            ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_on_time,
-                                           on_timed_off_payload.on_time);
-          }
+            // if payload.on_off==1 and attribute On/Off == 0 then
+            // discarded
+            /*2019-04-10 Condition is changed and checked on the ceritification On/Off Cluster tests */
+            if ( ((on_timed_off_payload.on_off & ZB_ZCL_ON_OFF_ACCEPT_ONLY_WHEN_ON) && ZB_ZCL_GET_ATTRIBUTE_VAL_8(attr_desc_on_off)) ||
+                    !(on_timed_off_payload.on_off & ZB_ZCL_ON_OFF_ACCEPT_ONLY_WHEN_ON ) )
+            {
+                // stop timer
+                ZB_SCHEDULE_ALARM_CANCEL(zb_zcl_on_off_timer_handler, ZB_ALARM_ANY_PARAM);
 
-          ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_off_wait_time,
-                                         on_timed_off_payload.off_wait_time);
+                // update attributes
+                if ( ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_off_wait_time) > ZB_ZCL_ON_OFF_ZERO_TIMEOUT &&
+                        !ZB_ZCL_GET_ATTRIBUTE_VAL_8(attr_desc_on_off))
+                {
+                    // set minimum
+                    if ( on_timed_off_payload.off_wait_time <
+                            ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_off_wait_time) )
+                    {
+                        ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_off_wait_time,
+                                                       on_timed_off_payload.off_wait_time);
+                    }
+                }
+                else
+                {
+                    // set maximum
+                    if ( on_timed_off_payload.on_time >
+                            ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_on_time) )
+                    {
+                        ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_on_time,
+                                                       on_timed_off_payload.on_time);
+                    }
 
-          is_need_set_on = ZB_TRUE;
+                    ZB_ZCL_SET_DIRECTLY_ATTR_VAL16(attr_desc_off_wait_time,
+                                                   on_timed_off_payload.off_wait_time);
+
+                    is_need_set_on = ZB_TRUE;
+                }
+
+                is_need_timer = (( ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_off_wait_time) <
+                                   ZB_ZCL_ON_OFF_NON_LIMIT_TIMER ) &&
+                                 ( ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_on_time) <
+                                   ZB_ZCL_ON_OFF_NON_LIMIT_TIMER)
+                                ) ? ZB_TRUE : ZB_FALSE;
+
+                if (is_need_set_on)
+                {
+                    // schedule User App and next, if need, start timer
+                    zb_on_off_schedule_user_app(param, cmd_info, ZB_TRUE, is_need_timer);
+                    ret = RET_BUSY;
+                }
+                /* 2013-01-09 CR:MEDIUM:DISCUSS check, "else" clause is needed here or
+                 * not. According to previous comment, "else" is not needed
+                 * A: "else" run if this command working and client change timers delay */
+                else if (is_need_timer)
+                {
+                    //start timer
+                    ZB_SCHEDULE_ALARM(zb_zcl_on_off_timer_handler,
+                                      param,
+                                      ZB_ZCL_ON_OFF_TIMER_BEACON_INTERVAL);
+                    /*2019-04-10 Now Server sends Default Response immediately after receiving the command*/
+                    zb_zcl_on_off_send_default_resp(0, param);
+                    ret = RET_BUSY;
+                }
+            }
+            /*2019-04-10 In this case we have nothing to do, just send Default Response with "Success" status*/
+            else
+            {
+                ret = RET_OK;
+            }
         }
-
-        is_need_timer = (( ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_off_wait_time) <
-                           ZB_ZCL_ON_OFF_NON_LIMIT_TIMER ) &&
-                         ( ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc_on_time) <
-                           ZB_ZCL_ON_OFF_NON_LIMIT_TIMER)
-          ) ? ZB_TRUE : ZB_FALSE;
-
-        if (is_need_set_on)
-        {
-          // schedule User App and next, if need, start timer
-          zb_on_off_schedule_user_app(param, cmd_info, ZB_TRUE, is_need_timer);
-          ret = RET_BUSY;
-        }
-/* 2013-01-09 CR:MEDIUM:DISCUSS check, "else" clause is needed here or
- * not. According to previous comment, "else" is not needed
- * A: "else" run if this command working and client change timers delay */
-        else if (is_need_timer)
-        {
-          //start timer
-          ZB_SCHEDULE_ALARM(zb_zcl_on_off_timer_handler,
-                            param,
-                            ZB_ZCL_ON_OFF_TIMER_BEACON_INTERVAL);
-/*2019-04-10 Now Server sends Default Response immediately after receiving the command*/
-          zb_zcl_on_off_send_default_resp(0, param);
-          ret = RET_BUSY;
-        }
-      }
-/*2019-04-10 In this case we have nothing to do, just send Default Response with "Success" status*/
-      else
-      {
-        ret = RET_OK;
-      }
     }
-  }
 
-  TRACE_MSG(TRACE_ZCL1, "< zb_zcl_process_on_off_on_with_timed_off_handler ret %hx",
-      (FMT__H, ret));
-  return ret;
+    TRACE_MSG(TRACE_ZCL1, "< zb_zcl_process_on_off_on_with_timed_off_handler ret %hx",
+              (FMT__H, ret));
+    return ret;
 }
 
 /*
@@ -776,94 +778,94 @@ static zb_ret_t zb_zcl_process_on_off_on_with_timed_off_handler(zb_uint8_t param
  */
 zb_bool_t  zb_zcl_process_on_off_specific_commands(zb_uint8_t param)
 {
-  zb_bool_t processed = ZB_TRUE;
-  zb_zcl_parsed_hdr_t cmd_info;
-  zb_ret_t status = RET_OK;
+    zb_bool_t processed = ZB_TRUE;
+    zb_zcl_parsed_hdr_t cmd_info;
+    zb_ret_t status = RET_OK;
 
-  ZB_ZCL_COPY_PARSED_HEADER(param, &cmd_info);
+    ZB_ZCL_COPY_PARSED_HEADER(param, &cmd_info);
 
-  TRACE_MSG( TRACE_ZCL1,
-             "> zb_zcl_process_on_off_specific_commands: param %hd",
-             (FMT__H, param));
+    TRACE_MSG( TRACE_ZCL1,
+               "> zb_zcl_process_on_off_specific_commands: param %hd",
+               (FMT__H, param));
 
-  ZB_ASSERT(ZB_ZCL_CLUSTER_ID_ON_OFF == cmd_info.cluster_id);
-  ZB_ASSERT(ZB_ZCL_FRAME_DIRECTION_TO_SRV == cmd_info.cmd_direction);
+    ZB_ASSERT(ZB_ZCL_CLUSTER_ID_ON_OFF == cmd_info.cluster_id);
+    ZB_ASSERT(ZB_ZCL_FRAME_DIRECTION_TO_SRV == cmd_info.cmd_direction);
 
-  switch( cmd_info.cmd_id )
-  {
-  case ZB_ZCL_CMD_ON_OFF_ON_ID:
-    status = zb_zcl_process_on_off_on_handler(param);
-    break;
-  case ZB_ZCL_CMD_ON_OFF_OFF_ID:
-    status = zb_zcl_process_on_off_off_handler(param);
-    break;
-  case ZB_ZCL_CMD_ON_OFF_TOGGLE_ID:
-    status = zb_zcl_process_on_off_toggle_handler(param);
-    break;
-  case ZB_ZCL_CMD_ON_OFF_OFF_WITH_EFFECT_ID:
-    status = zb_zcl_process_on_off_off_with_effect_handler(param);
-    break;
-  case ZB_ZCL_CMD_ON_OFF_ON_WITH_RECALL_GLOBAL_SCENE_ID:
-    status = zb_zcl_process_on_off_on_with_recall_global_scene_handler(param);
-    break;
-  case ZB_ZCL_CMD_ON_OFF_ON_WITH_TIMED_OFF_ID:
-    status = zb_zcl_process_on_off_on_with_timed_off_handler(param);
-    break;
-
-  default:
-    processed = ZB_FALSE;
-    break;
-  }
-
-  if( processed )
-  {
-    if( cmd_info.disable_default_response && status == RET_OK)
+    switch ( cmd_info.cmd_id )
     {
-      TRACE_MSG( TRACE_ZCL3,
-                 "Default response disabled",
-                 (FMT__0));
-      zb_buf_free(param);
-    }
-    else if (status != RET_BUSY)
-    {
-      ZB_ZCL_SEND_DEFAULT_RESP(param,
-          ZB_ZCL_PARSED_HDR_SHORT_DATA(&cmd_info).source.u.short_addr,
-          ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
-          ZB_ZCL_PARSED_HDR_SHORT_DATA(&cmd_info).src_endpoint,
-          ZB_ZCL_PARSED_HDR_SHORT_DATA(&cmd_info).dst_endpoint,
-          cmd_info.profile_id,
-          ZB_ZCL_CLUSTER_ID_ON_OFF,
-          cmd_info.seq_number,
-          cmd_info.cmd_id,
-          status==RET_OK ? ZB_ZCL_STATUS_SUCCESS : ZB_ZCL_STATUS_INVALID_FIELD);
-    }
-  }
+    case ZB_ZCL_CMD_ON_OFF_ON_ID:
+        status = zb_zcl_process_on_off_on_handler(param);
+        break;
+    case ZB_ZCL_CMD_ON_OFF_OFF_ID:
+        status = zb_zcl_process_on_off_off_handler(param);
+        break;
+    case ZB_ZCL_CMD_ON_OFF_TOGGLE_ID:
+        status = zb_zcl_process_on_off_toggle_handler(param);
+        break;
+    case ZB_ZCL_CMD_ON_OFF_OFF_WITH_EFFECT_ID:
+        status = zb_zcl_process_on_off_off_with_effect_handler(param);
+        break;
+    case ZB_ZCL_CMD_ON_OFF_ON_WITH_RECALL_GLOBAL_SCENE_ID:
+        status = zb_zcl_process_on_off_on_with_recall_global_scene_handler(param);
+        break;
+    case ZB_ZCL_CMD_ON_OFF_ON_WITH_TIMED_OFF_ID:
+        status = zb_zcl_process_on_off_on_with_timed_off_handler(param);
+        break;
 
-  TRACE_MSG( TRACE_ZCL1,
-             "< zb_zcl_process_on_off_specific_commands: processed %d",
-             (FMT__D, processed));
-  return processed;
+    default:
+        processed = ZB_FALSE;
+        break;
+    }
+
+    if ( processed )
+    {
+        if ( cmd_info.disable_default_response && status == RET_OK)
+        {
+            TRACE_MSG( TRACE_ZCL3,
+                       "Default response disabled",
+                       (FMT__0));
+            zb_buf_free(param);
+        }
+        else if (status != RET_BUSY)
+        {
+            ZB_ZCL_SEND_DEFAULT_RESP(param,
+                                     ZB_ZCL_PARSED_HDR_SHORT_DATA(&cmd_info).source.u.short_addr,
+                                     ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
+                                     ZB_ZCL_PARSED_HDR_SHORT_DATA(&cmd_info).src_endpoint,
+                                     ZB_ZCL_PARSED_HDR_SHORT_DATA(&cmd_info).dst_endpoint,
+                                     cmd_info.profile_id,
+                                     ZB_ZCL_CLUSTER_ID_ON_OFF,
+                                     cmd_info.seq_number,
+                                     cmd_info.cmd_id,
+                                     status == RET_OK ? ZB_ZCL_STATUS_SUCCESS : ZB_ZCL_STATUS_INVALID_FIELD);
+        }
+    }
+
+    TRACE_MSG( TRACE_ZCL1,
+               "< zb_zcl_process_on_off_specific_commands: processed %d",
+               (FMT__D, processed));
+    return processed;
 }
 
 
 zb_bool_t zb_zcl_process_on_off_specific_commands_srv(zb_uint8_t param)
 {
-  if ( ZB_ZCL_GENERAL_GET_CMD_LISTS_PARAM == param )
-  {
-    ZCL_CTX().zb_zcl_cluster_cmd_list = &gs_on_off_server_cmd_list;
-    return ZB_TRUE;
-  }
-  return zb_zcl_process_on_off_specific_commands(param);
+    if ( ZB_ZCL_GENERAL_GET_CMD_LISTS_PARAM == param )
+    {
+        ZCL_CTX().zb_zcl_cluster_cmd_list = &gs_on_off_server_cmd_list;
+        return ZB_TRUE;
+    }
+    return zb_zcl_process_on_off_specific_commands(param);
 }
 
 zb_bool_t zb_zcl_process_on_off_specific_commands_cli(zb_uint8_t param)
 {
-  if ( ZB_ZCL_GENERAL_GET_CMD_LISTS_PARAM == param )
-  {
-    ZCL_CTX().zb_zcl_cluster_cmd_list = &gs_on_off_client_cmd_list;
-    return ZB_TRUE;
-  }
-  return zb_zcl_process_on_off_specific_commands(param);
+    if ( ZB_ZCL_GENERAL_GET_CMD_LISTS_PARAM == param )
+    {
+        ZCL_CTX().zb_zcl_cluster_cmd_list = &gs_on_off_client_cmd_list;
+        return ZB_TRUE;
+    }
+    return zb_zcl_process_on_off_specific_commands(param);
 }
 
 /*
@@ -874,65 +876,65 @@ zb_bool_t zb_zcl_process_on_off_specific_commands_cli(zb_uint8_t param)
  */
 void zb_zcl_on_off_invoke_user_app(zb_uint8_t param)
 {
-  zb_on_off_user_app_schedule_t* invoke_data =
-      ZB_BUF_GET_PARAM(param, zb_on_off_user_app_schedule_t);
-  zb_uint8_t on_off = invoke_data->new_value;
-  zb_uint8_t is_run_timer = invoke_data->is_run_timer;
-  zb_zcl_parsed_hdr_t cmd_info;
-  zb_ret_t result;
+    zb_on_off_user_app_schedule_t *invoke_data =
+        ZB_BUF_GET_PARAM(param, zb_on_off_user_app_schedule_t);
+    zb_uint8_t on_off = invoke_data->new_value;
+    zb_uint8_t is_run_timer = invoke_data->is_run_timer;
+    zb_zcl_parsed_hdr_t cmd_info;
+    zb_ret_t result;
 
-  TRACE_MSG(TRACE_ZCL1, "> zb_zcl_on_off_invoke_user_app param %hx",
-      (FMT__H, param));
+    TRACE_MSG(TRACE_ZCL1, "> zb_zcl_on_off_invoke_user_app param %hx",
+              (FMT__H, param));
 
-  ZB_MEMCPY(&cmd_info, &(invoke_data->cmd_info), sizeof(zb_zcl_parsed_hdr_t));
+    ZB_MEMCPY(&cmd_info, &(invoke_data->cmd_info), sizeof(zb_zcl_parsed_hdr_t));
 
-  if (ZCL_CTX().device_cb != NULL)
-  {
-    zb_zcl_device_callback_param_t *user_app_invoke_data =
-        ZB_BUF_GET_PARAM(param, zb_zcl_device_callback_param_t);
-
-    user_app_invoke_data->device_cb_id = ZB_ZCL_SET_ATTR_VALUE_CB_ID;
-    user_app_invoke_data->endpoint = ZB_ZCL_PARSED_HDR_SHORT_DATA(&cmd_info).dst_endpoint;
-    user_app_invoke_data->cb_param.set_attr_value_param.cluster_id = ZB_ZCL_CLUSTER_ID_ON_OFF;
-    user_app_invoke_data->cb_param.set_attr_value_param.attr_id = ZB_ZCL_ATTR_ON_OFF_ON_OFF_ID;
-    user_app_invoke_data->cb_param.set_attr_value_param.values.data8 = on_off;
-    user_app_invoke_data->status = RET_OK;
-    (ZCL_CTX().device_cb)(param);
-    //user_app_invoke_data = ZB_BUF_GET_PARAM(param, zb_zcl_device_callback_param_t);
-    /* TODO: check - free buffer after a call? */
-    result = user_app_invoke_data->status;
-    TRACE_MSG(TRACE_ZCL1, "result %hd", (FMT__H, result));
-  }
-  else
-  {
-    result = RET_OK;
-  }
-
-  /* Use SET_ATTRIBUTE to report attribute change if needed. */
-  ZB_ZCL_SET_ATTRIBUTE(ZB_ZCL_PARSED_HDR_SHORT_DATA(&cmd_info).dst_endpoint,
-                       ZB_ZCL_CLUSTER_ID_ON_OFF,
-                       ZB_ZCL_CLUSTER_SERVER_ROLE,
-                       ZB_ZCL_ATTR_ON_OFF_ON_OFF_ID,
-                       &on_off,
-                       ZB_FALSE);
-
-  if(is_run_timer)
-  {
-    ZB_MEMCPY(ZB_BUF_GET_PARAM(param, zb_zcl_parsed_hdr_t), &cmd_info, sizeof(cmd_info));
-    ZB_SCHEDULE_ALARM(zb_zcl_on_off_timer_handler, param, ZB_ZCL_ON_OFF_TIMER_BEACON_INTERVAL);
-/*2019-04-10 Now Server sends Default Response immediately after receiving the command*/
-    if (result == RET_OK)
+    if (ZCL_CTX().device_cb != NULL)
     {
-      zb_zcl_on_off_send_default_resp(0, param);
-    }
-  }
-  else
-  {
-    ZB_ZCL_PROCESS_COMMAND_FINISH(param, &cmd_info,
-        result==RET_OK ? ZB_ZCL_STATUS_SUCCESS : ZB_ZCL_STATUS_HW_FAIL);
-  }
+        zb_zcl_device_callback_param_t *user_app_invoke_data =
+            ZB_BUF_GET_PARAM(param, zb_zcl_device_callback_param_t);
 
-  TRACE_MSG(TRACE_ZCL1, "< zb_zcl_on_off_invoke_user_app", (FMT__0));
+        user_app_invoke_data->device_cb_id = ZB_ZCL_SET_ATTR_VALUE_CB_ID;
+        user_app_invoke_data->endpoint = ZB_ZCL_PARSED_HDR_SHORT_DATA(&cmd_info).dst_endpoint;
+        user_app_invoke_data->cb_param.set_attr_value_param.cluster_id = ZB_ZCL_CLUSTER_ID_ON_OFF;
+        user_app_invoke_data->cb_param.set_attr_value_param.attr_id = ZB_ZCL_ATTR_ON_OFF_ON_OFF_ID;
+        user_app_invoke_data->cb_param.set_attr_value_param.values.data8 = on_off;
+        user_app_invoke_data->status = RET_OK;
+        (ZCL_CTX().device_cb)(param);
+        //user_app_invoke_data = ZB_BUF_GET_PARAM(param, zb_zcl_device_callback_param_t);
+        /* TODO: check - free buffer after a call? */
+        result = user_app_invoke_data->status;
+        TRACE_MSG(TRACE_ZCL1, "result %hd", (FMT__H, result));
+    }
+    else
+    {
+        result = RET_OK;
+    }
+
+    /* Use SET_ATTRIBUTE to report attribute change if needed. */
+    ZB_ZCL_SET_ATTRIBUTE(ZB_ZCL_PARSED_HDR_SHORT_DATA(&cmd_info).dst_endpoint,
+                         ZB_ZCL_CLUSTER_ID_ON_OFF,
+                         ZB_ZCL_CLUSTER_SERVER_ROLE,
+                         ZB_ZCL_ATTR_ON_OFF_ON_OFF_ID,
+                         &on_off,
+                         ZB_FALSE);
+
+    if (is_run_timer)
+    {
+        ZB_MEMCPY(ZB_BUF_GET_PARAM(param, zb_zcl_parsed_hdr_t), &cmd_info, sizeof(cmd_info));
+        ZB_SCHEDULE_ALARM(zb_zcl_on_off_timer_handler, param, ZB_ZCL_ON_OFF_TIMER_BEACON_INTERVAL);
+        /*2019-04-10 Now Server sends Default Response immediately after receiving the command*/
+        if (result == RET_OK)
+        {
+            zb_zcl_on_off_send_default_resp(0, param);
+        }
+    }
+    else
+    {
+        ZB_ZCL_PROCESS_COMMAND_FINISH(param, &cmd_info,
+                                      result == RET_OK ? ZB_ZCL_STATUS_SUCCESS : ZB_ZCL_STATUS_HW_FAIL);
+    }
+
+    TRACE_MSG(TRACE_ZCL1, "< zb_zcl_on_off_invoke_user_app", (FMT__0));
 }
 
 #endif /* ZB_ZCL_SUPPORT_CLUSTER_ON_OFF */

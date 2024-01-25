@@ -1,12 +1,12 @@
 /**
  * @file cli.c
  * @author Rex Huang (rex.huang@rafaelmicro.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2023-07-21
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 #include <stdio.h>
 #include <string.h>
@@ -47,7 +47,7 @@ _sh_io_read(uint8_t *pBuf, uint32_t length, void *pExtra)
 {
     uint32_t byte_cnt = 0;
 
-    if(g_uart_rx_io.rd_idx != g_uart_rx_io.wr_idx)
+    if (g_uart_rx_io.rd_idx != g_uart_rx_io.wr_idx)
     {
         pBuf[byte_cnt] = g_uart_rx_io.uart_cache[g_uart_rx_io.rd_idx];
 
@@ -91,12 +91,12 @@ static void cli_task(void *pvParameters)
     g_sh_args.is_blocking = 0;
 
 
-    for(;;)
+    for (;;)
     {
-        cnt = uart_stdio_read(g_uart_rx_io.uart_cache , 0);
+        cnt = uart_stdio_read(g_uart_rx_io.uart_cache, 0);
 
-        if(cnt)
-        {            
+        if (cnt)
+        {
             g_uart_rx_io.wr_idx = (g_uart_rx_io.wr_idx + cnt) % UART_CACHE_SIZE;
 
             while (cnt--)
@@ -127,36 +127,42 @@ static int _cli_cmd_ps(int argc, char **argv, cb_shell_out_t log_out, void *pExt
     log_out("----------------------------------------------\r\n");
 
     log_out("System boot time : ");
-    if(Timer_25us_Tick > 3456000000)
-        log_out("%u D, ", (Timer_25us_Tick/3456000000));
+    if (Timer_25us_Tick > 3456000000)
+    {
+        log_out("%u D, ", (Timer_25us_Tick / 3456000000));
+    }
 
-    if(Timer_25us_Tick > 144000000)
-        log_out("%u h, ", (Timer_25us_Tick/144000000) % 24);
+    if (Timer_25us_Tick > 144000000)
+    {
+        log_out("%u h, ", (Timer_25us_Tick / 144000000) % 24);
+    }
 
-    if(Timer_25us_Tick > 2400000)
-        log_out("%u m, ", (Timer_25us_Tick/2400000) % 60);
+    if (Timer_25us_Tick > 2400000)
+    {
+        log_out("%u m, ", (Timer_25us_Tick / 2400000) % 60);
+    }
 
-    log_out("%u.%u s \r\n", ((Timer_25us_Tick/40000) % 60), ((Timer_25us_Tick/40) % 1000));
+    log_out("%u.%u s \r\n", ((Timer_25us_Tick / 40000) % 60), ((Timer_25us_Tick / 40) % 1000));
     vPortFree(pbuffer);
-  
+
     return 0;
 }
 
 int cli_init(void)
 {
     xTaskCreate(cli_task,
-            (char*)"cli",
-            SYS_CLI_TASK_STACK_SIZE / sizeof(StackType_t),
-            NULL,
-            SYS_CLI_TASK_PRIORITY,
-            NULL);        
+                (char *)"cli",
+                SYS_CLI_TASK_STACK_SIZE / sizeof(StackType_t),
+                NULL,
+                SYS_CLI_TASK_PRIORITY,
+                NULL);
 
     return 0;
 }
 
 const sh_cmd_t g_cli_cmd_ps STATIC_CLI_CMD_ATTRIBUTE =
-{ 
-    .pCmd_name    = "ps", 
-    .pDescription = "Show task and memory usage", 
+{
+    .pCmd_name    = "ps",
+    .pDescription = "Show task and memory usage",
     .cmd_exec     = _cli_cmd_ps,
 };

@@ -37,50 +37,50 @@
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
-  {
+    /* Init device, load IB values from nvram or set it to default */
+    {
 
-    ZB_INIT("zdo_2_dut");
+        ZB_INIT("zdo_2_dut");
 
-   }
+    }
 
-  /* set ieee addr */
-  ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_ieee_addr_dut);
+    /* set ieee addr */
+    ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_ieee_addr_dut);
 
-  /* become an ED */
-  ZB_BDB().bdb_primary_channel_set = TEST_BDB_PRIMARY_CHANNEL_SET;
-  ZB_BDB().bdb_mode = 1;
+    /* become an ED */
+    ZB_BDB().bdb_primary_channel_set = TEST_BDB_PRIMARY_CHANNEL_SET;
+    ZB_BDB().bdb_mode = 1;
 
-  ZB_NIB_DEVICE_TYPE() = ZB_NWK_DEVICE_TYPE_ROUTER;
-  ZB_IEEE_ADDR_COPY(ZB_AIB().trust_center_address, g_unknown_ieee_addr);
+    ZB_NIB_DEVICE_TYPE() = ZB_NWK_DEVICE_TYPE_ROUTER;
+    ZB_IEEE_ADDR_COPY(ZB_AIB().trust_center_address, g_unknown_ieee_addr);
 
-  if (zdo_dev_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    if (zdo_dev_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_buf_t *buf = ZB_BUF_FROM_REF(param);
+    zb_buf_t *buf = ZB_BUF_FROM_REF(param);
 
-  if (buf->u.hdr.status == 0)
-  {
-    TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, (int)buf->u.hdr.status));
-  }
-  zb_free_buf(buf);
+    if (buf->u.hdr.status == 0)
+    {
+        TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, (int)buf->u.hdr.status));
+    }
+    zb_free_buf(buf);
 }

@@ -49,122 +49,122 @@ static void device_annce_cb(zb_zdo_signal_device_annce_params_t *da);
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
-  ZB_INIT("zdo_1_zc");
-#if UART_CONTROL	
-	test_control_init();
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    /* Init device, load IB values from nvram or set it to default */
+    ZB_INIT("zdo_1_zc");
+#if UART_CONTROL
+    test_control_init();
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 #endif
-	
-  /* let's always be coordinator */
-  zb_cert_test_set_common_channel_settings();
-  zb_cert_test_set_zc_role();
 
-  zb_set_pan_id(0x1aaa);
+    /* let's always be coordinator */
+    zb_cert_test_set_common_channel_settings();
+    zb_cert_test_set_zc_role();
 
-  /* set ieee addr */
-  zb_set_long_address(g_ieee_addr);
+    zb_set_pan_id(0x1aaa);
 
-  /* turn off security */
-  /* zb_cert_test_set_security_level(0); */
+    /* set ieee addr */
+    zb_set_long_address(g_ieee_addr);
 
-  zb_set_max_children(1);
-  MAC_ADD_VISIBLE_LONG((zb_uint8_t*)g_zr1_addr);
+    /* turn off security */
+    /* zb_cert_test_set_security_level(0); */
 
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    zb_set_max_children(1);
+    MAC_ADD_VISIBLE_LONG((zb_uint8_t *)g_zr1_addr);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zboss_main_loop();
-  }
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  TRACE_DEINIT();
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zboss_main_loop();
+    }
 
-  MAIN_RETURN(0);
+    TRACE_DEINIT();
+
+    MAIN_RETURN(0);
 }
 
 static void start_discovery(zb_uint8_t param)
 {
-  zb_bufid_t buf = zb_buf_get_out();
-  ZVUNUSED(param);
-  TRACE_MSG(TRACE_APS3, ">>start_discovery param %hd", (FMT__H, buf));
+    zb_bufid_t buf = zb_buf_get_out();
+    ZVUNUSED(param);
+    TRACE_MSG(TRACE_APS3, ">>start_discovery param %hd", (FMT__H, buf));
 
-  {
-    /* The procedure for initiating many-to-one route discovery is outlined in sub-clause 3.6.3.5.1. */
-    //! [zb_nlme_route_discovery_request]
-    zb_nlme_route_discovery_request_t *rreq = ZB_BUF_GET_PARAM(buf, zb_nlme_route_discovery_request_t);
-    rreq->address_mode = ZB_ADDR_NO_ADDR;
-    rreq->network_addr = 0xFFFC;
-    rreq->radius = 2;
-    rreq->no_route_cache = ZB_TRUE;
-    ZB_SCHEDULE_CALLBACK(zb_nlme_route_discovery_request, buf);
-    //! [zb_nlme_route_discovery_request]
-  }
+    {
+        /* The procedure for initiating many-to-one route discovery is outlined in sub-clause 3.6.3.5.1. */
+        //! [zb_nlme_route_discovery_request]
+        zb_nlme_route_discovery_request_t *rreq = ZB_BUF_GET_PARAM(buf, zb_nlme_route_discovery_request_t);
+        rreq->address_mode = ZB_ADDR_NO_ADDR;
+        rreq->network_addr = 0xFFFC;
+        rreq->radius = 2;
+        rreq->no_route_cache = ZB_TRUE;
+        ZB_SCHEDULE_CALLBACK(zb_nlme_route_discovery_request, buf);
+        //! [zb_nlme_route_discovery_request]
+    }
 
-  TRACE_MSG(TRACE_APS3, "<<start_discovery", (FMT__0));
+    TRACE_MSG(TRACE_APS3, "<<start_discovery", (FMT__0));
 }
 
 static void device_annce_cb(zb_zdo_signal_device_annce_params_t *da)
 {
-  static zb_uint32_t count = 0;
+    static zb_uint32_t count = 0;
 
-  TRACE_MSG(TRACE_APP2, ">> device_annce_cb, da %p", (FMT__P, da));
+    TRACE_MSG(TRACE_APP2, ">> device_annce_cb, da %p", (FMT__P, da));
 
-  if (++count == 2)
-  {
-    /* All devices are joined network. Start the discovery. */
-    ZB_SCHEDULE_CALLBACK(start_discovery, 0);
-  }
+    if (++count == 2)
+    {
+        /* All devices are joined network. Start the discovery. */
+        ZB_SCHEDULE_CALLBACK(start_discovery, 0);
+    }
 
-  TRACE_MSG(TRACE_APP2, "<< device_annce_cb", (FMT__0));
+    TRACE_MSG(TRACE_APP2, "<< device_annce_cb", (FMT__0));
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_zdo_app_signal_hdr_t *sg_p = NULL;
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, &sg_p);
+    zb_zdo_app_signal_hdr_t *sg_p = NULL;
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, &sg_p);
 
-  TRACE_MSG(TRACE_APP1, "zboss_signal_handler: status %hd signal %hd",
-            (FMT__H_H, ZB_GET_APP_SIGNAL_STATUS(param), sig));
+    TRACE_MSG(TRACE_APP1, "zboss_signal_handler: status %hd signal %hd",
+              (FMT__H_H, ZB_GET_APP_SIGNAL_STATUS(param), sig));
 
-  if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
-  {
-    switch(sig)
+    if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
     {
-      case ZB_ZDO_SIGNAL_DEFAULT_START:
-        TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
+        switch (sig)
+        {
+        case ZB_ZDO_SIGNAL_DEFAULT_START:
+            TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
+            break;
+
+        case ZB_ZDO_SIGNAL_DEVICE_ANNCE:
+        {
+            zb_zdo_signal_device_annce_params_t *dev_annce_params = ZB_ZDO_SIGNAL_GET_PARAMS(sg_p, zb_zdo_signal_device_annce_params_t);
+            device_annce_cb(dev_annce_params);
+        }
         break;
 
-      case ZB_ZDO_SIGNAL_DEVICE_ANNCE:
-      {
-	zb_zdo_signal_device_annce_params_t *dev_annce_params = ZB_ZDO_SIGNAL_GET_PARAMS(sg_p, zb_zdo_signal_device_annce_params_t);
-	device_annce_cb(dev_annce_params);
-      }
-      break;
-
-      default:
-        break;
+        default:
+            break;
+        }
     }
-  }
-  else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
-  {
-    TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device start FAILED status %d",
-                        (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
-  }
+    else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
+    {
+        TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device start FAILED status %d",
+                  (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
+    }
 
-  if (param)
-  {
-    zb_buf_free(param);
-  }
+    if (param)
+    {
+        zb_buf_free(param);
+    }
 }
 

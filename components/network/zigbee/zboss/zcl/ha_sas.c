@@ -37,31 +37,31 @@ static zb_ieee_addr_t g_zb_ha_sas_default_ext_pan_id = ZB_HA_SAS_EXT_PAN_ID;
 
 void zb_ha_process_sas(void)
 {
-  TRACE_MSG(TRACE_ZCL1, "> zb_ha_process_sas", (FMT__0));
+    TRACE_MSG(TRACE_ZCL1, "> zb_ha_process_sas", (FMT__0));
 
-  /* Our stack had already set protocol version as appropriate (see
-     ZB_PROTOCOL_VERSION) */
-  /* Our stack had already set stack profile version, see ZB_STACK_PROFILE */
-  /* Startup control parameter is an indicator one, not implemented */
-  /* Config_Rejoin_Interval and Config_Max_Rejoin_Interval attributes are
-     optional, so not supported */
-  /* Master, network, and default trust center link keys are not set because
-     they are same as stack defaults. Also this point should be controlled for
-     possible changes in the future. */
-  if (!ZB_JOINED())
-  {
-    ZB_PIBCACHE_NETWORK_ADDRESS() = ZB_HA_SAS_SHORT_ADDRESS;
-    ZB_PIBCACHE_PAN_ID() = ZB_HA_SAS_PAN_ID;
-    ZB_EXTPANID_COPY(ZB_NIB_EXT_PAN_ID(), g_zb_ha_sas_default_ext_pan_id);
+    /* Our stack had already set protocol version as appropriate (see
+       ZB_PROTOCOL_VERSION) */
+    /* Our stack had already set stack profile version, see ZB_STACK_PROFILE */
+    /* Startup control parameter is an indicator one, not implemented */
+    /* Config_Rejoin_Interval and Config_Max_Rejoin_Interval attributes are
+       optional, so not supported */
+    /* Master, network, and default trust center link keys are not set because
+       they are same as stack defaults. Also this point should be controlled for
+       possible changes in the future. */
+    if (!ZB_JOINED())
+    {
+        ZB_PIBCACHE_NETWORK_ADDRESS() = ZB_HA_SAS_SHORT_ADDRESS;
+        ZB_PIBCACHE_PAN_ID() = ZB_HA_SAS_PAN_ID;
+        ZB_EXTPANID_COPY(ZB_NIB_EXT_PAN_ID(), g_zb_ha_sas_default_ext_pan_id);
 #ifndef DEBUG
-    zb_aib_channel_page_list_set_2_4GHz_mask(ZB_HA_SAS_CHANNEL_MASK); /* MMDEVSTUBS */
+        zb_aib_channel_page_list_set_2_4GHz_mask(ZB_HA_SAS_CHANNEL_MASK); /* MMDEVSTUBS */
 #endif
-    ZB_IEEE_ADDR_ZERO(ZB_AIB().trust_center_address);
-  }
-  COMM_CTX().discovery_ctx.nwk_scan_attempts = ZB_HA_SAS_SCAN_ATTEMPTS;
-  COMM_CTX().discovery_ctx.nwk_time_btwn_scans = ZB_HA_SAS_TIME_BTWN_SCANS;
+        ZB_IEEE_ADDR_ZERO(ZB_AIB().trust_center_address);
+    }
+    COMM_CTX().discovery_ctx.nwk_scan_attempts = ZB_HA_SAS_SCAN_ATTEMPTS;
+    COMM_CTX().discovery_ctx.nwk_time_btwn_scans = ZB_HA_SAS_TIME_BTWN_SCANS;
 
-  TRACE_MSG(TRACE_ZCL1, "< zb_ha_process_sas", (FMT__0));
+    TRACE_MSG(TRACE_ZCL1, "< zb_ha_process_sas", (FMT__0));
 }
 
 #endif /* defined ZB_ENABLE_HA_SAS */

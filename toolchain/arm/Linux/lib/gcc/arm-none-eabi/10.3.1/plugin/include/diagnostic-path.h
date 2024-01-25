@@ -68,31 +68,31 @@ along with GCC; see the file COPYING3.  If not see
 
 class diagnostic_event
 {
- public:
-  virtual ~diagnostic_event () {}
+public:
+    virtual ~diagnostic_event () {}
 
-  virtual location_t get_location () const = 0;
+    virtual location_t get_location () const = 0;
 
-  virtual tree get_fndecl () const = 0;
+    virtual tree get_fndecl () const = 0;
 
-  /* Stack depth, so that consumers can visualizes the interprocedural
-     calls, returns, and frame nesting.  */
-  virtual int get_stack_depth () const = 0;
+    /* Stack depth, so that consumers can visualizes the interprocedural
+       calls, returns, and frame nesting.  */
+    virtual int get_stack_depth () const = 0;
 
-  /* Get a localized (and possibly colorized) description of this event.  */
-  virtual label_text get_desc (bool can_colorize) const = 0;
+    /* Get a localized (and possibly colorized) description of this event.  */
+    virtual label_text get_desc (bool can_colorize) const = 0;
 };
 
 /* Abstract base class for getting at a sequence of events.  */
 
 class diagnostic_path
 {
- public:
-  virtual ~diagnostic_path () {}
-  virtual unsigned num_events () const = 0;
-  virtual const diagnostic_event & get_event (int idx) const = 0;
+public:
+    virtual ~diagnostic_path () {}
+    virtual unsigned num_events () const = 0;
+    virtual const diagnostic_event &get_event (int idx) const = 0;
 
-  bool interprocedural_p () const;
+    bool interprocedural_p () const;
 };
 
 /* Concrete subclasses.  */
@@ -101,24 +101,33 @@ class diagnostic_path
 
 class simple_diagnostic_event : public diagnostic_event
 {
- public:
-  simple_diagnostic_event (location_t loc, tree fndecl, int depth,
-			   const char *desc);
-  ~simple_diagnostic_event ();
+public:
+    simple_diagnostic_event (location_t loc, tree fndecl, int depth,
+                             const char *desc);
+    ~simple_diagnostic_event ();
 
-  location_t get_location () const FINAL OVERRIDE { return m_loc; }
-  tree get_fndecl () const FINAL OVERRIDE { return m_fndecl; }
-  int get_stack_depth () const FINAL OVERRIDE { return m_depth; }
-  label_text get_desc (bool) const FINAL OVERRIDE
-  {
-    return label_text::borrow (m_desc);
-  }
+    location_t get_location () const FINAL OVERRIDE
+    {
+        return m_loc;
+    }
+    tree get_fndecl () const FINAL OVERRIDE
+    {
+        return m_fndecl;
+    }
+    int get_stack_depth () const FINAL OVERRIDE
+    {
+        return m_depth;
+    }
+    label_text get_desc (bool) const FINAL OVERRIDE
+    {
+        return label_text::borrow (m_desc);
+    }
 
- private:
-  location_t m_loc;
-  tree m_fndecl;
-  int m_depth;
-  char *m_desc; // has been i18n-ed and formatted
+private:
+    location_t m_loc;
+    tree m_fndecl;
+    int m_depth;
+    char *m_desc; // has been i18n-ed and formatted
 };
 
 /* A simple implementation of diagnostic_path, as a vector of
@@ -126,22 +135,22 @@ class simple_diagnostic_event : public diagnostic_event
 
 class simple_diagnostic_path : public diagnostic_path
 {
- public:
-  simple_diagnostic_path (pretty_printer *event_pp)
-  : m_event_pp (event_pp) {}
+public:
+    simple_diagnostic_path (pretty_printer *event_pp)
+        : m_event_pp (event_pp) {}
 
-  unsigned num_events () const FINAL OVERRIDE;
-  const diagnostic_event & get_event (int idx) const FINAL OVERRIDE;
+    unsigned num_events () const FINAL OVERRIDE;
+    const diagnostic_event &get_event (int idx) const FINAL OVERRIDE;
 
-  diagnostic_event_id_t add_event (location_t loc, tree fndecl, int depth,
-				   const char *fmt, ...)
-    ATTRIBUTE_GCC_DIAG(5,6);
+    diagnostic_event_id_t add_event (location_t loc, tree fndecl, int depth,
+                                     const char *fmt, ...)
+    ATTRIBUTE_GCC_DIAG(5, 6);
 
- private:
-  auto_delete_vec<simple_diagnostic_event> m_events;
+private:
+    auto_delete_vec<simple_diagnostic_event> m_events;
 
-  /* (for use by add_event).  */
-  pretty_printer *m_event_pp;
+    /* (for use by add_event).  */
+    pretty_printer *m_event_pp;
 };
 
 extern void debug (diagnostic_path *path);

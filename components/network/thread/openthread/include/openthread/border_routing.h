@@ -240,9 +240,9 @@ otError otBorderRoutingGetNat64Prefix(otInstance *aInstance, otIp6Prefix *aPrefi
  * @retval  OT_ERROR_NONE           Successfully retrieved the favored NAT64 prefix.
  *
  */
-otError otBorderRoutingGetFavoredNat64Prefix(otInstance *       aInstance,
-                                             otIp6Prefix *      aPrefix,
-                                             otRoutePreference *aPreference);
+otError otBorderRoutingGetFavoredNat64Prefix(otInstance        *aInstance,
+        otIp6Prefix       *aPrefix,
+        otRoutePreference *aPreference);
 
 /**
  * This function initializes an `otBorderRoutingPrefixTableIterator`.
@@ -271,9 +271,9 @@ void otBorderRoutingPrefixTableInitIterator(otInstance *aInstance, otBorderRouti
  * @retval OT_ERROR_NOT_FOUND   No more entries in the table.
  *
  */
-otError otBorderRoutingGetNextPrefixTableEntry(otInstance *                        aInstance,
-                                               otBorderRoutingPrefixTableIterator *aIterator,
-                                               otBorderRoutingPrefixTableEntry *   aEntry);
+otError otBorderRoutingGetNextPrefixTableEntry(otInstance                         *aInstance,
+        otBorderRoutingPrefixTableIterator *aIterator,
+        otBorderRoutingPrefixTableEntry    *aEntry);
 
 /**
  * @}

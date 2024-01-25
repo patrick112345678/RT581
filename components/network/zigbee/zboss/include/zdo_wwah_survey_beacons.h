@@ -54,7 +54,7 @@ typedef zb_zcl_wwah_beacon_survey_t zb_zdo_beacon_survey_parent_info_t;
  */
 typedef ZB_PACKED_PRE struct zb_zdo_beacon_survey_configuration_t
 {
-  zb_nlme_beacon_survey_scan_request_t params;
+    zb_nlme_beacon_survey_scan_request_t params;
 }
 ZB_PACKED_STRUCT zb_zdo_beacon_survey_configuration_t;
 
@@ -66,17 +66,17 @@ ZB_PACKED_STRUCT zb_zdo_beacon_survey_configuration_t;
  */
 typedef ZB_PACKED_PRE struct zb_zdo_beacon_survey_results_t
 {
-  /*!< Number of pontential parents from the current Zigbee Network */
-  zb_uint8_t num_potential_parents_current_zbn;
+    /*!< Number of pontential parents from the current Zigbee Network */
+    zb_uint8_t num_potential_parents_current_zbn;
 
-  /*!< Number of detected non-Zigbee networks */
-  zb_uint8_t num_non_zbn;
+    /*!< Number of detected non-Zigbee networks */
+    zb_uint8_t num_non_zbn;
 
-  /*!< Number of detected ZigBee networks */
-  zb_uint8_t num_zbn;
+    /*!< Number of detected ZigBee networks */
+    zb_uint8_t num_zbn;
 
-  /*!< Total Beacons Surveyed */
-  zb_uint8_t total_beacons_surveyed;
+    /*!< Total Beacons Surveyed */
+    zb_uint8_t total_beacons_surveyed;
 }
 ZB_PACKED_STRUCT zb_zdo_beacon_survey_results_t;
 
@@ -90,12 +90,12 @@ ZB_PACKED_STRUCT zb_zdo_beacon_survey_results_t;
  */
 typedef ZB_PACKED_PRE struct zb_zdo_beacon_survey_potential_parents_t
 {
-  /*!< Pointer to the @zb_zdo_beacon_survey_parent_info_t list */
-  zb_uint8_t *parents_info_ptr;
-  /*!< Short address of the our parent (0xffff for Routers) */
-  zb_uint16_t current_parent;
-  /*!< Count of potential parents (valid range [0;5]) */
-  zb_uint8_t count_potential_parents;
+    /*!< Pointer to the @zb_zdo_beacon_survey_parent_info_t list */
+    zb_uint8_t *parents_info_ptr;
+    /*!< Short address of the our parent (0xffff for Routers) */
+    zb_uint16_t current_parent;
+    /*!< Count of potential parents (valid range [0;5]) */
+    zb_uint8_t count_potential_parents;
 }
 ZB_PACKED_STRUCT zb_zdo_beacon_survey_potential_parents_t;
 
@@ -110,12 +110,12 @@ ZB_PACKED_STRUCT zb_zdo_beacon_survey_potential_parents_t;
  */
 typedef ZB_PACKED_PRE struct zb_zdo_beacon_survey_resp_params_s
 {
-  /*!< R23, I.3.5 Potential Parents TLV */
-  zb_zdo_beacon_survey_potential_parents_t parents;
-  /*!< I.3.3 Beacon Survey Configuration TLV */
-  zb_zdo_beacon_survey_configuration_t configuration;
-  /*!< R23, I.3.4 Beacon Survey Results TLV */
-  zb_zdo_beacon_survey_results_t results;
+    /*!< R23, I.3.5 Potential Parents TLV */
+    zb_zdo_beacon_survey_potential_parents_t parents;
+    /*!< I.3.3 Beacon Survey Configuration TLV */
+    zb_zdo_beacon_survey_configuration_t configuration;
+    /*!< R23, I.3.4 Beacon Survey Results TLV */
+    zb_zdo_beacon_survey_results_t results;
 }
 ZB_PACKED_STRUCT zb_zdo_beacon_survey_resp_params_t;
 
@@ -140,8 +140,8 @@ zb_ret_t zdo_wwah_start_survey_beacons(zb_uint8_t param);
  *  @param beacon_payload_ptr - pointer to the @zb_mac_beacon_payload_t
  */
 void zdo_wwah_process_beacon_info(
-  zb_mac_beacon_notify_indication_t *beacon_noti_ind_ptr,
-  zb_mac_beacon_payload_t *beacon_payload_ptr);
+    zb_mac_beacon_notify_indication_t *beacon_noti_ind_ptr,
+    zb_mac_beacon_payload_t *beacon_payload_ptr);
 
 /**
  *  @brief Send 'Survey Beacons Response' command

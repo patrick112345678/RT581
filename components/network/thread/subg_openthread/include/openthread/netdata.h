@@ -238,8 +238,8 @@ otError otNetDataGetNextService(otInstance *aInstance, otNetworkDataIterator *aI
  *
  */
 otError otNetDataGetNextLowpanContextInfo(otInstance            *aInstance,
-                                          otNetworkDataIterator *aIterator,
-                                          otLowpanContextInfo   *aContextInfo);
+        otNetworkDataIterator *aIterator,
+        otLowpanContextInfo   *aContextInfo);
 
 /**
  * Get the Network Data Version.
@@ -289,7 +289,7 @@ struct otJoinerDiscerner;
  *
  */
 otError otNetDataSteeringDataCheckJoinerWithDiscerner(otInstance                     *aInstance,
-                                                      const struct otJoinerDiscerner *aDiscerner);
+        const struct otJoinerDiscerner *aDiscerner);
 
 /**
  * Check whether a given Prefix can act as a valid OMR prefix and also the Leader's Network Data contains this prefix.

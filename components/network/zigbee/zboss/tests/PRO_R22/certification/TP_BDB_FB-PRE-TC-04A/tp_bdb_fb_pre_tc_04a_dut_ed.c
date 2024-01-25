@@ -55,13 +55,13 @@ static zb_ieee_addr_t g_ieee_addr_dut = IEEE_ADDR_DUT;
 /* Basic cluster attributes data */
 static zb_uint8_t attr_zcl_version_epx[2]  =
 {
-  ZB_ZCL_BASIC_ZCL_VERSION_DEFAULT_VALUE,
-  ZB_ZCL_BASIC_ZCL_VERSION_DEFAULT_VALUE
+    ZB_ZCL_BASIC_ZCL_VERSION_DEFAULT_VALUE,
+    ZB_ZCL_BASIC_ZCL_VERSION_DEFAULT_VALUE
 };
 static zb_uint8_t attr_power_source_epx[2] =
 {
-  ZB_ZCL_BASIC_POWER_SOURCE_DEFAULT_VALUE,
-  ZB_ZCL_BASIC_POWER_SOURCE_DEFAULT_VALUE
+    ZB_ZCL_BASIC_POWER_SOURCE_DEFAULT_VALUE,
+    ZB_ZCL_BASIC_POWER_SOURCE_DEFAULT_VALUE
 };
 /* Identify cluster attributes data */
 static zb_uint16_t attr_identify_time_epx[2];
@@ -81,7 +81,7 @@ ZB_ZCL_DECLARE_IDENTIFY_ATTRIB_LIST(fb_pre_tc_04a_dut_ed_identify_attr_list_ep2,
                                     &attr_identify_time_epx[1]);
 
 ZB_ZCL_DECLARE_TEMP_MEASUREMENT_ATTRIB_LIST(fb_pre_tc_04a_dut_ed_temp_meas_attr_list_ep2,
-                                            &attr_temp_value, NULL, NULL, NULL);
+        &attr_temp_value, NULL, NULL, NULL);
 
 /********************* Declare device **************************/
 DECLARE_TARGET_CLUSTER_LIST_EP1(fb_pre_tc_04a_dut_ed_target_clusters_ep1,
@@ -114,69 +114,69 @@ static void trigger_fb_target(zb_uint8_t unused);
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("zdo_dut");
-#if UART_CONTROL	
-	test_control_init();
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    ZB_INIT("zdo_dut");
+#if UART_CONTROL
+    test_control_init();
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 #endif
 
 
-  zb_set_long_address(g_ieee_addr_dut);
+    zb_set_long_address(g_ieee_addr_dut);
 
-  zb_set_network_ed_role((1l << TEST_CHANNEL));
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    zb_set_network_ed_role((1l << TEST_CHANNEL));
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  ZB_AF_REGISTER_DEVICE_CTX(&fb_pre_tc_04a_dut_ed_target_device_ctx);
+    ZB_AF_REGISTER_DEVICE_CTX(&fb_pre_tc_04a_dut_ed_target_device_ctx);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 
 static void trigger_fb_target(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
-  ZB_BDB().bdb_commissioning_time = FB_DURATION;
-  zb_bdb_finding_binding_target(DUT_ENDPOINT1);
+    ZVUNUSED(unused);
+    ZB_BDB().bdb_commissioning_time = FB_DURATION;
+    zb_bdb_finding_binding_target(DUT_ENDPOINT1);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  switch (sig)
-  {
+    switch (sig)
+    {
     case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      TRACE_MSG(TRACE_APS1, "Device started, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        ZB_SCHEDULE_ALARM(trigger_fb_target, 0, DUT_FB_START_DELAY);
-      }
-      break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
+        TRACE_MSG(TRACE_APS1, "Device started, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            ZB_SCHEDULE_ALARM(trigger_fb_target, 0, DUT_FB_START_DELAY);
+        }
+        break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
 
     default:
-      TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
-      break;
-  }
+        TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 /*! @} */

@@ -51,7 +51,7 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 # define ASM_FORMAT_PRIVATE_NAME(OUTPUT, NAME, LABELNO) \
   do { const char *const name_ = (NAME); \
        char *const output_ = (OUTPUT) = \
-	 (char *) alloca (strlen (name_) + 32); \
+     (char *) alloca (strlen (name_) + 32); \
        sprintf (output_, ASM_PN_FORMAT, name_, (unsigned long)(LABELNO)); \
   } while (0)
 #endif
@@ -60,51 +60,51 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 
 #ifndef ASM_OUTPUT_ASCII
 #define ASM_OUTPUT_ASCII(MYFILE, MYSTRING, MYLENGTH) \
-  do {									      \
-    FILE *_hide_asm_out_file = (MYFILE);				      \
-    const unsigned char *_hide_p = (const unsigned char *) (MYSTRING);	      \
-    int _hide_thissize = (MYLENGTH);					      \
-    {									      \
-      FILE *asm_out_file = _hide_asm_out_file;				      \
-      const unsigned char *p = _hide_p;					      \
-      int thissize = _hide_thissize;					      \
-      int i;								      \
-      fprintf (asm_out_file, "\t.ascii \"");				      \
-									      \
-      for (i = 0; i < thissize; i++)					      \
-	{								      \
-	  int c = p[i];			   				      \
-	  if (c == '\"' || c == '\\')					      \
-	    putc ('\\', asm_out_file);					      \
-	  if (ISPRINT (c))						      \
-	    putc (c, asm_out_file);					      \
-	  else								      \
-	    {								      \
-	      fprintf (asm_out_file, "\\%o", c);			      \
-	      /* After an octal-escape, if a digit follows,		      \
-		 terminate one string constant and start another.	      \
-		 The VAX assembler fails to stop reading the escape	      \
-		 after three digits, so this is the only way we		      \
-		 can get it to parse the data properly.  */		      \
-	      if (i < thissize - 1 && ISDIGIT (p[i + 1]))		      \
-		fprintf (asm_out_file, "\"\n\t.ascii \"");		      \
-	  }								      \
-	}								      \
-      fprintf (asm_out_file, "\"\n");					      \
-    }									      \
-  }									      \
+  do {                                        \
+    FILE *_hide_asm_out_file = (MYFILE);                      \
+    const unsigned char *_hide_p = (const unsigned char *) (MYSTRING);        \
+    int _hide_thissize = (MYLENGTH);                          \
+    {                                         \
+      FILE *asm_out_file = _hide_asm_out_file;                    \
+      const unsigned char *p = _hide_p;                       \
+      int thissize = _hide_thissize;                          \
+      int i;                                      \
+      fprintf (asm_out_file, "\t.ascii \"");                      \
+                                          \
+      for (i = 0; i < thissize; i++)                          \
+    {                                     \
+      int c = p[i];                               \
+      if (c == '\"' || c == '\\')                         \
+        putc ('\\', asm_out_file);                        \
+      if (ISPRINT (c))                            \
+        putc (c, asm_out_file);                       \
+      else                                    \
+        {                                     \
+          fprintf (asm_out_file, "\\%o", c);                  \
+          /* After an octal-escape, if a digit follows,           \
+         terminate one string constant and start another.         \
+         The VAX assembler fails to stop reading the escape       \
+         after three digits, so this is the only way we           \
+         can get it to parse the data properly.  */           \
+          if (i < thissize - 1 && ISDIGIT (p[i + 1]))             \
+        fprintf (asm_out_file, "\"\n\t.ascii \"");            \
+      }                                   \
+    }                                     \
+      fprintf (asm_out_file, "\"\n");                         \
+    }                                         \
+  }                                       \
   while (0)
 #endif
 
 /* This is how we tell the assembler to equate two values.  */
 #ifdef SET_ASM_OP
 #ifndef ASM_OUTPUT_DEF
-#define ASM_OUTPUT_DEF(FILE,LABEL1,LABEL2)				\
- do {	fprintf ((FILE), "%s", SET_ASM_OP);				\
-	assemble_name (FILE, LABEL1);					\
-	fprintf (FILE, ",");						\
-	assemble_name (FILE, LABEL2);					\
-	fprintf (FILE, "\n");						\
+#define ASM_OUTPUT_DEF(FILE,LABEL1,LABEL2)              \
+ do {   fprintf ((FILE), "%s", SET_ASM_OP);             \
+    assemble_name (FILE, LABEL1);                   \
+    fprintf (FILE, ",");                        \
+    assemble_name (FILE, LABEL2);                   \
+    fprintf (FILE, "\n");                       \
   } while (0)
 #endif
 #endif
@@ -118,14 +118,14 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 #endif
 
 #if defined (HAVE_AS_TLS) && !defined (ASM_OUTPUT_TLS_COMMON)
-#define ASM_OUTPUT_TLS_COMMON(FILE, DECL, NAME, SIZE)			\
-  do									\
-    {									\
-      fprintf ((FILE), "\t%s\t", TLS_COMMON_ASM_OP);			\
-      assemble_name ((FILE), (NAME));					\
-      fprintf ((FILE), "," HOST_WIDE_INT_PRINT_UNSIGNED",%u\n",		\
-	       (SIZE), DECL_ALIGN (DECL) / BITS_PER_UNIT);		\
-    }									\
+#define ASM_OUTPUT_TLS_COMMON(FILE, DECL, NAME, SIZE)           \
+  do                                    \
+    {                                   \
+      fprintf ((FILE), "\t%s\t", TLS_COMMON_ASM_OP);            \
+      assemble_name ((FILE), (NAME));                   \
+      fprintf ((FILE), "," HOST_WIDE_INT_PRINT_UNSIGNED",%u\n",     \
+           (SIZE), DECL_ALIGN (DECL) / BITS_PER_UNIT);      \
+    }                                   \
   while (0)
 #endif
 
@@ -140,9 +140,9 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 
 #ifndef ASM_OUTPUT_LABEL
 #define ASM_OUTPUT_LABEL(FILE,NAME) \
-  do {						\
-    assemble_name ((FILE), (NAME));		\
-    fputs (":\n", (FILE));			\
+  do {                      \
+    assemble_name ((FILE), (NAME));     \
+    fputs (":\n", (FILE));          \
   } while (0)
 #endif
 
@@ -156,10 +156,10 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 
 /* Output the definition of a compiler-generated label named NAME.  */
 #ifndef ASM_OUTPUT_INTERNAL_LABEL
-#define ASM_OUTPUT_INTERNAL_LABEL(FILE,NAME)	\
-  do {						\
-    assemble_name_raw ((FILE), (NAME));		\
-    fputs (":\n", (FILE));			\
+#define ASM_OUTPUT_INTERNAL_LABEL(FILE,NAME)    \
+  do {                      \
+    assemble_name_raw ((FILE), (NAME));     \
+    fputs (":\n", (FILE));          \
   } while (0)
 #endif
 
@@ -167,9 +167,9 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 
 #ifndef ASM_OUTPUT_LABELREF
 #define ASM_OUTPUT_LABELREF(FILE,NAME)  \
-  do {							\
-    fputs (user_label_prefix, (FILE));			\
-    fputs ((NAME), (FILE));				\
+  do {                          \
+    fputs (user_label_prefix, (FILE));          \
+    fputs ((NAME), (FILE));             \
   } while (0)
 #endif
 
@@ -185,13 +185,13 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 /* This is how we tell the assembler that a symbol is weak.  */
 #ifndef ASM_OUTPUT_WEAK_ALIAS
 #if defined (ASM_WEAKEN_LABEL) && defined (ASM_OUTPUT_DEF)
-#define ASM_OUTPUT_WEAK_ALIAS(STREAM, NAME, VALUE)	\
-  do							\
-    {							\
-      ASM_WEAKEN_LABEL (STREAM, NAME);			\
-      if (VALUE)					\
-        ASM_OUTPUT_DEF (STREAM, NAME, VALUE);		\
-    }							\
+#define ASM_OUTPUT_WEAK_ALIAS(STREAM, NAME, VALUE)  \
+  do                            \
+    {                           \
+      ASM_WEAKEN_LABEL (STREAM, NAME);          \
+      if (VALUE)                    \
+        ASM_OUTPUT_DEF (STREAM, NAME, VALUE);       \
+    }                           \
   while (0)
 #endif
 #endif
@@ -204,15 +204,15 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
    the latter is referenced directly, a strong reference prevails.  */
 #ifndef ASM_OUTPUT_WEAKREF
 #if defined HAVE_GAS_WEAKREF
-#define ASM_OUTPUT_WEAKREF(FILE, DECL, NAME, VALUE)			\
-  do									\
-    {									\
-      fprintf ((FILE), "\t.weakref\t");					\
-      assemble_name ((FILE), (NAME));					\
-      fprintf ((FILE), ",");						\
-      assemble_name ((FILE), (VALUE));					\
-      fprintf ((FILE), "\n");						\
-    }									\
+#define ASM_OUTPUT_WEAKREF(FILE, DECL, NAME, VALUE)         \
+  do                                    \
+    {                                   \
+      fprintf ((FILE), "\t.weakref\t");                 \
+      assemble_name ((FILE), (NAME));                   \
+      fprintf ((FILE), ",");                        \
+      assemble_name ((FILE), (VALUE));                  \
+      fprintf ((FILE), "\n");                       \
+    }                                   \
   while (0)
 #endif
 #endif
@@ -220,15 +220,15 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 /* How to emit a .type directive.  */
 #ifndef ASM_OUTPUT_TYPE_DIRECTIVE
 #if defined TYPE_ASM_OP && defined TYPE_OPERAND_FMT
-#define ASM_OUTPUT_TYPE_DIRECTIVE(STREAM, NAME, TYPE)	\
-  do							\
-    {							\
-      fputs (TYPE_ASM_OP, STREAM);			\
-      assemble_name (STREAM, NAME);			\
-      fputs (", ", STREAM);				\
-      fprintf (STREAM, TYPE_OPERAND_FMT, TYPE);		\
-      putc ('\n', STREAM);				\
-    }							\
+#define ASM_OUTPUT_TYPE_DIRECTIVE(STREAM, NAME, TYPE)   \
+  do                            \
+    {                           \
+      fputs (TYPE_ASM_OP, STREAM);          \
+      assemble_name (STREAM, NAME);         \
+      fputs (", ", STREAM);             \
+      fprintf (STREAM, TYPE_OPERAND_FMT, TYPE);     \
+      putc ('\n', STREAM);              \
+    }                           \
   while (0)
 #endif
 #endif
@@ -236,25 +236,25 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 /* How to emit a .size directive.  */
 #ifndef ASM_OUTPUT_SIZE_DIRECTIVE
 #ifdef SIZE_ASM_OP
-#define ASM_OUTPUT_SIZE_DIRECTIVE(STREAM, NAME, SIZE)	\
-  do							\
-    {							\
-      HOST_WIDE_INT size_ = (SIZE);			\
-      fputs (SIZE_ASM_OP, STREAM);			\
-      assemble_name (STREAM, NAME);			\
+#define ASM_OUTPUT_SIZE_DIRECTIVE(STREAM, NAME, SIZE)   \
+  do                            \
+    {                           \
+      HOST_WIDE_INT size_ = (SIZE);         \
+      fputs (SIZE_ASM_OP, STREAM);          \
+      assemble_name (STREAM, NAME);         \
       fprintf (STREAM, ", " HOST_WIDE_INT_PRINT_DEC "\n", size_); \
-    }							\
+    }                           \
   while (0)
 
-#define ASM_OUTPUT_MEASURED_SIZE(STREAM, NAME)		\
-  do							\
-    {							\
-      fputs (SIZE_ASM_OP, STREAM);			\
-      assemble_name (STREAM, NAME);			\
-      fputs (", .-", STREAM);				\
-      assemble_name (STREAM, NAME);			\
-      putc ('\n', STREAM);				\
-    }							\
+#define ASM_OUTPUT_MEASURED_SIZE(STREAM, NAME)      \
+  do                            \
+    {                           \
+      fputs (SIZE_ASM_OP, STREAM);          \
+      assemble_name (STREAM, NAME);         \
+      fputs (", .-", STREAM);               \
+      assemble_name (STREAM, NAME);         \
+      putc ('\n', STREAM);              \
+    }                           \
   while (0)
 
 #endif
@@ -413,9 +413,9 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
    registers.  */
 #ifndef DWARF_FRAME_RETURN_COLUMN
 #ifdef PC_REGNUM
-#define DWARF_FRAME_RETURN_COLUMN	DWARF_FRAME_REGNUM (PC_REGNUM)
+#define DWARF_FRAME_RETURN_COLUMN   DWARF_FRAME_REGNUM (PC_REGNUM)
 #else
-#define DWARF_FRAME_RETURN_COLUMN	DWARF_FRAME_REGISTERS
+#define DWARF_FRAME_RETURN_COLUMN   DWARF_FRAME_REGISTERS
 #endif
 #endif
 
@@ -605,7 +605,7 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 
 /* WCHAR_TYPE gets overridden by -fshort-wchar.  */
 #define MODIFIED_WCHAR_TYPE \
-	(flag_short_wchar ? "short unsigned int" : WCHAR_TYPE)
+    (flag_short_wchar ? "short unsigned int" : WCHAR_TYPE)
 
 #ifndef PTRDIFF_TYPE
 #define PTRDIFF_TYPE "long int"
@@ -616,19 +616,19 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 #endif
 
 #ifndef INTMAX_TYPE
-#define INTMAX_TYPE ((INT_TYPE_SIZE == LONG_LONG_TYPE_SIZE)	\
-		     ? "int"					\
-		     : ((LONG_TYPE_SIZE == LONG_LONG_TYPE_SIZE)	\
-			? "long int"				\
-			: "long long int"))
+#define INTMAX_TYPE ((INT_TYPE_SIZE == LONG_LONG_TYPE_SIZE) \
+             ? "int"                    \
+             : ((LONG_TYPE_SIZE == LONG_LONG_TYPE_SIZE) \
+            ? "long int"                \
+            : "long long int"))
 #endif
 
 #ifndef UINTMAX_TYPE
-#define UINTMAX_TYPE ((INT_TYPE_SIZE == LONG_LONG_TYPE_SIZE)	\
-		     ? "unsigned int"				\
-		     : ((LONG_TYPE_SIZE == LONG_LONG_TYPE_SIZE)	\
-			? "long unsigned int"			\
-			: "long long unsigned int"))
+#define UINTMAX_TYPE ((INT_TYPE_SIZE == LONG_LONG_TYPE_SIZE)    \
+             ? "unsigned int"               \
+             : ((LONG_TYPE_SIZE == LONG_LONG_TYPE_SIZE) \
+            ? "long unsigned int"           \
+            : "long long unsigned int"))
 #endif
 
 
@@ -793,9 +793,9 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 /* Supply a default definition for PUSH_ARGS.  */
 #ifndef PUSH_ARGS
 #ifdef PUSH_ROUNDING
-#define PUSH_ARGS	!ACCUMULATE_OUTGOING_ARGS
+#define PUSH_ARGS   !ACCUMULATE_OUTGOING_ARGS
 #else
-#define PUSH_ARGS	0
+#define PUSH_ARGS   0
 #endif
 #endif
 
@@ -1053,11 +1053,11 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 
 /* Force minimum alignment to be able to use the least significant bits
    for distinguishing descriptor addresses from code addresses.  */
-#define FUNCTION_ALIGNMENT(ALIGN)					\
-  (lang_hooks.custom_function_descriptors				\
-   && targetm.calls.custom_function_descriptors > 0			\
-   ? MAX ((ALIGN),						\
-	  2 * targetm.calls.custom_function_descriptors * BITS_PER_UNIT)\
+#define FUNCTION_ALIGNMENT(ALIGN)                   \
+  (lang_hooks.custom_function_descriptors               \
+   && targetm.calls.custom_function_descriptors > 0         \
+   ? MAX ((ALIGN),                      \
+      2 * targetm.calls.custom_function_descriptors * BITS_PER_UNIT)\
    : (ALIGN))
 
 /* Assume that trampolines need function alignment.  */
@@ -1404,11 +1404,11 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 #ifdef STACK_CHECK_PROTECT
 #define STACK_OLD_CHECK_PROTECT STACK_CHECK_PROTECT
 #else
-#define STACK_OLD_CHECK_PROTECT						\
- (!global_options.x_flag_exceptions					\
-  ? 75 * UNITS_PER_WORD							\
-  : targetm_common.except_unwind_info (&global_options) == UI_SJLJ	\
-    ? 4 * 1024								\
+#define STACK_OLD_CHECK_PROTECT                     \
+ (!global_options.x_flag_exceptions                 \
+  ? 75 * UNITS_PER_WORD                         \
+  : targetm_common.except_unwind_info (&global_options) == UI_SJLJ  \
+    ? 4 * 1024                              \
     : 8 * 1024)
 #endif
 
@@ -1416,11 +1416,11 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
    overflow detection.  The default value conveys an estimate of the amount
    of stack required to propagate an exception.  */
 #ifndef STACK_CHECK_PROTECT
-#define STACK_CHECK_PROTECT						\
- (!global_options.x_flag_exceptions					\
-  ? 4 * 1024								\
-  : targetm_common.except_unwind_info (&global_options) == UI_SJLJ	\
-    ? 8 * 1024								\
+#define STACK_CHECK_PROTECT                     \
+ (!global_options.x_flag_exceptions                 \
+  ? 4 * 1024                                \
+  : targetm_common.except_unwind_info (&global_options) == UI_SJLJ  \
+    ? 8 * 1024                              \
     : 12 * 1024)
 #endif
 

@@ -56,27 +56,27 @@ exception_ctxt_t __exi_ctxt;
 static int __uartstdio_rx_callback(void *p_arg)
 {
     uint32_t len = 0;
-    if(g_uart_rx_io.start >= g_uart_rx_io.end) 
+    if (g_uart_rx_io.start >= g_uart_rx_io.end)
     {
-        g_uart_rx_io.start += hosal_uart_receive(p_arg, g_uart_rx_io.uart_cache + g_uart_rx_io.start, 
-                                STDIO_UART_BUFF_SIZE - g_uart_rx_io.start - 1);
-        if(g_uart_rx_io.start == (STDIO_UART_BUFF_SIZE-1))
+        g_uart_rx_io.start += hosal_uart_receive(p_arg, g_uart_rx_io.uart_cache + g_uart_rx_io.start,
+                              STDIO_UART_BUFF_SIZE - g_uart_rx_io.start - 1);
+        if (g_uart_rx_io.start == (STDIO_UART_BUFF_SIZE - 1))
         {
-            g_uart_rx_io.start = hosal_uart_receive(p_arg, g_uart_rx_io.uart_cache, 
-                                (STDIO_UART_BUFF_SIZE + g_uart_rx_io.end -1) % STDIO_UART_BUFF_SIZE);
+            g_uart_rx_io.start = hosal_uart_receive(p_arg, g_uart_rx_io.uart_cache,
+                                                    (STDIO_UART_BUFF_SIZE + g_uart_rx_io.end - 1) % STDIO_UART_BUFF_SIZE);
         }
     }
-    else if (((g_uart_rx_io.start + 1) % STDIO_UART_BUFF_SIZE) != g_uart_rx_io.end) 
+    else if (((g_uart_rx_io.start + 1) % STDIO_UART_BUFF_SIZE) != g_uart_rx_io.end)
     {
-        g_uart_rx_io.start += hosal_uart_receive(p_arg, g_uart_rx_io.uart_cache, 
-            g_uart_rx_io.end - g_uart_rx_io.start - 1);
+        g_uart_rx_io.start += hosal_uart_receive(p_arg, g_uart_rx_io.uart_cache,
+                              g_uart_rx_io.end - g_uart_rx_io.start - 1);
     }
 
-    if (g_uart_rx_io.start != g_uart_rx_io.end) 
+    if (g_uart_rx_io.start != g_uart_rx_io.end)
     {
 
         len = (g_uart_rx_io.start + STDIO_UART_BUFF_SIZE - g_uart_rx_io.end) % STDIO_UART_BUFF_SIZE;
-        if (g_uart_rx_io.recvLen != len) 
+        if (g_uart_rx_io.recvLen != len)
         {
             g_uart_rx_io.recvLen = len;
         }
@@ -94,15 +94,19 @@ int uart_stdio_read(uint8_t *p_data, uint32_t length)
     uint32_t byte_cnt = 0;
     enter_critical_section();
 
-    if (g_uart_rx_io.start != g_uart_rx_io.end) {
-        if (g_uart_rx_io.start > g_uart_rx_io.end) {
+    if (g_uart_rx_io.start != g_uart_rx_io.end)
+    {
+        if (g_uart_rx_io.start > g_uart_rx_io.end)
+        {
             memcpy(p_data, g_uart_rx_io.uart_cache + g_uart_rx_io.end, g_uart_rx_io.start - g_uart_rx_io.end);
             g_uart_rx_io.end = g_uart_rx_io.start;
         }
-        else {
+        else
+        {
             memcpy(p_data, g_uart_rx_io.uart_cache + g_uart_rx_io.end, STDIO_UART_BUFF_SIZE - g_uart_rx_io.end);
             g_uart_rx_io.end = STDIO_UART_BUFF_SIZE - 1;
-            if (g_uart_rx_io.start) {
+            if (g_uart_rx_io.start)
+            {
                 memcpy(p_data, g_uart_rx_io.uart_cache, g_uart_rx_io.start);
                 g_uart_rx_io.end = (STDIO_UART_BUFF_SIZE + g_uart_rx_io.start - 1) % STDIO_UART_BUFF_SIZE;
             }
@@ -119,7 +123,7 @@ int uart_stdio_read(uint8_t *p_data, uint32_t length)
 
 void uart_stdio_en_int_mode(void)
 {
-    hosal_uart_ioctl(&uartstdio, HOSAL_UART_MODE_SET, (void *)HOSAL_UART_MODE_INT_RX);   
+    hosal_uart_ioctl(&uartstdio, HOSAL_UART_MODE_SET, (void *)HOSAL_UART_MODE_INT_RX);
 }
 
 int uart_stdio_init(void)
@@ -131,7 +135,7 @@ int uart_stdio_init(void)
     hosal_uart_callback_set(&uartstdio, HOSAL_UART_RX_CALLBACK, __uartstdio_rx_callback, &uartstdio);
 
     /* Configure UART to interrupt mode */
-    hosal_uart_ioctl(&uartstdio, HOSAL_UART_MODE_SET, (void *)HOSAL_UART_MODE_INT_RX);    
+    hosal_uart_ioctl(&uartstdio, HOSAL_UART_MODE_SET, (void *)HOSAL_UART_MODE_INT_RX);
 
     return 0;
 }
@@ -279,10 +283,10 @@ void HardFault_Handler(void)
     __asm volatile(
         "   movs r0, #4\n"
         "   mov r1, LR\n"
-        "   tst r0, r1\n" 
+        "   tst r0, r1\n"
         "   mrs r0, psp\n"
         "   mrs r0, msp\n"
         "   mov r1, LR\n"
         "   b my_fault_handler_c\n"
-        );
+    );
 }

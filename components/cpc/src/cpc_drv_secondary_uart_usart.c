@@ -131,7 +131,10 @@ void cpc_drv_get_capabilities(cpc_drv_capabilities_t *capabilities)
         return;
     }
 
-    *capabilities = (cpc_drv_capabilities_t){0};
+    *capabilities = (cpc_drv_capabilities_t)
+    {
+        0
+    };
     capabilities->preprocess_hdlc_header = true;
     capabilities->use_raw_rx_buffer = true;
     capabilities->uart_flowcontrol = false;
@@ -210,7 +213,7 @@ status_t cpc_drv_transmit_data(cpc_buffer_handle_t *buffer_handle, uint16_t payl
 
         p_tx_data = pvPortMalloc(tx_len);
 
-        if(p_tx_data)
+        if (p_tx_data)
         {
             memcpy(p_tx_data, entry->handle->hdlc_header, CPC_HDLC_HEADER_RAW_SIZE);
             memcpy(&p_tx_data[7], entry->handle->data, payload_tx_len);
@@ -223,17 +226,17 @@ status_t cpc_drv_transmit_data(cpc_buffer_handle_t *buffer_handle, uint16_t payl
 
         p_tx_data = pvPortMalloc(tx_len);
 
-        if(p_tx_data)
+        if (p_tx_data)
         {
             memcpy(p_tx_data, entry->handle->hdlc_header, CPC_HDLC_HEADER_RAW_SIZE);
         }
     }
 
-    if(p_tx_data)
+    if (p_tx_data)
     {
         tx_ready = false;
 
-        cpc_uart_data_send(p_tx_data, tx_len);        
+        cpc_uart_data_send(p_tx_data, tx_len);
     }
 
 
@@ -291,7 +294,9 @@ void cpc_drv_uart_push_data(uint8_t *p_data, uint16_t length)
 {
     void *buffer_ptr = NULL;
     if (cpc_get_raw_rx_buffer(&buffer_ptr) != CPC_STATUS_OK)
+    {
         return;
+    }
 
     memcpy((uint8_t *)buffer_ptr, p_data, length);
 

@@ -37,12 +37,12 @@ static zb_uint8_t  g_oob_key[] = TEST_OOB_KEY;
 /*! Program states according to test scenario */
 enum test_states_e
 {
-  TEST_STATE_INITIATE,
-  TEST_STATE_SET_MAC_DSN_INIT,
-  TEST_STATE_COMMISSIONING,
-  TEST_STATE_SEND_CMD_ON,
-  TEST_STATE_SEND_CMD_OFF,
-  TEST_STATE_FINISHED
+    TEST_STATE_INITIATE,
+    TEST_STATE_SET_MAC_DSN_INIT,
+    TEST_STATE_COMMISSIONING,
+    TEST_STATE_SEND_CMD_ON,
+    TEST_STATE_SEND_CMD_OFF,
+    TEST_STATE_FINISHED
 };
 
 ZB_ZGPD_DECLARE_SIMPLE_TEST_TEMPLATE(TEST_DEVICE_CTX, 2000)
@@ -51,81 +51,81 @@ ZB_ZGPD_DECLARE_COMMISSIONING_CALLBACK()
 
 static void zgpd_set_dsn(zb_uint8_t param, zb_callback_t cb)
 {
-  zgpd_set_dsn_and_call(param, cb);
+    zgpd_set_dsn_and_call(param, cb);
 }
 
 static void perform_next_state(zb_uint8_t param)
 {
-  ZVUNUSED(param);
-  TEST_DEVICE_CTX.test_state++;
+    ZVUNUSED(param);
+    TEST_DEVICE_CTX.test_state++;
 
-  switch (TEST_DEVICE_CTX.test_state)
-  {
+    switch (TEST_DEVICE_CTX.test_state)
+    {
     case TEST_STATE_SET_MAC_DSN_INIT:
     {
-      if (param == 0)
-      {
-        ZB_GET_OUT_BUF_DELAYED(perform_next_state);
-        TEST_DEVICE_CTX.test_state--;
+        if (param == 0)
+        {
+            ZB_GET_OUT_BUF_DELAYED(perform_next_state);
+            TEST_DEVICE_CTX.test_state--;
+            break;
+        }
+        ZGPD->security_frame_counter = 0x11223344;
+        ZGPD->mac_dsn = 0x7f;
+        zgpd_set_dsn(param, perform_next_state);
         break;
-      }
-      ZGPD->security_frame_counter = 0x11223344;
-      ZGPD->mac_dsn = 0x7f;
-      zgpd_set_dsn(param, perform_next_state);
-      break;
     }
     case TEST_STATE_COMMISSIONING:
-      ZB_ZGPD_CHACK_RESET_ALL();
-      ZGPD->ch_insert_extnwk_data = 1;
-      ZB_ZGPD_CHACK_SET(ZB_ZGPD_CH_INSERT_EXTNWK_FC_DATA);
-      ZGPD->ch_replace_extnwk_flag = 1;
-      ZB_ZGPD_CHACK_SET(ZB_ZGPD_CH_REPLACE_EXTNWK_FC_FLAG);
-      zb_zgpd_start_commissioning(comm_cb);
-      ZB_ZGPD_SET_PAUSE(1);
-      break;
+        ZB_ZGPD_CHACK_RESET_ALL();
+        ZGPD->ch_insert_extnwk_data = 1;
+        ZB_ZGPD_CHACK_SET(ZB_ZGPD_CH_INSERT_EXTNWK_FC_DATA);
+        ZGPD->ch_replace_extnwk_flag = 1;
+        ZB_ZGPD_CHACK_SET(ZB_ZGPD_CH_REPLACE_EXTNWK_FC_FLAG);
+        zb_zgpd_start_commissioning(comm_cb);
+        ZB_ZGPD_SET_PAUSE(1);
+        break;
     case TEST_STATE_FINISHED:
-      TRACE_MSG(TRACE_APP1, "Test finished. Status: OK", (FMT__0));
-      break;
+        TRACE_MSG(TRACE_APP1, "Test finished. Status: OK", (FMT__0));
+        break;
     default:
-      ZB_SCHEDULE_ALARM(test_send_command, 0, ZB_TIME_ONE_SECOND);
-      break;
-  };
+        ZB_SCHEDULE_ALARM(test_send_command, 0, ZB_TIME_ONE_SECOND);
+        break;
+    };
 }
 
 static void make_gpdf(zb_buf_t *buf, zb_uint8_t **ptr)
 {
-  ZVUNUSED(buf);
-  switch (TEST_DEVICE_CTX.test_state)
-  {
+    ZVUNUSED(buf);
+    switch (TEST_DEVICE_CTX.test_state)
+    {
     case TEST_STATE_SEND_CMD_ON:
-      ZB_ZGPD_CHACK_RESET_ALL();
-      ZB_GPDF_PUT_UINT8(*ptr, ZB_GPDF_CMD_ON);
-      break;
+        ZB_ZGPD_CHACK_RESET_ALL();
+        ZB_GPDF_PUT_UINT8(*ptr, ZB_GPDF_CMD_ON);
+        break;
     case TEST_STATE_SEND_CMD_OFF:
-      ZB_GPDF_PUT_UINT8(*ptr, ZB_GPDF_CMD_OFF);
-      break;
-  };
+        ZB_GPDF_PUT_UINT8(*ptr, ZB_GPDF_CMD_OFF);
+        break;
+    };
 }
 
 static void zgp_custom_startup()
 {
-  #if ! (defined KEIL || defined ZB_PLATFORM_LINUX_ARM_2400)
+#if ! (defined KEIL || defined ZB_PLATFORM_LINUX_ARM_2400)
 #endif
 
-/* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("th_gpd");
+    ZB_INIT("th_gpd");
 
 
-  ZB_ZGPD_INIT_ZGPD_CTX(ZB_ZGP_APP_ID_0000, ZB_ZGPD_COMMISSIONING_UNIDIR, ZB_ZGP_ON_OFF_SWITCH_DEV_ID);
+    ZB_ZGPD_INIT_ZGPD_CTX(ZB_ZGP_APP_ID_0000, ZB_ZGPD_COMMISSIONING_UNIDIR, ZB_ZGP_ON_OFF_SWITCH_DEV_ID);
 
-  ZB_ZGPD_SET_SRC_ID(g_zgpd_srcId);
+    ZB_ZGPD_SET_SRC_ID(g_zgpd_srcId);
 
-  ZB_ZGPD_SET_SECURITY_LEVEL(ZB_ZGP_SEC_LEVEL_FULL_NO_ENC);
-  ZB_ZGPD_SET_SECURITY_KEY_TYPE(ZB_ZGP_SEC_KEY_TYPE_ZGPD_INDIVIDUAL);
-  ZB_ZGPD_SET_OOB_KEY(g_oob_key);
+    ZB_ZGPD_SET_SECURITY_LEVEL(ZB_ZGP_SEC_LEVEL_FULL_NO_ENC);
+    ZB_ZGPD_SET_SECURITY_KEY_TYPE(ZB_ZGP_SEC_KEY_TYPE_ZGPD_INDIVIDUAL);
+    ZB_ZGPD_SET_OOB_KEY(g_oob_key);
 
-  ZGPD->channel = TEST_CHANNEL;
+    ZGPD->channel = TEST_CHANNEL;
 }
 
 #endif /* ZB_CERTIFICATION_HACKS */

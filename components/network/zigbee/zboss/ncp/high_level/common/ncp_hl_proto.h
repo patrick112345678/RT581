@@ -183,7 +183,7 @@
 #define NCP_HL_APSME_RM_BIND_ENTRY_BY_ID      (NCP_HL_CATEGORY_APS + 12U)
 #define NCP_HL_APSME_CLEAR_BIND_TABLE         (NCP_HL_CATEGORY_APS + 13U)
 
-  /* indication */
+/* indication */
 #define NCP_HL_APSME_REMOTE_BIND_IND          (NCP_HL_CATEGORY_APS + 14U)
 #define NCP_HL_APSME_REMOTE_UNBIND_IND        (NCP_HL_CATEGORY_APS + 15U)
 
@@ -373,9 +373,9 @@ typedef zb_uint8_t ncp_hl_config_parameter_t;
 
 typedef ZB_PACKED_PRE struct
 {
-  zb_uint8_t    version;
-  zb_uint8_t    control;
-  zb_uint16_t   call_id;
+    zb_uint8_t    version;
+    zb_uint8_t    control;
+    zb_uint16_t   call_id;
 } ZB_PACKED_STRUCT
 ncp_hl_header_t;
 
@@ -387,49 +387,49 @@ typedef ncp_hl_header_t ncp_hl_ind_header_t;
 
 typedef ZB_PACKED_PRE struct
 {
-  ncp_hl_header_t hdr;
-  zb_uint8_t      tsn;
+    ncp_hl_header_t hdr;
+    zb_uint8_t      tsn;
 } ZB_PACKED_STRUCT
 ncp_hl_request_header_t;
 
 
 typedef ZB_PACKED_PRE struct
 {
-  ncp_hl_header_t hdr;
-  zb_uint8_t      tsn;
-  zb_uint8_t      status_category;
-  zb_uint8_t      status_code;
+    ncp_hl_header_t hdr;
+    zb_uint8_t      tsn;
+    zb_uint8_t      status_category;
+    zb_uint8_t      status_code;
 } ZB_PACKED_STRUCT
 ncp_hl_response_header_t;
 
 typedef ZB_PACKED_PRE struct ncp_hl_response_neighbor_by_ieee_s
 {
-  zb_ieee_addr_t  ieee_addr;
-  zb_uint16_t     short_addr;
-  zb_uint8_t      device_type;
-  zb_uint8_t      rx_on_when_idle;
-  zb_uint16_t     ed_config;
-  zb_uint32_t     timeout_counter;
-  zb_uint32_t     device_timeout;
-  zb_uint8_t      relationship;
-  zb_uint8_t      transmit_failure_cnt;
-  zb_uint8_t      lqi;
-  zb_uint8_t      outgoing_cost;
-  zb_uint8_t      age;
-  zb_uint8_t      keepalive_received;
-  zb_uint8_t      mac_iface_idx;
+    zb_ieee_addr_t  ieee_addr;
+    zb_uint16_t     short_addr;
+    zb_uint8_t      device_type;
+    zb_uint8_t      rx_on_when_idle;
+    zb_uint16_t     ed_config;
+    zb_uint32_t     timeout_counter;
+    zb_uint32_t     device_timeout;
+    zb_uint8_t      relationship;
+    zb_uint8_t      transmit_failure_cnt;
+    zb_uint8_t      lqi;
+    zb_uint8_t      outgoing_cost;
+    zb_uint8_t      age;
+    zb_uint8_t      keepalive_received;
+    zb_uint8_t      mac_iface_idx;
 } ZB_PACKED_STRUCT
 ncp_hl_response_neighbor_by_ieee_t;
 
 typedef ZB_PACKED_PRE struct ncp_hl_response_partner_lk_s
 {
-  zb_uint8_t      key[ZB_CCM_KEY_SIZE];
-  zb_uint8_t      aps_link_key_type;
-  zb_uint8_t      key_source;
-  zb_uint8_t      key_attributes;
-  zb_uint32_t     outgoing_frame_counter;
-  zb_uint32_t     incoming_frame_counter;
-  zb_ieee_addr_t  partner_address;
+    zb_uint8_t      key[ZB_CCM_KEY_SIZE];
+    zb_uint8_t      aps_link_key_type;
+    zb_uint8_t      key_source;
+    zb_uint8_t      key_attributes;
+    zb_uint32_t     outgoing_frame_counter;
+    zb_uint32_t     incoming_frame_counter;
+    zb_ieee_addr_t  partner_address;
 
 } ZB_PACKED_STRUCT
 ncp_hl_response_partner_lk_t;
@@ -447,18 +447,18 @@ ncp_hl_response_partner_lk_t;
 
 typedef ZB_PACKED_PRE struct ncp_hl_bind_entry_s
 {
-  zb_uint8_t      src_endpoint;
-  zb_uint16_t     cluster_id;
-  zb_uint8_t      dst_addr_mode;
-  ZB_PACKED_PRE union
-  {
-    zb_uint16_t     short_addr;
-    zb_ieee_addr_t  long_addr;
-  } u;
+    zb_uint8_t      src_endpoint;
+    zb_uint16_t     cluster_id;
+    zb_uint8_t      dst_addr_mode;
+    ZB_PACKED_PRE union
+    {
+        zb_uint16_t     short_addr;
+        zb_ieee_addr_t  long_addr;
+    } u;
 
-  zb_uint8_t dst_endpoint;
-  zb_uint8_t id;
-  zb_uint8_t bind_type;
+    zb_uint8_t dst_endpoint;
+    zb_uint8_t id;
+    zb_uint8_t bind_type;
 
 } ZB_PACKED_STRUCT
 ncp_hl_bind_entry_t;
@@ -507,24 +507,24 @@ typedef zb_uint8_t ncp_hl_reset_opt_t;
 
 typedef ZB_PACKED_PRE struct ncp_hl_nvram_write_req_hdr_s
 {
-  zb_uint8_t dataset_qnt;
+    zb_uint8_t dataset_qnt;
 } ZB_PACKED_STRUCT
 ncp_hl_nvram_write_req_hdr_t;
 
 typedef ZB_PACKED_PRE struct ncp_hl_nvram_write_req_ds_hdr_s
 {
-  zb_uint16_t type;
-  zb_uint16_t version;
-  zb_uint16_t len;
+    zb_uint16_t type;
+    zb_uint16_t version;
+    zb_uint16_t len;
 } ZB_PACKED_STRUCT
 ncp_hl_nvram_write_req_ds_hdr_t;
 
 typedef ZB_PACKED_PRE struct ncp_hl_nvram_read_resp_ds_hdr_s
 {
-  zb_uint16_t nvram_version;
-  zb_uint16_t type;
-  zb_uint16_t version;
-  zb_uint16_t len;
+    zb_uint16_t nvram_version;
+    zb_uint16_t type;
+    zb_uint16_t version;
+    zb_uint16_t len;
 } ZB_PACKED_STRUCT
 ncp_hl_nvram_read_resp_ds_hdr_t;
 
@@ -545,10 +545,10 @@ void ncp_perform_calibration(void);
 
 zb_uint16_t
 ncp_hl_fill_resp_hdr(
-  ncp_hl_response_header_t **rh,
-  zb_uint_t resp_code,
-  zb_uint8_t tsn,
-  zb_ret_t status,
-  zb_uint_t body_size);
+    ncp_hl_response_header_t **rh,
+    zb_uint_t resp_code,
+    zb_uint8_t tsn,
+    zb_ret_t status,
+    zb_uint_t body_size);
 
 #endif /* NCP_HL_PROTO_COMMON_H */

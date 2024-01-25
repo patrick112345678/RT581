@@ -35,92 +35,92 @@ zb_bool_t    g_commissioned = ZB_FALSE;
 
 void comm_cb(zb_uint8_t param)
 {
-  zb_buf_t *buf = ZB_BUF_FROM_REF(param);
-  zb_uint8_t comm_result = buf->u.hdr.status;
+    zb_buf_t *buf = ZB_BUF_FROM_REF(param);
+    zb_uint8_t comm_result = buf->u.hdr.status;
 
-  if (comm_result == ZB_ZGPD_COMM_FAILED)
-  {
+    if (comm_result == ZB_ZGPD_COMM_FAILED)
+    {
 
-  }
+    }
 }
 
 void check_commissioning_cb(zb_uint8_t param)
 {
-  ZVUNUSED(param);
-  TRACE_MSG(TRACE_APP1, ">> check_commissioning_cb %hd", (FMT__H, param));
-  if (!ZGPD_IS_COMMISSIONED())
-  {
-    TRACE_MSG(TRACE_APP1, "Test finished. Status: OK", (FMT__0));
-  }
-  TRACE_MSG(TRACE_APP1, "<< check_commissioning_cb %hd", (FMT__H, param));
+    ZVUNUSED(param);
+    TRACE_MSG(TRACE_APP1, ">> check_commissioning_cb %hd", (FMT__H, param));
+    if (!ZGPD_IS_COMMISSIONED())
+    {
+        TRACE_MSG(TRACE_APP1, "Test finished. Status: OK", (FMT__0));
+    }
+    TRACE_MSG(TRACE_APP1, "<< check_commissioning_cb %hd", (FMT__H, param));
 }
 
 void zgpd_startup_complete(zb_uint8_t param)
 {
-  zb_buf_t *buf = ZB_BUF_FROM_REF(param);
+    zb_buf_t *buf = ZB_BUF_FROM_REF(param);
 
-  TRACE_MSG(TRACE_APP2, ">> zgpd_startup_complete status %d", (FMT__D, (int)buf->u.hdr.status));
+    TRACE_MSG(TRACE_APP2, ">> zgpd_startup_complete status %d", (FMT__D, (int)buf->u.hdr.status));
 
-  if (buf->u.hdr.status == RET_OK)
-  {
-    TRACE_MSG(TRACE_APP2, "ZGPD Device STARTED OK", (FMT__0));
-    zb_zgpd_start_commissioning(&comm_cb);
-    ZB_SCHEDULE_ALARM(check_commissioning_cb, 0, 10 * ZB_TIME_ONE_SECOND);
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device start FAILED", (FMT__0));
-  }
+    if (buf->u.hdr.status == RET_OK)
+    {
+        TRACE_MSG(TRACE_APP2, "ZGPD Device STARTED OK", (FMT__0));
+        zb_zgpd_start_commissioning(&comm_cb);
+        ZB_SCHEDULE_ALARM(check_commissioning_cb, 0, 10 * ZB_TIME_ONE_SECOND);
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device start FAILED", (FMT__0));
+    }
 
-  zb_free_buf(buf);
+    zb_free_buf(buf);
 }
 
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
 #if ! (defined KEIL || defined ZB_PLATFORM_LINUX_ARM_2400)
 #endif
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("zgpd");
+    ZB_INIT("zgpd");
 
 
-  /*******************************/
+    /*******************************/
 
-  ZB_ZGPD_INIT_ZGPD_CTX(ZB_ZGP_APP_ID_0000, ZB_ZGPD_COMMISSIONING_BIDIR, ZB_ZGP_MANUF_SPECIFIC_DEV_ID);
-  ZB_ZGPD_SET_MANUF_SPECIFIC_DEV(0xffff, ZB_ZGP_MS_DOOR_SENSOR_DEV_ID);
+    ZB_ZGPD_INIT_ZGPD_CTX(ZB_ZGP_APP_ID_0000, ZB_ZGPD_COMMISSIONING_BIDIR, ZB_ZGP_MANUF_SPECIFIC_DEV_ID);
+    ZB_ZGPD_SET_MANUF_SPECIFIC_DEV(0xffff, ZB_ZGP_MS_DOOR_SENSOR_DEV_ID);
 
-  ZB_ZGPD_USE_MAINTENANCE_FRAME_FOR_CHANNEL_REQ();
-  /*ZB_ZGPD_SEND_IEEE_SRC_ADDR_IN_COMM_REQ();*/
-  ZB_ZGPD_SET_SRC_ID(g_zgpd_srcId);
-  ZB_ZGPD_SET_SECURITY(ZB_ZGP_SEC_LEVEL_FULL_WITH_ENC, ZB_ZGP_SEC_KEY_TYPE_ZGPD_INDIVIDUAL, g_zgpd_key);
+    ZB_ZGPD_USE_MAINTENANCE_FRAME_FOR_CHANNEL_REQ();
+    /*ZB_ZGPD_SEND_IEEE_SRC_ADDR_IN_COMM_REQ();*/
+    ZB_ZGPD_SET_SRC_ID(g_zgpd_srcId);
+    ZB_ZGPD_SET_SECURITY(ZB_ZGP_SEC_LEVEL_FULL_WITH_ENC, ZB_ZGP_SEC_KEY_TYPE_ZGPD_INDIVIDUAL, g_zgpd_key);
 
-  if (zb_zgpd_dev_start(zgpd_startup_complete) != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "Device start FAILED", (FMT__0));
-  }
-  else
-  {
-    zgpd_main_loop();
-  }
+    if (zb_zgpd_dev_start(zgpd_startup_complete) != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "Device start FAILED", (FMT__0));
+    }
+    else
+    {
+        zgpd_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 #else //defined ZB_ENABLE_ZGP && defined ZB_ZGPD_ROLE
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  printf("ZB_ENABLE_ZGP and ZB_ZGPD_ROLE should be defined in zb_config.h");
+    printf("ZB_ENABLE_ZGP and ZB_ZGPD_ROLE should be defined in zb_config.h");
 
-  MAIN_RETURN(1);
+    MAIN_RETURN(1);
 }
 
 #endif //defined ZB_ENABLE_ZGP && defined ZB_ZGPD_ROLE

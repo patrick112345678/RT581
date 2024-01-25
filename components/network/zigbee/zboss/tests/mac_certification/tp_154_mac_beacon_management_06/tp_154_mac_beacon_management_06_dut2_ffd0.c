@@ -73,365 +73,365 @@ static zb_bool_t g_beacon_received = ZB_FALSE;
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  ZB_INIT("tp_154_mac_beacon_management_06_dut2_ffd0");
+    ZB_INIT("tp_154_mac_beacon_management_06_dut2_ffd0");
 
-  ZB_SCHEDULE_CALLBACK(test_started_cb, 0);
+    ZB_SCHEDULE_CALLBACK(test_started_cb, 0);
 
-  while(1)
-  {
-    zb_sched_loop_iteration();
-  }
+    while (1)
+    {
+        zb_sched_loop_iteration();
+    }
 
-  TRACE_DEINIT();
-  MAIN_RETURN(0);
+    TRACE_DEINIT();
+    MAIN_RETURN(0);
 }
 
 static void test_started_cb(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  TRACE_MSG(TRACE_MAC_API1, "Device STARTED OK", (FMT__0));
+    TRACE_MSG(TRACE_MAC_API1, "Device STARTED OK", (FMT__0));
 
-  zb_buf_get_out_delayed(test_mlme_reset_request);
+    zb_buf_get_out_delayed(test_mlme_reset_request);
 }
 
 static void test_mlme_reset_request(zb_uint8_t param)
 {
-  zb_mlme_reset_request_t *reset_req = ZB_BUF_GET_PARAM(param, zb_mlme_reset_request_t);
-  reset_req->set_default_pib = 1;
+    zb_mlme_reset_request_t *reset_req = ZB_BUF_GET_PARAM(param, zb_mlme_reset_request_t);
+    reset_req->set_default_pib = 1;
 
-  TRACE_MSG(TRACE_APP1, "MLME-RESET.request()", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "MLME-RESET.request()", (FMT__0));
 
-  ZB_SCHEDULE_CALLBACK(zb_mlme_reset_request, param);
+    ZB_SCHEDULE_CALLBACK(zb_mlme_reset_request, param);
 }
 
 static void test_set_ieee_addr(zb_uint8_t param)
 {
-  zb_mlme_set_request_t *req;
+    zb_mlme_set_request_t *req;
 
-  TRACE_MSG(TRACE_APP1, "MLME-SET.request() mac IEEE addr", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "MLME-SET.request() mac IEEE addr", (FMT__0));
 
-  req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + sizeof(zb_ieee_addr_t));
-  ZB_BZERO(req, sizeof(zb_mlme_set_request_t) + sizeof(zb_ieee_addr_t));
+    req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + sizeof(zb_ieee_addr_t));
+    ZB_BZERO(req, sizeof(zb_mlme_set_request_t) + sizeof(zb_ieee_addr_t));
 
-  req->pib_attr = ZB_PIB_ATTRIBUTE_EXTEND_ADDRESS;
-  req->pib_length = sizeof(zb_ieee_addr_t);
-  ZB_MEMCPY((zb_uint8_t *)(req+1), g_ieee_addr_dut2, sizeof(zb_ieee_addr_t));
+    req->pib_attr = ZB_PIB_ATTRIBUTE_EXTEND_ADDRESS;
+    req->pib_length = sizeof(zb_ieee_addr_t);
+    ZB_MEMCPY((zb_uint8_t *)(req + 1), g_ieee_addr_dut2, sizeof(zb_ieee_addr_t));
 
-  req->confirm_cb_u.cb = test_set_beacon_payload_length;
+    req->confirm_cb_u.cb = test_set_beacon_payload_length;
 
-  zb_mlme_set_request(param);
+    zb_mlme_set_request(param);
 }
 
 static void test_set_beacon_payload_length(zb_uint8_t param)
 {
-  zb_mlme_set_request_t *req;
+    zb_mlme_set_request_t *req;
 
-  TRACE_MSG(TRACE_APP1, "MLME-SET.request() BeaconPayloadLength", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "MLME-SET.request() BeaconPayloadLength", (FMT__0));
 
-  req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + sizeof(zb_uint8_t));
-  req->pib_attr = ZB_PIB_ATTRIBUTE_BEACON_PAYLOAD_LENGTH;
-  req->pib_length = sizeof(zb_uint8_t);
-  *((zb_uint8_t *)(req + 1)) = TEST_BEACON_PAYLOAD_LENGTH;
+    req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + sizeof(zb_uint8_t));
+    req->pib_attr = ZB_PIB_ATTRIBUTE_BEACON_PAYLOAD_LENGTH;
+    req->pib_length = sizeof(zb_uint8_t);
+    *((zb_uint8_t *)(req + 1)) = TEST_BEACON_PAYLOAD_LENGTH;
 
-  req->confirm_cb_u.cb = test_set_beacon_payload;
+    req->confirm_cb_u.cb = test_set_beacon_payload;
 
-  zb_mlme_set_request(param);
+    zb_mlme_set_request(param);
 }
 
 static void test_set_beacon_payload(zb_uint8_t param)
 {
-  zb_mlme_set_request_t *req;
-  zb_uint8_t *beacon = TEST_DUT2_BEACON_PAYLOAD;
+    zb_mlme_set_request_t *req;
+    zb_uint8_t *beacon = TEST_DUT2_BEACON_PAYLOAD;
 
-  TRACE_MSG(TRACE_APP1, "MLME-SET.request() BeaconPayload", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "MLME-SET.request() BeaconPayload", (FMT__0));
 
-  req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + TEST_BEACON_PAYLOAD_LENGTH);
-  ZB_BZERO(req, sizeof(zb_mlme_set_request_t) + TEST_BEACON_PAYLOAD_LENGTH);
+    req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + TEST_BEACON_PAYLOAD_LENGTH);
+    ZB_BZERO(req, sizeof(zb_mlme_set_request_t) + TEST_BEACON_PAYLOAD_LENGTH);
 
-  req->pib_attr = ZB_PIB_ATTRIBUTE_BEACON_PAYLOAD;
-  req->pib_length = TEST_BEACON_PAYLOAD_LENGTH;
-  ZB_MEMCPY((zb_uint8_t *)(req + 1), beacon, TEST_BEACON_PAYLOAD_LENGTH);
+    req->pib_attr = ZB_PIB_ATTRIBUTE_BEACON_PAYLOAD;
+    req->pib_length = TEST_BEACON_PAYLOAD_LENGTH;
+    ZB_MEMCPY((zb_uint8_t *)(req + 1), beacon, TEST_BEACON_PAYLOAD_LENGTH);
 
-  req->confirm_cb_u.cb = test_set_rx_on_when_idle;
+    req->confirm_cb_u.cb = test_set_rx_on_when_idle;
 
-  zb_mlme_set_request(param);
+    zb_mlme_set_request(param);
 }
 
 
 static void test_set_rx_on_when_idle(zb_uint8_t param)
 {
-  zb_mlme_set_request_t *req;
-  zb_uint8_t rx_on_when_idle = TEST_RX_ON_WHEN_IDLE;
+    zb_mlme_set_request_t *req;
+    zb_uint8_t rx_on_when_idle = TEST_RX_ON_WHEN_IDLE;
 
-  TRACE_MSG(TRACE_APP1, "MLME-SET.request() RxOnWhenIdle", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "MLME-SET.request() RxOnWhenIdle", (FMT__0));
 
-  req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + sizeof(zb_uint8_t));
-  ZB_BZERO(req, sizeof(zb_mlme_set_request_t) + sizeof(zb_uint8_t));
+    req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + sizeof(zb_uint8_t));
+    ZB_BZERO(req, sizeof(zb_mlme_set_request_t) + sizeof(zb_uint8_t));
 
-  req->pib_attr = ZB_PIB_ATTRIBUTE_RX_ON_WHEN_IDLE;
-  req->pib_length = sizeof(zb_uint8_t);
-  ZB_MEMCPY((zb_uint8_t *)(req+1), &rx_on_when_idle, sizeof(zb_uint8_t));
+    req->pib_attr = ZB_PIB_ATTRIBUTE_RX_ON_WHEN_IDLE;
+    req->pib_length = sizeof(zb_uint8_t);
+    ZB_MEMCPY((zb_uint8_t *)(req + 1), &rx_on_when_idle, sizeof(zb_uint8_t));
 
-  req->confirm_cb_u.cb = test_set_association_permit;
+    req->confirm_cb_u.cb = test_set_association_permit;
 
-  zb_mlme_set_request(param);
+    zb_mlme_set_request(param);
 }
 
 static void test_set_association_permit(zb_uint8_t param)
 {
-  zb_mlme_set_request_t *req;
-  zb_uint8_t association_permit = TEST_ASSOCIATION_PERMIT;
+    zb_mlme_set_request_t *req;
+    zb_uint8_t association_permit = TEST_ASSOCIATION_PERMIT;
 
-  TRACE_MSG(TRACE_APP1, "MLME-SET.request() AssociationPermit", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "MLME-SET.request() AssociationPermit", (FMT__0));
 
-  req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + sizeof(zb_uint8_t));
-  ZB_BZERO(req, sizeof(zb_mlme_set_request_t) + sizeof(zb_uint8_t));
+    req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + sizeof(zb_uint8_t));
+    ZB_BZERO(req, sizeof(zb_mlme_set_request_t) + sizeof(zb_uint8_t));
 
-  req->pib_attr = ZB_PIB_ATTRIBUTE_ASSOCIATION_PERMIT;
-  req->pib_length = sizeof(zb_uint8_t);
-  ZB_MEMCPY((zb_uint8_t *)(req+1), &association_permit, sizeof(zb_uint8_t));
+    req->pib_attr = ZB_PIB_ATTRIBUTE_ASSOCIATION_PERMIT;
+    req->pib_length = sizeof(zb_uint8_t);
+    ZB_MEMCPY((zb_uint8_t *)(req + 1), &association_permit, sizeof(zb_uint8_t));
 
-  req->confirm_cb_u.cb = test_clear_mac_auto_request;
+    req->confirm_cb_u.cb = test_clear_mac_auto_request;
 
-  zb_mlme_set_request(param);
+    zb_mlme_set_request(param);
 }
 
 static void test_clear_mac_auto_request(zb_uint8_t param)
 {
-  zb_mlme_set_request_t *req;
-  zb_uint8_t auto_request = 0;
+    zb_mlme_set_request_t *req;
+    zb_uint8_t auto_request = 0;
 
-  TRACE_MSG(TRACE_APP1, "MLME-SET.request() macAutoRequest", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "MLME-SET.request() macAutoRequest", (FMT__0));
 
-  req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + sizeof(zb_uint8_t));
-  ZB_BZERO(req, sizeof(zb_mlme_set_request_t) + sizeof(zb_uint8_t));
+    req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + sizeof(zb_uint8_t));
+    ZB_BZERO(req, sizeof(zb_mlme_set_request_t) + sizeof(zb_uint8_t));
 
-  req->pib_attr = ZB_PIB_ATTRIBUTE_AUTO_REQUEST;
-  req->pib_length = sizeof(zb_uint8_t);
-  ZB_MEMCPY((zb_uint8_t *)(req+1), &auto_request, sizeof(zb_uint8_t));
+    req->pib_attr = ZB_PIB_ATTRIBUTE_AUTO_REQUEST;
+    req->pib_length = sizeof(zb_uint8_t);
+    ZB_MEMCPY((zb_uint8_t *)(req + 1), &auto_request, sizeof(zb_uint8_t));
 
-  req->confirm_cb_u.cb = test_mlme_start_request;
+    req->confirm_cb_u.cb = test_mlme_start_request;
 
-  zb_mlme_set_request(param);
+    zb_mlme_set_request(param);
 }
 
 static void test_mlme_start_request(zb_uint8_t param)
 {
-  zb_mlme_start_req_t *req = ZB_BUF_GET_PARAM(param, zb_mlme_start_req_t);
+    zb_mlme_start_req_t *req = ZB_BUF_GET_PARAM(param, zb_mlme_start_req_t);
 
-  TRACE_MSG(TRACE_APP1, "MLME-START.request()", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "MLME-START.request()", (FMT__0));
 
-  ZB_BZERO(req, sizeof(zb_mlme_start_req_t));
+    ZB_BZERO(req, sizeof(zb_mlme_start_req_t));
 
-  req->pan_id = TEST_PAN_ID;
-  req->logical_channel = TEST_CHANNEL;
-  req->channel_page = TEST_PAGE;
-  req->pan_coordinator = 0;      /* will be router */
-  req->coord_realignment = 0;
-  req->beacon_order = ZB_TURN_OFF_ORDER;
-  req->superframe_order = ZB_TURN_OFF_ORDER;
+    req->pan_id = TEST_PAN_ID;
+    req->logical_channel = TEST_CHANNEL;
+    req->channel_page = TEST_PAGE;
+    req->pan_coordinator = 0;      /* will be router */
+    req->coord_realignment = 0;
+    req->beacon_order = ZB_TURN_OFF_ORDER;
+    req->superframe_order = ZB_TURN_OFF_ORDER;
 
-  ZB_SCHEDULE_CALLBACK(zb_mlme_start_request, param);
+    ZB_SCHEDULE_CALLBACK(zb_mlme_start_request, param);
 }
 
 static void test_ieee_joining_list_clear(zb_uint8_t param)
 {
-  zb_mlme_set_request_t *set_req;
-  zb_mlme_set_ieee_joining_list_req_t *jl_set_req;
-  zb_bufid_t buf;
+    zb_mlme_set_request_t *set_req;
+    zb_mlme_set_ieee_joining_list_req_t *jl_set_req;
+    zb_bufid_t buf;
 
-  TRACE_MSG(TRACE_APP1, "MLME-SET.request() clear mibJoiningPolicy", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "MLME-SET.request() clear mibJoiningPolicy", (FMT__0));
 
 
-  set_req = zb_buf_initial_alloc(param, sizeof(*set_req) + sizeof(*jl_set_req));
-  set_req->pib_attr = ZB_PIB_ATTRIBUTE_JOINING_IEEE_LIST;
-  set_req->pib_index = 0;
-  set_req->pib_length = sizeof(*jl_set_req);
-  set_req->confirm_cb_u.cb = test_set_joining_policy;
+    set_req = zb_buf_initial_alloc(param, sizeof(*set_req) + sizeof(*jl_set_req));
+    set_req->pib_attr = ZB_PIB_ATTRIBUTE_JOINING_IEEE_LIST;
+    set_req->pib_index = 0;
+    set_req->pib_length = sizeof(*jl_set_req);
+    set_req->confirm_cb_u.cb = test_set_joining_policy;
 
-  jl_set_req = (zb_mlme_set_ieee_joining_list_req_t *)(set_req + 1);
-  jl_set_req->op_type = ZB_MLME_SET_IEEE_JL_REQ_CLEAR;
+    jl_set_req = (zb_mlme_set_ieee_joining_list_req_t *)(set_req + 1);
+    jl_set_req->op_type = ZB_MLME_SET_IEEE_JL_REQ_CLEAR;
 
-  zb_mlme_set_request(param);
+    zb_mlme_set_request(param);
 }
 
 static void test_set_joining_policy(zb_uint8_t param)
 {
-  zb_mlme_set_request_t *req;
-  zb_uint8_t joining_policy = ZB_MAC_JOINING_POLICY_ALL_JOIN;
+    zb_mlme_set_request_t *req;
+    zb_uint8_t joining_policy = ZB_MAC_JOINING_POLICY_ALL_JOIN;
 
-  TRACE_MSG(TRACE_APP1, "MLME-SET.request() mibJoiningPolicy", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "MLME-SET.request() mibJoiningPolicy", (FMT__0));
 
-  req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + sizeof(zb_uint8_t));
-  ZB_BZERO(req, sizeof(zb_mlme_set_request_t) + sizeof(zb_uint8_t));
+    req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + sizeof(zb_uint8_t));
+    ZB_BZERO(req, sizeof(zb_mlme_set_request_t) + sizeof(zb_uint8_t));
 
-  req->pib_attr = ZB_PIB_ATTRIBUTE_JOINING_POLICY;
-  req->pib_length = sizeof(zb_uint8_t);
-  ZB_MEMCPY((zb_uint8_t *)(req+1), &joining_policy, sizeof(zb_uint8_t));
+    req->pib_attr = ZB_PIB_ATTRIBUTE_JOINING_POLICY;
+    req->pib_length = sizeof(zb_uint8_t);
+    ZB_MEMCPY((zb_uint8_t *)(req + 1), &joining_policy, sizeof(zb_uint8_t));
 
-  req->confirm_cb_u.cb = test_mlme_scan_request;
+    req->confirm_cb_u.cb = test_mlme_scan_request;
 
-  zb_mlme_set_request(param);
+    zb_mlme_set_request(param);
 }
 
 static void test_associate_request(zb_uint8_t param)
 {
 
-  ZB_MLME_BUILD_ASSOCIATE_REQUEST(param,
-                                  TEST_PAGE,
-                                  TEST_CHANNEL,
-                                  TEST_PAN_ID,
-                                  ZB_ADDR_64BIT_DEV,
-                                  &g_ieee_addr_dut1,
-                                  TEST_ASSOCIATION_CAP_INFO);
+    ZB_MLME_BUILD_ASSOCIATE_REQUEST(param,
+                                    TEST_PAGE,
+                                    TEST_CHANNEL,
+                                    TEST_PAN_ID,
+                                    ZB_ADDR_64BIT_DEV,
+                                    &g_ieee_addr_dut1,
+                                    TEST_ASSOCIATION_CAP_INFO);
 
-  ZB_SCHEDULE_CALLBACK(zb_mlme_associate_request, param);
+    ZB_SCHEDULE_CALLBACK(zb_mlme_associate_request, param);
 }
 
 static void test_mlme_scan_request(zb_uint8_t param)
 {
 
-  TRACE_MSG(TRACE_APP1, "MLME-SCAN.request()", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "MLME-SCAN.request()", (FMT__0));
 
-  ZB_MLME_BUILD_SCAN_REQUEST(param, TEST_PAGE, TEST_CHANNEL_MASK, TEST_SCAN_TYPE, TEST_SCAN_DURATION);
-  test_prepare_enhanced_beacon_discovery(param);
+    ZB_MLME_BUILD_SCAN_REQUEST(param, TEST_PAGE, TEST_CHANNEL_MASK, TEST_SCAN_TYPE, TEST_SCAN_DURATION);
+    test_prepare_enhanced_beacon_discovery(param);
 
-  ZB_SCHEDULE_ALARM(zb_mlme_scan_request, param, ZB_MILLISECONDS_TO_BEACON_INTERVAL(TEST_TIMEOUT));
+    ZB_SCHEDULE_ALARM(zb_mlme_scan_request, param, ZB_MILLISECONDS_TO_BEACON_INTERVAL(TEST_TIMEOUT));
 }
 
 static void test_prepare_enhanced_beacon_discovery(zb_uint8_t param)
 {
-  zb_uint8_t *ptr;
-  zb_uint8_t pie_len;
-  zb_uint8_t subie_len = ZB_ZIGBEE_PIE_HEADER_LENGTH + TEST_SUB_IE_LENGTH;
+    zb_uint8_t *ptr;
+    zb_uint8_t pie_len;
+    zb_uint8_t subie_len = ZB_ZIGBEE_PIE_HEADER_LENGTH + TEST_SUB_IE_LENGTH;
 
-  /* MLME PIE with nested IE + EB filter payload
-     vendor PIE + tx power descriptor as payload */
-  pie_len  = ZB_PIE_HEADER_LENGTH
-    + ZB_NIE_HEADER_LENGTH + 1 + 2 * ZB_PIE_VENDOR_HEADER_LENGTH
-    + 2 * ZB_TX_POWER_IE_DESCRIPTOR_LEN + subie_len;
+    /* MLME PIE with nested IE + EB filter payload
+       vendor PIE + tx power descriptor as payload */
+    pie_len  = ZB_PIE_HEADER_LENGTH
+               + ZB_NIE_HEADER_LENGTH + 1 + 2 * ZB_PIE_VENDOR_HEADER_LENGTH
+               + 2 * ZB_TX_POWER_IE_DESCRIPTOR_LEN + subie_len;
 
-  ptr = zb_buf_initial_alloc((zb_bufid_t )param,
-                             pie_len + ZB_MLME_SCAN_REQUEST_IE_SIZES_HDR_LEN);
-  ZB_MLME_SCAN_REQUEST_SET_IE_SIZES_HDR(ptr, 0, pie_len);
-  ptr += ZB_MLME_SCAN_REQUEST_IE_SIZES_HDR_LEN;
+    ptr = zb_buf_initial_alloc((zb_bufid_t )param,
+                               pie_len + ZB_MLME_SCAN_REQUEST_IE_SIZES_HDR_LEN);
+    ZB_MLME_SCAN_REQUEST_SET_IE_SIZES_HDR(ptr, 0, pie_len);
+    ptr += ZB_MLME_SCAN_REQUEST_IE_SIZES_HDR_LEN;
 
-  /* MLME nested PIE */
-  ZB_SET_NEXT_PIE_HEADER(ptr, ZB_PIE_GROUP_MLME, ZB_NIE_HEADER_LENGTH + 1);
-  ZB_SET_NEXT_SHORT_NIE_HEADER(ptr, ZB_NIE_SUB_ID_EB_FILTER, 1);
+    /* MLME nested PIE */
+    ZB_SET_NEXT_PIE_HEADER(ptr, ZB_PIE_GROUP_MLME, ZB_NIE_HEADER_LENGTH + 1);
+    ZB_SET_NEXT_SHORT_NIE_HEADER(ptr, ZB_NIE_SUB_ID_EB_FILTER, 1);
 
-  *ptr = ZB_EB_FILTER_IE_PERMIT_JOINING_ON; /* simple EB Filter*/
-  ptr += 1;
+    *ptr = ZB_EB_FILTER_IE_PERMIT_JOINING_ON; /* simple EB Filter*/
+    ptr += 1;
 
-  /* Vendor PIE */
-  ZB_SET_PIE_HEADER(ptr, ZB_PIE_GROUP_VENDOR_SPECIFIC, ZB_TX_POWER_IE_DESCRIPTOR_LEN + 3);
-  /* different Vendor OUI than the one assigned to ZigBee */
-  (ptr)[ZB_PIE_HEADER_LENGTH] = 0x11;
-  (ptr)[ZB_PIE_HEADER_LENGTH + 1] = 0x00;
-  (ptr)[ZB_PIE_HEADER_LENGTH + 2] = 0x11;
-  ptr += ZB_PIE_VENDOR_HEADER_LENGTH;
+    /* Vendor PIE */
+    ZB_SET_PIE_HEADER(ptr, ZB_PIE_GROUP_VENDOR_SPECIFIC, ZB_TX_POWER_IE_DESCRIPTOR_LEN + 3);
+    /* different Vendor OUI than the one assigned to ZigBee */
+    (ptr)[ZB_PIE_HEADER_LENGTH] = 0x11;
+    (ptr)[ZB_PIE_HEADER_LENGTH + 1] = 0x00;
+    (ptr)[ZB_PIE_HEADER_LENGTH + 2] = 0x11;
+    ptr += ZB_PIE_VENDOR_HEADER_LENGTH;
 
-  ZB_SET_NEXT_TX_POWER_IE_DESCRIPTOR(ptr, MAC_CTX().current_tx_power);
+    ZB_SET_NEXT_TX_POWER_IE_DESCRIPTOR(ptr, MAC_CTX().current_tx_power);
 
-  /* Vendor PIE */
-  ZB_SET_PIE_HEADER(ptr, ZB_PIE_GROUP_VENDOR_SPECIFIC, ZB_TX_POWER_IE_DESCRIPTOR_LEN + 3 + subie_len);
-  (ptr)[ZB_PIE_HEADER_LENGTH] = 0x1B;
-  (ptr)[ZB_PIE_HEADER_LENGTH + 1] = 0x19;
-  (ptr)[ZB_PIE_HEADER_LENGTH + 2] = 0x4A;
-  ptr += ZB_PIE_VENDOR_HEADER_LENGTH;
+    /* Vendor PIE */
+    ZB_SET_PIE_HEADER(ptr, ZB_PIE_GROUP_VENDOR_SPECIFIC, ZB_TX_POWER_IE_DESCRIPTOR_LEN + 3 + subie_len);
+    (ptr)[ZB_PIE_HEADER_LENGTH] = 0x1B;
+    (ptr)[ZB_PIE_HEADER_LENGTH + 1] = 0x19;
+    (ptr)[ZB_PIE_HEADER_LENGTH + 2] = 0x4A;
+    ptr += ZB_PIE_VENDOR_HEADER_LENGTH;
 
-  /* A different ZigBee Payload (Nested) IE */
-  ZB_SET_ZIGBEE_PIE_HEADER(ptr, TEST_SUB_IE_SUB_ID, TEST_SUB_IE_LENGTH);
-  (ptr)[ZB_PIE_HEADER_LENGTH] = 0x12;
-  (ptr)[ZB_PIE_HEADER_LENGTH + 1] = 0x34;
-  ptr += subie_len;
+    /* A different ZigBee Payload (Nested) IE */
+    ZB_SET_ZIGBEE_PIE_HEADER(ptr, TEST_SUB_IE_SUB_ID, TEST_SUB_IE_LENGTH);
+    (ptr)[ZB_PIE_HEADER_LENGTH] = 0x12;
+    (ptr)[ZB_PIE_HEADER_LENGTH + 1] = 0x34;
+    ptr += subie_len;
 
-  ZB_SET_NEXT_TX_POWER_IE_DESCRIPTOR(ptr, MAC_CTX().current_tx_power);
+    ZB_SET_NEXT_TX_POWER_IE_DESCRIPTOR(ptr, MAC_CTX().current_tx_power);
 }
 
 /***************** MAC Callbacks *****************/
 ZB_MLME_RESET_CONFIRM(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_APP1, "MLME-RESET.confirm()", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "MLME-RESET.confirm()", (FMT__0));
 
-  ZB_SCHEDULE_CALLBACK(test_set_ieee_addr, param);
+    ZB_SCHEDULE_CALLBACK(test_set_ieee_addr, param);
 }
 
 ZB_MLME_ASSOCIATE_CONFIRM(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_APP1, "MLME-ASSOCIATE.confirm()", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "MLME-ASSOCIATE.confirm()", (FMT__0));
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 ZB_MLME_START_CONFIRM(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_APP1, "MLME-START.confirm()", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "MLME-START.confirm()", (FMT__0));
 
-  ZB_SCHEDULE_CALLBACK(test_ieee_joining_list_clear, param);
+    ZB_SCHEDULE_CALLBACK(test_ieee_joining_list_clear, param);
 }
 
 ZB_MLME_BEACON_NOTIFY_INDICATION(zb_uint8_t param)
 {
-  zb_mac_beacon_notify_indication_t *ind = (zb_mac_beacon_notify_indication_t*)zb_buf_begin(param);
+    zb_mac_beacon_notify_indication_t *ind = (zb_mac_beacon_notify_indication_t *)zb_buf_begin(param);
 
-  TRACE_MSG(TRACE_APP1, "MLME-BEACON-NOTIFY.indication()", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "MLME-BEACON-NOTIFY.indication()", (FMT__0));
 
-  if (ind->beacon_type == ZB_MAC_BEACON_TYPE_ENHANCED_BEACON
-      && (ind->pan_descriptor).coord_pan_id == TEST_PAN_ID
-      && ZB_IEEE_ADDR_CMP((ind->pan_descriptor).coord_address.addr_long, g_ieee_addr_dut1))
-  {
-    TRACE_MSG(TRACE_APP1, "coord_addr_mode %hi, coord_pan_id 0x%x, coord_addr " TRACE_FORMAT_64 ", beacon_type %hd, enh_beacon_nwk_addr 0x%x", (FMT__H_D_A_H_D, (ind->pan_descriptor).coord_addr_mode, (ind->pan_descriptor).coord_pan_id, TRACE_ARG_64((ind->pan_descriptor).coord_address.addr_long), ind->beacon_type, (ind->pan_descriptor).enh_beacon_nwk_addr));
+    if (ind->beacon_type == ZB_MAC_BEACON_TYPE_ENHANCED_BEACON
+            && (ind->pan_descriptor).coord_pan_id == TEST_PAN_ID
+            && ZB_IEEE_ADDR_CMP((ind->pan_descriptor).coord_address.addr_long, g_ieee_addr_dut1))
+    {
+        TRACE_MSG(TRACE_APP1, "coord_addr_mode %hi, coord_pan_id 0x%x, coord_addr " TRACE_FORMAT_64 ", beacon_type %hd, enh_beacon_nwk_addr 0x%x", (FMT__H_D_A_H_D, (ind->pan_descriptor).coord_addr_mode, (ind->pan_descriptor).coord_pan_id, TRACE_ARG_64((ind->pan_descriptor).coord_address.addr_long), ind->beacon_type, (ind->pan_descriptor).enh_beacon_nwk_addr));
 
-    g_beacon_received = ZB_TRUE;
-  }
-  else
-  {
-    g_beacon_received = ZB_FALSE;
-  }
+        g_beacon_received = ZB_TRUE;
+    }
+    else
+    {
+        g_beacon_received = ZB_FALSE;
+    }
 }
 
 ZB_MLME_SCAN_CONFIRM(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_APP1, "MLME-SCAN.confirm(), g_beacon_received %hd", (FMT__H, g_beacon_received));
+    TRACE_MSG(TRACE_APP1, "MLME-SCAN.confirm(), g_beacon_received %hd", (FMT__H, g_beacon_received));
 
-  if (g_beacon_received)
-  {
-    g_beacon_received = ZB_FALSE;
-    ZB_SCHEDULE_CALLBACK(test_associate_request, param);
-  }
-  else
-  {
-    ZB_SCHEDULE_CALLBACK(test_mlme_scan_request, param);
-  }
+    if (g_beacon_received)
+    {
+        g_beacon_received = ZB_FALSE;
+        ZB_SCHEDULE_CALLBACK(test_associate_request, param);
+    }
+    else
+    {
+        ZB_SCHEDULE_CALLBACK(test_mlme_scan_request, param);
+    }
 }
 
 ZB_MLME_ASSOCIATE_INDICATION(zb_uint8_t param)
 {
-  zb_ieee_addr_t device_address;
-  zb_mlme_associate_indication_t *request = ZB_BUF_GET_PARAM((zb_bufid_t )param, zb_mlme_associate_indication_t);
+    zb_ieee_addr_t device_address;
+    zb_mlme_associate_indication_t *request = ZB_BUF_GET_PARAM((zb_bufid_t )param, zb_mlme_associate_indication_t);
 
-  TRACE_MSG(TRACE_APP1, "MLME-ASSOCIATE.indication()", (FMT__0));
-  /*
-    Very simple implementation: accept anybody, assign address 0x1122
-   */
-  ZB_IEEE_ADDR_COPY(device_address, request->device_address);
+    TRACE_MSG(TRACE_APP1, "MLME-ASSOCIATE.indication()", (FMT__0));
+    /*
+      Very simple implementation: accept anybody, assign address 0x1122
+     */
+    ZB_IEEE_ADDR_COPY(device_address, request->device_address);
 
-  TRACE_MSG(TRACE_APP1, "MLME-ASSOCIATE.response()", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "MLME-ASSOCIATE.response()", (FMT__0));
 
-  ZB_MLME_BUILD_ASSOCIATE_RESPONSE(param, device_address, TEST_DUT1_FFD1_SHORT_ADDRESS, 0);
+    ZB_MLME_BUILD_ASSOCIATE_RESPONSE(param, device_address, TEST_DUT1_FFD1_SHORT_ADDRESS, 0);
 
-  ZB_SCHEDULE_CALLBACK(zb_mlme_associate_response, param);
+    ZB_SCHEDULE_CALLBACK(zb_mlme_associate_response, param);
 }
 
 ZB_MLME_COMM_STATUS_INDICATION(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_APP1, "MLME-COMM-STATUS.indication()", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "MLME-COMM-STATUS.indication()", (FMT__0));
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 /*! @} */

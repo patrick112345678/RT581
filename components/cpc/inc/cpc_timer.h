@@ -70,9 +70,9 @@ uint64_t cpc_timer_get_tick_count64(void);
  * @return STATUS_OK if successful.
  ******************************************************************************/
 status_t cpc_timer_start_timer(cpc_timer_handle_t *handle,
-                                  uint32_t timeout,
-                                  cpc_timer_callback_t callback,
-                                  void *callback_data);
+                               uint32_t timeout,
+                               cpc_timer_callback_t callback,
+                               void *callback_data);
 
 /**************************************************************************//**
  * Starts a 32 bits timer.
@@ -86,9 +86,9 @@ status_t cpc_timer_start_timer(cpc_timer_handle_t *handle,
  * @return STATUS_OK if successful.
  *****************************************************************************/
 status_t cpc_timer_start_timer_ms(cpc_timer_handle_t *handle,
-                                     uint32_t timeout_ms,
-                                     cpc_timer_callback_t callback,
-                                     void *callback_data);
+                                  uint32_t timeout_ms,
+                                  cpc_timer_callback_t callback,
+                                  void *callback_data);
 
 /***************************************************************************//**
  * Restarts a 32 bits timer.
@@ -102,9 +102,9 @@ status_t cpc_timer_start_timer_ms(cpc_timer_handle_t *handle,
  * @return STATUS_OK if successful.
  ******************************************************************************/
 status_t cpc_timer_restart_timer(cpc_timer_handle_t *handle,
-                                    uint32_t timeout,
-                                    cpc_timer_callback_t callback,
-                                    void *callback_data);
+                                 uint32_t timeout,
+                                 cpc_timer_callback_t callback,
+                                 void *callback_data);
 
 /***************************************************************************//**
  * Stops a timer.

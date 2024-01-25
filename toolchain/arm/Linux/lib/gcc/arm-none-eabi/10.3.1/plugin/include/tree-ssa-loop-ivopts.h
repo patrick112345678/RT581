@@ -33,5 +33,5 @@ bool may_be_nonaddressable_p (tree expr);
 void tree_ssa_iv_optimize (void);
 
 void create_canonical_iv (class loop *, edge, tree,
-			  tree * = NULL, tree * = NULL);
+                          tree * = NULL, tree * = NULL);
 #endif /* GCC_TREE_SSA_LOOP_IVOPTS_H */

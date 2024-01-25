@@ -48,25 +48,25 @@ typedef zb_neighbor_tbl_ent_t zb_ext_neighbor_tbl_ent_t;
  */
 typedef struct zb_neighbor_tbl_s
 {
-  /*! base (run-time) neighbor table */
+    /*! base (run-time) neighbor table */
 #ifndef ZB_CONFIGURABLE_MEM
-  zb_neighbor_tbl_ent_t     neighbor[ZB_NEIGHBOR_TABLE_SIZE];
-  /*! array for addressing neighbor table by network address ref */
-  zb_uint8_t                addr_to_neighbor[ZB_IEEE_ADDR_TABLE_SIZE];
+    zb_neighbor_tbl_ent_t     neighbor[ZB_NEIGHBOR_TABLE_SIZE];
+    /*! array for addressing neighbor table by network address ref */
+    zb_uint8_t                addr_to_neighbor[ZB_IEEE_ADDR_TABLE_SIZE];
 #else
-  zb_neighbor_tbl_ent_t     *neighbor;
-  zb_uint8_t                *addr_to_neighbor;
+    zb_neighbor_tbl_ent_t     *neighbor;
+    zb_uint8_t                *addr_to_neighbor;
 #endif
-  /*! clock pointer for incoming_frame_counter expire */
-  zb_ushort_t               incoming_frame_counter_clock;
-/*Pointer to the end device that expires first*/
-  zb_neighbor_tbl_ent_t     *next_aging_end_device;
+    /*! clock pointer for incoming_frame_counter expire */
+    zb_ushort_t               incoming_frame_counter_clock;
+    /*Pointer to the end device that expires first*/
+    zb_neighbor_tbl_ent_t     *next_aging_end_device;
 #ifdef ZB_ROUTER_ROLE
-/*NBT element to start parent_annce from */
-  zb_uint8_t parent_annce_position;
+    /*NBT element to start parent_annce from */
+    zb_uint8_t parent_annce_position;
 #endif
-  zb_uint8_t transmit_failure_threshold;
-  zb_uint8_t transmit_failure_timeout;
+    zb_uint8_t transmit_failure_threshold;
+    zb_uint8_t transmit_failure_timeout;
 }
 zb_neighbor_tbl_t;
 
@@ -243,7 +243,7 @@ zb_ret_t zb_nwk_exneigbor_sort_by_lqi(void);
 zb_ret_t zb_nwk_exneighbor_remove_by_panid(zb_address_pan_id_ref_t panid_ref);
 
 zb_uint8_t zb_nwk_neighbor_get_ed_cnt(void);
-zb_uint8_t zb_nwk_neighbor_get_ed_short_list(zb_uint8_t start_index, zb_uint8_t max_records, zb_uint8_t** ed_list);
+zb_uint8_t zb_nwk_neighbor_get_ed_short_list(zb_uint8_t start_index, zb_uint8_t max_records, zb_uint8_t **ed_list);
 
 zb_uint8_t zb_nwk_neighbor_get_zc_zr_cnt(void);
 zb_ret_t zb_nwk_neighbor_get_by_idx(zb_uint8_t idx, zb_neighbor_tbl_ent_t **nbt);

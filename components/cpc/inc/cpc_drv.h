@@ -1,12 +1,12 @@
 /**
  * @file cpc_drv.h
  * @author Rex Huang (rex.huang@rafaelmicro.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2023-08-03
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 
 #ifndef CPC_DRV_H
@@ -30,10 +30,11 @@
 #define CPC_DRV_SPI_CLOCK_MODE            spidrvClockMode0
 #endif
 
-typedef struct {
-  bool use_raw_rx_buffer;
-  bool preprocess_hdlc_header;
-  bool uart_flowcontrol;
+typedef struct
+{
+    bool use_raw_rx_buffer;
+    bool preprocess_hdlc_header;
+    bool uart_flowcontrol;
 } cpc_drv_capabilities_t;
 
 #ifdef __cplusplus

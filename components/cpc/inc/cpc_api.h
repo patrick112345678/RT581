@@ -144,49 +144,50 @@
 #define CPC_FLAG_INFORMATION_FINAL           (0x01 << 4)
 
 /// @brief Enumeration representing the possible id
-SENUM(cpc_service_endpoint_id_t) {
-  CPC_ENDPOINT_SYSTEM = 0,          ///< System control
+SENUM(cpc_service_endpoint_id_t)
+{
+    CPC_ENDPOINT_SYSTEM = 0,          ///< System control
 #if (CPC_ENDPOINT_BLUETOOTH_ENABLED >= 1)
-  CPC_ENDPOINT_BLUETOOTH = 2,       ///< Bluetooth endpoint
+    CPC_ENDPOINT_BLUETOOTH = 2,       ///< Bluetooth endpoint
 #endif
 #if (CPC_ENDPOINT_RAIL_ENABLED >= 1)
-  CPC_CPC_ENDPOINT_RAIL_DOWNSTREAM = 3, ///< RAIL downstream endpoint
-  CPC_CPC_ENDPOINT_RAIL_UPSTREAM = 4,   ///< RAIL upstream endpoint
+    CPC_CPC_ENDPOINT_RAIL_DOWNSTREAM = 3, ///< RAIL downstream endpoint
+    CPC_CPC_ENDPOINT_RAIL_UPSTREAM = 4,   ///< RAIL upstream endpoint
 #endif
 #if (CPC_ENDPOINT_ZIGBEE_ENABLED >= 1)
-  CPC_ENDPOINT_ZIGBEE = 5,          ///< ZigBee EZSP endpoint
+    CPC_ENDPOINT_ZIGBEE = 5,          ///< ZigBee EZSP endpoint
 #endif
 #if (CPC_ENDPOINT_ZWAVE_ENABLED >= 1)
-  CPC_ENDPOINT_ZWAVE = 6,           ///< Z-Wave endpoint
+    CPC_ENDPOINT_ZWAVE = 6,           ///< Z-Wave endpoint
 #endif
 #if (CPC_ENDPOINT_CONNECT_ENABLED >= 1)
-  CPC_ENDPOINT_CONNECT = 7,         ///< Connect endpoint
-  #endif
+    CPC_ENDPOINT_CONNECT = 7,         ///< Connect endpoint
+#endif
 #if (CPC_ENDPOINT_GPIO_ENABLED >= 1)
-  CPC_ENDPOINT_GPIO = 8,            ///< GPIO endpoint for controlling GPIOs on SECONDARYs
+    CPC_ENDPOINT_GPIO = 8,            ///< GPIO endpoint for controlling GPIOs on SECONDARYs
 #endif
 #if (CPC_ENDPOINT_OPENTHREAD_ENABLED >= 1)
-  CPC_ENDPOINT_OPENTHREAD = 9,      ///< Openthread Spinel endpoint
+    CPC_ENDPOINT_OPENTHREAD = 9,      ///< Openthread Spinel endpoint
 #endif
 #if (CPC_ENDPOINT_WISUN_ENABLED >= 1)
-  CPC_ENDPOINT_WISUN = 10,           ///< WiSun endpoint
+    CPC_ENDPOINT_WISUN = 10,           ///< WiSun endpoint
 #endif
 #if (CPC_ENDPOINT_WIFI_ENABLED >= 1)
-  CPC_ENDPOINT_WIFI = 11,           ///< WiFi endpoint(main control)
+    CPC_ENDPOINT_WIFI = 11,           ///< WiFi endpoint(main control)
 #endif
 #if (CPC_ENDPOINT_15_4_ENABLED >= 1)
-  CPC_ENDPOINT_15_4 = 12,           ///< 802.15.4 endpoint
+    CPC_ENDPOINT_15_4 = 12,           ///< 802.15.4 endpoint
 #endif
 #if (CPC_ENDPOINT_CLI_ENABLED >= 1)
-  CPC_ENDPOINT_CLI = 13,            ///< Ascii based CLI for stacks / applications
+    CPC_ENDPOINT_CLI = 13,            ///< Ascii based CLI for stacks / applications
 #endif
 #if (CPC_ENDPOINT_BLUETOOTH_RCP_ENABLED >= 1)
-  CPC_ENDPOINT_BLUETOOTH_RCP = 14,  ///< Bluetooth RCP endpoint
+    CPC_ENDPOINT_BLUETOOTH_RCP = 14,  ///< Bluetooth RCP endpoint
 #endif
 #if (CPC_ENDPOINT_ACP_ENABLED >= 1)
-  CPC_ENDPOINT_ACP = 15,            ///< ACP endpoint
+    CPC_ENDPOINT_ACP = 15,            ///< ACP endpoint
 #endif
-  CPC_ENDPOINT_LAST_ID_MARKER,      // DO NOT USE THIS ENDPOINT ID
+    CPC_ENDPOINT_LAST_ID_MARKER,      // DO NOT USE THIS ENDPOINT ID
 };
 
 #if defined(CATALOG_CPC_PRIMARY_PRESENT)
@@ -234,7 +235,7 @@ SENUM(cpc_service_endpoint_id_t) {
 
 
 #if (CPC_RX_PAYLOAD_MAX_LENGTH > 4087)
-  #error Invalid CPC_RX_PAYLOAD_MAX_LENGTH; Must be less or equal to 4087
+#error Invalid CPC_RX_PAYLOAD_MAX_LENGTH; Must be less or equal to 4087
 #endif
 
 #if !defined(CPC_ENDPOINT_TEMPORARY_MAX_COUNT)
@@ -264,9 +265,9 @@ SENUM(cpc_service_endpoint_id_t) {
 #endif
 
 #if (CPC_ENDPOINT_COUNT > CPC_ENDPOINT_MAX_COUNT)
-  #error Invalid CPC_ENDPOINT_COUNT; Must be less than CPC_ENDPOINT_MAX_COUNT
+#error Invalid CPC_ENDPOINT_COUNT; Must be less than CPC_ENDPOINT_MAX_COUNT
 #elif (CPC_ENDPOINT_COUNT < CPC_ENDPOINT_MIN_COUNT)
-  #error Invalid CPC_ENDPOINT_COUNT; Must be greater than CPC_ENDPOINT_MIN_COUNT
+#error Invalid CPC_ENDPOINT_COUNT; Must be greater than CPC_ENDPOINT_MIN_COUNT
 #endif
 
 #define CPC_HDLC_HEADER_MAX_COUNT       (CPC_RX_BUFFER_MAX_COUNT                                       \
@@ -300,70 +301,78 @@ SENUM(cpc_service_endpoint_id_t) {
 // Signal count max = closing signal per endpoint + tx queue items + rx queue items
 #define EVENT_SIGNAL_MAX_COUNT    CPC_ENDPOINT_COUNT + CPC_TX_QUEUE_ITEM_MAX_COUNT + CPC_RX_QUEUE_ITEM_MAX_COUNT
 
-SENUM(cpc_signal_type_t) {
-  CPC_SIGNAL_RX,
-  CPC_SIGNAL_TX,
-  CPC_SIGNAL_CLOSED,
-  CPC_SIGNAL_SYSTEM,
+SENUM(cpc_signal_type_t)
+{
+    CPC_SIGNAL_RX,
+    CPC_SIGNAL_TX,
+    CPC_SIGNAL_CLOSED,
+    CPC_SIGNAL_SYSTEM,
 };
 
-SENUM(cpc_reject_reason_t){
-  CPC_REJECT_NO_ERROR = 0,
-  CPC_REJECT_CHECKSUM_MISMATCH,
-  CPC_REJECT_SEQUENCE_MISMATCH,
-  CPC_REJECT_OUT_OF_MEMORY,
-  CPC_REJECT_SECURITY_ISSUE,
-  CPC_REJECT_UNREACHABLE_ENDPOINT,
-  CPC_REJECT_ERROR
+SENUM(cpc_reject_reason_t)
+{
+    CPC_REJECT_NO_ERROR = 0,
+    CPC_REJECT_CHECKSUM_MISMATCH,
+    CPC_REJECT_SEQUENCE_MISMATCH,
+    CPC_REJECT_OUT_OF_MEMORY,
+    CPC_REJECT_SECURITY_ISSUE,
+    CPC_REJECT_UNREACHABLE_ENDPOINT,
+    CPC_REJECT_ERROR
 };
 
-SENUM(cpc_buffer_type_t) {
-  CPC_UNKNOWN_BUFFER,
-  CPC_RX_BUFFER,
-  CPC_HDLC_REJECT_BUFFER
+SENUM(cpc_buffer_type_t)
+{
+    CPC_UNKNOWN_BUFFER,
+    CPC_RX_BUFFER,
+    CPC_HDLC_REJECT_BUFFER
 };
 
-typedef struct {
-  void *hdlc_header;
-  void *data;
-  uint16_t data_length;
-  uint8_t fcs[2];
-  uint8_t control;
-  uint8_t address;
-  uint8_t ref_count;
-  cpc_buffer_type_t buffer_type;
-  cpc_endpoint_t *endpoint;
-  cpc_reject_reason_t reason;
-  void *arg;
-  bool on_write_complete_pending;
+typedef struct
+{
+    void *hdlc_header;
+    void *data;
+    uint16_t data_length;
+    uint8_t fcs[2];
+    uint8_t control;
+    uint8_t address;
+    uint8_t ref_count;
+    cpc_buffer_type_t buffer_type;
+    cpc_endpoint_t *endpoint;
+    cpc_reject_reason_t reason;
+    void *arg;
+    bool on_write_complete_pending;
 } cpc_buffer_handle_t;
 
-typedef struct {
-  uint8_t id;
-  cpc_on_write_completed_t on_iframe_write_completed;
-  cpc_on_write_completed_t on_uframe_write_completed;
-  void *arg;
+typedef struct
+{
+    uint8_t id;
+    cpc_on_write_completed_t on_iframe_write_completed;
+    cpc_on_write_completed_t on_uframe_write_completed;
+    void *arg;
 } cpc_endpoint_closed_arg_t;
 
-typedef struct {
-  slist_node_t node;
-  cpc_buffer_handle_t *handle;
+typedef struct
+{
+    slist_node_t node;
+    cpc_buffer_handle_t *handle;
 } cpc_transmit_queue_item_t;
 
-typedef struct {
-  slist_node_t node;
-  void *data;
-  uint16_t data_length;
-  cpc_buffer_type_t buffer_type;
+typedef struct
+{
+    slist_node_t node;
+    void *data;
+    uint16_t data_length;
+    cpc_buffer_type_t buffer_type;
 } cpc_receive_queue_item_t;
 
 typedef void (*cpc_dispatcher_fnct_t)(void *data);
 
-typedef struct {
-  slist_node_t node;
-  cpc_dispatcher_fnct_t fnct;
-  void *data;
-  bool submitted;
+typedef struct
+{
+    slist_node_t node;
+    cpc_dispatcher_fnct_t fnct;
+    void *data;
+    bool submitted;
 } cpc_dispatcher_handle_t;
 
 #ifdef __cplusplus
@@ -392,9 +401,9 @@ extern "C"
  * @return Status code.
  ******************************************************************************/
 status_t cpc_open_service_endpoint (cpc_endpoint_handle_t *endpoint_handle,
-                                           cpc_service_endpoint_id_t id,
-                                           uint8_t flags,
-                                           uint8_t tx_window_size);
+                                    cpc_service_endpoint_id_t id,
+                                    uint8_t flags,
+                                    uint8_t tx_window_size);
 
 /***************************************************************************//**
  * Open temporary endpoint.
@@ -415,9 +424,9 @@ status_t cpc_open_service_endpoint (cpc_endpoint_handle_t *endpoint_handle,
  * @return Status code.
  ******************************************************************************/
 status_t cpc_open_temporary_endpoint(cpc_endpoint_handle_t *endpoint_handle,
-                                            uint8_t *id,
-                                            uint8_t flags,
-                                            uint8_t tx_window_size);
+                                     uint8_t *id,
+                                     uint8_t flags,
+                                     uint8_t tx_window_size);
 
 /***************************************************************************//**
  * Initialize CPC buffers' handling module.
@@ -503,8 +512,8 @@ status_t cpc_drop_buffer_handle(cpc_buffer_handle_t *handle);
  * @return Status code.
  ******************************************************************************/
 status_t cpc_push_back_rx_data_in_receive_queue(cpc_buffer_handle_t *handle,
-                                                       slist_node_t **head,
-                                                       uint16_t data_length);
+        slist_node_t **head,
+        uint16_t data_length);
 
 /***************************************************************************//**
  * Free CPC buffer.
@@ -554,8 +563,8 @@ status_t cpc_get_receive_queue_item(cpc_receive_queue_item_t **item);
  * @return Status code.
  ******************************************************************************/
 status_t cpc_free_receive_queue_item(cpc_receive_queue_item_t *item,
-                                            void **data,
-                                            uint16_t *data_length);
+                                     void **data,
+                                     uint16_t *data_length);
 
 /***************************************************************************//**
  * Free receive queue item and data buffer.
@@ -705,8 +714,8 @@ void cpc_dispatcher_init_handle(cpc_dispatcher_handle_t *handle);
  * @return Status code.
  ******************************************************************************/
 status_t cpc_dispatcher_push(cpc_dispatcher_handle_t *handle,
-                                    cpc_dispatcher_fnct_t fnct,
-                                    void *data);
+                             cpc_dispatcher_fnct_t fnct,
+                             void *data);
 
 /***************************************************************************//**
  * Remove function from dispatch queue along with the data to be passed when
@@ -738,7 +747,7 @@ status_t cpc_send_disconnection_notification(uint8_t endpoint_id);
 /***************************************************************************//**
  * Called on re-transmition of frame.
  ******************************************************************************/
-void cpc_on_frame_retransmit(cpc_transmit_queue_item_t* item);
+void cpc_on_frame_retransmit(cpc_transmit_queue_item_t *item);
 
 /** @} (end addtogroup cpc) */
 

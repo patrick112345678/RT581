@@ -29,11 +29,11 @@
 /* Public interface */
 void light_zc_hal_init(void)
 {
-  return;
+    return;
 }
 
 zb_bool_t light_zc_hal_is_button_pressed(void)
 {
-  /* Button is always switched off */
-  return ZB_FALSE;
+    /* Button is always switched off */
+    return ZB_FALSE;
 }

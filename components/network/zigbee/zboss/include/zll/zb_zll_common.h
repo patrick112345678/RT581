@@ -96,10 +96,10 @@ void zll_process_device_command(zb_uint8_t param);
 /** @brief Start new network function parameters representation. */
 typedef ZB_PACKED_PRE struct zb_zll_start_new_nwk_param_s
 {
-  zb_uint16_t pan_id;         /**< Short Pan ID to use for new network. */
-  zb_ext_pan_id_t ext_pan_id; /**< Extended Pan ID to use for new network. */
-  zb_uint8_t channel;         /**< Logical channel to start network on. */
-  zb_ieee_addr_t dst_addr;    /**< Target device's address. */
+    zb_uint16_t pan_id;         /**< Short Pan ID to use for new network. */
+    zb_ext_pan_id_t ext_pan_id; /**< Extended Pan ID to use for new network. */
+    zb_uint8_t channel;         /**< Logical channel to start network on. */
+    zb_ieee_addr_t dst_addr;    /**< Target device's address. */
 } ZB_PACKED_STRUCT zb_zll_start_new_nwk_param_t;
 
 zb_ret_t zb_zll_start_new_network(zb_uint8_t param);
@@ -142,46 +142,46 @@ void zll_direct_join_confirm(zb_uint8_t param);
 /** @brief ZLL transaction states */
 enum zb_zll_transaction_task_e
 {
-  ZB_ZLL_NO_TASK,                       /**< No specific task. */
-  ZB_ZLL_DEVICE_START_TASK,             /**< Device startup. */
-  ZB_ZLL_DEVICE_DISCOVERY_TASK,         /**< Device info gathering (device discovery routine). */
-  ZB_ZLL_IDENTIFY_TASK,                 /**< Identify process requested/started. Initiator only */
-  ZB_ZLL_TRANSACTION_NWK_START_TASK,    /**< Start network. Initiator only */
-  ZB_ZLL_TRANSACTION_NWK_START_TASK_TGT,/**< Start network. Target only */
-  ZB_ZLL_TRANSACTION_JOIN_ROUTER_TASK,  /**< Network join router process requested/started. */
-  ZB_ZLL_TRANSACTION_JOIN_ROUTER_TASK_TGT, /**< Network join router process requested/started (target side) */
-  ZB_ZLL_TRANSACTION_JOIN_ED_TASK,      /**< Network join end device requested/started. */
-  ZB_ZLL_TRANSACTION_JOIN_ED_TASK_TGT,  /**< Network join end device process requested/started (target side) */
-  ZB_ZLL_TRANSACTION_RESET,             /**< Reset process requested  */
-  ZB_ZLL_START_COMMISSIONING,           /**< Device start commissioning */
-  ZB_ZLL_COMMISSIONED                   /**< Fake task id. It is used to inform user App on target side that device
+    ZB_ZLL_NO_TASK,                       /**< No specific task. */
+    ZB_ZLL_DEVICE_START_TASK,             /**< Device startup. */
+    ZB_ZLL_DEVICE_DISCOVERY_TASK,         /**< Device info gathering (device discovery routine). */
+    ZB_ZLL_IDENTIFY_TASK,                 /**< Identify process requested/started. Initiator only */
+    ZB_ZLL_TRANSACTION_NWK_START_TASK,    /**< Start network. Initiator only */
+    ZB_ZLL_TRANSACTION_NWK_START_TASK_TGT,/**< Start network. Target only */
+    ZB_ZLL_TRANSACTION_JOIN_ROUTER_TASK,  /**< Network join router process requested/started. */
+    ZB_ZLL_TRANSACTION_JOIN_ROUTER_TASK_TGT, /**< Network join router process requested/started (target side) */
+    ZB_ZLL_TRANSACTION_JOIN_ED_TASK,      /**< Network join end device requested/started. */
+    ZB_ZLL_TRANSACTION_JOIN_ED_TASK_TGT,  /**< Network join end device process requested/started (target side) */
+    ZB_ZLL_TRANSACTION_RESET,             /**< Reset process requested  */
+    ZB_ZLL_START_COMMISSIONING,           /**< Device start commissioning */
+    ZB_ZLL_COMMISSIONED                   /**< Fake task id. It is used to inform user App on target side that device
                                              commissioning is complete */
 };
 
 /** @brief Possible values of transaction task status. */
 enum zb_zll_task_status_e
 {
-  ZB_ZLL_TASK_STATUS_OK = 0,
-  ZB_ZLL_TASK_STATUS_TIMED_OUT,
-  ZB_ZLL_TASK_STATUS_SCHEDULE_FAILED,
-  ZB_ZLL_TASK_STATUS_SCHEDULED,
-  ZB_ZLL_TASK_STATUS_NO_CALLBACK,
-  ZB_ZLL_TASK_STATUS_FINISHED,
-  ZB_ZLL_TASK_STATUS_FAILED,
-  ZB_ZLL_TASK_STATUS_WRONG_SIDE,
-  ZB_ZLL_TASK_STATUS_NETWORK_UPDATED
+    ZB_ZLL_TASK_STATUS_OK = 0,
+    ZB_ZLL_TASK_STATUS_TIMED_OUT,
+    ZB_ZLL_TASK_STATUS_SCHEDULE_FAILED,
+    ZB_ZLL_TASK_STATUS_SCHEDULED,
+    ZB_ZLL_TASK_STATUS_NO_CALLBACK,
+    ZB_ZLL_TASK_STATUS_FINISHED,
+    ZB_ZLL_TASK_STATUS_FAILED,
+    ZB_ZLL_TASK_STATUS_WRONG_SIDE,
+    ZB_ZLL_TASK_STATUS_NETWORK_UPDATED
 }; /* enum zb_zll_task_status_e */
 
 /** @brief Transaction task status report structure. */
 typedef ZB_PACKED_PRE struct zb_zll_transaction_task_status_s
 {
-  /** @brief Transaction task status.
-    *
-    * For possible value list see @ref zb_zll_task_status_e.
-    */
-  zb_uint8_t status;
-  /** @brief Finished @ref zb_zll_transaction_task_e "task." */
-  zb_uint8_t task;
+    /** @brief Transaction task status.
+      *
+      * For possible value list see @ref zb_zll_task_status_e.
+      */
+    zb_uint8_t status;
+    /** @brief Finished @ref zb_zll_transaction_task_e "task." */
+    zb_uint8_t task;
 } ZB_PACKED_STRUCT zb_zll_transaction_task_status_t;
 
 /************************** Device discovery ****************************/
@@ -189,7 +189,7 @@ typedef ZB_PACKED_PRE struct zb_zll_transaction_task_status_s
 /** @brief Device discovery request parameters. */
 typedef ZB_PACKED_PRE struct zb_zll_device_discovery_req_s
 {
-  zb_uint8_t ext_scan;  /**< Perform extended scan sequence. */
+    zb_uint8_t ext_scan;  /**< Perform extended scan sequence. */
 } ZB_PACKED_STRUCT zb_zll_device_discovery_req_t;
 
 /** @brief Fills in device discovery request and schedules device discovery process for execution.
@@ -223,7 +223,7 @@ void zb_zll_start_device_discovery(zb_uint8_t param);
 /** @brief Join router request parameters. */
 typedef struct zb_zll_join_router_param_s
 {
-  zb_uchar_t device_index;  /**< Device index in device discovery results */
+    zb_uchar_t device_index;  /**< Device index in device discovery results */
 }
 zb_zll_join_router_param_t;
 
@@ -257,7 +257,7 @@ void zb_zll_join_router(zb_uint8_t param);
 /** @brief Join end device parameters representation. */
 typedef struct zb_zll_join_end_device_param_s
 {
-  zb_uchar_t device_index;      /**< Target device index of device information table */
+    zb_uchar_t device_index;      /**< Target device index of device information table */
 }
 zb_zll_join_end_device_param_t;
 
@@ -294,11 +294,11 @@ void zb_zll_join_ed(zb_uint8_t param);
   */
 zb_ret_t zb_zll_start_commissioning(zb_uint8_t param);
 
- /** @brief Perform Add device to netwiork.
-  * @param param - reference to the buffer without parameters.
-  * @note It recommended to call the function after finish call
-  * Device discovery.
-  */
+/** @brief Perform Add device to netwiork.
+ * @param param - reference to the buffer without parameters.
+ * @note It recommended to call the function after finish call
+ * Device discovery.
+ */
 void zll_add_device_to_network(zb_uint8_t param);
 
 /** @brief Find device index with max rssi from device_infos table
@@ -331,7 +331,7 @@ zb_int_t zll_get_ep_info(zb_int_t i, zb_uint16_t *addr, zb_uint8_t *ep);
 void zll_network_start_continue(zb_uint8_t param);
 
 void zll_save_nwk_prefs(zb_ext_pan_id_t ext_pan_id, zb_uint16_t pan_id,
-                             zb_uint16_t short_addr, zb_uint8_t channel);
+                        zb_uint16_t short_addr, zb_uint8_t channel);
 
 /**
     @}
@@ -356,17 +356,17 @@ void zll_save_nwk_prefs(zb_ext_pan_id_t ext_pan_id, zb_uint16_t pan_id,
 /** @brief ZLL security key index values */
 enum zb_zll_key_index_value_e
 {
-  ZB_ZLL_DEVELOPMENT_KEY_INDEX = 0,
-  ZB_ZLL_MASTER_KEY_INDEX = 4,
-  ZB_ZLL_CERTIFICATION_KEY_INDEX = 15
+    ZB_ZLL_DEVELOPMENT_KEY_INDEX = 0,
+    ZB_ZLL_MASTER_KEY_INDEX = 4,
+    ZB_ZLL_CERTIFICATION_KEY_INDEX = 15
 };
 
 /** @brief ZLL security key index values */
 enum zb_zll_key_value_e
 {
-  ZB_ZLL_DEVELOPMENT_KEY = 0x0001,
-  ZB_ZLL_MASTER_KEY = 0x0010,
-  ZB_ZLL_CERTIFICATION_KEY = 0x8000 //AT: fix (see: Table 67 Key encryption algorithms)
+    ZB_ZLL_DEVELOPMENT_KEY = 0x0001,
+    ZB_ZLL_MASTER_KEY = 0x0010,
+    ZB_ZLL_CERTIFICATION_KEY = 0x8000 //AT: fix (see: Table 67 Key encryption algorithms)
 };
 
 /** @cond touchlink */
@@ -375,9 +375,9 @@ enum zb_zll_key_value_e
  * by end user application */
 enum zb_zll_touchlink_action_e
 {
-  ZB_ZLL_ACTION_START_NEW_NETWORK,
-  ZB_ZLL_ACTION_JOIN_ROUTER,
-  ZB_ZLL_ACTION_JOIN_ED
+    ZB_ZLL_ACTION_START_NEW_NETWORK,
+    ZB_ZLL_ACTION_JOIN_ROUTER,
+    ZB_ZLL_ACTION_JOIN_ED
 };
 
 /** @endcond */ /* touchlink */
@@ -390,11 +390,11 @@ enum zb_zll_touchlink_action_e
 /* Currently, network structure is not needed, all values are stored in NIB and PIB */
 typedef ZB_PACKED_PRE struct zb_zll_network_ctx_s
 {
-  /* zb_uint8_t nwk_update_id; - ZB_NIB_UPDATE_ID() */
-  /* zb_uint8_t logical_channel; - ZB_PIBCACHE_CURRENT_CHANNEL() */
-  /* zb_ext_pan_id_t extended_pan_id; - ZB_NIB_EXT_PAN_ID() */
-  /* zb_uint16_t short_pan_id; - ZB_PIBCACHE_PAN_ID()  */
-  /*zb_uint8_t short_addr; -  ZB_PIBCACHE_NETWORK_ADDRESS() */
+    /* zb_uint8_t nwk_update_id; - ZB_NIB_UPDATE_ID() */
+    /* zb_uint8_t logical_channel; - ZB_PIBCACHE_CURRENT_CHANNEL() */
+    /* zb_ext_pan_id_t extended_pan_id; - ZB_NIB_EXT_PAN_ID() */
+    /* zb_uint16_t short_pan_id; - ZB_PIBCACHE_PAN_ID()  */
+    /*zb_uint8_t short_addr; -  ZB_PIBCACHE_NETWORK_ADDRESS() */
 } ZB_PACKED_STRUCT zb_zll_network_ctx_t;
 #endif
 
@@ -471,9 +471,9 @@ typedef ZB_PACKED_PRE struct zb_zll_network_ctx_s
 /** @brief Zigbee information device type subfield values */
 enum zb_zll_zigbee_info_e
 {
-  ZB_ZLL_ZB_INFO_COORD_DEVICE_TYPE = 0x00,
-  ZB_ZLL_ZB_INFO_ROUTER_DEVICE_TYPE = 0x01,
-  ZB_ZLL_ZB_INFO_ED_DEVICE_TYPE = 0x02,
+    ZB_ZLL_ZB_INFO_COORD_DEVICE_TYPE = 0x00,
+    ZB_ZLL_ZB_INFO_ROUTER_DEVICE_TYPE = 0x01,
+    ZB_ZLL_ZB_INFO_ED_DEVICE_TYPE = 0x02,
 };
 
 /** @brief Bit mask for ZigbeeInfo.DeviceType 2-bit subfield extraction. */

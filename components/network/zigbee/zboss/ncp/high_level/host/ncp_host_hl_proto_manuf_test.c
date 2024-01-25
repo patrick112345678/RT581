@@ -26,14 +26,14 @@
 
 #include "ncp_host_hl_proto.h"
 
-void ncp_host_handle_manuf_test_response(void* data, zb_uint16_t len)
+void ncp_host_handle_manuf_test_response(void *data, zb_uint16_t len)
 {
-  /* TODO: implement it! */
-  ZB_ASSERT(0);
+    /* TODO: implement it! */
+    ZB_ASSERT(0);
 }
 
-void ncp_host_handle_manuf_test_indication(void* data, zb_uint16_t len)
+void ncp_host_handle_manuf_test_indication(void *data, zb_uint16_t len)
 {
-  /* TODO: implement it! */
-  ZB_ASSERT(0);
+    /* TODO: implement it! */
+    ZB_ASSERT(0);
 }

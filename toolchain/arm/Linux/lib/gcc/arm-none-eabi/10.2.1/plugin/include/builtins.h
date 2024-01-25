@@ -23,20 +23,21 @@ along with GCC; see the file COPYING3.  If not see
 #include <mpc.h>
 
 /* Target-dependent globals.  */
-struct target_builtins {
-  /* For each register that may be used for calling a function, this
-     gives a mode used to copy the register's value.  VOIDmode indicates
-     the register is not used for calling a function.  If the machine
-     has register windows, this gives only the outbound registers.
-     INCOMING_REGNO gives the corresponding inbound register.  */
-  fixed_size_mode_pod x_apply_args_mode[FIRST_PSEUDO_REGISTER];
+struct target_builtins
+{
+    /* For each register that may be used for calling a function, this
+       gives a mode used to copy the register's value.  VOIDmode indicates
+       the register is not used for calling a function.  If the machine
+       has register windows, this gives only the outbound registers.
+       INCOMING_REGNO gives the corresponding inbound register.  */
+    fixed_size_mode_pod x_apply_args_mode[FIRST_PSEUDO_REGISTER];
 
-  /* For each register that may be used for returning values, this gives
-     a mode used to copy the register's value.  VOIDmode indicates the
-     register is not used for returning values.  If the machine has
-     register windows, this gives only the outbound registers.
-     INCOMING_REGNO gives the corresponding inbound register.  */
-  fixed_size_mode_pod x_apply_result_mode[FIRST_PSEUDO_REGISTER];
+    /* For each register that may be used for returning values, this gives
+       a mode used to copy the register's value.  VOIDmode indicates the
+       register is not used for returning values.  If the machine has
+       register windows, this gives only the outbound registers.
+       INCOMING_REGNO gives the corresponding inbound register.  */
+    fixed_size_mode_pod x_apply_result_mode[FIRST_PSEUDO_REGISTER];
 };
 
 extern struct target_builtins default_target_builtins;
@@ -51,55 +52,55 @@ extern bool force_folding_builtin_constant_p;
 
 extern bool called_as_built_in (tree);
 extern bool get_object_alignment_1 (tree, unsigned int *,
-				    unsigned HOST_WIDE_INT *);
+                                    unsigned HOST_WIDE_INT *);
 extern unsigned int get_object_alignment (tree);
 extern bool get_pointer_alignment_1 (tree, unsigned int *,
-				     unsigned HOST_WIDE_INT *);
+                                     unsigned HOST_WIDE_INT *);
 extern unsigned int get_pointer_alignment (tree);
-extern unsigned string_length (const void*, unsigned, unsigned);
+extern unsigned string_length (const void *, unsigned, unsigned);
 
 struct c_strlen_data
 {
-  /* [MINLEN, MAXBOUND, MAXLEN] is a range describing the length of
-     one or more strings of possibly unknown length.  For a single
-     string of known length the range is a constant where
-     MINLEN == MAXBOUND == MAXLEN holds.
-     For other strings, MINLEN is the length of the shortest known
-     string.  MAXBOUND is the length of a string that could be stored
-     in the largest array referenced by the expression.  MAXLEN is
-     the length of the longest sequence of non-zero bytes
-     in an object referenced by the expression.  For such strings,
-     MINLEN <= MAXBOUND <= MAXLEN holds.  For example, given:
-       struct A { char a[7], b[]; };
-       extern struct A *p;
-       n = strlen (p->a);
-     the computed range will be [0, 6, ALL_ONES].
-     However, for a conditional expression involving a string
-     of known length and an array of unknown bound such as
-       n = strlen (i ? p->b : "123");
-     the range will be [3, 3, ALL_ONES].
-     MINLEN != 0 && MAXLEN == ALL_ONES indicates that MINLEN is
-     the length of the shortest known string and implies that
-     the shortest possible string referenced by the expression may
-     actually be the empty string.  This distinction is useful for
-     diagnostics.  get_range_strlen() return value distinguishes
-     between these two cases.
-     As the tighter (and more optimistic) bound, MAXBOUND is suitable
-     for diagnostics but not for optimization.
-     As the more conservative bound, MAXLEN is intended to be used
-     for optimization.  */
-  tree minlen;
-  tree maxlen;
-  tree maxbound;
-  /* When non-null, DECL refers to the declaration known to store
-     an unterminated constant character array, as in:
-     const char s[] = { 'a', 'b', 'c' };
-     It is used to diagnose uses of such arrays in functions such as
-     strlen() that expect a nul-terminated string as an argument.  */
-  tree decl;
-  /* Non-constant offset from the beginning of a string not accounted
-     for in the length range.  Used to improve diagnostics.  */
-  tree off;
+    /* [MINLEN, MAXBOUND, MAXLEN] is a range describing the length of
+       one or more strings of possibly unknown length.  For a single
+       string of known length the range is a constant where
+       MINLEN == MAXBOUND == MAXLEN holds.
+       For other strings, MINLEN is the length of the shortest known
+       string.  MAXBOUND is the length of a string that could be stored
+       in the largest array referenced by the expression.  MAXLEN is
+       the length of the longest sequence of non-zero bytes
+       in an object referenced by the expression.  For such strings,
+       MINLEN <= MAXBOUND <= MAXLEN holds.  For example, given:
+         struct A { char a[7], b[]; };
+         extern struct A *p;
+         n = strlen (p->a);
+       the computed range will be [0, 6, ALL_ONES].
+       However, for a conditional expression involving a string
+       of known length and an array of unknown bound such as
+         n = strlen (i ? p->b : "123");
+       the range will be [3, 3, ALL_ONES].
+       MINLEN != 0 && MAXLEN == ALL_ONES indicates that MINLEN is
+       the length of the shortest known string and implies that
+       the shortest possible string referenced by the expression may
+       actually be the empty string.  This distinction is useful for
+       diagnostics.  get_range_strlen() return value distinguishes
+       between these two cases.
+       As the tighter (and more optimistic) bound, MAXBOUND is suitable
+       for diagnostics but not for optimization.
+       As the more conservative bound, MAXLEN is intended to be used
+       for optimization.  */
+    tree minlen;
+    tree maxlen;
+    tree maxbound;
+    /* When non-null, DECL refers to the declaration known to store
+       an unterminated constant character array, as in:
+       const char s[] = { 'a', 'b', 'c' };
+       It is used to diagnose uses of such arrays in functions such as
+       strlen() that expect a nul-terminated string as an argument.  */
+    tree decl;
+    /* Non-constant offset from the beginning of a string not accounted
+       for in the length range.  Used to improve diagnostics.  */
+    tree off;
 };
 
 extern tree c_strlen (tree, int, c_strlen_data * = NULL, unsigned = 1);
@@ -136,9 +137,9 @@ extern bool is_inexpensive_builtin (tree);
 
 class vr_values;
 tree gimple_call_alloc_size (gimple *, wide_int[2] = NULL,
-			     const vr_values * = NULL);
+                             const vr_values * = NULL);
 extern tree compute_objsize (tree, int, tree * = NULL, tree * = NULL,
-			     const vr_values * = NULL);
+                             const vr_values * = NULL);
 
 extern bool readonly_data_expr (tree exp);
 extern bool init_target_chars (void);

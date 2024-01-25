@@ -212,7 +212,7 @@ key. They use same algorithm.
 /*!
    Maximum MAC packet waiting time to expire
  */
-  #define ZB_MAC_INDIRECT_POLL_EXPIRE_TMO ZB_MILLISECONDS_TO_BEACON_INTERVAL(7680U)
+#define ZB_MAC_INDIRECT_POLL_EXPIRE_TMO ZB_MILLISECONDS_TO_BEACON_INTERVAL(7680U)
 
 
 
@@ -232,7 +232,7 @@ key. They use same algorithm.
  *
  * @note This is a default value of the define. This value can be changed by user.
  */
-  #define ZB_N_APS_RETRANS_ENTRIES   ((ZB_IOBUF_POOL_SIZE / 8U) > 0U ? (ZB_IOBUF_POOL_SIZE / 8U) : (ZB_IOBUF_POOL_SIZE / 5U))
+#define ZB_N_APS_RETRANS_ENTRIES   ((ZB_IOBUF_POOL_SIZE / 8U) > 0U ? (ZB_IOBUF_POOL_SIZE / 8U) : (ZB_IOBUF_POOL_SIZE / 5U))
 #endif
 
 /**
@@ -240,14 +240,14 @@ key. They use same algorithm.
  *
  * See Zigbee specification revision 22 section 2.2.7.1 APS Constants
 */
-  #define ZB_N_APS_MAX_FRAME_RETRIES 3U
+#define ZB_N_APS_MAX_FRAME_RETRIES 3U
 
 
 /*!
  APS: APS ACK wait time from Sleepy devices. After this timeout resend APS packet
       see Zigbee specification revision 22 section 2.2.7.1 APS Constants
 */
-  #define ZB_N_APS_ACK_WAIT_DURATION_FROM_SLEEPY (10U*ZB_TIME_ONE_SECOND)
+#define ZB_N_APS_ACK_WAIT_DURATION_FROM_SLEEPY (10U*ZB_TIME_ONE_SECOND)
 /** @cond internals_doc */
 /*!
  APS: The base amount of delay before each broadcast parent announce is sent.
@@ -265,20 +265,20 @@ The max amount of jitter that is added to the apsParentAnnounceBaseTimer before 
  *
  *  See Zigbee specification revision 22 section 2.2.7.1 APS Constants
 */
-  /* Some devices send APS_ACK to AF and ZDO commands after sending appropriate response or
-   * DefaultResponse. For example, ZCL On/Off command can be done within 5-7 seconds,
-   * so 2 seconds for wail duration is insufficiently. */
-  #define ZB_N_APS_ACK_WAIT_DURATION_FROM_NON_SLEEPY (3U*ZB_TIME_ONE_SECOND)
+/* Some devices send APS_ACK to AF and ZDO commands after sending appropriate response or
+ * DefaultResponse. For example, ZCL On/Off command can be done within 5-7 seconds,
+ * so 2 seconds for wail duration is insufficiently. */
+#define ZB_N_APS_ACK_WAIT_DURATION_FROM_NON_SLEEPY (3U*ZB_TIME_ONE_SECOND)
 
 /**
  APS: maximum number of tables with information from a binding table to be sent to the devices
 */
-  #define ZB_N_APS_BINDTRANS_ARR_MAX_SIZE            5U
+#define ZB_N_APS_BINDTRANS_ARR_MAX_SIZE            5U
 
 /**
  * APS: maximum number of elements in array with index from dst array in bind table
 */
-  #define ZB_N_APS_BINDTRANS_DST_INDEX_ARR_MAX_SIZE  ZB_APS_DST_BINDING_TABLE_SIZE
+#define ZB_N_APS_BINDTRANS_DST_INDEX_ARR_MAX_SIZE  ZB_APS_DST_BINDING_TABLE_SIZE
 
 /** @cond internals_doc */
 /* Origin of this tweak is R21 version of core stack */
@@ -385,7 +385,7 @@ At the worst case our NWK can skip long address at tx: 8 bytes of reserve.
  * MAC (short source, short destination): MAX_MAC_OVERHEAD_SHORT_ADDRS bytes
  * NWK (broadcast, no destination IEEE): 16 bytes header + 18 bytes security
  * Total length: 127-(11+16+18) = 82 bytes  */
- /* nwk hdr include source IEEE address */
+/* nwk hdr include source IEEE address */
 
 /*! Maximum broadcast NWK header size */
 #define ZB_NWK_MAX_BROADCAST_HDR_SIZE 16U
@@ -754,9 +754,9 @@ nwkMaxBroadcastRetries
 */
 #define ZB_TC_REJOIN_ENABLE
 
- /*!
-   Define policy of ignoring assoc. permit and corresponding flags during rejoin
- */
+/*!
+  Define policy of ignoring assoc. permit and corresponding flags during rejoin
+*/
 #define  ZB_REJOIN_IGNORES_FLAGS
 
 /*!
@@ -766,7 +766,7 @@ Workaround for secure rejoin
 
 //#define ZB_MULTILEAVE_HACK
 
- /*! If the macro is defined, the device leaves the network according to application callback*/
+/*! If the macro is defined, the device leaves the network according to application callback*/
 #define ZB_LEAVE_USE_APP_CALLBACK
 /** @endcond *//* internals_doc */
 /**@cond DOXYGEN_MULTIMAC_SECTION */
@@ -782,9 +782,9 @@ Workaround for secure rejoin
 /** @endcond *//* DOXYGEN_MULTIMAC_SECTION */
 /********************ZDO layer options*********************************/
 /**@cond internals_doc*/
- /*!
-   ZDO Indirect poll timer
- */
+/*!
+  ZDO Indirect poll timer
+*/
 #define ZB_ZDO_INDIRECT_POLL_TIMER (5U*ZB_TIME_ONE_SECOND) /* ZB_TIME_ONE_SECOND*10 */
 
 /*!
@@ -1086,8 +1086,8 @@ See IEEE Standard for Low-Rate Wireless Networks, section 5.7.3 Frame structure.
 #define ZB_MAC_FRAME_PPDU_HDR_LEN (ZB_MAC_PREAMBLE_LEN + ZB_MAC_SFD_LEN + ZB_MAC_PHR_LEN)
 
 
- /* See D.10.1.1 PPDU Format for European Sub-GHz FSK */
- /*! MAC SUB GHZ preamble length */
+/* See D.10.1.1 PPDU Format for European Sub-GHz FSK */
+/*! MAC SUB GHZ preamble length */
 #define ZB_MAC_SUBG_PREAMBLE_LEN 8U
 /*! MAC SUB GHZ start of frame delimiter length*/
 #define ZB_MAC_SUBG_SFD_LEN     2U

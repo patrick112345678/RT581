@@ -133,7 +133,7 @@ struct zb_zll_group_id_range_s;
  *  @param range_len [IN] - length of the range requested.
  *  @return RET_OK on success, other vlaue in case of error
  */
-zb_ret_t zll_get_group_id_range(struct zb_zll_group_id_range_s* range, zb_uint16_t range_len);
+zb_ret_t zll_get_group_id_range(struct zb_zll_group_id_range_s *range, zb_uint16_t range_len);
 #endif /* ZB_ZLL_ADDR_ASSIGN_CAPABLE */
 
 struct zb_zll_addr_range_s;
@@ -146,7 +146,7 @@ struct zb_zll_addr_range_s;
  *  allocated, it'll have both fields zeroed.
  *  @return RET_OK on success, other vlaue in case of error
  */
-zb_ret_t zll_get_addr_range(struct zb_zll_addr_range_s* range);
+zb_ret_t zll_get_addr_range(struct zb_zll_addr_range_s *range);
 #endif /* ZB_ZLL_ADDR_ASSIGN_CAPABLE */
 
 /**

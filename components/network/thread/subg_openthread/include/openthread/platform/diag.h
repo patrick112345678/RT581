@@ -213,8 +213,8 @@ otError otPlatDiagGpioGetMode(uint32_t aGpio, otGpioMode *aMode);
  *
  */
 otError otPlatDiagRadioSetRawPowerSetting(otInstance    *aInstance,
-                                          const uint8_t *aRawPowerSetting,
-                                          uint16_t       aRawPowerSettingLength);
+        const uint8_t *aRawPowerSetting,
+        uint16_t       aRawPowerSettingLength);
 
 /**
  * Get the radio raw power setting for diagnostics module.
@@ -232,8 +232,8 @@ otError otPlatDiagRadioSetRawPowerSetting(otInstance    *aInstance,
  *
  */
 otError otPlatDiagRadioGetRawPowerSetting(otInstance *aInstance,
-                                          uint8_t    *aRawPowerSetting,
-                                          uint16_t   *aRawPowerSettingLength);
+        uint8_t    *aRawPowerSetting,
+        uint16_t   *aRawPowerSettingLength);
 
 /**
  * Enable/disable the platform layer to use the raw power setting set by `otPlatDiagRadioSetRawPowerSetting()`.

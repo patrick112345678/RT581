@@ -91,25 +91,25 @@ zb_uint24_t g_attr_24bit = ZB_ZCL_CUSTOM_CLUSTER_ATTR_24BIT_DEFAULT_VALUE;
 zb_uint32_t g_attr_32bitmap = ZB_ZCL_CUSTOM_CLUSTER_ATTR_32BITMAP_DEFAULT_VALUE;
 zb_ieee_addr_t g_attr_ieee = ZB_ZCL_CUSTOM_CLUSTER_ATTR_IEEE_DEFAULT_VALUE;
 zb_char_t g_attr_char_string[ZB_ZCL_CUSTOM_CLUSTER_ATTR_CHAR_STRING_MAX_SIZE] =
-  ZB_ZCL_CUSTOM_CLUSTER_ATTR_CHAR_STRING_DEFAULT_VALUE;
+    ZB_ZCL_CUSTOM_CLUSTER_ATTR_CHAR_STRING_DEFAULT_VALUE;
 zb_time_t g_attr_utc_time = ZB_ZCL_CUSTOM_CLUSTER_ATTR_UTC_TIME_DEFAULT_VALUE;
 zb_uint8_t g_attr_byte_array[ZB_ZCL_CUSTOM_CLUSTER_ATTR_BYTE_ARRAY_MAX_SIZE] =
-  ZB_ZCL_CUSTOM_CLUSTER_ATTR_BYTE_ARRAY_DEFAULT_VALUE;
+    ZB_ZCL_CUSTOM_CLUSTER_ATTR_BYTE_ARRAY_DEFAULT_VALUE;
 zb_bool_t g_attr_bool = ZB_ZCL_CUSTOM_CLUSTER_ATTR_BOOL_DEFAULT_VALUE;
 zb_uint8_t g_attr_128_bit_key[ZB_CCM_KEY_SIZE] = ZB_ZCL_CUSTOM_CLUSTER_ATTR_128_BIT_KEY_DEFAULT_VALUE;
 
 ZB_ZCL_DECLARE_CUSTOM_ATTR_CLUSTER_ATTRIB_LIST(
-  custom_attr_list,
-  &g_attr_u8,
-  &g_attr_s16,
-  &g_attr_24bit,
-  &g_attr_32bitmap,
-   g_attr_ieee,
-   g_attr_char_string,
-  &g_attr_utc_time,
-   g_attr_byte_array,
-  &g_attr_bool,
-  g_attr_128_bit_key);
+    custom_attr_list,
+    &g_attr_u8,
+    &g_attr_s16,
+    &g_attr_24bit,
+    &g_attr_32bitmap,
+    g_attr_ieee,
+    g_attr_char_string,
+    &g_attr_utc_time,
+    g_attr_byte_array,
+    &g_attr_bool,
+    g_attr_128_bit_key);
 
 /********************* Declare device **************************/
 DECLARE_TH_CLUSTER_LIST(rtp_zcl_10_th_zr_device_clusters,
@@ -130,128 +130,129 @@ zb_bool_t test_process_custom_specific_commands_srv(zb_uint8_t param);
 /************************Main*************************************/
 MAIN()
 {
-  ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
-  ZB_SET_TRACE_LEVEL(4);
-  ARGV_UNUSED;
+    ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
+    ZB_SET_TRACE_LEVEL(4);
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("zdo_th_zr");
-
-
-  zb_set_long_address(g_ieee_addr_th);
-
-  zb_reg_test_set_common_channel_settings();
-  zb_set_network_router_role((1l << TEST_CHANNEL));
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    ZB_INIT("zdo_th_zr");
 
 
-  zb_secur_setup_nwk_key(g_nwk_key, 0);
+    zb_set_long_address(g_ieee_addr_th);
 
-  ZB_AF_REGISTER_DEVICE_CTX(&rtp_zcl_10_th_zr_device_ctx);
+    zb_reg_test_set_common_channel_settings();
+    zb_set_network_router_role((1l << TEST_CHANNEL));
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_CUSTOM,
-                              ZB_ZCL_CLUSTER_SERVER_ROLE,
-                              (zb_zcl_cluster_check_value_t)NULL,
-                              (zb_zcl_cluster_write_attr_hook_t)NULL,
-                              (zb_zcl_cluster_handler_t)test_process_custom_specific_commands_srv);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    zb_secur_setup_nwk_key(g_nwk_key, 0);
 
-  TRACE_DEINIT();
+    ZB_AF_REGISTER_DEVICE_CTX(&rtp_zcl_10_th_zr_device_ctx);
 
-  MAIN_RETURN(0);
+    zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_CUSTOM,
+                                ZB_ZCL_CLUSTER_SERVER_ROLE,
+                                (zb_zcl_cluster_check_value_t)NULL,
+                                (zb_zcl_cluster_write_attr_hook_t)NULL,
+                                (zb_zcl_cluster_handler_t)test_process_custom_specific_commands_srv);
+
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
+
+    TRACE_DEINIT();
+
+    MAIN_RETURN(0);
 }
 
 /********************ZDO Startup*****************************/
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  switch (sig)
-  {
+    switch (sig)
+    {
     case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
-      }
-      break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
+        TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
+        }
+        break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
 
     case ZB_BDB_SIGNAL_STEERING:
-      TRACE_MSG(TRACE_APS1, "signal: ZB_BDB_SIGNAL_STEERING, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        ZB_SCHEDULE_CALLBACK(trigger_fb_target, 0);
-      }
-      break; /* ZB_BDB_SIGNAL_STEERING */
+        TRACE_MSG(TRACE_APS1, "signal: ZB_BDB_SIGNAL_STEERING, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            ZB_SCHEDULE_CALLBACK(trigger_fb_target, 0);
+        }
+        break; /* ZB_BDB_SIGNAL_STEERING */
 
     default:
-      TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
-      break;
-  }
+        TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 static void trigger_fb_target(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  ZB_BDB().bdb_commissioning_time = TH_FB_DURATION;
-  zb_bdb_finding_binding_target(TH_ENDPOINT);
+    ZB_BDB().bdb_commissioning_time = TH_FB_DURATION;
+    zb_bdb_finding_binding_target(TH_ENDPOINT);
 }
 
-zb_bool_t test_process_custom_specific_commands_srv(zb_uint8_t param) {
-  zb_zcl_parsed_hdr_t cmd_info;
-  zb_bool_t processed = ZB_FALSE;
+zb_bool_t test_process_custom_specific_commands_srv(zb_uint8_t param)
+{
+    zb_zcl_parsed_hdr_t cmd_info;
+    zb_bool_t processed = ZB_FALSE;
 
-  ZB_ZCL_COPY_PARSED_HEADER(param, &cmd_info);
+    ZB_ZCL_COPY_PARSED_HEADER(param, &cmd_info);
 
-  TRACE_MSG(TRACE_APP1, ">> test_process_custom_specific_commands_srv, "
-            "param=%hd, cmd_id=%hd", (FMT__H_H, param, cmd_info.cmd_id));
+    TRACE_MSG(TRACE_APP1, ">> test_process_custom_specific_commands_srv, "
+              "param=%hd, cmd_id=%hd", (FMT__H_H, param, cmd_info.cmd_id));
 
-  if (cmd_info.cmd_direction == ZB_ZCL_FRAME_DIRECTION_TO_SRV)
-  {
-    if (cmd_info.cmd_id == TEST_CUSTOM_CLUSTER_TEST_PAYLOAD_CMD_ID)
+    if (cmd_info.cmd_direction == ZB_ZCL_FRAME_DIRECTION_TO_SRV)
     {
-      TRACE_MSG(TRACE_APP1, "Received test ZCL payload command", (FMT__0));
-      processed = ZB_TRUE;
+        if (cmd_info.cmd_id == TEST_CUSTOM_CLUSTER_TEST_PAYLOAD_CMD_ID)
+        {
+            TRACE_MSG(TRACE_APP1, "Received test ZCL payload command", (FMT__0));
+            processed = ZB_TRUE;
+        }
     }
-  }
 
-  if(cmd_info.disable_default_response && processed == ZB_TRUE)
-  {
-    TRACE_MSG(TRACE_APP1, "Default response disabled", (FMT__0));
-    zb_buf_free(param);
-  }
-  else
-  {
-    ZB_ZCL_SEND_DEFAULT_RESP(param,
-      ZB_ZCL_PARSED_HDR_SHORT_DATA(&cmd_info).source.u.short_addr,
-      ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
-      ZB_ZCL_PARSED_HDR_SHORT_DATA(&cmd_info).src_endpoint,
-      ZB_ZCL_PARSED_HDR_SHORT_DATA(&cmd_info).dst_endpoint,
-      cmd_info.profile_id,
-      ZB_ZCL_CLUSTER_ID_CUSTOM,
-      cmd_info.seq_number,
-      cmd_info.cmd_id,
-      processed == ZB_TRUE ? ZB_ZCL_STATUS_SUCCESS : ZB_ZCL_STATUS_FAIL);
-  }
+    if (cmd_info.disable_default_response && processed == ZB_TRUE)
+    {
+        TRACE_MSG(TRACE_APP1, "Default response disabled", (FMT__0));
+        zb_buf_free(param);
+    }
+    else
+    {
+        ZB_ZCL_SEND_DEFAULT_RESP(param,
+                                 ZB_ZCL_PARSED_HDR_SHORT_DATA(&cmd_info).source.u.short_addr,
+                                 ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
+                                 ZB_ZCL_PARSED_HDR_SHORT_DATA(&cmd_info).src_endpoint,
+                                 ZB_ZCL_PARSED_HDR_SHORT_DATA(&cmd_info).dst_endpoint,
+                                 cmd_info.profile_id,
+                                 ZB_ZCL_CLUSTER_ID_CUSTOM,
+                                 cmd_info.seq_number,
+                                 cmd_info.cmd_id,
+                                 processed == ZB_TRUE ? ZB_ZCL_STATUS_SUCCESS : ZB_ZCL_STATUS_FAIL);
+    }
 
-  TRACE_MSG(TRACE_APP1, "<< test_process_custom_specific_commands_srv(ret=%hd)", (FMT__H, processed));
+    TRACE_MSG(TRACE_APP1, "<< test_process_custom_specific_commands_srv(ret=%hd)", (FMT__H, processed));
 
-  return processed;
+    return processed;
 }
 
 /*! @} */

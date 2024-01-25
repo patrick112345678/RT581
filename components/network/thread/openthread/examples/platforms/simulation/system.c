@@ -101,7 +101,8 @@ void otSysInit(int aArgCount, char *aArgVector[])
     char    *endptr;
     uint32_t speedUpFactor = 1;
 
-    static const struct option long_options[] = {
+    static const struct option long_options[] =
+    {
         {"help", no_argument, 0, OT_SIM_OPT_HELP},
         {"enable-energy-scan", no_argument, 0, OT_SIM_OPT_ENABLE_ENERGY_SCAN},
         {"sleep-to-tx", no_argument, 0, OT_SIM_OPT_SLEEP_TO_TX},
@@ -192,7 +193,10 @@ void otSysInit(int aArgCount, char *aArgVector[])
     platformRandomInit();
 }
 
-bool otSysPseudoResetWasRequested(void) { return gPlatformPseudoResetWasRequested; }
+bool otSysPseudoResetWasRequested(void)
+{
+    return gPlatformPseudoResetWasRequested;
+}
 
 void otSysDeinit(void)
 {

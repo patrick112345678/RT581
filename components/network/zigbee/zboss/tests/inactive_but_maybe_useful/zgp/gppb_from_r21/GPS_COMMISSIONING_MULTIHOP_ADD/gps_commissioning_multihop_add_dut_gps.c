@@ -42,83 +42,83 @@ static zb_ieee_addr_t g_dut_gps_addr = DUT_GPS_IEEE_ADDR;
 /*! Program states according to test scenario */
 enum test_states_e
 {
-  TEST_STATE_INITIAL,                /* 0 */
-  /* STEP 0 */
-  TEST_STATE_COMM_MODE_ENTER_0,      /* 1 */
-  TEST_STATE_WINDOW_0,               /* 2 */
-  /* STEP 1 */
-  TEST_STATE_CLEAN_SINK_TABLE_1,     /* 3 */
-  TEST_STATE_COMM_MODE_ENTER_1,      /* 4 */
-  TEST_STATE_WINDOW_1,               /* 5 */
-  /* STEP 2A */
-  TEST_STATE_CLEAN_SINK_TABLE_2A,    /* 6 */
-  TEST_STATE_COMM_MODE_ENTER_2A,     /* 7 */
-  TEST_STATE_WINDOW_2A,              /* 8 */
-  /* STEP 3 */
-  TEST_STATE_CLEAN_SINK_TABLE_3,     /* 9 */
-  TEST_STATE_COMM_MODE_ENTER_3,      /* 10 */
-  TEST_STATE_WINDOW_3,               /* 11 */
-  /* STEP 3J */
-  TEST_STATE_CLEAN_SINK_TABLE_3J,    /* 12 */
-  TEST_STATE_COMM_MODE_ENTER_3J,     /* 13 */
-  TEST_STATE_WINDOW_3J,              /* 14 */
-  /* STEP 3L */
-  TEST_STATE_CLEAN_SINK_TABLE_3L,    /* 15 */
-  TEST_STATE_COMM_MODE_ENTER_3L,     /* 16 */
-  TEST_STATE_WINDOW_3L,              /* 17 */
-  /* STEP 4A */
-  TEST_STATE_CLEAN_SINK_TABLE_4A,    /* 18 */
-  TEST_STATE_COMM_MODE_ENTER_4A,     /* 19 */
-  TEST_STATE_WINDOW_4A,              /* 20 */
-  /* STEP 4B */
-  TEST_STATE_CLEAN_SINK_TABLE_4B,    /* 21 */
-  TEST_STATE_COMM_MODE_ENTER_4B,     /* 22 */
-  TEST_STATE_WINDOW_4B,              /* 23 */
-  /* STEP 5A */
-  TEST_STATE_CLEAN_SINK_TABLE_5A,    /* 24 */
-  TEST_STATE_COMM_MODE_ENTER_5A,     /* 25 */
-  TEST_STATE_WINDOW_5A,              /* 26 */
-  /* STEP 5B */
-  TEST_STATE_CLEAN_SINK_TABLE_5B,    /* 27 */
-  TEST_STATE_COMM_MODE_ENTER_5B,     /* 28 */
-  TEST_STATE_WINDOW_5B,              /* 29 */
-  /* STEP 6A */
-  TEST_STATE_CLEAN_SINK_TABLE_6A,    /* 30 */
-  TEST_STATE_COMM_MODE_ENTER_6A,     /* 31 */
-  TEST_STATE_WINDOW_6A,              /* 32 */
-  /* STEP 6B */
-  TEST_STATE_CLEAN_SINK_TABLE_6B,    /* 33 */
-  TEST_STATE_COMM_MODE_ENTER_6B,     /* 34 */
-  TEST_STATE_WINDOW_6B,              /* 35 */
-  /* FINISH */
-  TEST_STATE_FINISHED                /* 36 */
+    TEST_STATE_INITIAL,                /* 0 */
+    /* STEP 0 */
+    TEST_STATE_COMM_MODE_ENTER_0,      /* 1 */
+    TEST_STATE_WINDOW_0,               /* 2 */
+    /* STEP 1 */
+    TEST_STATE_CLEAN_SINK_TABLE_1,     /* 3 */
+    TEST_STATE_COMM_MODE_ENTER_1,      /* 4 */
+    TEST_STATE_WINDOW_1,               /* 5 */
+    /* STEP 2A */
+    TEST_STATE_CLEAN_SINK_TABLE_2A,    /* 6 */
+    TEST_STATE_COMM_MODE_ENTER_2A,     /* 7 */
+    TEST_STATE_WINDOW_2A,              /* 8 */
+    /* STEP 3 */
+    TEST_STATE_CLEAN_SINK_TABLE_3,     /* 9 */
+    TEST_STATE_COMM_MODE_ENTER_3,      /* 10 */
+    TEST_STATE_WINDOW_3,               /* 11 */
+    /* STEP 3J */
+    TEST_STATE_CLEAN_SINK_TABLE_3J,    /* 12 */
+    TEST_STATE_COMM_MODE_ENTER_3J,     /* 13 */
+    TEST_STATE_WINDOW_3J,              /* 14 */
+    /* STEP 3L */
+    TEST_STATE_CLEAN_SINK_TABLE_3L,    /* 15 */
+    TEST_STATE_COMM_MODE_ENTER_3L,     /* 16 */
+    TEST_STATE_WINDOW_3L,              /* 17 */
+    /* STEP 4A */
+    TEST_STATE_CLEAN_SINK_TABLE_4A,    /* 18 */
+    TEST_STATE_COMM_MODE_ENTER_4A,     /* 19 */
+    TEST_STATE_WINDOW_4A,              /* 20 */
+    /* STEP 4B */
+    TEST_STATE_CLEAN_SINK_TABLE_4B,    /* 21 */
+    TEST_STATE_COMM_MODE_ENTER_4B,     /* 22 */
+    TEST_STATE_WINDOW_4B,              /* 23 */
+    /* STEP 5A */
+    TEST_STATE_CLEAN_SINK_TABLE_5A,    /* 24 */
+    TEST_STATE_COMM_MODE_ENTER_5A,     /* 25 */
+    TEST_STATE_WINDOW_5A,              /* 26 */
+    /* STEP 5B */
+    TEST_STATE_CLEAN_SINK_TABLE_5B,    /* 27 */
+    TEST_STATE_COMM_MODE_ENTER_5B,     /* 28 */
+    TEST_STATE_WINDOW_5B,              /* 29 */
+    /* STEP 6A */
+    TEST_STATE_CLEAN_SINK_TABLE_6A,    /* 30 */
+    TEST_STATE_COMM_MODE_ENTER_6A,     /* 31 */
+    TEST_STATE_WINDOW_6A,              /* 32 */
+    /* STEP 6B */
+    TEST_STATE_CLEAN_SINK_TABLE_6B,    /* 33 */
+    TEST_STATE_COMM_MODE_ENTER_6B,     /* 34 */
+    TEST_STATE_WINDOW_6B,              /* 35 */
+    /* FINISH */
+    TEST_STATE_FINISHED                /* 36 */
 };
 
 ZB_ZGPC_DECLARE_ZCL_ON_OFF_TOGGLE_TEST_TEMPLATE(TEST_DEVICE_CTX, ENDPOINT, 4000)
 
 static void send_zcl(zb_uint8_t buf_ref, zb_callback_t cb)
 {
-  ZVUNUSED(buf_ref);
-  ZVUNUSED(cb);
+    ZVUNUSED(buf_ref);
+    ZVUNUSED(cb);
 }
 
 static void perform_next_state(zb_uint8_t param)
 {
-  if (TEST_DEVICE_CTX.pause)
-  {
-    ZB_SCHEDULE_ALARM(perform_next_state, 0,
-                      ZB_TIME_ONE_SECOND*TEST_DEVICE_CTX.pause);
-    TEST_DEVICE_CTX.pause = 0;
-    return;
-  }
+    if (TEST_DEVICE_CTX.pause)
+    {
+        ZB_SCHEDULE_ALARM(perform_next_state, 0,
+                          ZB_TIME_ONE_SECOND * TEST_DEVICE_CTX.pause);
+        TEST_DEVICE_CTX.pause = 0;
+        return;
+    }
 
-  TEST_DEVICE_CTX.test_state++;
+    TEST_DEVICE_CTX.test_state++;
 
-  TRACE_MSG(TRACE_APP1, ">perform_next_state: state = %d",
-            (FMT__D, TEST_DEVICE_CTX.test_state));
+    TRACE_MSG(TRACE_APP1, ">perform_next_state: state = %d",
+              (FMT__D, TEST_DEVICE_CTX.test_state));
 
-  switch (TEST_DEVICE_CTX.test_state)
-  {
+    switch (TEST_DEVICE_CTX.test_state)
+    {
     case TEST_STATE_COMM_MODE_ENTER_0:
     case TEST_STATE_COMM_MODE_ENTER_1:
     case TEST_STATE_COMM_MODE_ENTER_2A:
@@ -131,106 +131,106 @@ static void perform_next_state(zb_uint8_t param)
     case TEST_STATE_COMM_MODE_ENTER_5B:
     case TEST_STATE_COMM_MODE_ENTER_6A:
     case TEST_STATE_COMM_MODE_ENTER_6B:
-      zb_zgps_start_commissioning(TEST_GPS_GET_COMMISSIONING_WINDOW() *
-                                  ZB_TIME_ONE_SECOND);
+        zb_zgps_start_commissioning(TEST_GPS_GET_COMMISSIONING_WINDOW() *
+                                    ZB_TIME_ONE_SECOND);
 #ifdef ZB_USE_BUTTONS
-      zb_led_blink_on(ZB_LED_ARG_CREATE(3, ZB_LED_BLINK_HALF_SEC));
+        zb_led_blink_on(ZB_LED_ARG_CREATE(3, ZB_LED_BLINK_HALF_SEC));
 #endif
-      ZB_SCHEDULE_CALLBACK(PERFORM_NEXT_STATE, 0);
-      break;
+        ZB_SCHEDULE_CALLBACK(PERFORM_NEXT_STATE, 0);
+        break;
 
     case TEST_STATE_WINDOW_0:
-      ZB_ZGPC_SET_PAUSE(DUT_ACTIONS_WINDOW_0);
-      ZB_SCHEDULE_CALLBACK(PERFORM_NEXT_STATE, 0);
-      break;
+        ZB_ZGPC_SET_PAUSE(DUT_ACTIONS_WINDOW_0);
+        ZB_SCHEDULE_CALLBACK(PERFORM_NEXT_STATE, 0);
+        break;
     case TEST_STATE_WINDOW_1:
-      ZB_ZGPC_SET_PAUSE(DUT_ACTIONS_WINDOW_1);
-      ZB_SCHEDULE_CALLBACK(PERFORM_NEXT_STATE, 0);
-      break;
+        ZB_ZGPC_SET_PAUSE(DUT_ACTIONS_WINDOW_1);
+        ZB_SCHEDULE_CALLBACK(PERFORM_NEXT_STATE, 0);
+        break;
     case TEST_STATE_WINDOW_2A:
-      ZB_ZGPC_SET_PAUSE(DUT_ACTIONS_WINDOW_2A);
-      ZB_SCHEDULE_CALLBACK(PERFORM_NEXT_STATE, 0);
-      break;
+        ZB_ZGPC_SET_PAUSE(DUT_ACTIONS_WINDOW_2A);
+        ZB_SCHEDULE_CALLBACK(PERFORM_NEXT_STATE, 0);
+        break;
     case TEST_STATE_WINDOW_3:
-      ZB_ZGPC_SET_PAUSE(DUT_ACTIONS_WINDOW_3);
-      ZB_SCHEDULE_CALLBACK(PERFORM_NEXT_STATE, 0);
-      break;
+        ZB_ZGPC_SET_PAUSE(DUT_ACTIONS_WINDOW_3);
+        ZB_SCHEDULE_CALLBACK(PERFORM_NEXT_STATE, 0);
+        break;
     case TEST_STATE_WINDOW_3J:
-      ZB_ZGPC_SET_PAUSE(DUT_ACTIONS_WINDOW_3J);
-      ZB_SCHEDULE_CALLBACK(PERFORM_NEXT_STATE, 0);
-      break;
+        ZB_ZGPC_SET_PAUSE(DUT_ACTIONS_WINDOW_3J);
+        ZB_SCHEDULE_CALLBACK(PERFORM_NEXT_STATE, 0);
+        break;
     case TEST_STATE_WINDOW_3L:
-      ZB_ZGPC_SET_PAUSE(DUT_ACTIONS_WINDOW_3L);
-      ZB_SCHEDULE_CALLBACK(PERFORM_NEXT_STATE, 0);
-      break;
+        ZB_ZGPC_SET_PAUSE(DUT_ACTIONS_WINDOW_3L);
+        ZB_SCHEDULE_CALLBACK(PERFORM_NEXT_STATE, 0);
+        break;
     case TEST_STATE_WINDOW_4A:
     case TEST_STATE_WINDOW_4B:
     case TEST_STATE_WINDOW_5A:
     case TEST_STATE_WINDOW_5B:
     case TEST_STATE_WINDOW_6A:
     case TEST_STATE_WINDOW_6B:
-      ZB_ZGPC_SET_PAUSE(DUT_ACTIONS_WINDOW_456);
-      ZB_SCHEDULE_CALLBACK(PERFORM_NEXT_STATE, 0);
-      break;
+        ZB_ZGPC_SET_PAUSE(DUT_ACTIONS_WINDOW_456);
+        ZB_SCHEDULE_CALLBACK(PERFORM_NEXT_STATE, 0);
+        break;
 
     case TEST_STATE_CLEAN_SINK_TABLE_1:
-      zgp_tbl_clear();
-      ZGP_GPS_COMMISSIONING_WINDOW = DUT_COMM_WINDOW_1;
-      ZB_SCHEDULE_CALLBACK(PERFORM_NEXT_STATE, 0);
-      break;
+        zgp_tbl_clear();
+        ZGP_GPS_COMMISSIONING_WINDOW = DUT_COMM_WINDOW_1;
+        ZB_SCHEDULE_CALLBACK(PERFORM_NEXT_STATE, 0);
+        break;
     case TEST_STATE_CLEAN_SINK_TABLE_2A:
-      zgp_tbl_clear();
-      ZGP_GPS_COMMISSIONING_EXIT_MODE = ZGP_COMMISSIONING_EXIT_MODE_ON_PAIRING_SUCCESS;
-      ZGP_GPS_SECURITY_LEVEL = ZB_ZGP_FILL_GPS_SECURITY_LEVEL(
-                                 ZB_ZGP_SEC_LEVEL_FULL_NO_ENC,
-                                 ZB_ZGP_DEFAULT_SEC_LEVEL_PROTECTION_WITH_GP_LINK_KEY,
-                                 ZB_ZGP_DEFAULT_SEC_LEVEL_INVOLVE_TC);
-      ZGP_GP_SHARED_SECURITY_KEY_TYPE = ZB_ZGP_SEC_KEY_TYPE_NWK;
+        zgp_tbl_clear();
+        ZGP_GPS_COMMISSIONING_EXIT_MODE = ZGP_COMMISSIONING_EXIT_MODE_ON_PAIRING_SUCCESS;
+        ZGP_GPS_SECURITY_LEVEL = ZB_ZGP_FILL_GPS_SECURITY_LEVEL(
+                                     ZB_ZGP_SEC_LEVEL_FULL_NO_ENC,
+                                     ZB_ZGP_DEFAULT_SEC_LEVEL_PROTECTION_WITH_GP_LINK_KEY,
+                                     ZB_ZGP_DEFAULT_SEC_LEVEL_INVOLVE_TC);
+        ZGP_GP_SHARED_SECURITY_KEY_TYPE = ZB_ZGP_SEC_KEY_TYPE_NWK;
 
-      ZB_SCHEDULE_CALLBACK(PERFORM_NEXT_STATE, 0);
-      break;
+        ZB_SCHEDULE_CALLBACK(PERFORM_NEXT_STATE, 0);
+        break;
     case TEST_STATE_CLEAN_SINK_TABLE_3:
-      zgp_tbl_clear();
-      ZGP_GPS_COMMISSIONING_WINDOW = DUT_COMM_WINDOW_3;
-      ZGP_GPS_COMMISSIONING_EXIT_MODE = ZGP_COMMISSIONING_EXIT_MODE_ON_COMMISSIONING_WINDOW_EXPIRATION;
-      ZB_SCHEDULE_CALLBACK(PERFORM_NEXT_STATE, 0);
-      break;
+        zgp_tbl_clear();
+        ZGP_GPS_COMMISSIONING_WINDOW = DUT_COMM_WINDOW_3;
+        ZGP_GPS_COMMISSIONING_EXIT_MODE = ZGP_COMMISSIONING_EXIT_MODE_ON_COMMISSIONING_WINDOW_EXPIRATION;
+        ZB_SCHEDULE_CALLBACK(PERFORM_NEXT_STATE, 0);
+        break;
     case TEST_STATE_CLEAN_SINK_TABLE_3J:
-      zgp_tbl_clear();
-      ZGP_GPS_COMMISSIONING_WINDOW = DUT_COMM_WINDOW_3J;
-      ZB_SCHEDULE_CALLBACK(PERFORM_NEXT_STATE, 0);
-      break;
+        zgp_tbl_clear();
+        ZGP_GPS_COMMISSIONING_WINDOW = DUT_COMM_WINDOW_3J;
+        ZB_SCHEDULE_CALLBACK(PERFORM_NEXT_STATE, 0);
+        break;
     case TEST_STATE_CLEAN_SINK_TABLE_3L:
-      zgp_tbl_clear();
-      ZGP_GPS_COMMISSIONING_WINDOW = DUT_COMM_WINDOW_3L;
-      ZB_SCHEDULE_CALLBACK(PERFORM_NEXT_STATE, 0);
-      break;
+        zgp_tbl_clear();
+        ZGP_GPS_COMMISSIONING_WINDOW = DUT_COMM_WINDOW_3L;
+        ZB_SCHEDULE_CALLBACK(PERFORM_NEXT_STATE, 0);
+        break;
     case TEST_STATE_CLEAN_SINK_TABLE_4A:
     case TEST_STATE_CLEAN_SINK_TABLE_4B:
     case TEST_STATE_CLEAN_SINK_TABLE_5A:
     case TEST_STATE_CLEAN_SINK_TABLE_5B:
     case TEST_STATE_CLEAN_SINK_TABLE_6A:
     case TEST_STATE_CLEAN_SINK_TABLE_6B:
-      zgp_tbl_clear();
-      ZGP_GPS_COMMISSIONING_WINDOW = DUT_COMM_WINDOW_456;
-      ZB_SCHEDULE_CALLBACK(PERFORM_NEXT_STATE, 0);
-      break;
+        zgp_tbl_clear();
+        ZGP_GPS_COMMISSIONING_WINDOW = DUT_COMM_WINDOW_456;
+        ZB_SCHEDULE_CALLBACK(PERFORM_NEXT_STATE, 0);
+        break;
 
     case TEST_STATE_FINISHED:
-      TRACE_MSG(TRACE_APP1, "Test finished. Status: OK", (FMT__0));
-      break;
+        TRACE_MSG(TRACE_APP1, "Test finished. Status: OK", (FMT__0));
+        break;
 
     default:
     {
-      if (param)
-      {
-        zb_free_buf(ZB_BUF_FROM_REF(param));
-      }
-      ZB_SCHEDULE_ALARM(test_send_command, 0, ZB_TIME_ONE_SECOND);
+        if (param)
+        {
+            zb_free_buf(ZB_BUF_FROM_REF(param));
+        }
+        ZB_SCHEDULE_ALARM(test_send_command, 0, ZB_TIME_ONE_SECOND);
     }
-  }
+    }
 
-  TRACE_MSG(TRACE_APP1, "<perform_next_state", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "<perform_next_state", (FMT__0));
 }
 
 /*============================================================================*/
@@ -243,41 +243,41 @@ static void perform_next_state(zb_uint8_t param)
 
 static void zgpc_custom_startup()
 {
-  /* Init device, load IB values from nvram or set it to default */
-  ZB_SET_TRAF_DUMP_ON();
-  ZB_INIT("dut_gps");
+    /* Init device, load IB values from nvram or set it to default */
+    ZB_SET_TRAF_DUMP_ON();
+    ZB_INIT("dut_gps");
 
-  ZB_AIB().aps_channel_mask = (1<<TEST_CHANNEL);
-  ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_dut_gps_addr);
-  zb_set_default_ffd_descriptor_values(ZB_ROUTER);
-  ZB_PIBCACHE_RX_ON_WHEN_IDLE() = ZB_B2U(ZB_TRUE);
-  ZB_NIB_SET_USE_MULTICAST(ZB_FALSE);
-  /* Must use NVRAM for ZGP */
-  ZB_AIB().aps_use_nvram = 1;
+    ZB_AIB().aps_channel_mask = (1 << TEST_CHANNEL);
+    ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_dut_gps_addr);
+    zb_set_default_ffd_descriptor_values(ZB_ROUTER);
+    ZB_PIBCACHE_RX_ON_WHEN_IDLE() = ZB_B2U(ZB_TRUE);
+    ZB_NIB_SET_USE_MULTICAST(ZB_FALSE);
+    /* Must use NVRAM for ZGP */
+    ZB_AIB().aps_use_nvram = 1;
 
-  /* Need to block GPDF recv directly */
+    /* Need to block GPDF recv directly */
 #ifdef ZB_ZGP_SKIP_GPDF_ON_NWK_LAYER
-  ZG->nwk.skip_gpdf = 0;
+    ZG->nwk.skip_gpdf = 0;
 #endif
 #ifdef ZB_ZGP_RUNTIME_WORK_MODE_WITH_PROXIES
-  ZGP_CTX().enable_work_with_proxies = 1;
+    ZGP_CTX().enable_work_with_proxies = 1;
 #endif
 #ifdef ZB_CERTIFICATION_HACKS
-  ZB_CERT_HACKS().ccm_check_cb = NULL;
+    ZB_CERT_HACKS().ccm_check_cb = NULL;
 #endif
 
-  ZGP_GPS_COMMUNICATION_MODE = ZGP_COMMUNICATION_MODE_GROUPCAST_DERIVED;
-  ZGP_GPS_COMMISSIONING_EXIT_MODE = ZGP_COMMISSIONING_EXIT_MODE_ON_CWE_OR_PS;
-  ZGP_GPS_COMMISSIONING_WINDOW = DUT_COMM_WINDOW_0;
+    ZGP_GPS_COMMUNICATION_MODE = ZGP_COMMUNICATION_MODE_GROUPCAST_DERIVED;
+    ZGP_GPS_COMMISSIONING_EXIT_MODE = ZGP_COMMISSIONING_EXIT_MODE_ON_CWE_OR_PS;
+    ZGP_GPS_COMMISSIONING_WINDOW = DUT_COMM_WINDOW_0;
 
 
-  ZGP_GPS_SECURITY_LEVEL = ZB_ZGP_FILL_GPS_SECURITY_LEVEL(
-                             ZB_ZGP_SEC_LEVEL_FULL_NO_ENC,
-                             ZB_ZGP_DEFAULT_SEC_LEVEL_PROTECTION_WITH_GP_LINK_KEY,
-                             ZB_ZGP_DEFAULT_SEC_LEVEL_INVOLVE_TC);
+    ZGP_GPS_SECURITY_LEVEL = ZB_ZGP_FILL_GPS_SECURITY_LEVEL(
+                                 ZB_ZGP_SEC_LEVEL_FULL_NO_ENC,
+                                 ZB_ZGP_DEFAULT_SEC_LEVEL_PROTECTION_WITH_GP_LINK_KEY,
+                                 ZB_ZGP_DEFAULT_SEC_LEVEL_INVOLVE_TC);
 
-  ZGP_GP_SHARED_SECURITY_KEY_TYPE = ZB_ZGP_SEC_KEY_TYPE_NWK;
-  ZGP_CTX().device_role = ZGP_DEVICE_COMBO_BASIC;
+    ZGP_GP_SHARED_SECURITY_KEY_TYPE = ZB_ZGP_SEC_KEY_TYPE_NWK;
+    ZGP_CTX().device_role = ZGP_DEVICE_COMBO_BASIC;
 }
 
 ZB_ZGPC_DECLARE_STARTUP_PROCESS()

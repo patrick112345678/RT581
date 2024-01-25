@@ -47,80 +47,80 @@ static zb_ieee_addr_t g_th_tool_addr = TH_TOOL_IEEE_ADDR;
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
-  ZB_INIT("th_tool");
+    /* Init device, load IB values from nvram or set it to default */
+    ZB_INIT("th_tool");
 
-  ZB_AIB().aps_channel_mask = (1<<TEST_CHANNEL);
-  ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_th_tool_addr);
-  ZB_PIBCACHE_RX_ON_WHEN_IDLE() = ZB_B2U(ZB_TRUE);
+    ZB_AIB().aps_channel_mask = (1 << TEST_CHANNEL);
+    ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_th_tool_addr);
+    ZB_PIBCACHE_RX_ON_WHEN_IDLE() = ZB_B2U(ZB_TRUE);
 
-  zb_set_default_ed_descriptor_values();
+    zb_set_default_ed_descriptor_values();
 
-  zgp_cluster_set_app_zcl_cmd_handler(zcl_specific_cluster_cmd_handler);
+    zgp_cluster_set_app_zcl_cmd_handler(zcl_specific_cluster_cmd_handler);
 
-  if (zdo_dev_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
-  }
-  else
-  {
-    zcl_main_loop();
-  }
+    if (zdo_dev_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
+    }
+    else
+    {
+        zcl_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 static void read_gpp_functionality(zb_uint8_t param)
 {
-  zgp_cluster_read_attr(param, DUT_GPPB_ADDR, DUT_GPPB_ADDR_MODE,
-                        ZB_ZCL_ATTR_GPP_FUNCTIONALITY_ID,
-                        ZB_ZCL_ENABLE_DEFAULT_RESPONSE, NULL);
+    zgp_cluster_read_attr(param, DUT_GPPB_ADDR, DUT_GPPB_ADDR_MODE,
+                          ZB_ZCL_ATTR_GPP_FUNCTIONALITY_ID,
+                          ZB_ZCL_ENABLE_DEFAULT_RESPONSE, NULL);
 }
 
 static zb_uint8_t zcl_specific_cluster_cmd_handler(zb_uint8_t param)
 {
-  /** [VARIABLE] */
-  zb_buf_t *zcl_cmd_buf = (zb_buf_t *)ZB_BUF_FROM_REF(param);
-  zb_zcl_parsed_hdr_t *cmd_info = ZB_GET_BUF_PARAM(zcl_cmd_buf, zb_zcl_parsed_hdr_t);
-  zb_bool_t cmd_processed = ZB_FALSE;
-  /** [VARIABLE] */
+    /** [VARIABLE] */
+    zb_buf_t *zcl_cmd_buf = (zb_buf_t *)ZB_BUF_FROM_REF(param);
+    zb_zcl_parsed_hdr_t *cmd_info = ZB_GET_BUF_PARAM(zcl_cmd_buf, zb_zcl_parsed_hdr_t);
+    zb_bool_t cmd_processed = ZB_FALSE;
+    /** [VARIABLE] */
 
 
-  TRACE_MSG(TRACE_ZCL1, "> zcl_specific_cluster_cmd_handler %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_ZCL1, "> zcl_specific_cluster_cmd_handler %hd", (FMT__H, param));
 
-  ZB_ZCL_DEBUG_DUMP_HEADER(cmd_info);
-  TRACE_MSG(TRACE_ZCL1, "payload size: %hd", (FMT__H, ZB_BUF_LEN(zcl_cmd_buf)));
+    ZB_ZCL_DEBUG_DUMP_HEADER(cmd_info);
+    TRACE_MSG(TRACE_ZCL1, "payload size: %hd", (FMT__H, ZB_BUF_LEN(zcl_cmd_buf)));
 
-  TRACE_MSG(TRACE_ZCL1,
-            "< zcl_specific_cluster_cmd_handler cmd_processed %hd", (FMT__H, cmd_processed));
-  return cmd_processed;
+    TRACE_MSG(TRACE_ZCL1,
+              "< zcl_specific_cluster_cmd_handler cmd_processed %hd", (FMT__H, cmd_processed));
+    return cmd_processed;
 }
 
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_buf_t *buf = ZB_BUF_FROM_REF(param);
+    zb_buf_t *buf = ZB_BUF_FROM_REF(param);
 
-  TRACE_MSG(TRACE_ZCL1, "> zb_zdo_startup_complete %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_ZCL1, "> zb_zdo_startup_complete %hd", (FMT__H, param));
 
-  if (buf->u.hdr.status == 0)
-  {
-    TRACE_MSG(TRACE_ZCL1, "Device STARTED OK", (FMT__0));
+    if (buf->u.hdr.status == 0)
+    {
+        TRACE_MSG(TRACE_ZCL1, "Device STARTED OK", (FMT__0));
 
-    read_gpp_functionality(param);
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Error, Device start FAILED status %d",
-              (FMT__D, (int)buf->u.hdr.status));
-    zb_free_buf(buf);
-  }
+        read_gpp_functionality(param);
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Error, Device start FAILED status %d",
+                  (FMT__D, (int)buf->u.hdr.status));
+        zb_free_buf(buf);
+    }
 
-  TRACE_MSG(TRACE_ZCL1, "< zb_zdo_startup_complete", (FMT__0));
+    TRACE_MSG(TRACE_ZCL1, "< zb_zdo_startup_complete", (FMT__0));
 }
 
 #else // defined ZB_ENABLE_HA && defined ZB_ENABLE_ZGP_CLUSTER
@@ -128,8 +128,8 @@ ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 #include <stdio.h>
 int main()
 {
-  printf(" HA and ZGP cluster is not supported\n");
-  return 0;
+    printf(" HA and ZGP cluster is not supported\n");
+    return 0;
 }
 
 #endif // defined ZB_ENABLE_HA

@@ -27,5 +27,5 @@ bool type_internals_preclude_sra_p (tree type, const char **msg);
 static inline bool
 is_va_list_type (tree type)
 {
-  return TYPE_MAIN_VARIANT (type) == TYPE_MAIN_VARIANT (va_list_type_node);
+    return TYPE_MAIN_VARIANT (type) == TYPE_MAIN_VARIANT (va_list_type_node);
 }

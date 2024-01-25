@@ -46,8 +46,8 @@
 */
 typedef ZB_PACKED_PRE struct zb_ieee_addr_compressed_s
 {
-  zb_uint8_t dev_manufacturer; /*!< Index from dev manufacturer array */
-  zb_uint8_t device_id[5]; /*!< Device ID */
+    zb_uint8_t dev_manufacturer; /*!< Index from dev manufacturer array */
+    zb_uint8_t device_id[5]; /*!< Device ID */
 }
 ZB_PACKED_STRUCT
 zb_ieee_addr_compressed_t;
@@ -77,29 +77,29 @@ typedef zb_uint8_t zb_address_ieee_ref_t;
 */
 typedef ZB_PACKED_PRE struct zb_address_map_s
 {
-  zb_ieee_addr_compressed_t  ieee_addr; /*!< Compressed IEEE address */
-  zb_uint16_t                addr; /*!< 16-bit device address */
-  zb_address_ieee_ref_t      redirect_ref; /*!< Reference to redirected or regular record */
+    zb_ieee_addr_compressed_t  ieee_addr; /*!< Compressed IEEE address */
+    zb_uint16_t                addr; /*!< 16-bit device address */
+    zb_address_ieee_ref_t      redirect_ref; /*!< Reference to redirected or regular record */
 
-  zb_bitfield_t              lock_cnt:8; /*!< lock counter. not locked if 0  */
-  zb_bitfield_t              used:1; /*!< if 0, this entry is free (never used)  */
-  zb_bitfield_t              has_address_conflict:1; /*!< Set to 1 if device discovers address conflict
+    zb_bitfield_t              lock_cnt: 8; /*!< lock counter. not locked if 0  */
+    zb_bitfield_t              used: 1; /*!< if 0, this entry is free (never used)  */
+    zb_bitfield_t              has_address_conflict: 1; /*!< Set to 1 if device discovers address conflict
                                                       *   Cleared when conflict is resolved:
                                                       *   - Device that discovers conflict sending  Network Status
                                                       *   - or another Network Status with identical payload was received  */
-  zb_bitfield_t              padding:2; /*!< Explicit padding bits  */
-  zb_bitfield_t              clock:1;    /*!< clock value for the clock usage algorithm  */
-  zb_bitfield_t              redirect_type:2; /*!< redirect type @ref addr_redirect_type */
-  zb_bitfield_t              pending_for_delete:1;    /*!< record is pending for deletion  */
+    zb_bitfield_t              padding: 2; /*!< Explicit padding bits  */
+    zb_bitfield_t              clock: 1;   /*!< clock value for the clock usage algorithm  */
+    zb_bitfield_t              redirect_type: 2; /*!< redirect type @ref addr_redirect_type */
+    zb_bitfield_t              pending_for_delete: 1;   /*!< record is pending for deletion  */
 
 #ifdef ZB_RAF_DEBUG_LOCK_COUNT
-  //zb_lock_cnt_record_t       lock_cnt_record[ZB_DEBUG_RAF_RECORD_COUNT];
-  zb_uint16_t                time[ZB_RAF_DEBUG_RECORD_COUNT];
-  //zb_uint8_t                 source[ZB_RAF_DEBUG_RECORD_COUNT];
-  zb_uint16_t                file_id[ZB_RAF_DEBUG_RECORD_COUNT];
-  zb_uint16_t                line_id[ZB_RAF_DEBUG_RECORD_COUNT];
-  zb_uint8_t                 lock_cnt_before[ZB_RAF_DEBUG_RECORD_COUNT];
-  zb_uint8_t                 lock_cnt_after[ZB_RAF_DEBUG_RECORD_COUNT];
+    //zb_lock_cnt_record_t       lock_cnt_record[ZB_DEBUG_RAF_RECORD_COUNT];
+    zb_uint16_t                time[ZB_RAF_DEBUG_RECORD_COUNT];
+    //zb_uint8_t                 source[ZB_RAF_DEBUG_RECORD_COUNT];
+    zb_uint16_t                file_id[ZB_RAF_DEBUG_RECORD_COUNT];
+    zb_uint16_t                line_id[ZB_RAF_DEBUG_RECORD_COUNT];
+    zb_uint8_t                 lock_cnt_before[ZB_RAF_DEBUG_RECORD_COUNT];
+    zb_uint8_t                 lock_cnt_after[ZB_RAF_DEBUG_RECORD_COUNT];
 #endif
 
 
@@ -147,11 +147,11 @@ zb_bool_t zb_address_compressed_cmp(zb_ieee_addr_compressed_t *one, zb_ieee_addr
 #define ZB_ADDRESS_COMPRESSED_COPY(dest, src)                       \
   ZB_MEMCPY(&(dest).dev_manufacturer, &(src).dev_manufacturer, sizeof(zb_ieee_addr_compressed_t))
 
-  /* g_zero_addr is declared as ZB_CONST which allows IAR to place it in CODE memory.
-     Compiled this by IAR 7.60 for 8051.
-     This placement changes pointer type making it unusable
-     Is this cast needed here?
-  */
+/* g_zero_addr is declared as ZB_CONST which allows IAR to place it in CODE memory.
+   Compiled this by IAR 7.60 for 8051.
+   This placement changes pointer type making it unusable
+   Is this cast needed here?
+*/
 #define ZB_ADDRESS_COMPRESSED_IS_ZERO(dest)      \
   (ZB_MEMCMP(&(dest).dev_manufacturer, (void const *)g_zero_addr, sizeof(zb_ieee_addr_compressed_t)) == 0)
 

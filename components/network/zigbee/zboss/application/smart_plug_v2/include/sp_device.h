@@ -33,24 +33,24 @@
 /* Smart plug device states enumeration*/
 typedef enum sp_dev_state_e
 {
-  SP_DEV_INIT = 0,
-  SP_DEV_IDLE,
-  SP_DEV_COMMISSIONING,
-  SP_DEV_NORMAL
+    SP_DEV_INIT = 0,
+    SP_DEV_IDLE,
+    SP_DEV_COMMISSIONING,
+    SP_DEV_NORMAL
 }
 sp_dev_state_t;
 
 /* Current Led states enumeration */
 typedef enum sp_led_state_e
 {
-  SP_LED_SUCCESS,       /* Commissioning successful: light on the LED for 3 second then off */
-  SP_LED_FAILED,        /* Operation failed: 5 short blinks (300 ms on, 300 ms off) */
-  SP_LED_PROGRESS,      /* Commissioning in progress: blink periodically 1 second on, 1 second off */
-  SP_LED_IDLE_MODE,     /* Idle mode: 3 short blinks (300 ms on, 300 ms off), 3 sec off */
-  SP_LED_NORMAL,        /* Normal operation mode: 300 ms on, 3 sec off */
-  SP_LED_IDENTIFY,      /* Identify blinking: 300 ms on, 200 ms off – repeat in a loop */
-  SP_LED_RESET_FD,      /* Reset to Factory default blinking: 200 ms on, 200 ms off – 10 times */
-  SP_LED_CRITICAL_ERROR,/* Critical error blinking: repeat 3 times(5 short blinks (300 ms on, 300 ms off), pause: 600 ms off) */
+    SP_LED_SUCCESS,       /* Commissioning successful: light on the LED for 3 second then off */
+    SP_LED_FAILED,        /* Operation failed: 5 short blinks (300 ms on, 300 ms off) */
+    SP_LED_PROGRESS,      /* Commissioning in progress: blink periodically 1 second on, 1 second off */
+    SP_LED_IDLE_MODE,     /* Idle mode: 3 short blinks (300 ms on, 300 ms off), 3 sec off */
+    SP_LED_NORMAL,        /* Normal operation mode: 300 ms on, 3 sec off */
+    SP_LED_IDENTIFY,      /* Identify blinking: 300 ms on, 200 ms off – repeat in a loop */
+    SP_LED_RESET_FD,      /* Reset to Factory default blinking: 200 ms on, 200 ms off – 10 times */
+    SP_LED_CRITICAL_ERROR,/* Critical error blinking: repeat 3 times(5 short blinks (300 ms on, 300 ms off), pause: 600 ms off) */
 }
 sp_led_state_t;
 
@@ -300,40 +300,40 @@ ZB_ZCL_CLUSTER_DESC(                                           \
 /* attributes of Basic cluster */
 typedef struct sp_device_basic_attr_s
 {
-  zb_uint8_t zcl_version;
-  zb_uint8_t app_version;
-  zb_uint8_t stack_version;
-  zb_uint8_t hw_version;
-  zb_char_t mf_name[32];
-  zb_char_t model_id[32];
-  zb_char_t date_code[16];
-  zb_uint8_t power_source;
-  zb_char_t location_id[5];
-  zb_uint8_t ph_env;
-  zb_char_t sw_build_id[3];
+    zb_uint8_t zcl_version;
+    zb_uint8_t app_version;
+    zb_uint8_t stack_version;
+    zb_uint8_t hw_version;
+    zb_char_t mf_name[32];
+    zb_char_t model_id[32];
+    zb_char_t date_code[16];
+    zb_uint8_t power_source;
+    zb_char_t location_id[5];
+    zb_uint8_t ph_env;
+    zb_char_t sw_build_id[3];
 }
 sp_device_basic_attr_t;
 
 /* attributes of Identify cluster */
 typedef struct sp_device_identify_attr_s
 {
-  zb_uint16_t identify_time;
+    zb_uint16_t identify_time;
 }
 sp_device_identify_attr_t;
 
 /* attributes of Metering cluster */
 typedef struct sp_device_metering_attr_s
 {
-  zb_uint48_t curr_summ_delivered;
-  zb_uint8_t status;
-  zb_uint8_t unit_of_measure;
-  zb_uint8_t summation_formatting;
-  zb_uint8_t metering_device_type;
-  zb_int24_t instantaneous_demand;
-  zb_uint8_t demand_formatting;
-  zb_uint8_t historical_consumption_formatting;
-  zb_uint24_t multiplier;
-  zb_uint24_t divisor;
+    zb_uint48_t curr_summ_delivered;
+    zb_uint8_t status;
+    zb_uint8_t unit_of_measure;
+    zb_uint8_t summation_formatting;
+    zb_uint8_t metering_device_type;
+    zb_int24_t instantaneous_demand;
+    zb_uint8_t demand_formatting;
+    zb_uint8_t historical_consumption_formatting;
+    zb_uint24_t multiplier;
+    zb_uint24_t divisor;
 
 }
 sp_device_metering_attr_t;
@@ -351,41 +351,41 @@ sp_device_metering_attr_t;
 /* attributes of ON/Off cluster */
 typedef struct sp_device_on_off_attr_s
 {
-  zb_bool_t on_off;
-  zb_bool_t global_scene_ctrl;
-  zb_uint16_t on_time;
-  zb_uint16_t off_wait_time;
+    zb_bool_t on_off;
+    zb_bool_t global_scene_ctrl;
+    zb_uint16_t on_time;
+    zb_uint16_t off_wait_time;
 }
 sp_device_on_off_attr_t;
 
 /* Groups cluster attributes data */
 typedef struct sp_device_groups_attr_s
 {
-  zb_uint8_t name_support;
+    zb_uint8_t name_support;
 }
 sp_device_groups_attr_t;
 
 /* OTA Upgrade client cluster attributes data */
 typedef struct sp_device_ota_attr_s
 {
-  zb_ieee_addr_t upgrade_server;
-  zb_uint32_t file_offset;
-  zb_uint32_t file_version;
-  zb_uint16_t stack_version;
-  zb_uint32_t downloaded_file_ver;
-  zb_uint16_t downloaded_stack_ver;
-  zb_uint8_t image_status;
-  zb_uint16_t manufacturer;
-  zb_uint16_t image_type;
-  zb_uint16_t min_block_reque;
-  zb_uint16_t image_stamp;
-  zb_uint16_t server_addr;
-  zb_uint8_t server_ep;
+    zb_ieee_addr_t upgrade_server;
+    zb_uint32_t file_offset;
+    zb_uint32_t file_version;
+    zb_uint16_t stack_version;
+    zb_uint32_t downloaded_file_ver;
+    zb_uint16_t downloaded_stack_ver;
+    zb_uint8_t image_status;
+    zb_uint16_t manufacturer;
+    zb_uint16_t image_type;
+    zb_uint16_t min_block_reque;
+    zb_uint16_t image_stamp;
+    zb_uint16_t server_addr;
+    zb_uint8_t server_ep;
 }
 sp_device_ota_attr_t;
 
 #define SP_INIT_OTA_MIN_BLOCK_REQUE             10
-#define SP_INIT_OTA_IMAGE_STAMP			ZB_ZCL_OTA_UPGRADE_IMAGE_STAMP_MIN_VALUE
+#define SP_INIT_OTA_IMAGE_STAMP         ZB_ZCL_OTA_UPGRADE_IMAGE_STAMP_MIN_VALUE
 #define SP_OTA_IMAGE_BLOCK_DATA_SIZE_MAX        32
 #define SP_OTA_UPGRADE_SERVER                   { 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa }
 #define SP_OTA_UPGRADE_QUERY_TIMER_COUNTER      (12*60)
@@ -400,22 +400,22 @@ sp_device_ota_attr_t;
 
 typedef struct sp_ota_upgrade_ctx_s
 {
-  zb_uint32_t total_image_size;
-  zb_uint32_t addr_to_erase;
-  zb_uint32_t address;          /* Supposed to be constant value, init
+    zb_uint32_t total_image_size;
+    zb_uint32_t addr_to_erase;
+    zb_uint32_t address;          /* Supposed to be constant value, init
                                  * on OTA Upgrade start  */
-  void       *flash_dev;
-  zb_uint32_t fw_version;
-  zb_uint8_t param;     // buffer, contain process command (if scheduling process)
-  zb_bool_t is_started_manually;
+    void       *flash_dev;
+    zb_uint32_t fw_version;
+    zb_uint8_t param;     // buffer, contain process command (if scheduling process)
+    zb_bool_t is_started_manually;
 #ifndef ZB_USE_OSIF_OTA_ROUTINES
-  zb_uint8_t fw_image_portion[SP_OTA_IMAGE_BLOCK_DATA_SIZE_MAX * 2];
-  zb_uint32_t fw_image_portion_size;
-  zb_uint32_t file_length;        /*!< OTA file length got from next_image_resp  */
+    zb_uint8_t fw_image_portion[SP_OTA_IMAGE_BLOCK_DATA_SIZE_MAX * 2];
+    zb_uint32_t fw_image_portion_size;
+    zb_uint32_t file_length;        /*!< OTA file length got from next_image_resp  */
 
-  zb_uint32_t hash_addr;
-  zb_uint8_t hash[SP_OTA_UPGARDE_HASH_LENGTH];
-  zb_bool_t hash16_calc_ongoing;
+    zb_uint32_t hash_addr;
+    zb_uint8_t hash[SP_OTA_UPGARDE_HASH_LENGTH];
+    zb_bool_t hash16_calc_ongoing;
 #endif
 } sp_ota_upgrade_ctx_t;
 
@@ -423,35 +423,35 @@ typedef struct sp_ota_upgrade_ctx_s
 /* Control4 Network Cluster attributes */
 typedef struct sp_device_control4_attr_s
 {
-  zb_uint8_t  device_type;
-  zb_char_t   firmware_version[16];
-  zb_uint8_t  reflash_version;
-  zb_uint16_t boot_count;
-  zb_char_t   product_string[32];
-  zb_uint16_t access_point_node_ID;
-  zb_ieee_addr_t access_point_long_ID;
-  zb_uint8_t  access_point_cost;
-  zb_uint8_t  mesh_channel;
+    zb_uint8_t  device_type;
+    zb_char_t   firmware_version[16];
+    zb_uint8_t  reflash_version;
+    zb_uint16_t boot_count;
+    zb_char_t   product_string[32];
+    zb_uint16_t access_point_node_ID;
+    zb_ieee_addr_t access_point_long_ID;
+    zb_uint8_t  access_point_cost;
+    zb_uint8_t  mesh_channel;
 }
 sp_device_control4_attr_t;
 
 typedef struct sp_device_control4_attr_ext_s
 {
-  zb_uint8_t  device_type;
-  zb_uint16_t announce_window;
-  zb_uint16_t mtorr_period;
-  zb_char_t   firmware_version[16];
-  zb_uint8_t  reflash_version;
-  zb_uint16_t boot_count;
-  zb_char_t   product_string[32];
-  zb_uint16_t access_point_node_ID;
-  zb_ieee_addr_t access_point_long_ID;
-  zb_uint8_t  access_point_cost;
-  zb_uint8_t  mesh_channel;
-  zb_int8_t   avg_rssi;
-  zb_uint8_t  avg_lqi;
-  zb_int8_t   battery_level;
-  zb_uint8_t  radio_4_bars;
+    zb_uint8_t  device_type;
+    zb_uint16_t announce_window;
+    zb_uint16_t mtorr_period;
+    zb_char_t   firmware_version[16];
+    zb_uint8_t  reflash_version;
+    zb_uint16_t boot_count;
+    zb_char_t   product_string[32];
+    zb_uint16_t access_point_node_ID;
+    zb_ieee_addr_t access_point_long_ID;
+    zb_uint8_t  access_point_cost;
+    zb_uint8_t  mesh_channel;
+    zb_int8_t   avg_rssi;
+    zb_uint8_t  avg_lqi;
+    zb_int8_t   battery_level;
+    zb_uint8_t  radio_4_bars;
 }
 sp_device_control4_attr_ext_t;
 #endif /* SP_CONTROL4_COMPATIBLE */
@@ -459,33 +459,33 @@ sp_device_control4_attr_ext_t;
 /* Global device context */
 typedef struct sp_device_ctx_s
 {
-  sp_dev_state_t dev_state;
-  zb_time_t      button_press_time;    /* time last pressed button */
-  zb_time_t      button_release_time;  /* time last released button */
-  zb_uint8_t     button_bounce_flag;   /* button bounce flag*/
-  zb_uint8_t     button_changed_count;  /* time circle pressed/released duration one series */
-  sp_led_state_t led_state;
+    sp_dev_state_t dev_state;
+    zb_time_t      button_press_time;    /* time last pressed button */
+    zb_time_t      button_release_time;  /* time last released button */
+    zb_uint8_t     button_bounce_flag;   /* button bounce flag*/
+    zb_uint8_t     button_changed_count;  /* time circle pressed/released duration one series */
+    sp_led_state_t led_state;
 
-  zb_uint8_t blink_counter;
-  zb_uint8_t join_counter;
+    zb_uint8_t blink_counter;
+    zb_uint8_t join_counter;
 
-  /* Flag that is set if critical error appeared => deferred reset operation */
-  zb_bool_t reset_device;
+    /* Flag that is set if critical error appeared => deferred reset operation */
+    zb_bool_t reset_device;
 
-  sp_device_basic_attr_t basic_attr;
-  sp_device_identify_attr_t identify_attr;
-  sp_device_metering_attr_t metering_attr;
-  sp_device_on_off_attr_t on_off_attr;
-  sp_device_groups_attr_t groups_attr;
-  sp_device_ota_attr_t ota_attr;
-  sp_ota_upgrade_ctx_t ota_ctx;
+    sp_device_basic_attr_t basic_attr;
+    sp_device_identify_attr_t identify_attr;
+    sp_device_metering_attr_t metering_attr;
+    sp_device_on_off_attr_t on_off_attr;
+    sp_device_groups_attr_t groups_attr;
+    sp_device_ota_attr_t ota_attr;
+    sp_ota_upgrade_ctx_t ota_ctx;
 #ifdef SP_CONTROL4_COMPATIBLE
-  sp_device_control4_attr_ext_t c4_attr;
-  zb_uint8_t is_on_c4_network;
+    sp_device_control4_attr_ext_t c4_attr;
+    zb_uint8_t is_on_c4_network;
 #endif /* SP_CONTROL4_COMPATIBLE */
 
-  zb_uint16_t overcurrent_ma;
-  zb_uint16_t overvoltage_dv;
+    zb_uint16_t overcurrent_ma;
+    zb_uint16_t overvoltage_dv;
 }
 sp_device_ctx_t;
 
@@ -543,9 +543,9 @@ void sp_update_on_off_state(zb_uint8_t is_on);
 /* Reporting configuration */
 typedef struct sp_device_reporting_default_s
 {
-  zb_uint16_t cluster_id;
-  zb_uint16_t attr_id;
-  zb_uint8_t attr_type;
+    zb_uint16_t cluster_id;
+    zb_uint16_t attr_id;
+    zb_uint8_t attr_type;
 }
 sp_device_reporting_default_t;
 
@@ -557,14 +557,14 @@ sp_device_reporting_default_t;
 /*** Application dataset for persisting into nvram ***/
 typedef ZB_PACKED_PRE struct sp_device_nvram_dataset_s
 {
-  zb_uint48_t curr_summ_delivered;
-  zb_uint8_t sp_onoff_state;
+    zb_uint48_t curr_summ_delivered;
+    zb_uint8_t sp_onoff_state;
 #ifdef SP_CONTROL4_COMPATIBLE
-  zb_uint16_t boot_count;
-  zb_uint8_t is_on_c4_network;
-  zb_uint8_t aligned[2];
+    zb_uint16_t boot_count;
+    zb_uint8_t is_on_c4_network;
+    zb_uint8_t aligned[2];
 #else
-  zb_uint8_t aligned[5];
+    zb_uint8_t aligned[5];
 #endif /* SP_CONTROL4_COMPATIBLE */
 } ZB_PACKED_STRUCT
 sp_device_nvram_dataset_t;
@@ -575,12 +575,12 @@ ZB_ASSERT_IF_NOT_ALIGNED_TO_4(sp_device_nvram_dataset_t);
 /*** Production config data ***/
 typedef ZB_PACKED_PRE struct sp_production_config_t
 {
-  zb_uint16_t version; /*!< Version of production configuration (reserved for future changes) */
-  zb_char_t manuf_name[16];
-  zb_char_t model_id[16];
-  zb_uint16_t manuf_code;
-  zb_uint16_t overcurrent_ma;
-  zb_uint16_t overvoltage_dv;
+    zb_uint16_t version; /*!< Version of production configuration (reserved for future changes) */
+    zb_char_t manuf_name[16];
+    zb_char_t model_id[16];
+    zb_uint16_t manuf_code;
+    zb_uint16_t overcurrent_ma;
+    zb_uint16_t overvoltage_dv;
 }
 ZB_PACKED_STRUCT sp_production_config_t;
 
@@ -625,12 +625,12 @@ zb_uint8_t zb_write_fw(zb_uint32_t address, zb_uint8_t *buf, zb_uint16_t len);
 #define SP_INIT_BASIC_APP_VERSION       1
 
 /* OTA Upgrade client cluster attributes data */
-#define SP_INIT_OTA_FILE_VERSION	\
+#define SP_INIT_OTA_FILE_VERSION    \
   ( ((zb_uint32_t)ZBOSS_MAJOR) | ((zb_uint32_t)ZBOSS_MINOR << 8) | ((zb_uint32_t)ZBOSS_SDK_SMART_PLUG_MAJOR << 16) | ((zb_uint32_t)SP_INIT_BASIC_APP_VERSION << 24) )
-#define SP_INIT_OTA_HW_VERSION			SP_INIT_BASIC_HW_VERSION
-#define SP_INIT_OTA_MANUFACTURER		SP_DEVICE_MANUFACTURER_CODE
+#define SP_INIT_OTA_HW_VERSION          SP_INIT_BASIC_HW_VERSION
+#define SP_INIT_OTA_MANUFACTURER        SP_DEVICE_MANUFACTURER_CODE
 
-#define SP_INIT_OTA_IMAGE_TYPE			0x0012
+#define SP_INIT_OTA_IMAGE_TYPE          0x0012
 
 /* Note: instead of the 1st space string len will be set */
 #define SP_INIT_BASIC_MODEL_ID     "SPv313p691"

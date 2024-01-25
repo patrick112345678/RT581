@@ -27,8 +27,8 @@
 
 typedef struct zb_r22_cert_test_ctx_s
 {
-  zb_uint8_t page;
-  zb_uint8_t channel;
+    zb_uint8_t page;
+    zb_uint8_t channel;
 } zb_r22_cert_test_ctx_t;
 
 extern zb_r22_cert_test_ctx_t g_cert_test_ctx;

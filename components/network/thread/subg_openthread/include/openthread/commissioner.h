@@ -170,9 +170,9 @@ typedef void (*otCommissionerStateCallback)(otCommissionerState aState, void *aC
  *
  */
 typedef void (*otCommissionerJoinerCallback)(otCommissionerJoinerEvent aEvent,
-                                             const otJoinerInfo       *aJoinerInfo,
-                                             const otExtAddress       *aJoinerId,
-                                             void                     *aContext);
+        const otJoinerInfo       *aJoinerInfo,
+        const otExtAddress       *aJoinerId,
+        void                     *aContext);
 
 /**
  * This function enables the Thread Commissioner role.
@@ -264,9 +264,9 @@ otError otCommissionerAddJoiner(otInstance         *aInstance,
  *
  */
 otError otCommissionerAddJoinerWithDiscerner(otInstance              *aInstance,
-                                             const otJoinerDiscerner *aDiscerner,
-                                             const char              *aPskd,
-                                             uint32_t                 aTimeout);
+        const otJoinerDiscerner *aDiscerner,
+        const char              *aPskd,
+        uint32_t                 aTimeout);
 
 /**
  * This method get joiner info at aIterator position.
@@ -367,9 +367,9 @@ otError otCommissionerAnnounceBegin(otInstance         *aInstance,
  *
  */
 typedef void (*otCommissionerEnergyReportCallback)(uint32_t       aChannelMask,
-                                                   const uint8_t *aEnergyList,
-                                                   uint8_t        aEnergyListLength,
-                                                   void          *aContext);
+        const uint8_t *aEnergyList,
+        uint8_t        aEnergyListLength,
+        void          *aContext);
 
 /**
  * This function sends an Energy Scan Query message.

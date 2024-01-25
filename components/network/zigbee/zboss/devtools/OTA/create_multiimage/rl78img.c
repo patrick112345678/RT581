@@ -28,29 +28,29 @@
 
 int
 main(
-  int argc,
-  char **argv)
+    int argc,
+    char **argv)
 {
-  uint32_t size;
-  int16_t crc;
-  int c;
-  int ret;
-  FILE *f = fopen(argv[1], "r");
-  FILE *of = fopen(argv[2], "w");
-  fseek(f, 0, SEEK_END);
-  size = ftell(f);
-  size = (size + 1023) / 1024 * 1024;
-  fseek(f, 0, SEEK_SET);
-  fwrite(&size, 1, sizeof(size), of);
-  crc = 0;
-  while (size)
-  {
-    size--;
-    c = getc(f);
-    crc -= (c &0xff);
-    fputc(c, of);
-  }
-  ret = fwrite(&crc, 1, sizeof(crc), of);
-  fclose(of);
-  fclose(f);
+    uint32_t size;
+    int16_t crc;
+    int c;
+    int ret;
+    FILE *f = fopen(argv[1], "r");
+    FILE *of = fopen(argv[2], "w");
+    fseek(f, 0, SEEK_END);
+    size = ftell(f);
+    size = (size + 1023) / 1024 * 1024;
+    fseek(f, 0, SEEK_SET);
+    fwrite(&size, 1, sizeof(size), of);
+    crc = 0;
+    while (size)
+    {
+        size--;
+        c = getc(f);
+        crc -= (c & 0xff);
+        fputc(c, of);
+    }
+    ret = fwrite(&crc, 1, sizeof(crc), of);
+    fclose(of);
+    fclose(f);
 }

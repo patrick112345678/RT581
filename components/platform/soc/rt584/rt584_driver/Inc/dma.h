@@ -13,7 +13,7 @@ extern "C"
 {
 #endif
 
-#define MAX_NUMBER_OF_DMA      2     
+#define MAX_NUMBER_OF_DMA      2
 
 #define DMA_STATUS_BUSY        1
 #define DMA_STATUS_FREE        0
@@ -29,7 +29,8 @@ typedef void (*dma_proc_cb_t)(uint32_t channel_id);
 /**@brief DMA config structure for DMA setting
  **
  */
-typedef struct {
+typedef struct
+{
     uint32_t   dma_src_addr;
     uint32_t   dma_dest_addr;
     uint32_t   dma_length;
@@ -54,10 +55,10 @@ extern uint32_t dma_register_isr(
  * @param *dma_config_t    Specifies the dma setting.
  *
  */
- 
+
 extern uint32_t dma_config_and_enable(
-     uint32_t  dma_channel_id, 
-     const dma_config_t *mode
+    uint32_t  dma_channel_id,
+    const dma_config_t *mode
 );
 
 /**

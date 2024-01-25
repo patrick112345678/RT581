@@ -52,139 +52,139 @@ static zb_short_t state = 0;
 
 static void set_request_8bit_value(zb_uint8_t param, zb_mac_pib_attr_t attr, zb_uint8_t value)
 {
-  zb_mlme_set_request_t *set_req;
+    zb_mlme_set_request_t *set_req;
 
-  req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + sizeof(zb_uint8_t), set_req);	  	  
-  set_req->pib_attr = attr;
-  set_req->pib_length = sizeof(zb_uint8_t);
-  *((zb_uint8_t *)(set_req + 1)) = value;
-    
-  ZB_SCHEDULE_CALLBACK(zb_mlme_set_request, param);
+    req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + sizeof(zb_uint8_t), set_req);
+    set_req->pib_attr = attr;
+    set_req->pib_length = sizeof(zb_uint8_t);
+    *((zb_uint8_t *)(set_req + 1)) = value;
+
+    ZB_SCHEDULE_CALLBACK(zb_mlme_set_request, param);
 }
 
 
 static void set_request_16bit_value(zb_uint8_t param, zb_mac_pib_attr_t attr, zb_uint16_t value)
 {
-  zb_mlme_set_request_t *set_req;
-    
-  req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + sizeof(zb_uint16_t), set_req);	  	  
-  set_req->pib_attr = attr;
-  set_req->pib_length = sizeof(zb_uint16_t);
-  *((zb_uint16_t *)(set_req + 1)) = value;
-    
-  ZB_SCHEDULE_CALLBACK(zb_mlme_set_request, param);
+    zb_mlme_set_request_t *set_req;
+
+    req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + sizeof(zb_uint16_t), set_req);
+    set_req->pib_attr = attr;
+    set_req->pib_length = sizeof(zb_uint16_t);
+    *((zb_uint16_t *)(set_req + 1)) = value;
+
+    ZB_SCHEDULE_CALLBACK(zb_mlme_set_request, param);
 }
 
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  ZB_INIT("warm_start_01_rfd1");
+    ZB_INIT("warm_start_01_rfd1");
 
-  ZB_IEEE_ADDR_COPY(ZB_PIB_EXTENDED_ADDRESS(), &g_rfd1_addr);    
+    ZB_IEEE_ADDR_COPY(ZB_PIB_EXTENDED_ADDRESS(), &g_rfd1_addr);
 
-  {
-    zb_bufid_t buf = zb_get_out_buf();
-    set_request_8bit_value(param, ZB_PIB_ATTRIBUTE_RX_ON_WHEN_IDLE, 0x1);
-  }
+    {
+        zb_bufid_t buf = zb_get_out_buf();
+        set_request_8bit_value(param, ZB_PIB_ATTRIBUTE_RX_ON_WHEN_IDLE, 0x1);
+    }
 
-  while(1)
-  {
-    zb_sched_loop_iteration();
-  }
+    while (1)
+    {
+        zb_sched_loop_iteration();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 void send_request(zb_uint8_t param)
 {
-  zb_bufid_t buf = zb_get_out_buf();
-  zb_uint8_t *pl;
-  zb_mcps_data_req_params_t *data_req = ZB_BUF_GET_PARAM(param, zb_mcps_data_req_params_t);
-  
-  param = param;
-  TRACE_MSG(TRACE_MAC1, "get out buf %p param %hd", (FMT__P_H, buf, param));
+    zb_bufid_t buf = zb_get_out_buf();
+    zb_uint8_t *pl;
+    zb_mcps_data_req_params_t *data_req = ZB_BUF_GET_PARAM(param, zb_mcps_data_req_params_t);
 
-  req = zb_buf_initial_alloc(param, 5, pl);
-  pl[0] = 0x00;
-  pl[1] = 0x01;
-  pl[2] = 0x02;
-  pl[3] = 0x03;
-  pl[4] = 0x04;  
+    param = param;
+    TRACE_MSG(TRACE_MAC1, "get out buf %p param %hd", (FMT__P_H, buf, param));
 
-  data_req->dst_addr.addr_short = 0x1122;
-  data_req->src_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
-  data_req->src_addr.addr_short = 0x3344;
-  data_req->dst_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
-  data_req->dst_pan_id = MY_PAN;
-  data_req->msdu_handle = 0x0a; 
-  data_req->tx_options = MAC_TX_OPTION_ACKNOWLEDGED_BIT; 
+    req = zb_buf_initial_alloc(param, 5, pl);
+    pl[0] = 0x00;
+    pl[1] = 0x01;
+    pl[2] = 0x02;
+    pl[3] = 0x03;
+    pl[4] = 0x04;
 
-  TRACE_MSG(TRACE_MAC1, "i. D.U.T to Coord: Short Address to Short Address, with ACK", (FMT__0));
-  ZB_SCHEDULE_CALLBACK(zb_mcps_data_request, param);
+    data_req->dst_addr.addr_short = 0x1122;
+    data_req->src_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
+    data_req->src_addr.addr_short = 0x3344;
+    data_req->dst_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
+    data_req->dst_pan_id = MY_PAN;
+    data_req->msdu_handle = 0x0a;
+    data_req->tx_options = MAC_TX_OPTION_ACKNOWLEDGED_BIT;
+
+    TRACE_MSG(TRACE_MAC1, "i. D.U.T to Coord: Short Address to Short Address, with ACK", (FMT__0));
+    ZB_SCHEDULE_CALLBACK(zb_mcps_data_request, param);
 }
 
 
 void zb_mlme_set_confirm(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_NWK2, "zb_mlme_set_confirm param %hd state %hd", (FMT__H_H, param, state));
+    TRACE_MSG(TRACE_NWK2, "zb_mlme_set_confirm param %hd state %hd", (FMT__H_H, param, state));
 
-  if ( state == 0 )
-  {
-    /* set current channel */
-    set_request_8bit_value(param, ZB_PHY_PIB_CURRENT_CHANNEL, CHANNEL);
-  }
-  else if ( state == 1 )
-  { 
-    /* set PANID */
-    set_request_16bit_value(param, ZB_PIB_ATTRIBUTE_PANID, MY_PAN);
-  }
-  else if ( state == 2 )
-  {
-    /* set MAC short address */
-    set_request_16bit_value(param, ZB_PIB_ATTRIBUTE_SHORT_ADDRESS, MY_ADDRESS);
-  }
-  else if ( state == 3 )
-  {
-    /* set MAC coord short address */
-    set_request_16bit_value(param, ZB_PIB_ATTRIBUTE_COORD_SHORT_ADDRESS, COORD_ADDRESS);
-  }
-  else if ( state == 4 )
-  {
-    /* set MAC Coordinator extend address */
-    zb_mlme_set_request_t *set_req;
-    
-    req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + sizeof(zb_ieee_addr_t), set_req);	  	  
-    set_req->pib_attr = ZB_PIB_ATTRIBUTE_COORD_EXTEND_ADDRESS;
-    set_req->pib_length = sizeof(zb_ieee_addr_t);
-    ZB_EXTPANID_COPY((zb_uint8_t *)(set_req + 1), g_ffd0_addr);
-    
-    ZB_SCHEDULE_CALLBACK(zb_mlme_set_request, param);
-  }
-  else if ( state == 5 )
-  {
-    ZB_SCHEDULE_CALLBACK(send_request, 0);
-  }
-  else
-  {
-    zb_buf_free(param);
-  }
+    if ( state == 0 )
+    {
+        /* set current channel */
+        set_request_8bit_value(param, ZB_PHY_PIB_CURRENT_CHANNEL, CHANNEL);
+    }
+    else if ( state == 1 )
+    {
+        /* set PANID */
+        set_request_16bit_value(param, ZB_PIB_ATTRIBUTE_PANID, MY_PAN);
+    }
+    else if ( state == 2 )
+    {
+        /* set MAC short address */
+        set_request_16bit_value(param, ZB_PIB_ATTRIBUTE_SHORT_ADDRESS, MY_ADDRESS);
+    }
+    else if ( state == 3 )
+    {
+        /* set MAC coord short address */
+        set_request_16bit_value(param, ZB_PIB_ATTRIBUTE_COORD_SHORT_ADDRESS, COORD_ADDRESS);
+    }
+    else if ( state == 4 )
+    {
+        /* set MAC Coordinator extend address */
+        zb_mlme_set_request_t *set_req;
 
-  state++;
+        req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + sizeof(zb_ieee_addr_t), set_req);
+        set_req->pib_attr = ZB_PIB_ATTRIBUTE_COORD_EXTEND_ADDRESS;
+        set_req->pib_length = sizeof(zb_ieee_addr_t);
+        ZB_EXTPANID_COPY((zb_uint8_t *)(set_req + 1), g_ffd0_addr);
+
+        ZB_SCHEDULE_CALLBACK(zb_mlme_set_request, param);
+    }
+    else if ( state == 5 )
+    {
+        ZB_SCHEDULE_CALLBACK(send_request, 0);
+    }
+    else
+    {
+        zb_buf_free(param);
+    }
+
+    state++;
 }
 
 void zb_mcps_data_confirm(zb_uint8_t param)
 {
-  zb_mcps_data_confirm_params_t *confirm_params = ZB_BUF_GET_PARAM(param, zb_mcps_data_confirm_params_t);
-  
-  TRACE_MSG(TRACE_NWK2, "zb_mcps_data_confirm param %hd handle 0x%hx status 0x%hx state %hd",
-            (FMT__H_H_H_H, (zb_uint8_t)param, (zb_uint8_t)confirm_params->msdu_handle,
-             zb_buf_get_status(param), state));
+    zb_mcps_data_confirm_params_t *confirm_params = ZB_BUF_GET_PARAM(param, zb_mcps_data_confirm_params_t);
 
-  zb_buf_free(param);  
+    TRACE_MSG(TRACE_NWK2, "zb_mcps_data_confirm param %hd handle 0x%hx status 0x%hx state %hd",
+              (FMT__H_H_H_H, (zb_uint8_t)param, (zb_uint8_t)confirm_params->msdu_handle,
+               zb_buf_get_status(param), state));
+
+    zb_buf_free(param);
 }
 
 /*! @} */

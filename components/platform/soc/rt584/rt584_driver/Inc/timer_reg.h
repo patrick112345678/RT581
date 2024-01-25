@@ -22,21 +22,23 @@
     Memory Mapped Structure for TIMER Controller
 @{ */
 
-typedef union timern_ctrl_s {
-    struct timern_ctrl_b {       
+typedef union timern_ctrl_s
+{
+    struct timern_ctrl_b
+    {
         uint32_t UP_CONUNT                  : 1;
-        uint32_t ONE_SHOT_EN                : 1;        
+        uint32_t ONE_SHOT_EN                : 1;
         uint32_t PRESCALE                   : 3;
         uint32_t INT_ENABLE                 : 1;
         uint32_t MODE                       : 1;
         uint32_t EN                         : 1;
-        
+
         uint32_t INT_STATUS                 : 1;
         uint32_t TIMER_ENABLE_STATUS        : 1;
         uint32_t CH0_CAPTURE_INT_STATUS     : 1;
         uint32_t CH1_CAPTURE_INT_STATUS     : 1;
         uint32_t RESERVED1                  : 4;
-        
+
         uint32_t CH0_CAPTURE_EDGE           : 1;
         uint32_t CH1_CAPTURE_EDGE           : 1;
         uint32_t CH0_DEGLICH_EN             : 1;
@@ -48,17 +50,21 @@ typedef union timern_ctrl_s {
     uint32_t reg;
 } timern_ctrl_t;
 
-typedef union timern_cap_clr_s {
-    struct timern_cap_clr_b {       
+typedef union timern_cap_clr_s
+{
+    struct timern_cap_clr_b
+    {
         uint32_t CH0_CAPTURE_INT_CLEAR      : 1;
-        uint32_t CH1_CAPTURE_INT_CLEAR      : 1;        
+        uint32_t CH1_CAPTURE_INT_CLEAR      : 1;
         uint32_t RESERVED1                  : 30;
     } bit;
     uint32_t reg;
 } timern_cap_clr_t;
 
-typedef union timern_cap_en_s {
-    struct timern_cap_en_b {       
+typedef union timern_cap_en_s
+{
+    struct timern_cap_en_b
+    {
         uint32_t CH0_CAPTURE_EN     : 1;
         uint32_t CH1_CAPTURE_EN     : 1;
         uint32_t TIMER_PWM_EN       : 1;
@@ -67,18 +73,22 @@ typedef union timern_cap_en_s {
     uint32_t reg;
 } timern_cap_en_t;
 
-typedef union timern_cap_io_sel_s {
-    struct timern_cap_io_sel_b {       
+typedef union timern_cap_io_sel_s
+{
+    struct timern_cap_io_sel_b
+    {
         uint32_t CH0_CAPTURE_IO_SEL     : 5;
         uint32_t RESERVED1              : 3;
-        uint32_t CH1_CAPTURE_IO_SEL     : 5;        
+        uint32_t CH1_CAPTURE_IO_SEL     : 5;
         uint32_t RESERVED2              : 19;
     } bit;
     uint32_t reg;
 } timern_cap_io_sel_t;
 
-typedef union timern_pha_s {
-    struct timern_pha_b {       
+typedef union timern_pha_s
+{
+    struct timern_pha_b
+    {
         uint32_t PHA                    : 1;
         uint32_t RESERVED1              : 31;
     } bit;
@@ -86,10 +96,12 @@ typedef union timern_pha_s {
 } timern_pha_t;
 
 
-typedef union timer32kn_ctrl_s {
-    struct timer32kn_ctrl_b {       
+typedef union timer32kn_ctrl_s
+{
+    struct timer32kn_ctrl_b
+    {
         uint32_t UP_CONUNT              : 1;
-        uint32_t ONE_SHOT_EN            : 1;        
+        uint32_t ONE_SHOT_EN            : 1;
         uint32_t PRESCALE               : 3;
         uint32_t INT_ENABLE             : 1;
         uint32_t MODE                   : 1;
@@ -101,8 +113,10 @@ typedef union timer32kn_ctrl_s {
     uint32_t reg;
 } timer32kn_ctrl_t;
 
-typedef union timer32kn_repdly_s {
-    struct timer32kn_repdly_b {
+typedef union timer32kn_repdly_s
+{
+    struct timer32kn_repdly_b
+    {
         uint32_t INT_REPEAT_DELAY       : 16;
         uint32_t INT_REPEAT_DELAY_EN    : 1;
         uint32_t RESERVED               : 15;
@@ -110,11 +124,12 @@ typedef union timer32kn_repdly_s {
     uint32_t reg;
 } timer32kn_repdly_t;
 
-typedef struct {
+typedef struct
+{
     __IO uint32_t LOAD;                         /*0x00*/
     __IO uint32_t VALUE;                        /*0x04*/
     __IO timern_ctrl_t CONTROL;                 /*0x08*/
-    __IO uint32_t CLEAR;                        /*0x0C*/    
+    __IO uint32_t CLEAR;                        /*0x0C*/
     __O  timern_cap_clr_t CAPTURE_CLEAR;        /*0x10*/
     __I  uint32_t CH0_CAP_VALUE;                /*0x14*/
     __I  uint32_t CH1_CAP_VALUE;                /*0x18*/
@@ -124,19 +139,20 @@ typedef struct {
     __IO timern_cap_io_sel_t CAP_IO_SEL;        /*0x28*/
     __IO uint32_t THD;                          /*0x2C*/
     __IO timern_pha_t PHA;                      /*0x30*/
-    
+
 } timern_t;
 
 
-typedef struct {
+typedef struct
+{
     __IO uint32_t LOAD;                         /*0x00*/
     __IO uint32_t VALUE;                        /*0x04*/
     __IO timer32kn_ctrl_t CONTROL;              /*0x08*/
-    __IO uint32_t CLEAR;                        /*0x0C*/    
+    __IO uint32_t CLEAR;                        /*0x0C*/
     __O  timer32kn_repdly_t REPEAT_DELAY;       /*0x10*/
     __IO uint32_t PRESCALE;                     /*0x14*/
     __IO uint32_t EXPRIED_VALUE;                /*0x18*/
-    
+
 } timer32kn_t;
 
 /**

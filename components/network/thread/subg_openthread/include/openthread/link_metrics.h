@@ -117,9 +117,9 @@ typedef enum otLinkMetricsStatus
  *
  */
 typedef void (*otLinkMetricsReportCallback)(const otIp6Address        *aSource,
-                                            const otLinkMetricsValues *aMetricsValues,
-                                            uint8_t                    aStatus,
-                                            void                      *aContext);
+        const otLinkMetricsValues *aMetricsValues,
+        uint8_t                    aStatus,
+        void                      *aContext);
 /**
  * This function pointer is called when a Link Metrics Management Response is received.
  *
@@ -140,9 +140,9 @@ typedef void (*otLinkMetricsMgmtResponseCallback)(const otIp6Address *aSource, u
  *
  */
 typedef void (*otLinkMetricsEnhAckProbingIeReportCallback)(otShortAddress             aShortAddress,
-                                                           const otExtAddress        *aExtAddress,
-                                                           const otLinkMetricsValues *aMetricsValues,
-                                                           void                      *aContext);
+        const otExtAddress        *aExtAddress,
+        const otLinkMetricsValues *aMetricsValues,
+        void                      *aContext);
 
 /**
  * This function sends an MLE Data Request to query Link Metrics.
@@ -190,12 +190,12 @@ otError otLinkMetricsQuery(otInstance                 *aInstance,
  *
  */
 otError otLinkMetricsConfigForwardTrackingSeries(otInstance                       *aInstance,
-                                                 const otIp6Address               *aDestination,
-                                                 uint8_t                           aSeriesId,
-                                                 otLinkMetricsSeriesFlags          aSeriesFlags,
-                                                 const otLinkMetrics              *aLinkMetricsFlags,
-                                                 otLinkMetricsMgmtResponseCallback aCallback,
-                                                 void                             *aCallbackContext);
+        const otIp6Address               *aDestination,
+        uint8_t                           aSeriesId,
+        otLinkMetricsSeriesFlags          aSeriesFlags,
+        const otLinkMetrics              *aLinkMetricsFlags,
+        otLinkMetricsMgmtResponseCallback aCallback,
+        void                             *aCallbackContext);
 
 /**
  * This function sends an MLE Link Metrics Management Request to configure/clear an Enhanced-ACK Based Probing.
@@ -219,13 +219,13 @@ otError otLinkMetricsConfigForwardTrackingSeries(otInstance                     
  *
  */
 otError otLinkMetricsConfigEnhAckProbing(otInstance                                *aInstance,
-                                         const otIp6Address                        *aDestination,
-                                         otLinkMetricsEnhAckFlags                   aEnhAckFlags,
-                                         const otLinkMetrics                       *aLinkMetricsFlags,
-                                         otLinkMetricsMgmtResponseCallback          aCallback,
-                                         void                                      *aCallbackContext,
-                                         otLinkMetricsEnhAckProbingIeReportCallback aEnhAckCallback,
-                                         void                                      *aEnhAckCallbackContext);
+        const otIp6Address                        *aDestination,
+        otLinkMetricsEnhAckFlags                   aEnhAckFlags,
+        const otLinkMetrics                       *aLinkMetricsFlags,
+        otLinkMetricsMgmtResponseCallback          aCallback,
+        void                                      *aCallbackContext,
+        otLinkMetricsEnhAckProbingIeReportCallback aEnhAckCallback,
+        void                                      *aEnhAckCallbackContext);
 
 /**
  * Sends an MLE Link Probe message.

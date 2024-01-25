@@ -54,16 +54,16 @@
 #ifndef ZB_ALIEN_SCHEDULER
 void zdo_main_loop()
 {
-  while (!ZB_SCHEDULER_IS_STOP())
-  {
-    zb_sched_loop_iteration();
-  }
+    while (!ZB_SCHEDULER_IS_STOP())
+    {
+        zb_sched_loop_iteration();
+    }
 }
 
 
 void zcl_main_loop()
 {
-  zdo_main_loop();
+    zdo_main_loop();
 }
 #endif
 
@@ -73,31 +73,31 @@ void zcl_main_loop()
  */
 zb_ret_t zb_zdo_start_no_autostart()
 {
-  zb_ret_t ret;
+    zb_ret_t ret;
 
-  /* zb_zdo_dev_init always returns RET_OK, no need to check it */
-  (void)zb_zdo_dev_init();
+    /* zb_zdo_dev_init always returns RET_OK, no need to check it */
+    (void)zb_zdo_dev_init();
 #ifdef ZB_MACSPLIT_HOST
-  /* Flag is used for macsplit host only */
-  ZG->zdo.handle.start_no_autostart = ZB_TRUE;
+    /* Flag is used for macsplit host only */
+    ZG->zdo.handle.start_no_autostart = ZB_TRUE;
 #endif
 
-  ret = zb_buf_get_out_delayed(zb_send_no_autostart_signal);
+    ret = zb_buf_get_out_delayed(zb_send_no_autostart_signal);
 
-  return ret;
+    return ret;
 }
 
 
 void zb_app_signal_pack_with_data(zb_uint8_t param, zb_uint32_t signal_code, zb_int16_t status)
 {
-  zb_uint8_t *body;
+    zb_uint8_t *body;
 
-  ZB_ASSERT(param);
+    ZB_ASSERT(param);
 
-  body = zb_buf_alloc_left(param, sizeof(signal_code));
+    body = zb_buf_alloc_left(param, sizeof(signal_code));
 
-  ZB_MEMCPY(body, &signal_code, sizeof(signal_code));
-  zb_buf_set_status(param, (status == RET_OK ? RET_OK : RET_ERROR));
+    ZB_MEMCPY(body, &signal_code, sizeof(signal_code));
+    zb_buf_set_status(param, (status == RET_OK ? RET_OK : RET_ERROR));
 }
 
 /**
@@ -105,29 +105,29 @@ void zb_app_signal_pack_with_data(zb_uint8_t param, zb_uint32_t signal_code, zb_
  */
 void zb_send_no_autostart_signal(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_ZDO1, "zb_send_no_autostart_signal param %hd", (FMT__H, param));
-  (void)zb_app_signal_pack(param, ZB_ZDO_SIGNAL_SKIP_STARTUP, RET_OK, 0);
-  ZB_SCHEDULE_CALLBACK(zb_zdo_startup_complete, param);
+    TRACE_MSG(TRACE_ZDO1, "zb_send_no_autostart_signal param %hd", (FMT__H, param));
+    (void)zb_app_signal_pack(param, ZB_ZDO_SIGNAL_SKIP_STARTUP, RET_OK, 0);
+    ZB_SCHEDULE_CALLBACK(zb_zdo_startup_complete, param);
 }
 
 
 void zb_send_leave_indication_signal(zb_uint8_t param, zb_ieee_addr_t device_addr, zb_uint8_t rejoin)
 {
-  zb_zdo_signal_leave_indication_params_t leave_ind_params;
-  zb_zdo_signal_leave_indication_params_t *leave_ind_params_p;
-  TRACE_MSG(TRACE_ZDO1, "zb_send_leave_indication_signal", (FMT__0));
-  /* Get params from buf before zb_app_signal_pack() - it does initial_alloc. */
-  leave_ind_params.rejoin = rejoin;
-  ZB_IEEE_ADDR_COPY(leave_ind_params.device_addr, device_addr);
-  leave_ind_params_p =
-    (zb_zdo_signal_leave_indication_params_t *)zb_app_signal_pack(param,
-                                                                 ZB_ZDO_SIGNAL_LEAVE_INDICATION,
-                                                                 (zb_int16_t)zb_buf_get_status(param),
-                                                                 (zb_uint8_t)sizeof(zb_zdo_signal_leave_indication_params_t));
-  /* Put params to buf again */
-  leave_ind_params_p->rejoin = leave_ind_params.rejoin;
-  ZB_IEEE_ADDR_COPY(leave_ind_params_p->device_addr, leave_ind_params.device_addr);
-  ZB_SCHEDULE_CALLBACK(zb_zdo_startup_complete, param);
+    zb_zdo_signal_leave_indication_params_t leave_ind_params;
+    zb_zdo_signal_leave_indication_params_t *leave_ind_params_p;
+    TRACE_MSG(TRACE_ZDO1, "zb_send_leave_indication_signal", (FMT__0));
+    /* Get params from buf before zb_app_signal_pack() - it does initial_alloc. */
+    leave_ind_params.rejoin = rejoin;
+    ZB_IEEE_ADDR_COPY(leave_ind_params.device_addr, device_addr);
+    leave_ind_params_p =
+        (zb_zdo_signal_leave_indication_params_t *)zb_app_signal_pack(param,
+                ZB_ZDO_SIGNAL_LEAVE_INDICATION,
+                (zb_int16_t)zb_buf_get_status(param),
+                (zb_uint8_t)sizeof(zb_zdo_signal_leave_indication_params_t));
+    /* Put params to buf again */
+    leave_ind_params_p->rejoin = leave_ind_params.rejoin;
+    ZB_IEEE_ADDR_COPY(leave_ind_params_p->device_addr, leave_ind_params.device_addr);
+    ZB_SCHEDULE_CALLBACK(zb_zdo_startup_complete, param);
 }
 
 
@@ -146,23 +146,23 @@ void zb_send_device_authorized_signal(zb_uint8_t param,
                                       zb_uint8_t authorization_type,
                                       zb_uint8_t authorization_status)
 {
-  zb_zdo_signal_device_authorized_params_t *params;
+    zb_zdo_signal_device_authorized_params_t *params;
 
-  TRACE_MSG(TRACE_ZDO1, "<> zb_send_device_authorized_signal param %hd", (FMT__H, param));
-  TRACE_MSG(TRACE_ZDO1, "long_addr " TRACE_FORMAT_64, (FMT__A, TRACE_ARG_64(long_addr)));
-  TRACE_MSG(TRACE_ZDO1, "short_addr 0x%x, auth_type 0x%hx, auth_status 0x%hx",
-            (FMT__D_H_H, short_addr, authorization_type, authorization_status));
+    TRACE_MSG(TRACE_ZDO1, "<> zb_send_device_authorized_signal param %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_ZDO1, "long_addr " TRACE_FORMAT_64, (FMT__A, TRACE_ARG_64(long_addr)));
+    TRACE_MSG(TRACE_ZDO1, "short_addr 0x%x, auth_type 0x%hx, auth_status 0x%hx",
+              (FMT__D_H_H, short_addr, authorization_type, authorization_status));
 
-  params = (zb_zdo_signal_device_authorized_params_t*)
-    zb_app_signal_pack(param,
-                       ZB_ZDO_SIGNAL_DEVICE_AUTHORIZED,
-                       RET_OK,
-                       (zb_uint8_t)sizeof(zb_zdo_signal_device_authorized_params_t));
-  ZB_IEEE_ADDR_COPY(params->long_addr, long_addr);
-  params->short_addr = short_addr;
-  params->authorization_type = authorization_type;
-  params->authorization_status = authorization_status;
-  ZB_SCHEDULE_CALLBACK(zb_zdo_startup_complete, param);
+    params = (zb_zdo_signal_device_authorized_params_t *)
+             zb_app_signal_pack(param,
+                                ZB_ZDO_SIGNAL_DEVICE_AUTHORIZED,
+                                RET_OK,
+                                (zb_uint8_t)sizeof(zb_zdo_signal_device_authorized_params_t));
+    ZB_IEEE_ADDR_COPY(params->long_addr, long_addr);
+    params->short_addr = short_addr;
+    params->authorization_type = authorization_type;
+    params->authorization_status = authorization_status;
+    ZB_SCHEDULE_CALLBACK(zb_zdo_startup_complete, param);
 }
 
 
@@ -180,21 +180,21 @@ void zb_send_device_update_signal(zb_uint8_t param,
                                   zb_uint16_t short_addr,
                                   zb_uint8_t status)
 {
-  zb_zdo_signal_device_update_params_t *params;
+    zb_zdo_signal_device_update_params_t *params;
 
-  TRACE_MSG(TRACE_ZDO1, "<> zb_send_device_update_signal, param %hd", (FMT__H, param));
-  TRACE_MSG(TRACE_ZDO1, "long_addr " TRACE_FORMAT_64, (FMT__A, TRACE_ARG_64(long_addr)));
-  TRACE_MSG(TRACE_ZDO1, "short_addr 0x%x, status 0x%hx", (FMT__D_H, short_addr, status));
+    TRACE_MSG(TRACE_ZDO1, "<> zb_send_device_update_signal, param %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_ZDO1, "long_addr " TRACE_FORMAT_64, (FMT__A, TRACE_ARG_64(long_addr)));
+    TRACE_MSG(TRACE_ZDO1, "short_addr 0x%x, status 0x%hx", (FMT__D_H, short_addr, status));
 
-  params = (zb_zdo_signal_device_update_params_t*)
-    zb_app_signal_pack(param,
-                       ZB_ZDO_SIGNAL_DEVICE_UPDATE,
-                       RET_OK,
-                       (zb_uint8_t)sizeof(zb_zdo_signal_device_update_params_t));
-  ZB_IEEE_ADDR_COPY(params->long_addr, long_addr);
-  params->short_addr = short_addr;
-  params->status = status;
-  ZB_SCHEDULE_CALLBACK(zb_zdo_startup_complete, param);
+    params = (zb_zdo_signal_device_update_params_t *)
+             zb_app_signal_pack(param,
+                                ZB_ZDO_SIGNAL_DEVICE_UPDATE,
+                                RET_OK,
+                                (zb_uint8_t)sizeof(zb_zdo_signal_device_update_params_t));
+    ZB_IEEE_ADDR_COPY(params->long_addr, long_addr);
+    params->short_addr = short_addr;
+    params->status = status;
+    ZB_SCHEDULE_CALLBACK(zb_zdo_startup_complete, param);
 }
 
 
@@ -204,9 +204,9 @@ void zb_send_device_update_signal(zb_uint8_t param,
  */
 void zb_send_no_active_links_left_signal(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_ZDO1, "Send ZB_NWK_SIGNAL_NO_ACTIVE_LINKS_LEFT signal", (FMT__0));
-  (void)zb_app_signal_pack(param, ZB_NWK_SIGNAL_NO_ACTIVE_LINKS_LEFT, RET_OK, 0);
-  ZB_SCHEDULE_CALLBACK(zb_zdo_startup_complete, param);
+    TRACE_MSG(TRACE_ZDO1, "Send ZB_NWK_SIGNAL_NO_ACTIVE_LINKS_LEFT signal", (FMT__0));
+    (void)zb_app_signal_pack(param, ZB_NWK_SIGNAL_NO_ACTIVE_LINKS_LEFT, RET_OK, 0);
+    ZB_SCHEDULE_CALLBACK(zb_zdo_startup_complete, param);
 }
 #endif /* ZB_ROUTER_ROLE && !ZB_COORDINATOR_ONLY */
 

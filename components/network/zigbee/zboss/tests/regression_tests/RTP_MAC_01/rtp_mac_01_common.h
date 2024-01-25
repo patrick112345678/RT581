@@ -28,7 +28,7 @@
 #define IEEE_ADDR_TH_ZC {0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa}
 #define IEEE_ADDR_DUT_ZR {0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00}
 
-#define DUT_SLEEP_TIME	           (10000000) /* sleep 10 seconds */
+#define DUT_SLEEP_TIME             (10000000) /* sleep 10 seconds */
 
 #define RTP_MAC_01_STEP_1_DELAY_ZR (5  * ZB_TIME_ONE_SECOND)
 #define RTP_MAC_01_STEP_1_TIME_ZR  (10 * ZB_TIME_ONE_SECOND)

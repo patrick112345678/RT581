@@ -33,8 +33,8 @@
 /** @brief NCP Linux SPIDEV transport implementation for Raspberry PI */
 struct zbncp_transport_impl_s
 {
-  zbncp_transport_ops_t ops;    /**< Table of user-implemented transport operations */
-  zbncp_transport_cb_t cb;      /**< Table of callbacks from low-level protocol */
+    zbncp_transport_ops_t ops;    /**< Table of user-implemented transport operations */
+    zbncp_transport_cb_t cb;      /**< Table of callbacks from low-level protocol */
 };
 
 /** @brief Internal name for spidev transport */
@@ -62,75 +62,75 @@ static ncp_tr_spidev_t s_ncp_tr_spidev;
 
 static void linux_spi_init_complete(uint8_t unused)
 {
-  /* [linux_spi_init_complete] */
-  const ncp_tr_spidev_t *tr = &s_ncp_tr_spidev;
+    /* [linux_spi_init_complete] */
+    const ncp_tr_spidev_t *tr = &s_ncp_tr_spidev;
 
-  if (tr->cb.init)
-  {
-    TRACE_MSG(TRACE_COMMON1, "calling ll init cb %p", (FMT__P, tr->cb.init));
-    tr->cb.init(tr->cb.arg);
-  }
-  /* [linux_spi_init_complete] */
+    if (tr->cb.init)
+    {
+        TRACE_MSG(TRACE_COMMON1, "calling ll init cb %p", (FMT__P, tr->cb.init));
+        tr->cb.init(tr->cb.arg);
+    }
+    /* [linux_spi_init_complete] */
 
-  (void) unused;
+    (void) unused;
 }
 
 static void linux_spi_send_complete(uint8_t spi_status)
 {
-  const ncp_tr_spidev_t *tr = &s_ncp_tr_spidev;
-  zbncp_tr_send_status_t status = ZBNCP_TR_SEND_STATUS_ERROR;
+    const ncp_tr_spidev_t *tr = &s_ncp_tr_spidev;
+    zbncp_tr_send_status_t status = ZBNCP_TR_SEND_STATUS_ERROR;
 
-  switch (spi_status)
-  {
+    switch (spi_status)
+    {
     case SPI_SUCCESS:
-      status = ZBNCP_TR_SEND_STATUS_SUCCESS;
-      break;
+        status = ZBNCP_TR_SEND_STATUS_SUCCESS;
+        break;
     case SPI_BUSY:
-      status = ZBNCP_TR_SEND_STATUS_BUSY;
-      break;
+        status = ZBNCP_TR_SEND_STATUS_BUSY;
+        break;
     case SPI_FAIL:
-      status = ZBNCP_TR_SEND_STATUS_ERROR;
-      break;
-  }
+        status = ZBNCP_TR_SEND_STATUS_ERROR;
+        break;
+    }
 
-  /* [linux_spi_send_complete] */
-  if (tr->cb.send)
-  {
-    TRACE_MSG(TRACE_COMMON3, "linux_spi_send_complete: calling ll send cb %p status %d", (FMT__P_D, tr->cb.send, (int)status));
-    /* call libncp/zbncp_ll_impl.c:zbncp_ll_send_complete() */
-    tr->cb.send(tr->cb.arg, status);
-  }
-  /* [linux_spi_send_complete] */
+    /* [linux_spi_send_complete] */
+    if (tr->cb.send)
+    {
+        TRACE_MSG(TRACE_COMMON3, "linux_spi_send_complete: calling ll send cb %p status %d", (FMT__P_D, tr->cb.send, (int)status));
+        /* call libncp/zbncp_ll_impl.c:zbncp_ll_send_complete() */
+        tr->cb.send(tr->cb.arg, status);
+    }
+    /* [linux_spi_send_complete] */
 }
 
 static void linux_spi_recv_complete(uint8_t *buf, uint16_t len)
 {
-  /* [linux_spi_recv_complete] */
-  const ncp_tr_spidev_t *tr = &s_ncp_tr_spidev;
+    /* [linux_spi_recv_complete] */
+    const ncp_tr_spidev_t *tr = &s_ncp_tr_spidev;
 
-  if (tr->cb.recv)
-  {
-    TRACE_MSG(TRACE_COMMON3, "calling ll recv cb %p len %d", (FMT__P_D, tr->cb.recv, (int)len));
-    tr->cb.recv(tr->cb.arg, len);
-  }
-  /* [linux_spi_recv_complete] */
+    if (tr->cb.recv)
+    {
+        TRACE_MSG(TRACE_COMMON3, "calling ll recv cb %p len %d", (FMT__P_D, tr->cb.recv, (int)len));
+        tr->cb.recv(tr->cb.arg, len);
+    }
+    /* [linux_spi_recv_complete] */
 
-  (void) buf;
+    (void) buf;
 }
 
 /* [ncp_tr_spidev_init] */
 static void ncp_tr_spidev_init(ncp_tr_spidev_t *tr, const zbncp_transport_cb_t *cb)
 {
-  TRACE_MSG(TRACE_COMMON2, ">ncp_tr_spidev_init - ZBOSS SPIDEV NCP transport starting", (FMT__0));
+    TRACE_MSG(TRACE_COMMON2, ">ncp_tr_spidev_init - ZBOSS SPIDEV NCP transport starting", (FMT__0));
 
-  tr->cb = *cb;
+    tr->cb = *cb;
 
-  linux_spi_init(linux_spi_init_complete);
-  linux_spi_set_cb_send_data(linux_spi_send_complete);
-  linux_spi_set_cb_recv_data(linux_spi_recv_complete);
-  linux_spi_reset_ncp();
+    linux_spi_init(linux_spi_init_complete);
+    linux_spi_set_cb_send_data(linux_spi_send_complete);
+    linux_spi_set_cb_recv_data(linux_spi_recv_complete);
+    linux_spi_reset_ncp();
 
-  TRACE_MSG(TRACE_COMMON2, "<ncp_tr_spidev_init", (FMT__0));
+    TRACE_MSG(TRACE_COMMON2, "<ncp_tr_spidev_init", (FMT__0));
 }
 /* [ncp_tr_spidev_init] */
 
@@ -138,10 +138,10 @@ static void ncp_tr_spidev_init(ncp_tr_spidev_t *tr, const zbncp_transport_cb_t *
 /* [ncp_tr_spidev_send] */
 static void ncp_tr_spidev_send(ncp_tr_spidev_t *tr, zbncp_cmemref_t mem)
 {
-  TRACE_MSG(TRACE_COMMON3, ">ncp_tr_spidev_send data %p len %d", (FMT__P_D, mem.ptr, (int)mem.size));
-  linux_spi_send_data((zb_uint8_t *)mem.ptr, (zb_ushort_t)mem.size);
-  TRACE_MSG(TRACE_COMMON3, "<ncp_tr_spidev_send", (FMT__0));
-  ZBNCP_UNUSED(tr);
+    TRACE_MSG(TRACE_COMMON3, ">ncp_tr_spidev_send data %p len %d", (FMT__P_D, mem.ptr, (int)mem.size));
+    linux_spi_send_data((zb_uint8_t *)mem.ptr, (zb_ushort_t)mem.size);
+    TRACE_MSG(TRACE_COMMON3, "<ncp_tr_spidev_send", (FMT__0));
+    ZBNCP_UNUSED(tr);
 }
 /* [ncp_tr_spidev_send] */
 
@@ -149,10 +149,10 @@ static void ncp_tr_spidev_send(ncp_tr_spidev_t *tr, zbncp_cmemref_t mem)
 /* [ncp_tr_spidev_recv] */
 static void ncp_tr_spidev_recv(ncp_tr_spidev_t *tr, zbncp_memref_t mem)
 {
-  TRACE_MSG(TRACE_COMMON3, ">ncp_tr_spidev_recv data %p len %d", (FMT__P_D, mem.ptr, (int)mem.size));
-  linux_spi_recv_data((zb_uint8_t *)mem.ptr, (zb_ushort_t)mem.size);
-  TRACE_MSG(TRACE_COMMON3, "<ncp_tr_spidev_recv", (FMT__0));
-  ZBNCP_UNUSED(tr);
+    TRACE_MSG(TRACE_COMMON3, ">ncp_tr_spidev_recv data %p len %d", (FMT__P_D, mem.ptr, (int)mem.size));
+    linux_spi_recv_data((zb_uint8_t *)mem.ptr, (zb_ushort_t)mem.size);
+    TRACE_MSG(TRACE_COMMON3, "<ncp_tr_spidev_recv", (FMT__0));
+    ZBNCP_UNUSED(tr);
 }
 /* [ncp_tr_spidev_recv] */
 
@@ -160,10 +160,10 @@ static void ncp_tr_spidev_recv(ncp_tr_spidev_t *tr, zbncp_memref_t mem)
 /* [ncp_host_transport_create] */
 const zbncp_transport_ops_t *ncp_host_transport_create(void)
 {
-  s_ncp_tr_spidev.ops.impl = &s_ncp_tr_spidev;
-  s_ncp_tr_spidev.ops.init = ncp_tr_spidev_init;
-  s_ncp_tr_spidev.ops.send = ncp_tr_spidev_send;
-  s_ncp_tr_spidev.ops.recv = ncp_tr_spidev_recv;
-  return &s_ncp_tr_spidev.ops;
+    s_ncp_tr_spidev.ops.impl = &s_ncp_tr_spidev;
+    s_ncp_tr_spidev.ops.init = ncp_tr_spidev_init;
+    s_ncp_tr_spidev.ops.send = ncp_tr_spidev_send;
+    s_ncp_tr_spidev.ops.recv = ncp_tr_spidev_recv;
+    return &s_ncp_tr_spidev.ops;
 }
 /* [ncp_host_transport_create] */

@@ -28,16 +28,31 @@ along with GCC; see the file COPYING3.  If not see
 class code_helper
 {
 public:
-  code_helper () {}
-  code_helper (tree_code code) : rep ((int) code) {}
-  code_helper (combined_fn fn) : rep (-(int) fn) {}
-  operator tree_code () const { return (tree_code) rep; }
-  operator combined_fn () const { return (combined_fn) -rep; }
-  bool is_tree_code () const { return rep > 0; }
-  bool is_fn_code () const { return rep < 0; }
-  int get_rep () const { return rep; }
+    code_helper () {}
+    code_helper (tree_code code) : rep ((int) code) {}
+    code_helper (combined_fn fn) : rep (-(int) fn) {}
+    operator tree_code () const
+    {
+        return (tree_code) rep;
+    }
+    operator combined_fn () const
+    {
+        return (combined_fn) - rep;
+    }
+    bool is_tree_code () const
+    {
+        return rep > 0;
+    }
+    bool is_fn_code () const
+    {
+        return rep < 0;
+    }
+    int get_rep () const
+    {
+        return rep;
+    }
 private:
-  int rep;
+    int rep;
 };
 
 /* Represents the condition under which an operation should happen,
@@ -46,26 +61,26 @@ private:
 class gimple_match_cond
 {
 public:
-  enum uncond { UNCOND };
+    enum uncond { UNCOND };
 
-  /* Build an unconditional op.  */
-  gimple_match_cond (uncond) : cond (NULL_TREE), else_value (NULL_TREE) {}
-  gimple_match_cond (tree, tree);
+    /* Build an unconditional op.  */
+    gimple_match_cond (uncond) : cond (NULL_TREE), else_value (NULL_TREE) {}
+    gimple_match_cond (tree, tree);
 
-  gimple_match_cond any_else () const;
+    gimple_match_cond any_else () const;
 
-  /* The condition under which the operation occurs, or NULL_TREE
-     if the operation is unconditional.  */
-  tree cond;
+    /* The condition under which the operation occurs, or NULL_TREE
+       if the operation is unconditional.  */
+    tree cond;
 
-  /* The value to use when the condition is false.  This is NULL_TREE if
-     the operation is unconditional or if the value doesn't matter.  */
-  tree else_value;
+    /* The value to use when the condition is false.  This is NULL_TREE if
+       the operation is unconditional or if the value doesn't matter.  */
+    tree else_value;
 };
 
 inline
 gimple_match_cond::gimple_match_cond (tree cond_in, tree else_value_in)
-  : cond (cond_in), else_value (else_value_in)
+    : cond (cond_in), else_value (else_value_in)
 {
 }
 
@@ -75,7 +90,7 @@ gimple_match_cond::gimple_match_cond (tree cond_in, tree else_value_in)
 inline gimple_match_cond
 gimple_match_cond::any_else () const
 {
-  return gimple_match_cond (cond, NULL_TREE);
+    return gimple_match_cond (cond, NULL_TREE);
 }
 
 /* Represents an operation to be simplified, or the result of the
@@ -83,60 +98,60 @@ gimple_match_cond::any_else () const
 class gimple_match_op
 {
 public:
-  gimple_match_op ();
-  gimple_match_op (const gimple_match_cond &, code_helper, tree, unsigned int);
-  gimple_match_op (const gimple_match_cond &,
-		   code_helper, tree, tree);
-  gimple_match_op (const gimple_match_cond &,
-		   code_helper, tree, tree, tree);
-  gimple_match_op (const gimple_match_cond &,
-		   code_helper, tree, tree, tree, tree);
-  gimple_match_op (const gimple_match_cond &,
-		   code_helper, tree, tree, tree, tree, tree);
-  gimple_match_op (const gimple_match_cond &,
-		   code_helper, tree, tree, tree, tree, tree, tree);
+    gimple_match_op ();
+    gimple_match_op (const gimple_match_cond &, code_helper, tree, unsigned int);
+    gimple_match_op (const gimple_match_cond &,
+                     code_helper, tree, tree);
+    gimple_match_op (const gimple_match_cond &,
+                     code_helper, tree, tree, tree);
+    gimple_match_op (const gimple_match_cond &,
+                     code_helper, tree, tree, tree, tree);
+    gimple_match_op (const gimple_match_cond &,
+                     code_helper, tree, tree, tree, tree, tree);
+    gimple_match_op (const gimple_match_cond &,
+                     code_helper, tree, tree, tree, tree, tree, tree);
 
-  void set_op (code_helper, tree, unsigned int);
-  void set_op (code_helper, tree, tree);
-  void set_op (code_helper, tree, tree, tree);
-  void set_op (code_helper, tree, tree, tree, tree);
-  void set_op (code_helper, tree, tree, tree, tree, bool);
-  void set_op (code_helper, tree, tree, tree, tree, tree);
-  void set_op (code_helper, tree, tree, tree, tree, tree, tree);
-  void set_value (tree);
+    void set_op (code_helper, tree, unsigned int);
+    void set_op (code_helper, tree, tree);
+    void set_op (code_helper, tree, tree, tree);
+    void set_op (code_helper, tree, tree, tree, tree);
+    void set_op (code_helper, tree, tree, tree, tree, bool);
+    void set_op (code_helper, tree, tree, tree, tree, tree);
+    void set_op (code_helper, tree, tree, tree, tree, tree, tree);
+    void set_value (tree);
 
-  tree op_or_null (unsigned int) const;
+    tree op_or_null (unsigned int) const;
 
-  bool resimplify (gimple_seq *, tree (*)(tree));
+    bool resimplify (gimple_seq *, tree (*)(tree));
 
-  /* The maximum value of NUM_OPS.  */
-  static const unsigned int MAX_NUM_OPS = 5;
+    /* The maximum value of NUM_OPS.  */
+    static const unsigned int MAX_NUM_OPS = 5;
 
-  /* The conditions under which the operation is performed, and the value to
-     use as a fallback.  */
-  gimple_match_cond cond;
+    /* The conditions under which the operation is performed, and the value to
+       use as a fallback.  */
+    gimple_match_cond cond;
 
-  /* The operation being performed.  */
-  code_helper code;
+    /* The operation being performed.  */
+    code_helper code;
 
-  /* The type of the result.  */
-  tree type;
+    /* The type of the result.  */
+    tree type;
 
-  /* For a BIT_FIELD_REF, whether the group of bits is stored in reverse order
-     from the target order.  */
-  bool reverse;
+    /* For a BIT_FIELD_REF, whether the group of bits is stored in reverse order
+       from the target order.  */
+    bool reverse;
 
-  /* The number of operands to CODE.  */
-  unsigned int num_ops;
+    /* The number of operands to CODE.  */
+    unsigned int num_ops;
 
-  /* The operands to CODE.  Only the first NUM_OPS entries are meaningful.  */
-  tree ops[MAX_NUM_OPS];
+    /* The operands to CODE.  Only the first NUM_OPS entries are meaningful.  */
+    tree ops[MAX_NUM_OPS];
 };
 
 inline
 gimple_match_op::gimple_match_op ()
-  : cond (gimple_match_cond::UNCOND), type (NULL_TREE), reverse (false),
-    num_ops (0)
+    : cond (gimple_match_cond::UNCOND), type (NULL_TREE), reverse (false),
+      num_ops (0)
 {
 }
 
@@ -145,10 +160,10 @@ gimple_match_op::gimple_match_op ()
 
 inline
 gimple_match_op::gimple_match_op (const gimple_match_cond &cond_in,
-				  code_helper code_in, tree type_in,
-				  unsigned int num_ops_in)
-  : cond (cond_in), code (code_in), type (type_in), reverse (false),
-    num_ops (num_ops_in)
+                                  code_helper code_in, tree type_in,
+                                  unsigned int num_ops_in)
+    : cond (cond_in), code (code_in), type (type_in), reverse (false),
+      num_ops (num_ops_in)
 {
 }
 
@@ -156,63 +171,63 @@ gimple_match_op::gimple_match_op (const gimple_match_cond &cond_in,
 
 inline
 gimple_match_op::gimple_match_op (const gimple_match_cond &cond_in,
-				  code_helper code_in, tree type_in,
-				  tree op0)
-  : cond (cond_in), code (code_in), type (type_in), reverse (false),
-    num_ops (1)
+                                  code_helper code_in, tree type_in,
+                                  tree op0)
+    : cond (cond_in), code (code_in), type (type_in), reverse (false),
+      num_ops (1)
 {
-  ops[0] = op0;
+    ops[0] = op0;
 }
 
 inline
 gimple_match_op::gimple_match_op (const gimple_match_cond &cond_in,
-				  code_helper code_in, tree type_in,
-				  tree op0, tree op1)
-  : cond (cond_in), code (code_in), type (type_in), reverse (false), 
-    num_ops (2)
+                                  code_helper code_in, tree type_in,
+                                  tree op0, tree op1)
+    : cond (cond_in), code (code_in), type (type_in), reverse (false),
+      num_ops (2)
 {
-  ops[0] = op0;
-  ops[1] = op1;
+    ops[0] = op0;
+    ops[1] = op1;
 }
 
 inline
 gimple_match_op::gimple_match_op (const gimple_match_cond &cond_in,
-				  code_helper code_in, tree type_in,
-				  tree op0, tree op1, tree op2)
-  : cond (cond_in), code (code_in), type (type_in), reverse (false),
-    num_ops (3)
+                                  code_helper code_in, tree type_in,
+                                  tree op0, tree op1, tree op2)
+    : cond (cond_in), code (code_in), type (type_in), reverse (false),
+      num_ops (3)
 {
-  ops[0] = op0;
-  ops[1] = op1;
-  ops[2] = op2;
+    ops[0] = op0;
+    ops[1] = op1;
+    ops[2] = op2;
 }
 
 inline
 gimple_match_op::gimple_match_op (const gimple_match_cond &cond_in,
-				  code_helper code_in, tree type_in,
-				  tree op0, tree op1, tree op2, tree op3)
-  : cond (cond_in), code (code_in), type (type_in), reverse (false),
-    num_ops (4)
+                                  code_helper code_in, tree type_in,
+                                  tree op0, tree op1, tree op2, tree op3)
+    : cond (cond_in), code (code_in), type (type_in), reverse (false),
+      num_ops (4)
 {
-  ops[0] = op0;
-  ops[1] = op1;
-  ops[2] = op2;
-  ops[3] = op3;
+    ops[0] = op0;
+    ops[1] = op1;
+    ops[2] = op2;
+    ops[3] = op3;
 }
 
 inline
 gimple_match_op::gimple_match_op (const gimple_match_cond &cond_in,
-				  code_helper code_in, tree type_in,
-				  tree op0, tree op1, tree op2, tree op3,
-				  tree op4)
-  : cond (cond_in), code (code_in), type (type_in), reverse (false),
-    num_ops (5)
+                                  code_helper code_in, tree type_in,
+                                  tree op0, tree op1, tree op2, tree op3,
+                                  tree op4)
+    : cond (cond_in), code (code_in), type (type_in), reverse (false),
+      num_ops (5)
 {
-  ops[0] = op0;
-  ops[1] = op1;
-  ops[2] = op2;
-  ops[3] = op3;
-  ops[4] = op4;
+    ops[0] = op0;
+    ops[1] = op1;
+    ops[2] = op2;
+    ops[3] = op3;
+    ops[4] = op4;
 }
 
 /* Change the operation performed to CODE_IN, the type of the result to
@@ -221,11 +236,11 @@ gimple_match_op::gimple_match_op (const gimple_match_cond &cond_in,
 
 inline void
 gimple_match_op::set_op (code_helper code_in, tree type_in,
-			 unsigned int num_ops_in)
+                         unsigned int num_ops_in)
 {
-  code = code_in;
-  type = type_in;
-  num_ops = num_ops_in;
+    code = code_in;
+    type = type_in;
+    num_ops = num_ops_in;
 }
 
 /* Functions for changing the operation performed, for various numbers
@@ -234,72 +249,72 @@ gimple_match_op::set_op (code_helper code_in, tree type_in,
 inline void
 gimple_match_op::set_op (code_helper code_in, tree type_in, tree op0)
 {
-  code = code_in;
-  type = type_in;
-  num_ops = 1;
-  ops[0] = op0;
+    code = code_in;
+    type = type_in;
+    num_ops = 1;
+    ops[0] = op0;
 }
 
 inline void
 gimple_match_op::set_op (code_helper code_in, tree type_in, tree op0, tree op1)
 {
-  code = code_in;
-  type = type_in;
-  num_ops = 2;
-  ops[0] = op0;
-  ops[1] = op1;
+    code = code_in;
+    type = type_in;
+    num_ops = 2;
+    ops[0] = op0;
+    ops[1] = op1;
 }
 
 inline void
 gimple_match_op::set_op (code_helper code_in, tree type_in,
-			 tree op0, tree op1, tree op2)
+                         tree op0, tree op1, tree op2)
 {
-  code = code_in;
-  type = type_in;
-  num_ops = 3;
-  ops[0] = op0;
-  ops[1] = op1;
-  ops[2] = op2;
+    code = code_in;
+    type = type_in;
+    num_ops = 3;
+    ops[0] = op0;
+    ops[1] = op1;
+    ops[2] = op2;
 }
 
 inline void
 gimple_match_op::set_op (code_helper code_in, tree type_in,
-			 tree op0, tree op1, tree op2, bool reverse_in)
+                         tree op0, tree op1, tree op2, bool reverse_in)
 {
-  code = code_in;
-  type = type_in;
-  reverse = reverse_in;
-  num_ops = 3;
-  ops[0] = op0;
-  ops[1] = op1;
-  ops[2] = op2;
+    code = code_in;
+    type = type_in;
+    reverse = reverse_in;
+    num_ops = 3;
+    ops[0] = op0;
+    ops[1] = op1;
+    ops[2] = op2;
 }
 
 inline void
 gimple_match_op::set_op (code_helper code_in, tree type_in,
-			 tree op0, tree op1, tree op2, tree op3)
+                         tree op0, tree op1, tree op2, tree op3)
 {
-  code = code_in;
-  type = type_in;
-  num_ops = 4;
-  ops[0] = op0;
-  ops[1] = op1;
-  ops[2] = op2;
-  ops[3] = op3;
+    code = code_in;
+    type = type_in;
+    num_ops = 4;
+    ops[0] = op0;
+    ops[1] = op1;
+    ops[2] = op2;
+    ops[3] = op3;
 }
 
 inline void
 gimple_match_op::set_op (code_helper code_in, tree type_in,
-			 tree op0, tree op1, tree op2, tree op3, tree op4)
+                         tree op0, tree op1, tree op2, tree op3, tree op4)
 {
-  code = code_in;
-  type = type_in;
-  num_ops = 5;
-  ops[0] = op0;
-  ops[1] = op1;
-  ops[2] = op2;
-  ops[3] = op3;
-  ops[4] = op4;
+    code = code_in;
+    type = type_in;
+    num_ops = 5;
+    ops[0] = op0;
+    ops[1] = op1;
+    ops[2] = op2;
+    ops[3] = op3;
+    ops[4] = op4;
 }
 
 /* Set the "operation" to be the single value VALUE, such as a constant
@@ -308,7 +323,7 @@ gimple_match_op::set_op (code_helper code_in, tree type_in,
 inline void
 gimple_match_op::set_value (tree value)
 {
-  set_op (TREE_CODE (value), TREE_TYPE (value), value);
+    set_op (TREE_CODE (value), TREE_TYPE (value), value);
 }
 
 /* Return the value of operand I, or null if there aren't that many
@@ -317,7 +332,7 @@ gimple_match_op::set_value (tree value)
 inline tree
 gimple_match_op::op_or_null (unsigned int i) const
 {
-  return i < num_ops ? ops[i] : NULL_TREE;
+    return i < num_ops ? ops[i] : NULL_TREE;
 }
 
 /* Return whether OP is a non-expression result and a gimple value.  */
@@ -325,18 +340,18 @@ gimple_match_op::op_or_null (unsigned int i) const
 inline bool
 gimple_simplified_result_is_gimple_val (const gimple_match_op *op)
 {
-  return (op->code.is_tree_code ()
-	  && (TREE_CODE_LENGTH ((tree_code) op->code) == 0
-	      || ((tree_code) op->code) == ADDR_EXPR)
-	  && is_gimple_val (op->ops[0]));
+    return (op->code.is_tree_code ()
+            && (TREE_CODE_LENGTH ((tree_code) op->code) == 0
+                || ((tree_code) op->code) == ADDR_EXPR)
+            && is_gimple_val (op->ops[0]));
 }
 
 extern tree (*mprts_hook) (gimple_match_op *);
 
 bool gimple_simplify (gimple *, gimple_match_op *, gimple_seq *,
-		      tree (*)(tree), tree (*)(tree));
+                      tree (*)(tree), tree (*)(tree));
 tree maybe_push_res_to_seq (gimple_match_op *, gimple_seq *,
-			    tree res = NULL_TREE);
+                            tree res = NULL_TREE);
 void maybe_build_generic_op (gimple_match_op *);
 
 

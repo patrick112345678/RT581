@@ -38,25 +38,26 @@
       break;                                   \
    }
 
-typedef enum application_type_e {
-  GENERIC_DEVICE,
+typedef enum application_type_e
+{
+    GENERIC_DEVICE,
 #if 0
-  IAS_ZONE_SENSOR,
-  SMOKE_DEVICE,
+    IAS_ZONE_SENSOR,
+    SMOKE_DEVICE,
 #endif
-  NETWORK_COPROCESSOR,
-  APPLICATION_TYPE_INVALID,
+    NETWORK_COPROCESSOR,
+    APPLICATION_TYPE_INVALID,
 } application_type_t;
 
 /* Pointer to function, which, given pointer to application specific section
  * and key and value string, will parse those string and set corresponding field in app section */
-typedef zb_ret_t (*config_parameter_setter_t)(void *section, char *key, char* value);
+typedef zb_ret_t (*config_parameter_setter_t)(void *section, char *key, char *value);
 
 typedef struct application_config_type_s
 {
-  char *name; /* Application name which will be read from input file */
-  int app_config_block_size; /* Size of application specific section that should be passed to Zigbee application */
-  config_parameter_setter_t setter; /* see config_parameter_setter_t */
+    char *name; /* Application name which will be read from input file */
+    int app_config_block_size; /* Size of application specific section that should be passed to Zigbee application */
+    config_parameter_setter_t setter; /* see config_parameter_setter_t */
 } application_config_type_t;
 
 #define PRODUCTION_CONFIG_HEADER             {0xE7, 0x37, 0xDD, 0xF6}

@@ -30,7 +30,7 @@ static void copy_tag(uint8 *msg_block, uint32 Mlen);
 static uint16 rev16(uint16 l);
 static uint32 rev32(uint32 l);
 
-// AES MMO construction 
+// AES MMO construction
 uint32 AES_MMO(uint8 *M, uint32 Mlen, uint8 *h)
 {
     uint32 i, j;
@@ -42,18 +42,18 @@ uint32 AES_MMO(uint8 *M, uint32 Mlen, uint8 *h)
     uint32 n_rest_bytes, n_msg_blocks;
     uint8 key128[16] = {0x00}; // key
 
-    n_msg_blocks = (Mlen>>7) + !!(Mlen&0x7F);
-    n_rest_bytes = ((Mlen&0x7F)>>3) + !!(Mlen&0x07);
+    n_msg_blocks = (Mlen >> 7) + !!(Mlen & 0x7F);
+    n_rest_bytes = ((Mlen & 0x7F) >> 3) + !!(Mlen & 0x07);
     if (Mlen < 0x10000)
     {
-        n_rest_blocks = (n_rest_bytes <= 13)? 1: 2;
+        n_rest_blocks = (n_rest_bytes <= 13) ? 1 : 2;
     }
     else
     {
-        n_rest_blocks = (n_rest_bytes <= 9)? 1: 2;
+        n_rest_blocks = (n_rest_bytes <= 9) ? 1 : 2;
     }
 
-    t = n_msg_blocks + n_rest_blocks - (Mlen&0x7F? 1: 0);
+    t = n_msg_blocks + n_rest_blocks - (Mlen & 0x7F ? 1 : 0);
 
     {
         memset(msg_rest, 0, sizeof(msg_rest));
@@ -62,11 +62,11 @@ uint32 AES_MMO(uint8 *M, uint32 Mlen, uint8 *h)
         if (n_rest_bytes)
         {
             /* Modify last block */
-            memcpy(msg_ptr, M + (n_msg_blocks-1)*16, n_rest_bytes);
+            memcpy(msg_ptr, M + (n_msg_blocks - 1) * 16, n_rest_bytes);
         }
 
         /* form last block */
-        if (n_rest_blocks-1)
+        if (n_rest_blocks - 1)
         {
             msg_ptr += 16;
         }
@@ -116,5 +116,5 @@ static uint16 rev16(uint16 l)
 
 static uint32 rev32(uint32 l)
 {
-    return (l>>24) | (l>>8 & 0x0000ff00) | (l<<24) | (l<<8 & 0x00ff0000);
+    return (l >> 24) | (l >> 8 & 0x0000ff00) | (l << 24) | (l << 8 & 0x00ff0000);
 }

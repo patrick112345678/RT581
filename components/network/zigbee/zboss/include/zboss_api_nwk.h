@@ -141,9 +141,9 @@ typedef zb_uint8_t zb_nwk_command_status_t;
 /** @brief 3.4.3 Network Status Command: Arguments of the NLME-STATUS.indication routine. */
 typedef ZB_PACKED_PRE struct zb_nlme_status_indication_s
 {
-  zb_uint8_t status; /**< Error code associated with the failure */
-  zb_uint16_t network_addr;  /**< Network device address associated with the status information */
-  zb_uint8_t unknown_command_id; /**< Unknown command ID
+    zb_uint8_t status; /**< Error code associated with the failure */
+    zb_uint16_t network_addr;  /**< Network device address associated with the status information */
+    zb_uint8_t unknown_command_id; /**< Unknown command ID
                                     (required for ZB_NWK_COMMAND_STATUS_UNKNOWN_COMMAND) */
 } ZB_PACKED_STRUCT
 zb_nlme_status_indication_t;
@@ -355,7 +355,7 @@ zb_nlme_status_indication_t;
 */
 #define ZB_PAGE31_SUB_GHZ_MAX_CHANNEL_NUMBER (ZB_PAGE31_SUB_GHZ_MAX_LOGICAL_CHANNEL - \
                                               ZB_PAGE31_SUB_GHZ_START_LOGICAL_CHANNEL)
-  /** @endcond */ /* DOXYGEN_SE_SECTION */
+/** @endcond */ /* DOXYGEN_SE_SECTION */
 /* ZB_MAC_START_CHANNEL_NUMBER */
 /**
    The first logical channel for Page 0 2.4GHz
@@ -456,19 +456,19 @@ zb_nlme_status_indication_t;
  */
 typedef struct zb_nwk_pib_cache_s
 {
-  zb_uint16_t             mac_short_address;             /*!< The 16-bit address that the device uses
+    zb_uint16_t             mac_short_address;             /*!< The 16-bit address that the device uses
                                                            to communicate in the PAN. */
-  zb_uint16_t             mac_pan_id;                    /*!< The 16-bit identifier of the PAN on which
+    zb_uint16_t             mac_pan_id;                    /*!< The 16-bit identifier of the PAN on which
                                                            the device is operating. If this value is 0xffff,
                                                            the device is not associated. */
-  zb_ieee_addr_t          mac_extended_address;          /*!< The 64-bit (IEEE) address assigned to the device. */
+    zb_ieee_addr_t          mac_extended_address;          /*!< The 64-bit (IEEE) address assigned to the device. */
 
-  zb_uint8_t              mac_association_permit;        /*!< Indication of whether a coordinator is currently
+    zb_uint8_t              mac_association_permit;        /*!< Indication of whether a coordinator is currently
                                                            allowing association. A value of TRUE indicates*/
-  zb_uint8_t              mac_rx_on_when_idle;           /*!< Indication of whether the MAC sublayer is to enable
+    zb_uint8_t              mac_rx_on_when_idle;           /*!< Indication of whether the MAC sublayer is to enable
                                                            its receiver during idle periods. */
-  zb_uint8_t              phy_current_page;              /*!< Index of current physical channel page  */
-  zb_uint8_t              phy_current_channel;           /*!< Index of current physical channel */
+    zb_uint8_t              phy_current_page;              /*!< Index of current physical channel page  */
+    zb_uint8_t              phy_current_channel;           /*!< Index of current physical channel */
 } zb_nwk_pib_cache_t;
 
 /** @} */
@@ -548,7 +548,7 @@ zb_nwk_pib_cache_t *zb_nwk_get_pib_cache(void);
 */
 typedef ZB_PACKED_PRE struct zb_nlme_permit_joining_request_s
 {
-  zb_uint8_t permit_duration; /**< Time in seconds during which the coordinator
+    zb_uint8_t permit_duration; /**< Time in seconds during which the coordinator
                                * or router will allow associations */
 } ZB_PACKED_STRUCT
 zb_nlme_permit_joining_request_t;
@@ -579,11 +579,11 @@ void zb_nlme_permit_joining_request(zb_uint8_t param);
 /** Structure describing a detected PAN ID conflict */
 typedef ZB_PACKED_PRE struct zb_pan_id_conflict_info_s
 {
-  zb_uint16_t panid_count;      /* <! Count of neighboring PAN IDs. */
-  zb_uint16_t panids[ZB_PAN_ID_CONFLICT_INFO_MAX_PANIDS_COUNT];
-                                /* <! Array of such PAN IDs.
-                                 *  Only values at indices 0..(panid_count - 1) will be taken
-                                 *  into consideration. */
+    zb_uint16_t panid_count;      /* <! Count of neighboring PAN IDs. */
+    zb_uint16_t panids[ZB_PAN_ID_CONFLICT_INFO_MAX_PANIDS_COUNT];
+    /* <! Array of such PAN IDs.
+     *  Only values at indices 0..(panid_count - 1) will be taken
+     *  into consideration. */
 } ZB_PACKED_STRUCT zb_pan_id_conflict_info_t;
 
 /**

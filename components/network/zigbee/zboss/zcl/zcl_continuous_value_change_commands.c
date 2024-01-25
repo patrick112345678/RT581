@@ -58,231 +58,231 @@
 
 #define ZB_ZCL_CVC_GET_TIME_IN_UNITS()  ZB_TIME_BEACON_INTERVAL_TO_MSEC(ZB_TIMER_GET()) / 100
 
-void zb_zcl_cvc_correct_value(zb_zcl_cvc_input_variables_t* input_var);
+void zb_zcl_cvc_correct_value(zb_zcl_cvc_input_variables_t *input_var);
 
 static zb_uint8_t zb_zcl_cvc_calc(
-  zb_zcl_cvc_input_variables_t* input_variables,
-  zb_uint8_t buf_id,
-  zb_bool_t is_recalc)
+    zb_zcl_cvc_input_variables_t *input_variables,
+    zb_uint8_t buf_id,
+    zb_bool_t is_recalc)
 {
-  zb_bufid_t buf = 0;
+    zb_bufid_t buf = 0;
 #ifdef ZB_ZCL_ENABLE_CVC
-  zb_uint8_t diff;
-  zb_bool_t direction_decrement = ZB_FALSE;
+    zb_uint8_t diff;
+    zb_bool_t direction_decrement = ZB_FALSE;
 #endif
-  zb_zcl_cvc_variables_t* change_variables;
-  zb_uint8_t ret = ZB_UNDEFINED_BUFFER;
-  zb_zcl_cvc_input_variables_t* input_var;
+    zb_zcl_cvc_variables_t *change_variables;
+    zb_uint8_t ret = ZB_UNDEFINED_BUFFER;
+    zb_zcl_cvc_input_variables_t *input_var;
 
 
-  TRACE_MSG(TRACE_ZCL1, "> zb_zcl_cvc_calc", (FMT__0));
+    TRACE_MSG(TRACE_ZCL1, "> zb_zcl_cvc_calc", (FMT__0));
 
-  if (is_recalc == ZB_FALSE)
-  {
-    /* 1. Correct end level. */
-    buf = zb_buf_get_out();
-    zb_zcl_cvc_correct_value(input_variables);
-  }
-  else
-  {
-    buf = buf_id;
-  }
-
-  ZB_ASSERT(buf != 0);
-
-  change_variables = ZB_BUF_GET_PARAM(buf, zb_zcl_cvc_variables_t);
-
-  if (is_recalc == ZB_FALSE)
-  {
-    input_var = input_variables;
-  }
-  else
-  {
-    input_var = &(change_variables->input_var);
-  }
-
-
-/* 0. Check that transition_time is correct (> 0)! */
-  if (input_var->transition_time == 0)
-  {
-  /* This function returns buffer id.
-   * If input data is wrong, ZB_UNDEFINED_BUFFER will be returned.
-   * So i think, no error codes from zb_error.h needed here, because this is only 2 cases: valid
-   * buffer id or invalid buffer id (ZB_UNDEFINED_BUFFER).
-   */
-    TRACE_MSG(TRACE_ZCL1, "Error, transition_time is incorrect!", (FMT__0));
-  }
-  else
-  {
-
-/* 2. Set input variables. */
-    ZB_MEMCPY(&(change_variables->input_var), input_var, sizeof(zb_zcl_cvc_input_variables_t));
-/*    change_variables->input_var.current_value16 = input_var->current_value16;
-    change_variables->input_var.end_value16 = input_var->end_value16;
-    change_variables->input_var.min_value16 = input_var->min_value16;
-    change_variables->input_var.max_value16 = input_var->max_value16;
-    change_variables->input_var.overlap = input_var->overlap;
-    change_variables->input_var.transition_time = input_var->transition_time;
-    change_variables->input_var.value_set_func = input_var->value_set_func;
-    change_variables->input_var.buf_id = input_var->buf_id;
-    change_variables->input_var.after_processing_cb = input_var->after_processing_cb;
-*/    
-#ifndef ZB_ZCL_ENABLE_CVC
-    input_var->transition_time = ZB_ZCL_CVC_TRANSITION_TIME_AS_FAST_AS_ABLE;
-    change_variables->steps_number = 1;
-    change_variables->delta_time = 1;
-#else
-
-/* 3. Calculate direction_decrement */
-
-
-/* 4. Calculate diff. */
-//TODO: overlap
-    if (input_var->overlap == ZB_TRUE)
+    if (is_recalc == ZB_FALSE)
     {
-      if (input_var->end_value16 > input_var->current_value16)
-      // end_value16 > current_value16 => overlap MIN value
-      {
-        diff = (input_var->current_value16 - input_var->min_value16) +
-          (input_var->max_value16 - input_var->end_value16);
-        direction_decrement = ZB_TRUE;
-      }
-      else
-      // end_value16 <= current_value16 => overlap MAX value
-      {
-        diff = (input_var->max_value16 - input_var->current_value16) +
-          (input_var->end_value16 - input_var->min_value16);
-        direction_decrement = ZB_FALSE;
-      }
+        /* 1. Correct end level. */
+        buf = zb_buf_get_out();
+        zb_zcl_cvc_correct_value(input_variables);
     }
     else
     {
-      diff = ZB_ABS((zb_int32_t)input_var->end_value16 - input_var->current_value16);
-      direction_decrement = (zb_bool_t)(input_var->end_value16 < input_var->current_value16);
+        buf = buf_id;
     }
-    TRACE_MSG(TRACE_ZCL1, "diff = %i", (FMT__H,  diff));
 
-    if (diff != 0)
+    ZB_ASSERT(buf != 0);
+
+    change_variables = ZB_BUF_GET_PARAM(buf, zb_zcl_cvc_variables_t);
+
+    if (is_recalc == ZB_FALSE)
     {
-      if (input_var->transition_time == ZB_ZCL_CVC_TRANSITION_TIME_AS_FAST_AS_ABLE ||
-          input_var->transition_time == ZB_ZCL_CVC_TRANSITION_TIME_MINIMAL)
-      {
-        TRACE_MSG(TRACE_ZCL1, "transition_time is 0xffff or 0x0001", (FMT__0));
+        input_var = input_variables;
+    }
+    else
+    {
+        input_var = &(change_variables->input_var);
+    }
+
+
+    /* 0. Check that transition_time is correct (> 0)! */
+    if (input_var->transition_time == 0)
+    {
+        /* This function returns buffer id.
+         * If input data is wrong, ZB_UNDEFINED_BUFFER will be returned.
+         * So i think, no error codes from zb_error.h needed here, because this is only 2 cases: valid
+         * buffer id or invalid buffer id (ZB_UNDEFINED_BUFFER).
+         */
+        TRACE_MSG(TRACE_ZCL1, "Error, transition_time is incorrect!", (FMT__0));
+    }
+    else
+    {
+
+        /* 2. Set input variables. */
+        ZB_MEMCPY(&(change_variables->input_var), input_var, sizeof(zb_zcl_cvc_input_variables_t));
+        /*    change_variables->input_var.current_value16 = input_var->current_value16;
+            change_variables->input_var.end_value16 = input_var->end_value16;
+            change_variables->input_var.min_value16 = input_var->min_value16;
+            change_variables->input_var.max_value16 = input_var->max_value16;
+            change_variables->input_var.overlap = input_var->overlap;
+            change_variables->input_var.transition_time = input_var->transition_time;
+            change_variables->input_var.value_set_func = input_var->value_set_func;
+            change_variables->input_var.buf_id = input_var->buf_id;
+            change_variables->input_var.after_processing_cb = input_var->after_processing_cb;
+        */
+#ifndef ZB_ZCL_ENABLE_CVC
+        input_var->transition_time = ZB_ZCL_CVC_TRANSITION_TIME_AS_FAST_AS_ABLE;
         change_variables->steps_number = 1;
         change_variables->delta_time = 1;
-      }
-      else
-      {
-      /* 7. */
-/* 01/02/2013 
-  I don't understood this comparison.
-  What they are compared for?
+#else
 
-  05/02/2013 steps_number = min(diff*TRANSITION_TIME_UNITS, transition_time)
-  Its needed for calculations.
-*/
+        /* 3. Calculate direction_decrement */
 
-        /* Each step can be executed with the fastest time of
-         * ZB_ZCL_CVC_TRANSITION_TIMER_QUANT_MS. Transition time is
-         * calculated in units of 0.1 sec, that's why multiplication
-         * is needed */
-        if (input_var->transition_time * ZB_ZCL_CVC_TRANSITION_TIME_UNIT_IN_QUANTS > diff)
+
+        /* 4. Calculate diff. */
+        //TODO: overlap
+        if (input_var->overlap == ZB_TRUE)
         {
-          /* If transition time  */
-          change_variables->steps_number = diff;
+            if (input_var->end_value16 > input_var->current_value16)
+                // end_value16 > current_value16 => overlap MIN value
+            {
+                diff = (input_var->current_value16 - input_var->min_value16) +
+                       (input_var->max_value16 - input_var->end_value16);
+                direction_decrement = ZB_TRUE;
+            }
+            else
+                // end_value16 <= current_value16 => overlap MAX value
+            {
+                diff = (input_var->max_value16 - input_var->current_value16) +
+                       (input_var->end_value16 - input_var->min_value16);
+                direction_decrement = ZB_FALSE;
+            }
         }
         else
         {
-          change_variables->steps_number = input_var->transition_time * ZB_ZCL_CVC_TRANSITION_TIME_UNIT_IN_QUANTS;
+            diff = ZB_ABS((zb_int32_t)input_var->end_value16 - input_var->current_value16);
+            direction_decrement = (zb_bool_t)(input_var->end_value16 < input_var->current_value16);
         }
+        TRACE_MSG(TRACE_ZCL1, "diff = %i", (FMT__H,  diff));
 
-        TRACE_MSG(TRACE_ERROR, "steps_number = %d", (FMT__D, change_variables->steps_number));
-
-        if (change_variables->steps_number > 1)
+        if (diff != 0)
         {
-          change_variables->delta_time =
-            input_var->transition_time * ZB_ZCL_CVC_TRANSITION_TIME_UNIT_IN_QUANTS / (change_variables->steps_number - 1);
+            if (input_var->transition_time == ZB_ZCL_CVC_TRANSITION_TIME_AS_FAST_AS_ABLE ||
+                    input_var->transition_time == ZB_ZCL_CVC_TRANSITION_TIME_MINIMAL)
+            {
+                TRACE_MSG(TRACE_ZCL1, "transition_time is 0xffff or 0x0001", (FMT__0));
+                change_variables->steps_number = 1;
+                change_variables->delta_time = 1;
+            }
+            else
+            {
+                /* 7. */
+                /* 01/02/2013
+                  I don't understood this comparison.
+                  What they are compared for?
+
+                  05/02/2013 steps_number = min(diff*TRANSITION_TIME_UNITS, transition_time)
+                  Its needed for calculations.
+                */
+
+                /* Each step can be executed with the fastest time of
+                 * ZB_ZCL_CVC_TRANSITION_TIMER_QUANT_MS. Transition time is
+                 * calculated in units of 0.1 sec, that's why multiplication
+                 * is needed */
+                if (input_var->transition_time * ZB_ZCL_CVC_TRANSITION_TIME_UNIT_IN_QUANTS > diff)
+                {
+                    /* If transition time  */
+                    change_variables->steps_number = diff;
+                }
+                else
+                {
+                    change_variables->steps_number = input_var->transition_time * ZB_ZCL_CVC_TRANSITION_TIME_UNIT_IN_QUANTS;
+                }
+
+                TRACE_MSG(TRACE_ERROR, "steps_number = %d", (FMT__D, change_variables->steps_number));
+
+                if (change_variables->steps_number > 1)
+                {
+                    change_variables->delta_time =
+                        input_var->transition_time * ZB_ZCL_CVC_TRANSITION_TIME_UNIT_IN_QUANTS / (change_variables->steps_number - 1);
+                }
+                else
+                {
+                    change_variables->delta_time = input_var->transition_time * ZB_ZCL_CVC_TRANSITION_TIME_UNIT_IN_QUANTS;
+                }
+
+                TRACE_MSG(TRACE_ERROR,
+                          "delta_time = %d",
+                          (FMT__D, change_variables->delta_time));
+
+                /* 8. */
+                change_variables->delta_value16 = diff / change_variables->steps_number;
+
+                TRACE_MSG(TRACE_ERROR, "delta_value = %d", (FMT__D, change_variables->delta_value16));
+
+                /* 9. */
+                if (diff > change_variables->delta_value16 * change_variables->steps_number)
+                {
+                    change_variables->extra_inc_value_step =
+                        (diff - change_variables->delta_value16 * change_variables->steps_number);
+                }
+                else
+                {
+                    change_variables->extra_inc_value_step = 0;
+                }
+
+                TRACE_MSG(TRACE_ERROR, "extra_inc_value_step = %d", (FMT__D, change_variables->extra_inc_value_step));
+
+                /* 10. */
+                if (input_var->transition_time * ZB_ZCL_CVC_TRANSITION_TIME_UNIT_IN_QUANTS >
+                        change_variables->delta_time * change_variables->steps_number)
+                {
+                    change_variables->extra_inc_time_step =
+                        (input_var->transition_time * ZB_ZCL_CVC_TRANSITION_TIME_UNIT_IN_QUANTS -
+                         change_variables->delta_time * change_variables->steps_number);
+                }
+                else
+                {
+                    change_variables->extra_inc_time_step = 0;
+                }
+
+                TRACE_MSG(TRACE_ERROR, "extra_inc_time_step = %d", (FMT__D, change_variables->extra_inc_time_step));
+
+                /* 11. */
+                if (direction_decrement == ZB_TRUE)
+                {
+                    change_variables->delta_value16 = -change_variables->delta_value16;
+                }
+
+                change_variables->time_err =
+                    input_var->transition_time * ZB_ZCL_CVC_TRANSITION_TIME_UNIT_IN_QUANTS / ZB_ZCL_CVC_TRANSITION_TIME_ERROR + 1;
+
+                TRACE_MSG(TRACE_ERROR, "time_err = %d", (FMT__D, change_variables->time_err));
+
+                /* 12. */
+                change_variables->end_time =
+                    (ZB_ZCL_CVC_GET_TIME_IN_UNITS() + input_var->transition_time) * ZB_ZCL_CVC_TRANSITION_TIME_UNIT_IN_QUANTS;
+
+                TRACE_MSG(TRACE_ERROR,
+                          "end_time = %d",
+                          (FMT__D, change_variables->end_time));
+            }
         }
         else
         {
-          change_variables->delta_time = input_var->transition_time * ZB_ZCL_CVC_TRANSITION_TIME_UNIT_IN_QUANTS;
+            change_variables->steps_number = 0;
+            //      change_variables->input_var.transition_time = ZB_ZCL_CVC_TRANSITION_TIME_AS_FAST_AS_ABLE;
         }
-
-        TRACE_MSG(TRACE_ERROR,
-                  "delta_time = %d",
-                  (FMT__D, change_variables->delta_time));
-
-/* 8. */
-        change_variables->delta_value16 = diff / change_variables->steps_number;
-
-        TRACE_MSG(TRACE_ERROR, "delta_value = %d", (FMT__D, change_variables->delta_value16));
-
-/* 9. */
-        if (diff > change_variables->delta_value16 * change_variables->steps_number)
-        {
-          change_variables->extra_inc_value_step =
-            (diff - change_variables->delta_value16 * change_variables->steps_number);
-        }
-        else
-        {
-          change_variables->extra_inc_value_step = 0;
-        }
-
-        TRACE_MSG(TRACE_ERROR, "extra_inc_value_step = %d", (FMT__D, change_variables->extra_inc_value_step));
-
-/* 10. */
-        if (input_var->transition_time * ZB_ZCL_CVC_TRANSITION_TIME_UNIT_IN_QUANTS >
-            change_variables->delta_time * change_variables->steps_number)
-        {
-          change_variables->extra_inc_time_step =
-            (input_var->transition_time * ZB_ZCL_CVC_TRANSITION_TIME_UNIT_IN_QUANTS -
-             change_variables->delta_time * change_variables->steps_number);
-        }
-        else
-        {
-          change_variables->extra_inc_time_step = 0;
-        }
-
-        TRACE_MSG(TRACE_ERROR, "extra_inc_time_step = %d", (FMT__D, change_variables->extra_inc_time_step));
-
-/* 11. */
-        if (direction_decrement == ZB_TRUE)
-        {
-          change_variables->delta_value16 = -change_variables->delta_value16;
-        }
-
-        change_variables->time_err =
-          input_var->transition_time * ZB_ZCL_CVC_TRANSITION_TIME_UNIT_IN_QUANTS / ZB_ZCL_CVC_TRANSITION_TIME_ERROR + 1;
-
-        TRACE_MSG(TRACE_ERROR, "time_err = %d", (FMT__D, change_variables->time_err));
-
-/* 12. */
-        change_variables->end_time =
-          (ZB_ZCL_CVC_GET_TIME_IN_UNITS() + input_var->transition_time) * ZB_ZCL_CVC_TRANSITION_TIME_UNIT_IN_QUANTS;
-
-        TRACE_MSG(TRACE_ERROR,
-                  "end_time = %d",
-                  (FMT__D, change_variables->end_time));
-      }
-    }
-    else
-    {
-      change_variables->steps_number = 0;
-//      change_variables->input_var.transition_time = ZB_ZCL_CVC_TRANSITION_TIME_AS_FAST_AS_ABLE;
-    }
 #endif
-    ret = buf;
-  }
+        ret = buf;
+    }
 
-  TRACE_MSG(TRACE_ZCL1, "< zb_zcl_cvc_calc", (FMT__0));
+    TRACE_MSG(TRACE_ZCL1, "< zb_zcl_cvc_calc", (FMT__0));
 
-  return ret;
+    return ret;
 }
 
 
-zb_uint8_t zb_zcl_cvc_calculate_transition_values(zb_zcl_cvc_input_variables_t* input_var)
+zb_uint8_t zb_zcl_cvc_calculate_transition_values(zb_zcl_cvc_input_variables_t *input_var)
 {
-  return zb_zcl_cvc_calc(input_var, 0, ZB_FALSE);
+    return zb_zcl_cvc_calc(input_var, 0, ZB_FALSE);
 }
 
 #define ZB_ZCL_CVC_RECALC_TRANSITION_VALUES(buf_id)                     \
@@ -292,350 +292,350 @@ zb_uint8_t zb_zcl_cvc_calculate_transition_values(zb_zcl_cvc_input_variables_t* 
     ZB_TRUE);
 
 
-void zb_zcl_cvc_correct_value(zb_zcl_cvc_input_variables_t* input_var)
+void zb_zcl_cvc_correct_value(zb_zcl_cvc_input_variables_t *input_var)
 {
-  if (input_var->end_value16 > input_var->max_value16)
-  {
-    input_var->end_value16 = input_var->max_value16;
-  }
-  else if (input_var->end_value16 < input_var->min_value16)
-  {
-    input_var->end_value16 = input_var->min_value16;
-  }
+    if (input_var->end_value16 > input_var->max_value16)
+    {
+        input_var->end_value16 = input_var->max_value16;
+    }
+    else if (input_var->end_value16 < input_var->min_value16)
+    {
+        input_var->end_value16 = input_var->min_value16;
+    }
 
 }
 
 /*! Returns slot number of the reporting info */
 static zb_uint8_t zb_zcl_cvc_get_alarm_id(zb_zcl_cvc_alarm_variables_t *alarm_var)
 {
-  zb_uindex_t i = 0xff;
-  zb_uint8_t alarm_id = 0;
+    zb_uindex_t i = 0xff;
+    zb_uint8_t alarm_id = 0;
 
-  if (alarm_var && ZCL_CTX().device_ctx)
-  {
-    for (i = 0; i < ZCL_CTX().device_ctx->ep_count; i++)
+    if (alarm_var && ZCL_CTX().device_ctx)
     {
-      if (alarm_var->endpoint_id != ZCL_CTX().device_ctx->ep_desc_list[i]->ep_id)
-      {
-        alarm_id += ZB_ZCL_MAX_CVC_SLOTS_BY_EP;
-      }
-      else
-      {
-        alarm_id += alarm_var - ZCL_CTX().device_ctx->ep_desc_list[i]->cvc_alarm_info;
-        break;
-      }
+        for (i = 0; i < ZCL_CTX().device_ctx->ep_count; i++)
+        {
+            if (alarm_var->endpoint_id != ZCL_CTX().device_ctx->ep_desc_list[i]->ep_id)
+            {
+                alarm_id += ZB_ZCL_MAX_CVC_SLOTS_BY_EP;
+            }
+            else
+            {
+                alarm_id += alarm_var - ZCL_CTX().device_ctx->ep_desc_list[i]->cvc_alarm_info;
+                break;
+            }
+        }
     }
-  }
 
-  return (i < ZCL_CTX().device_ctx->ep_count) ? alarm_id : ZB_ZCL_CVC_INVALID_ALARM_ID;
+    return (i < ZCL_CTX().device_ctx->ep_count) ? alarm_id : ZB_ZCL_CVC_INVALID_ALARM_ID;
 }
 
 /*! Returns reporting info that is stored in slot with specified number */
 static zb_zcl_cvc_alarm_variables_t *zb_zcl_cvc_get_alarm_variables(zb_uint8_t alarm_id)
 {
-  zb_uindex_t i;
+    zb_uindex_t i;
 
-  if (alarm_id != ZB_ZCL_CVC_INVALID_ALARM_ID && ZCL_CTX().device_ctx)
-  {
-    for (i = 0; i < ZCL_CTX().device_ctx->ep_count; i++)
+    if (alarm_id != ZB_ZCL_CVC_INVALID_ALARM_ID && ZCL_CTX().device_ctx)
     {
-      if (alarm_id >= ZB_ZCL_MAX_CVC_SLOTS_BY_EP)
-      {
-        alarm_id -= ZB_ZCL_MAX_CVC_SLOTS_BY_EP;
-      }
-      else
-      {
-        return (zb_zcl_cvc_alarm_variables_t *)(ZCL_CTX().device_ctx->ep_desc_list[i]->cvc_alarm_info + alarm_id);
-      }
+        for (i = 0; i < ZCL_CTX().device_ctx->ep_count; i++)
+        {
+            if (alarm_id >= ZB_ZCL_MAX_CVC_SLOTS_BY_EP)
+            {
+                alarm_id -= ZB_ZCL_MAX_CVC_SLOTS_BY_EP;
+            }
+            else
+            {
+                return (zb_zcl_cvc_alarm_variables_t *)(ZCL_CTX().device_ctx->ep_desc_list[i]->cvc_alarm_info + alarm_id);
+            }
+        }
     }
-  }
 
-  return NULL;
+    return NULL;
 }
 
 static void zb_zcl_cvc_next_step_alarm(zb_uint8_t alarm_id)
 {
-  zb_zcl_cvc_variables_t* change_var;
-  zb_zcl_cvc_alarm_variables_t* alarm_var;
-  zb_time_t curr_time;
-  zb_time_t next_alarm = 0;
-  zb_int32_t tmp;
+    zb_zcl_cvc_variables_t *change_var;
+    zb_zcl_cvc_alarm_variables_t *alarm_var;
+    zb_time_t curr_time;
+    zb_time_t next_alarm = 0;
+    zb_int32_t tmp;
 
-  TRACE_MSG(TRACE_ZCL1, "> zb_zcl_cvc_next_step_alarm alarm_id %i", (FMT__H, alarm_id));
+    TRACE_MSG(TRACE_ZCL1, "> zb_zcl_cvc_next_step_alarm alarm_id %i", (FMT__H, alarm_id));
 
-/* 1. Get variables from buffer. */
+    /* 1. Get variables from buffer. */
 
-  if (ZCL_CTX().device_ctx != NULL)
-  {
-    alarm_var = zb_zcl_cvc_get_alarm_variables(alarm_id);
-    if (alarm_var != NULL)
+    if (ZCL_CTX().device_ctx != NULL)
     {
-      change_var = ZB_BUF_GET_PARAM(alarm_var->alarm_buf_id, zb_zcl_cvc_variables_t);
-
-      /* 2. Time calculation part */
-
-      curr_time = ZB_ZCL_CVC_GET_TIME_IN_UNITS() * ZB_ZCL_CVC_TRANSITION_TIME_UNIT_IN_QUANTS;
-
-      TRACE_MSG(TRACE_ZCL1, "curr_time = %ld", (FMT__L, curr_time));
-      TRACE_MSG(TRACE_ZCL1, "transition_time = %d", (FMT__D, change_var->input_var.transition_time));
-      TRACE_MSG(TRACE_ZCL1, "end_time = %d", (FMT__D, change_var->end_time));
-      TRACE_MSG(TRACE_ZCL1, "delta_time = %d", (FMT__D, change_var->delta_time));
-      TRACE_MSG(TRACE_ZCL1, "delta_value16 = %d", (FMT__D, change_var->delta_value16));
-      TRACE_MSG(TRACE_ZCL1, "steps_number = %d", (FMT__D, change_var->steps_number));
-      TRACE_MSG(TRACE_ZCL1, "current_value16 = %d", (FMT__D, change_var->input_var.current_value16));
-
-      /* Check if recalc needed (in bigger or smaller side). If error is bigger than
-         move_variables->err value, all move variables will be corrected (with
-         new transition_time). */
-
-      if (change_var->input_var.transition_time != ZB_ZCL_CVC_TRANSITION_TIME_AS_FAST_AS_ABLE &&
-          change_var->input_var.transition_time != ZB_ZCL_CVC_TRANSITION_TIME_MINIMAL)
-      {
-/* check that alarm is in counted time borders */
-        if ((change_var->end_time + change_var->time_err) > curr_time)
+        alarm_var = zb_zcl_cvc_get_alarm_variables(alarm_id);
+        if (alarm_var != NULL)
         {
-          zb_uint32_t tmp_val = curr_time + change_var->input_var.transition_time * ZB_ZCL_CVC_TRANSITION_TIME_UNIT_IN_QUANTS; /*   Planned end time */
+            change_var = ZB_BUF_GET_PARAM(alarm_var->alarm_buf_id, zb_zcl_cvc_variables_t);
 
-          if (tmp_val > change_var->end_time)
-          {
-            tmp_val -= change_var->end_time; /* Difference between planned end time and initial end
+            /* 2. Time calculation part */
+
+            curr_time = ZB_ZCL_CVC_GET_TIME_IN_UNITS() * ZB_ZCL_CVC_TRANSITION_TIME_UNIT_IN_QUANTS;
+
+            TRACE_MSG(TRACE_ZCL1, "curr_time = %ld", (FMT__L, curr_time));
+            TRACE_MSG(TRACE_ZCL1, "transition_time = %d", (FMT__D, change_var->input_var.transition_time));
+            TRACE_MSG(TRACE_ZCL1, "end_time = %d", (FMT__D, change_var->end_time));
+            TRACE_MSG(TRACE_ZCL1, "delta_time = %d", (FMT__D, change_var->delta_time));
+            TRACE_MSG(TRACE_ZCL1, "delta_value16 = %d", (FMT__D, change_var->delta_value16));
+            TRACE_MSG(TRACE_ZCL1, "steps_number = %d", (FMT__D, change_var->steps_number));
+            TRACE_MSG(TRACE_ZCL1, "current_value16 = %d", (FMT__D, change_var->input_var.current_value16));
+
+            /* Check if recalc needed (in bigger or smaller side). If error is bigger than
+               move_variables->err value, all move variables will be corrected (with
+               new transition_time). */
+
+            if (change_var->input_var.transition_time != ZB_ZCL_CVC_TRANSITION_TIME_AS_FAST_AS_ABLE &&
+                    change_var->input_var.transition_time != ZB_ZCL_CVC_TRANSITION_TIME_MINIMAL)
+            {
+                /* check that alarm is in counted time borders */
+                if ((change_var->end_time + change_var->time_err) > curr_time)
+                {
+                    zb_uint32_t tmp_val = curr_time + change_var->input_var.transition_time * ZB_ZCL_CVC_TRANSITION_TIME_UNIT_IN_QUANTS; /*   Planned end time */
+
+                    if (tmp_val > change_var->end_time)
+                    {
+                        tmp_val -= change_var->end_time; /* Difference between planned end time and initial end
                                               * time */
-          }
-          else
-          {
-            tmp_val = change_var->end_time - tmp_val;
-          }
+                    }
+                    else
+                    {
+                        tmp_val = change_var->end_time - tmp_val;
+                    }
 
-          if (tmp_val > change_var->time_err)
-          {
-            TRACE_MSG(TRACE_ZCL1, "recalc", (FMT__0));
+                    if (tmp_val > change_var->time_err)
+                    {
+                        TRACE_MSG(TRACE_ZCL1, "recalc", (FMT__0));
 
-            if (change_var->end_time > curr_time)
+                        if (change_var->end_time > curr_time)
+                        {
+                            tmp_val = change_var->end_time - curr_time;
+                        }
+                        else
+                        {
+                            tmp_val = curr_time - change_var->end_time;
+                        }
+                        change_var->input_var.transition_time = tmp_val / ZB_ZCL_CVC_TRANSITION_TIME_UNIT_IN_QUANTS;
+                        TRACE_MSG(TRACE_ZCL1, "new transition_time = %d", (FMT__D, change_var->input_var.transition_time));
+
+                        ZB_ZCL_CVC_RECALC_TRANSITION_VALUES(alarm_var->alarm_buf_id);
+                    }
+                    else
+                    {
+                        change_var->input_var.transition_time -= change_var->delta_time;
+
+                        /* if incr_time is needed for step then additionaly decrease transition_time*/
+                        if (change_var->steps_number <= change_var->extra_inc_time_step)
+                        {
+                            --(change_var->input_var.transition_time);
+                        }
+                    }
+                }
+                else
+                {
+                    /* curr_time is greater then end_time of all transition - go to last step */
+                    change_var->steps_number = 1;
+                }
+            }
+
+            /* Time calculation part ended */
+
+            if (change_var->steps_number != 0)
             {
-              tmp_val = change_var->end_time - curr_time;
+
+                /* step_number == 1 means the LAST step */
+                if (change_var->steps_number == 1)
+                {
+                    change_var->input_var.current_value16 = change_var->input_var.end_value16;
+                }
+                else
+                {
+                    /* Check if level increment needed */
+                    if (change_var->steps_number == change_var->extra_inc_value_step)
+                    {
+                        if (change_var->delta_value16 < 0)
+                        {
+                            --change_var->delta_value16;
+                        }
+                        else
+                        {
+                            ++change_var->delta_value16;
+                        }
+                    }
+                    //TODO: overlap
+                    tmp = change_var->input_var.current_value16 + change_var->delta_value16;
+
+                    TRACE_MSG(TRACE_ZCL1, "tmp = %d", (FMT__D, tmp));
+
+                    if (tmp >= change_var->input_var.min_value16 &&
+                            tmp <= change_var->input_var.max_value16)
+                    {
+                        change_var->input_var.current_value16 = tmp;
+                    }
+                    else
+                    {
+                        if (tmp < change_var->input_var.min_value16)
+                        {
+                            change_var->input_var.current_value16 = change_var->input_var.max_value16 -
+                                                                    ZB_ABS(change_var->input_var.min_value16 - tmp) + 1;
+                        }
+                        else
+                        {
+                            change_var->input_var.current_value16 = change_var->input_var.min_value16 +
+                                                                    ZB_ABS(tmp - change_var->input_var.max_value16) - 1;
+                        }
+                    }
+                }
+
+                TRACE_MSG(TRACE_ZCL1, "next level is %d", (FMT__D, change_var->input_var.current_value16));
+
+                if (change_var->input_var.value_set_func != NULL)
+                {
+                    zb_uint16_t remaining_time = 0;
+
+                    if (change_var->steps_number > 1)
+                    {
+                        remaining_time = change_var->input_var.transition_time;
+                    }
+                    change_var->input_var.value_set_func(alarm_var->endpoint_id, &(change_var->input_var.current_value16), remaining_time);
+                }
+            }
+
+            if (change_var->steps_number > 1)
+            {
+                /* Checking if time incrmenting is needed */
+                next_alarm = change_var->delta_time +
+                             (change_var->steps_number <= change_var->extra_inc_time_step);
+
+                ZB_SCHEDULE_ALARM(zb_zcl_cvc_next_step_alarm,
+                                  alarm_id,
+                                  next_alarm *
+                                  ZB_ZCL_CVC_TRANSITION_TIMER_QUANT_BE);
             }
             else
             {
-              tmp_val = curr_time - change_var->end_time;
+                TRACE_MSG(TRACE_ZCL1, "transition with alarm_id %i finished", (FMT__H, alarm_id));
+                change_var->input_var.value_set_func(alarm_var->endpoint_id, &(change_var->input_var.current_value16), 0);
+                ZB_SCHEDULE_CALLBACK(change_var->input_var.after_processing_cb, alarm_var->endpoint_id);
+                alarm_var->is_used = ZB_FALSE;
+                zb_buf_free(alarm_var->alarm_buf_id);
             }
-            change_var->input_var.transition_time = tmp_val/ZB_ZCL_CVC_TRANSITION_TIME_UNIT_IN_QUANTS;
-            TRACE_MSG(TRACE_ZCL1, "new transition_time = %d", (FMT__D, change_var->input_var.transition_time));
-
-            ZB_ZCL_CVC_RECALC_TRANSITION_VALUES(alarm_var->alarm_buf_id);
-          }
-          else
-          {
-            change_var->input_var.transition_time -= change_var->delta_time;
-
-/* if incr_time is needed for step then additionaly decrease transition_time*/
-            if (change_var->steps_number <= change_var->extra_inc_time_step)
+            /*
+              if (change_var->input_var.current_value16 >= 20 &&
+              change_var->input_var.current_value16 <= 50)
+              {
+              TRACE_MSG(TRACE_ZCL1, "sleep!", (FMT__0));
+              sleep(1);
+              }
+            */
+            if (change_var->steps_number > 0U)
             {
-              --(change_var->input_var.transition_time);
+                --(change_var->steps_number);
             }
-          }
         }
-        else
-        {
-          /* curr_time is greater then end_time of all transition - go to last step */
-          change_var->steps_number = 1;
-        }
-      }
-
-      /* Time calculation part ended */
-
-      if (change_var->steps_number != 0)
-      {
-
-        /* step_number == 1 means the LAST step */
-        if (change_var->steps_number == 1)
-        {
-          change_var->input_var.current_value16 = change_var->input_var.end_value16;
-        }
-        else
-        {
-          /* Check if level increment needed */
-          if (change_var->steps_number == change_var->extra_inc_value_step)
-          {
-            if (change_var->delta_value16 < 0)
-            {
-              --change_var->delta_value16;
-            }
-            else
-            {
-              ++change_var->delta_value16;
-            }
-          }
-//TODO: overlap
-          tmp = change_var->input_var.current_value16 + change_var->delta_value16;
-
-          TRACE_MSG(TRACE_ZCL1, "tmp = %d", (FMT__D, tmp));
-
-          if (tmp >= change_var->input_var.min_value16 &&
-              tmp <= change_var->input_var.max_value16)
-          {
-            change_var->input_var.current_value16 = tmp;
-          }
-          else
-          {
-            if (tmp < change_var->input_var.min_value16)
-            {
-              change_var->input_var.current_value16 = change_var->input_var.max_value16 -
-                ZB_ABS(change_var->input_var.min_value16 - tmp) + 1;
-            }
-            else
-            {
-              change_var->input_var.current_value16 = change_var->input_var.min_value16 +
-                ZB_ABS(tmp - change_var->input_var.max_value16) - 1;
-            }
-          }
-        }
-
-        TRACE_MSG(TRACE_ZCL1, "next level is %d", (FMT__D, change_var->input_var.current_value16));
-
-        if (change_var->input_var.value_set_func != NULL)
-        {
-          zb_uint16_t remaining_time = 0;
-
-          if (change_var->steps_number > 1)
-          {
-            remaining_time = change_var->input_var.transition_time;
-        }
-          change_var->input_var.value_set_func(alarm_var->endpoint_id, &(change_var->input_var.current_value16), remaining_time);
-      }
-      }
-
-      if (change_var->steps_number > 1)
-      {
-/* Checking if time incrmenting is needed */
-        next_alarm = change_var->delta_time +
-          (change_var->steps_number <= change_var->extra_inc_time_step);
-
-        ZB_SCHEDULE_ALARM(zb_zcl_cvc_next_step_alarm,
-                          alarm_id,
-                          next_alarm *
-                          ZB_ZCL_CVC_TRANSITION_TIMER_QUANT_BE);
-      }
-      else
-      {
-        TRACE_MSG(TRACE_ZCL1, "transition with alarm_id %i finished", (FMT__H, alarm_id));
-        change_var->input_var.value_set_func(alarm_var->endpoint_id, &(change_var->input_var.current_value16), 0);
-        ZB_SCHEDULE_CALLBACK(change_var->input_var.after_processing_cb, alarm_var->endpoint_id);
-        alarm_var->is_used = ZB_FALSE;
-        zb_buf_free(alarm_var->alarm_buf_id);
-      }
-/*
-  if (change_var->input_var.current_value16 >= 20 &&
-  change_var->input_var.current_value16 <= 50)
-  {
-  TRACE_MSG(TRACE_ZCL1, "sleep!", (FMT__0));
-  sleep(1);
-  }
-*/
-      if (change_var->steps_number > 0U)
-      {
-        --(change_var->steps_number);
-      }
     }
-  }
 
-  TRACE_MSG(TRACE_ZCL1, "< zb_zcl_cvc_next_step_alarm", (FMT__0));
+    TRACE_MSG(TRACE_ZCL1, "< zb_zcl_cvc_next_step_alarm", (FMT__0));
 }
 
 
 /** @internal @brief Init alarm info data  */
 void zb_zcl_init_cvc_alarm_info()
 {
-  TRACE_MSG(TRACE_ZCL1, "> zb_zcl_init_cvc_alarm_info", (FMT__0));
+    TRACE_MSG(TRACE_ZCL1, "> zb_zcl_init_cvc_alarm_info", (FMT__0));
 
-  if (ZCL_CTX().device_ctx != NULL)
-  {
-    zb_uindex_t i;
-
-    for (i = 0; i < ZCL_CTX().device_ctx->ep_count; i++)
+    if (ZCL_CTX().device_ctx != NULL)
     {
-      if (ZCL_CTX().device_ctx->ep_desc_list[i]->cvc_alarm_info != NULL)
-      {
-        ZB_BZERO(ZCL_CTX().device_ctx->ep_desc_list[i]->cvc_alarm_info,
-                 sizeof(zb_zcl_cvc_alarm_variables_t) * ZCL_CTX().device_ctx->ep_desc_list[i]->cvc_alarm_count);
-      }
+        zb_uindex_t i;
+
+        for (i = 0; i < ZCL_CTX().device_ctx->ep_count; i++)
+        {
+            if (ZCL_CTX().device_ctx->ep_desc_list[i]->cvc_alarm_info != NULL)
+            {
+                ZB_BZERO(ZCL_CTX().device_ctx->ep_desc_list[i]->cvc_alarm_info,
+                         sizeof(zb_zcl_cvc_alarm_variables_t) * ZCL_CTX().device_ctx->ep_desc_list[i]->cvc_alarm_count);
+            }
+        }
     }
-  }
-  TRACE_MSG(TRACE_ZCL1, "< zb_zcl_init_cvc_alarm_info", (FMT__0));
+    TRACE_MSG(TRACE_ZCL1, "< zb_zcl_init_cvc_alarm_info", (FMT__0));
 }
 
 zb_uint8_t zb_zcl_cvc_check_transition_running(
-  zb_uint8_t endpoint_id,
-  zb_uint16_t cluster_id,
-  zb_uint16_t attribute_id)
+    zb_uint8_t endpoint_id,
+    zb_uint16_t cluster_id,
+    zb_uint16_t attribute_id)
 {
-  zb_zcl_cvc_alarm_variables_t* alarm_info;
-  zb_zcl_cvc_alarm_variables_t alarm_var;
-  zb_uindex_t i, j;
-  zb_uint8_t ret = ZB_ZCL_CVC_INVALID_ALARM_ID;
+    zb_zcl_cvc_alarm_variables_t *alarm_info;
+    zb_zcl_cvc_alarm_variables_t alarm_var;
+    zb_uindex_t i, j;
+    zb_uint8_t ret = ZB_ZCL_CVC_INVALID_ALARM_ID;
 
-  TRACE_MSG(TRACE_ZCL1, ">> zb_zcl_cvc_check_transition_running, ep %hd, cluster %d, attr_id %d",
-            (FMT__H_D_D, endpoint_id, cluster_id, attribute_id));
+    TRACE_MSG(TRACE_ZCL1, ">> zb_zcl_cvc_check_transition_running, ep %hd, cluster %d, attr_id %d",
+              (FMT__H_D_D, endpoint_id, cluster_id, attribute_id));
 
-  alarm_var.endpoint_id = endpoint_id;
-  alarm_var.cluster_id = cluster_id;
-  alarm_var.attribute_id = attribute_id;
-  alarm_var.is_used = ZB_TRUE;
+    alarm_var.endpoint_id = endpoint_id;
+    alarm_var.cluster_id = cluster_id;
+    alarm_var.attribute_id = attribute_id;
+    alarm_var.is_used = ZB_TRUE;
 
-  if (ZCL_CTX().device_ctx != NULL)
-  {
-    for (j = 0; j < ZCL_CTX().device_ctx->ep_count; j++)
+    if (ZCL_CTX().device_ctx != NULL)
     {
-      if (ZCL_CTX().device_ctx->ep_desc_list[j]->ep_id == endpoint_id)
-      {
-        alarm_info = ZCL_CTX().device_ctx->ep_desc_list[j]->cvc_alarm_info;
-        for (i = 0; i < ZCL_CTX().device_ctx->ep_desc_list[j]->cvc_alarm_count; i++)
+        for (j = 0; j < ZCL_CTX().device_ctx->ep_count; j++)
         {
-          if (alarm_info->endpoint_id == alarm_var.endpoint_id &&
-              alarm_info->cluster_id == alarm_var.cluster_id &&
-              alarm_info->attribute_id == alarm_var.attribute_id &&
-              alarm_info->is_used == ZB_TRUE)
-          {
-            ret = zb_zcl_cvc_get_alarm_id(alarm_info);
-            break;
-          }
-          alarm_info++;
+            if (ZCL_CTX().device_ctx->ep_desc_list[j]->ep_id == endpoint_id)
+            {
+                alarm_info = ZCL_CTX().device_ctx->ep_desc_list[j]->cvc_alarm_info;
+                for (i = 0; i < ZCL_CTX().device_ctx->ep_desc_list[j]->cvc_alarm_count; i++)
+                {
+                    if (alarm_info->endpoint_id == alarm_var.endpoint_id &&
+                            alarm_info->cluster_id == alarm_var.cluster_id &&
+                            alarm_info->attribute_id == alarm_var.attribute_id &&
+                            alarm_info->is_used == ZB_TRUE)
+                    {
+                        ret = zb_zcl_cvc_get_alarm_id(alarm_info);
+                        break;
+                    }
+                    alarm_info++;
+                }
+            }
         }
-      }
     }
-  }
 
-  TRACE_MSG(TRACE_ZCL1, "<< zb_zcl_cvc_check_transition_running ret %i", (FMT__H, ret));
-  return ret;
+    TRACE_MSG(TRACE_ZCL1, "<< zb_zcl_cvc_check_transition_running ret %i", (FMT__H, ret));
+    return ret;
 }
 
 zb_uint8_t zb_zcl_cvc_stop_transition(zb_uint8_t alarm_id)
 {
-  zb_uint8_t old_buf_id = ZB_UNDEFINED_BUFFER;
-  zb_bufid_t  alarm_buf;
-  zb_zcl_cvc_alarm_variables_t* alarm_info;
-  zb_zcl_cvc_variables_t* change_var;
+    zb_uint8_t old_buf_id = ZB_UNDEFINED_BUFFER;
+    zb_bufid_t  alarm_buf;
+    zb_zcl_cvc_alarm_variables_t *alarm_info;
+    zb_zcl_cvc_variables_t *change_var;
 
-  TRACE_MSG(TRACE_ZCL1, ">> zb_zcl_cvc_stop_transition, alarm_id %i",
-            (FMT__H, alarm_id));
-  if (ZCL_CTX().device_ctx != NULL)
-  {
-    alarm_info = zb_zcl_cvc_get_alarm_variables(alarm_id);
-
-    if (alarm_info && alarm_info->is_used)
+    TRACE_MSG(TRACE_ZCL1, ">> zb_zcl_cvc_stop_transition, alarm_id %i",
+              (FMT__H, alarm_id));
+    if (ZCL_CTX().device_ctx != NULL)
     {
-      ZB_SCHEDULE_ALARM_CANCEL(zb_zcl_cvc_next_step_alarm, alarm_id);
+        alarm_info = zb_zcl_cvc_get_alarm_variables(alarm_id);
 
-      alarm_buf = alarm_info->alarm_buf_id;
-      change_var = ZB_BUF_GET_PARAM(alarm_buf, zb_zcl_cvc_variables_t);
-      old_buf_id = change_var->input_var.buf_id;
+        if (alarm_info && alarm_info->is_used)
+        {
+            ZB_SCHEDULE_ALARM_CANCEL(zb_zcl_cvc_next_step_alarm, alarm_id);
 
-      zb_buf_free(alarm_buf);
-      alarm_info->is_used = ZB_FALSE;
+            alarm_buf = alarm_info->alarm_buf_id;
+            change_var = ZB_BUF_GET_PARAM(alarm_buf, zb_zcl_cvc_variables_t);
+            old_buf_id = change_var->input_var.buf_id;
+
+            zb_buf_free(alarm_buf);
+            alarm_info->is_used = ZB_FALSE;
+        }
     }
-  }
 
-  TRACE_MSG(TRACE_ZCL1, "<< zb_zcl_cvc_stop_transition", (FMT__0));
-  return old_buf_id;
+    TRACE_MSG(TRACE_ZCL1, "<< zb_zcl_cvc_stop_transition", (FMT__0));
+    return old_buf_id;
 }
 
 
@@ -644,156 +644,156 @@ zb_uint8_t zb_zcl_cvc_start_alarm(zb_uint8_t endpoint_id,
                                   zb_uint16_t attribute_id,
                                   zb_uint8_t alarm_buf_id)
 {
-  zb_uint8_t alarm_id;
-  zb_zcl_cvc_alarm_variables_t* alarm_info;
-  zb_uindex_t i = 0, j = 0;
-  zb_uint16_t ret = ZB_ZCL_CVC_INVALID_ALARM_ID;
-  zb_bool_t next_step = ZB_TRUE;
+    zb_uint8_t alarm_id;
+    zb_zcl_cvc_alarm_variables_t *alarm_info;
+    zb_uindex_t i = 0, j = 0;
+    zb_uint16_t ret = ZB_ZCL_CVC_INVALID_ALARM_ID;
+    zb_bool_t next_step = ZB_TRUE;
 
-  TRACE_MSG(TRACE_ZCL1, ">> zb_zcl_cvc_start_alarm", (FMT__0));
+    TRACE_MSG(TRACE_ZCL1, ">> zb_zcl_cvc_start_alarm", (FMT__0));
 
-/* 01/02/2013 CR:MAJOR
-  Use ASSERT for all cases when context is broken/NULL
-  And t.b.h. I'm not sure that this check is usefull at all. Because it can be
-  done once and after I doubt that it's really needed for any purpose except code size increasing.
-  If it's overlapped somehow - it's a zero chance that it became zero. Most likely it will take
-  some unapropriate value and will cause segmentation fault (or any prot.error) even if it pass
-  NULL-check
+    /* 01/02/2013 CR:MAJOR
+      Use ASSERT for all cases when context is broken/NULL
+      And t.b.h. I'm not sure that this check is usefull at all. Because it can be
+      done once and after I doubt that it's really needed for any purpose except code size increasing.
+      If it's overlapped somehow - it's a zero chance that it became zero. Most likely it will take
+      some unapropriate value and will cause segmentation fault (or any prot.error) even if it pass
+      NULL-check
 
-  05/02/2013 OK, i can remove them if you think its useless. I was look on reporting when
-  adding it.
-*/
-  if (ZCL_CTX().device_ctx != NULL)
-  {
-    for (j = 0; j < ZCL_CTX().device_ctx->ep_count; j++)
+      05/02/2013 OK, i can remove them if you think its useless. I was look on reporting when
+      adding it.
+    */
+    if (ZCL_CTX().device_ctx != NULL)
     {
-      if (ZCL_CTX().device_ctx->ep_desc_list[j]->ep_id == endpoint_id)
-      {
-        alarm_info = ZCL_CTX().device_ctx->ep_desc_list[j]->cvc_alarm_info;
-
-        TRACE_MSG(TRACE_ZCL1, "ZCL_CTX().device_ctx && ZCL_CTX().device_ctx->cvc_alarm_info", (FMT__0));
-        alarm_id = zb_zcl_cvc_check_transition_running(endpoint_id,
-                                                       cluster_id,
-                                                       attribute_id);
-        if (alarm_id != ZB_ZCL_CVC_INVALID_ALARM_ID)
+        for (j = 0; j < ZCL_CTX().device_ctx->ep_count; j++)
         {
-          zb_zcl_cvc_stop_transition(alarm_id);
-          alarm_info = zb_zcl_cvc_get_alarm_variables(alarm_id);
-        }
-        else
-        {
-/* We run zb_zcl_cvc_check_transition_running() for check. If other transition
-   is in progress (alarm_id != ZB_ZCL_CVC_INVALID_ALARM_ID), we dont need to search and
-   can use its alarm_info. Else we need to check, is there any free alarm_info's (while
-   (alarm_info->is_used == ZB_TRUE) go to next alarm_info). If alarm_id >=
-   ZCL_CTX().device_ctx->cvc_alarm_count, we checked all list and didnt
-   found free alarm_info (need to exit with INVALID_ALARM_ID return), else - use founded alarm_info
-   and start alarm.
-*/
-          i = 0;
-          while (alarm_info->is_used == ZB_TRUE)
-          {
-            ++i;
-            ++alarm_info;
-          }
-
-          if (i >= ZCL_CTX().device_ctx->ep_desc_list[j]->cvc_alarm_count)
-          {
-            TRACE_MSG(TRACE_ZCL1, "(i >= ZCL_CTX().device_ctx->cvc_alarm_count", (FMT__0));
-            next_step = ZB_FALSE;
-          }
-          /* Set endpoint_id here to be able to find back alarm_id (next call) */
-          alarm_info->endpoint_id = endpoint_id;
-          alarm_id = zb_zcl_cvc_get_alarm_id(alarm_info);
-        }
-
-        TRACE_MSG(TRACE_ZCL1, "next_step %i", (FMT__H, next_step));
-
-        if (next_step == ZB_TRUE)
-        {
-          zb_zcl_cvc_variables_t* change_var;
-
-          TRACE_MSG(TRACE_ZCL1, "alarm_info found, id %i", (FMT__H, alarm_id));
-
-          ret = alarm_id;
-
-          alarm_info->endpoint_id = endpoint_id;
-          alarm_info->cluster_id = cluster_id;
-          alarm_info->attribute_id = attribute_id;
-          alarm_info->alarm_buf_id = alarm_buf_id;
-          alarm_info->is_used = ZB_TRUE;
-
-          change_var = ZB_BUF_GET_PARAM(alarm_info->alarm_buf_id, zb_zcl_cvc_variables_t);
-
-          //sheduling
-          switch (change_var->steps_number)
-          {
-            case 0:
-              /* Can not call after_processing_cb immediately - let's do 1 iteration. */
-              ZB_SCHEDULE_ALARM(zb_zcl_cvc_next_step_alarm,
-                                alarm_id,
-                                ZB_ZCL_CVC_TRANSITION_TIME_MINIMAL *
-                                ZB_ZCL_CVC_TRANSITION_TIMER_QUANT_BE);
-              break;
-
-            case 1:
+            if (ZCL_CTX().device_ctx->ep_desc_list[j]->ep_id == endpoint_id)
             {
-              zb_uint16_t next_alarm;
+                alarm_info = ZCL_CTX().device_ctx->ep_desc_list[j]->cvc_alarm_info;
 
-              if (change_var->input_var.transition_time == ZB_ZCL_CVC_TRANSITION_TIME_AS_FAST_AS_ABLE)
-              {
-/* 
-   Why should it wait for the "minimal" interval when it's said as_fast_as_able?
+                TRACE_MSG(TRACE_ZCL1, "ZCL_CTX().device_ctx && ZCL_CTX().device_ctx->cvc_alarm_info", (FMT__0));
+                alarm_id = zb_zcl_cvc_check_transition_running(endpoint_id,
+                           cluster_id,
+                           attribute_id);
+                if (alarm_id != ZB_ZCL_CVC_INVALID_ALARM_ID)
+                {
+                    zb_zcl_cvc_stop_transition(alarm_id);
+                    alarm_info = zb_zcl_cvc_get_alarm_variables(alarm_id);
+                }
+                else
+                {
+                    /* We run zb_zcl_cvc_check_transition_running() for check. If other transition
+                       is in progress (alarm_id != ZB_ZCL_CVC_INVALID_ALARM_ID), we dont need to search and
+                       can use its alarm_info. Else we need to check, is there any free alarm_info's (while
+                       (alarm_info->is_used == ZB_TRUE) go to next alarm_info). If alarm_id >=
+                       ZCL_CTX().device_ctx->cvc_alarm_count, we checked all list and didnt
+                       found free alarm_info (need to exit with INVALID_ALARM_ID return), else - use founded alarm_info
+                       and start alarm.
+                    */
+                    i = 0;
+                    while (alarm_info->is_used == ZB_TRUE)
+                    {
+                        ++i;
+                        ++alarm_info;
+                    }
 
-   05/02/2013 It was our agreement that as_fast_as_able == at 1 minimal transition time unit.
-*/
-                next_alarm = ZB_ZCL_CVC_TRANSITION_TIME_MINIMAL;
-              }
-              else
-              {
-                next_alarm = change_var->delta_time;
-              }
+                    if (i >= ZCL_CTX().device_ctx->ep_desc_list[j]->cvc_alarm_count)
+                    {
+                        TRACE_MSG(TRACE_ZCL1, "(i >= ZCL_CTX().device_ctx->cvc_alarm_count", (FMT__0));
+                        next_step = ZB_FALSE;
+                    }
+                    /* Set endpoint_id here to be able to find back alarm_id (next call) */
+                    alarm_info->endpoint_id = endpoint_id;
+                    alarm_id = zb_zcl_cvc_get_alarm_id(alarm_info);
+                }
 
-              ZB_SCHEDULE_ALARM(zb_zcl_cvc_next_step_alarm,
-                                alarm_id,
-                                next_alarm *
-                                ZB_ZCL_CVC_TRANSITION_TIMER_QUANT_BE);
+                TRACE_MSG(TRACE_ZCL1, "next_step %i", (FMT__H, next_step));
+
+                if (next_step == ZB_TRUE)
+                {
+                    zb_zcl_cvc_variables_t *change_var;
+
+                    TRACE_MSG(TRACE_ZCL1, "alarm_info found, id %i", (FMT__H, alarm_id));
+
+                    ret = alarm_id;
+
+                    alarm_info->endpoint_id = endpoint_id;
+                    alarm_info->cluster_id = cluster_id;
+                    alarm_info->attribute_id = attribute_id;
+                    alarm_info->alarm_buf_id = alarm_buf_id;
+                    alarm_info->is_used = ZB_TRUE;
+
+                    change_var = ZB_BUF_GET_PARAM(alarm_info->alarm_buf_id, zb_zcl_cvc_variables_t);
+
+                    //sheduling
+                    switch (change_var->steps_number)
+                    {
+                    case 0:
+                        /* Can not call after_processing_cb immediately - let's do 1 iteration. */
+                        ZB_SCHEDULE_ALARM(zb_zcl_cvc_next_step_alarm,
+                                          alarm_id,
+                                          ZB_ZCL_CVC_TRANSITION_TIME_MINIMAL *
+                                          ZB_ZCL_CVC_TRANSITION_TIMER_QUANT_BE);
+                        break;
+
+                    case 1:
+                    {
+                        zb_uint16_t next_alarm;
+
+                        if (change_var->input_var.transition_time == ZB_ZCL_CVC_TRANSITION_TIME_AS_FAST_AS_ABLE)
+                        {
+                            /*
+                               Why should it wait for the "minimal" interval when it's said as_fast_as_able?
+
+                               05/02/2013 It was our agreement that as_fast_as_able == at 1 minimal transition time unit.
+                            */
+                            next_alarm = ZB_ZCL_CVC_TRANSITION_TIME_MINIMAL;
+                        }
+                        else
+                        {
+                            next_alarm = change_var->delta_time;
+                        }
+
+                        ZB_SCHEDULE_ALARM(zb_zcl_cvc_next_step_alarm,
+                                          alarm_id,
+                                          next_alarm *
+                                          ZB_ZCL_CVC_TRANSITION_TIMER_QUANT_BE);
+                    }
+                    break;
+
+                    default:
+                        ZB_SCHEDULE_CALLBACK(zb_zcl_cvc_next_step_alarm, alarm_id);
+                        break;
+                    }
+                }
             }
-            break;
-
-            default:
-              ZB_SCHEDULE_CALLBACK(zb_zcl_cvc_next_step_alarm, alarm_id);
-              break;
-          }
         }
-      }
     }
-  }
 
-  TRACE_MSG(TRACE_ZCL1, "<< zb_zcl_cvc_start_alarm", (FMT__0));
-  return ret;
+    TRACE_MSG(TRACE_ZCL1, "<< zb_zcl_cvc_start_alarm", (FMT__0));
+    return ret;
 }
 
 zb_uint16_t zb_zcl_cvc_get_remaining_time(zb_uint8_t alarm_id)
 {
-  zb_zcl_cvc_alarm_variables_t* alarm_info;
-  zb_uint16_t ret = ZB_ZCL_CVC_INVALID_REMAINING_TIME;
+    zb_zcl_cvc_alarm_variables_t *alarm_info;
+    zb_uint16_t ret = ZB_ZCL_CVC_INVALID_REMAINING_TIME;
 
-  TRACE_MSG(TRACE_ZCL1, ">> zb_zcl_cvc_get_remaining_time alarm_id %i", (FMT__H, alarm_id));
+    TRACE_MSG(TRACE_ZCL1, ">> zb_zcl_cvc_get_remaining_time alarm_id %i", (FMT__H, alarm_id));
 
-  if (ZCL_CTX().device_ctx != NULL)
-  {
-    alarm_info = zb_zcl_cvc_get_alarm_variables(alarm_id);
-
-    if (alarm_info && alarm_info->is_used)
+    if (ZCL_CTX().device_ctx != NULL)
     {
-      zb_zcl_cvc_variables_t* change_var =
-        ZB_BUF_GET_PARAM(alarm_info->alarm_buf_id, zb_zcl_cvc_variables_t);
+        alarm_info = zb_zcl_cvc_get_alarm_variables(alarm_id);
 
-      ret = change_var->input_var.transition_time;
+        if (alarm_info && alarm_info->is_used)
+        {
+            zb_zcl_cvc_variables_t *change_var =
+                ZB_BUF_GET_PARAM(alarm_info->alarm_buf_id, zb_zcl_cvc_variables_t);
+
+            ret = change_var->input_var.transition_time;
+        }
     }
-  }
 
-  return ret;
+    return ret;
 }
 #endif /* defined ZB_CVC_FEATURE_SUPPORT */

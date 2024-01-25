@@ -53,112 +53,112 @@ void zb_zcl_power_config_write_attr_hook(zb_uint8_t endpoint, zb_uint16_t attr_i
 */
 enum zb_zcl_power_config_attr_e
 {
-  /** @brief MainsVoltage attribute, ZCL spec 3.3.2.2.1.1 */
-  ZB_ZCL_ATTR_POWER_CONFIG_MAINS_VOLTAGE_ID                 = 0x0000,
-  /** @brief MainsFrequency attribute, ZCL spec 3.3.2.2.1.2 */
-  ZB_ZCL_ATTR_POWER_CONFIG_MAINS_FREQUENCY_ID               = 0x0001,
-  /** @brief MainsAlarmMask attribute, ZCL spec 3.3.2.2.2.1 */
-  ZB_ZCL_ATTR_POWER_CONFIG_MAINS_ALARM_MASK_ID              = 0x0010,
-  /** @brief MainsVoltageMinThreshold attribute, ZCL spec 3.3.2.2.2.2 */
-  ZB_ZCL_ATTR_POWER_CONFIG_MAINS_VOLTAGE_MIN_THRESHOLD      = 0x0011,
-  /** @brief MainsVoltageMaxThreshold attribute, ZCL spec 3.3.2.2.2.3 */
-  ZB_ZCL_ATTR_POWER_CONFIG_MAINS_VOLTAGE_MAX_THRESHOLD      = 0x0012,
-  /** @brief MainsVoltageDwellTripPoint attribute, ZCL spec 3.3.2.2.2.4 */
-  ZB_ZCL_ATTR_POWER_CONFIG_MAINS_DWELL_TRIP_POINT           = 0x0013,
+    /** @brief MainsVoltage attribute, ZCL spec 3.3.2.2.1.1 */
+    ZB_ZCL_ATTR_POWER_CONFIG_MAINS_VOLTAGE_ID                 = 0x0000,
+    /** @brief MainsFrequency attribute, ZCL spec 3.3.2.2.1.2 */
+    ZB_ZCL_ATTR_POWER_CONFIG_MAINS_FREQUENCY_ID               = 0x0001,
+    /** @brief MainsAlarmMask attribute, ZCL spec 3.3.2.2.2.1 */
+    ZB_ZCL_ATTR_POWER_CONFIG_MAINS_ALARM_MASK_ID              = 0x0010,
+    /** @brief MainsVoltageMinThreshold attribute, ZCL spec 3.3.2.2.2.2 */
+    ZB_ZCL_ATTR_POWER_CONFIG_MAINS_VOLTAGE_MIN_THRESHOLD      = 0x0011,
+    /** @brief MainsVoltageMaxThreshold attribute, ZCL spec 3.3.2.2.2.3 */
+    ZB_ZCL_ATTR_POWER_CONFIG_MAINS_VOLTAGE_MAX_THRESHOLD      = 0x0012,
+    /** @brief MainsVoltageDwellTripPoint attribute, ZCL spec 3.3.2.2.2.4 */
+    ZB_ZCL_ATTR_POWER_CONFIG_MAINS_DWELL_TRIP_POINT           = 0x0013,
 
-  /** @brief BatteryVoltage attribute, ZCL spec 3.3.2.2.3.1 */
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_VOLTAGE_ID               = 0x0020,
-  /*! @brief BatteryPercentageRemaining attribute, ZCL spec 3.3.2.2.3.2 */
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_PERCENTAGE_REMAINING_ID  = 0x0021,
+    /** @brief BatteryVoltage attribute, ZCL spec 3.3.2.2.3.1 */
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_VOLTAGE_ID               = 0x0020,
+    /*! @brief BatteryPercentageRemaining attribute, ZCL spec 3.3.2.2.3.2 */
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_PERCENTAGE_REMAINING_ID  = 0x0021,
 
-  /** The BatteryManufacturer attribute is a maximum of 16 bytes in length
-   *  and specifies the name of the battery manufacturer as a character string. */
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_MANUFACTURER_ID          = 0x0030,
-  /** @brief BatterySize attribute, ZCL spec 3.3.2.2.4.2 */
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_SIZE_ID                  = 0x0031,
-  /** The BatteryAHrRating attribute is 16 bits in length and specifies
-   *  the Ampere-hour rating of the battery, measured in units of 10mAHr. */
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_A_HR_RATING_ID           = 0x0032,
-  /** @brief BatteryQuantity attribute, ZCL spec 3.3.2.2.4.4 */
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_QUANTITY_ID              = 0x0033,
-  /** @brief BatteryRatedVoltage attribute, ZCL spec 3.3.2.2.4.5 */
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_RATED_VOLTAGE_ID         = 0x0034,
-  /** @brief BatteryAlarmMask attribute, ZCL spec 3.3.2.2.4.6 */
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_ALARM_MASK_ID            = 0x0035,
-  /** @brief BatteryVoltageMinThreshold attribute, ZCL spec 3.3.2.2.4.7 */
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_VOLTAGE_MIN_THRESHOLD_ID = 0x0036,
+    /** The BatteryManufacturer attribute is a maximum of 16 bytes in length
+     *  and specifies the name of the battery manufacturer as a character string. */
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_MANUFACTURER_ID          = 0x0030,
+    /** @brief BatterySize attribute, ZCL spec 3.3.2.2.4.2 */
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_SIZE_ID                  = 0x0031,
+    /** The BatteryAHrRating attribute is 16 bits in length and specifies
+     *  the Ampere-hour rating of the battery, measured in units of 10mAHr. */
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_A_HR_RATING_ID           = 0x0032,
+    /** @brief BatteryQuantity attribute, ZCL spec 3.3.2.2.4.4 */
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_QUANTITY_ID              = 0x0033,
+    /** @brief BatteryRatedVoltage attribute, ZCL spec 3.3.2.2.4.5 */
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_RATED_VOLTAGE_ID         = 0x0034,
+    /** @brief BatteryAlarmMask attribute, ZCL spec 3.3.2.2.4.6 */
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_ALARM_MASK_ID            = 0x0035,
+    /** @brief BatteryVoltageMinThreshold attribute, ZCL spec 3.3.2.2.4.7 */
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_VOLTAGE_MIN_THRESHOLD_ID = 0x0036,
     /*! @brief BatteryVoltageThreshold1 attribute, ZCL spec 3.3.2.2.4.8 */
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_VOLTAGE_THRESHOLD1_ID        = 0x0037,
-  /*! @brief BatteryVoltageThreshold2 attribute, ZCL spec 3.3.2.2.4.8 */
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_VOLTAGE_THRESHOLD2_ID        = 0x0038,
-  /*! @brief BatteryVoltageThreshold3 attribute, ZCL spec 3.3.2.2.4.8 */
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_VOLTAGE_THRESHOLD3_ID        = 0x0039,
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_VOLTAGE_THRESHOLD1_ID        = 0x0037,
+    /*! @brief BatteryVoltageThreshold2 attribute, ZCL spec 3.3.2.2.4.8 */
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_VOLTAGE_THRESHOLD2_ID        = 0x0038,
+    /*! @brief BatteryVoltageThreshold3 attribute, ZCL spec 3.3.2.2.4.8 */
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_VOLTAGE_THRESHOLD3_ID        = 0x0039,
 
-  /*! @brief BatteryPercentageMinThreshold attribute, ZCL spec 3.3.2.2.4.9 */
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_PERCENTAGE_MIN_THRESHOLD_ID  = 0x003a,
+    /*! @brief BatteryPercentageMinThreshold attribute, ZCL spec 3.3.2.2.4.9 */
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_PERCENTAGE_MIN_THRESHOLD_ID  = 0x003a,
 
-  /*! @brief BatteryPercentageThreshold1 attribute, ZCL spec 3.3.2.2.4.10 */
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_PERCENTAGE_THRESHOLD1_ID     = 0x003b,
-  /*! @brief BatteryPercentageThreshold2 attribute, ZCL spec 3.3.2.2.4.10 */
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_PERCENTAGE_THRESHOLD2_ID     = 0x003c,
-  /*! @brief BatteryPercentageThreshold3 attribute, ZCL spec 3.3.2.2.4.10 */
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_PERCENTAGE_THRESHOLD3_ID     = 0x003d,
+    /*! @brief BatteryPercentageThreshold1 attribute, ZCL spec 3.3.2.2.4.10 */
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_PERCENTAGE_THRESHOLD1_ID     = 0x003b,
+    /*! @brief BatteryPercentageThreshold2 attribute, ZCL spec 3.3.2.2.4.10 */
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_PERCENTAGE_THRESHOLD2_ID     = 0x003c,
+    /*! @brief BatteryPercentageThreshold3 attribute, ZCL spec 3.3.2.2.4.10 */
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_PERCENTAGE_THRESHOLD3_ID     = 0x003d,
 
-  /*! @brief BatteryAlarmState attribute, ZCL spec 3.3.2.2.4.11 */
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_ALARM_STATE_ID               = 0x003e,
+    /*! @brief BatteryAlarmState attribute, ZCL spec 3.3.2.2.4.11 */
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY_ALARM_STATE_ID               = 0x003e,
 
-  /*! @brief Battery Information 2 attribute set, ZCL spec 3.3.2.2.5 */
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_VOLTAGE_ID = 0x0040,
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_PERCENTAGE_REMAINING_ID     = 0x0041,
+    /*! @brief Battery Information 2 attribute set, ZCL spec 3.3.2.2.5 */
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_VOLTAGE_ID = 0x0040,
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_PERCENTAGE_REMAINING_ID     = 0x0041,
 
-  /*! @brief Battery Settings 2 attribute set, ZCL spec 3.3.2.2.6 */
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_MANUFACTURER_ID          = 0x0050,
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_SIZE_ID = 0x0051,
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_A_HR_RATING_ID           = 0x0052,
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_QUANTITY_ID = 0x0053,
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_RATED_VOLTAGE_ID = 0x0054,
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_ALARM_MASK_ID = 0x0055,
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_VOLTAGE_MIN_THRESHOLD_ID = 0x0056,
+    /*! @brief Battery Settings 2 attribute set, ZCL spec 3.3.2.2.6 */
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_MANUFACTURER_ID          = 0x0050,
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_SIZE_ID = 0x0051,
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_A_HR_RATING_ID           = 0x0052,
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_QUANTITY_ID = 0x0053,
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_RATED_VOLTAGE_ID = 0x0054,
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_ALARM_MASK_ID = 0x0055,
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_VOLTAGE_MIN_THRESHOLD_ID = 0x0056,
 
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_VOLTAGE_THRESHOLD1_ID        = 0x0057,
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_VOLTAGE_THRESHOLD2_ID        = 0x0058,
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_VOLTAGE_THRESHOLD3_ID        = 0x0059,
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_VOLTAGE_THRESHOLD1_ID        = 0x0057,
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_VOLTAGE_THRESHOLD2_ID        = 0x0058,
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_VOLTAGE_THRESHOLD3_ID        = 0x0059,
 
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_PERCENTAGE_MIN_THRESHOLD_ID  = 0x005a,
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_PERCENTAGE_THRESHOLD1_ID     = 0x005b,
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_PERCENTAGE_THRESHOLD2_ID     = 0x005c,
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_PERCENTAGE_THRESHOLD3_ID     = 0x005d,
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_PERCENTAGE_MIN_THRESHOLD_ID  = 0x005a,
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_PERCENTAGE_THRESHOLD1_ID     = 0x005b,
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_PERCENTAGE_THRESHOLD2_ID     = 0x005c,
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_PERCENTAGE_THRESHOLD3_ID     = 0x005d,
 
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_ALARM_STATE_ID               = 0x005e,
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY2_ALARM_STATE_ID               = 0x005e,
 
-  /*! @brief Battery Information 3 attribute set, ZCL spec 3.3.2.2.7 */
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_VOLTAGE_ID = 0x0060,
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_PERCENTAGE_REMAINING_ID  = 0x0061,
+    /*! @brief Battery Information 3 attribute set, ZCL spec 3.3.2.2.7 */
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_VOLTAGE_ID = 0x0060,
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_PERCENTAGE_REMAINING_ID  = 0x0061,
 
-  /*! @brief Battery Settings 3 attribute set, ZCL spec 3.3.2.2.8 */
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_MANUFACTURER_ID          = 0x0070,
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_SIZE_ID = 0x0071,
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_A_HR_RATING_ID           = 0x0072,
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_QUANTITY_ID = 0x0073,
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_RATED_VOLTAGE_ID = 0x0074,
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_ALARM_MASK_ID = 0x0075,
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_VOLTAGE_MIN_THRESHOLD_ID = 0x0076,
+    /*! @brief Battery Settings 3 attribute set, ZCL spec 3.3.2.2.8 */
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_MANUFACTURER_ID          = 0x0070,
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_SIZE_ID = 0x0071,
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_A_HR_RATING_ID           = 0x0072,
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_QUANTITY_ID = 0x0073,
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_RATED_VOLTAGE_ID = 0x0074,
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_ALARM_MASK_ID = 0x0075,
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_VOLTAGE_MIN_THRESHOLD_ID = 0x0076,
 
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_VOLTAGE_THRESHOLD1_ID        = 0x0077,
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_VOLTAGE_THRESHOLD2_ID        = 0x0078,
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_VOLTAGE_THRESHOLD3_ID        = 0x0079,
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_VOLTAGE_THRESHOLD1_ID        = 0x0077,
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_VOLTAGE_THRESHOLD2_ID        = 0x0078,
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_VOLTAGE_THRESHOLD3_ID        = 0x0079,
 
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_PERCENTAGE_MIN_THRESHOLD_ID  = 0x007a,
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_PERCENTAGE_THRESHOLD1_ID     = 0x007b,
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_PERCENTAGE_THRESHOLD2_ID     = 0x007c,
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_PERCENTAGE_THRESHOLD3_ID     = 0x007d,
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_PERCENTAGE_MIN_THRESHOLD_ID  = 0x007a,
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_PERCENTAGE_THRESHOLD1_ID     = 0x007b,
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_PERCENTAGE_THRESHOLD2_ID     = 0x007c,
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_PERCENTAGE_THRESHOLD3_ID     = 0x007d,
 
-  ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_ALARM_STATE_ID               = 0x007e,
-  /** @cond internals_doc */
-  /* Custom attribures */
-  ZB_ZCL_ATTR_POWER_CONFIG_CUSTOM_BATTERY_VOLTAGE_SHARP_ID  = 0x8020
-  /*! @}
-   *  @endcond */ /* internals_doc */
+    ZB_ZCL_ATTR_POWER_CONFIG_BATTERY3_ALARM_STATE_ID               = 0x007e,
+    /** @cond internals_doc */
+    /* Custom attribures */
+    ZB_ZCL_ATTR_POWER_CONFIG_CUSTOM_BATTERY_VOLTAGE_SHARP_ID  = 0x8020
+            /*! @}
+             *  @endcond */ /* internals_doc */
 };
 
 /**
@@ -167,12 +167,12 @@ enum zb_zcl_power_config_attr_e
  */
 enum zb_zcl_power_config_mains_alarm_mask_e
 {
-  /** @brief MainsAlarmMask - Mains Voltage too low */
-  ZB_ZCL_POWER_CONFIG_MAINS_ALARM_MASK_VOLTAGE_LOW = 0x01,
-  /** @brief MainsAlarmMask - Mains Voltage too high */
-  ZB_ZCL_POWER_CONFIG_MAINS_ALARM_MASK_VOLTAGE_HIGH = 0x02,
-  /** @brief MainsAlarmMask - Mains power supply lost/unavailable */
-  ZB_ZCL_POWER_CONFIG_MAINS_ALARM_MASK_VOLTAGE_UNAVAIL = 0x04,
+    /** @brief MainsAlarmMask - Mains Voltage too low */
+    ZB_ZCL_POWER_CONFIG_MAINS_ALARM_MASK_VOLTAGE_LOW = 0x01,
+    /** @brief MainsAlarmMask - Mains Voltage too high */
+    ZB_ZCL_POWER_CONFIG_MAINS_ALARM_MASK_VOLTAGE_HIGH = 0x02,
+    /** @brief MainsAlarmMask - Mains power supply lost/unavailable */
+    ZB_ZCL_POWER_CONFIG_MAINS_ALARM_MASK_VOLTAGE_UNAVAIL = 0x04,
 
 };
 
@@ -251,25 +251,25 @@ enum zb_zcl_power_config_mains_alarm_mask_e
  */
 enum zb_zcl_power_config_battery_size_e
 {
-  /** @brief BatterySize - no battery*/
+    /** @brief BatterySize - no battery*/
     ZB_ZCL_POWER_CONFIG_BATTERY_SIZE_NO_BATTERY = 0,
-  /** @brief BatterySize - built in */
+    /** @brief BatterySize - built in */
     ZB_ZCL_POWER_CONFIG_BATTERY_SIZE_BUILT_IN   = 1,
-  /** @brief BatterySize - other */
+    /** @brief BatterySize - other */
     ZB_ZCL_POWER_CONFIG_BATTERY_SIZE_OTHER      = 2,
-  /** @brief BatterySize - AA */
+    /** @brief BatterySize - AA */
     ZB_ZCL_POWER_CONFIG_BATTERY_SIZE_AA         = 3,
-  /** @brief BatterySize - AAA */
+    /** @brief BatterySize - AAA */
     ZB_ZCL_POWER_CONFIG_BATTERY_SIZE_AAA        = 4,
-  /** @brief BatterySize - C */
+    /** @brief BatterySize - C */
     ZB_ZCL_POWER_CONFIG_BATTERY_SIZE_C          = 5,
-  /** @brief BatterySize - D */
+    /** @brief BatterySize - D */
     ZB_ZCL_POWER_CONFIG_BATTERY_SIZE_D          = 6,
-  /** @brief BatterySize - CR2 */
+    /** @brief BatterySize - CR2 */
     ZB_ZCL_POWER_CONFIG_BATTERY_SIZE_CR2        = 7,
-  /** @brief BatterySize - CR123A */
+    /** @brief BatterySize - CR123A */
     ZB_ZCL_POWER_CONFIG_BATTERY_SIZE_CR123A     = 8,
-  /** @brief BatterySize - unknown */
+    /** @brief BatterySize - unknown */
     ZB_ZCL_POWER_CONFIG_BATTERY_SIZE_UNKNOWN    = 0xff,
 };
 
@@ -279,14 +279,14 @@ enum zb_zcl_power_config_battery_size_e
  */
 enum zb_zcl_power_config_battery_alarm_mask_e
 {
-  /** @brief BatteryAlarmMask - Battery voltage too low */
-  ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_MASK_VOLTAGE_LOW = 0,
-  /** @brief BatteryAlarmMask - Alarm1 */
-  ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_MASK_ALARM1 = 1,
-  /** @brief BatteryAlarmMask - Alarm2 */
-  ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_MASK_ALARM2 = 2,
-  /** @brief BatteryAlarmMask - Alarm3 */
-  ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_MASK_ALARM3 = 3,
+    /** @brief BatteryAlarmMask - Battery voltage too low */
+    ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_MASK_VOLTAGE_LOW = 0,
+    /** @brief BatteryAlarmMask - Alarm1 */
+    ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_MASK_ALARM1 = 1,
+    /** @brief BatteryAlarmMask - Alarm2 */
+    ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_MASK_ALARM2 = 2,
+    /** @brief BatteryAlarmMask - Alarm3 */
+    ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_MASK_ALARM3 = 3,
 };
 
 /*! @brief Power Configuration Alarm Code for Alarm
@@ -294,49 +294,49 @@ enum zb_zcl_power_config_battery_alarm_mask_e
 */
 enum zb_zcl_power_config_battery_alarm_code_e
 {
-  /** @brief MainsVoltageAlarmCode - MainsVoltageMinThreshold reached for Mains Voltage**/
+    /** @brief MainsVoltageAlarmCode - MainsVoltageMinThreshold reached for Mains Voltage**/
     ZB_ZCL_POWER_CONFIG_MAINS_VOLTAGE_ALARM_CODE_MIN_THRESHOLD = 0x00,
-  /** @brief MainsVoltageAlarmCode - MainsVoltageMaxThreshold reached for Mains Voltage**/
+    /** @brief MainsVoltageAlarmCode - MainsVoltageMaxThreshold reached for Mains Voltage**/
     ZB_ZCL_POWER_CONFIG_MAINS_VOLTAGE_ALARM_CODE_MAX_THRESHOLD = 0x01,
-  /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold or
-   * BatteryPercentageMinThreshold reached for Battery Source 1 */
+    /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold or
+     * BatteryPercentageMinThreshold reached for Battery Source 1 */
     ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_CODE_SOURCE1_MIN_THRESHOLD = 0x10,
-  /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold1 or
-   * BatteryPercentageMinThreshold1 reached for Battery Source 1 */
+    /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold1 or
+     * BatteryPercentageMinThreshold1 reached for Battery Source 1 */
     ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_CODE_SOURCE1_VOLTAGE1   = 0x11,
-  /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold2 or
-   * BatteryPercentageMinThreshold2 reached for Battery Source 1 */
+    /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold2 or
+     * BatteryPercentageMinThreshold2 reached for Battery Source 1 */
     ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_CODE_SOURCE1_VOLTAGE2   = 0x12,
-  /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold3 or
-   * BatteryPercentageMinThreshold3 reached for Battery Source 1 */
+    /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold3 or
+     * BatteryPercentageMinThreshold3 reached for Battery Source 1 */
     ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_CODE_SOURCE1_VOLTAGE3   = 0x13,
 
-  /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold or
-   * BatteryPercentageMinThreshold reached for Battery Source 2 */
+    /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold or
+     * BatteryPercentageMinThreshold reached for Battery Source 2 */
     ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_CODE_SOURCE2_MIN_THRESHOLD = 0x20,
-  /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold1 or
-   * BatteryPercentageMinThreshold1 reached for Battery Source 2 */
+    /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold1 or
+     * BatteryPercentageMinThreshold1 reached for Battery Source 2 */
     ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_CODE_SOURCE2_VOLTAGE1   = 0x21,
-  /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold2 or
-   * BatteryPercentageMinThreshold2 reached for Battery Source 2 */
+    /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold2 or
+     * BatteryPercentageMinThreshold2 reached for Battery Source 2 */
     ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_CODE_SOURCE2_VOLTAGE2   = 0x22,
-  /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold3 or
-   * BatteryPercentageMinThreshold3 reached for Battery Source 2 */
+    /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold3 or
+     * BatteryPercentageMinThreshold3 reached for Battery Source 2 */
     ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_CODE_SOURCE2_VOLTAGE3   = 0x23,
 
-  /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold or
-   * BatteryPercentageMinThreshold reached for Battery Source 3 */
+    /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold or
+     * BatteryPercentageMinThreshold reached for Battery Source 3 */
     ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_CODE_SOURCE3_MIN_THRESHOLD = 0x30,
-  /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold1 or
-   * BatteryPercentageMinThreshold1 reached for Battery Source 3 */
+    /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold1 or
+     * BatteryPercentageMinThreshold1 reached for Battery Source 3 */
     ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_CODE_SOURCE3_VOLTAGE1   = 0x31,
-  /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold2 or
-   * BatteryPercentageMinThreshold2 reached for Battery Source 3 */
+    /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold2 or
+     * BatteryPercentageMinThreshold2 reached for Battery Source 3 */
     ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_CODE_SOURCE3_VOLTAGE2   = 0x32,
-  /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold3 or
-   * BatteryPercentageMinThreshold3 reached for Battery Source 3 */
+    /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold3 or
+     * BatteryPercentageMinThreshold3 reached for Battery Source 3 */
     ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_CODE_SOURCE3_VOLTAGE3   = 0x33,
-  /** @brief Mains power supply lost/unavailable (i.e., device is running on battery) */
+    /** @brief Mains power supply lost/unavailable (i.e., device is running on battery) */
     ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_CODE_MAINS_POWER_SUPPLY_LOST_UNAVAILABLE   = 0x3a,
 };
 
@@ -346,46 +346,46 @@ enum zb_zcl_power_config_battery_alarm_code_e
 */
 enum zb_zcl_power_config_battery_alarm_state_e
 {
-  /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold or
-   * BatteryPercentageMinThreshold reached for Battery Source 1 */
+    /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold or
+     * BatteryPercentageMinThreshold reached for Battery Source 1 */
     ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_STATE_SOURCE1_MIN_THRESHOLD = 1 << 0,
-  /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold1 or
-   * BatteryPercentageMinThreshold1 reached for Battery Source 1 */
+    /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold1 or
+     * BatteryPercentageMinThreshold1 reached for Battery Source 1 */
     ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_STATE_SOURCE1_VOLTAGE1   = 1 << 1,
-  /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold2 or
-   * BatteryPercentageMinThreshold2 reached for Battery Source 1 */
+    /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold2 or
+     * BatteryPercentageMinThreshold2 reached for Battery Source 1 */
     ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_STATE_SOURCE1_VOLTAGE2   = 1 << 2,
-  /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold3 or
-   * BatteryPercentageMinThreshold3 reached for Battery Source 1 */
+    /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold3 or
+     * BatteryPercentageMinThreshold3 reached for Battery Source 1 */
     ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_STATE_SOURCE1_VOLTAGE3   = 1 << 3,
 
-  /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold or
-   * BatteryPercentageMinThreshold reached for Battery Source 2 */
+    /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold or
+     * BatteryPercentageMinThreshold reached for Battery Source 2 */
     ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_STATE_SOURCE2_MIN_THRESHOLD = 1 << 10,
-  /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold1 or
-   * BatteryPercentageMinThreshold1 reached for Battery Source 2 */
+    /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold1 or
+     * BatteryPercentageMinThreshold1 reached for Battery Source 2 */
     ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_STATE_SOURCE2_VOLTAGE1   = 1 << 11,
-  /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold2 or
-   * BatteryPercentageMinThreshold2 reached for Battery Source 2 */
+    /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold2 or
+     * BatteryPercentageMinThreshold2 reached for Battery Source 2 */
     ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_STATE_SOURCE2_VOLTAGE2   = 1 << 12,
-  /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold3 or
-   * BatteryPercentageMinThreshold3 reached for Battery Source 2 */
+    /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold3 or
+     * BatteryPercentageMinThreshold3 reached for Battery Source 2 */
     ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_STATE_SOURCE2_VOLTAGE3   = 1 << 13,
 
     /* use 1l to exclude overflow at 16-bit CPU: force 32-bit enum */
-  /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold or
-   * BatteryPercentageMinThreshold reached for Battery Source 3 */
+    /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold or
+     * BatteryPercentageMinThreshold reached for Battery Source 3 */
     ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_STATE_SOURCE3_MIN_THRESHOLD = 1l << 20,
-  /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold1 or
-   * BatteryPercentageMinThreshold1 reached for Battery Source 3 */
+    /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold1 or
+     * BatteryPercentageMinThreshold1 reached for Battery Source 3 */
     ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_STATE_SOURCE3_VOLTAGE1   = 1l << 21,
-  /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold2 or
-   * BatteryPercentageMinThreshold2 reached for Battery Source 3 */
+    /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold2 or
+     * BatteryPercentageMinThreshold2 reached for Battery Source 3 */
     ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_STATE_SOURCE3_VOLTAGE2   = 1l << 22,
-  /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold3 or
-   * BatteryPercentageMinThreshold3 reached for Battery Source 3 */
+    /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold3 or
+     * BatteryPercentageMinThreshold3 reached for Battery Source 3 */
     ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_STATE_SOURCE3_VOLTAGE3   = 1l << 23,
-  /** @brief Mains power supply lost/unavailable (i.e., device is running on battery) */
+    /** @brief Mains power supply lost/unavailable (i.e., device is running on battery) */
     ZB_ZCL_POWER_CONFIG_BATTERY_ALARM_STATE_MAINS_POWER_SUPPLY_LOST_UNAVAILABLE   = 1l << 30,
 };
 

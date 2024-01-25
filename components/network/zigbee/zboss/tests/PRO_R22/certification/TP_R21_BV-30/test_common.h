@@ -49,16 +49,16 @@ static const zb_uint8_t g_key0[16] = { 0xab, 0xcd, 0xef, 0x01, 0x23, 0x45, 0x67,
 #define SECURITY_LEVEL 0x05
 
 /* Timeout setup  */
-#define TIME_ZC_CONNECTION       	(30 * ZB_TIME_ONE_SECOND)
+#define TIME_ZC_CONNECTION          (30 * ZB_TIME_ONE_SECOND)
 
-#define TIME_ZC_NWK_ADDR_REQ_ZED2_1   	((10 * ZB_TIME_ONE_SECOND) + TIME_ZC_CONNECTION)
-#define TIME_ZC_IEEE_ADDR_REQ_ZED1   	((3 * ZB_TIME_ONE_SECOND) + TIME_ZC_NWK_ADDR_REQ_ZED2_1)
-#define TIME_ZC_NWK_ADDR_REQ_NONEX   	((3 * ZB_TIME_ONE_SECOND) + TIME_ZC_IEEE_ADDR_REQ_ZED1)
-#define TIME_ZC_NWK_ADDR_REQ_ZED2_2   	(170 * ZB_TIME_ONE_SECOND)
+#define TIME_ZC_NWK_ADDR_REQ_ZED2_1     ((10 * ZB_TIME_ONE_SECOND) + TIME_ZC_CONNECTION)
+#define TIME_ZC_IEEE_ADDR_REQ_ZED1      ((3 * ZB_TIME_ONE_SECOND) + TIME_ZC_NWK_ADDR_REQ_ZED2_1)
+#define TIME_ZC_NWK_ADDR_REQ_NONEX      ((3 * ZB_TIME_ONE_SECOND) + TIME_ZC_IEEE_ADDR_REQ_ZED1)
+#define TIME_ZC_NWK_ADDR_REQ_ZED2_2     (170 * ZB_TIME_ONE_SECOND)
 
-#define TIME_ZED_STOP_POLL	       	(5 * ZB_TIME_ONE_SECOND)
+#define TIME_ZED_STOP_POLL          (5 * ZB_TIME_ONE_SECOND)
 
-#define ZED_LONG_POLL_TO_MS	   	350000
+#define ZED_LONG_POLL_TO_MS     350000
 
 /* insecure join configuration */
 #define INSECURE_JOIN_ZC               ZB_TRUE
@@ -68,4 +68,4 @@ static const zb_uint8_t g_key0[16] = { 0xab, 0xcd, 0xef, 0x01, 0x23, 0x45, 0x67,
 
 /* #define CHANNEL 24 */
 
-#endif	/* __TP_R21_BV_30_TEST_COMMON */
+#endif  /* __TP_R21_BV_30_TEST_COMMON */

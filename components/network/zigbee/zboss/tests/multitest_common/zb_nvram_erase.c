@@ -34,22 +34,22 @@
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("zdo_nvram_erase");
+    ZB_INIT("zdo_nvram_erase");
 
-  zb_nvram_erase();
+    zb_nvram_erase();
 
 #ifdef NCP_MODE_HOST
-  /* NVRAM erasing is asynchronous operation on NPC builds, so it is needed to wait for response */
-  zb_osif_wait_ms(500);
+    /* NVRAM erasing is asynchronous operation on NPC builds, so it is needed to wait for response */
+    zb_osif_wait_ms(500);
 #endif /* NCP_MODE_HOST */
 
-  zb_reset(0);
+    zb_reset(0);
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }

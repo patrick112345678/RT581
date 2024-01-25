@@ -52,7 +52,7 @@
 //=============================================================================
 
 
-void otSysProcessDrivers(otInstance *aInstance) 
+void otSysProcessDrivers(otInstance *aInstance)
 {
     ot_system_event_t sevent = OT_SYSTEM_EVENT_NONE;
 

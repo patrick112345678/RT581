@@ -57,24 +57,24 @@ void test_next_step(zb_uint8_t param);
 /** Test step enumeration. */
 enum test_step_e
 {
-  TEST_STEP_START,
+    TEST_STEP_START,
 
-  TEST_STEP_ZR1_TOUCHLINK,
-  TEST_STEP_ZR1_SAVE_INFO,
-  TEST_STEP_ZR1_CHANNEL_CHANGE,
-  TEST_STEP_ZR1_REJOIN_COMPLETE,
-  TEST_STEP_WAIT_1,
+    TEST_STEP_ZR1_TOUCHLINK,
+    TEST_STEP_ZR1_SAVE_INFO,
+    TEST_STEP_ZR1_CHANNEL_CHANGE,
+    TEST_STEP_ZR1_REJOIN_COMPLETE,
+    TEST_STEP_WAIT_1,
 
-  TEST_STEP_ZR2_TOUCHLINK,
-  TEST_STEP_ZR2_SAVE_INFO,
-  TEST_STEP_ZR2_CHANNEL_CHANGE,
-  TEST_STEP_ZR2_REJOIN_COMPLETE,
-  TEST_STEP_WAIT_2,
+    TEST_STEP_ZR2_TOUCHLINK,
+    TEST_STEP_ZR2_SAVE_INFO,
+    TEST_STEP_ZR2_CHANNEL_CHANGE,
+    TEST_STEP_ZR2_REJOIN_COMPLETE,
+    TEST_STEP_WAIT_2,
 
-  TEST_STEP_ZR1_TOUCHLINK_1,
-  TEST_STEP_ZR1_TOUCHLINK_2,
+    TEST_STEP_ZR1_TOUCHLINK_1,
+    TEST_STEP_ZR1_TOUCHLINK_2,
 
-  TEST_STEP_FINISHED
+    TEST_STEP_FINISHED
 };
 
 zb_uint8_t g_test_step = TEST_STEP_START;
@@ -111,94 +111,94 @@ ZB_ZLL_DECLARE_NON_COLOR_SCENE_CONTROLLER_CTX(non_color_scene_controller_ctx, no
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
 #if !(defined KEIL || defined SDCC || defined ZB_IAR || defined ZB_PLATFORM_LINUX_ARM_2400)
 #endif
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("zed");
+    ZB_INIT("zed");
 
 
-  ZB_SET_NIB_SECURITY_LEVEL(0x05);
-  ZB_MEMCPY(ZLL_DEVICE_INFO().master_key, g_master_key, ZB_CCM_KEY_SIZE);
-  ZB_MEMCPY(ZLL_DEVICE_INFO().certification_key, g_certification_key, ZB_CCM_KEY_SIZE);
-  ZB_MEMCPY(ZLL_DEVICE_INFO().development_key, g_development_key, ZB_CCM_KEY_SIZE);
-  ZB_MEMCPY(ZLL_DEVICE_INFO().nwk_key, g_key, ZB_CCM_KEY_SIZE);
-  ZLL_DEVICE_INFO().key_index = ZB_ZLL_CERTIFICATION_KEY_INDEX;
-  ZLL_DEVICE_INFO().key_info = ZB_ZLL_CERTIFICATION_KEY;
+    ZB_SET_NIB_SECURITY_LEVEL(0x05);
+    ZB_MEMCPY(ZLL_DEVICE_INFO().master_key, g_master_key, ZB_CCM_KEY_SIZE);
+    ZB_MEMCPY(ZLL_DEVICE_INFO().certification_key, g_certification_key, ZB_CCM_KEY_SIZE);
+    ZB_MEMCPY(ZLL_DEVICE_INFO().development_key, g_development_key, ZB_CCM_KEY_SIZE);
+    ZB_MEMCPY(ZLL_DEVICE_INFO().nwk_key, g_key, ZB_CCM_KEY_SIZE);
+    ZLL_DEVICE_INFO().key_index = ZB_ZLL_CERTIFICATION_KEY_INDEX;
+    ZLL_DEVICE_INFO().key_info = ZB_ZLL_CERTIFICATION_KEY;
 
-  zb_secur_setup_preconfigured_key(g_key, 0);
-  ZB_NIB().secure_all_frames = ZB_TRUE;
-  ZG->aps.authenticated = ZB_TRUE;
+    zb_secur_setup_preconfigured_key(g_key, 0);
+    ZB_NIB().secure_all_frames = ZB_TRUE;
+    ZG->aps.authenticated = ZB_TRUE;
 
 #if 0
-  ZB_AIB().aps_use_nvram = 0;
-  ZB_AIB().aps_nvram_erase_at_start = 1;
+    ZB_AIB().aps_use_nvram = 0;
+    ZB_AIB().aps_nvram_erase_at_start = 1;
 #endif
 
-  ZLL_DEVICE_INFO().zll_info = (ZLL_DEVICE_INFO().zll_info | ZB_ZLL_INFO_TOUCHLINK_INITIATOR);
+    ZLL_DEVICE_INFO().zll_info = (ZLL_DEVICE_INFO().zll_info | ZB_ZLL_INFO_TOUCHLINK_INITIATOR);
 
-  ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_ed_addr);
-  ZB_PIBCACHE_RX_ON_WHEN_IDLE() = ZB_B2U(ZB_TRUE);
+    ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_ed_addr);
+    ZB_PIBCACHE_RX_ON_WHEN_IDLE() = ZB_B2U(ZB_TRUE);
 
-  zb_set_default_ed_descriptor_values();
+    zb_set_default_ed_descriptor_values();
 
-  /****************** Register Device ********************************/
-  ZB_AF_REGISTER_DEVICE_CTX(&non_color_scene_controller_ctx);
-  ZB_AF_SET_ENDPOINT_HANDLER(ENDPOINT, zcl_specific_cluster_cmd_handler);
+    /****************** Register Device ********************************/
+    ZB_AF_REGISTER_DEVICE_CTX(&non_color_scene_controller_ctx);
+    ZB_AF_SET_ENDPOINT_HANDLER(ENDPOINT, zcl_specific_cluster_cmd_handler);
 
-  //ZB_AIB().aps_channel_mask = 1l << MY_CHANNEL;
-  ZB_AIB().aps_channel_mask = (1l<<11)|(1l<<15)|(1l<<20)|(1l<<25);
+    //ZB_AIB().aps_channel_mask = 1l << MY_CHANNEL;
+    ZB_AIB().aps_channel_mask = (1l << 11) | (1l << 15) | (1l << 20) | (1l << 25);
 
-  if (zb_zll_dev_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "###ERROR zdo_dev_start failed", (FMT__0));
-  }
-  else
-  {
-    zcl_main_loop();
-  }
+    if (zb_zll_dev_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "###ERROR zdo_dev_start failed", (FMT__0));
+    }
+    else
+    {
+        zcl_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 /* ************************************************************************** */
 
 zb_uint8_t zcl_specific_cluster_cmd_handler(zb_uint8_t param)
 {
-  zb_buf_t *zcl_cmd_buf = (zb_buf_t *)ZB_BUF_FROM_REF(param);
-  zb_zcl_parsed_hdr_t *cmd_info = ZB_GET_BUF_PARAM(zcl_cmd_buf, zb_zcl_parsed_hdr_t);
-  zb_bool_t unknown_cmd_received = ZB_FALSE;
+    zb_buf_t *zcl_cmd_buf = (zb_buf_t *)ZB_BUF_FROM_REF(param);
+    zb_zcl_parsed_hdr_t *cmd_info = ZB_GET_BUF_PARAM(zcl_cmd_buf, zb_zcl_parsed_hdr_t);
+    zb_bool_t unknown_cmd_received = ZB_FALSE;
 
-  TRACE_MSG(TRACE_ZCL1, "> zcl_specific_cluster_cmd_handler %i", (FMT__H, param));
-  ZB_ZCL_DEBUG_DUMP_HEADER(cmd_info);
-  TRACE_MSG(TRACE_ZCL1, "payload size: %i", (FMT__D, ZB_BUF_LEN(zcl_cmd_buf)));
+    TRACE_MSG(TRACE_ZCL1, "> zcl_specific_cluster_cmd_handler %i", (FMT__H, param));
+    ZB_ZCL_DEBUG_DUMP_HEADER(cmd_info);
+    TRACE_MSG(TRACE_ZCL1, "payload size: %i", (FMT__D, ZB_BUF_LEN(zcl_cmd_buf)));
 
-  if (cmd_info->cmd_direction == ZB_ZCL_FRAME_DIRECTION_TO_SRV)
-  {
-    TRACE_MSG(TRACE_ERROR, "ERROR Unsupported direction \"to server\"", (FMT__0));
-    unknown_cmd_received = ZB_TRUE;
-  }
-  else
-  {
-    /* Command from server to client */
-    switch (cmd_info->cluster_id)
+    if (cmd_info->cmd_direction == ZB_ZCL_FRAME_DIRECTION_TO_SRV)
     {
-      default:
-        TRACE_MSG(TRACE_ERROR, "Cluster 0x%hx is not supported in the test", (FMT__H, cmd_info->cluster_id));
+        TRACE_MSG(TRACE_ERROR, "ERROR Unsupported direction \"to server\"", (FMT__0));
         unknown_cmd_received = ZB_TRUE;
-      break;
     }
-  }
+    else
+    {
+        /* Command from server to client */
+        switch (cmd_info->cluster_id)
+        {
+        default:
+            TRACE_MSG(TRACE_ERROR, "Cluster 0x%hx is not supported in the test", (FMT__H, cmd_info->cluster_id));
+            unknown_cmd_received = ZB_TRUE;
+            break;
+        }
+    }
 
-  TRACE_MSG(TRACE_ZCL2, " unknown cmd %hd", (FMT__H, unknown_cmd_received));
+    TRACE_MSG(TRACE_ZCL2, " unknown cmd %hd", (FMT__H, unknown_cmd_received));
 
-  TRACE_MSG(TRACE_ZCL1, "< zcl_specific_cluster_cmd_handler %i", (FMT__0));
-  return !unknown_cmd_received;
+    TRACE_MSG(TRACE_ZCL1, "< zcl_specific_cluster_cmd_handler %i", (FMT__0));
+    return !unknown_cmd_received;
 }
 
 /* ************************************************************************** */
@@ -210,306 +210,306 @@ or the PAN identifier of the device, otherwise
 */
 zb_bool_t test_check_start_status(zb_uint8_t param, zb_bool_t is_fn)
 {
-  zb_bool_t ret = ZB_TRUE;
-  zb_buf_t* buffer = ZB_BUF_FROM_REF(param);
-  zb_zll_transaction_task_status_t* task_status = ZB_GET_BUF_PARAM(buffer, zb_zll_transaction_task_status_t);
+    zb_bool_t ret = ZB_TRUE;
+    zb_buf_t *buffer = ZB_BUF_FROM_REF(param);
+    zb_zll_transaction_task_status_t *task_status = ZB_GET_BUF_PARAM(buffer, zb_zll_transaction_task_status_t);
 
-  TRACE_MSG(TRACE_ZLL3, "> test_check_start_status param %hd", (FMT__D, param));
+    TRACE_MSG(TRACE_ZLL3, "> test_check_start_status param %hd", (FMT__D, param));
 
-  if (is_fn != ZB_ZLL_IS_FACTORY_NEW())
-  {
-    TRACE_MSG(TRACE_ERROR, "ERROR Incorrect FN flag", (FMT__0));
-    ret = ZB_FALSE;
-  }
-  if (task_status->status != ZB_ZLL_GENERAL_STATUS_SUCCESS)
-  {
-    TRACE_MSG(TRACE_ZLL3, "ERROR Device start FAILED (status)", (FMT__0));
-    ret = ZB_FALSE;
-  }
-  if (!ZB_PIBCACHE_RX_ON_WHEN_IDLE())
-  {
-    TRACE_MSG(TRACE_ERROR, "ERROR Receiver should be turned on", (FMT__0));
-    ret = ZB_FALSE;
-  }
-  if (ZB_PIBCACHE_PAN_ID() == 0x0000 || ZB_PIBCACHE_PAN_ID() > 0xFFFE)
-  {
-    TRACE_MSG(TRACE_ERROR, "ERROR PAN Id is 0x%04x (should be 0x0001 � 0xFFFE)", (FMT__D, ZB_PIBCACHE_PAN_ID()));
-    ret = ZB_FALSE;
-  }
+    if (is_fn != ZB_ZLL_IS_FACTORY_NEW())
+    {
+        TRACE_MSG(TRACE_ERROR, "ERROR Incorrect FN flag", (FMT__0));
+        ret = ZB_FALSE;
+    }
+    if (task_status->status != ZB_ZLL_GENERAL_STATUS_SUCCESS)
+    {
+        TRACE_MSG(TRACE_ZLL3, "ERROR Device start FAILED (status)", (FMT__0));
+        ret = ZB_FALSE;
+    }
+    if (!ZB_PIBCACHE_RX_ON_WHEN_IDLE())
+    {
+        TRACE_MSG(TRACE_ERROR, "ERROR Receiver should be turned on", (FMT__0));
+        ret = ZB_FALSE;
+    }
+    if (ZB_PIBCACHE_PAN_ID() == 0x0000 || ZB_PIBCACHE_PAN_ID() > 0xFFFE)
+    {
+        TRACE_MSG(TRACE_ERROR, "ERROR PAN Id is 0x%04x (should be 0x0001 � 0xFFFE)", (FMT__D, ZB_PIBCACHE_PAN_ID()));
+        ret = ZB_FALSE;
+    }
 
-  if (ZB_ZLL_IS_FACTORY_NEW())
-  {
+    if (ZB_ZLL_IS_FACTORY_NEW())
+    {
 #if 0
-    if (ZB_PIBCACHE_CURRENT_CHANNEL() != MY_CHANNEL)
-    {
-      TRACE_MSG(TRACE_ERROR, "ERROR wrong channel %hd (should be %hd)", (FMT__H_H, ZB_PIBCACHE_CURRENT_CHANNEL(), (zb_uint8_t)MY_CHANNEL));
-      ret = ZB_FALSE;
-    }
+        if (ZB_PIBCACHE_CURRENT_CHANNEL() != MY_CHANNEL)
+        {
+            TRACE_MSG(TRACE_ERROR, "ERROR wrong channel %hd (should be %hd)", (FMT__H_H, ZB_PIBCACHE_CURRENT_CHANNEL(), (zb_uint8_t)MY_CHANNEL));
+            ret = ZB_FALSE;
+        }
 #endif
-    if (ZB_PIBCACHE_NETWORK_ADDRESS() != 0xffff)
-    {
-      TRACE_MSG(TRACE_ERROR, "ERROR Network address is 0x%04x (should be 0xffff)", (FMT__D, ZB_PIBCACHE_NETWORK_ADDRESS()));
-      ret = ZB_FALSE;
+        if (ZB_PIBCACHE_NETWORK_ADDRESS() != 0xffff)
+        {
+            TRACE_MSG(TRACE_ERROR, "ERROR Network address is 0x%04x (should be 0xffff)", (FMT__D, ZB_PIBCACHE_NETWORK_ADDRESS()));
+            ret = ZB_FALSE;
+        }
+        if (!ZB_EXTPANID_IS_ZERO(ZB_NIB_EXT_PAN_ID()))
+        {
+            TRACE_MSG(TRACE_ERROR, "ERROR extended PAN Id is not zero: %s", (FMT__A, ZB_NIB_EXT_PAN_ID()));
+            ret = ZB_FALSE;
+        }
     }
-    if (!ZB_EXTPANID_IS_ZERO(ZB_NIB_EXT_PAN_ID()))
+    else
     {
-      TRACE_MSG(TRACE_ERROR, "ERROR extended PAN Id is not zero: %s", (FMT__A, ZB_NIB_EXT_PAN_ID()));
-      ret = ZB_FALSE;
-    }
-  }
-  else
-  {
-    if (ZB_PIBCACHE_NETWORK_ADDRESS() == 0xffff)
-    {
-      TRACE_MSG(TRACE_ERROR, "ERROR Network address is 0x%04x (should be 0xffff)", (FMT__D, ZB_PIBCACHE_NETWORK_ADDRESS()));
-      ret = ZB_FALSE;
-    }
-    /* if device isn'r fn, extpanid != 0 (fixit)*/
+        if (ZB_PIBCACHE_NETWORK_ADDRESS() == 0xffff)
+        {
+            TRACE_MSG(TRACE_ERROR, "ERROR Network address is 0x%04x (should be 0xffff)", (FMT__D, ZB_PIBCACHE_NETWORK_ADDRESS()));
+            ret = ZB_FALSE;
+        }
+        /* if device isn'r fn, extpanid != 0 (fixit)*/
 #if 0
-    if (ZB_EXTPANID_IS_ZERO(ZB_NIB_EXT_PAN_ID()))
-    {
-      TRACE_MSG(TRACE_ERROR, "ERROR extended PAN Id is zero: %s", (FMT__A, ZB_NIB_EXT_PAN_ID()));
-      ret = ZB_FALSE;
-    }
+        if (ZB_EXTPANID_IS_ZERO(ZB_NIB_EXT_PAN_ID()))
+        {
+            TRACE_MSG(TRACE_ERROR, "ERROR extended PAN Id is zero: %s", (FMT__A, ZB_NIB_EXT_PAN_ID()));
+            ret = ZB_FALSE;
+        }
 #endif
-  }
+    }
 
-  if (ret)
-  {
-    TRACE_MSG(TRACE_ZLL3, "Device STARTED OK", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ZLL3, "ERROR Device started with errors", (FMT__0));
-  }
+    if (ret)
+    {
+        TRACE_MSG(TRACE_ZLL3, "Device STARTED OK", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ZLL3, "ERROR Device started with errors", (FMT__0));
+    }
 
-  TRACE_MSG(TRACE_ZLL3, "< test_check_start_status", (FMT__0));
+    TRACE_MSG(TRACE_ZLL3, "< test_check_start_status", (FMT__0));
 
-  return ret;
+    return ret;
 }
 
 /* ************************************************************************** */
 
 void zb_zdo_startup_complete(zb_uint8_t param)
 {
-  zb_buf_t* buffer = ZB_BUF_FROM_REF(param);
-  zb_zll_transaction_task_status_t *task_status = ZB_GET_BUF_PARAM(buffer, zb_zll_transaction_task_status_t);
-  zb_bool_t need_free_buf = ZB_TRUE;
-  zb_bool_t is_fn = (zb_bool_t)ZB_ZLL_IS_FACTORY_NEW();
+    zb_buf_t *buffer = ZB_BUF_FROM_REF(param);
+    zb_zll_transaction_task_status_t *task_status = ZB_GET_BUF_PARAM(buffer, zb_zll_transaction_task_status_t);
+    zb_bool_t need_free_buf = ZB_TRUE;
+    zb_bool_t is_fn = (zb_bool_t)ZB_ZLL_IS_FACTORY_NEW();
 
-  TRACE_MSG(TRACE_ZLL3, "> zb_zdo_startup_complete %hd status %hd", (FMT__H_H, param, task_status->task));
+    TRACE_MSG(TRACE_ZLL3, "> zb_zdo_startup_complete %hd status %hd", (FMT__H_H, param, task_status->task));
 
-  switch (task_status->task)
-  {
+    switch (task_status->task)
+    {
     case ZB_ZLL_DEVICE_START_TASK:
-      TRACE_MSG(TRACE_ZLL3, "###ZB_ZLL_DEVICE_START_TASK", (FMT__0));
-      if (test_check_start_status(param, is_fn))
-      {
-        TRACE_MSG(TRACE_ZLL3, "###ZLL startup OK", (FMT__0));
+        TRACE_MSG(TRACE_ZLL3, "###ZB_ZLL_DEVICE_START_TASK", (FMT__0));
+        if (test_check_start_status(param, is_fn))
+        {
+            TRACE_MSG(TRACE_ZLL3, "###ZLL startup OK", (FMT__0));
 
-        need_free_buf = ZB_FALSE;
-        ZB_SCHEDULE_CALLBACK(test_next_step, param);
-      }
-      else
-      {
-        TRACE_MSG(TRACE_ZLL3, "###ZLL startup FAILED (stop test procedure)", (FMT__0));
-      }
-      break;
+            need_free_buf = ZB_FALSE;
+            ZB_SCHEDULE_CALLBACK(test_next_step, param);
+        }
+        else
+        {
+            TRACE_MSG(TRACE_ZLL3, "###ZLL startup FAILED (stop test procedure)", (FMT__0));
+        }
+        break;
 
     case ZB_ZLL_START_COMMISSIONING:
-      TRACE_MSG(TRACE_ZLL3, "###ZB_ZLL_START_COMMISSIONING", (FMT__0));
-      break;
+        TRACE_MSG(TRACE_ZLL3, "###ZB_ZLL_START_COMMISSIONING", (FMT__0));
+        break;
 
     case ZB_ZLL_TRANSACTION_NWK_START_TASK:
     case ZB_ZLL_TRANSACTION_JOIN_ROUTER_TASK:
     case ZB_ZLL_TRANSACTION_JOIN_ED_TASK:
-      TRACE_MSG(TRACE_ZLL3, "###START_NETWORK", (FMT__0));
-      if (task_status->status == ZB_ZLL_TASK_STATUS_OK)
-      {
-        TRACE_MSG(TRACE_ZLL3, "status = ZB_ZLL_TASK_STATUS_OK", (FMT__0));
-        need_free_buf = ZB_FALSE;
-        ZB_SCHEDULE_CALLBACK(test_next_step, param);
-      }
-      else if (task_status->status == ZB_ZLL_TASK_STATUS_NETWORK_UPDATED)
-      {
-        TRACE_MSG(TRACE_ZLL3, "status = ZB_ZLL_TASK_STATUS_NETWORK_UPDATED", (FMT__0));
-        need_free_buf = ZB_FALSE;
-        ZB_SCHEDULE_CALLBACK(test_next_step, param);
-      }
-      else
-      {
-        TRACE_MSG(TRACE_ZLL3, "status FAILED (stop test procedure)", (FMT__0));
-      }
-      break;
+        TRACE_MSG(TRACE_ZLL3, "###START_NETWORK", (FMT__0));
+        if (task_status->status == ZB_ZLL_TASK_STATUS_OK)
+        {
+            TRACE_MSG(TRACE_ZLL3, "status = ZB_ZLL_TASK_STATUS_OK", (FMT__0));
+            need_free_buf = ZB_FALSE;
+            ZB_SCHEDULE_CALLBACK(test_next_step, param);
+        }
+        else if (task_status->status == ZB_ZLL_TASK_STATUS_NETWORK_UPDATED)
+        {
+            TRACE_MSG(TRACE_ZLL3, "status = ZB_ZLL_TASK_STATUS_NETWORK_UPDATED", (FMT__0));
+            need_free_buf = ZB_FALSE;
+            ZB_SCHEDULE_CALLBACK(test_next_step, param);
+        }
+        else
+        {
+            TRACE_MSG(TRACE_ZLL3, "status FAILED (stop test procedure)", (FMT__0));
+        }
+        break;
 
     case ZB_ZLL_DEVICE_DISCOVERY_TASK:
-      TRACE_MSG(TRACE_ZLL3, "###ZB_ZLL_DEVICE_DISCOVERY_TASK", (FMT__0));
-      break;
+        TRACE_MSG(TRACE_ZLL3, "###ZB_ZLL_DEVICE_DISCOVERY_TASK", (FMT__0));
+        break;
 
     default:
-      TRACE_MSG(TRACE_ERROR, "###ERROR unsupported task", (FMT__0));
-      break;
-  }
+        TRACE_MSG(TRACE_ERROR, "###ERROR unsupported task", (FMT__0));
+        break;
+    }
 
-  if (need_free_buf)
-  {
-    zb_free_buf(ZB_BUF_FROM_REF(param));
-  }
+    if (need_free_buf)
+    {
+        zb_free_buf(ZB_BUF_FROM_REF(param));
+    }
 
-  TRACE_MSG(TRACE_ZLL3, "< zb_zdo_sartup_complete", (FMT__0));
+    TRACE_MSG(TRACE_ZLL3, "< zb_zdo_sartup_complete", (FMT__0));
 }
 
 /* ************************************************************************** */
 
 void test_initiate_commissioning(zb_uint8_t param)
 {
-  zb_uint8_t status = zb_zll_start_commissioning(param);
-  if (status != RET_OK)
-  {
-    TRACE_MSG(TRACE_ZLL3, "###ERROR Could not initiate commissioning: status %hd", (FMT__H, status));
-  }
+    zb_uint8_t status = zb_zll_start_commissioning(param);
+    if (status != RET_OK)
+    {
+        TRACE_MSG(TRACE_ZLL3, "###ERROR Could not initiate commissioning: status %hd", (FMT__H, status));
+    }
 }
 
 /* ************************************************************************** */
 
 zb_uint8_t get_chan_number_for_nwk_update()
 {
-  zb_uint8_t ret;
-  zb_uint8_t primary_chans[] = ZB_ZLL_PRIMARY_CHANNELS;
-  zb_uint8_t i = 0;
-  for (i = 0; i < sizeof(primary_chans)/sizeof(primary_chans[0]); ++i)
-  {
-    if (primary_chans[i] != ZB_PIBCACHE_CURRENT_CHANNEL())
+    zb_uint8_t ret;
+    zb_uint8_t primary_chans[] = ZB_ZLL_PRIMARY_CHANNELS;
+    zb_uint8_t i = 0;
+    for (i = 0; i < sizeof(primary_chans) / sizeof(primary_chans[0]); ++i)
     {
-      ret = primary_chans[i];
-      break;
+        if (primary_chans[i] != ZB_PIBCACHE_CURRENT_CHANNEL())
+        {
+            ret = primary_chans[i];
+            break;
+        }
     }
-  }
-  TRACE_MSG(TRACE_ZLL3, "get_chan_number_for_nwk_update: channel = %hd;", (FMT__H, ret));
-  return ret;
+    TRACE_MSG(TRACE_ZLL3, "get_chan_number_for_nwk_update: channel = %hd;", (FMT__H, ret));
+    return ret;
 }
 
 /* ************************************************************************** */
 
 void test_next_step(zb_uint8_t param)
 {
-  zb_buf_t* buffer = ZB_BUF_FROM_REF(param);
-  TRACE_MSG(TRACE_ZLL3, "> test_next_step param %hd step %hd", (FMT__H, param, g_test_step));
+    zb_buf_t *buffer = ZB_BUF_FROM_REF(param);
+    TRACE_MSG(TRACE_ZLL3, "> test_next_step param %hd step %hd", (FMT__H, param, g_test_step));
 
-  switch (g_test_step )
-  {
-  /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-  case TEST_STEP_START:
-    TRACE_MSG(TRACE_ZLL3, "###TEST_STEP_START", (FMT__0));
-    g_test_step = TEST_STEP_ZR1_TOUCHLINK;
-    ZB_SCHEDULE_CALLBACK(test_next_step, param);
-    break;
-
-  /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-  case TEST_STEP_ZR1_TOUCHLINK:
-    TRACE_MSG(TRACE_ZLL3, "###TEST_STEP_ZR1_TOUCHLINK", (FMT__0));
-    if (ZB_ZLL_IS_FACTORY_NEW())
+    switch (g_test_step )
     {
-      g_test_step = TEST_STEP_FINISHED;
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+    case TEST_STEP_START:
+        TRACE_MSG(TRACE_ZLL3, "###TEST_STEP_START", (FMT__0));
+        g_test_step = TEST_STEP_ZR1_TOUCHLINK;
+        ZB_SCHEDULE_CALLBACK(test_next_step, param);
+        break;
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+    case TEST_STEP_ZR1_TOUCHLINK:
+        TRACE_MSG(TRACE_ZLL3, "###TEST_STEP_ZR1_TOUCHLINK", (FMT__0));
+        if (ZB_ZLL_IS_FACTORY_NEW())
+        {
+            g_test_step = TEST_STEP_FINISHED;
+        }
+        else
+        {
+            /* 1st phase of test, when device is fnd (P1-P3) */
+            g_test_step = TEST_STEP_ZR1_SAVE_INFO;
+            /* NOTE: device must automatically connect to zr1
+            (but in application startup callback isn't called
+            after connecting to previous network, so start touchlink again)
+            */
+            ZB_SCHEDULE_CALLBACK(test_initiate_commissioning, param);
+        }
+        break;
+    case TEST_STEP_ZR1_SAVE_INFO:
+        TRACE_MSG(TRACE_ZLL3, "###TEST_STEP_ZR1_SAVE_INFO", (FMT__0));
+        ZB_EXTPANID_COPY(g_zr1_ext_pan_id, ZB_NIB_EXT_PAN_ID());
+        g_zr1_pan_id = ZB_PIBCACHE_PAN_ID();
+        g_test_step = TEST_STEP_ZR1_CHANNEL_CHANGE;
+        ZB_SCHEDULE_ALARM(test_next_step, param, 3 * ZB_TIME_ONE_SECOND);
+        break;
+    case TEST_STEP_ZR1_CHANNEL_CHANGE:
+        TRACE_MSG(TRACE_ZLL3, "###TEST_STEP_ZR1_CHANNEL_CHANGE", (FMT__0));
+        g_test_step = TEST_STEP_ZR1_REJOIN_COMPLETE;
+        chan_for_nwk_up = get_chan_number_for_nwk_update();
+        ZB_ZLL_NWK_UPDATE_SEND_CHANGE_CHANNEL_REQ(buffer, 1l << chan_for_nwk_up);
+        break;
+    case TEST_STEP_ZR1_REJOIN_COMPLETE:
+        TRACE_MSG(TRACE_ZLL3, "###TEST_STEP_ZR1_REJOIN_COMPLETE", (FMT__0));
+        /* TODO: compare zr1 data with previously saved info */
+        g_tmp_pan_id = ZB_PIBCACHE_PAN_ID();
+        ZB_EXTPANID_COPY(g_tmp_ext_pan_id, ZB_NIB_EXT_PAN_ID());
+        g_test_step = TEST_STEP_WAIT_1;
+        ZB_SCHEDULE_ALARM(test_next_step, param, 40 * ZB_TIME_ONE_SECOND);
+        /* Wait for turning off ZR1 and turning on ZR2 */
+        break;
+    case TEST_STEP_WAIT_1:
+        g_test_step = TEST_STEP_ZR2_TOUCHLINK;
+        ZB_SCHEDULE_CALLBACK(test_next_step, param);
+        TRACE_MSG(TRACE_ZLL3, "###TEST_STEP_WAIT_1", (FMT__0));
+        break;
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+    case TEST_STEP_ZR2_TOUCHLINK:
+        TRACE_MSG(TRACE_ZLL3, "###TEST_STEP_ZR2_TOUCHLINK", (FMT__0));
+        g_test_step = TEST_STEP_ZR2_SAVE_INFO;
+        ZB_SCHEDULE_CALLBACK(test_initiate_commissioning, param);
+        break;
+    case TEST_STEP_ZR2_SAVE_INFO:
+        TRACE_MSG(TRACE_ZLL3, "###TEST_STEP_ZR2_SAVE_INFO", (FMT__0));
+        ZB_EXTPANID_COPY(g_zr2_ext_pan_id, ZB_NIB_EXT_PAN_ID());
+        g_zr2_pan_id = ZB_PIBCACHE_PAN_ID();
+        g_test_step = TEST_STEP_ZR2_CHANNEL_CHANGE;
+        ZB_SCHEDULE_ALARM(test_next_step, param, 3 * ZB_TIME_ONE_SECOND);
+        break;
+    case TEST_STEP_ZR2_CHANNEL_CHANGE:
+        TRACE_MSG(TRACE_ZLL3, "###TEST_STEP_ZR2_CHANNEL_CHANGE", (FMT__0));
+        g_test_step = TEST_STEP_ZR2_REJOIN_COMPLETE;
+        ZB_ZLL_NWK_UPDATE_SEND_CHANGE_CHANNEL_REQ(buffer, 1l << chan_for_nwk_up);
+        break;
+    case TEST_STEP_ZR2_REJOIN_COMPLETE:
+        TRACE_MSG(TRACE_ZLL3, "###TEST_STEP_ZR2_REJOIN_COMPLETE", (FMT__0));
+        /* TODO: compare zr2 data with previously saved info */
+        g_tmp_pan_id = ZB_PIBCACHE_PAN_ID();
+        ZB_EXTPANID_COPY(g_tmp_ext_pan_id, ZB_NIB_EXT_PAN_ID());
+        g_test_step = TEST_STEP_WAIT_2;
+        ZB_SCHEDULE_ALARM(test_next_step, param, 40 * ZB_TIME_ONE_SECOND);
+        /* Wait for turning off ZR2 and turning on ZR1 */
+        break;
+    case TEST_STEP_WAIT_2:
+        g_test_step = TEST_STEP_ZR1_TOUCHLINK_1;
+        ZB_SCHEDULE_CALLBACK(test_next_step, param);
+        TRACE_MSG(TRACE_ZLL3, "###TEST_STEP_WAIT_2", (FMT__0));
+        break;
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+    case TEST_STEP_ZR1_TOUCHLINK_1:
+        TRACE_MSG(TRACE_ZLL3, "###TEST_STEP_ZR1_TOUCHLINK_1", (FMT__0));
+        g_test_step = TEST_STEP_ZR1_TOUCHLINK_2;
+        ZB_SCHEDULE_CALLBACK(test_initiate_commissioning, param);
+        break;
+    case TEST_STEP_ZR1_TOUCHLINK_2:
+        TRACE_MSG(TRACE_ZLL3, "###TEST_STEP_ZR1_TOUCHLINK_2", (FMT__0));
+        g_test_step = TEST_STEP_FINISHED;
+        ZB_SCHEDULE_CALLBACK(test_initiate_commissioning, param);
+        break;
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+    case TEST_STEP_FINISHED:
+        TRACE_MSG(TRACE_ZLL3, "###TEST_STEP_FINISHED", (FMT__0));
+        zb_free_buf(buffer);
+        break;
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+    default:
+        g_test_step = TEST_STEP_FINISHED;
+        TRACE_MSG(TRACE_ERROR, "###ERROR step %hd shan't be processed", (FMT__H, g_test_step));
+        break;
     }
-    else
-    {
-      /* 1st phase of test, when device is fnd (P1-P3) */
-      g_test_step = TEST_STEP_ZR1_SAVE_INFO;
-      /* NOTE: device must automatically connect to zr1
-      (but in application startup callback isn't called
-      after connecting to previous network, so start touchlink again)
-      */
-      ZB_SCHEDULE_CALLBACK(test_initiate_commissioning, param);
-    }
-    break;
-  case TEST_STEP_ZR1_SAVE_INFO:
-    TRACE_MSG(TRACE_ZLL3, "###TEST_STEP_ZR1_SAVE_INFO", (FMT__0));
-    ZB_EXTPANID_COPY(g_zr1_ext_pan_id, ZB_NIB_EXT_PAN_ID());
-    g_zr1_pan_id = ZB_PIBCACHE_PAN_ID();
-    g_test_step = TEST_STEP_ZR1_CHANNEL_CHANGE;
-    ZB_SCHEDULE_ALARM(test_next_step, param, 3*ZB_TIME_ONE_SECOND);
-    break;
-  case TEST_STEP_ZR1_CHANNEL_CHANGE:
-    TRACE_MSG(TRACE_ZLL3, "###TEST_STEP_ZR1_CHANNEL_CHANGE", (FMT__0));
-    g_test_step = TEST_STEP_ZR1_REJOIN_COMPLETE;
-    chan_for_nwk_up = get_chan_number_for_nwk_update();
-    ZB_ZLL_NWK_UPDATE_SEND_CHANGE_CHANNEL_REQ(buffer, 1l<<chan_for_nwk_up);
-    break;
-  case TEST_STEP_ZR1_REJOIN_COMPLETE:
-    TRACE_MSG(TRACE_ZLL3, "###TEST_STEP_ZR1_REJOIN_COMPLETE", (FMT__0));
-    /* TODO: compare zr1 data with previously saved info */
-    g_tmp_pan_id = ZB_PIBCACHE_PAN_ID();
-    ZB_EXTPANID_COPY(g_tmp_ext_pan_id, ZB_NIB_EXT_PAN_ID());
-    g_test_step = TEST_STEP_WAIT_1;
-    ZB_SCHEDULE_ALARM(test_next_step, param, 40*ZB_TIME_ONE_SECOND);
-    /* Wait for turning off ZR1 and turning on ZR2 */
-    break;
-  case TEST_STEP_WAIT_1:
-    g_test_step = TEST_STEP_ZR2_TOUCHLINK;
-    ZB_SCHEDULE_CALLBACK(test_next_step, param);
-    TRACE_MSG(TRACE_ZLL3, "###TEST_STEP_WAIT_1", (FMT__0));
-    break;
 
-  /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-  case TEST_STEP_ZR2_TOUCHLINK:
-    TRACE_MSG(TRACE_ZLL3, "###TEST_STEP_ZR2_TOUCHLINK", (FMT__0));
-    g_test_step = TEST_STEP_ZR2_SAVE_INFO;
-    ZB_SCHEDULE_CALLBACK(test_initiate_commissioning, param);
-    break;
-  case TEST_STEP_ZR2_SAVE_INFO:
-    TRACE_MSG(TRACE_ZLL3, "###TEST_STEP_ZR2_SAVE_INFO", (FMT__0));
-    ZB_EXTPANID_COPY(g_zr2_ext_pan_id, ZB_NIB_EXT_PAN_ID());
-    g_zr2_pan_id = ZB_PIBCACHE_PAN_ID();
-    g_test_step = TEST_STEP_ZR2_CHANNEL_CHANGE;
-    ZB_SCHEDULE_ALARM(test_next_step, param, 3*ZB_TIME_ONE_SECOND);
-    break;
-  case TEST_STEP_ZR2_CHANNEL_CHANGE:
-    TRACE_MSG(TRACE_ZLL3, "###TEST_STEP_ZR2_CHANNEL_CHANGE", (FMT__0));
-    g_test_step = TEST_STEP_ZR2_REJOIN_COMPLETE;
-    ZB_ZLL_NWK_UPDATE_SEND_CHANGE_CHANNEL_REQ(buffer, 1l<<chan_for_nwk_up);
-    break;
-  case TEST_STEP_ZR2_REJOIN_COMPLETE:
-    TRACE_MSG(TRACE_ZLL3, "###TEST_STEP_ZR2_REJOIN_COMPLETE", (FMT__0));
-    /* TODO: compare zr2 data with previously saved info */
-    g_tmp_pan_id = ZB_PIBCACHE_PAN_ID();
-    ZB_EXTPANID_COPY(g_tmp_ext_pan_id, ZB_NIB_EXT_PAN_ID());
-    g_test_step = TEST_STEP_WAIT_2;
-    ZB_SCHEDULE_ALARM(test_next_step, param, 40*ZB_TIME_ONE_SECOND);
-    /* Wait for turning off ZR2 and turning on ZR1 */
-    break;
-  case TEST_STEP_WAIT_2:
-    g_test_step = TEST_STEP_ZR1_TOUCHLINK_1;
-    ZB_SCHEDULE_CALLBACK(test_next_step, param);
-    TRACE_MSG(TRACE_ZLL3, "###TEST_STEP_WAIT_2", (FMT__0));
-    break;
-
-  /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-  case TEST_STEP_ZR1_TOUCHLINK_1:
-    TRACE_MSG(TRACE_ZLL3, "###TEST_STEP_ZR1_TOUCHLINK_1", (FMT__0));
-    g_test_step = TEST_STEP_ZR1_TOUCHLINK_2;
-    ZB_SCHEDULE_CALLBACK(test_initiate_commissioning, param);
-    break;
-  case TEST_STEP_ZR1_TOUCHLINK_2:
-    TRACE_MSG(TRACE_ZLL3, "###TEST_STEP_ZR1_TOUCHLINK_2", (FMT__0));
-    g_test_step = TEST_STEP_FINISHED;
-    ZB_SCHEDULE_CALLBACK(test_initiate_commissioning, param);
-    break;
-
-  /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-  case TEST_STEP_FINISHED:
-    TRACE_MSG(TRACE_ZLL3, "###TEST_STEP_FINISHED", (FMT__0));
-    zb_free_buf(buffer);
-    break;
-
-  /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-  default:
-    g_test_step = TEST_STEP_FINISHED;
-    TRACE_MSG(TRACE_ERROR, "###ERROR step %hd shan't be processed", (FMT__H, g_test_step));
-    break;
-  }
-
-  TRACE_MSG(TRACE_ZLL3, "< test_next_step. Curr step %hd" , (FMT__H, g_test_step));
+    TRACE_MSG(TRACE_ZLL3, "< test_next_step. Curr step %hd", (FMT__H, g_test_step));
 }
 
 /* ************************************************************************** */
@@ -519,8 +519,8 @@ void test_next_step(zb_uint8_t param)
 #include <stdio.h>
 int main()
 {
-  printf(" ZLL is not supported\n");
-  return 0;
+    printf(" ZLL is not supported\n");
+    return 0;
 }
 
 #endif // defined ZB_ENABLE_ZLL

@@ -42,61 +42,61 @@ static zb_uint8_t g_key_nwk[] = NWK_KEY;
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
 #if !(defined KEIL || defined SDCC || defined ZB_IAR)
 #endif
 
-/* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("dut_zr");
+    ZB_INIT("dut_zr");
 
 
-  zb_set_default_ffd_descriptor_values(ZB_ROUTER);
+    zb_set_default_ffd_descriptor_values(ZB_ROUTER);
 
-  ZB_AIB().aps_channel_mask = (1<<TEST_CHANNEL);
-  ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_dut_zr_addr);
-  ZB_PIBCACHE_PAN_ID() = TEST_PAN_ID;
-  ZB_PIBCACHE_RX_ON_WHEN_IDLE() = ZB_B2U(ZB_TRUE);
+    ZB_AIB().aps_channel_mask = (1 << TEST_CHANNEL);
+    ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_dut_zr_addr);
+    ZB_PIBCACHE_PAN_ID() = TEST_PAN_ID;
+    ZB_PIBCACHE_RX_ON_WHEN_IDLE() = ZB_B2U(ZB_TRUE);
 
-  zb_secur_setup_nwk_key(g_key_nwk, 0);
+    zb_secur_setup_nwk_key(g_key_nwk, 0);
 
-  /* Must use NVRAM for ZGP */
-  ZB_AIB().aps_use_nvram = 1;
+    /* Must use NVRAM for ZGP */
+    ZB_AIB().aps_use_nvram = 1;
 
-  if (zdo_dev_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
-  }
-  else
-  {
-    zcl_main_loop();
-  }
+    if (zdo_dev_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
+    }
+    else
+    {
+        zcl_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_buf_t *buf = ZB_BUF_FROM_REF(param);
+    zb_buf_t *buf = ZB_BUF_FROM_REF(param);
 
-  TRACE_MSG(TRACE_APP1, "> zb_zdo_startup_complete %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_APP1, "> zb_zdo_startup_complete %hd", (FMT__H, param));
 
-  if (buf->u.hdr.status == 0)
-  {
-    TRACE_MSG(TRACE_APP1, "Device STARTED OK", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(
-        TRACE_ERROR,
-        "Device started FAILED status %d",
-        (FMT__D, (int)buf->u.hdr.status));
-  }
-  zb_free_buf(buf);
-  TRACE_MSG(TRACE_APP1, "< zb_zdo_startup_complete", (FMT__0));
+    if (buf->u.hdr.status == 0)
+    {
+        TRACE_MSG(TRACE_APP1, "Device STARTED OK", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(
+            TRACE_ERROR,
+            "Device started FAILED status %d",
+            (FMT__D, (int)buf->u.hdr.status));
+    }
+    zb_free_buf(buf);
+    TRACE_MSG(TRACE_APP1, "< zb_zdo_startup_complete", (FMT__0));
 }
 
 #else // defined ZB_ENABLE_HA
@@ -104,11 +104,11 @@ ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 #include <stdio.h>
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  printf("HA profile should be enabled in zb_config.h\n");
+    printf("HA profile should be enabled in zb_config.h\n");
 
-  MAIN_RETURN(1);
+    MAIN_RETURN(1);
 }
 
 #endif

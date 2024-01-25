@@ -36,90 +36,90 @@ static void zb_se_clear_blinks(zb_uint8_t param);
 
 void zb_se_start_nvram_erase_indication(void)
 {
-  zb_osif_led_on(LED_RED);
+    zb_osif_led_on(LED_RED);
 }
 
 void zb_se_stop_nvram_erase_indication(void)
 {
-  /* wait 1 second more so that the indication is sure to be noticed */
-  ZB_SCHEDULE_APP_ALARM(zb_se_clear_leds, 0, 1 * ZB_TIME_ONE_SECOND);
+    /* wait 1 second more so that the indication is sure to be noticed */
+    ZB_SCHEDULE_APP_ALARM(zb_se_clear_leds, 0, 1 * ZB_TIME_ONE_SECOND);
 }
 
 void zb_se_indicate_commissioning_started(void)
 {
 #ifdef ZB_USE_BUTTONS
-  zb_led_blink_on(COMMISSIONING_BLINK_ARG);
+    zb_led_blink_on(COMMISSIONING_BLINK_ARG);
 #endif
 }
 
 void zb_se_indicate_service_discovery_started(void)
 {
 #ifdef ZB_USE_BUTTONS
-  zb_led_blink_off(COMMISSIONING_BLINK_ARG);
-  zb_led_blink_on(COMMISSIONING_BLINK_JOINED_ARG);
+    zb_led_blink_off(COMMISSIONING_BLINK_ARG);
+    zb_led_blink_on(COMMISSIONING_BLINK_JOINED_ARG);
 #endif
-  ZB_SCHEDULE_APP_ALARM_CANCEL(zb_se_clear_leds, 0);
+    ZB_SCHEDULE_APP_ALARM_CANCEL(zb_se_clear_leds, 0);
 }
 
 void zb_se_indicate_default_start(void)
 {
-  /* turn on green light for 5 seconds */
+    /* turn on green light for 5 seconds */
 #ifdef ZB_USE_BUTTONS
-  zb_led_blink_off(COMMISSIONING_BLINK_JOINED_ARG);
-  zb_led_blink_off(COMMISSIONING_BLINK_ARG);
+    zb_led_blink_off(COMMISSIONING_BLINK_JOINED_ARG);
+    zb_led_blink_off(COMMISSIONING_BLINK_ARG);
 #endif
-  ZB_SCHEDULE_APP_ALARM_CANCEL(zb_se_clear_leds, 0);
+    ZB_SCHEDULE_APP_ALARM_CANCEL(zb_se_clear_leds, 0);
 
-  zb_osif_led_on(LED_GREEN);
-  ZB_SCHEDULE_APP_ALARM(zb_se_clear_leds, 0, 5*ZB_TIME_ONE_SECOND);
+    zb_osif_led_on(LED_GREEN);
+    ZB_SCHEDULE_APP_ALARM(zb_se_clear_leds, 0, 5 * ZB_TIME_ONE_SECOND);
 }
 
 void zb_se_indicate_commissioning_fail(zb_uint8_t erase_nvram, zb_uint8_t reboot)
 {
-  /* turn on red light for 5 seconds */
+    /* turn on red light for 5 seconds */
 
-  zb_se_clear_blinks(0);
-  ZB_SCHEDULE_APP_ALARM_CANCEL(zb_se_clear_leds, 0);
+    zb_se_clear_blinks(0);
+    ZB_SCHEDULE_APP_ALARM_CANCEL(zb_se_clear_leds, 0);
 
-  zb_osif_led_on(LED_RED);
-  if (erase_nvram)
-  {
-    zb_nvram_erase();
-  }
-  ZB_SCHEDULE_APP_ALARM(zb_se_clear_leds, reboot, 5*ZB_TIME_ONE_SECOND);
+    zb_osif_led_on(LED_RED);
+    if (erase_nvram)
+    {
+        zb_nvram_erase();
+    }
+    ZB_SCHEDULE_APP_ALARM(zb_se_clear_leds, reboot, 5 * ZB_TIME_ONE_SECOND);
 }
 
 void zb_se_indicate_commissioning_stopped(void)
 {
-  zb_se_clear_blinks(0);
-  zb_se_clear_leds(0);
+    zb_se_clear_blinks(0);
+    zb_se_clear_leds(0);
 }
 
 void zb_se_indicate_permit_joining_on(zb_int_t seconds)
 {
 #ifdef ZB_USE_BUTTONS
-  zb_led_blink_on(PERMIT_JOINING_SET_ARG);
+    zb_led_blink_on(PERMIT_JOINING_SET_ARG);
 #endif
-  ZB_SCHEDULE_APP_ALARM(zb_se_clear_blinks, 0, seconds * ZB_TIME_ONE_SECOND);
+    ZB_SCHEDULE_APP_ALARM(zb_se_clear_blinks, 0, seconds * ZB_TIME_ONE_SECOND);
 }
 
 static void zb_se_clear_blinks(zb_uint8_t param)
 {
-  ZVUNUSED(param);
+    ZVUNUSED(param);
 
 #ifdef ZB_USE_BUTTONS
-  zb_led_blink_off(PERMIT_JOINING_SET_ARG);
-  zb_led_blink_off(COMMISSIONING_BLINK_ARG);
-  zb_led_blink_off(COMMISSIONING_BLINK_JOINED_ARG);
+    zb_led_blink_off(PERMIT_JOINING_SET_ARG);
+    zb_led_blink_off(COMMISSIONING_BLINK_ARG);
+    zb_led_blink_off(COMMISSIONING_BLINK_JOINED_ARG);
 #endif
 }
 
 static void zb_se_clear_leds(zb_uint8_t reboot)
 {
-  zb_osif_led_off(LED_GREEN);
-  zb_osif_led_off(LED_RED);
-  if (reboot)
-  {
-    zb_reset(0);
-  }
+    zb_osif_led_off(LED_GREEN);
+    zb_osif_led_off(LED_RED);
+    if (reboot)
+    {
+        zb_reset(0);
+    }
 }

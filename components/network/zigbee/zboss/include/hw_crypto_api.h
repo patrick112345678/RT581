@@ -28,20 +28,20 @@
 #ifndef ZB_SOFT_SECURITY
 
 extern zb_ret_t zigbee_aes_ccm_hw_decrypt(
-  zb_uint8_t *key,
-  zb_uint8_t *nonce,
-  zb_bufid_t  buf,
-  zb_ushort_t string_a_len,
-  zb_ushort_t string_c_len);
+    zb_uint8_t *key,
+    zb_uint8_t *nonce,
+    zb_bufid_t  buf,
+    zb_ushort_t string_a_len,
+    zb_ushort_t string_c_len);
 
 extern zb_ret_t zigbee_aes_ccm_hw_encrypt(
-  zb_uint8_t *key,
-  zb_uint8_t *nonce,
-  zb_uint8_t *string_a,
-  zb_ushort_t string_a_len,
-  zb_uint8_t *string_m,
-  zb_ushort_t string_m_len,
-  zb_bufid_t crypted_text);
+    zb_uint8_t *key,
+    zb_uint8_t *nonce,
+    zb_uint8_t *string_a,
+    zb_ushort_t string_a_len,
+    zb_uint8_t *string_m,
+    zb_ushort_t string_m_len,
+    zb_bufid_t crypted_text);
 
 #define zb_ccm_encrypt_n_auth zigbee_aes_ccm_hw_encrypt
 

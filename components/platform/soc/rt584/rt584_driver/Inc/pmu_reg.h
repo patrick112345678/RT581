@@ -19,7 +19,8 @@
     Memory Mapped Structure for PMU Controller
 @{ */
 
-enum {
+enum
+{
     PMU_CONFIG_VSEL_0V95      = 0,   /**< Vsel = 0.95V. */
     PMU_CONFIG_VSEL_1V00      = 1,   /**< Vsel = 1.00V. */
     PMU_CONFIG_VSEL_1V05      = 2,   /**< Vsel = 1.05V. */
@@ -30,8 +31,10 @@ enum {
     PMU_CONFIG_VSEL_1V30      = 7,   /**< Vsel = 1.30V. */
 };
 
-typedef union pmu_comp0_s {
-    struct pmu_comp0_b {
+typedef union pmu_comp0_s
+{
+    struct pmu_comp0_b
+    {
         uint32_t AUX_COMP_SELREF        : 1;
         uint32_t AUX_COMP_INT_EN        : 1;
         uint32_t AUX_COMP_INT_POL       : 2;
@@ -55,16 +58,20 @@ typedef union pmu_comp0_s {
     uint32_t reg;
 } pmu_comp0_t;
 
-typedef union pmu_comp1_s {
-    struct pmu_comp1_b {
+typedef union pmu_comp1_s
+{
+    struct pmu_comp1_b
+    {
         uint32_t AUX_COMP_INT_CLR : 1;
         uint32_t RESERVED1        : 31;
     } bit;
     uint32_t reg;
 } pmu_comp1_t;
 
-typedef union pmu_comp2_s {
-    struct pmu_comp2_b {
+typedef union pmu_comp2_s
+{
+    struct pmu_comp2_b
+    {
         uint32_t AUX_COMP_INT_STA : 1;
         uint32_t AUX_COMP_OUT     : 1;
         uint32_t RESERVED1        : 14;
@@ -76,8 +83,10 @@ typedef union pmu_comp2_s {
     uint32_t reg;
 } pmu_comp2_t;
 
-typedef union pmu_xtal0_s {
-    struct pmu_xtal0_b {
+typedef union pmu_xtal0_s
+{
+    struct pmu_xtal0_b
+    {
         uint32_t EN_XBUF            : 1;
         uint32_t EN_D_XTALIN        : 1;
         uint32_t SEL_XBUFLOAD       : 1;
@@ -106,8 +115,10 @@ typedef union pmu_xtal0_s {
     uint32_t reg;
 } pmu_xtal0_t;
 
-typedef union pmu_xtal1_s {
-    struct pmu_xtal1_b {
+typedef union pmu_xtal1_s
+{
+    struct pmu_xtal1_b
+    {
         uint32_t CFG_XTAL_SETTLE_TIME   : 8;
         uint32_t CFG_BYPASS_XTAL_TIME   : 1;
         uint32_t RESERVED1              : 3;
@@ -124,8 +135,10 @@ typedef union pmu_xtal1_s {
 } pmu_xtal1_t;
 
 //0x24 PMU_SOC_PMU_XTAL1
-typedef union pmu_soc_pmu_xtal1_s {
-    struct pmu_soc_pmu_xtal1_b {
+typedef union pmu_soc_pmu_xtal1_s
+{
+    struct pmu_soc_pmu_xtal1_b
+    {
         uint32_t XOSC_CAP_INI           : 6;
         uint32_t RESERVED1              : 2;
         uint32_t XOSC_CAP_TARGET        : 8;
@@ -141,8 +154,10 @@ typedef union pmu_soc_pmu_xtal1_s {
 } pmu_soc_pmu_xtal1_t;
 
 
-typedef union pmu_osc32k_s {
-    struct pmu_osc32k_b {
+typedef union pmu_osc32k_s
+{
+    struct pmu_osc32k_b
+    {
         uint32_t TUNE_FINE_RCO_32K      : 8;
         uint32_t TUNE_COARSE_RCO_32K    : 2;
         uint32_t PW_BUF_RCO_32K         : 2;
@@ -158,8 +173,10 @@ typedef union pmu_osc32k_s {
     uint32_t reg;
 } pmu_osc32k_t;
 
-typedef union pmu_rvd0_s {
-    struct pmu_rvd0_b {
+typedef union pmu_rvd0_s
+{
+    struct pmu_rvd0_b
+    {
         uint32_t CFG_MV_SETTLE_TIME     : 7;
         uint32_t RESERVED1              : 1;
         uint32_t CFG_PWEX_SETTLE_TIME   : 3;
@@ -169,8 +186,10 @@ typedef union pmu_rvd0_s {
     uint32_t reg;
 } pmu_rvd0_t;
 
-typedef union pmu_cal32k_cfg0_s {
-    struct pmu_cal32k_cfg0_b {
+typedef union pmu_cal32k_cfg0_s
+{
+    struct pmu_cal32k_cfg0_b
+    {
         uint32_t CFG_CAL32K_TARGET      : 18;
         uint32_t RESERVED1              : 6;
         uint32_t CFG_CAL32K_EN          : 1;
@@ -179,8 +198,10 @@ typedef union pmu_cal32k_cfg0_s {
     uint32_t reg;
 } pmu_cal32k_cfg0_t;
 
-typedef union pmu_cal32k_cfg1_s {
-    struct pmu_cal32k_cfg1_b {
+typedef union pmu_cal32k_cfg1_s
+{
+    struct pmu_cal32k_cfg1_b
+    {
         uint32_t CFG_CAL32K_LOCK_ERR      : 8;
         uint32_t CFG_CAL32K_AVG_COARSE    : 2;
         uint32_t CFG_CAL32K_AVG_FINE      : 2;
@@ -199,8 +220,10 @@ typedef union pmu_cal32k_cfg1_s {
     uint32_t reg;
 } pmu_cal32k_cfg1_t;
 
-typedef union pmu_cal32k_result0_s {
-    struct pmu_cal32k_result0_b {
+typedef union pmu_cal32k_result0_s
+{
+    struct pmu_cal32k_result0_b
+    {
         uint32_t EST_32K_RESULT         : 18;
         uint32_t RESERVED1              : 6;
         uint32_t EST_32K_RESULT_VALID   : 1;
@@ -213,8 +236,10 @@ typedef union pmu_cal32k_result0_s {
     uint32_t reg;
 } pmu_cal32k_result0_t;
 
-typedef union pmu_cal32k_result1_s {
-    struct pmu_cal32k_result1_b {
+typedef union pmu_cal32k_result1_s
+{
+    struct pmu_cal32k_result1_b
+    {
         uint32_t TUNE_FINE_CAL32K       : 8;
         uint32_t TUNE_COARSE_CAL32K     : 2;
         uint32_t RESERVED1              : 22;
@@ -222,8 +247,10 @@ typedef union pmu_cal32k_result1_s {
     uint32_t reg;
 } pmu_cal32k_result1_t;
 
-typedef union pmu_rfldo_s {
-    struct pmu_rfldo_b {
+typedef union pmu_rfldo_s
+{
+    struct pmu_rfldo_b
+    {
         uint32_t RF_MLDO_VTUNE       : 4;
         uint32_t RF_MLDO_SIN_M       : 2;
         uint32_t RF_MLDO_BG_OS       : 2;
@@ -247,8 +274,10 @@ typedef union pmu_rfldo_s {
     uint32_t reg;
 } pmu_rfldo_t;
 
-typedef union soc_pmu_rco1m_s {
-    struct soc_pmu_rco1m_b {
+typedef union soc_pmu_rco1m_s
+{
+    struct soc_pmu_rco1m_b
+    {
         uint32_t TUNE_FINE_RCO_1M       : 7;
         uint32_t RESERVED1              : 1;
         uint32_t TUNE_COARSE_RCO_1M     : 4;
@@ -260,8 +289,10 @@ typedef union soc_pmu_rco1m_s {
     uint32_t reg;
 } soc_pmu_rco1m_t;
 
-typedef union pmu_dcdc_vosel_s {
-    struct pmu_dcdc_vosel_b {
+typedef union pmu_dcdc_vosel_s
+{
+    struct pmu_dcdc_vosel_b
+    {
         uint32_t DCDC_VOSEL_NORMAL   : 5;
         uint32_t RESERVED1           : 3;
         uint32_t DCDC_VOSEL_HEAVY    : 5;
@@ -273,8 +304,10 @@ typedef union pmu_dcdc_vosel_s {
     uint32_t reg;
 } pmu_dcdc_vosel_t;
 
-typedef union pmu_ldomv_vosel_s {
-    struct pmu_ldomv_vosel_b {
+typedef union pmu_ldomv_vosel_s
+{
+    struct pmu_ldomv_vosel_b
+    {
         uint32_t LDOMV_VOSEL_NORMAL   : 5;
         uint32_t RESERVED1            : 3;
         uint32_t LDOMV_VOSEL_HEAVY    : 5;
@@ -286,8 +319,10 @@ typedef union pmu_ldomv_vosel_s {
     uint32_t reg;
 } pmu_ldomv_vosel_t;
 
-typedef union pmu_sldo_vosel_s {
-    struct pmu_sldo_vosel_b {
+typedef union pmu_sldo_vosel_s
+{
+    struct pmu_sldo_vosel_b
+    {
         uint32_t SLDO_VOSEL_NM      : 5;
         uint32_t RESERVED1          : 3;
         uint32_t SLDO_VOSEL_SP      : 5;
@@ -301,8 +336,10 @@ typedef union pmu_sldo_vosel_s {
 
 
 //0xBC SOC_PMU_TIMING
-typedef union pmu_soc_pmu_timing_s {
-    struct pmu_soc_pmu_timing_b {
+typedef union pmu_soc_pmu_timing_s
+{
+    struct pmu_soc_pmu_timing_b
+    {
         uint32_t CFG_LV_SETTLE_TIME         : 7;
         uint32_t CFG_BYPASS_LV_SETTLE       : 1;
         uint32_t CFG_MV_SETTLE_TIME         : 7;
@@ -312,12 +349,13 @@ typedef union pmu_soc_pmu_timing_s {
         uint32_t FORCE_DCDC_SOC_PMU         : 1;
         uint32_t FORCE_DCDC_SOC_Heavy_Tx    : 1;
         uint32_t FORCE_DCDC_SOC_Light_Rx    : 1;
-        uint32_t RESERVED2                  : 1;        
+        uint32_t RESERVED2                  : 1;
     } bit;
     uint32_t reg;
 } pmu_soc_pmu_timing_t;
 
-typedef struct {
+typedef struct
+{
     __IO  pmu_comp0_t  PMU_COMP0;                           //offset: 0x00
     __IO  pmu_comp1_t  PMU_COMP1;                           //offset: 0x04
     __IO  pmu_comp2_t  PMU_COMP2;                           //offset: 0x08

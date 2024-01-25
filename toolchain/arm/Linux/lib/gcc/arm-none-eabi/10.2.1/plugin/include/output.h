@@ -126,7 +126,7 @@ extern void fprint_ul (FILE *, unsigned long);
 extern int sprint_ul (char *, unsigned long);
 
 extern void asm_fprintf (FILE *file, const char *p, ...)
-     ATTRIBUTE_ASM_FPRINTF(2, 3);
+ATTRIBUTE_ASM_FPRINTF(2, 3);
 
 /* Return nonzero if this function has no function calls.  */
 extern int leaf_function_p (void);
@@ -285,7 +285,7 @@ extern section *get_named_text_section (tree, const char *, const char *);
    is the alignment of the constant in bits.  If REVERSE is true, D is output
    in reverse storage order.  */
 extern void assemble_real (REAL_VALUE_TYPE, scalar_float_mode, unsigned,
-			   bool = false);
+                           bool = false);
 
 /* Write the address of the entity given by SYMBOL to SEC.  */
 extern void assemble_addr_to_section (rtx, section *);
@@ -362,34 +362,34 @@ extern void default_function_switched_text_sections (FILE *, tree, bool);
 extern void no_asm_to_stream (FILE *);
 
 /* Flags controlling properties of a section.  */
-#define SECTION_ENTSIZE	 0x000ff	/* entity size in section */
-#define SECTION_CODE	 0x00100	/* contains code */
-#define SECTION_WRITE	 0x00200	/* data is writable */
-#define SECTION_DEBUG	 0x00400	/* contains debug data */
-#define SECTION_LINKONCE 0x00800	/* is linkonce */
-#define SECTION_SMALL	 0x01000	/* contains "small data" */
-#define SECTION_BSS	 0x02000	/* contains zeros only */
-#define SECTION_FORGET	 0x04000	/* forget that we've entered the section */
-#define SECTION_MERGE	 0x08000	/* contains mergeable data */
-#define SECTION_STRINGS  0x10000	/* contains zero terminated strings without
-					   embedded zeros */
-#define SECTION_OVERRIDE 0x20000	/* allow override of default flags */
-#define SECTION_TLS	 0x40000	/* contains thread-local storage */
-#define SECTION_NOTYPE	 0x80000	/* don't output @progbits */
-#define SECTION_DECLARED 0x100000	/* section has been used */
-#define SECTION_STYLE_MASK 0x600000	/* bits used for SECTION_STYLE */
-#define SECTION_COMMON   0x800000	/* contains common data */
-#define SECTION_RELRO	 0x1000000	/* data is readonly after relocation processing */
-#define SECTION_EXCLUDE  0x2000000	/* discarded by the linker */
-#define SECTION_MACH_DEP 0x4000000	/* subsequent bits reserved for target */
+#define SECTION_ENTSIZE  0x000ff    /* entity size in section */
+#define SECTION_CODE     0x00100    /* contains code */
+#define SECTION_WRITE    0x00200    /* data is writable */
+#define SECTION_DEBUG    0x00400    /* contains debug data */
+#define SECTION_LINKONCE 0x00800    /* is linkonce */
+#define SECTION_SMALL    0x01000    /* contains "small data" */
+#define SECTION_BSS  0x02000    /* contains zeros only */
+#define SECTION_FORGET   0x04000    /* forget that we've entered the section */
+#define SECTION_MERGE    0x08000    /* contains mergeable data */
+#define SECTION_STRINGS  0x10000    /* contains zero terminated strings without
+                       embedded zeros */
+#define SECTION_OVERRIDE 0x20000    /* allow override of default flags */
+#define SECTION_TLS  0x40000    /* contains thread-local storage */
+#define SECTION_NOTYPE   0x80000    /* don't output @progbits */
+#define SECTION_DECLARED 0x100000   /* section has been used */
+#define SECTION_STYLE_MASK 0x600000 /* bits used for SECTION_STYLE */
+#define SECTION_COMMON   0x800000   /* contains common data */
+#define SECTION_RELRO    0x1000000  /* data is readonly after relocation processing */
+#define SECTION_EXCLUDE  0x2000000  /* discarded by the linker */
+#define SECTION_MACH_DEP 0x4000000  /* subsequent bits reserved for target */
 
 /* This SECTION_STYLE is used for unnamed sections that we can switch
    to using a special assembler directive.  */
-#define SECTION_UNNAMED	 0x000000
+#define SECTION_UNNAMED  0x000000
 
 /* This SECTION_STYLE is used for named sections that we can switch
    to using a general section directive.  */
-#define SECTION_NAMED	 0x200000
+#define SECTION_NAMED    0x200000
 
 /* This SECTION_STYLE is used for sections that we cannot switch to at
    all.  The choice of section is implied by the directive that we use
@@ -401,54 +401,56 @@ extern void no_asm_to_stream (FILE *);
 
 enum section_category
 {
-  SECCAT_TEXT,
+    SECCAT_TEXT,
 
-  SECCAT_RODATA,
-  SECCAT_RODATA_MERGE_STR,
-  SECCAT_RODATA_MERGE_STR_INIT,
-  SECCAT_RODATA_MERGE_CONST,
-  SECCAT_SRODATA,
+    SECCAT_RODATA,
+    SECCAT_RODATA_MERGE_STR,
+    SECCAT_RODATA_MERGE_STR_INIT,
+    SECCAT_RODATA_MERGE_CONST,
+    SECCAT_SRODATA,
 
-  SECCAT_DATA,
+    SECCAT_DATA,
 
-  /* To optimize loading of shared programs, define following subsections
-     of data section:
-	_REL	Contains data that has relocations, so they get grouped
-		together and dynamic linker will visit fewer pages in memory.
-	_RO	Contains data that is otherwise read-only.  This is useful
-		with prelinking as most relocations won't be dynamically
-		linked and thus stay read only.
-	_LOCAL	Marks data containing relocations only to local objects.
-		These relocations will get fully resolved by prelinking.  */
-  SECCAT_DATA_REL,
-  SECCAT_DATA_REL_LOCAL,
-  SECCAT_DATA_REL_RO,
-  SECCAT_DATA_REL_RO_LOCAL,
+    /* To optimize loading of shared programs, define following subsections
+       of data section:
+    _REL  Contains data that has relocations, so they get grouped
+      together and dynamic linker will visit fewer pages in memory.
+    _RO   Contains data that is otherwise read-only.  This is useful
+      with prelinking as most relocations won't be dynamically
+      linked and thus stay read only.
+    _LOCAL    Marks data containing relocations only to local objects.
+      These relocations will get fully resolved by prelinking.  */
+    SECCAT_DATA_REL,
+    SECCAT_DATA_REL_LOCAL,
+    SECCAT_DATA_REL_RO,
+    SECCAT_DATA_REL_RO_LOCAL,
 
-  SECCAT_SDATA,
-  SECCAT_TDATA,
+    SECCAT_SDATA,
+    SECCAT_TDATA,
 
-  SECCAT_BSS,
-  SECCAT_SBSS,
-  SECCAT_TBSS
+    SECCAT_BSS,
+    SECCAT_SBSS,
+    SECCAT_TBSS
 };
 
 /* Information that is provided by all instances of the section type.  */
-struct GTY(()) section_common {
-  /* The set of SECTION_* flags that apply to this section.  */
-  unsigned int flags;
+struct GTY(()) section_common
+{
+    /* The set of SECTION_* flags that apply to this section.  */
+    unsigned int flags;
 };
 
 /* Information about a SECTION_NAMED section.  */
-struct GTY(()) named_section {
-  struct section_common common;
+struct GTY(()) named_section
+{
+    struct section_common common;
 
-  /* The name of the section.  */
-  const char *name;
+    /* The name of the section.  */
+    const char *name;
 
-  /* If nonnull, the VAR_DECL or FUNCTION_DECL with which the
-     section is associated.  */
-  tree decl;
+    /* If nonnull, the VAR_DECL or FUNCTION_DECL with which the
+       section is associated.  */
+    tree decl;
 };
 
 /* A callback that writes the assembly code for switching to an unnamed
@@ -456,16 +458,17 @@ struct GTY(()) named_section {
 typedef void (*unnamed_section_callback) (const void *);
 
 /* Information about a SECTION_UNNAMED section.  */
-struct GTY(()) unnamed_section {
-  struct section_common common;
+struct GTY(()) unnamed_section
+{
+    struct section_common common;
 
-  /* The callback used to switch to the section, and the data that
-     should be passed to the callback.  */
-  unnamed_section_callback GTY ((skip)) callback;
-  const void *GTY ((skip)) data;
+    /* The callback used to switch to the section, and the data that
+       should be passed to the callback.  */
+    unnamed_section_callback GTY ((skip)) callback;
+    const void *GTY ((skip)) data;
 
-  /* The next entry in the chain of unnamed sections.  */
-  section *next;
+    /* The next entry in the chain of unnamed sections.  */
+    section *next;
 };
 
 /* A callback that writes the assembly code for a decl in a
@@ -478,23 +481,25 @@ struct GTY(()) unnamed_section {
    alignment.  A false return value implies that we are relying
    on the rounded size to align the decl.  */
 typedef bool (*noswitch_section_callback) (tree decl, const char *name,
-					   unsigned HOST_WIDE_INT size,
-					   unsigned HOST_WIDE_INT rounded);
+        unsigned HOST_WIDE_INT size,
+        unsigned HOST_WIDE_INT rounded);
 
 /* Information about a SECTION_NOSWITCH section.  */
-struct GTY(()) noswitch_section {
-  struct section_common common;
+struct GTY(()) noswitch_section
+{
+    struct section_common common;
 
-  /* The callback used to assemble decls in this section.  */
-  noswitch_section_callback GTY ((skip)) callback;
+    /* The callback used to assemble decls in this section.  */
+    noswitch_section_callback GTY ((skip)) callback;
 };
 
 /* Information about a section, which may be named or unnamed.  */
-union GTY ((desc ("SECTION_STYLE (&(%h))"), for_user)) section {
-  struct section_common GTY ((skip)) common;
-  struct named_section GTY ((tag ("SECTION_NAMED"))) named;
-  struct unnamed_section GTY ((tag ("SECTION_UNNAMED"))) unnamed;
-  struct noswitch_section GTY ((tag ("SECTION_NOSWITCH"))) noswitch;
+union GTY ((desc ("SECTION_STYLE (&(%h))"), for_user)) section
+{
+    struct section_common GTY ((skip)) common;
+    struct named_section GTY ((tag ("SECTION_NAMED"))) named;
+    struct unnamed_section GTY ((tag ("SECTION_UNNAMED"))) unnamed;
+    struct noswitch_section GTY ((tag ("SECTION_NOSWITCH"))) noswitch;
 };
 
 /* Return the style of section SECT.  */
@@ -522,17 +527,17 @@ extern GTY(()) section *in_section;
 extern GTY(()) bool in_cold_section_p;
 
 extern section *get_unnamed_section (unsigned int, void (*) (const void *),
-				     const void *);
+                                     const void *);
 extern section *get_section (const char *, unsigned int, tree,
-			     bool not_existing = false);
+                             bool not_existing = false);
 extern section *get_named_section (tree, const char *, int);
 extern section *get_variable_section (tree, bool);
 extern void place_block_symbol (rtx);
 extern rtx get_section_anchor (struct object_block *, HOST_WIDE_INT,
-			       enum tls_model);
+                               enum tls_model);
 extern section *mergeable_constant_section (machine_mode,
-					    unsigned HOST_WIDE_INT,
-					    unsigned int);
+        unsigned HOST_WIDE_INT,
+        unsigned int);
 extern section *function_section (tree);
 extern section *unlikely_text_section (void);
 extern section *current_function_section (void);
@@ -576,9 +581,9 @@ extern section *default_function_rodata_section (tree);
 extern section *default_no_function_rodata_section (tree);
 extern section *default_clone_table_section (void);
 extern section *default_select_rtx_section (machine_mode, rtx,
-					    unsigned HOST_WIDE_INT);
+        unsigned HOST_WIDE_INT);
 extern section *default_elf_select_rtx_section (machine_mode, rtx,
-						unsigned HOST_WIDE_INT);
+        unsigned HOST_WIDE_INT);
 extern void default_encode_section_info (tree, rtx, int);
 extern const char *default_strip_name_encoding (const char *);
 extern void default_asm_output_anchor (rtx);
@@ -592,16 +597,16 @@ extern void default_globalize_decl_name (FILE *, tree);
 extern void default_emit_unwind_label (FILE *, tree, int, int);
 extern void default_emit_except_table_label (FILE *);
 extern void default_generate_internal_label (char *, const char *,
-					     unsigned long);
+        unsigned long);
 extern void default_internal_label (FILE *, const char *, unsigned long);
 extern void default_asm_declare_constant_name (FILE *, const char *,
-					       const_tree, HOST_WIDE_INT);
+        const_tree, HOST_WIDE_INT);
 extern void default_file_start (void);
 extern void file_end_indicate_exec_stack (void);
 extern void file_end_indicate_split_stack (void);
 
 extern void default_elf_asm_output_external (FILE *file, tree,
-					     const char *);
+        const char *);
 extern void default_elf_asm_output_limited_string (FILE *, const char *);
 extern void default_elf_asm_output_ascii (FILE *, const char *, unsigned int);
 extern void default_elf_internal_label (FILE *, const char *, unsigned long);

@@ -72,8 +72,8 @@ extern "C" {
  */
 otError otPlatCRPCProcess(otInstance *aInstance,
                           uint8_t     aArgsLength,
-                          char *      aArgs[],
-                          char *      aOutput,
+                          char       *aArgs[],
+                          char       *aOutput,
                           size_t      aOutputMaxLen);
 
 /**

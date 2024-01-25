@@ -1,12 +1,12 @@
 /**
  * @file zb_freertos.c
  * @author Rex Huang (rex.huang@rafaelmicro.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2023-08-24
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 //=============================================================================
 //                Include
@@ -106,7 +106,7 @@ void zboss_signal_handler(zb_uint8_t param)
     if (param)
     {
         zb_buf_free(param);
-    }    
+    }
 }
 
 void zbSysEventSignalPending(void)
@@ -124,19 +124,21 @@ void zbSysEventSignalPending(void)
 
 void zbLock(void)
 {
-    if (zb_extLock) {
+    if (zb_extLock)
+    {
         xSemaphoreTake(zb_extLock, portMAX_DELAY);
     }
 }
 
 void zbUnlock(void)
 {
-    if (zb_extLock) {
+    if (zb_extLock)
+    {
         xSemaphoreGive(zb_extLock);
     }
 }
 
-static void zbSysProcessDrivers(void) 
+static void zbSysProcessDrivers(void)
 {
     zb_system_event_t sevent = ZB_SYSTEM_EVENT_NONE;
 
@@ -153,10 +155,10 @@ static void zbStackTask(void *aContext)
     {
         ZB_THREAD_SAFE (
             zbSysProcessDrivers();
-            if(zboss_start_run)
-            {         
-                zboss_main_loop_iteration();
-            }
+            if (zboss_start_run)
+    {
+        zboss_main_loop_iteration();
+        }
         );
 
         ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
@@ -181,9 +183,9 @@ void zbStart(void)
     zb_extLock = xSemaphoreCreateMutexStatic(&stackLock);
     configASSERT(zb_extLock != NULL);
     ZB_THREAD_SAFE (
-        ZB_INIT("RafaelZBee"); 
+        ZB_INIT("RafaelZBee");
         zb_taskHandle = xTaskCreateStatic(zbStackTask, "ZigBeeTask", ZB_TASK_SIZE, NULL, ZB_TASK_PRORITY, zb_stackTask_stack, &zb_task);
     );
 
-    
+
 }

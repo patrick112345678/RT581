@@ -32,48 +32,48 @@ zb_ret_t check_value_on_off_switch_config_server(zb_uint16_t attr_id, zb_uint8_t
 
 void zb_zcl_on_off_switch_config_init_server()
 {
-  zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_ON_OFF_SWITCH_CONFIG,
-                              ZB_ZCL_CLUSTER_SERVER_ROLE,
-                              check_value_on_off_switch_config_server,
-                              (zb_zcl_cluster_write_attr_hook_t)NULL,
-                              (zb_zcl_cluster_handler_t)NULL);
+    zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_ON_OFF_SWITCH_CONFIG,
+                                ZB_ZCL_CLUSTER_SERVER_ROLE,
+                                check_value_on_off_switch_config_server,
+                                (zb_zcl_cluster_write_attr_hook_t)NULL,
+                                (zb_zcl_cluster_handler_t)NULL);
 }
 
 void zb_zcl_on_off_switch_config_init_client()
 {
-  zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_ON_OFF_SWITCH_CONFIG,
-                              ZB_ZCL_CLUSTER_CLIENT_ROLE,
-                              (zb_zcl_cluster_check_value_t)NULL,
-                              (zb_zcl_cluster_write_attr_hook_t)NULL,
-                              (zb_zcl_cluster_handler_t)NULL);
+    zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_ON_OFF_SWITCH_CONFIG,
+                                ZB_ZCL_CLUSTER_CLIENT_ROLE,
+                                (zb_zcl_cluster_check_value_t)NULL,
+                                (zb_zcl_cluster_write_attr_hook_t)NULL,
+                                (zb_zcl_cluster_handler_t)NULL);
 }
 
 zb_ret_t check_value_on_off_switch_config_server(zb_uint16_t attr_id, zb_uint8_t endpoint, zb_uint8_t *value)
 {
-  zb_ret_t ret = RET_OK;
-  ZVUNUSED(endpoint);
+    zb_ret_t ret = RET_OK;
+    ZVUNUSED(endpoint);
 
-  switch( attr_id )
-  {
-  case ZB_ZCL_ATTR_ON_OFF_SWITCH_CONFIGURATION_SWITCH_TYPE_ID:
-    if( *value > ZB_ZCL_ON_OFF_SWITCH_CONFIGURATION_SWITCH_TYPE_MAX_VALUE )
+    switch ( attr_id )
     {
-      ret = RET_ERROR;
+    case ZB_ZCL_ATTR_ON_OFF_SWITCH_CONFIGURATION_SWITCH_TYPE_ID:
+        if ( *value > ZB_ZCL_ON_OFF_SWITCH_CONFIGURATION_SWITCH_TYPE_MAX_VALUE )
+        {
+            ret = RET_ERROR;
+        }
+        break;
+
+    case ZB_ZCL_ATTR_ON_OFF_SWITCH_CONFIGURATION_SWITCH_ACTIONS_ID:
+        if ( *value > ZB_ZCL_ON_OFF_SWITCH_CONFIGURATION_SWITCH_ACTIONS_MAX_VALUE )
+        {
+            ret = RET_ERROR;
+        }
+        break;
+
+    default:
+        break;
     }
-    break;
 
-  case ZB_ZCL_ATTR_ON_OFF_SWITCH_CONFIGURATION_SWITCH_ACTIONS_ID:
-    if( *value > ZB_ZCL_ON_OFF_SWITCH_CONFIGURATION_SWITCH_ACTIONS_MAX_VALUE )
-    {
-      ret = RET_ERROR;
-    }
-    break;
-
-  default:
-    break;
-  }
-
-  TRACE_MSG(TRACE_ZCL1, "check_value_on_off_switch_config ret %hd", (FMT__H, ret));
-  return ret;
+    TRACE_MSG(TRACE_ZCL1, "check_value_on_off_switch_config ret %hd", (FMT__H, ret));
+    return ret;
 }
 #endif /* ZB_ZCL_SUPPORT_CLUSTER_ON_OFF_SWITCH_CONFIG */

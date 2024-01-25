@@ -33,28 +33,28 @@
 
 namespace __gnu_debug
 {
-  class _Safe_sequence_base;
+class _Safe_sequence_base;
 
-  /** \brief Basic functionality for a @a safe iterator.
-   *
-   *  The %_Safe_iterator_base base class implements the functionality
-   *  of a safe iterator that is not specific to a particular iterator
-   *  type. It contains a pointer back to the sequence it references
-   *  along with iterator version information and pointers to form a
-   *  doubly-linked list of iterators referenced by the container.
-   *
-   *  This class must not perform any operations that can throw an
-   *  exception, or the exception guarantees of derived iterators will
-   *  be broken.
-   */
-  class _Safe_iterator_base
-  {
+/** \brief Basic functionality for a @a safe iterator.
+ *
+ *  The %_Safe_iterator_base base class implements the functionality
+ *  of a safe iterator that is not specific to a particular iterator
+ *  type. It contains a pointer back to the sequence it references
+ *  along with iterator version information and pointers to form a
+ *  doubly-linked list of iterators referenced by the container.
+ *
+ *  This class must not perform any operations that can throw an
+ *  exception, or the exception guarantees of derived iterators will
+ *  be broken.
+ */
+class _Safe_iterator_base
+{
     friend class _Safe_sequence_base;
 
-  public:
+public:
     /** The sequence this iterator references; may be NULL to indicate
-	a singular iterator. */
-    _Safe_sequence_base*	_M_sequence;
+    a singular iterator. */
+    _Safe_sequence_base    *_M_sequence;
 
     /** The version number of this iterator. The sentinel value 0 is
      *  used to indicate an invalidated iterator (i.e., one that is
@@ -63,20 +63,20 @@ namespace __gnu_debug
      *  referenced by _M_sequence for the iterator to be
      *  non-singular.
      */
-    unsigned int		_M_version;
+    unsigned int        _M_version;
 
     /** Pointer to the previous iterator in the sequence's list of
-	iterators. Only valid when _M_sequence != NULL. */
-    _Safe_iterator_base*	_M_prior;
+    iterators. Only valid when _M_sequence != NULL. */
+    _Safe_iterator_base    *_M_prior;
 
     /** Pointer to the next iterator in the sequence's list of
-	iterators. Only valid when _M_sequence != NULL. */
-    _Safe_iterator_base*	_M_next;
+    iterators. Only valid when _M_sequence != NULL. */
+    _Safe_iterator_base    *_M_next;
 
-  protected:
+protected:
     /** Initializes the iterator and makes it singular. */
     _Safe_iterator_base()
-    : _M_sequence(0), _M_version(0), _M_prior(0), _M_next(0)
+        : _M_sequence(0), _M_version(0), _M_prior(0), _M_next(0)
     { }
 
     /** Initialize the iterator to reference the sequence pointed to
@@ -86,65 +86,76 @@ namespace __gnu_debug
      *  singular. Otherwise, the iterator will reference @p __seq and
      *  be nonsingular.
      */
-    _Safe_iterator_base(const _Safe_sequence_base* __seq, bool __constant)
-    : _M_sequence(0), _M_version(0), _M_prior(0), _M_next(0)
-    { this->_M_attach(const_cast<_Safe_sequence_base*>(__seq), __constant); }
+    _Safe_iterator_base(const _Safe_sequence_base *__seq, bool __constant)
+        : _M_sequence(0), _M_version(0), _M_prior(0), _M_next(0)
+    {
+        this->_M_attach(const_cast<_Safe_sequence_base *>(__seq), __constant);
+    }
 
     /** Initializes the iterator to reference the same sequence that
-	@p __x does. @p __constant is true if this is a constant
-	iterator, and false if it is mutable. */
-    _Safe_iterator_base(const _Safe_iterator_base& __x, bool __constant)
-    : _M_sequence(0), _M_version(0), _M_prior(0), _M_next(0)
-    { this->_M_attach(__x._M_sequence, __constant); }
+    @p __x does. @p __constant is true if this is a constant
+    iterator, and false if it is mutable. */
+    _Safe_iterator_base(const _Safe_iterator_base &__x, bool __constant)
+        : _M_sequence(0), _M_version(0), _M_prior(0), _M_next(0)
+    {
+        this->_M_attach(__x._M_sequence, __constant);
+    }
 
-    ~_Safe_iterator_base() { this->_M_detach(); }
+    ~_Safe_iterator_base()
+    {
+        this->_M_detach();
+    }
 
     /** For use in _Safe_iterator. */
-    __gnu_cxx::__mutex&
+    __gnu_cxx::__mutex &
     _M_get_mutex() throw ();
 
     /** Attaches this iterator to the given sequence, detaching it
-     *	from whatever sequence it was attached to originally. If the
-     *	new sequence is the NULL pointer, the iterator is left
-     *	unattached.
+     *  from whatever sequence it was attached to originally. If the
+     *  new sequence is the NULL pointer, the iterator is left
+     *  unattached.
      */
     void
-    _M_attach(_Safe_sequence_base* __seq, bool __constant);
+    _M_attach(_Safe_sequence_base *__seq, bool __constant);
 
     /** Likewise, but not thread-safe. */
     void
-    _M_attach_single(_Safe_sequence_base* __seq, bool __constant) throw ();
+    _M_attach_single(_Safe_sequence_base *__seq, bool __constant) throw ();
 
     /** Detach the iterator for whatever sequence it is attached to,
-     *	if any.
+     *  if any.
     */
     void
     _M_detach();
 
-  public:
+public:
     /** Likewise, but not thread-safe. */
     void
     _M_detach_single() throw ();
 
     /** Determines if we are attached to the given sequence. */
     bool
-    _M_attached_to(const _Safe_sequence_base* __seq) const
-    { return _M_sequence == __seq; }
+    _M_attached_to(const _Safe_sequence_base *__seq) const
+    {
+        return _M_sequence == __seq;
+    }
 
     /** Is this iterator singular? */
     _GLIBCXX_PURE bool
     _M_singular() const throw ();
 
     /** Can we compare this iterator to the given iterator @p __x?
-	Returns true if both iterators are nonsingular and reference
-	the same sequence. */
+    Returns true if both iterators are nonsingular and reference
+    the same sequence. */
     _GLIBCXX_PURE bool
-    _M_can_compare(const _Safe_iterator_base& __x) const throw ();
+    _M_can_compare(const _Safe_iterator_base &__x) const throw ();
 
     /** Invalidate the iterator, making it singular. */
     void
     _M_invalidate()
-    { _M_version = 0; }
+    {
+        _M_version = 0;
+    }
 
     /** Reset all member variables */
     void
@@ -154,71 +165,82 @@ namespace __gnu_debug
     void
     _M_unlink() throw ()
     {
-      if (_M_prior)
-	_M_prior->_M_next = _M_next;
-      if (_M_next)
-	_M_next->_M_prior = _M_prior;
+        if (_M_prior)
+        {
+            _M_prior->_M_next = _M_next;
+        }
+        if (_M_next)
+        {
+            _M_next->_M_prior = _M_prior;
+        }
     }
-  };
+};
 
-  /** Iterators that derive from _Safe_iterator_base can be determined singular
-   *  or non-singular.
-   **/
-  inline bool
-  __check_singular_aux(const _Safe_iterator_base* __x)
-  { return __x->_M_singular(); }
+/** Iterators that derive from _Safe_iterator_base can be determined singular
+ *  or non-singular.
+ **/
+inline bool
+__check_singular_aux(const _Safe_iterator_base *__x)
+{
+    return __x->_M_singular();
+}
 
-  /**
-   * @brief Base class that supports tracking of iterators that
-   * reference a sequence.
-   *
-   * The %_Safe_sequence_base class provides basic support for
-   * tracking iterators into a sequence. Sequences that track
-   * iterators must derived from %_Safe_sequence_base publicly, so
-   * that safe iterators (which inherit _Safe_iterator_base) can
-   * attach to them. This class contains two linked lists of
-   * iterators, one for constant iterators and one for mutable
-   * iterators, and a version number that allows very fast
-   * invalidation of all iterators that reference the container.
-   *
-   * This class must ensure that no operation on it may throw an
-   * exception, otherwise @a safe sequences may fail to provide the
-   * exception-safety guarantees required by the C++ standard.
-   */
-  class _Safe_sequence_base
-  {
+/**
+ * @brief Base class that supports tracking of iterators that
+ * reference a sequence.
+ *
+ * The %_Safe_sequence_base class provides basic support for
+ * tracking iterators into a sequence. Sequences that track
+ * iterators must derived from %_Safe_sequence_base publicly, so
+ * that safe iterators (which inherit _Safe_iterator_base) can
+ * attach to them. This class contains two linked lists of
+ * iterators, one for constant iterators and one for mutable
+ * iterators, and a version number that allows very fast
+ * invalidation of all iterators that reference the container.
+ *
+ * This class must ensure that no operation on it may throw an
+ * exception, otherwise @a safe sequences may fail to provide the
+ * exception-safety guarantees required by the C++ standard.
+ */
+class _Safe_sequence_base
+{
     friend class _Safe_iterator_base;
 
-  public:
+public:
     /// The list of mutable iterators that reference this container
-    _Safe_iterator_base* _M_iterators;
+    _Safe_iterator_base *_M_iterators;
 
     /// The list of constant iterators that reference this container
-    _Safe_iterator_base* _M_const_iterators;
+    _Safe_iterator_base *_M_const_iterators;
 
     /// The container version number. This number may never be 0.
     mutable unsigned int _M_version;
 
-  protected:
+protected:
     // Initialize with a version number of 1 and no iterators
     _Safe_sequence_base() _GLIBCXX_NOEXCEPT
-    : _M_iterators(0), _M_const_iterators(0), _M_version(1)
+:
+    _M_iterators(0), _M_const_iterators(0), _M_version(1)
     { }
 
 #if __cplusplus >= 201103L
-    _Safe_sequence_base(const _Safe_sequence_base&) noexcept
-    : _Safe_sequence_base() { }
+    _Safe_sequence_base(const _Safe_sequence_base &) noexcept
+        : _Safe_sequence_base() { }
 
     // Move constructor swap iterators.
-    _Safe_sequence_base(_Safe_sequence_base&& __seq) noexcept
-    : _Safe_sequence_base()
-    { _M_swap(__seq); }
+    _Safe_sequence_base(_Safe_sequence_base &&__seq) noexcept
+        : _Safe_sequence_base()
+    {
+        _M_swap(__seq);
+    }
 #endif
 
     /** Notify all iterators that reference this sequence that the
-	sequence is being destroyed. */
+    sequence is being destroyed. */
     ~_Safe_sequence_base()
-    { this->_M_detach_all(); }
+    {
+        this->_M_detach_all();
+    }
 
     /** Detach all iterators, leaving them singular. */
     void
@@ -245,34 +267,39 @@ namespace __gnu_debug
      *  one container now reference the other container.
      */
     void
-    _M_swap(_Safe_sequence_base& __x) _GLIBCXX_USE_NOEXCEPT;
+    _M_swap(_Safe_sequence_base &__x) _GLIBCXX_USE_NOEXCEPT;
 
     /** For use in _Safe_sequence. */
-    __gnu_cxx::__mutex&
+    __gnu_cxx::__mutex &
     _M_get_mutex() throw ();
 
     /** Invalidates all iterators. */
     void
     _M_invalidate_all() const
-    { if (++_M_version == 0) _M_version = 1; }
+    {
+        if (++_M_version == 0)
+        {
+            _M_version = 1;
+        }
+    }
 
-  private:
+private:
     /** Attach an iterator to this sequence. */
     void
-    _M_attach(_Safe_iterator_base* __it, bool __constant);
+    _M_attach(_Safe_iterator_base *__it, bool __constant);
 
     /** Likewise but not thread safe. */
     void
-    _M_attach_single(_Safe_iterator_base* __it, bool __constant) throw ();
+    _M_attach_single(_Safe_iterator_base *__it, bool __constant) throw ();
 
     /** Detach an iterator from this sequence */
     void
-    _M_detach(_Safe_iterator_base* __it);
+    _M_detach(_Safe_iterator_base *__it);
 
     /** Likewise but not thread safe. */
     void
-    _M_detach_single(_Safe_iterator_base* __it) throw ();
-  };
+    _M_detach_single(_Safe_iterator_base *__it) throw ();
+};
 } // namespace __gnu_debug
 
 #endif

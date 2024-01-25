@@ -35,22 +35,22 @@ void bulb_app_ctx_init();
 
 typedef enum aps_unencrypted_tkey_tests_button_state_s
 {
-  APS_UNENCRYPTED_TKEY_TESTS_ZR_BUTTON_STATE_IDLE,
-  APS_UNENCRYPTED_TKEY_TESTS_ZR_BUTTON_STATE_PRESSED,
-  APS_UNENCRYPTED_TKEY_TESTS_ZR_BUTTON_STATE_UNPRESSED
+    APS_UNENCRYPTED_TKEY_TESTS_ZR_BUTTON_STATE_IDLE,
+    APS_UNENCRYPTED_TKEY_TESTS_ZR_BUTTON_STATE_PRESSED,
+    APS_UNENCRYPTED_TKEY_TESTS_ZR_BUTTON_STATE_UNPRESSED
 } aps_unencrypted_tkey_tests_button_state_t;
 
 #define APS_UNENCRYPTED_TKEY_TESTS_ZR_BUTTON_DEBOUNCE_PERIOD ZB_MILLISECONDS_TO_BEACON_INTERVAL(50)
 
 typedef struct aps_unencrypted_tkey_tests_zr_button_s
 {
-  aps_unencrypted_tkey_tests_button_state_t button_state;
-  zb_time_t timestamp;
+    aps_unencrypted_tkey_tests_button_state_t button_state;
+    zb_time_t timestamp;
 } aps_unencrypted_tkey_tests_zr_button_t;
 
 typedef struct aps_unencrypted_tkey_tests_zr_ctx_s
 {
-  aps_unencrypted_tkey_tests_zr_button_t button_leave_net;
+    aps_unencrypted_tkey_tests_zr_button_t button_leave_net;
 }
 aps_unencrypted_tkey_tests_zr_ctx_t;
 

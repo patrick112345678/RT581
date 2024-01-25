@@ -31,29 +31,28 @@
 */
 void configure_reporting_resp_handler_sample(zb_buf_t *cmd_buf)
 {
-  zb_zcl_configure_reporting_res_t *config_rep_resp;
+    zb_zcl_configure_reporting_res_t *config_rep_resp;
 
-  TRACE_MSG(TRACE_ZCL1, ">> sample handling configure reporting resp %p", (FMT__P, cmd_buf));
+    TRACE_MSG(TRACE_ZCL1, ">> sample handling configure reporting resp %p", (FMT__P, cmd_buf));
 
-  do
-  {
-    ZB_ZCL_GET_NEXT_CONFIGURE_REPORTING_RES(cmd_buf, config_rep_resp);
-    TRACE_MSG(TRACE_ZCL3, "config_rep_resp %p", (FMT__P, config_rep_resp));
-    if (config_rep_resp)
+    do
     {
-      if (config_rep_resp->status == ZB_ZCL_STATUS_SUCCESS)
-      {
-        TRACE_MSG(TRACE_ZCL2, "all configure reporting records were applied OK", (FMT__0));
-        break;
-      }
-      else
-      {
-        TRACE_MSG(TRACE_ZCL2, "Error while setting configure reporting: status %hd, direction %hd, attr id %d",
-                  (FMT__H_H_D, config_rep_resp->status, config_rep_resp->direction, config_rep_resp->attr_id));
-      }
-    }
-  }
-  while (config_rep_resp);
+        ZB_ZCL_GET_NEXT_CONFIGURE_REPORTING_RES(cmd_buf, config_rep_resp);
+        TRACE_MSG(TRACE_ZCL3, "config_rep_resp %p", (FMT__P, config_rep_resp));
+        if (config_rep_resp)
+        {
+            if (config_rep_resp->status == ZB_ZCL_STATUS_SUCCESS)
+            {
+                TRACE_MSG(TRACE_ZCL2, "all configure reporting records were applied OK", (FMT__0));
+                break;
+            }
+            else
+            {
+                TRACE_MSG(TRACE_ZCL2, "Error while setting configure reporting: status %hd, direction %hd, attr id %d",
+                          (FMT__H_H_D, config_rep_resp->status, config_rep_resp->direction, config_rep_resp->attr_id));
+            }
+        }
+    } while (config_rep_resp);
 
-  TRACE_MSG(TRACE_ZCL1, "<< sample handling configure reporting resp", (FMT__0));
+    TRACE_MSG(TRACE_ZCL1, "<< sample handling configure reporting resp", (FMT__0));
 }

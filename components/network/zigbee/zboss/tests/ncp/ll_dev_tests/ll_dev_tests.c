@@ -55,19 +55,21 @@
 #define ZB_NCP_TRANSPORT_MAX_SIZE (TEST_SEND_SIZE + 2)
 
 
-typedef struct {
-  zb_uint8_t pack_num;
-  zb_uint8_t size;
-  zb_uint8_t payload[TEST_SEND_SIZE - 2];
+typedef struct
+{
+    zb_uint8_t pack_num;
+    zb_uint8_t size;
+    zb_uint8_t payload[TEST_SEND_SIZE - 2];
 } test_msg_t;
 
 
 static volatile zb_uint8_t cnt = 0;
 static volatile zb_uint8_t send_cnt = 0;
 static zb_uint8_t rx_message[ZB_NCP_TRANSPORT_MAX_SIZE];
-static zbncp_memref_t rx_message_mem = {
-  .ptr = rx_message,
-  .size = ZB_NCP_TRANSPORT_MAX_SIZE
+static zbncp_memref_t rx_message_mem =
+{
+    .ptr = rx_message,
+    .size = ZB_NCP_TRANSPORT_MAX_SIZE
 };
 
 static void test_ncp_receive_cb(zbncp_tr_cb_arg_t arg, zbncp_size_t size);
@@ -75,11 +77,12 @@ static void test_ncp_send_cb(zbncp_tr_cb_arg_t arg, zbncp_tr_send_status_t param
 static void test_ncp_init_cb(zbncp_tr_cb_arg_t arg);
 
 static zbncp_transport_t ncpdev_transport;
-static zbncp_transport_cb_t test_callbacks = {
-  .init = test_ncp_init_cb,
-  .send = test_ncp_send_cb,
-  .recv = test_ncp_receive_cb,
-  .arg = NULL
+static zbncp_transport_cb_t test_callbacks =
+{
+    .init = test_ncp_init_cb,
+    .send = test_ncp_send_cb,
+    .recv = test_ncp_receive_cb,
+    .arg = NULL
 };
 
 
@@ -97,63 +100,63 @@ static void simple_send(zb_uint8_t param);
 
 static void test_ncp_send_cb(zbncp_tr_cb_arg_t arg, zbncp_tr_send_status_t param)
 {
-  ZVUNUSED(arg);
-  ZVUNUSED(param);
-  TRACE_MSG(TRACE_APP1, "Send status: %d", (FMT__D, param));
+    ZVUNUSED(arg);
+    ZVUNUSED(param);
+    TRACE_MSG(TRACE_APP1, "Send status: %d", (FMT__D, param));
 }
 
 #ifdef TEST_SEND_BINARY_MSG
-static zb_ret_t verify_bin_test_msg(test_msg_t * test_msg, zb_uint8_t size)
+static zb_ret_t verify_bin_test_msg(test_msg_t *test_msg, zb_uint8_t size)
 {
-  zb_uint8_t data = 0;
-  zb_uint8_t i = 0;
+    zb_uint8_t data = 0;
+    zb_uint8_t i = 0;
 
-  if (test_msg->size != size)
-  {
-    return RET_ERROR;
-  }
-
-  data = (test_msg->pack_num & 0x01 ? TEST_STATS_ODD_BYTE : TEST_STATS_EVEN_BYTE);
-  for (i = 0; i < test_msg->size - 2; i++)
-  {
-    if (test_msg->payload[i] != data)
+    if (test_msg->size != size)
     {
-      return RET_ERROR;
+        return RET_ERROR;
     }
-  }
 
-  return RET_OK;
+    data = (test_msg->pack_num & 0x01 ? TEST_STATS_ODD_BYTE : TEST_STATS_EVEN_BYTE);
+    for (i = 0; i < test_msg->size - 2; i++)
+    {
+        if (test_msg->payload[i] != data)
+        {
+            return RET_ERROR;
+        }
+    }
+
+    return RET_OK;
 }
 
-static void create_bin_test_msg(zb_uint8_t pack_num, test_msg_t * test_msg, zb_uint8_t size)
+static void create_bin_test_msg(zb_uint8_t pack_num, test_msg_t *test_msg, zb_uint8_t size)
 {
-  zb_uint8_t data = 0;
+    zb_uint8_t data = 0;
 
-  test_msg->pack_num = pack_num;
-  test_msg->size = size;
+    test_msg->pack_num = pack_num;
+    test_msg->size = size;
 
-  data = (pack_num & 0x01 ? TEST_STATS_ODD_BYTE : TEST_STATS_EVEN_BYTE);
-  ZB_MEMSET(test_msg->payload, data, size - 2);
+    data = (pack_num & 0x01 ? TEST_STATS_ODD_BYTE : TEST_STATS_EVEN_BYTE);
+    ZB_MEMSET(test_msg->payload, data, size - 2);
 }
 
 #else /* TEST_SEND_BINARY_MSG */
 
-static void create_txt_test_msg(zb_uint8_t pack_num, test_msg_t * test_msg, zb_uint8_t size)
+static void create_txt_test_msg(zb_uint8_t pack_num, test_msg_t *test_msg, zb_uint8_t size)
 {
-  zb_uindex_t start_idx = 0;
-  zb_uint8_t temp_buf[] = PACKET_TO_MASTER;
-  zb_uint8_t * p_txbuf = (zb_uint8_t *)test_msg;
+    zb_uindex_t start_idx = 0;
+    zb_uint8_t temp_buf[] = PACKET_TO_MASTER;
+    zb_uint8_t *p_txbuf = (zb_uint8_t *)test_msg;
 
-  temp_buf[PACKET_TO_MASTER_SIZE-4] = ((pack_num / 100) % 10) + '0';
-  temp_buf[PACKET_TO_MASTER_SIZE-3] = ((pack_num / 10) % 10) + '0';
-  temp_buf[PACKET_TO_MASTER_SIZE-2] = (pack_num % 10) + '0';
+    temp_buf[PACKET_TO_MASTER_SIZE - 4] = ((pack_num / 100) % 10) + '0';
+    temp_buf[PACKET_TO_MASTER_SIZE - 3] = ((pack_num / 10) % 10) + '0';
+    temp_buf[PACKET_TO_MASTER_SIZE - 2] = (pack_num % 10) + '0';
 
-  ZB_MEMSET(p_txbuf, '-', size);
+    ZB_MEMSET(p_txbuf, '-', size);
 
-  start_idx = (size >= PACKET_TO_MASTER_SIZE ? 0 : (PACKET_TO_MASTER_SIZE - size));
-  ZB_MEMCPY(&p_txbuf[size - (PACKET_TO_MASTER_SIZE - start_idx)],
-    &temp_buf[start_idx],
-    PACKET_TO_MASTER_SIZE - start_idx);
+    start_idx = (size >= PACKET_TO_MASTER_SIZE ? 0 : (PACKET_TO_MASTER_SIZE - size));
+    ZB_MEMCPY(&p_txbuf[size - (PACKET_TO_MASTER_SIZE - start_idx)],
+              &temp_buf[start_idx],
+              PACKET_TO_MASTER_SIZE - start_idx);
 }
 
 #endif /* TEST_SEND_BINARY_MSG */
@@ -161,125 +164,125 @@ static void create_txt_test_msg(zb_uint8_t pack_num, test_msg_t * test_msg, zb_u
 
 static void test_ncp_receive_cb(zbncp_tr_cb_arg_t arg, zbncp_size_t size)
 {
-  ZVUNUSED(arg);
+    ZVUNUSED(arg);
 
 #ifdef TEST_STATS
-  stats_add(rx_message, size);
+    stats_add(rx_message, size);
 #endif /* TEST_STATS */
 
 #ifdef TEST_SEND_BINARY_MSG
-  if (verify_bin_test_msg((test_msg_t *)rx_message, size) != RET_OK)
-  {
-    TRACE_MSG(TRACE_APP1, "Received incorrect payload after sending %d packet", (FMT__D, pack_num));
-    ZB_ABORT();
-  }
-  if (((test_msg_t *)rx_message)->pack_num == TEST_SIMPLE_SEND_PACKS_NUM -1)
-  {
-    TRACE_MSG(TRACE_APP1, "Received packs: %d", (FMT__D, ((test_msg_t *)rx_message)->pack_num + 1));
-    TRACE_MSG(TRACE_APP1, "TEST PASSED", (FMT__0));
-  }
+    if (verify_bin_test_msg((test_msg_t *)rx_message, size) != RET_OK)
+    {
+        TRACE_MSG(TRACE_APP1, "Received incorrect payload after sending %d packet", (FMT__D, pack_num));
+        ZB_ABORT();
+    }
+    if (((test_msg_t *)rx_message)->pack_num == TEST_SIMPLE_SEND_PACKS_NUM - 1)
+    {
+        TRACE_MSG(TRACE_APP1, "Received packs: %d", (FMT__D, ((test_msg_t *)rx_message)->pack_num + 1));
+        TRACE_MSG(TRACE_APP1, "TEST PASSED", (FMT__0));
+    }
 #endif /* TEST_SEND_BINARY_MSG */
-  zbncp_transport_recv(&ncpdev_transport, rx_message_mem);
+    zbncp_transport_recv(&ncpdev_transport, rx_message_mem);
 
 #ifdef TEST_SIMPLE_SEND
-  simple_send_cb(0);
+    simple_send_cb(0);
 #endif
 }
 
 
 static void test_ncp_init_cb(zbncp_tr_cb_arg_t arg)
 {
-  ZVUNUSED(arg);
-  zbncp_transport_recv(&ncpdev_transport, rx_message_mem);
+    ZVUNUSED(arg);
+    zbncp_transport_recv(&ncpdev_transport, rx_message_mem);
 
 #ifdef TEST_SIMPLE_SEND
-  test_simple_send();
+    test_simple_send();
 #endif /* TEST_SIMPLE_SEND */
 
 #ifdef TEST_STATS
-  ZB_SCHEDULE_ALARM(stats_print, 0,
-                    ZB_MILLISECONDS_TO_BEACON_INTERVAL(TEST_STATS_PERIOD_MS));
+    ZB_SCHEDULE_ALARM(stats_print, 0,
+                      ZB_MILLISECONDS_TO_BEACON_INTERVAL(TEST_STATS_PERIOD_MS));
 #endif /* TEST_STATS */
 }
 
 #ifdef TEST_SIMPLE_SEND
 static void simple_send_cb(zb_uint8_t param)
 {
-  ZVUNUSED(param);
+    ZVUNUSED(param);
 
-  if (pack_num < TEST_SIMPLE_SEND_PACKS_NUM)
-  {
-    ZB_SCHEDULE_ALARM(simple_send, 0,
-                        ZB_MILLISECONDS_TO_BEACON_INTERVAL(TEST_SIMPLE_SEND_PERIOD_MS));
-  }
-  else
-  {
-    TRACE_MSG(TRACE_APP1, "Sent packs: %d", (FMT__D, pack_num));
-  }
+    if (pack_num < TEST_SIMPLE_SEND_PACKS_NUM)
+    {
+        ZB_SCHEDULE_ALARM(simple_send, 0,
+                          ZB_MILLISECONDS_TO_BEACON_INTERVAL(TEST_SIMPLE_SEND_PERIOD_MS));
+    }
+    else
+    {
+        TRACE_MSG(TRACE_APP1, "Sent packs: %d", (FMT__D, pack_num));
+    }
 }
 
 static void simple_send(zb_uint8_t param)
 {
-  static test_msg_t msg;
-  zbncp_cmemref_t mem;
+    static test_msg_t msg;
+    zbncp_cmemref_t mem;
 
-  ZVUNUSED(param);
+    ZVUNUSED(param);
 
 #ifdef TEST_SEND_INCREMENTAL_SIZE
     size++;
     if (size >= TEST_SEND_SIZE)
     {
-      size = 5;
+        size = 5;
     }
 #endif /* TEST_SEND_INCREMENTAL_SIZE */
 
 #ifdef TEST_SEND_BINARY_MSG
-  create_bin_test_msg(pack_num, &msg, size);
+    create_bin_test_msg(pack_num, &msg, size);
 #else /* TEST_SEND_BINARY_MSG */
-  create_txt_test_msg(pack_num, &msg, size);
+    create_txt_test_msg(pack_num, &msg, size);
 #endif /* TEST_SEND_BINARY_MSG */
 
-  mem.ptr = &msg;
-  mem.size = size;
-  zbncp_transport_send(&ncpdev_transport, mem);
-  pack_num++;
+    mem.ptr = &msg;
+    mem.size = size;
+    zbncp_transport_send(&ncpdev_transport, mem);
+    pack_num++;
 }
 
 static void test_simple_send(void)
 {
-  pack_num = 0;
-  size = TEST_SEND_SIZE;
-  ZB_SCHEDULE_ALARM(simple_send, 0,
-                    ZB_MILLISECONDS_TO_BEACON_INTERVAL(TEST_SIMPLE_SEND_PERIOD_MS));
+    pack_num = 0;
+    size = TEST_SEND_SIZE;
+    ZB_SCHEDULE_ALARM(simple_send, 0,
+                      ZB_MILLISECONDS_TO_BEACON_INTERVAL(TEST_SIMPLE_SEND_PERIOD_MS));
 }
 
 #endif /* TEST_SIMPLE_SEND */
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
 #if ZB_TRACE_LEVEL
-  ZB_SET_TRACE_ON();
-  ZB_SET_TRAF_DUMP_OFF();
+    ZB_SET_TRACE_ON();
+    ZB_SET_TRAF_DUMP_OFF();
 #endif /* ZB_TRACE_LEVEL */
 
-  ZB_INIT("NCP device transport test");
+    ZB_INIT("NCP device transport test");
 
-  zbncp_transport_construct(&ncpdev_transport, ncp_dev_transport_create());
-  zbncp_transport_init(&ncpdev_transport, &test_callbacks);
+    zbncp_transport_construct(&ncpdev_transport, ncp_dev_transport_create());
+    zbncp_transport_init(&ncpdev_transport, &test_callbacks);
 
-  zboss_main_loop();
+    zboss_main_loop();
 
-  TRACE_DEINIT();
-  MAIN_RETURN(0);
+    TRACE_DEINIT();
+    MAIN_RETURN(0);
 }
 
 void zboss_signal_handler(zb_uint8_t param)
 {
-  if (param)
-  {
-    zb_buf_free(param);
-  }
+    if (param)
+    {
+        zb_buf_free(param);
+    }
 
 }

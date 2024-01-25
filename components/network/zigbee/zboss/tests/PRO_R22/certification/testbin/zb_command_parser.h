@@ -27,7 +27,7 @@
 typedef zb_bool_t (param_handler_function_t) (char *key, char *value);
 
 /**
- * Reads tokens: only alphanumeric charachers and '_-' are allowed 
+ * Reads tokens: only alphanumeric charachers and '_-' are allowed
  * @param ptr - points to string pointer, will be moved
  * @param dst - buffer to store parsed token
  * @param max_len - size of buffer pointed to by dst

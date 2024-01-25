@@ -49,7 +49,7 @@
  */
 static inline void zbncp_mem_copy(void *dest, const void *src, zbncp_size_t size)
 {
-  (void) memcpy(dest, src, (size_t)size);
+    (void) memcpy(dest, src, (size_t)size);
 }
 
 /**
@@ -65,7 +65,7 @@ static inline void zbncp_mem_copy(void *dest, const void *src, zbncp_size_t size
  */
 static inline void zbncp_mem_move(void *dest, const void *src, zbncp_size_t size)
 {
-  (void) memcpy(dest, src, (size_t)size);
+    (void) memcpy(dest, src, (size_t)size);
 }
 
 /**
@@ -81,7 +81,7 @@ static inline void zbncp_mem_move(void *dest, const void *src, zbncp_size_t size
  */
 static inline void zbncp_mem_fill(void *mem, zbncp_size_t size, zbncp_uint8_t val)
 {
-  (void) memset(mem, (int)(unsigned)val, (size_t)size);
+    (void) memset(mem, (int)(unsigned)val, (size_t)size);
 }
 
 #else
@@ -140,7 +140,7 @@ void zbncp_mem_fill(void *mem, zbncp_size_t size, zbncp_uint8_t val);
  */
 static inline void zbncp_mem_zero(void *mem, zbncp_size_t size)
 {
-  zbncp_mem_fill(mem, size, 0u);
+    zbncp_mem_fill(mem, size, 0u);
 }
 
 /**
@@ -155,8 +155,8 @@ static inline void zbncp_mem_zero(void *mem, zbncp_size_t size)
  */
 static inline char *zbncp_offset_ptr(void *mem, zbncp_size_t offset)
 {
-  char *ptr = (char *) mem;
-  return &ptr[offset];
+    char *ptr = (char *) mem;
+    return &ptr[offset];
 }
 
 /**
@@ -167,8 +167,8 @@ static inline char *zbncp_offset_ptr(void *mem, zbncp_size_t offset)
  */
 typedef struct zbncp_memref_s
 {
-  void *ptr;            /**< Pointer to the memory buffer */
-  zbncp_size_t size;    /**< Size of the memory buffer */
+    void *ptr;            /**< Pointer to the memory buffer */
+    zbncp_size_t size;    /**< Size of the memory buffer */
 }
 zbncp_memref_t;
 
@@ -187,8 +187,8 @@ zbncp_memref_t;
  */
 static inline void zbncp_mem_unused(const void *ptr, zbncp_size_t size)
 {
-  ZBNCP_UNUSED(ptr);
-  ZBNCP_UNUSED(size);
+    ZBNCP_UNUSED(ptr);
+    ZBNCP_UNUSED(size);
 }
 
 /**
@@ -201,11 +201,11 @@ static inline void zbncp_mem_unused(const void *ptr, zbncp_size_t size)
  */
 static inline zbncp_memref_t zbncp_make_memref(void *ptr, zbncp_size_t size)
 {
-  zbncp_memref_t mem;
-  mem.ptr = ptr;
-  mem.size = size;
-  zbncp_mem_unused(mem.ptr, mem.size);
-  return mem;
+    zbncp_memref_t mem;
+    mem.ptr = ptr;
+    mem.size = size;
+    zbncp_mem_unused(mem.ptr, mem.size);
+    return mem;
 }
 
 /**
@@ -215,7 +215,7 @@ static inline zbncp_memref_t zbncp_make_memref(void *ptr, zbncp_size_t size)
  */
 static inline zbncp_memref_t zbncp_memref_null(void)
 {
-  return zbncp_make_memref(ZBNCP_NULL, 0u);
+    return zbncp_make_memref(ZBNCP_NULL, 0u);
 }
 
 /**
@@ -227,7 +227,7 @@ static inline zbncp_memref_t zbncp_memref_null(void)
  */
 static inline zbncp_bool_t zbncp_memref_is_null(zbncp_memref_t mem)
 {
-  return (mem.ptr == ZBNCP_NULL);
+    return (mem.ptr == ZBNCP_NULL);
 }
 
 /**
@@ -239,7 +239,7 @@ static inline zbncp_bool_t zbncp_memref_is_null(zbncp_memref_t mem)
  */
 static inline zbncp_bool_t zbncp_memref_is_empty(zbncp_memref_t mem)
 {
-  return (mem.size == 0u);
+    return (mem.size == 0u);
 }
 
 /**
@@ -251,7 +251,7 @@ static inline zbncp_bool_t zbncp_memref_is_empty(zbncp_memref_t mem)
  */
 static inline zbncp_bool_t zbncp_memref_is_valid(zbncp_memref_t mem)
 {
-  return (!zbncp_memref_is_null(mem) && !zbncp_memref_is_empty(mem));
+    return (!zbncp_memref_is_null(mem) && !zbncp_memref_is_empty(mem));
 }
 
 /**
@@ -266,7 +266,7 @@ static inline zbncp_bool_t zbncp_memref_is_valid(zbncp_memref_t mem)
  */
 static inline char *zbncp_memref_at(zbncp_memref_t mem, zbncp_size_t offset)
 {
-  return ((offset < mem.size) ? zbncp_offset_ptr(mem.ptr, offset) : ZBNCP_NULL);
+    return ((offset < mem.size) ? zbncp_offset_ptr(mem.ptr, offset) : ZBNCP_NULL);
 }
 
 /**
@@ -281,9 +281,9 @@ static inline char *zbncp_memref_at(zbncp_memref_t mem, zbncp_size_t offset)
  */
 static inline zbncp_size_t zbncp_memref_shrink(zbncp_memref_t *mem, zbncp_size_t size)
 {
-  zbncp_size_t delta = size_min(size, mem->size);
-  mem->size -= delta;
-  return delta;
+    zbncp_size_t delta = size_min(size, mem->size);
+    mem->size -= delta;
+    return delta;
 }
 
 /**
@@ -298,8 +298,8 @@ static inline zbncp_size_t zbncp_memref_shrink(zbncp_memref_t *mem, zbncp_size_t
  */
 static inline void zbncp_memref_advance(zbncp_memref_t *mem, zbncp_size_t offset)
 {
-  zbncp_size_t delta = zbncp_memref_shrink(mem, offset);
-  mem->ptr = zbncp_offset_ptr(mem->ptr, delta);  
+    zbncp_size_t delta = zbncp_memref_shrink(mem, offset);
+    mem->ptr = zbncp_offset_ptr(mem->ptr, delta);
 }
 
 /**
@@ -310,8 +310,8 @@ static inline void zbncp_memref_advance(zbncp_memref_t *mem, zbncp_size_t offset
  */
 typedef struct zbncp_cmemref_s
 {
-  const void *ptr;      /**< Constant pointer to the memory buffer */
-  zbncp_size_t size;    /**< Size of the memory buffer */
+    const void *ptr;      /**< Constant pointer to the memory buffer */
+    zbncp_size_t size;    /**< Size of the memory buffer */
 }
 zbncp_cmemref_t;
 
@@ -325,11 +325,11 @@ zbncp_cmemref_t;
  */
 static inline zbncp_cmemref_t zbncp_make_cmemref(const void *ptr, zbncp_size_t size)
 {
-  zbncp_cmemref_t mem;
-  mem.ptr = ptr;
-  mem.size = size;
-  zbncp_mem_unused(mem.ptr, mem.size);
-  return mem;
+    zbncp_cmemref_t mem;
+    mem.ptr = ptr;
+    mem.size = size;
+    zbncp_mem_unused(mem.ptr, mem.size);
+    return mem;
 }
 
 /**
@@ -339,7 +339,7 @@ static inline zbncp_cmemref_t zbncp_make_cmemref(const void *ptr, zbncp_size_t s
  */
 static inline zbncp_cmemref_t zbncp_cmemref_null(void)
 {
-  return zbncp_make_cmemref(ZBNCP_NULL, 0u);
+    return zbncp_make_cmemref(ZBNCP_NULL, 0u);
 }
 
 /**
@@ -351,7 +351,7 @@ static inline zbncp_cmemref_t zbncp_cmemref_null(void)
  */
 static inline zbncp_bool_t zbncp_cmemref_is_null(zbncp_cmemref_t mem)
 {
-  return (mem.ptr == ZBNCP_NULL);
+    return (mem.ptr == ZBNCP_NULL);
 }
 
 /**
@@ -363,7 +363,7 @@ static inline zbncp_bool_t zbncp_cmemref_is_null(zbncp_cmemref_t mem)
  */
 static inline zbncp_bool_t zbncp_cmemref_is_empty(zbncp_cmemref_t mem)
 {
-  return (mem.size == 0u);
+    return (mem.size == 0u);
 }
 
 /**
@@ -376,7 +376,7 @@ static inline zbncp_bool_t zbncp_cmemref_is_empty(zbncp_cmemref_t mem)
  */
 static inline zbncp_bool_t zbncp_cmemref_is_valid(zbncp_cmemref_t mem)
 {
-  return (!zbncp_cmemref_is_null(mem) && !zbncp_cmemref_is_empty(mem));
+    return (!zbncp_cmemref_is_null(mem) && !zbncp_cmemref_is_empty(mem));
 }
 
 #endif /* ZBNCP_INCLUDE_GUARD_MEM_H */

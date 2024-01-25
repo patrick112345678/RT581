@@ -37,11 +37,11 @@ void setup_debug_report(void);
 
 typedef struct dl_wwah_app_event_retry_ctx_s
 {
-  dl_door_lock_queue_t door_lock_queue;
+    dl_door_lock_queue_t door_lock_queue;
 
-  zb_zcl_wwah_enable_wwah_app_event_retry_algorithm_t params;
-  zb_uint_t failed_attempts;
-  zb_bufid_t pending_buf;
+    zb_zcl_wwah_enable_wwah_app_event_retry_algorithm_t params;
+    zb_uint_t failed_attempts;
+    zb_bufid_t pending_buf;
 } dl_wwah_app_event_retry_ctx_t;
 
 zb_bool_t dl_wwah_app_event_retry_should_discard_event(zb_uint8_t failed_attempts);

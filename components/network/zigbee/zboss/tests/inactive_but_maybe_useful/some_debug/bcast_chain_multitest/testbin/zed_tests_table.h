@@ -32,12 +32,13 @@ void TP_BCAST_CHAIN_BCAST_CHAIN_ZED2_main();
 void TP_BCAST_CHAIN_BCAST_CHAIN_ZED2_zb_zdo_startup_complete(zb_uint8_t param);
 void NVRAM_ERASE_main();
 
-static const zb_test_table_t s_tests_table[] = {
+static const zb_test_table_t s_tests_table[] =
+{
 #if defined ZB_TEST_GROUP_ZCP_R22_BCAST
-{ "TP_BCAST_CHAIN_BCAST_CHAIN_ZED1", TP_BCAST_CHAIN_BCAST_CHAIN_ZED1_main, TP_BCAST_CHAIN_BCAST_CHAIN_ZED1_zb_zdo_startup_complete },
-{ "TP_BCAST_CHAIN_BCAST_CHAIN_ZED2", TP_BCAST_CHAIN_BCAST_CHAIN_ZED2_main, TP_BCAST_CHAIN_BCAST_CHAIN_ZED2_zb_zdo_startup_complete },
-#endif 
-{ "NVRAM_ERASE", NVRAM_ERASE_main, NULL},
+    { "TP_BCAST_CHAIN_BCAST_CHAIN_ZED1", TP_BCAST_CHAIN_BCAST_CHAIN_ZED1_main, TP_BCAST_CHAIN_BCAST_CHAIN_ZED1_zb_zdo_startup_complete },
+    { "TP_BCAST_CHAIN_BCAST_CHAIN_ZED2", TP_BCAST_CHAIN_BCAST_CHAIN_ZED2_main, TP_BCAST_CHAIN_BCAST_CHAIN_ZED2_zb_zdo_startup_complete },
+#endif
+    { "NVRAM_ERASE", NVRAM_ERASE_main, NULL},
 };
 
 #endif /* ZED_TESTS_TABLE_H */

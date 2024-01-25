@@ -102,338 +102,338 @@ static void send_write_wrong_attr_undiv(zb_uint8_t param);
 
 MAIN()
 {
-  ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
-  ZB_SET_TRACE_LEVEL(4);
-  ARGV_UNUSED;
+    ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
+    ZB_SET_TRACE_LEVEL(4);
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("zdo_th_zr");
-
-
-  zb_set_long_address(g_ieee_addr_th_zr1);
-
-  zb_reg_test_set_common_channel_settings();
-  zb_set_network_router_role((1l << TEST_CHANNEL));
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    ZB_INIT("zdo_th_zr");
 
 
-  zb_secur_setup_nwk_key(g_nwk_key, 0);
+    zb_set_long_address(g_ieee_addr_th_zr1);
 
-  ZB_AF_REGISTER_DEVICE_CTX(&rtp_zcl_03_th_zr_device_ctx);
+    zb_reg_test_set_common_channel_settings();
+    zb_set_network_router_role((1l << TEST_CHANNEL));
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
 
-  TRACE_DEINIT();
+    zb_secur_setup_nwk_key(g_nwk_key, 0);
 
-  MAIN_RETURN(0);
+    ZB_AF_REGISTER_DEVICE_CTX(&rtp_zcl_03_th_zr_device_ctx);
+
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
+
+    TRACE_DEINIT();
+
+    MAIN_RETURN(0);
 }
 
 /********************ZDO Startup*****************************/
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  switch (sig)
-  {
+    switch (sig)
+    {
     case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
-      }
-      break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
+        TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
+        }
+        break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
 
     case ZB_BDB_SIGNAL_STEERING:
-      TRACE_MSG(TRACE_APS1, "signal: ZB_BDB_SIGNAL_STEERING, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        ZB_SCHEDULE_CALLBACK(trigger_fb_target, 0);
-      }
-      break; /* ZB_BDB_SIGNAL_STEERING */
+        TRACE_MSG(TRACE_APS1, "signal: ZB_BDB_SIGNAL_STEERING, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            ZB_SCHEDULE_CALLBACK(trigger_fb_target, 0);
+        }
+        break; /* ZB_BDB_SIGNAL_STEERING */
 
     case ZB_BDB_SIGNAL_FINDING_AND_BINDING_TARGET_FINISHED:
-      TRACE_MSG(TRACE_APS1, "signal: ZB_BDB_SIGNAL_FINDING_AND_BINDING_TARGET_FINISHED, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        test_step_register(send_write_attr_no_resp_delayed, 0, RTP_ZCL_03_STEP_1_TIME_ZR);
-        test_step_register(send_read_attr_req_delayed, 0, RTP_ZCL_03_STEP_1_TIME_ZR);
-        test_step_register(send_write_attr_undiv_delayed, 0, RTP_ZCL_03_STEP_1_TIME_ZR);
-        test_step_register(send_read_attr_req_delayed, 0, RTP_ZCL_03_STEP_1_TIME_ZR);
-        test_step_register(send_write_wrong_attr_default_req_delayed, 0, RTP_ZCL_03_STEP_1_TIME_ZR);
-        test_step_register(send_read_attr_req_delayed, 0, RTP_ZCL_03_STEP_1_TIME_ZR);
-        test_step_register(send_write_wrong_attr_no_resp_delayed, 0, RTP_ZCL_03_STEP_1_TIME_ZR);
-        test_step_register(send_read_attr_req_delayed, 0, RTP_ZCL_03_STEP_1_TIME_ZR);
-        test_step_register(send_write_wrong_attr_undiv_delayed, 0, RTP_ZCL_03_STEP_1_TIME_ZR);
-        test_step_register(send_read_attr_req_delayed, 0, RTP_ZCL_03_STEP_1_TIME_ZR);
+        TRACE_MSG(TRACE_APS1, "signal: ZB_BDB_SIGNAL_FINDING_AND_BINDING_TARGET_FINISHED, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            test_step_register(send_write_attr_no_resp_delayed, 0, RTP_ZCL_03_STEP_1_TIME_ZR);
+            test_step_register(send_read_attr_req_delayed, 0, RTP_ZCL_03_STEP_1_TIME_ZR);
+            test_step_register(send_write_attr_undiv_delayed, 0, RTP_ZCL_03_STEP_1_TIME_ZR);
+            test_step_register(send_read_attr_req_delayed, 0, RTP_ZCL_03_STEP_1_TIME_ZR);
+            test_step_register(send_write_wrong_attr_default_req_delayed, 0, RTP_ZCL_03_STEP_1_TIME_ZR);
+            test_step_register(send_read_attr_req_delayed, 0, RTP_ZCL_03_STEP_1_TIME_ZR);
+            test_step_register(send_write_wrong_attr_no_resp_delayed, 0, RTP_ZCL_03_STEP_1_TIME_ZR);
+            test_step_register(send_read_attr_req_delayed, 0, RTP_ZCL_03_STEP_1_TIME_ZR);
+            test_step_register(send_write_wrong_attr_undiv_delayed, 0, RTP_ZCL_03_STEP_1_TIME_ZR);
+            test_step_register(send_read_attr_req_delayed, 0, RTP_ZCL_03_STEP_1_TIME_ZR);
 
-        test_control_start(TEST_MODE, RTP_ZCL_03_STEP_1_DELAY_ZR);
-      }
-      break; /* ZB_BDB_SIGNAL_FINDING_AND_BINDING_TARGET_FINISHED */
+            test_control_start(TEST_MODE, RTP_ZCL_03_STEP_1_DELAY_ZR);
+        }
+        break; /* ZB_BDB_SIGNAL_FINDING_AND_BINDING_TARGET_FINISHED */
 
     default:
-      TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
-      break;
-  }
+        TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 static void trigger_fb_target(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  ZB_BDB().bdb_commissioning_time = THR1_FB_DURATION;
-  zb_bdb_finding_binding_target(THR1_ENDPOINT);
+    ZB_BDB().bdb_commissioning_time = THR1_FB_DURATION;
+    zb_bdb_finding_binding_target(THR1_ENDPOINT);
 }
 
 static void send_write_attr_no_resp_delayed(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  zb_buf_get_out_delayed(send_write_attr_no_resp);
+    zb_buf_get_out_delayed(send_write_attr_no_resp);
 }
 
 static void send_write_attr_no_resp(zb_uint8_t param)
 {
-  zb_bufid_t buffer = param;
-  zb_uint8_t *cmd_ptr;
-  zb_uint16_t on_off_on_time_def = 10;
-  zb_uint16_t on_off_off_wait_time_def = 15;
+    zb_bufid_t buffer = param;
+    zb_uint8_t *cmd_ptr;
+    zb_uint16_t on_off_on_time_def = 10;
+    zb_uint16_t on_off_off_wait_time_def = 15;
 
-  zb_uint16_t dst_addr = 0x0000;
+    zb_uint16_t dst_addr = 0x0000;
 
-  TRACE_MSG(TRACE_APP1, "Write OnTime and OffWaitTime attribute to On/Off cluster (no response)", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "Write OnTime and OffWaitTime attribute to On/Off cluster (no response)", (FMT__0));
 
-  ZB_ZCL_GENERAL_INIT_WRITE_ATTR_REQ_NO_RESP((buffer), cmd_ptr, ZB_ZCL_DISABLE_DEFAULT_RESPONSE);
+    ZB_ZCL_GENERAL_INIT_WRITE_ATTR_REQ_NO_RESP((buffer), cmd_ptr, ZB_ZCL_DISABLE_DEFAULT_RESPONSE);
 
-  ZB_ZCL_GENERAL_ADD_VALUE_WRITE_ATTR_REQ(cmd_ptr,
-                                          ZB_ZCL_ATTR_ON_OFF_ON_TIME,
-                                          ZB_ZCL_ATTR_TYPE_U16,
-                                          (zb_uint8_t *)&on_off_on_time_def);
+    ZB_ZCL_GENERAL_ADD_VALUE_WRITE_ATTR_REQ(cmd_ptr,
+                                            ZB_ZCL_ATTR_ON_OFF_ON_TIME,
+                                            ZB_ZCL_ATTR_TYPE_U16,
+                                            (zb_uint8_t *)&on_off_on_time_def);
 
-  ZB_ZCL_GENERAL_ADD_VALUE_WRITE_ATTR_REQ(cmd_ptr,
-                                          ZB_ZCL_ATTR_ON_OFF_OFF_WAIT_TIME,
-                                          ZB_ZCL_ATTR_TYPE_U16,
-                                          (zb_uint8_t *)&on_off_off_wait_time_def);
+    ZB_ZCL_GENERAL_ADD_VALUE_WRITE_ATTR_REQ(cmd_ptr,
+                                            ZB_ZCL_ATTR_ON_OFF_OFF_WAIT_TIME,
+                                            ZB_ZCL_ATTR_TYPE_U16,
+                                            (zb_uint8_t *)&on_off_off_wait_time_def);
 
 
-  ZB_ZCL_GENERAL_SEND_WRITE_ATTR_REQ((buffer), cmd_ptr, dst_addr,
-                                     ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
-                                     DUT_ENDPOINT,
-                                     THR1_ENDPOINT,
-                                     ZB_AF_HA_PROFILE_ID,
-                                     ZB_ZCL_CLUSTER_ID_ON_OFF,
-                                     NULL);
+    ZB_ZCL_GENERAL_SEND_WRITE_ATTR_REQ((buffer), cmd_ptr, dst_addr,
+                                       ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
+                                       DUT_ENDPOINT,
+                                       THR1_ENDPOINT,
+                                       ZB_AF_HA_PROFILE_ID,
+                                       ZB_ZCL_CLUSTER_ID_ON_OFF,
+                                       NULL);
 }
 
 static void send_write_attr_undiv_delayed(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  zb_buf_get_out_delayed(send_write_attr_undiv);
+    zb_buf_get_out_delayed(send_write_attr_undiv);
 }
 
 static void send_write_attr_undiv(zb_uint8_t param)
 {
-  zb_bufid_t buffer = param;
-  zb_uint8_t *cmd_ptr;
-  zb_uint16_t on_off_on_time_def = 20;
-  zb_uint16_t on_off_off_wait_time_def = 25;
+    zb_bufid_t buffer = param;
+    zb_uint8_t *cmd_ptr;
+    zb_uint16_t on_off_on_time_def = 20;
+    zb_uint16_t on_off_off_wait_time_def = 25;
 
-  zb_uint16_t dst_addr = 0x0000;
+    zb_uint16_t dst_addr = 0x0000;
 
-  TRACE_MSG(TRACE_APP1, "Write OnTime and OffWaitTime attribute to On/Off cluster (undiv)", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "Write OnTime and OffWaitTime attribute to On/Off cluster (undiv)", (FMT__0));
 
-  ZB_ZCL_GENERAL_INIT_WRITE_ATTR_REQ_UNDIV((buffer), cmd_ptr, ZB_ZCL_ENABLE_DEFAULT_RESPONSE);
+    ZB_ZCL_GENERAL_INIT_WRITE_ATTR_REQ_UNDIV((buffer), cmd_ptr, ZB_ZCL_ENABLE_DEFAULT_RESPONSE);
 
-  ZB_ZCL_GENERAL_ADD_VALUE_WRITE_ATTR_REQ(cmd_ptr,
-                                          ZB_ZCL_ATTR_ON_OFF_ON_TIME,
-                                          ZB_ZCL_ATTR_TYPE_U16,
-                                          (zb_uint8_t *)&on_off_on_time_def);
+    ZB_ZCL_GENERAL_ADD_VALUE_WRITE_ATTR_REQ(cmd_ptr,
+                                            ZB_ZCL_ATTR_ON_OFF_ON_TIME,
+                                            ZB_ZCL_ATTR_TYPE_U16,
+                                            (zb_uint8_t *)&on_off_on_time_def);
 
-  ZB_ZCL_GENERAL_ADD_VALUE_WRITE_ATTR_REQ(cmd_ptr,
-                                          ZB_ZCL_ATTR_ON_OFF_OFF_WAIT_TIME,
-                                          ZB_ZCL_ATTR_TYPE_U16,
-                                          (zb_uint8_t *)&on_off_off_wait_time_def);
+    ZB_ZCL_GENERAL_ADD_VALUE_WRITE_ATTR_REQ(cmd_ptr,
+                                            ZB_ZCL_ATTR_ON_OFF_OFF_WAIT_TIME,
+                                            ZB_ZCL_ATTR_TYPE_U16,
+                                            (zb_uint8_t *)&on_off_off_wait_time_def);
 
 
-  ZB_ZCL_GENERAL_SEND_WRITE_ATTR_REQ((buffer), cmd_ptr, dst_addr,
-                                     ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
-                                     DUT_ENDPOINT,
-                                     THR1_ENDPOINT,
-                                     ZB_AF_HA_PROFILE_ID,
-                                     ZB_ZCL_CLUSTER_ID_ON_OFF,
-                                     NULL);
+    ZB_ZCL_GENERAL_SEND_WRITE_ATTR_REQ((buffer), cmd_ptr, dst_addr,
+                                       ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
+                                       DUT_ENDPOINT,
+                                       THR1_ENDPOINT,
+                                       ZB_AF_HA_PROFILE_ID,
+                                       ZB_ZCL_CLUSTER_ID_ON_OFF,
+                                       NULL);
 }
 
 static void send_read_attr_req_delayed(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  zb_buf_get_out_delayed(send_read_attr_req);
+    zb_buf_get_out_delayed(send_read_attr_req);
 }
 
 static void send_read_attr_req(zb_uint8_t param)
 {
-  zb_uint8_t *cmd_ptr;
-  zb_uint16_t addr = zb_address_short_by_ieee(g_ieee_addr_dut);
+    zb_uint8_t *cmd_ptr;
+    zb_uint16_t addr = zb_address_short_by_ieee(g_ieee_addr_dut);
 
-  zb_buf_reuse(param);
+    zb_buf_reuse(param);
 
-  TRACE_MSG(TRACE_ZCL1, ">>send_read_attr_req: param %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_ZCL1, ">>send_read_attr_req: param %hd", (FMT__H, param));
 
-  ZB_ZCL_GENERAL_INIT_READ_ATTR_REQ_A(param, cmd_ptr,
-                                      ZB_ZCL_FRAME_DIRECTION_TO_SRV,
-                                      ZB_ZCL_ENABLE_DEFAULT_RESPONSE);
+    ZB_ZCL_GENERAL_INIT_READ_ATTR_REQ_A(param, cmd_ptr,
+                                        ZB_ZCL_FRAME_DIRECTION_TO_SRV,
+                                        ZB_ZCL_ENABLE_DEFAULT_RESPONSE);
 
-  ZB_ZCL_GENERAL_ADD_ID_READ_ATTR_REQ(cmd_ptr, ZB_ZCL_ATTR_ON_OFF_ON_TIME);
-  ZB_ZCL_GENERAL_ADD_ID_READ_ATTR_REQ(cmd_ptr, ZB_ZCL_ATTR_ON_OFF_OFF_WAIT_TIME);
+    ZB_ZCL_GENERAL_ADD_ID_READ_ATTR_REQ(cmd_ptr, ZB_ZCL_ATTR_ON_OFF_ON_TIME);
+    ZB_ZCL_GENERAL_ADD_ID_READ_ATTR_REQ(cmd_ptr, ZB_ZCL_ATTR_ON_OFF_OFF_WAIT_TIME);
 
-  ZB_ZCL_GENERAL_SEND_READ_ATTR_REQ(param, cmd_ptr,
-                                   addr,
-                                   ZB_APS_ADDR_MODE_DST_ADDR_ENDP_NOT_PRESENT,
-                                   DUT_ENDPOINT,
-                                   THR1_ENDPOINT,
-                                   ZB_AF_HA_PROFILE_ID,
-                                   ZB_ZCL_CLUSTER_ID_ON_OFF,
-                                   NULL);
+    ZB_ZCL_GENERAL_SEND_READ_ATTR_REQ(param, cmd_ptr,
+                                      addr,
+                                      ZB_APS_ADDR_MODE_DST_ADDR_ENDP_NOT_PRESENT,
+                                      DUT_ENDPOINT,
+                                      THR1_ENDPOINT,
+                                      ZB_AF_HA_PROFILE_ID,
+                                      ZB_ZCL_CLUSTER_ID_ON_OFF,
+                                      NULL);
 
-  TRACE_MSG(TRACE_ZCL1, "<<send_read_attr_req", (FMT__0));
+    TRACE_MSG(TRACE_ZCL1, "<<send_read_attr_req", (FMT__0));
 }
 
 static void send_write_wrong_attr_default_req_delayed(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  zb_buf_get_out_delayed(send_write_wrong_attr_default_req);
+    zb_buf_get_out_delayed(send_write_wrong_attr_default_req);
 }
 
 static void send_write_wrong_attr_default_req(zb_uint8_t param)
 {
-  zb_bufid_t buffer = param;
-  zb_uint8_t *cmd_ptr;
-  zb_uint8_t on_off_on_time_def = 30;
-  zb_uint16_t on_off_off_wait_time_def = 35;
+    zb_bufid_t buffer = param;
+    zb_uint8_t *cmd_ptr;
+    zb_uint8_t on_off_on_time_def = 30;
+    zb_uint16_t on_off_off_wait_time_def = 35;
 
-  zb_uint16_t dst_addr = 0x0000;
+    zb_uint16_t dst_addr = 0x0000;
 
-  TRACE_MSG(TRACE_APP1, "Write OnTime and OffWaitTime attribute to On/Off cluster (default)", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "Write OnTime and OffWaitTime attribute to On/Off cluster (default)", (FMT__0));
 
-  ZB_ZCL_GENERAL_INIT_WRITE_ATTR_REQ((buffer), cmd_ptr, ZB_ZCL_ENABLE_DEFAULT_RESPONSE);
+    ZB_ZCL_GENERAL_INIT_WRITE_ATTR_REQ((buffer), cmd_ptr, ZB_ZCL_ENABLE_DEFAULT_RESPONSE);
 
-  /* Specially write attr with wrong type */
-  ZB_ZCL_GENERAL_ADD_VALUE_WRITE_ATTR_REQ(cmd_ptr,
-                                          ZB_ZCL_ATTR_ON_OFF_ON_TIME,
-                                          ZB_ZCL_ATTR_TYPE_U8,
-                                          (zb_uint8_t *)&on_off_on_time_def);
+    /* Specially write attr with wrong type */
+    ZB_ZCL_GENERAL_ADD_VALUE_WRITE_ATTR_REQ(cmd_ptr,
+                                            ZB_ZCL_ATTR_ON_OFF_ON_TIME,
+                                            ZB_ZCL_ATTR_TYPE_U8,
+                                            (zb_uint8_t *)&on_off_on_time_def);
 
-  ZB_ZCL_GENERAL_ADD_VALUE_WRITE_ATTR_REQ(cmd_ptr,
-                                          ZB_ZCL_ATTR_ON_OFF_OFF_WAIT_TIME,
-                                          ZB_ZCL_ATTR_TYPE_U16,
-                                          (zb_uint8_t *)&on_off_off_wait_time_def);
+    ZB_ZCL_GENERAL_ADD_VALUE_WRITE_ATTR_REQ(cmd_ptr,
+                                            ZB_ZCL_ATTR_ON_OFF_OFF_WAIT_TIME,
+                                            ZB_ZCL_ATTR_TYPE_U16,
+                                            (zb_uint8_t *)&on_off_off_wait_time_def);
 
 
-  ZB_ZCL_GENERAL_SEND_WRITE_ATTR_REQ((buffer), cmd_ptr, dst_addr,
-                                     ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
-                                     DUT_ENDPOINT,
-                                     THR1_ENDPOINT,
-                                     ZB_AF_HA_PROFILE_ID,
-                                     ZB_ZCL_CLUSTER_ID_ON_OFF,
-                                     NULL);
+    ZB_ZCL_GENERAL_SEND_WRITE_ATTR_REQ((buffer), cmd_ptr, dst_addr,
+                                       ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
+                                       DUT_ENDPOINT,
+                                       THR1_ENDPOINT,
+                                       ZB_AF_HA_PROFILE_ID,
+                                       ZB_ZCL_CLUSTER_ID_ON_OFF,
+                                       NULL);
 }
 
 static void send_write_wrong_attr_no_resp_delayed(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  zb_buf_get_out_delayed(send_write_wrong_attr_no_resp);
+    zb_buf_get_out_delayed(send_write_wrong_attr_no_resp);
 }
 
 static void send_write_wrong_attr_no_resp(zb_uint8_t param)
 {
-  zb_bufid_t buffer = param;
-  zb_uint8_t *cmd_ptr;
-  zb_uint8_t on_off_on_time_def = 40;
-  zb_uint16_t on_off_off_wait_time_def = 45;
+    zb_bufid_t buffer = param;
+    zb_uint8_t *cmd_ptr;
+    zb_uint8_t on_off_on_time_def = 40;
+    zb_uint16_t on_off_off_wait_time_def = 45;
 
-  zb_uint16_t dst_addr = 0x0000;
+    zb_uint16_t dst_addr = 0x0000;
 
-  TRACE_MSG(TRACE_APP1, "Write OnTime and OffWaitTime attribute to On/Off cluster (no response)", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "Write OnTime and OffWaitTime attribute to On/Off cluster (no response)", (FMT__0));
 
-  ZB_ZCL_GENERAL_INIT_WRITE_ATTR_REQ_NO_RESP((buffer), cmd_ptr, ZB_ZCL_DISABLE_DEFAULT_RESPONSE);
+    ZB_ZCL_GENERAL_INIT_WRITE_ATTR_REQ_NO_RESP((buffer), cmd_ptr, ZB_ZCL_DISABLE_DEFAULT_RESPONSE);
 
-  /* Specially write attr with wrong type */
-  ZB_ZCL_GENERAL_ADD_VALUE_WRITE_ATTR_REQ(cmd_ptr,
-                                          ZB_ZCL_ATTR_ON_OFF_ON_TIME,
-                                          ZB_ZCL_ATTR_TYPE_U8,
-                                          (zb_uint8_t *)&on_off_on_time_def);
+    /* Specially write attr with wrong type */
+    ZB_ZCL_GENERAL_ADD_VALUE_WRITE_ATTR_REQ(cmd_ptr,
+                                            ZB_ZCL_ATTR_ON_OFF_ON_TIME,
+                                            ZB_ZCL_ATTR_TYPE_U8,
+                                            (zb_uint8_t *)&on_off_on_time_def);
 
-  ZB_ZCL_GENERAL_ADD_VALUE_WRITE_ATTR_REQ(cmd_ptr,
-                                          ZB_ZCL_ATTR_ON_OFF_OFF_WAIT_TIME,
-                                          ZB_ZCL_ATTR_TYPE_U16,
-                                          (zb_uint8_t *)&on_off_off_wait_time_def);
+    ZB_ZCL_GENERAL_ADD_VALUE_WRITE_ATTR_REQ(cmd_ptr,
+                                            ZB_ZCL_ATTR_ON_OFF_OFF_WAIT_TIME,
+                                            ZB_ZCL_ATTR_TYPE_U16,
+                                            (zb_uint8_t *)&on_off_off_wait_time_def);
 
 
-  ZB_ZCL_GENERAL_SEND_WRITE_ATTR_REQ((buffer), cmd_ptr, dst_addr,
-                                     ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
-                                     DUT_ENDPOINT,
-                                     THR1_ENDPOINT,
-                                     ZB_AF_HA_PROFILE_ID,
-                                     ZB_ZCL_CLUSTER_ID_ON_OFF,
-                                     NULL);
+    ZB_ZCL_GENERAL_SEND_WRITE_ATTR_REQ((buffer), cmd_ptr, dst_addr,
+                                       ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
+                                       DUT_ENDPOINT,
+                                       THR1_ENDPOINT,
+                                       ZB_AF_HA_PROFILE_ID,
+                                       ZB_ZCL_CLUSTER_ID_ON_OFF,
+                                       NULL);
 }
 
 
 static void send_write_wrong_attr_undiv_delayed(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  zb_buf_get_out_delayed(send_write_wrong_attr_undiv);
+    zb_buf_get_out_delayed(send_write_wrong_attr_undiv);
 }
 
 static void send_write_wrong_attr_undiv(zb_uint8_t param)
 {
-  zb_bufid_t buffer = param;
-  zb_uint8_t *cmd_ptr;
-  zb_uint8_t on_off_on_time_def = 50;
-  zb_uint16_t on_off_off_wait_time_def = 55;
+    zb_bufid_t buffer = param;
+    zb_uint8_t *cmd_ptr;
+    zb_uint8_t on_off_on_time_def = 50;
+    zb_uint16_t on_off_off_wait_time_def = 55;
 
-  zb_uint16_t dst_addr = 0x0000;
+    zb_uint16_t dst_addr = 0x0000;
 
-  TRACE_MSG(TRACE_APP1, "Write OnTime and OffWaitTime attribute to On/Off cluster (undiv)", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "Write OnTime and OffWaitTime attribute to On/Off cluster (undiv)", (FMT__0));
 
-  ZB_ZCL_GENERAL_INIT_WRITE_ATTR_REQ_UNDIV((buffer), cmd_ptr, ZB_ZCL_ENABLE_DEFAULT_RESPONSE);
+    ZB_ZCL_GENERAL_INIT_WRITE_ATTR_REQ_UNDIV((buffer), cmd_ptr, ZB_ZCL_ENABLE_DEFAULT_RESPONSE);
 
-  /* Specially write attr with wrong type */
-  ZB_ZCL_GENERAL_ADD_VALUE_WRITE_ATTR_REQ(cmd_ptr,
-                                          ZB_ZCL_ATTR_ON_OFF_ON_TIME,
-                                          ZB_ZCL_ATTR_TYPE_U8,
-                                          (zb_uint8_t *)&on_off_on_time_def);
+    /* Specially write attr with wrong type */
+    ZB_ZCL_GENERAL_ADD_VALUE_WRITE_ATTR_REQ(cmd_ptr,
+                                            ZB_ZCL_ATTR_ON_OFF_ON_TIME,
+                                            ZB_ZCL_ATTR_TYPE_U8,
+                                            (zb_uint8_t *)&on_off_on_time_def);
 
-  ZB_ZCL_GENERAL_ADD_VALUE_WRITE_ATTR_REQ(cmd_ptr,
-                                          ZB_ZCL_ATTR_ON_OFF_OFF_WAIT_TIME,
-                                          ZB_ZCL_ATTR_TYPE_U16,
-                                          (zb_uint8_t *)&on_off_off_wait_time_def);
+    ZB_ZCL_GENERAL_ADD_VALUE_WRITE_ATTR_REQ(cmd_ptr,
+                                            ZB_ZCL_ATTR_ON_OFF_OFF_WAIT_TIME,
+                                            ZB_ZCL_ATTR_TYPE_U16,
+                                            (zb_uint8_t *)&on_off_off_wait_time_def);
 
 
-  ZB_ZCL_GENERAL_SEND_WRITE_ATTR_REQ((buffer), cmd_ptr, dst_addr,
-                                     ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
-                                     DUT_ENDPOINT,
-                                     THR1_ENDPOINT,
-                                     ZB_AF_HA_PROFILE_ID,
-                                     ZB_ZCL_CLUSTER_ID_ON_OFF,
-                                     NULL);
+    ZB_ZCL_GENERAL_SEND_WRITE_ATTR_REQ((buffer), cmd_ptr, dst_addr,
+                                       ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
+                                       DUT_ENDPOINT,
+                                       THR1_ENDPOINT,
+                                       ZB_AF_HA_PROFILE_ID,
+                                       ZB_ZCL_CLUSTER_ID_ON_OFF,
+                                       NULL);
 }
 
 /*! @} */

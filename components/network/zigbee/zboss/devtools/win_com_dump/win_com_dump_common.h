@@ -48,14 +48,14 @@ typedef int serial_handle_t;
 
 typedef struct win_com_dump_ctx_s
 {
-  serial_handle_t comf;
-  dump_mode_t g_mode;
-  FILE *fraw;
-  FILE *tracef;
-  FILE *dumpf;
-  FILE *scriptf;
+    serial_handle_t comf;
+    dump_mode_t g_mode;
+    FILE *fraw;
+    FILE *tracef;
+    FILE *dumpf;
+    FILE *scriptf;
 #ifdef DEBUG_RESYNC
-  FILE *fdump;
+    FILE *fdump;
 #endif
 }
 win_com_dump_ctx_t;

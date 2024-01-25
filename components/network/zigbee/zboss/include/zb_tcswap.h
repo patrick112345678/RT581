@@ -28,11 +28,11 @@
 
 typedef enum
 {
-  TCSW_STATE_DONE,
-  TCSW_STATE_JUST_STARTED,
-  TCSW_STATE_GLOBAL_SECTION,
-  TCSW_STATE_DEVICE_INFO,
-  TCSW_STATE_BINDINGS
+    TCSW_STATE_DONE,
+    TCSW_STATE_JUST_STARTED,
+    TCSW_STATE_GLOBAL_SECTION,
+    TCSW_STATE_DEVICE_INFO,
+    TCSW_STATE_BINDINGS
 } zb_tcsw_load_stage_t;
 
 
@@ -77,9 +77,9 @@ Binding info section is not required for SE.
 
 typedef enum
 {
-  ZB_TCSW_DB_TCINFO_BIG_ENDIAN  = (1<<0),
-  ZB_TCSW_DB_TCINFO_HAS_DEVICES = (1<<1),
-  ZB_TCSW_DB_TCINFO_HAS_BINDING = (1<<2)
+    ZB_TCSW_DB_TCINFO_BIG_ENDIAN  = (1 << 0),
+    ZB_TCSW_DB_TCINFO_HAS_DEVICES = (1 << 1),
+    ZB_TCSW_DB_TCINFO_HAS_BINDING = (1 << 2)
 } zb_tcsw_db_tcinfo_flag_t;
 
 /**
@@ -92,20 +92,20 @@ TC info section:
 */
 typedef ZB_PACKED_PRE struct
 {
-  zb_uint8_t       flags;
-  zb_uint8_t       db_version;  /*!< 0 now  */
-  zb_uint8_t       device_count;
-  zb_ieee_addr_t   tc_addr;
-  zb_ext_pan_id_t  tc_panid;
-  zb_uint8_t       db_mic[4];      /*!< CRC of the entire DB, AES-128 */
+    zb_uint8_t       flags;
+    zb_uint8_t       db_version;  /*!< 0 now  */
+    zb_uint8_t       device_count;
+    zb_ieee_addr_t   tc_addr;
+    zb_ext_pan_id_t  tc_panid;
+    zb_uint8_t       db_mic[4];      /*!< CRC of the entire DB, AES-128 */
 
 } ZB_PACKED_STRUCT zb_tcsw_global_t;
 
 
 typedef enum
 {
-  TCSWAP_INSTALLCODE = 1,
-  TCSWAP_HASHED_KEY = 2
+    TCSWAP_INSTALLCODE = 1,
+    TCSWAP_HASHED_KEY = 2
 } zb_tcswap_dev_flags_t;
 
 /**
@@ -121,41 +121,41 @@ Devices info. Used to backup device keys as well as its installcodes.
 */
 typedef ZB_PACKED_PRE struct
 {
-  zb_ieee_addr_t addr;
-  zb_uint8_t flags;             /*!< @see zb_tcswap_dev_flags_t */
-  zb_uint8_t key_attr;
-  zb_uint8_t secur_level;
-  zb_uint8_t ic_type;
-  zb_uint8_t hashed_key[ZB_CCM_KEY_SIZE];
-  zb_uint8_t prev_hashed_key[ZB_CCM_KEY_SIZE];
-  zb_uint8_t passphrase[ZB_CCM_KEY_SIZE];
-  zb_uint8_t ic[ZB_IC_TYPE_MAX_SIZE+2];
+    zb_ieee_addr_t addr;
+    zb_uint8_t flags;             /*!< @see zb_tcswap_dev_flags_t */
+    zb_uint8_t key_attr;
+    zb_uint8_t secur_level;
+    zb_uint8_t ic_type;
+    zb_uint8_t hashed_key[ZB_CCM_KEY_SIZE];
+    zb_uint8_t prev_hashed_key[ZB_CCM_KEY_SIZE];
+    zb_uint8_t passphrase[ZB_CCM_KEY_SIZE];
+    zb_uint8_t ic[ZB_IC_TYPE_MAX_SIZE + 2];
 } ZB_PACKED_STRUCT zb_tcsw_device_t;
 
 typedef struct
 {
-  zb_uint8_t dirty_bitmask; /* zb_tcswap_dirty_state_t */
-  zb_bool_t have_bindings;
+    zb_uint8_t dirty_bitmask; /* zb_tcswap_dirty_state_t */
+    zb_bool_t have_bindings;
 } zb_tcswap_flags_t;
 
 
 /* TC SWAP STRUCT FOR SAVE/LOAD DB*/
 typedef struct
 {
-  zb_tcswap_flags_t flags;
-  zb_ieee_addr_t    tc_addr;
-  zb_uint8_t        device_count;
+    zb_tcswap_flags_t flags;
+    zb_ieee_addr_t    tc_addr;
+    zb_uint8_t        device_count;
 
-  /* save/load volatile part */
-  zb_uint8_t state;        //!< @see zb_tcsw_load_stage_t
-  zb_uint_t  size;
-  zb_uint_t  dev_idx;
-  union
-  {
-    zb_tcsw_global_t global;
-    zb_tcsw_device_t device;
-    zb_uint8_t buf[sizeof(zb_tcsw_device_t)];
-  } load_u;
+    /* save/load volatile part */
+    zb_uint8_t state;        //!< @see zb_tcsw_load_stage_t
+    zb_uint_t  size;
+    zb_uint_t  dev_idx;
+    union
+    {
+        zb_tcsw_global_t global;
+        zb_tcsw_device_t device;
+        zb_uint8_t buf[sizeof(zb_tcsw_device_t)];
+    } load_u;
 } zb_tcswap_t;
 
 void zb_tcsw_key_added(void);

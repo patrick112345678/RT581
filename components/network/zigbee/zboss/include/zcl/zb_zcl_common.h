@@ -126,13 +126,13 @@ typedef void (*zb_zcl_cluster_write_attr_hook_t)(zb_uint8_t endpoint, zb_uint16_
 /** @brief ZCL cluster description. */
 typedef ZB_PACKED_PRE struct zb_zcl_cluster_desc_s
 {
-  zb_uint16_t cluster_id; /**< ZCL 16-bit cluster id. @see zcl_cluster_id */
-  zb_uint16_t attr_count;  /**< Attributes number supported by the cluster */
-  struct zb_zcl_attr_s *attr_desc_list; /**< List of cluster attributes,
+    zb_uint16_t cluster_id; /**< ZCL 16-bit cluster id. @see zcl_cluster_id */
+    zb_uint16_t attr_count;  /**< Attributes number supported by the cluster */
+    struct zb_zcl_attr_s *attr_desc_list; /**< List of cluster attributes,
          declared using ZB_ZCL_DECLARE_<CLUSTER_NAME>_ATTRIB_LIST() macro */
-  zb_uint8_t role_mask;   /**< Cluster role, refer to zcl_cluster_role */
-  zb_uint16_t manuf_code; /**< Manufacturer code for cluster and its attributes */
-  zb_zcl_cluster_init_t cluster_init;
+    zb_uint8_t role_mask;   /**< Cluster role, refer to zcl_cluster_role */
+    zb_uint16_t manuf_code; /**< Manufacturer code for cluster and its attributes */
+    zb_zcl_cluster_init_t cluster_init;
 } ZB_PACKED_STRUCT
 zb_zcl_cluster_desc_t;
 
@@ -154,9 +154,9 @@ zb_zcl_cluster_desc_t;
  * @return RET_EMPTY if ZCL handlers were not installed
  */
 zb_ret_t zb_zcl_add_cluster_handlers(zb_uint16_t cluster_id, zb_uint8_t cluster_role,
-  zb_zcl_cluster_check_value_t cluster_check_value,
-  zb_zcl_cluster_write_attr_hook_t cluster_write_attr_hook,
-  zb_zcl_cluster_handler_t cluster_handler);
+                                     zb_zcl_cluster_check_value_t cluster_check_value,
+                                     zb_zcl_cluster_write_attr_hook_t cluster_write_attr_hook,
+                                     zb_zcl_cluster_handler_t cluster_handler);
 
 /** @cond internals_doc */
 zb_zcl_cluster_handler_t zb_zcl_get_cluster_handler(zb_uint16_t cluster_id, zb_uint8_t cluster_role);
@@ -166,9 +166,9 @@ zb_zcl_cluster_write_attr_hook_t zb_zcl_get_cluster_write_attr_hook(zb_uint16_t 
 #ifdef ZB_CONTROL4_NETWORK_SUPPORT
 /** Functions for adding and getting Control4 Network cluster specific handlers */
 zb_ret_t zb_zcl_add_control4_cluster_handlers(zb_uint16_t cluster_id, zb_uint8_t cluster_role,
-                                              zb_zcl_cluster_check_value_t cluster_check_value,
-                                              zb_zcl_cluster_write_attr_hook_t cluster_write_attr_hook,
-                                              zb_zcl_cluster_handler_t cluster_handler);
+        zb_zcl_cluster_check_value_t cluster_check_value,
+        zb_zcl_cluster_write_attr_hook_t cluster_write_attr_hook,
+        zb_zcl_cluster_handler_t cluster_handler);
 
 zb_zcl_cluster_handler_t zb_zcl_get_control4_cluster_handler(zb_uint16_t cluster_id, zb_uint8_t cluster_role);
 zb_zcl_cluster_check_value_t zb_zcl_get_control4_cluster_check_value(zb_uint16_t cluster_id, zb_uint8_t cluster_role);
@@ -321,15 +321,15 @@ typedef zb_uint16_t zb_zcl_cluster_id_t;
 /** @brief Parse frame operation status. */
 typedef enum zb_zcl_parse_status_e
 {
-  ZB_ZCL_PARSE_STATUS_SUCCESS,  /**< Frame parsed successfully. */
-  ZB_ZCL_PARSE_STATUS_FAILURE   /**< Frame parse operation failed. */
+    ZB_ZCL_PARSE_STATUS_SUCCESS,  /**< Frame parsed successfully. */
+    ZB_ZCL_PARSE_STATUS_FAILURE   /**< Frame parse operation failed. */
 } zb_zcl_parse_status_t;
 
 /** @brief Attribute Reporting Status. */
 typedef enum zb_zcl_attribute_reporting_status_e
 {
-  ZB_ZCL_AR_STATUS_PENDING	=0x00,  	/**< Pending. */
-  ZB_ZCL_AR_STATUS_COMPLETE =0x01 	 	/**< Attribute Reporting Complete. */
+    ZB_ZCL_AR_STATUS_PENDING  = 0x00,     /**< Pending. */
+    ZB_ZCL_AR_STATUS_COMPLETE = 0x01      /**< Attribute Reporting Complete. */
 } zb_zcl_attribute_reporting_status_t;
 
 /**
@@ -464,44 +464,44 @@ typedef void (*zb_zcl_modify_attr_value_cb_t)(
 
 /** Add some data to ZCL Octet String. */
 static ZB_INLINE zb_uint16_t zb_zcl_string_append_data(zb_uint8_t *zcl_str,
-                                                    zb_uint8_t zcl_str_max_size,
-                                                    const zb_uint8_t *c_str,
-                                                    zb_uint8_t c_str_len)
+        zb_uint8_t zcl_str_max_size,
+        const zb_uint8_t *c_str,
+        zb_uint8_t c_str_len)
 {
-  zb_uint16_t newlen = ZB_ZCL_GET_STRING_LENGTH(zcl_str) + (zb_uint16_t)c_str_len;
+    zb_uint16_t newlen = ZB_ZCL_GET_STRING_LENGTH(zcl_str) + (zb_uint16_t)c_str_len;
 
-  if (newlen < (zb_uint16_t) zcl_str_max_size)
-  {
-    memcpy(ZB_ZCL_GET_STRING_END(zcl_str), c_str, c_str_len);
-    ZB_ZCL_SET_STRING_LENGTH(zcl_str, (zb_uint8_t)newlen);
-  }
-  else
-  {
-    newlen = 0;
-  }
+    if (newlen < (zb_uint16_t) zcl_str_max_size)
+    {
+        memcpy(ZB_ZCL_GET_STRING_END(zcl_str), c_str, c_str_len);
+        ZB_ZCL_SET_STRING_LENGTH(zcl_str, (zb_uint8_t)newlen);
+    }
+    else
+    {
+        newlen = 0;
+    }
 
-  return newlen;
+    return newlen;
 }
 
 /** Add single byte to ZCL Octet String. */
 static ZB_INLINE zb_uint16_t zb_zcl_string_append_byte(zb_uint8_t *zcl_str,
-                                                    zb_uint8_t zcl_str_max_size,
-                                                    zb_uint8_t value)
+        zb_uint8_t zcl_str_max_size,
+        zb_uint8_t value)
 {
-  zb_uint16_t newlen = (zb_uint16_t)ZB_ZCL_GET_STRING_LENGTH(zcl_str) + 1U;
+    zb_uint16_t newlen = (zb_uint16_t)ZB_ZCL_GET_STRING_LENGTH(zcl_str) + 1U;
 
-  if (newlen < (zb_uint16_t) zcl_str_max_size)
-  {
-    *ZB_ZCL_GET_STRING_END(zcl_str) = value;
-    ZB_ASSERT(newlen <= ZB_UINT8_MAX);
-    ZB_ZCL_SET_STRING_LENGTH(zcl_str, (zb_uint8_t)newlen);
-  }
-  else
-  {
-    newlen = 0;
-  }
+    if (newlen < (zb_uint16_t) zcl_str_max_size)
+    {
+        *ZB_ZCL_GET_STRING_END(zcl_str) = value;
+        ZB_ASSERT(newlen <= ZB_UINT8_MAX);
+        ZB_ZCL_SET_STRING_LENGTH(zcl_str, (zb_uint8_t)newlen);
+    }
+    else
+    {
+        newlen = 0;
+    }
 
-  return newlen;
+    return newlen;
 }
 
 /** Append C-string to ZCL string. */
@@ -647,10 +647,10 @@ typedef zb_uint8_t zb_zcl_attr_access_t;
 /*! @brief ZCL attribute definition structure */
 typedef ZB_PACKED_PRE  struct zb_zcl_attr_s
 {
-  zb_uint16_t id;     /*!< Attribute id */
-  zb_uint8_t type;    /*!< Attribute type see @ref zcl_attr_type */
-  zb_uint8_t access;  /*!< Attribute access options according to @ref zcl_attr_access */
-  void* data_p;  /*!< Pointer to data */
+    zb_uint16_t id;     /*!< Attribute id */
+    zb_uint8_t type;    /*!< Attribute type see @ref zcl_attr_type */
+    zb_uint8_t access;  /*!< Attribute access options according to @ref zcl_attr_access */
+    void *data_p;  /*!< Pointer to data */
 } ZB_PACKED_STRUCT
 zb_zcl_attr_t;
 
@@ -972,11 +972,11 @@ typedef zb_uint8_t zb_zcl_frame_direction_t;
 */
 typedef ZB_PACKED_PRE struct zb_zcl_frame_ctrl_s
 {
-  zb_bitfield_t frame_type:2;       /*!< Frame type @ref zcl_frame_type */
-  zb_bitfield_t manufacturer:1;     /*!< Manufacturer specific frame @ref zcl_manufacturer_specific*/
-  zb_bitfield_t direction:1;        /*!< Direction @ref zcl_frame_direction */
-  zb_bitfield_t disable_def_resp:1; /*!< Disable default response */
-  zb_bitfield_t reserved:3;
+    zb_bitfield_t frame_type: 2;      /*!< Frame type @ref zcl_frame_type */
+    zb_bitfield_t manufacturer: 1;    /*!< Manufacturer specific frame @ref zcl_manufacturer_specific*/
+    zb_bitfield_t direction: 1;       /*!< Direction @ref zcl_frame_direction */
+    zb_bitfield_t disable_def_resp: 1; /*!< Disable default response */
+    zb_bitfield_t reserved: 3;
 } ZB_PACKED_STRUCT zb_zcl_frame_ctrl_t;
 
 /*! @brief ZCL frame header with manufacturer code
@@ -984,10 +984,10 @@ typedef ZB_PACKED_PRE struct zb_zcl_frame_ctrl_s
 */
 typedef ZB_PACKED_PRE  struct zb_zcl_frame_hdr_full_s
 {
-  zb_zcl_frame_ctrl_t frame_ctrl;         /*!< Frame control filed see @ref zb_zcl_frame_ctrl_s */
-  zb_uint16_t         manufacturer_code;  /*!< Manufacturer Code */
-  zb_uint8_t          seq_number;         /*!< Transaction Sequence Number */
-  zb_uint8_t          command_id;         /*!< Command Identifier Field */
+    zb_zcl_frame_ctrl_t frame_ctrl;         /*!< Frame control filed see @ref zb_zcl_frame_ctrl_s */
+    zb_uint16_t         manufacturer_code;  /*!< Manufacturer Code */
+    zb_uint8_t          seq_number;         /*!< Transaction Sequence Number */
+    zb_uint8_t          command_id;         /*!< Command Identifier Field */
 } ZB_PACKED_STRUCT
 zb_zcl_frame_hdr_full_t;
 
@@ -996,9 +996,9 @@ zb_zcl_frame_hdr_full_t;
 */
 typedef ZB_PACKED_PRE  struct zb_zcl_frame_hdr_short_s
 {
-  zb_zcl_frame_ctrl_t frame_ctrl;   /*!< Frame control field see @ref zb_zcl_frame_ctrl_s */
-  zb_uint8_t          seq_number;   /*!< Transaction Sequence Number */
-  zb_uint8_t          command_id;   /*!< Command Identifier Field */
+    zb_zcl_frame_ctrl_t frame_ctrl;   /*!< Frame control field see @ref zb_zcl_frame_ctrl_s */
+    zb_uint8_t          seq_number;   /*!< Transaction Sequence Number */
+    zb_uint8_t          command_id;   /*!< Command Identifier Field */
 } ZB_PACKED_STRUCT
 zb_zcl_frame_hdr_short_t;
 
@@ -1023,59 +1023,59 @@ zb_zcl_frame_hdr_short_t;
  */
 typedef ZB_PACKED_PRE struct zb_zcl_addr_s
 {
-  zb_uint8_t addr_type;  /**< address type (see @ref zcl_addr_type) */
-  ZB_PACKED_PRE union zb_zcl_addr_u
-  {
-    zb_uint16_t    short_addr; /**< Zigbee short address */
-    zb_uint32_t    src_id;     /**< Source ID of ZGPD */
-    zb_ieee_addr_t ieee_addr;  /**< Full IEEE-address of ZGPD */
-  } u;
+    zb_uint8_t addr_type;  /**< address type (see @ref zcl_addr_type) */
+    ZB_PACKED_PRE union zb_zcl_addr_u
+    {
+        zb_uint16_t    short_addr; /**< Zigbee short address */
+        zb_uint32_t    src_id;     /**< Source ID of ZGPD */
+        zb_ieee_addr_t ieee_addr;  /**< Full IEEE-address of ZGPD */
+    } u;
 } ZB_PACKED_STRUCT
 zb_zcl_addr_t;
 
 /*! Parsed ZCL header */
 typedef ZB_PACKED_PRE  struct zb_zcl_parsed_hdr_s
 {
-  /* Values from APS data indication */
-  ZB_PACKED_PRE union
-  {
-    ZB_PACKED_PRE struct
+    /* Values from APS data indication */
+    ZB_PACKED_PRE union
     {
-      //zb_uint16_t src_addr;
-      zb_zcl_addr_t source;
-      zb_uint16_t dst_addr;
-      zb_uint8_t  src_endpoint;
-      zb_uint8_t  dst_endpoint;
-      zb_uint8_t  fc;
+        ZB_PACKED_PRE struct
+        {
+            //zb_uint16_t src_addr;
+            zb_zcl_addr_t source;
+            zb_uint16_t dst_addr;
+            zb_uint8_t  src_endpoint;
+            zb_uint8_t  dst_endpoint;
+            zb_uint8_t  fc;
 #if (defined ZB_ENABLE_SE) || (defined ZB_ZCL_SUPPORT_CLUSTER_WWAH)
-      zb_uint8_t aps_key_source:1;
-      zb_uint8_t aps_key_attrs:2;
-      zb_uint8_t aps_key_from_tc:1;
-      zb_uint8_t reserved:4;
+            zb_uint8_t aps_key_source: 1;
+            zb_uint8_t aps_key_attrs: 2;
+            zb_uint8_t aps_key_from_tc: 1;
+            zb_uint8_t reserved: 4;
 #endif
-    } ZB_PACKED_STRUCT common_data;
+        } ZB_PACKED_STRUCT common_data;
 #if defined ZB_ENABLE_ZLL
-    ZB_PACKED_PRE struct
-    {
-/* 07/26/2017 EE CR:MINOR Kill that data structure. Utilize src_addr_ext. Kill upper one nesting level. */
-      zb_ieee_addr_t src_addr;  /**< Sender device extended address. */
-    } ZB_PACKED_STRUCT intrp_data;
+        ZB_PACKED_PRE struct
+        {
+            /* 07/26/2017 EE CR:MINOR Kill that data structure. Utilize src_addr_ext. Kill upper one nesting level. */
+            zb_ieee_addr_t src_addr;  /**< Sender device extended address. */
+        } ZB_PACKED_STRUCT intrp_data;
 #endif /* defined ZB_ENABLE_ZLL */
-  } addr_data;
+    } addr_data;
 #if defined ZB_ENABLE_ZLL
-  zb_uint8_t rssi;          /**< RSSI of the packet. */
+    zb_uint8_t rssi;          /**< RSSI of the packet. */
 #endif /* defined ZB_ENABLE_ZLL */
-  zb_uint16_t cluster_id;
-  zb_uint16_t profile_id;
+    zb_uint16_t cluster_id;
+    zb_uint16_t profile_id;
 
-  /* ZCL specific fields */
-  zb_uint8_t  cmd_id;                   /**< Command identifier. */
-  zb_uint8_t  cmd_direction;            /**< Command direction identifier. */
-  zb_uint8_t  seq_number;               /**< ZCL transaction sequence number. */
-  zb_bool_t   is_common_command;        /**< "Common command" flag. */
-  zb_bool_t   disable_default_response; /**< "Disable default response" flag. */
-  zb_bool_t   is_manuf_specific;        /**< "Has manufacturer-specific data" flag. */
-  zb_uint16_t manuf_specific;           /**< Manufacturer-specific data. */
+    /* ZCL specific fields */
+    zb_uint8_t  cmd_id;                   /**< Command identifier. */
+    zb_uint8_t  cmd_direction;            /**< Command direction identifier. */
+    zb_uint8_t  seq_number;               /**< ZCL transaction sequence number. */
+    zb_bool_t   is_common_command;        /**< "Common command" flag. */
+    zb_bool_t   disable_default_response; /**< "Disable default response" flag. */
+    zb_bool_t   is_manuf_specific;        /**< "Has manufacturer-specific data" flag. */
+    zb_uint16_t manuf_specific;           /**< Manufacturer-specific data. */
 } ZB_PACKED_STRUCT
 zb_zcl_parsed_hdr_t;
 
@@ -1083,14 +1083,14 @@ zb_zcl_parsed_hdr_t;
 /*! Attribute address info structure */
 typedef struct zb_zcl_attr_addr_info_s
 {
-  zb_uint8_t src_ep;          /**< Source endpoint */
-  zb_uint8_t dst_ep;          /**< Destination endpoint */
-  zb_uint16_t dst_short_addr; /**< Destination short address */
+    zb_uint8_t src_ep;          /**< Source endpoint */
+    zb_uint8_t dst_ep;          /**< Destination endpoint */
+    zb_uint16_t dst_short_addr; /**< Destination short address */
 
-  zb_uint16_t profile_id;     /**< Profile id */
-  zb_uint16_t cluster_id;     /**< Cluster id */
-  zb_uint8_t cluster_role;    /**< Cluster role */
-  zb_uint16_t attr_id;        /**< Attribute id */
+    zb_uint16_t profile_id;     /**< Profile id */
+    zb_uint16_t cluster_id;     /**< Cluster id */
+    zb_uint8_t cluster_role;    /**< Cluster role */
+    zb_uint16_t attr_id;        /**< Attribute id */
 }
 zb_zcl_attr_addr_info_t;
 
@@ -1160,7 +1160,7 @@ zb_zcl_attr_addr_info_t;
   *
   * Returns pointer to the buffer data begin after ZCL header (where command payload can be placed if needed).
   */
-void *zb_zcl_start_command_header(zb_bufid_t zbbuf, zb_uint8_t frame_ctl, zb_uint16_t manuf_code, zb_uint8_t cmd_id, zb_uint8_t* tsn);
+void *zb_zcl_start_command_header(zb_bufid_t zbbuf, zb_uint8_t frame_ctl, zb_uint16_t manuf_code, zb_uint8_t cmd_id, zb_uint8_t *tsn);
 
 /** @cond internals_doc */
 
@@ -1700,17 +1700,17 @@ do                                         \
     @param cb command send status callback
  */
 zb_ret_t zb_zcl_finish_and_send_packet(zb_bufid_t buffer, zb_uint8_t *ptr,
-                                   const zb_addr_u *dst_addr, zb_uint8_t dst_addr_mode,
-                                   zb_uint8_t dst_ep, zb_uint8_t ep,
-                                   zb_uint16_t prof_id, zb_uint16_t cluster_id,
-                                   zb_callback_t cb);
+                                       const zb_addr_u *dst_addr, zb_uint8_t dst_addr_mode,
+                                       zb_uint8_t dst_ep, zb_uint8_t ep,
+                                       zb_uint16_t prof_id, zb_uint16_t cluster_id,
+                                       zb_callback_t cb);
 
 zb_ret_t zb_zcl_finish_and_send_packet_new(zb_bufid_t buffer, zb_uint8_t *ptr,
-                                   const zb_addr_u *dst_addr, zb_uint8_t dst_addr_mode,
-                                   zb_uint8_t dst_ep, zb_uint8_t ep,
-                                   zb_uint16_t prof_id, zb_uint16_t cluster_id,
-                                   zb_callback_t cb, zb_bool_t aps_secured,
-                                   zb_bool_t disable_aps_ack, zb_uint16_t delay);
+        const zb_addr_u *dst_addr, zb_uint8_t dst_addr_mode,
+        zb_uint8_t dst_ep, zb_uint8_t ep,
+        zb_uint16_t prof_id, zb_uint16_t cluster_id,
+        zb_callback_t cb, zb_bool_t aps_secured,
+        zb_bool_t disable_aps_ack, zb_uint16_t delay);
 
 
 /*!
@@ -1839,8 +1839,8 @@ void zb_zcl_fix_endian(zb_uint8_t *data_ptr, zb_uint8_t data_type);
  * buffer index */
 typedef struct zcl_cb_hash_ent_s
 {
-  zb_callback_t func; /*!< callback pointer */
-  zb_uint8_t    buf;  /*!< buffer index */
+    zb_callback_t func; /*!< callback pointer */
+    zb_uint8_t    buf;  /*!< buffer index */
 }
 zcl_cb_hash_ent_t;
 
@@ -1849,11 +1849,11 @@ zcl_cb_hash_ent_t;
 /** Command send status structure */
 typedef struct zb_zcl_command_send_status_s
 {
-  zb_ret_t    status;         /*!< command send status */
-  zb_uint8_t  dst_endpoint;   /*!< Destination endpoint */
-  zb_zcl_addr_t dst_addr;     /*!< Destination address */
-  zb_uint8_t  src_endpoint;   /*!< Source endpoint */
-  /* add more fields here if needed */
+    zb_ret_t    status;         /*!< command send status */
+    zb_uint8_t  dst_endpoint;   /*!< Destination endpoint */
+    zb_zcl_addr_t dst_addr;     /*!< Destination address */
+    zb_uint8_t  src_endpoint;   /*!< Source endpoint */
+    /* add more fields here if needed */
 }
 zb_zcl_command_send_status_t;
 
@@ -1873,7 +1873,7 @@ typedef void (*zb_zcl_set_default_value_attr_cb_t)(zb_uint8_t ep);
             RET_IGNORE - if use default Check attribute functions
 */
 typedef zb_ret_t (*zb_zcl_app_check_attr_value_cb_t)
-    (zb_uint16_t cluster_id, zb_uint8_t cluster_role, zb_uint8_t endpoint, zb_uint16_t attr_id, zb_uint8_t *value);
+(zb_uint16_t cluster_id, zb_uint8_t cluster_role, zb_uint8_t endpoint, zb_uint16_t attr_id, zb_uint8_t *value);
 
 /* ZCL common functions */
 
@@ -1882,7 +1882,7 @@ typedef zb_ret_t (*zb_zcl_app_check_attr_value_cb_t)
     @param attr_id - attribute identifier
     @returns Pointer to attribute description, or NULL if no attribute description found.
 */
-zb_zcl_attr_t* zb_zcl_get_attr_desc(zb_zcl_cluster_desc_t *cluster_desc, zb_uint16_t attr_id);
+zb_zcl_attr_t *zb_zcl_get_attr_desc(zb_zcl_cluster_desc_t *cluster_desc, zb_uint16_t attr_id);
 
 /** @brief Check registered attribute is writable one
     @param attr_desc - attribute descriptor
@@ -1894,12 +1894,12 @@ zb_zcl_attr_t* zb_zcl_get_attr_desc(zb_zcl_cluster_desc_t *cluster_desc, zb_uint
     @returns ZB_ZCL_STATUS_SUCCESS on success, error status otherwise
 */
 zb_uint8_t zb_zcl_check_attribute_writable(
-  zb_zcl_attr_t* attr_desc,
-  zb_uint8_t endpoint,
-  zb_uint16_t cluster_id,
-  zb_uint8_t cluster_role,
-  zb_uint8_t *new_value,
-  zb_bool_t check_access);
+    zb_zcl_attr_t *attr_desc,
+    zb_uint8_t endpoint,
+    zb_uint16_t cluster_id,
+    zb_uint8_t cluster_role,
+    zb_uint8_t *new_value,
+    zb_bool_t check_access);
 
 /*!
   Hook on Write Attribute command
@@ -1954,7 +1954,7 @@ zb_ret_t zb_zcl_check_attr_value(zb_uint16_t cluster_id, zb_uint8_t cluster_role
 zb_bool_t zb_zcl_is_target_endpoint(zb_af_endpoint_desc_t *ep_desc, zb_uint16_t profile_id);
 
 zb_uint8_t zb_zcl_get_next_target_endpoint(
-  zb_uint8_t start_from_ep, zb_uint16_t cluster_id, zb_uint8_t cluster_role, zb_uint16_t profile_id);
+    zb_uint8_t start_from_ep, zb_uint16_t cluster_id, zb_uint8_t cluster_role, zb_uint16_t profile_id);
 
 /**
  * @brief Search endpoint for cluster with given id
@@ -1964,7 +1964,7 @@ zb_uint8_t zb_zcl_get_next_target_endpoint(
  * @param cluster_role - role (see @ref zcl_cluster_role)
  * @return cluster descriptor or NULL if not present
  */
-zb_zcl_cluster_desc_t* get_cluster_desc(const zb_af_endpoint_desc_t* ep_desc, zb_uint16_t cluster_id, zb_uint8_t cluster_role);
+zb_zcl_cluster_desc_t *get_cluster_desc(const zb_af_endpoint_desc_t *ep_desc, zb_uint16_t cluster_id, zb_uint8_t cluster_role);
 
 /**
  * @brief Find endpoint which has cluster with given ID
@@ -2007,7 +2007,7 @@ zb_af_endpoint_desc_t *get_endpoint_by_cluster_with_role(
  *
  * @return attribute descriptor
  */
-zb_zcl_attr_t* zb_zcl_get_attr_desc_a(zb_uint8_t ep, zb_uint16_t cluster_id, zb_uint8_t cluster_role, zb_uint16_t attr_id);
+zb_zcl_attr_t *zb_zcl_get_attr_desc_a(zb_uint8_t ep, zb_uint16_t cluster_id, zb_uint8_t cluster_role, zb_uint16_t attr_id);
 
 /**
  * Put attribute value to command packet, fix endian if needed.
@@ -2018,7 +2018,7 @@ zb_zcl_attr_t* zb_zcl_get_attr_desc_a(zb_uint8_t ep, zb_uint16_t cluster_id, zb_
  *
  * @return command pointer adjusted to point at the tail of written value
 */
-zb_uint8_t* zb_zcl_put_value_to_packet(
+zb_uint8_t *zb_zcl_put_value_to_packet(
     zb_uint8_t *cmd_ptr, zb_uint8_t attr_type, zb_uint8_t *attr_value);
 
 
@@ -2039,7 +2039,7 @@ zb_uint8_t* zb_zcl_put_value_to_packet(
  * @note given endpoint with given cluster ID should exist
  */
 zb_zcl_status_t zb_zcl_set_attr_val(zb_uint8_t ep, zb_uint16_t cluster_id, zb_uint8_t cluster_role,
-                             zb_uint16_t attr_id, zb_uint8_t *value, zb_bool_t check_access);
+                                    zb_uint16_t attr_id, zb_uint8_t *value, zb_bool_t check_access);
 
 /**
  * @brief Register callback that should be called when APS acknowledge is received for ZCL command
@@ -2094,30 +2094,30 @@ void zb_zcl_process_command_finish_new(zb_bufid_t buffer, zb_zcl_parsed_hdr_t *p
 */
 typedef struct zb_zcl_set_attr_value_param_s
 {
-  zb_uint16_t cluster_id;   /**< Cluster ID*/
-  zb_uint16_t attr_id;      /**< Attribute ID*/
-  /*
-   * Constant size of values - for correct alloc place in buffer tail, as
-   * "ZB_BUF_GET_PARAM(buffer, zb_zcl_device_callback_param_t)".
-   * Current size = maximum of fixed size of any attribute.
-   * If will need to translate attribute with variable size then need
-   * set value as size and pointer of attribute.
-   * */
-  union
-  {
-    zb_uint8_t data8;           /**< 8bit data */
-    zb_uint16_t data16;         /**< 16bit data */
-    zb_uint24_t data24;         /**< 24bit data */
-    zb_uint32_t data32;         /**< 32bit data */
-    zb_uint48_t data48;         /**< 48bit data */
-    zb_ieee_addr_t data_ieee;   /**< 64bit data or IEEE address */
-    struct
+    zb_uint16_t cluster_id;   /**< Cluster ID*/
+    zb_uint16_t attr_id;      /**< Attribute ID*/
+    /*
+     * Constant size of values - for correct alloc place in buffer tail, as
+     * "ZB_BUF_GET_PARAM(buffer, zb_zcl_device_callback_param_t)".
+     * Current size = maximum of fixed size of any attribute.
+     * If will need to translate attribute with variable size then need
+     * set value as size and pointer of attribute.
+     * */
+    union
     {
-      zb_uint8_t size;          /**< Size of data (byte) */
-      zb_uint8_t *p_data;       /**< Pointer of data */
-    } data_variable;            /**< Variable size data - string or byte array */
-  }
-  values;
+        zb_uint8_t data8;           /**< 8bit data */
+        zb_uint16_t data16;         /**< 16bit data */
+        zb_uint24_t data24;         /**< 24bit data */
+        zb_uint32_t data32;         /**< 32bit data */
+        zb_uint48_t data48;         /**< 48bit data */
+        zb_ieee_addr_t data_ieee;   /**< 64bit data or IEEE address */
+        struct
+        {
+            zb_uint8_t size;          /**< Size of data (byte) */
+            zb_uint8_t *p_data;       /**< Pointer of data */
+        } data_variable;            /**< Variable size data - string or byte array */
+    }
+    values;
 } zb_zcl_set_attr_value_param_t;
 
 /** @cond internals_doc */

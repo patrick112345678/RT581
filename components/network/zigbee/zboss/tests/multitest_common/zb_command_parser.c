@@ -32,84 +32,84 @@
 /* Updates ptr to skip leading whitespaces */
 static void skip_ws(char **ptr)
 {
-  while (**ptr != '\0' && isspace(**ptr))
-  {
-    (*ptr)++;
-  }
+    while (**ptr != '\0' && isspace(**ptr))
+    {
+        (*ptr)++;
+    }
 }
 
 
 zb_bool_t parse_command_token(char **ptr, char *dst, int max_len)
 {
-  zb_bool_t res = ZB_TRUE;
+    zb_bool_t res = ZB_TRUE;
 
-  max_len--; /* reserve one byte for '\0' */
-  skip_ws(ptr);
+    max_len--; /* reserve one byte for '\0' */
+    skip_ws(ptr);
 
-  while (**ptr != '\0'
-         && (isalnum(**ptr) || **ptr == '_' || **ptr == '-'))
-  {
-    if (max_len == 0)
+    while (**ptr != '\0'
+            && (isalnum(**ptr) || **ptr == '_' || **ptr == '-'))
     {
-      /* no space in dst buffer */
-      res = ZB_FALSE;
-      break;
+        if (max_len == 0)
+        {
+            /* no space in dst buffer */
+            res = ZB_FALSE;
+            break;
+        }
+
+        *dst = **ptr;
+        dst++, (*ptr)++, max_len--;
     }
 
-    *dst = **ptr;
-    dst++, (*ptr)++, max_len--;
-  }
-
-  *dst = '\0';
-  return res;
+    *dst = '\0';
+    return res;
 }
 
 /* Parses value for key-value pairs. */
 static void read_param_value(char **ptr, char *dst, int max_len)
 {
-  /* currently the same function */
-  parse_command_token(ptr, dst, max_len);
+    /* currently the same function */
+    parse_command_token(ptr, dst, max_len);
 }
 
 /* Handles strings like:
    key\s*=\s*value */
 static zb_bool_t handle_parameter(char **ptr, param_handler_function_t func)
 {
-  char argument_key  [20];
-  char argument_value[20];
-  zb_bool_t res;
+    char argument_key  [20];
+    char argument_value[20];
+    zb_bool_t res;
 
-  res = parse_command_token(ptr, argument_key, sizeof(argument_key));
-  skip_ws(ptr);
+    res = parse_command_token(ptr, argument_key, sizeof(argument_key));
+    skip_ws(ptr);
 
-  if (!res)
-  {
-    // failed to parse key
-  }
-  else if (**ptr != '=')
-  {
-    // error, no = sign
-    res = ZB_FALSE;
-  }
-  else if (*argument_key == '\0')
-  {
-    // error, empty key
-    res = ZB_FALSE;
-  }
-  else
-  {
-    (*ptr)++; /* skip '=' symbol */
+    if (!res)
+    {
+        // failed to parse key
+    }
+    else if (**ptr != '=')
+    {
+        // error, no = sign
+        res = ZB_FALSE;
+    }
+    else if (*argument_key == '\0')
+    {
+        // error, empty key
+        res = ZB_FALSE;
+    }
+    else
+    {
+        (*ptr)++; /* skip '=' symbol */
 
-    read_param_value(ptr, argument_value, sizeof(argument_value));
-    res = (*argument_value != '\0');
-  }
+        read_param_value(ptr, argument_value, sizeof(argument_value));
+        res = (*argument_value != '\0');
+    }
 
-  if (res)
-  {
-    func(argument_key, argument_value);
-  }
+    if (res)
+    {
+        func(argument_key, argument_value);
+    }
 
-  return res;
+    return res;
 }
 
 /**
@@ -119,22 +119,22 @@ static zb_bool_t handle_parameter(char **ptr, param_handler_function_t func)
  */
 zb_bool_t handle_command_parameter_list(char *ptr, param_handler_function_t func)
 {
-  zb_bool_t res = ZB_TRUE;
+    zb_bool_t res = ZB_TRUE;
 
-  while (*ptr != '\0' && res == ZB_TRUE)
-  {
-    skip_ws(&ptr);
-
-    if (*ptr == ',')
+    while (*ptr != '\0' && res == ZB_TRUE)
     {
-      /* skipping comma */
-      ptr++;
+        skip_ws(&ptr);
+
+        if (*ptr == ',')
+        {
+            /* skipping comma */
+            ptr++;
+        }
+
+        res = handle_parameter(&ptr, func);
+
+        skip_ws(&ptr);
     }
 
-    res = handle_parameter(&ptr, func);
-
-    skip_ws(&ptr);
-  }
-
-  return res;
+    return res;
 }

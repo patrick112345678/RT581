@@ -160,106 +160,106 @@ extern int mve_vldrd_immediate (rtx, machine_mode);
 #define CONSTRAINT_NUM_DEFINED_P 1
 enum constraint_num
 {
-  CONSTRAINT__UNKNOWN = 0,
-  CONSTRAINT_r,
-  CONSTRAINT_Up,
-  CONSTRAINT_Uf,
-  CONSTRAINT_Te,
-  CONSTRAINT_t,
-  CONSTRAINT_w,
-  CONSTRAINT_x,
-  CONSTRAINT_y,
-  CONSTRAINT_z,
-  CONSTRAINT_l,
-  CONSTRAINT_h,
-  CONSTRAINT_k,
-  CONSTRAINT_b,
-  CONSTRAINT_Cs,
-  CONSTRAINT_Ts,
-  CONSTRAINT_Pj,
-  CONSTRAINT_PJ,
-  CONSTRAINT_I,
-  CONSTRAINT_J,
-  CONSTRAINT_K,
-  CONSTRAINT_L,
-  CONSTRAINT_M,
-  CONSTRAINT_N,
-  CONSTRAINT_O,
-  CONSTRAINT_Pa,
-  CONSTRAINT_Pb,
-  CONSTRAINT_Pc,
-  CONSTRAINT_Pd,
-  CONSTRAINT_Pe,
-  CONSTRAINT_Pf,
-  CONSTRAINT_Pg,
-  CONSTRAINT_Ps,
-  CONSTRAINT_Pt,
-  CONSTRAINT_Pu,
-  CONSTRAINT_Pv,
-  CONSTRAINT_Pw,
-  CONSTRAINT_Px,
-  CONSTRAINT_Py,
-  CONSTRAINT_Pz,
-  CONSTRAINT_m,
-  CONSTRAINT_o,
-  CONSTRAINT_Ul,
-  CONSTRAINT_Ua,
-  CONSTRAINT_Uh,
-  CONSTRAINT_Ut,
-  CONSTRAINT_Uv,
-  CONSTRAINT_Uj,
-  CONSTRAINT_Uy,
-  CONSTRAINT_Un,
-  CONSTRAINT_Um,
-  CONSTRAINT_Us,
-  CONSTRAINT_Ux,
-  CONSTRAINT_Uq,
-  CONSTRAINT_Q,
-  CONSTRAINT_Uu,
-  CONSTRAINT_Uw,
-  CONSTRAINT_Uz,
-  CONSTRAINT_p,
-  CONSTRAINT_Ri,
-  CONSTRAINT_Rd,
-  CONSTRAINT_Ra,
-  CONSTRAINT_Rb,
-  CONSTRAINT_Rc,
-  CONSTRAINT_Re,
-  CONSTRAINT_Rf,
-  CONSTRAINT_Rg,
-  CONSTRAINT_j,
-  CONSTRAINT_G,
-  CONSTRAINT_Ha,
-  CONSTRAINT_Dz,
-  CONSTRAINT_Da,
-  CONSTRAINT_Db,
-  CONSTRAINT_Dc,
-  CONSTRAINT_Dd,
-  CONSTRAINT_Di,
-  CONSTRAINT_Dm,
-  CONSTRAINT_Dn,
-  CONSTRAINT_DN,
-  CONSTRAINT_Dl,
-  CONSTRAINT_DL,
-  CONSTRAINT_Do,
-  CONSTRAINT_Dv,
-  CONSTRAINT_Dy,
-  CONSTRAINT_Dt,
-  CONSTRAINT_Dp,
-  CONSTRAINT_US,
-  CONSTRAINT_c,
-  CONSTRAINT_V,
-  CONSTRAINT__l,
-  CONSTRAINT__g,
-  CONSTRAINT_i,
-  CONSTRAINT_s,
-  CONSTRAINT_n,
-  CONSTRAINT_E,
-  CONSTRAINT_F,
-  CONSTRAINT_X,
-  CONSTRAINT_Tu,
-  CONSTRAINT_Ui,
-  CONSTRAINT__LIMIT
+    CONSTRAINT__UNKNOWN = 0,
+    CONSTRAINT_r,
+    CONSTRAINT_Up,
+    CONSTRAINT_Uf,
+    CONSTRAINT_Te,
+    CONSTRAINT_t,
+    CONSTRAINT_w,
+    CONSTRAINT_x,
+    CONSTRAINT_y,
+    CONSTRAINT_z,
+    CONSTRAINT_l,
+    CONSTRAINT_h,
+    CONSTRAINT_k,
+    CONSTRAINT_b,
+    CONSTRAINT_Cs,
+    CONSTRAINT_Ts,
+    CONSTRAINT_Pj,
+    CONSTRAINT_PJ,
+    CONSTRAINT_I,
+    CONSTRAINT_J,
+    CONSTRAINT_K,
+    CONSTRAINT_L,
+    CONSTRAINT_M,
+    CONSTRAINT_N,
+    CONSTRAINT_O,
+    CONSTRAINT_Pa,
+    CONSTRAINT_Pb,
+    CONSTRAINT_Pc,
+    CONSTRAINT_Pd,
+    CONSTRAINT_Pe,
+    CONSTRAINT_Pf,
+    CONSTRAINT_Pg,
+    CONSTRAINT_Ps,
+    CONSTRAINT_Pt,
+    CONSTRAINT_Pu,
+    CONSTRAINT_Pv,
+    CONSTRAINT_Pw,
+    CONSTRAINT_Px,
+    CONSTRAINT_Py,
+    CONSTRAINT_Pz,
+    CONSTRAINT_m,
+    CONSTRAINT_o,
+    CONSTRAINT_Ul,
+    CONSTRAINT_Ua,
+    CONSTRAINT_Uh,
+    CONSTRAINT_Ut,
+    CONSTRAINT_Uv,
+    CONSTRAINT_Uj,
+    CONSTRAINT_Uy,
+    CONSTRAINT_Un,
+    CONSTRAINT_Um,
+    CONSTRAINT_Us,
+    CONSTRAINT_Ux,
+    CONSTRAINT_Uq,
+    CONSTRAINT_Q,
+    CONSTRAINT_Uu,
+    CONSTRAINT_Uw,
+    CONSTRAINT_Uz,
+    CONSTRAINT_p,
+    CONSTRAINT_Ri,
+    CONSTRAINT_Rd,
+    CONSTRAINT_Ra,
+    CONSTRAINT_Rb,
+    CONSTRAINT_Rc,
+    CONSTRAINT_Re,
+    CONSTRAINT_Rf,
+    CONSTRAINT_Rg,
+    CONSTRAINT_j,
+    CONSTRAINT_G,
+    CONSTRAINT_Ha,
+    CONSTRAINT_Dz,
+    CONSTRAINT_Da,
+    CONSTRAINT_Db,
+    CONSTRAINT_Dc,
+    CONSTRAINT_Dd,
+    CONSTRAINT_Di,
+    CONSTRAINT_Dm,
+    CONSTRAINT_Dn,
+    CONSTRAINT_DN,
+    CONSTRAINT_Dl,
+    CONSTRAINT_DL,
+    CONSTRAINT_Do,
+    CONSTRAINT_Dv,
+    CONSTRAINT_Dy,
+    CONSTRAINT_Dt,
+    CONSTRAINT_Dp,
+    CONSTRAINT_US,
+    CONSTRAINT_c,
+    CONSTRAINT_V,
+    CONSTRAINT__l,
+    CONSTRAINT__g,
+    CONSTRAINT_i,
+    CONSTRAINT_s,
+    CONSTRAINT_n,
+    CONSTRAINT_E,
+    CONSTRAINT_F,
+    CONSTRAINT_X,
+    CONSTRAINT_Tu,
+    CONSTRAINT_Ui,
+    CONSTRAINT__LIMIT
 };
 
 extern enum constraint_num lookup_constraint_1 (const char *);
@@ -271,10 +271,10 @@ extern const unsigned char lookup_constraint_array[];
 static inline enum constraint_num
 lookup_constraint (const char *p)
 {
-  unsigned int index = lookup_constraint_array[(unsigned char) *p];
-  return (index == UCHAR_MAX
-          ? lookup_constraint_1 (p)
-          : (enum constraint_num) index);
+    unsigned int index = lookup_constraint_array[(unsigned char) * p];
+    return (index == UCHAR_MAX
+            ? lookup_constraint_1 (p)
+            : (enum constraint_num) index);
 }
 
 extern bool (*constraint_satisfied_p_array[]) (rtx);
@@ -284,70 +284,80 @@ extern bool (*constraint_satisfied_p_array[]) (rtx);
 static inline bool
 constraint_satisfied_p (rtx x, enum constraint_num c)
 {
-  int i = (int) c - (int) CONSTRAINT_Pj;
-  return i >= 0 && constraint_satisfied_p_array[i] (x);
+    int i = (int) c - (int) CONSTRAINT_Pj;
+    return i >= 0 && constraint_satisfied_p_array[i] (x);
 }
 
 static inline bool
 insn_extra_register_constraint (enum constraint_num c)
 {
-  return c >= CONSTRAINT_r && c <= CONSTRAINT_Ts;
+    return c >= CONSTRAINT_r && c <= CONSTRAINT_Ts;
 }
 
 static inline bool
 insn_extra_memory_constraint (enum constraint_num c)
 {
-  return c >= CONSTRAINT_m && c <= CONSTRAINT_Uz;
+    return c >= CONSTRAINT_m && c <= CONSTRAINT_Uz;
 }
 
 static inline bool
 insn_extra_special_memory_constraint (enum constraint_num)
 {
-  return false;
+    return false;
 }
 
 static inline bool
 insn_extra_address_constraint (enum constraint_num c)
 {
-  return c >= CONSTRAINT_p && c <= CONSTRAINT_p;
+    return c >= CONSTRAINT_p && c <= CONSTRAINT_p;
 }
 
 static inline void
 insn_extra_constraint_allows_reg_mem (enum constraint_num c,
-				      bool *allows_reg, bool *allows_mem)
+                                      bool *allows_reg, bool *allows_mem)
 {
-  if (c >= CONSTRAINT_Ri && c <= CONSTRAINT_US)
-    return;
-  if (c >= CONSTRAINT_c && c <= CONSTRAINT_c)
+    if (c >= CONSTRAINT_Ri && c <= CONSTRAINT_US)
     {
-      *allows_reg = true;
-      return;
+        return;
     }
-  if (c >= CONSTRAINT_V && c <= CONSTRAINT__g)
+    if (c >= CONSTRAINT_c && c <= CONSTRAINT_c)
     {
-      *allows_mem = true;
-      return;
+        *allows_reg = true;
+        return;
     }
-  (void) c;
-  *allows_reg = true;
-  *allows_mem = true;
+    if (c >= CONSTRAINT_V && c <= CONSTRAINT__g)
+    {
+        *allows_mem = true;
+        return;
+    }
+    (void) c;
+    *allows_reg = true;
+    *allows_mem = true;
 }
 
 static inline size_t
 insn_constraint_len (char fc, const char *str ATTRIBUTE_UNUSED)
 {
-  switch (fc)
+    switch (fc)
     {
-    case 'C': return 2;
-    case 'D': return 2;
-    case 'H': return 2;
-    case 'P': return 2;
-    case 'R': return 2;
-    case 'T': return 2;
-    case 'U': return 2;
-    default: break;
+    case 'C':
+        return 2;
+    case 'D':
+        return 2;
+    case 'H':
+        return 2;
+    case 'P':
+        return 2;
+    case 'R':
+        return 2;
+    case 'T':
+        return 2;
+    case 'U':
+        return 2;
+    default:
+        break;
     }
-  return 1;
+    return 1;
 }
 
 #define CONSTRAINT_LEN(c_,s_) insn_constraint_len (c_,s_)
@@ -357,9 +367,11 @@ extern enum reg_class reg_class_for_constraint_1 (enum constraint_num);
 static inline enum reg_class
 reg_class_for_constraint (enum constraint_num c)
 {
-  if (insn_extra_register_constraint (c))
-    return reg_class_for_constraint_1 (c);
-  return NO_REGS;
+    if (insn_extra_register_constraint (c))
+    {
+        return reg_class_for_constraint_1 (c);
+    }
+    return NO_REGS;
 }
 
 extern bool insn_const_int_ok_for_constraint (HOST_WIDE_INT, enum constraint_num);
@@ -368,27 +380,33 @@ extern bool insn_const_int_ok_for_constraint (HOST_WIDE_INT, enum constraint_num
 
 enum constraint_type
 {
-  CT_REGISTER,
-  CT_CONST_INT,
-  CT_MEMORY,
-  CT_SPECIAL_MEMORY,
-  CT_ADDRESS,
-  CT_FIXED_FORM
+    CT_REGISTER,
+    CT_CONST_INT,
+    CT_MEMORY,
+    CT_SPECIAL_MEMORY,
+    CT_ADDRESS,
+    CT_FIXED_FORM
 };
 
 static inline enum constraint_type
 get_constraint_type (enum constraint_num c)
 {
-  if (c >= CONSTRAINT_p)
+    if (c >= CONSTRAINT_p)
     {
-      if (c >= CONSTRAINT_Ri)
-        return CT_FIXED_FORM;
-      return CT_ADDRESS;
+        if (c >= CONSTRAINT_Ri)
+        {
+            return CT_FIXED_FORM;
+        }
+        return CT_ADDRESS;
     }
-  if (c >= CONSTRAINT_m)
-    return CT_MEMORY;
-  if (c >= CONSTRAINT_Pj)
-    return CT_CONST_INT;
-  return CT_REGISTER;
+    if (c >= CONSTRAINT_m)
+    {
+        return CT_MEMORY;
+    }
+    if (c >= CONSTRAINT_Pj)
+    {
+        return CT_CONST_INT;
+    }
+    return CT_REGISTER;
 }
 #endif /* tm-preds.h */

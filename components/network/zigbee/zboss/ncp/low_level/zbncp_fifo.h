@@ -57,64 +57,64 @@ typedef zbncp_size_t zbncp_fifo_size_t;
 /** @brief Book-keeping structure implementing FIFO indexing. */
 typedef struct zbncp_fifo_s
 {
-  zbncp_fifo_size_t size;   /**< Total count of FIFO entries */
-  zbncp_fifo_size_t tail;   /**< Tail index to enqueue items to */
-  zbncp_fifo_size_t head;   /**< Head index to dequeue items from */
+    zbncp_fifo_size_t size;   /**< Total count of FIFO entries */
+    zbncp_fifo_size_t tail;   /**< Tail index to enqueue items to */
+    zbncp_fifo_size_t head;   /**< Head index to dequeue items from */
 }
 zbncp_fifo_t;
 
 /** @brief Initialize FIFO structure. */
 static inline void zbncp_fifo_init(zbncp_fifo_t *fifo, zbncp_fifo_size_t size)
 {
-  ZBNCP_DBG_ASSERT(size <= FIFO_MAX_SIZE_ALLOWED);
+    ZBNCP_DBG_ASSERT(size <= FIFO_MAX_SIZE_ALLOWED);
 
-  fifo->size = size;
-  fifo->head = 0u;
-  fifo->tail = 0u;
+    fifo->size = size;
+    fifo->head = 0u;
+    fifo->tail = 0u;
 }
 
 /** @brief Obtain current FIFO item count. */
 static inline zbncp_fifo_size_t zbncp_fifo_item_count(const zbncp_fifo_t *fifo)
 {
-  return (zbncp_fifo_size_t)(fifo->tail - fifo->head);
+    return (zbncp_fifo_size_t)(fifo->tail - fifo->head);
 }
 
 /** @brief Predicate to check whether the FIFO is empty now. */
 static inline zbncp_bool_t zbncp_fifo_is_empty(const zbncp_fifo_t *fifo)
 {
-  return (zbncp_fifo_item_count(fifo) == 0u);
+    return (zbncp_fifo_item_count(fifo) == 0u);
 }
 
 /** @brief Predicate to check whether the FIFO is full now. */
 static inline zbncp_bool_t zbncp_fifo_is_full(const zbncp_fifo_t *fifo)
 {
-  return (zbncp_fifo_item_count(fifo) == fifo->size);
+    return (zbncp_fifo_item_count(fifo) == fifo->size);
 }
 
 /** @brief Obtain the head index of the FIFO. */
 static inline zbncp_fifo_size_t zbncp_fifo_head(const zbncp_fifo_t *fifo)
 {
-  return (fifo->head % fifo->size);
+    return (fifo->head % fifo->size);
 }
 
 /** @brief Obtain the tail index of the FIFO. */
 static inline zbncp_fifo_size_t zbncp_fifo_tail(const zbncp_fifo_t *fifo)
 {
-  return (fifo->tail % fifo->size);
+    return (fifo->tail % fifo->size);
 }
 
 /** @brief Enqueue the new item to the tail of the FIFO and return its index. */
 static inline zbncp_fifo_size_t zbncp_fifo_enqueue(zbncp_fifo_t *fifo)
 {
-  zbncp_fifo_size_t tail = zbncp_fifo_tail(fifo);
-  ++fifo->tail;
-  return tail;
+    zbncp_fifo_size_t tail = zbncp_fifo_tail(fifo);
+    ++fifo->tail;
+    return tail;
 }
 
 /** @brief Dequeue an item from the head of the FIFO. */
 static inline void zbncp_fifo_dequeue(zbncp_fifo_t *fifo)
 {
-  ++fifo->head;
+    ++fifo->head;
 }
 
 #endif /* ZBNCP_INCLUDE_GUARD_FIFO_H */

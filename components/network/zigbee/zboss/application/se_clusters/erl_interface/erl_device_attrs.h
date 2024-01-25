@@ -67,38 +67,38 @@
  */
 typedef struct erl_basic_server_attrs_s
 {
-  /** @copydoc ZB_ZCL_ATTR_BASIC_ZCL_VERSION_ID
-   * @see ZB_ZCL_ATTR_BASIC_ZCL_VERSION_ID
-   */
-  zb_uint8_t zcl_version;
-  /** @copydoc ZB_ZCL_ATTR_BASIC_APPLICATION_VERSION_ID
-   * @see ZB_ZCL_ATTR_BASIC_APPLICATION_VERSION_ID
-   */
-  zb_uint8_t application_version;
-  /** @copydoc ZB_ZCL_ATTR_BASIC_STACK_VERSION_ID
-   * @see ZB_ZCL_ATTR_BASIC_STACK_VERSION_ID
-   */
-  zb_uint8_t stack_version;
-  /** @copydoc ZB_ZCL_ATTR_BASIC_HW_VERSION_ID
-   * @see ZB_ZCL_ATTR_BASIC_HW_VERSION_ID
-   */
-  zb_uint8_t hw_version;
-  /** @copydoc ZB_ZCL_ATTR_BASIC_MANUFACTURER_NAME_ID
-   * @see ZB_ZCL_ATTR_BASIC_MANUFACTURER_NAME_ID
-   */
-  zb_uint8_t manufacture_name[32];
-  /** @copydoc ZB_ZCL_ATTR_BASIC_MODEL_IDENTIFIER_ID
-   * @see ZB_ZCL_ATTR_BASIC_MODEL_IDENTIFIER_ID
-   */
-  zb_uint8_t model_identifier[32];
-  /** @copydoc ZB_ZCL_ATTR_BASIC_DATE_CODE_ID
-   * @see ZB_ZCL_ATTR_BASIC_DATE_CODE_ID
-   */
-  zb_uint8_t date_code[16];
-  /** @copydoc ZB_ZCL_ATTR_BASIC_POWER_SOURCE_ID
-   * @see ZB_ZCL_ATTR_BASIC_POWER_SOURCE_ID
-   */
-  zb_uint8_t power_source;
+    /** @copydoc ZB_ZCL_ATTR_BASIC_ZCL_VERSION_ID
+     * @see ZB_ZCL_ATTR_BASIC_ZCL_VERSION_ID
+     */
+    zb_uint8_t zcl_version;
+    /** @copydoc ZB_ZCL_ATTR_BASIC_APPLICATION_VERSION_ID
+     * @see ZB_ZCL_ATTR_BASIC_APPLICATION_VERSION_ID
+     */
+    zb_uint8_t application_version;
+    /** @copydoc ZB_ZCL_ATTR_BASIC_STACK_VERSION_ID
+     * @see ZB_ZCL_ATTR_BASIC_STACK_VERSION_ID
+     */
+    zb_uint8_t stack_version;
+    /** @copydoc ZB_ZCL_ATTR_BASIC_HW_VERSION_ID
+     * @see ZB_ZCL_ATTR_BASIC_HW_VERSION_ID
+     */
+    zb_uint8_t hw_version;
+    /** @copydoc ZB_ZCL_ATTR_BASIC_MANUFACTURER_NAME_ID
+     * @see ZB_ZCL_ATTR_BASIC_MANUFACTURER_NAME_ID
+     */
+    zb_uint8_t manufacture_name[32];
+    /** @copydoc ZB_ZCL_ATTR_BASIC_MODEL_IDENTIFIER_ID
+     * @see ZB_ZCL_ATTR_BASIC_MODEL_IDENTIFIER_ID
+     */
+    zb_uint8_t model_identifier[32];
+    /** @copydoc ZB_ZCL_ATTR_BASIC_DATE_CODE_ID
+     * @see ZB_ZCL_ATTR_BASIC_DATE_CODE_ID
+     */
+    zb_uint8_t date_code[16];
+    /** @copydoc ZB_ZCL_ATTR_BASIC_POWER_SOURCE_ID
+     * @see ZB_ZCL_ATTR_BASIC_POWER_SOURCE_ID
+     */
+    zb_uint8_t power_source;
 } erl_basic_server_attrs_t;
 
 
@@ -178,42 +178,42 @@ typedef struct erl_basic_server_attrs_s
  */
 typedef struct erl_calendar_server_attrs_s
 {
-  /** @copydoc ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_1_LABEL
-   * @see ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_1_LABEL
-   */
-  zb_uint8_t aux_switch_1_label[23];
-  /** @copydoc ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_2_LABEL
-   * @see ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_2_LABEL
-   */
-  zb_uint8_t aux_switch_2_label[23];
-  /** @copydoc ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_3_LABEL
-   * @see ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_3_LABEL
-   */
-  zb_uint8_t aux_switch_3_label[23];
-  /** @copydoc ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_4_LABEL
-   * @see ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_4_LABEL
-   */
-  zb_uint8_t aux_switch_4_label[23];
-  /** @copydoc ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_5_LABEL
-   * @see ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_5_LABEL
-   */
-  zb_uint8_t aux_switch_5_label[23];
-  /** @copydoc ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_6_LABEL
-   * @see ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_6_LABEL
-   */
-  zb_uint8_t aux_switch_6_label[23];
-  /** @copydoc ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_7_LABEL
-   * @see ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_7_LABEL
-   */
-  zb_uint8_t aux_switch_7_label[23];
-  /** @copydoc ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_8_LABEL
-   * @see ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_8_LABEL
-   */
-  zb_uint8_t aux_switch_8_label[23];
-  /** @copydoc ZB_ZCL_ATTR_CALENDAR_AUX_LOAD_SWITCH_STATE
-   * @see ZB_ZCL_ATTR_CALENDAR_AUX_LOAD_SWITCH_STATE
-   */
-  zb_uint8_t aux_load_switch_state;
+    /** @copydoc ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_1_LABEL
+     * @see ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_1_LABEL
+     */
+    zb_uint8_t aux_switch_1_label[23];
+    /** @copydoc ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_2_LABEL
+     * @see ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_2_LABEL
+     */
+    zb_uint8_t aux_switch_2_label[23];
+    /** @copydoc ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_3_LABEL
+     * @see ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_3_LABEL
+     */
+    zb_uint8_t aux_switch_3_label[23];
+    /** @copydoc ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_4_LABEL
+     * @see ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_4_LABEL
+     */
+    zb_uint8_t aux_switch_4_label[23];
+    /** @copydoc ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_5_LABEL
+     * @see ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_5_LABEL
+     */
+    zb_uint8_t aux_switch_5_label[23];
+    /** @copydoc ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_6_LABEL
+     * @see ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_6_LABEL
+     */
+    zb_uint8_t aux_switch_6_label[23];
+    /** @copydoc ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_7_LABEL
+     * @see ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_7_LABEL
+     */
+    zb_uint8_t aux_switch_7_label[23];
+    /** @copydoc ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_8_LABEL
+     * @see ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_8_LABEL
+     */
+    zb_uint8_t aux_switch_8_label[23];
+    /** @copydoc ZB_ZCL_ATTR_CALENDAR_AUX_LOAD_SWITCH_STATE
+     * @see ZB_ZCL_ATTR_CALENDAR_AUX_LOAD_SWITCH_STATE
+     */
+    zb_uint8_t aux_load_switch_state;
 } erl_calendar_server_attrs_t;
 
 
@@ -270,10 +270,10 @@ typedef struct erl_calendar_server_attrs_s
 */
 typedef struct erl_identify_server_attrs_s
 {
-  /** @copydoc ZB_ZCL_ATTR_IDENTIFY_IDENTIFY_TIME_ID
-  * @see ZB_ZCL_ATTR_IDENTIFY_IDENTIFY_TIME_ID
-  */
-  zb_uint16_t identify_time;
+    /** @copydoc ZB_ZCL_ATTR_IDENTIFY_IDENTIFY_TIME_ID
+    * @see ZB_ZCL_ATTR_IDENTIFY_IDENTIFY_TIME_ID
+    */
+    zb_uint16_t identify_time;
 } erl_identify_server_attrs_t;
 
 
@@ -357,78 +357,78 @@ ZB_ZCL_FINISH_DECLARE_ATTRIB_LIST
  */
 typedef struct erl_el_measurement_server_attrs_s
 {
-  /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_MEASUREMENT_TYPE_ID
-   * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_MEASUREMENT_TYPE_ID
-   */
-  zb_uint32_t measurement_type;
-  /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_TOTAL_ACTIVE_POWER_ID
-   * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_TOTAL_ACTIVE_POWER_ID
-   */
-  zb_int32_t total_active_power;
-  /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_TOTAL_APPARENT_POWER_ID
-   * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_TOTAL_APPARENT_POWER_ID
-   */
-  zb_uint32_t total_apparent_power;
-  /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_RMSVOLTAGE_ID
-   * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_RMSVOLTAGE_ID
-   */
-  zb_uint16_t rms_voltage;
-  /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_RMSCURRENT_ID
-   * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_RMSCURRENT_ID
-   */
-  zb_uint16_t rms_current;
-  /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_ACTIVE_POWER_ID
-   * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_ACTIVE_POWER_ID
-   */
-  zb_int16_t  active_power;
-  /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_APPARENT_POWER_ID
-   * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_APPARENT_POWER_ID
-   */
-  zb_uint16_t apparent_power;
-  /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_AVERAGE_RMSVOLTAGE_MEASUREMENT_PERIOD_ID
-   * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_AVERAGE_RMSVOLTAGE_MEASUREMENT_PERIOD_ID
-   */
-  zb_uint16_t avrg_rmsvoltage_measur_period;
-  /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_RMSVOLTAGE_PHB_ID
-   * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_RMSVOLTAGE_PHB_ID
-   */
-  zb_uint16_t rms_voltage_phb;
-  /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_RMSCURRENT_PHB_ID
-   * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_RMSCURRENT_PHB_ID
-   */
-  zb_uint16_t rms_current_phb;
-  /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_ACTIVE_POWER_PHB_ID
-   * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_ACTIVE_POWER_PHB_ID
-   */
-  zb_int16_t  active_power_phb;
-  /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_APPARENT_POWER_PHB_ID
-   * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_APPARENT_POWER_PHB_ID
-   */
-  zb_uint16_t apparent_power_phb;
-  /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_AVERAGE_RMSVOLTAGE_MEASUREMENT_PERIOD_PHB_ID
-   * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_AVERAGE_RMSVOLTAGE_MEASUREMENT_PERIOD_PHB_ID
-   */
-  zb_uint16_t avrg_rmsvoltage_measur_period_phb;
-  /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_RMSVOLTAGE_PHC_ID
-   * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_RMSVOLTAGE_PHC_ID
-   */
-  zb_uint16_t rms_voltage_phc;
-  /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_RMSCURRENT_PHC_ID
-   * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_RMSCURRENT_PHC_ID
-   */
-  zb_uint16_t rms_current_phc;
-  /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_ACTIVE_POWER_PHC_ID
-   * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_ACTIVE_POWER_PHC_ID
-   */
-  zb_int16_t  active_power_phc;
-  /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_APPARENT_POWER_PHC_ID
-   * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_APPARENT_POWER_PHC_ID
-   */
-  zb_uint16_t apparent_power_phc;
-  /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_AVERAGE_RMSVOLTAGE_MEASUREMENT_PERIOD_PHC_ID
-   * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_AVERAGE_RMSVOLTAGE_MEASUREMENT_PERIOD_PHC_ID
-   */
-  zb_uint16_t avrg_rmsvoltage_measur_period_phc;
+    /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_MEASUREMENT_TYPE_ID
+     * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_MEASUREMENT_TYPE_ID
+     */
+    zb_uint32_t measurement_type;
+    /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_TOTAL_ACTIVE_POWER_ID
+     * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_TOTAL_ACTIVE_POWER_ID
+     */
+    zb_int32_t total_active_power;
+    /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_TOTAL_APPARENT_POWER_ID
+     * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_TOTAL_APPARENT_POWER_ID
+     */
+    zb_uint32_t total_apparent_power;
+    /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_RMSVOLTAGE_ID
+     * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_RMSVOLTAGE_ID
+     */
+    zb_uint16_t rms_voltage;
+    /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_RMSCURRENT_ID
+     * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_RMSCURRENT_ID
+     */
+    zb_uint16_t rms_current;
+    /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_ACTIVE_POWER_ID
+     * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_ACTIVE_POWER_ID
+     */
+    zb_int16_t  active_power;
+    /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_APPARENT_POWER_ID
+     * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_APPARENT_POWER_ID
+     */
+    zb_uint16_t apparent_power;
+    /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_AVERAGE_RMSVOLTAGE_MEASUREMENT_PERIOD_ID
+     * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_AVERAGE_RMSVOLTAGE_MEASUREMENT_PERIOD_ID
+     */
+    zb_uint16_t avrg_rmsvoltage_measur_period;
+    /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_RMSVOLTAGE_PHB_ID
+     * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_RMSVOLTAGE_PHB_ID
+     */
+    zb_uint16_t rms_voltage_phb;
+    /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_RMSCURRENT_PHB_ID
+     * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_RMSCURRENT_PHB_ID
+     */
+    zb_uint16_t rms_current_phb;
+    /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_ACTIVE_POWER_PHB_ID
+     * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_ACTIVE_POWER_PHB_ID
+     */
+    zb_int16_t  active_power_phb;
+    /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_APPARENT_POWER_PHB_ID
+     * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_APPARENT_POWER_PHB_ID
+     */
+    zb_uint16_t apparent_power_phb;
+    /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_AVERAGE_RMSVOLTAGE_MEASUREMENT_PERIOD_PHB_ID
+     * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_AVERAGE_RMSVOLTAGE_MEASUREMENT_PERIOD_PHB_ID
+     */
+    zb_uint16_t avrg_rmsvoltage_measur_period_phb;
+    /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_RMSVOLTAGE_PHC_ID
+     * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_RMSVOLTAGE_PHC_ID
+     */
+    zb_uint16_t rms_voltage_phc;
+    /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_RMSCURRENT_PHC_ID
+     * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_RMSCURRENT_PHC_ID
+     */
+    zb_uint16_t rms_current_phc;
+    /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_ACTIVE_POWER_PHC_ID
+     * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_ACTIVE_POWER_PHC_ID
+     */
+    zb_int16_t  active_power_phc;
+    /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_APPARENT_POWER_PHC_ID
+     * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_APPARENT_POWER_PHC_ID
+     */
+    zb_uint16_t apparent_power_phc;
+    /** @copydoc ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_AVERAGE_RMSVOLTAGE_MEASUREMENT_PERIOD_PHC_ID
+     * @see ZB_ZCL_ATTR_ELECTRICAL_MEASUREMENT_AVERAGE_RMSVOLTAGE_MEASUREMENT_PERIOD_PHC_ID
+     */
+    zb_uint16_t avrg_rmsvoltage_measur_period_phc;
 } erl_el_measurement_server_attrs_t;
 
 
@@ -522,34 +522,34 @@ typedef struct erl_el_measurement_server_attrs_s
  */
 typedef struct erl_meter_identification_server_attrs_s
 {
-  /** @copydoc ZB_ZCl_ATTR_METER_IDENTIFICATION_COMPANY_NAME
-   * @see ZB_ZCl_ATTR_METER_IDENTIFICATION_COMPANY_NAME
-   */
-  zb_uint8_t company_name[1 + 16];
-  /** @copydoc ZB_ZCl_ATTR_METER_IDENTIFICATION_METER_TYPE_ID
-   * @see ZB_ZCl_ATTR_METER_IDENTIFICATION_METER_TYPE_ID
-   */
-  zb_uint16_t meter_type_id;
-  /** @copydoc ZB_ZCl_ATTR_METER_IDENTIFICATION_DATA_QUALITY_ID
-   * @see ZB_ZCl_ATTR_METER_IDENTIFICATION_DATA_QUALITY_ID
-   */
-  zb_uint16_t data_quality_id;
-  /** @copydoc ZB_ZCl_ATTR_METER_IDENTIFICATION_MODEL
-   * @see ZB_ZCl_ATTR_METER_IDENTIFICATION_MODEL
-   */
-  zb_uint8_t model[1 + 16];
-  /** @copydoc ZB_ZCl_ATTR_METER_IDENTIFICATION_POD
-   * @see ZB_ZCl_ATTR_METER_IDENTIFICATION_POD
-   */
-  zb_uint8_t pod[1 + 16];
-  /** @copydoc ZB_ZCl_ATTR_METER_IDENTIFICATION_AVAILABLE_POWER
-   * @see ZB_ZCl_ATTR_METER_IDENTIFICATION_AVAILABLE_POWER
-   */
-  zb_int24_t available_power;
-  /** @copydoc ZB_ZCl_ATTR_METER_IDENTIFICATION_POWER_THRESHOLD
-   * @see ZB_ZCl_ATTR_METER_IDENTIFICATION_POWER_THRESHOLD
-   */
-  zb_int24_t power_threshold;
+    /** @copydoc ZB_ZCl_ATTR_METER_IDENTIFICATION_COMPANY_NAME
+     * @see ZB_ZCl_ATTR_METER_IDENTIFICATION_COMPANY_NAME
+     */
+    zb_uint8_t company_name[1 + 16];
+    /** @copydoc ZB_ZCl_ATTR_METER_IDENTIFICATION_METER_TYPE_ID
+     * @see ZB_ZCl_ATTR_METER_IDENTIFICATION_METER_TYPE_ID
+     */
+    zb_uint16_t meter_type_id;
+    /** @copydoc ZB_ZCl_ATTR_METER_IDENTIFICATION_DATA_QUALITY_ID
+     * @see ZB_ZCl_ATTR_METER_IDENTIFICATION_DATA_QUALITY_ID
+     */
+    zb_uint16_t data_quality_id;
+    /** @copydoc ZB_ZCl_ATTR_METER_IDENTIFICATION_MODEL
+     * @see ZB_ZCl_ATTR_METER_IDENTIFICATION_MODEL
+     */
+    zb_uint8_t model[1 + 16];
+    /** @copydoc ZB_ZCl_ATTR_METER_IDENTIFICATION_POD
+     * @see ZB_ZCl_ATTR_METER_IDENTIFICATION_POD
+     */
+    zb_uint8_t pod[1 + 16];
+    /** @copydoc ZB_ZCl_ATTR_METER_IDENTIFICATION_AVAILABLE_POWER
+     * @see ZB_ZCl_ATTR_METER_IDENTIFICATION_AVAILABLE_POWER
+     */
+    zb_int24_t available_power;
+    /** @copydoc ZB_ZCl_ATTR_METER_IDENTIFICATION_POWER_THRESHOLD
+     * @see ZB_ZCl_ATTR_METER_IDENTIFICATION_POWER_THRESHOLD
+     */
+    zb_int24_t power_threshold;
 } erl_meter_identification_server_attrs_t;
 
 
@@ -608,50 +608,50 @@ typedef struct erl_meter_identification_server_attrs_s
  */
 typedef struct erl_price_server_attrs_s
 {
-  /** @copydoc ZB_ZCL_ATTR_PRICE_SRV_TIER1_PRICE_LABEL
-   * @see ZB_ZCL_ATTR_PRICE_SRV_TIER1_PRICE_LABEL
-   */
-  zb_uint8_t tier1_price_label[1 + 12];
-  /** @copydoc ZB_ZCL_ATTR_PRICE_SRV_TIER1_PRICE_LABEL
-   * @see ZB_ZCL_ATTR_PRICE_SRV_TIER_PRICE_LABEL
-   */
-  zb_uint8_t tier2_price_label[1 + 12];
-  /** @copydoc ZB_ZCL_ATTR_PRICE_SRV_TIER1_PRICE_LABEL
-   * @see ZB_ZCL_ATTR_PRICE_SRV_TIER_PRICE_LABEL
-   */
-  zb_uint8_t tier3_price_label[1 + 12];
-  /** @copydoc ZB_ZCL_ATTR_PRICE_SRV_TIER1_PRICE_LABEL
-   * @see ZB_ZCL_ATTR_PRICE_SRV_TIER_PRICE_LABEL
-   */
-  zb_uint8_t tier4_price_label[1 + 12];
-  /** @copydoc ZB_ZCL_ATTR_PRICE_SRV_TIER1_PRICE_LABEL
-   * @see ZB_ZCL_ATTR_PRICE_SRV_TIER_PRICE_LABEL
-   */
-  zb_uint8_t tier5_price_label[1 + 12];
-  /** @copydoc ZB_ZCL_ATTR_PRICE_SRV_TIER1_PRICE_LABEL
-   * @see ZB_ZCL_ATTR_PRICE_SRV_TIER_PRICE_LABEL
-   */
-  zb_uint8_t tier6_price_label[1 + 12];
-  /** @copydoc ZB_ZCL_ATTR_PRICE_SRV_TIER1_PRICE_LABEL
-   * @see ZB_ZCL_ATTR_PRICE_SRV_TIER_PRICE_LABEL
-   */
-  zb_uint8_t tier7_price_label[1 + 12];
-  /** @copydoc ZB_ZCL_ATTR_PRICE_SRV_TIER1_PRICE_LABEL
-   * @see ZB_ZCL_ATTR_PRICE_SRV_TIER_PRICE_LABEL
-   */
-  zb_uint8_t tier8_price_label[1 + 12];
-  /** @copydoc ZB_ZCL_ATTR_PRICE_SRV_TIER1_PRICE_LABEL
-   * @see ZB_ZCL_ATTR_PRICE_SRV_TIER_PRICE_LABEL
-   */
-  zb_uint8_t tier9_price_label[1 + 12];
-  /** @copydoc ZB_ZCL_ATTR_PRICE_SRV_TIER10_PRICE_LABEL
-   * @see ZB_ZCL_ATTR_PRICE_SRV_TIER10_PRICE_LABEL
-   */
-  zb_uint8_t tier10_price_label[1 + 12];
-  /** @copydoc ZB_ZCL_ATTR_PRICE_SRV_TARIFF_LABEL
-   * @see ZB_ZCL_ATTR_PRICE_SRV_TARIFF_LABEL
-   */
-  zb_uint8_t tariff_label[1 + 24];
+    /** @copydoc ZB_ZCL_ATTR_PRICE_SRV_TIER1_PRICE_LABEL
+     * @see ZB_ZCL_ATTR_PRICE_SRV_TIER1_PRICE_LABEL
+     */
+    zb_uint8_t tier1_price_label[1 + 12];
+    /** @copydoc ZB_ZCL_ATTR_PRICE_SRV_TIER1_PRICE_LABEL
+     * @see ZB_ZCL_ATTR_PRICE_SRV_TIER_PRICE_LABEL
+     */
+    zb_uint8_t tier2_price_label[1 + 12];
+    /** @copydoc ZB_ZCL_ATTR_PRICE_SRV_TIER1_PRICE_LABEL
+     * @see ZB_ZCL_ATTR_PRICE_SRV_TIER_PRICE_LABEL
+     */
+    zb_uint8_t tier3_price_label[1 + 12];
+    /** @copydoc ZB_ZCL_ATTR_PRICE_SRV_TIER1_PRICE_LABEL
+     * @see ZB_ZCL_ATTR_PRICE_SRV_TIER_PRICE_LABEL
+     */
+    zb_uint8_t tier4_price_label[1 + 12];
+    /** @copydoc ZB_ZCL_ATTR_PRICE_SRV_TIER1_PRICE_LABEL
+     * @see ZB_ZCL_ATTR_PRICE_SRV_TIER_PRICE_LABEL
+     */
+    zb_uint8_t tier5_price_label[1 + 12];
+    /** @copydoc ZB_ZCL_ATTR_PRICE_SRV_TIER1_PRICE_LABEL
+     * @see ZB_ZCL_ATTR_PRICE_SRV_TIER_PRICE_LABEL
+     */
+    zb_uint8_t tier6_price_label[1 + 12];
+    /** @copydoc ZB_ZCL_ATTR_PRICE_SRV_TIER1_PRICE_LABEL
+     * @see ZB_ZCL_ATTR_PRICE_SRV_TIER_PRICE_LABEL
+     */
+    zb_uint8_t tier7_price_label[1 + 12];
+    /** @copydoc ZB_ZCL_ATTR_PRICE_SRV_TIER1_PRICE_LABEL
+     * @see ZB_ZCL_ATTR_PRICE_SRV_TIER_PRICE_LABEL
+     */
+    zb_uint8_t tier8_price_label[1 + 12];
+    /** @copydoc ZB_ZCL_ATTR_PRICE_SRV_TIER1_PRICE_LABEL
+     * @see ZB_ZCL_ATTR_PRICE_SRV_TIER_PRICE_LABEL
+     */
+    zb_uint8_t tier9_price_label[1 + 12];
+    /** @copydoc ZB_ZCL_ATTR_PRICE_SRV_TIER10_PRICE_LABEL
+     * @see ZB_ZCL_ATTR_PRICE_SRV_TIER10_PRICE_LABEL
+     */
+    zb_uint8_t tier10_price_label[1 + 12];
+    /** @copydoc ZB_ZCL_ATTR_PRICE_SRV_TARIFF_LABEL
+     * @see ZB_ZCL_ATTR_PRICE_SRV_TARIFF_LABEL
+     */
+    zb_uint8_t tariff_label[1 + 24];
 } erl_price_server_attrs_t;
 
 
@@ -835,214 +835,214 @@ typedef struct erl_price_server_attrs_s
  */
 typedef struct erl_interface_metering_server_attrs_s
 {
-  /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_SUMMATION_DELIVERED_ID
-   * @see ZB_ZCL_ATTR_METERING_CURRENT_SUMMATION_DELIVERED_ID
-   */
-  zb_uint48_t curr_summ_delivered;
-  /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_SUMMATION_RECEIVED_ID
-   * @see ZB_ZCL_ATTR_METERING_CURRENT_SUMMATION_RECEIVED_ID
-   */
-  zb_uint48_t curr_summ_received;
-  /** @copydoc ZB_ZCL_ATTR_METERING_FAST_POLL_UPDATE_PERIOD_ID
-   * @see ZB_ZCL_ATTR_METERING_FAST_POLL_UPDATE_PERIOD_ID
-   */
-  zb_uint8_t fast_poll_update_period;
-  /** @copydoc ZB_ZCL_ATTR_METERING_ACTIVE_REGISTER_TIER_DELIVERED_ID
-   * @see ZB_ZCL_ATTR_METERING_ACTIVE_REGISTER_TIER_DELIVERED_ID
-   */
-  zb_uint8_t active_register_tier_delivered;
-  /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_TIER1_SUMMATION_DELIVERED_ID
-   * @see ZB_ZCL_ATTR_METERING_CURRENT_TIER1_SUMMATION_DELIVERED_ID
-   */
-  zb_uint48_t curr_tier1_summ_delivered;
-  /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_TIER1_SUMMATION_RECEIVED_ID
-   * @see ZB_ZCL_ATTR_METERING_CURRENT_TIER1_SUMMATION_RECEIVED_ID
-   */
-  zb_uint48_t curr_tier1_summ_received;
-  /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_TIER2_SUMMATION_DELIVERED_ID
-   * @see ZB_ZCL_ATTR_METERING_CURRENT_TIER2_SUMMATION_DELIVERED_ID
-   */
-  zb_uint48_t curr_tier2_summ_delivered;
-  /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_TIER3_SUMMATION_DELIVERED_ID
-   * @see ZB_ZCL_ATTR_METERING_CURRENT_TIER3_SUMMATION_DELIVERED_ID
-   */
-  zb_uint48_t curr_tier3_summ_delivered;
-  /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_TIER4_SUMMATION_DELIVERED_ID
-   * @see ZB_ZCL_ATTR_METERING_CURRENT_TIER4_SUMMATION_DELIVERED_ID
-   */
-  zb_uint48_t curr_tier4_summ_delivered;
-  /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_TIER5_SUMMATION_DELIVERED_ID
-   * @see ZB_ZCL_ATTR_METERING_CURRENT_TIER5_SUMMATION_DELIVERED_ID
-   */
-  zb_uint48_t curr_tier5_summ_delivered;
-  /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_TIER6_SUMMATION_DELIVERED_ID
-   * @see ZB_ZCL_ATTR_METERING_CURRENT_TIER6_SUMMATION_DELIVERED_ID
-   */
-  zb_uint48_t curr_tier6_summ_delivered;
-  /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_TIER7_SUMMATION_DELIVERED_ID
-   * @see ZB_ZCL_ATTR_METERING_CURRENT_TIER7_SUMMATION_DELIVERED_ID
-   */
-  zb_uint48_t curr_tier7_summ_delivered;
-  /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_TIER8_SUMMATION_DELIVERED_ID
-   * @see ZB_ZCL_ATTR_METERING_CURRENT_TIER8_SUMMATION_DELIVERED_ID
-   */
-  zb_uint48_t curr_tier8_summ_delivered;
-  /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_TIER9_SUMMATION_DELIVERED_ID
-   * @see ZB_ZCL_ATTR_METERING_CURRENT_TIER9_SUMMATION_DELIVERED_ID
-   */
-  zb_uint48_t curr_tier9_summ_delivered;
-  /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_TIER10_SUMMATION_DELIVERED_ID
-   * @see ZB_ZCL_ATTR_METERING_CURRENT_TIER10_SUMMATION_DELIVERED_ID
-   */
-  zb_uint48_t curr_tier10_summ_delivered;
-  /** @copydoc ZB_ZCL_ATTR_METERING_STATUS_ID
-   * @see ZB_ZCL_ATTR_METERING_STATUS_ID
-   */
-  zb_uint8_t status;
-  /** @copydoc ZB_ZCL_ATTR_METERING_EXTENDED_STATUS_ID
-   * @see ZB_ZCL_ATTR_METERING_EXTENDED_STATUS_ID
-   */
-  zb_uint64_t extended_status;
-  /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_METER_ID_ID
-   * @see ZB_ZCL_ATTR_METERING_CURRENT_METER_ID_ID
-   */
-  zb_uint8_t curr_meter[ZB_ZCL_ATTR_METERING_CURRENT_METER_ID_MAX_LENGTH];
-  /** @copydoc ZB_ZCL_ATTR_METERING_SERVICE_DISCONNECT_REASON_ID
-   * @see ZB_ZCL_ATTR_METERING_SERVICE_DISCONNECT_REASON_ID
-   */
-  zb_uint8_t service_disconnect_reason;
-  /** @copydoc ZB_ZCL_ATTR_METERING_LINKY_MODE_OF_OPERATION_ID
-   * @see ZB_ZCL_ATTR_METERING_LINKY_MODE_OF_OPERATION_ID
-   */
-  zb_uint8_t linky_mode_of_operation;
-  /** @copydoc ZB_ZCL_ATTR_METERING_UNIT_OF_MEASURE_ID
-   * @see ZB_ZCL_ATTR_METERING_UNIT_OF_MEASURE_ID
-   */
-  zb_uint8_t unit_of_measure;
-  /** @copydoc ZB_ZCL_ATTR_METERING_MULTIPLIER_ID
-   * @see ZB_ZCL_ATTR_METERING_MULTIPLIER_ID
-   */
-  zb_uint24_t multiplier;
-  /** @copydoc ZB_ZCL_ATTR_METERING_DIVISOR_ID
-   * @see ZB_ZCL_ATTR_METERING_DIVISOR_ID
-   */
-  zb_uint24_t divisor;
-  /** @copydoc ZB_ZCL_ATTR_METERING_SUMMATION_FORMATTING_ID
-   * @see ZB_ZCL_ATTR_METERING_SUMMATION_FORMATTING_ID
-   */
-  zb_uint8_t summation_formatting;
-  /** @copydoc ZB_ZCL_ATTR_METERING_DEMAND_FORMATTING_ID
-   * @see ZB_ZCL_ATTR_METERING_DEMAND_FORMATTING_ID
-   */
-  zb_uint8_t demand_format;
-  /** @copydoc ZB_ZCL_ATTR_METERING_HISTORICAL_CONSUMPTION_FORMATTING_ID
-   * @see ZB_ZCL_ATTR_METERING_HISTORICAL_CONSUMPTION_FORMATTING_ID
-   */
-  zb_uint8_t historical_consumption_format;
-  /** @copydoc ZB_ZCL_ATTR_METERING_METERING_DEVICE_TYPE_ID
-   * @see ZB_ZCL_ATTR_METERING_METERING_DEVICE_TYPE_ID
-   */
-  zb_uint8_t device_type;
-  /** @copydoc ZB_ZCL_ATTR_METERING_SITE_ID_ID
-   * @see ZB_ZCL_ATTR_METERING_SITE_ID_ID
-   */
-  zb_uint8_t site[1 + 32];
-  /** @copydoc ZB_ZCL_ATTR_METERING_METER_SERIAL_NUMBER_ID
-   * @see ZB_ZCL_ATTR_METERING_METER_SERIAL_NUMBER_ID
-   */
-  zb_uint8_t meter_serial_number[1 + 24];
-  /** @copydoc ZB_ZCL_ATTR_METERING_MODULE_SERIAL_NUMBER_ID
-   * @see ZB_ZCL_ATTR_METERING_MODULE_SERIAL_NUMBER_ID
-   */
-  zb_uint8_t module_serial_number[1 + 24];
-  /** @copydoc ZB_ZCL_ATTR_METERING_INSTANTANEOUS_DEMAND_ID
-   * @see ZB_ZCL_ATTR_METERING_INSTANTANEOUS_DEMAND_ID
-   */
-  zb_int24_t instantaneous_demand;
-  /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_DAY_MAX_DEMAND_DELIVERED_ID
-   * @see ZB_ZCL_ATTR_METERING_CURRENT_DAY_MAX_DEMAND_DELIVERED_ID
-   */
-  zb_uint48_t curr_day_max_demand_delivered;
-  /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_DAY_MAX_DEMAND_DELIVERED_TIME_ID
-   * @see ZB_ZCL_ATTR_METERING_CURRENT_DAY_MAX_DEMAND_DELIVERED_TIME_ID
-   */
-  zb_uint32_t curr_day_max_demand_delivered_time;
-  /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_DAY_MAX_DEMAND_RECEIVED_ID
-   * @see ZB_ZCL_ATTR_METERING_CURRENT_DAY_MAX_DEMAND_RECEIVED_ID
-   */
-  zb_uint48_t curr_day_max_demand_received;
-  /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_DAY_MAX_DEMAND_RECEIVED_TIME_ID
-   * @see ZB_ZCL_ATTR_METERING_CURRENT_DAY_MAX_DEMAND_RECEIVED_TIME_ID
-   */
-  zb_uint32_t curr_day_max_demand_received_time;
-  /** @copydoc ZB_ZCL_ATTR_METERING_PREVIOUS_DAY_MAX_DEMAND_DELIVERED_ID
-   * @see ZB_ZCL_ATTR_METERING_PREVIOUS_DAY_MAX_DEMAND_DELIVERED_ID
-   */
-  zb_uint48_t prev_day_max_demand_delivered;
-  /** @copydoc ZB_ZCL_ATTR_METERING_PREVIOUS_DAY_MAX_DEMAND_DELIVERED_TIME_ID
-   * @see ZB_ZCL_ATTR_METERING_PREVIOUS_DAY_MAX_DEMAND_DELIVERED_TIME_ID
-   */
-  zb_uint32_t prev_day_max_demand_delivered_time;
-  /** @copydoc ZB_ZCL_ATTR_METERING_PREVIOUS_DAY_MAX_DEMAND_RECEIVED_ID
-   * @see ZB_ZCL_ATTR_METERING_PREVIOUS_DAY_MAX_DEMAND_RECEIVED_ID
-   */
-  zb_uint48_t prev_day_max_demand_received;
-  /** @copydoc ZB_ZCL_ATTR_METERING_PREVIOUS_DAY_MAX_DEMAND_RECEIVED_TIME_ID
-   * @see ZB_ZCL_ATTR_METERING_PREVIOUS_DAY_MAX_DEMAND_RECEIVED_TIME_ID
-   */
-  zb_uint32_t prev_day_max_demand_received_time;
-  /** @copydoc ZB_ZCL_ATTR_METERING_MAX_NUMBER_OF_PERIODS_DELIVERED_ID
-   * @see ZB_ZCL_ATTR_METERING_MAX_NUMBER_OF_PERIODS_DELIVERED_ID
-   */
-  zb_uint8_t max_number_of_periods_delivered;
-  /** @copydoc ZB_ZCL_ATTR_METERING_GENERIC_ALARM_MASK_ID
-   * @see ZB_ZCL_ATTR_METERING_GENERIC_ALARM_MASK_ID
-   */
-  zb_uint16_t generic_alarm_mask;
-  /** @copydoc ZB_ZCL_ATTR_METERING_ELECTRICITY_ALARM_MASK_ID
-   * @see ZB_ZCL_ATTR_METERING_ELECTRICITY_ALARM_MASK_ID
-   */
-  zb_uint32_t electricity_alarm_mask;
-  /** @copydoc ZB_ZCL_ATTR_METERING_GENERIC_FLOW_PRESSURE_ALARM_MASK_ID
-   * @see ZB_ZCL_ATTR_METERING_GENERIC_FLOW_PRESSURE_ALARM_MASK_ID
-   */
-  zb_uint16_t generic_flow_pressure_alarm_mask;
-  /** @copydoc ZB_ZCL_ATTR_METERING_WATER_SPECIFIC_ALARM_MASK_ID
-   * @see ZB_ZCL_ATTR_METERING_WATER_SPECIFIC_ALARM_MASK_ID
-   */
-  zb_uint16_t water_specific_alarm_mask;
-  /** @copydoc ZB_ZCL_ATTR_METERING_HEAT_AND_COOLING_SPECIFIC_ALARM_MASK_ID
-   * @see ZB_ZCL_ATTR_METERING_HEAT_AND_COOLING_SPECIFIC_ALARM_MASK_ID
-   */
-  zb_uint16_t heat_and_cooling_specific_alarm_mask;
-  /** @copydoc ZB_ZCL_ATTR_METERING_GAS_SPECIFIC_ALARM_MASK_ID
-   * @see ZB_ZCL_ATTR_METERING_GAS_SPECIFIC_ALARM_MASK_ID
-   */
-  zb_uint16_t gas_specific_alarm_mask;
-  /** @copydoc ZB_ZCL_ATTR_METERING_EXTENDED_GENERIC_ALARM_MASK_ID
-   * @see ZB_ZCL_ATTR_METERING_EXTENDED_GENERIC_ALARM_MASK_ID
-   */
-  zb_uint48_t extended_generic_alarm_mask;
-  /** @copydoc ZB_ZCL_ATTR_METERING_MANUFACTURER_ALARM_MASK_ID
-   * @see ZB_ZCL_ATTR_METERING_MANUFACTURER_ALARM_MASK_ID
-   */
-  zb_uint16_t manuf_alarm_mask;
-  /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_REACTIVE_SUMMATION_Q1_ID
-   * @see ZB_ZCL_ATTR_METERING_CURRENT_REACTIVE_SUMMATION_Q1_ID
-   */
-  zb_uint48_t curr_reactive_summ_q1;
-  /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_REACTIVE_SUMMATION_Q2_ID
-   * @see ZB_ZCL_ATTR_METERING_CURRENT_REACTIVE_SUMMATION_Q2_ID
-   */
-  zb_uint48_t curr_reactive_summ_q2;
-  /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_REACTIVE_SUMMATION_Q3_ID
-   * @see ZB_ZCL_ATTR_METERING_CURRENT_REACTIVE_SUMMATION_Q3_ID
-   */
-  zb_uint48_t curr_reactive_summ_q3;
-  /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_REACTIVE_SUMMATION_Q4_ID
-   * @see ZB_ZCL_ATTR_METERING_CURRENT_REACTIVE_SUMMATION_Q4_ID
-   */
-  zb_uint48_t curr_reactive_summ_q4;
+    /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_SUMMATION_DELIVERED_ID
+     * @see ZB_ZCL_ATTR_METERING_CURRENT_SUMMATION_DELIVERED_ID
+     */
+    zb_uint48_t curr_summ_delivered;
+    /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_SUMMATION_RECEIVED_ID
+     * @see ZB_ZCL_ATTR_METERING_CURRENT_SUMMATION_RECEIVED_ID
+     */
+    zb_uint48_t curr_summ_received;
+    /** @copydoc ZB_ZCL_ATTR_METERING_FAST_POLL_UPDATE_PERIOD_ID
+     * @see ZB_ZCL_ATTR_METERING_FAST_POLL_UPDATE_PERIOD_ID
+     */
+    zb_uint8_t fast_poll_update_period;
+    /** @copydoc ZB_ZCL_ATTR_METERING_ACTIVE_REGISTER_TIER_DELIVERED_ID
+     * @see ZB_ZCL_ATTR_METERING_ACTIVE_REGISTER_TIER_DELIVERED_ID
+     */
+    zb_uint8_t active_register_tier_delivered;
+    /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_TIER1_SUMMATION_DELIVERED_ID
+     * @see ZB_ZCL_ATTR_METERING_CURRENT_TIER1_SUMMATION_DELIVERED_ID
+     */
+    zb_uint48_t curr_tier1_summ_delivered;
+    /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_TIER1_SUMMATION_RECEIVED_ID
+     * @see ZB_ZCL_ATTR_METERING_CURRENT_TIER1_SUMMATION_RECEIVED_ID
+     */
+    zb_uint48_t curr_tier1_summ_received;
+    /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_TIER2_SUMMATION_DELIVERED_ID
+     * @see ZB_ZCL_ATTR_METERING_CURRENT_TIER2_SUMMATION_DELIVERED_ID
+     */
+    zb_uint48_t curr_tier2_summ_delivered;
+    /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_TIER3_SUMMATION_DELIVERED_ID
+     * @see ZB_ZCL_ATTR_METERING_CURRENT_TIER3_SUMMATION_DELIVERED_ID
+     */
+    zb_uint48_t curr_tier3_summ_delivered;
+    /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_TIER4_SUMMATION_DELIVERED_ID
+     * @see ZB_ZCL_ATTR_METERING_CURRENT_TIER4_SUMMATION_DELIVERED_ID
+     */
+    zb_uint48_t curr_tier4_summ_delivered;
+    /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_TIER5_SUMMATION_DELIVERED_ID
+     * @see ZB_ZCL_ATTR_METERING_CURRENT_TIER5_SUMMATION_DELIVERED_ID
+     */
+    zb_uint48_t curr_tier5_summ_delivered;
+    /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_TIER6_SUMMATION_DELIVERED_ID
+     * @see ZB_ZCL_ATTR_METERING_CURRENT_TIER6_SUMMATION_DELIVERED_ID
+     */
+    zb_uint48_t curr_tier6_summ_delivered;
+    /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_TIER7_SUMMATION_DELIVERED_ID
+     * @see ZB_ZCL_ATTR_METERING_CURRENT_TIER7_SUMMATION_DELIVERED_ID
+     */
+    zb_uint48_t curr_tier7_summ_delivered;
+    /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_TIER8_SUMMATION_DELIVERED_ID
+     * @see ZB_ZCL_ATTR_METERING_CURRENT_TIER8_SUMMATION_DELIVERED_ID
+     */
+    zb_uint48_t curr_tier8_summ_delivered;
+    /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_TIER9_SUMMATION_DELIVERED_ID
+     * @see ZB_ZCL_ATTR_METERING_CURRENT_TIER9_SUMMATION_DELIVERED_ID
+     */
+    zb_uint48_t curr_tier9_summ_delivered;
+    /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_TIER10_SUMMATION_DELIVERED_ID
+     * @see ZB_ZCL_ATTR_METERING_CURRENT_TIER10_SUMMATION_DELIVERED_ID
+     */
+    zb_uint48_t curr_tier10_summ_delivered;
+    /** @copydoc ZB_ZCL_ATTR_METERING_STATUS_ID
+     * @see ZB_ZCL_ATTR_METERING_STATUS_ID
+     */
+    zb_uint8_t status;
+    /** @copydoc ZB_ZCL_ATTR_METERING_EXTENDED_STATUS_ID
+     * @see ZB_ZCL_ATTR_METERING_EXTENDED_STATUS_ID
+     */
+    zb_uint64_t extended_status;
+    /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_METER_ID_ID
+     * @see ZB_ZCL_ATTR_METERING_CURRENT_METER_ID_ID
+     */
+    zb_uint8_t curr_meter[ZB_ZCL_ATTR_METERING_CURRENT_METER_ID_MAX_LENGTH];
+    /** @copydoc ZB_ZCL_ATTR_METERING_SERVICE_DISCONNECT_REASON_ID
+     * @see ZB_ZCL_ATTR_METERING_SERVICE_DISCONNECT_REASON_ID
+     */
+    zb_uint8_t service_disconnect_reason;
+    /** @copydoc ZB_ZCL_ATTR_METERING_LINKY_MODE_OF_OPERATION_ID
+     * @see ZB_ZCL_ATTR_METERING_LINKY_MODE_OF_OPERATION_ID
+     */
+    zb_uint8_t linky_mode_of_operation;
+    /** @copydoc ZB_ZCL_ATTR_METERING_UNIT_OF_MEASURE_ID
+     * @see ZB_ZCL_ATTR_METERING_UNIT_OF_MEASURE_ID
+     */
+    zb_uint8_t unit_of_measure;
+    /** @copydoc ZB_ZCL_ATTR_METERING_MULTIPLIER_ID
+     * @see ZB_ZCL_ATTR_METERING_MULTIPLIER_ID
+     */
+    zb_uint24_t multiplier;
+    /** @copydoc ZB_ZCL_ATTR_METERING_DIVISOR_ID
+     * @see ZB_ZCL_ATTR_METERING_DIVISOR_ID
+     */
+    zb_uint24_t divisor;
+    /** @copydoc ZB_ZCL_ATTR_METERING_SUMMATION_FORMATTING_ID
+     * @see ZB_ZCL_ATTR_METERING_SUMMATION_FORMATTING_ID
+     */
+    zb_uint8_t summation_formatting;
+    /** @copydoc ZB_ZCL_ATTR_METERING_DEMAND_FORMATTING_ID
+     * @see ZB_ZCL_ATTR_METERING_DEMAND_FORMATTING_ID
+     */
+    zb_uint8_t demand_format;
+    /** @copydoc ZB_ZCL_ATTR_METERING_HISTORICAL_CONSUMPTION_FORMATTING_ID
+     * @see ZB_ZCL_ATTR_METERING_HISTORICAL_CONSUMPTION_FORMATTING_ID
+     */
+    zb_uint8_t historical_consumption_format;
+    /** @copydoc ZB_ZCL_ATTR_METERING_METERING_DEVICE_TYPE_ID
+     * @see ZB_ZCL_ATTR_METERING_METERING_DEVICE_TYPE_ID
+     */
+    zb_uint8_t device_type;
+    /** @copydoc ZB_ZCL_ATTR_METERING_SITE_ID_ID
+     * @see ZB_ZCL_ATTR_METERING_SITE_ID_ID
+     */
+    zb_uint8_t site[1 + 32];
+    /** @copydoc ZB_ZCL_ATTR_METERING_METER_SERIAL_NUMBER_ID
+     * @see ZB_ZCL_ATTR_METERING_METER_SERIAL_NUMBER_ID
+     */
+    zb_uint8_t meter_serial_number[1 + 24];
+    /** @copydoc ZB_ZCL_ATTR_METERING_MODULE_SERIAL_NUMBER_ID
+     * @see ZB_ZCL_ATTR_METERING_MODULE_SERIAL_NUMBER_ID
+     */
+    zb_uint8_t module_serial_number[1 + 24];
+    /** @copydoc ZB_ZCL_ATTR_METERING_INSTANTANEOUS_DEMAND_ID
+     * @see ZB_ZCL_ATTR_METERING_INSTANTANEOUS_DEMAND_ID
+     */
+    zb_int24_t instantaneous_demand;
+    /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_DAY_MAX_DEMAND_DELIVERED_ID
+     * @see ZB_ZCL_ATTR_METERING_CURRENT_DAY_MAX_DEMAND_DELIVERED_ID
+     */
+    zb_uint48_t curr_day_max_demand_delivered;
+    /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_DAY_MAX_DEMAND_DELIVERED_TIME_ID
+     * @see ZB_ZCL_ATTR_METERING_CURRENT_DAY_MAX_DEMAND_DELIVERED_TIME_ID
+     */
+    zb_uint32_t curr_day_max_demand_delivered_time;
+    /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_DAY_MAX_DEMAND_RECEIVED_ID
+     * @see ZB_ZCL_ATTR_METERING_CURRENT_DAY_MAX_DEMAND_RECEIVED_ID
+     */
+    zb_uint48_t curr_day_max_demand_received;
+    /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_DAY_MAX_DEMAND_RECEIVED_TIME_ID
+     * @see ZB_ZCL_ATTR_METERING_CURRENT_DAY_MAX_DEMAND_RECEIVED_TIME_ID
+     */
+    zb_uint32_t curr_day_max_demand_received_time;
+    /** @copydoc ZB_ZCL_ATTR_METERING_PREVIOUS_DAY_MAX_DEMAND_DELIVERED_ID
+     * @see ZB_ZCL_ATTR_METERING_PREVIOUS_DAY_MAX_DEMAND_DELIVERED_ID
+     */
+    zb_uint48_t prev_day_max_demand_delivered;
+    /** @copydoc ZB_ZCL_ATTR_METERING_PREVIOUS_DAY_MAX_DEMAND_DELIVERED_TIME_ID
+     * @see ZB_ZCL_ATTR_METERING_PREVIOUS_DAY_MAX_DEMAND_DELIVERED_TIME_ID
+     */
+    zb_uint32_t prev_day_max_demand_delivered_time;
+    /** @copydoc ZB_ZCL_ATTR_METERING_PREVIOUS_DAY_MAX_DEMAND_RECEIVED_ID
+     * @see ZB_ZCL_ATTR_METERING_PREVIOUS_DAY_MAX_DEMAND_RECEIVED_ID
+     */
+    zb_uint48_t prev_day_max_demand_received;
+    /** @copydoc ZB_ZCL_ATTR_METERING_PREVIOUS_DAY_MAX_DEMAND_RECEIVED_TIME_ID
+     * @see ZB_ZCL_ATTR_METERING_PREVIOUS_DAY_MAX_DEMAND_RECEIVED_TIME_ID
+     */
+    zb_uint32_t prev_day_max_demand_received_time;
+    /** @copydoc ZB_ZCL_ATTR_METERING_MAX_NUMBER_OF_PERIODS_DELIVERED_ID
+     * @see ZB_ZCL_ATTR_METERING_MAX_NUMBER_OF_PERIODS_DELIVERED_ID
+     */
+    zb_uint8_t max_number_of_periods_delivered;
+    /** @copydoc ZB_ZCL_ATTR_METERING_GENERIC_ALARM_MASK_ID
+     * @see ZB_ZCL_ATTR_METERING_GENERIC_ALARM_MASK_ID
+     */
+    zb_uint16_t generic_alarm_mask;
+    /** @copydoc ZB_ZCL_ATTR_METERING_ELECTRICITY_ALARM_MASK_ID
+     * @see ZB_ZCL_ATTR_METERING_ELECTRICITY_ALARM_MASK_ID
+     */
+    zb_uint32_t electricity_alarm_mask;
+    /** @copydoc ZB_ZCL_ATTR_METERING_GENERIC_FLOW_PRESSURE_ALARM_MASK_ID
+     * @see ZB_ZCL_ATTR_METERING_GENERIC_FLOW_PRESSURE_ALARM_MASK_ID
+     */
+    zb_uint16_t generic_flow_pressure_alarm_mask;
+    /** @copydoc ZB_ZCL_ATTR_METERING_WATER_SPECIFIC_ALARM_MASK_ID
+     * @see ZB_ZCL_ATTR_METERING_WATER_SPECIFIC_ALARM_MASK_ID
+     */
+    zb_uint16_t water_specific_alarm_mask;
+    /** @copydoc ZB_ZCL_ATTR_METERING_HEAT_AND_COOLING_SPECIFIC_ALARM_MASK_ID
+     * @see ZB_ZCL_ATTR_METERING_HEAT_AND_COOLING_SPECIFIC_ALARM_MASK_ID
+     */
+    zb_uint16_t heat_and_cooling_specific_alarm_mask;
+    /** @copydoc ZB_ZCL_ATTR_METERING_GAS_SPECIFIC_ALARM_MASK_ID
+     * @see ZB_ZCL_ATTR_METERING_GAS_SPECIFIC_ALARM_MASK_ID
+     */
+    zb_uint16_t gas_specific_alarm_mask;
+    /** @copydoc ZB_ZCL_ATTR_METERING_EXTENDED_GENERIC_ALARM_MASK_ID
+     * @see ZB_ZCL_ATTR_METERING_EXTENDED_GENERIC_ALARM_MASK_ID
+     */
+    zb_uint48_t extended_generic_alarm_mask;
+    /** @copydoc ZB_ZCL_ATTR_METERING_MANUFACTURER_ALARM_MASK_ID
+     * @see ZB_ZCL_ATTR_METERING_MANUFACTURER_ALARM_MASK_ID
+     */
+    zb_uint16_t manuf_alarm_mask;
+    /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_REACTIVE_SUMMATION_Q1_ID
+     * @see ZB_ZCL_ATTR_METERING_CURRENT_REACTIVE_SUMMATION_Q1_ID
+     */
+    zb_uint48_t curr_reactive_summ_q1;
+    /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_REACTIVE_SUMMATION_Q2_ID
+     * @see ZB_ZCL_ATTR_METERING_CURRENT_REACTIVE_SUMMATION_Q2_ID
+     */
+    zb_uint48_t curr_reactive_summ_q2;
+    /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_REACTIVE_SUMMATION_Q3_ID
+     * @see ZB_ZCL_ATTR_METERING_CURRENT_REACTIVE_SUMMATION_Q3_ID
+     */
+    zb_uint48_t curr_reactive_summ_q3;
+    /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_REACTIVE_SUMMATION_Q4_ID
+     * @see ZB_ZCL_ATTR_METERING_CURRENT_REACTIVE_SUMMATION_Q4_ID
+     */
+    zb_uint48_t curr_reactive_summ_q4;
 } erl_interface_metering_server_attrs_t;
 
 #define ZB_ZCL_ATTR_METERING_FAST_POLL_UPDATE_PERIOD_DEFAULT 0x05
@@ -1166,89 +1166,89 @@ typedef struct erl_interface_metering_server_attrs_s
  */
 typedef struct erl_interface_phase_metering_server_attrs_s
 {
-  /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_SUMMATION_DELIVERED_ID
-   * @see ZB_ZCL_ATTR_METERING_CURRENT_SUMMATION_DELIVERED_ID
-   */
-  zb_uint48_t curr_summ_delivered;
-  /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_SUMMATION_RECEIVED_ID
-   * @see ZB_ZCL_ATTR_METERING_CURRENT_SUMMATION_RECEIVED_ID
-   */
-  zb_uint8_t status;
-  /** @copydoc ZB_ZCL_ATTR_METERING_STATUS_ID
-   * @see ZB_ZCL_ATTR_METERING_STATUS_ID
-   */
-  zb_uint64_t extended_status;
-  /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_METER_ID_ID
-   * @see ZB_ZCL_ATTR_METERING_CURRENT_METER_ID_ID
-   */
-  zb_uint8_t curr_meter[ZB_ZCL_ATTR_METERING_CURRENT_METER_ID_MAX_LENGTH];
-  /** @copydoc ZB_ZCL_ATTR_METERING_SERVICE_DISCONNECT_REASON_ID
-   * @see ZB_ZCL_ATTR_METERING_SERVICE_DISCONNECT_REASON_ID
-   */
-  zb_uint8_t service_disconnect_reason;
-  /** @copydoc ZB_ZCL_ATTR_METERING_LINKY_MODE_OF_OPERATION_ID
-   * @see ZB_ZCL_ATTR_METERING_LINKY_MODE_OF_OPERATION_ID
-   */
-  zb_uint8_t linky_mode_of_operation;
-  /** @copydoc ZB_ZCL_ATTR_METERING_UNIT_OF_MEASURE_ID
-   * @see ZB_ZCL_ATTR_METERING_UNIT_OF_MEASURE_ID
-   */
-  zb_uint8_t unit_of_measure;
-  /** @copydoc ZB_ZCL_ATTR_METERING_MULTIPLIER_ID
-   * @see ZB_ZCL_ATTR_METERING_MULTIPLIER_ID
-   */
-  zb_uint24_t multiplier;
-  /** @copydoc ZB_ZCL_ATTR_METERING_DIVISOR_ID
-   * @see ZB_ZCL_ATTR_METERING_DIVISOR_ID
-   */
-  zb_uint24_t divisor;
-  /** @copydoc ZB_ZCL_ATTR_METERING_SUMMATION_FORMATTING_ID
-   * @see ZB_ZCL_ATTR_METERING_SUMMATION_FORMATTING_ID
-   */
-  zb_uint8_t summation_formatting;
-  /** @copydoc ZB_ZCL_ATTR_METERING_DEMAND_FORMATTING_ID
-   * @see ZB_ZCL_ATTR_METERING_DEMAND_FORMATTING_ID
-   */
-  zb_uint8_t demand_format;
-  /** @copydoc ZB_ZCL_ATTR_METERING_METERING_DEVICE_TYPE_ID
-   * @see ZB_ZCL_ATTR_METERING_METERING_DEVICE_TYPE_ID
-   */
-  zb_uint8_t device_type;
-  /** @copydoc ZB_ZCL_ATTR_METERING_SITE_ID_ID
-   * @see ZB_ZCL_ATTR_METERING_SITE_ID_ID
-   */
-  zb_uint8_t site[1 + 32];
-  /** @copydoc ZB_ZCL_ATTR_METERING_METER_SERIAL_NUMBER_ID
-   * @see ZB_ZCL_ATTR_METERING_METER_SERIAL_NUMBER_ID
-   */
-  zb_uint8_t meter_serial_number[1 + 24];
-  /** @copydoc ZB_ZCL_ATTR_METERING_MODULE_SERIAL_NUMBER_ID
-   * @see ZB_ZCL_ATTR_METERING_MODULE_SERIAL_NUMBER_ID
-   */
-  zb_uint8_t module_serial_number[1 + 24];
-  /** @copydoc ZB_ZCL_ATTR_METERING_INSTANTANEOUS_DEMAND_ID
-   * @see ZB_ZCL_ATTR_METERING_INSTANTANEOUS_DEMAND_ID
-   */
-  zb_int24_t instantaneous_demand;
-  /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_DAY_MAX_DEMAND_DELIVERED_ID
-   * @see ZB_ZCL_ATTR_METERING_CURRENT_DAY_MAX_DEMAND_DELIVERED_ID
-   */
-  zb_uint48_t curr_day_max_demand_delivered;
-  /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_DAY_MAX_DEMAND_DELIVERED_TIME_ID
-   * @see ZB_ZCL_ATTR_METERING_CURRENT_DAY_MAX_DEMAND_DELIVERED_TIME_ID
-   */
-  zb_uint32_t curr_day_max_demand_delivered_time;
-  /** @copydoc ZB_ZCL_ATTR_METERING_PREVIOUS_DAY_MAX_DEMAND_DELIVERED_ID
-   * @see ZB_ZCL_ATTR_METERING_PREVIOUS_DAY_MAX_DEMAND_DELIVERED_ID
-   */
-  zb_uint48_t prev_day_max_demand_delivered;
-  /** @copydoc ZB_ZCL_ATTR_METERING_PREVIOUS_DAY_MAX_DEMAND_DELIVERED_TIME_ID
-   * @see ZB_ZCL_ATTR_METERING_PREVIOUS_DAY_MAX_DEMAND_DELIVERED_TIME_ID
-   */
-  zb_uint32_t prev_day_max_demand_delivered_time;
-  /** @copydoc ZB_ZCL_ATTR_METERING_PREVIOUS_DAY_MAX_DEMAND_RECEIVED_ID
-   * @see ZB_ZCL_ATTR_METERING_PREVIOUS_DAY_MAX_DEMAND_RECEIVED_ID
-   */
+    /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_SUMMATION_DELIVERED_ID
+     * @see ZB_ZCL_ATTR_METERING_CURRENT_SUMMATION_DELIVERED_ID
+     */
+    zb_uint48_t curr_summ_delivered;
+    /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_SUMMATION_RECEIVED_ID
+     * @see ZB_ZCL_ATTR_METERING_CURRENT_SUMMATION_RECEIVED_ID
+     */
+    zb_uint8_t status;
+    /** @copydoc ZB_ZCL_ATTR_METERING_STATUS_ID
+     * @see ZB_ZCL_ATTR_METERING_STATUS_ID
+     */
+    zb_uint64_t extended_status;
+    /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_METER_ID_ID
+     * @see ZB_ZCL_ATTR_METERING_CURRENT_METER_ID_ID
+     */
+    zb_uint8_t curr_meter[ZB_ZCL_ATTR_METERING_CURRENT_METER_ID_MAX_LENGTH];
+    /** @copydoc ZB_ZCL_ATTR_METERING_SERVICE_DISCONNECT_REASON_ID
+     * @see ZB_ZCL_ATTR_METERING_SERVICE_DISCONNECT_REASON_ID
+     */
+    zb_uint8_t service_disconnect_reason;
+    /** @copydoc ZB_ZCL_ATTR_METERING_LINKY_MODE_OF_OPERATION_ID
+     * @see ZB_ZCL_ATTR_METERING_LINKY_MODE_OF_OPERATION_ID
+     */
+    zb_uint8_t linky_mode_of_operation;
+    /** @copydoc ZB_ZCL_ATTR_METERING_UNIT_OF_MEASURE_ID
+     * @see ZB_ZCL_ATTR_METERING_UNIT_OF_MEASURE_ID
+     */
+    zb_uint8_t unit_of_measure;
+    /** @copydoc ZB_ZCL_ATTR_METERING_MULTIPLIER_ID
+     * @see ZB_ZCL_ATTR_METERING_MULTIPLIER_ID
+     */
+    zb_uint24_t multiplier;
+    /** @copydoc ZB_ZCL_ATTR_METERING_DIVISOR_ID
+     * @see ZB_ZCL_ATTR_METERING_DIVISOR_ID
+     */
+    zb_uint24_t divisor;
+    /** @copydoc ZB_ZCL_ATTR_METERING_SUMMATION_FORMATTING_ID
+     * @see ZB_ZCL_ATTR_METERING_SUMMATION_FORMATTING_ID
+     */
+    zb_uint8_t summation_formatting;
+    /** @copydoc ZB_ZCL_ATTR_METERING_DEMAND_FORMATTING_ID
+     * @see ZB_ZCL_ATTR_METERING_DEMAND_FORMATTING_ID
+     */
+    zb_uint8_t demand_format;
+    /** @copydoc ZB_ZCL_ATTR_METERING_METERING_DEVICE_TYPE_ID
+     * @see ZB_ZCL_ATTR_METERING_METERING_DEVICE_TYPE_ID
+     */
+    zb_uint8_t device_type;
+    /** @copydoc ZB_ZCL_ATTR_METERING_SITE_ID_ID
+     * @see ZB_ZCL_ATTR_METERING_SITE_ID_ID
+     */
+    zb_uint8_t site[1 + 32];
+    /** @copydoc ZB_ZCL_ATTR_METERING_METER_SERIAL_NUMBER_ID
+     * @see ZB_ZCL_ATTR_METERING_METER_SERIAL_NUMBER_ID
+     */
+    zb_uint8_t meter_serial_number[1 + 24];
+    /** @copydoc ZB_ZCL_ATTR_METERING_MODULE_SERIAL_NUMBER_ID
+     * @see ZB_ZCL_ATTR_METERING_MODULE_SERIAL_NUMBER_ID
+     */
+    zb_uint8_t module_serial_number[1 + 24];
+    /** @copydoc ZB_ZCL_ATTR_METERING_INSTANTANEOUS_DEMAND_ID
+     * @see ZB_ZCL_ATTR_METERING_INSTANTANEOUS_DEMAND_ID
+     */
+    zb_int24_t instantaneous_demand;
+    /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_DAY_MAX_DEMAND_DELIVERED_ID
+     * @see ZB_ZCL_ATTR_METERING_CURRENT_DAY_MAX_DEMAND_DELIVERED_ID
+     */
+    zb_uint48_t curr_day_max_demand_delivered;
+    /** @copydoc ZB_ZCL_ATTR_METERING_CURRENT_DAY_MAX_DEMAND_DELIVERED_TIME_ID
+     * @see ZB_ZCL_ATTR_METERING_CURRENT_DAY_MAX_DEMAND_DELIVERED_TIME_ID
+     */
+    zb_uint32_t curr_day_max_demand_delivered_time;
+    /** @copydoc ZB_ZCL_ATTR_METERING_PREVIOUS_DAY_MAX_DEMAND_DELIVERED_ID
+     * @see ZB_ZCL_ATTR_METERING_PREVIOUS_DAY_MAX_DEMAND_DELIVERED_ID
+     */
+    zb_uint48_t prev_day_max_demand_delivered;
+    /** @copydoc ZB_ZCL_ATTR_METERING_PREVIOUS_DAY_MAX_DEMAND_DELIVERED_TIME_ID
+     * @see ZB_ZCL_ATTR_METERING_PREVIOUS_DAY_MAX_DEMAND_DELIVERED_TIME_ID
+     */
+    zb_uint32_t prev_day_max_demand_delivered_time;
+    /** @copydoc ZB_ZCL_ATTR_METERING_PREVIOUS_DAY_MAX_DEMAND_RECEIVED_ID
+     * @see ZB_ZCL_ATTR_METERING_PREVIOUS_DAY_MAX_DEMAND_RECEIVED_ID
+     */
 } erl_interface_phase_metering_server_attrs_t;
 
 
@@ -1323,46 +1323,46 @@ typedef struct erl_interface_phase_metering_server_attrs_s
  */
 typedef struct erl_time_server_attrs_s
 {
-  /** @copydoc ZB_ZCL_ATTR_TIME_TIME_ID
-   * @see ZB_ZCL_ATTR_TIME_TIME_ID
-   */
-  zb_uint32_t time;
-  /** @copydoc ZB_ZCL_ATTR_TIME_TIME_STATUS_ID
-   * @see ZB_ZCL_ATTR_TIME_TIME_STATUS_ID
-   */
-  zb_uint8_t time_status;
-  /** @copydoc ZB_ZCL_ATTR_TIME_TIME_ZONE_ID
-   * @see ZB_ZCL_ATTR_TIME_TIME_ZONE_ID
-   */
-  zb_int32_t time_zone;
-  /** @copydoc ZB_ZCL_ATTR_TIME_DST_START_ID
-   * @see ZB_ZCL_ATTR_TIME_DST_START_ID
-   */
-  zb_uint32_t dst_start;
-  /** @copydoc ZB_ZCL_ATTR_TIME_DST_END_ID
-   * @see ZB_ZCL_ATTR_TIME_DST_END_ID
-   */
-  zb_uint32_t dst_end;
-  /** @copydoc ZB_ZCL_ATTR_TIME_DST_SHIFT_ID
-   * @see ZB_ZCL_ATTR_TIME_DST_SHIFT_ID
-   */
-  zb_int32_t dst_shift;
-  /** @copydoc ZB_ZCL_ATTR_TIME_STANDARD_TIME_ID
-   * @see ZB_ZCL_ATTR_TIME_STANDARD_TIME_ID
-   */
-  zb_uint32_t standard_time;
-  /** @copydoc ZB_ZCL_ATTR_TIME_LOCAL_TIME_ID
-   * @see ZB_ZCL_ATTR_TIME_LOCAL_TIME_ID
-   */
-  zb_uint32_t local_time;
-  /** @copydoc ZB_ZCL_ATTR_TIME_LAST_SET_TIME_ID
-   * @see ZB_ZCL_ATTR_TIME_LAST_SET_TIME_ID
-   */
-  zb_uint32_t last_set_time;
-  /** @copydoc ZB_ZCL_ATTR_TIME_VALID_UNTIL_TIME_ID
-   * @see ZB_ZCL_ATTR_TIME_VALID_UNTIL_TIME_ID
-   */
-  zb_uint32_t valid_until_time;
+    /** @copydoc ZB_ZCL_ATTR_TIME_TIME_ID
+     * @see ZB_ZCL_ATTR_TIME_TIME_ID
+     */
+    zb_uint32_t time;
+    /** @copydoc ZB_ZCL_ATTR_TIME_TIME_STATUS_ID
+     * @see ZB_ZCL_ATTR_TIME_TIME_STATUS_ID
+     */
+    zb_uint8_t time_status;
+    /** @copydoc ZB_ZCL_ATTR_TIME_TIME_ZONE_ID
+     * @see ZB_ZCL_ATTR_TIME_TIME_ZONE_ID
+     */
+    zb_int32_t time_zone;
+    /** @copydoc ZB_ZCL_ATTR_TIME_DST_START_ID
+     * @see ZB_ZCL_ATTR_TIME_DST_START_ID
+     */
+    zb_uint32_t dst_start;
+    /** @copydoc ZB_ZCL_ATTR_TIME_DST_END_ID
+     * @see ZB_ZCL_ATTR_TIME_DST_END_ID
+     */
+    zb_uint32_t dst_end;
+    /** @copydoc ZB_ZCL_ATTR_TIME_DST_SHIFT_ID
+     * @see ZB_ZCL_ATTR_TIME_DST_SHIFT_ID
+     */
+    zb_int32_t dst_shift;
+    /** @copydoc ZB_ZCL_ATTR_TIME_STANDARD_TIME_ID
+     * @see ZB_ZCL_ATTR_TIME_STANDARD_TIME_ID
+     */
+    zb_uint32_t standard_time;
+    /** @copydoc ZB_ZCL_ATTR_TIME_LOCAL_TIME_ID
+     * @see ZB_ZCL_ATTR_TIME_LOCAL_TIME_ID
+     */
+    zb_uint32_t local_time;
+    /** @copydoc ZB_ZCL_ATTR_TIME_LAST_SET_TIME_ID
+     * @see ZB_ZCL_ATTR_TIME_LAST_SET_TIME_ID
+     */
+    zb_uint32_t last_set_time;
+    /** @copydoc ZB_ZCL_ATTR_TIME_VALID_UNTIL_TIME_ID
+     * @see ZB_ZCL_ATTR_TIME_VALID_UNTIL_TIME_ID
+     */
+    zb_uint32_t valid_until_time;
 } erl_time_server_attrs_t;
 
 
@@ -1431,18 +1431,18 @@ typedef struct erl_time_server_attrs_s
 */
 typedef struct erl_diagnostics_server_attrs_s
 {
-  /** @copydoc ZB_ZCL_ATTR_DIAGNOSTICS_NUMBER_OF_RESETS_ID
-   * @see ZB_ZCL_ATTR_DIAGNOSTICS_NUMBER_OF_RESETS_ID
-   */
-  zb_uint16_t number_of_resets;
-  /** @copydoc ZB_ZCL_ATTR_DIAGNOSTICS_LAST_LQI_ID
-   * @see ZB_ZCL_ATTR_DIAGNOSTICS_LAST_LQI_ID
-   */
-  zb_uint8_t last_msg_lqi;
-  /** @copydoc ZB_ZCL_ATTR_DIAGNOSTICS_LAST_RSSI_ID
-   * @see ZB_ZCL_ATTR_DIAGNOSTICS_LAST_RSSI_ID
-   */
-  zb_uint8_t last_msg_rssi;
+    /** @copydoc ZB_ZCL_ATTR_DIAGNOSTICS_NUMBER_OF_RESETS_ID
+     * @see ZB_ZCL_ATTR_DIAGNOSTICS_NUMBER_OF_RESETS_ID
+     */
+    zb_uint16_t number_of_resets;
+    /** @copydoc ZB_ZCL_ATTR_DIAGNOSTICS_LAST_LQI_ID
+     * @see ZB_ZCL_ATTR_DIAGNOSTICS_LAST_LQI_ID
+     */
+    zb_uint8_t last_msg_lqi;
+    /** @copydoc ZB_ZCL_ATTR_DIAGNOSTICS_LAST_RSSI_ID
+     * @see ZB_ZCL_ATTR_DIAGNOSTICS_LAST_RSSI_ID
+     */
+    zb_uint8_t last_msg_rssi;
 
 } erl_diagnostics_server_attrs_t;
 

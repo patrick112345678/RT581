@@ -46,44 +46,44 @@ static zb_ieee_addr_t g_mac_addr = {0x02, 0x00, 0x00, 0x00, 0x00, 0x48, 0xde, 0x
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  ZB_INIT("association_02_rfd");
+    ZB_INIT("association_02_rfd");
 
-  ZB_IEEE_ADDR_COPY(ZB_PIB_EXTENDED_ADDRESS(), &g_mac_addr);
-  MAC_PIB().mac_pan_id = 0x1aaa;
+    ZB_IEEE_ADDR_COPY(ZB_PIB_EXTENDED_ADDRESS(), &g_mac_addr);
+    MAC_PIB().mac_pan_id = 0x1aaa;
 
-  {
-    zb_bufid_t buf = zb_get_out_buf();
-    zb_uint16_t addr = ASSOCIATE_TO;
+    {
+        zb_bufid_t buf = zb_get_out_buf();
+        zb_uint16_t addr = ASSOCIATE_TO;
 
-    ZB_MLME_BUILD_ASSOCIATE_REQUEST(param, CHANNEL,
-                                    ASSOCIATE_TO_PAN,
-                                    ZB_ADDR_16BIT_DEV_OR_BROADCAST, &addr,
-                                    CAP_INFO);
+        ZB_MLME_BUILD_ASSOCIATE_REQUEST(param, CHANNEL,
+                                        ASSOCIATE_TO_PAN,
+                                        ZB_ADDR_16BIT_DEV_OR_BROADCAST, &addr,
+                                        CAP_INFO);
 
-    ZB_SCHEDULE_CALLBACK(zb_mlme_associate_request, param);
-  }
+        ZB_SCHEDULE_CALLBACK(zb_mlme_associate_request, param);
+    }
 
-  while(1)
-  {
-    zb_sched_loop_iteration();
-  }
+    while (1)
+    {
+        zb_sched_loop_iteration();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 
 void zb_mlme_associate_confirm(zb_uint8_t param)
 {
-  zb_mlme_associate_confirm_t *request = ZB_BUF_GET_PARAM(param, zb_mlme_associate_confirm_t);
+    zb_mlme_associate_confirm_t *request = ZB_BUF_GET_PARAM(param, zb_mlme_associate_confirm_t);
 
-  TRACE_MSG(TRACE_NWK2, "zb_mlme_associate_confirm param %hd status %hd short_address %hd",
-            (FMT__H_H_H, param, request->status, request->assoc_short_address));
+    TRACE_MSG(TRACE_NWK2, "zb_mlme_associate_confirm param %hd status %hd short_address %hd",
+              (FMT__H_H_H, param, request->status, request->assoc_short_address));
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 

@@ -34,47 +34,47 @@
 
 void button1_handler(zb_uint8_t param)
 {
-  ZVUNUSED(param);
+    ZVUNUSED(param);
 }
 
 void button2_handler(zb_uint8_t param)
 {
-  ZVUNUSED(param);
+    ZVUNUSED(param);
 
-  zb_buf_get_out_delayed_ext(dl_send_notification, ZB_ZCL_DOOR_LOCK_RF_OPERATION_EVENT_MASK_LOCK, 0);
+    zb_buf_get_out_delayed_ext(dl_send_notification, ZB_ZCL_DOOR_LOCK_RF_OPERATION_EVENT_MASK_LOCK, 0);
 }
 
 
 void dl_hal_device_started(void)
 {
-  zb_osif_led_on(DL_LED_POWER);
+    zb_osif_led_on(DL_LED_POWER);
 }
 
 void dl_hal_gpio_init(void)
 {
-  zb_osif_led_button_init();
+    zb_osif_led_button_init();
 #ifdef ZB_USE_BUTTONS
-  zb_button_register_handler(BUTTON_0, 0, button1_handler);
-  zb_button_register_handler(BUTTON_1, 0, button2_handler);
+    zb_button_register_handler(BUTTON_0, 0, button1_handler);
+    zb_button_register_handler(BUTTON_1, 0, button2_handler);
 #endif
 }
 
 zb_ret_t dl_hal_init(void)
 {
-  dl_hal_gpio_init();
-  dl_hal_device_started();
+    dl_hal_gpio_init();
+    dl_hal_device_started();
 
-  return RET_OK;
+    return RET_OK;
 }
 
 zb_bool_t dl_get_button_state(zb_uint16_t button)
 {
-  zb_bool_t ret;
+    zb_bool_t ret;
 
-  TRACE_MSG(TRACE_APP2, "dl_get_button_state: button %d", (FMT__D, button));
+    TRACE_MSG(TRACE_APP2, "dl_get_button_state: button %d", (FMT__D, button));
 
-  ret = (zb_bool_t) zb_osif_button_state(button);
+    ret = (zb_bool_t) zb_osif_button_state(button);
 
-  return ret;
+    return ret;
 }
 

@@ -33,17 +33,17 @@
 
 typedef struct zb_test_table_s
 {
-  char *test_name;
-  void (*main_p)();
-  void (*startup_complete_p)(zb_uint8_t param);
+    char *test_name;
+    void (*main_p)();
+    void (*startup_complete_p)(zb_uint8_t param);
 }
 zb_test_table_t;
 
 typedef struct zb_test_ctx_s
 {
-  zb_uint8_t page;
-  zb_uint8_t channel;
-  zb_test_control_mode_t mode;
+    zb_uint8_t page;
+    zb_uint8_t channel;
+    zb_test_control_mode_t mode;
 } zb_test_ctx_t;
 
 
@@ -58,7 +58,7 @@ void zb_multitest_reset_test_ctx(void);
  *
  * @return zb_multitest_ctx_t* multitest context
  */
-zb_test_ctx_t* zb_multitest_get_test_ctx(void);
+zb_test_ctx_t *zb_multitest_get_test_ctx(void);
 
 
 /**
@@ -76,7 +76,7 @@ void zb_multitest_init(void);
  *
  * @return zb_test_table_t* tests table
  */
-const zb_test_table_t* zb_multitest_get_tests_table(void);
+const zb_test_table_t *zb_multitest_get_tests_table(void);
 
 
 /**

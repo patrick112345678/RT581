@@ -42,9 +42,9 @@ uint64_t cpc_timer_get_tick_count64(void)
 }
 
 status_t cpc_timer_start_timer(cpc_timer_handle_t *handle,
-                                  uint32_t timeout,
-                                  cpc_timer_callback_t callback,
-                                  void *callback_data)
+                               uint32_t timeout,
+                               cpc_timer_callback_t callback,
+                               void *callback_data)
 {
     // info("%s\n", __func__);
     status_t status = CPC_STATUS_OK;
@@ -53,9 +53,9 @@ status_t cpc_timer_start_timer(cpc_timer_handle_t *handle,
 }
 
 status_t cpc_timer_start_timer_ms(cpc_timer_handle_t *handle,
-                                     uint32_t timeout_ms,
-                                     cpc_timer_callback_t callback,
-                                     void *callback_data)
+                                  uint32_t timeout_ms,
+                                  cpc_timer_callback_t callback,
+                                  void *callback_data)
 {
     // info("%s\n", __func__);
     status_t status = CPC_STATUS_OK;
@@ -70,9 +70,9 @@ static void vTimerCallback(TimerHandle_t xTimer)
 }
 
 status_t cpc_timer_restart_timer(cpc_timer_handle_t *handle,
-                                    uint32_t timeout,
-                                    cpc_timer_callback_t callback,
-                                    void *callback_data)
+                                 uint32_t timeout,
+                                 cpc_timer_callback_t callback,
+                                 void *callback_data)
 {
     // info("%s handel %X timout %d\n", __func__, handle, timeout);
     status_t status = CPC_STATUS_OK;
@@ -100,7 +100,9 @@ status_t cpc_timer_stop_timer(cpc_timer_handle_t *handle)
     status_t status = CPC_STATUS_OK;
 
     if (xTimerIsTimerActive(xTimers) == pdTRUE)
+    {
         xTimerStop(xTimers, 0);
+    }
 
     return status;
 }

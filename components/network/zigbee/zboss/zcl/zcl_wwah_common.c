@@ -30,10 +30,10 @@
 
 void zb_zcl_wwah_set_wwah_behavior(zb_uint8_t behavior)
 {
-  if (behavior < ZB_ZCL_WWAH_BEHAVIOR_RESERVED)
-  {
-    WWAH_CTX().wwah_behavior = behavior;
-  }
+    if (behavior < ZB_ZCL_WWAH_BEHAVIOR_RESERVED)
+    {
+        WWAH_CTX().wwah_behavior = behavior;
+    }
 }
 
 /*
@@ -43,9 +43,9 @@ void zb_zcl_wwah_set_wwah_behavior(zb_uint8_t behavior)
 
 zb_bool_t zb_is_wwah_client()
 {
-  zb_uint8_t wwah_endpoint = get_endpoint_by_cluster(ZB_ZCL_CLUSTER_ID_WWAH,
-                                                     ZB_ZCL_CLUSTER_CLIENT_ROLE);
-  return (zb_bool_t)(((zb_zcl_wwah_behavior_t)WWAH_CTX().wwah_behavior == ZB_ZCL_WWAH_BEHAVIOR_CLIENT) && wwah_endpoint);
+    zb_uint8_t wwah_endpoint = get_endpoint_by_cluster(ZB_ZCL_CLUSTER_ID_WWAH,
+                               ZB_ZCL_CLUSTER_CLIENT_ROLE);
+    return (zb_bool_t)(((zb_zcl_wwah_behavior_t)WWAH_CTX().wwah_behavior == ZB_ZCL_WWAH_BEHAVIOR_CLIENT) && wwah_endpoint);
 }
 
 /*
@@ -55,9 +55,9 @@ zb_bool_t zb_is_wwah_client()
 
 zb_bool_t zb_is_wwah_server()
 {
-  zb_uint8_t wwah_endpoint = get_endpoint_by_cluster(ZB_ZCL_CLUSTER_ID_WWAH,
-                                                     ZB_ZCL_CLUSTER_SERVER_ROLE);
-  return (zb_bool_t)(((zb_zcl_wwah_behavior_t)WWAH_CTX().wwah_behavior == ZB_ZCL_WWAH_BEHAVIOR_SERVER) && wwah_endpoint);
+    zb_uint8_t wwah_endpoint = get_endpoint_by_cluster(ZB_ZCL_CLUSTER_ID_WWAH,
+                               ZB_ZCL_CLUSTER_SERVER_ROLE);
+    return (zb_bool_t)(((zb_zcl_wwah_behavior_t)WWAH_CTX().wwah_behavior == ZB_ZCL_WWAH_BEHAVIOR_SERVER) && wwah_endpoint);
 }
 
 #endif

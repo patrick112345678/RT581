@@ -94,10 +94,10 @@ zb_uint8_t *zb_bpool_get_reserved_area(zb_uint_t *reserve_bytes_p);
 void zb_bpool_put_reserve_back(void);
 
 #ifdef ZB_DEBUG_BUFFERS_EXT
-  void zb_trace_bufs_usage(void);
-  #define ZB_TRACE_BUFS_USAGE() zb_trace_bufs_usage()
+void zb_trace_bufs_usage(void);
+#define ZB_TRACE_BUFS_USAGE() zb_trace_bufs_usage()
 #else
-  #define ZB_TRACE_BUFS_USAGE()
+#define ZB_TRACE_BUFS_USAGE()
 #endif
 
 
@@ -144,7 +144,7 @@ zb_buf_t *zb_get_any_buf(
 #else
     void
 #endif
-    );
+);
 
 #ifdef ZB_DEBUG_BUFFERS
 #define ZB_GET_ANY_BUF() zb_get_any_buf(ZB_TRACE_FILE_ID, __LINE__)

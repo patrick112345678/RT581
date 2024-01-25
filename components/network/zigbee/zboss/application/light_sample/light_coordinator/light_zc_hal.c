@@ -34,32 +34,32 @@
 /* Private functions */
 static void light_zc_hal_device_started(void)
 {
-  zb_osif_led_on(BULB_LED_POVER);
+    zb_osif_led_on(BULB_LED_POVER);
 }
 
 static void light_zc_hal_gpio_init(void)
 {
-  zb_osif_led_button_init();
+    zb_osif_led_button_init();
 }
 
 /* Public interface */
 void light_zc_hal_init(void)
 {
-  volatile  zb_uint16_t i = 0;
-  for (i = 16000; i>0; i--)
-  {
-   light_zc_hal_gpio_init();
-  }
-  light_zc_hal_gpio_init();
+    volatile  zb_uint16_t i = 0;
+    for (i = 16000; i > 0; i--)
+    {
+        light_zc_hal_gpio_init();
+    }
+    light_zc_hal_gpio_init();
 
-  light_zc_hal_device_started();
+    light_zc_hal_device_started();
 }
 
 zb_bool_t light_zc_hal_is_button_pressed(zb_uint8_t button_no)
 {
-  zb_bool_t ret = ZB_FALSE;
-  ret = (zb_bool_t) zb_osif_button_state(button_no);
-  return ret;
+    zb_bool_t ret = ZB_FALSE;
+    ret = (zb_bool_t) zb_osif_button_state(button_no);
+    return ret;
 }
 
 #endif /* ZB_USE_BUTTONS */

@@ -64,51 +64,51 @@
 #endif
 /* #define SPI_TRANSPORT_BIT_RATE  (15200u) */
 
-#define SPI_SEND_DATA_SEM	"/ncp_spi_send_sem"
+#define SPI_SEND_DATA_SEM   "/ncp_spi_send_sem"
 
 #define SPI_RX_OBJS     3
 
 typedef enum spi_ini_state_e
 {
-  SPI_NOT_INITIALIZED,
-  SPI_INITIALIZED
+    SPI_NOT_INITIALIZED,
+    SPI_INITIALIZED
 }
 spi_init_state_t;
 
 typedef struct linux_spi_ctx_s
 {
-  spi_recv_data_cb_t recv_cb;
-  spi_callback_t     send_cb;
-  spi_callback_t     init_cb;
-  int                spi_fd;
+    spi_recv_data_cb_t recv_cb;
+    spi_callback_t     send_cb;
+    spi_callback_t     init_cb;
+    int                spi_fd;
 }
 linux_spi_ctx_t;
 
 typedef struct recv_obj_s
 {
-  uint8_t* buf;
-  size_t remain;
-  size_t offset;
+    uint8_t *buf;
+    size_t remain;
+    size_t offset;
 }
 recv_obj_t;
 
 typedef struct rx_spi_ctx_s
 {
-  recv_obj_t recv_obj[SPI_RX_OBJS];
-  uint8_t drv_index;
-  uint8_t* user_buf;
-  size_t user_len;
-  size_t user_offset;
-  uint8_t user_index;
-  spi_bool_t is_user_requested;
-  uint8_t empty_obj_cnt;
+    recv_obj_t recv_obj[SPI_RX_OBJS];
+    uint8_t drv_index;
+    uint8_t *user_buf;
+    size_t user_len;
+    size_t user_offset;
+    uint8_t user_index;
+    spi_bool_t is_user_requested;
+    uint8_t empty_obj_cnt;
 }
 rx_spi_ctx_t;
 
 typedef struct tx_spi_ctx_s
 {
-  uint8_t *buf;
-  size_t len;
+    uint8_t *buf;
+    size_t len;
 }
 tx_spi_ctx_t;
 

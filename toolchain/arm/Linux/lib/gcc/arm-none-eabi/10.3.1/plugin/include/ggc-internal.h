@@ -29,7 +29,7 @@ extern void ggc_mark_roots (void);
 /* Stringpool.  */
 
 /* Mark the entries in the string pool.  */
-extern void ggc_mark_stringpool	(void);
+extern void ggc_mark_stringpool (void);
 
 /* Purge the entries in the string pool.  */
 extern void ggc_purge_stringpool (void);
@@ -75,7 +75,7 @@ extern void ggc_pch_prepare_write (struct ggc_pch_data *, FILE *);
 /* Write out this object, including any padding.  The last argument should be
    true if the object is a string.  */
 extern void ggc_pch_write_object (struct ggc_pch_data *, FILE *, void *,
-				  void *, size_t, bool);
+                                  void *, size_t, bool);
 
 /* All objects have been written, write out any final information
    required.  */
@@ -91,7 +91,7 @@ extern void ggc_pch_read (FILE *, void *);
 /* When set, ggc_collect will do collection.  */
 extern bool ggc_force_collect;
 
-extern void ggc_record_overhead (size_t, size_t, void * FINAL_MEM_STAT_DECL);
+extern void ggc_record_overhead (size_t, size_t, void *FINAL_MEM_STAT_DECL);
 
 extern void ggc_free_overhead (void *);
 
@@ -107,8 +107,8 @@ extern size_t ggc_get_size (const void *);
    Particular collectors can extend this structure.  */
 struct ggc_statistics
 {
-  /* At present, we don't really gather any interesting statistics.  */
-  int unused;
+    /* At present, we don't really gather any interesting statistics.  */
+    int unused;
 };
 
 /* Used by the various collectors to gather and print statistics that

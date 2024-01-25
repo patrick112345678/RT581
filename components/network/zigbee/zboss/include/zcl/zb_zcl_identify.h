@@ -58,8 +58,8 @@
 */
 enum zb_zcl_identify_attr_e
 {
-  /*! Identify time attribute */
-  ZB_ZCL_ATTR_IDENTIFY_IDENTIFY_TIME_ID = 0x0000
+    /*! Identify time attribute */
+    ZB_ZCL_ATTR_IDENTIFY_IDENTIFY_TIME_ID = 0x0000
 };
 
 /** @brief Default value for Identify attribute */
@@ -76,10 +76,10 @@ enum zb_zcl_identify_attr_e
 */
 enum zb_zcl_identify_cmd_e
 {
-  ZB_ZCL_CMD_IDENTIFY_IDENTIFY_ID           = 0x00,  /**< Identify command */
-  ZB_ZCL_CMD_IDENTIFY_IDENTIFY_QUERY_ID     = 0x01,  /**< Identify query command */
-  ZB_ZCL_CMD_IDENTIFY_TRIGGER_EFFECT_ID     = 0x40,  /**< "Trigger effect" command identifier. */
-  ZB_ZCL_CMD_IDENTIFY_IDENTIFY_QUERY_RSP_ID = 0x00   /**< Identify query response */
+    ZB_ZCL_CMD_IDENTIFY_IDENTIFY_ID           = 0x00,  /**< Identify command */
+    ZB_ZCL_CMD_IDENTIFY_IDENTIFY_QUERY_ID     = 0x01,  /**< Identify query command */
+    ZB_ZCL_CMD_IDENTIFY_TRIGGER_EFFECT_ID     = 0x40,  /**< "Trigger effect" command identifier. */
+    ZB_ZCL_CMD_IDENTIFY_IDENTIFY_QUERY_RSP_ID = 0x00   /**< Identify query response */
 };
 
 /** @cond internals_doc */
@@ -102,23 +102,23 @@ enum zb_zcl_identify_cmd_e
  * @see ZCL spec 3.5.2.2.3.1 */
 enum zb_zcl_identify_trigger_effect_e
 {
-  /**< Effect identifier field value: Light is turned on/off once */
-  ZB_ZCL_IDENTIFY_EFFECT_ID_BLINK           = 0x00,
-  /**< Effect identifier field value: Light turned on/off over 1 second and
-   * repeated 15 times */
-  ZB_ZCL_IDENTIFY_EFFECT_ID_BREATHE         = 0x01,
-  /**< Effect identifier field value: Colored light turns green for 1 second;
-   * non-colored light flashes twice */
-  ZB_ZCL_IDENTIFY_EFFECT_ID_OKAY            = 0x02,
-  /**< Effect identifier field value: Colored light turns orange for 8 seconds; non-colored
-   * light switches to maximum brightness for 0.5s and then minimum brightness for 7.5s */
-  ZB_ZCL_IDENTIFY_EFFECT_ID_CHANNEL_CHANGE  = 0xb,
-  /**< Effect identifier field value: Complete the current effect sequence before terminating.
-   * E.g., if in the middle of a breathe effect (as above), first complete the current 1s
-   * breathe effect and then terminate the effect*/
-  ZB_ZCL_IDENTIFY_EFFECT_ID_FINISH_EFFECT   = 0xfe,
-  /**< Effect identifier field value: Terminate the effect as soon as possible */
-  ZB_ZCL_IDENTIFY_EFFECT_ID_STOP            = 0xff,
+    /**< Effect identifier field value: Light is turned on/off once */
+    ZB_ZCL_IDENTIFY_EFFECT_ID_BLINK           = 0x00,
+    /**< Effect identifier field value: Light turned on/off over 1 second and
+     * repeated 15 times */
+    ZB_ZCL_IDENTIFY_EFFECT_ID_BREATHE         = 0x01,
+    /**< Effect identifier field value: Colored light turns green for 1 second;
+     * non-colored light flashes twice */
+    ZB_ZCL_IDENTIFY_EFFECT_ID_OKAY            = 0x02,
+    /**< Effect identifier field value: Colored light turns orange for 8 seconds; non-colored
+     * light switches to maximum brightness for 0.5s and then minimum brightness for 7.5s */
+    ZB_ZCL_IDENTIFY_EFFECT_ID_CHANNEL_CHANGE  = 0xb,
+    /**< Effect identifier field value: Complete the current effect sequence before terminating.
+     * E.g., if in the middle of a breathe effect (as above), first complete the current 1s
+     * breathe effect and then terminate the effect*/
+    ZB_ZCL_IDENTIFY_EFFECT_ID_FINISH_EFFECT   = 0xfe,
+    /**< Effect identifier field value: Terminate the effect as soon as possible */
+    ZB_ZCL_IDENTIFY_EFFECT_ID_STOP            = 0xff,
 };
 
 
@@ -126,16 +126,16 @@ enum zb_zcl_identify_trigger_effect_e
  * @see ZCL spec 3.5.2.2.3.2 */
 enum zb_zcl_identify_trigger_variant_e
 {
-  /**< Effect variant field value: Default */
-  ZB_ZCL_IDENTIFY_EFFECT_ID_VARIANT_DEFAULT       = 0x00,
+    /**< Effect variant field value: Default */
+    ZB_ZCL_IDENTIFY_EFFECT_ID_VARIANT_DEFAULT       = 0x00,
 };
 
 
 /*! @brief Structured representation of Trigger effect command payload */
 typedef ZB_PACKED_PRE struct zb_zcl_identify_effect_req_s
 {
-  zb_uint8_t effect_id;         /*!< Effect identify, see @ref zb_zcl_identify_trigger_effect_e */
-  zb_uint8_t effect_variant;    /*!< Effect variant, see @ref zb_zcl_identify_trigger_variant_e  */
+    zb_uint8_t effect_id;         /*!< Effect identify, see @ref zb_zcl_identify_trigger_effect_e */
+    zb_uint8_t effect_variant;    /*!< Effect variant, see @ref zb_zcl_identify_trigger_variant_e  */
 } ZB_PACKED_STRUCT zb_zcl_identify_effect_req_t;
 
 
@@ -199,17 +199,17 @@ ZB_ZCL_SEND_COMMAND_SHORT(                                                      
 */
 typedef struct zb_zcl_identify_effect_value_param_s
 {
-  zb_uint8_t effect_id;         /*!< Effect identify */
-  zb_uint8_t effect_variant;    /*!< Effect variant */
+    zb_uint8_t effect_id;         /*!< Effect identify */
+    zb_uint8_t effect_variant;    /*!< Effect variant */
 } zb_zcl_identify_effect_value_param_t;
 
 
 /*! Struct for invoke User App & continue after */
 typedef struct zb_zcl_identify_effect_user_app_schedule_e
 {
-  zb_zcl_parsed_hdr_t cmd_info;         /**< Parameters for continue command,
+    zb_zcl_parsed_hdr_t cmd_info;         /**< Parameters for continue command,
                                               see @ref zb_zcl_parsed_hdr_s */
-  zb_zcl_identify_effect_value_param_t param; /**< User App command parameters,
+    zb_zcl_identify_effect_value_param_t param; /**< User App command parameters,
                                         see @ref zb_zcl_identify_effect_value_param_s */
 } zb_zcl_identify_effect_user_app_schedule_t;
 
@@ -322,13 +322,13 @@ zb_uint8_t zb_zcl_is_identifying(zb_uint8_t endpoint);
 /*! @brief Structured representation of Identify command payload */
 typedef ZB_PACKED_PRE struct zb_zcl_identify_req_s
 {
-  zb_uint16_t timeout;  /*!< Time to identify */
+    zb_uint16_t timeout;  /*!< Time to identify */
 } ZB_PACKED_STRUCT zb_zcl_identify_req_t;
 
 /*! @brief Structured representation of Identify Query Response command payload */
 typedef ZB_PACKED_PRE struct zb_zcl_identify_query_res_s
 {
-  zb_uint16_t timeout;  /*!< Reported time to identify */
+    zb_uint16_t timeout;  /*!< Reported time to identify */
 } ZB_PACKED_STRUCT zb_zcl_identify_query_res_t;
 
 /*! @brief Identify cluster Identify command payload structured read
@@ -345,9 +345,9 @@ typedef ZB_PACKED_PRE struct zb_zcl_identify_query_res_s
   else                                                                  \
   {                                                                     \
     zb_zcl_identify_req_t *src_ptr =                                    \
-      (zb_zcl_identify_req_t*)zb_buf_begin((buffer));      		\
+      (zb_zcl_identify_req_t*)zb_buf_begin((buffer));           \
     (status) = ZB_ZCL_PARSE_STATUS_SUCCESS;                             \
-    ZB_HTOLE16((zb_uint8_t*)&((data_ptr)->timeout), (zb_uint8_t*)&(src_ptr->timeout));        	\
+    ZB_HTOLE16((zb_uint8_t*)&((data_ptr)->timeout), (zb_uint8_t*)&(src_ptr->timeout));          \
   }                                                                     \
 }
 
@@ -357,19 +357,19 @@ typedef ZB_PACKED_PRE struct zb_zcl_identify_query_res_s
   * @param buffer containing the packet (by pointer).
   * @param status - variable to put parse status to (see @ref zb_zcl_parse_status_t).
   */
-#define ZB_ZCL_IDENTIFY_GET_IDENTIFY_QUERY_RES(data_ptr, buffer, status)	\
-{                                                                       	\
-  if (zb_buf_len((buffer)) != sizeof(zb_zcl_identify_query_res_t))            	\
-  {                                                                     	\
-    (status) = ZB_ZCL_PARSE_STATUS_FAILURE;                             	\
-  }                                                                     	\
-  else                                                                  	\
-  {                                                                     	\
-    zb_zcl_identify_query_res_t *src_ptr =                                    	\
-      (zb_zcl_identify_query_res_t*)zb_buf_begin((buffer));                   	\
-    (status) = ZB_ZCL_PARSE_STATUS_SUCCESS;                             	\
-    ZB_HTOLE16((zb_uint8_t*)&((data_ptr)->timeout), (zb_uint8_t*)&(src_ptr->timeout));            	\
-  }                                                                     	\
+#define ZB_ZCL_IDENTIFY_GET_IDENTIFY_QUERY_RES(data_ptr, buffer, status)    \
+{                                                                           \
+  if (zb_buf_len((buffer)) != sizeof(zb_zcl_identify_query_res_t))              \
+  {                                                                         \
+    (status) = ZB_ZCL_PARSE_STATUS_FAILURE;                                 \
+  }                                                                         \
+  else                                                                      \
+  {                                                                         \
+    zb_zcl_identify_query_res_t *src_ptr =                                      \
+      (zb_zcl_identify_query_res_t*)zb_buf_begin((buffer));                     \
+    (status) = ZB_ZCL_PARSE_STATUS_SUCCESS;                                 \
+    ZB_HTOLE16((zb_uint8_t*)&((data_ptr)->timeout), (zb_uint8_t*)&(src_ptr->timeout));              \
+  }                                                                         \
 }
 
 /*! @} */ /* Identify cluster command structures and definitions */
@@ -412,10 +412,10 @@ typedef ZB_PACKED_PRE struct zb_zcl_identify_query_res_s
  */
 typedef struct zb_zcl_identify_attrs_s
 {
-  /** @copydoc ZB_ZCL_ATTR_IDENTIFY_IDENTIFY_TIME_ID
-   * @see ZB_ZCL_ATTR_IDENTIFY_IDENTIFY_TIME_ID
-   */
-  zb_uint16_t identify_time;
+    /** @copydoc ZB_ZCL_ATTR_IDENTIFY_IDENTIFY_TIME_ID
+     * @see ZB_ZCL_ATTR_IDENTIFY_IDENTIFY_TIME_ID
+     */
+    zb_uint16_t identify_time;
 } zb_zcl_identify_attrs_t;
 
 

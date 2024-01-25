@@ -53,115 +53,115 @@ static void test_poll_alarm(zb_uint8_t param);
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  ZB_INIT("tp_154_mac_data_04_ffd_th_rfd1");
+    ZB_INIT("tp_154_mac_data_04_ffd_th_rfd1");
 
-  ZB_SCHEDULE_CALLBACK(test_started_cb, 0);
+    ZB_SCHEDULE_CALLBACK(test_started_cb, 0);
 #if UART_CONTROL
-  test_control_init();
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    test_control_init();
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 #endif
-  while(1)
-  {
-    zb_sched_loop_iteration();
-  }
-  TRACE_DEINIT();
-  MAIN_RETURN(0);
+    while (1)
+    {
+        zb_sched_loop_iteration();
+    }
+    TRACE_DEINIT();
+    MAIN_RETURN(0);
 }
 
 
 static void test_started_cb(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  TRACE_MSG(TRACE_APP1, "Device STARTED OK", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "Device STARTED OK", (FMT__0));
 
-  zb_buf_get_out_delayed(test_mlme_reset_request);
+    zb_buf_get_out_delayed(test_mlme_reset_request);
 }
 
 /***************** Test functions *****************/
 static void test_mlme_reset_request(zb_uint8_t param)
 {
-  zb_mlme_reset_request_t *reset_req = ZB_BUF_GET_PARAM(param, zb_mlme_reset_request_t);
-  reset_req->set_default_pib = 1;
+    zb_mlme_reset_request_t *reset_req = ZB_BUF_GET_PARAM(param, zb_mlme_reset_request_t);
+    reset_req->set_default_pib = 1;
 
-  TRACE_MSG(TRACE_APP1, "MLME-RESET.request()", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "MLME-RESET.request()", (FMT__0));
 
-  ZB_SCHEDULE_CALLBACK(zb_mlme_reset_request, param);
+    ZB_SCHEDULE_CALLBACK(zb_mlme_reset_request, param);
 }
 
 
 static void test_set_ieee_addr(zb_uint8_t param)
 {
-  zb_mlme_set_request_t *req;
+    zb_mlme_set_request_t *req;
 
-  TRACE_MSG(TRACE_APP1, "MLME-SET.request() mac IEEE addr", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "MLME-SET.request() mac IEEE addr", (FMT__0));
 
-  req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + sizeof(zb_ieee_addr_t));
-  ZB_BZERO(req, sizeof(zb_mlme_set_request_t) + sizeof(zb_ieee_addr_t));
+    req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + sizeof(zb_ieee_addr_t));
+    ZB_BZERO(req, sizeof(zb_mlme_set_request_t) + sizeof(zb_ieee_addr_t));
 
-  req->pib_attr = ZB_PIB_ATTRIBUTE_EXTEND_ADDRESS;
-  req->pib_length = sizeof(zb_ieee_addr_t);
-  ZB_MEMCPY((zb_uint8_t *)(req+1), g_ieee_addr_rfd1, sizeof(zb_ieee_addr_t));
+    req->pib_attr = ZB_PIB_ATTRIBUTE_EXTEND_ADDRESS;
+    req->pib_length = sizeof(zb_ieee_addr_t);
+    ZB_MEMCPY((zb_uint8_t *)(req + 1), g_ieee_addr_rfd1, sizeof(zb_ieee_addr_t));
 
-  req->confirm_cb_u.cb = test_associate_request;
-  zb_mlme_set_request(param);
+    req->confirm_cb_u.cb = test_associate_request;
+    zb_mlme_set_request(param);
 }
 
 static void test_associate_request(zb_uint8_t param)
 {
-  zb_uint16_t addr = TEST_FFD0_SHORT_ADDRESS;
-  ZB_MLME_BUILD_ASSOCIATE_REQUEST(param,
-                                  TEST_PAGE,
-                                  TEST_CHANNEL,
-                                  TEST_PAN_ID,
-                                  ZB_ADDR_16BIT_DEV_OR_BROADCAST,
-                                  &addr,
-                                  TEST_ASSOCIATION_CAP_INFO);
-  ZB_SCHEDULE_CALLBACK(zb_mlme_associate_request, param);
+    zb_uint16_t addr = TEST_FFD0_SHORT_ADDRESS;
+    ZB_MLME_BUILD_ASSOCIATE_REQUEST(param,
+                                    TEST_PAGE,
+                                    TEST_CHANNEL,
+                                    TEST_PAN_ID,
+                                    ZB_ADDR_16BIT_DEV_OR_BROADCAST,
+                                    &addr,
+                                    TEST_ASSOCIATION_CAP_INFO);
+    ZB_SCHEDULE_CALLBACK(zb_mlme_associate_request, param);
 }
 
 
 
 static void test_poll_alarm(zb_uint8_t param)
 {
-  zb_mlme_poll_request_t *req = ZB_BUF_GET_PARAM(param, zb_mlme_poll_request_t);
-  TRACE_MSG(TRACE_APP1, "poll_alarm", (FMT__0));
+    zb_mlme_poll_request_t *req = ZB_BUF_GET_PARAM(param, zb_mlme_poll_request_t);
+    TRACE_MSG(TRACE_APP1, "poll_alarm", (FMT__0));
 
-  TRACE_MSG(TRACE_APP1, "DUT2TH_SHORT2SHORT_INDIRECT_ACK", (FMT__0));
-  req->coord_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
-  req->coord_addr.addr_short = TEST_FFD0_SHORT_ADDRESS;
-  req->coord_pan_id = TEST_PAN_ID;
-  ZB_SCHEDULE_CALLBACK(zb_mlme_poll_request, param);
+    TRACE_MSG(TRACE_APP1, "DUT2TH_SHORT2SHORT_INDIRECT_ACK", (FMT__0));
+    req->coord_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
+    req->coord_addr.addr_short = TEST_FFD0_SHORT_ADDRESS;
+    req->coord_pan_id = TEST_PAN_ID;
+    ZB_SCHEDULE_CALLBACK(zb_mlme_poll_request, param);
 }
 
 /***************** MAC Callbacks *****************/
 ZB_MLME_RESET_CONFIRM(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_APP1, "MLME-RESET.confirm()", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "MLME-RESET.confirm()", (FMT__0));
 
-  /* Call the next test step */
-  ZB_SCHEDULE_CALLBACK(test_set_ieee_addr, param);
+    /* Call the next test step */
+    ZB_SCHEDULE_CALLBACK(test_set_ieee_addr, param);
 }
 
 ZB_MLME_ASSOCIATE_CONFIRM(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_APP1, "MLME-ASSOCIATE.confirm()", (FMT__0));
-  ZB_SCHEDULE_ALARM(test_poll_alarm, param, ZB_MILLISECONDS_TO_BEACON_INTERVAL(100));
+    TRACE_MSG(TRACE_APP1, "MLME-ASSOCIATE.confirm()", (FMT__0));
+    ZB_SCHEDULE_ALARM(test_poll_alarm, param, ZB_MILLISECONDS_TO_BEACON_INTERVAL(100));
 }
 
 
 ZB_MCPS_DATA_INDICATION(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_APP1, "MCPS-DATA.indication()", (FMT__0));
-  zb_buf_free(param);
+    TRACE_MSG(TRACE_APP1, "MCPS-DATA.indication()", (FMT__0));
+    zb_buf_free(param);
 }
 
 ZB_MLME_POLL_CONFIRM(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_APP1, "MCPS-POLL.confirm()", (FMT__0));
-  zb_buf_free(param);
+    TRACE_MSG(TRACE_APP1, "MCPS-POLL.confirm()", (FMT__0));
+    zb_buf_free(param);
 }
 
 

@@ -31,8 +31,8 @@
 
 typedef ZB_PACKED_PRE struct wwah_door_lock_device_nvram_dataset_s
 {
-  zb_zcl_wwah_enable_wwah_app_event_retry_algorithm_t app_event_retry;
-  zb_uint8_t aligned[1];
+    zb_zcl_wwah_enable_wwah_app_event_retry_algorithm_t app_event_retry;
+    zb_uint8_t aligned[1];
 } ZB_PACKED_STRUCT
 dl_device_nvram_dataset_t;
 
@@ -43,12 +43,12 @@ ZB_ASSERT_IF_NOT_ALIGNED_TO_4(dl_device_nvram_dataset_t);
 /*** Production config data ***/
 typedef ZB_PACKED_PRE struct dl_production_config_t
 {
-  zb_uint16_t version; /*!< Version of production configuration (reserved for future changes) */
-  zb_char_t manuf_name[16];
-  zb_char_t model_id[16];
-  zb_uint16_t manuf_code;
-  zb_uint16_t overcurrent_ma;
-  zb_uint16_t overvoltage_dv;
+    zb_uint16_t version; /*!< Version of production configuration (reserved for future changes) */
+    zb_char_t manuf_name[16];
+    zb_char_t model_id[16];
+    zb_uint16_t manuf_code;
+    zb_uint16_t overcurrent_ma;
+    zb_uint16_t overvoltage_dv;
 } ZB_PACKED_STRUCT dl_production_config_t;
 
 zb_uint16_t dl_get_nvram_data_size(void);

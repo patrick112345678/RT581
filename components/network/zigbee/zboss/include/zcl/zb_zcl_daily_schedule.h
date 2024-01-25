@@ -55,71 +55,71 @@
  */
 typedef enum zb_zcl_daily_schedule_srv_attr_sets_e
 {
-  ZB_ZCL_DAILY_SCHEDULE_AUXILIARY_SWITCH_LABEL_SET = 0x00,   /**< Auxiliary Switch Label
+    ZB_ZCL_DAILY_SCHEDULE_AUXILIARY_SWITCH_LABEL_SET = 0x00,   /**< Auxiliary Switch Label
                                                                 Attribute Set */
 
-  ZB_ZCL_DAILY_SCHEDULE_SCHEDULE_ATTRIBUTES_SET = 0x01,      /**< Schedule Attribute Set */
+    ZB_ZCL_DAILY_SCHEDULE_SCHEDULE_ATTRIBUTES_SET = 0x01,      /**< Schedule Attribute Set */
 
-  /* 0x02-0xFF – reserved */
+    /* 0x02-0xFF – reserved */
 } zb_zcl_daily_schedule_srv_attr_sets_t;
 
 
 /** @see Zigbee-17-05035-004 Table D-4 – Auxiliary Switch Label Attribute Set */
 typedef enum zb_zcl_daily_schedule_srv_auxiliary_switch_attr_set_e
 {
-  /* (O) */
-  ZB_ZCL_ATTR_DAILY_SCHEDULE_AUX_SWITCH_1_LABEL = 0x0000,  /**< The @e AuxSwitchNLabel attributes provide
+    /* (O) */
+    ZB_ZCL_ATTR_DAILY_SCHEDULE_AUX_SWITCH_1_LABEL = 0x0000,  /**< The @e AuxSwitchNLabel attributes provide
                                                         a method for assigning a label to
                                                         * an Auxiliary Switch.
                                                         */
-  /* (O) */
-  ZB_ZCL_ATTR_DAILY_SCHEDULE_AUX_SWITCH_2_LABEL,
-  /* (O) */
-  ZB_ZCL_ATTR_DAILY_SCHEDULE_AUX_SWITCH_3_LABEL,
-  /* (O) */
-  ZB_ZCL_ATTR_DAILY_SCHEDULE_AUX_SWITCH_4_LABEL,
-  /* (O) */
-  ZB_ZCL_ATTR_DAILY_SCHEDULE_AUX_SWITCH_5_LABEL,
-  /* (O) */
-  ZB_ZCL_ATTR_DAILY_SCHEDULE_AUX_SWITCH_6_LABEL,
-  /* (O) */
-  ZB_ZCL_ATTR_DAILY_SCHEDULE_AUX_SWITCH_7_LABEL,
-  /* (O) */
-  ZB_ZCL_ATTR_DAILY_SCHEDULE_AUX_SWITCH_8_LABEL
+    /* (O) */
+    ZB_ZCL_ATTR_DAILY_SCHEDULE_AUX_SWITCH_2_LABEL,
+    /* (O) */
+    ZB_ZCL_ATTR_DAILY_SCHEDULE_AUX_SWITCH_3_LABEL,
+    /* (O) */
+    ZB_ZCL_ATTR_DAILY_SCHEDULE_AUX_SWITCH_4_LABEL,
+    /* (O) */
+    ZB_ZCL_ATTR_DAILY_SCHEDULE_AUX_SWITCH_5_LABEL,
+    /* (O) */
+    ZB_ZCL_ATTR_DAILY_SCHEDULE_AUX_SWITCH_6_LABEL,
+    /* (O) */
+    ZB_ZCL_ATTR_DAILY_SCHEDULE_AUX_SWITCH_7_LABEL,
+    /* (O) */
+    ZB_ZCL_ATTR_DAILY_SCHEDULE_AUX_SWITCH_8_LABEL
 } zb_zcl_daily_schedule_srv_auxiliary_switch_attr_set_t;
 
 
 /** @see Zigbee-17-05035-004 Table D-5 – Schedule Attribute Set */
 typedef enum zb_zcl_daily_schedule_srv_schedule_attr_set_e
 {
-  /* (O) */
-  ZB_ZCL_ATTR_DAILY_SCHEDULE_CURR_AUX_LOAD_SWITCH_STATE = 0x0100,  /**< The @e
+    /* (O) */
+    ZB_ZCL_ATTR_DAILY_SCHEDULE_CURR_AUX_LOAD_SWITCH_STATE = 0x0100,  /**< The @e
                                                                       CurrentAuxiliaryLoadSwitchState
                                                                       attribute */
-  /* (O) */
-  ZB_ZCL_ATTR_DAILY_SCHEDULE_CURR_DELIVERED_TIER = 0x0101,    /**< The @e CurrentDeliveredTier
+    /* (O) */
+    ZB_ZCL_ATTR_DAILY_SCHEDULE_CURR_DELIVERED_TIER = 0x0101,    /**< The @e CurrentDeliveredTier
                                                                  attribute */
-  /* (O) */
-  ZB_ZCL_ATTR_DAILY_SCHEDULE_CURR_TIER_LABEL = 0x0102,        /**< The @e CurrentTierLabel attribute*/
-  /* (O) */
-  ZB_ZCL_ATTR_DAILY_SCHEDULE_LINKY_PEAK_PERIOD_STATUS = 0x0103, /**< The @e LinkyPeakPeriodStatus
+    /* (O) */
+    ZB_ZCL_ATTR_DAILY_SCHEDULE_CURR_TIER_LABEL = 0x0102,        /**< The @e CurrentTierLabel attribute*/
+    /* (O) */
+    ZB_ZCL_ATTR_DAILY_SCHEDULE_LINKY_PEAK_PERIOD_STATUS = 0x0103, /**< The @e LinkyPeakPeriodStatus
                                                                    attribute */
-  /* (O) */
-  ZB_ZCL_ATTR_DAILY_SCHEDULE_PEAK_START_TIME = 0x0104,     /**< The @e PeakStartTime attribute */
-  /* (O) */
-  ZB_ZCL_ATTR_DAILY_SCHEDULE_PEAK_END_TIME = 0x0105,       /**< The @e PeakEndTime attribute */
-  /* (O) */
-  ZB_ZCL_ATTR_DAILY_SCHEDULE_CURR_TARIFF_LABEL = 0x0106,   /**< The @e CurrentTariffLabel attrubute */
+    /* (O) */
+    ZB_ZCL_ATTR_DAILY_SCHEDULE_PEAK_START_TIME = 0x0104,     /**< The @e PeakStartTime attribute */
+    /* (O) */
+    ZB_ZCL_ATTR_DAILY_SCHEDULE_PEAK_END_TIME = 0x0105,       /**< The @e PeakEndTime attribute */
+    /* (O) */
+    ZB_ZCL_ATTR_DAILY_SCHEDULE_CURR_TARIFF_LABEL = 0x0106,   /**< The @e CurrentTariffLabel attrubute */
 } zb_zcl_daily_schedule_srv_schedule_attr_set_t;
 
 
 /** The @e LinkyPeakPeriodStatus attribute subfields */
 typedef ZB_PACKED_PRE struct zb_zcl_daily_schedule_attr_linky_peak_period_status_s
 {
-  zb_bitfield_t on_peak:2;
-  zb_bitfield_t peak_period_prior_notice:2;
-  zb_bitfield_t next_day_color:2;
-  zb_bitfield_t current_day_color:2;
+    zb_bitfield_t on_peak: 2;
+    zb_bitfield_t peak_period_prior_notice: 2;
+    zb_bitfield_t next_day_color: 2;
+    zb_bitfield_t current_day_color: 2;
 } zb_zcl_daily_schedule_attr_linky_peak_period_status_t;
 
 /* Constants for Current Day Color and Next Day Color subfields */
@@ -150,16 +150,16 @@ typedef ZB_PACKED_PRE struct zb_zcl_daily_schedule_attr_linky_peak_period_status
  */
 typedef enum zb_zcl_daily_schedule_cli_cmd_e
 {
-  /* (O) */
-  ZB_ZCL_DAILY_SCHEDULE_CLI_CMD_GET_SCHEDULE       = 0x00,  /**< This command initiates
+    /* (O) */
+    ZB_ZCL_DAILY_SCHEDULE_CLI_CMD_GET_SCHEDULE       = 0x00,  /**< This command initiates
                                                                PublishSchedule command(s) for
                                                                specified Schedule updates. */
-  /* (O) */
-  ZB_ZCL_DAILY_SCHEDULE_CLI_CMD_GET_DAY_PROFILE    = 0x01,  /**< This command initiates one or more
+    /* (O) */
+    ZB_ZCL_DAILY_SCHEDULE_CLI_CMD_GET_DAY_PROFILE    = 0x01,  /**< This command initiates one or more
                                                                PublishDayProfile commands for the
                                                                referenced Schedule. */
-  /* (O) */
-  ZB_ZCL_DAILY_SCHEDULE_CLI_CMD_GET_SCHEDULE_CANCELLATION = 0x05, /**< This command initiates
+    /* (O) */
+    ZB_ZCL_DAILY_SCHEDULE_CLI_CMD_GET_SCHEDULE_CANCELLATION = 0x05, /**< This command initiates
                                                                     the return of the last
                                                                     CancelSchedule command held
                                                                     on the associated server. */
@@ -169,17 +169,17 @@ typedef enum zb_zcl_daily_schedule_cli_cmd_e
 /** @see Zigbee-17-05035-004 Table D-3 Daily Schedule Cluster Attribute Sets */
 typedef enum zb_zcl_daily_schedule_srv_cmd_e
 {
-  /* (O) */
-  ZB_ZCL_DAILY_SCHEDULE_SRV_CMD_PUBLISH_SCHEDULE    = 0x00,  /**< The PublishSchedule command is
+    /* (O) */
+    ZB_ZCL_DAILY_SCHEDULE_SRV_CMD_PUBLISH_SCHEDULE    = 0x00,  /**< The PublishSchedule command is
                                                                 published in response to a GetSchedule
                                                                 command or if new schedule information
                                                                 is available.  */
-  /* (O) */
-  ZB_ZCL_DAILY_SCHEDULE_SRV_CMD_PUBLISH_DAY_PROFILE = 0x01,  /**< The PublishDayProfile command is
+    /* (O) */
+    ZB_ZCL_DAILY_SCHEDULE_SRV_CMD_PUBLISH_DAY_PROFILE = 0x01,  /**< The PublishDayProfile command is
                                                                 published in response to
                                                                 a GetDayProfile command.  */
-  /* (O) */
-  ZB_ZCL_DAILY_SCHEDULE_SRV_CMD_CANCEL_SCHEDULE     = 0x05,  /**< The CancelSchedule command indicates
+    /* (O) */
+    ZB_ZCL_DAILY_SCHEDULE_SRV_CMD_CANCEL_SCHEDULE     = 0x05,  /**< The CancelSchedule command indicates
                                                                 that all data associated with
                                                                 a particular schedule instance
                                                                 should be discarded. */
@@ -206,8 +206,8 @@ typedef enum zb_zcl_daily_schedule_srv_cmd_e
  */
 typedef enum zb_zcl_daily_schedule_type_e
 {
-  ZB_ZCL_DAILY_SCHEDULE_TYPE_LINKY_SCHEDULE             = 0x00,  /**< Linky Schedule */
-  /* reserved 0x01 - 0xFF */
+    ZB_ZCL_DAILY_SCHEDULE_TYPE_LINKY_SCHEDULE             = 0x00,  /**< Linky Schedule */
+    /* reserved 0x01 - 0xFF */
 } zb_zcl_daily_schedule_type_t;
 
 
@@ -224,31 +224,31 @@ typedef enum zb_zcl_daily_schedule_type_e
  */
 typedef ZB_PACKED_PRE struct zb_zcl_daily_schedule_get_schedule_payload_s
 {
-  /** An unsigned 32-bit field containing a unique identifier for the commodity provider.
-   * This field allows differentiation in deregulated markets where multiple commodity
-   * providers may be available.
-   */
-  zb_uint32_t provider_id;
+    /** An unsigned 32-bit field containing a unique identifier for the commodity provider.
+     * This field allows differentiation in deregulated markets where multiple commodity
+     * providers may be available.
+     */
+    zb_uint32_t provider_id;
 
-  /** UTC Timestamp indicating the earliest start time of schedules to be
-   *  returned by the corresponding PublishSchedule command.
-   */
-  zb_uint32_t earliest_start_time;
+    /** UTC Timestamp indicating the earliest start time of schedules to be
+     *  returned by the corresponding PublishSchedule command.
+     */
+    zb_uint32_t earliest_start_time;
 
-  /** A 32-bit integer representing the minimum Issuer Event ID of schedules
-   * to be returned by the corresponding PublishSchedule command
-   */
-  zb_uint32_t min_issuer_event_id;
+    /** A 32-bit integer representing the minimum Issuer Event ID of schedules
+     * to be returned by the corresponding PublishSchedule command
+     */
+    zb_uint32_t min_issuer_event_id;
 
-  /** An 8-bit integer which represents the maximum number of PublishSchedule commands
-   *  that the client is willing to receive in response to this command.
-   */
-  zb_uint8_t  number_of_schedules;
+    /** An 8-bit integer which represents the maximum number of PublishSchedule commands
+     *  that the client is willing to receive in response to this command.
+     */
+    zb_uint8_t  number_of_schedules;
 
-  /** An 8-bit enumeration identifying the type of the requested schedule.
-   * @see zb_zcl_daily_schedule_type_t
-   */
-  zb_uint8_t  schedule_type;
+    /** An 8-bit enumeration identifying the type of the requested schedule.
+     * @see zb_zcl_daily_schedule_type_t
+     */
+    zb_uint8_t  schedule_type;
 } ZB_PACKED_STRUCT zb_zcl_daily_schedule_get_schedule_payload_t;
 
 
@@ -283,10 +283,10 @@ typedef ZB_PACKED_PRE struct zb_zcl_daily_schedule_get_schedule_payload_s
   */
 typedef enum zb_zcl_daily_schedule_time_reference_e
 {
-  ZB_ZCL_DAILY_SCHEDULE_TIME_REFERENCE_UTC_TIME = 0x00,  /**< UTC time  */
-  ZB_ZCL_DAILY_SCHEDULE_TIME_REFERENCE_STANDARD_TIME,    /**< Standard time */
-  ZB_ZCL_DAILY_SCHEDULE_TIME_REFERENCE_LOCAL_TIME        /**< Local time */
-  /* 0x03 - 0xFF is reserved */
+    ZB_ZCL_DAILY_SCHEDULE_TIME_REFERENCE_UTC_TIME = 0x00,  /**< UTC time  */
+    ZB_ZCL_DAILY_SCHEDULE_TIME_REFERENCE_STANDARD_TIME,    /**< Standard time */
+    ZB_ZCL_DAILY_SCHEDULE_TIME_REFERENCE_LOCAL_TIME        /**< Local time */
+    /* 0x03 - 0xFF is reserved */
 } zb_zcl_daily_schedule_time_reference_t;
 
 
@@ -296,41 +296,41 @@ typedef enum zb_zcl_daily_schedule_time_reference_e
 typedef ZB_PACKED_PRE struct zb_zcl_daily_schedule_publish_schedule_payload_s
 {
 
-  /** An unsigned 32-bit field containing a unique identifier for the commodity
-   * provider.
-   */
-  zb_uint32_t provider_id;              /* (M) */
+    /** An unsigned 32-bit field containing a unique identifier for the commodity
+     * provider.
+     */
+    zb_uint32_t provider_id;              /* (M) */
 
-  /** Unique identifier generated by the commodity provider. When new information
-   * is provided that replaces older information for the same time period, this
-   * field allows devices to determine which information is newer.
-   */
-  zb_uint32_t issuer_event_id;          /* (M) */
+    /** Unique identifier generated by the commodity provider. When new information
+     * is provided that replaces older information for the same time period, this
+     * field allows devices to determine which information is newer.
+     */
+    zb_uint32_t issuer_event_id;          /* (M) */
 
-  /** Unique identifier generated by the commodity Supplier to identify a particular schedule.
-   */
-  zb_uint32_t schedule_id;       /* (M) */
+    /** Unique identifier generated by the commodity Supplier to identify a particular schedule.
+     */
+    zb_uint32_t schedule_id;       /* (M) */
 
-  /** A UTC Time field to denote the time at which the published schedule becomes
-   * valid. A start date/time of 0x00000000 shall indicate that the command
-   * should be executed immediately.
-   */
-  zb_uint32_t start_time;               /* (M) */
+    /** A UTC Time field to denote the time at which the published schedule becomes
+     * valid. A start date/time of 0x00000000 shall indicate that the command
+     * should be executed immediately.
+     */
+    zb_uint32_t start_time;               /* (M) */
 
-  /** An 8-bit enumeration identifying the type of schedule published in this
-   * command.
-   * @see zb_zcl_daily_schedule_type_t
-   */
-  zb_uint8_t  schedule_type;            /* (M) */
+    /** An 8-bit enumeration identifying the type of schedule published in this
+     * command.
+     * @see zb_zcl_daily_schedule_type_t
+     */
+    zb_uint8_t  schedule_type;            /* (M) */
 
-  /** This field indicates how the Start Times contained in the schedule are to be interpreted.
-   * @see zb_zcl_daily_schedule_time_reference_t
-   */
-  zb_uint8_t  schedule_time_reference;  /* (M) */
+    /** This field indicates how the Start Times contained in the schedule are to be interpreted.
+     * @see zb_zcl_daily_schedule_time_reference_t
+     */
+    zb_uint8_t  schedule_time_reference;  /* (M) */
 
-  /** The ScheduleName provides a method for utilities to assign a name to a schedule.
-   */
-  zb_uint8_t  schedule_name[1 + 12];    /* (M) */
+    /** The ScheduleName provides a method for utilities to assign a name to a schedule.
+     */
+    zb_uint8_t  schedule_name[1 + 12];    /* (M) */
 } ZB_PACKED_STRUCT zb_zcl_daily_schedule_publish_schedule_payload_t;
 
 
@@ -388,19 +388,19 @@ typedef ZB_PACKED_PRE struct zb_zcl_daily_schedule_publish_schedule_payload_s
  */
 typedef ZB_PACKED_PRE struct zb_zcl_daily_schedule_linky_schedule_entry_s
 {
-  /** The Start Time is represented in minutes from midnight.
-   */
-  zb_uint16_t start_time;                /* (M) */
+    /** The Start Time is represented in minutes from midnight.
+     */
+    zb_uint16_t start_time;                /* (M) */
 
-  /** This is the current price tier that is valid until
-   * the start time of the next Schedule Entry.
-   */
-  zb_uint8_t price_tier;                 /* (M) */
+    /** This is the current price tier that is valid until
+     * the start time of the next Schedule Entry.
+     */
+    zb_uint8_t price_tier;                 /* (M) */
 
-  /** The required status of the auxiliary switches is indicated by the state of the bits.
-   * Bit0 correspond to Auxiliary Switch 1 and bit7 corresponds to Auxiliary Switch 8.
-   */
-  zb_uint8_t auxiliary_load_switch_state; /* (M) */
+    /** The required status of the auxiliary switches is indicated by the state of the bits.
+     * Bit0 correspond to Auxiliary Switch 1 and bit7 corresponds to Auxiliary Switch 8.
+     */
+    zb_uint8_t auxiliary_load_switch_state; /* (M) */
 } ZB_PACKED_STRUCT zb_zcl_daily_schedule_linky_schedule_entry_t;
 
 
@@ -408,7 +408,7 @@ typedef ZB_PACKED_PRE struct zb_zcl_daily_schedule_linky_schedule_entry_s
  */
 typedef ZB_PACKED_PRE union zb_zcl_daily_schedule_entry_u
 {
-  zb_zcl_daily_schedule_linky_schedule_entry_t linky_schedule_entry;
+    zb_zcl_daily_schedule_linky_schedule_entry_t linky_schedule_entry;
 } ZB_PACKED_STRUCT zb_zcl_daily_schedule_entry_t;
 
 
@@ -417,56 +417,56 @@ typedef ZB_PACKED_PRE union zb_zcl_daily_schedule_entry_u
  */
 typedef ZB_PACKED_PRE struct zb_zcl_daily_schedule_publish_day_profile_payload_s
 {
-  /** An unsigned 32-bit field containing a unique identifier for the commodity
-   * provider.
-   */
-  zb_uint32_t provider_id;                       /* (M) */
+    /** An unsigned 32-bit field containing a unique identifier for the commodity
+     * provider.
+     */
+    zb_uint32_t provider_id;                       /* (M) */
 
-  /** Unique identifier generated by the commodity provider. When new information
-   * is provided that replaces older information for the same time period, this
-   * field allows devices to determine which information is newer.
-   */
-  zb_uint32_t issuer_event_id;                   /* (M) */
+    /** Unique identifier generated by the commodity provider. When new information
+     * is provided that replaces older information for the same time period, this
+     * field allows devices to determine which information is newer.
+     */
+    zb_uint32_t issuer_event_id;                   /* (M) */
 
-  /** Unique identifier generated by the commodity Supplier to identify a particular schedule.
-   */
-  zb_uint32_t schedule_id;                   /* (M) */
+    /** Unique identifier generated by the commodity Supplier to identify a particular schedule.
+     */
+    zb_uint32_t schedule_id;                   /* (M) */
 
-  /** An 8-bit integer representing the total number of ScheduleEntries in this Day Profile.
-   */
-  zb_uint8_t total_number_of_schedule_entries;   /* (M) */
+    /** An 8-bit integer representing the total number of ScheduleEntries in this Day Profile.
+     */
+    zb_uint8_t total_number_of_schedule_entries;   /* (M) */
 
-  /** The CommandIndex is used to count the payload fragments in the case where the entire payload
-   * does not fit into one message. The CommandIndex starts at 0 and is incremented for each fragment
-   *  belonging to the same command
-   */
-  zb_uint8_t command_index;                      /* (M) */
+    /** The CommandIndex is used to count the payload fragments in the case where the entire payload
+     * does not fit into one message. The CommandIndex starts at 0 and is incremented for each fragment
+     *  belonging to the same command
+     */
+    zb_uint8_t command_index;                      /* (M) */
 
-  /** In the case where the entire payload does not fit into one message, the
-   * Total Number of Commands field indicates the total number of sub-commands
-   * in the message.
-   */
-  zb_uint8_t total_number_of_commands;           /* (M) */
+    /** In the case where the entire payload does not fit into one message, the
+     * Total Number of Commands field indicates the total number of sub-commands
+     * in the message.
+     */
+    zb_uint8_t total_number_of_commands;           /* (M) */
 
-  /** An 8-bit enumeration identifying the type of schedule published in this
-   * command.
-   * @see zb_zcl_daily_schedule_type_t
-   */
-  zb_uint8_t  schedule_type;                     /* (M) */
+    /** An 8-bit enumeration identifying the type of schedule published in this
+     * command.
+     * @see zb_zcl_daily_schedule_type_t
+     */
+    zb_uint8_t  schedule_type;                     /* (M) */
 
-  /**
-   * day_schedule_entries pointer is considered as a beginning of array (of day schedule entries),
-   * number_of_entries_in_this_command - as a number of entries. Please also take into account
-   * overall ZCL payload size (should be less than @ref ZB_ZCL_MAX_PAYLOAD_SIZE bytes to fit into
-   * one packet without fragmentation).
-   * @see zb_zcl_daily_schedule_entry_t
-   */
-  zb_zcl_daily_schedule_entry_t *day_schedule_entries;   /* (M) */
+    /**
+     * day_schedule_entries pointer is considered as a beginning of array (of day schedule entries),
+     * number_of_entries_in_this_command - as a number of entries. Please also take into account
+     * overall ZCL payload size (should be less than @ref ZB_ZCL_MAX_PAYLOAD_SIZE bytes to fit into
+     * one packet without fragmentation).
+     * @see zb_zcl_daily_schedule_entry_t
+     */
+    zb_zcl_daily_schedule_entry_t *day_schedule_entries;   /* (M) */
 
-  /** An 8-bit integer representing the number of Day Schedule entries in
-   * this command
-   */
-   zb_uint8_t number_of_entries_in_this_command;         /* (ZBOSS) */
+    /** An 8-bit integer representing the number of Day Schedule entries in
+     * this command
+     */
+    zb_uint8_t number_of_entries_in_this_command;         /* (ZBOSS) */
 } ZB_PACKED_STRUCT zb_zcl_daily_schedule_publish_day_profile_payload_t;
 
 
@@ -475,20 +475,20 @@ typedef ZB_PACKED_PRE struct zb_zcl_daily_schedule_publish_day_profile_payload_s
  */
 typedef ZB_PACKED_PRE struct zb_zcl_daily_schedule_cancel_schedule_payload_s
 {
-  /** An unsigned 32-bit field containing a unique identifier for the commodity
-   * provider.
-   */
-  zb_uint32_t provider_id;              /* (M) */
+    /** An unsigned 32-bit field containing a unique identifier for the commodity
+     * provider.
+     */
+    zb_uint32_t provider_id;              /* (M) */
 
-  /** Unique identifier generated by the commodity Supplier to identify a particular schedule.
-   */
-  zb_uint32_t schedule_id;              /* (M) */
+    /** Unique identifier generated by the commodity Supplier to identify a particular schedule.
+     */
+    zb_uint32_t schedule_id;              /* (M) */
 
-  /** An 8-bit enumeration identifying the type of schedule published in this
-   * command.
-   * @see zb_zcl_daily_schedule_type_t
-   */
-  zb_uint8_t schedule_type;            /* (M) */
+    /** An 8-bit enumeration identifying the type of schedule published in this
+     * command.
+     * @see zb_zcl_daily_schedule_type_t
+     */
+    zb_uint8_t schedule_type;            /* (M) */
 } ZB_PACKED_STRUCT zb_zcl_daily_schedule_cancel_schedule_payload_t;
 
 
@@ -497,15 +497,15 @@ typedef ZB_PACKED_PRE struct zb_zcl_daily_schedule_cancel_schedule_payload_s
   */
 typedef ZB_PACKED_PRE struct zb_zcl_daily_schedule_get_day_profile_payload_s
 {
-  /** An unsigned 32-bit field containing a unique identifier for the commodity
-   * provider.
-   */
-  zb_uint32_t provider_id;       /* (M) */
+    /** An unsigned 32-bit field containing a unique identifier for the commodity
+     * provider.
+     */
+    zb_uint32_t provider_id;       /* (M) */
 
-  /**
-   * ScheduleID of the schedule to which the requested Day Profile belongs.
-   */
-  zb_uint32_t schedule_id;
+    /**
+     * ScheduleID of the schedule to which the requested Day Profile belongs.
+     */
+    zb_uint32_t schedule_id;
 } ZB_PACKED_STRUCT zb_zcl_daily_schedule_get_day_profile_payload_t;
 
 
@@ -524,10 +524,10 @@ typedef ZB_PACKED_PRE struct zb_zcl_daily_schedule_get_day_profile_payload_s
  * APS ack.
  */
 void zb_zcl_daily_schedule_send_cmd_publish_schedule(zb_uint8_t param, const zb_addr_u *dst_addr,
-                                               zb_aps_addr_mode_t dst_addr_mode,
-                                               zb_uint8_t dst_ep, zb_uint8_t src_ep,
-                                               const zb_zcl_daily_schedule_publish_schedule_payload_t *pl,
-                                               zb_callback_t cb);
+        zb_aps_addr_mode_t dst_addr_mode,
+        zb_uint8_t dst_ep, zb_uint8_t src_ep,
+        const zb_zcl_daily_schedule_publish_schedule_payload_t *pl,
+        zb_callback_t cb);
 
 
 /** Function for send @ref ZB_ZCL_DAILY_SCHEDULE_SRV_CMD_PUBLISH_DAY_PROFILE "PublishDayProfile" command.
@@ -545,11 +545,11 @@ void zb_zcl_daily_schedule_send_cmd_publish_schedule(zb_uint8_t param, const zb_
  * APS ack.
  */
 void zb_zcl_daily_schedule_send_cmd_publish_day_profile(zb_uint8_t param,
-  const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
-  zb_uint8_t dst_ep, zb_uint8_t src_ep,
-  const zb_zcl_daily_schedule_publish_day_profile_payload_t *pl,
-  zb_callback_t cb
-);
+        const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
+        zb_uint8_t dst_ep, zb_uint8_t src_ep,
+        const zb_zcl_daily_schedule_publish_day_profile_payload_t *pl,
+        zb_callback_t cb
+                                                       );
 
 
 /** Function for sending @ref ZB_ZCL_DAILY_SCHEDULE_CLI_CMD_GET_SCHEDULE "GetSchedule" command.
@@ -565,11 +565,11 @@ void zb_zcl_daily_schedule_send_cmd_publish_day_profile(zb_uint8_t param,
  * APS ack.
  */
 void zb_zcl_daily_schedule_send_cmd_get_schedule(zb_uint8_t param,
-  const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
-  zb_uint8_t dst_ep, zb_uint8_t src_ep,
-  const zb_zcl_daily_schedule_get_schedule_payload_t *pl,
-  zb_callback_t cb
-);
+        const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
+        zb_uint8_t dst_ep, zb_uint8_t src_ep,
+        const zb_zcl_daily_schedule_get_schedule_payload_t *pl,
+        zb_callback_t cb
+                                                );
 
 
 /** Function for sending @ref ZB_ZCL_DAILY_SCHEDULE_CLI_CMD_GET_DAY_PROFILE "GetDayProfile" command.
@@ -585,11 +585,11 @@ void zb_zcl_daily_schedule_send_cmd_get_schedule(zb_uint8_t param,
  * APS ack.
  */
 void zb_zcl_daily_schedule_send_cmd_get_day_profile(zb_uint8_t param,
-  const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
-  zb_uint8_t dst_ep, zb_uint8_t src_ep,
-  const zb_zcl_daily_schedule_get_day_profile_payload_t *pl,
-  zb_callback_t cb
-);
+        const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
+        zb_uint8_t dst_ep, zb_uint8_t src_ep,
+        const zb_zcl_daily_schedule_get_day_profile_payload_t *pl,
+        zb_callback_t cb
+                                                   );
 
 /** Function for send @ref ZB_ZCL_DAILY_SCHEDULE_CLI_CMD_GET_SCHEDULE_CANCELLATION "GetScheduleCancellation" command.
  * On receiver's side callback @ref ZB_ZCL_DEVICE_CB will be called with
@@ -603,10 +603,10 @@ void zb_zcl_daily_schedule_send_cmd_get_day_profile(zb_uint8_t param,
  * APS ack.
  */
 void zb_zcl_daily_schedule_send_cmd_get_schedule_cancellation(zb_uint8_t param,
-  const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
-  zb_uint8_t dst_ep, zb_uint8_t src_ep,
-  zb_callback_t cb
-);
+        const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
+        zb_uint8_t dst_ep, zb_uint8_t src_ep,
+        zb_callback_t cb
+                                                             );
 
 
 /** Function for send @ref ZB_ZCL_DAILY_SCHEDULE_SRV_CMD_CANCEL_SCHEDULE "CancelSchedule" command.
@@ -622,11 +622,11 @@ void zb_zcl_daily_schedule_send_cmd_get_schedule_cancellation(zb_uint8_t param,
  * APS ack.
  */
 void zb_zcl_daily_schedule_send_cmd_cancel_schedule(zb_uint8_t param,
-  const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
-  zb_uint8_t dst_ep, zb_uint8_t src_ep,
-  const zb_zcl_daily_schedule_cancel_schedule_payload_t *pl,
-  zb_callback_t cb
-);
+        const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
+        zb_uint8_t dst_ep, zb_uint8_t src_ep,
+        const zb_zcl_daily_schedule_cancel_schedule_payload_t *pl,
+        zb_callback_t cb
+                                                   );
 
 
 /** Macro for calling @ref zb_zcl_daily_schedule_send_cmd_publish_schedule function

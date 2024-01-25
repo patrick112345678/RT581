@@ -34,47 +34,47 @@
 
 #define ZB_HALF_MAX_TIME32_VAL (ZB_UINT32_MAX / 2U)
 
-  /**
-     Time subtraction: subtract 'b' from 'a'for 32bit-time
+/**
+   Time subtraction: subtract 'b' from 'a'for 32bit-time
 
-     Take overflow into account: change sign (subtraction order) if result >
-     values_diapasin/2.
-     Suppose a always >= b, so result is never negative.
-     This macro will be used to calculate, for example, amount of time to sleep
-     - it is positive by definition.
-     Do not use it to compare time values! Use ZB_TIME32_GE() instead.
-     @note Both a and b is of type @ref zb_time_t. Can't decrease time (subtract
-     constant from it) using this macro.
+   Take overflow into account: change sign (subtraction order) if result >
+   values_diapasin/2.
+   Suppose a always >= b, so result is never negative.
+   This macro will be used to calculate, for example, amount of time to sleep
+   - it is positive by definition.
+   Do not use it to compare time values! Use ZB_TIME32_GE() instead.
+   @note Both a and b is of type @ref zb_time_t. Can't decrease time (subtract
+   constant from it) using this macro.
 
-     @param a - time to subtract from
-     @param b - time to subtract
-     @return subtraction result
-   */
+   @param a - time to subtract from
+   @param b - time to subtract
+   @return subtraction result
+ */
 #define ZB_TIME32_SUBTRACT(a, b) ((zb_uint32_t)((a) - (b)) < ZB_HALF_MAX_TIME32_VAL ? (zb_uint32_t)((a) - (b)) : (zb_uint32_t)((b) - (a)))
 
-  /**
-     Time add: add 'a' to 'b' for 32-bit time
+/**
+   Time add: add 'a' to 'b' for 32-bit time
 
-     Overflow is possible, but this is ok - it handled by subtraction and compare macros.
+   Overflow is possible, but this is ok - it handled by subtraction and compare macros.
 
-     @param a - time to add to
-     @param b - value to add
-     @return addition result
-   */
+   @param a - time to add to
+   @param b - value to add
+   @return addition result
+ */
 #define ZB_TIME32_ADD(a, b) (zb_uint32_t)((a) + (b))
 
-  /**
-     Compare times a and b - check that a >= b for 32-bit time
+/**
+   Compare times a and b - check that a >= b for 32-bit time
 
-     Taking into account overflow and unsigned values arithmetic and supposing
-     difference between a and b can't be > 1/2 of the overall time values
-     diapason,
-     a >= b only if a - b < values_diapason/2
+   Taking into account overflow and unsigned values arithmetic and supposing
+   difference between a and b can't be > 1/2 of the overall time values
+   diapason,
+   a >= b only if a - b < values_diapason/2
 
-     @param a - first time value to compare
-     @param b - second time value to compare
-     @return 1 is a >= b, 0 otherwhise
-   */
+   @param a - first time value to compare
+   @param b - second time value to compare
+   @return 1 is a >= b, 0 otherwhise
+ */
 #define ZB_TIME32_GE(a, b) ((zb_uint32_t)((a) - (b)) < ZB_HALF_MAX_TIME32_VAL)
 
 #ifndef ZB_ALIEN_TIMER
@@ -100,12 +100,12 @@ void zb_timer_stop(void);
  */
 typedef struct zb_timer_s
 {
-  zb_time_t timer; /*!< current time, measured in beacon intervals */
+    zb_time_t timer; /*!< current time, measured in beacon intervals */
 
 #ifndef ZB_ALIEN_TIMER
-  zb_time_t   timer_stop; /*!< time to stop timer (disable timer interrupts etc) */
-  zb_bool_t   started;  /*!< flag - timer is started */
-  zb_bool_t   canstop;  /*!< flag - Can the timer be stopped? */
+    zb_time_t   timer_stop; /*!< time to stop timer (disable timer interrupts etc) */
+    zb_bool_t   started;  /*!< flag - timer is started */
+    zb_bool_t   canstop;  /*!< flag - Can the timer be stopped? */
 #endif
 }
 zb_timer_t;

@@ -27,16 +27,17 @@
 #include "zbncp_tr_impl.h"
 #include "zbncp_ll_impl.h"
 
-typedef struct zbncp_node_s {
-  zbncp_transport_t tr;
-  zbncp_ll_proto_t ll;
+typedef struct zbncp_node_s
+{
+    zbncp_transport_t tr;
+    zbncp_ll_proto_t ll;
 } zbncp_node_t;
 
 static zbncp_node_t node;
 
 zbncp_ll_proto_t *zbncp_ll_create(const zbncp_transport_ops_t *tr_ops)
 {
-  zbncp_transport_construct(&node.tr, tr_ops);
-  zbncp_ll_construct(&node.ll, &node.tr);
-  return &node.ll;
+    zbncp_transport_construct(&node.tr, tr_ops);
+    zbncp_ll_construct(&node.ll, &node.tr);
+    return &node.ll;
 }

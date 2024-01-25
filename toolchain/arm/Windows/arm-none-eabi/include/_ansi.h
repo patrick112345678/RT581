@@ -4,8 +4,8 @@
    "comment out" the non-ANSI parts of the ANSI header files (non-ANSI header
    files aren't affected).  */
 
-#ifndef	_ANSIDECL_H_
-#define	_ANSIDECL_H_
+#ifndef _ANSIDECL_H_
+#define _ANSIDECL_H_
 
 #include <newlib.h>
 #include <sys/config.h>
@@ -70,8 +70,8 @@
 #endif
 
 #if __GNUC_PREREQ (3, 1)
-#define _NOINLINE		__attribute__ ((__noinline__))
-#define _NOINLINE_STATIC	_NOINLINE static
+#define _NOINLINE       __attribute__ ((__noinline__))
+#define _NOINLINE_STATIC    _NOINLINE static
 #else
 /* On non-GNU compilers and GCC prior to version 3.1 the compiler can't be
    trusted not to inline if it is static. */

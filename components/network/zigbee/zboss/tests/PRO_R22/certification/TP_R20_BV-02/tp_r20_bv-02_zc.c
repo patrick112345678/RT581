@@ -61,103 +61,103 @@ static const zb_ieee_addr_t g_ieee_addr3 = {0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("zdo_1_zc");
-#if UART_CONTROL	
-	test_control_init();
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    ZB_INIT("zdo_1_zc");
+#if UART_CONTROL
+    test_control_init();
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 #endif
-	
 
-  zb_set_long_address(g_ieee_addr);
-  zb_set_use_extended_pan_id(g_ext_panid);
-  zb_set_pan_id(0x1aaa);
 
-  zb_cert_test_set_common_channel_settings();
-  zb_cert_test_set_zc_role();
+    zb_set_long_address(g_ieee_addr);
+    zb_set_use_extended_pan_id(g_ext_panid);
+    zb_set_pan_id(0x1aaa);
 
-  /* [zb_secur_setup_preconfigured_key_2] */
-  zb_secur_setup_nwk_key((zb_uint8_t*) g_key_nwk, 0);
-  /* [zb_secur_setup_preconfigured_key_2] */
-  /* Same global key for all devices.
-     FIXME: do we need to use single slot for all devices here??
-   */
+    zb_cert_test_set_common_channel_settings();
+    zb_cert_test_set_zc_role();
 
-  /* only ZR1 is visible for ZC */
-  MAC_ADD_VISIBLE_LONG((zb_uint8_t*) g_ieee_addr1);
-  zb_set_max_children(1);
+    /* [zb_secur_setup_preconfigured_key_2] */
+    zb_secur_setup_nwk_key((zb_uint8_t *) g_key_nwk, 0);
+    /* [zb_secur_setup_preconfigured_key_2] */
+    /* Same global key for all devices.
+       FIXME: do we need to use single slot for all devices here??
+     */
 
-  zb_zdo_set_aps_unsecure_join(ZB_TRUE);
-  zb_bdb_set_legacy_device_support(ZB_TRUE);
-  zb_set_nvram_erase_at_start(ZB_TRUE);
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    ZB_CERT_HACKS().use_preconfigured_aps_link_key = 1U;
+    /* only ZR1 is visible for ZC */
+    MAC_ADD_VISIBLE_LONG((zb_uint8_t *) g_ieee_addr1);
+    zb_set_max_children(1);
 
-    zb_secur_update_key_pair((zb_uint8_t*) g_ieee_addr1,
-                             (zb_uint8_t*) g_key1,
-                             ZB_SECUR_GLOBAL_KEY,
-                             ZB_SECUR_VERIFIED_KEY,
-                             ZB_SECUR_KEY_SRC_UNKNOWN);
-    zb_secur_update_key_pair((zb_uint8_t*) g_ieee_addr2,
-                             (zb_uint8_t*) g_key1,
-                             ZB_SECUR_GLOBAL_KEY,
-                             ZB_SECUR_VERIFIED_KEY,
-                             ZB_SECUR_KEY_SRC_UNKNOWN);
-    zb_secur_update_key_pair((zb_uint8_t*) g_ieee_addr3,
-                             (zb_uint8_t*) g_key1,
-                             ZB_SECUR_GLOBAL_KEY,
-                             ZB_SECUR_VERIFIED_KEY,
-                             ZB_SECUR_KEY_SRC_UNKNOWN);
-    zboss_main_loop();
-  }
+    zb_zdo_set_aps_unsecure_join(ZB_TRUE);
+    zb_bdb_set_legacy_device_support(ZB_TRUE);
+    zb_set_nvram_erase_at_start(ZB_TRUE);
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        ZB_CERT_HACKS().use_preconfigured_aps_link_key = 1U;
 
-  TRACE_DEINIT();
+        zb_secur_update_key_pair((zb_uint8_t *) g_ieee_addr1,
+                                 (zb_uint8_t *) g_key1,
+                                 ZB_SECUR_GLOBAL_KEY,
+                                 ZB_SECUR_VERIFIED_KEY,
+                                 ZB_SECUR_KEY_SRC_UNKNOWN);
+        zb_secur_update_key_pair((zb_uint8_t *) g_ieee_addr2,
+                                 (zb_uint8_t *) g_key1,
+                                 ZB_SECUR_GLOBAL_KEY,
+                                 ZB_SECUR_VERIFIED_KEY,
+                                 ZB_SECUR_KEY_SRC_UNKNOWN);
+        zb_secur_update_key_pair((zb_uint8_t *) g_ieee_addr3,
+                                 (zb_uint8_t *) g_key1,
+                                 ZB_SECUR_GLOBAL_KEY,
+                                 ZB_SECUR_VERIFIED_KEY,
+                                 ZB_SECUR_KEY_SRC_UNKNOWN);
+        zboss_main_loop();
+    }
 
-  MAIN_RETURN(0);
+    TRACE_DEINIT();
+
+    MAIN_RETURN(0);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_ERROR, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_ERROR, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  if (0 == status)
-  {
-    switch(sig)
+    if (0 == status)
     {
-      case ZB_ZDO_SIGNAL_DEFAULT_START:
-      case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      case ZB_BDB_SIGNAL_DEVICE_REBOOT:
-        TRACE_MSG(TRACE_ERROR, "Device STARTED OK", (FMT__0));
-        break;
+        switch (sig)
+        {
+        case ZB_ZDO_SIGNAL_DEFAULT_START:
+        case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
+        case ZB_BDB_SIGNAL_DEVICE_REBOOT:
+            TRACE_MSG(TRACE_ERROR, "Device STARTED OK", (FMT__0));
+            break;
 
-      default:
-        TRACE_MSG(TRACE_ERROR, "Unknown signal %hd", (FMT__H, sig));
+        default:
+            TRACE_MSG(TRACE_ERROR, "Unknown signal %hd", (FMT__H, sig));
+        }
     }
-  }
-  else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
-  {
-    TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, status));
-  }
+    else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
+    {
+        TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, status));
+    }
 
-  if (param)
-  {
-    zb_buf_free(param);
-  }
+    if (param)
+    {
+        zb_buf_free(param);
+    }
 }
 
 

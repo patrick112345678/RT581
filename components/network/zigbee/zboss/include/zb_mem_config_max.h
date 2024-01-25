@@ -33,7 +33,7 @@
  */
 #define ZB_CONFIG_ROLE_ZC
 
-#ifdef DOXYGEN 
+#ifdef DOXYGEN
 /**
    Configure memory sizes for ZED device role
  */
@@ -42,7 +42,7 @@
    Configure memory sizes for ZR device role
  */
 #define ZB_CONFIG_ROLE_ZR
-#endif 
+#endif
 
 /*#define ZB_CONFIG_ROLE_ZR*/
 /*#define ZB_CONFIG_ROLE_ZED*/

@@ -44,8 +44,8 @@ extern "C" {
 
 typedef struct _efd_env
 {
-    char * key;
-    void * value;
+    char *key;
+    void *value;
     size_t value_len;
 } efd_env, *efd_env_t;
 
@@ -98,7 +98,7 @@ struct env_node_obj
         uint32_t value; /**< value start address */
     } addr;
 } __attribute__((__packed__));
-typedef struct env_node_obj * env_node_obj_t;
+typedef struct env_node_obj *env_node_obj_t;
 
 #ifdef __cplusplus
 }

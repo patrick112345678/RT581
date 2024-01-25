@@ -35,21 +35,21 @@
 #define ZB_ZDO_CHECK_NEW_PANID(new_panid) zb_zcl_wwah_check_new_panid(new_panid)
 #define ZB_ZDO_GET_MAX_PARENT_THRESHOLD_RETRY() ZDO_CTX().max_parent_threshold_retry * (1U + zb_zcl_wwah_mac_poll_cca_retry_count())
 
- /* Common logic when we have problems with parent polling:
-  * 1) Data Request + 3 MAC Retries
-  * 2) Wait MACPollFailureWaitTime
-  * 3) Repeat steps 1-2 wwah_retry_cnt times
-  * 4) Wait work_poll_interval
-  * 5) Repeat steps 1-4 ZDO_CTX().max_parent_threshold_retry times
-  */
+/* Common logic when we have problems with parent polling:
+ * 1) Data Request + 3 MAC Retries
+ * 2) Wait MACPollFailureWaitTime
+ * 3) Repeat steps 1-2 wwah_retry_cnt times
+ * 4) Wait work_poll_interval
+ * 5) Repeat steps 1-4 ZDO_CTX().max_parent_threshold_retry times
+ */
 
- /* Note:
-  *   1) if current retry count(crc) equals zero it means that last poll was success
-  *   2) crc >= maximum_retry_count leads to polling stop
-  *   3) crc % (wwah_retry_cnt + 1) shows current iteration of additional polling,
-  *      i.e. loop steps 1-2 above. If remainder is zero - wait for standart timeout,
-  *      or additional timeout otherwise.
-  */
+/* Note:
+ *   1) if current retry count(crc) equals zero it means that last poll was success
+ *   2) crc >= maximum_retry_count leads to polling stop
+ *   3) crc % (wwah_retry_cnt + 1) shows current iteration of additional polling,
+ *      i.e. loop steps 1-2 above. If remainder is zero - wait for standart timeout,
+ *      or additional timeout otherwise.
+ */
 
 #define ZB_ZDO_GET_CURENT_POLL_ITERATION_INTERVAL(wait_time)                              \
    if (zb_zcl_wwah_mac_poll_cca_retry_count() &&                                          \

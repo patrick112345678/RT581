@@ -28,10 +28,11 @@
 
 #if ZBNCP_DEBUG
 
-typedef enum {
-  ZBNCP_DBG_IGNORE,
-  ZBNCP_DBG_BREAK,
-  ZBNCP_DBG_ABORT,
+typedef enum
+{
+    ZBNCP_DBG_IGNORE,
+    ZBNCP_DBG_BREAK,
+    ZBNCP_DBG_ABORT,
 } zbncp_dbg_res_t;
 
 zbncp_dbg_res_t zbncp_dbg_assert(const char *file, unsigned int line, const char *cond);

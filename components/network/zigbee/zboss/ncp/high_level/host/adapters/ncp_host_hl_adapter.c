@@ -27,13 +27,13 @@
 
 void ncp_host_adapter_init_ctx(void)
 {
-  TRACE_MSG(TRACE_TRANSPORT1, ">> ncp_host_adapter_init_ctx", (FMT__0));
-  ncp_host_zdo_adapter_init_ctx();
-  ncp_host_aps_adapter_init_ctx();
-  ncp_host_nvram_adapter_init_ctx();
-  ncp_host_secur_adapter_init_ctx();
+    TRACE_MSG(TRACE_TRANSPORT1, ">> ncp_host_adapter_init_ctx", (FMT__0));
+    ncp_host_zdo_adapter_init_ctx();
+    ncp_host_aps_adapter_init_ctx();
+    ncp_host_nvram_adapter_init_ctx();
+    ncp_host_secur_adapter_init_ctx();
 #ifdef ZB_ENABLE_INTER_PAN_NON_DEFAULT_CHANNEL
-  ncp_host_intrp_adapter_init_ctx();
+    ncp_host_intrp_adapter_init_ctx();
 #endif /* ZB_ENABLE_INTER_PAN_NON_DEFAULT_CHANNEL */
-  TRACE_MSG(TRACE_TRANSPORT1, "<< ncp_host_adapter_init_ctx", (FMT__0));
+    TRACE_MSG(TRACE_TRANSPORT1, "<< ncp_host_adapter_init_ctx", (FMT__0));
 }

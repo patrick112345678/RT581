@@ -1,12 +1,12 @@
 /**
  * @file mem_pool.h
  * @author Rex Huang (rex.huang@rafaelmicro.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2023-08-03
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 
 #ifndef MEM_POOL_H
@@ -28,11 +28,12 @@ extern "C"
 
 /// @brief Memory Pool Handle
 #endif // DOXYGEN
-typedef struct mem_pool_handle{
-  void* free_block_addr;   ///< Pointer to head of free block list.
-  void* data;              ///< Pointer to buffer.
-  uint16_t block_size;     ///< Size of the blocks.
-  uint16_t block_count;    ///< Total number of blocks in pool.
+typedef struct mem_pool_handle
+{
+    void *free_block_addr;   ///< Pointer to head of free block list.
+    void *data;              ///< Pointer to buffer.
+    uint16_t block_size;     ///< Size of the blocks.
+    uint16_t block_count;    ///< Total number of blocks in pool.
 } mem_pool_handle_t;
 
 #define MEM_POOL_PAD_OBJECT_SIZE(block_size) (block_size + sizeof(uint32_t) - 1)
@@ -85,10 +86,10 @@ typedef struct mem_pool_handle{
  ******************************************************************************/
 #endif // DOXYGEN
 void mem_pool_create(mem_pool_handle_t *mem_pool,
-                         uint32_t block_size,
-                         uint32_t block_count,
-                         void* buffer,
-                         uint32_t buffer_size);
+                     uint32_t block_size,
+                     uint32_t block_count,
+                     void *buffer,
+                     uint32_t buffer_size);
 
 #ifndef DOXYGEN
 /***************************************************************************/ /**
@@ -99,7 +100,7 @@ void mem_pool_create(mem_pool_handle_t *mem_pool,
  * @return Pointer to allocated block. Null if pool is empty.
  ******************************************************************************/
 #endif // DOXYGEN
-void* mem_pool_alloc(mem_pool_handle_t *mem_pool);
+void *mem_pool_alloc(mem_pool_handle_t *mem_pool);
 
 #ifndef DOXYGEN
 /***************************************************************************/ /**

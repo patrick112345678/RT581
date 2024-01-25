@@ -30,31 +30,31 @@
 
 typedef struct zbncp_res_ctx_s
 {
-  void *user_buf;
-  zbncp_size_t max_size;
-  zbncp_size_t offset;
-  zbncp_memref_t mem;
-  zbncp_uint8_t big_buf[ZBNCP_BIG_BUF_SIZE];
+    void *user_buf;
+    zbncp_size_t max_size;
+    zbncp_size_t offset;
+    zbncp_memref_t mem;
+    zbncp_uint8_t big_buf[ZBNCP_BIG_BUF_SIZE];
 }
 zbncp_res_ctx_t;
 
 typedef struct zbncp_div_ctx_s
 {
-  zbncp_size_t offset;
-  zbncp_size_t pkt_size;
-  zbncp_ll_tx_pkt_t tx_pkt;
-  zbncp_uint8_t big_buf[ZBNCP_BIG_BUF_SIZE];
+    zbncp_size_t offset;
+    zbncp_size_t pkt_size;
+    zbncp_ll_tx_pkt_t tx_pkt;
+    zbncp_uint8_t big_buf[ZBNCP_BIG_BUF_SIZE];
 }
 zbncp_div_ctx_t;
 
 void zbncp_res_initialize(zbncp_res_ctx_t *res);
 void zbncp_div_initialize(zbncp_div_ctx_t *div);
 
-zbncp_int32_t zbncp_div_store_tx_pkt(zbncp_div_ctx_t *div, const void* buf, zbncp_size_t size);
+zbncp_int32_t zbncp_div_store_tx_pkt(zbncp_div_ctx_t *div, const void *buf, zbncp_size_t size);
 zbncp_ll_tx_pkt_t zbncp_div_request_fragment(const zbncp_div_ctx_t *div);
 zbncp_bool_t zbncp_div_process_response(zbncp_div_ctx_t *div, const zbncp_ll_quant_res_t *rsp);
 
-void zbncp_res_set_place_for_rx_pkt(zbncp_res_ctx_t *res, void* buf, zbncp_size_t size);
+void zbncp_res_set_place_for_rx_pkt(zbncp_res_ctx_t *res, void *buf, zbncp_size_t size);
 zbncp_memref_t zbncp_res_get_place_for_fragment(const zbncp_res_ctx_t *res);
 zbncp_size_t zbncp_res_process_response(zbncp_res_ctx_t *res, const zbncp_ll_rx_info_t *info);
 

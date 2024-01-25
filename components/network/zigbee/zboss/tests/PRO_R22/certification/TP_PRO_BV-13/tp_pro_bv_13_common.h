@@ -26,7 +26,7 @@
 
 #define ZB_EXIT( _p )
 
-#if defined ZB_PRO_STACK && defined ZB_TEST_CUSTOM_LINK_STATUS && defined ZB_ROUTER_ROLE 
+#if defined ZB_PRO_STACK && defined ZB_TEST_CUSTOM_LINK_STATUS && defined ZB_ROUTER_ROLE
 #define SEND_CONFLICT_LINK_STATUS
 #endif
 

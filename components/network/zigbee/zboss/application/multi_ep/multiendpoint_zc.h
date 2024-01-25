@@ -50,59 +50,62 @@
 /* Device states enumeration */
 enum multi_ep_zc_device_state_e
 {
-  NO_DEVICE,
-  MATCH_DESC_DISCOVERY,
-  SEARCH_ACTIVE_EP,
-  IEEE_ADDR_DISCOVERY,
-  CONFIGURE_BINDING,
-  CONFIGURE_REPORTING,
-  COMPLETED,
-  COMPLETED_NO_TOGGLE,
+    NO_DEVICE,
+    MATCH_DESC_DISCOVERY,
+    SEARCH_ACTIVE_EP,
+    IEEE_ADDR_DISCOVERY,
+    CONFIGURE_BINDING,
+    CONFIGURE_REPORTING,
+    COMPLETED,
+    COMPLETED_NO_TOGGLE,
 #if defined IAS_CIE_ENABLED
-  WRITE_CIE_ADDR,
+    WRITE_CIE_ADDR,
 #endif
 };
 
 /* Cluster state */
 enum multi_ep_zc_cluster_state_e
 {
-  NO_CLUSTER_INFO,
-  REQUESTED_CLUSTER_INFO,
-  KNOWN_CLUSTER,
+    NO_CLUSTER_INFO,
+    REQUESTED_CLUSTER_INFO,
+    KNOWN_CLUSTER,
 };
 
 
 /* Attrs state */
 enum multi_ep_zc_attrs_state_e
 {
-  NO_ATTRS_INFO,
-  REQUESTED_ATTRS_INFO,
-  KNOWN_ATTRS,
+    NO_ATTRS_INFO,
+    REQUESTED_ATTRS_INFO,
+    KNOWN_ATTRS,
 };
 
-typedef ZB_PACKED_PRE struct multi_ep_zc_device_cluster_attr_s {
-  zb_uint16_t attr_id;
-  zb_uint8_t attr_type;
+typedef ZB_PACKED_PRE struct multi_ep_zc_device_cluster_attr_s
+{
+    zb_uint16_t attr_id;
+    zb_uint8_t attr_type;
 
 } multi_ep_zc_device_cluster_attr_t;
 
 /* Attributes of a Cluster of a joined device */
-typedef ZB_PACKED_PRE struct multi_ep_zc_device_cluster_s {
-  zb_uint16_t cluster_id;
-  zb_uint8_t attrs_state;
-  zb_uint8_t num_attrs;
-  multi_ep_zc_device_cluster_attr_t attr[MULTI_EP_ZC_MAX_ATTRS_PER_CLUSTER];
+typedef ZB_PACKED_PRE struct multi_ep_zc_device_cluster_s
+{
+    zb_uint16_t cluster_id;
+    zb_uint8_t attrs_state;
+    zb_uint8_t num_attrs;
+    multi_ep_zc_device_cluster_attr_t attr[MULTI_EP_ZC_MAX_ATTRS_PER_CLUSTER];
 
 } multi_ep_zc_device_cluster_t;
 
 /* Description of a EP of a joined device */
-typedef ZB_PACKED_PRE struct multi_ep_zc_device_ep_s {
-  zb_uint16_t ep_id;
-  zb_uint16_t profile_id;
-  zb_uint8_t clusters_state;
-  zb_uint8_t num_in_clusters;
-  zb_uint8_t num_out_clusters;
-  multi_ep_zc_device_cluster_t ep_cluster[MULTI_EP_ZC_MAX_CLUSTERS_PER_EP];
+typedef ZB_PACKED_PRE struct multi_ep_zc_device_ep_s
+{
+    zb_uint16_t ep_id;
+    zb_uint16_t profile_id;
+    zb_uint8_t clusters_state;
+    zb_uint8_t num_in_clusters;
+    zb_uint8_t num_out_clusters;
+    multi_ep_zc_device_cluster_t ep_cluster[MULTI_EP_ZC_MAX_CLUSTERS_PER_EP];
 
 } multi_ep_zc_device_ep_t;
 
@@ -110,18 +113,18 @@ typedef ZB_PACKED_PRE struct multi_ep_zc_device_ep_s {
 /* Joined devices information context */
 typedef ZB_PACKED_PRE struct multi_ep_zc_device_params_s
 {
-  zb_uint8_t dev_state;
-  zb_uint8_t num_ep;
-  multi_ep_zc_device_ep_t endpoints[MULTI_EP_ZC_MAX_EP_PER_DEV];
-  zb_uint16_t short_addr;
-  zb_ieee_addr_t ieee_addr;
-  zb_uint8_t pending_toggle;
+    zb_uint8_t dev_state;
+    zb_uint8_t num_ep;
+    multi_ep_zc_device_ep_t endpoints[MULTI_EP_ZC_MAX_EP_PER_DEV];
+    zb_uint16_t short_addr;
+    zb_ieee_addr_t ieee_addr;
+    zb_uint8_t pending_toggle;
 } multi_ep_zc_device_params_t;
 
 /* Global device context */
 typedef ZB_PACKED_PRE struct multi_ep_zc_device_ctx_s
 {
-  multi_ep_zc_device_params_t devices[MULTI_EP_ZC_DEV_NUMBER];
+    multi_ep_zc_device_params_t devices[MULTI_EP_ZC_DEV_NUMBER];
 } ZB_PACKED_STRUCT multi_ep_zc_device_ctx_t;
 
 /* Startup sequence routines */

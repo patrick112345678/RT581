@@ -39,20 +39,20 @@
  */
 enum zb_se_standard_devs_e
 {
-  ZB_SE_RANGE_EXTENDER_DEVICE_ID           = 0x0008,       /*!< Range Extender */
-  ZB_SE_ENERGY_SERVICE_INTERFACE_DEVICE_ID = 0x0500,		/*!< Energy Service Interface */
-  ZB_SE_METERING_DEVICE_ID                 = 0x0501,		/*!< Metering Device */
-  ZB_SE_IN_HOME_DISPLAY_DEVICE_ID          = 0x0502,		/*!< In-Home Display */
-  ZB_SE_PCT_DEVICE_ID                      = 0x0503,		/*!< Programmable Communicating Thermostat (PCT) */
-  ZB_SE_LOAD_CONTROL_DEVICE_ID             = 0x0504,		/*!< Load Control Device */
-  ZB_SE_SMART_APPLIANCE_DEVICE_ID          = 0x0505, 		/*!< Smart Appliance */
-  ZB_SE_PREPAYMENT_TERMINAL_DEVICE_ID      = 0x0506,		/*!< Prepayment Terminal */
-  ZB_SE_PHYSICAL_DEVICE_ID                 = 0x0507,		/*!< Physical Device */
-  ZB_SE_REMOTE_COMMUNICATIONS_DEVICE_ID    = 0x0508,		/*!< Remote Communications Device */
-  ZB_SE_ERL_INTERFACE_DEVICE_ID            = 0x0509, 		/*!< Reserved for Linky 'ERL Interface' Device */
-  // Reserved 0x050A –0x5FF
-  ZB_SE_TEST_DEVICE_ID                     = 0xfff0,		/*!< Custom SE device for test */
-  ZB_SE_CUSTOM_TUNNEL_DEVICE_ID            = 0xfff1,		/*!< Custom Tunnel device (should declared in private profile) */
+    ZB_SE_RANGE_EXTENDER_DEVICE_ID           = 0x0008,       /*!< Range Extender */
+    ZB_SE_ENERGY_SERVICE_INTERFACE_DEVICE_ID = 0x0500,        /*!< Energy Service Interface */
+    ZB_SE_METERING_DEVICE_ID                 = 0x0501,        /*!< Metering Device */
+    ZB_SE_IN_HOME_DISPLAY_DEVICE_ID          = 0x0502,        /*!< In-Home Display */
+    ZB_SE_PCT_DEVICE_ID                      = 0x0503,        /*!< Programmable Communicating Thermostat (PCT) */
+    ZB_SE_LOAD_CONTROL_DEVICE_ID             = 0x0504,        /*!< Load Control Device */
+    ZB_SE_SMART_APPLIANCE_DEVICE_ID          = 0x0505,        /*!< Smart Appliance */
+    ZB_SE_PREPAYMENT_TERMINAL_DEVICE_ID      = 0x0506,        /*!< Prepayment Terminal */
+    ZB_SE_PHYSICAL_DEVICE_ID                 = 0x0507,        /*!< Physical Device */
+    ZB_SE_REMOTE_COMMUNICATIONS_DEVICE_ID    = 0x0508,        /*!< Remote Communications Device */
+    ZB_SE_ERL_INTERFACE_DEVICE_ID            = 0x0509,        /*!< Reserved for Linky 'ERL Interface' Device */
+    // Reserved 0x050A –0x5FF
+    ZB_SE_TEST_DEVICE_ID                     = 0xfff0,        /*!< Custom SE device for test */
+    ZB_SE_CUSTOM_TUNNEL_DEVICE_ID            = 0xfff1,        /*!< Custom Tunnel device (should declared in private profile) */
 };
 
 
@@ -83,7 +83,7 @@ enum zb_se_standard_devs_e
 /*********************** devices to cluster configuration **********************/
 /* This clusters are always supported in SE */
 #define ZB_ZCL_SUPPORT_CLUSTER_BASIC  1
-#define ZB_ZCL_SUPPORT_CLUSTER_KEC		1
+#define ZB_ZCL_SUPPORT_CLUSTER_KEC      1
 
 
 #ifdef ZB_SE_DEFINE_DEVICE_METERING

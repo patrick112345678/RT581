@@ -159,8 +159,8 @@ otError otPlatInfraIfDiscoverNat64Prefix(uint32_t aInfraIfIndex);
  *
  */
 extern void otPlatInfraIfDiscoverNat64PrefixDone(otInstance        *aInstance,
-                                                 uint32_t           aInfraIfIndex,
-                                                 const otIp6Prefix *aIp6Prefix);
+        uint32_t           aInfraIfIndex,
+        const otIp6Prefix *aIp6Prefix);
 
 /**
  * @}

@@ -69,12 +69,12 @@ ZB_ZCL_DECLARE_IDENTIFY_ATTRIB_LIST(rtp_bdb_19_dut_zed_identify_attr_list, &attr
 
 /********************* Declare device **************************/
 DECLARE_DUT_CLUSTER_LIST(rtp_bdb_19_dut_zed_device_clusters,
-                        rtp_bdb_19_dut_zed_basic_attr_list,
-                        rtp_bdb_19_dut_zed_identify_attr_list);
+                         rtp_bdb_19_dut_zed_basic_attr_list,
+                         rtp_bdb_19_dut_zed_identify_attr_list);
 
 DECLARE_DUT_EP(rtp_bdb_19_dut_zed_device_ep,
-              DUT_ENDPOINT,
-              rtp_bdb_19_dut_zed_device_clusters);
+               DUT_ENDPOINT,
+               rtp_bdb_19_dut_zed_device_clusters);
 
 DECLARE_DUT_CTX(rtp_bdb_19_dut_zed_device_ctx, rtp_bdb_19_dut_zed_device_ep);
 
@@ -88,80 +88,80 @@ static void perform_reset(zb_uint8_t unused);
 
 MAIN()
 {
-  ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
-  ZB_SET_TRACE_LEVEL(4);
+    ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
+    ZB_SET_TRACE_LEVEL(4);
 
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  ZB_INIT("zdo_dut_zed");
+    ZB_INIT("zdo_dut_zed");
 
-  zb_set_long_address(g_ieee_addr_dut_zed);
+    zb_set_long_address(g_ieee_addr_dut_zed);
 
-  zb_reg_test_set_common_channel_settings();
-  zb_set_network_ed_role((1l << TEST_CHANNEL));
-  zb_set_nvram_erase_at_start(ZB_TRUE);
-  zb_set_rx_on_when_idle(ZB_FALSE);
+    zb_reg_test_set_common_channel_settings();
+    zb_set_network_ed_role((1l << TEST_CHANNEL));
+    zb_set_nvram_erase_at_start(ZB_TRUE);
+    zb_set_rx_on_when_idle(ZB_FALSE);
 
-  ZB_AF_REGISTER_DEVICE_CTX(&rtp_bdb_19_dut_zed_device_ctx);
+    ZB_AF_REGISTER_DEVICE_CTX(&rtp_bdb_19_dut_zed_device_ctx);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  switch (sig)
-  {
+    switch (sig)
+    {
     case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        test_step_register(trigger_steering, 0, RTP_BDB_19_STEP_1_TIME_ZED);
-        test_step_register(trigger_fb_initiator, 0, RTP_BDB_19_STEP_2_TIME_ZED);
-        test_step_register(perform_reset, 0, RTP_BDB_19_STEP_3_TIME_ZED);
-        test_step_register(trigger_steering, 0, RTP_BDB_19_STEP_4_TIME_ZED);
+        TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            test_step_register(trigger_steering, 0, RTP_BDB_19_STEP_1_TIME_ZED);
+            test_step_register(trigger_fb_initiator, 0, RTP_BDB_19_STEP_2_TIME_ZED);
+            test_step_register(perform_reset, 0, RTP_BDB_19_STEP_3_TIME_ZED);
+            test_step_register(trigger_steering, 0, RTP_BDB_19_STEP_4_TIME_ZED);
 
-        test_control_start(TEST_MODE, RTP_BDB_19_STEP_1_DELAY_ZED);
-      }
-      break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
+            test_control_start(TEST_MODE, RTP_BDB_19_STEP_1_DELAY_ZED);
+        }
+        break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
 
     case ZB_BDB_SIGNAL_STEERING:
-      TRACE_MSG(TRACE_APP1, "signal: ZB_BDB_SIGNAL_STEERING, status %d", (FMT__D, status));
-      break; /* ZB_BDB_SIGNAL_STEERING */
+        TRACE_MSG(TRACE_APP1, "signal: ZB_BDB_SIGNAL_STEERING, status %d", (FMT__D, status));
+        break; /* ZB_BDB_SIGNAL_STEERING */
 
     case ZB_COMMON_SIGNAL_CAN_SLEEP:
-      if (status == 0)
-      {
-        zb_sleep_now();
-      }
-      break; /* ZB_COMMON_SIGNAL_CAN_SLEEP */
+        if (status == 0)
+        {
+            zb_sleep_now();
+        }
+        break; /* ZB_COMMON_SIGNAL_CAN_SLEEP */
 
     default:
-      TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
-      break;
-  }
+        TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 static void trigger_steering(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
-  TRACE_MSG(TRACE_APP1, "Trigger steering", (FMT__0));
-  bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
+    ZVUNUSED(unused);
+    TRACE_MSG(TRACE_APP1, "Trigger steering", (FMT__0));
+    bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
 }
 
 static zb_bool_t finding_binding_cb(zb_int16_t status,
@@ -169,25 +169,25 @@ static zb_bool_t finding_binding_cb(zb_int16_t status,
                                     zb_uint8_t ep,
                                     zb_uint16_t cluster)
 {
-  TRACE_MSG(TRACE_ZCL1, "finding_binding_cb status %d addr " TRACE_FORMAT_64 " ep %hd cluster %d",
-            (FMT__D_A_H_D, status, TRACE_ARG_64(addr), ep, cluster));
-  return ZB_TRUE;
+    TRACE_MSG(TRACE_ZCL1, "finding_binding_cb status %d addr " TRACE_FORMAT_64 " ep %hd cluster %d",
+              (FMT__D_A_H_D, status, TRACE_ARG_64(addr), ep, cluster));
+    return ZB_TRUE;
 }
 
 static void trigger_fb_initiator(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  TRACE_MSG(TRACE_APP1, "Trigger F&B initiator", (FMT__0));
-  zb_bdb_finding_binding_initiator(DUT_ENDPOINT, finding_binding_cb);
+    TRACE_MSG(TRACE_APP1, "Trigger F&B initiator", (FMT__0));
+    zb_bdb_finding_binding_initiator(DUT_ENDPOINT, finding_binding_cb);
 }
 
 
 static void perform_reset(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
-  TRACE_MSG(TRACE_APP1, "Perform reset", (FMT__0));
-  zb_bdb_reset_via_local_action(0);
+    ZVUNUSED(unused);
+    TRACE_MSG(TRACE_APP1, "Perform reset", (FMT__0));
+    zb_bdb_reset_via_local_action(0);
 }
 
 /*! @} */

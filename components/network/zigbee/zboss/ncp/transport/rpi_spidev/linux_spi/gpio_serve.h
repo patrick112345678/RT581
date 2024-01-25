@@ -43,20 +43,20 @@ typedef void (*gpio_handler_t)(void);
 
 typedef enum gpio_direction_e
 {
-  GPIO_IN = 0,
-  GPIO_OUT
+    GPIO_IN = 0,
+    GPIO_OUT
 }
 gpio_direction_t;
 
 typedef struct gpio_conf_item_s
 {
-  gpio_pin_t pin;
-  gpio_handler_t handler;
-  char path[GPIO_MAX_FD_PATH_LEN];
-  int fd_value;
-  uint32_t last_value;
-  spi_bool_t updated;
-  gpio_direction_t direction;
+    gpio_pin_t pin;
+    gpio_handler_t handler;
+    char path[GPIO_MAX_FD_PATH_LEN];
+    int fd_value;
+    uint32_t last_value;
+    spi_bool_t updated;
+    gpio_direction_t direction;
 }
 gpio_conf_item_t;
 

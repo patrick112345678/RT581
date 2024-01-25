@@ -21,10 +21,11 @@ along with GCC; see the file COPYING3.  If not see
 #define GCC_TREE_SSA_H
 
 /* Mapping for redirected edges.  */
-struct edge_var_map {
-  tree result;			/* PHI result.  */
-  tree def;			/* PHI arg definition.  */
-  location_t locus;        /* PHI arg location.  */
+struct edge_var_map
+{
+    tree result;          /* PHI result.  */
+    tree def;         /* PHI arg definition.  */
+    location_t locus;        /* PHI arg location.  */
 };
 
 /* A vector of var maps.  */
@@ -61,7 +62,7 @@ extern void execute_update_addresses_taken (void);
 static inline tree
 redirect_edge_var_map_def (edge_var_map *v)
 {
-  return v->def;
+    return v->def;
 }
 
 /* Given an edge_var_map V, return the PHI result.  */
@@ -69,7 +70,7 @@ redirect_edge_var_map_def (edge_var_map *v)
 static inline tree
 redirect_edge_var_map_result (edge_var_map *v)
 {
-  return v->result;
+    return v->result;
 }
 
 /* Given an edge_var_map V, return the PHI arg location.  */
@@ -77,7 +78,7 @@ redirect_edge_var_map_result (edge_var_map *v)
 static inline location_t
 redirect_edge_var_map_location (edge_var_map *v)
 {
-  return v->locus;
+    return v->locus;
 }
 
 /* Verify SSA invariants, if internal consistency checks are enabled.  */
@@ -85,8 +86,10 @@ redirect_edge_var_map_location (edge_var_map *v)
 static inline void
 checking_verify_ssa (bool check_modified_stmt, bool check_ssa_operands)
 {
-  if (flag_checking)
-    verify_ssa (check_modified_stmt, check_ssa_operands);
+    if (flag_checking)
+    {
+        verify_ssa (check_modified_stmt, check_ssa_operands);
+    }
 }
 
 #endif /* GCC_TREE_SSA_H */

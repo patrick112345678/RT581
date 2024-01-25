@@ -30,7 +30,8 @@ extern "C"
  * @brief Erase flash size definitions.
  */
 
-typedef enum {
+typedef enum
+{
     FLASH_ERASE_PAGE,       /*!< Erase Page size  \hideinitializer */
     FLASH_ERASE_32K,        /*!< Erase 32K block \hideinitializer */
     FLASH_ERASE_64K,        /*!< Erase 64K block \hideinitializer */
@@ -41,20 +42,20 @@ typedef enum {
  * @brief  Status Register definitions
  */
 
-#define  FLASH_STATUS_RW1     1       /*!< Status Register 1 \hideinitializer */ 
+#define  FLASH_STATUS_RW1     1       /*!< Status Register 1 \hideinitializer */
 #define  FLASH_STATUS_RW2     2       /*!< Status Register 2 \hideinitializer */
 #define  FLASH_STATUS_RW3     4       /*!< Status Register 3 \hideinitializer */
 
 
 /**
  * @brief Define Secure Register address.
- * Here assume there are 3 secure 512 pages, one page is 512 bytes. 
+ * Here assume there are 3 secure 512 pages, one page is 512 bytes.
  *
  */
-#define  FLASH_SECREG_R1_P0   ((1<<12))            /*!< Secure Page one, low 256 bytes. \hideinitializer */ 
-#define  FLASH_SECREG_R1_P1   ((1<<12) | 0x100)    /*!< Secure Page one, high 256 bytes.  \hideinitializer */ 
+#define  FLASH_SECREG_R1_P0   ((1<<12))            /*!< Secure Page one, low 256 bytes. \hideinitializer */
+#define  FLASH_SECREG_R1_P1   ((1<<12) | 0x100)    /*!< Secure Page one, high 256 bytes.  \hideinitializer */
 
-#define  FLASH_SECREG_R2_P0   ((2<<12))            /*!< Secure Page two, low 256 bytes. \hideinitializer */ 
+#define  FLASH_SECREG_R2_P0   ((2<<12))            /*!< Secure Page two, low 256 bytes. \hideinitializer */
 #define  FLASH_SECREG_R2_P1   ((2<<12) | 0x100)    /*!< Secure Page two, high 256 bytes. \hideinitializer */
 
 #define  FLASH_SECREG_R3_P0   ((3<<12))            /*!< Secure Page three, low 256 bytes. \hideinitializer */
@@ -97,12 +98,13 @@ typedef enum {
  *       suspend/resume/deep-powerdown.
  * @details
  *       Please read Flash Datasheet for suspend/resume/powerdown timing.
- *       The unit of this data member is in HCLK clock, for example, 
- *       if CPU running in 32MHz, and flash deep power down 
+ *       The unit of this data member is in HCLK clock, for example,
+ *       if CPU running in 32MHz, and flash deep power down
  *       is 3 us, then deep_pd_timing is 3*32, since 32 clock is 1 us.
- *         
+ *
  */
-typedef struct {
+typedef struct
+{
     uint16_t   deep_pd_timing;        /*!< flash deep power down T_dp*/
     uint16_t   deep_rpd_timing;       /*!< flash release deep power down T_rdp*/
     uint16_t   suspend_timing;        /*!< flash suspend time T_sus*/
@@ -115,12 +117,13 @@ typedef struct {
  * @details
  *        require_mode is bitwise read/write operation.
  *        For example, if reqquired_mode = (FLASH_STATUS_RW1 | FLASH_STATUS_RW2)
- *        then the flash driver will read/write status1 register and status2 
+ *        then the flash driver will read/write status1 register and status2
  *        register, depends on read/write API.
- * 
+ *
  */
 
-typedef struct {
+typedef struct
+{
     uint8_t   require_mode;     /*!< bitwise mode to indicate read/write operation */
     uint8_t   status1;          /*!< flash status1 for read/write*/
     uint8_t   status2;          /*!< flash status2 for read/write*/
@@ -134,10 +137,10 @@ typedef struct {
  *
  * @param[in]  timing_cfg  Pointer to the flash timing
  *
- * @details Flash controller will use flash timing to control flash to enter 
- *      deeply powerdown and release from deeply powerdown mode, and suspend/   
- *      resume time.  
- * 
+ * @details Flash controller will use flash timing to control flash to enter
+ *      deeply powerdown and release from deeply powerdown mode, and suspend/
+ *      resume time.
+ *
  */
 void flash_set_timing(flash_timing_mode_t *timing_cfg);
 
@@ -148,7 +151,7 @@ void flash_set_timing(flash_timing_mode_t *timing_cfg);
  * @param None
  *
  * @retval    flash model identifier.
- * 
+ *
  */
 
 uint32_t flash_get_deviceinfo(void);
@@ -164,9 +167,9 @@ uint32_t flash_get_deviceinfo(void);
  * @details  Read status will be save in status.status1, status.status2
  *       status.status3, depends on status.require_mode.
  *       require_mode is bitwise operation indicator, so it can read
- *       multiple status byte in one function call. 
+ *       multiple status byte in one function call.
  */
- 
+
 void flash_get_status_reg(flash_status_t *status);
 
 
@@ -180,13 +183,13 @@ void flash_get_status_reg(flash_status_t *status);
  * @details  Flash driver will write status of status.status1, status.status2
  *       status.status3 into flash, depends on status.require_mode.
  *       require_mode is bitwise operation indicator, so it can write
- *       multiple status byte in one function call. 
- *       Notice: PLEASE read flash datasheet for write status 
+ *       multiple status byte in one function call.
+ *       Notice: PLEASE read flash datasheet for write status
  *       setting information before you write. Some status bitfield is
  *       OTP bit, it just write once and can not erase!
- *       This function is BLOCK function. 
+ *       This function is BLOCK function.
  */
- 
+
 void flash_set_status_reg(const flash_status_t *status);
 
 
@@ -195,25 +198,25 @@ void flash_set_status_reg(const flash_status_t *status);
  *
  * @param[out] buf_addr  Specify the address for the read data of the page.
  *
- * @param[in]  read_page_addr Specify the page address in flash that required to read. 
+ * @param[in]  read_page_addr Specify the page address in flash that required to read.
  *
  * @retval    None
  *
  * @details  buf_addr must be 4-bytes alignment. One page is 256 bytes, so
- *           buf_addr must have 256 bytes for read data, otherwise some data 
+ *           buf_addr must have 256 bytes for read data, otherwise some data
  *           will be overwritten. Please notice that read_page_addr will be
  *           ignored the LSB 8 bits, that is LSB 8 bits of address is don't care.
  *           This function is BLOCK function.
- * 
+ *
  */
- 
+
 void flash_read_page(uint32_t buf_addr, uint32_t read_page_addr);
 
 /**
  * @brief Read one byte from flash
  *
  *
- * @param[in]  read_addr Specify the byte address in flash that required to read. 
+ * @param[in]  read_addr Specify the byte address in flash that required to read.
  *
  * @retval    The data in read_addr of flash
  *
@@ -228,16 +231,16 @@ uint8_t flash_read_byte(uint32_t read_addr);
  *
  * @param[in] buf_addr  Specify the address of the write data.
  *
- * @param[in] write_page_addr Specify the page address in flash that to be written. 
+ * @param[in] write_page_addr Specify the page address in flash that to be written.
  *
  * @retval    None
  *
  * @details  buf_addr must be 4-bytes alignment. One page is 256 bytes, so
- *           buf_addr must have 256 bytes for write data, if the data you 
+ *           buf_addr must have 256 bytes for write data, if the data you
  *           want to write is less than 256 bytes, please write "0xFF" for
  *           padding bytes. Please notice that write_page_addr will be
- *           ignored the LSB 8 bits, that is LSB 8 bits of address is don't care. 
- *           This function is BLOCK function. Please don't call this function in ISR. 
+ *           ignored the LSB 8 bits, that is LSB 8 bits of address is don't care.
+ *           This function is BLOCK function. Please don't call this function in ISR.
  */
 void flash_write_page(uint32_t buf_addr, uint32_t write_page_addr);
 
@@ -248,17 +251,17 @@ void flash_write_page(uint32_t buf_addr, uint32_t write_page_addr);
  *
  * @param[in] buf_addr  Specify the address of the write data into the page.
  *
- * @param[in] write_reg_addr Specify the secure register address in flash to write. 
+ * @param[in] write_reg_addr Specify the secure register address in flash to write.
  *
  * @retval    STATUS_INVALID_PARAM  -- write_reg_addr is invalid value.
  *            STATUS_SUCCESS --- write register opertation finish.
  *
  * @details  buf_addr must be 4-bytes alignment. One page is 256 bytes, so
- *           buf_addr must have 256 bytes for write data, if the data you 
+ *           buf_addr must have 256 bytes for write data, if the data you
  *           want to write is less than 256 bytes, please write "0xFF" for
  *           padding bytes. Please notice that write_page_addr must be
  *           256 bytes alignment, that is LSB 8 bits of address must be zero.
- *           This function is BLOCK function. 
+ *           This function is BLOCK function.
  */
 uint32_t flash_write_sec_register(uint32_t buf_addr, uint32_t write_reg_addr);
 
@@ -269,15 +272,15 @@ uint32_t flash_write_sec_register(uint32_t buf_addr, uint32_t write_reg_addr);
  *
  * @param[out] buf_addr  Specify the address of the read data to return.
  *
- * @param[in] read_reg_addr Specify the secure register address in flash to read. 
+ * @param[in] read_reg_addr Specify the secure register address in flash to read.
  *
  * @retval    STATUS_INVALID_PARAM  -- read_reg_addr is invalid value.
  *            STATUS_SUCCESS --- read register opertation finish.
  *
  * @details  buf_addr must be 4-bytes alignment. One page is 256 bytes, so
- *           buf_addr must have 256 bytes for read secure register data, 
+ *           buf_addr must have 256 bytes for read secure register data,
  *           otherwise some data will be overwritten.
- *           This function is BLOCK function. 
+ *           This function is BLOCK function.
  */
 uint32_t flash_read_sec_register(uint32_t buf_addr, uint32_t read_reg_addr);
 
@@ -287,7 +290,7 @@ uint32_t flash_read_sec_register(uint32_t buf_addr, uint32_t read_reg_addr);
  *
  * @param[in] mode  Specify the ease mode.
  *
- * @param[in] flash_addr Specify the start address in flash to be erased. 
+ * @param[in] flash_addr Specify the start address in flash to be erased.
  *
  * @retval    STATUS_INVALID_PARAM  -- mode is invalid value.
  *            STATUS_SUCCESS --- erase opertation start to processing.
@@ -296,7 +299,7 @@ uint32_t flash_read_sec_register(uint32_t buf_addr, uint32_t read_reg_addr);
  *      when this function returns, it does NOT mean the erase operation
  *      finish. It just means the erasing operation is in progressing.
  *      User should call function flash_check_busy to check erase finish or
- *      not. No other erase or program instruction can be called before 
+ *      not. No other erase or program instruction can be called before
  *      this erase function finish.
  *
  */
@@ -309,14 +312,14 @@ uint32_t flash_erase(flash_erase_mode_t mode, uint32_t flash_addr);
  *
  * @param[in] write_addr  Specify the address of the flash to be written.
  *
- * @param[in] singlebyte  Specify the byte that to be written into the flash. 
+ * @param[in] singlebyte  Specify the byte that to be written into the flash.
  *
  * @retval    None
  *
  * @details  this function will write "singlebyte" data to flash address "write_addr".
  *           This function is block function.
  */
- 
+
 void flash_write_byte(uint32_t write_addr, uint8_t singlebyte);
 
 /*check the page  crc*/
@@ -332,8 +335,8 @@ void flash_write_byte(uint32_t write_addr, uint8_t singlebyte);
  *      finish. It just means the counting crc8 operation is in progressing.
  *      User should call function flash_check_busy to check verify finish or
  *      not. If the function counts CRC8 finish, user can call flash_get_crc
- *      to get the CRC8 value. then user can compare the return CRC8 value 
- *      with pre-caculate CRC8 value to verify write page data is correct or not.   
+ *      to get the CRC8 value. then user can compare the return CRC8 value
+ *      with pre-caculate CRC8 value to verify write page data is correct or not.
  *
  */
 void flash_verify_page(uint32_t read_page_addr);
@@ -341,22 +344,22 @@ void flash_verify_page(uint32_t read_page_addr);
 /*get flash unique ID. ID could be used for some random number generator. */
 
 /**
- * @brief Get unique flash identifier. 
+ * @brief Get unique flash identifier.
  *
- * @param[out] flash_id_buf_addr  Specify the address for return unique id. 
+ * @param[out] flash_id_buf_addr  Specify the address for return unique id.
  *
  * @param[in] buf_length  Specify the length of unique id in byte it requirs to read.
  *
  * @retval    STATUS_INVALID_PARAM  -- if buf_length is zero.
- *			  STATUS_SUCCESS 
+ *            STATUS_SUCCESS
  *
  *
  * @details   flash_id_buf_addr must be 4-bytes alignment. Each flash has one unique
  *            identifier. The length of the uid depends on flash manufacture. Please
- *            check flash datasheet for this uid length. 
+ *            check flash datasheet for this uid length.
  *
  */
- 
+
 uint32_t flash_get_unique_id(uint32_t flash_id_buf_addr, uint32_t buf_length);
 
 
@@ -367,19 +370,19 @@ void flash_timing_init(uint32_t HCLK_MHZ);
  *
  * @param  None
  *
- * @retval    0 --- flash is not busy. 
- *			  1 --- flash is in busy state.
+ * @retval    0 --- flash is not busy.
+ *            1 --- flash is in busy state.
  *
- * @details   Because some flash functions are non-blocking functions, 
- *        flash controller should provide this polling fucntion to help 
- *        user to know the flash request finished or not. 
+ * @details   Because some flash functions are non-blocking functions,
+ *        flash controller should provide this polling fucntion to help
+ *        user to know the flash request finished or not.
  *
  */
- 
+
 /*check Flash command Finish*/
 __STATIC_INLINE uint32_t flash_check_busy()
 {
-    return ((FLASH->START)&BUSYBIT)? 1:0;
+    return ((FLASH->START)&BUSYBIT) ? 1 : 0;
 }
 
 /**
@@ -387,14 +390,14 @@ __STATIC_INLINE uint32_t flash_check_busy()
  *
  * @param     NONE
  *
- * @retval    CRC8  
+ * @retval    CRC8
  *
  *
  * @details   This function return CRC8 of the page that specify in previous
  *        funciton flash_verify_page(...).
  *
  */
- 
+
 /*check Flash CRC*/
 __STATIC_INLINE uint32_t flash_get_crc()
 {
@@ -408,9 +411,9 @@ __STATIC_INLINE uint32_t flash_get_crc()
  *
  * @param     NONE
  *
- * @retval    NONE 
+ * @retval    NONE
  *
- * @details   When MCU reboots, the flash controller will operate in 1-bit SPI 
+ * @details   When MCU reboots, the flash controller will operate in 1-bit SPI
  *       mode by default. To speed up the read, user can call function flash_enable_qe()
  *       to enable controller to operate in 4-bits mode. Because most flash operations are
  *       read operations, this 4-bits mode is very important for code XIP execution and read.
@@ -423,15 +426,15 @@ __STATIC_INLINE void flash_enable_qe(void)
 
 /* Set readpage size. Here we fix to read 256 bytes.
  * Do not change it*/
- 
+
 /**
- * @brief Set flash read page size 
+ * @brief Set flash read page size
  *
  * @param    NONE
  *
  * @retval   NONE
  *
- * @details  This function set read page length be 256 bytes by default.  
+ * @details  This function set read page length be 256 bytes by default.
  *
  */
 

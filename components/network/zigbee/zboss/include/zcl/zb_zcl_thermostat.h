@@ -54,231 +54,231 @@ void zb_zcl_thermostat_init(void);
 */
 enum zb_zcl_thermostat_attr_e
 {
-  /** @brief Local Temperature attribute */
-  ZB_ZCL_ATTR_THERMOSTAT_LOCAL_TEMPERATURE_ID                     = 0x0000,
-  /** OutdoorTemperature represents the outdoor temperature in degrees Celsius,
-   *  as measured locally or remotely (over the network). */
-  ZB_ZCL_ATTR_THERMOSTAT_OUTDOOR_TEMPERATURE_ID                   = 0x0001,
-  /** Occupancy specifies whether the heated/cooled space is occupied or not,
-   *  as measured locally or remotely (over the network). */
-  ZB_ZCL_ATTR_THERMOSTAT_OCCUPANCY_ID                             = 0x0002,
-  /** The AbsMinHeatSetpointLimit attribute specifies the absolute minimum level
-   *  that the heating setpoint MAY be set to. */
-  ZB_ZCL_ATTR_THERMOSTAT_ABS_MIN_HEAT_SETPOINT_LIMIT_ID           = 0x0003,
-  /** The AbsMaxHeatSetpointLimit attribute specifies the absolute maximum level
-   *  that the heating setpoint MAY be set to. */
-  ZB_ZCL_ATTR_THERMOSTAT_ABS_MAX_HEAT_SETPOINT_LIMIT_ID           = 0x0004,
-  /** The AbsMinCoolSetpointLimit attribute specifies the absolute minimum level
-   *  that the cooling setpoint MAY be set to. */
-  ZB_ZCL_ATTR_THERMOSTAT_ABS_MIN_COOL_SETPOINT_LIMIT_ID           = 0x0005,
-  /** The AbsMaxCoolSetpointLimit attribute specifies the absolute maximum level
-   *  that the cooling setpoint MAY be set to. */
-  ZB_ZCL_ATTR_THERMOSTAT_ABS_MAX_COOL_SETPOINT_LIMIT_ID           = 0x0006,
-  /** The PICoolingDemand attribute is 8 bits in length and specifies the level
-   *  of cooling demanded by the PI (proportional integral) control loop in use
-   *  by the thermostat (if any), in percent. */
-  ZB_ZCL_ATTR_THERMOSTAT_PI_COOLING_DEMAND_ID                     = 0x0007,
-  /** The PIHeatingDemand attribute is 8 bits in length and specifies the level
-   *  of heating demanded by the PI loop in percent. */
-  ZB_ZCL_ATTR_THERMOSTAT_PI_HEATING_DEMAND_ID                     = 0x0008,
-  /** The HVACSystemTypeConfiguration attribute specifies the HVAC system type
-   *  controlled by the thermostat. */
-  ZB_ZCL_ATTR_THERMOSTAT_HVAC_SYSTEM_TYPE_CONFIGURATION_ID        = 0x0009,
-  /** @brief Local Temperature Calibration */
-  ZB_ZCL_ATTR_THERMOSTAT_LOCAL_TEMPERATURE_CALIBRATION_ID         = 0x0010,
-  /** @brief Occupied Cooling Setpoint attribute */
-  ZB_ZCL_ATTR_THERMOSTAT_OCCUPIED_COOLING_SETPOINT_ID             = 0x0011,
-  /** @brief Occupied Heating Setpoint attribute */
-  ZB_ZCL_ATTR_THERMOSTAT_OCCUPIED_HEATING_SETPOINT_ID             = 0x0012,
-  /** @brief Unoccupied Cooling Setpoint attribute */
-  ZB_ZCL_ATTR_THERMOSTAT_UNOCCUPIED_COOLING_SETPOINT_ID           = 0x0013,
-  /** @brief Unoccupied Heating Setpoint attribute */
-  ZB_ZCL_ATTR_THERMOSTAT_UNOCCUPIED_HEATING_SETPOINT_ID           = 0x0014,
-  /** The MinHeatSetpointLimit attribute specifies the minimum level that the heating
-   *  setpoint MAY be set to. */
-  ZB_ZCL_ATTR_THERMOSTAT_MIN_HEAT_SETPOINT_LIMIT_ID               = 0x0015,
-  /** The MaxHeatSetpointLimit attribute specifies the maximum level that the heating
-   *  setpoint MAY be set to. */
-  ZB_ZCL_ATTR_THERMOSTAT_MAX_HEAT_SETPOINT_LIMIT_ID               = 0x0016,
-  /** The MinCoolSetpointLimit attribute specifies the minimum level that the cooling
-   *  setpoint MAY be set to. */
-  ZB_ZCL_ATTR_THERMOSTAT_MIN_COOL_SETPOINT_LIMIT_ID               = 0x0017,
-  /** The MaxCoolSetpointLimit attribute specifies the maximum level that the cooling
-   *  setpoint MAY be set to. */
-  ZB_ZCL_ATTR_THERMOSTAT_MAX_COOL_SETPOINT_LIMIT_ID               = 0x0018,
-  /** The MinSetpointDeadBand attribute specifies the minimum difference between the
-   *  Heat Setpoint and the Cool SetPoint, in steps of 0.1C. */
-  ZB_ZCL_ATTR_THERMOSTAT_MIN_SETPOINT_DEAD_BAND_ID                = 0x0019,
-  /** The RemoteSensing attribute is an 8-bit bitmap that specifies whether the local
-   *  temperature, outdoor temperature and occupancy are being sensed by internal sensors
-   *  or remote networked sensors. */
-  ZB_ZCL_ATTR_THERMOSTAT_REMOTE_SENSING_ID                        = 0x001a,
-  /** @brief Control Sequence Of Operation attribute */
-  ZB_ZCL_ATTR_THERMOSTAT_CONTROL_SEQUENCE_OF_OPERATION_ID         = 0x001b,
-  /** @brief System Mode attribute */
-  ZB_ZCL_ATTR_THERMOSTAT_SYSTEM_MODE_ID                           = 0x001c,
-  /** The AlarmMask attribute specifies whether each of the alarms is enabled. */
-  ZB_ZCL_ATTR_THERMOSTAT_ALARM_MASK_ID                            = 0x001d,
-  /** @brief Thermostat Running Mode attribute */
-  ZB_ZCL_ATTR_THERMOSTAT_RUNNING_MODE_ID                          = 0x001e,
-  /*! @brief Start of Week attribute */
-  ZB_ZCL_ATTR_THERMOSTAT_START_OF_WEEK_ID                         = 0x0020,
-  /** NumberOfWeeklyTransitions attribute determines how many weekly schedule
-   *  transitions the thermostat is capable of handling. */
-  ZB_ZCL_ATTR_THERMOSTAT_NUMBER_OF_WEEKLY_TRANSITIONS_ID          = 0x0021,
-  /** NumberOfDailyTransitions attribute determines how many daily schedule
-   *  transitions the thermostat is capable of handling. */
-  ZB_ZCL_ATTR_THERMOSTAT_NUMBER_OF_DAILY_TRANSITIONS_ID           = 0x0022,
-  /** TemperatureSetpointHold specifies the temperature hold status on the thermostat. */
-  ZB_ZCL_ATTR_THERMOSTAT_TEMPERATURE_SETPOINT_HOLD_ID             = 0x0023,
-  /** TemperatureSetpointHoldDuration sets the period in minutes for which a setpoint
-   *  hold is active. */
-  ZB_ZCL_ATTR_THERMOSTAT_TEMPERATURE_SETPOINT_HOLD_DURATION_ID    = 0x0024,
-  /** The ThermostatProgrammingOperationMode attribute determines the operational state
-   *  of the thermostats programming. */
-  ZB_ZCL_ATTR_THERMOSTAT_THERMOSTAT_PROGRAMMING_OPERATION_MODE_ID = 0x0025,
-  /** ThermostatRunningState represents the current relay state of the heat, cool,
-   *  and fan relays. */
-  ZB_ZCL_ATTR_THERMOSTAT_THERMOSTAT_RUNNING_STATE_ID              = 0x0029,
-  /** The SetpointChangeSource attribute specifies the source of the current active
-   *  OccupiedCoolingSetpoint or OccupiedHeatingSetpoint (i.e., who or what determined
-   *  the current setpoint). */
-  ZB_ZCL_ATTR_THERMOSTAT_SETPOINT_CHANGE_SOURCE_ID                = 0x0030,
-  /** The SetpointChangeAmount attribute specifies the delta between the current active
-   *  OccupiedCoolingSetpoint or OccupiedHeatingSetpoint and the previous active
-   *  setpoint. */
-  ZB_ZCL_ATTR_THERMOSTAT_SETPOINT_CHANGE_AMOUNT_ID                = 0x0031,
-  /** The SetpointChangeSourceTimestamp attribute specifies the time in UTC at which
-   *  the SetpointChangeSourceAmount attribute change was recorded. */
-  ZB_ZCL_ATTR_THERMOSTAT_SETPOINT_CHANGE_SOURCE_TIMESTAMP_ID      = 0x0032,
-  /** Specifies the degrees Celsius, in 0.1 degree increments, the Thermostat server
-   *  will allow the LocalTemperature attribute to float above the OccupiedCooling
-   *  setpoint (i.e., OccupiedCooling + OccupiedSetback) or below the OccupiedHeating
-   *  setpoint (i.e., occupiedHeating, OccupiedSetback) before initiating a state change
-   *  to bring the temperature back to the users desired setpoint. */
-  ZB_ZCL_ATTR_THERMOSTAT_OCCUPIED_SETBACK_ID                      = 0x0034,
-  /** Specifies the minimum degrees Celsius, in 0.1 degree increments,
-   *  the Thermostat server will allow the OccupiedSetback attribute
-   *  to be configured by a user. */
-  ZB_ZCL_ATTR_THERMOSTAT_OCCUPIED_SETBACK_MIN_ID                  = 0x0035,
-  /** Specifies the maximum degrees Celsius, in 0.1 degree increments,
-   *  the Thermostat server will allow the OccupiedSetback attribute
-   *  to be configured by a user. */
-  ZB_ZCL_ATTR_THERMOSTAT_OCCUPIED_SETBACK_MAX_ID                  = 0x0036,
-  /** Specifies the degrees Celsius, in 0.1 degree increments, the Thermostat server
-   *  will allow the LocalTemperature attribute to float above the UnoccupiedCooling
-   *  setpoint (i.e., UnoccupiedCooling + UnoccupiedSetback) or below the
-   *  UnoccupiedHeating setpoint (i.e., UnoccupiedHeating - UnoccupiedSetback)
-   *  before initiating a state change to bring the temperature back
-   *  to the users desired setpoint. */
-  ZB_ZCL_ATTR_THERMOSTAT_UNOCCUPIED_SETBACK_ID                    = 0x0037,
-  /** Specifies the minimum degrees Celsius, in 0.1 degree increments, the Thermostat
-   *  server will allow the UnoccupiedSetback attribute to be configured by a user. */
-  ZB_ZCL_ATTR_THERMOSTAT_UNOCCUPIED_SETBACK_MIN_ID                = 0x0038,
-  /** Specifies the maximum degrees Celsius, in 0.1 degree increments, the Thermostat
-   *  server will allow the UnoccupiedSetback attribute to be configured by a user. */
-  ZB_ZCL_ATTR_THERMOSTAT_UNOCCUPIED_SETBACK_MAX_ID                = 0x0039,
-  /** Specifies the delta, in 0.1 degrees Celsius, between LocalTemperature and
-   *  the OccupiedHeatingSetpoint or UnoccupiedHeatingSetpoint attributes at which
-   *  the Thermostat server will operate in emergency heat mode. */
-  ZB_ZCL_ATTR_THERMOSTAT_EMERGENCY_HEAT_DELTA_ID                  = 0x003a,
-  /** Indicates the type of Mini Split ACType of Mini Split AC is defined depending
-   *  on how Cooling and Heating condition is achieved by Mini Split AC. */
-  ZB_ZCL_ATTR_THERMOSTAT_AC_TYPE_ID                               = 0x0040,
-  /** Indicates capacity of Mini Split AC in terms of the format defined by
-   *  the ACCapacityFormat attribute. */
-  ZB_ZCL_ATTR_THERMOSTAT_AC_CAPACITY_ID                           = 0x0041,
-  /** Indicates type of refrigerant used within the Mini Split AC. */
-  ZB_ZCL_ATTR_THERMOSTAT_AC_REFRIGERANT_TYPE_ID                   = 0x0042,
-  /** This indicates type of Compressor used within the Mini Split AC. */
-  ZB_ZCL_ATTR_THERMOSTAT_AC_COMPRESSOR_TYPE_ID                    = 0x0043,
-  /** This indicates the type of errors encountered within the Mini Split AC. */
-  ZB_ZCL_ATTR_THERMOSTAT_AC_ERROR_CODE_ID                         = 0x0044,
-  /** @brief AC Louver position attribute */
-  ZB_ZCL_ATTR_THERMOSTAT_AC_LOUVER_POSITION_ID                    = 0x0045,
-  /** ACCoilTemperature represents the temperature in degrees Celsius, as measured
-   *  locally or remotely (over the network). */
-  ZB_ZCL_ATTR_THERMOSTAT_AC_COIL_TEMPERATURE_ID                   = 0x0046,
-  /** This is the format for the ACCapacity attribute. */
-  ZB_ZCL_ATTR_THERMOSTAT_AC_CAPACITY_FORMAT_ID                    = 0x0047,
+    /** @brief Local Temperature attribute */
+    ZB_ZCL_ATTR_THERMOSTAT_LOCAL_TEMPERATURE_ID                     = 0x0000,
+    /** OutdoorTemperature represents the outdoor temperature in degrees Celsius,
+     *  as measured locally or remotely (over the network). */
+    ZB_ZCL_ATTR_THERMOSTAT_OUTDOOR_TEMPERATURE_ID                   = 0x0001,
+    /** Occupancy specifies whether the heated/cooled space is occupied or not,
+     *  as measured locally or remotely (over the network). */
+    ZB_ZCL_ATTR_THERMOSTAT_OCCUPANCY_ID                             = 0x0002,
+    /** The AbsMinHeatSetpointLimit attribute specifies the absolute minimum level
+     *  that the heating setpoint MAY be set to. */
+    ZB_ZCL_ATTR_THERMOSTAT_ABS_MIN_HEAT_SETPOINT_LIMIT_ID           = 0x0003,
+    /** The AbsMaxHeatSetpointLimit attribute specifies the absolute maximum level
+     *  that the heating setpoint MAY be set to. */
+    ZB_ZCL_ATTR_THERMOSTAT_ABS_MAX_HEAT_SETPOINT_LIMIT_ID           = 0x0004,
+    /** The AbsMinCoolSetpointLimit attribute specifies the absolute minimum level
+     *  that the cooling setpoint MAY be set to. */
+    ZB_ZCL_ATTR_THERMOSTAT_ABS_MIN_COOL_SETPOINT_LIMIT_ID           = 0x0005,
+    /** The AbsMaxCoolSetpointLimit attribute specifies the absolute maximum level
+     *  that the cooling setpoint MAY be set to. */
+    ZB_ZCL_ATTR_THERMOSTAT_ABS_MAX_COOL_SETPOINT_LIMIT_ID           = 0x0006,
+    /** The PICoolingDemand attribute is 8 bits in length and specifies the level
+     *  of cooling demanded by the PI (proportional integral) control loop in use
+     *  by the thermostat (if any), in percent. */
+    ZB_ZCL_ATTR_THERMOSTAT_PI_COOLING_DEMAND_ID                     = 0x0007,
+    /** The PIHeatingDemand attribute is 8 bits in length and specifies the level
+     *  of heating demanded by the PI loop in percent. */
+    ZB_ZCL_ATTR_THERMOSTAT_PI_HEATING_DEMAND_ID                     = 0x0008,
+    /** The HVACSystemTypeConfiguration attribute specifies the HVAC system type
+     *  controlled by the thermostat. */
+    ZB_ZCL_ATTR_THERMOSTAT_HVAC_SYSTEM_TYPE_CONFIGURATION_ID        = 0x0009,
+    /** @brief Local Temperature Calibration */
+    ZB_ZCL_ATTR_THERMOSTAT_LOCAL_TEMPERATURE_CALIBRATION_ID         = 0x0010,
+    /** @brief Occupied Cooling Setpoint attribute */
+    ZB_ZCL_ATTR_THERMOSTAT_OCCUPIED_COOLING_SETPOINT_ID             = 0x0011,
+    /** @brief Occupied Heating Setpoint attribute */
+    ZB_ZCL_ATTR_THERMOSTAT_OCCUPIED_HEATING_SETPOINT_ID             = 0x0012,
+    /** @brief Unoccupied Cooling Setpoint attribute */
+    ZB_ZCL_ATTR_THERMOSTAT_UNOCCUPIED_COOLING_SETPOINT_ID           = 0x0013,
+    /** @brief Unoccupied Heating Setpoint attribute */
+    ZB_ZCL_ATTR_THERMOSTAT_UNOCCUPIED_HEATING_SETPOINT_ID           = 0x0014,
+    /** The MinHeatSetpointLimit attribute specifies the minimum level that the heating
+     *  setpoint MAY be set to. */
+    ZB_ZCL_ATTR_THERMOSTAT_MIN_HEAT_SETPOINT_LIMIT_ID               = 0x0015,
+    /** The MaxHeatSetpointLimit attribute specifies the maximum level that the heating
+     *  setpoint MAY be set to. */
+    ZB_ZCL_ATTR_THERMOSTAT_MAX_HEAT_SETPOINT_LIMIT_ID               = 0x0016,
+    /** The MinCoolSetpointLimit attribute specifies the minimum level that the cooling
+     *  setpoint MAY be set to. */
+    ZB_ZCL_ATTR_THERMOSTAT_MIN_COOL_SETPOINT_LIMIT_ID               = 0x0017,
+    /** The MaxCoolSetpointLimit attribute specifies the maximum level that the cooling
+     *  setpoint MAY be set to. */
+    ZB_ZCL_ATTR_THERMOSTAT_MAX_COOL_SETPOINT_LIMIT_ID               = 0x0018,
+    /** The MinSetpointDeadBand attribute specifies the minimum difference between the
+     *  Heat Setpoint and the Cool SetPoint, in steps of 0.1C. */
+    ZB_ZCL_ATTR_THERMOSTAT_MIN_SETPOINT_DEAD_BAND_ID                = 0x0019,
+    /** The RemoteSensing attribute is an 8-bit bitmap that specifies whether the local
+     *  temperature, outdoor temperature and occupancy are being sensed by internal sensors
+     *  or remote networked sensors. */
+    ZB_ZCL_ATTR_THERMOSTAT_REMOTE_SENSING_ID                        = 0x001a,
+    /** @brief Control Sequence Of Operation attribute */
+    ZB_ZCL_ATTR_THERMOSTAT_CONTROL_SEQUENCE_OF_OPERATION_ID         = 0x001b,
+    /** @brief System Mode attribute */
+    ZB_ZCL_ATTR_THERMOSTAT_SYSTEM_MODE_ID                           = 0x001c,
+    /** The AlarmMask attribute specifies whether each of the alarms is enabled. */
+    ZB_ZCL_ATTR_THERMOSTAT_ALARM_MASK_ID                            = 0x001d,
+    /** @brief Thermostat Running Mode attribute */
+    ZB_ZCL_ATTR_THERMOSTAT_RUNNING_MODE_ID                          = 0x001e,
+    /*! @brief Start of Week attribute */
+    ZB_ZCL_ATTR_THERMOSTAT_START_OF_WEEK_ID                         = 0x0020,
+    /** NumberOfWeeklyTransitions attribute determines how many weekly schedule
+     *  transitions the thermostat is capable of handling. */
+    ZB_ZCL_ATTR_THERMOSTAT_NUMBER_OF_WEEKLY_TRANSITIONS_ID          = 0x0021,
+    /** NumberOfDailyTransitions attribute determines how many daily schedule
+     *  transitions the thermostat is capable of handling. */
+    ZB_ZCL_ATTR_THERMOSTAT_NUMBER_OF_DAILY_TRANSITIONS_ID           = 0x0022,
+    /** TemperatureSetpointHold specifies the temperature hold status on the thermostat. */
+    ZB_ZCL_ATTR_THERMOSTAT_TEMPERATURE_SETPOINT_HOLD_ID             = 0x0023,
+    /** TemperatureSetpointHoldDuration sets the period in minutes for which a setpoint
+     *  hold is active. */
+    ZB_ZCL_ATTR_THERMOSTAT_TEMPERATURE_SETPOINT_HOLD_DURATION_ID    = 0x0024,
+    /** The ThermostatProgrammingOperationMode attribute determines the operational state
+     *  of the thermostats programming. */
+    ZB_ZCL_ATTR_THERMOSTAT_THERMOSTAT_PROGRAMMING_OPERATION_MODE_ID = 0x0025,
+    /** ThermostatRunningState represents the current relay state of the heat, cool,
+     *  and fan relays. */
+    ZB_ZCL_ATTR_THERMOSTAT_THERMOSTAT_RUNNING_STATE_ID              = 0x0029,
+    /** The SetpointChangeSource attribute specifies the source of the current active
+     *  OccupiedCoolingSetpoint or OccupiedHeatingSetpoint (i.e., who or what determined
+     *  the current setpoint). */
+    ZB_ZCL_ATTR_THERMOSTAT_SETPOINT_CHANGE_SOURCE_ID                = 0x0030,
+    /** The SetpointChangeAmount attribute specifies the delta between the current active
+     *  OccupiedCoolingSetpoint or OccupiedHeatingSetpoint and the previous active
+     *  setpoint. */
+    ZB_ZCL_ATTR_THERMOSTAT_SETPOINT_CHANGE_AMOUNT_ID                = 0x0031,
+    /** The SetpointChangeSourceTimestamp attribute specifies the time in UTC at which
+     *  the SetpointChangeSourceAmount attribute change was recorded. */
+    ZB_ZCL_ATTR_THERMOSTAT_SETPOINT_CHANGE_SOURCE_TIMESTAMP_ID      = 0x0032,
+    /** Specifies the degrees Celsius, in 0.1 degree increments, the Thermostat server
+     *  will allow the LocalTemperature attribute to float above the OccupiedCooling
+     *  setpoint (i.e., OccupiedCooling + OccupiedSetback) or below the OccupiedHeating
+     *  setpoint (i.e., occupiedHeating, OccupiedSetback) before initiating a state change
+     *  to bring the temperature back to the users desired setpoint. */
+    ZB_ZCL_ATTR_THERMOSTAT_OCCUPIED_SETBACK_ID                      = 0x0034,
+    /** Specifies the minimum degrees Celsius, in 0.1 degree increments,
+     *  the Thermostat server will allow the OccupiedSetback attribute
+     *  to be configured by a user. */
+    ZB_ZCL_ATTR_THERMOSTAT_OCCUPIED_SETBACK_MIN_ID                  = 0x0035,
+    /** Specifies the maximum degrees Celsius, in 0.1 degree increments,
+     *  the Thermostat server will allow the OccupiedSetback attribute
+     *  to be configured by a user. */
+    ZB_ZCL_ATTR_THERMOSTAT_OCCUPIED_SETBACK_MAX_ID                  = 0x0036,
+    /** Specifies the degrees Celsius, in 0.1 degree increments, the Thermostat server
+     *  will allow the LocalTemperature attribute to float above the UnoccupiedCooling
+     *  setpoint (i.e., UnoccupiedCooling + UnoccupiedSetback) or below the
+     *  UnoccupiedHeating setpoint (i.e., UnoccupiedHeating - UnoccupiedSetback)
+     *  before initiating a state change to bring the temperature back
+     *  to the users desired setpoint. */
+    ZB_ZCL_ATTR_THERMOSTAT_UNOCCUPIED_SETBACK_ID                    = 0x0037,
+    /** Specifies the minimum degrees Celsius, in 0.1 degree increments, the Thermostat
+     *  server will allow the UnoccupiedSetback attribute to be configured by a user. */
+    ZB_ZCL_ATTR_THERMOSTAT_UNOCCUPIED_SETBACK_MIN_ID                = 0x0038,
+    /** Specifies the maximum degrees Celsius, in 0.1 degree increments, the Thermostat
+     *  server will allow the UnoccupiedSetback attribute to be configured by a user. */
+    ZB_ZCL_ATTR_THERMOSTAT_UNOCCUPIED_SETBACK_MAX_ID                = 0x0039,
+    /** Specifies the delta, in 0.1 degrees Celsius, between LocalTemperature and
+     *  the OccupiedHeatingSetpoint or UnoccupiedHeatingSetpoint attributes at which
+     *  the Thermostat server will operate in emergency heat mode. */
+    ZB_ZCL_ATTR_THERMOSTAT_EMERGENCY_HEAT_DELTA_ID                  = 0x003a,
+    /** Indicates the type of Mini Split ACType of Mini Split AC is defined depending
+     *  on how Cooling and Heating condition is achieved by Mini Split AC. */
+    ZB_ZCL_ATTR_THERMOSTAT_AC_TYPE_ID                               = 0x0040,
+    /** Indicates capacity of Mini Split AC in terms of the format defined by
+     *  the ACCapacityFormat attribute. */
+    ZB_ZCL_ATTR_THERMOSTAT_AC_CAPACITY_ID                           = 0x0041,
+    /** Indicates type of refrigerant used within the Mini Split AC. */
+    ZB_ZCL_ATTR_THERMOSTAT_AC_REFRIGERANT_TYPE_ID                   = 0x0042,
+    /** This indicates type of Compressor used within the Mini Split AC. */
+    ZB_ZCL_ATTR_THERMOSTAT_AC_COMPRESSOR_TYPE_ID                    = 0x0043,
+    /** This indicates the type of errors encountered within the Mini Split AC. */
+    ZB_ZCL_ATTR_THERMOSTAT_AC_ERROR_CODE_ID                         = 0x0044,
+    /** @brief AC Louver position attribute */
+    ZB_ZCL_ATTR_THERMOSTAT_AC_LOUVER_POSITION_ID                    = 0x0045,
+    /** ACCoilTemperature represents the temperature in degrees Celsius, as measured
+     *  locally or remotely (over the network). */
+    ZB_ZCL_ATTR_THERMOSTAT_AC_COIL_TEMPERATURE_ID                   = 0x0046,
+    /** This is the format for the ACCapacity attribute. */
+    ZB_ZCL_ATTR_THERMOSTAT_AC_CAPACITY_FORMAT_ID                    = 0x0047,
 };
 
 /*! @brief Values for Control Sequence Of Operation attribute,
     @see ZCL spec, subclause 6.3.2.2.2.12 */
 enum zb_zcl_thermostat_control_sequence_of_operation_e
 {
-  /*! Cooling Only value */
-  ZB_ZCL_THERMOSTAT_CONTROL_SEQ_OF_OPERATION_COOLING_ONLY                            = 0x00,
-  /*! Cooling With Reheat value */
-  ZB_ZCL_THERMOSTAT_CONTROL_SEQ_OF_OPERATION_COOLING_WITH_REHEAT                     = 0x01,
-  /*! Heating Only value */
-  ZB_ZCL_THERMOSTAT_CONTROL_SEQ_OF_OPERATION_HEATING_ONLY                            = 0x02,
-  /*! Heating With Reheat value */
-  ZB_ZCL_THERMOSTAT_CONTROL_SEQ_OF_OPERATION_HEATING_WITH_REHEAT                     = 0x03,
-  /*! Cooling and Heating 4-pipes value */
-  ZB_ZCL_THERMOSTAT_CONTROL_SEQ_OF_OPERATION_COOLING_AND_HEATING_4_PIPES             = 0x04,
-  /*! Cooling and Heating 4-pipes with Reheat value */
-  ZB_ZCL_THERMOSTAT_CONTROL_SEQ_OF_OPERATION_COOLING_AND_HEATING_4_PIPES_WITH_REHEAT = 0x05,
+    /*! Cooling Only value */
+    ZB_ZCL_THERMOSTAT_CONTROL_SEQ_OF_OPERATION_COOLING_ONLY                            = 0x00,
+    /*! Cooling With Reheat value */
+    ZB_ZCL_THERMOSTAT_CONTROL_SEQ_OF_OPERATION_COOLING_WITH_REHEAT                     = 0x01,
+    /*! Heating Only value */
+    ZB_ZCL_THERMOSTAT_CONTROL_SEQ_OF_OPERATION_HEATING_ONLY                            = 0x02,
+    /*! Heating With Reheat value */
+    ZB_ZCL_THERMOSTAT_CONTROL_SEQ_OF_OPERATION_HEATING_WITH_REHEAT                     = 0x03,
+    /*! Cooling and Heating 4-pipes value */
+    ZB_ZCL_THERMOSTAT_CONTROL_SEQ_OF_OPERATION_COOLING_AND_HEATING_4_PIPES             = 0x04,
+    /*! Cooling and Heating 4-pipes with Reheat value */
+    ZB_ZCL_THERMOSTAT_CONTROL_SEQ_OF_OPERATION_COOLING_AND_HEATING_4_PIPES_WITH_REHEAT = 0x05,
 
-  ZB_ZCL_THERMOSTAT_CONTROL_SEQ_OF_OPERATION_RESERVED                                = 0x06
+    ZB_ZCL_THERMOSTAT_CONTROL_SEQ_OF_OPERATION_RESERVED                                = 0x06
 };
 
 /*! @brief Values for System Mode attribute,
     @see ZCL spec, subclause 6.3.2.2.2.13 */
 enum zb_zcl_thermostat_system_mode_e
 {
-  /*! Off value */
-  ZB_ZCL_THERMOSTAT_SYSTEM_MODE_OFF               = 0x00,
-  /*! Auto value */
-  ZB_ZCL_THERMOSTAT_SYSTEM_MODE_AUTO              = 0x01,
-  /*! Cool value */
-  ZB_ZCL_THERMOSTAT_SYSTEM_MODE_COOL              = 0x03,
-  /*! Heat value */
-  ZB_ZCL_THERMOSTAT_SYSTEM_MODE_HEAT              = 0x04,
-  /*! Emergency Heating value */
-  ZB_ZCL_THERMOSTAT_SYSTEM_MODE_EMERGENCY_HEATING = 0x05,
-  /*! Precooling value */
-  ZB_ZCL_THERMOSTAT_SYSTEM_MODE_PRECOOLING        = 0x06,
-  /*! Fan Only value */
-  ZB_ZCL_THERMOSTAT_SYSTEM_MODE_FAN_ONLY          = 0x07,
-  /*! Dry value */
-  ZB_ZCL_THERMOSTAT_SYSTEM_MODE_DRY               = 0x08,
-  /*! Sleep value */
-  ZB_ZCL_THERMOSTAT_SYSTEM_MODE_SLEEP             = 0x09,
-  /* 07/02/2015 CR [AV] */
-  /*! Unknown system mode value */
-  ZB_ZCL_THERMOSTAT_SYSTEM_MODE_RESERVED = 0x0a
+    /*! Off value */
+    ZB_ZCL_THERMOSTAT_SYSTEM_MODE_OFF               = 0x00,
+    /*! Auto value */
+    ZB_ZCL_THERMOSTAT_SYSTEM_MODE_AUTO              = 0x01,
+    /*! Cool value */
+    ZB_ZCL_THERMOSTAT_SYSTEM_MODE_COOL              = 0x03,
+    /*! Heat value */
+    ZB_ZCL_THERMOSTAT_SYSTEM_MODE_HEAT              = 0x04,
+    /*! Emergency Heating value */
+    ZB_ZCL_THERMOSTAT_SYSTEM_MODE_EMERGENCY_HEATING = 0x05,
+    /*! Precooling value */
+    ZB_ZCL_THERMOSTAT_SYSTEM_MODE_PRECOOLING        = 0x06,
+    /*! Fan Only value */
+    ZB_ZCL_THERMOSTAT_SYSTEM_MODE_FAN_ONLY          = 0x07,
+    /*! Dry value */
+    ZB_ZCL_THERMOSTAT_SYSTEM_MODE_DRY               = 0x08,
+    /*! Sleep value */
+    ZB_ZCL_THERMOSTAT_SYSTEM_MODE_SLEEP             = 0x09,
+    /* 07/02/2015 CR [AV] */
+    /*! Unknown system mode value */
+    ZB_ZCL_THERMOSTAT_SYSTEM_MODE_RESERVED = 0x0a
 };
 
 
 /*! @brief Values for AC Louver position attribute */
 enum zb_zcl_thermostat_ac_louver_position_e
 {
-  ZB_ZCL_THERMOSTAT_LOUVER_FULLY_CLOSED        = 0x01,
-  ZB_ZCL_THERMOSTAT_LOUVER_FULLY_OPENED        = 0x02,
-  ZB_ZCL_THERMOSTAT_LOUVER_QUARTER_OPEN        = 0x03,
-  ZB_ZCL_THERMOSTAT_LOUVER_HALF_OPEN           = 0x04,
-  ZB_ZCL_THERMOSTAT_LOUVER_THREE_QUARTERS_OPEN = 0x05,
+    ZB_ZCL_THERMOSTAT_LOUVER_FULLY_CLOSED        = 0x01,
+    ZB_ZCL_THERMOSTAT_LOUVER_FULLY_OPENED        = 0x02,
+    ZB_ZCL_THERMOSTAT_LOUVER_QUARTER_OPEN        = 0x03,
+    ZB_ZCL_THERMOSTAT_LOUVER_HALF_OPEN           = 0x04,
+    ZB_ZCL_THERMOSTAT_LOUVER_THREE_QUARTERS_OPEN = 0x05,
 };
 
 /*! @brief Values for Start of Week attribute,
     @see ZCL spec, subclause 6.3.2.2.3.1 */
 enum zb_zcl_thermostat_start_of_week_e
 {
-  /*! Sunday value */
-  ZB_ZCL_THERMOSTAT_START_OF_WEEK_SUNDAY         = 0x00,
-  /*! Monday value */
-  ZB_ZCL_THERMOSTAT_START_OF_WEEK_MONDAY         = 0x01,
-  /*! Tuesday value */
-  ZB_ZCL_THERMOSTAT_START_OF_WEEK_TUESDAY        = 0x02,
-  /*! Wednesday value */
-  ZB_ZCL_THERMOSTAT_START_OF_WEEK_WEDNESDAY      = 0x03,
-  /*! Thursday value */
-  ZB_ZCL_THERMOSTAT_START_OF_WEEK_THURSDAY       = 0x04,
-  /*! Friday value */
-  ZB_ZCL_THERMOSTAT_START_OF_WEEK_FRIDAY         = 0x05,
-  /*! Saturday value */
-  ZB_ZCL_THERMOSTAT_START_OF_WEEK_SATURDAY       = 0x06,
+    /*! Sunday value */
+    ZB_ZCL_THERMOSTAT_START_OF_WEEK_SUNDAY         = 0x00,
+    /*! Monday value */
+    ZB_ZCL_THERMOSTAT_START_OF_WEEK_MONDAY         = 0x01,
+    /*! Tuesday value */
+    ZB_ZCL_THERMOSTAT_START_OF_WEEK_TUESDAY        = 0x02,
+    /*! Wednesday value */
+    ZB_ZCL_THERMOSTAT_START_OF_WEEK_WEDNESDAY      = 0x03,
+    /*! Thursday value */
+    ZB_ZCL_THERMOSTAT_START_OF_WEEK_THURSDAY       = 0x04,
+    /*! Friday value */
+    ZB_ZCL_THERMOSTAT_START_OF_WEEK_FRIDAY         = 0x05,
+    /*! Saturday value */
+    ZB_ZCL_THERMOSTAT_START_OF_WEEK_SATURDAY       = 0x06,
 };
 
 /*! @brief Thermostat Alarm Code for Alarming
@@ -286,12 +286,12 @@ enum zb_zcl_thermostat_start_of_week_e
 */
 enum zb_zcl_thermostat_alarm_code_e
 {
-  /** @brief MainsVoltageAlarmCode - MainsVoltageMinThreshold reached for Mains Voltage**/
+    /** @brief MainsVoltageAlarmCode - MainsVoltageMinThreshold reached for Mains Voltage**/
     ZB_ZCL_THERMOSTAT_ALARM_CODE_INITIALIZATION_FAILURE = 0x00,
-  /** @brief MainsVoltageAlarmCode - MainsVoltageMaxThreshold reached for Mains Voltage**/
+    /** @brief MainsVoltageAlarmCode - MainsVoltageMaxThreshold reached for Mains Voltage**/
     ZB_ZCL_THERMOSTAT_ALARM_CODE_HARDWARE_FAILURE = 0x01,
-  /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold or
-   * BatteryPercentageMinThreshold reached for Battery Source 1 */
+    /** @brief BatteryAlarmCode - BatteryVoltageMinThreshold or
+     * BatteryPercentageMinThreshold reached for Battery Source 1 */
     ZB_ZCL_THERMOSTAT_ALARM_CODE_SELFCALIBRATION_FAILURE = 0x02,
 };
 /* Default value for Start Of Week attribute */
@@ -552,12 +552,12 @@ enum zb_zcl_thermostat_alarm_code_e
 /*! @brief Bits of ThermostatProgrammingOperationMode */
 enum zb_zcl_thermostat_programming_operation_mode_bit_e
 {
-  /*! Schedule programming bit */
-  ZB_ZCL_THERMOSTAT_SCHEDULE_PROGRAMMING_MODE_BIT             = 0x01,
-  /*! Auto/recovery bit  */
-  ZB_ZCL_THERMOSTAT_AUTO_RECOVERY_PROGRAMMING_MODE_BIT        = 0x02,
-  /*! Economy/energy star bit */
-  ZB_ZCL_THERMOSTAT_ECONOMY_ENERGY_START_PROGRAMMING_MODE_BIT = 0x04,
+    /*! Schedule programming bit */
+    ZB_ZCL_THERMOSTAT_SCHEDULE_PROGRAMMING_MODE_BIT             = 0x01,
+    /*! Auto/recovery bit  */
+    ZB_ZCL_THERMOSTAT_AUTO_RECOVERY_PROGRAMMING_MODE_BIT        = 0x02,
+    /*! Economy/energy star bit */
+    ZB_ZCL_THERMOSTAT_ECONOMY_ENERGY_START_PROGRAMMING_MODE_BIT = 0x04,
 };
 
 /*! @} */ /* Thermostat cluster attributes */
@@ -571,16 +571,16 @@ enum zb_zcl_thermostat_programming_operation_mode_bit_e
 */
 enum zb_zcl_thermostat_cmd_e
 {
-  /** Setpoint Raise/Lower command */
-  ZB_ZCL_CMD_THERMOSTAT_SETPOINT_RAISE_LOWER  = 0x00,
-  /** Set Weekly Schedule command */
-  ZB_ZCL_CMD_THERMOSTAT_SET_WEEKLY_SCHEDULE   = 0x01,
-  /** Get Weekly Schedule command */
-  ZB_ZCL_CMD_THERMOSTAT_GET_WEEKLY_SCHEDULE   = 0x02,
-  /** Clear Weekly Schedule command */
-  ZB_ZCL_CMD_THERMOSTAT_CLEAR_WEEKLY_SCHEDULE = 0x03,
-  /** Get Relay Status Log command */
-  ZB_ZCL_CMD_THERMOSTAT_GET_RELAY_STATUS_LOG  = 0x04
+    /** Setpoint Raise/Lower command */
+    ZB_ZCL_CMD_THERMOSTAT_SETPOINT_RAISE_LOWER  = 0x00,
+    /** Set Weekly Schedule command */
+    ZB_ZCL_CMD_THERMOSTAT_SET_WEEKLY_SCHEDULE   = 0x01,
+    /** Get Weekly Schedule command */
+    ZB_ZCL_CMD_THERMOSTAT_GET_WEEKLY_SCHEDULE   = 0x02,
+    /** Clear Weekly Schedule command */
+    ZB_ZCL_CMD_THERMOSTAT_CLEAR_WEEKLY_SCHEDULE = 0x03,
+    /** Get Relay Status Log command */
+    ZB_ZCL_CMD_THERMOSTAT_GET_RELAY_STATUS_LOG  = 0x04
 };
 
 /*! @brief Thermostat cluster command identifiers
@@ -588,10 +588,10 @@ enum zb_zcl_thermostat_cmd_e
 */
 enum zb_zcl_thermostat_cmd_resp_ha_e
 {
-  /** Get Weekly Schedule response command */
-  ZB_ZCL_CMD_THERMOSTAT_GET_WEEKLY_SCHEDULE_RESP  = 0x00,
-  /** Get Relay Status Log response command */
-  ZB_ZCL_CMD_THERMOSTAT_GET_RELAY_STATUS_LOG_RESP = 0x01
+    /** Get Weekly Schedule response command */
+    ZB_ZCL_CMD_THERMOSTAT_GET_WEEKLY_SCHEDULE_RESP  = 0x00,
+    /** Get Relay Status Log response command */
+    ZB_ZCL_CMD_THERMOSTAT_GET_RELAY_STATUS_LOG_RESP = 0x01
 };
 
 /** @cond internals_doc */
@@ -810,22 +810,22 @@ enum zb_zcl_thermostat_cmd_resp_ha_e
  */
 typedef ZB_PACKED_PRE struct zb_zcl_thermostat_setpoint_raise_lower_req_s
 {
-  zb_uint8_t mode;
-  zb_int8_t amount;
+    zb_uint8_t mode;
+    zb_int8_t amount;
 } ZB_PACKED_STRUCT zb_zcl_thermostat_setpoint_raise_lower_req_t;
 
 /*! @brief Values for Mode field,
     @see ZCL spec, subclause 6.3.2.3.1.2 */
 enum zb_zcl_thermostat_setpoint_raise_lower_mode_e
 {
-  /*! Heat value */
-  ZB_ZCL_THERMOSTAT_SETPOINT_RAISE_LOWER_MODE_HEAT     = 0x00,
-  /*! Cool value */
-  ZB_ZCL_THERMOSTAT_SETPOINT_RAISE_LOWER_MODE_COOL     = 0x01,
-  /*! Both (Heat and Cool) value */
-  ZB_ZCL_THERMOSTAT_SETPOINT_RAISE_LOWER_MODE_BOTH     = 0x02,
+    /*! Heat value */
+    ZB_ZCL_THERMOSTAT_SETPOINT_RAISE_LOWER_MODE_HEAT     = 0x00,
+    /*! Cool value */
+    ZB_ZCL_THERMOSTAT_SETPOINT_RAISE_LOWER_MODE_COOL     = 0x01,
+    /*! Both (Heat and Cool) value */
+    ZB_ZCL_THERMOSTAT_SETPOINT_RAISE_LOWER_MODE_BOTH     = 0x02,
 
-  ZB_ZCL_THERMOSTAT_SETPOINT_RAISE_LOWER_MODE_RESERVED = 0x03
+    ZB_ZCL_THERMOSTAT_SETPOINT_RAISE_LOWER_MODE_RESERVED = 0x03
 };
 
 #define ZB_ZCL_THERMOSTAT_SETPOINT_RAISE_LOWER_REQ_PAYLOAD_LEN \
@@ -887,9 +887,9 @@ enum zb_zcl_thermostat_setpoint_raise_lower_mode_e
  */
 typedef ZB_PACKED_PRE struct zb_zcl_thermostat_weekly_schedule_point_pair_s
 {
-  zb_uint16_t transition_time;
-  zb_uint16_t heat_set_point;
-  zb_uint16_t cool_set_point;
+    zb_uint16_t transition_time;
+    zb_uint16_t heat_set_point;
+    zb_uint16_t cool_set_point;
 } ZB_PACKED_STRUCT zb_zcl_thermostat_weekly_schedule_point_pair_t;
 
 #define ZB_ZCL_THERMOSTAT_WEEKLY_SCHEDULE_POINT_PAIR_FULL_SIZE \
@@ -904,14 +904,14 @@ typedef ZB_PACKED_PRE struct zb_zcl_thermostat_weekly_schedule_point_pair_s
     @see ZCL spec, subclause 10.1.3.3.1.4 */
 enum zb_zcl_thermostat_weekly_schedule_mode_for_seq_e
 {
-  /*! Heat value */
-  ZB_ZCL_THERMOSTAT_WEEKLY_SCHEDULE_MODE_FOR_SEQ_HEAT     = 0x01,
-  /*! Cool value */
-  ZB_ZCL_THERMOSTAT_WEEKLY_SCHEDULE_MODE_FOR_SEQ_COOL     = 0x02,
-  /*! Both (Heat and Cool) value */
-  ZB_ZCL_THERMOSTAT_WEEKLY_SCHEDULE_MODE_FOR_SEQ_BOTH     = 0x03,
+    /*! Heat value */
+    ZB_ZCL_THERMOSTAT_WEEKLY_SCHEDULE_MODE_FOR_SEQ_HEAT     = 0x01,
+    /*! Cool value */
+    ZB_ZCL_THERMOSTAT_WEEKLY_SCHEDULE_MODE_FOR_SEQ_COOL     = 0x02,
+    /*! Both (Heat and Cool) value */
+    ZB_ZCL_THERMOSTAT_WEEKLY_SCHEDULE_MODE_FOR_SEQ_BOTH     = 0x03,
 
-  ZB_ZCL_THERMOSTAT_WEEKLY_SCHEDULE_MODE_FOR_SEQ_RESERVED = 0x04
+    ZB_ZCL_THERMOSTAT_WEEKLY_SCHEDULE_MODE_FOR_SEQ_RESERVED = 0x04
 };
 
 /** @brief Add attribute value to command payload
@@ -983,9 +983,9 @@ enum zb_zcl_thermostat_weekly_schedule_mode_for_seq_e
 
 typedef ZB_PACKED_PRE struct zb_zcl_thermostat_set_weekly_schedule_req_s
 {
-  zb_uint8_t num_of_transitions;
-  zb_uint8_t day_of_week;
-  zb_uint8_t mode_for_seq;
+    zb_uint8_t num_of_transitions;
+    zb_uint8_t day_of_week;
+    zb_uint8_t mode_for_seq;
 } ZB_PACKED_STRUCT zb_zcl_thermostat_set_weekly_schedule_req_t;
 
 #define ZB_ZCL_THERMOSTAT_SET_WEEKLY_SCHEDULE_REQ_SIZE \
@@ -1083,8 +1083,8 @@ typedef ZB_PACKED_PRE struct zb_zcl_thermostat_set_weekly_schedule_req_s
 
 typedef ZB_PACKED_PRE struct zb_zcl_thermostat_get_weekly_schedule_req_s
 {
-  zb_uint8_t days_to_return;
-  zb_uint8_t mode_to_return;
+    zb_uint8_t days_to_return;
+    zb_uint8_t mode_to_return;
 } ZB_PACKED_STRUCT zb_zcl_thermostat_get_weekly_schedule_req_t;
 
 #define ZB_ZCL_THERMOSTAT_GET_WEEKLY_SCHEDULE_REQ_PAYLOAD_LEN \
@@ -1148,9 +1148,9 @@ typedef ZB_PACKED_PRE struct zb_zcl_thermostat_get_weekly_schedule_req_s
  */
 typedef ZB_PACKED_PRE struct zb_zcl_thermostat_get_weekly_schedule_resp_s
 {
-  zb_uint8_t num_of_transitions;
-  zb_uint8_t day_of_week;
-  zb_uint8_t mode_for_seq;
+    zb_uint8_t num_of_transitions;
+    zb_uint8_t day_of_week;
+    zb_uint8_t mode_for_seq;
 } ZB_PACKED_STRUCT zb_zcl_thermostat_get_weekly_schedule_resp_t;
 
 /** @brief Initialize Get Weekly Schedule resp command
@@ -1268,12 +1268,12 @@ typedef ZB_PACKED_PRE struct zb_zcl_thermostat_get_weekly_schedule_resp_s
 
 typedef ZB_PACKED_PRE struct zb_zcl_thermostat_get_relay_status_log_resp_s
 {
-  zb_uint16_t time_of_day;
-  zb_uint8_t relay_status;
-  zb_int16_t local_temperature;
-  zb_uint8_t humidity_in_percentage;
-  zb_int16_t set_point;
-  zb_uint16_t unread_entries;
+    zb_uint16_t time_of_day;
+    zb_uint8_t relay_status;
+    zb_int16_t local_temperature;
+    zb_uint8_t humidity_in_percentage;
+    zb_int16_t set_point;
+    zb_uint16_t unread_entries;
 } ZB_PACKED_STRUCT zb_zcl_thermostat_get_relay_status_log_resp_t;
 
 #define ZB_ZCL_THERMOSTAT_GET_RELAY_STATUS_LOG_RESP_SIZE \
@@ -1388,24 +1388,24 @@ typedef ZB_PACKED_PRE struct zb_zcl_thermostat_get_relay_status_log_resp_s
 #define ZB_WEEK_TIME_SUBTRACT(a, b) ((a) > (b)) ? ((a) - (b)) : ((a) + ZB_SECOND_PER_WEEK - (b))
 
 #ifdef ZB_TIMER_32
-  // 1 day (24h)
+// 1 day (24h)
 /** @brief Maximum period of Thermostat process loop */
-  #define ZB_ZCL_THERMOSTAT_TIMER_MAX          (24*60*60)
+#define ZB_ZCL_THERMOSTAT_TIMER_MAX          (24*60*60)
 #else
-  // 5 min
+// 5 min
 /** @brief Maximum period of Thermostat process loop */
-  #define ZB_ZCL_THERMOSTAT_TIMER_MAX          (5*60)
+#define ZB_ZCL_THERMOSTAT_TIMER_MAX          (5*60)
 #endif
 
 
 /** @brief Struct with one Weekly Schedule attribute */
 typedef struct zb_zcl_thermostat_weekly_schedule_record_s
 {
-  zb_uint8_t  days;             /*< days, ZB_ZCL_THERMOSTAT_WEEKLY_FREE_RECORD (0) - free record */
-  zb_uint32_t start_time;       /*< seconds after midnight */
-  zb_uint8_t mode;              /*< Mode for Sequence */
-  zb_uint16_t heat_setpoint;    /*< Heat Set Point */
-  zb_uint16_t cool_setpoint;    /*< Cool Set Point */
+    zb_uint8_t  days;             /*< days, ZB_ZCL_THERMOSTAT_WEEKLY_FREE_RECORD (0) - free record */
+    zb_uint32_t start_time;       /*< seconds after midnight */
+    zb_uint8_t mode;              /*< Mode for Sequence */
+    zb_uint16_t heat_setpoint;    /*< Heat Set Point */
+    zb_uint16_t cool_setpoint;    /*< Cool Set Point */
 }
 zb_zcl_thermostat_weekly_schedule_record_t;
 
@@ -1418,8 +1418,8 @@ zb_zcl_thermostat_weekly_schedule_record_t;
 /** @brief Struct with Context Thermostat cluster */
 typedef struct zb_zcl_thermostat_context_s
 {
-  zb_zcl_thermostat_weekly_schedule_record_t schedule_table[ZB_ZCL_THERMOSTAT_WEEKLY_SCHEDULE_TABLE_SIZE];
-  zb_uint8_t setpoint_mode;
+    zb_zcl_thermostat_weekly_schedule_record_t schedule_table[ZB_ZCL_THERMOSTAT_WEEKLY_SCHEDULE_TABLE_SIZE];
+    zb_uint8_t setpoint_mode;
 }
 zb_zcl_thermostat_context_t;
 
@@ -1427,9 +1427,9 @@ zb_zcl_thermostat_context_t;
 */
 typedef ZB_PACKED_PRE struct zb_zcl_thermostat_value_param_s
 {
-  zb_uint8_t mode;              /*!< Mode for Sequence */
-  zb_uint16_t heat_setpoint;    /*!< Heat Set Point */
-  zb_uint16_t cool_setpoint;    /*!< Cool Set Point */
+    zb_uint8_t mode;              /*!< Mode for Sequence */
+    zb_uint16_t heat_setpoint;    /*!< Heat Set Point */
+    zb_uint16_t cool_setpoint;    /*!< Cool Set Point */
 } zb_zcl_thermostat_value_param_t;
 /*! @}
  *  @endcond */ /* internals_doc */

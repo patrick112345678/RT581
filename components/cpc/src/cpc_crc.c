@@ -1,12 +1,12 @@
 /**
  * @file cpc_crc.c
  * @author Rex Huang (rex.huang@rafaelmicro.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2023-08-03
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 #include "cpc_crc.h"
 #include "log.h"
@@ -76,16 +76,16 @@ static uint16_t cpc_compute_crc16(uint8_t new_byte, uint16_t prev_result)
     prev_result ^= (prev_result & 0xff) >> 4;
     prev_result ^= (uint16_t) (((uint16_t) (prev_result << 8)) << 4);
     prev_result ^= ((uint8_t) (((uint8_t) (prev_result & 0xff)) << 5))
-                    | ((uint16_t) ((uint16_t) ((uint8_t) (((uint8_t) (prev_result & 0xff)) >> 3)) << 8));
-#else    
+                   | ((uint16_t) ((uint16_t) ((uint8_t) (((uint8_t) (prev_result & 0xff)) >> 3)) << 8));
+#else
     uint8_t bit;
 
-    for(bit=0; bit<8; bit++)
+    for (bit = 0; bit < 8; bit++)
     {
         prev_result ^= (new_byte & 0x01);
         prev_result = (prev_result & 0x01) ? (prev_result >> 1) ^ 0x8408 : (prev_result >> 1);
         new_byte = new_byte >> 1;
-    }    
+    }
 #endif
     return prev_result;
 }

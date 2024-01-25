@@ -60,9 +60,9 @@
 #define IZS_DEVICE_CHECKIN_INTERVAL           (27*60*4) /* 27 min units of 250 ms */
 #define IZS_DEVICE_LONG_POLL_INTERVAL         5*60*4  /* 5 min in units of 250 ms */
 
-#define IZS_DEVICE_SHORT_POLL_INTERVAL         2	    /* 1/2 sec in units of 250 ms */
+#define IZS_DEVICE_SHORT_POLL_INTERVAL         2        /* 1/2 sec in units of 250 ms */
 #define IZS_DEVICE_MIN_CHECKIN_INTERVAL        0x50  /* 80 quarterseconds == 20 sec */
-#define IZS_DEVICE_MIN_POLL_CONTROL_INTERVAL   0x01	/* 1 quarterseconds == 250 msec */
+#define IZS_DEVICE_MIN_POLL_CONTROL_INTERVAL   0x01 /* 1 quarterseconds == 250 msec */
 #define IZS_DEVICE_MIN_LONG_POLL_INTERVAL      4
 
 #define IZS_DEVICE_TURBO_POLL_AFTER_JOIN_DURATION      (60 /* seconds */)
@@ -75,8 +75,8 @@
 /* Battery attribute variables */
 #define IZS_INIT_BATTERY_VOLTAGE        0x0
 #define IZS_INIT_BATTERY_QUANTITY 2
-#define IZS_INIT_BATTERY_ALARM_MASK 		0
-#define IZS_INIT_BATTERY_ALARM_STATE		0
+#define IZS_INIT_BATTERY_ALARM_MASK         0
+#define IZS_INIT_BATTERY_ALARM_STATE        0
 
 /*** Parameters for battery measurement ***/
 #define IZS_BATTERY_MONITORING_ARRAY_SIZE 16
@@ -100,24 +100,24 @@
 /* attributes of Basic cluster */
 typedef struct izs_device_basic_attr_s
 {
-  zb_uint8_t zcl_version;
-  zb_uint8_t app_version;
-  zb_uint8_t stack_version;
-  zb_uint8_t hw_version;
-  zb_char_t mf_name[32];
-  zb_char_t model_id[16];
-  zb_char_t date_code[10];
-  zb_uint8_t power_source;
-  zb_char_t location_id[5];
-  zb_uint8_t ph_env;
-  zb_char_t sw_build_id[3];
+    zb_uint8_t zcl_version;
+    zb_uint8_t app_version;
+    zb_uint8_t stack_version;
+    zb_uint8_t hw_version;
+    zb_char_t mf_name[32];
+    zb_char_t model_id[16];
+    zb_char_t date_code[10];
+    zb_uint8_t power_source;
+    zb_char_t location_id[5];
+    zb_uint8_t ph_env;
+    zb_char_t sw_build_id[3];
 }
 izs_device_basic_attr_t;
 
 /* attributes of Identify cluster */
 typedef struct izs_device_identify_attr_s
 {
-  zb_uint16_t identify_time;
+    zb_uint16_t identify_time;
 }
 izs_device_identify_attr_t;
 
@@ -127,79 +127,79 @@ izs_device_identify_attr_t;
 /* Poll Control cluster attributes data */
 typedef struct izs_device_poll_control_attr_s
 {
-  zb_uint32_t checkin_interval;
-  zb_uint32_t long_poll_interval;
-  zb_uint16_t short_poll_interval;
-  zb_uint16_t fast_poll_timeout;
-  zb_uint32_t checkin_interval_min;
-  zb_uint32_t long_poll_interval_min;
-  zb_uint16_t fast_poll_timeout_max;
+    zb_uint32_t checkin_interval;
+    zb_uint32_t long_poll_interval;
+    zb_uint16_t short_poll_interval;
+    zb_uint16_t fast_poll_timeout;
+    zb_uint32_t checkin_interval_min;
+    zb_uint32_t long_poll_interval_min;
+    zb_uint16_t fast_poll_timeout_max;
 }
 izs_device_poll_control_attr_t;
 
 /* OTA Upgrade client cluster attributes data */
 typedef struct izs_device_ota_attr_s
 {
-  zb_ieee_addr_t upgrade_server;
-  zb_uint32_t file_offset;
-  zb_uint32_t file_version;
-  zb_uint16_t stack_version;
-  zb_uint32_t downloaded_file_ver;
-  zb_uint16_t downloaded_stack_ver;
-  zb_uint8_t image_status;
-  zb_uint16_t manufacturer;
-  zb_uint16_t image_type;
-  zb_uint16_t min_block_reque;
-  zb_uint16_t image_stamp;
-  zb_uint16_t server_addr;
-  zb_uint8_t server_ep;
+    zb_ieee_addr_t upgrade_server;
+    zb_uint32_t file_offset;
+    zb_uint32_t file_version;
+    zb_uint16_t stack_version;
+    zb_uint32_t downloaded_file_ver;
+    zb_uint16_t downloaded_stack_ver;
+    zb_uint8_t image_status;
+    zb_uint16_t manufacturer;
+    zb_uint16_t image_type;
+    zb_uint16_t min_block_reque;
+    zb_uint16_t image_stamp;
+    zb_uint16_t server_addr;
+    zb_uint8_t server_ep;
 }
 izs_device_ota_attr_t;
 
 typedef struct izs_device_power_config_attr_s
 {
-  zb_uint8_t voltage;
-  zb_uint8_t size;
-  zb_uint8_t quantity;
-  zb_uint8_t rated_voltage;
-  zb_uint8_t alarm_mask;
-  zb_uint8_t voltage_min_threshold;
-  zb_uint8_t remaining;
-  zb_uint8_t threshold1;
-  zb_uint8_t threshold2;
-  zb_uint8_t threshold3;
-  zb_uint8_t min_threshold;
-  zb_uint8_t percent_threshold1;
-  zb_uint8_t percent_threshold2;
-  zb_uint8_t percent_threshold3;
-  zb_uint32_t alarm_state;
+    zb_uint8_t voltage;
+    zb_uint8_t size;
+    zb_uint8_t quantity;
+    zb_uint8_t rated_voltage;
+    zb_uint8_t alarm_mask;
+    zb_uint8_t voltage_min_threshold;
+    zb_uint8_t remaining;
+    zb_uint8_t threshold1;
+    zb_uint8_t threshold2;
+    zb_uint8_t threshold3;
+    zb_uint8_t min_threshold;
+    zb_uint8_t percent_threshold1;
+    zb_uint8_t percent_threshold2;
+    zb_uint8_t percent_threshold3;
+    zb_uint32_t alarm_state;
 }
 izs_device_power_config_attr_t;
 
 typedef struct zb_ota_upgrade_ctx_s
 {
-  zb_uint32_t total_image_size;
-  zb_uint32_t addr_to_erase;
-  zb_uint32_t address;          /* Supposed to be constant value, init
+    zb_uint32_t total_image_size;
+    zb_uint32_t addr_to_erase;
+    zb_uint32_t address;          /* Supposed to be constant value, init
                                  * on OTA Upgrade start  */
-  void       *flash_dev;
-  zb_uint32_t fw_version;
-  zb_uint8_t  param;
+    void       *flash_dev;
+    zb_uint32_t fw_version;
+    zb_uint8_t  param;
 } zb_ota_upgrade_ctx_t;
 
 /*-----------------------------------------------------------------*/
 
 typedef enum izs_device_state_e
 {
-  IZS_STATE_APP_NOT_INIT = 0,
-  IZS_STATE_HW_INIT,                   /* app just started up, H/W is initialized */
-  IZS_STATE_IDLE,                      /* device is idle (after leave) */
-  IZS_STATE_START_JOIN,                /* join is started */
-  IZS_STATE_STARTUP_COMPLETE,          /* startup complete with SUCCESS status */
-  IZS_STATE_REJOIN_BACKOFF,            /* rejoin backoff is in progress */
-  IZS_STATE_RESET_TO_DEFAULT,          /* reset to default */
-  IZS_STATE_NO_NWK_SLEEP,              /* join failed, go sleep */
-  IZS_STATE_SENSOR_NORMAL              /* Sensor App normal processing */
+    IZS_STATE_APP_NOT_INIT = 0,
+    IZS_STATE_HW_INIT,                   /* app just started up, H/W is initialized */
+    IZS_STATE_IDLE,                      /* device is idle (after leave) */
+    IZS_STATE_START_JOIN,                /* join is started */
+    IZS_STATE_STARTUP_COMPLETE,          /* startup complete with SUCCESS status */
+    IZS_STATE_REJOIN_BACKOFF,            /* rejoin backoff is in progress */
+    IZS_STATE_RESET_TO_DEFAULT,          /* reset to default */
+    IZS_STATE_NO_NWK_SLEEP,              /* join failed, go sleep */
+    IZS_STATE_SENSOR_NORMAL              /* Sensor App normal processing */
 }
 izs_device_state_t;
 
@@ -225,8 +225,8 @@ void izs_set_device_state(izs_device_state_t new_state);
 
 typedef struct izs_ias_zone_info_s
 {
-  zb_uint16_t ias_status;
-  zb_uint16_t timestamp;        // qsec
+    zb_uint16_t ias_status;
+    zb_uint16_t timestamp;        // qsec
 }
 izs_ias_zone_info_t;
 
@@ -234,23 +234,23 @@ ZB_RING_BUFFER_DECLARE(izs_ias_zone_queue, izs_ias_zone_info_t, IZS_IAS_ZONE_QUE
 
 typedef struct izs_ias_zone_attr_s
 {
-  zb_uint16_t zone_type;
-  zb_uint16_t zone_status;
-  zb_uint8_t zone_id;
-  zb_uint8_t zone_state;
-  zb_ieee_addr_t cie_addr;
-  zb_uint16_t cie_short_addr;
-  zb_uint8_t cie_ep;
-  zb_uint8_t number_of_zone_sens_levels_supported;
-  zb_uint8_t current_zone_sens_level;
+    zb_uint16_t zone_type;
+    zb_uint16_t zone_status;
+    zb_uint8_t zone_id;
+    zb_uint8_t zone_state;
+    zb_ieee_addr_t cie_addr;
+    zb_uint16_t cie_short_addr;
+    zb_uint8_t cie_ep;
+    zb_uint8_t number_of_zone_sens_levels_supported;
+    zb_uint8_t current_zone_sens_level;
 }
 izs_ias_zone_attr_t;
 
 #ifdef IAS_ACE_APP
 typedef struct izs_ias_ace_attr_s
 {
-  zb_zcl_ias_ace_zone_table_t ias_ace_zone_table_list[IAS_ACE_ZONE_TABLE_LIST_SIZE];
-  zb_uint8_t ias_ace_zone_table_length;
+    zb_zcl_ias_ace_zone_table_t ias_ace_zone_table_list[IAS_ACE_ZONE_TABLE_LIST_SIZE];
+    zb_uint8_t ias_ace_zone_table_length;
 }
 izs_ias_ace_attr_t;
 #endif
@@ -258,40 +258,40 @@ izs_ias_ace_attr_t;
 /*** Production config data ***/
 typedef ZB_PACKED_PRE struct izs_production_config_t
 {
-  zb_char_t manuf_name[16];
-  zb_char_t model_id[16];
+    zb_char_t manuf_name[16];
+    zb_char_t model_id[16];
 }
 ZB_PACKED_STRUCT izs_production_config_t;
 
 typedef struct izs_device_ctx_s
 {
-  izs_device_state_t device_state;
-  zb_uint8_t join_counter;
+    izs_device_state_t device_state;
+    zb_uint8_t join_counter;
 
-  izs_ias_zone_attr_t zone_attr;
-  izs_device_basic_attr_t basic_attr;
-  izs_device_identify_attr_t identify_attr;
-  izs_device_poll_control_attr_t poll_control_attr;
-  izs_device_ota_attr_t ota_attr;
-  izs_device_power_config_attr_t pwr_cfg_attr;
+    izs_ias_zone_attr_t zone_attr;
+    izs_device_basic_attr_t basic_attr;
+    izs_device_identify_attr_t identify_attr;
+    izs_device_poll_control_attr_t poll_control_attr;
+    izs_device_ota_attr_t ota_attr;
+    izs_device_power_config_attr_t pwr_cfg_attr;
 
-  zb_ota_upgrade_ctx_t ota_ctx;
+    zb_ota_upgrade_ctx_t ota_ctx;
 
-  izs_ias_zone_queue_t ias_zone_queue;
-  zb_bufid_t out_buf; /* buffer is used for sending notifications */
-  zb_uint16_t current_zone_state;
-  zb_uint16_t retry_backoff_cnt; /* Retry backoff counter */
+    izs_ias_zone_queue_t ias_zone_queue;
+    zb_bufid_t out_buf; /* buffer is used for sending notifications */
+    zb_uint16_t current_zone_state;
+    zb_uint16_t retry_backoff_cnt; /* Retry backoff counter */
 
-  /* This flag is used on HW detector fails. Resets only on device restart. */
-  zb_bool_t detector_trouble;
-  zb_bool_t battery_low;
-  zb_bool_t enroll_req_generated;
+    /* This flag is used on HW detector fails. Resets only on device restart. */
+    zb_bool_t detector_trouble;
+    zb_bool_t battery_low;
+    zb_bool_t enroll_req_generated;
 
 #ifdef IAS_ACE_APP
-  izs_ias_ace_attr_t ias_ace_attr;
+    izs_ias_ace_attr_t ias_ace_attr;
 #endif
 
-  zb_bitfield_t check_in_started:1; /* flag to check if check in is already started or not  */
+    zb_bitfield_t check_in_started: 1; /* flag to check if check in is already started or not  */
 
 }
 izs_device_ctx_t;
@@ -341,7 +341,7 @@ void izs_retry_backoff(void);
 /*** Queue routines ***/
 void izs_ias_zone_queue_init();
 void izs_ias_zone_queue_put(zb_uint16_t new_zone_state);
-izs_ias_zone_info_t* izs_ias_zone_get_element_from_queue();
+izs_ias_zone_info_t *izs_ias_zone_get_element_from_queue();
 void izs_ias_zone_release_element_from_queue();
 zb_bool_t izs_ias_zone_queue_is_empty();
 

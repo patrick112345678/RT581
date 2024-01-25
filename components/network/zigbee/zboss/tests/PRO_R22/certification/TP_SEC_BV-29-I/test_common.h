@@ -56,10 +56,10 @@ static const zb_uint8_t g_key0[16] = { 0xab, 0xcd, 0xef, 0x01, 0x23, 0x45, 0x67,
 #define TP_SEC_BV_29_I_STEP_8_TIME_ZC   (5 * ZB_TIME_ONE_SECOND)
 #define TP_SEC_BV_29_I_STEP_9_TIME_ZC   (5 * ZB_TIME_ONE_SECOND)
 
-#define TIME_ZED_STOP_POLL	       	(5 * ZB_TIME_ONE_SECOND)
+#define TIME_ZED_STOP_POLL          (5 * ZB_TIME_ONE_SECOND)
 
-#define ZED_LONG_POLL_TO_MS	   	350000
-#define ZED1_POLL_TO_3SEC_MS		3000
+#define ZED_LONG_POLL_TO_MS     350000
+#define ZED1_POLL_TO_3SEC_MS        3000
 
 /* insecure join configuration */
 #define INSECURE_JOIN_ZC               ZB_FALSE

@@ -43,9 +43,9 @@
 
 enum test_step_e
 {
-  TEST_STEP_MGMT_PERMIT_JOIN_180_THR1,
-  TEST_STEP_MGMT_PERMIT_JOIN_180_DUT,
-  TEST_STEP_MGMT_PERMIT_JOIN_00_DUT
+    TEST_STEP_MGMT_PERMIT_JOIN_180_THR1,
+    TEST_STEP_MGMT_PERMIT_JOIN_180_DUT,
+    TEST_STEP_MGMT_PERMIT_JOIN_00_DUT
 };
 
 static const zb_ieee_addr_t g_ieee_addr_the1 = IEEE_ADDR_THE1;
@@ -67,181 +67,181 @@ static void test_get_peer_addr_resp(zb_uint8_t param);
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("zdo_the1");
-#if UART_CONTROL	
-	test_control_init();
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    ZB_INIT("zdo_the1");
+#if UART_CONTROL
+    test_control_init();
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 #endif
 
-  zb_set_long_address(g_ieee_addr_the1);
-  zb_set_rx_on_when_idle(ZB_TRUE);
+    zb_set_long_address(g_ieee_addr_the1);
+    zb_set_rx_on_when_idle(ZB_TRUE);
 
-  zb_set_network_ed_role((1l << TEST_CHANNEL));
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    zb_set_network_ed_role((1l << TEST_CHANNEL));
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  switch (sig)
-  {
+    switch (sig)
+    {
     case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      if (status == 0)
-      {
-	TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
+        if (status == 0)
+        {
+            TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
 
-	ZB_IEEE_ADDR_COPY(s_dest_ieee_addr, g_ieee_addr_dut);
-        ZB_SCHEDULE_ALARM(test_start_get_peer_addr, 0, TEST_ZED1_GET_PEER_ADDR_REQ_DELAY);
+            ZB_IEEE_ADDR_COPY(s_dest_ieee_addr, g_ieee_addr_dut);
+            ZB_SCHEDULE_ALARM(test_start_get_peer_addr, 0, TEST_ZED1_GET_PEER_ADDR_REQ_DELAY);
 
-	ZB_SCHEDULE_ALARM(test_logic_iteration, 0, TEST_ZED1_MGMT_PERMIT_JOIN_180_THR1_DELAY);
-      }
-      else
-      {
-	TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, status));
-      }
-      break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
+            ZB_SCHEDULE_ALARM(test_logic_iteration, 0, TEST_ZED1_MGMT_PERMIT_JOIN_180_THR1_DELAY);
+        }
+        else
+        {
+            TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, status));
+        }
+        break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
 
     default:
-      if (status == 0)
-      {
-	TRACE_MSG(TRACE_APS1, "Unknown signal, status OK", (FMT__0));
-      }
-      else
-      {
-	TRACE_MSG(TRACE_ERROR, "Unknown signal, status %d", (FMT__D, status));
-      }
-      break;
-  }
+        if (status == 0)
+        {
+            TRACE_MSG(TRACE_APS1, "Unknown signal, status OK", (FMT__0));
+        }
+        else
+        {
+            TRACE_MSG(TRACE_ERROR, "Unknown signal, status %d", (FMT__D, status));
+        }
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 static void test_logic_iteration(zb_uint8_t param)
 {
-  int stop_test = 0;
-  zb_time_t next_step_delay = 0;
+    int stop_test = 0;
+    zb_time_t next_step_delay = 0;
 
-  ZVUNUSED(param);
-  TRACE_MSG(TRACE_ZDO1, ">>test_logic_iteration: step = %d", (FMT__D, s_current_test_step));
+    ZVUNUSED(param);
+    TRACE_MSG(TRACE_ZDO1, ">>test_logic_iteration: step = %d", (FMT__D, s_current_test_step));
 
-  switch (s_current_test_step)
-  {
+    switch (s_current_test_step)
+    {
     case TEST_STEP_MGMT_PERMIT_JOIN_180_THR1:
-      s_dest_addr = s_thr1_short_addr;
-      s_permit_duration = 0xb4;
-      zb_buf_get_out_delayed(send_mgmt_permit_join);
-      next_step_delay = TEST_ZED1_MGMT_PERMIT_JOIN_180_DUT_DELAY*3;
-      break;
+        s_dest_addr = s_thr1_short_addr;
+        s_permit_duration = 0xb4;
+        zb_buf_get_out_delayed(send_mgmt_permit_join);
+        next_step_delay = TEST_ZED1_MGMT_PERMIT_JOIN_180_DUT_DELAY * 3;
+        break;
 
     case TEST_STEP_MGMT_PERMIT_JOIN_180_DUT:
-      s_dest_addr = s_dut_short_addr;
-      s_permit_duration = 0xb4;
-      zb_buf_get_out_delayed(send_mgmt_permit_join);
-      next_step_delay = TEST_ZED1_MGMT_PERMIT_JOIN_00_DUT_DELAY;
-      break;
+        s_dest_addr = s_dut_short_addr;
+        s_permit_duration = 0xb4;
+        zb_buf_get_out_delayed(send_mgmt_permit_join);
+        next_step_delay = TEST_ZED1_MGMT_PERMIT_JOIN_00_DUT_DELAY;
+        break;
 
     case TEST_STEP_MGMT_PERMIT_JOIN_00_DUT:
-      s_permit_duration = 0x00;
-      zb_buf_get_out_delayed(send_mgmt_permit_join);
-      break;
+        s_permit_duration = 0x00;
+        zb_buf_get_out_delayed(send_mgmt_permit_join);
+        break;
 
     default:
-      stop_test = 1;
-      break;
-  }
+        stop_test = 1;
+        break;
+    }
 
-  if (!stop_test)
-  {
-    ++s_current_test_step;
-    ZB_SCHEDULE_ALARM(test_logic_iteration, 0, next_step_delay);
-  }
+    if (!stop_test)
+    {
+        ++s_current_test_step;
+        ZB_SCHEDULE_ALARM(test_logic_iteration, 0, next_step_delay);
+    }
 
-  TRACE_MSG(TRACE_ZDO1, "<<test_logic_iteration", (FMT__0));
+    TRACE_MSG(TRACE_ZDO1, "<<test_logic_iteration", (FMT__0));
 }
 
 static void send_mgmt_permit_join(zb_uint8_t param)
 {
-  zb_zdo_mgmt_permit_joining_req_param_t *req;
+    zb_zdo_mgmt_permit_joining_req_param_t *req;
 
-  TRACE_MSG(TRACE_ZDO2, ">>send_mgmt_permit_join: dest = 0x%x", (FMT__H, s_dest_addr));
+    TRACE_MSG(TRACE_ZDO2, ">>send_mgmt_permit_join: dest = 0x%x", (FMT__H, s_dest_addr));
 
-  req = zb_buf_get_tail(param, sizeof(zb_zdo_mgmt_permit_joining_req_param_t));
-  req->dest_addr = s_dest_addr;
-  req->tc_significance = 1;
-  req->permit_duration = s_permit_duration;
-  zb_zdo_mgmt_permit_joining_req(param, NULL);
+    req = zb_buf_get_tail(param, sizeof(zb_zdo_mgmt_permit_joining_req_param_t));
+    req->dest_addr = s_dest_addr;
+    req->tc_significance = 1;
+    req->permit_duration = s_permit_duration;
+    zb_zdo_mgmt_permit_joining_req(param, NULL);
 
-  TRACE_MSG(TRACE_ZDO2, "<<send_mgmt_permit_join", (FMT__0));
+    TRACE_MSG(TRACE_ZDO2, "<<send_mgmt_permit_join", (FMT__0));
 }
 
 
 static void test_start_get_peer_addr(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  zb_buf_get_out_delayed(test_get_peer_addr_req);
+    zb_buf_get_out_delayed(test_get_peer_addr_req);
 }
 
 
 static void test_get_peer_addr_req(zb_uint8_t param)
 {
-  zb_zdo_nwk_addr_req_param_t *req_param = ZB_BUF_GET_PARAM(param, zb_zdo_nwk_addr_req_param_t);
+    zb_zdo_nwk_addr_req_param_t *req_param = ZB_BUF_GET_PARAM(param, zb_zdo_nwk_addr_req_param_t);
 
-  TRACE_MSG(TRACE_ZDO1, ">>test_get_peer_addr_req", (FMT__0));
+    TRACE_MSG(TRACE_ZDO1, ">>test_get_peer_addr_req", (FMT__0));
 
-  req_param->dst_addr = ZB_NWK_BROADCAST_RX_ON_WHEN_IDLE;
-  req_param->start_index = 0;
-  req_param->request_type = ZB_ZDO_SINGLE_DEVICE_RESP;
-  ZB_IEEE_ADDR_COPY(req_param->ieee_addr, s_dest_ieee_addr);
-  zb_zdo_nwk_addr_req(param, test_get_peer_addr_resp);
+    req_param->dst_addr = ZB_NWK_BROADCAST_RX_ON_WHEN_IDLE;
+    req_param->start_index = 0;
+    req_param->request_type = ZB_ZDO_SINGLE_DEVICE_RESP;
+    ZB_IEEE_ADDR_COPY(req_param->ieee_addr, s_dest_ieee_addr);
+    zb_zdo_nwk_addr_req(param, test_get_peer_addr_resp);
 
-  TRACE_MSG(TRACE_ZDO1, "<<test_get_peer_addr_req", (FMT__0));
+    TRACE_MSG(TRACE_ZDO1, "<<test_get_peer_addr_req", (FMT__0));
 }
 
 static void test_get_peer_addr_resp(zb_uint8_t param)
 {
-  zb_zdo_nwk_addr_resp_head_t *resp = (zb_zdo_nwk_addr_resp_head_t*) zb_buf_begin(param);
+    zb_zdo_nwk_addr_resp_head_t *resp = (zb_zdo_nwk_addr_resp_head_t *) zb_buf_begin(param);
 
-  TRACE_MSG(TRACE_ZDO1, ">>test_get_peer_addr_resp: status = %d",
-            (FMT__D_D, resp->status));
+    TRACE_MSG(TRACE_ZDO1, ">>test_get_peer_addr_resp: status = %d",
+              (FMT__D_D, resp->status));
 
-  if (resp->status == ZB_ZDP_STATUS_SUCCESS)
-  {
-    if (ZB_IEEE_ADDR_CMP(s_dest_ieee_addr, g_ieee_addr_dut))
+    if (resp->status == ZB_ZDP_STATUS_SUCCESS)
     {
-      ZB_LETOH16(&s_dut_short_addr, &resp->nwk_addr);
-      ZB_IEEE_ADDR_COPY(s_dest_ieee_addr, g_ieee_addr_thr1);
-      zb_buf_get_out_delayed(test_get_peer_addr_req);
+        if (ZB_IEEE_ADDR_CMP(s_dest_ieee_addr, g_ieee_addr_dut))
+        {
+            ZB_LETOH16(&s_dut_short_addr, &resp->nwk_addr);
+            ZB_IEEE_ADDR_COPY(s_dest_ieee_addr, g_ieee_addr_thr1);
+            zb_buf_get_out_delayed(test_get_peer_addr_req);
+        }
+        else if (ZB_IEEE_ADDR_CMP(s_dest_ieee_addr, g_ieee_addr_thr1))
+        {
+            ZB_LETOH16(&s_thr1_short_addr, &resp->nwk_addr);
+        }
     }
-    else if (ZB_IEEE_ADDR_CMP(s_dest_ieee_addr, g_ieee_addr_thr1))
-    {
-      ZB_LETOH16(&s_thr1_short_addr, &resp->nwk_addr);
-    }
-  }
-  zb_buf_free(param);
+    zb_buf_free(param);
 
-  TRACE_MSG(TRACE_ZDO1, "<<test_get_peer_addr_resp", (FMT__0));
+    TRACE_MSG(TRACE_ZDO1, "<<test_get_peer_addr_resp", (FMT__0));
 }
 
 /*! @} */

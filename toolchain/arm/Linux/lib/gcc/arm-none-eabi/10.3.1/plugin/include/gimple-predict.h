@@ -28,8 +28,8 @@ along with GCC; see the file COPYING3.  If not see
 static inline enum br_predictor
 gimple_predict_predictor (const gimple *gs)
 {
-  GIMPLE_CHECK (gs, GIMPLE_PREDICT);
-  return (enum br_predictor) (gs->subcode & ~GF_PREDICT_TAKEN);
+    GIMPLE_CHECK (gs, GIMPLE_PREDICT);
+    return (enum br_predictor) (gs->subcode & ~GF_PREDICT_TAKEN);
 }
 
 
@@ -38,9 +38,9 @@ gimple_predict_predictor (const gimple *gs)
 static inline void
 gimple_predict_set_predictor (gimple *gs, enum br_predictor predictor)
 {
-  GIMPLE_CHECK (gs, GIMPLE_PREDICT);
-  gs->subcode = (gs->subcode & GF_PREDICT_TAKEN)
-		       | (unsigned) predictor;
+    GIMPLE_CHECK (gs, GIMPLE_PREDICT);
+    gs->subcode = (gs->subcode & GF_PREDICT_TAKEN)
+                  | (unsigned) predictor;
 }
 
 
@@ -49,8 +49,8 @@ gimple_predict_set_predictor (gimple *gs, enum br_predictor predictor)
 static inline enum prediction
 gimple_predict_outcome (const gimple *gs)
 {
-  GIMPLE_CHECK (gs, GIMPLE_PREDICT);
-  return (gs->subcode & GF_PREDICT_TAKEN) ? TAKEN : NOT_TAKEN;
+    GIMPLE_CHECK (gs, GIMPLE_PREDICT);
+    return (gs->subcode & GF_PREDICT_TAKEN) ? TAKEN : NOT_TAKEN;
 }
 
 
@@ -59,11 +59,15 @@ gimple_predict_outcome (const gimple *gs)
 static inline void
 gimple_predict_set_outcome (gimple *gs, enum prediction outcome)
 {
-  GIMPLE_CHECK (gs, GIMPLE_PREDICT);
-  if (outcome == TAKEN)
-    gs->subcode |= GF_PREDICT_TAKEN;
-  else
-    gs->subcode &= ~GF_PREDICT_TAKEN;
+    GIMPLE_CHECK (gs, GIMPLE_PREDICT);
+    if (outcome == TAKEN)
+    {
+        gs->subcode |= GF_PREDICT_TAKEN;
+    }
+    else
+    {
+        gs->subcode &= ~GF_PREDICT_TAKEN;
+    }
 }
 
 /* Build a GIMPLE_PREDICT statement.  PREDICT is one of the predictors from
@@ -72,12 +76,12 @@ gimple_predict_set_outcome (gimple *gs, enum prediction outcome)
 inline gimple *
 gimple_build_predict (enum br_predictor predictor, enum prediction outcome)
 {
-  gimple *p = gimple_alloc (GIMPLE_PREDICT, 0);
-  /* Ensure all the predictors fit into the lower bits of the subcode.  */
-  gcc_assert ((int) END_PREDICTORS <= GF_PREDICT_TAKEN);
-  gimple_predict_set_predictor (p, predictor);
-  gimple_predict_set_outcome (p, outcome);
-  return p;
+    gimple *p = gimple_alloc (GIMPLE_PREDICT, 0);
+    /* Ensure all the predictors fit into the lower bits of the subcode.  */
+    gcc_assert ((int) END_PREDICTORS <= GF_PREDICT_TAKEN);
+    gimple_predict_set_predictor (p, predictor);
+    gimple_predict_set_outcome (p, outcome);
+    return p;
 }
 
 /* Return true if GS is a GIMPLE_PREDICT statement.  */
@@ -85,7 +89,7 @@ gimple_build_predict (enum br_predictor predictor, enum prediction outcome)
 static inline bool
 is_gimple_predict (const gimple *gs)
 {
-  return gimple_code (gs) == GIMPLE_PREDICT;
+    return gimple_code (gs) == GIMPLE_PREDICT;
 }
 
 #endif  /* GCC_GIMPLE_PREDICT_H */

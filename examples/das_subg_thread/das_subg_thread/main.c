@@ -24,7 +24,7 @@ int app_main(void)
     lmac15p4_init(LMAC15P4_SUBG_FSK);
 #endif
 
-#if (CONFIG_PLATOFRM_ENABLE_SLEEP == 0) 
+#if (CONFIG_PLATOFRM_ENABLE_SLEEP == 0)
     cli_init();
 #endif
     otrStart();
@@ -35,7 +35,7 @@ int app_main(void)
     pin_set_pullopt(29, MODE_PULLUP_10K);
 
     app_uart_init();
-    
+
     if (das_hex_cmd_status_check())
     {
         das_hex_cmd_command_bootup();
@@ -45,7 +45,7 @@ int app_main(void)
     {
         log_info("DAS SubG Thread Init ability FTD \n");
     }
-    
+
     app_task();
     return 0;
 }

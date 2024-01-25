@@ -32,40 +32,40 @@
 
 static const zb_uint8_t gs_wwah_client_received_commands[] =
 {
-  ZB_ZCL_CLUSTER_ID_WWAH_CLIENT_ROLE_RECEIVED_CMD_LIST
+    ZB_ZCL_CLUSTER_ID_WWAH_CLIENT_ROLE_RECEIVED_CMD_LIST
 };
 
 static const zb_uint8_t gs_wwah_client_generated_commands[] =
 {
-  ZB_ZCL_CLUSTER_ID_WWAH_CLIENT_ROLE_GENERATED_CMD_LIST
+    ZB_ZCL_CLUSTER_ID_WWAH_CLIENT_ROLE_GENERATED_CMD_LIST
 };
 
 zb_discover_cmd_list_t gs_wwah_client_cmd_list =
 {
-  sizeof(gs_wwah_client_received_commands), (zb_uint8_t *)gs_wwah_client_received_commands,
-  sizeof(gs_wwah_client_generated_commands), (zb_uint8_t *)gs_wwah_client_generated_commands
+    sizeof(gs_wwah_client_received_commands), (zb_uint8_t *)gs_wwah_client_received_commands,
+    sizeof(gs_wwah_client_generated_commands), (zb_uint8_t *)gs_wwah_client_generated_commands
 };
 
 zb_bool_t zb_zcl_process_wwah_specific_commands_cli(zb_uint8_t param);
 
 void zb_zcl_wwah_init_client()
 {
-  TRACE_MSG(TRACE_ZCL1, "> zb_zcl_wwah_init_client", (FMT__0));
-  zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_WWAH,
-                              ZB_ZCL_CLUSTER_CLIENT_ROLE,
-                              (zb_zcl_cluster_check_value_t)NULL,
-                              (zb_zcl_cluster_write_attr_hook_t)NULL,
-                              zb_zcl_process_wwah_specific_commands_cli);
+    TRACE_MSG(TRACE_ZCL1, "> zb_zcl_wwah_init_client", (FMT__0));
+    zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_WWAH,
+                                ZB_ZCL_CLUSTER_CLIENT_ROLE,
+                                (zb_zcl_cluster_check_value_t)NULL,
+                                (zb_zcl_cluster_write_attr_hook_t)NULL,
+                                zb_zcl_process_wwah_specific_commands_cli);
 }
 
 zb_bool_t zb_zcl_process_wwah_specific_commands_cli(zb_uint8_t param)
 {
-  if ( ZB_ZCL_GENERAL_GET_CMD_LISTS_PARAM == param )
-  {
-    ZCL_CTX().zb_zcl_cluster_cmd_list = &gs_wwah_client_cmd_list;
-    return ZB_TRUE;
-  }
-  return ZB_FALSE;
+    if ( ZB_ZCL_GENERAL_GET_CMD_LISTS_PARAM == param )
+    {
+        ZCL_CTX().zb_zcl_cluster_cmd_list = &gs_wwah_client_cmd_list;
+        return ZB_TRUE;
+    }
+    return ZB_FALSE;
 }
 
 #endif  /* ZB_ZCL_ENABLE_WWAH_CLIENT */

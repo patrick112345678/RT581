@@ -41,61 +41,61 @@ static zb_ieee_addr_t g_zc_addr = DUT_GPS_IEEE_ADDR;
 #ifndef ZB_NSNG
 static void left_btn_hndlr(zb_uint8_t param)
 {
-  ZVUNUSED(param);
+    ZVUNUSED(param);
 }
 #endif
 
 MAIN()
 {
-  ARGV_UNUSED;
-/* Init device, load IB values from nvram or set it to default */
-  ZB_INIT("dut_gps");
+    ARGV_UNUSED;
+    /* Init device, load IB values from nvram or set it to default */
+    ZB_INIT("dut_gps");
 
-  /* let's always be coordinator */
-  ZB_AIB().aps_designated_coordinator = 1;
-  ZB_AIB().aps_channel_mask = (1<<TEST_CHANNEL);
-  ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_zc_addr);
+    /* let's always be coordinator */
+    ZB_AIB().aps_designated_coordinator = 1;
+    ZB_AIB().aps_channel_mask = (1 << TEST_CHANNEL);
+    ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_zc_addr);
 
-  ZB_PIBCACHE_PAN_ID() = 0x1aaa;
+    ZB_PIBCACHE_PAN_ID() = 0x1aaa;
 
-  ZGP_CTX().device_role = ZGP_DEVICE_COMBO_BASIC;
+    ZGP_CTX().device_role = ZGP_DEVICE_COMBO_BASIC;
 
-  HW_INIT();
+    HW_INIT();
 
-  if (zdo_dev_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
-  }
-  else
-  {
-    zcl_main_loop();
-  }
+    if (zdo_dev_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
+    }
+    else
+    {
+        zcl_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_buf_t *buf = ZB_BUF_FROM_REF(param);
+    zb_buf_t *buf = ZB_BUF_FROM_REF(param);
 
-  TRACE_MSG(TRACE_APP1, "> zb_zdo_startup_complete %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_APP1, "> zb_zdo_startup_complete %hd", (FMT__H, param));
 
-  if (buf->u.hdr.status == 0)
-  {
-    TRACE_MSG(TRACE_APP1, "Device STARTED OK", (FMT__0));
-    HW_DEV_START_INDICATION(2);
-  }
-  else
-  {
-    TRACE_MSG(
-        TRACE_ERROR,
-        "Device started FAILED status %d",
-        (FMT__D, (int)buf->u.hdr.status));
-  }
-  zb_free_buf(buf);
-  TRACE_MSG(TRACE_APP1, "< zb_zdo_startup_complete", (FMT__0));
+    if (buf->u.hdr.status == 0)
+    {
+        TRACE_MSG(TRACE_APP1, "Device STARTED OK", (FMT__0));
+        HW_DEV_START_INDICATION(2);
+    }
+    else
+    {
+        TRACE_MSG(
+            TRACE_ERROR,
+            "Device started FAILED status %d",
+            (FMT__D, (int)buf->u.hdr.status));
+    }
+    zb_free_buf(buf);
+    TRACE_MSG(TRACE_APP1, "< zb_zdo_startup_complete", (FMT__0));
 }
 
 #else // defined ZB_ENABLE_HA && defined ZB_ENABLE_ZGP_SINK
@@ -103,11 +103,11 @@ ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 #include <stdio.h>
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  printf("HA profile and ZGP sink should be enabled in zb_config.h\n");
+    printf("HA profile and ZGP sink should be enabled in zb_config.h\n");
 
-  MAIN_RETURN(1);
+    MAIN_RETURN(1);
 }
 
 #endif

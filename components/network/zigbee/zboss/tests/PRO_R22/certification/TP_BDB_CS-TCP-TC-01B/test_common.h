@@ -37,7 +37,7 @@ static const zb_uint16_t TEST_PAN_ID = 0x1AAA;
 /* Key 0 */
 static const zb_uint8_t g_nwk_key0[16] = { 0xab, 0xcd, 0xef, 0x01, 0x23, 0x45, 0x67, 0x89, 0, 0, 0, 0, 0, 0, 0, 0};
 
-#define TEST_GZR2_LEAVE_DELAY		(8 * ZB_TIME_ONE_SECOND)
-#define TEST_GZR1_LQI_REQ_DELAY		(21 * ZB_TIME_ONE_SECOND)
+#define TEST_GZR2_LEAVE_DELAY       (8 * ZB_TIME_ONE_SECOND)
+#define TEST_GZR1_LQI_REQ_DELAY     (21 * ZB_TIME_ONE_SECOND)
 
 #endif  /* __TP_BDB_CS_TCP_TC_01B_TEST_COMMON */

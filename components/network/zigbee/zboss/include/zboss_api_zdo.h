@@ -126,7 +126,7 @@ typedef zb_uint8_t zb_zdp_status_t;
  * Signal parameters:
  *  - none
  * @endparblock */
- #define ZB_ZDO_SIGNAL_DEFAULT_START 0U
+#define ZB_ZDO_SIGNAL_DEFAULT_START 0U
 
 /** Notifies the application that ZBOSS framework (scheduler, buffer pool, etc.) has started, but no
  * join/rejoin/formation/BDB initialization has been done yet.
@@ -741,10 +741,10 @@ typedef zb_uint8_t zb_zdp_status_t;
 #define ZB_NLME_STATUS_INDICATION 50U
 
 /** @cond internals_doc */
-  /** it is time to backup TC database (signal at TC) */
+/** it is time to backup TC database (signal at TC) */
 #define ZB_TCSWAP_DB_BACKUP_REQUIRED_SIGNAL 51U
 
-  /** TC is swapped (signal at Joiner) */
+/** TC is swapped (signal at Joiner) */
 #define ZB_TC_SWAPPED_SIGNAL 52U
 /** @endcond */ /* internals_doc */
 
@@ -830,7 +830,7 @@ typedef zb_zdo_app_signal_type_t zb_zdo_app_signal_t;
   */
 typedef struct zb_zdo_signal_permit_join_params_s
 {
-  zb_uint8_t permit_duration;   /**< The length of time in seconds.  0x00 and 0xff indicate that
+    zb_uint8_t permit_duration;   /**< The length of time in seconds.  0x00 and 0xff indicate that
                                   * permission is disabled or enabled
                                   */
 } zb_zdo_signal_permit_join_params_t;
@@ -843,7 +843,7 @@ typedef struct zb_zdo_signal_permit_join_params_s
   */
 typedef struct zb_zdo_signal_leave_params_s
 {
-  zb_nwk_leave_type_t leave_type; /** Leave type. @ref nwk_leave_type */
+    zb_nwk_leave_type_t leave_type; /** Leave type. @ref nwk_leave_type */
 } zb_zdo_signal_leave_params_t;
 
 /**
@@ -853,7 +853,7 @@ typedef struct zb_zdo_signal_leave_params_s
   */
 typedef struct zb_zdo_signal_nlme_status_indication_params_s
 {
-  zb_nlme_status_indication_t nlme_status; /** NLME status indication payload */
+    zb_nlme_status_indication_t nlme_status; /** NLME status indication payload */
 } zb_zdo_signal_nlme_status_indication_params_t;
 
 /**
@@ -864,8 +864,8 @@ typedef struct zb_zdo_signal_nlme_status_indication_params_s
   */
 typedef struct zb_zdo_signal_leave_indication_params_s
 {
-  zb_ieee_addr_t device_addr; /*!< Long address of device requested to leave or leaving device*/
-  zb_uint8_t rejoin;          /*!< 1 if this was leave with rejoin; 0 - otherwise */
+    zb_ieee_addr_t device_addr; /*!< Long address of device requested to leave or leaving device*/
+    zb_uint8_t rejoin;          /*!< 1 if this was leave with rejoin; 0 - otherwise */
 } zb_zdo_signal_leave_indication_params_t;
 
 /**
@@ -876,7 +876,7 @@ typedef struct zb_zdo_signal_leave_indication_params_s
   */
 typedef struct zb_zdo_signal_permit_join_indication_params_s
 {
-  zb_uint8_t permit_duration;   /**< The length of time in seconds.  0x00 and 0xff indicate that
+    zb_uint8_t permit_duration;   /**< The length of time in seconds.  0x00 and 0xff indicate that
                                   * permission is disabled or enabled
                                   */
 } zb_zdo_signal_permit_join_indication_params_t;
@@ -889,10 +889,10 @@ typedef struct zb_zdo_signal_permit_join_indication_params_s
  */
 typedef struct zb_se_signal_service_discovery_bind_params_s
 {
-  zb_ieee_addr_t device_addr;   /**< Long address of the device */
-  zb_uint8_t endpoint;          /**< Device endpoint */
-  zb_uint16_t cluster_id;       /**< Discovered cluster */
-  zb_uint8_t commodity_type;    /**< Commodity type (for multiple commodity networks) */
+    zb_ieee_addr_t device_addr;   /**< Long address of the device */
+    zb_uint8_t endpoint;          /**< Device endpoint */
+    zb_uint16_t cluster_id;       /**< Discovered cluster */
+    zb_uint8_t commodity_type;    /**< Commodity type (for multiple commodity networks) */
 } zb_se_signal_service_discovery_bind_params_t;
 /** @endcond */
 
@@ -912,8 +912,8 @@ typedef struct zb_se_signal_service_discovery_bind_params_s
   */
 typedef struct zb_zgp_signal_commissioning_params_s
 {
-  zb_zgpd_id_t zgpd_id;       /*!< Pointer to GPD ID */
-  zb_zgp_comm_status_t result; /*!< commissioning result, see @ref zb_zgp_comm_status_t */
+    zb_zgpd_id_t zgpd_id;       /*!< Pointer to GPD ID */
+    zb_zgp_comm_status_t result; /*!< commissioning result, see @ref zb_zgp_comm_status_t */
 } zb_zgp_signal_commissioning_params_t;
 #endif  /* ZB_ENABLE_ZGP_SINK */
 /** @} */
@@ -925,7 +925,7 @@ typedef struct zb_zgp_signal_commissioning_params_s
   */
 typedef struct zb_nwk_signal_device_associated_params_s
 {
-  zb_ieee_addr_t device_addr; /*!< address of associated device */
+    zb_ieee_addr_t device_addr; /*!< address of associated device */
 } zb_nwk_signal_device_associated_params_t;
 
 /**
@@ -936,25 +936,25 @@ typedef struct zb_nwk_signal_device_associated_params_s
  */
 typedef struct zb_zdo_signal_device_annce_params_s
 {
-  zb_uint16_t device_short_addr; /*!< address of device that recently joined to network */
-  zb_ieee_addr_t   ieee_addr;
-  zb_uint8_t       capability;
+    zb_uint16_t device_short_addr; /*!< address of device that recently joined to network */
+    zb_ieee_addr_t   ieee_addr;
+    zb_uint8_t       capability;
 } zb_zdo_signal_device_annce_params_t;
 
 /** @cond touchlink */
 
 typedef struct zb_bdb_signal_touchlink_nwk_started_params_s
 {
-  zb_ieee_addr_t device_ieee_addr; /*!< address of device that started the network */
-  zb_uint8_t endpoint;
-  zb_uint16_t profile_id;
+    zb_ieee_addr_t device_ieee_addr; /*!< address of device that started the network */
+    zb_uint8_t endpoint;
+    zb_uint16_t profile_id;
 } zb_bdb_signal_touchlink_nwk_started_params_t;
 
 typedef struct zb_bdb_signal_touchlink_nwk_joined_router_s
 {
-  zb_ieee_addr_t device_ieee_addr; /*!< address of device that started the network */
-  zb_uint8_t endpoint;
-  zb_uint16_t profile_id;
+    zb_ieee_addr_t device_ieee_addr; /*!< address of device that started the network */
+    zb_uint8_t endpoint;
+    zb_uint16_t profile_id;
 } zb_bdb_signal_touchlink_nwk_joined_router_t;
 
 /** @endcond */ /* touchlink */
@@ -966,7 +966,7 @@ typedef struct zb_bdb_signal_touchlink_nwk_joined_router_s
   */
 typedef struct zb_zdo_signal_can_sleep_params_s
 {
-  zb_uint32_t sleep_tmo; /*!< sleep duration in milliseconds */
+    zb_uint32_t sleep_tmo; /*!< sleep duration in milliseconds */
 } zb_zdo_signal_can_sleep_params_t;
 
 /**
@@ -976,9 +976,9 @@ typedef struct zb_zdo_signal_can_sleep_params_s
   */
 typedef struct zb_zdo_signal_macsplit_dev_boot_params_s
 {
-  zb_uint32_t    dev_version; /*!< macsplit device version */
+    zb_uint32_t    dev_version; /*!< macsplit device version */
 #ifdef USE_HW_LONG_ADDR
-  zb_ieee_addr_t extended_address;          /*!< The 64-bit (IEEE) address assigned to the device. */
+    zb_ieee_addr_t extended_address;          /*!< The 64-bit (IEEE) address assigned to the device. */
 #endif
 } zb_zdo_signal_macsplit_dev_boot_params_t;
 
@@ -1008,8 +1008,8 @@ typedef zb_uint8_t zb_zdo_fb_initiator_finished_status_t;
  */
 typedef struct zb_zdo_signal_fb_initiator_finished_params_s
 {
-  /*!< Status of the F&B procedure on the Initiator side */
-  zb_zdo_fb_initiator_finished_status_t status;
+    /*!< Status of the F&B procedure on the Initiator side */
+    zb_zdo_fb_initiator_finished_status_t status;
 } zb_zdo_signal_fb_initiator_finished_params_t;
 
 /**
@@ -1017,24 +1017,24 @@ typedef struct zb_zdo_signal_fb_initiator_finished_params_s
  */
 typedef struct zb_zdo_signal_device_update_params_s
 {
-  /*!< Long Address of the updated device */
-  zb_ieee_addr_t long_addr;
+    /*!< Long Address of the updated device */
+    zb_ieee_addr_t long_addr;
 
-  /*!< Short Address of the updated device */
-  zb_uint16_t short_addr;
+    /*!< Short Address of the updated device */
+    zb_uint16_t short_addr;
 
-  /*!< Indicates the updated status of the device
-   *
-   * 0x00 = Standard device secured rejoin
-   * 0x01 = Standard device unsecured join
-   * 0x02 = Device left
-   * 0x03 = Standard device trust center rejoin
-   * 0x04 – 0x07 = Reserved
-   *
-   * see r21 spec, 4.4.3.2 APSME-UPDATE-DEVICE.indication,
-   * Table 4.15 APSME-UPDATE-DEVICE.indication Parameters
-   */
-  zb_uint8_t status;
+    /*!< Indicates the updated status of the device
+     *
+     * 0x00 = Standard device secured rejoin
+     * 0x01 = Standard device unsecured join
+     * 0x02 = Device left
+     * 0x03 = Standard device trust center rejoin
+     * 0x04 – 0x07 = Reserved
+     *
+     * see r21 spec, 4.4.3.2 APSME-UPDATE-DEVICE.indication,
+     * Table 4.15 APSME-UPDATE-DEVICE.indication Parameters
+     */
+    zb_uint8_t status;
 } zb_zdo_signal_device_update_params_t;
 
 
@@ -1101,28 +1101,28 @@ typedef zb_uint8_t zb_zdo_tclk_authorization_status_t;
  */
 typedef struct zb_zdo_signal_device_authorized_params_s
 {
-  /*!< Long Address of the updated device */
-  zb_ieee_addr_t long_addr;
+    /*!< Long Address of the updated device */
+    zb_ieee_addr_t long_addr;
 
-  /*!< Short Address of the updated device */
-  zb_uint16_t short_addr;
+    /*!< Short Address of the updated device */
+    zb_uint16_t short_addr;
 
-  /*!< Type of the authorization procedure,
-   *   @ref zdo_authorization_type
-   */
-  zb_uint8_t authorization_type;
+    /*!< Type of the authorization procedure,
+     *   @ref zdo_authorization_type
+     */
+    zb_uint8_t authorization_type;
 
-  /*!< Status of the authorization procedure
-   *   (depends on @ref zdo_authorization_type)
-   */
-  zb_uint8_t authorization_status;
+    /*!< Status of the authorization procedure
+     *   (depends on @ref zdo_authorization_type)
+     */
+    zb_uint8_t authorization_status;
 } zb_zdo_signal_device_authorized_params_t;
 
 /** Application signal header */
 typedef struct zb_zdo_app_signal_hdr_s
 {
-  /* 32 bit to have data section aligned well */
-  zb_uint32_t sig_type;            /** Application signal type, @ref zdo_app_signal_type */
+    /* 32 bit to have data section aligned well */
+    zb_uint32_t sig_type;            /** Application signal type, @ref zdo_app_signal_type */
 } zb_zdo_app_signal_hdr_t;
 /* Legacy API: zb_zdo_app_signal_hdr_t == zb_zdo_app_event_t */
 typedef zb_zdo_app_signal_hdr_t zb_zdo_app_event_t;
@@ -1135,14 +1135,14 @@ typedef zb_zdo_app_signal_hdr_t zb_zdo_app_event_t;
 
 typedef ZB_PACKED_PRE struct zb_zdo_callback_info_s
 {
-  zb_uint8_t tsn;
-  zb_uint8_t status;
+    zb_uint8_t tsn;
+    zb_uint8_t status;
 } ZB_PACKED_STRUCT zb_zdo_callback_info_t;
 
 typedef ZB_PACKED_PRE struct zb_zdo_default_resp_s
 {
-  zb_uint8_t tsn;
-  zb_uint8_t status;
+    zb_uint8_t tsn;
+    zb_uint8_t status;
 } ZB_PACKED_STRUCT zb_zdo_default_resp_t;
 
 /** @} */
@@ -1214,12 +1214,12 @@ void zb_zdo_get_diag_data(zb_uint16_t short_address, zb_uint8_t *lqi, zb_int8_t 
 /** @brief NWK_addr_req command primitive.  */
 typedef ZB_PACKED_PRE struct zb_zdo_nwk_addr_req_s
 {
-  zb_ieee_addr_t   ieee_addr;    /*!< IEEE address to be matched by the
+    zb_ieee_addr_t   ieee_addr;    /*!< IEEE address to be matched by the
                                    Remote Device  */
-  zb_uint8_t       request_type; /*!< Request type for this command:
+    zb_uint8_t       request_type; /*!< Request type for this command:
                                    0x00  Single device response
                                    0x01  Extended response  */
-  zb_uint8_t       start_index; /*!< If the Request type for this command is
+    zb_uint8_t       start_index; /*!< If the Request type for this command is
                                   Extended response, the StartIndex
                                   provides the starting index for the
                                   requested elements of the associated
@@ -1229,13 +1229,13 @@ typedef ZB_PACKED_PRE struct zb_zdo_nwk_addr_req_s
 /** @brief Parameters for nwk_addr_req command */
 typedef struct zb_zdo_nwk_addr_req_param_s
 {
-  zb_uint16_t      dst_addr;     /*!< Destination address */
-  zb_ieee_addr_t   ieee_addr;    /*!< IEEE address to be matched by the
+    zb_uint16_t      dst_addr;     /*!< Destination address */
+    zb_ieee_addr_t   ieee_addr;    /*!< IEEE address to be matched by the
                                    Remote Device  */
-  zb_uint8_t       request_type; /*!< Request type for this command:
+    zb_uint8_t       request_type; /*!< Request type for this command:
                                    0x00  Single device response
                                    0x01  Extended response  */
-  zb_uint8_t       start_index; /*!< If the Request type for this command is
+    zb_uint8_t       start_index; /*!< If the Request type for this command is
                                   Extended response, the StartIndex
                                   provides the starting index for the
                                   requested elements of the associated
@@ -1246,10 +1246,10 @@ zb_zdo_nwk_addr_req_param_t;
 /** @brief NWK_addr_req response frame. */
 typedef ZB_PACKED_PRE struct zb_zdo_nwk_addr_resp_head_s
 {
-  zb_uint8_t tsn; /*!< ZDP transaction sequence number */
-  zb_uint8_t status; /*!< The status of the NWK_addr_req command. */
-  zb_ieee_addr_t ieee_addr; /*!< 64-bit address for the Remote Device. */
-  zb_uint16_t nwk_addr; /*!< 16-bit address for the Remote Device. */
+    zb_uint8_t tsn; /*!< ZDP transaction sequence number */
+    zb_uint8_t status; /*!< The status of the NWK_addr_req command. */
+    zb_ieee_addr_t ieee_addr; /*!< 64-bit address for the Remote Device. */
+    zb_uint16_t nwk_addr; /*!< 16-bit address for the Remote Device. */
 }
 ZB_PACKED_STRUCT
 zb_zdo_nwk_addr_resp_head_t;
@@ -1257,7 +1257,7 @@ zb_zdo_nwk_addr_resp_head_t;
 /** @brief NWK_addr_req response frame tail */
 typedef ZB_PACKED_PRE struct zb_zdo_nwk_addr_resp_ext_s
 {
-  zb_uint8_t num_assoc_dev; /*!< Count of the ED List. */
+    zb_uint8_t num_assoc_dev; /*!< Count of the ED List. */
 }
 ZB_PACKED_STRUCT
 zb_zdo_nwk_addr_resp_ext_t;
@@ -1265,7 +1265,7 @@ zb_zdo_nwk_addr_resp_ext_t;
 /** @brief NWK_addr_req response frame tail */
 typedef ZB_PACKED_PRE struct zb_zdo_nwk_addr_resp_ext2_s
 {
-  zb_uint8_t start_index; /*!< Starting index to begin reporting for the ED List.*/
+    zb_uint8_t start_index; /*!< Starting index to begin reporting for the ED List.*/
 }
 ZB_PACKED_STRUCT
 zb_zdo_nwk_addr_resp_ext2_t;
@@ -1306,12 +1306,12 @@ zb_ret_t zb_zdo_init_node_desc_req_direct(zb_uint16_t addr, zb_callback_t user_c
  */
 typedef ZB_PACKED_PRE struct zb_zdo_ieee_addr_req_s
 {
-  zb_uint16_t      nwk_addr;    /*!< NWK address that is used for IEEE
+    zb_uint16_t      nwk_addr;    /*!< NWK address that is used for IEEE
                                   address mapping.  */
-  zb_uint8_t       request_type; /*!< Request type for this command:
+    zb_uint8_t       request_type; /*!< Request type for this command:
                                    0x00  Single device response
                                    0x01  Extended response  */
-  zb_uint8_t       start_index; /*!< If the Request type for this command is
+    zb_uint8_t       start_index; /*!< If the Request type for this command is
                                   Extended response, the StartIndex
                                   provides the starting index for the
                                   requested elements of the associated
@@ -1321,13 +1321,13 @@ typedef ZB_PACKED_PRE struct zb_zdo_ieee_addr_req_s
 /** @brief Parameters for ieee_addr_req command */
 typedef struct zb_zdo_ieee_addr_req_param_s
 {
-  zb_uint16_t      dst_addr;     /*!< Destination address */
-  zb_uint16_t      nwk_addr;    /*!< NWK address that is used for IEEE
+    zb_uint16_t      dst_addr;     /*!< Destination address */
+    zb_uint16_t      nwk_addr;    /*!< NWK address that is used for IEEE
                                   address mapping.  */
-  zb_uint8_t       request_type; /*!< Request type for this command:
+    zb_uint8_t       request_type; /*!< Request type for this command:
                                    0x00  Single device response
                                    0x01  Extended response  */
-  zb_uint8_t       start_index; /*!< If the Request type for this command is
+    zb_uint8_t       start_index; /*!< If the Request type for this command is
                                   Extended response, the StartIndex
                                   provides the starting index for the
                                   requested elements of the associated
@@ -1338,10 +1338,10 @@ zb_zdo_ieee_addr_req_param_t;
 /** brief ZDO IEEE address response frame */
 typedef ZB_PACKED_PRE struct zb_zdo_ieee_addr_resp_s
 {
-  zb_uint8_t tsn; /*!< ZDP transaction sequence number */
-  zb_uint8_t status; /*!< The status of the NWK_addr_req command. */
-  zb_ieee_addr_t ieee_addr_remote_dev; /*!< 64-bit address for the Remote Device. */
-  zb_uint16_t nwk_addr_remote_dev; /*!< 16-bit address for the Remote Device. */
+    zb_uint8_t tsn; /*!< ZDP transaction sequence number */
+    zb_uint8_t status; /*!< The status of the NWK_addr_req command. */
+    zb_ieee_addr_t ieee_addr_remote_dev; /*!< 64-bit address for the Remote Device. */
+    zb_uint16_t nwk_addr_remote_dev; /*!< 16-bit address for the Remote Device. */
 }
 ZB_PACKED_STRUCT
 zb_zdo_ieee_addr_resp_t;
@@ -1349,7 +1349,7 @@ zb_zdo_ieee_addr_resp_t;
 /** @brief ZDO IEEE address response frame tail */
 typedef ZB_PACKED_PRE struct zb_zdo_ieee_addr_resp_ext_s
 {
-  zb_uint8_t num_assoc_dev; /*!< Count of the ED List. */
+    zb_uint8_t num_assoc_dev; /*!< Count of the ED List. */
 }
 ZB_PACKED_STRUCT
 zb_zdo_ieee_addr_resp_ext_t;
@@ -1357,7 +1357,7 @@ zb_zdo_ieee_addr_resp_ext_t;
 /** @brief ZDO IEEE address response frame tail */
 typedef ZB_PACKED_PRE struct zb_zdo_ieee_addr_resp_ext2_s
 {
-  zb_uint8_t start_index; /*!< Starting index to begin reporting for the ED List.*/
+    zb_uint8_t start_index; /*!< Starting index to begin reporting for the ED List.*/
 }
 ZB_PACKED_STRUCT
 zb_zdo_ieee_addr_resp_ext2_t;
@@ -1437,7 +1437,7 @@ zb_uint8_t zb_zdo_initiate_ieee_addr_req(zb_uint8_t param, zb_uint16_t nwk_addr)
  */
 typedef ZB_PACKED_PRE struct zb_zdo_node_desc_req_s
 {
-  zb_uint16_t      nwk_addr;    /*!< NWK address that is used for IEEE
+    zb_uint16_t      nwk_addr;    /*!< NWK address that is used for IEEE
                                   address mapping.  */
 } ZB_PACKED_STRUCT zb_zdo_node_desc_req_t;
 
@@ -1445,27 +1445,27 @@ typedef ZB_PACKED_PRE struct zb_zdo_node_desc_req_s
 /** @brief Header of Node_desc_resp primitive.  */
 typedef ZB_PACKED_PRE struct zb_zdo_desc_resp_hdr_s
 {
-  zb_uint8_t      tsn; /*!< ZDP transaction sequence number */
-  zb_uint8_t      status;   /*!< The status of the Desc_req command. @ref zdp_status */
-  zb_uint16_t     nwk_addr; /*!< NWK address for the request  */
+    zb_uint8_t      tsn; /*!< ZDP transaction sequence number */
+    zb_uint8_t      status;   /*!< The status of the Desc_req command. @ref zdp_status */
+    zb_uint16_t     nwk_addr; /*!< NWK address for the request  */
 } ZB_PACKED_STRUCT
 zb_zdo_desc_resp_hdr_t;
 
 /** @brief Parameters of Node_desc_resp primitive.  */
 typedef ZB_PACKED_PRE struct zb_zdo_node_desc_resp_s
 {
-  zb_zdo_desc_resp_hdr_t hdr;  /*!< header for response */
-  zb_af_node_desc_t node_desc; /*!< Node Descriptor */
+    zb_zdo_desc_resp_hdr_t hdr;  /*!< header for response */
+    zb_af_node_desc_t node_desc; /*!< Node Descriptor */
 } ZB_PACKED_STRUCT
 zb_zdo_node_desc_resp_t;
 
 /** @brief Header of simple_desc_resp primitive.  */
 typedef ZB_PACKED_PRE struct zb_zdo_simple_desc_resp_hdr_s
 {
-  zb_uint8_t      tsn; /*!< ZDP transaction sequence number */
-  zb_uint8_t      status;   /*!< The status of the Desc_req command. @ref zdp_status */
-  zb_uint16_t     nwk_addr; /*!< NWK address for the request  */
-  zb_uint8_t      length;   /*!< Length of the simple descriptor */
+    zb_uint8_t      tsn; /*!< ZDP transaction sequence number */
+    zb_uint8_t      status;   /*!< The status of the Desc_req command. @ref zdp_status */
+    zb_uint16_t     nwk_addr; /*!< NWK address for the request  */
+    zb_uint8_t      length;   /*!< Length of the simple descriptor */
 } ZB_PACKED_STRUCT
 zb_zdo_simple_desc_resp_hdr_t;
 
@@ -1478,17 +1478,17 @@ typedef zb_zdo_desc_resp_hdr_t            zb_zdo_user_desc_conf_hdr_t;
 /** @brief Parameters of simple_desc_resp primitive.  */
 typedef ZB_PACKED_PRE struct zb_zdo_simple_desc_resp_s
 {
-  zb_zdo_simple_desc_resp_hdr_t hdr;  /*!< header for response */
-  zb_af_simple_desc_1_1_t simple_desc; /*!< Simple Descriptor */
+    zb_zdo_simple_desc_resp_hdr_t hdr;  /*!< header for response */
+    zb_af_simple_desc_1_1_t simple_desc; /*!< Simple Descriptor */
 } ZB_PACKED_STRUCT
 zb_zdo_simple_desc_resp_t;
 
 
 typedef ZB_PACKED_PRE struct zb_zdo_child_info_s
 {
-  zb_ieee_addr_t  ext_addr;     /*!< 64-bit IEEE address that is
+    zb_ieee_addr_t  ext_addr;     /*!< 64-bit IEEE address that is
                                  * unique to every device.*/
-}ZB_PACKED_STRUCT
+} ZB_PACKED_STRUCT
 zb_zdo_child_info_t;
 
 /** @brief Jitter used for sending Parent Annce */
@@ -1498,8 +1498,8 @@ zb_zdo_child_info_t;
 /** @brief Header of parent_annce primitive.  */
 typedef ZB_PACKED_PRE struct zb_zdo_parent_annce_s
 {
-  zb_uint8_t      tsn;               /*!< ZDO sequence number */
-  zb_uint8_t      num_of_children;   /*!< Length of the simple descriptor */
+    zb_uint8_t      tsn;               /*!< ZDO sequence number */
+    zb_uint8_t      num_of_children;   /*!< Length of the simple descriptor */
 } ZB_PACKED_STRUCT
 zb_zdo_parent_annce_t;
 
@@ -1507,24 +1507,24 @@ zb_zdo_parent_annce_t;
 /** @brief Header of parent_annce_rsp primitive.  */
 typedef ZB_PACKED_PRE struct zb_zdo_parent_annce_rsp_hdr_s
 {
-  zb_uint8_t tsn; /*!< ZDP transaction sequence number */
-  zb_uint8_t      status;   /*!< The status of the Desc_req command. @ref zdp_status */
-  zb_uint8_t      num_of_children;   /*!< Length of the simple descriptor */
+    zb_uint8_t tsn; /*!< ZDP transaction sequence number */
+    zb_uint8_t      status;   /*!< The status of the Desc_req command. @ref zdp_status */
+    zb_uint8_t      num_of_children;   /*!< Length of the simple descriptor */
 } ZB_PACKED_STRUCT
 zb_zdo_parent_annce_rsp_hdr_t;
 
 /** @brief Parameters of parent_annce_rsp primitive.  */
 typedef ZB_PACKED_PRE struct zb_zdo_parent_annce_rsp_s
 {
-  zb_zdo_parent_annce_rsp_hdr_t hdr;  /*!< header for response */
+    zb_zdo_parent_annce_rsp_hdr_t hdr;  /*!< header for response */
 } ZB_PACKED_STRUCT
 zb_zdo_parent_annce_rsp_t;
 
 /** @brief Parameters of Power_desc_resp primitive.  */
 typedef ZB_PACKED_PRE struct zb_zdo_power_desc_resp_s
 {
-  zb_zdo_desc_resp_hdr_t hdr;  /*!< header for response */
-  zb_af_node_power_desc_t power_desc; /*!< Power Descriptor */
+    zb_zdo_desc_resp_hdr_t hdr;  /*!< header for response */
+    zb_af_node_power_desc_t power_desc; /*!< Power Descriptor */
 } ZB_PACKED_STRUCT
 zb_zdo_power_desc_resp_t;
 
@@ -1553,7 +1553,7 @@ zb_uint8_t zb_zdo_node_desc_req(zb_uint8_t param, zb_callback_t cb);
  */
 typedef ZB_PACKED_PRE struct zb_zdo_power_desc_req_s
 {
-  zb_uint16_t      nwk_addr;    /*!< NWK address that is used for IEEE
+    zb_uint16_t      nwk_addr;    /*!< NWK address that is used for IEEE
                                   address mapping.  */
 } ZB_PACKED_STRUCT zb_zdo_power_desc_req_t;
 
@@ -1583,9 +1583,9 @@ zb_uint8_t zb_zdo_power_desc_req(zb_uint8_t param, zb_callback_t cb);
  */
 typedef ZB_PACKED_PRE struct zb_zdo_simple_desc_req_s
 {
-  zb_uint16_t      nwk_addr;    /*!< NWK address that is used for IEEE
+    zb_uint16_t      nwk_addr;    /*!< NWK address that is used for IEEE
                                   address mapping.  */
-  zb_uint8_t       endpoint;    /*!< The endpoint on the destination  */
+    zb_uint8_t       endpoint;    /*!< The endpoint on the destination  */
 } ZB_PACKED_STRUCT zb_zdo_simple_desc_req_t;
 
 /** @brief Simple_desc_req primitive.
@@ -1612,7 +1612,7 @@ zb_uint8_t zb_zdo_simple_desc_req(zb_uint8_t param, zb_callback_t cb);
  */
 typedef ZB_PACKED_PRE struct zb_zdo_active_ep_req_s
 {
-  zb_uint16_t      nwk_addr;    /*!< NWK address that is used for IEEE
+    zb_uint16_t      nwk_addr;    /*!< NWK address that is used for IEEE
                                   address mapping.  */
 } ZB_PACKED_STRUCT zb_zdo_active_ep_req_t;
 
@@ -1620,10 +1620,10 @@ typedef ZB_PACKED_PRE struct zb_zdo_active_ep_req_s
 /** @brief Active EP response */
 typedef ZB_PACKED_PRE struct zb_zdo_ep_resp_s
 {
-  zb_uint8_t tsn;       /*!< ZDP transaction sequence number */
-  zb_uint8_t status;    /*!< The status of the Active_EP_req command. */
-  zb_uint16_t nwk_addr; /*!< NWK address for the request. */
-  zb_uint8_t ep_count;  /*!< The count of active endpoints on the Remote Device. */
+    zb_uint8_t tsn;       /*!< ZDP transaction sequence number */
+    zb_uint8_t status;    /*!< The status of the Active_EP_req command. */
+    zb_uint16_t nwk_addr; /*!< NWK address for the request. */
+    zb_uint8_t ep_count;  /*!< The count of active endpoints on the Remote Device. */
 }
 ZB_PACKED_STRUCT
 zb_zdo_ep_resp_t;
@@ -1653,19 +1653,19 @@ zb_uint8_t zb_zdo_active_ep_req(zb_uint8_t param, zb_callback_t cb);
  */
 typedef ZB_PACKED_PRE struct zb_zdo_match_desc_param_s
 {
-  zb_uint16_t      nwk_addr;    /*!< NWK address that is used for IEEE
+    zb_uint16_t      nwk_addr;    /*!< NWK address that is used for IEEE
                                   address mapping.  */
-  zb_uint16_t     addr_of_interest; /*!< NWK address of interest */
+    zb_uint16_t     addr_of_interest; /*!< NWK address of interest */
 
-  zb_uint16_t      profile_id;  /*!< Profile ID to be matched at the
+    zb_uint16_t      profile_id;  /*!< Profile ID to be matched at the
                                   destination.  */
-  zb_uint8_t       num_in_clusters; /*!< The number of Input Clusters
+    zb_uint8_t       num_in_clusters; /*!< The number of Input Clusters
                                       provided for matching within the
                                       InClusterList.  */
-  zb_uint8_t       num_out_clusters; /*!< The number of Output Clusters
+    zb_uint8_t       num_out_clusters; /*!< The number of Output Clusters
                                        provided for matching within
                                        OutClusterList.  */
-  zb_uint16_t      cluster_list[1]; /*!< Variable size: [num_in_clusters] +  [num_out_clusters]
+    zb_uint16_t      cluster_list[1]; /*!< Variable size: [num_in_clusters] +  [num_out_clusters]
                                          List of Input ClusterIDs to be used
                                          for matching; the InClusterList is
                                          the desired list to be matched by
@@ -1688,11 +1688,11 @@ zb_zdo_match_desc_param_t;
 /** @brief Match_desc_req head */
 typedef ZB_PACKED_PRE struct zb_zdo_match_desc_req_head_s
 {
-  zb_uint16_t      nwk_addr;        /*!< NWK address that is used for IEEE
+    zb_uint16_t      nwk_addr;        /*!< NWK address that is used for IEEE
                                          address mapping.  */
-  zb_uint16_t      profile_id;      /*!< Profile ID to be matched at the
+    zb_uint16_t      profile_id;      /*!< Profile ID to be matched at the
                                          destination.  */
-  zb_uint8_t       num_in_clusters; /*!< The number of Input Clusters
+    zb_uint8_t       num_in_clusters; /*!< The number of Input Clusters
                                          provided for matching within the
                                          InClusterList.  */
 }
@@ -1702,7 +1702,7 @@ zb_zdo_match_desc_req_head_t;
 /** @brief Match_desc_req tail */
 typedef ZB_PACKED_PRE struct zb_zdo_match_desc_req_tail_s
 {
-  zb_uint8_t       num_out_clusters; /*!< The number of Output Clusters
+    zb_uint8_t       num_out_clusters; /*!< The number of Output Clusters
                                        provided for matching within
                                        OutClusterList.  */
 }
@@ -1714,10 +1714,10 @@ zb_zdo_match_desc_req_tail_t;
   */
 typedef ZB_PACKED_PRE struct zb_zdo_match_desc_resp_s
 {
-  zb_uint8_t tsn;       /*!< ZDP transaction sequence number */
-  zb_uint8_t status;    /*!< The status of the Match_Desc_req command.*/
-  zb_uint16_t nwk_addr; /*!< NWK address for the request. */
-  zb_uint8_t match_len; /*!< The count of endpoints on the Remote Device that match the
+    zb_uint8_t tsn;       /*!< ZDP transaction sequence number */
+    zb_uint8_t status;    /*!< The status of the Match_Desc_req command.*/
+    zb_uint16_t nwk_addr; /*!< NWK address for the request. */
+    zb_uint8_t match_len; /*!< The count of endpoints on the Remote Device that match the
                           request criteria.*/
 }
 ZB_PACKED_STRUCT
@@ -1748,7 +1748,7 @@ zb_uint8_t zb_zdo_match_desc_req(zb_uint8_t param, zb_callback_t cb);
   */
 typedef ZB_PACKED_PRE struct zb_zdo_system_server_discovery_req_s
 {
-  zb_uint16_t server_mask; /*!< Server mask for device discovery */
+    zb_uint16_t server_mask; /*!< Server mask for device discovery */
 }
 ZB_PACKED_STRUCT
 zb_zdo_system_server_discovery_req_t;
@@ -1764,9 +1764,9 @@ typedef zb_zdo_system_server_discovery_req_t zb_zdo_system_server_discovery_para
   */
 typedef ZB_PACKED_PRE struct zb_zdo_system_server_discovery_resp_s
 {
-  zb_uint8_t tsn;          /*!< ZDP transaction sequence number */
-  zb_uint8_t status;       /*!< Status of the operation */
-  zb_uint16_t server_mask; /*!< Mask of the supported features */
+    zb_uint8_t tsn;          /*!< ZDP transaction sequence number */
+    zb_uint8_t status;       /*!< Status of the operation */
+    zb_uint16_t server_mask; /*!< Mask of the supported features */
 }
 ZB_PACKED_STRUCT
 zb_zdo_system_server_discovery_resp_t;
@@ -1803,8 +1803,8 @@ zb_uint8_t zb_zdo_system_server_discovery_req(zb_uint8_t param, zb_callback_t cb
 /** @brief Header of parameters for Mgmt_NWK_Update_req */
 typedef ZB_PACKED_PRE struct zb_zdo_mgmt_nwk_update_req_hdr_s
 {
-  zb_uint32_t scan_channels;   /*!< Channels bitmask */
-  zb_uint8_t scan_duration;    /*!< A value used to calculate the
+    zb_uint32_t scan_channels;   /*!< Channels bitmask */
+    zb_uint8_t scan_duration;    /*!< A value used to calculate the
                                * length of time to spend scanning
                                * each channel. */
 }
@@ -1814,15 +1814,15 @@ zb_zdo_mgmt_nwk_update_req_hdr_t;
 /** @brief Parameters for Mgmt_NWK_Update_req */
 typedef ZB_PACKED_PRE struct zb_zdo_mgmt_nwk_update_req_s
 {
-  zb_zdo_mgmt_nwk_update_req_hdr_t hdr; /*!< Request header */
-  zb_uint8_t scan_count;       /*!< This field represents the number
+    zb_zdo_mgmt_nwk_update_req_hdr_t hdr; /*!< Request header */
+    zb_uint8_t scan_count;       /*!< This field represents the number
                                 * of energy scans to be conducted and reported */
-  zb_uint16_t manager_addr; /*!< This field shall be present only
+    zb_uint16_t manager_addr; /*!< This field shall be present only
                                * if the ScanDuration is set to 0xff,
                                * and, where present, indicates the
                                * NWK address for the device with the
                                * Network Manager bit set in its Node Descriptor. */
-  zb_uint16_t dst_addr;     /*!< Destination address */
+    zb_uint16_t dst_addr;     /*!< Destination address */
 }
 ZB_PACKED_STRUCT
 zb_zdo_mgmt_nwk_update_req_t;
@@ -1832,24 +1832,24 @@ zb_zdo_mgmt_nwk_update_req_t;
 /** @brief Parameters for Mgmt_NWK_Update_req internal call*/
 typedef struct zb_zdo_mgmt_nwk_enhanced_update_req_param_s
 {
-  zb_channel_list_t channel_list; /*!< ZBOSS internal channel list */
-  zb_uint8_t scan_duration;       /*!< A value used to calculate the
+    zb_channel_list_t channel_list; /*!< ZBOSS internal channel list */
+    zb_uint8_t scan_duration;       /*!< A value used to calculate the
                                    * length of time to spend scanning
                                    * each channel. */
-  zb_uint8_t scan_count;          /*!< This field represents the number
+    zb_uint8_t scan_count;          /*!< This field represents the number
                                    * of energy scans to be conducted and reported */
-  zb_uint16_t manager_addr;       /*!< This field shall be present only
+    zb_uint16_t manager_addr;       /*!< This field shall be present only
                                    * if the ScanDuration is set to 0xff,
                                    * and, where present, indicates the
                                    * NWK address for the device with the
                                    * Network Manager bit set in its Node Descriptor. */
-  zb_uint16_t dst_addr;     /*!< Destination address */
+    zb_uint16_t dst_addr;     /*!< Destination address */
 } zb_zdo_mgmt_nwk_enhanced_update_req_param_t;
 
 /** @brief Header of parameters for Mgmt_NWK_Update_req */
 typedef ZB_PACKED_PRE struct zb_zdo_mgmt_nwk_enhanced_update_req_hdr_s
 {
-  zb_uint8_t channel_page_count;     /* The number of Channel Page Structures
+    zb_uint8_t channel_page_count;     /* The number of Channel Page Structures
                                       * contained within the Channel List Structure */
 }
 ZB_PACKED_STRUCT
@@ -1860,13 +1860,13 @@ zb_zdo_mgmt_nwk_enhanced_update_req_hdr_t;
 /** @brief Header parameters for mgmt_nwk_update_notify */
 typedef ZB_PACKED_PRE struct zb_zdo_mgmt_nwk_update_notify_hdr_s
 {
-  zb_uint8_t tsn;        /*!< tsn value */
-  zb_uint8_t status;     /*!< The status of the Mgmt_NWK_Update_notify command. */
-  zb_uint32_t scanned_channels;  /*!< List of channels scanned by the request */
-  zb_uint16_t total_transmissions;  /*!< Count of the total transmissions reported by the device */
-  zb_uint16_t transmission_failures;  /*!< Sum of the total transmission failures reported by the
+    zb_uint8_t tsn;        /*!< tsn value */
+    zb_uint8_t status;     /*!< The status of the Mgmt_NWK_Update_notify command. */
+    zb_uint32_t scanned_channels;  /*!< List of channels scanned by the request */
+    zb_uint16_t total_transmissions;  /*!< Count of the total transmissions reported by the device */
+    zb_uint16_t transmission_failures;  /*!< Sum of the total transmission failures reported by the
                                             device */
-  zb_uint8_t scanned_channels_list_count;  /*!< The list shall contain the number of records
+    zb_uint8_t scanned_channels_list_count;  /*!< The list shall contain the number of records
                                             * contained in the EnergyValues parameter. */
 }
 ZB_PACKED_STRUCT
@@ -1875,10 +1875,10 @@ zb_zdo_mgmt_nwk_update_notify_hdr_t;
 /** @brief Parameters for mgmt_nwk_update_notify */
 typedef struct zb_zdo_mgmt_nwk_update_notify_param_s
 {
-  zb_zdo_mgmt_nwk_update_notify_hdr_t hdr;             /*!< Fixed parameters set */
-  zb_uint8_t energy_values[ZB_MAC_SUPPORTED_CHANNELS]; /*!< ed scan values */
-  zb_uint16_t dst_addr;  /*!< destination address */
-  zb_uint8_t enhanced;   /*!< If set to one, send Enhanced notify command  */
+    zb_zdo_mgmt_nwk_update_notify_hdr_t hdr;             /*!< Fixed parameters set */
+    zb_uint8_t energy_values[ZB_MAC_SUPPORTED_CHANNELS]; /*!< ed scan values */
+    zb_uint16_t dst_addr;  /*!< destination address */
+    zb_uint8_t enhanced;   /*!< If set to one, send Enhanced notify command  */
 }
 zb_zdo_mgmt_nwk_update_notify_param_t;
 
@@ -1977,12 +1977,12 @@ zb_uint8_t zb_zdo_mgmt_nwk_enhanced_update_req(zb_uint8_t param, zb_callback_t c
   */
 typedef ZB_PACKED_PRE struct zb_zdo_mgmt_nwk_unsol_enh_update_notify_s
 {
-  zb_uint8_t        status;
-  zb_channel_page_t channel_in_use;
-  zb_uint16_t       mac_tx_ucast_total;
-  zb_uint16_t       mac_tx_ucast_failures;
-  zb_uint16_t       mac_tx_ucast_retries;
-  zb_uint8_t        period;
+    zb_uint8_t        status;
+    zb_channel_page_t channel_in_use;
+    zb_uint16_t       mac_tx_ucast_total;
+    zb_uint16_t       mac_tx_ucast_failures;
+    zb_uint16_t       mac_tx_ucast_retries;
+    zb_uint8_t        period;
 } ZB_PACKED_STRUCT
 zb_zdo_mgmt_nwk_unsol_enh_update_notify_t;
 
@@ -1991,8 +1991,8 @@ zb_zdo_mgmt_nwk_unsol_enh_update_notify_t;
   */
 typedef struct zb_zdo_mgmt_nwk_unsol_enh_update_notify_param_s
 {
-  zb_zdo_mgmt_nwk_unsol_enh_update_notify_t notification;
-  zb_uint16_t addr;
+    zb_zdo_mgmt_nwk_unsol_enh_update_notify_t notification;
+    zb_uint16_t addr;
 }
 zb_zdo_mgmt_nwk_unsol_enh_update_notify_param_t;
 
@@ -2011,9 +2011,9 @@ void zb_zdo_mgmt_nwk_unsol_enh_update_notify(zb_uint8_t param, zb_callback_t cb)
   */
 typedef struct zb_zdo_mgmt_lqi_param_s
 {
-  zb_uint8_t start_index; /*!< Starting Index for the requested elements
+    zb_uint8_t start_index; /*!< Starting Index for the requested elements
                            * of the Neighbor Table */
-  zb_uint16_t dst_addr;   /*!< destination address */
+    zb_uint16_t dst_addr;   /*!< destination address */
 }
 zb_zdo_mgmt_lqi_param_t;
 
@@ -2022,7 +2022,7 @@ zb_zdo_mgmt_lqi_param_t;
   */
 typedef ZB_PACKED_PRE struct zb_zdo_mgmt_lqi_req_s
 {
-  zb_uint8_t start_index; /*!< Starting Index for the requested elements
+    zb_uint8_t start_index; /*!< Starting Index for the requested elements
                            * of the Neighbor Table */
 }
 ZB_PACKED_STRUCT
@@ -2033,13 +2033,13 @@ zb_zdo_mgmt_lqi_req_t;
   */
 typedef ZB_PACKED_PRE struct zb_zdo_mgmt_lqi_resp_s
 {
-  zb_uint8_t tsn;                        /*!< ZDP transaction sequence number */
-  zb_uint8_t status;                     /*!< The status of the Mgmt_Lqi_req command.*/
-  zb_uint8_t neighbor_table_entries;     /*!< Total number of Neighbor
+    zb_uint8_t tsn;                        /*!< ZDP transaction sequence number */
+    zb_uint8_t status;                     /*!< The status of the Mgmt_Lqi_req command.*/
+    zb_uint8_t neighbor_table_entries;     /*!< Total number of Neighbor
                                           * Table entries within the Remote Device */
-  zb_uint8_t start_index;                /*!< Starting index within the Neighbor
+    zb_uint8_t start_index;                /*!< Starting index within the Neighbor
                                           * Table to begin reporting for the NeighborTableList.*/
-  zb_uint8_t neighbor_table_list_count;  /*!< Number of Neighbor Table
+    zb_uint8_t neighbor_table_list_count;  /*!< Number of Neighbor Table
                                           * entries included within NeighborTableList*/
 }
 ZB_PACKED_STRUCT
@@ -2108,18 +2108,18 @@ zb_zdo_mgmt_lqi_resp_t;
 /** @brief NeighborTableList Record Format for Mgmt_Lqi_resp */
 typedef ZB_PACKED_PRE struct zb_zdo_neighbor_table_record_s
 {
-  zb_ext_pan_id_t ext_pan_id;   /*!< 64-bit extended Pan
+    zb_ext_pan_id_t ext_pan_id;   /*!< 64-bit extended Pan
                                  * ID of the neighboring device.*/
-  zb_ieee_addr_t  ext_addr;     /*!< 64-bit IEEE address that is
+    zb_ieee_addr_t  ext_addr;     /*!< 64-bit IEEE address that is
                                  * unique to every device.*/
-  zb_uint16_t     network_addr; /*!< The 16-bit network address of the
+    zb_uint16_t     network_addr; /*!< The 16-bit network address of the
                                  * neighboring device */
-  zb_uint8_t      type_flags;   /*!< device type, rx_on_when_idle,
+    zb_uint8_t      type_flags;   /*!< device type, rx_on_when_idle,
                                  * relationship */
-  zb_uint8_t      permit_join;  /*!< An indication of whether the
+    zb_uint8_t      permit_join;  /*!< An indication of whether the
                                  * neighbor device is accepting join requests*/
-  zb_uint8_t      depth;        /*!< The tree depth of the neighbor device. */
-  zb_uint8_t      lqi;          /*!< The estimated link quality for RF
+    zb_uint8_t      depth;        /*!< The tree depth of the neighbor device. */
+    zb_uint8_t      lqi;          /*!< The estimated link quality for RF
                                  * transmissions from this device */
 }
 ZB_PACKED_STRUCT
@@ -2147,9 +2147,9 @@ zb_uint8_t zb_zdo_mgmt_lqi_req(zb_uint8_t param, zb_callback_t cb);
   */
 typedef struct zb_zdo_mgmt_rtg_param_s
 {
-  zb_uint8_t start_index; /*!< Starting Index for the requested elements
+    zb_uint8_t start_index; /*!< Starting Index for the requested elements
                            * of the Routing Table */
-  zb_uint16_t dst_addr;   /*!< destination address */
+    zb_uint16_t dst_addr;   /*!< destination address */
 }
 zb_zdo_mgmt_rtg_param_t;
 
@@ -2158,7 +2158,7 @@ zb_zdo_mgmt_rtg_param_t;
   */
 typedef ZB_PACKED_PRE struct zb_zdo_mgmt_rtg_req_s
 {
-  zb_uint8_t start_index; /*!< Starting Index for the requested elements
+    zb_uint8_t start_index; /*!< Starting Index for the requested elements
                            * of the Routing Table */
 }
 ZB_PACKED_STRUCT
@@ -2169,13 +2169,13 @@ zb_zdo_mgmt_rtg_req_t;
   */
 typedef ZB_PACKED_PRE struct zb_zdo_mgmt_rtg_resp_s
 {
-  zb_uint8_t tsn;                        /*!< ZDP transaction sequence number */
-  zb_uint8_t status;                     /*!< The status of the Mgmt_Rtg_req command.*/
-  zb_uint8_t routing_table_entries;     /*!< Total number of Routing
+    zb_uint8_t tsn;                        /*!< ZDP transaction sequence number */
+    zb_uint8_t status;                     /*!< The status of the Mgmt_Rtg_req command.*/
+    zb_uint8_t routing_table_entries;     /*!< Total number of Routing
                                           * Table entries within the Remote Device */
-  zb_uint8_t start_index;                /*!< Starting index within the Routing
+    zb_uint8_t start_index;                /*!< Starting index within the Routing
                                           * Table to begin rreporting for the RoutingTableList.*/
-  zb_uint8_t routing_table_list_count;  /*!< Number of Routing Table
+    zb_uint8_t routing_table_list_count;  /*!< Number of Routing Table
                                           * entries included within RoutingTableList.*/
 }
 ZB_PACKED_STRUCT
@@ -2264,10 +2264,10 @@ zb_zdo_mgmt_rtg_resp_t;
 /** @brief RoutingTableList Record Format for mgmt_rtg_resp */
 typedef ZB_PACKED_PRE struct zb_zdo_routing_table_record_s
 {
-  zb_uint16_t     dest_addr;     /*!< The 16-bit network address of the
+    zb_uint16_t     dest_addr;     /*!< The 16-bit network address of the
                                   * destination device */
-  zb_uint8_t      flags;         /*!< Routing flags */
-  zb_uint16_t     next_hop_addr; /*!< The 16-bit network address of the
+    zb_uint8_t      flags;         /*!< Routing flags */
+    zb_uint16_t     next_hop_addr; /*!< The 16-bit network address of the
                                   * next-hop device */
 }
 ZB_PACKED_STRUCT
@@ -2324,9 +2324,9 @@ typedef zb_uint8_t zb_bind_dst_addr_mode_t;
   */
 typedef struct zb_zdo_mgmt_bind_param_s
 {
-  zb_uint8_t start_index; /*!< Starting Index for the requested elements
+    zb_uint8_t start_index; /*!< Starting Index for the requested elements
                            * of the Binding Table */
-  zb_uint16_t dst_addr;   /*!< destination address */
+    zb_uint16_t dst_addr;   /*!< destination address */
 }
 zb_zdo_mgmt_bind_param_t;
 
@@ -2335,7 +2335,7 @@ zb_zdo_mgmt_bind_param_t;
   */
 typedef ZB_PACKED_PRE struct zb_zdo_mgmt_bind_req_s
 {
-  zb_uint8_t start_index; /*!< Starting Index for the requested elements
+    zb_uint8_t start_index; /*!< Starting Index for the requested elements
                            * of the Binding Table */
 }
 ZB_PACKED_STRUCT
@@ -2346,13 +2346,13 @@ zb_zdo_mgmt_bind_req_t;
   */
 typedef ZB_PACKED_PRE struct zb_zdo_mgmt_bind_resp_s
 {
-  zb_uint8_t tsn; /*!< ZDP transaction sequence number */
-  zb_uint8_t status; /*!< The status of the Mgmt_Rtg_req command.*/
-  zb_uint8_t binding_table_entries; /*!< Total number of Binding Table
+    zb_uint8_t tsn; /*!< ZDP transaction sequence number */
+    zb_uint8_t status; /*!< The status of the Mgmt_Rtg_req command.*/
+    zb_uint8_t binding_table_entries; /*!< Total number of Binding Table
                                      * entries within the Remote Device*/
-  zb_uint8_t start_index; /*!< Starting index within the Binding
+    zb_uint8_t start_index; /*!< Starting index within the Binding
                            * Table to begin reporting for the BindingTableList.*/
-  zb_uint8_t binding_table_list_count; /*!< Number of Binding Table
+    zb_uint8_t binding_table_list_count; /*!< Number of Binding Table
                                          * entries included within BindingTableList*/
 }
 ZB_PACKED_STRUCT
@@ -2363,16 +2363,16 @@ zb_zdo_mgmt_bind_resp_t;
  * spec, Table 2.131 */
 typedef ZB_PACKED_PRE struct zb_zdo_binding_table_record_s
 {
-  zb_ieee_addr_t src_address; /*!< The source IEEE address for the binding entry. */
-  zb_uint8_t src_endp;        /*!< The source endpoint for the binding entry. */
-  zb_uint16_t cluster_id;     /*!< The identifier of the cluster on the
+    zb_ieee_addr_t src_address; /*!< The source IEEE address for the binding entry. */
+    zb_uint8_t src_endp;        /*!< The source endpoint for the binding entry. */
+    zb_uint16_t cluster_id;     /*!< The identifier of the cluster on the
                                *   source device that is bound to the
                                *   destination device. */
-  zb_uint8_t dst_addr_mode;   /*!< Destination address mode @ref bind_dst_addr_mode */
-  zb_addr_u dst_address;      /*!< The destination address for the
+    zb_uint8_t dst_addr_mode;   /*!< Destination address mode @ref bind_dst_addr_mode */
+    zb_addr_u dst_address;      /*!< The destination address for the
                                *   binding entry.16 or 64 bit. As specified by the
                                *   dst_addr_mode field.*/
-  zb_uint8_t dst_endp;        /*!< This field shall be present only if the
+    zb_uint8_t dst_endp;        /*!< This field shall be present only if the
                                *    DstAddrMode field has a value of
                                *    ZB_BIND_DST_ADDR_MODE_64_BIT_EXTENDED @ref bind_dst_addr_mode
                                *    and, if present, shall be the
@@ -2408,20 +2408,20 @@ void zdo_mgmt_bind_resp(zb_uint8_t param);
   */
 typedef struct zb_zdo_bind_req_param_s
 {
-  zb_ieee_addr_t src_address;  /*!< The IEEE address for the source. */
-  zb_uint8_t src_endp;         /*!< The source endpoint for the binding entry. */
-  zb_uint16_t cluster_id;      /*!< The identifier of the cluster on the
+    zb_ieee_addr_t src_address;  /*!< The IEEE address for the source. */
+    zb_uint8_t src_endp;         /*!< The source endpoint for the binding entry. */
+    zb_uint16_t cluster_id;      /*!< The identifier of the cluster on the
                                 *   source device that is bound to the destination. */
-  zb_uint8_t dst_addr_mode;    /*!< Destination address mode @ref bind_dst_addr_mode */
-  zb_addr_u dst_address;       /*!< The destination address for the
+    zb_uint8_t dst_addr_mode;    /*!< Destination address mode @ref bind_dst_addr_mode */
+    zb_addr_u dst_address;       /*!< The destination address for the
                                 *   binding entry. */
-  zb_uint8_t dst_endp;         /*!< This field shall be present only if the
+    zb_uint8_t dst_endp;         /*!< This field shall be present only if the
                                 *   DstAddrMode field has a value of
                                 *   @ref ZB_BIND_DST_ADDR_MODE_64_BIT_EXTENDED @ref bind_dst_addr_mode
                                 *   and, if present, shall be the
                                 *   destination endpoint for the binding
                                 *   entry. */
-  zb_uint16_t req_dst_addr;    /*!< Destination address of the request */
+    zb_uint16_t req_dst_addr;    /*!< Destination address of the request */
 }
 zb_zdo_bind_req_param_t;
 
@@ -2431,11 +2431,11 @@ zb_zdo_bind_req_param_t;
   */
 typedef ZB_PACKED_PRE struct zb_zdo_bind_req_head_s
 {
-  zb_ieee_addr_t src_address; /*!< The IEEE address for the source. */
-  zb_uint8_t src_endp;        /*!< The source endpoint for the binding entry. */
-  zb_uint16_t cluster_id;     /*!< The identifier of the cluster on the
+    zb_ieee_addr_t src_address; /*!< The IEEE address for the source. */
+    zb_uint8_t src_endp;        /*!< The source endpoint for the binding entry. */
+    zb_uint16_t cluster_id;     /*!< The identifier of the cluster on the
                                *   source device that is bound to the destination. */
-  zb_uint8_t dst_addr_mode;   /*!< Destination address mode @ref bind_dst_addr_mode */
+    zb_uint8_t dst_addr_mode;   /*!< Destination address mode @ref bind_dst_addr_mode */
 }
 ZB_PACKED_STRUCT
 zb_zdo_bind_req_head_t;
@@ -2445,7 +2445,7 @@ zb_zdo_bind_req_head_t;
   */
 typedef ZB_PACKED_PRE struct zb_zdo_bind_req_tail_1_s
 {
-  zb_uint16_t dst_addr; /*!< The destination address for the
+    zb_uint16_t dst_addr; /*!< The destination address for the
                          *   binding entry. */
 }
 ZB_PACKED_STRUCT
@@ -2456,9 +2456,9 @@ zb_zdo_bind_req_tail_1_t;
   */
 typedef ZB_PACKED_PRE struct zb_zdo_bind_req_tail_2_s
 {
-  zb_ieee_addr_t dst_addr; /*!< The destination address for the
+    zb_ieee_addr_t dst_addr; /*!< The destination address for the
                             * binding entry. */
-  zb_uint8_t dst_endp;  /*!< The destination address for the
+    zb_uint8_t dst_endp;  /*!< The destination address for the
                          * binding entry. */
 }
 ZB_PACKED_STRUCT
@@ -2467,8 +2467,8 @@ zb_zdo_bind_req_tail_2_t;
 /** @brief Response by Bind_req. */
 typedef ZB_PACKED_PRE struct zb_zdo_bind_resp_s
 {
-  zb_uint8_t tsn; /*!< ZDP transaction sequence number */
-  zb_uint8_t status; /**< Operation status. */
+    zb_uint8_t tsn; /*!< ZDP transaction sequence number */
+    zb_uint8_t status; /**< Operation status. */
 }
 ZB_PACKED_STRUCT
 zb_zdo_bind_resp_t;
@@ -2561,12 +2561,12 @@ zb_uint8_t zb_zdo_unbind_req(zb_uint8_t param, zb_callback_t cb);
  */
 typedef ZB_PACKED_PRE struct zb_zdo_mgmt_leave_param_s
 {
-  zb_ieee_addr_t device_address;   /*!< 64-bit IEEE address */
-  zb_uint16_t    dst_addr;         /*!< Destination address. Not defined in
+    zb_ieee_addr_t device_address;   /*!< 64-bit IEEE address */
+    zb_uint16_t    dst_addr;         /*!< Destination address. Not defined in
                                     *   the specification - let's it be short address */
-  zb_bitfield_t reserved:6;        /*!< Reserve */
-  zb_bitfield_t remove_children:1; /*!< Remove children */
-  zb_bitfield_t rejoin:1;          /*!< Rejoin */
+    zb_bitfield_t reserved: 6;       /*!< Reserve */
+    zb_bitfield_t remove_children: 1; /*!< Remove children */
+    zb_bitfield_t rejoin: 1;         /*!< Rejoin */
 }
 ZB_PACKED_STRUCT
 zb_zdo_mgmt_leave_param_t;
@@ -2576,10 +2576,10 @@ zb_zdo_mgmt_leave_param_t;
   */
 typedef ZB_PACKED_PRE struct zb_zdo_mgmt_leave_req_s
 {
-  zb_ieee_addr_t device_address;   /*!< 64-bit IEEE address */
-  zb_bitfield_t reserved:6;        /*!< Reserve */
-  zb_bitfield_t remove_children:1; /*!< Remove children */
-  zb_bitfield_t rejoin:1;          /*!< Rejoin */
+    zb_ieee_addr_t device_address;   /*!< 64-bit IEEE address */
+    zb_bitfield_t reserved: 6;       /*!< Reserve */
+    zb_bitfield_t remove_children: 1; /*!< Remove children */
+    zb_bitfield_t rejoin: 1;         /*!< Rejoin */
 }
 ZB_PACKED_STRUCT
 zb_zdo_mgmt_leave_req_t;
@@ -2589,8 +2589,8 @@ zb_zdo_mgmt_leave_req_t;
   */
 typedef ZB_PACKED_PRE struct zb_zdo_mgmt_leave_res_s
 {
-  zb_uint8_t tsn;    /*!< ZDP transaction sequence number */
-  zb_uint8_t status; /**< Operation status. */
+    zb_uint8_t tsn;    /*!< ZDP transaction sequence number */
+    zb_uint8_t status; /**< Operation status. */
 }
 ZB_PACKED_STRUCT
 zb_zdo_mgmt_leave_res_t;
@@ -2645,16 +2645,16 @@ zb_uint8_t zdo_mgmt_leave_req(zb_uint8_t param, zb_callback_t cb);
   */
 typedef ZB_PACKED_PRE struct zb_zdo_end_device_bind_req_head_s
 {
-  zb_uint16_t binding_target;   /*!< The address of the target for the
+    zb_uint16_t binding_target;   /*!< The address of the target for the
                                  * binding. This can be either the
                                  * primary binding cache device or the
                                  * short address of the local device. */
-  zb_ieee_addr_t src_ieee_addr; /*!< IEEE address of the device generating the request */
-  zb_uint8_t src_endp;          /*!< The endpoint on the device generating the request */
-  zb_uint16_t profile_id;       /*!< ProfileID which is to be matched
+    zb_ieee_addr_t src_ieee_addr; /*!< IEEE address of the device generating the request */
+    zb_uint8_t src_endp;          /*!< The endpoint on the device generating the request */
+    zb_uint16_t profile_id;       /*!< ProfileID which is to be matched
                                  * between two End_Device_Bind_req
                                  * received at the Zigbee Coordinator */
-  zb_uint8_t num_in_cluster;    /*!< The number of Input Clusters
+    zb_uint8_t num_in_cluster;    /*!< The number of Input Clusters
                                  * provided for end device binding
                                  * within the InClusterList. */
 }
@@ -2666,7 +2666,7 @@ zb_zdo_end_device_bind_req_head_t;
   */
 typedef ZB_PACKED_PRE struct zb_zdo_end_device_bind_req_tail_s
 {
-  zb_uint8_t num_out_cluster;   /*!< The number of Output Clusters
+    zb_uint8_t num_out_cluster;   /*!< The number of Output Clusters
                                  * provided for matching within OutClusterList */
 }
 ZB_PACKED_STRUCT
@@ -2677,10 +2677,10 @@ zb_zdo_end_device_bind_req_tail_t;
   */
 typedef ZB_PACKED_PRE struct zb_end_device_bind_req_param_s
 {
-  zb_uint16_t dst_addr;                         /*!< Destination address */
-  zb_zdo_end_device_bind_req_head_t head_param; /*!< Parameters for command head */
-  zb_zdo_end_device_bind_req_tail_t tail_param; /*!< Parameters for command tail */
-  zb_uint16_t cluster_list[1];                  /*!< List of Input and Output
+    zb_uint16_t dst_addr;                         /*!< Destination address */
+    zb_zdo_end_device_bind_req_head_t head_param; /*!< Parameters for command head */
+    zb_zdo_end_device_bind_req_tail_t tail_param; /*!< Parameters for command tail */
+    zb_uint16_t cluster_list[1];                  /*!< List of Input and Output
                                                  * ClusterIDs to be used for matching */
 } ZB_PACKED_STRUCT
 zb_end_device_bind_req_param_t;
@@ -2700,8 +2700,8 @@ zb_uint8_t zb_end_device_bind_req(zb_uint8_t param, zb_callback_t cb);
   */
 typedef ZB_PACKED_PRE struct zb_zdo_end_device_bind_resp_s
 {
-  zb_uint8_t tsn;    /*!< ZDP transaction sequence number */
-  zb_uint8_t status; /**< Operation status. */
+    zb_uint8_t tsn;    /*!< ZDP transaction sequence number */
+    zb_uint8_t status; /**< Operation status. */
 }
 ZB_PACKED_STRUCT
 zb_zdo_end_device_bind_resp_t;
@@ -2716,10 +2716,10 @@ zb_zdo_end_device_bind_resp_t;
   */
 typedef ZB_PACKED_PRE struct zb_zdo_mgmt_permit_joining_req_s
 {
-  zb_uint8_t permit_duration;   /**< The length of time in seconds.  0x00 and 0xff indicate that
+    zb_uint8_t permit_duration;   /**< The length of time in seconds.  0x00 and 0xff indicate that
                                   * permission is disabled or enabled
                                   */
-  zb_uint8_t tc_significance;   /**< If this is set to 0x01 and the remote device is the Trust
+    zb_uint8_t tc_significance;   /**< If this is set to 0x01 and the remote device is the Trust
                                   * Center, the command affects the
                                   * Trust Center authentication policy as described in the
                                   * sub-clauses below; According to
@@ -2731,11 +2731,11 @@ zb_zdo_mgmt_permit_joining_req_t;
 /** @brief Parameters for zb_zdo_mgmt_permit_joining_req.  */
 typedef ZB_PACKED_PRE struct zb_zdo_mgmt_permit_joining_req_param_s
 {
-  zb_uint16_t dest_addr;        /**< Destination address */
-  zb_uint8_t permit_duration;   /**< The length of time in seconds.  0x00 and 0xff indicate that
+    zb_uint16_t dest_addr;        /**< Destination address */
+    zb_uint8_t permit_duration;   /**< The length of time in seconds.  0x00 and 0xff indicate that
                                   * permission is disabled or enabled
                                   */
-  zb_uint8_t tc_significance;   /**< If this is set to 0x01 and the remote device is the Trust
+    zb_uint8_t tc_significance;   /**< If this is set to 0x01 and the remote device is the Trust
                                   * Center, the command affects the Trust Center authentication
                                   * policy as described in the sub-clauses below; If this is set to
                                   * 0x00, there is no effect on the Trust
@@ -2778,8 +2778,8 @@ zb_ret_t zb_send_permit_join_signal(zb_uint8_t permit_duration);
 /** @brief Response from zb_zdo_mgmt_permit_joining_req.  */
 typedef ZB_PACKED_PRE struct zb_zdo_mgmt_permit_joining_resp_s
 {
-  zb_uint8_t tsn; /*!< ZDP transaction sequence number */
-  zb_uint8_t status; /**< Operation status. */
+    zb_uint8_t tsn; /*!< ZDP transaction sequence number */
+    zb_uint8_t status; /**< Operation status. */
 }
 ZB_PACKED_STRUCT
 zb_zdo_mgmt_permit_joining_resp_t;
@@ -2787,8 +2787,8 @@ zb_zdo_mgmt_permit_joining_resp_t;
 /** @brief Not Supported Response */
 typedef ZB_PACKED_PRE struct zb_zdo_not_supported_resp_s
 {
-  zb_uint8_t tsn; /*!< ZDP transaction sequence number */
-  zb_uint8_t status; /**< Operation status. */
+    zb_uint8_t tsn; /*!< ZDP transaction sequence number */
+    zb_uint8_t status; /**< Operation status. */
 }
 ZB_PACKED_STRUCT
 zb_zdo_not_supported_resp_t;
@@ -2799,8 +2799,8 @@ zb_zdo_not_supported_resp_t;
  */
 typedef struct zb_zdo_mgmt_nwk_ieee_joining_list_param_s
 {
-  zb_uint8_t start_index; /*!< Starting Index for nwkIeeeJoiningList to be returned */
-  zb_uint16_t dst_addr;   /*!< destination address */
+    zb_uint8_t start_index; /*!< Starting Index for nwkIeeeJoiningList to be returned */
+    zb_uint16_t dst_addr;   /*!< destination address */
 }
 zb_zdo_mgmt_nwk_ieee_joining_list_param_t;
 
@@ -2810,7 +2810,7 @@ zb_zdo_mgmt_nwk_ieee_joining_list_param_t;
  */
 typedef ZB_PACKED_PRE struct zb_zdo_mgmt_nwk_ieee_joining_list_req_s
 {
-  zb_uint8_t start_index; /*!< Starting Index for nwkIeeeJoiningList to be returned */
+    zb_uint8_t start_index; /*!< Starting Index for nwkIeeeJoiningList to be returned */
 }
 ZB_PACKED_STRUCT zb_zdo_mgmt_nwk_ieee_joining_list_req_t;
 
@@ -2821,19 +2821,19 @@ ZB_PACKED_STRUCT zb_zdo_mgmt_nwk_ieee_joining_list_req_t;
  */
 typedef ZB_PACKED_PRE struct zb_zdo_mgmt_nwk_ieee_joining_list_rsp_s
 {
-  zb_uint8_t tsn; /*!< ZDP transaction sequence number */
+    zb_uint8_t tsn; /*!< ZDP transaction sequence number */
 
-  zb_uint8_t status; /*!< The status of the Mgmt_NWK_IEEE_Joining_List_req command. */
+    zb_uint8_t status; /*!< The status of the Mgmt_NWK_IEEE_Joining_List_req command. */
 
-  zb_uint8_t ieee_joining_list_update_id;
+    zb_uint8_t ieee_joining_list_update_id;
 
-  zb_uint8_t joining_policy; /*<! Joining policy enumeration. */
+    zb_uint8_t joining_policy; /*<! Joining policy enumeration. */
 
-  zb_uint8_t ieee_joining_list_total;
+    zb_uint8_t ieee_joining_list_total;
 
-  zb_uint8_t start_index; /*<! The starting index in the mibIeeeJoiningList. */
+    zb_uint8_t start_index; /*<! The starting index in the mibIeeeJoiningList. */
 
-  zb_uint8_t ieee_joining_count; /*<! Number of ieee addresses following this structure. */
+    zb_uint8_t ieee_joining_count; /*<! Number of ieee addresses following this structure. */
 }
 ZB_PACKED_STRUCT
 zb_zdo_mgmt_nwk_ieee_joining_list_rsp_t;
@@ -2892,10 +2892,10 @@ void zb_zdo_get_group_membership_req(zb_uint8_t param);
  */
 typedef ZB_PACKED_PRE struct zb_zdo_device_annce_s
 {
-  zb_uint8_t       tsn;         /*!< TSN of command */
-  zb_uint16_t      nwk_addr;    /*!< NWK address for the Local Device  */
-  zb_ieee_addr_t   ieee_addr;   /*!< IEEE address for the Local Device  */
-  zb_uint8_t       capability;  /*!< Capability of the local device */
+    zb_uint8_t       tsn;         /*!< TSN of command */
+    zb_uint16_t      nwk_addr;    /*!< NWK address for the Local Device  */
+    zb_ieee_addr_t   ieee_addr;   /*!< IEEE address for the Local Device  */
+    zb_uint8_t       capability;  /*!< Capability of the local device */
 } ZB_PACKED_STRUCT zb_zdo_device_annce_t;
 
 
@@ -2904,9 +2904,9 @@ typedef ZB_PACKED_PRE struct zb_zdo_device_annce_s
 */
 typedef ZB_PACKED_PRE struct zb_nlme_leave_indication_s
 {
-  zb_ieee_addr_t device_address; /**< 64-bit IEEE address of the device to remove, zero fill if device
+    zb_ieee_addr_t device_address; /**< 64-bit IEEE address of the device to remove, zero fill if device
                                   * itself */
-  zb_uint8_t rejoin;            /**< Join after leave */
+    zb_uint8_t rejoin;            /**< Join after leave */
 } ZB_PACKED_STRUCT
 zb_nlme_leave_indication_t;
 
@@ -2915,7 +2915,7 @@ zb_nlme_leave_indication_t;
 */
 typedef ZB_PACKED_PRE struct zb_zdo_pim_get_long_poll_interval_resp_s
 {
-  zb_time_t interval; /**< long poll interval */
+    zb_time_t interval; /**< long poll interval */
 } ZB_PACKED_STRUCT
 zb_zdo_pim_get_long_poll_interval_resp_t;
 

@@ -58,158 +58,158 @@ static zb_uint8_t startup_calls_counter = 0;
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
-  ZB_INIT("zdo_3_zed");
-#if UART_CONTROL	
-	test_control_init();
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    /* Init device, load IB values from nvram or set it to default */
+    ZB_INIT("zdo_3_zed");
+#if UART_CONTROL
+    test_control_init();
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 #endif
-	
-  /* set ieee addr */
-  zb_set_long_address(g_ieee_addr);
 
-  /* become an ED */
-  zb_cert_test_set_common_channel_settings();
-  zb_cert_test_set_zed_role();
+    /* set ieee addr */
+    zb_set_long_address(g_ieee_addr);
 
-  zb_set_rx_on_when_idle(ZB_TRUE);
+    /* become an ED */
+    zb_cert_test_set_common_channel_settings();
+    zb_cert_test_set_zed_role();
 
-  //zb_aps_set_global_tc_key_type(ZB_FALSE);
+    zb_set_rx_on_when_idle(ZB_TRUE);
 
-  zb_bdb_set_legacy_device_support(ZB_TRUE);
-  zb_zdo_set_aps_unsecure_join(ZB_TRUE);
+    //zb_aps_set_global_tc_key_type(ZB_FALSE);
 
-  MAC_ADD_INVISIBLE_SHORT(0);   /* do not see ZC */
+    zb_bdb_set_legacy_device_support(ZB_TRUE);
+    zb_zdo_set_aps_unsecure_join(ZB_TRUE);
 
-  zb_set_nvram_erase_at_start(ZB_TRUE);
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zb_secur_update_key_pair(g_ieee_addr_c,
-                             g_key_c,
-                             ZB_SECUR_GLOBAL_KEY,
-                             ZB_SECUR_VERIFIED_KEY,
-                             ZB_SECUR_KEY_SRC_UNKNOWN);
-    zboss_main_loop();
-  }
+    MAC_ADD_INVISIBLE_SHORT(0);   /* do not see ZC */
 
-  TRACE_DEINIT();
+    zb_set_nvram_erase_at_start(ZB_TRUE);
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zb_secur_update_key_pair(g_ieee_addr_c,
+                                 g_key_c,
+                                 ZB_SECUR_GLOBAL_KEY,
+                                 ZB_SECUR_VERIFIED_KEY,
+                                 ZB_SECUR_KEY_SRC_UNKNOWN);
+        zboss_main_loop();
+    }
 
-  MAIN_RETURN(0);
+    TRACE_DEINIT();
+
+    MAIN_RETURN(0);
 }
 
 #if 0
 static void change_key(zb_uint8_t param)
 {
-  ZVUNUSED(param);
-  TRACE_MSG(TRACE_ERROR, "AAA change_key", (FMT__0));
-  zb_secur_setup_nwk_key(g_key_nwk_fake, 0);
+    ZVUNUSED(param);
+    TRACE_MSG(TRACE_ERROR, "AAA change_key", (FMT__0));
+    zb_secur_setup_nwk_key(g_key_nwk_fake, 0);
 }
 #endif
 
 
 static void rejoin_me(zb_uint8_t param)
 {
-  zb_bufid_t buf = zb_buf_get_out();
+    zb_bufid_t buf = zb_buf_get_out();
 
-  ZVUNUSED(param);
+    ZVUNUSED(param);
 
-  if (buf)
-  {
+    if (buf)
+    {
 #ifndef NCP_MODE_HOST
-    ZG->nwk.handle.tmp.rejoin.unsecured_rejoin = 1;
-    ZG->aps.authenticated = ZB_FALSE;
-    zb_secur_rejoin_after_security_failure(buf);
+        ZG->nwk.handle.tmp.rejoin.unsecured_rejoin = 1;
+        ZG->aps.authenticated = ZB_FALSE;
+        zb_secur_rejoin_after_security_failure(buf);
 #else
-    ZB_ASSERT(ZB_FALSE && "TODO: use NCP API here");
+        ZB_ASSERT(ZB_FALSE && "TODO: use NCP API here");
 #endif
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "TEST FAILED: Could not get buf!", (FMT__0));
-  }
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "TEST FAILED: Could not get buf!", (FMT__0));
+    }
 }
 
 
 static void make_parent_invis(zb_uint8_t param)
 {
-  zb_uint16_t addr = zb_cert_test_get_parent_short_addr();
-  ZVUNUSED(param);
-  MAC_ADD_INVISIBLE_SHORT(addr);
+    zb_uint16_t addr = zb_cert_test_get_parent_short_addr();
+    ZVUNUSED(param);
+    MAC_ADD_INVISIBLE_SHORT(addr);
 }
 
 
 static void make_parent_vis(zb_uint8_t param)
 {
-  zb_uint16_t addr = zb_cert_test_get_parent_short_addr();
-  ZVUNUSED(param);
-  MAC_REMOVE_INVISIBLE_SHORT(addr);
+    zb_uint16_t addr = zb_cert_test_get_parent_short_addr();
+    ZVUNUSED(param);
+    MAC_REMOVE_INVISIBLE_SHORT(addr);
 }
 
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  if (0 == status)
-  {
-    switch(sig)
+    if (0 == status)
     {
-      case ZB_ZDO_SIGNAL_DEFAULT_START:
-      case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      case ZB_BDB_SIGNAL_DEVICE_REBOOT:
-        ++startup_calls_counter;
-
-        TRACE_MSG(TRACE_ERROR, "Device STARTED OK", (FMT__0));
-
-        if (startup_calls_counter == 1)
+        switch (sig)
         {
+        case ZB_ZDO_SIGNAL_DEFAULT_START:
+        case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
+        case ZB_BDB_SIGNAL_DEVICE_REBOOT:
+            ++startup_calls_counter;
+
+            TRACE_MSG(TRACE_ERROR, "Device STARTED OK", (FMT__0));
+
+            if (startup_calls_counter == 1)
+            {
 #if 1
-          /* hide traffic from our parent: miss key and key switch */
-          ZB_SCHEDULE_ALARM(make_parent_invis, 0, 1*ZB_TIME_ONE_SECOND);
+                /* hide traffic from our parent: miss key and key switch */
+                ZB_SCHEDULE_ALARM(make_parent_invis, 0, 1 * ZB_TIME_ONE_SECOND);
 
-          /* make parend back visible */
-          ZB_SCHEDULE_ALARM(make_parent_vis, 0, 50*ZB_TIME_ONE_SECOND);
+                /* make parend back visible */
+                ZB_SCHEDULE_ALARM(make_parent_vis, 0, 50 * ZB_TIME_ONE_SECOND);
 
-          /* TC does not require ZR1 to send anything to us,
-             so we must force rejoin from our side */
+                /* TC does not require ZR1 to send anything to us,
+                   so we must force rejoin from our side */
 
-          ZB_SCHEDULE_ALARM(rejoin_me, 0, 51*ZB_TIME_ONE_SECOND);
+                ZB_SCHEDULE_ALARM(rejoin_me, 0, 51 * ZB_TIME_ONE_SECOND);
 #else
-          ZB_SCHEDULE_ALARM(change_key, 0, ZB_MILLISECONDS_TO_BEACON_INTERVAL(1000));
+                ZB_SCHEDULE_ALARM(change_key, 0, ZB_MILLISECONDS_TO_BEACON_INTERVAL(1000));
 #endif
-        }
+            }
 
-        ++startup_calls_counter;
-        break;
+            ++startup_calls_counter;
+            break;
 
-      case ZB_COMMON_SIGNAL_CAN_SLEEP:
+        case ZB_COMMON_SIGNAL_CAN_SLEEP:
 #ifdef ZB_USE_SLEEP
-    	  zb_sleep_now();
+            zb_sleep_now();
 #endif /* ZB_USE_SLEEP */
-        break;
+            break;
 
-      default:
-        TRACE_MSG(TRACE_ERROR, "Unknown signal %hd", (FMT__H, sig));
+        default:
+            TRACE_MSG(TRACE_ERROR, "Unknown signal %hd", (FMT__H, sig));
+        }
     }
-  }
-  else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
-  {
-    TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, status));
-  }
+    else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
+    {
+        TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, status));
+    }
 
-  if (param)
-  {
-    zb_buf_free(param);
-  }
+    if (param)
+    {
+        zb_buf_free(param);
+    }
 }

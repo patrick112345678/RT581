@@ -52,52 +52,52 @@
 */
 enum zb_zcl_pressure_measurement_attr_e
 {
-  /*! @brief MeasuredValue, ZCL spec 4.5.2.2.1.1 */
-  ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_VALUE_ID = 0x0000,
-  /*! @brief MinMeasuredValue, ZCL spec 4.5.2.2.1.2 */
-  ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_MIN_VALUE_ID = 0x0001,
-  /*! @brief MaxMeasuredValue, ZCL spec 4.5.2.2.1.3 */
-  ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_MAX_VALUE_ID = 0x0002,
-  /*! @brief Tolerance, ZCL spec 4.5.2.2.1.4 */
+    /*! @brief MeasuredValue, ZCL spec 4.5.2.2.1.1 */
+    ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_VALUE_ID = 0x0000,
+    /*! @brief MinMeasuredValue, ZCL spec 4.5.2.2.1.2 */
+    ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_MIN_VALUE_ID = 0x0001,
+    /*! @brief MaxMeasuredValue, ZCL spec 4.5.2.2.1.3 */
+    ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_MAX_VALUE_ID = 0x0002,
+    /*! @brief Tolerance, ZCL spec 4.5.2.2.1.4 */
 #ifndef ZB_DISABLE_PRESSURE_MEASUREMENT_TOLERANCE_ID
-  ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_TOLERANCE_ID = 0x0003,
+    ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_TOLERANCE_ID = 0x0003,
 #else
-  ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_TOLERANCE_ID = 0xF003,
+    ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_TOLERANCE_ID = 0xF003,
 #endif
 
-  /*! @brief ScaledValue, ZCL spec 4.5.2.1.2.1 */
+    /*! @brief ScaledValue, ZCL spec 4.5.2.1.2.1 */
 #ifndef ZB_DISABLE_PRESSURE_MEASUREMENT_SCALE_ID
-  ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_SCALED_VALUE_ID = 0x0010,
+    ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_SCALED_VALUE_ID = 0x0010,
 #else
-  ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_SCALED_VALUE_ID = 0xF010,
+    ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_SCALED_VALUE_ID = 0xF010,
 #endif
-  /*! @brief MinScaledValue, ZCL spec 4.5.2.1.2.2 */
+    /*! @brief MinScaledValue, ZCL spec 4.5.2.1.2.2 */
 #ifndef ZB_DISABLE_PRESSURE_MEASUREMENT_SCALE_ID
-  ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_MIN_SCALED_VALUE_ID = 0x0011,
+    ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_MIN_SCALED_VALUE_ID = 0x0011,
 #else
-  ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_MIN_SCALED_VALUE_ID = 0xF011,
+    ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_MIN_SCALED_VALUE_ID = 0xF011,
 #endif
-  /*! @brief MaxScaledValue, ZCL spec 4.5.2.1.2.3 */
+    /*! @brief MaxScaledValue, ZCL spec 4.5.2.1.2.3 */
 #ifndef ZB_DISABLE_PRESSURE_MEASUREMENT_SCALE_ID
-  ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_MAX_SACLED_VALUE_ID = 0x0012,
+    ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_MAX_SACLED_VALUE_ID = 0x0012,
 #else
-  ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_MAX_SACLED_VALUE_ID = 0xF012,
+    ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_MAX_SACLED_VALUE_ID = 0xF012,
 #endif
-  /*! @brief ScaledTolerance, ZCL spec 4.5.2.1.2.4 */
+    /*! @brief ScaledTolerance, ZCL spec 4.5.2.1.2.4 */
 #ifndef ZB_DISABLE_PRESSURE_MEASUREMENT_SCALE_TOLERANCE_ID
-  ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_SCALED_TOLERANCE_ID = 0x0013,
+    ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_SCALED_TOLERANCE_ID = 0x0013,
 #else
-  ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_SCALED_TOLERANCE_ID = 0xF013,
+    ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_SCALED_TOLERANCE_ID = 0xF013,
 #endif
-  /*! @brief Scale, ZCL spec 4.5.2.1.2.5 */
+    /*! @brief Scale, ZCL spec 4.5.2.1.2.5 */
 #ifndef ZB_DISABLE_PRESSURE_MEASUREMENT_SCALE_ID
-  ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_SCALE_ID = 0x0014,
+    ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_SCALE_ID = 0x0014,
 #else
-  ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_SCALE_ID = 0xF014,
+    ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_SCALE_ID = 0xF014,
 #endif
 };
 
- /* (See: Table 4.15 Pressure Measurement Information Attribute Set) */
+/* (See: Table 4.15 Pressure Measurement Information Attribute Set) */
 
 /** @brief MeasuredValue attribute unknown value */
 #define ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_VALUE_UNKNOWN                  ((zb_int16_t)0x8000)
@@ -136,7 +136,7 @@ enum zb_zcl_pressure_measurement_attr_e
 #define ZB_ZCL_PATTR_RESSURE_MEASUREMENT_MAX_VALUE_DEFAULT_VALUE        ((zb_int16_t)0x8000)
 
 
- /* (See: Table 4.16 Extended Pressure Measurement Information Attribute Set) */
+/* (See: Table 4.16 Extended Pressure Measurement Information Attribute Set) */
 
 /** @brief MinScaledValue attribute unknown value */
 #define ZB_ZCL_ATTR_PRESSURE_MEASUREMENT_MIN_SCALED_VALUE_UNKNOWN       ((zb_int16_t)0x8000)
@@ -251,7 +251,7 @@ enum zb_zcl_pressure_measurement_attr_e
 
 /*! Write attribute hook is used to set min/max Pressure values */
 void zb_zcl_pressure_measurement_write_attr_hook(
-  zb_uint8_t endpoint, zb_uint16_t attr_id, zb_uint8_t *new_value);
+    zb_uint8_t endpoint, zb_uint16_t attr_id, zb_uint8_t *new_value);
 
 /*! @} */ /* Pressure Measurement cluster internals */
 /*! @}

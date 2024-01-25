@@ -42,7 +42,7 @@
 #include "linux_spi/linux_spi_transport.h"
 
 void send_data_cb(uint8_t param);
-void recv_data_cb(uint8_t* buffer, uint16_t len);
+void recv_data_cb(uint8_t *buffer, uint16_t len);
 
 #define RECV_BUF_SIZE 100
 
@@ -52,44 +52,44 @@ uint8_t buf[RECV_BUF_SIZE];
 
 int main()
 {
-  linux_spi_init(NULL);
+    linux_spi_init(NULL);
 
-  linux_spi_set_cb_send_data(send_data_cb);
-  linux_spi_set_cb_recv_data(recv_data_cb);
+    linux_spi_set_cb_send_data(send_data_cb);
+    linux_spi_set_cb_recv_data(recv_data_cb);
 
-  while(1)
-  {
-    if (read_flag)
+    while (1)
     {
-      read_flag = 0;
-      linux_spi_send_data("\rhello, world!", 14);
-      linux_spi_recv_data(buf, 13);
+        if (read_flag)
+        {
+            read_flag = 0;
+            linux_spi_send_data("\rhello, world!", 14);
+            linux_spi_recv_data(buf, 13);
+        }
     }
-  }
 
-  return 0;
+    return 0;
 }
 
 
 void send_data_cb(uint8_t param)
 {
-  if (param == SPI_SUCCESS)
-  {
-    printf("sent successfully\n");
-  }
-  else
-  {
-    printf("failed to send\n");
-  }
+    if (param == SPI_SUCCESS)
+    {
+        printf("sent successfully\n");
+    }
+    else
+    {
+        printf("failed to send\n");
+    }
 }
 
-void recv_data_cb(uint8_t* buffer, uint16_t len)
+void recv_data_cb(uint8_t *buffer, uint16_t len)
 {
     int i = 0;
     printf("received successfully\n");
     for (i = 0; i < len; i++)
     {
-      printf("%x ", buffer[i]);
+        printf("%x ", buffer[i]);
     }
     printf("\n");
     read_flag = 1;

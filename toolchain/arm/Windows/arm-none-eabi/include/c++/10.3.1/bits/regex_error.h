@@ -41,99 +41,99 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 namespace regex_constants
 {
-  /**
-   * @name 5.3 Error Types
-   */
-  ///@{
+/**
+ * @name 5.3 Error Types
+ */
+///@{
 
-  enum error_type
-    {
-      _S_error_collate,
-      _S_error_ctype,
-      _S_error_escape,
-      _S_error_backref,
-      _S_error_brack,
-      _S_error_paren,
-      _S_error_brace,
-      _S_error_badbrace,
-      _S_error_range,
-      _S_error_space,
-      _S_error_badrepeat,
-      _S_error_complexity,
-      _S_error_stack,
-    };
+enum error_type
+{
+    _S_error_collate,
+    _S_error_ctype,
+    _S_error_escape,
+    _S_error_backref,
+    _S_error_brack,
+    _S_error_paren,
+    _S_error_brace,
+    _S_error_badbrace,
+    _S_error_range,
+    _S_error_space,
+    _S_error_badrepeat,
+    _S_error_complexity,
+    _S_error_stack,
+};
 
-  /** The expression contained an invalid collating element name. */
-  constexpr error_type error_collate(_S_error_collate);
+/** The expression contained an invalid collating element name. */
+constexpr error_type error_collate(_S_error_collate);
 
-  /** The expression contained an invalid character class name. */
-  constexpr error_type error_ctype(_S_error_ctype);
+/** The expression contained an invalid character class name. */
+constexpr error_type error_ctype(_S_error_ctype);
 
-  /**
-   * The expression contained an invalid escaped character, or a trailing
-   * escape.
-   */
-  constexpr error_type error_escape(_S_error_escape);
+/**
+ * The expression contained an invalid escaped character, or a trailing
+ * escape.
+ */
+constexpr error_type error_escape(_S_error_escape);
 
-  /** The expression contained an invalid back reference. */
-  constexpr error_type error_backref(_S_error_backref);
+/** The expression contained an invalid back reference. */
+constexpr error_type error_backref(_S_error_backref);
 
-  /** The expression contained mismatched [ and ]. */
-  constexpr error_type error_brack(_S_error_brack);
+/** The expression contained mismatched [ and ]. */
+constexpr error_type error_brack(_S_error_brack);
 
-  /** The expression contained mismatched ( and ). */
-  constexpr error_type error_paren(_S_error_paren);
+/** The expression contained mismatched ( and ). */
+constexpr error_type error_paren(_S_error_paren);
 
-  /** The expression contained mismatched { and } */
-  constexpr error_type error_brace(_S_error_brace);
+/** The expression contained mismatched { and } */
+constexpr error_type error_brace(_S_error_brace);
 
-  /** The expression contained an invalid range in a {} expression. */
-  constexpr error_type error_badbrace(_S_error_badbrace);
+/** The expression contained an invalid range in a {} expression. */
+constexpr error_type error_badbrace(_S_error_badbrace);
 
-  /**
-   * The expression contained an invalid character range,
-   * such as [b-a] in most encodings.
-   */
-  constexpr error_type error_range(_S_error_range);
+/**
+ * The expression contained an invalid character range,
+ * such as [b-a] in most encodings.
+ */
+constexpr error_type error_range(_S_error_range);
 
-  /**
-   * There was insufficient memory to convert the expression into a
-   * finite state machine.
-   */
-  constexpr error_type error_space(_S_error_space);
+/**
+ * There was insufficient memory to convert the expression into a
+ * finite state machine.
+ */
+constexpr error_type error_space(_S_error_space);
 
-  /**
-   * One of <em>*?+{</em> was not preceded by a valid regular expression.
-   */
-  constexpr error_type error_badrepeat(_S_error_badrepeat);
+/**
+ * One of <em>*?+{</em> was not preceded by a valid regular expression.
+ */
+constexpr error_type error_badrepeat(_S_error_badrepeat);
 
-  /**
-   * The complexity of an attempted match against a regular expression
-   * exceeded a pre-set level.
-   */
-  constexpr error_type error_complexity(_S_error_complexity);
+/**
+ * The complexity of an attempted match against a regular expression
+ * exceeded a pre-set level.
+ */
+constexpr error_type error_complexity(_S_error_complexity);
 
-  /**
-   * There was insufficient memory to determine whether the
-   * regular expression could match the specified character sequence.
-   */
-  constexpr error_type error_stack(_S_error_stack);
+/**
+ * There was insufficient memory to determine whether the
+ * regular expression could match the specified character sequence.
+ */
+constexpr error_type error_stack(_S_error_stack);
 
-  ///@}
+///@}
 } // namespace regex_constants
 
-  // [7.8] Class regex_error
-  /**
-   * @brief A regular expression exception class.
-   * @ingroup exceptions
-   *
-   * The regular expression library throws objects of this class on error.
-   */
-  class regex_error : public std::runtime_error
-  {
+// [7.8] Class regex_error
+/**
+ * @brief A regular expression exception class.
+ * @ingroup exceptions
+ *
+ * The regular expression library throws objects of this class on error.
+ */
+class regex_error : public std::runtime_error
+{
     regex_constants::error_type _M_code;
 
-  public:
+public:
     /**
      * @brief Constructs a regex_error object.
      *
@@ -151,24 +151,28 @@ namespace regex_constants
      */
     regex_constants::error_type
     code() const
-    { return _M_code; }
+    {
+        return _M_code;
+    }
 
-  private:
-    regex_error(regex_constants::error_type __ecode, const char* __what)
-    : std::runtime_error(__what), _M_code(__ecode)
+private:
+    regex_error(regex_constants::error_type __ecode, const char *__what)
+        : std::runtime_error(__what), _M_code(__ecode)
     { }
 
-    friend void __throw_regex_error(regex_constants::error_type, const char*);
-  };
+    friend void __throw_regex_error(regex_constants::error_type, const char *);
+};
 
-  ///@} // group regex
+///@} // group regex
 
-  void
-  __throw_regex_error(regex_constants::error_type __ecode);
+void
+__throw_regex_error(regex_constants::error_type __ecode);
 
-  inline void
-  __throw_regex_error(regex_constants::error_type __ecode, const char* __what)
-  { _GLIBCXX_THROW_OR_ABORT(regex_error(__ecode, __what)); }
+inline void
+__throw_regex_error(regex_constants::error_type __ecode, const char *__what)
+{
+    _GLIBCXX_THROW_OR_ABORT(regex_error(__ecode, __what));
+}
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace std

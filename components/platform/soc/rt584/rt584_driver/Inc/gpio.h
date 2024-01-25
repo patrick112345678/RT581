@@ -44,20 +44,22 @@ extern "C"
 /**
  * @brief Pin direction definitions.
  */
-typedef enum {
+typedef enum
+{
     GPIO_PIN_DIR_INPUT,           /*!< GPIO Input Mode \hideinitializer */
     GPIO_PIN_DIR_OUTPUT,          /*!< GPIO Output Mode \hideinitializer */
-    GPIO_PIN_DIR_INVALID          
+    GPIO_PIN_DIR_INVALID
 } gpio_pin_dir_t;
 
 /**
  * @brief Selecting the pin to sense high or low level, edge for pin input.
  */
 
-typedef enum {
+typedef enum
+{
     GPIO_PIN_NOINT,              /*!< GPIO Interrupt mode disable \hideinitializer */
-    GPIO_PIN_INT_LEVEL_LOW,      /*!< GPIO Interrupt enable for Level-Low \hideinitializer */ 
-    GPIO_PIN_INT_LEVEL_HIGH,     /*!< GPIO Interrupt enable for Level-High \hideinitializer */ 
+    GPIO_PIN_INT_LEVEL_LOW,      /*!< GPIO Interrupt enable for Level-Low \hideinitializer */
+    GPIO_PIN_INT_LEVEL_HIGH,     /*!< GPIO Interrupt enable for Level-High \hideinitializer */
     GPIO_PIN_INT_EDGE_RISING,    /*!< GPIO Interrupt enable for Rising Edge \hideinitializer */
     GPIO_PIN_INT_EDGE_FALLING,   /*!< GPIO Interrupt enable for Falling Edge \hideinitializer */
     GPIO_PIN_INT_BOTH_EDGE,      /*!< GPIO Interrupt enable for both Rising and Falling Edge \hideinitializer */
@@ -77,13 +79,13 @@ typedef enum {
  * @param[in]   pin        Interrupt pin number.
  * @param[in]   isr_param  isr_param passed to user interrupt handler.
  *                         The parameter is set by user called in function gpio_register_isr
- *                          "*param". This register could be NULL, if user does NOT require this context 
+ *                          "*param". This register could be NULL, if user does NOT require this context
  *                         parameter.
  *
  *
- * @details    This callback function is still running in interrupt mode, so this function 
- *              should be as short as possible. It can NOT call any block function in this 
- *              callback service routine. 
+ * @details    This callback function is still running in interrupt mode, so this function
+ *              should be as short as possible. It can NOT call any block function in this
+ *              callback service routine.
  *
  */
 typedef void (* gpio_isr_handler_t)(uint32_t pin, void *isr_param);
@@ -118,7 +120,7 @@ extern void gpio_register_isr(
     gpio_isr_handler_t  app_gpio_callback,
     void                *param);
 
-    
+
 /**
  * @brief  Set gpio pin to output mode.
  *
@@ -126,10 +128,10 @@ extern void gpio_register_isr(
  *
  * @retval      none
  */
- 
+
 __STATIC_INLINE void gpio_cfg_output(uint32_t pin_number)
 {
-    gpio_cfg(pin_number, GPIO_PIN_DIR_OUTPUT,GPIO_PIN_NOINT);
+    gpio_cfg(pin_number, GPIO_PIN_DIR_OUTPUT, GPIO_PIN_NOINT);
 }
 
 /**
@@ -150,22 +152,22 @@ __STATIC_INLINE void gpio_cfg_input(uint32_t pin_number, gpio_pin_int_mode_t int
  * @brief  Set gpio pin output high.
  *
  * @param[in]  pin      Specifies the pin number to output high.
- * 
+ *
  * @retval    none
  */
- 
+
 __STATIC_INLINE void gpio_pin_set(uint32_t pin_number)
 {
     assert_param(pin_number < MAX_NUMBER_OF_PINS);
 
-    GPIO->OUTPUT_HIGH = (1<<pin_number);
+    GPIO->OUTPUT_HIGH = (1 << pin_number);
 }
 
 /**
  * @brief  Set gpio pin output low.
  *
  * @param[in]  pin      Specifies the pin number to output low.
- * 
+ *
  * @retval    none
  */
 
@@ -173,7 +175,7 @@ __STATIC_INLINE void gpio_pin_clear(uint32_t pin_number)
 {
     assert_param(pin_number < MAX_NUMBER_OF_PINS);
 
-    GPIO->OUTPUT_LOW = (1<<pin_number);
+    GPIO->OUTPUT_LOW = (1 << pin_number);
 }
 
 
@@ -182,16 +184,20 @@ __STATIC_INLINE void gpio_pin_clear(uint32_t pin_number)
  *
  * @param[in]  pin      Specifies the pin number.
  * @param[in]  value    value 0 for output low, value 1 for output high.
- * 
+ *
  * @retval    none
  */
 
 __STATIC_INLINE void gpio_pin_write(uint32_t pin_number, uint32_t value)
 {
     if (value == 0)
+    {
         gpio_pin_clear(pin_number);
+    }
     else
+    {
         gpio_pin_set(pin_number);
+    }
 }
 
 
@@ -199,23 +205,27 @@ __STATIC_INLINE void gpio_pin_write(uint32_t pin_number, uint32_t value)
  * @brief  Toggle gpio pin output value.
  *
  * @param[in]  pin      Specifies the pin number.
- * 
+ *
  * @retval    none
  */
- 
+
 __STATIC_INLINE void gpio_pin_toggle(uint32_t pin_number)
 {
     uint32_t state, MASK;
 
     assert_param(pin_number < MAX_NUMBER_OF_PINS);
 
-    MASK = (1<< pin_number);
+    MASK = (1 << pin_number);
     state = GPIO->OUTPUT_STATE & MASK;
 
-    if(state)
+    if (state)
+    {
         GPIO->OUTPUT_LOW = MASK;
+    }
     else
+    {
         GPIO->OUTPUT_HIGH = MASK;
+    }
 
 }
 
@@ -223,7 +233,7 @@ __STATIC_INLINE void gpio_pin_toggle(uint32_t pin_number)
  * @brief  Get gpio pin input value.
  *
  * @param[in]  pin      Specifies the pin number.
- * 
+ *
  * @retval    1 for input pin is high, 0 for input is low.
  */
 
@@ -231,7 +241,7 @@ __STATIC_INLINE uint32_t gpio_pin_get(uint32_t pin_number)
 {
     assert_param(pin_number < MAX_NUMBER_OF_PINS);
 
-    return ((GPIO->STATE &(1<<pin_number))?1:0);
+    return ((GPIO->STATE & (1 << pin_number)) ? 1 : 0);
 }
 
 
@@ -239,72 +249,74 @@ __STATIC_INLINE uint32_t gpio_pin_get(uint32_t pin_number)
  * @brief  Enable gpio pin interrupt
  *
  * @param[in]  pin      Specifies the pin number that enable interrupt.
- * 
+ *
  * @retval    None
  */
- 
+
 __STATIC_INLINE void gpio_int_enable(uint32_t pin)
 {
     assert_param(pin < MAX_NUMBER_OF_PINS);
-    GPIO->ENABLE_INT = (1<< pin);
+    GPIO->ENABLE_INT = (1 << pin);
 }
 
 /**
  * @brief  Disable gpio pin interrupt
  *
  * @param[in]  pin      Specifies the pin number that disable interrupt.
- * 
+ *
  * @retval    None
  */
 
 __STATIC_INLINE void gpio_int_disable(uint32_t pin)
 {
     assert_param(pin < MAX_NUMBER_OF_PINS);
-    GPIO->DISABLE_INT = (1<< pin);
+    GPIO->DISABLE_INT = (1 << pin);
 }
 
 /**
  * @brief  Enable gpio pin debounce function.
  *
  * @param[in]  pin      Specifies the pin number that enable gpio debounce when interrupt happened.
- * 
+ *
  * @retval    None
  */
- 
+
 __STATIC_INLINE void gpio_debounce_enable(uint32_t pin)
 {
     assert_param(pin < MAX_NUMBER_OF_PINS);
-    GPIO->DEBOUCE_EN = (1<< pin);
+    GPIO->DEBOUCE_EN = (1 << pin);
 }
 
 /**
  * @brief  Disable gpio pin debounce function.
  *
  * @param[in]  pin      Specifies the pin number that disable gpio debounce when interrupt happened.
- * 
+ *
  * @retval    None
  */
 
 __STATIC_INLINE void gpio_debounce_disable(uint32_t pin)
 {
     assert_param(pin < MAX_NUMBER_OF_PINS);
-    GPIO->DEBOUCE_DIS = (1<< pin);
+    GPIO->DEBOUCE_DIS = (1 << pin);
 }
 
 /**
  * @brief  Set GPIO debounce clock.
  *
  * @param[in]  mode   Specifies the sampling clock of debounce function.
- * 
+ *
  * @retval    None
  */
- 
+
 __STATIC_INLINE void gpio_set_debounce_time(uint32_t mode)
 {
     assert_param(mode < DEBOUNCE_SLOWCLOCKS_4096);
 
-    if(mode > DEBOUNCE_SLOWCLOCKS_4096)
+    if (mode > DEBOUNCE_SLOWCLOCKS_4096)
+    {
         mode = DEBOUNCE_SLOWCLOCKS_4096;
+    }
 
     GPIO->DEBOUNCE_TIME = mode;
 }

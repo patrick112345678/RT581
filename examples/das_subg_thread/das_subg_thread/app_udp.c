@@ -1,12 +1,12 @@
 /**
  * @file app_udp.c
  * @author Rex Huang (rex.huang@rafaelmicro.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2023-10-06
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 
 #include <openthread/udp.h>
@@ -22,12 +22,14 @@ static otUdpSocket          appSock;
 static void (*app_udpHandler) (otMessage *, const otMessageInfo *);
 static uint16_t appUdpPort = THREAD_UDP_PORT;
 
-static void otUdpReceive_handler(void *aContext, otMessage *aMessage, const otMessageInfo *aMessageInfo) 
+static void otUdpReceive_handler(void *aContext, otMessage *aMessage, const otMessageInfo *aMessageInfo)
 {
     log_info("UPD Packet received, port: %d, len: %d", aMessageInfo->mPeerPort, otMessageGetLength(aMessage));
 
-    if(app_udpHandler)
+    if (app_udpHandler)
+    {
         app_udpHandler(aMessage, aMessageInfo);
+    }
 
     otMessageFree(aMessage);
 
@@ -49,27 +51,27 @@ otError app_udpSend(uint16_t PeerPort, otIp6Address PeerAddr, uint8_t *data, uin
 
         OT_THREAD_SAFE(
             otInstance *instance = otrGetInstance();
-            if(instance)
+            if (instance)
+    {
+        message = otUdpNewMessage(instance, &messageSettings);
+            if (message == NULL)
             {
-                message = otUdpNewMessage(instance, &messageSettings);
-                if (message == NULL)
-                {
-                    error = OT_ERROR_NO_BUFS;
-                    break;
-                }
-                error = otMessageAppend(message, data, data_lens);
-                if (error != OT_ERROR_NONE)
-                {
-                    break;
-                }
-
-                error = otUdpSend(instance, &appSock, message, &messageInfo);
-                if (error != OT_ERROR_NONE)
-                {
-                    break;
-                }
+                error = OT_ERROR_NO_BUFS;
+                break;
             }
-            message = NULL;
+            error = otMessageAppend(message, data, data_lens);
+            if (error != OT_ERROR_NONE)
+            {
+                break;
+            }
+
+            error = otUdpSend(instance, &appSock, message, &messageInfo);
+            if (error != OT_ERROR_NONE)
+            {
+                break;
+            }
+        }
+        message = NULL;
         )
     } while (0);
 
@@ -86,17 +88,17 @@ uint8_t app_sockInit(otInstance *instance, void (*handler)(otMessage *, const ot
 
     uint8_t ret;
 
-    memset(&appSock, 0 ,sizeof(otUdpSocket));
+    memset(&appSock, 0, sizeof(otUdpSocket));
     memset(&sockAddr, 0, sizeof(otSockAddr));
 
     ret = otUdpOpen(instance, &appSock, otUdpReceive_handler, instance);
 
-    if (OT_ERROR_NONE == ret) 
+    if (OT_ERROR_NONE == ret)
     {
         app_udpHandler = handler;
         sockAddr.mPort = udp_port;
         ret = otUdpBind(instance, &appSock, &sockAddr, OT_NETIF_THREAD);
-        if (OT_ERROR_NONE == ret) 
+        if (OT_ERROR_NONE == ret)
         {
             log_info("UDP PORT           : 0x%x", udp_port);
         }

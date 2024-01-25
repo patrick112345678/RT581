@@ -102,14 +102,14 @@
  */
 typedef ZB_PACKED_PRE struct zse_cert_nvram_s
 {
-  zb_uint8_t      suite_no;
-  zb_kec_qe_t     ca;
-  zb_kec_pr_t     pr;
-  zb_kec_icu_t    cert;
-//  zb_uint8_t      align[2];
+    zb_uint8_t      suite_no;
+    zb_kec_qe_t     ca;
+    zb_kec_pr_t     pr;
+    zb_kec_icu_t    cert;
+    //  zb_uint8_t      align[2];
 } ZB_PACKED_STRUCT zse_cert_nvram_t;
 
-zse_cert_nvram_t * zse_certdb_get_from_tc_storage(zb_uint8_t suite_no, zb_uint8_t *issuer, zse_cert_nvram_t * buf);
+zse_cert_nvram_t *zse_certdb_get_from_tc_storage(zb_uint8_t suite_no, zb_uint8_t *issuer, zse_cert_nvram_t *buf);
 /**
    Certificates hash for TC
 
@@ -117,19 +117,19 @@ zse_cert_nvram_t * zse_certdb_get_from_tc_storage(zb_uint8_t suite_no, zb_uint8_
  */
 typedef ZB_PACKED_PRE struct zse_cert_storage_s
 {
-  zb_uint32_t    nvram_offset:28;      /*!< offset of zb_aps_installcode_nvram_t
+    zb_uint32_t    nvram_offset: 28;      /*!< offset of zb_aps_installcode_nvram_t
                                           record in nvram. 28 bit supports 256k
                                           page - hope, it is enough  */
-  zb_bitfield_t  nvram_page:4;         /*!< nvram page. Hope 16 pages are enough  */
+    zb_bitfield_t  nvram_page: 4;        /*!< nvram page. Hope 16 pages are enough  */
 } ZB_PACKED_STRUCT zse_cert_storage_t;
 
 typedef struct zse_cert_add_s
 {
-  zse_cert_nvram_t full_cert;
-  zb_uint8_t*      issuer;
-  zb_uint8_t*      subject;
-  zb_uint8_t       suite_no;
-  zb_uint8_t       do_update;
+    zse_cert_nvram_t full_cert;
+    zb_uint8_t      *issuer;
+    zb_uint8_t      *subject;
+    zb_uint8_t       suite_no;
+    zb_uint8_t       do_update;
 } zse_cert_add_t;
 
 /**
@@ -150,9 +150,9 @@ typedef struct zse_cert_add_s
 
 typedef enum zse_startup_control_e
 {
-  /* For us much more convinient if uncommissioned == initialized by zero at startup time */
-  ZSE_STARTUP_UNCOMMISSIONED,   /* 2 in SE specification */
-  ZSE_STARTUP_COMMISSIONED
+    /* For us much more convinient if uncommissioned == initialized by zero at startup time */
+    ZSE_STARTUP_UNCOMMISSIONED,   /* 2 in SE specification */
+    ZSE_STARTUP_COMMISSIONED
 } zse_startup_control_t;
 
 
@@ -160,40 +160,40 @@ typedef enum zse_startup_control_e
 
 typedef enum zse_service_disc_step_s
 {
-  ZSE_SERVICE_DISC_DISCOVER_IEEE = 0,
+    ZSE_SERVICE_DISC_DISCOVER_IEEE = 0,
 #define ZSE_SERVICE_DISC_FIRST_STEP ZSE_SERVICE_DISC_DISCOVER_IEEE
-  ZSE_SERVICE_DISC_GEN_KEY,
+    ZSE_SERVICE_DISC_GEN_KEY,
 #ifdef ZB_ENABLE_TIME_SYNC
-  ZSE_SERVICE_DISC_GET_TIME_SERVER,  /* Determine the most authoritative Time server */
+    ZSE_SERVICE_DISC_GET_TIME_SERVER,  /* Determine the most authoritative Time server */
 #endif
-  ZSE_SERVICE_DISC_READ_COMMODITY,
-  ZSE_SERVICE_DISC_BIND,
-  ZSE_SERVICE_DISC_BOUND_OK,
-  ZSE_SERVICE_DISC_INVALID = 0xFF,     /* entry is free */
+    ZSE_SERVICE_DISC_READ_COMMODITY,
+    ZSE_SERVICE_DISC_BIND,
+    ZSE_SERVICE_DISC_BOUND_OK,
+    ZSE_SERVICE_DISC_INVALID = 0xFF,     /* entry is free */
 } zse_service_disc_step_t;
 
 typedef struct zse_service_disc_dev_s
 {
-/* 07/27/2017 EE CR:MINOR Use addr ref? */
-  zb_uint16_t short_addr;
-  zb_uint8_t ep;
-  zse_service_disc_step_t step;
-  zb_uint16_t cluster_id;
-  zb_uint8_t op_in_progress;
-  zb_uint8_t commodity_type;
-  zb_uint8_t zcl_tsn;
+    /* 07/27/2017 EE CR:MINOR Use addr ref? */
+    zb_uint16_t short_addr;
+    zb_uint8_t ep;
+    zse_service_disc_step_t step;
+    zb_uint16_t cluster_id;
+    zb_uint8_t op_in_progress;
+    zb_uint8_t commodity_type;
+    zb_uint8_t zcl_tsn;
 } zse_service_disc_dev_t;
 
 #define ZSE_SERVICE_DISCOVERY_MAX_DEVICES 10
 
 typedef struct zse_service_disc_data_s
 {
-  zb_uint8_t current_cluster;
-  zb_uint8_t source_ep;
-  zse_service_disc_dev_t devices[ZSE_SERVICE_DISCOVERY_MAX_DEVICES]; /* TODO: how much? */
-  zb_uint8_t match_desc_tsn;
-  //zb_uint8_t multiple_commodity_enabled;
-  zb_uint8_t mode;
+    zb_uint8_t current_cluster;
+    zb_uint8_t source_ep;
+    zse_service_disc_dev_t devices[ZSE_SERVICE_DISCOVERY_MAX_DEVICES]; /* TODO: how much? */
+    zb_uint8_t match_desc_tsn;
+    //zb_uint8_t multiple_commodity_enabled;
+    zb_uint8_t mode;
 } zse_service_disc_data_t;
 
 #define ZSE_SERVICE_DISCOVERY_GET_MULTIPLE_COMMODITY() ZB_CHECK_BIT_IN_BIT_VECTOR(&ZSE_CTXC().service_disc.mode, 0U)
@@ -211,21 +211,21 @@ typedef struct zse_service_disc_data_s
 
 typedef enum zse_steady_state_tc_poll_method_e
 {
-  ZSE_TC_POLL_READ_KEEPALIVE = 0,
-  ZSE_TC_POLL_READ_METERING_CONSUMPTION,
-  ZSE_TC_POLL_READ_PRICING_INFO,
-  ZSE_TC_POLL_NOT_SUPPORTED,
+    ZSE_TC_POLL_READ_KEEPALIVE = 0,
+    ZSE_TC_POLL_READ_METERING_CONSUMPTION,
+    ZSE_TC_POLL_READ_PRICING_INFO,
+    ZSE_TC_POLL_NOT_SUPPORTED,
 } zse_steady_state_tc_poll_method_t;
 
 typedef struct zse_steady_state_data_s
 {
-  zse_steady_state_tc_poll_method_t poll_method;
-  zb_uint8_t tsn;
-  zb_uint8_t endpoint;
-  zb_uint8_t failure_cnt;
-  zb_uint32_t countdown;
-  zb_uint8_t keepalive_base;
-  zb_uint16_t keepalive_jitter;
+    zse_steady_state_tc_poll_method_t poll_method;
+    zb_uint8_t tsn;
+    zb_uint8_t endpoint;
+    zb_uint8_t failure_cnt;
+    zb_uint32_t countdown;
+    zb_uint8_t keepalive_base;
+    zb_uint16_t keepalive_jitter;
 } zse_steady_state_data_t;
 
 #endif
@@ -236,16 +236,16 @@ typedef struct zse_steady_state_data_s
  */
 typedef enum zse_commissioning_state_e
 {
-  SE_STATE_FAILED,
-  SE_STATE_FORMATION,
-  SE_STATE_PRECOMMISSIONED_REJOIN,
-  SE_STATE_AUTO_JOIN,
-  SE_STATE_SERVICE_DISCOVERY_MDU,
-  SE_STATE_SERVICE_DISCOVERY,
-  SE_STATE_TC_STEADY,
-  SE_STATE_DEVICE_STEADY,
-  SE_STATE_REJOIN_RECOVERY,
-  SE_STATE_JOINED_NODEV,
+    SE_STATE_FAILED,
+    SE_STATE_FORMATION,
+    SE_STATE_PRECOMMISSIONED_REJOIN,
+    SE_STATE_AUTO_JOIN,
+    SE_STATE_SERVICE_DISCOVERY_MDU,
+    SE_STATE_SERVICE_DISCOVERY,
+    SE_STATE_TC_STEADY,
+    SE_STATE_DEVICE_STEADY,
+    SE_STATE_REJOIN_RECOVERY,
+    SE_STATE_JOINED_NODEV,
 } zse_commissioning_state_t;
 
 
@@ -313,37 +313,37 @@ typedef zb_uint8_t zse_commissioning_signal_t;
 
 typedef enum se_rr_state_e
 {
-  SE_REJOIN_RECOVERY_IDLE,
-  SE_REJOIN_RECOVERY_SECURE_REJOIN_CUR,
-  SE_REJOIN_RECOVERY_TC_REJOIN_CUR,
-  SE_REJOIN_RECOVERY_REJOINS_RETRY
+    SE_REJOIN_RECOVERY_IDLE,
+    SE_REJOIN_RECOVERY_SECURE_REJOIN_CUR,
+    SE_REJOIN_RECOVERY_TC_REJOIN_CUR,
+    SE_REJOIN_RECOVERY_REJOINS_RETRY
 } se_rr_state_t;
 
 typedef struct zse_commissioning_ctx_s
 {
-  zse_commissioning_state_t state;
-  zse_commissioning_signal_t signal;
-  zb_time_t auto_join_start_time;
-  zb_uint8_t cbke_retries;
-  zb_uint8_t auto_join;          /*!< is a global setting meaning: fall into SE_STATE_AUTO_JOIN state at failure.  */
-  zb_uint8_t startup_control;    /*!< @see zse_startup_control_e */
-  zb_uint8_t formation_retries;
-  zb_uint32_t permit_join_rest;
-  zb_kec_term_cmd_t ke_term_info;
+    zse_commissioning_state_t state;
+    zse_commissioning_signal_t signal;
+    zb_time_t auto_join_start_time;
+    zb_uint8_t cbke_retries;
+    zb_uint8_t auto_join;          /*!< is a global setting meaning: fall into SE_STATE_AUTO_JOIN state at failure.  */
+    zb_uint8_t startup_control;    /*!< @see zse_startup_control_e */
+    zb_uint8_t formation_retries;
+    zb_uint32_t permit_join_rest;
+    zb_kec_term_cmd_t ke_term_info;
 
-  zb_uint8_t rr_sv_device_type; /* @see nwk_device_type */
-  zb_uint16_t rr_sv_parent_short;
-  zb_ieee_addr_t rr_sv_parent_long;
-  zb_neighbor_tbl_ent_t rr_sv_parent_nent;
-  zb_uint8_t rr_sv_authenticated;
-  zb_uint8_t rr_retries;
-  zb_uint8_t rr_ignore_start_router_conf;
-  zb_uint8_t just_booted;
-  zb_uint_t rr_global_retries;
-  zb_uint8_t rr_skip_savepoint;
+    zb_uint8_t rr_sv_device_type; /* @see nwk_device_type */
+    zb_uint16_t rr_sv_parent_short;
+    zb_ieee_addr_t rr_sv_parent_long;
+    zb_neighbor_tbl_ent_t rr_sv_parent_nent;
+    zb_uint8_t rr_sv_authenticated;
+    zb_uint8_t rr_retries;
+    zb_uint8_t rr_ignore_start_router_conf;
+    zb_uint8_t just_booted;
+    zb_uint_t rr_global_retries;
+    zb_uint8_t rr_skip_savepoint;
 #ifdef ZB_SE_BDB_MIXED
-  zb_bool_t allow_bdb_in_se_mode;
-  void (*switch_to_bdb_commissioning)(zb_bdb_commissioning_mode_mask_t);
+    zb_bool_t allow_bdb_in_se_mode;
+    void (*switch_to_bdb_commissioning)(zb_bdb_commissioning_mode_mask_t);
 #endif
 } zse_commissioning_ctx_t;
 
@@ -351,24 +351,24 @@ typedef struct zse_commissioning_ctx_s
 
 typedef struct zse_mdu_pairing_ctx_s
 {
-  zb_addr_u mdu_parent;
-  //zb_ieee_addr_t mdu_parent_long;
-  zb_uint8_t mdu_parent_ep;
-  zb_uint8_t virtual_han_size;
-  zb_ieee_addr_t virtual_han_table[ZB_ZCL_MDU_PAIRING_HAN_TABLE_SIZE];
-  zb_uint16_t virtual_han_table_short[ZB_ZCL_MDU_PAIRING_HAN_TABLE_SIZE];
-  zb_uint8_t short_address_scan_pos;
-  zb_uint16_t cluster_id;
+    zb_addr_u mdu_parent;
+    //zb_ieee_addr_t mdu_parent_long;
+    zb_uint8_t mdu_parent_ep;
+    zb_uint8_t virtual_han_size;
+    zb_ieee_addr_t virtual_han_table[ZB_ZCL_MDU_PAIRING_HAN_TABLE_SIZE];
+    zb_uint16_t virtual_han_table_short[ZB_ZCL_MDU_PAIRING_HAN_TABLE_SIZE];
+    zb_uint8_t short_address_scan_pos;
+    zb_uint16_t cluster_id;
 } zse_mdu_pairing_ctx_t;
 
 
 typedef struct zse_time_server_ctx_s
 {
-  zb_uint32_t time;  /* gotten time from Time server */
-  zb_uint8_t server_ep;
-  zb_uint16_t server_short_addr;
-  zb_uint8_t server_auth_level;  /* Authoritative time server level */
-  zb_time_t receiving_time;  /* Used for network time correction */
+    zb_uint32_t time;  /* gotten time from Time server */
+    zb_uint8_t server_ep;
+    zb_uint16_t server_short_addr;
+    zb_uint8_t server_auth_level;  /* Authoritative time server level */
+    zb_time_t receiving_time;  /* Used for network time correction */
 } zse_time_server_ctx_t;
 
 /** @brief Server-side Sub-GHz cluster context
@@ -376,26 +376,26 @@ typedef struct zse_time_server_ctx_s
 typedef struct zb_subghz_srv_ctx_s
 {
 #if !defined ZB_CONFIGURABLE_MEM
-  /* FIXME: rewrite to exclude additional memory usage. */
-  zb_address_ieee_ref_t dev_list[ZB_NEIGHBOR_TABLE_SIZE];   /**< ref list to Sub-GHz devices in neighbor table */
+    /* FIXME: rewrite to exclude additional memory usage. */
+    zb_address_ieee_ref_t dev_list[ZB_NEIGHBOR_TABLE_SIZE];   /**< ref list to Sub-GHz devices in neighbor table */
 #else
-  zb_address_ieee_ref_t *dev_list;
+    zb_address_ieee_ref_t *dev_list;
 #endif
-  zb_uint8_t mode;                               /**< MAC Duty Cycle Mode */
+    zb_uint8_t mode;                               /**< MAC Duty Cycle Mode */
 } zb_subghz_srv_ctx_t;
 
 /** @brief Client-side Sub-GHz cluster context
  */
 typedef struct zb_subghz_cli_ctx_s
 {
-  zb_uint8_t zc_ep;                   /**< endpoint with Sub-GHz cluster on Coordinator */
-  zb_bool_t suspend_zcl_messages;     /**< if TRUE, device is suspended by Coordinator */
+    zb_uint8_t zc_ep;                   /**< endpoint with Sub-GHz cluster on Coordinator */
+    zb_bool_t suspend_zcl_messages;     /**< if TRUE, device is suspended by Coordinator */
 } zb_subghz_cli_ctx_t;
 
 typedef struct zse_hifreq_s
 {
-  zb_uint16_t clusterid;
-  zb_time_t timestamp;
+    zb_uint16_t clusterid;
+    zb_time_t timestamp;
 } zse_hifreq_t;
 
 /** @brief Sub-GHz mode context
@@ -403,60 +403,62 @@ typedef struct zse_hifreq_s
 typedef struct zb_subghz_ctx_s
 {
 #ifndef ZB_ED_ROLE
-  zb_subghz_srv_ctx_t srv;      /**< server context */
+    zb_subghz_srv_ctx_t srv;      /**< server context */
 #endif
-  zb_subghz_cli_ctx_t cli;      /**< client context */
+    zb_subghz_cli_ctx_t cli;      /**< client context */
 
-  /* common fields */
-  zb_uint8_t ep;               /**< endpoint of Sub-GHz cluster on this device */
-  zse_hifreq_t hifreq[ZB_SE_HI_FREQ_MSG_N_SLOTS];
+    /* common fields */
+    zb_uint8_t ep;               /**< endpoint of Sub-GHz cluster on this device */
+    zse_hifreq_t hifreq[ZB_SE_HI_FREQ_MSG_N_SLOTS];
 } zb_subghz_ctx_t;
 
-typedef enum zse_ke_whitelist_op_e {
-  ZSE_KE_WHITELIST_ADD,
-  ZSE_KE_WHITELIST_DEL,
-  ZSE_KE_WHITELIST_DEL_ALL,
-  ZSE_KE_WHITELIST_NONE
+typedef enum zse_ke_whitelist_op_e
+{
+    ZSE_KE_WHITELIST_ADD,
+    ZSE_KE_WHITELIST_DEL,
+    ZSE_KE_WHITELIST_DEL_ALL,
+    ZSE_KE_WHITELIST_NONE
 } zse_whitelist_op_t;
 
-typedef struct zse_ke_whitelist_s {
-  /* current page/position of page in nvram */
-  zb_uint8_t page;
-  zb_uint32_t pos;
-  zb_uint16_t num_entries;
+typedef struct zse_ke_whitelist_s
+{
+    /* current page/position of page in nvram */
+    zb_uint8_t page;
+    zb_uint32_t pos;
+    zb_uint16_t num_entries;
 
-  /* Outstanding operation to perform */
-  zb_ieee_addr_t addr;
-  zse_whitelist_op_t op;
+    /* Outstanding operation to perform */
+    zb_ieee_addr_t addr;
+    zse_whitelist_op_t op;
 } zse_ke_whitelist_t;
 
 /** @brief ZSE context data */
 typedef struct zb_zse_ctx_s
 {
-  zb_ke_ctx_t ke;  //Key-Establishment context of current key establishment process
+    zb_ke_ctx_t ke;  //Key-Establishment context of current key establishment process
 #if defined ZB_SUBGHZ_BAND_ENABLED
-  zb_subghz_ctx_t subghz;         /* Sub-GHz context of current device */
+    zb_subghz_ctx_t subghz;         /* Sub-GHz context of current device */
 #endif /* ZB_SUBGHZ_BAND_ENABLED */
 #ifdef ZB_ZCL_SUPPORT_CLUSTER_MDU_PAIRING
-  zse_mdu_pairing_ctx_t mdu_pairing;
+    zse_mdu_pairing_ctx_t mdu_pairing;
 #endif  /* ZB_ZCL_SUPPORT_CLUSTER_MDU_PAIRING */
 #ifdef ZB_ZCL_SUPPORT_CLUSTER_TIME
-  zse_time_server_ctx_t time_server;
-  zse_time_server_ctx_t second_time_server;
+    zse_time_server_ctx_t time_server;
+    zse_time_server_ctx_t second_time_server;
 #endif  /* ZB_ZCL_SUPPORT_CLUSTER_TIME */
-  zse_cert_storage_t certdb[ZB_ZSE_CERTDB_TBL_SIZE];
-  zse_cert_add_t *cert_to_add;
+    zse_cert_storage_t certdb[ZB_ZSE_CERTDB_TBL_SIZE];
+    zse_cert_add_t *cert_to_add;
 #ifdef ZB_SE_KE_WHITELIST
-  zse_ke_whitelist_t ke_whitelist;
+    zse_ke_whitelist_t ke_whitelist;
 #endif /* ZB_SE_KE_WHITELIST */
-  zb_uint16_t supported_key_suite;
+    zb_uint16_t supported_key_suite;
 #if defined(ZB_SE_ENABLE_SERVICE_DISCOVERY_PROCESSING)
-  zse_service_disc_data_t service_disc;
+    zse_service_disc_data_t service_disc;
 #endif
 #if defined(ZB_SE_ENABLE_STEADY_STATE_PROCESSING)
-  zse_steady_state_data_t steady_state;
+    zse_steady_state_data_t steady_state;
 #endif
-  zse_commissioning_ctx_t commissioning;
+    zse_commissioning_ctx_t commissioning;
 } zb_zse_ctx_t;
 
 extern zb_zse_ctx_t g_zse_ctx;

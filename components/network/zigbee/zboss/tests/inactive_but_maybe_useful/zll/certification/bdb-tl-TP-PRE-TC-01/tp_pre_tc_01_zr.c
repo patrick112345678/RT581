@@ -57,7 +57,7 @@ zb_uint16_t g_attr_on_time  = 0;
 zb_uint16_t g_attr_off_wait_time  = 0;
 
 ZB_ZCL_DECLARE_ON_OFF_ATTRIB_LIST_ZLL(on_off_attr_list, &g_attr_on_off,
-    &g_attr_global_scene_ctrl, &g_attr_on_time, &g_attr_off_wait_time);
+                                      &g_attr_global_scene_ctrl, &g_attr_on_time, &g_attr_off_wait_time);
 
 /** [BASIC_DECLARE] */
 /* Basic cluster attributes data */
@@ -72,8 +72,8 @@ zb_uint8_t g_attr_power_source = ZB_ZCL_BASIC_POWER_SOURCE_DEFAULT_VALUE;
 zb_char_t g_attr_sw_build_id[] = "\x0f" "111.111.111.111";
 
 ZB_ZCL_DECLARE_BASIC_ATTRIB_LIST_ZLL(basic_attr_list, &g_attr_zcl_version, &g_attr_app_version,
-    &g_attr_stack_version, &g_attr_hardware_version, &g_attr_manufacturer_name, &g_attr_model_id,
-    &g_attr_date_code, &g_attr_power_source, &g_attr_sw_build_id);
+                                     &g_attr_stack_version, &g_attr_hardware_version, &g_attr_manufacturer_name, &g_attr_model_id,
+                                     &g_attr_date_code, &g_attr_power_source, &g_attr_sw_build_id);
 /** [BASIC_DECLARE] */
 
 /* Identify cluster attributes data */
@@ -94,8 +94,8 @@ zb_uint8_t g_attr_scenes_scene_valid = ZB_ZCL_SCENES_SCENE_VALID_DEFAULT_VALUE;
 zb_uint8_t g_attr_scenes_name_support = ZB_ZCL_SCENES_NAME_SUPPORT_DEFAULT_VALUE;
 
 ZB_ZCL_DECLARE_SCENES_ATTRIB_LIST(scenes_attr_list, &g_attr_scenes_scene_count,
-    &g_attr_scenes_current_scene, &g_attr_scenes_current_group,
-    &g_attr_scenes_scene_valid, &g_attr_scenes_name_support);
+                                  &g_attr_scenes_current_scene, &g_attr_scenes_current_group,
+                                  &g_attr_scenes_scene_valid, &g_attr_scenes_name_support);
 
 /* Level cluster attribute data */
 
@@ -118,153 +118,153 @@ ZB_ZLL_DECLARE_DIMMABLE_LIGHT_CTX(dimmable_light_ctx, dimmable_light_ep);
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
 #ifdef UNIX
-  if ( argc < 3 )
-  {
-    printf("%s <read pipe path> <write pipe path>\n", argv[0]);
-    return 0;
-  }
+    if ( argc < 3 )
+    {
+        printf("%s <read pipe path> <write pipe path>\n", argv[0]);
+        return 0;
+    }
 #endif
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("zr");
+    ZB_INIT("zr");
 
 
-  zb_set_default_ed_descriptor_values();
+    zb_set_default_ed_descriptor_values();
 
-  ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_zr_addr);
+    ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_zr_addr);
 
-  /* Register device list */
-  ZB_AF_REGISTER_DEVICE_CTX(&dimmable_light_ctx);
+    /* Register device list */
+    ZB_AF_REGISTER_DEVICE_CTX(&dimmable_light_ctx);
 
 #if 0
-  ZB_AIB().aps_channel_mask = 1l << MY_CHANNEL;
+    ZB_AIB().aps_channel_mask = 1l << MY_CHANNEL;
 #endif
-  TRACE_MSG(TRACE_ZLL1, "CHANNEL = %d, mask = 0x%x", (FMT__D_D, ZB_PIBCACHE_CURRENT_CHANNEL(), ZB_AIB().aps_channel_mask));
+    TRACE_MSG(TRACE_ZLL1, "CHANNEL = %d, mask = 0x%x", (FMT__D_D, ZB_PIBCACHE_CURRENT_CHANNEL(), ZB_AIB().aps_channel_mask));
 
-  /* zb_secur_setup_nwk_key(g_key, 0); */
+    /* zb_secur_setup_nwk_key(g_key, 0); */
 
-  ZB_AIB().aps_use_nvram = 1;
-  ZB_AIB().aps_nvram_erase_at_start = 1;
+    ZB_AIB().aps_use_nvram = 1;
+    ZB_AIB().aps_nvram_erase_at_start = 1;
 
-  ZB_BDB().bdb_mode = ZB_TRUE;
+    ZB_BDB().bdb_mode = ZB_TRUE;
 
-  ZB_BDB().bdb_commissioning_mode = ZB_BDB_TOUCHLINK_TARGET;
-  if (zdo_dev_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "ERROR zb_zll_dev_start failed", (FMT__0));
-  }
-  else
-  {
-    zcl_main_loop();
-  }
+    ZB_BDB().bdb_commissioning_mode = ZB_BDB_TOUCHLINK_TARGET;
+    if (zdo_dev_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "ERROR zb_zll_dev_start failed", (FMT__0));
+    }
+    else
+    {
+        zcl_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 void zb_zdo_startup_complete(zb_uint8_t param)
 {
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  switch(sig)
-  {
+    switch (sig)
+    {
     case ZB_BDB_SIGNAL_TOUCHLINK_TARGET:
-      TRACE_MSG(TRACE_ZLL3, "Device STARTED OK", (FMT__0));
-      TRACE_MSG(TRACE_ZLL3, "Touchlink target started", (FMT__0));
-      test_check_start_status(param);
-      break;
+        TRACE_MSG(TRACE_ZLL3, "Device STARTED OK", (FMT__0));
+        TRACE_MSG(TRACE_ZLL3, "Touchlink target started", (FMT__0));
+        test_check_start_status(param);
+        break;
     case ZB_BDB_SIGNAL_TOUCHLINK_NWK:
-      TRACE_MSG(TRACE_ZLL3, "Touchlink target : network started", (FMT__0));
-      break;
+        TRACE_MSG(TRACE_ZLL3, "Touchlink target : network started", (FMT__0));
+        break;
     default:
-      TRACE_MSG(TRACE_ZLL3, "Unknown signal %hd status %hd", (FMT__H_H, sig, ZB_GET_APP_SIGNAL_STATUS(param)));
-      break;
-  }
-  if (param)
-  {
-    zb_free_buf(ZB_BUF_FROM_REF(param));
-  }
+        TRACE_MSG(TRACE_ZLL3, "Unknown signal %hd status %hd", (FMT__H_H, sig, ZB_GET_APP_SIGNAL_STATUS(param)));
+        break;
+    }
+    if (param)
+    {
+        zb_free_buf(ZB_BUF_FROM_REF(param));
+    }
 }
 
 void test_check_start_status(zb_uint8_t param)
 {
-  zb_buf_t* buffer = ZB_BUF_FROM_REF(param);
-  zb_zll_transaction_task_status_t* task_status = ZB_GET_BUF_PARAM(buffer, zb_zll_transaction_task_status_t);
+    zb_buf_t *buffer = ZB_BUF_FROM_REF(param);
+    zb_zll_transaction_task_status_t *task_status = ZB_GET_BUF_PARAM(buffer, zb_zll_transaction_task_status_t);
 
-  TRACE_MSG(TRACE_ZLL1, "CHANNEL = %d, mask = 0x%x", (FMT__D_D, ZB_PIBCACHE_CURRENT_CHANNEL(), ZB_AIB().aps_channel_mask));
-  TRACE_MSG(TRACE_ZLL3, "> test_check_start_status param %hd", (FMT__D, param));
-
-#if 0
-  if (ZB_PIBCACHE_CURRENT_CHANNEL() != MY_CHANNEL)
-  {
-    TRACE_MSG(
-        TRACE_ERROR,
-        "ERROR wrong channel %hd (should be %hd)",
-        (FMT__H_H, ZB_PIBCACHE_CURRENT_CHANNEL(), (zb_uint8_t)MY_CHANNEL));
-    ++g_error_cnt;
-  }
-#endif
-
-  if (ZB_PIBCACHE_NETWORK_ADDRESS() != 0xffff)
-  {
-    TRACE_MSG(
-        TRACE_ERROR,
-        "ERROR Network address is 0x%x (should be 0xffff)",
-        (FMT__D, ZB_PIBCACHE_NETWORK_ADDRESS()));
-    ++g_error_cnt;
-  }
-
-  if (! ZB_U2B(ZB_PIBCACHE_RX_ON_WHEN_IDLE()))
-  {
-    TRACE_MSG(TRACE_ERROR, "ERROR Receiver should be turned on", (FMT__0));
-    ++g_error_cnt;
-  }
-
-  if (! ZB_EXTPANID_IS_ZERO(ZB_NIB_EXT_PAN_ID()))
-  {
-    TRACE_MSG(
-        TRACE_ERROR,
-        "ERROR extended PAN Id is not zero: %s",
-        (FMT__A, ZB_NIB_EXT_PAN_ID()));
-    ++g_error_cnt;
-  }
-
-  /* [MM]: Refer to Zigbee Document 11-0037-10
-   * Zigbee Light Link Profile Specification Version 1.0
-   * 7.1.2.2.1 Scan request command frame
-   * page 53, line 10-11.
-   *
-   * ... and the source PAN ID field shall be set to any value in the
-   * range 0x0001 - 0xfffe, if the device is factory new, or the PAN
-   * identifier of the device, otherwise.
-   */
+    TRACE_MSG(TRACE_ZLL1, "CHANNEL = %d, mask = 0x%x", (FMT__D_D, ZB_PIBCACHE_CURRENT_CHANNEL(), ZB_AIB().aps_channel_mask));
+    TRACE_MSG(TRACE_ZLL3, "> test_check_start_status param %hd", (FMT__D, param));
 
 #if 0
-  if (ZB_PIBCACHE_PAN_ID() != 0xffff)
-  {
-    TRACE_MSG(
-        TRACE_ERROR,
-        "ERROR PAN Id is 0x%x (should be 0xffff)",
-        (FMT__D, ZB_PIBCACHE_PAN_ID()));
-    ++g_error_cnt;
-  }
+    if (ZB_PIBCACHE_CURRENT_CHANNEL() != MY_CHANNEL)
+    {
+        TRACE_MSG(
+            TRACE_ERROR,
+            "ERROR wrong channel %hd (should be %hd)",
+            (FMT__H_H, ZB_PIBCACHE_CURRENT_CHANNEL(), (zb_uint8_t)MY_CHANNEL));
+        ++g_error_cnt;
+    }
 #endif
 
-  if (task_status->status == ZB_ZLL_GENERAL_STATUS_SUCCESS && ! g_error_cnt)
-  {
-    TRACE_MSG(TRACE_ZLL3, "Device STARTED OK", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ZLL3, "ERROR Device start FAILED (errors: %hd)", (FMT__H, g_error_cnt));
-  }
+    if (ZB_PIBCACHE_NETWORK_ADDRESS() != 0xffff)
+    {
+        TRACE_MSG(
+            TRACE_ERROR,
+            "ERROR Network address is 0x%x (should be 0xffff)",
+            (FMT__D, ZB_PIBCACHE_NETWORK_ADDRESS()));
+        ++g_error_cnt;
+    }
 
-  TRACE_MSG(TRACE_ZLL3, "< test_check_start_status", (FMT__0));
+    if (! ZB_U2B(ZB_PIBCACHE_RX_ON_WHEN_IDLE()))
+    {
+        TRACE_MSG(TRACE_ERROR, "ERROR Receiver should be turned on", (FMT__0));
+        ++g_error_cnt;
+    }
+
+    if (! ZB_EXTPANID_IS_ZERO(ZB_NIB_EXT_PAN_ID()))
+    {
+        TRACE_MSG(
+            TRACE_ERROR,
+            "ERROR extended PAN Id is not zero: %s",
+            (FMT__A, ZB_NIB_EXT_PAN_ID()));
+        ++g_error_cnt;
+    }
+
+    /* [MM]: Refer to Zigbee Document 11-0037-10
+     * Zigbee Light Link Profile Specification Version 1.0
+     * 7.1.2.2.1 Scan request command frame
+     * page 53, line 10-11.
+     *
+     * ... and the source PAN ID field shall be set to any value in the
+     * range 0x0001 - 0xfffe, if the device is factory new, or the PAN
+     * identifier of the device, otherwise.
+     */
+
+#if 0
+    if (ZB_PIBCACHE_PAN_ID() != 0xffff)
+    {
+        TRACE_MSG(
+            TRACE_ERROR,
+            "ERROR PAN Id is 0x%x (should be 0xffff)",
+            (FMT__D, ZB_PIBCACHE_PAN_ID()));
+        ++g_error_cnt;
+    }
+#endif
+
+    if (task_status->status == ZB_ZLL_GENERAL_STATUS_SUCCESS && ! g_error_cnt)
+    {
+        TRACE_MSG(TRACE_ZLL3, "Device STARTED OK", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ZLL3, "ERROR Device start FAILED (errors: %hd)", (FMT__H, g_error_cnt));
+    }
+
+    TRACE_MSG(TRACE_ZLL3, "< test_check_start_status", (FMT__0));
 }/* void test_check_start_status(zb_uint8_t param) */
 
 #else /* defined ZB_ENABLE_ZLL && defined ZB_ZLL_DEFINE_DEVICE_NON_COLOR_SCENE_CONTROLLER */
@@ -273,8 +273,8 @@ void test_check_start_status(zb_uint8_t param)
 
 int main()
 {
-  printf("ZLL is not supported\n");
-  return 0;
+    printf("ZLL is not supported\n");
+    return 0;
 }
 
 #endif /* defined ZB_ENABLE_ZLL && defined ZB_ZLL_DEFINE_DEVICE_NON_COLOR_SCENE_CONTROLLER */

@@ -50,54 +50,54 @@
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("zdo_thc1");
+    ZB_INIT("zdo_thc1");
 
-  ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_ieee_addr_thc1);
+    ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_ieee_addr_thc1);
 
-  ZB_PIBCACHE_PAN_ID() = 0x1bbb;
-  /* let's always be coordinator */
-  ZB_AIB().aps_designated_coordinator = 1;
-  zb_secur_setup_nwk_key(g_nwk_key, 0);
-  ZB_CERT_HACKS().report_legacy_stack_revision_in_node_descr = 1;
-  zb_bdb_set_legacy_device_support(ZB_TRUE);
-  ZB_AIB().aps_channel_mask = TEST_BDB_PRIMARY_CHANNEL_SET |
-                              TEST_BDB_SECONDARY_CHANNEL_SET;
+    ZB_PIBCACHE_PAN_ID() = 0x1bbb;
+    /* let's always be coordinator */
+    ZB_AIB().aps_designated_coordinator = 1;
+    zb_secur_setup_nwk_key(g_nwk_key, 0);
+    ZB_CERT_HACKS().report_legacy_stack_revision_in_node_descr = 1;
+    zb_bdb_set_legacy_device_support(ZB_TRUE);
+    ZB_AIB().aps_channel_mask = TEST_BDB_PRIMARY_CHANNEL_SET |
+                                TEST_BDB_SECONDARY_CHANNEL_SET;
 
-  if (zdo_dev_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    if (zdo_dev_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_buf_t *buf = ZB_BUF_FROM_REF(param);
+    zb_buf_t *buf = ZB_BUF_FROM_REF(param);
 
-  TRACE_MSG(TRACE_ERROR, ">>zb_zdo_startup_complete status %d", (FMT__D, (int)buf->u.hdr.status));
+    TRACE_MSG(TRACE_ERROR, ">>zb_zdo_startup_complete status %d", (FMT__D, (int)buf->u.hdr.status));
 
-  if (buf->u.hdr.status == RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "Device STARTED OK", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device START FAILED", (FMT__0));
-  }
+    if (buf->u.hdr.status == RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "Device STARTED OK", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device START FAILED", (FMT__0));
+    }
 
-  zb_free_buf(buf);
+    zb_free_buf(buf);
 }
 
 

@@ -55,104 +55,104 @@ static const zb_ieee_addr_t g_ieee_addr1 = {0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("zdo_1_zc");
-#if UART_CONTROL	
-	test_control_init();
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    ZB_INIT("zdo_1_zc");
+#if UART_CONTROL
+    test_control_init();
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 #endif
-	
 
 
-  zb_set_long_address(g_ieee_addr);
-  zb_set_use_extended_pan_id(g_ext_panid);
+
+    zb_set_long_address(g_ieee_addr);
+    zb_set_use_extended_pan_id(g_ext_panid);
 
 
-  zb_set_pan_id(0x1aaa);
+    zb_set_pan_id(0x1aaa);
 
-  /* let's always be coordinator */
-  zb_secur_setup_nwk_key((zb_uint8_t*) g_key_nwk, 0);
+    /* let's always be coordinator */
+    zb_secur_setup_nwk_key((zb_uint8_t *) g_key_nwk, 0);
 
-  /* only ZR1 is visible for ZC */
-  MAC_ADD_VISIBLE_LONG((zb_uint8_t*) g_ieee_addr1);
-  zb_set_max_children(1);
+    /* only ZR1 is visible for ZC */
+    MAC_ADD_VISIBLE_LONG((zb_uint8_t *) g_ieee_addr1);
+    zb_set_max_children(1);
 
-  zb_zdo_set_aps_unsecure_join(ZB_TRUE);
+    zb_zdo_set_aps_unsecure_join(ZB_TRUE);
 
-  zb_cert_test_set_common_channel_settings();
-  zb_cert_test_set_zc_role();
+    zb_cert_test_set_common_channel_settings();
+    zb_cert_test_set_zc_role();
 
-  zb_set_nvram_erase_at_start(ZB_TRUE);
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zboss_main_loop();
-  }
+    zb_set_nvram_erase_at_start(ZB_TRUE);
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zboss_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 static void open_network(zb_uint8_t param)
 {
-  zb_bufid_t buf = zb_buf_get_out();
-  zb_nlme_permit_joining_request_t *req;
-  ZVUNUSED(param);
+    zb_bufid_t buf = zb_buf_get_out();
+    zb_nlme_permit_joining_request_t *req;
+    ZVUNUSED(param);
 
-  if (buf)
-  {
-    TRACE_MSG(TRACE_APP1, ">>open_network", (FMT__0));
+    if (buf)
+    {
+        TRACE_MSG(TRACE_APP1, ">>open_network", (FMT__0));
 
-    TRACE_MSG(TRACE_APP1, "Opening permit join on device, buf = %d",
-              (FMT__D, buf));
+        TRACE_MSG(TRACE_APP1, "Opening permit join on device, buf = %d",
+                  (FMT__D, buf));
 
-    req = zb_buf_get_tail(buf, sizeof(zb_nlme_permit_joining_request_t));
-    req->permit_duration = -1;
-    zb_nlme_permit_joining_request(buf);
+        req = zb_buf_get_tail(buf, sizeof(zb_nlme_permit_joining_request_t));
+        req->permit_duration = -1;
+        zb_nlme_permit_joining_request(buf);
 
-    TRACE_MSG(TRACE_APP1, "<<open_network", (FMT__0));
-  }
+        TRACE_MSG(TRACE_APP1, "<<open_network", (FMT__0));
+    }
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_zdo_app_signal_hdr_t *sg_p = NULL;
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, &sg_p);
+    zb_zdo_app_signal_hdr_t *sg_p = NULL;
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, &sg_p);
 
-  TRACE_MSG(TRACE_APP1, "zboss_signal_handler: status %hd signal %hd",
-            (FMT__H_H, ZB_GET_APP_SIGNAL_STATUS(param), sig));
+    TRACE_MSG(TRACE_APP1, "zboss_signal_handler: status %hd signal %hd",
+              (FMT__H_H, ZB_GET_APP_SIGNAL_STATUS(param), sig));
 
-  if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
-  {
-    switch(sig)
+    if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
     {
-      case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      case ZB_ZDO_SIGNAL_DEFAULT_START:
-        TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
-	open_network(0);
-        break;
-      default:
-        break;
+        switch (sig)
+        {
+        case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
+        case ZB_ZDO_SIGNAL_DEFAULT_START:
+            TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
+            open_network(0);
+            break;
+        default:
+            break;
+        }
     }
-  }
-  else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
-  {
-    TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device start FAILED status %d",
-                        (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
-  }
+    else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
+    {
+        TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device start FAILED status %d",
+                  (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 

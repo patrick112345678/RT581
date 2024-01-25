@@ -51,7 +51,7 @@ extern char sizeof_long_long_must_be_8[sizeof (long long) == 8 ? 1 : -1];
    to be either long or long long.  */
 
 #define HOST_BITS_PER_WIDE_INT 64
-#if INT64_T_IS_LONG   
+#if INT64_T_IS_LONG
 #   define HOST_WIDE_INT long
 #   define HOST_WIDE_INT_C(X) X ## L
 #else
@@ -59,7 +59,7 @@ extern char sizeof_long_long_must_be_8[sizeof (long long) == 8 ? 1 : -1];
 #   define HOST_WIDE_INT long long
 #   define HOST_WIDE_INT_C(X) X ## LL
 # else
-   #error "Unable to find a suitable type for HOST_WIDE_INT"
+#error "Unable to find a suitable type for HOST_WIDE_INT"
 # endif
 #endif
 
@@ -141,7 +141,7 @@ typedef HOST_WIDE_INT __gcc_host_wide_int__;
 static inline unsigned HOST_WIDE_INT
 least_bit_hwi (unsigned HOST_WIDE_INT x)
 {
-  return (x & -x);
+    return (x & -x);
 }
 
 /* True if X is zero or a power of two.  */
@@ -149,7 +149,7 @@ least_bit_hwi (unsigned HOST_WIDE_INT x)
 static inline bool
 pow2_or_zerop (unsigned HOST_WIDE_INT x)
 {
-  return least_bit_hwi (x) == x;
+    return least_bit_hwi (x) == x;
 }
 
 /* True if X is a power of two.  */
@@ -157,7 +157,7 @@ pow2_or_zerop (unsigned HOST_WIDE_INT x)
 static inline bool
 pow2p_hwi (unsigned HOST_WIDE_INT x)
 {
-  return x && pow2_or_zerop (x);
+    return x && pow2_or_zerop (x);
 }
 
 #if GCC_VERSION < 3004
@@ -176,7 +176,7 @@ extern int exact_log2                  (unsigned HOST_WIDE_INT);
 extern int floor_log2                  (unsigned HOST_WIDE_INT);
 
 /* Return the smallest n such that 2**n >= X.  */
-extern int ceil_log2			(unsigned HOST_WIDE_INT);
+extern int ceil_log2            (unsigned HOST_WIDE_INT);
 
 #else /* GCC_VERSION >= 3004 */
 
@@ -184,28 +184,32 @@ extern int ceil_log2			(unsigned HOST_WIDE_INT);
 static inline int
 clz_hwi (unsigned HOST_WIDE_INT x)
 {
-  if (x == 0)
-    return HOST_BITS_PER_WIDE_INT;
+    if (x == 0)
+    {
+        return HOST_BITS_PER_WIDE_INT;
+    }
 # if HOST_BITS_PER_WIDE_INT == HOST_BITS_PER_LONG
-  return __builtin_clzl (x);
+    return __builtin_clzl (x);
 # elif HOST_BITS_PER_WIDE_INT == HOST_BITS_PER_LONGLONG
-  return __builtin_clzll (x);
+    return __builtin_clzll (x);
 # else
-  return __builtin_clz (x);
+    return __builtin_clz (x);
 # endif
 }
 
 static inline int
 ctz_hwi (unsigned HOST_WIDE_INT x)
 {
-  if (x == 0)
-    return HOST_BITS_PER_WIDE_INT;
+    if (x == 0)
+    {
+        return HOST_BITS_PER_WIDE_INT;
+    }
 # if HOST_BITS_PER_WIDE_INT == HOST_BITS_PER_LONG
-  return __builtin_ctzl (x);
+    return __builtin_ctzl (x);
 # elif HOST_BITS_PER_WIDE_INT == HOST_BITS_PER_LONGLONG
-  return __builtin_ctzll (x);
+    return __builtin_ctzll (x);
 # else
-  return __builtin_ctz (x);
+    return __builtin_ctz (x);
 # endif
 }
 
@@ -213,11 +217,11 @@ static inline int
 ffs_hwi (unsigned HOST_WIDE_INT x)
 {
 # if HOST_BITS_PER_WIDE_INT == HOST_BITS_PER_LONG
-  return __builtin_ffsl (x);
+    return __builtin_ffsl (x);
 # elif HOST_BITS_PER_WIDE_INT == HOST_BITS_PER_LONGLONG
-  return __builtin_ffsll (x);
+    return __builtin_ffsll (x);
 # else
-  return __builtin_ffs (x);
+    return __builtin_ffs (x);
 # endif
 }
 
@@ -225,30 +229,30 @@ static inline int
 popcount_hwi (unsigned HOST_WIDE_INT x)
 {
 # if HOST_BITS_PER_WIDE_INT == HOST_BITS_PER_LONG
-  return __builtin_popcountl (x);
+    return __builtin_popcountl (x);
 # elif HOST_BITS_PER_WIDE_INT == HOST_BITS_PER_LONGLONG
-  return __builtin_popcountll (x);
+    return __builtin_popcountll (x);
 # else
-  return __builtin_popcount (x);
+    return __builtin_popcount (x);
 # endif
 }
 
 static inline int
 floor_log2 (unsigned HOST_WIDE_INT x)
 {
-  return HOST_BITS_PER_WIDE_INT - 1 - clz_hwi (x);
+    return HOST_BITS_PER_WIDE_INT - 1 - clz_hwi (x);
 }
 
 static inline int
 ceil_log2 (unsigned HOST_WIDE_INT x)
 {
-  return x == 0 ? 0 : floor_log2 (x - 1) + 1;
+    return x == 0 ? 0 : floor_log2 (x - 1) + 1;
 }
 
 static inline int
 exact_log2 (unsigned HOST_WIDE_INT x)
 {
-  return pow2p_hwi (x) ? ctz_hwi (x) : -1;
+    return pow2p_hwi (x) ? ctz_hwi (x) : -1;
 }
 
 #endif /* GCC_VERSION >= 3004 */
@@ -269,7 +273,7 @@ extern HOST_WIDE_INT least_common_multiple (HOST_WIDE_INT, HOST_WIDE_INT);
 static inline int
 ctz_or_zero (unsigned HOST_WIDE_INT x)
 {
-  return ffs_hwi (x) - 1;
+    return ffs_hwi (x) - 1;
 }
 
 /* Sign extend SRC starting from PREC.  */
@@ -277,28 +281,30 @@ ctz_or_zero (unsigned HOST_WIDE_INT x)
 static inline HOST_WIDE_INT
 sext_hwi (HOST_WIDE_INT src, unsigned int prec)
 {
-  if (prec == HOST_BITS_PER_WIDE_INT)
-    return src;
-  else
+    if (prec == HOST_BITS_PER_WIDE_INT)
+    {
+        return src;
+    }
+    else
 #if defined (__GNUC__)
     {
-      /* Take the faster path if the implementation-defined bits it's relying
-	 on are implemented the way we expect them to be.  Namely, conversion
-	 from unsigned to signed preserves bit pattern, and right shift of
-	 a signed value propagates the sign bit.
-	 We have to convert from signed to unsigned and back, because when left
-	 shifting signed values, any overflow is undefined behavior.  */
-      gcc_checking_assert (prec < HOST_BITS_PER_WIDE_INT);
-      int shift = HOST_BITS_PER_WIDE_INT - prec;
-      return ((HOST_WIDE_INT) ((unsigned HOST_WIDE_INT) src << shift)) >> shift;
+        /* Take the faster path if the implementation-defined bits it's relying
+        on are implemented the way we expect them to be.  Namely, conversion
+         from unsigned to signed preserves bit pattern, and right shift of
+         a signed value propagates the sign bit.
+         We have to convert from signed to unsigned and back, because when left
+         shifting signed values, any overflow is undefined behavior.  */
+        gcc_checking_assert (prec < HOST_BITS_PER_WIDE_INT);
+        int shift = HOST_BITS_PER_WIDE_INT - prec;
+        return ((HOST_WIDE_INT) ((unsigned HOST_WIDE_INT) src << shift)) >> shift;
     }
 #else
     {
-      /* Fall back to the slower, well defined path otherwise.  */
-      gcc_checking_assert (prec < HOST_BITS_PER_WIDE_INT);
-      HOST_WIDE_INT sign_mask = HOST_WIDE_INT_1 << (prec - 1);
-      HOST_WIDE_INT value_mask = (HOST_WIDE_INT_1U << prec) - HOST_WIDE_INT_1U;
-      return (((src & value_mask) ^ sign_mask) - sign_mask);
+        /* Fall back to the slower, well defined path otherwise.  */
+        gcc_checking_assert (prec < HOST_BITS_PER_WIDE_INT);
+        HOST_WIDE_INT sign_mask = HOST_WIDE_INT_1 << (prec - 1);
+        HOST_WIDE_INT value_mask = (HOST_WIDE_INT_1U << prec) - HOST_WIDE_INT_1U;
+        return (((src & value_mask) ^ sign_mask) - sign_mask);
     }
 #endif
 }
@@ -307,12 +313,14 @@ sext_hwi (HOST_WIDE_INT src, unsigned int prec)
 static inline unsigned HOST_WIDE_INT
 zext_hwi (unsigned HOST_WIDE_INT src, unsigned int prec)
 {
-  if (prec == HOST_BITS_PER_WIDE_INT)
-    return src;
-  else
+    if (prec == HOST_BITS_PER_WIDE_INT)
     {
-      gcc_checking_assert (prec < HOST_BITS_PER_WIDE_INT);
-      return src & ((HOST_WIDE_INT_1U << prec) - 1);
+        return src;
+    }
+    else
+    {
+        gcc_checking_assert (prec < HOST_BITS_PER_WIDE_INT);
+        return src & ((HOST_WIDE_INT_1U << prec) - 1);
     }
 }
 
@@ -321,8 +329,8 @@ zext_hwi (unsigned HOST_WIDE_INT src, unsigned int prec)
 inline HOST_WIDE_INT
 abs_hwi (HOST_WIDE_INT x)
 {
-  gcc_checking_assert (x != HOST_WIDE_INT_MIN);
-  return x >= 0 ? x : -x;
+    gcc_checking_assert (x != HOST_WIDE_INT_MIN);
+    return x >= 0 ? x : -x;
 }
 
 /* Compute the absolute value of X as an unsigned type.  */
@@ -330,7 +338,7 @@ abs_hwi (HOST_WIDE_INT x)
 inline unsigned HOST_WIDE_INT
 absu_hwi (HOST_WIDE_INT x)
 {
-  return x >= 0 ? (unsigned HOST_WIDE_INT)x : -(unsigned HOST_WIDE_INT)x;
+    return x >= 0 ? (unsigned HOST_WIDE_INT)x : -(unsigned HOST_WIDE_INT)x;
 }
 
 #endif /* ! GCC_HWINT_H */

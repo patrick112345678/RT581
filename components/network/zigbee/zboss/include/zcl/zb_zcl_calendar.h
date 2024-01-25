@@ -55,33 +55,33 @@
  */
 typedef enum zb_zcl_calendar_srv_attr_sets_e
 {
-  ZB_ZCL_CALENDAR_SET_AUXILIARY_SWITCH_LABEL = 0x00,  /**< Auxiliary Switch Label Attribute Set */
+    ZB_ZCL_CALENDAR_SET_AUXILIARY_SWITCH_LABEL = 0x00,  /**< Auxiliary Switch Label Attribute Set */
 } zb_zcl_calendar_srv_attr_sets_t;
 
 
 /** @see SE spec, Table D-157– Auxiliary Switch Label Attribute Set */
 typedef enum zb_zcl_calendar_srv_auxiliary_switch_attr_set_e
 {
-  /* (O) */
-  ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_1_LABEL = 0x0000,  /**< The @e AuxSwitchNLabel attributes provide a method for assigning a label to
+    /* (O) */
+    ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_1_LABEL = 0x0000,  /**< The @e AuxSwitchNLabel attributes provide a method for assigning a label to
                                                            * an Auxiliary Switch.
                                                            */
-  /* (O) */
-  ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_2_LABEL,
-  /* (O) */
-  ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_3_LABEL,
-  /* (O) */
-  ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_4_LABEL,
-  /* (O) */
-  ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_5_LABEL,
-  /* (O) */
-  ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_6_LABEL,
-  /* (O) */
-  ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_7_LABEL,
-  /* (O) */
-  ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_8_LABEL,
-  /* (O) */
-  ZB_ZCL_ATTR_CALENDAR_AUX_LOAD_SWITCH_STATE = 0x0080 /**< The @e AuxiliaryLoadSwitchState attribute represents the current state
+    /* (O) */
+    ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_2_LABEL,
+    /* (O) */
+    ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_3_LABEL,
+    /* (O) */
+    ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_4_LABEL,
+    /* (O) */
+    ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_5_LABEL,
+    /* (O) */
+    ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_6_LABEL,
+    /* (O) */
+    ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_7_LABEL,
+    /* (O) */
+    ZB_ZCL_ATTR_CALENDAR_AUX_SWITCH_8_LABEL,
+    /* (O) */
+    ZB_ZCL_ATTR_CALENDAR_AUX_LOAD_SWITCH_STATE = 0x0080 /**< The @e AuxiliaryLoadSwitchState attribute represents the current state
                                                            *  of the @e AuxiliaryLoadSwitches as defined by the
                                                            *  @e AuxiliaryLoadPublishDayProfile. Bit0 corresponds to @e AuxiliarySwitch1 and
                                                            *  bit7 corresponds to @e AuxiliarySwitch 8. A bit set to “1” indicates an ON state
@@ -102,33 +102,33 @@ typedef enum zb_zcl_calendar_srv_auxiliary_switch_attr_set_e
  */
 typedef enum zb_zcl_calendar_cli_cmd_e
 {
-  /* (O) */
-  ZB_ZCL_CALENDAR_CLI_CMD_GET_CALENDAR              = 0x00,  /**< This command initiates PublishCalendar command(s) for scheduled Calendar
+    /* (O) */
+    ZB_ZCL_CALENDAR_CLI_CMD_GET_CALENDAR              = 0x00,  /**< This command initiates PublishCalendar command(s) for scheduled Calendar
                                                                * updates.
                                                                * @see zb_zcl_calendar_get_calendar_payload_t
                                                                */
-  /* (O) */
-  ZB_ZCL_CALENDAR_CLI_CMD_GET_DAY_PROFILES,                   /**< This command initiates one or more PublishDayProfile commands for the
+    /* (O) */
+    ZB_ZCL_CALENDAR_CLI_CMD_GET_DAY_PROFILES,                   /**< This command initiates one or more PublishDayProfile commands for the
                                                                 * referenced Calendar.
                                                                 * @see zb_zcl_calendar_get_day_profiles_payload_t
                                                                 */
-  /* (O) */
-  ZB_ZCL_CALENDAR_CLI_CMD_GET_WEEK_PROFILES,                  /**< This command initiates one or more PublishWeekProfile commands for the
+    /* (O) */
+    ZB_ZCL_CALENDAR_CLI_CMD_GET_WEEK_PROFILES,                  /**< This command initiates one or more PublishWeekProfile commands for the
                                                                 * referenced Calendar.
                                                                 * @see zb_zcl_calendar_get_week_profiles_payload_t
                                                                 */
-  /* (O) */
-  ZB_ZCL_CALENDAR_CLI_CMD_GET_SEASONS,                        /**< This command initiates one or more PublishSeasons commands for the
+    /* (O) */
+    ZB_ZCL_CALENDAR_CLI_CMD_GET_SEASONS,                        /**< This command initiates one or more PublishSeasons commands for the
                                                                 * referenced Calendar.
                                                                 * @see zb_zcl_calendar_get_seasons_payload_t
                                                                 */
-  /* (O) */
-  ZB_ZCL_CALENDAR_CLI_CMD_GET_SPECIAL_DAYS,                   /**< This command initiates one or more PublishSpecialDays commands for the
+    /* (O) */
+    ZB_ZCL_CALENDAR_CLI_CMD_GET_SPECIAL_DAYS,                   /**< This command initiates one or more PublishSpecialDays commands for the
                                                                 * scheduled Special Day Table updates.
                                                                 * @see zb_zcl_calendar_get_special_days_payload_t
                                                                 */
-  /* (O) */
-  ZB_ZCL_CALENDAR_CLI_CMD_GET_CALENDAR_CANCELLATION,          /**< This command initiates the return of the last CancelCalendar command
+    /* (O) */
+    ZB_ZCL_CALENDAR_CLI_CMD_GET_CALENDAR_CANCELLATION,          /**< This command initiates the return of the last CancelCalendar command
                                                                 * held on the associated server.
                                                                 * @note This command has no payload.
                                                                 */
@@ -138,39 +138,39 @@ typedef enum zb_zcl_calendar_cli_cmd_e
 /** @see SE spec, Table D-158 - Commands Generated by the Calendar Cluster Server */
 typedef enum zb_zcl_calendar_srv_cmd_e
 {
-  /* (M) */
-  ZB_ZCL_CALENDAR_SRV_CMD_PUBLISH_CALENDAR      = 0x00,   /**< The PublishCalendar command is published in response to a GetCalendar
+    /* (M) */
+    ZB_ZCL_CALENDAR_SRV_CMD_PUBLISH_CALENDAR      = 0x00,   /**< The PublishCalendar command is published in response to a GetCalendar
                                                             * command or if new calendar information is available. The Calendar must be
                                                             * replaced as a whole; only the Special Day Table can be changed independently.
                                                             * @see zb_zcl_calendar_publish_calendar_payload_t
                                                             */
 
-  /* (M) */
-  ZB_ZCL_CALENDAR_SRV_CMD_PUBLISH_DAY_PROFILE,            /**< The PublishDayProfile command is published in response to a GetDayProfile
+    /* (M) */
+    ZB_ZCL_CALENDAR_SRV_CMD_PUBLISH_DAY_PROFILE,            /**< The PublishDayProfile command is published in response to a GetDayProfile
                                                             * command. If the IssuerCalendarID does not match with one of the stored
                                                             * calendar instances, the client shall ignore the command and respond using
                                                             * ZCL Default Response with a status response of NOT_FOUND.
                                                             * @see zb_zcl_calendar_publish_day_profile_payload_t
                                                             */
 
-  /* (M) */
-  ZB_ZCL_CALENDAR_SRV_CMD_PUBLISH_WEEK_PROFILE,           /**< The PublishWeekProfile command is published in response to a GetWeekProfile
+    /* (M) */
+    ZB_ZCL_CALENDAR_SRV_CMD_PUBLISH_WEEK_PROFILE,           /**< The PublishWeekProfile command is published in response to a GetWeekProfile
                                                             * command. If the IssuerCalendarID does not match with one of the stored
                                                             * calendar instances, the client shall ignore the command and respond using
                                                             * ZCL Default Response with a status response of NOT_FOUND.
                                                             * @see zb_zcl_calendar_publish_week_profile_payload_t
                                                             */
 
-  /* (M) */
-  ZB_ZCL_CALENDAR_SRV_CMD_PUBLISH_SEASONS,                /**< The PublishSeasons command is published in response to a GetSeason command.
+    /* (M) */
+    ZB_ZCL_CALENDAR_SRV_CMD_PUBLISH_SEASONS,                /**< The PublishSeasons command is published in response to a GetSeason command.
                                                             * If the IssuerCalendarID does not match with one of the stored calendar
                                                             * instances, the client shall ignore the command and respond using ZCL
                                                             * Default Response with a status response of NOT_FOUND.
                                                             * @see zb_zcl_calendar_publish_seasons_payload_t
                                                             */
 
-  /* (M) */
-  ZB_ZCL_CALENDAR_SRV_CMD_PUBLISH_SPECIAL_DAYS,           /**< The PublishSpecialDays command is published in response to a GetSpecialDays
+    /* (M) */
+    ZB_ZCL_CALENDAR_SRV_CMD_PUBLISH_SPECIAL_DAYS,           /**< The PublishSpecialDays command is published in response to a GetSpecialDays
                                                             * command or if a calendar update is available. If the Calendar Type does not
                                                             * match with one of the stored calendar instances, the client shall ignore
                                                             * the command and respond using ZCL Default Response with a status response
@@ -178,8 +178,8 @@ typedef enum zb_zcl_calendar_srv_cmd_e
                                                             * @see zb_zcl_calendar_publish_special_days_payload_t
                                                             */
 
-  /* (O) */
-  ZB_ZCL_CALENDAR_SRV_CMD_CANCEL_CALENDAR,                /**< The CancelCalendar command indicates that all data associated with a
+    /* (O) */
+    ZB_ZCL_CALENDAR_SRV_CMD_CANCEL_CALENDAR,                /**< The CancelCalendar command indicates that all data associated with a
                                                             * particular calendar instance should be discarded.
                                                             * @see zb_zcl_calendar_cancel_calendar_payload_t
                                                             */
@@ -214,12 +214,12 @@ typedef enum zb_zcl_calendar_srv_cmd_e
  */
 typedef enum zb_zcl_calendar_calendar_type_e
 {
-  ZB_ZCL_CALENDAR_TYPE_DELIVERED_CALENDAR               = 0x00,  /**< Delivered Calendar */
-  ZB_ZCL_CALENDAR_TYPE_RECEIVED_CALENDAR                = 0x01,  /**< Received Calendar */
-  ZB_ZCL_CALENDAR_TYPE_DELIVERED_AND_RECEIVED_CALENDAR  = 0x02,  /**< Delivered and Received Calendar */
-  ZB_ZCL_CALENDAR_TYPE_FRIENDLY_CREDIT_CALENDAR         = 0x03,  /**< Friendly Credit Calendar */
-  ZB_ZCL_CALENDAR_TYPE_AUXILLARY_LOAD_SWITCH_CALENDAR   = 0x04,  /**< Auxiliary Load Switch Calendar */
-  /* reserved 0x05 - 0xFF */
+    ZB_ZCL_CALENDAR_TYPE_DELIVERED_CALENDAR               = 0x00,  /**< Delivered Calendar */
+    ZB_ZCL_CALENDAR_TYPE_RECEIVED_CALENDAR                = 0x01,  /**< Received Calendar */
+    ZB_ZCL_CALENDAR_TYPE_DELIVERED_AND_RECEIVED_CALENDAR  = 0x02,  /**< Delivered and Received Calendar */
+    ZB_ZCL_CALENDAR_TYPE_FRIENDLY_CREDIT_CALENDAR         = 0x03,  /**< Friendly Credit Calendar */
+    ZB_ZCL_CALENDAR_TYPE_AUXILLARY_LOAD_SWITCH_CALENDAR   = 0x04,  /**< Auxiliary Load Switch Calendar */
+    /* reserved 0x05 - 0xFF */
 } zb_zcl_calendar_calendar_type_t;
 
 
@@ -237,29 +237,29 @@ typedef enum zb_zcl_calendar_calendar_type_e
  */
 typedef ZB_PACKED_PRE struct zb_zcl_calendar_get_calendar_payload_s
 {
-  /** UTC Timestamp indicating the earliest start time of calendars to be
-   *  returned by the corresponding PublishCalendar command.
-   */
-  zb_uint32_t earliest_start_time;
+    /** UTC Timestamp indicating the earliest start time of calendars to be
+     *  returned by the corresponding PublishCalendar command.
+     */
+    zb_uint32_t earliest_start_time;
 
-  /** A 32-bit integer representing the minimum Issuer Event ID of calendars to
-   *  be returned by the corresponding PublishCalendar command.
-   */
-  zb_uint32_t min_issuer_event_id;
+    /** A 32-bit integer representing the minimum Issuer Event ID of calendars to
+     *  be returned by the corresponding PublishCalendar command.
+     */
+    zb_uint32_t min_issuer_event_id;
 
-  /** An 8-bit integer which represents the maximum number of PublishCalendar
-   *  commands that the client is willing to receive in response to this command.
-   */
-  zb_uint8_t  number_of_calendars;
+    /** An 8-bit integer which represents the maximum number of PublishCalendar
+     *  commands that the client is willing to receive in response to this command.
+     */
+    zb_uint8_t  number_of_calendars;
 
-  /** An 8-bit enumeration identifying the calendar type of the requested calendar.
-   * @see zb_zcl_calendar_calendar_type_t
-   */
-  zb_uint8_t  calendar_type;
+    /** An 8-bit enumeration identifying the calendar type of the requested calendar.
+     * @see zb_zcl_calendar_calendar_type_t
+     */
+    zb_uint8_t  calendar_type;
 
-  /** An unsigned 32-bit field containing a unique identifier for the commodity provider.
-   */
-  zb_uint32_t provider_id;
+    /** An unsigned 32-bit field containing a unique identifier for the commodity provider.
+     */
+    zb_uint32_t provider_id;
 } ZB_PACKED_STRUCT zb_zcl_calendar_get_calendar_payload_t;
 
 
@@ -327,10 +327,10 @@ typedef ZB_PACKED_PRE struct zb_zcl_calendar_get_calendar_payload_s
   */
 typedef enum zb_zcl_calendar_calendar_time_reference_e
 {
-  ZB_ZCL_CALENDAR_TIME_REFERENCE_UTC_TIME = 0x00,  /**< UTC time  */
-  ZB_ZCL_CALENDAR_TIME_REFERENCE_STANDARD_TIME,    /**< Standard time */
-  ZB_ZCL_CALENDAR_TIME_REFERENCE_LOCAL_TIME        /**< Local time */
-  /* 0x03 - 0xFF is reserved */
+    ZB_ZCL_CALENDAR_TIME_REFERENCE_UTC_TIME = 0x00,  /**< UTC time  */
+    ZB_ZCL_CALENDAR_TIME_REFERENCE_STANDARD_TIME,    /**< Standard time */
+    ZB_ZCL_CALENDAR_TIME_REFERENCE_LOCAL_TIME        /**< Local time */
+    /* 0x03 - 0xFF is reserved */
 } zb_zcl_calendar_calendar_time_reference_t;
 
 
@@ -340,57 +340,57 @@ typedef enum zb_zcl_calendar_calendar_time_reference_e
 typedef ZB_PACKED_PRE struct zb_zcl_calendar_publish_calendar_payload_s
 {
 
-  /** An unsigned 32-bit field containing a unique identifier for the commodity
-   * provider.
-   */
-  zb_uint32_t provider_id;              /* (M) */
+    /** An unsigned 32-bit field containing a unique identifier for the commodity
+     * provider.
+     */
+    zb_uint32_t provider_id;              /* (M) */
 
-  /** Unique identifier generated by the commodity provider. When new information
-   * is provided that replaces older information for the same time period, this
-   * field allows devices to determine which information is newer.
-   */
-  zb_uint32_t issuer_event_id;          /* (M) */
+    /** Unique identifier generated by the commodity provider. When new information
+     * is provided that replaces older information for the same time period, this
+     * field allows devices to determine which information is newer.
+     */
+    zb_uint32_t issuer_event_id;          /* (M) */
 
-  /** Unique identifier generated by the commodity Supplier to identify a
-   * particular calendar.
-   */
-  zb_uint32_t issuer_calendar_id;       /* (M) */
+    /** Unique identifier generated by the commodity Supplier to identify a
+     * particular calendar.
+     */
+    zb_uint32_t issuer_calendar_id;       /* (M) */
 
-  /** A UTC Time field to denote the time at which the published calendar becomes
-   * valid. A start date/time of 0x00000000 shall indicate that the command
-   * should be executed immediately.
-   */
-  zb_uint32_t start_time;               /* (M) */
+    /** A UTC Time field to denote the time at which the published calendar becomes
+     * valid. A start date/time of 0x00000000 shall indicate that the command
+     * should be executed immediately.
+     */
+    zb_uint32_t start_time;               /* (M) */
 
-  /** An 8-bit enumeration identifying the type of calendar published in this
-   * command.
-   * @see zb_zcl_calendar_calendar_type_t
-   */
-  zb_uint8_t  calendar_type;            /* (M) */
+    /** An 8-bit enumeration identifying the type of calendar published in this
+     * command.
+     * @see zb_zcl_calendar_calendar_type_t
+     */
+    zb_uint8_t  calendar_type;            /* (M) */
 
-  /** This field indicates how the Start Times contained in the calendar are to
-   * be interpreted.
-   * @see zb_zcl_calendar_calendar_time_reference_t
-   */
-  zb_uint8_t  calendar_time_reference;  /* (M) */
+    /** This field indicates how the Start Times contained in the calendar are to
+     * be interpreted.
+     * @see zb_zcl_calendar_calendar_time_reference_t
+     */
+    zb_uint8_t  calendar_time_reference;  /* (M) */
 
-  /** The CalendarName provides a method for utilities to assign a name to the
-   * entire calendar.
-   */
-  zb_uint8_t  calendar_name[1 + 12];    /* (M) */
+    /** The CalendarName provides a method for utilities to assign a name to the
+     * entire calendar.
+     */
+    zb_uint8_t  calendar_name[1 + 12];    /* (M) */
 
-  /** Number of entries in the Seasons Table. A value of 0x00 means no Season
-   * defined.
-   */
-  zb_uint8_t  number_of_seasons;        /* (M) */
+    /** Number of entries in the Seasons Table. A value of 0x00 means no Season
+     * defined.
+     */
+    zb_uint8_t  number_of_seasons;        /* (M) */
 
-  /** Number of week profiles in the Week Profile Table. A value of 0x00 means no
-   * Week Profile defined.
-   */
-  zb_uint8_t  number_of_week_profiles;  /* (M) */
+    /** Number of week profiles in the Week Profile Table. A value of 0x00 means no
+     * Week Profile defined.
+     */
+    zb_uint8_t  number_of_week_profiles;  /* (M) */
 
-  /** Number of day profiles in the Day Profile Table. */
-  zb_uint8_t  number_of_day_profiles;   /* (M) */
+    /** Number of day profiles in the Day Profile Table. */
+    zb_uint8_t  number_of_day_profiles;   /* (M) */
 } ZB_PACKED_STRUCT zb_zcl_calendar_publish_calendar_payload_t;
 
 
@@ -492,32 +492,32 @@ typedef ZB_PACKED_PRE struct zb_zcl_calendar_publish_calendar_payload_s
   */
 typedef ZB_PACKED_PRE struct zb_zcl_calendar_day_schedule_entries_s
 {
-  /** The Start Time is represented in minutes from midnight. ScheduleEntries
-   * must be arranged in ascending order of Start Times. The first Schedule Entry
-   * must have 0x0000 (midnight) as the StartTime
-   */
-  zb_uint16_t start_time; /* (M) */
+    /** The Start Time is represented in minutes from midnight. ScheduleEntries
+     * must be arranged in ascending order of Start Times. The first Schedule Entry
+     * must have 0x0000 (midnight) as the StartTime
+     */
+    zb_uint16_t start_time; /* (M) */
 
-  /** \b Price \b Tier is the current price tier that is valid until the start time of the next
-    * Schedule Entry.
-    * The \b Friendly \b Credit \b Enable field is a Boolean denoting if the Friendly Credit
-    * period is available for the consumer to use. A value of 1 means it is enabled
-    * and a 0 means that the Friendly Credit period is not available for the
-    * consumer to use.\n
-    *
-    * The required status of the auxiliary switches is indicated by the state
-    * of the \b Auxiliary \b Load \b Switch \b State bits. Bit0 corresponds to Auxiliary
-    * Switch 1 and bit7 corresponds to Auxiliary Switch 8. A bit set to "1"
-    * indicates an ON state and a bit set to "0" indicates an OFF state.
-    *
-    * @see SE spec, subclause D.9.2.3.2.3.1, D.9.2.3.2.3.2 and D.9.2.3.2.3.3
-    */
-  ZB_PACKED_PRE union
-  {
-    zb_uint8_t price_tier;
-    zb_uint8_t friendly_credit_enable;
-    zb_uint8_t auxiliary_load_switch_state;
-  } u;
+    /** \b Price \b Tier is the current price tier that is valid until the start time of the next
+      * Schedule Entry.
+      * The \b Friendly \b Credit \b Enable field is a Boolean denoting if the Friendly Credit
+      * period is available for the consumer to use. A value of 1 means it is enabled
+      * and a 0 means that the Friendly Credit period is not available for the
+      * consumer to use.\n
+      *
+      * The required status of the auxiliary switches is indicated by the state
+      * of the \b Auxiliary \b Load \b Switch \b State bits. Bit0 corresponds to Auxiliary
+      * Switch 1 and bit7 corresponds to Auxiliary Switch 8. A bit set to "1"
+      * indicates an ON state and a bit set to "0" indicates an OFF state.
+      *
+      * @see SE spec, subclause D.9.2.3.2.3.1, D.9.2.3.2.3.2 and D.9.2.3.2.3.3
+      */
+    ZB_PACKED_PRE union
+    {
+        zb_uint8_t price_tier;
+        zb_uint8_t friendly_credit_enable;
+        zb_uint8_t auxiliary_load_switch_state;
+    } u;
 
 } ZB_PACKED_STRUCT zb_zcl_calendar_day_schedule_entries_t;
 
@@ -527,59 +527,59 @@ typedef ZB_PACKED_PRE struct zb_zcl_calendar_day_schedule_entries_s
  */
 typedef ZB_PACKED_PRE struct zb_zcl_calendar_publish_day_profile_payload_s
 {
-  /** An unsigned 32-bit field containing a unique identifier for the commodity
-   * provider.
-   */
-  zb_uint32_t provider_id;                       /* (M) */
+    /** An unsigned 32-bit field containing a unique identifier for the commodity
+     * provider.
+     */
+    zb_uint32_t provider_id;                       /* (M) */
 
-  /** Unique identifier generated by the commodity provider. When new information
-   * is provided that replaces older information for the same time period, this
-   * field allows devices to determine which information is newer.
-   */
-  zb_uint32_t issuer_event_id;                   /* (M) */
+    /** Unique identifier generated by the commodity provider. When new information
+     * is provided that replaces older information for the same time period, this
+     * field allows devices to determine which information is newer.
+     */
+    zb_uint32_t issuer_event_id;                   /* (M) */
 
-  /** Unique identifier generated by the commodity supplier. All parts of a
-   * calendar instance shall have the same Issuer Calendar ID.
-   */
-  zb_uint32_t issuer_calendar_id;                /* (M) */
+    /** Unique identifier generated by the commodity supplier. All parts of a
+     * calendar instance shall have the same Issuer Calendar ID.
+     */
+    zb_uint32_t issuer_calendar_id;                /* (M) */
 
-  /** Unique identifier generated by the commodity supplier. The Day ID is used
-   * as reference to assign a Day Profile to a Special Day or days in a Week
-   * Profile.
-   */
-  zb_uint8_t day_id;                             /* (M) */
+    /** Unique identifier generated by the commodity supplier. The Day ID is used
+     * as reference to assign a Day Profile to a Special Day or days in a Week
+     * Profile.
+     */
+    zb_uint8_t day_id;                             /* (M) */
 
-  /** An 8-bit integer representing the total number of ScheduleEntries in this
-   * Day Profile.
-   */
-  zb_uint8_t total_number_of_schedule_entries;   /* (M) */
+    /** An 8-bit integer representing the total number of ScheduleEntries in this
+     * Day Profile.
+     */
+    zb_uint8_t total_number_of_schedule_entries;   /* (M) */
 
-  /** The CommandIndex is used to count the payload fragments in the case where
-   * the entire payload does not fit into one message. The CommandIndex starts
-   * at 0 and is incremented for each fragment belonging to the same command.
-   */
-  zb_uint8_t command_index;                      /* (M) */
+    /** The CommandIndex is used to count the payload fragments in the case where
+     * the entire payload does not fit into one message. The CommandIndex starts
+     * at 0 and is incremented for each fragment belonging to the same command.
+     */
+    zb_uint8_t command_index;                      /* (M) */
 
-  /** In the case where the entire payload does not fit into one message, the
-   * Total Number of Commands field indicates the total number of sub-commands
-   * in the message.
-   */
-  zb_uint8_t total_number_of_commands;           /* (M) */
+    /** In the case where the entire payload does not fit into one message, the
+     * Total Number of Commands field indicates the total number of sub-commands
+     * in the message.
+     */
+    zb_uint8_t total_number_of_commands;           /* (M) */
 
-  /** An 8-bit enumeration identifying the type of calendar published in this
-   * command.
-   * @see zb_zcl_calendar_calendar_type_t
-   */
-  zb_uint8_t calendar_type;                      /* (M) */
+    /** An 8-bit enumeration identifying the type of calendar published in this
+     * command.
+     * @see zb_zcl_calendar_calendar_type_t
+     */
+    zb_uint8_t calendar_type;                      /* (M) */
 
-  /** @see zb_zcl_calendar_day_schedule_entries_s
-   */
-  zb_zcl_calendar_day_schedule_entries_t *day_schedule_entries;   /* (M) */
+    /** @see zb_zcl_calendar_day_schedule_entries_s
+     */
+    zb_zcl_calendar_day_schedule_entries_t *day_schedule_entries;   /* (M) */
 
-  /** An 8-bit integer representing the number of Day Schedule entries in
-   * this command
-   */
-   zb_uint8_t number_of_entries_in_this_command;  /* (ZBOSS) */
+    /** An 8-bit integer representing the number of Day Schedule entries in
+     * this command
+     */
+    zb_uint8_t number_of_entries_in_this_command;  /* (ZBOSS) */
 } ZB_PACKED_STRUCT zb_zcl_calendar_publish_day_profile_payload_t;
 
 
@@ -588,38 +588,38 @@ typedef ZB_PACKED_PRE struct zb_zcl_calendar_publish_day_profile_payload_s
  */
 typedef ZB_PACKED_PRE struct zb_zcl_calendar_publish_week_profile_payload_s
 {
-  /** An unsigned 32-bit field containing a unique identifier for the commodity
-   * provider.
-   */
-  zb_uint32_t provider_id;          /* (M) */
+    /** An unsigned 32-bit field containing a unique identifier for the commodity
+     * provider.
+     */
+    zb_uint32_t provider_id;          /* (M) */
 
-  /** Unique identifier generated by the commodity provider. When new information
-   * is provided that replaces older information for the same time period, this
-   * field allows devices to determine which information is newer.
-   */
-  zb_uint32_t issuer_event_id;      /* (M) */
+    /** Unique identifier generated by the commodity provider. When new information
+     * is provided that replaces older information for the same time period, this
+     * field allows devices to determine which information is newer.
+     */
+    zb_uint32_t issuer_event_id;      /* (M) */
 
-  /** Unique identifier generated by the commodity supplier. All parts of a
-   * calendar instance shall have the same Issuer Calendar ID.
-   */
-  zb_uint32_t issuer_calendar_id;   /* (M) */
+    /** Unique identifier generated by the commodity supplier. All parts of a
+     * calendar instance shall have the same Issuer Calendar ID.
+     */
+    zb_uint32_t issuer_calendar_id;   /* (M) */
 
-  /** Unique identifier generated by the commodity supplier. The Week ID is used
-   * as reference to assign a Week Profile to a Season Entry. When generating
-   * calendars, Week IDs shall be allocated sequentially, starting from 1.
-   */
-  zb_uint8_t week_id;               /* (M) */
+    /** Unique identifier generated by the commodity supplier. The Week ID is used
+     * as reference to assign a Week Profile to a Season Entry. When generating
+     * calendars, Week IDs shall be allocated sequentially, starting from 1.
+     */
+    zb_uint8_t week_id;               /* (M) */
 
-  /** Day ID Ref Monday until Day ID Ref Sunday (mandatory): Reference to the
-   * related Day Profile entry.
-   */
-  zb_uint8_t day_id_ref_monday;     /* (O) */
-  zb_uint8_t day_id_ref_tuesday;    /* (O) */
-  zb_uint8_t day_id_ref_wednesday;  /* (O) */
-  zb_uint8_t day_id_ref_thursday;   /* (O) */
-  zb_uint8_t day_id_ref_friday;     /* (O) */
-  zb_uint8_t day_id_ref_saturday;   /* (O) */
-  zb_uint8_t day_id_ref_sunday;     /* (O) */
+    /** Day ID Ref Monday until Day ID Ref Sunday (mandatory): Reference to the
+     * related Day Profile entry.
+     */
+    zb_uint8_t day_id_ref_monday;     /* (O) */
+    zb_uint8_t day_id_ref_tuesday;    /* (O) */
+    zb_uint8_t day_id_ref_wednesday;  /* (O) */
+    zb_uint8_t day_id_ref_thursday;   /* (O) */
+    zb_uint8_t day_id_ref_friday;     /* (O) */
+    zb_uint8_t day_id_ref_saturday;   /* (O) */
+    zb_uint8_t day_id_ref_sunday;     /* (O) */
 } ZB_PACKED_STRUCT zb_zcl_calendar_publish_week_profile_payload_t;
 
 
@@ -633,8 +633,8 @@ typedef ZB_PACKED_PRE struct zb_zcl_calendar_publish_week_profile_payload_s
  */
 typedef struct zb_zcl_calendar_season_entry_payload_s
 {
-  zb_uint32_t season_start_date;         /* (M) */
-  zb_uint8_t week_id_ref;                /* (M) */
+    zb_uint32_t season_start_date;         /* (M) */
+    zb_uint8_t week_id_ref;                /* (M) */
 } zb_zcl_calendar_season_entry_payload_t;
 
 
@@ -644,46 +644,46 @@ typedef struct zb_zcl_calendar_season_entry_payload_s
 typedef ZB_PACKED_PRE struct zb_zcl_calendar_publish_seasons_payload_s
 {
 
-  /** An unsigned 32-bit field containing a unique identifier for the commodity
-   * provider.
-   */
-  zb_uint32_t provider_id;              /* (M) */
+    /** An unsigned 32-bit field containing a unique identifier for the commodity
+     * provider.
+     */
+    zb_uint32_t provider_id;              /* (M) */
 
-  /** Unique identifier generated by the commodity provider. When new information
-   * is provided that replaces older information for the same time period,
-   * this field allows devices to determine which information is newer.
-   */
-  zb_uint32_t issuer_event_id;          /* (M) */
+    /** Unique identifier generated by the commodity provider. When new information
+     * is provided that replaces older information for the same time period,
+     * this field allows devices to determine which information is newer.
+     */
+    zb_uint32_t issuer_event_id;          /* (M) */
 
-  /** Unique identifier generated by the commodity supplier. All parts of a
-   * calendar instance shall have the same Issuer Calendar ID.
-   */
-  zb_uint32_t issuer_calendar_id;       /* (M) */
+    /** Unique identifier generated by the commodity supplier. All parts of a
+     * calendar instance shall have the same Issuer Calendar ID.
+     */
+    zb_uint32_t issuer_calendar_id;       /* (M) */
 
-  /** The Command Index is used to count the payload fragments in the case where
-   * the entire payload does not fit into one message. The Command Index starts
-   * at 0 and is incremented for each fragment belonging to the same command.
-   */
-  zb_uint8_t command_index;             /* (M) */
+    /** The Command Index is used to count the payload fragments in the case where
+     * the entire payload does not fit into one message. The Command Index starts
+     * at 0 and is incremented for each fragment belonging to the same command.
+     */
+    zb_uint8_t command_index;             /* (M) */
 
-  /** In the case where the entire payload does not fit into one message, the
-   * Total Number of Commands field indicates the total number of sub-commands
-   * in the message.
-   */
-  zb_uint8_t total_number_of_commands;  /* (M) */
+    /** In the case where the entire payload does not fit into one message, the
+     * Total Number of Commands field indicates the total number of sub-commands
+     * in the message.
+     */
+    zb_uint8_t total_number_of_commands;  /* (M) */
 
-  /** A Season Entry consists of a Season Start Date and the reference
-   * (Week ID Ref) to the related Week Profile entry. The Start Date of the
-   * Season Entries must be arranged in ascending order. The active season is
-   * valid until the Season Start Date of the next Season Entry.
-   * @see zb_zcl_calendar_season_entry_payload_s
-   */
-  zb_zcl_calendar_season_entry_payload_t *season_entry;  /* (M) */
+    /** A Season Entry consists of a Season Start Date and the reference
+     * (Week ID Ref) to the related Week Profile entry. The Start Date of the
+     * Season Entries must be arranged in ascending order. The active season is
+     * valid until the Season Start Date of the next Season Entry.
+     * @see zb_zcl_calendar_season_entry_payload_s
+     */
+    zb_zcl_calendar_season_entry_payload_t *season_entry;  /* (M) */
 
-  /** An 8-bit integer representing the number of Season entries in
-   * this command
-   */
-   zb_uint8_t number_of_entries_in_this_command;  /* (ZBOSS) */
+    /** An 8-bit integer representing the number of Season entries in
+     * this command
+     */
+    zb_uint8_t number_of_entries_in_this_command;  /* (ZBOSS) */
 } ZB_PACKED_STRUCT zb_zcl_calendar_publish_seasons_payload_t;
 
 
@@ -692,21 +692,21 @@ typedef ZB_PACKED_PRE struct zb_zcl_calendar_publish_seasons_payload_s
  */
 typedef ZB_PACKED_PRE struct zb_zcl_calendar_cancel_calendar_payload_s
 {
-  /** An unsigned 32-bit field containing a unique identifier for the commodity
-   * provider.
-   */
-  zb_uint32_t provider_id;              /* (M) */
+    /** An unsigned 32-bit field containing a unique identifier for the commodity
+     * provider.
+     */
+    zb_uint32_t provider_id;              /* (M) */
 
-  /** Unique identifier generated by the commodity Supplier. All parts of a
-   * calendar instance shall have the same Issuer Calendar ID.
-   */
-  zb_uint32_t issuer_calendar_id;       /* (M) */
+    /** Unique identifier generated by the commodity Supplier. All parts of a
+     * calendar instance shall have the same Issuer Calendar ID.
+     */
+    zb_uint32_t issuer_calendar_id;       /* (M) */
 
-  /** An 8-bit enumeration identifying the type of calendar to be cancelled by
-   * this command. Table D-159 details the enumeration of this field.
-   * @see zb_zcl_calendar_calendar_type_t
-   */
-  zb_uint8_t calendar_type;
+    /** An 8-bit enumeration identifying the type of calendar to be cancelled by
+     * this command. Table D-159 details the enumeration of this field.
+     * @see zb_zcl_calendar_calendar_type_t
+     */
+    zb_uint8_t calendar_type;
 } ZB_PACKED_STRUCT zb_zcl_calendar_cancel_calendar_payload_t;
 
 
@@ -719,8 +719,8 @@ typedef ZB_PACKED_PRE struct zb_zcl_calendar_cancel_calendar_payload_s
   */
 typedef ZB_PACKED_PRE struct zb_zcl_calendar_special_day_entry_s
 {
-  zb_uint32_t special_day_date;  /* (M) */
-  zb_uint8_t day_id_ref;         /* (M) */
+    zb_uint32_t special_day_date;  /* (M) */
+    zb_uint8_t day_id_ref;         /* (M) */
 } ZB_PACKED_STRUCT zb_zcl_calendar_special_day_entry_t;
 
 
@@ -730,62 +730,62 @@ typedef ZB_PACKED_PRE struct zb_zcl_calendar_special_day_entry_s
 typedef ZB_PACKED_PRE struct zb_zcl_calendar_publish_special_days_payload_s
 {
 
-  /** An unsigned 32-bit field containing a unique identifier for the commodity
-   * provider.
-   */
-  zb_uint32_t provider_id;                  /* (M) */
+    /** An unsigned 32-bit field containing a unique identifier for the commodity
+     * provider.
+     */
+    zb_uint32_t provider_id;                  /* (M) */
 
-  /** Unique identifier generated by the commodity provider. When new information
-   * is provided that replaces older information for the same time period, this
-   * field allows devices to determine which information is newer.
-   */
-  zb_uint32_t issuer_event_id;              /* (M) */
+    /** Unique identifier generated by the commodity provider. When new information
+     * is provided that replaces older information for the same time period, this
+     * field allows devices to determine which information is newer.
+     */
+    zb_uint32_t issuer_event_id;              /* (M) */
 
-  /** Unique identifier generated by the commodity Supplier. All parts of a
-   * calendar instance shall have the same Issuer Calendar ID.
-   */
-  zb_uint32_t issuer_calendar_id;           /* (M) */
+    /** Unique identifier generated by the commodity Supplier. All parts of a
+     * calendar instance shall have the same Issuer Calendar ID.
+     */
+    zb_uint32_t issuer_calendar_id;           /* (M) */
 
-  /** A UTC Time field to denote the time at which the Special Day Table becomes
-   * valid. A start date/time of 0x00000000 shall indicate that the command
-   * should be executed immediately.
-   */
-  zb_uint32_t start_time;                   /* (M) */
+    /** A UTC Time field to denote the time at which the Special Day Table becomes
+     * valid. A start date/time of 0x00000000 shall indicate that the command
+     * should be executed immediately.
+     */
+    zb_uint32_t start_time;                   /* (M) */
 
-  /** An 8-bit enumeration identifying the type of calendar this day profile
-   * belongs to. Generation Meters shall use the ‘Received’ Calendar.
-   * @see zb_zcl_calendar_calendar_type_t
-   */
-  zb_uint8_t calendar_type;                 /* (M) */
+    /** An 8-bit enumeration identifying the type of calendar this day profile
+     * belongs to. Generation Meters shall use the ‘Received’ Calendar.
+     * @see zb_zcl_calendar_calendar_type_t
+     */
+    zb_uint8_t calendar_type;                 /* (M) */
 
-  /** An 8-bit integer representing the total number of Special Day entries in
-   * this Special Day Table
-   */
-  zb_uint8_t total_number_of_special_days;  /* (M) */
+    /** An 8-bit integer representing the total number of Special Day entries in
+     * this Special Day Table
+     */
+    zb_uint8_t total_number_of_special_days;  /* (M) */
 
-  /** The Command Index is used to count the payload fragments in the case where
-   * the entire payload does not fit into one message. The Command Index starts
-   * at 0 and is incremented for each fragment belonging to the same command.
-   */
-  zb_uint8_t command_index;                 /* (M) */
+    /** The Command Index is used to count the payload fragments in the case where
+     * the entire payload does not fit into one message. The Command Index starts
+     * at 0 and is incremented for each fragment belonging to the same command.
+     */
+    zb_uint8_t command_index;                 /* (M) */
 
-  /** In the case where the entire payload does not fit into one message, the
-   * Total Number of Commands field indicates the total number of sub-commands
-   * in the message.
-   */
-  zb_uint8_t total_number_of_commands;      /* (M) */
+    /** In the case where the entire payload does not fit into one message, the
+     * Total Number of Commands field indicates the total number of sub-commands
+     * in the message.
+     */
+    zb_uint8_t total_number_of_commands;      /* (M) */
 
-  /** A SpecialDayEntry consists of the Special Day Date and a reference
-   * (Day ID Ref) to the related Day Profile entry. The dates of the Special Day
-   * Table must be arranged in ascending order.
-   * @see zb_zcl_calendar_special_day_entry_t
-   */
-  zb_zcl_calendar_special_day_entry_t *special_day_entry; /* (M) */
+    /** A SpecialDayEntry consists of the Special Day Date and a reference
+     * (Day ID Ref) to the related Day Profile entry. The dates of the Special Day
+     * Table must be arranged in ascending order.
+     * @see zb_zcl_calendar_special_day_entry_t
+     */
+    zb_zcl_calendar_special_day_entry_t *special_day_entry; /* (M) */
 
-  /** An 8-bit integer representing the number of Special Day entries in
-   * this command
-   */
-  zb_uint8_t number_of_entries_in_this_command;  /* (ZBOSS) */
+    /** An 8-bit integer representing the number of Special Day entries in
+     * this command
+     */
+    zb_uint8_t number_of_entries_in_this_command;  /* (ZBOSS) */
 
 } ZB_PACKED_STRUCT zb_zcl_calendar_publish_special_days_payload_t;
 
@@ -796,30 +796,30 @@ typedef ZB_PACKED_PRE struct zb_zcl_calendar_publish_special_days_payload_s
 typedef ZB_PACKED_PRE struct zb_zcl_calendar_get_day_profiles_payload_s
 {
 
-  /** An unsigned 32-bit field containing a unique identifier for the commodity
-   * provider.
-   */
-  zb_uint32_t provider_id;         /* (M) */
+    /** An unsigned 32-bit field containing a unique identifier for the commodity
+     * provider.
+     */
+    zb_uint32_t provider_id;         /* (M) */
 
-  /** IssuerCalendarID of the calendar to which the requested Day Profiles
-   * belong.
-   */
-  zb_uint32_t issuer_calendar_id;  /* (M) */
+    /** IssuerCalendarID of the calendar to which the requested Day Profiles
+     * belong.
+     */
+    zb_uint32_t issuer_calendar_id;  /* (M) */
 
-  /** Unique identifier for a Day Profile generated by the commodity supplier.
-   * The Start Day ID indicates the minimum ID of Day Profiles to be returned
-   * by the corresponding PublishDayProfile command. A value of 0x01 indicates
-   * that the (first) PublishDayProfile command should contain the profile with
-   * the lowest Day ID held by the server. A value of 0x00 is unused.
-   */
-  zb_uint8_t start_day_id;         /* (M) */
+    /** Unique identifier for a Day Profile generated by the commodity supplier.
+     * The Start Day ID indicates the minimum ID of Day Profiles to be returned
+     * by the corresponding PublishDayProfile command. A value of 0x01 indicates
+     * that the (first) PublishDayProfile command should contain the profile with
+     * the lowest Day ID held by the server. A value of 0x00 is unused.
+     */
+    zb_uint8_t start_day_id;         /* (M) */
 
-  /** An 8-bit integer which represents the maximum number of Day Profiles that
-   * the client is willing to receive in response to this command. A value of
-   * 0x00 will cause the return of all day profiles with an ID equal to or
-   * greater than the Start Day ID.
-   */
-  zb_uint8_t number_of_days;       /* (M) */
+    /** An 8-bit integer which represents the maximum number of Day Profiles that
+     * the client is willing to receive in response to this command. A value of
+     * 0x00 will cause the return of all day profiles with an ID equal to or
+     * greater than the Start Day ID.
+     */
+    zb_uint8_t number_of_days;       /* (M) */
 } ZB_PACKED_STRUCT zb_zcl_calendar_get_day_profiles_payload_t;
 
 
@@ -829,28 +829,28 @@ typedef ZB_PACKED_PRE struct zb_zcl_calendar_get_day_profiles_payload_s
 typedef ZB_PACKED_PRE struct zb_zcl_calendar_get_week_profiles_payload_s
 {
 
-  /** An unsigned 32-bit field containing a unique identifier for the commodity
-   * provider.
-   */
-  zb_uint32_t provider_id;          /* (M) */
+    /** An unsigned 32-bit field containing a unique identifier for the commodity
+     * provider.
+     */
+    zb_uint32_t provider_id;          /* (M) */
 
-  /** IssuerCalendarID of the calendar to which the requested Week Profiles
-   * belong.
-   */
-  zb_uint32_t issuer_calendar_id;   /* (M) */
+    /** IssuerCalendarID of the calendar to which the requested Week Profiles
+     * belong.
+     */
+    zb_uint32_t issuer_calendar_id;   /* (M) */
 
-  /** Unique identifier for a Week Profile generated by the commodity supplier.
-   * The Start Week ID indicates the minimum ID of Week Profiles to be returned
-   * by the corresponding PublishWeekProfile command.
-   */
-  zb_uint8_t start_week_id;         /* (M) */
+    /** Unique identifier for a Week Profile generated by the commodity supplier.
+     * The Start Week ID indicates the minimum ID of Week Profiles to be returned
+     * by the corresponding PublishWeekProfile command.
+     */
+    zb_uint8_t start_week_id;         /* (M) */
 
-  /** An 8-bit integer which represents the maximum number of Week Profiles that
-   * the client is willing to receive in response to this command. A value of
-   * 0x00 will cause the return of all week profiles with an ID equal to or
-   * greater than the Start Week ID.
-   */
-  zb_uint8_t number_of_weeks;       /* (M) */
+    /** An 8-bit integer which represents the maximum number of Week Profiles that
+     * the client is willing to receive in response to this command. A value of
+     * 0x00 will cause the return of all week profiles with an ID equal to or
+     * greater than the Start Week ID.
+     */
+    zb_uint8_t number_of_weeks;       /* (M) */
 } ZB_PACKED_STRUCT zb_zcl_calendar_get_week_profiles_payload_t;
 
 
@@ -860,12 +860,12 @@ typedef ZB_PACKED_PRE struct zb_zcl_calendar_get_week_profiles_payload_s
 typedef ZB_PACKED_PRE struct zb_zcl_calendar_get_seasons_payload_s
 {
 
-  /** An unsigned 32-bit field containing a unique identifier for the
-commodity provider. */
-  zb_uint32_t provider_id;
+    /** An unsigned 32-bit field containing a unique identifier for the
+    commodity provider. */
+    zb_uint32_t provider_id;
 
-  /** IssuerCalendarID of the calendar to which the requested Seasons belong. */
-  zb_uint32_t issuer_calendar_id;
+    /** IssuerCalendarID of the calendar to which the requested Seasons belong. */
+    zb_uint32_t issuer_calendar_id;
 } ZB_PACKED_STRUCT zb_zcl_calendar_get_seasons_payload_t;
 
 
@@ -875,33 +875,33 @@ commodity provider. */
 typedef ZB_PACKED_PRE struct zb_zcl_calendar_get_special_days_payload_s
 {
 
-  /** UTC Timestamp to select active and scheduled events to be returned by the
-   * corresponding PublishSpecialDays command.
-   */
-  zb_uint32_t start_time;          /* (M) */
+    /** UTC Timestamp to select active and scheduled events to be returned by the
+     * corresponding PublishSpecialDays command.
+     */
+    zb_uint32_t start_time;          /* (M) */
 
-  /** An 8-bit integer which represents the maximum number of Special Day Table
-   * instances to be sent. A value of 0 would indicate all available Special Day
-   * tables shall be returned.
-   */
-  zb_uint8_t number_of_events;     /* (M) */
+    /** An 8-bit integer which represents the maximum number of Special Day Table
+     * instances to be sent. A value of 0 would indicate all available Special Day
+     * tables shall be returned.
+     */
+    zb_uint8_t number_of_events;     /* (M) */
 
-  /** An 8-bit enumeration identifying the calendar type of the requested Special
-   * Days. Generation Meters shall use the ‘Received’ Calendar.
-   * @see zb_zcl_calendar_calendar_type_t
-   */
-  zb_uint8_t calendar_type;        /* (M) */
+    /** An 8-bit enumeration identifying the calendar type of the requested Special
+     * Days. Generation Meters shall use the ‘Received’ Calendar.
+     * @see zb_zcl_calendar_calendar_type_t
+     */
+    zb_uint8_t calendar_type;        /* (M) */
 
-  /** An unsigned 32-bit field containing a unique identifier for the commodity
-   * provider. This field allows differentiation in deregulated markets where
-   * multiple commodity providers may be available.
-   */
-  zb_uint32_t provider_id;         /* (M) */
+    /** An unsigned 32-bit field containing a unique identifier for the commodity
+     * provider. This field allows differentiation in deregulated markets where
+     * multiple commodity providers may be available.
+     */
+    zb_uint32_t provider_id;         /* (M) */
 
-  /** Unique identifier generated by the commodity supplier. A value of
-   * 0x00000000 will cause the return of all Special Days profiles.
-   */
-  zb_uint32_t issuer_calendar_id;  /* (M) */
+    /** Unique identifier generated by the commodity supplier. A value of
+     * 0x00000000 will cause the return of all Special Days profiles.
+     */
+    zb_uint32_t issuer_calendar_id;  /* (M) */
 } ZB_PACKED_STRUCT zb_zcl_calendar_get_special_days_payload_t;
 
 
@@ -920,10 +920,10 @@ typedef ZB_PACKED_PRE struct zb_zcl_calendar_get_special_days_payload_s
  * APS ack.
  */
 void zb_zcl_calendar_send_cmd_publish_calendar(zb_uint8_t param, const zb_addr_u *dst_addr,
-                                               zb_aps_addr_mode_t dst_addr_mode,
-                                               zb_uint8_t dst_ep, zb_uint8_t src_ep,
-                                               const zb_zcl_calendar_publish_calendar_payload_t *pl,
-                                               zb_callback_t cb);
+        zb_aps_addr_mode_t dst_addr_mode,
+        zb_uint8_t dst_ep, zb_uint8_t src_ep,
+        const zb_zcl_calendar_publish_calendar_payload_t *pl,
+        zb_callback_t cb);
 
 
 /** Function for send @ref ZB_ZCL_CALENDAR_SRV_CMD_PUBLISH_DAY_PROFILE "PublishDayProfile" command.
@@ -941,11 +941,11 @@ void zb_zcl_calendar_send_cmd_publish_calendar(zb_uint8_t param, const zb_addr_u
  * APS ack.
  */
 void zb_zcl_calendar_send_cmd_publish_day_profile(zb_uint8_t param,
-  const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
-  zb_uint8_t dst_ep, zb_uint8_t src_ep,
-  const zb_zcl_calendar_publish_day_profile_payload_t *pl,
-  zb_callback_t cb
-);
+        const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
+        zb_uint8_t dst_ep, zb_uint8_t src_ep,
+        const zb_zcl_calendar_publish_day_profile_payload_t *pl,
+        zb_callback_t cb
+                                                 );
 
 
 /** Function for send @ref ZB_ZCL_CALENDAR_SRV_CMD_PUBLISH_WEEK_PROFILE "PublishWeekProfile" command.
@@ -963,11 +963,11 @@ void zb_zcl_calendar_send_cmd_publish_day_profile(zb_uint8_t param,
  * APS ack.
  */
 void zb_zcl_calendar_send_cmd_publish_week_profile(zb_uint8_t param,
-  const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
-  zb_uint8_t dst_ep, zb_uint8_t src_ep,
-  const zb_zcl_calendar_publish_week_profile_payload_t *pl,
-  zb_callback_t cb
-);
+        const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
+        zb_uint8_t dst_ep, zb_uint8_t src_ep,
+        const zb_zcl_calendar_publish_week_profile_payload_t *pl,
+        zb_callback_t cb
+                                                  );
 
 
 /** Function for send @ref ZB_ZCL_CALENDAR_SRV_CMD_PUBLISH_SEASONS "PublishSeasons" command.
@@ -985,11 +985,11 @@ void zb_zcl_calendar_send_cmd_publish_week_profile(zb_uint8_t param,
  * APS ack.
  */
 void zb_zcl_calendar_send_cmd_publish_seasons(zb_uint8_t param,
-  const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
-  zb_uint8_t dst_ep, zb_uint8_t src_ep,
-  const zb_zcl_calendar_publish_seasons_payload_t *pl,
-  zb_callback_t cb
-);
+        const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
+        zb_uint8_t dst_ep, zb_uint8_t src_ep,
+        const zb_zcl_calendar_publish_seasons_payload_t *pl,
+        zb_callback_t cb
+                                             );
 
 
 /** Function for send @ref ZB_ZCL_CALENDAR_SRV_CMD_PUBLISH_SPECIAL_DAYS "PublishSpecialDays" command.
@@ -1007,11 +1007,11 @@ void zb_zcl_calendar_send_cmd_publish_seasons(zb_uint8_t param,
  * APS ack.
  */
 void zb_zcl_calendar_send_cmd_publish_special_days(zb_uint8_t param,
-  const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
-  zb_uint8_t dst_ep, zb_uint8_t src_ep,
-  const zb_zcl_calendar_publish_special_days_payload_t *pl,
-  zb_callback_t cb
-);
+        const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
+        zb_uint8_t dst_ep, zb_uint8_t src_ep,
+        const zb_zcl_calendar_publish_special_days_payload_t *pl,
+        zb_callback_t cb
+                                                  );
 
 
 /** Function for send @ref ZB_ZCL_CALENDAR_CLI_CMD_GET_CALENDAR "GetCalendar" command.
@@ -1027,11 +1027,11 @@ void zb_zcl_calendar_send_cmd_publish_special_days(zb_uint8_t param,
  * APS ack.
  */
 void zb_zcl_calendar_send_cmd_get_calendar(zb_uint8_t param,
-  const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
-  zb_uint8_t dst_ep, zb_uint8_t src_ep,
-  const zb_zcl_calendar_get_calendar_payload_t *pl,
-  zb_callback_t cb
-);
+        const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
+        zb_uint8_t dst_ep, zb_uint8_t src_ep,
+        const zb_zcl_calendar_get_calendar_payload_t *pl,
+        zb_callback_t cb
+                                          );
 
 
 /** Function for send @ref ZB_ZCL_CALENDAR_CLI_CMD_GET_DAY_PROFILES "GetDayProfiles" command.
@@ -1047,11 +1047,11 @@ void zb_zcl_calendar_send_cmd_get_calendar(zb_uint8_t param,
  * APS ack.
  */
 void zb_zcl_calendar_send_cmd_get_day_profiles(zb_uint8_t param,
-  const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
-  zb_uint8_t dst_ep, zb_uint8_t src_ep,
-  const zb_zcl_calendar_get_day_profiles_payload_t *pl,
-  zb_callback_t cb
-);
+        const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
+        zb_uint8_t dst_ep, zb_uint8_t src_ep,
+        const zb_zcl_calendar_get_day_profiles_payload_t *pl,
+        zb_callback_t cb
+                                              );
 
 
 /** Function for send @ref ZB_ZCL_CALENDAR_CLI_CMD_GET_WEEK_PROFILES "GetWeekProfiles" command.
@@ -1067,11 +1067,11 @@ void zb_zcl_calendar_send_cmd_get_day_profiles(zb_uint8_t param,
  * APS ack.
  */
 void zb_zcl_calendar_send_cmd_get_week_profiles(zb_uint8_t param,
-  const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
-  zb_uint8_t dst_ep, zb_uint8_t src_ep,
-  const zb_zcl_calendar_get_week_profiles_payload_t *pl,
-  zb_callback_t cb
-);
+        const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
+        zb_uint8_t dst_ep, zb_uint8_t src_ep,
+        const zb_zcl_calendar_get_week_profiles_payload_t *pl,
+        zb_callback_t cb
+                                               );
 
 
 /** Function for send @ref ZB_ZCL_CALENDAR_CLI_CMD_GET_SEASONS "GetSeasons" command.
@@ -1087,11 +1087,11 @@ void zb_zcl_calendar_send_cmd_get_week_profiles(zb_uint8_t param,
  * APS ack.
  */
 void zb_zcl_calendar_send_cmd_get_seasons(zb_uint8_t param,
-  const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
-  zb_uint8_t dst_ep, zb_uint8_t src_ep,
-  const zb_zcl_calendar_get_seasons_payload_t *pl,
-  zb_callback_t cb
-);
+        const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
+        zb_uint8_t dst_ep, zb_uint8_t src_ep,
+        const zb_zcl_calendar_get_seasons_payload_t *pl,
+        zb_callback_t cb
+                                         );
 
 
 /** Function for send @ref ZB_ZCL_CALENDAR_CLI_CMD_GET_SPECIAL_DAYS "GetSpecialDays" command.
@@ -1107,11 +1107,11 @@ void zb_zcl_calendar_send_cmd_get_seasons(zb_uint8_t param,
  * APS ack.
  */
 void zb_zcl_calendar_send_cmd_get_special_days(zb_uint8_t param,
-  const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
-  zb_uint8_t dst_ep, zb_uint8_t src_ep,
-  const zb_zcl_calendar_get_special_days_payload_t *pl,
-  zb_callback_t cb
-);
+        const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
+        zb_uint8_t dst_ep, zb_uint8_t src_ep,
+        const zb_zcl_calendar_get_special_days_payload_t *pl,
+        zb_callback_t cb
+                                              );
 
 
 /** Function for send @ref ZB_ZCL_CALENDAR_CLI_CMD_GET_CALENDAR_CANCELLATION "GetCalendarCancellation" command.
@@ -1126,10 +1126,10 @@ void zb_zcl_calendar_send_cmd_get_special_days(zb_uint8_t param,
  * APS ack.
  */
 void zb_zcl_calendar_send_cmd_get_calendar_cancellation(zb_uint8_t param,
-  const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
-  zb_uint8_t dst_ep, zb_uint8_t src_ep,
-  zb_callback_t cb
-);
+        const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
+        zb_uint8_t dst_ep, zb_uint8_t src_ep,
+        zb_callback_t cb
+                                                       );
 
 
 /** Function for send @ref ZB_ZCL_CALENDAR_SRV_CMD_CANCEL_CALENDAR "CancelCalendar" command.
@@ -1145,11 +1145,11 @@ void zb_zcl_calendar_send_cmd_get_calendar_cancellation(zb_uint8_t param,
  * APS ack.
  */
 void zb_zcl_calendar_send_cmd_cancel_calendar(zb_uint8_t param,
-  const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
-  zb_uint8_t dst_ep, zb_uint8_t src_ep,
-  const zb_zcl_calendar_cancel_calendar_payload_t *pl,
-  zb_callback_t cb
-);
+        const zb_addr_u *dst_addr, zb_aps_addr_mode_t dst_addr_mode,
+        zb_uint8_t dst_ep, zb_uint8_t src_ep,
+        const zb_zcl_calendar_cancel_calendar_payload_t *pl,
+        zb_callback_t cb
+                                             );
 
 
 /** Macro for call @ref zb_zcl_calendar_send_cmd_publish_calendar function

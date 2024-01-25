@@ -1,7 +1,8 @@
 
 #include <EnhancedFlashDataset.h>
 
-static const uint32_t crc32_table[] = {
+static const uint32_t crc32_table[] =
+{
     0x00000000, 0x77073096, 0xee0e612c, 0x990951ba, 0x076dc419, 0x706af48f, 0xe963a535, 0x9e6495a3, 0x0edb8832, 0x79dcb8a4,
     0xe0d5e91e, 0x97d2d988, 0x09b64c2b, 0x7eb17cbd, 0xe7b82d07, 0x90bf1d91, 0x1db71064, 0x6ab020f2, 0xf3b97148, 0x84be41de,
     0x1adad47d, 0x6ddde4eb, 0xf4d4b551, 0x83d385c7, 0x136c9856, 0x646ba8c0, 0xfd62f97a, 0x8a65c9ec, 0x14015c4f, 0x63066cd9,
@@ -39,9 +40,9 @@ static const uint32_t crc32_table[] = {
  *
  * @return calculated CRC32 value
  */
-uint32_t efd_calc_crc32(uint32_t crc, const void * buf, size_t size)
+uint32_t efd_calc_crc32(uint32_t crc, const void *buf, size_t size)
 {
-    const uint8_t * p;
+    const uint8_t *p;
 
     p   = (const uint8_t *) buf;
     crc = crc ^ ~0U;

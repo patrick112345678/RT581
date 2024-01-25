@@ -48,7 +48,7 @@ extern rtx force_not_mem (rtx);
 /* Return mode and signedness to use when an argument or result in the
    given mode is promoted.  */
 extern machine_mode promote_function_mode (const_tree, machine_mode, int *,
-					        const_tree, int);
+        const_tree, int);
 
 /* Return mode and signedness to use when an object in the given mode
    is promoted.  */
@@ -72,11 +72,11 @@ extern void anti_adjust_stack_and_probe (rtx, bool);
 /* Support for building allocation/probing loops for stack-clash
    protection of dyamically allocated stack space.  */
 extern void compute_stack_clash_protection_loop_data (rtx *, rtx *, rtx *,
-						      HOST_WIDE_INT *, rtx);
+        HOST_WIDE_INT *, rtx);
 extern void emit_stack_clash_protection_probe_loop_start (rtx *, rtx *,
-							  rtx, bool);
+        rtx, bool);
 extern void emit_stack_clash_protection_probe_loop_end (rtx, rtx,
-							rtx, bool);
+        rtx, bool);
 
 /* This enum is used for the following two functions.  */
 enum save_level {SAVE_BLOCK, SAVE_FUNCTION, SAVE_NONLOCAL};
@@ -95,7 +95,7 @@ extern void record_new_stack_level (void);
 
 /* Allocate some space on the stack dynamically and return its address.  */
 extern rtx allocate_dynamic_stack_space (rtx, unsigned, unsigned,
-					 HOST_WIDE_INT, bool);
+        HOST_WIDE_INT, bool);
 
 /* Calculate the necessary size of a constant dynamic stack allocation from the
    size of the variable area.  */
@@ -134,6 +134,6 @@ extern rtx eliminate_constant_term (rtx, rtx *);
 /* Like memory_address_addr_space, except assume the memory address points to
    the generic named address space.  */
 #define memory_address(MODE,RTX) \
-	memory_address_addr_space ((MODE), (RTX), ADDR_SPACE_GENERIC)
+    memory_address_addr_space ((MODE), (RTX), ADDR_SPACE_GENERIC)
 
 #endif /* GCC_EXPLOW_H */

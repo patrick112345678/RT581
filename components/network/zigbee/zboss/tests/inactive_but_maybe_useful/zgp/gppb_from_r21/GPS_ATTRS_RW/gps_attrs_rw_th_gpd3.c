@@ -37,9 +37,9 @@ static zb_uint8_t   g_zgpd_key[] = TEST_SEC_KEY;
 
 enum
 {
-  TEST_STATE_INITIATE,
-  TEST_STATE_COMMISSIONING,
-  TEST_STATE_FINISHED
+    TEST_STATE_INITIATE,
+    TEST_STATE_COMMISSIONING,
+    TEST_STATE_FINISHED
 };
 
 ZB_ZGPD_DECLARE_COMMISSIONING_TEST_TEMPLATE(TEST_DEVICE_CTX, 36000)
@@ -48,34 +48,34 @@ ZB_ZGPD_DECLARE_COMMISSIONING_CALLBACK()
 
 static void perform_next_state(zb_uint8_t param)
 {
-  ZVUNUSED(param);
-  TEST_DEVICE_CTX.test_state++;
+    ZVUNUSED(param);
+    TEST_DEVICE_CTX.test_state++;
 
-  switch (TEST_DEVICE_CTX.test_state)
-  {
+    switch (TEST_DEVICE_CTX.test_state)
+    {
     case TEST_STATE_COMMISSIONING:
-      zb_zgpd_start_commissioning(comm_cb);
-      ZB_ZGPD_SET_PAUSE(2);
-      break;
+        zb_zgpd_start_commissioning(comm_cb);
+        ZB_ZGPD_SET_PAUSE(2);
+        break;
     case TEST_STATE_FINISHED:
-      TRACE_MSG(TRACE_APP1, "Test finished. Status: OK", (FMT__0));
-      break;
-  };
+        TRACE_MSG(TRACE_APP1, "Test finished. Status: OK", (FMT__0));
+        break;
+    };
 }
 
 static void zgp_custom_startup()
 {
-/* Init device, load IB values from nvram or set it to default */
-  ZB_INIT("th_gpd3");
+    /* Init device, load IB values from nvram or set it to default */
+    ZB_INIT("th_gpd3");
 
-  ZB_ZGPD_INIT_ZGPD_CTX(ZB_ZGP_APP_ID_0000, ZB_ZGPD_COMMISSIONING_UNIDIR, ZB_ZGP_ON_OFF_SWITCH_DEV_ID);
+    ZB_ZGPD_INIT_ZGPD_CTX(ZB_ZGP_APP_ID_0000, ZB_ZGPD_COMMISSIONING_UNIDIR, ZB_ZGP_ON_OFF_SWITCH_DEV_ID);
 
-  ZB_ZGPD_SET_SRC_ID(g_zgpd_srcId);
-  ZB_ZGPD_SET_SECURITY_LEVEL(ZB_ZGP_SEC_LEVEL_FULL_WITH_ENC);
-  ZB_ZGPD_SET_SECURITY_KEY_TYPE(ZB_ZGP_SEC_KEY_TYPE_ZGPD_INDIVIDUAL);
-  ZB_ZGPD_SET_SECURITY_KEY(g_zgpd_key);
-  ZB_ZGPD_SET_OOB_KEY(g_zgpd_key);
-  ZGPD->channel = TEST_CHANNEL;
+    ZB_ZGPD_SET_SRC_ID(g_zgpd_srcId);
+    ZB_ZGPD_SET_SECURITY_LEVEL(ZB_ZGP_SEC_LEVEL_FULL_WITH_ENC);
+    ZB_ZGPD_SET_SECURITY_KEY_TYPE(ZB_ZGP_SEC_KEY_TYPE_ZGPD_INDIVIDUAL);
+    ZB_ZGPD_SET_SECURITY_KEY(g_zgpd_key);
+    ZB_ZGPD_SET_OOB_KEY(g_zgpd_key);
+    ZGPD->channel = TEST_CHANNEL;
 }
 
 #endif /* ZB_CERTIFICATION_HACKS */

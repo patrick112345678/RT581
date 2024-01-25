@@ -56,102 +56,102 @@ static zb_uint8_t g_msdu[23] = {0x7f, 0x33, 0xf2, 0xb1, 0x00, 0x02, 0x74, 0x5a, 
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  ZB_INIT("security_01_ffd1");
+    ZB_INIT("security_01_ffd1");
 
-  ZB_IEEE_ADDR_COPY(ZB_PIB_EXTENDED_ADDRESS(), &g_mac_addr);
-  MAC_PIB().mac_pan_id = ASSOCIATE_TO_PAN;
-  ZB_MEMCPY(MAC_PIB().mac_key, g_key, 16);
-  MAC_PIB().mac_dsn = 0;
-  MAC_PIB().mac_frame_counter = 1;
-  MAC_PIB().mac_device_table_entries = 1;
-  MAC_PIB().mac_device_table[0].short_address = 0x1122;
-  ZB_IEEE_ADDR_COPY(MAC_PIB().mac_device_table[0].long_address, g_zc_addr);
-  MAC_PIB().mac_device_table[0].frame_counter = 1;
-  MAC_PIB().mac_device_table[0].pan_id = ASSOCIATE_TO_PAN;
-  {
-    zb_bufid_t buf = zb_get_out_buf();
-    zb_uint16_t addr = ASSOCIATE_TO;
+    ZB_IEEE_ADDR_COPY(ZB_PIB_EXTENDED_ADDRESS(), &g_mac_addr);
+    MAC_PIB().mac_pan_id = ASSOCIATE_TO_PAN;
+    ZB_MEMCPY(MAC_PIB().mac_key, g_key, 16);
+    MAC_PIB().mac_dsn = 0;
+    MAC_PIB().mac_frame_counter = 1;
+    MAC_PIB().mac_device_table_entries = 1;
+    MAC_PIB().mac_device_table[0].short_address = 0x1122;
+    ZB_IEEE_ADDR_COPY(MAC_PIB().mac_device_table[0].long_address, g_zc_addr);
+    MAC_PIB().mac_device_table[0].frame_counter = 1;
+    MAC_PIB().mac_device_table[0].pan_id = ASSOCIATE_TO_PAN;
+    {
+        zb_bufid_t buf = zb_get_out_buf();
+        zb_uint16_t addr = ASSOCIATE_TO;
 
-    ZB_MLME_BUILD_ASSOCIATE_REQUEST(param, CHANNEL,
-                                    ASSOCIATE_TO_PAN,
-                                    ZB_ADDR_16BIT_DEV_OR_BROADCAST, &addr,
-                                    CAP_INFO);
+        ZB_MLME_BUILD_ASSOCIATE_REQUEST(param, CHANNEL,
+                                        ASSOCIATE_TO_PAN,
+                                        ZB_ADDR_16BIT_DEV_OR_BROADCAST, &addr,
+                                        CAP_INFO);
 
-    ZB_SCHEDULE_CALLBACK(zb_mlme_associate_request, param);
-  }
+        ZB_SCHEDULE_CALLBACK(zb_mlme_associate_request, param);
+    }
 
-  while(1)
-  {
-    zb_sched_loop_iteration();
-  }
+    while (1)
+    {
+        zb_sched_loop_iteration();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 
 void zb_mlme_associate_confirm(zb_uint8_t param)
 {
-  zb_mlme_associate_confirm_t *request = ZB_BUF_GET_PARAM(param, zb_mlme_associate_confirm_t);
+    zb_mlme_associate_confirm_t *request = ZB_BUF_GET_PARAM(param, zb_mlme_associate_confirm_t);
 
-  TRACE_MSG(TRACE_NWK2, "zb_mlme_associate_confirm param %hd status %hd short_address %hd",
-            (FMT__H_H_H, param, request->status, request->assoc_short_address));
+    TRACE_MSG(TRACE_NWK2, "zb_mlme_associate_confirm param %hd status %hd short_address %hd",
+              (FMT__H_H_H, param, request->status, request->assoc_short_address));
 
-  if (request->status == 0)
-  {
+    if (request->status == 0)
     {
-      zb_uint8_t *pl;
+        {
+            zb_uint8_t *pl;
 
-      req = zb_buf_initial_alloc(param, 23, pl);
-      ZB_MEMCPY(pl, g_msdu, 23);
+            req = zb_buf_initial_alloc(param, 23, pl);
+            ZB_MEMCPY(pl, g_msdu, 23);
 
+        }
+        {
+            zb_mcps_data_req_params_t *data_req = ZB_BUF_GET_PARAM(param, zb_mcps_data_req_params_t);
+
+            data_req->dst_addr.addr_short = 0x1122;
+            data_req->src_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
+            data_req->src_addr.addr_short = 0x3344;
+            data_req->dst_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
+            data_req->dst_pan_id = ASSOCIATE_TO_PAN;
+            data_req->msdu_handle = 0xc;
+            data_req->tx_options = 0;
+            data_req->security_level = 5;
+            data_req->key_id_mode = 1;
+            data_req->key_index = 1;
+        }
+
+        MAC_PIB().mac_dsn = 0;
+
+        ZB_SCHEDULE_CALLBACK(zb_mcps_data_request, param);
     }
-    {
-      zb_mcps_data_req_params_t *data_req = ZB_BUF_GET_PARAM(param, zb_mcps_data_req_params_t);
-
-      data_req->dst_addr.addr_short = 0x1122;
-      data_req->src_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
-      data_req->src_addr.addr_short = 0x3344;
-      data_req->dst_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
-      data_req->dst_pan_id = ASSOCIATE_TO_PAN;
-      data_req->msdu_handle = 0xc;
-      data_req->tx_options = 0;
-      data_req->security_level = 5;
-      data_req->key_id_mode = 1;
-      data_req->key_index = 1;
-    }
-
-    MAC_PIB().mac_dsn = 0;
-
-    ZB_SCHEDULE_CALLBACK(zb_mcps_data_request, param);
-  }
 }
 
 
 void zb_mcps_data_confirm(zb_uint8_t param)
 {
-  zb_mcps_data_confirm_params_t *confirm_params = ZB_BUF_GET_PARAM(param, zb_mcps_data_confirm_params_t);
-  TRACE_MSG(TRACE_NWK2, "zb_mcps_data_confirm param %hd handle 0x%hx status 0x%hx",
-            (FMT__H_H_H, (zb_uint8_t)param, (zb_uint8_t)confirm_params->msdu_handle, zb_buf_get_status(param)));
+    zb_mcps_data_confirm_params_t *confirm_params = ZB_BUF_GET_PARAM(param, zb_mcps_data_confirm_params_t);
+    TRACE_MSG(TRACE_NWK2, "zb_mcps_data_confirm param %hd handle 0x%hx status 0x%hx",
+              (FMT__H_H_H, (zb_uint8_t)param, (zb_uint8_t)confirm_params->msdu_handle, zb_buf_get_status(param)));
 }
 
 void zb_mcps_data_indication(zb_uint8_t param)
 {
-  zb_mac_mhr_t mac_hdr;
-  zb_uint8_t mhr_len;
+    zb_mac_mhr_t mac_hdr;
+    zb_uint8_t mhr_len;
 
-  TRACE_MSG(TRACE_MAC1, ">> zb_mcps_data_indication param %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_MAC1, ">> zb_mcps_data_indication param %hd", (FMT__H, param));
 
-  mhr_len = zb_parse_mhr(&mac_hdr, buf);
+    mhr_len = zb_parse_mhr(&mac_hdr, buf);
 
-  TRACE_MSG(TRACE_MAC1, "in data len %hd security_level %hd key_id_mode %hd, key_index %hd",
-            (FMT__H_H_H_H, zb_buf_len(buf) - mhr_len,
-             mac_hdr.security_level, mac_hdr.key_id_mode, mac_hdr.key_index));
+    TRACE_MSG(TRACE_MAC1, "in data len %hd security_level %hd key_id_mode %hd, key_index %hd",
+              (FMT__H_H_H_H, zb_buf_len(buf) - mhr_len,
+               mac_hdr.security_level, mac_hdr.key_id_mode, mac_hdr.key_index));
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 

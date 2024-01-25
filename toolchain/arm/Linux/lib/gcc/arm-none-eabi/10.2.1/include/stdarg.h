@@ -44,19 +44,19 @@ typedef __builtin_va_list __gnuc_va_list;
    if this invocation was from the user program.  */
 #ifdef _STDARG_H
 
-#define va_start(v,l)	__builtin_va_start(v,l)
-#define va_end(v)	__builtin_va_end(v)
-#define va_arg(v,l)	__builtin_va_arg(v,l)
+#define va_start(v,l)   __builtin_va_start(v,l)
+#define va_end(v)   __builtin_va_end(v)
+#define va_arg(v,l) __builtin_va_arg(v,l)
 #if !defined(__STRICT_ANSI__) || __STDC_VERSION__ + 0 >= 199900L \
     || __cplusplus + 0 >= 201103L
-#define va_copy(d,s)	__builtin_va_copy(d,s)
+#define va_copy(d,s)    __builtin_va_copy(d,s)
 #endif
-#define __va_copy(d,s)	__builtin_va_copy(d,s)
+#define __va_copy(d,s)  __builtin_va_copy(d,s)
 
 /* Define va_list, if desired, from __gnuc_va_list. */
 /* We deliberately do not define va_list when called from
    stdio.h, because ANSI C says that stdio.h is not supposed to define
-   va_list.  stdio.h needs to have access to that data type, 
+   va_list.  stdio.h needs to have access to that data type,
    but must not use that name.  It should use the name __gnuc_va_list,
    which is safe because it is reserved for the implementation.  */
 

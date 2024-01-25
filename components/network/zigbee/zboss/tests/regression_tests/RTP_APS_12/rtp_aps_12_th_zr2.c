@@ -89,7 +89,7 @@ static zb_uint8_t attr_current_level = ZB_ZCL_LEVEL_CONTROL_CURRENT_LEVEL_DEFAUL
 static zb_uint16_t attr_remaining_time = ZB_ZCL_LEVEL_CONTROL_REMAINING_TIME_DEFAULT_VALUE;
 
 ZB_ZCL_DECLARE_LEVEL_CONTROL_ATTRIB_LIST(rtp_aps_12_th_zr2_level_control_attr_list,
-                                         &attr_current_level, &attr_remaining_time);
+        &attr_current_level, &attr_remaining_time);
 
 /********************* Declare device **************************/
 DECLARE_TH_CLUSTER_LIST(rtp_aps_12_th_zr2_device_clusters,
@@ -99,8 +99,8 @@ DECLARE_TH_CLUSTER_LIST(rtp_aps_12_th_zr2_device_clusters,
                         rtp_aps_12_th_zr2_level_control_attr_list);
 
 DECLARE_TH_EP(rtp_aps_12_th_zr2_device_ep,
-               TH_ENDPOINT,
-               rtp_aps_12_th_zr2_device_clusters);
+              TH_ENDPOINT,
+              rtp_aps_12_th_zr2_device_clusters);
 
 DECLARE_TH_CTX(rtp_aps_12_th_zr2_device_ctx, rtp_aps_12_th_zr2_device_ep);
 /*************************************************************************/
@@ -112,111 +112,111 @@ static void test_zboss_main_loop_stop(zb_uint8_t unused);
 
 MAIN()
 {
-  ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
-  ZB_SET_TRACE_LEVEL(4);
-  ARGV_UNUSED;
+    ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
+    ZB_SET_TRACE_LEVEL(4);
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("zdo_th_zr2");
+    ZB_INIT("zdo_th_zr2");
 
 
-  zb_set_long_address(g_ieee_addr_th_zr2);
+    zb_set_long_address(g_ieee_addr_th_zr2);
 
-  zb_reg_test_set_common_channel_settings();
-  zb_set_network_router_role((1l << TEST_CHANNEL));
-  zb_secur_setup_nwk_key(g_nwk_key, 0);
+    zb_reg_test_set_common_channel_settings();
+    zb_set_network_router_role((1l << TEST_CHANNEL));
+    zb_secur_setup_nwk_key(g_nwk_key, 0);
 
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  ZB_AF_REGISTER_DEVICE_CTX(&rtp_aps_12_th_zr2_device_ctx);
-  ZB_ZCL_REGISTER_DEVICE_CB(test_device_cb);
+    ZB_AF_REGISTER_DEVICE_CTX(&rtp_aps_12_th_zr2_device_ctx);
+    ZB_ZCL_REGISTER_DEVICE_CB(test_device_cb);
 
-  zb_set_max_children(0);
+    zb_set_max_children(0);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 
 /***********************************Implementation**********************************/
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  switch (sig)
-  {
+    switch (sig)
+    {
     case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
-      }
-      break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
+        TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
+        }
+        break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
 
     default:
-      TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
-      break;
-  }
+        TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 
 static void test_device_cb(zb_uint8_t param)
 {
-  zb_zcl_device_callback_param_t *device_cb_param = ZB_BUF_GET_PARAM(param, zb_zcl_device_callback_param_t);
+    zb_zcl_device_callback_param_t *device_cb_param = ZB_BUF_GET_PARAM(param, zb_zcl_device_callback_param_t);
 
-  switch (device_cb_param->device_cb_id)
-  {
+    switch (device_cb_param->device_cb_id)
+    {
     case ZB_ZCL_SET_ATTR_VALUE_CB_ID:
-      TRACE_MSG(TRACE_APP1, "Entered SET_ATTR_VALUE", (FMT__0));
-      if (device_cb_param->cb_param.set_attr_value_param.cluster_id == ZB_ZCL_CLUSTER_ID_ON_OFF &&
-          device_cb_param->cb_param.set_attr_value_param.attr_id == ZB_ZCL_ATTR_ON_OFF_ON_OFF_ID &&
-          (zb_bool_t)device_cb_param->cb_param.set_attr_value_param.values.data8)
-      {
-        if (g_test_stop_th)
+        TRACE_MSG(TRACE_APP1, "Entered SET_ATTR_VALUE", (FMT__0));
+        if (device_cb_param->cb_param.set_attr_value_param.cluster_id == ZB_ZCL_CLUSTER_ID_ON_OFF &&
+                device_cb_param->cb_param.set_attr_value_param.attr_id == ZB_ZCL_ATTR_ON_OFF_ON_OFF_ID &&
+                (zb_bool_t)device_cb_param->cb_param.set_attr_value_param.values.data8)
         {
-          ZB_SCHEDULE_ALARM(test_zboss_main_loop_stop, 0, ZB_TIME_ONE_SECOND);
+            if (g_test_stop_th)
+            {
+                ZB_SCHEDULE_ALARM(test_zboss_main_loop_stop, 0, ZB_TIME_ONE_SECOND);
+            }
+            g_test_stop_th = !g_test_stop_th;
         }
-        g_test_stop_th = !g_test_stop_th;
-      }
-      break;
+        break;
 
     default:
-      TRACE_MSG(TRACE_APP1, "default for status = %d", (FMT__D, device_cb_param->status));
-      break;
-  }
+        TRACE_MSG(TRACE_APP1, "default for status = %d", (FMT__D, device_cb_param->status));
+        break;
+    }
 }
 
 static void test_zboss_main_loop_stop(zb_uint8_t unused)
 {
-  TRACE_MSG(TRACE_APP1, ">>test_zboss_main_loop_stop", (FMT__0));
+    TRACE_MSG(TRACE_APP1, ">>test_zboss_main_loop_stop", (FMT__0));
 
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  ZG->sched.stop = ZB_TRUE;
+    ZG->sched.stop = ZB_TRUE;
 
-  ZB_TRANSCEIVER_SET_RX_ON_OFF(ZB_FALSE);
-  osif_sleep_using_transc_timer(TH_SLEEP_TIME);
-  ZB_TRANSCEIVER_SET_RX_ON_OFF(ZB_TRUE);
+    ZB_TRANSCEIVER_SET_RX_ON_OFF(ZB_FALSE);
+    osif_sleep_using_transc_timer(TH_SLEEP_TIME);
+    ZB_TRANSCEIVER_SET_RX_ON_OFF(ZB_TRUE);
 
-  TRACE_MSG(TRACE_APP1, "test_zboss_main_loop_stop(): main loop started", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "test_zboss_main_loop_stop(): main loop started", (FMT__0));
 
-  ZG->sched.stop = ZB_FALSE;
+    ZG->sched.stop = ZB_FALSE;
 }
 
 /*! @} */

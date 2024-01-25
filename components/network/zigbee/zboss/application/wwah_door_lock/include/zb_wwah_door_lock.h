@@ -203,65 +203,65 @@
 
 typedef enum dl_dev_state_e
 {
-  DL_DEV_INIT = 0,
-  DL_DEV_IDLE,
-  DL_DEV_COMMISSIONING,
-  DL_DEV_NORMAL
+    DL_DEV_INIT = 0,
+    DL_DEV_IDLE,
+    DL_DEV_COMMISSIONING,
+    DL_DEV_NORMAL
 } dl_dev_state_t;
 
 /* attributes of Identify cluster */
 typedef struct dl_device_identify_attr_s
 {
-  zb_uint16_t identify_time;
+    zb_uint16_t identify_time;
 } dl_device_identify_attr_t;
 
 /* Groups cluster attributes data */
 typedef struct dl_device_groups_attr_s
 {
-  zb_uint8_t name_support;
+    zb_uint8_t name_support;
 } dl_device_groups_attr_t;
 
 typedef struct dl_device_reporting_default_s
 {
-  zb_uint16_t cluster_id;
-  zb_uint16_t attr_id;
-  zb_uint8_t attr_type;
+    zb_uint16_t cluster_id;
+    zb_uint16_t attr_id;
+    zb_uint8_t attr_type;
 } dl_device_reporting_default_t;
 
 
 typedef struct dl_poll_control_attrs_s
 {
-  zb_uint32_t checkin_interval;
-  zb_uint32_t long_poll_interval;
-  zb_uint16_t short_poll_interval;
-  zb_uint16_t fast_poll_timeout;
-  zb_uint32_t checkin_interval_min;
-  zb_uint32_t long_poll_interval_min;
-  zb_uint16_t fast_poll_timeout_max;
+    zb_uint32_t checkin_interval;
+    zb_uint32_t long_poll_interval;
+    zb_uint16_t short_poll_interval;
+    zb_uint16_t fast_poll_timeout;
+    zb_uint32_t checkin_interval_min;
+    zb_uint32_t long_poll_interval_min;
+    zb_uint16_t fast_poll_timeout_max;
 } dl_poll_control_attrs_t;
 
 typedef struct door_lock_ctx_s
 {
-  dl_dev_state_t dev_state;
-  zb_time_t      button_press_time;    /* time last pressed button */
-  zb_time_t      button_release_time;  /* time last released button */
-  zb_uint8_t     button_bounce_flag;   /* button bounce flag*/
-  zb_uint8_t     button_changed_count;  /* time circle pressed/released duration one series */
+    dl_dev_state_t dev_state;
+    zb_time_t      button_press_time;    /* time last pressed button */
+    zb_time_t      button_release_time;  /* time last released button */
+    zb_uint8_t     button_bounce_flag;   /* button bounce flag*/
+    zb_uint8_t     button_changed_count;  /* time circle pressed/released duration one series */
 
-  /* Flag that is set if critical error appeared => deferred reset operation */
-  zb_uint16_t door_lock_client_addr;
-  zb_uint8_t door_lock_client_endpoint;
-  zb_time_t last_obtained_time;
-  zb_time_t obtained_at;
-  zb_bool_t reset_device;
-  dl_device_basic_attr_t basic_attr;
-  dl_device_identify_attr_t identify_attr;
-  dl_device_groups_attr_t groups_attr;
-  dl_device_ota_attr_t ota_attr;
-  dl_ota_upgrade_ctx_t ota_ctx;
-  door_lock_attr_t door_lock_attr;
-  dl_wwah_app_event_retry_ctx_t app_event_retry_ctx;
-  dl_poll_control_attrs_t poll_control_attrs;
+    /* Flag that is set if critical error appeared => deferred reset operation */
+    zb_uint16_t door_lock_client_addr;
+    zb_uint8_t door_lock_client_endpoint;
+    zb_time_t last_obtained_time;
+    zb_time_t obtained_at;
+    zb_bool_t reset_device;
+    dl_device_basic_attr_t basic_attr;
+    dl_device_identify_attr_t identify_attr;
+    dl_device_groups_attr_t groups_attr;
+    dl_device_ota_attr_t ota_attr;
+    dl_ota_upgrade_ctx_t ota_ctx;
+    door_lock_attr_t door_lock_attr;
+    dl_wwah_app_event_retry_ctx_t app_event_retry_ctx;
+    dl_poll_control_attrs_t poll_control_attrs;
 } door_lock_ctx_t;
 
 #define AER_CTX() g_dev_ctx.app_event_retry_ctx

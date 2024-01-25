@@ -27,7 +27,7 @@ along with GCC; see the file COPYING3.  If not see
 static inline void
 prop_set_simulate_again (gimple *s, bool visit_p)
 {
-  gimple_set_visited (s, visit_p);
+    gimple_set_visited (s, visit_p);
 }
 
 /* Return true if statement T should be simulated again.  */
@@ -35,13 +35,14 @@ prop_set_simulate_again (gimple *s, bool visit_p)
 static inline bool
 prop_simulate_again_p (gimple *s)
 {
-  return gimple_visited_p (s);
+    return gimple_visited_p (s);
 }
 
 /* Lattice values used for propagation purposes.  Specific instances
    of a propagation engine must return these values from the statement
    and PHI visit functions to direct the engine.  */
-enum ssa_prop_result {
+enum ssa_prop_result
+{
     /* The statement produces nothing of interest.  No edges will be
        added to the work lists.  */
     SSA_PROP_NOT_INTERESTING,
@@ -79,40 +80,46 @@ extern void propagate_tree_value_into_stmt (gimple_stmt_iterator *, tree);
 
 class ssa_propagation_engine
 {
- public:
+public:
 
-  virtual ~ssa_propagation_engine (void) { }
+    virtual ~ssa_propagation_engine (void) { }
 
-  /* Virtual functions the clients must provide to visit statements
-     and phi nodes respectively.  */
-  virtual enum ssa_prop_result visit_stmt (gimple *, edge *, tree *) = 0;
-  virtual enum ssa_prop_result visit_phi (gphi *) = 0;
+    /* Virtual functions the clients must provide to visit statements
+       and phi nodes respectively.  */
+    virtual enum ssa_prop_result visit_stmt (gimple *, edge *, tree *) = 0;
+    virtual enum ssa_prop_result visit_phi (gphi *) = 0;
 
-  /* Main interface into the propagation engine.  */
-  void ssa_propagate (void);
+    /* Main interface into the propagation engine.  */
+    void ssa_propagate (void);
 
- private:
-  /* Internal implementation details.  */
-  void simulate_stmt (gimple *stmt);
-  void simulate_block (basic_block);
+private:
+    /* Internal implementation details.  */
+    void simulate_stmt (gimple *stmt);
+    void simulate_block (basic_block);
 };
 
 class substitute_and_fold_engine
 {
- public:
-  substitute_and_fold_engine (bool fold_all_stmts = false)
-    : fold_all_stmts (fold_all_stmts) { }
-  virtual ~substitute_and_fold_engine (void) { }
-  virtual bool fold_stmt (gimple_stmt_iterator *) { return false; }
-  virtual tree get_value (tree) { return NULL_TREE; }
+public:
+    substitute_and_fold_engine (bool fold_all_stmts = false)
+        : fold_all_stmts (fold_all_stmts) { }
+    virtual ~substitute_and_fold_engine (void) { }
+    virtual bool fold_stmt (gimple_stmt_iterator *)
+    {
+        return false;
+    }
+    virtual tree get_value (tree)
+    {
+        return NULL_TREE;
+    }
 
-  bool substitute_and_fold (basic_block = NULL);
-  bool replace_uses_in (gimple *);
-  bool replace_phi_args_in (gphi *);
+    bool substitute_and_fold (basic_block = NULL);
+    bool replace_uses_in (gimple *);
+    bool replace_phi_args_in (gphi *);
 
-  /* Users like VRP can set this when they want to perform
-     folding for every propagation.  */
-  bool fold_all_stmts;
+    /* Users like VRP can set this when they want to perform
+       folding for every propagation.  */
+    bool fold_all_stmts;
 };
 
 #endif /* _TREE_SSA_PROPAGATE_H  */

@@ -115,13 +115,17 @@ __init_buf(_RandomAccessIterator1 __xs, _RandomAccessIterator1 __xe, _OutputIter
     {
         // Initialize the temporary buffer and move keys to it.
         for (; __zs != __ze; ++__xs, ++__zs)
+        {
             new (&*__zs) _ValueType(std::move(*__xs));
+        }
     }
     else
     {
         // Initialize the temporary buffer
         for (; __zs != __ze; ++__zs)
+        {
             new (&*__zs) _ValueType;
+        }
     }
 }
 
@@ -130,27 +134,32 @@ template <typename _Buf>
 class __stack
 {
     typedef typename std::iterator_traits<decltype(_Buf(0).get())>::value_type _ValueType;
-    typedef typename std::iterator_traits<_ValueType*>::difference_type _DifferenceType;
+    typedef typename std::iterator_traits<_ValueType *>::difference_type _DifferenceType;
 
     _Buf _M_buf;
-    _ValueType* _M_ptr;
+    _ValueType *_M_ptr;
     _DifferenceType _M_maxsize;
 
-    __stack(const __stack&) = delete;
+    __stack(const __stack &) = delete;
     void
-    operator=(const __stack&) = delete;
+    operator=(const __stack &) = delete;
 
-  public:
-    __stack(_DifferenceType __max_size) : _M_buf(__max_size), _M_maxsize(__max_size) { _M_ptr = _M_buf.get(); }
+public:
+    __stack(_DifferenceType __max_size) : _M_buf(__max_size), _M_maxsize(__max_size)
+    {
+        _M_ptr = _M_buf.get();
+    }
 
     ~__stack()
     {
         _PSTL_ASSERT(size() <= _M_maxsize);
         while (!empty())
+        {
             pop();
+        }
     }
 
-    const _Buf&
+    const _Buf &
     buffer() const
     {
         return _M_buf;
@@ -169,13 +178,13 @@ class __stack
         return _M_ptr == _M_buf.get();
     }
     void
-    push(const _ValueType& __v)
+    push(const _ValueType &__v)
     {
         _PSTL_ASSERT(size() < _M_maxsize);
         new (_M_ptr) _ValueType(__v);
         ++_M_ptr;
     }
-    const _ValueType&
+    const _ValueType &
     top() const
     {
         return *(_M_ptr - 1);

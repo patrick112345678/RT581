@@ -94,51 +94,55 @@ static void start_top_level_commissioning(zb_uint8_t param);
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  char command_buffer[100], *command_ptr;
-  char next_cmd[40];
-  zb_bool_t res;
-  /* Init device, load IB values from nvram or set it to default */
+    char command_buffer[100], *command_ptr;
+    char next_cmd[40];
+    zb_bool_t res;
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("zdo_dut");
-#if UART_CONTROL	
-	test_control_init();
+    ZB_INIT("zdo_dut");
+#if UART_CONTROL
+    test_control_init();
 #endif
 
 
-  zb_set_long_address(g_ieee_addr_dut);
+    zb_set_long_address(g_ieee_addr_dut);
 
-  zb_set_network_router_role((1l << TEST_CHANNEL));
-  zb_set_max_children(0);
+    zb_set_network_router_role((1l << TEST_CHANNEL));
+    zb_set_max_children(0);
 
-  ZB_CERT_HACKS().force_ext_addr_req = 1;
-  TRACE_MSG(TRACE_APP1, "Send 'erase' for flash erase or just press enter to be continued \n", (FMT__0));
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_handler);
-  zb_console_monitor_get_cmd((zb_uint8_t*)command_buffer, sizeof(command_buffer));
-  command_ptr = (char *)(&command_buffer);
-  res = parse_command_token(&command_ptr, next_cmd, sizeof(next_cmd));
-  if (strcmp(next_cmd, "erase") == 0)
-    zb_set_nvram_erase_at_start(ZB_TRUE);
-  else
-    zb_set_nvram_erase_at_start(ZB_FALSE);
+    ZB_CERT_HACKS().force_ext_addr_req = 1;
+    TRACE_MSG(TRACE_APP1, "Send 'erase' for flash erase or just press enter to be continued \n", (FMT__0));
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_handler);
+    zb_console_monitor_get_cmd((zb_uint8_t *)command_buffer, sizeof(command_buffer));
+    command_ptr = (char *)(&command_buffer);
+    res = parse_command_token(&command_ptr, next_cmd, sizeof(next_cmd));
+    if (strcmp(next_cmd, "erase") == 0)
+    {
+        zb_set_nvram_erase_at_start(ZB_TRUE);
+    }
+    else
+    {
+        zb_set_nvram_erase_at_start(ZB_FALSE);
+    }
 
-  ZB_AF_REGISTER_DEVICE_CTX(&fb_pre_tc_01b_dut_r_on_off_device_ctx);
+    ZB_AF_REGISTER_DEVICE_CTX(&fb_pre_tc_01b_dut_r_on_off_device_ctx);
 
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 
@@ -147,60 +151,60 @@ static zb_bool_t finding_binding_cb(zb_int16_t status,
                                     zb_uint8_t ep,
                                     zb_uint16_t cluster)
 {
-  TRACE_MSG(TRACE_ZCL1, "finding_binding_cb status %d addr " TRACE_FORMAT_64 " ep %hd cluster %d",
-            (FMT__D_A_H_D, status, TRACE_ARG_64(addr), ep, cluster));
-  return ZB_TRUE;
+    TRACE_MSG(TRACE_ZCL1, "finding_binding_cb status %d addr " TRACE_FORMAT_64 " ep %hd cluster %d",
+              (FMT__D_A_H_D, status, TRACE_ARG_64(addr), ep, cluster));
+    return ZB_TRUE;
 }
 
 
 static void trigger_fb_initiator(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
-  zb_bdb_finding_binding_initiator(DUT_ENDPOINT, finding_binding_cb);
+    ZVUNUSED(unused);
+    zb_bdb_finding_binding_initiator(DUT_ENDPOINT, finding_binding_cb);
 }
 
 static void start_top_level_commissioning(zb_uint8_t param)
 {
-  bdb_start_top_level_commissioning(param);
+    bdb_start_top_level_commissioning(param);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  switch (sig)
-  {
+    switch (sig)
+    {
     case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      TRACE_MSG(TRACE_APS1, "Device started, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        ZB_BDB().bdb_commissioning_time = FB_INITIATOR_DURATION;
-        ZB_SCHEDULE_ALARM(trigger_fb_initiator, 0, DUT_FB_DELAY1);
-      }
-      break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
+        TRACE_MSG(TRACE_APS1, "Device started, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            ZB_BDB().bdb_commissioning_time = FB_INITIATOR_DURATION;
+            ZB_SCHEDULE_ALARM(trigger_fb_initiator, 0, DUT_FB_DELAY1);
+        }
+        break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
 
     case ZB_BDB_SIGNAL_DEVICE_REBOOT:
-      if (status == 0)
-      {
-        ZB_SCHEDULE_CALLBACK(start_top_level_commissioning, ZB_BDB_NETWORK_STEERING);
-      }
-      break; /* ZB_BDB_SIGNAL_DEVICE_REBOOT */
+        if (status == 0)
+        {
+            ZB_SCHEDULE_CALLBACK(start_top_level_commissioning, ZB_BDB_NETWORK_STEERING);
+        }
+        break; /* ZB_BDB_SIGNAL_DEVICE_REBOOT */
 
     case ZB_BDB_SIGNAL_FINDING_AND_BINDING_INITIATOR_FINISHED:
-      TRACE_MSG(TRACE_APS1, "signal: ZB_BDB_SIGNAL_FINDING_AND_BINDING_INITIATOR_FINISHED, status %d", (FMT__D, status));
+        TRACE_MSG(TRACE_APS1, "signal: ZB_BDB_SIGNAL_FINDING_AND_BINDING_INITIATOR_FINISHED, status %d", (FMT__D, status));
 
-      ZB_SCHEDULE_ALARM(trigger_fb_initiator, 0, DUT_FB_DELAY2);
-      break; /* ZB_BDB_SIGNAL_FINDING_AND_BINDING_INITIATOR_FINISHED */
+        ZB_SCHEDULE_ALARM(trigger_fb_initiator, 0, DUT_FB_DELAY2);
+        break; /* ZB_BDB_SIGNAL_FINDING_AND_BINDING_INITIATOR_FINISHED */
 
     default:
-      TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
-      break;
-  }
+        TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 /*! @} */

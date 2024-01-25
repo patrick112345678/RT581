@@ -61,8 +61,8 @@ ZB_ZCL_DECLARE_IDENTIFY_ATTRIB_LIST(identify_attr_list, &g_attr_identify_time);
 
 /********************* Declare device **************************/
 ZB_HA_DECLARE_DIMMER_SWITCH_CLUSTER_LIST(dimmer_switch_clusters,
-                                         basic_attr_list,
-                                         identify_attr_list);
+        basic_attr_list,
+        identify_attr_list);
 
 ZB_HA_DECLARE_DIMMER_SWITCH_EP(dimmer_switch_ep,
                                LIGHT_CONTROL_ENDPOINT,
@@ -75,394 +75,394 @@ light_control_ctx_t g_device_ctx;
 
 MAIN()
 {
-  zb_ieee_addr_t bulb_addr = { 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
-  ARGV_UNUSED;
+    zb_ieee_addr_t bulb_addr = { 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+    ARGV_UNUSED;
 
 #ifdef LIGHT_SAMPLE_BUTTONS
-  light_control_hal_init();
+    light_control_hal_init();
 #endif
 
-  ZB_SET_TRACE_ON();
-  ZB_SET_TRAF_DUMP_ON();
+    ZB_SET_TRACE_ON();
+    ZB_SET_TRAF_DUMP_ON();
 
-  ZB_INIT("light_control");
+    ZB_INIT("light_control");
 
-  zb_set_long_address(g_ed_addr);
+    zb_set_long_address(g_ed_addr);
 
-  zb_set_network_ed_role(LIGHT_CONTROL_CHANNEL_MASK);
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    zb_set_network_ed_role(LIGHT_CONTROL_CHANNEL_MASK);
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  zb_set_ed_timeout(ED_AGING_TIMEOUT_64MIN);
-  zb_set_keepalive_timeout(ZB_MILLISECONDS_TO_BEACON_INTERVAL(3000));
-  zb_set_rx_on_when_idle(ZB_TRUE);
+    zb_set_ed_timeout(ED_AGING_TIMEOUT_64MIN);
+    zb_set_keepalive_timeout(ZB_MILLISECONDS_TO_BEACON_INTERVAL(3000));
+    zb_set_rx_on_when_idle(ZB_TRUE);
 
-  light_control_app_ctx_init();
+    light_control_app_ctx_init();
 
-  /****************** Register Device ********************************/
-  ZB_AF_REGISTER_DEVICE_CTX(&dimmer_switch_ctx);
-  ZB_AF_SET_ENDPOINT_HANDLER(LIGHT_CONTROL_ENDPOINT, zcl_specific_cluster_cmd_handler);
+    /****************** Register Device ********************************/
+    ZB_AF_REGISTER_DEVICE_CTX(&dimmer_switch_ctx);
+    ZB_AF_SET_ENDPOINT_HANDLER(LIGHT_CONTROL_ENDPOINT, zcl_specific_cluster_cmd_handler);
 
 #ifdef ZB_USE_NVRAM
-  zb_nvram_register_app1_read_cb(light_control_nvram_read_app_data);
-  zb_nvram_register_app1_write_cb(light_control_nvram_write_app_data, light_control_get_nvram_data_size);
+    zb_nvram_register_app1_read_cb(light_control_nvram_read_app_data);
+    zb_nvram_register_app1_write_cb(light_control_nvram_write_app_data, light_control_get_nvram_data_size);
 #endif
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "dev_start failed", (FMT__0));
-  }
-  else
-  {
-    zboss_main_loop();
-  }
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "dev_start failed", (FMT__0));
+    }
+    else
+    {
+        zboss_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 zb_uint8_t zcl_specific_cluster_cmd_handler(zb_uint8_t param)
 {
-  zb_bufid_t zcl_cmd_buf = param;
-  zb_bool_t cmd_processed = ZB_FALSE;
+    zb_bufid_t zcl_cmd_buf = param;
+    zb_bool_t cmd_processed = ZB_FALSE;
 
-  TRACE_MSG(TRACE_APP1, "> zcl_specific_cluster_cmd_handler %i", (FMT__H, param));
-  TRACE_MSG(TRACE_APP3, "payload size: %i", (FMT__D, zb_buf_len(zcl_cmd_buf)));
-  TRACE_MSG(TRACE_APP1, "< zcl_specific_cluster_cmd_handler %hd", (FMT__H, cmd_processed));
+    TRACE_MSG(TRACE_APP1, "> zcl_specific_cluster_cmd_handler %i", (FMT__H, param));
+    TRACE_MSG(TRACE_APP3, "payload size: %i", (FMT__D, zb_buf_len(zcl_cmd_buf)));
+    TRACE_MSG(TRACE_APP1, "< zcl_specific_cluster_cmd_handler %hd", (FMT__H, cmd_processed));
 
-  return cmd_processed;
+    return cmd_processed;
 }
 
 static void rejoin_me_delayed(zb_uint8_t param, zb_uint16_t param2)
 {
-  zb_bufid_t buf = param;
+    zb_bufid_t buf = param;
 
-  TRACE_MSG(TRACE_ERROR, ">>rejoin_me", (FMT__0));
+    TRACE_MSG(TRACE_ERROR, ">>rejoin_me", (FMT__0));
 
-  zdo_initiate_rejoin(buf,
-                      ZB_NIB_EXT_PAN_ID(),
-                      ZB_AIB().aps_channel_mask_list,
-                      (zb_uint8_t)param2);
+    zdo_initiate_rejoin(buf,
+                        ZB_NIB_EXT_PAN_ID(),
+                        ZB_AIB().aps_channel_mask_list,
+                        (zb_uint8_t)param2);
 
-  TRACE_MSG(TRACE_ERROR, "<<rejoin_me", (FMT__0));
+    TRACE_MSG(TRACE_ERROR, "<<rejoin_me", (FMT__0));
 }
 
 static void rejoin_me(zb_uint8_t param)
 {
-  zb_buf_get_out_delayed_ext(rejoin_me_delayed, (zb_uint16_t)param, 0);
+    zb_buf_get_out_delayed_ext(rejoin_me_delayed, (zb_uint16_t)param, 0);
 }
 
 void zboss_signal_handler(zb_uint8_t param)
 {
-  zb_zdo_app_signal_hdr_t *sg_p = NULL;
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, &sg_p);
+    zb_zdo_app_signal_hdr_t *sg_p = NULL;
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, &sg_p);
 
-  if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
-  {
-    switch(sig)
+    if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
     {
-      case ZB_ZDO_SIGNAL_DEFAULT_START:
-      case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      case ZB_BDB_SIGNAL_DEVICE_REBOOT:
-        TRACE_MSG(TRACE_APP1, "Device STARTED OK", (FMT__0));
+        switch (sig)
+        {
+        case ZB_ZDO_SIGNAL_DEFAULT_START:
+        case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
+        case ZB_BDB_SIGNAL_DEVICE_REBOOT:
+            TRACE_MSG(TRACE_APP1, "Device STARTED OK", (FMT__0));
 #ifdef LIGHT_SAMPLE_BUTTONS
-        bulb_hal_set_connect(ZB_TRUE);
+            bulb_hal_set_connect(ZB_TRUE);
 #endif
 #ifdef LIGHT_CONTROL_START_SEARCH_LIGHT
 #ifndef LIGHT_SAMPLE_BUTTONS
-        ZB_SCHEDULE_ALARM_CANCEL(light_control_send_on_off_alarm_delayed, ZB_ALARM_ANY_PARAM);
+            ZB_SCHEDULE_ALARM_CANCEL(light_control_send_on_off_alarm_delayed, ZB_ALARM_ANY_PARAM);
 #endif
-        /* Check the light device address */
-        if (ZB_IS_64BIT_ADDR_ZERO(g_device_ctx.bulb_params.ieee_addr))
-        {
-          ZB_SCHEDULE_ALARM(find_light_bulb, param, MATCH_DESC_REQ_START_DELAY);
-          param = 0;
-          ZB_SCHEDULE_ALARM(find_light_bulb_alarm, 0, MATCH_DESC_REQ_TIMEOUT);
-        }
-        else
-        {
-          /* Normal operation */
+            /* Check the light device address */
+            if (ZB_IS_64BIT_ADDR_ZERO(g_device_ctx.bulb_params.ieee_addr))
+            {
+                ZB_SCHEDULE_ALARM(find_light_bulb, param, MATCH_DESC_REQ_START_DELAY);
+                param = 0;
+                ZB_SCHEDULE_ALARM(find_light_bulb_alarm, 0, MATCH_DESC_REQ_TIMEOUT);
+            }
+            else
+            {
+                /* Normal operation */
 #ifndef LIGHT_SAMPLE_BUTTONS
-          ZB_SCHEDULE_ALARM(light_control_send_on_off_alarm_delayed, 0, BULB_ON_OFF_TIMEOUT);
+                ZB_SCHEDULE_ALARM(light_control_send_on_off_alarm_delayed, 0, BULB_ON_OFF_TIMEOUT);
 #endif
+            }
+#endif
+
+            break;
+        //! [signal_leave]
+        case ZB_ZDO_SIGNAL_LEAVE:
+        {
+            zb_zdo_signal_leave_params_t *leave_params = ZB_ZDO_SIGNAL_GET_PARAMS(sg_p, zb_zdo_signal_leave_params_t);
+            /* light_control_retry_join(leave_params->leave_type); */
+
+            ZB_SCHEDULE_ALARM(rejoin_me, ZB_TRUE, 5 * ZB_TIME_ONE_SECOND);
+            ZB_SCHEDULE_ALARM(rejoin_me, ZB_FALSE, 50 * ZB_TIME_ONE_SECOND);
         }
-#endif
-
         break;
-//! [signal_leave]
-      case ZB_ZDO_SIGNAL_LEAVE:
-      {
-        zb_zdo_signal_leave_params_t *leave_params = ZB_ZDO_SIGNAL_GET_PARAMS(sg_p, zb_zdo_signal_leave_params_t);
-        /* light_control_retry_join(leave_params->leave_type); */
-
-        ZB_SCHEDULE_ALARM(rejoin_me, ZB_TRUE, 5 * ZB_TIME_ONE_SECOND);
-        ZB_SCHEDULE_ALARM(rejoin_me, ZB_FALSE, 50 * ZB_TIME_ONE_SECOND);
-      }
-      break;
-      case ZB_COMMON_SIGNAL_CAN_SLEEP:
-      {
-        zb_zdo_signal_can_sleep_params_t *can_sleep_params = ZB_ZDO_SIGNAL_GET_PARAMS(sg_p, zb_zdo_signal_can_sleep_params_t);
-        TRACE_MSG(TRACE_ERROR, "Can sleep for %ld ms", (FMT__L, can_sleep_params->sleep_tmo));
+        case ZB_COMMON_SIGNAL_CAN_SLEEP:
+        {
+            zb_zdo_signal_can_sleep_params_t *can_sleep_params = ZB_ZDO_SIGNAL_GET_PARAMS(sg_p, zb_zdo_signal_can_sleep_params_t);
+            TRACE_MSG(TRACE_ERROR, "Can sleep for %ld ms", (FMT__L, can_sleep_params->sleep_tmo));
 #ifdef ZB_USE_SLEEP
-        zb_sleep_now();
+            zb_sleep_now();
 #endif
-        break;
-      }
+            break;
+        }
 
-      case ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY:
-      {
-        TRACE_MSG(TRACE_APP1, "Loading application production config", (FMT__0));
-        break;
-      }
-//! [signal_leave]
-      default:
-        TRACE_MSG(TRACE_ERROR, "Unknown signal %hd", (FMT__H, sig));
-        /* ZB_SCHEDULE_ALARM(light_control_leave_and_join, 0, ZB_TIME_ONE_SECOND); */
+        case ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY:
+        {
+            TRACE_MSG(TRACE_APP1, "Loading application production config", (FMT__0));
+            break;
+        }
+        //! [signal_leave]
+        default:
+            TRACE_MSG(TRACE_ERROR, "Unknown signal %hd", (FMT__H, sig));
+            /* ZB_SCHEDULE_ALARM(light_control_leave_and_join, 0, ZB_TIME_ONE_SECOND); */
+        }
     }
-  }
-  else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
-  {
-    TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
-    ZB_SCHEDULE_ALARM(light_control_leave_and_join, 0, ZB_TIME_ONE_SECOND);
-  }
+    else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
+    {
+        TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
+        ZB_SCHEDULE_ALARM(light_control_leave_and_join, 0, ZB_TIME_ONE_SECOND);
+    }
 
-  if (param)
-  {
-    zb_buf_free(param);
-  }
+    if (param)
+    {
+        zb_buf_free(param);
+    }
 }
 
 void light_control_app_ctx_init()
 {
-  TRACE_MSG(TRACE_APP1, ">> light_control_app_ctx_init", (FMT__0));
+    TRACE_MSG(TRACE_APP1, ">> light_control_app_ctx_init", (FMT__0));
 
-  ZB_MEMSET(&g_device_ctx, 0, sizeof(light_control_ctx_t));
+    ZB_MEMSET(&g_device_ctx, 0, sizeof(light_control_ctx_t));
 
-  TRACE_MSG(TRACE_APP1, "<< light_control_app_ctx_init", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "<< light_control_app_ctx_init", (FMT__0));
 }
 
 
 void find_light_bulb(zb_uint8_t param)
 {
-  zb_bufid_t buf = param;
-  zb_zdo_match_desc_param_t *req;
+    zb_bufid_t buf = param;
+    zb_zdo_match_desc_param_t *req;
 
-  TRACE_MSG(TRACE_APP1, ">> find_light_bulb %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_APP1, ">> find_light_bulb %hd", (FMT__H, param));
 
-  req = zb_buf_initial_alloc(buf, sizeof(zb_zdo_match_desc_param_t) + (1) * sizeof(zb_uint16_t));
+    req = zb_buf_initial_alloc(buf, sizeof(zb_zdo_match_desc_param_t) + (1) * sizeof(zb_uint16_t));
 
-  req->nwk_addr = ZB_NWK_BROADCAST_RX_ON_WHEN_IDLE;
-  req->addr_of_interest = ZB_NWK_BROADCAST_RX_ON_WHEN_IDLE;
-  req->profile_id = g_profile_id;
-  /* We are searching for On/Off of Level Control Server */
-  req->num_in_clusters = 2;
-  req->num_out_clusters = 0;
-  req->cluster_list[0] = ZB_ZCL_CLUSTER_ID_ON_OFF;
-  req->cluster_list[1] = ZB_ZCL_CLUSTER_ID_LEVEL_CONTROL;
+    req->nwk_addr = ZB_NWK_BROADCAST_RX_ON_WHEN_IDLE;
+    req->addr_of_interest = ZB_NWK_BROADCAST_RX_ON_WHEN_IDLE;
+    req->profile_id = g_profile_id;
+    /* We are searching for On/Off of Level Control Server */
+    req->num_in_clusters = 2;
+    req->num_out_clusters = 0;
+    req->cluster_list[0] = ZB_ZCL_CLUSTER_ID_ON_OFF;
+    req->cluster_list[1] = ZB_ZCL_CLUSTER_ID_LEVEL_CONTROL;
 
-  zb_zdo_match_desc_req(param, find_light_bulb_cb);
+    zb_zdo_match_desc_req(param, find_light_bulb_cb);
 
-  TRACE_MSG(TRACE_APP1, "<< find_light_bulb %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_APP1, "<< find_light_bulb %hd", (FMT__H, param));
 }
 
 void find_light_bulb_cb(zb_uint8_t param)
 {
-  zb_bufid_t buf = param;
-  zb_zdo_match_desc_resp_t *resp = (zb_zdo_match_desc_resp_t*)zb_buf_begin(buf);
-  zb_uint8_t *match_ep;
-  zb_apsde_data_indication_t *ind = ZB_BUF_GET_PARAM(buf, zb_apsde_data_indication_t);
+    zb_bufid_t buf = param;
+    zb_zdo_match_desc_resp_t *resp = (zb_zdo_match_desc_resp_t *)zb_buf_begin(buf);
+    zb_uint8_t *match_ep;
+    zb_apsde_data_indication_t *ind = ZB_BUF_GET_PARAM(buf, zb_apsde_data_indication_t);
 
-  TRACE_MSG(TRACE_APP1, ">> find_light_bulb_cb param %hd, resp match_len %hd", (FMT__H_H, param, resp->match_len));
+    TRACE_MSG(TRACE_APP1, ">> find_light_bulb_cb param %hd, resp match_len %hd", (FMT__H_H, param, resp->match_len));
 
-  if (resp->status == ZB_ZDP_STATUS_SUCCESS && resp->match_len > 0)
-  {
-    TRACE_MSG(TRACE_APP2, "Server is found, continue normal work...", (FMT__0));
+    if (resp->status == ZB_ZDP_STATUS_SUCCESS && resp->match_len > 0)
+    {
+        TRACE_MSG(TRACE_APP2, "Server is found, continue normal work...", (FMT__0));
 
-    /* Match EP list follows right after response header */
-    match_ep = (zb_uint8_t*)(resp + 1);
+        /* Match EP list follows right after response header */
+        match_ep = (zb_uint8_t *)(resp + 1);
 
-    /* we are searching for exact cluster, so only 1 EP maybe found */
-    g_device_ctx.bulb_params.endpoint = *match_ep;
-    g_device_ctx.bulb_params.short_addr = ind->src_addr;
+        /* we are searching for exact cluster, so only 1 EP maybe found */
+        g_device_ctx.bulb_params.endpoint = *match_ep;
+        g_device_ctx.bulb_params.short_addr = ind->src_addr;
 
-    TRACE_MSG(TRACE_APP2, "find bulb addr %d ep %hd",
-              (FMT__D_H, g_device_ctx.bulb_params.short_addr, g_device_ctx.bulb_params.endpoint));
+        TRACE_MSG(TRACE_APP2, "find bulb addr %d ep %hd",
+                  (FMT__D_H, g_device_ctx.bulb_params.short_addr, g_device_ctx.bulb_params.endpoint));
 
-    ZB_SCHEDULE_ALARM_CANCEL(find_light_bulb_alarm, ZB_ALARM_ANY_PARAM);
+        ZB_SCHEDULE_ALARM_CANCEL(find_light_bulb_alarm, ZB_ALARM_ANY_PARAM);
 
-    /* Next step is to resolve the IEEE address of the bulb */
-    ZB_SCHEDULE_CALLBACK(bulb_ieee_addr_req, param);
-  }
-  else
-  {
-    zb_free_buf(buf);
-  }
+        /* Next step is to resolve the IEEE address of the bulb */
+        ZB_SCHEDULE_CALLBACK(bulb_ieee_addr_req, param);
+    }
+    else
+    {
+        zb_free_buf(buf);
+    }
 }
 
 void find_light_bulb_alarm(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_APP1, ">> find_light_bulb_alarm param %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_APP1, ">> find_light_bulb_alarm param %hd", (FMT__H, param));
 
-  if (param == 0)
-  {
-    zb_buf_get_out_delayed(find_light_bulb_alarm);
-  }
-  else
-  {
-    TRACE_MSG(TRACE_APP1, "Bulb is NOT found, try again", (FMT__0));
-    ZB_SCHEDULE_ALARM(find_light_bulb, param, MATCH_DESC_REQ_START_DELAY);
-  }
+    if (param == 0)
+    {
+        zb_buf_get_out_delayed(find_light_bulb_alarm);
+    }
+    else
+    {
+        TRACE_MSG(TRACE_APP1, "Bulb is NOT found, try again", (FMT__0));
+        ZB_SCHEDULE_ALARM(find_light_bulb, param, MATCH_DESC_REQ_START_DELAY);
+    }
 }
 
 void bulb_ieee_addr_req(zb_uint8_t param)
 {
-  zb_bufid_t buf = param;
-  zb_zdo_ieee_addr_req_t *req_param;
+    zb_bufid_t buf = param;
+    zb_zdo_ieee_addr_req_t *req_param;
 
-  req_param = zb_buf_initial_alloc(buf, sizeof(zb_zdo_ieee_addr_req_t));
-  req_param->nwk_addr = g_device_ctx.bulb_params.short_addr;
-  req_param->start_index = 0;
-  req_param->request_type = 0;
-  zb_zdo_ieee_addr_req(buf, bulb_ieee_addr_req_cb);
+    req_param = zb_buf_initial_alloc(buf, sizeof(zb_zdo_ieee_addr_req_t));
+    req_param->nwk_addr = g_device_ctx.bulb_params.short_addr;
+    req_param->start_index = 0;
+    req_param->request_type = 0;
+    zb_zdo_ieee_addr_req(buf, bulb_ieee_addr_req_cb);
 }
 
 void bulb_ieee_addr_req_cb(zb_uint8_t param)
 {
-  zb_bufid_t buf = param;
-  zb_zdo_nwk_addr_resp_head_t *resp;
-  zb_ieee_addr_t ieee_addr;
-  zb_uint16_t nwk_addr;
-  zb_address_ieee_ref_t addr_ref;
+    zb_bufid_t buf = param;
+    zb_zdo_nwk_addr_resp_head_t *resp;
+    zb_ieee_addr_t ieee_addr;
+    zb_uint16_t nwk_addr;
+    zb_address_ieee_ref_t addr_ref;
 
-  TRACE_MSG(TRACE_APP2, ">> bulb_ieee_addr_req_cb param %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_APP2, ">> bulb_ieee_addr_req_cb param %hd", (FMT__H, param));
 
-  resp = (zb_zdo_nwk_addr_resp_head_t*)zb_buf_begin(buf);
-  TRACE_MSG(TRACE_APP2, "resp status %hd, nwk addr %d", (FMT__H_D, resp->status, resp->nwk_addr));
+    resp = (zb_zdo_nwk_addr_resp_head_t *)zb_buf_begin(buf);
+    TRACE_MSG(TRACE_APP2, "resp status %hd, nwk addr %d", (FMT__H_D, resp->status, resp->nwk_addr));
 
-  if (resp->status == ZB_ZDP_STATUS_SUCCESS)
-  {
-    ZB_LETOH64(ieee_addr, resp->ieee_addr);
-    ZB_LETOH16(&nwk_addr, &resp->nwk_addr);
-    zb_address_update(ieee_addr, nwk_addr, ZB_TRUE, &addr_ref);
+    if (resp->status == ZB_ZDP_STATUS_SUCCESS)
+    {
+        ZB_LETOH64(ieee_addr, resp->ieee_addr);
+        ZB_LETOH16(&nwk_addr, &resp->nwk_addr);
+        zb_address_update(ieee_addr, nwk_addr, ZB_TRUE, &addr_ref);
 
-    ZB_MEMCPY(g_device_ctx.bulb_params.ieee_addr, ieee_addr, sizeof(zb_ieee_addr_t));
+        ZB_MEMCPY(g_device_ctx.bulb_params.ieee_addr, ieee_addr, sizeof(zb_ieee_addr_t));
 
-    /* The next step is to bind the Light control to the bulb */
-    ZB_SCHEDULE_CALLBACK(light_control_bind_bulb, param);
-  }
-  else
-  {
-    light_control_leave_and_join(param);
-  }
+        /* The next step is to bind the Light control to the bulb */
+        ZB_SCHEDULE_CALLBACK(light_control_bind_bulb, param);
+    }
+    else
+    {
+        light_control_leave_and_join(param);
+    }
 
-  TRACE_MSG(TRACE_APP2, "<< bulb_ieee_addr_req_cb", (FMT__0));
+    TRACE_MSG(TRACE_APP2, "<< bulb_ieee_addr_req_cb", (FMT__0));
 }
 
 void light_control_bind_bulb(zb_uint8_t param)
 {
-  zb_bufid_t buf = param;
-  zb_apsme_binding_req_t *req;
+    zb_bufid_t buf = param;
+    zb_apsme_binding_req_t *req;
 
-  TRACE_MSG(TRACE_APP2, ">> light_control_bind_bulb param %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_APP2, ">> light_control_bind_bulb param %hd", (FMT__H, param));
 
-  /* Bind On/Off cluster */
-  req = ZB_BUF_GET_PARAM(buf, zb_apsme_binding_req_t);
+    /* Bind On/Off cluster */
+    req = ZB_BUF_GET_PARAM(buf, zb_apsme_binding_req_t);
 
-  ZB_IEEE_ADDR_COPY(req->src_addr, &g_ed_addr);
-  ZB_IEEE_ADDR_COPY(req->dst_addr.addr_long, g_device_ctx.bulb_params.ieee_addr);
+    ZB_IEEE_ADDR_COPY(req->src_addr, &g_ed_addr);
+    ZB_IEEE_ADDR_COPY(req->dst_addr.addr_long, g_device_ctx.bulb_params.ieee_addr);
 
-  req->src_endpoint = LIGHT_CONTROL_ENDPOINT;
-  req->clusterid = ZB_ZCL_CLUSTER_ID_ON_OFF;
-  req->addr_mode = ZB_APS_ADDR_MODE_64_ENDP_PRESENT;
-  req->dst_endpoint = g_device_ctx.bulb_params.endpoint;
+    req->src_endpoint = LIGHT_CONTROL_ENDPOINT;
+    req->clusterid = ZB_ZCL_CLUSTER_ID_ON_OFF;
+    req->addr_mode = ZB_APS_ADDR_MODE_64_ENDP_PRESENT;
+    req->dst_endpoint = g_device_ctx.bulb_params.endpoint;
 
-  zb_apsme_bind_request(param);
+    zb_apsme_bind_request(param);
 
-  /* Bind Level Control cluster */
-  req = ZB_BUF_GET_PARAM(buf, zb_apsme_binding_req_t);
+    /* Bind Level Control cluster */
+    req = ZB_BUF_GET_PARAM(buf, zb_apsme_binding_req_t);
 
-  ZB_IEEE_ADDR_COPY(req->src_addr, &g_ed_addr);
-  ZB_IEEE_ADDR_COPY(req->dst_addr.addr_long, g_device_ctx.bulb_params.ieee_addr);
+    ZB_IEEE_ADDR_COPY(req->src_addr, &g_ed_addr);
+    ZB_IEEE_ADDR_COPY(req->dst_addr.addr_long, g_device_ctx.bulb_params.ieee_addr);
 
-  req->src_endpoint = LIGHT_CONTROL_ENDPOINT;
-  req->clusterid = ZB_ZCL_CLUSTER_ID_LEVEL_CONTROL;
-  req->addr_mode = ZB_APS_ADDR_MODE_64_ENDP_PRESENT;
-  req->dst_endpoint = g_device_ctx.bulb_params.endpoint;
+    req->src_endpoint = LIGHT_CONTROL_ENDPOINT;
+    req->clusterid = ZB_ZCL_CLUSTER_ID_LEVEL_CONTROL;
+    req->addr_mode = ZB_APS_ADDR_MODE_64_ENDP_PRESENT;
+    req->dst_endpoint = g_device_ctx.bulb_params.endpoint;
 
-  zb_apsme_bind_request(param);
+    zb_apsme_bind_request(param);
 
-  zb_free_buf(buf);
+    zb_free_buf(buf);
 
 #ifdef ZB_USE_NVRAM
-  /* Save all application data to the NVRAM */
-  zb_nvram_write_dataset(ZB_NVRAM_APP_DATA1);
+    /* Save all application data to the NVRAM */
+    zb_nvram_write_dataset(ZB_NVRAM_APP_DATA1);
 #endif
 
 #ifndef LIGHT_SAMPLE_BUTTONS
-  ZB_SCHEDULE_ALARM(light_control_send_on_off_alarm_delayed, 0, BULB_ON_OFF_TIMEOUT);
+    ZB_SCHEDULE_ALARM(light_control_send_on_off_alarm_delayed, 0, BULB_ON_OFF_TIMEOUT);
 #endif
 
-  TRACE_MSG(TRACE_APP2, "<< light_control_bind_bulb", (FMT__0));
+    TRACE_MSG(TRACE_APP2, "<< light_control_bind_bulb", (FMT__0));
 }
 
 
 /* Perform local operation - leave network */
 void light_control_leave_nwk(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_ERROR, ">> light_control_leave_nwk param %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_ERROR, ">> light_control_leave_nwk param %hd", (FMT__H, param));
 
-  /* We are going to leave */
-  if (!param)
-  {
-    zb_buf_get_out_delayed(light_control_leave_nwk);
-  }
-  else
-  {
-    zb_bufid_t buf = param;
-    zb_zdo_mgmt_leave_param_t *req_param;
+    /* We are going to leave */
+    if (!param)
+    {
+        zb_buf_get_out_delayed(light_control_leave_nwk);
+    }
+    else
+    {
+        zb_bufid_t buf = param;
+        zb_zdo_mgmt_leave_param_t *req_param;
 
-    req_param = ZB_BUF_GET_PARAM(buf, zb_zdo_mgmt_leave_param_t);
-    ZB_BZERO(req_param, sizeof(zb_zdo_mgmt_leave_param_t));
+        req_param = ZB_BUF_GET_PARAM(buf, zb_zdo_mgmt_leave_param_t);
+        ZB_BZERO(req_param, sizeof(zb_zdo_mgmt_leave_param_t));
 
-    /* Set dst_addr == local address for local leave */
-    req_param->dst_addr = ZB_PIBCACHE_NETWORK_ADDRESS();
-    zdo_mgmt_leave_req(param, NULL);
-  }
+        /* Set dst_addr == local address for local leave */
+        req_param->dst_addr = ZB_PIBCACHE_NETWORK_ADDRESS();
+        zdo_mgmt_leave_req(param, NULL);
+    }
 
-  TRACE_MSG(TRACE_ERROR, "<< light_control_leave_nwk", (FMT__0));
+    TRACE_MSG(TRACE_ERROR, "<< light_control_leave_nwk", (FMT__0));
 }
 
 
 void light_control_retry_join(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_ERROR, "light_control_retry_join %hd", (FMT__H, param));
-  if (param == ZB_NWK_LEAVE_TYPE_RESET)
-  {
-    bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
-  }
+    TRACE_MSG(TRACE_ERROR, "light_control_retry_join %hd", (FMT__H, param));
+    if (param == ZB_NWK_LEAVE_TYPE_RESET)
+    {
+        bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
+    }
 }
 
 
 void light_control_leave_and_join(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_ERROR, ">> light_control_leave_and_join param %hd", (FMT__H, param));
-  if (ZB_JOINED())
-  {
-    light_control_leave_nwk(param);
-  }
-  else
-  {
-    light_control_retry_join(ZB_NWK_LEAVE_TYPE_RESET);
-    if (param)
+    TRACE_MSG(TRACE_ERROR, ">> light_control_leave_and_join param %hd", (FMT__H, param));
+    if (ZB_JOINED())
     {
-      zb_buf_free(param);
+        light_control_leave_nwk(param);
     }
-  }
-  TRACE_MSG(TRACE_ERROR, "<< light_control_leave_and_join", (FMT__0));
+    else
+    {
+        light_control_retry_join(ZB_NWK_LEAVE_TYPE_RESET);
+        if (param)
+        {
+            zb_buf_free(param);
+        }
+    }
+    TRACE_MSG(TRACE_ERROR, "<< light_control_leave_and_join", (FMT__0));
 }
 
 #ifndef LIGHT_SAMPLE_BUTTONS
@@ -470,139 +470,139 @@ void light_control_send_on_off(zb_uint8_t param, zb_uint16_t on_off);
 
 void light_control_send_on_off_alarm(zb_uint8_t param)
 {
-  light_control_send_on_off(param, g_device_ctx.bulb_on_off_state);
-  g_device_ctx.bulb_on_off_state = !g_device_ctx.bulb_on_off_state;
-  ZB_SCHEDULE_ALARM(light_control_send_on_off_alarm_delayed, 0, BULB_ON_OFF_TIMEOUT);
+    light_control_send_on_off(param, g_device_ctx.bulb_on_off_state);
+    g_device_ctx.bulb_on_off_state = !g_device_ctx.bulb_on_off_state;
+    ZB_SCHEDULE_ALARM(light_control_send_on_off_alarm_delayed, 0, BULB_ON_OFF_TIMEOUT);
 }
 
 void light_control_send_on_off_alarm_delayed(zb_uint8_t param)
 {
-  zb_buf_get_out_delayed(light_control_send_on_off_alarm);
+    zb_buf_get_out_delayed(light_control_send_on_off_alarm);
 }
 
 void light_control_send_on_off_cb(zb_uint8_t param)
 {
-  zb_zcl_command_send_status_t *cmd_send_status = ZB_BUF_GET_PARAM(ZB_BUF_FROM_REF(param), zb_zcl_command_send_status_t);
-  TRACE_MSG(TRACE_APP2, ">> light_control_send_on_off_cb param %hd status %hd", (FMT__H_H, param, cmd_send_status->status));
+    zb_zcl_command_send_status_t *cmd_send_status = ZB_BUF_GET_PARAM(ZB_BUF_FROM_REF(param), zb_zcl_command_send_status_t);
+    TRACE_MSG(TRACE_APP2, ">> light_control_send_on_off_cb param %hd status %hd", (FMT__H_H, param, cmd_send_status->status));
 
-  if (cmd_send_status->status != RET_OK)
-  {
-    ++g_device_ctx.bulb_on_off_failure_cnt;
-    /* Stop on too many cmd failures. */
-    if (g_device_ctx.bulb_on_off_failure_cnt == BULB_ON_OFF_FAILURE_CNT)
+    if (cmd_send_status->status != RET_OK)
     {
-      ZB_SCHEDULE_ALARM_CANCEL(light_control_send_on_off_alarm_delayed, ZB_ALARM_ANY_PARAM);
+        ++g_device_ctx.bulb_on_off_failure_cnt;
+        /* Stop on too many cmd failures. */
+        if (g_device_ctx.bulb_on_off_failure_cnt == BULB_ON_OFF_FAILURE_CNT)
+        {
+            ZB_SCHEDULE_ALARM_CANCEL(light_control_send_on_off_alarm_delayed, ZB_ALARM_ANY_PARAM);
+        }
     }
-  }
-  else
-  {
-    /* If cmd is ok, reset faulure counter. */
-    g_device_ctx.bulb_on_off_failure_cnt = 0;
-  }
-  zb_free_buf(ZB_BUF_FROM_REF(param));
-  TRACE_MSG(TRACE_APP2, "<< light_control_send_on_off_cb", (FMT__0));
+    else
+    {
+        /* If cmd is ok, reset faulure counter. */
+        g_device_ctx.bulb_on_off_failure_cnt = 0;
+    }
+    zb_free_buf(ZB_BUF_FROM_REF(param));
+    TRACE_MSG(TRACE_APP2, "<< light_control_send_on_off_cb", (FMT__0));
 }
 #endif
 
 void light_control_send_on_off(zb_uint8_t param, zb_uint16_t on_off)
 {
-  zb_bufid_t buf = param;
-  zb_uint8_t cmd_id = (on_off) ? (ZB_ZCL_CMD_ON_OFF_ON_ID) : (ZB_ZCL_CMD_ON_OFF_OFF_ID);
-  zb_uint16_t addr = 0;
+    zb_bufid_t buf = param;
+    zb_uint8_t cmd_id = (on_off) ? (ZB_ZCL_CMD_ON_OFF_ON_ID) : (ZB_ZCL_CMD_ON_OFF_OFF_ID);
+    zb_uint16_t addr = 0;
 
-  /* Dst addr and endpoint are unknown; command will be sent via binding */
-  ZB_ZCL_ON_OFF_SEND_REQ(
-    buf,
-    addr,
-    ZB_APS_ADDR_MODE_DST_ADDR_ENDP_NOT_PRESENT,
-    0,
-    LIGHT_CONTROL_ENDPOINT,
-    g_profile_id,
-    ZB_FALSE,
-    cmd_id,
+    /* Dst addr and endpoint are unknown; command will be sent via binding */
+    ZB_ZCL_ON_OFF_SEND_REQ(
+        buf,
+        addr,
+        ZB_APS_ADDR_MODE_DST_ADDR_ENDP_NOT_PRESENT,
+        0,
+        LIGHT_CONTROL_ENDPOINT,
+        g_profile_id,
+        ZB_FALSE,
+        cmd_id,
 #ifndef LIGHT_SAMPLE_BUTTONS
-    /* If we do not have buttons, control failure cmd number. */
-    light_control_send_on_off_cb
+        /* If we do not have buttons, control failure cmd number. */
+        light_control_send_on_off_cb
 #else
-    NULL
+        NULL
 #endif
     );
 }
 
 void light_bulb_send_on_off_cmd(zb_bool_t on_off)
 {
-  zb_buf_get_out_delayed_ext(light_control_send_on_off, on_off, 0);
+    zb_buf_get_out_delayed_ext(light_control_send_on_off, on_off, 0);
 }
 
 void light_control_send_step(zb_uint8_t param, zb_uint16_t dir)
 {
-  zb_bufid_t buf = param;
-  zb_uint8_t step_dir = (dir) ? (ZB_ZCL_LEVEL_CONTROL_STEP_MODE_UP) :
-    (ZB_ZCL_LEVEL_CONTROL_STEP_MODE_DOWN);
-  zb_uint16_t addr = 0;
+    zb_bufid_t buf = param;
+    zb_uint8_t step_dir = (dir) ? (ZB_ZCL_LEVEL_CONTROL_STEP_MODE_UP) :
+                          (ZB_ZCL_LEVEL_CONTROL_STEP_MODE_DOWN);
+    zb_uint16_t addr = 0;
 
-  /* Dst addr and endpoint are unknown; command will be sent via binding */
-  ZB_ZCL_LEVEL_CONTROL_SEND_STEP_REQ(
-    buf,
-    addr,
-    ZB_APS_ADDR_MODE_DST_ADDR_ENDP_NOT_PRESENT,
-    0,
-                                     LIGHT_CONTROL_ENDPOINT,
-                                     g_profile_id,
-                                     ZB_ZCL_DISABLE_DEFAULT_RESPONSE,
-                                     NULL, step_dir, LIGHT_CONTROL_DIMM_STEP,
-                                     LIGHT_CONTROL_DIMM_TRANSACTION_TIME);
+    /* Dst addr and endpoint are unknown; command will be sent via binding */
+    ZB_ZCL_LEVEL_CONTROL_SEND_STEP_REQ(
+        buf,
+        addr,
+        ZB_APS_ADDR_MODE_DST_ADDR_ENDP_NOT_PRESENT,
+        0,
+        LIGHT_CONTROL_ENDPOINT,
+        g_profile_id,
+        ZB_ZCL_DISABLE_DEFAULT_RESPONSE,
+        NULL, step_dir, LIGHT_CONTROL_DIMM_STEP,
+        LIGHT_CONTROL_DIMM_TRANSACTION_TIME);
 }
 
 void light_bulb_send_step_cmd(zb_bool_t dir)
 {
-  zb_buf_get_out_delayed_ext(light_control_send_step, dir, 0);
+    zb_buf_get_out_delayed_ext(light_control_send_step, dir, 0);
 }
 
 #ifdef ZB_USE_NVRAM
 zb_uint16_t light_control_get_nvram_data_size()
 {
-  TRACE_MSG(TRACE_APP1, "light_control_get_nvram_data_size, ret %hd", (FMT__H, sizeof(light_control_device_nvram_dataset_t)));
-  return sizeof(light_control_device_nvram_dataset_t);
+    TRACE_MSG(TRACE_APP1, "light_control_get_nvram_data_size, ret %hd", (FMT__H, sizeof(light_control_device_nvram_dataset_t)));
+    return sizeof(light_control_device_nvram_dataset_t);
 }
 
 void light_control_nvram_read_app_data(zb_uint8_t page, zb_uint32_t pos, zb_uint16_t payload_length)
 {
-  light_control_device_nvram_dataset_t ds;
-  zb_ret_t ret;
+    light_control_device_nvram_dataset_t ds;
+    zb_ret_t ret;
 
-  TRACE_MSG(TRACE_APP1, ">> light_control_nvram_read_app_data page %hd pos %d", (FMT__H_D, page, pos));
+    TRACE_MSG(TRACE_APP1, ">> light_control_nvram_read_app_data page %hd pos %d", (FMT__H_D, page, pos));
 
-  ZB_ASSERT(payload_length == sizeof(ds));
+    ZB_ASSERT(payload_length == sizeof(ds));
 
-  ret = zb_osif_nvram_read(page, pos, (zb_uint8_t*)&ds, sizeof(ds));
+    ret = zb_osif_nvram_read(page, pos, (zb_uint8_t *)&ds, sizeof(ds));
 
-  if (ret == RET_OK)
-  {
-    ZB_MEMCPY(g_device_ctx.bulb_params.ieee_addr, ds.bulb_ieee_addr, sizeof(zb_ieee_addr_t));
-    g_device_ctx.bulb_params.short_addr = ds.bulb_short_addr;
-    g_device_ctx.bulb_params.endpoint = ds.bulb_endpoint;
-  }
+    if (ret == RET_OK)
+    {
+        ZB_MEMCPY(g_device_ctx.bulb_params.ieee_addr, ds.bulb_ieee_addr, sizeof(zb_ieee_addr_t));
+        g_device_ctx.bulb_params.short_addr = ds.bulb_short_addr;
+        g_device_ctx.bulb_params.endpoint = ds.bulb_endpoint;
+    }
 
-  TRACE_MSG(TRACE_APP1, "<< light_control_nvram_read_app_data ret %d", (FMT__D, ret));
+    TRACE_MSG(TRACE_APP1, "<< light_control_nvram_read_app_data ret %d", (FMT__D, ret));
 }
 
 zb_ret_t light_control_nvram_write_app_data(zb_uint8_t page, zb_uint32_t pos)
 {
-  zb_ret_t ret;
-  light_control_device_nvram_dataset_t ds;
+    zb_ret_t ret;
+    light_control_device_nvram_dataset_t ds;
 
-  TRACE_MSG(TRACE_APP1, ">> light_control_nvram_write_app_data, page %hd, pos %d", (FMT__H_D, page, pos));
+    TRACE_MSG(TRACE_APP1, ">> light_control_nvram_write_app_data, page %hd, pos %d", (FMT__H_D, page, pos));
 
-  ZB_MEMCPY(ds.bulb_ieee_addr, g_device_ctx.bulb_params.ieee_addr, sizeof(zb_ieee_addr_t));
-  ds.bulb_short_addr = g_device_ctx.bulb_params.short_addr;
-  ds.bulb_endpoint = g_device_ctx.bulb_params.endpoint;
+    ZB_MEMCPY(ds.bulb_ieee_addr, g_device_ctx.bulb_params.ieee_addr, sizeof(zb_ieee_addr_t));
+    ds.bulb_short_addr = g_device_ctx.bulb_params.short_addr;
+    ds.bulb_endpoint = g_device_ctx.bulb_params.endpoint;
 
-  ret = zb_osif_nvram_write(page, pos, (zb_uint8_t*)&ds, sizeof(ds));
+    ret = zb_osif_nvram_write(page, pos, (zb_uint8_t *)&ds, sizeof(ds));
 
-  TRACE_MSG(TRACE_APP1, "<< light_control_nvram_write_app_data, ret %d", (FMT__D, ret));
+    TRACE_MSG(TRACE_APP1, "<< light_control_nvram_write_app_data, ret %d", (FMT__D, ret));
 
-  return ret;
+    return ret;
 }
 
 #endif  /* ZB_USE_NVRAM */
@@ -610,44 +610,44 @@ zb_ret_t light_control_nvram_write_app_data(zb_uint8_t page, zb_uint32_t pos)
 #ifdef LIGHT_SAMPLE_BUTTONS
 void light_control_button_pressed(zb_uint8_t button_no)
 {
-  switch (g_device_ctx.button.button_state)
-  {
-  case LIGHT_CONTROL_BUTTON_STATE_IDLE:
-    g_device_ctx.button.button_state = LIGHT_CONTROL_BUTTON_STATE_PRESSED;
-    g_device_ctx.button.timestamp = ZB_TIMER_GET();
-    break;
-  case LIGHT_CONTROL_BUTTON_STATE_PRESSED:
-    g_device_ctx.button.button_state = LIGHT_CONTROL_BUTTON_STATE_UNPRESSED;
-    ZB_SCHEDULE_ALARM(light_control_button_handler, button_no, LIGHT_CONTROL_BUTTON_SHORT_POLL_TMO);
-    break;
-  case LIGHT_CONTROL_BUTTON_STATE_UNPRESSED:
-  default:
-    break;
-  }
+    switch (g_device_ctx.button.button_state)
+    {
+    case LIGHT_CONTROL_BUTTON_STATE_IDLE:
+        g_device_ctx.button.button_state = LIGHT_CONTROL_BUTTON_STATE_PRESSED;
+        g_device_ctx.button.timestamp = ZB_TIMER_GET();
+        break;
+    case LIGHT_CONTROL_BUTTON_STATE_PRESSED:
+        g_device_ctx.button.button_state = LIGHT_CONTROL_BUTTON_STATE_UNPRESSED;
+        ZB_SCHEDULE_ALARM(light_control_button_handler, button_no, LIGHT_CONTROL_BUTTON_SHORT_POLL_TMO);
+        break;
+    case LIGHT_CONTROL_BUTTON_STATE_UNPRESSED:
+    default:
+        break;
+    }
 }
 
 void light_control_button_handler(zb_uint8_t button_no)
 {
-  zb_time_t current_time;
-  zb_bool_t short_expired;
+    zb_time_t current_time;
+    zb_bool_t short_expired;
 
-  current_time = ZB_TIMER_GET();
+    current_time = ZB_TIMER_GET();
 
-  short_expired = (ZB_TIME_SUBTRACT(current_time, g_device_ctx.button.timestamp) > LIGHT_CONTROL_BUTTON_TRESHOLD) ?
-    (ZB_TRUE) : (ZB_FALSE);
-  {
-    if (short_expired)
+    short_expired = (ZB_TIME_SUBTRACT(current_time, g_device_ctx.button.timestamp) > LIGHT_CONTROL_BUTTON_TRESHOLD) ?
+                    (ZB_TRUE) : (ZB_FALSE);
     {
-      /* The last step command to be sent */
-      light_bulb_send_step_cmd((button_no == LIGHT_CONTROL_BUTTON_ON) ? (ZB_TRUE) : (ZB_FALSE));
-    }
-    else
-    {
-      light_bulb_send_on_off_cmd((button_no == LIGHT_CONTROL_BUTTON_ON) ? (ZB_TRUE) : (ZB_FALSE));
-    }
+        if (short_expired)
+        {
+            /* The last step command to be sent */
+            light_bulb_send_step_cmd((button_no == LIGHT_CONTROL_BUTTON_ON) ? (ZB_TRUE) : (ZB_FALSE));
+        }
+        else
+        {
+            light_bulb_send_on_off_cmd((button_no == LIGHT_CONTROL_BUTTON_ON) ? (ZB_TRUE) : (ZB_FALSE));
+        }
 
-    /* ... and exit this logic */
-    g_device_ctx.button.button_state = LIGHT_CONTROL_BUTTON_STATE_IDLE;
-  }
+        /* ... and exit this logic */
+        g_device_ctx.button.button_state = LIGHT_CONTROL_BUTTON_STATE_IDLE;
+    }
 }
 #endif

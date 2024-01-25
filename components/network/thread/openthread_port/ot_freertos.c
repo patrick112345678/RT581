@@ -20,20 +20,21 @@
 
 ot_system_event_t           ot_system_event_var = OT_SYSTEM_EVENT_NONE;
 static SemaphoreHandle_t    ot_extLock          = NULL;
-static otInstance *         ot_instance         = NULL;
+static otInstance          *ot_instance         = NULL;
 static TaskHandle_t         ot_taskHandle       = NULL;
 
 static StaticQueue_t stackLock;
 static StaticTask_t ot_task;
 static StackType_t  ot_stackTask_stack[OT_TASK_SIZE];
 
-__attribute__((weak)) void otrAppProcess(ot_system_event_t sevent) 
+__attribute__((weak)) void otrAppProcess(ot_system_event_t sevent)
 {
 }
 
 void otTaskletsSignalPending(otInstance *aInstance)
 {
-    if (aInstance) {
+    if (aInstance)
+    {
         OT_NOTIFY(OT_SYSTEM_EVENT_OT_TASKLET);
     }
 }
@@ -43,7 +44,7 @@ otInstance *otrGetInstance()
     return ot_instance;
 }
 
-void otSysProcessDrivers(otInstance *aInstance) 
+void otSysProcessDrivers(otInstance *aInstance)
 {
     ot_system_event_t sevent = OT_SYSTEM_EVENT_NONE;
 
@@ -69,19 +70,21 @@ void otSysEventSignalPending(void)
 
 void otrLock(void)
 {
-    if (ot_extLock) {
+    if (ot_extLock)
+    {
         xSemaphoreTake(ot_extLock, portMAX_DELAY);
     }
 }
 
 void otrUnlock(void)
 {
-    if (ot_extLock) {
+    if (ot_extLock)
+    {
         xSemaphoreGive(ot_extLock);
     }
 }
 
-void otrStackInit(void) 
+void otrStackInit(void)
 {
     ot_instance = otInstanceInitSingle();
     assert(ot_instance);
@@ -89,7 +92,7 @@ void otrStackInit(void)
 extern void rf_ot_cpc_rcp_process(void);
 static void otrStackTask(void *aContext)
 {
-    /** This task is an example to handle both main event loop of openthread task lets and 
+    /** This task is an example to handle both main event loop of openthread task lets and
      * hardware drivers for openthread, such as radio, alarm timer and also uart shell.
      * Customer can implement own task for both of two these missions with other privoded APIs.  */
 
@@ -106,7 +109,7 @@ static void otrStackTask(void *aContext)
         otrInitUser(ot_instance);
 #if defined(CFG_CPC_ENABLE)
         rf_ot_cpc_init();
-#endif                
+#endif
     );
 
     while (true)

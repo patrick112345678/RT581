@@ -31,11 +31,11 @@ extern "C" {
 #endif
 
 struct __lock;
-typedef struct __lock * _LOCK_T;
+typedef struct __lock *_LOCK_T;
 #define _LOCK_RECURSIVE_T _LOCK_T
 
 #define __LOCK_INIT(class,lock) extern struct __lock __lock_ ## lock; \
-	class _LOCK_T lock = &__lock_ ## lock
+    class _LOCK_T lock = &__lock_ ## lock
 #define __LOCK_INIT_RECURSIVE(class,lock) __LOCK_INIT(class,lock)
 
 extern void __retarget_lock_init(_LOCK_T *lock);

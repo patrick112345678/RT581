@@ -55,92 +55,92 @@ static void remove_child_delayed(zb_uint8_t unused);
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("zdo_dut");
+    ZB_INIT("zdo_dut");
 
 
-  ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_ieee_addr_dut);
+    ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_ieee_addr_dut);
 
-  ZB_BDB().bdb_primary_channel_set = TEST_BDB_PRIMARY_CHANNEL_SET;
-  ZB_BDB().bdb_secondary_channel_set = TEST_BDB_SECONDARY_CHANNEL_SET;
-  ZB_BDB().bdb_mode = 1;
-  
-  ZB_NIB_DEVICE_TYPE() = ZB_NWK_DEVICE_TYPE_ROUTER;
-  ZB_NIB().max_children = 3;
-  ZB_IEEE_ADDR_COPY(ZB_AIB().trust_center_address, g_unknown_ieee_addr);
-  zb_secur_setup_nwk_key(g_nwk_key, 0);
+    ZB_BDB().bdb_primary_channel_set = TEST_BDB_PRIMARY_CHANNEL_SET;
+    ZB_BDB().bdb_secondary_channel_set = TEST_BDB_SECONDARY_CHANNEL_SET;
+    ZB_BDB().bdb_mode = 1;
 
-  if (zdo_dev_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    ZB_NIB_DEVICE_TYPE() = ZB_NWK_DEVICE_TYPE_ROUTER;
+    ZB_NIB().max_children = 3;
+    ZB_IEEE_ADDR_COPY(ZB_AIB().trust_center_address, g_unknown_ieee_addr);
+    zb_secur_setup_nwk_key(g_nwk_key, 0);
 
-  TRACE_DEINIT();
+    if (zdo_dev_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  MAIN_RETURN(0);
+    TRACE_DEINIT();
+
+    MAIN_RETURN(0);
 }
 
 
 static void remove_child(zb_uint8_t param)
 {
-  zb_buf_t *buf = ZB_BUF_FROM_REF(param);
-  zb_nlme_leave_request_t *req = ZB_GET_BUF_TAIL(buf, sizeof(zb_nlme_leave_request_t));
+    zb_buf_t *buf = ZB_BUF_FROM_REF(param);
+    zb_nlme_leave_request_t *req = ZB_GET_BUF_TAIL(buf, sizeof(zb_nlme_leave_request_t));
 
-  TRACE_MSG(TRACE_ZDO1, ">>remove_child: buf_param = %d", (FMT__D, param));
+    TRACE_MSG(TRACE_ZDO1, ">>remove_child: buf_param = %d", (FMT__D, param));
 
-  ZB_IEEE_ADDR_COPY(req->device_address, g_ieee_addr_the1);
-  req->remove_children = 0;
-  req->rejoin = 0;
-  zb_nlme_leave_request(param);
+    ZB_IEEE_ADDR_COPY(req->device_address, g_ieee_addr_the1);
+    req->remove_children = 0;
+    req->rejoin = 0;
+    zb_nlme_leave_request(param);
 
-  TRACE_MSG(TRACE_ZDO1, "<<remove_child", (FMT__0));
+    TRACE_MSG(TRACE_ZDO1, "<<remove_child", (FMT__0));
 }
 
 
 static void remove_child_delayed(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
-  ZB_GET_OUT_BUF_DELAYED(remove_child);
+    ZVUNUSED(unused);
+    ZB_GET_OUT_BUF_DELAYED(remove_child);
 }
 
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
-  {
-    switch(sig)
+    if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
     {
-      case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-        TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
-        bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
-        break;
+        switch (sig)
+        {
+        case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
+            TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
+            bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
+            break;
 
-      case ZB_BDB_SIGNAL_STEERING:
-        ZB_SCHEDULE_ALARM(remove_child_delayed, 0, DUT_REMOVES_THE1_DELAY);;
-        break;
+        case ZB_BDB_SIGNAL_STEERING:
+            ZB_SCHEDULE_ALARM(remove_child_delayed, 0, DUT_REMOVES_THE1_DELAY);;
+            break;
 
-      default:
-        TRACE_MSG(TRACE_APS1, "Unknown signal", (FMT__0));
+        default:
+            TRACE_MSG(TRACE_APS1, "Unknown signal", (FMT__0));
+        }
     }
-  }
-  else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
-  {
-    TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
-  }
-  zb_free_buf(ZB_BUF_FROM_REF(param));
+    else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
+    {
+        TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
+    }
+    zb_free_buf(ZB_BUF_FROM_REF(param));
 }
 
 

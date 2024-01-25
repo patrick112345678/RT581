@@ -73,138 +73,138 @@ ZB_HA_DECLARE_SHADE_CONTROLLER_CTX(shade_controller_ctx, shade_controller_ep);
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
 #ifndef KEIL
-  if ( argc < 3 )
-  {
-    printf("%s <read pipe path> <write pipe path>\n", argv[0]);
-    return 0;
-  }
+    if ( argc < 3 )
+    {
+        printf("%s <read pipe path> <write pipe path>\n", argv[0]);
+        return 0;
+    }
 #endif
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 #ifndef ZB8051
-  ZB_INIT("ha_th");
+    ZB_INIT("ha_th");
 
-  ZB_SET_NIB_SECURITY_LEVEL(0);
+    ZB_SET_NIB_SECURITY_LEVEL(0);
 
-  ZB_PIBCACHE_RX_ON_WHEN_IDLE() = ZB_TRUE_U;
+    ZB_PIBCACHE_RX_ON_WHEN_IDLE() = ZB_TRUE_U;
 
-  zb_set_default_ed_descriptor_values();
+    zb_set_default_ed_descriptor_values();
 
-  /****************** Register Device ********************************/
-  ZB_AF_REGISTER_DEVICE_CTX(&shade_controller_ctx);
-  ZB_AF_SET_ENDPOINT_HANDLER(HA_SHADE_CONTROLLER_ENDPOINT, zcl_specific_cluster_cmd_handler);
+    /****************** Register Device ********************************/
+    ZB_AF_REGISTER_DEVICE_CTX(&shade_controller_ctx);
+    ZB_AF_SET_ENDPOINT_HANDLER(HA_SHADE_CONTROLLER_ENDPOINT, zcl_specific_cluster_cmd_handler);
 
-  ZB_SET_NIB_SECURITY_LEVEL(0);
+    ZB_SET_NIB_SECURITY_LEVEL(0);
 
-  if (zdo_dev_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
-  }
-  else
-  {
-    zcl_main_loop();
-  }
+    if (zdo_dev_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
+    }
+    else
+    {
+        zcl_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 zb_uint8_t zcl_specific_cluster_cmd_handler(zb_uint8_t param)
 {
-  zb_buf_t *zcl_cmd_buf = (zb_buf_t *)ZB_BUF_FROM_REF(param);
-  zb_zcl_parsed_hdr_t *cmd_info = ZB_GET_BUF_PARAM(zcl_cmd_buf, zb_zcl_parsed_hdr_t);
-  zb_bool_t unknown_cmd_received = ZB_TRUE;
+    zb_buf_t *zcl_cmd_buf = (zb_buf_t *)ZB_BUF_FROM_REF(param);
+    zb_zcl_parsed_hdr_t *cmd_info = ZB_GET_BUF_PARAM(zcl_cmd_buf, zb_zcl_parsed_hdr_t);
+    zb_bool_t unknown_cmd_received = ZB_TRUE;
 
-  TRACE_MSG(TRACE_ZCL1, "> zcl_specific_cluster_cmd_handler %i", (FMT__H, param));
-  TRACE_MSG(TRACE_ZCL3, "payload size: %i", (FMT__D, ZB_BUF_LEN(zcl_cmd_buf)));
+    TRACE_MSG(TRACE_ZCL1, "> zcl_specific_cluster_cmd_handler %i", (FMT__H, param));
+    TRACE_MSG(TRACE_ZCL3, "payload size: %i", (FMT__D, ZB_BUF_LEN(zcl_cmd_buf)));
 
-  if (cmd_info->cmd_direction == ZB_ZCL_FRAME_DIRECTION_TO_SRV)
-  {
-    TRACE_MSG(TRACE_ERROR, "Unsupported direction \"to server\"", (FMT__0));
-    unknown_cmd_received = ZB_TRUE;
-  }
-  else
-  {
-    /* Command from server to client */
-    switch (cmd_info->cluster_id)
+    if (cmd_info->cmd_direction == ZB_ZCL_FRAME_DIRECTION_TO_SRV)
     {
-      case ZB_ZCL_CLUSTER_ID_LEVEL_CONTROL:
-      if (cmd_info->is_common_command)
-      {
-        switch (cmd_info->cmd_id)
+        TRACE_MSG(TRACE_ERROR, "Unsupported direction \"to server\"", (FMT__0));
+        unknown_cmd_received = ZB_TRUE;
+    }
+    else
+    {
+        /* Command from server to client */
+        switch (cmd_info->cluster_id)
         {
-          case ZB_ZCL_CMD_DEFAULT_RESP:
+        case ZB_ZCL_CLUSTER_ID_LEVEL_CONTROL:
+            if (cmd_info->is_common_command)
+            {
+                switch (cmd_info->cmd_id)
+                {
+                case ZB_ZCL_CMD_DEFAULT_RESP:
+                    TRACE_MSG(
+                        TRACE_ZCL3,
+                        "Got response in cluster 0x%04x",
+                        ( FMT__D, cmd_info->cluster_id));
+                    /* Process default response */
+                    unknown_cmd_received = ZB_FALSE;
+                    break;
+                case ZB_ZCL_CMD_READ_ATTRIB_RESP:
+                    /* Process read attributes response */
+                    unknown_cmd_received = ZB_FALSE;
+                    break;
+                default:
+                    TRACE_MSG(TRACE_ERROR, "Unsupported general command", (FMT__0));
+                    unknown_cmd_received = ZB_TRUE;
+                    break;
+                }
+            }
+            else
+            {
+                TRACE_MSG(
+                    TRACE_ERROR,
+                    "Cluster-specific commands not supported for OnOff cluster",
+                    (FMT__0));
+            }
+            break;
+        default:
             TRACE_MSG(
-                TRACE_ZCL3,
-                "Got response in cluster 0x%04x",
-                ( FMT__D, cmd_info->cluster_id));
-            /* Process default response */
-            unknown_cmd_received = ZB_FALSE;
-            break;
-          case ZB_ZCL_CMD_READ_ATTRIB_RESP:
-            /* Process read attributes response */
-            unknown_cmd_received = ZB_FALSE;
-            break;
-          default:
-            TRACE_MSG(TRACE_ERROR, "Unsupported general command", (FMT__0));
-            unknown_cmd_received = ZB_TRUE;
+                TRACE_ERROR,
+                "Cluster 0x%hx is not supported (yet?)",
+                (FMT__H, cmd_info->cluster_id));
             break;
         }
-      }
-      else
-      {
-        TRACE_MSG(
-            TRACE_ERROR,
-            "Cluster-specific commands not supported for OnOff cluster",
-            (FMT__0));
-      }
-      break;
-    default:
-      TRACE_MSG(
-          TRACE_ERROR,
-          "Cluster 0x%hx is not supported (yet?)",
-          (FMT__H, cmd_info->cluster_id));
-      break;
     }
-  }
 
-  TRACE_MSG(TRACE_ZCL1, "< zcl_specific_cluster_cmd_handler %i", (FMT__0));
-  return ! unknown_cmd_received;
+    TRACE_MSG(TRACE_ZCL1, "< zcl_specific_cluster_cmd_handler %i", (FMT__0));
+    return ! unknown_cmd_received;
 }
 
 void zb_zdo_startup_complete(zb_uint8_t param)
 {
-  zb_buf_t *buf = ZB_BUF_FROM_REF(param);
+    zb_buf_t *buf = ZB_BUF_FROM_REF(param);
 
-  TRACE_MSG(TRACE_ZCL1, "> zb_zdo_startup_complete %h", (FMT__H, param));
+    TRACE_MSG(TRACE_ZCL1, "> zb_zdo_startup_complete %h", (FMT__H, param));
 
-  if (buf->u.hdr.status == 0)
-  {
-    TRACE_MSG(TRACE_ZCL1, "Device STARTED OK", (FMT__0));
-    /* It is a good place to start custom automatic activities (if any) */
-  }
-  else
-  {
-    TRACE_MSG(
-        TRACE_ERROR,
-        "Device started FAILED status %d",
-        (FMT__D, (int)buf->u.hdr.status));
-    zb_free_buf(buf);
-  }
-  TRACE_MSG(TRACE_ZCL1, "< zb_zdo_startup_complete", (FMT__0));
+    if (buf->u.hdr.status == 0)
+    {
+        TRACE_MSG(TRACE_ZCL1, "Device STARTED OK", (FMT__0));
+        /* It is a good place to start custom automatic activities (if any) */
+    }
+    else
+    {
+        TRACE_MSG(
+            TRACE_ERROR,
+            "Device started FAILED status %d",
+            (FMT__D, (int)buf->u.hdr.status));
+        zb_free_buf(buf);
+    }
+    TRACE_MSG(TRACE_ZCL1, "< zb_zdo_startup_complete", (FMT__0));
 }
 
 #else // defined ZB_ENABLE_HA
 
 #include <stdio.h>
-int main()
-{
-  printf(" HA is not supported\n");
-  return 0;
-}
+    int main()
+    {
+        printf(" HA is not supported\n");
+        return 0;
+    }
 
 #endif // defined ZB_ENABLE_HA

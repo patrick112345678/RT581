@@ -31,18 +31,18 @@
 #include "zb_common.h"
 typedef struct zb_watchdow_s
 {
-  zb_time_t timeout;
-  zb_time_t last_kick;
-  zb_uint8_t state;             /* 0 - disabled, 1 - enabled */
+    zb_time_t timeout;
+    zb_time_t last_kick;
+    zb_uint8_t state;             /* 0 - disabled, 1 - enabled */
 } zb_watchdog_t;
 
 typedef enum zb_watchdog_types_e
 {
-  ZB_WD_ZB_TRAFFIC,
+    ZB_WD_ZB_TRAFFIC,
 
-  ZB_WD_CHECKIN,
+    ZB_WD_CHECKIN,
 
-  ZB_N_STD_WATCHDOGS
+    ZB_N_STD_WATCHDOGS
 } zb_watchdog_types_t;
 
 #define ZB_N_WATCHDOG 8U

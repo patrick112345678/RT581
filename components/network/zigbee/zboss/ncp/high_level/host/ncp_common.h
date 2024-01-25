@@ -102,17 +102,17 @@ typedef void (*callback_t)(zb_uint8_t);
 */
 static inline zb_time_t osif_transceiver_time_get(void)
 {
-  long long time;
-  struct timespec ts;
+    long long time;
+    struct timespec ts;
 
-  (void)clock_gettime(CLOCK_MONOTONIC, &ts);
+    (void)clock_gettime(CLOCK_MONOTONIC, &ts);
 
-  time = (long long)ts.tv_sec;
-  time = time * 1000000000LL; /* Convert seconds to nanoseconds */
-  time = time + ts.tv_nsec;
-  time = time / 1000LL;       /* Convert nanoseconds to mcroseconds */
+    time = (long long)ts.tv_sec;
+    time = time * 1000000000LL; /* Convert seconds to nanoseconds */
+    time = time + ts.tv_nsec;
+    time = time / 1000LL;       /* Convert nanoseconds to mcroseconds */
 
-  return (zb_time_t)time;
+    return (zb_time_t)time;
 }
 
 /**

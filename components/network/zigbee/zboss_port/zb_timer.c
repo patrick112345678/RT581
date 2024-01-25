@@ -1,12 +1,12 @@
 /**
  * @file zb_timer.c
  * @author Rex Huang (rex.huang@rafaelmicro.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2023-08-24
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 //=============================================================================
 //                Include
@@ -38,7 +38,7 @@ static TimerHandle_t zbAlarm_timerHandle = NULL;
 //                Functions
 //=============================================================================
 
-static void zb_15msTimerCallback( TimerHandle_t xTimer ) 
+static void zb_15msTimerCallback( TimerHandle_t xTimer )
 {
     ZB_TIMER_CTX().timer++;
     ZB_NOTIFY(ZB_SYSTEM_EVENT_ALARM_MS_EXPIRED);
@@ -46,8 +46,8 @@ static void zb_15msTimerCallback( TimerHandle_t xTimer )
 
 void zb_TimerInit(void)
 {
-    zbAlarm_timerHandle = xTimerCreate("zb_timer", 15, pdTRUE, 
-            (void *)zbAlarm_timerHandle, zb_15msTimerCallback);    
+    zbAlarm_timerHandle = xTimerCreate("zb_timer", 15, pdTRUE,
+                                       (void *)zbAlarm_timerHandle, zb_15msTimerCallback);
 }
 
 void zb_TimerStart(void)
@@ -67,13 +67,17 @@ void zb_TimerStop(void)
     BaseType_t pxHigherPriorityTaskWoken = pdTRUE;
     if (xPortIsInsideInterrupt())
     {
-        if (xTimerIsTimerActive(zbAlarm_timerHandle) == pdTRUE) 
+        if (xTimerIsTimerActive(zbAlarm_timerHandle) == pdTRUE)
+        {
             xTimerStopFromISR( zbAlarm_timerHandle, &pxHigherPriorityTaskWoken);
+        }
     }
     else
     {
-        if (xTimerIsTimerActive(zbAlarm_timerHandle) == pdTRUE) 
+        if (xTimerIsTimerActive(zbAlarm_timerHandle) == pdTRUE)
+        {
             xTimerStop(zbAlarm_timerHandle, 0 );
+        }
     }
 }
 zb_time_t osif_transceiver_time_get(void)

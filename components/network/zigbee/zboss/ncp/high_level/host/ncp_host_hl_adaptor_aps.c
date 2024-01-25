@@ -26,65 +26,65 @@
 #include "ncp_host_hl_adaptor.h"
 
 void adaptor_handle_apsde_data_indication(zb_apsde_data_indication_t *ind,
-                                          zb_uint8_t *data_ptr,
-                                          zb_uint8_t params_len, zb_uint16_t data_len)
+        zb_uint8_t *data_ptr,
+        zb_uint8_t params_len, zb_uint16_t data_len)
 {
-  zb_bufid_t buf = zb_buf_get(ZB_TRUE, 0);
-  zb_uint8_t i;
-  zb_uint8_t *ptr;
+    zb_bufid_t buf = zb_buf_get(ZB_TRUE, 0);
+    zb_uint8_t i;
+    zb_uint8_t *ptr;
 
-  TRACE_MSG(TRACE_TRANSPORT3, ">> adaptor_handle_apsde_data_indication ", (FMT__0));
+    TRACE_MSG(TRACE_TRANSPORT3, ">> adaptor_handle_apsde_data_indication ", (FMT__0));
 
-  ptr = (zb_uint8_t *)zb_buf_initial_alloc(buf, sizeof(zb_uint8_t) + sizeof(zb_uint16_t) + data_len);
+    ptr = (zb_uint8_t *)zb_buf_initial_alloc(buf, sizeof(zb_uint8_t) + sizeof(zb_uint16_t) + data_len);
 
-  ZB_MEMCPY(ptr, &params_len, sizeof(zb_uint8_t));
-  ptr = ptr + sizeof(zb_uint8_t);
-  ZB_MEMCPY(ptr, &data_len, sizeof(zb_uint16_t));
-  ptr = ptr + sizeof(zb_uint16_t);
-  ZB_MEMCPY(ptr, data_ptr, data_len);
+    ZB_MEMCPY(ptr, &params_len, sizeof(zb_uint8_t));
+    ptr = ptr + sizeof(zb_uint8_t);
+    ZB_MEMCPY(ptr, &data_len, sizeof(zb_uint16_t));
+    ptr = ptr + sizeof(zb_uint16_t);
+    ZB_MEMCPY(ptr, data_ptr, data_len);
 
-  ZB_MEMCPY(ZB_BUF_GET_PARAM(buf, zb_apsde_data_indication_t), ind, sizeof(zb_apsde_data_indication_t));
+    ZB_MEMCPY(ZB_BUF_GET_PARAM(buf, zb_apsde_data_indication_t), ind, sizeof(zb_apsde_data_indication_t));
 
-  ncp_host_handle_apsde_data_indication(buf);
+    ncp_host_handle_apsde_data_indication(buf);
 
-  TRACE_MSG(TRACE_TRANSPORT3, "<< adaptor_handle_apsde_data_indication", (FMT__0));
+    TRACE_MSG(TRACE_TRANSPORT3, "<< adaptor_handle_apsde_data_indication", (FMT__0));
 }
 
 void adaptor_handle_apsde_data_request_response(zb_apsde_data_confirm_t *conf)
 {
-  zb_bufid_t buf = zb_buf_get(ZB_TRUE, 0);
+    zb_bufid_t buf = zb_buf_get(ZB_TRUE, 0);
 
-  TRACE_MSG(TRACE_TRANSPORT3, ">> adaptor_handle_apsde_data_request_response ", (FMT__0));
+    TRACE_MSG(TRACE_TRANSPORT3, ">> adaptor_handle_apsde_data_request_response ", (FMT__0));
 
-  ZB_MEMCPY(ZB_BUF_GET_PARAM(buf, zb_apsde_data_confirm_t), conf, sizeof(zb_apsde_data_confirm_t));
+    ZB_MEMCPY(ZB_BUF_GET_PARAM(buf, zb_apsde_data_confirm_t), conf, sizeof(zb_apsde_data_confirm_t));
 
-  ncp_host_handle_apsde_data_request_response(buf);
+    ncp_host_handle_apsde_data_request_response(buf);
 
-  TRACE_MSG(TRACE_TRANSPORT3, "<< adaptor_handle_apsde_data_request_response ", (FMT__0));
+    TRACE_MSG(TRACE_TRANSPORT3, "<< adaptor_handle_apsde_data_request_response ", (FMT__0));
 }
 
 
 zb_ret_t ncp_host_apsde_data_request(zb_bufid_t buf)
 {
-  zb_apsde_data_req_t *req = ZB_BUF_GET_PARAM(buf, zb_apsde_data_req_t);
-  zb_uint8_t param_len;
-  zb_uint16_t data_len;
-  zb_uint8_t *data_ptr;
+    zb_apsde_data_req_t *req = ZB_BUF_GET_PARAM(buf, zb_apsde_data_req_t);
+    zb_uint8_t param_len;
+    zb_uint16_t data_len;
+    zb_uint8_t *data_ptr;
 
-  zb_uint8_t tsn;
-  zb_ret_t ret = RET_BUSY;
+    zb_uint8_t tsn;
+    zb_ret_t ret = RET_BUSY;
 
-  TRACE_MSG(TRACE_TRANSPORT2, ">> ncp_host_apsde_data_request", (FMT__0));
+    TRACE_MSG(TRACE_TRANSPORT2, ">> ncp_host_apsde_data_request", (FMT__0));
 
-  data_ptr = (zb_uint8_t *)zb_buf_begin(buf);
-  param_len = *data_ptr;
-  data_ptr = data_ptr + 1;
-  data_len = *(zb_uint16_t *)data_ptr;
-  data_ptr = data_ptr + 2;
+    data_ptr = (zb_uint8_t *)zb_buf_begin(buf);
+    param_len = *data_ptr;
+    data_ptr = data_ptr + 1;
+    data_len = *(zb_uint16_t *)data_ptr;
+    data_ptr = data_ptr + 2;
 
-  ret = ncp_host_apsde_data_request_transport(req, param_len, data_len, data_ptr, &tsn);
+    ret = ncp_host_apsde_data_request_transport(req, param_len, data_len, data_ptr, &tsn);
 
-  zb_buf_free(buf);
+    zb_buf_free(buf);
 
-  TRACE_MSG(TRACE_TRANSPORT2, "<< ncp_host_apsde_data_request, ret %d", (FMT__D, ret));
+    TRACE_MSG(TRACE_TRANSPORT2, "<< ncp_host_apsde_data_request, ret %d", (FMT__D, ret));
 }

@@ -29,9 +29,9 @@
 
 typedef struct zb_r22_cert_test_ctx_s
 {
-  zb_uint8_t page;
-  zb_uint8_t channel;
-  zb_test_control_mode_t mode;
+    zb_uint8_t page;
+    zb_uint8_t channel;
+    zb_test_control_mode_t mode;
 } zb_r22_cert_test_ctx_t;
 
 extern zb_r22_cert_test_ctx_t g_cert_test_ctx;
@@ -42,22 +42,22 @@ extern zb_r22_cert_test_ctx_t g_cert_test_ctx;
 #ifdef ZB_MULTI_TEST
 
 #ifndef TEST_PAGE
-#define TEST_PAGE        	(g_cert_test_ctx.page)
+#define TEST_PAGE           (g_cert_test_ctx.page)
 #endif /* ifndef TEST_PAGE */
 
 #ifndef TEST_CHANNEL
-#define TEST_CHANNEL     	(g_cert_test_ctx.channel)
+#define TEST_CHANNEL        (g_cert_test_ctx.channel)
 #define TEST_CHANNEL_MASK       (1l << (TEST_CHANNEL))
 #endif /* ifndef TEST_CHANNEL */
 
 #else /* ifdef ZB_MULTI_TEST */
 
 #ifndef TEST_PAGE
-#define TEST_PAGE        	ZB_CERT_TEST_DEAULT_PAGE
+#define TEST_PAGE           ZB_CERT_TEST_DEAULT_PAGE
 #endif /* ifndef TEST_PAGE */
 
 #ifndef TEST_CHANNEL
-#define TEST_CHANNEL     	ZB_CERT_TEST_DEAULT_CHANNEL
+#define TEST_CHANNEL        ZB_CERT_TEST_DEAULT_CHANNEL
 #define TEST_CHANNEL_MASK       (1l << (TEST_CHANNEL))
 #endif /* ifndef TEST_CHANNEL */
 
@@ -67,13 +67,13 @@ void zb_cert_test_set_init_globals();
 
 typedef enum zb_step_status_e
 {
-  STARTING                        = 0x0,
-	CHANNEL_INCREASING              = 0x1,      
-  CHANNEL_DECREASING              = 0x2,
-  TRANSMITTING                    = 0x3,
-	TRANSMITTING_1000               = 0x4,
-  TESTING_AND_PRINTING            = 0x5,
-	STEP_DONE                       = 0x6
+    STARTING                        = 0x0,
+    CHANNEL_INCREASING              = 0x1,
+    CHANNEL_DECREASING              = 0x2,
+    TRANSMITTING                    = 0x3,
+    TRANSMITTING_1000               = 0x4,
+    TESTING_AND_PRINTING            = 0x5,
+    STEP_DONE                       = 0x6
 }
 zb_step_status_t;
 #endif /* _ZB_CERT_TEST_GLOBALS */

@@ -47,127 +47,127 @@ static void send_mgmt_lqi_req(zb_uint8_t param, zb_uint8_t idx);
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("zdo_4_zr");
+    ZB_INIT("zdo_4_zr");
 
 
-  /* Pass verdict is: broadcast Beacon request at all channels */
-  ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_ieee_addr_r);
-  ZB_BDB().bdb_primary_channel_set = (1l << 14);
-  ZB_BDB().bdb_mode = 1;
+    /* Pass verdict is: broadcast Beacon request at all channels */
+    ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_ieee_addr_r);
+    ZB_BDB().bdb_primary_channel_set = (1l << 14);
+    ZB_BDB().bdb_mode = 1;
 
-  if (zdo_dev_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    if (zdo_dev_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 static void test_finished(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_APP1, "Test finished", (FMT__0));
-  zb_free_buf(ZB_BUF_FROM_REF(param));
+    TRACE_MSG(TRACE_APP1, "Test finished", (FMT__0));
+    zb_free_buf(ZB_BUF_FROM_REF(param));
 }
 
 static void send_node_desc_req(zb_uint8_t param)
 {
-  zb_buf_t *buf = ZB_BUF_FROM_REF(param);
-  zb_zdo_node_desc_req_t *req;
+    zb_buf_t *buf = ZB_BUF_FROM_REF(param);
+    zb_zdo_node_desc_req_t *req;
 
-  TRACE_MSG(TRACE_APP1, ">>send_node_desc_req", (FMT__0));
+    TRACE_MSG(TRACE_APP1, ">>send_node_desc_req", (FMT__0));
 
-  ZB_BUF_INITIAL_ALLOC(buf, sizeof(zb_zdo_node_desc_req_t), req);
-  req->nwk_addr = zb_address_short_by_ieee(g_ieee_addr_dut);
-  zb_zdo_node_desc_req(param, test_finished);
+    ZB_BUF_INITIAL_ALLOC(buf, sizeof(zb_zdo_node_desc_req_t), req);
+    req->nwk_addr = zb_address_short_by_ieee(g_ieee_addr_dut);
+    zb_zdo_node_desc_req(param, test_finished);
 
-  TRACE_MSG(TRACE_APP1, "<<send_node_desc_req", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "<<send_node_desc_req", (FMT__0));
 }
 
 static void mgmt_lqi_resp(zb_uint8_t param)
 {
-  zb_buf_t *buf = ZB_BUF_FROM_REF(param);
-  zb_uint8_t *zdp_cmd = ZB_BUF_BEGIN(buf);
-  zb_zdo_mgmt_lqi_resp_t *resp = (zb_zdo_mgmt_lqi_resp_t*)(zdp_cmd);
+    zb_buf_t *buf = ZB_BUF_FROM_REF(param);
+    zb_uint8_t *zdp_cmd = ZB_BUF_BEGIN(buf);
+    zb_zdo_mgmt_lqi_resp_t *resp = (zb_zdo_mgmt_lqi_resp_t *)(zdp_cmd);
 
-  if (resp->status == ZB_ZDP_STATUS_SUCCESS &&
-      (resp->neighbor_table_entries > (resp->start_index + resp->neighbor_table_list_count)))
-  {
-    send_mgmt_lqi_req(param, resp->start_index + resp->neighbor_table_list_count);
-  }
-  else
-  {
-    ZB_SCHEDULE_CALLBACK(send_node_desc_req, param);
-  }
+    if (resp->status == ZB_ZDP_STATUS_SUCCESS &&
+            (resp->neighbor_table_entries > (resp->start_index + resp->neighbor_table_list_count)))
+    {
+        send_mgmt_lqi_req(param, resp->start_index + resp->neighbor_table_list_count);
+    }
+    else
+    {
+        ZB_SCHEDULE_CALLBACK(send_node_desc_req, param);
+    }
 }
 
 static void send_mgmt_lqi_req(zb_uint8_t param, zb_uint8_t idx)
 {
-  zb_buf_t *buf = ZB_BUF_FROM_REF(param);
-  zb_zdo_mgmt_lqi_param_t *req_param = ZB_GET_BUF_PARAM(buf, zb_zdo_mgmt_lqi_param_t);
+    zb_buf_t *buf = ZB_BUF_FROM_REF(param);
+    zb_zdo_mgmt_lqi_param_t *req_param = ZB_GET_BUF_PARAM(buf, zb_zdo_mgmt_lqi_param_t);
 
-  TRACE_MSG(TRACE_APP1, ">>send_mgmt_lqi_req", (FMT__0));
+    TRACE_MSG(TRACE_APP1, ">>send_mgmt_lqi_req", (FMT__0));
 
-  req_param->dst_addr = zb_address_short_by_ieee(g_ieee_addr_dut);
-  req_param->start_index = idx;
-  zb_zdo_mgmt_lqi_req(param, mgmt_lqi_resp);
+    req_param->dst_addr = zb_address_short_by_ieee(g_ieee_addr_dut);
+    req_param->start_index = idx;
+    zb_zdo_mgmt_lqi_req(param, mgmt_lqi_resp);
 
-  TRACE_MSG(TRACE_APP1, "<<send_mgmt_lqi_req", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "<<send_mgmt_lqi_req", (FMT__0));
 }
 
 static void start_mgmt_lqi_req(zb_uint8_t param)
 {
-  if (param == 0)
-  {
-    ZB_GET_OUT_BUF_DELAYED(start_mgmt_lqi_req);
-  }
-  else
-  {
-    send_mgmt_lqi_req(param, 0);
-  }
+    if (param == 0)
+    {
+        ZB_GET_OUT_BUF_DELAYED(start_mgmt_lqi_req);
+    }
+    else
+    {
+        send_mgmt_lqi_req(param, 0);
+    }
 }
 
 static void send_beacon_request(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_APP1, ">>send_beacon_request", (FMT__0));
+    TRACE_MSG(TRACE_APP1, ">>send_beacon_request", (FMT__0));
 
-  ZB_MLME_BUILD_SCAN_REQUEST((zb_buf_t *)ZB_BUF_FROM_REF(param), ZB_BDB().bdb_primary_channel_set,
-                             ACTIVE_SCAN, TEST_SCAN_DURATION);
+    ZB_MLME_BUILD_SCAN_REQUEST((zb_buf_t *)ZB_BUF_FROM_REF(param), ZB_BDB().bdb_primary_channel_set,
+                               ACTIVE_SCAN, TEST_SCAN_DURATION);
 
-  ZB_SCHEDULE_CALLBACK(zb_mlme_scan_request, param);
+    ZB_SCHEDULE_CALLBACK(zb_mlme_scan_request, param);
 
-  ZB_SCHEDULE_ALARM(start_mgmt_lqi_req, 0, TEST_MGMT_LQI_REQ_DELAY);
+    ZB_SCHEDULE_ALARM(start_mgmt_lqi_req, 0, TEST_MGMT_LQI_REQ_DELAY);
 
-  TRACE_MSG(TRACE_APP1, "<<send_beacon_request", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "<<send_beacon_request", (FMT__0));
 }
 
 static void start_test_sequence(zb_uint8_t param)
 {
-  ZB_SCHEDULE_CALLBACK(send_beacon_request, param);
+    ZB_SCHEDULE_CALLBACK(send_beacon_request, param);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_buf_t *buf = ZB_BUF_FROM_REF(param);
-  if (buf->u.hdr.status == 0)
-  {
-    TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
-    ZB_SCHEDULE_ALARM(start_test_sequence, param, TEST_START_TIMEOUT);
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, (int)buf->u.hdr.status));
-    zb_free_buf(buf);
-  }
+    zb_buf_t *buf = ZB_BUF_FROM_REF(param);
+    if (buf->u.hdr.status == 0)
+    {
+        TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
+        ZB_SCHEDULE_ALARM(start_test_sequence, param, TEST_START_TIMEOUT);
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, (int)buf->u.hdr.status));
+        zb_free_buf(buf);
+    }
 }
 
 

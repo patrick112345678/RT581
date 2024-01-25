@@ -54,16 +54,16 @@ extern "C" {
 #  define IS_ABSOLUTE_PATH(f) IS_UNIX_ABSOLUTE_PATH (f)
 #endif
 
-#define IS_DIR_SEPARATOR_1(dos_based, c)				\
-  (((c) == '/')								\
+#define IS_DIR_SEPARATOR_1(dos_based, c)                \
+  (((c) == '/')                             \
    || (((c) == '\\') && (dos_based)))
 
-#define HAS_DRIVE_SPEC_1(dos_based, f)			\
+#define HAS_DRIVE_SPEC_1(dos_based, f)          \
   ((f)[0] && ((f)[1] == ':') && (dos_based))
 
 /* Remove the drive spec from F, assuming HAS_DRIVE_SPEC (f).
    The result is a pointer to the remainder of F.  */
-#define STRIP_DRIVE_SPEC(f)	((f) + 2)
+#define STRIP_DRIVE_SPEC(f) ((f) + 2)
 
 #define IS_DOS_DIR_SEPARATOR(c) IS_DIR_SEPARATOR_1 (1, c)
 #define IS_DOS_ABSOLUTE_PATH(f) IS_ABSOLUTE_PATH_1 (1, f)
@@ -77,15 +77,15 @@ extern "C" {
    of IS_ABSOLUTE_PATH want to know whether to prepend the current
    working directory to a file name, which should not be done with a
    name like d:foo.  */
-#define IS_ABSOLUTE_PATH_1(dos_based, f)		 \
-  (IS_DIR_SEPARATOR_1 (dos_based, (f)[0])		 \
+#define IS_ABSOLUTE_PATH_1(dos_based, f)         \
+  (IS_DIR_SEPARATOR_1 (dos_based, (f)[0])        \
    || HAS_DRIVE_SPEC_1 (dos_based, f))
 
 extern int filename_cmp (const char *s1, const char *s2);
-#define FILENAME_CMP(s1, s2)	filename_cmp(s1, s2)
+#define FILENAME_CMP(s1, s2)    filename_cmp(s1, s2)
 
 extern int filename_ncmp (const char *s1, const char *s2,
-			  size_t n);
+                          size_t n);
 
 extern hashval_t filename_hash (const void *s);
 

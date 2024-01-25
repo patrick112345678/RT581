@@ -44,13 +44,13 @@
  */
 typedef enum zb_mac_transport_type_e
 {
-  ZB_MAC_TRANSPORT_TYPE_CONSOLE  = 0x00, /*!< Data packet type */
-  ZB_MAC_TRANSPORT_TYPE_DUMP  = 0x01, /*!< Dump packet type */
-  ZB_MAC_TRANSPORT_TYPE_TRACE = 0x02, /*!< Trace packet type */
-  ZB_MAC_TRANSPORT_TYPE_CRASH_DATA = 0x03, /*!< Crash dump */
-  ZB_MAC_TRANSPORT_TYPE_MAC_SPLIT_DATA = 0x04, /*!< MAC split data */
-  ZB_MAC_TRANSPORT_TYPE_OTA_PROTOCOL = 0x05, /*!< OTA protocol used over MACSPLIT */
-  ZB_MAC_TRANSPORT_TYPE_NUM
+    ZB_MAC_TRANSPORT_TYPE_CONSOLE  = 0x00, /*!< Data packet type */
+    ZB_MAC_TRANSPORT_TYPE_DUMP  = 0x01, /*!< Dump packet type */
+    ZB_MAC_TRANSPORT_TYPE_TRACE = 0x02, /*!< Trace packet type */
+    ZB_MAC_TRANSPORT_TYPE_CRASH_DATA = 0x03, /*!< Crash dump */
+    ZB_MAC_TRANSPORT_TYPE_MAC_SPLIT_DATA = 0x04, /*!< MAC split data */
+    ZB_MAC_TRANSPORT_TYPE_OTA_PROTOCOL = 0x05, /*!< OTA protocol used over MACSPLIT */
+    ZB_MAC_TRANSPORT_TYPE_NUM
 }
 zb_mac_transport_type_t;
 
@@ -61,28 +61,28 @@ zb_mac_transport_type_t;
  */
 typedef ZB_PACKED_PRE struct zb_mac_transport_hdr_s
 {
-  zb_uint8_t len;  /*!< Packet length, including hdr */
-  zb_uint8_t type; /*!< Packet type, @see zb_mac_transport_type_t */
-  zb_uint16_t  time;             /*!< time label */
+    zb_uint8_t len;  /*!< Packet length, including hdr */
+    zb_uint8_t type; /*!< Packet type, @see zb_mac_transport_type_t */
+    zb_uint16_t  time;             /*!< time label */
 } ZB_PACKED_STRUCT
 zb_mac_transport_hdr_t;
 
 
 typedef ZB_PACKED_PRE struct zb_dump_hdr_v3_s
 {
-  zb_uint8_t version;
-  zb_uint8_t len;
-  zb_uint8_t page;
-  zb_uint8_t channel;
-  zb_uint32_t trace_cnt;
+    zb_uint8_t version;
+    zb_uint8_t len;
+    zb_uint8_t page;
+    zb_uint8_t channel;
+    zb_uint32_t trace_cnt;
 } ZB_PACKED_STRUCT
 zb_dump_hdr_v3_t;
 
 typedef ZB_PACKED_PRE struct zb_dump_hdr_s
 {
-  zb_uint32_t trace_cnt;
-  zb_uint8_t channel;
-  zb_uint8_t len;
+    zb_uint32_t trace_cnt;
+    zb_uint8_t channel;
+    zb_uint8_t len;
 } ZB_PACKED_STRUCT
 zb_dump_hdr_t;
 

@@ -5,5 +5,5 @@ void SystemInit()
 
 void main()
 {
-	for (;;);
+    for (;;);
 }

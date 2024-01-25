@@ -131,9 +131,9 @@ void otCoapSecureSetPsk(otInstance    *aInstance,
  *
  */
 otError otCoapSecureGetPeerCertificateBase64(otInstance    *aInstance,
-                                             unsigned char *aPeerCert,
-                                             size_t        *aCertLength,
-                                             size_t         aCertBufferSize);
+        unsigned char *aPeerCert,
+        size_t        *aCertLength,
+        size_t         aCertBufferSize);
 
 /**
  * This method sets the authentication mode for the coap secure connection.
@@ -253,11 +253,11 @@ bool otCoapSecureIsConnectionActive(otInstance *aInstance);
  *
  */
 otError otCoapSecureSendRequestBlockWise(otInstance                 *aInstance,
-                                         otMessage                  *aMessage,
-                                         otCoapResponseHandler       aHandler,
-                                         void                       *aContext,
-                                         otCoapBlockwiseTransmitHook aTransmitHook,
-                                         otCoapBlockwiseReceiveHook  aReceiveHook);
+        otMessage                  *aMessage,
+        otCoapResponseHandler       aHandler,
+        void                       *aContext,
+        otCoapBlockwiseTransmitHook aTransmitHook,
+        otCoapBlockwiseReceiveHook  aReceiveHook);
 
 /**
  * This method sends a CoAP request over secure DTLS connection.
@@ -337,8 +337,8 @@ void otCoapSecureSetDefaultHandler(otInstance *aInstance, otCoapRequestHandler a
  *
  */
 void otCoapSecureSetClientConnectedCallback(otInstance                     *aInstance,
-                                            otHandleCoapSecureClientConnect aHandler,
-                                            void                           *aContext);
+        otHandleCoapSecureClientConnect aHandler,
+        void                           *aContext);
 
 /**
  * This function sends a CoAP response block-wise from the CoAP Secure server.
@@ -357,10 +357,10 @@ void otCoapSecureSetClientConnectedCallback(otInstance                     *aIns
  *
  */
 otError otCoapSecureSendResponseBlockWise(otInstance                 *aInstance,
-                                          otMessage                  *aMessage,
-                                          const otMessageInfo        *aMessageInfo,
-                                          void                       *aContext,
-                                          otCoapBlockwiseTransmitHook aTransmitHook);
+        otMessage                  *aMessage,
+        const otMessageInfo        *aMessageInfo,
+        void                       *aContext,
+        otCoapBlockwiseTransmitHook aTransmitHook);
 
 /**
  * This function sends a CoAP response from the CoAP Secure server.

@@ -28,7 +28,7 @@ extern "C"
 /**
  *  @Brief I2C CLOCK Constant Definitions
  */
- 
+
 
 #define I2C_CLOCK_400K      0       /*!< I2C Master running in 400KHz  \hideinitializer */
 #define I2C_CLOCK_200K      1       /*!< I2C Master running in 200KHz  \hideinitializer */
@@ -41,7 +41,7 @@ extern "C"
 /**
  *  @Brief I2C Master return ERROR Constant Definitions
  */
- 
+
 /*return status in I2C USER notification. */
 #define I2C_STATUS_OK             0           /*!< I2C command return SUCCESS  \hideinitializer */
 #define I2C_STATUS_ERR_NOACK      1           /*!< I2C command return ERR NOACK  \hideinitializer */
@@ -58,10 +58,10 @@ extern "C"
  *
  * @param[in] statue I2C transfer status.
  *
- * @details    This callback function is still running in interrupt mode, so this function 
- *              should be as short as possible. It can NOT call any block function in this 
+ * @details    This callback function is still running in interrupt mode, so this function
+ *              should be as short as possible. It can NOT call any block function in this
  *              callback service routine.
- * 
+ *
  *              This function will be called when I2C master finished the transfer request, or there
  *              is no ACK during the transfer (error case).
  *
@@ -72,8 +72,9 @@ typedef void (* i2cm_proc_cb_t)(uint32_t status);
 /**
  *@brief  Structure for the I2C transfer request.
  */
-typedef struct {
-    i2cm_proc_cb_t  endproc_cb;  /*!< I2C complete callback function  \hideinitializer */    
+typedef struct
+{
+    i2cm_proc_cb_t  endproc_cb;  /*!< I2C complete callback function  \hideinitializer */
     uint8_t     dev_addr;        /*!< I2C device address, 7bits only  \hideinitializer */
     uint8_t     bFlag_16bits;    /*!< 1 for register address is 16bits, 0 for register address is 8bits.  \hideinitializer */
     uint16_t    reg_addr;        /*!< I2C register address value  \hideinitializer */
@@ -85,7 +86,7 @@ typedef struct {
  *
  *
  * @details
- *     This driver is nonsecure world driver. 
+ *     This driver is nonsecure world driver.
  *     System should set SCL and SDA pin in pinmux initial set (most in secure world.)
  *
  *
@@ -94,15 +95,15 @@ typedef struct {
  *   So the first time after booting, MCU will send 9 SCL clock to reset i2c device.
  *
  *
- *   
+ *
  *   SCL_pin is SCL pin number. Only pin18, pin20, or pin22 is correct setting pin.
  *   SDA_pin is SDA pin number. Only pin19, pin21, or pin23 is correct setting pin.
  *
  *   This function also will set the pin as open drain mode.
- *   So if system want to enter deeply sleep mode, it should turn these pins to input mode again. 
- *   
+ *   So if system want to enter deeply sleep mode, it should turn these pins to input mode again.
+ *
  */
- 
+
 uint32_t i2c_preinit(uint32_t master_id);
 
 /**
@@ -135,14 +136,14 @@ uint32_t i2c_init(uint32_t master_id, uint32_t I2C_SPEED);
  *
  */
 
-/* 
+/*
  * In this function "Addr" is 7 bits address, it will auto add bit8 for write
  * mode.
  */
- 
+
 /**
  * @brief  I2C write data to slave
- * 
+ *
  * @param[in]  slave       Specifies the I2C slave address and register address.
  * @param[in]  data        Pointer to buffer with data to write to I2C slave.
  * @param[in]  len         Number of data bytes to transmit, maxmum size is 1024 bytes.
@@ -159,7 +160,7 @@ uint32_t i2c_init(uint32_t master_id, uint32_t I2C_SPEED);
  *    has started the request. During the operation it not allowed to call any I2C Master function again.
  *    Also the data buffer must stay allocated and the contents of data must not be modified.
  *    When request has finished, the callback function "endproc_cb" will be called with parameter I2C_STATUS_OK.
- *      
+ *
  *       The request is aborted in the following case:
  *           selected slave has not acknowledged the address.
  *           bus error has been detected.
@@ -180,8 +181,8 @@ uint32_t i2c_write(
 );
 
 /**
- * @brief  I2C read data from slave 
- * 
+ * @brief  I2C read data from slave
+ *
  * @param[in]  slave       Specifies the I2C slave address and register address.
  * @param[in]  data        Pointer to buffer with data to receive from I2C slave.
  * @param[in]  len         Number of data bytes to receive, maxmum size is 1024 bytes.
@@ -198,7 +199,7 @@ uint32_t i2c_write(
  *    has started the request. During the operation it not allowed to call any I2C Master function again.
  *    Also the data buffer must stay allocated.
  *    When request has finished, the callback function "endproc_cb" will be called with parameter I2C_STATUS_OK.
- *      
+ *
  *       The request is aborted in the following case:
  *           selected slave has not acknowledged the address.
  *           bus error has been detected.
@@ -224,8 +225,8 @@ uint32_t i2c_read(
 
 /*@}*/ /* end of group Standard_Driver */
 
-    
-    uint32_t i2c_read2(
+
+uint32_t i2c_read2(
     uint32_t master_id,
     const i2c_slave_data_t  *slave,
     uint8_t  *data,

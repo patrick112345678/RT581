@@ -22,14 +22,15 @@ along with GCC; see the file COPYING3.  If not see
 #define GCC_GCSE_H
 
 /* Target-dependent globals.  */
-struct target_gcse {
-  /* Nonzero for each mode that supports (set (reg) (reg)).
-     This is trivially true for integer and floating point values.
-     It may or may not be true for condition codes.  */
-  char x_can_copy[(int) NUM_MACHINE_MODES];
+struct target_gcse
+{
+    /* Nonzero for each mode that supports (set (reg) (reg)).
+       This is trivially true for integer and floating point values.
+       It may or may not be true for condition codes.  */
+    char x_can_copy[(int) NUM_MACHINE_MODES];
 
-  /* True if the previous field has been initialized.  */
-  bool x_can_copy_init_p;
+    /* True if the previous field has been initialized.  */
+    bool x_can_copy_init_p;
 };
 
 extern struct target_gcse default_target_gcse;

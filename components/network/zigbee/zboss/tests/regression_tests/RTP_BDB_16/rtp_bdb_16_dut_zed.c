@@ -53,7 +53,7 @@ static zb_ieee_addr_t g_ieee_addr_dut_zed = IEEE_ADDR_DUT_ZED;
 
 typedef ZB_PACKED_PRE struct test_device_nvram_dataset_s
 {
-  zb_uint32_t reboots_count;
+    zb_uint32_t reboots_count;
 } ZB_PACKED_STRUCT test_device_nvram_dataset_t;
 
 static zb_uint16_t test_get_nvram_data_size();
@@ -66,141 +66,141 @@ static zb_uint32_t g_reboots_count = 0;
 
 MAIN()
 {
-  ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
-  ZB_SET_TRACE_LEVEL(4);
+    ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
+    ZB_SET_TRACE_LEVEL(4);
 
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  ZB_INIT("zdo_dut_zed");
+    ZB_INIT("zdo_dut_zed");
 
-  zb_set_long_address(g_ieee_addr_dut_zed);
+    zb_set_long_address(g_ieee_addr_dut_zed);
 
-  zb_reg_test_set_common_channel_settings();
-  zb_set_network_ed_role((1l << TEST_CHANNEL));
-  zb_set_nvram_erase_at_start(ZB_FALSE);
-  zb_set_rx_on_when_idle(ZB_FALSE);
+    zb_reg_test_set_common_channel_settings();
+    zb_set_network_ed_role((1l << TEST_CHANNEL));
+    zb_set_nvram_erase_at_start(ZB_FALSE);
+    zb_set_rx_on_when_idle(ZB_FALSE);
 
-  zb_nvram_register_app1_write_cb(test_nvram_write_app_data, test_get_nvram_data_size);
-  zb_nvram_register_app1_read_cb(test_nvram_read_app_data);
+    zb_nvram_register_app1_write_cb(test_nvram_write_app_data, test_get_nvram_data_size);
+    zb_nvram_register_app1_read_cb(test_nvram_read_app_data);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  switch (sig)
-  {
+    switch (sig)
+    {
     case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        ZB_SCHEDULE_CALLBACK(trigger_steering, 0);
-      }
-      break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
+        TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            ZB_SCHEDULE_CALLBACK(trigger_steering, 0);
+        }
+        break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
 
     case ZB_BDB_SIGNAL_STEERING:
-      TRACE_MSG(TRACE_APP1, "signal: ZB_BDB_SIGNAL_STEERING, status %d", (FMT__D, status));
+        TRACE_MSG(TRACE_APP1, "signal: ZB_BDB_SIGNAL_STEERING, status %d", (FMT__D, status));
 
-      /* Fail with assertion error if we have ZB_BDB_SIGNAL_STEERING after reboot */
-      ZB_ASSERT(g_reboots_count == 0 || g_reboots_count == REBOOTS_COUNT_BEFORE_STEERING);
+        /* Fail with assertion error if we have ZB_BDB_SIGNAL_STEERING after reboot */
+        ZB_ASSERT(g_reboots_count == 0 || g_reboots_count == REBOOTS_COUNT_BEFORE_STEERING);
 
-      break; /* ZB_BDB_SIGNAL_STEERING */
+        break; /* ZB_BDB_SIGNAL_STEERING */
 
     case ZB_BDB_SIGNAL_DEVICE_REBOOT:
-      TRACE_MSG(TRACE_APP1, "signal: ZB_BDB_SIGNAL_DEVICE_REBOOT, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        ZB_ASSERT(!zb_bdb_is_factory_new());
-
-        g_reboots_count++;
-        zb_nvram_write_dataset(ZB_NVRAM_APP_DATA1);
-
-        if (g_reboots_count == REBOOTS_COUNT_BEFORE_STEERING)
+        TRACE_MSG(TRACE_APP1, "signal: ZB_BDB_SIGNAL_DEVICE_REBOOT, status %d", (FMT__D, status));
+        if (status == 0)
         {
-          test_step_register(trigger_steering, 0, RTP_BDB_16_STEP_1_TIME_ZED);
-          test_control_start(TEST_MODE, RTP_BDB_16_STEP_1_DELAY_ZED);
-        }
+            ZB_ASSERT(!zb_bdb_is_factory_new());
 
-      }
-      break; /* ZB_BDB_SIGNAL_DEVICE_REBOOT */
+            g_reboots_count++;
+            zb_nvram_write_dataset(ZB_NVRAM_APP_DATA1);
+
+            if (g_reboots_count == REBOOTS_COUNT_BEFORE_STEERING)
+            {
+                test_step_register(trigger_steering, 0, RTP_BDB_16_STEP_1_TIME_ZED);
+                test_control_start(TEST_MODE, RTP_BDB_16_STEP_1_DELAY_ZED);
+            }
+
+        }
+        break; /* ZB_BDB_SIGNAL_DEVICE_REBOOT */
 
     case ZB_COMMON_SIGNAL_CAN_SLEEP:
-      if (status == 0)
-      {
-        zb_sleep_now();
-      }
-      break; /* ZB_COMMON_SIGNAL_CAN_SLEEP */
+        if (status == 0)
+        {
+            zb_sleep_now();
+        }
+        break; /* ZB_COMMON_SIGNAL_CAN_SLEEP */
 
     default:
-      TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
-      break;
-  }
+        TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 static void trigger_steering(zb_uint8_t unused)
 {
-  zb_bool_t steering_status;
+    zb_bool_t steering_status;
 
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  steering_status = bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
+    steering_status = bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
 
-  TRACE_MSG(TRACE_APP1, "trigger_steering(), status %hd", (FMT__H, steering_status));
+    TRACE_MSG(TRACE_APP1, "trigger_steering(), status %hd", (FMT__H, steering_status));
 }
 
 static zb_uint16_t test_get_nvram_data_size()
 {
-  TRACE_MSG(TRACE_APP1, "test_get_nvram_data_size, ret %hd", (FMT__H, sizeof(test_device_nvram_dataset_t)));
-  return sizeof(test_device_nvram_dataset_t);
+    TRACE_MSG(TRACE_APP1, "test_get_nvram_data_size, ret %hd", (FMT__H, sizeof(test_device_nvram_dataset_t)));
+    return sizeof(test_device_nvram_dataset_t);
 }
 
 static void test_nvram_read_app_data(zb_uint8_t page, zb_uint32_t pos, zb_uint16_t payload_length)
 {
-  test_device_nvram_dataset_t ds;
-  zb_ret_t ret;
+    test_device_nvram_dataset_t ds;
+    zb_ret_t ret;
 
-  TRACE_MSG(TRACE_APP1, ">> test_nvram_read_app_data page %hd pos %d", (FMT__H_D, page, pos));
+    TRACE_MSG(TRACE_APP1, ">> test_nvram_read_app_data page %hd pos %d", (FMT__H_D, page, pos));
 
-  ZB_ASSERT(payload_length == sizeof(ds));
+    ZB_ASSERT(payload_length == sizeof(ds));
 
-  ret = zb_nvram_read_data(page, pos, (zb_uint8_t*)&ds, sizeof(ds));
+    ret = zb_nvram_read_data(page, pos, (zb_uint8_t *)&ds, sizeof(ds));
 
-  ZB_ASSERT(ret == RET_OK);
+    ZB_ASSERT(ret == RET_OK);
 
-  g_reboots_count = ds.reboots_count;
+    g_reboots_count = ds.reboots_count;
 
-  TRACE_MSG(TRACE_APP1, "<< test_nvram_read_app_data ret %d", (FMT__D, ret));
+    TRACE_MSG(TRACE_APP1, "<< test_nvram_read_app_data ret %d", (FMT__D, ret));
 }
 
 static zb_ret_t test_nvram_write_app_data(zb_uint8_t page, zb_uint32_t pos)
 {
-  zb_ret_t ret;
-  test_device_nvram_dataset_t ds;
+    zb_ret_t ret;
+    test_device_nvram_dataset_t ds;
 
-  TRACE_MSG(TRACE_APP1, ">> test_nvram_write_app_data, page %hd, pos %d", (FMT__H_D, page, pos));
+    TRACE_MSG(TRACE_APP1, ">> test_nvram_write_app_data, page %hd, pos %d", (FMT__H_D, page, pos));
 
-  ds.reboots_count = g_reboots_count;
-  ret = zb_nvram_write_data(page, pos, (zb_uint8_t*)&ds, sizeof(ds));
+    ds.reboots_count = g_reboots_count;
+    ret = zb_nvram_write_data(page, pos, (zb_uint8_t *)&ds, sizeof(ds));
 
-  TRACE_MSG(TRACE_APP1, "<< test_nvram_write_app_data, ret %d", (FMT__D, ret));
+    TRACE_MSG(TRACE_APP1, "<< test_nvram_write_app_data, ret %d", (FMT__D, ret));
 
-  return ret;
+    return ret;
 }
 
 /*! @} */

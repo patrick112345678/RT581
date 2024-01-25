@@ -62,29 +62,29 @@ typedef _list_t ilist_t;
 /* This lists possible transformations that done locally, i.e. in
    moveup_expr.  */
 enum local_trans_type
-  {
+{
     TRANS_SUBSTITUTION,
     TRANS_SPECULATION
-  };
+};
 
 /* This struct is used to record the history of expression's
    transformations.  */
 struct expr_history_def_1
 {
-  /* UID of the insn.  */
-  unsigned uid;
+    /* UID of the insn.  */
+    unsigned uid;
 
-  /* How the expression looked like.  */
-  vinsn_t old_expr_vinsn;
+    /* How the expression looked like.  */
+    vinsn_t old_expr_vinsn;
 
-  /* How the expression looks after the transformation.  */
-  vinsn_t new_expr_vinsn;
+    /* How the expression looks after the transformation.  */
+    vinsn_t new_expr_vinsn;
 
-  /* And its speculative status.  */
-  ds_t spec_ds;
+    /* And its speculative status.  */
+    ds_t spec_ds;
 
-  /* Type of the transformation.  */
-  enum local_trans_type type;
+    /* Type of the transformation.  */
+    enum local_trans_type type;
 };
 
 typedef struct expr_history_def_1 expr_history_def;
@@ -93,67 +93,67 @@ typedef struct expr_history_def_1 expr_history_def;
 /* Expression information.  */
 struct _expr
 {
-  /* Insn description.  */
-  vinsn_t vinsn;
+    /* Insn description.  */
+    vinsn_t vinsn;
 
-  /* SPEC is the degree of speculativeness.
-     FIXME: now spec is increased when an rhs is moved through a
-     conditional, thus showing only control speculativeness.  In the
-     future we'd like to count data spec separately to allow a better
-     control on scheduling.  */
-  int spec;
+    /* SPEC is the degree of speculativeness.
+       FIXME: now spec is increased when an rhs is moved through a
+       conditional, thus showing only control speculativeness.  In the
+       future we'd like to count data spec separately to allow a better
+       control on scheduling.  */
+    int spec;
 
-  /* Degree of speculativeness measured as probability of executing
-     instruction's original basic block given relative to
-     the current scheduling point.  */
-  int usefulness;
+    /* Degree of speculativeness measured as probability of executing
+       instruction's original basic block given relative to
+       the current scheduling point.  */
+    int usefulness;
 
-  /* A priority of this expression.  */
-  int priority;
+    /* A priority of this expression.  */
+    int priority;
 
-  /* A priority adjustment of this expression.  */
-  int priority_adj;
+    /* A priority adjustment of this expression.  */
+    int priority_adj;
 
-  /* Number of times the insn was scheduled.  */
-  int sched_times;
+    /* Number of times the insn was scheduled.  */
+    int sched_times;
 
-  /* A basic block index this was originated from.  Zero when there is
-     more than one originator.  */
-  int orig_bb_index;
+    /* A basic block index this was originated from.  Zero when there is
+       more than one originator.  */
+    int orig_bb_index;
 
-  /* Instruction should be of SPEC_DONE_DS type in order to be moved to this
-     point.  */
-  ds_t spec_done_ds;
+    /* Instruction should be of SPEC_DONE_DS type in order to be moved to this
+       point.  */
+    ds_t spec_done_ds;
 
-  /* SPEC_TO_CHECK_DS hold speculation types that should be checked
-     (used only during move_op ()).  */
-  ds_t spec_to_check_ds;
+    /* SPEC_TO_CHECK_DS hold speculation types that should be checked
+       (used only during move_op ()).  */
+    ds_t spec_to_check_ds;
 
-  /* Cycle on which original insn was scheduled.  Zero when it has not yet
-     been scheduled or more than one originator.  */
-  int orig_sched_cycle;
+    /* Cycle on which original insn was scheduled.  Zero when it has not yet
+       been scheduled or more than one originator.  */
+    int orig_sched_cycle;
 
-  /* This vector contains the history of insn's transformations.  */
-  vec<expr_history_def> history_of_changes;
+    /* This vector contains the history of insn's transformations.  */
+    vec<expr_history_def> history_of_changes;
 
-  /* True (1) when original target (register or memory) of this instruction
-     is available for scheduling, false otherwise.  -1 means we're not sure;
-     please run find_used_regs to clarify.  */
-  signed char target_available;
+    /* True (1) when original target (register or memory) of this instruction
+       is available for scheduling, false otherwise.  -1 means we're not sure;
+       please run find_used_regs to clarify.  */
+    signed char target_available;
 
-  /* True when this expression needs a speculation check to be scheduled.
-     This is used during find_used_regs.  */
-  BOOL_BITFIELD needs_spec_check_p : 1;
+    /* True when this expression needs a speculation check to be scheduled.
+       This is used during find_used_regs.  */
+    BOOL_BITFIELD needs_spec_check_p : 1;
 
-  /* True when the expression was substituted.  Used for statistical
-     purposes.  */
-  BOOL_BITFIELD was_substituted : 1;
+    /* True when the expression was substituted.  Used for statistical
+       purposes.  */
+    BOOL_BITFIELD was_substituted : 1;
 
-  /* True when the expression was renamed.  */
-  BOOL_BITFIELD was_renamed : 1;
+    /* True when the expression was renamed.  */
+    BOOL_BITFIELD was_renamed : 1;
 
-  /* True when expression can't be moved.  */
-  BOOL_BITFIELD cant_move : 1;
+    /* True when expression can't be moved.  */
+    BOOL_BITFIELD cant_move : 1;
 };
 
 typedef struct _expr expr_def;
@@ -186,14 +186,14 @@ typedef expr_def *expr_t;
 /* Insn definition for list of original insns in find_used_regs.  */
 struct _def
 {
-  insn_t orig_insn;
+    insn_t orig_insn;
 
-  /* FIXME: Get rid of CROSSED_CALL_ABIS in each def, since if we're moving up
-     rhs from two different places, but only one of the code motion paths
-     crosses a call, we can't use any of the call_used_regs, no matter which
-     path or whether all paths crosses a call.  Thus we should move
-     CROSSED_CALL_ABIS to static params.  */
-  unsigned int crossed_call_abis;
+    /* FIXME: Get rid of CROSSED_CALL_ABIS in each def, since if we're moving up
+       rhs from two different places, but only one of the code motion paths
+       crosses a call, we can't use any of the call_used_regs, no matter which
+       path or whether all paths crosses a call.  Thus we should move
+       CROSSED_CALL_ABIS to static params.  */
+    unsigned int crossed_call_abis;
 };
 typedef struct _def *def_t;
 
@@ -207,22 +207,22 @@ typedef _list_t av_set_t;
 /* Boundary of the current fence group.  */
 struct _bnd
 {
-  /* The actual boundary instruction.  */
-  insn_t to;
+    /* The actual boundary instruction.  */
+    insn_t to;
 
-  /* Its path to the fence.  */
-  ilist_t ptr;
+    /* Its path to the fence.  */
+    ilist_t ptr;
 
-  /* Availability set at the boundary.  */
-  av_set_t av;
+    /* Availability set at the boundary.  */
+    av_set_t av;
 
-  /* This set moved to the fence.  */
-  av_set_t av1;
+    /* This set moved to the fence.  */
+    av_set_t av1;
 
-  /* Deps context at this boundary.  As long as we have one boundary per fence,
-     this is just a pointer to the same deps context as in the corresponding
-     fence.  */
-  deps_t dc;
+    /* Deps context at this boundary.  As long as we have one boundary per fence,
+       this is just a pointer to the same deps context as in the corresponding
+       fence.  */
+    deps_t dc;
 };
 typedef struct _bnd *bnd_t;
 #define BND_TO(B) ((B)->to)
@@ -244,61 +244,61 @@ typedef _list_t blist_t;
    blocks code motion through it when pipelining.  */
 struct _fence
 {
-  /* Insn before which we gather an instruction group.*/
-  insn_t insn;
+    /* Insn before which we gather an instruction group.*/
+    insn_t insn;
 
-  /* Modeled state of the processor pipeline.  */
-  state_t state;
+    /* Modeled state of the processor pipeline.  */
+    state_t state;
 
-  /* Current cycle that is being scheduled on this fence.  */
-  int cycle;
+    /* Current cycle that is being scheduled on this fence.  */
+    int cycle;
 
-  /* Number of insns that were scheduled on the current cycle.
-     This information has to be local to a fence.  */
-  int cycle_issued_insns;
+    /* Number of insns that were scheduled on the current cycle.
+       This information has to be local to a fence.  */
+    int cycle_issued_insns;
 
-  /* At the end of fill_insns () this field holds the list of the instructions
-     that are inner boundaries of the scheduled parallel group.  */
-  ilist_t bnds;
+    /* At the end of fill_insns () this field holds the list of the instructions
+       that are inner boundaries of the scheduled parallel group.  */
+    ilist_t bnds;
 
-  /* Deps context at this fence.  It is used to model dependencies at the
-     fence so that insn ticks can be properly evaluated.  */
-  deps_t dc;
+    /* Deps context at this fence.  It is used to model dependencies at the
+       fence so that insn ticks can be properly evaluated.  */
+    deps_t dc;
 
-  /* Target context at this fence.  Used to save and load any local target
-     scheduling information when changing fences.  */
-  tc_t tc;
+    /* Target context at this fence.  Used to save and load any local target
+       scheduling information when changing fences.  */
+    tc_t tc;
 
-  /* A vector of insns that are scheduled but not yet completed.  */
-  vec<rtx_insn *, va_gc> *executing_insns;
+    /* A vector of insns that are scheduled but not yet completed.  */
+    vec<rtx_insn *, va_gc> *executing_insns;
 
-  /* A vector indexed by UIDs that caches the earliest cycle on which
-     an insn can be scheduled on this fence.  */
-  int *ready_ticks;
+    /* A vector indexed by UIDs that caches the earliest cycle on which
+       an insn can be scheduled on this fence.  */
+    int *ready_ticks;
 
-  /* Its size.  */
-  int ready_ticks_size;
+    /* Its size.  */
+    int ready_ticks_size;
 
-  /* Insn, which has been scheduled last on this fence.  */
-  rtx_insn *last_scheduled_insn;
+    /* Insn, which has been scheduled last on this fence.  */
+    rtx_insn *last_scheduled_insn;
 
-  /* The last value of can_issue_more variable on this fence.  */
-  int issue_more;
+    /* The last value of can_issue_more variable on this fence.  */
+    int issue_more;
 
-  /* If non-NULL force the next scheduled insn to be SCHED_NEXT.  */
-  rtx_insn *sched_next;
+    /* If non-NULL force the next scheduled insn to be SCHED_NEXT.  */
+    rtx_insn *sched_next;
 
-  /* True if fill_insns processed this fence.  */
-  BOOL_BITFIELD processed_p : 1;
+    /* True if fill_insns processed this fence.  */
+    BOOL_BITFIELD processed_p : 1;
 
-  /* True if fill_insns actually scheduled something on this fence.  */
-  BOOL_BITFIELD scheduled_p : 1;
+    /* True if fill_insns actually scheduled something on this fence.  */
+    BOOL_BITFIELD scheduled_p : 1;
 
-  /* True when the next insn scheduled here would start a cycle.  */
-  BOOL_BITFIELD starts_cycle_p : 1;
+    /* True when the next insn scheduled here would start a cycle.  */
+    BOOL_BITFIELD starts_cycle_p : 1;
 
-  /* True when the next insn scheduled here would be scheduled after a stall.  */
-  BOOL_BITFIELD after_stall_p : 1;
+    /* True when the next insn scheduled here would be scheduled after a stall.  */
+    BOOL_BITFIELD after_stall_p : 1;
 };
 typedef struct _fence *fence_t;
 
@@ -328,8 +328,8 @@ typedef _list_t flist_t;
 /* List of fences with pointer to the tail node.  */
 struct flist_tail_def
 {
-  flist_t head;
-  flist_t *tailp;
+    flist_t head;
+    flist_t *tailp;
 };
 
 typedef struct flist_tail_def *flist_tail_t;
@@ -339,18 +339,18 @@ typedef struct flist_tail_def *flist_tail_t;
 /* List node information.  A list node can be any of the types above.  */
 struct _list_node
 {
-  _list_t next;
+    _list_t next;
 
-  union
-  {
-    rtx x;
-    insn_t insn;
-    struct _bnd bnd;
-    expr_def expr;
-    struct _fence fence;
-    struct _def def;
-    void *data;
-  } u;
+    union
+    {
+        rtx x;
+        insn_t insn;
+        struct _bnd bnd;
+        expr_def expr;
+        struct _fence fence;
+        struct _def def;
+        void *data;
+    } u;
 };
 
 
@@ -362,94 +362,100 @@ extern object_allocator<_list_node> sched_lists_pool;
 static inline _list_t
 _list_alloc (void)
 {
-  return sched_lists_pool.allocate ();
+    return sched_lists_pool.allocate ();
 }
 
 static inline void
 _list_add (_list_t *lp)
 {
-  _list_t l = _list_alloc ();
+    _list_t l = _list_alloc ();
 
-  _LIST_NEXT (l) = *lp;
-  *lp = l;
+    _LIST_NEXT (l) = *lp;
+    *lp = l;
 }
 
 static inline void
 _list_remove_nofree (_list_t *lp)
 {
-  _list_t n = *lp;
+    _list_t n = *lp;
 
-  *lp = _LIST_NEXT (n);
+    *lp = _LIST_NEXT (n);
 }
 
 static inline void
 _list_remove (_list_t *lp)
 {
-  _list_t n = *lp;
+    _list_t n = *lp;
 
-  *lp = _LIST_NEXT (n);
-  sched_lists_pool.remove (n);
+    *lp = _LIST_NEXT (n);
+    sched_lists_pool.remove (n);
 }
 
 static inline void
 _list_clear (_list_t *l)
 {
-  while (*l)
-    _list_remove (l);
+    while (*l)
+    {
+        _list_remove (l);
+    }
 }
 
 
 /* List iterator backend.  */
 struct _list_iterator
 {
-  /* The list we're iterating.  */
-  _list_t *lp;
+    /* The list we're iterating.  */
+    _list_t *lp;
 
-  /* True when this iterator supprts removing.  */
-  bool can_remove_p;
+    /* True when this iterator supprts removing.  */
+    bool can_remove_p;
 
-  /* True when we've actually removed something.  */
-  bool removed_p;
+    /* True when we've actually removed something.  */
+    bool removed_p;
 };
 
 static inline void
 _list_iter_start (_list_iterator *ip, _list_t *lp, bool can_remove_p)
 {
-  ip->lp = lp;
-  ip->can_remove_p = can_remove_p;
-  ip->removed_p = false;
+    ip->lp = lp;
+    ip->can_remove_p = can_remove_p;
+    ip->removed_p = false;
 }
 
 static inline void
 _list_iter_next (_list_iterator *ip)
 {
-  if (!ip->removed_p)
-    ip->lp = &_LIST_NEXT (*ip->lp);
-  else
-    ip->removed_p = false;
+    if (!ip->removed_p)
+    {
+        ip->lp = &_LIST_NEXT (*ip->lp);
+    }
+    else
+    {
+        ip->removed_p = false;
+    }
 }
 
 static inline void
 _list_iter_remove (_list_iterator *ip)
 {
-  gcc_assert (!ip->removed_p && ip->can_remove_p);
-  _list_remove (ip->lp);
-  ip->removed_p = true;
+    gcc_assert (!ip->removed_p && ip->can_remove_p);
+    _list_remove (ip->lp);
+    ip->removed_p = true;
 }
 
 static inline void
 _list_iter_remove_nofree (_list_iterator *ip)
 {
-  gcc_assert (!ip->removed_p && ip->can_remove_p);
-  _list_remove_nofree (ip->lp);
-  ip->removed_p = true;
+    gcc_assert (!ip->removed_p && ip->can_remove_p);
+    _list_remove_nofree (ip->lp);
+    ip->removed_p = true;
 }
 
 /* General macros to traverse a list.  FOR_EACH_* interfaces are
    implemented using these.  */
-#define _FOR_EACH(TYPE, ELEM, I, L)				\
-  for (_list_iter_start (&(I), &(L), false);			\
-       _list_iter_cond_##TYPE (*(I).lp, &(ELEM));		\
+#define _FOR_EACH(TYPE, ELEM, I, L)             \
+  for (_list_iter_start (&(I), &(L), false);            \
+       _list_iter_cond_##TYPE (*(I).lp, &(ELEM));       \
        _list_iter_next (&(I)))
 
 #define _FOR_EACH_1(TYPE, ELEM, I, LP)                              \
@@ -463,8 +469,8 @@ _list_iter_remove_nofree (_list_iterator *ip)
 static inline void
 _xlist_add (_xlist_t *lp, rtx x)
 {
-  _list_add (lp);
-  _XLIST_X (*lp) = x;
+    _list_add (lp);
+    _XLIST_X (*lp) = x;
 }
 
 #define _xlist_remove(LP) (_list_remove (LP))
@@ -473,27 +479,29 @@ _xlist_add (_xlist_t *lp, rtx x)
 static inline bool
 _xlist_is_in_p (_xlist_t l, rtx x)
 {
-  while (l)
+    while (l)
     {
-      if (_XLIST_X (l) == x)
-        return true;
-      l = _XLIST_NEXT (l);
+        if (_XLIST_X (l) == x)
+        {
+            return true;
+        }
+        l = _XLIST_NEXT (l);
     }
 
-  return false;
+    return false;
 }
 
 /* Used through _FOR_EACH.  */
 static inline bool
 _list_iter_cond_x (_xlist_t l, rtx *xp)
 {
-  if (l)
+    if (l)
     {
-      *xp = _XLIST_X (l);
-      return true;
+        *xp = _XLIST_X (l);
+        return true;
     }
 
-  return false;
+    return false;
 }
 
 #define _xlist_iter_remove(IP) (_list_iter_remove (IP))
@@ -508,8 +516,8 @@ typedef _list_iterator _xlist_iterator;
 static inline void
 ilist_add (ilist_t *lp, insn_t insn)
 {
-  _list_add (lp);
-  ILIST_INSN (*lp) = insn;
+    _list_add (lp);
+    ILIST_INSN (*lp) = insn;
 }
 #define ilist_remove(LP) (_list_remove (LP))
 #define ilist_clear(LP) (_list_clear (LP))
@@ -517,27 +525,29 @@ ilist_add (ilist_t *lp, insn_t insn)
 static inline bool
 ilist_is_in_p (ilist_t l, insn_t insn)
 {
-  while (l)
+    while (l)
     {
-      if (ILIST_INSN (l) == insn)
-        return true;
-      l = ILIST_NEXT (l);
+        if (ILIST_INSN (l) == insn)
+        {
+            return true;
+        }
+        l = ILIST_NEXT (l);
     }
 
-  return false;
+    return false;
 }
 
 /* Used through _FOR_EACH.  */
 static inline bool
 _list_iter_cond_insn (ilist_t l, insn_t *ip)
 {
-  if (l)
+    if (l)
     {
-      *ip = ILIST_INSN (l);
-      return true;
+        *ip = ILIST_INSN (l);
+        return true;
     }
 
-  return false;
+    return false;
 }
 
 #define ilist_iter_remove(IP) (_list_iter_remove (IP))
@@ -555,13 +565,13 @@ typedef _list_iterator av_set_iterator;
 inline bool
 _list_iter_cond_expr (av_set_t av, expr_t *exprp)
 {
-  if (av)
+    if (av)
     {
-      *exprp = _AV_SET_EXPR (av);
-      return true;
+        *exprp = _AV_SET_EXPR (av);
+        return true;
     }
 
-  return false;
+    return false;
 }
 
 
@@ -577,51 +587,51 @@ typedef _list_iterator def_list_iterator;
 static inline bool
 _list_iter_cond_def (def_list_t def_list, def_t *def)
 {
-  if (def_list)
+    if (def_list)
     {
-      *def = DEF_LIST_DEF (def_list);
-      return true;
+        *def = DEF_LIST_DEF (def_list);
+        return true;
     }
 
-  return false;
+    return false;
 }
 
 
 /* InstructionData.  Contains information about insn pattern.  */
 struct idata_def
 {
-  /* Type of the insn.
-     o CALL_INSN - Call insn
-     o JUMP_INSN - Jump insn
-     o INSN - INSN that cannot be cloned
-     o USE - INSN that can be cloned
-     o SET - INSN that can be cloned and separable into lhs and rhs
-     o PC - simplejump.  Insns that simply redirect control flow should not
-     have any dependencies.  Sched-deps.c, though, might consider them as
-     producers or consumers of certain registers.  To avoid that we handle
-     dependency for simple jumps ourselves.  */
-  int type;
+    /* Type of the insn.
+       o CALL_INSN - Call insn
+       o JUMP_INSN - Jump insn
+       o INSN - INSN that cannot be cloned
+       o USE - INSN that can be cloned
+       o SET - INSN that can be cloned and separable into lhs and rhs
+       o PC - simplejump.  Insns that simply redirect control flow should not
+       have any dependencies.  Sched-deps.c, though, might consider them as
+       producers or consumers of certain registers.  To avoid that we handle
+       dependency for simple jumps ourselves.  */
+    int type;
 
-  /* If insn is a SET, this is its left hand side.  */
-  rtx lhs;
+    /* If insn is a SET, this is its left hand side.  */
+    rtx lhs;
 
-  /* If insn is a SET, this is its right hand side.  */
-  rtx rhs;
+    /* If insn is a SET, this is its right hand side.  */
+    rtx rhs;
 
-  /* Registers that are set/used by this insn.  This info is now gathered
-     via sched-deps.c.  The downside of this is that we also use live info
-     from flow that is accumulated in the basic blocks.  These two infos
-     can be slightly inconsistent, hence in the beginning we make a pass
-     through CFG and calculating the conservative solution for the info in
-     basic blocks.  When this scheduler will be switched to use dataflow,
-     this can be unified as df gives us both per basic block and per
-     instruction info.  Actually, we don't do that pass and just hope
-     for the best.  */
-  regset reg_sets;
+    /* Registers that are set/used by this insn.  This info is now gathered
+       via sched-deps.c.  The downside of this is that we also use live info
+       from flow that is accumulated in the basic blocks.  These two infos
+       can be slightly inconsistent, hence in the beginning we make a pass
+       through CFG and calculating the conservative solution for the info in
+       basic blocks.  When this scheduler will be switched to use dataflow,
+       this can be unified as df gives us both per basic block and per
+       instruction info.  Actually, we don't do that pass and just hope
+       for the best.  */
+    regset reg_sets;
 
-  regset reg_clobbers;
+    regset reg_clobbers;
 
-  regset reg_uses;
+    regset reg_uses;
 };
 
 #define IDATA_TYPE(ID) ((ID)->type)
@@ -646,27 +656,27 @@ struct idata_def
    reference to the original instruction.  */
 struct vinsn_def
 {
-  /* Associated insn.  */
-  rtx_insn *insn_rtx;
+    /* Associated insn.  */
+    rtx_insn *insn_rtx;
 
-  /* Its description.  */
-  struct idata_def id;
+    /* Its description.  */
+    struct idata_def id;
 
-  /* Hash of vinsn.  It is computed either from pattern or from rhs using
-     hash_rtx.  It is not placed in ID for faster compares.  */
-  unsigned hash;
+    /* Hash of vinsn.  It is computed either from pattern or from rhs using
+       hash_rtx.  It is not placed in ID for faster compares.  */
+    unsigned hash;
 
-  /* Hash of the insn_rtx pattern.  */
-  unsigned hash_rtx;
+    /* Hash of the insn_rtx pattern.  */
+    unsigned hash_rtx;
 
-  /* Smart pointer counter.  */
-  int count;
+    /* Smart pointer counter.  */
+    int count;
 
-  /* Cached cost of the vinsn.  To access it please use vinsn_cost ().  */
-  int cost;
+    /* Cached cost of the vinsn.  To access it please use vinsn_cost ().  */
+    int cost;
 
-  /* Mark insns that may trap so we don't move them through jumps.  */
-  bool may_trap_p;
+    /* Mark insns that may trap so we don't move them through jumps.  */
+    bool may_trap_p;
 };
 
 #define VINSN_INSN_RTX(VI) ((VI)->insn_rtx)
@@ -692,23 +702,23 @@ struct vinsn_def
    moving up through an insn.  */
 struct transformed_insns
 {
-  /* Previous vinsn.  Used to find the proper element.  */
-  vinsn_t vinsn_old;
+    /* Previous vinsn.  Used to find the proper element.  */
+    vinsn_t vinsn_old;
 
-  /* A new vinsn.  */
-  vinsn_t vinsn_new;
+    /* A new vinsn.  */
+    vinsn_t vinsn_new;
 
-  /* Speculative status.  */
-  ds_t ds;
+    /* Speculative status.  */
+    ds_t ds;
 
-  /* Type of transformation happened.  */
-  enum local_trans_type type;
+    /* Type of transformation happened.  */
+    enum local_trans_type type;
 
-  /* Whether a conflict on the target register happened.  */
-  BOOL_BITFIELD was_target_conflict : 1;
+    /* Whether a conflict on the target register happened.  */
+    BOOL_BITFIELD was_target_conflict : 1;
 
-  /* Whether a check was needed.  */
-  BOOL_BITFIELD needs_check : 1;
+    /* Whether a check was needed.  */
+    BOOL_BITFIELD needs_check : 1;
 };
 
 /* Indexed by INSN_LUID, the collection of all data associated with
@@ -716,63 +726,63 @@ struct transformed_insns
 class _sel_insn_data
 {
 public:
-  /* The expression that contains vinsn for this insn and some
-     flow-sensitive data like priority.  */
-  expr_def expr;
+    /* The expression that contains vinsn for this insn and some
+       flow-sensitive data like priority.  */
+    expr_def expr;
 
-  /* If (WS_LEVEL == GLOBAL_LEVEL) then AV is empty.  */
-  int ws_level;
+    /* If (WS_LEVEL == GLOBAL_LEVEL) then AV is empty.  */
+    int ws_level;
 
-  /* A number that helps in defining a traversing order for a region.  */
-  int seqno;
+    /* A number that helps in defining a traversing order for a region.  */
+    int seqno;
 
-  /* A liveness data computed above this insn.  */
-  regset live;
+    /* A liveness data computed above this insn.  */
+    regset live;
 
-  /* An INSN_UID bit is set when deps analysis result is already known.  */
-  bitmap analyzed_deps;
+    /* An INSN_UID bit is set when deps analysis result is already known.  */
+    bitmap analyzed_deps;
 
-  /* An INSN_UID bit is set when a hard dep was found, not set when
-     no dependence is found.  This is meaningful only when the analyzed_deps
-     bitmap has its bit set.  */
-  bitmap found_deps;
+    /* An INSN_UID bit is set when a hard dep was found, not set when
+       no dependence is found.  This is meaningful only when the analyzed_deps
+       bitmap has its bit set.  */
+    bitmap found_deps;
 
-  /* An INSN_UID bit is set when this is a bookkeeping insn generated from
-     a parent with this uid.  If a parent is a bookkeeping copy, all its
-     originators are transitively included in this set.  */
-  bitmap originators;
+    /* An INSN_UID bit is set when this is a bookkeeping insn generated from
+       a parent with this uid.  If a parent is a bookkeeping copy, all its
+       originators are transitively included in this set.  */
+    bitmap originators;
 
-  /* A hashtable caching the result of insn transformations through this one.  */
-  htab_t transformed_insns;
+    /* A hashtable caching the result of insn transformations through this one.  */
+    htab_t transformed_insns;
 
-  /* A context incapsulating this insn.  */
-  class deps_desc deps_context;
+    /* A context incapsulating this insn.  */
+    class deps_desc deps_context;
 
-  /* This field is initialized at the beginning of scheduling and is used
-     to handle sched group instructions.  If it is non-null, then it points
-     to the instruction, which should be forced to schedule next.  Such
-     instructions are unique.  */
-  insn_t sched_next;
+    /* This field is initialized at the beginning of scheduling and is used
+       to handle sched group instructions.  If it is non-null, then it points
+       to the instruction, which should be forced to schedule next.  Such
+       instructions are unique.  */
+    insn_t sched_next;
 
-  /* Cycle at which insn was scheduled.  It is greater than zero if insn was
-     scheduled.  This is used for bundling.  */
-  int sched_cycle;
+    /* Cycle at which insn was scheduled.  It is greater than zero if insn was
+       scheduled.  This is used for bundling.  */
+    int sched_cycle;
 
-  /* Cycle at which insn's data will be fully ready.  */
-  int ready_cycle;
+    /* Cycle at which insn's data will be fully ready.  */
+    int ready_cycle;
 
-  /* Speculations that are being checked by this insn.  */
-  ds_t spec_checked_ds;
+    /* Speculations that are being checked by this insn.  */
+    ds_t spec_checked_ds;
 
-  /* Whether the live set valid or not.  */
-  BOOL_BITFIELD live_valid_p : 1;
-  /* Insn is an ASM.  */
-  BOOL_BITFIELD asm_p : 1;
+    /* Whether the live set valid or not.  */
+    BOOL_BITFIELD live_valid_p : 1;
+    /* Insn is an ASM.  */
+    BOOL_BITFIELD asm_p : 1;
 
-  /* True when an insn is scheduled after we've determined that a stall is
-     required.
-     This is used when emulating the Haifa scheduler for bundling.  */
-  BOOL_BITFIELD after_stall_p : 1;
+    /* True when an insn is scheduled after we've determined that a stall is
+       required.
+       This is used when emulating the Haifa scheduler for bundling.  */
+    BOOL_BITFIELD after_stall_p : 1;
 };
 
 typedef class _sel_insn_data sel_insn_data_def;
@@ -877,26 +887,26 @@ extern bitmap blocks_to_reschedule;
    sched-deps.c: sched_analyze_insn ().  */
 enum deps_where_t
 {
-  DEPS_IN_INSN,
-  DEPS_IN_LHS,
-  DEPS_IN_RHS,
-  DEPS_IN_NOWHERE
+    DEPS_IN_INSN,
+    DEPS_IN_LHS,
+    DEPS_IN_RHS,
+    DEPS_IN_NOWHERE
 };
 
 
 /* Per basic block data for the whole CFG.  */
 struct sel_global_bb_info_def
 {
-  /* For each bb header this field contains a set of live registers.
-     For all other insns this field has a NULL.
-     We also need to know LV sets for the instructions, that are immediately
-     after the border of the region.  */
-  regset lv_set;
+    /* For each bb header this field contains a set of live registers.
+       For all other insns this field has a NULL.
+       We also need to know LV sets for the instructions, that are immediately
+       after the border of the region.  */
+    regset lv_set;
 
-  /* Status of LV_SET.
-     true - block has usable LV_SET.
-     false - block's LV_SET should be recomputed.  */
-  bool lv_set_valid_p;
+    /* Status of LV_SET.
+       true - block has usable LV_SET.
+       false - block's LV_SET should be recomputed.  */
+    bool lv_set_valid_p;
 };
 
 typedef sel_global_bb_info_def *sel_global_bb_info_t;
@@ -909,7 +919,7 @@ extern void sel_extend_global_bb_info (void);
 extern void sel_finish_global_bb_info (void);
 
 /* Get data for BB.  */
-#define SEL_GLOBAL_BB_INFO(BB)					\
+#define SEL_GLOBAL_BB_INFO(BB)                  \
   (&sel_global_bb_info[(BB)->index])
 
 /* Access macros.  */
@@ -919,16 +929,16 @@ extern void sel_finish_global_bb_info (void);
 /* Per basic block data for the region.  */
 struct sel_region_bb_info_def
 {
-  /* This insn stream is constructed in such a way that it should be
-     traversed by PREV_INSN field - (*not* NEXT_INSN).  */
-  rtx_insn *note_list;
+    /* This insn stream is constructed in such a way that it should be
+       traversed by PREV_INSN field - (*not* NEXT_INSN).  */
+    rtx_insn *note_list;
 
-  /* Cached availability set at the beginning of a block.
-     See also AV_LEVEL () for conditions when this av_set can be used.  */
-  av_set_t av_set;
+    /* Cached availability set at the beginning of a block.
+       See also AV_LEVEL () for conditions when this av_set can be used.  */
+    av_set_t av_set;
 
-  /* If (AV_LEVEL == GLOBAL_LEVEL) then AV is valid.  */
-  int av_level;
+    /* If (AV_LEVEL == GLOBAL_LEVEL) then AV is valid.  */
+    int av_level;
 };
 
 typedef sel_region_bb_info_def *sel_region_bb_info_t;
@@ -977,58 +987,58 @@ extern regset sel_all_regs;
 /* Successor iterator backend.  */
 struct succ_iterator
 {
-  /* True if we're at BB end.  */
-  bool bb_end;
+    /* True if we're at BB end.  */
+    bool bb_end;
 
-  /* An edge on which we're iterating.  */
-  edge e1;
+    /* An edge on which we're iterating.  */
+    edge e1;
 
-  /* The previous edge saved after skipping empty blocks.  */
-  edge e2;
+    /* The previous edge saved after skipping empty blocks.  */
+    edge e2;
 
-  /* Edge iterator used when there are successors in other basic blocks.  */
-  edge_iterator ei;
+    /* Edge iterator used when there are successors in other basic blocks.  */
+    edge_iterator ei;
 
-  /* Successor block we're traversing.  */
-  basic_block bb;
+    /* Successor block we're traversing.  */
+    basic_block bb;
 
-  /* Flags that are passed to the iterator.  We return only successors
-     that comply to these flags.  */
-  short flags;
+    /* Flags that are passed to the iterator.  We return only successors
+       that comply to these flags.  */
+    short flags;
 
-  /* When flags include SUCCS_ALL, this will be set to the exact type
-     of the successor we're traversing now.  */
-  short current_flags;
+    /* When flags include SUCCS_ALL, this will be set to the exact type
+       of the successor we're traversing now.  */
+    short current_flags;
 
-  /* If skip to loop exits, save here information about loop exits.  */
-  int current_exit;
-  vec<edge> loop_exits;
+    /* If skip to loop exits, save here information about loop exits.  */
+    int current_exit;
+    vec<edge> loop_exits;
 };
 
 /* A structure returning all successor's information.  */
 struct succs_info
 {
-  /* Flags that these succcessors were computed with.  */
-  short flags;
+    /* Flags that these succcessors were computed with.  */
+    short flags;
 
-  /* Successors that correspond to the flags.  */
-  insn_vec_t succs_ok;
+    /* Successors that correspond to the flags.  */
+    insn_vec_t succs_ok;
 
-  /* Their probabilities.  As of now, we don't need this for other
-     successors.  */
-  vec<int> probs_ok;
+    /* Their probabilities.  As of now, we don't need this for other
+       successors.  */
+    vec<int> probs_ok;
 
-  /* Other successors.  */
-  insn_vec_t succs_other;
+    /* Other successors.  */
+    insn_vec_t succs_other;
 
-  /* Probability of all successors.  */
-  int all_prob;
+    /* Probability of all successors.  */
+    int all_prob;
 
-  /* The number of all successors.  */
-  int all_succs_n;
+    /* The number of all successors.  */
+    int all_succs_n;
 
-  /* The number of good successors.  */
-  int succs_ok_n;
+    /* The number of good successors.  */
+    int succs_ok_n;
 };
 
 /* Some needed definitions.  */
@@ -1043,78 +1053,94 @@ extern bool in_current_region_p (basic_block);
 static inline bool
 inner_loop_header_p (basic_block bb)
 {
-  class loop *inner_loop;
+    class loop *inner_loop;
 
-  if (!current_loop_nest)
-    return false;
-
-  if (bb == EXIT_BLOCK_PTR_FOR_FN (cfun))
-    return false;
-
-  inner_loop = bb->loop_father;
-  if (inner_loop == current_loop_nest)
-    return false;
-
-  /* If successor belongs to another loop.  */
-  if (bb == inner_loop->header
-      && flow_bb_inside_loop_p (current_loop_nest, bb))
+    if (!current_loop_nest)
     {
-      /* Could be '=' here because of wrong loop depths.  */
-      gcc_assert (loop_depth (inner_loop) >= loop_depth (current_loop_nest));
-      return true;
+        return false;
     }
 
-  return false;
+    if (bb == EXIT_BLOCK_PTR_FOR_FN (cfun))
+    {
+        return false;
+    }
+
+    inner_loop = bb->loop_father;
+    if (inner_loop == current_loop_nest)
+    {
+        return false;
+    }
+
+    /* If successor belongs to another loop.  */
+    if (bb == inner_loop->header
+            && flow_bb_inside_loop_p (current_loop_nest, bb))
+    {
+        /* Could be '=' here because of wrong loop depths.  */
+        gcc_assert (loop_depth (inner_loop) >= loop_depth (current_loop_nest));
+        return true;
+    }
+
+    return false;
 }
 
 /* Return exit edges of LOOP, filtering out edges with the same dest bb.  */
-static inline vec<edge> 
+static inline vec<edge>
 get_loop_exit_edges_unique_dests (const class loop *loop)
 {
-  vec<edge> edges = vNULL;
-  struct loop_exit *exit;
+    vec<edge> edges = vNULL;
+    struct loop_exit *exit;
 
-  gcc_assert (loop->latch != EXIT_BLOCK_PTR_FOR_FN (cfun)
-              && current_loops->state & LOOPS_HAVE_RECORDED_EXITS);
+    gcc_assert (loop->latch != EXIT_BLOCK_PTR_FOR_FN (cfun)
+                && current_loops->state & LOOPS_HAVE_RECORDED_EXITS);
 
-  for (exit = loop->exits->next; exit->e; exit = exit->next)
+    for (exit = loop->exits->next; exit->e; exit = exit->next)
     {
-      int i;
-      edge e;
-      bool was_dest = false;
+        int i;
+        edge e;
+        bool was_dest = false;
 
-      for (i = 0; edges.iterate (i, &e); i++)
-        if (e->dest == exit->e->dest)
-          {
-            was_dest = true;
-            break;
-          }
+        for (i = 0; edges.iterate (i, &e); i++)
+            if (e->dest == exit->e->dest)
+            {
+                was_dest = true;
+                break;
+            }
 
-      if (!was_dest)
-        edges.safe_push (exit->e);
+        if (!was_dest)
+        {
+            edges.safe_push (exit->e);
+        }
     }
-  return edges;
+    return edges;
 }
 
 static bool
 sel_bb_empty_or_nop_p (basic_block bb)
 {
-  insn_t first = sel_bb_head (bb), last;
+    insn_t first = sel_bb_head (bb), last;
 
-  if (first == NULL_RTX)
+    if (first == NULL_RTX)
+    {
+        return true;
+    }
+
+    if (!INSN_NOP_P (first))
+    {
+        return false;
+    }
+
+    if (bb == EXIT_BLOCK_PTR_FOR_FN (cfun))
+    {
+        return false;
+    }
+
+    last = sel_bb_end (bb);
+    if (first != last)
+    {
+        return false;
+    }
+
     return true;
-
-  if (!INSN_NOP_P (first))
-    return false;
-
-  if (bb == EXIT_BLOCK_PTR_FOR_FN (cfun))
-    return false;
-
-  last = sel_bb_end (bb);
-  if (first != last)
-    return false;
-
-  return true;
 }
 
 /* Collect all loop exits recursively, skipping empty BBs between them.
@@ -1122,73 +1148,77 @@ sel_bb_empty_or_nop_p (basic_block bb)
    traverse all of them and if any of them turns out to be another loop header
    (after skipping empty BBs), add its loop exits to the resulting vector
    as well.  */
-static inline vec<edge> 
+static inline vec<edge>
 get_all_loop_exits (basic_block bb)
 {
-  vec<edge> exits = vNULL;
+    vec<edge> exits = vNULL;
 
-  /* If bb is empty, and we're skipping to loop exits, then
-     consider bb as a possible gate to the inner loop now.  */
-  while (sel_bb_empty_or_nop_p (bb)
-	 && in_current_region_p (bb)
-	 && EDGE_COUNT (bb->succs) > 0)
+    /* If bb is empty, and we're skipping to loop exits, then
+       consider bb as a possible gate to the inner loop now.  */
+    while (sel_bb_empty_or_nop_p (bb)
+            && in_current_region_p (bb)
+            && EDGE_COUNT (bb->succs) > 0)
     {
-      bb = single_succ (bb);
+        bb = single_succ (bb);
 
-      /* This empty block could only lead outside the region.  */
-      gcc_assert (! in_current_region_p (bb));
+        /* This empty block could only lead outside the region.  */
+        gcc_assert (! in_current_region_p (bb));
     }
 
-  /* And now check whether we should skip over inner loop.  */
-  if (inner_loop_header_p (bb))
+    /* And now check whether we should skip over inner loop.  */
+    if (inner_loop_header_p (bb))
     {
-      class loop *this_loop;
-      class loop *pred_loop = NULL;
-      int i;
-      unsigned this_depth;
-      edge e;
+        class loop *this_loop;
+        class loop *pred_loop = NULL;
+        int i;
+        unsigned this_depth;
+        edge e;
 
-      for (this_loop = bb->loop_father;
-           this_loop && this_loop != current_loop_nest;
-           this_loop = loop_outer (this_loop))
-        pred_loop = this_loop;
+        for (this_loop = bb->loop_father;
+                this_loop && this_loop != current_loop_nest;
+                this_loop = loop_outer (this_loop))
+        {
+            pred_loop = this_loop;
+        }
 
-      this_loop = pred_loop;
-      gcc_assert (this_loop != NULL);
+        this_loop = pred_loop;
+        gcc_assert (this_loop != NULL);
 
-      exits = get_loop_exit_edges_unique_dests (this_loop);
-      this_depth = loop_depth (this_loop);
+        exits = get_loop_exit_edges_unique_dests (this_loop);
+        this_depth = loop_depth (this_loop);
 
-      /* Traverse all loop headers.  Be careful not to go back
-	 to the outer loop's header (see PR 84206).  */
-      for (i = 0; exits.iterate (i, &e); i++)
-	if ((in_current_region_p (e->dest)
-	     || (inner_loop_header_p (e->dest)))
-	    && loop_depth (e->dest->loop_father) >= this_depth)
-	  {
-	    vec<edge> next_exits = get_all_loop_exits (e->dest);
+        /* Traverse all loop headers.  Be careful not to go back
+        to the outer loop's header (see PR 84206).  */
+        for (i = 0; exits.iterate (i, &e); i++)
+            if ((in_current_region_p (e->dest)
+                    || (inner_loop_header_p (e->dest)))
+                    && loop_depth (e->dest->loop_father) >= this_depth)
+            {
+                vec<edge> next_exits = get_all_loop_exits (e->dest);
 
-	    if (next_exits.exists ())
-	      {
-		int j;
-		edge ne;
+                if (next_exits.exists ())
+                {
+                    int j;
+                    edge ne;
 
-		/* Add all loop exits for the current edge into the
-		   resulting vector.  */
-		for (j = 0; next_exits.iterate (j, &ne); j++)
-		  exits.safe_push (ne);
+                    /* Add all loop exits for the current edge into the
+                       resulting vector.  */
+                    for (j = 0; next_exits.iterate (j, &ne); j++)
+                    {
+                        exits.safe_push (ne);
+                    }
 
-		/* Remove the original edge.  */
-		exits.ordered_remove (i);
+                    /* Remove the original edge.  */
+                    exits.ordered_remove (i);
 
-		/*  Decrease the loop counter so we won't skip anything.  */
-		i--;
-		continue;
-	      }
-	  }
+                    /*  Decrease the loop counter so we won't skip anything.  */
+                    i--;
+                    continue;
+                }
+            }
     }
 
-  return exits;
+    return exits;
 }
 
 /* Flags to pass to compute_succs_info and FOR_EACH_SUCC.
@@ -1215,152 +1245,165 @@ get_all_loop_exits (basic_block bb)
 static inline succ_iterator
 _succ_iter_start (insn_t *succp, insn_t insn, int flags)
 {
-  succ_iterator i;
+    succ_iterator i;
 
-  basic_block bb = BLOCK_FOR_INSN (insn);
+    basic_block bb = BLOCK_FOR_INSN (insn);
 
-  gcc_assert (INSN_P (insn) || NOTE_INSN_BASIC_BLOCK_P (insn));
+    gcc_assert (INSN_P (insn) || NOTE_INSN_BASIC_BLOCK_P (insn));
 
-  i.flags = flags;
+    i.flags = flags;
 
-  /* Avoid 'uninitialized' warning.  */
-  *succp = NULL;
-  i.e1 = NULL;
-  i.e2 = NULL;
-  i.bb = bb;
-  i.current_flags = 0;
-  i.current_exit = -1;
-  i.loop_exits.create (0);
+    /* Avoid 'uninitialized' warning.  */
+    *succp = NULL;
+    i.e1 = NULL;
+    i.e2 = NULL;
+    i.bb = bb;
+    i.current_flags = 0;
+    i.current_exit = -1;
+    i.loop_exits.create (0);
 
-  if (bb != EXIT_BLOCK_PTR_FOR_FN (cfun) && BB_END (bb) != insn)
+    if (bb != EXIT_BLOCK_PTR_FOR_FN (cfun) && BB_END (bb) != insn)
     {
-      i.bb_end = false;
+        i.bb_end = false;
 
-      /* Avoid 'uninitialized' warning.  */
-      i.ei.index = 0;
-      i.ei.container = 0;
+        /* Avoid 'uninitialized' warning.  */
+        i.ei.index = 0;
+        i.ei.container = 0;
     }
-  else
+    else
     {
-      i.ei = ei_start (bb->succs);
-      i.bb_end = true;
+        i.ei = ei_start (bb->succs);
+        i.bb_end = true;
     }
 
-  return i;
+    return i;
 }
 
 static inline bool
 _succ_iter_cond (succ_iterator *ip, insn_t *succp, insn_t insn,
                  bool check (edge, succ_iterator *))
 {
-  if (!ip->bb_end)
+    if (!ip->bb_end)
     {
-      /* When we're in a middle of a basic block, return
-         the next insn immediately, but only when SUCCS_NORMAL is set.  */
-      if (*succp != NULL || (ip->flags & SUCCS_NORMAL) == 0)
-        return false;
-
-      *succp = NEXT_INSN (insn);
-      ip->current_flags = SUCCS_NORMAL;
-      return true;
-    }
-  else
-    {
-      while (1)
+        /* When we're in a middle of a basic block, return
+           the next insn immediately, but only when SUCCS_NORMAL is set.  */
+        if (*succp != NULL || (ip->flags & SUCCS_NORMAL) == 0)
         {
-          edge e_tmp = NULL;
-
-          /* First, try loop exits, if we have them.  */
-          if (ip->loop_exits.exists ())
-            {
-              do
-                {
-                  ip->loop_exits.iterate (ip->current_exit, &e_tmp);
-                  ip->current_exit++;
-                }
-	      while (e_tmp && !check (e_tmp, ip));
-
-              if (!e_tmp)
-                ip->loop_exits.release ();
-            }
-
-          /* If we have found a successor, then great.  */
-          if (e_tmp)
-            {
-              ip->e1 = e_tmp;
-              break;
-            }
-
-          /* If not, then try the next edge.  */
-          while (ei_cond (ip->ei, &(ip->e1)))
-            {
-              basic_block bb = ip->e1->dest;
-
-              /* Consider bb as a possible loop header.  */
-              if ((ip->flags & SUCCS_SKIP_TO_LOOP_EXITS)
-                  && flag_sel_sched_pipelining_outer_loops
-		  && (!in_current_region_p (bb)
-		      || BLOCK_TO_BB (ip->bb->index)
-			 < BLOCK_TO_BB (bb->index)))
-                {
-		  /* Get all loop exits recursively.  */
-		  ip->loop_exits = get_all_loop_exits (bb);
-
-		  if (ip->loop_exits.exists ())
-		    {
-  		      ip->current_exit = 0;
-		      /* Move the iterator now, because we won't do
-			 succ_iter_next until loop exits will end.  */
-		      ei_next (&(ip->ei));
-		      break;
-		    }
-                }
-
-              /* bb is not a loop header, check as usual.  */
-              if (check (ip->e1, ip))
-                break;
-
-              ei_next (&(ip->ei));
-            }
-
-          /* If loop_exits are non null, we have found an inner loop;
-	     do one more iteration to fetch an edge from these exits.  */
-          if (ip->loop_exits.exists ())
-            continue;
-
-          /* Otherwise, we've found an edge in a usual way.  Break now.  */
-          break;
+            return false;
         }
 
-      if (ip->e1)
-	{
-	  basic_block bb = ip->e2->dest;
+        *succp = NEXT_INSN (insn);
+        ip->current_flags = SUCCS_NORMAL;
+        return true;
+    }
+    else
+    {
+        while (1)
+        {
+            edge e_tmp = NULL;
 
-	  if (bb == EXIT_BLOCK_PTR_FOR_FN (cfun) || bb == after_recovery)
-	    *succp = exit_insn;
-	  else
-	    {
-              *succp = sel_bb_head (bb);
+            /* First, try loop exits, if we have them.  */
+            if (ip->loop_exits.exists ())
+            {
+                do
+                {
+                    ip->loop_exits.iterate (ip->current_exit, &e_tmp);
+                    ip->current_exit++;
+                } while (e_tmp && !check (e_tmp, ip));
 
-              gcc_assert (ip->flags != SUCCS_NORMAL
-                          || *succp == NEXT_INSN (bb_note (bb)));
-	      gcc_assert (BLOCK_FOR_INSN (*succp) == bb);
-	    }
+                if (!e_tmp)
+                {
+                    ip->loop_exits.release ();
+                }
+            }
 
-	  return true;
-	}
-      else
-	return false;
+            /* If we have found a successor, then great.  */
+            if (e_tmp)
+            {
+                ip->e1 = e_tmp;
+                break;
+            }
+
+            /* If not, then try the next edge.  */
+            while (ei_cond (ip->ei, &(ip->e1)))
+            {
+                basic_block bb = ip->e1->dest;
+
+                /* Consider bb as a possible loop header.  */
+                if ((ip->flags & SUCCS_SKIP_TO_LOOP_EXITS)
+                        && flag_sel_sched_pipelining_outer_loops
+                        && (!in_current_region_p (bb)
+                            || BLOCK_TO_BB (ip->bb->index)
+                            < BLOCK_TO_BB (bb->index)))
+                {
+                    /* Get all loop exits recursively.  */
+                    ip->loop_exits = get_all_loop_exits (bb);
+
+                    if (ip->loop_exits.exists ())
+                    {
+                        ip->current_exit = 0;
+                        /* Move the iterator now, because we won't do
+                        succ_iter_next until loop exits will end.  */
+                        ei_next (&(ip->ei));
+                        break;
+                    }
+                }
+
+                /* bb is not a loop header, check as usual.  */
+                if (check (ip->e1, ip))
+                {
+                    break;
+                }
+
+                ei_next (&(ip->ei));
+            }
+
+            /* If loop_exits are non null, we have found an inner loop;
+            do one more iteration to fetch an edge from these exits.  */
+            if (ip->loop_exits.exists ())
+            {
+                continue;
+            }
+
+            /* Otherwise, we've found an edge in a usual way.  Break now.  */
+            break;
+        }
+
+        if (ip->e1)
+        {
+            basic_block bb = ip->e2->dest;
+
+            if (bb == EXIT_BLOCK_PTR_FOR_FN (cfun) || bb == after_recovery)
+            {
+                *succp = exit_insn;
+            }
+            else
+            {
+                *succp = sel_bb_head (bb);
+
+                gcc_assert (ip->flags != SUCCS_NORMAL
+                            || *succp == NEXT_INSN (bb_note (bb)));
+                gcc_assert (BLOCK_FOR_INSN (*succp) == bb);
+            }
+
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
 
 static inline void
 _succ_iter_next (succ_iterator *ip)
 {
-  gcc_assert (!ip->e2 || ip->e1);
+    gcc_assert (!ip->e2 || ip->e1);
 
-  if (ip->bb_end && ip->e1 && !ip->loop_exits.exists ())
-    ei_next (&(ip->ei));
+    if (ip->bb_end && ip->e1 && !ip->loop_exits.exists ())
+    {
+        ei_next (&(ip->ei));
+    }
 }
 
 /* Returns true when E1 is an eligible successor edge, possibly skipping
@@ -1370,98 +1413,110 @@ _succ_iter_next (succ_iterator *ip)
 static inline bool
 _eligible_successor_edge_p (edge e1, succ_iterator *ip)
 {
-  edge e2 = e1;
-  basic_block bb;
-  int flags = ip->flags;
-  bool src_outside_rgn = !in_current_region_p (e1->src);
+    edge e2 = e1;
+    basic_block bb;
+    int flags = ip->flags;
+    bool src_outside_rgn = !in_current_region_p (e1->src);
 
-  gcc_assert (flags != 0);
+    gcc_assert (flags != 0);
 
-  if (src_outside_rgn)
+    if (src_outside_rgn)
     {
-      /* Any successor of the block that is outside current region is
-         ineligible, except when we're skipping to loop exits.  */
-      gcc_assert (flags & (SUCCS_OUT | SUCCS_SKIP_TO_LOOP_EXITS));
+        /* Any successor of the block that is outside current region is
+           ineligible, except when we're skipping to loop exits.  */
+        gcc_assert (flags & (SUCCS_OUT | SUCCS_SKIP_TO_LOOP_EXITS));
 
-      if (flags & SUCCS_OUT)
-	return false;
-    }
-
-  bb = e2->dest;
-
-  /* Skip empty blocks, but be careful not to leave the region.  */
-  while (1)
-    {
-      if (!sel_bb_empty_p (bb))
-	{
-	  edge ne;
-	  basic_block nbb;
-
-	  if (!sel_bb_empty_or_nop_p (bb))
-	    break;
-
-	  ne = EDGE_SUCC (bb, 0);
-	  nbb = ne->dest;
-
-	  if (!in_current_region_p (nbb)
-	      && !(flags & SUCCS_OUT))
-	    break;
-
-	  e2 = ne;
-	  bb = nbb;
-	  continue;
-	}
-
-      if (!in_current_region_p (bb)
-          && !(flags & SUCCS_OUT))
-        return false;
-
-      if (EDGE_COUNT (bb->succs) == 0)
-	return false;
-
-      e2 = EDGE_SUCC (bb, 0);
-      bb = e2->dest;
-    }
-
-  /* Save the second edge for later checks.  */
-  ip->e2 = e2;
-
-  if (in_current_region_p (bb))
-    {
-      /* BLOCK_TO_BB sets topological order of the region here.
-         It is important to use real predecessor here, which is ip->bb,
-         as we may well have e1->src outside current region,
-         when skipping to loop exits.  */
-      bool succeeds_in_top_order = (BLOCK_TO_BB (ip->bb->index)
-				    < BLOCK_TO_BB (bb->index));
-
-      /* This is true for the all cases except the last one.  */
-      ip->current_flags = SUCCS_NORMAL;
-
-      /* We are advancing forward in the region, as usual.  */
-      if (succeeds_in_top_order)
+        if (flags & SUCCS_OUT)
         {
-          /* We are skipping to loop exits here.  */
-          gcc_assert (!src_outside_rgn
-                      || flag_sel_sched_pipelining_outer_loops);
-          return !!(flags & SUCCS_NORMAL);
+            return false;
+        }
+    }
+
+    bb = e2->dest;
+
+    /* Skip empty blocks, but be careful not to leave the region.  */
+    while (1)
+    {
+        if (!sel_bb_empty_p (bb))
+        {
+            edge ne;
+            basic_block nbb;
+
+            if (!sel_bb_empty_or_nop_p (bb))
+            {
+                break;
+            }
+
+            ne = EDGE_SUCC (bb, 0);
+            nbb = ne->dest;
+
+            if (!in_current_region_p (nbb)
+                    && !(flags & SUCCS_OUT))
+            {
+                break;
+            }
+
+            e2 = ne;
+            bb = nbb;
+            continue;
         }
 
-      /* This is a back edge.  During pipelining we ignore back edges,
-         but only when it leads to the same loop.  It can lead to the header
-         of the outer loop, which will also be the preheader of
-         the current loop.  */
-      if (pipelining_p
-           && e1->src->loop_father == bb->loop_father)
-        return !!(flags & SUCCS_NORMAL);
+        if (!in_current_region_p (bb)
+                && !(flags & SUCCS_OUT))
+        {
+            return false;
+        }
 
-      /* A back edge should be requested explicitly.  */
-      ip->current_flags = SUCCS_BACK;
-      return !!(flags & SUCCS_BACK);
+        if (EDGE_COUNT (bb->succs) == 0)
+        {
+            return false;
+        }
+
+        e2 = EDGE_SUCC (bb, 0);
+        bb = e2->dest;
     }
 
-  ip->current_flags = SUCCS_OUT;
-  return !!(flags & SUCCS_OUT);
+    /* Save the second edge for later checks.  */
+    ip->e2 = e2;
+
+    if (in_current_region_p (bb))
+    {
+        /* BLOCK_TO_BB sets topological order of the region here.
+           It is important to use real predecessor here, which is ip->bb,
+           as we may well have e1->src outside current region,
+           when skipping to loop exits.  */
+        bool succeeds_in_top_order = (BLOCK_TO_BB (ip->bb->index)
+                                      < BLOCK_TO_BB (bb->index));
+
+        /* This is true for the all cases except the last one.  */
+        ip->current_flags = SUCCS_NORMAL;
+
+        /* We are advancing forward in the region, as usual.  */
+        if (succeeds_in_top_order)
+        {
+            /* We are skipping to loop exits here.  */
+            gcc_assert (!src_outside_rgn
+                        || flag_sel_sched_pipelining_outer_loops);
+            return !!(flags & SUCCS_NORMAL);
+        }
+
+        /* This is a back edge.  During pipelining we ignore back edges,
+           but only when it leads to the same loop.  It can lead to the header
+           of the outer loop, which will also be the preheader of
+           the current loop.  */
+        if (pipelining_p
+                && e1->src->loop_father == bb->loop_father)
+        {
+            return !!(flags & SUCCS_NORMAL);
+        }
+
+        /* A back edge should be requested explicitly.  */
+        ip->current_flags = SUCCS_BACK;
+        return !!(flags & SUCCS_BACK);
+    }
+
+    ip->current_flags = SUCCS_OUT;
+    return !!(flags & SUCCS_OUT);
 }
 
 #define FOR_EACH_SUCC_1(SUCC, ITER, INSN, FLAGS)                        \
@@ -1479,22 +1534,22 @@ _eligible_successor_edge_p (edge e1, succ_iterator *ip)
 static inline basic_block
 bb_next_bb (basic_block bb)
 {
-  switch (EDGE_COUNT (bb->succs))
+    switch (EDGE_COUNT (bb->succs))
     {
     case 0:
-      return bb->next_bb;
+        return bb->next_bb;
 
     case 1:
-      return single_succ (bb);
+        return single_succ (bb);
 
     case 2:
-      return FALLTHRU_EDGE (bb)->dest;
+        return FALLTHRU_EDGE (bb)->dest;
 
     default:
-      return bb->next_bb;
+        return bb->next_bb;
     }
 
-  gcc_unreachable ();
+    gcc_unreachable ();
 }
 
 
@@ -1558,7 +1613,7 @@ extern void merge_expr (expr_t, expr_t, insn_t);
 extern void clear_expr (expr_t);
 extern unsigned expr_dest_regno (expr_t);
 extern rtx expr_dest_reg (expr_t);
-extern int find_in_history_vect (vec<expr_history_def> ,
+extern int find_in_history_vect (vec<expr_history_def>,
                                  rtx, vinsn_t, bool);
 extern void insert_in_history_vect (vec<expr_history_def> *,
                                     unsigned, enum local_trans_type,
@@ -1621,7 +1676,7 @@ extern basic_block fallthru_bb_of_jump (const rtx_insn *);
 extern void sel_init_bbs (bb_vec_t);
 extern void sel_finish_bbs (void);
 
-extern struct succs_info * compute_succs_info (insn_t, short);
+extern struct succs_info *compute_succs_info (insn_t, short);
 extern void free_succs_info (struct succs_info *);
 extern bool sel_insn_has_single_succ_p (insn_t, int);
 extern bool sel_num_cfg_preds_gt_1 (insn_t);

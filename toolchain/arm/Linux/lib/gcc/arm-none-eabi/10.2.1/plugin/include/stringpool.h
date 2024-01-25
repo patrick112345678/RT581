@@ -35,7 +35,7 @@ extern tree get_identifier_with_length (const char *, size_t);
 
 #if GCC_VERSION >= 3000
 #define get_identifier(str) \
-  (__builtin_constant_p (str)				\
+  (__builtin_constant_p (str)               \
     ? get_identifier_with_length ((str), strlen (str))  \
     : get_identifier (str))
 #endif

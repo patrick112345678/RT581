@@ -38,7 +38,7 @@ typedef zb_bool_t (*zb_error_handler_t)(zb_uint8_t severity,
 
 typedef struct zb_error_indication_ctx_s
 {
-  zb_error_handler_t app_err_handler;
+    zb_error_handler_t app_err_handler;
 } zb_error_indication_ctx_t;
 
 /**

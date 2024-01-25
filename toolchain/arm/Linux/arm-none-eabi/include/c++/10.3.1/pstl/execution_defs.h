@@ -22,7 +22,7 @@ inline namespace v1
 // 2.4, Sequential execution policy
 class sequenced_policy
 {
-  public:
+public:
     // For internal use only
     static constexpr std::false_type
     __allow_unsequenced()
@@ -44,7 +44,7 @@ class sequenced_policy
 // 2.5, Parallel execution policy
 class parallel_policy
 {
-  public:
+public:
     // For internal use only
     static constexpr std::false_type
     __allow_unsequenced()
@@ -66,7 +66,7 @@ class parallel_policy
 // 2.6, Parallel+Vector execution policy
 class parallel_unsequenced_policy
 {
-  public:
+public:
     // For internal use only
     static constexpr std::true_type
     __allow_unsequenced()
@@ -87,7 +87,7 @@ class parallel_unsequenced_policy
 
 class unsequenced_policy
 {
-  public:
+public:
     // For internal use only
     static constexpr std::true_type
     __allow_unsequenced()
@@ -149,11 +149,11 @@ template <class _ExecPolicy, class _Tp>
 #if _GLIBCXX_RELEASE >= 9
 using __enable_if_execution_policy =
     typename std::enable_if<__pstl::execution::is_execution_policy<std::__remove_cvref_t<_ExecPolicy>>::value,
-                            _Tp>::type;
+    _Tp>::type;
 #else
 using __enable_if_execution_policy =
     typename std::enable_if<__pstl::execution::is_execution_policy<typename std::decay<_ExecPolicy>::type>::value,
-                            _Tp>::type;
+    _Tp>::type;
 #endif
 } // namespace __internal
 

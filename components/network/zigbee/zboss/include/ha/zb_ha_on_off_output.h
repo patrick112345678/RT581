@@ -238,7 +238,7 @@
           ZB_ZCL_CLUSTER_ID_GROUPS                                                            \
         }                                                                                     \
       }
- /** @endcond */
+/** @endcond */
 
 /** @brief Declare endpoint for On/off output device
     @param ep_name - endpoint variable name

@@ -67,11 +67,11 @@
  */
 #define TEST_SIMPLE_SEND
 #ifdef TEST_SIMPLE_SEND
-  #define TEST_SIMPLE_SEND_PACKS_NUM   (200u)
-  #define TEST_SIMPLE_SEND_PERIOD_MS   (100)
-  #define TEST_SEND_SIZE                126
-  #define TEST_SEND_INCREMENTAL_SIZE
-  #define TEST_SEND_BINARY_MSG
+#define TEST_SIMPLE_SEND_PACKS_NUM   (200u)
+#define TEST_SIMPLE_SEND_PERIOD_MS   (100)
+#define TEST_SEND_SIZE                126
+#define TEST_SEND_INCREMENTAL_SIZE
+#define TEST_SEND_BINARY_MSG
 #endif
 
 #endif /* TEST_CFG_H */

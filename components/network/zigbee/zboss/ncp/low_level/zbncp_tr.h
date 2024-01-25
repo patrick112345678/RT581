@@ -31,10 +31,10 @@
 /** @brief Transport status constants. */
 typedef enum zbncp_tr_send_status_e
 {
-  ZBNCP_TR_SEND_STATUS_SUCCESS,   /**< Transport has sent the data */
-  ZBNCP_TR_SEND_STATUS_BUSY,      /**< Transport is busy right now, LL should retransmit packet later */
-  ZBNCP_TR_SEND_STATUS_TIMEOUT,   /**< Send operation timed out, LL should retransmit packet later */
-  ZBNCP_TR_SEND_STATUS_ERROR,     /**< Transport internal error, LL should retransmit packet later */
+    ZBNCP_TR_SEND_STATUS_SUCCESS,   /**< Transport has sent the data */
+    ZBNCP_TR_SEND_STATUS_BUSY,      /**< Transport is busy right now, LL should retransmit packet later */
+    ZBNCP_TR_SEND_STATUS_TIMEOUT,   /**< Send operation timed out, LL should retransmit packet later */
+    ZBNCP_TR_SEND_STATUS_ERROR,     /**< Transport internal error, LL should retransmit packet later */
 }
 zbncp_tr_send_status_t;
 
@@ -110,10 +110,10 @@ typedef void zbncp_tr_recv_callback(zbncp_tr_cb_arg_t arg, zbncp_size_t size);
  */
 typedef struct zbncp_transport_cb_s
 {
-  zbncp_tr_init_callback *init;   /**< Callback on initialization complete */
-  zbncp_tr_send_callback *send;   /**< Callback on sending data complete */
-  zbncp_tr_recv_callback *recv;   /**< Callback on receiving data complete */
-  zbncp_tr_cb_arg_t arg;          /**< Opaque argument for callback */
+    zbncp_tr_init_callback *init;   /**< Callback on initialization complete */
+    zbncp_tr_send_callback *send;   /**< Callback on sending data complete */
+    zbncp_tr_recv_callback *recv;   /**< Callback on receiving data complete */
+    zbncp_tr_cb_arg_t arg;          /**< Opaque argument for callback */
 }
 zbncp_transport_cb_t;
 
@@ -165,10 +165,10 @@ typedef void zbncp_transport_op_recv(zbncp_transport_impl_t *tr, zbncp_memref_t 
  */
 typedef struct zbncp_transport_ops_s
 {
-  zbncp_transport_impl_t *impl;   /**< Opaque pointer to a transport implementation object */
-  zbncp_transport_op_init *init;  /**< Operation implementing transport initialization */
-  zbncp_transport_op_send *send;  /**< Operation implementing transport data sending */
-  zbncp_transport_op_recv *recv;  /**< Operation implementing transport data receving */
+    zbncp_transport_impl_t *impl;   /**< Opaque pointer to a transport implementation object */
+    zbncp_transport_op_init *init;  /**< Operation implementing transport initialization */
+    zbncp_transport_op_send *send;  /**< Operation implementing transport data sending */
+    zbncp_transport_op_recv *recv;  /**< Operation implementing transport data receving */
 }
 zbncp_transport_ops_t;
 

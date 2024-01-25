@@ -104,22 +104,22 @@
 
 /* Declare device ctx */
 #define DECLARE_SERVER_EP(ep_name, ep_id, cluster_list)                                 \
-  ZB_AF_DECLARE_ENDPOINT_DESC(ep_name,							\
-                              ep_id, ZB_AF_HA_PROFILE_ID,				\
-                              0,							\
-                              NULL,							\
+  ZB_AF_DECLARE_ENDPOINT_DESC(ep_name,                          \
+                              ep_id, ZB_AF_HA_PROFILE_ID,               \
+                              0,                            \
+                              NULL,                         \
                               ZB_ZCL_ARRAY_SIZE(cluster_list, zb_zcl_cluster_desc_t),   \
-                              cluster_list,						\
-                              (zb_af_simple_desc_1_1_t*)&simple_desc_##ep_name,		\
-                              0, NULL,							\
+                              cluster_list,                     \
+                              (zb_af_simple_desc_1_1_t*)&simple_desc_##ep_name,     \
+                              0, NULL,                          \
                               0, NULL)
 
 /* Declare device ctx */
-#define DECLARE_ON_OFF_SERVER_CTX(device_ctx_name, ep1_name, ep2_name)	\
-  ZB_AF_START_DECLARE_ENDPOINT_LIST(ep_list_##device_ctx_name)		\
+#define DECLARE_ON_OFF_SERVER_CTX(device_ctx_name, ep1_name, ep2_name)  \
+  ZB_AF_START_DECLARE_ENDPOINT_LIST(ep_list_##device_ctx_name)      \
     &ep1_name,                                                          \
-    &ep2_name,								\
-  ZB_AF_FINISH_DECLARE_ENDPOINT_LIST;					\
+    &ep2_name,                              \
+  ZB_AF_FINISH_DECLARE_ENDPOINT_LIST;                   \
   ZBOSS_DECLARE_DEVICE_CTX(device_ctx_name, ep_list_##device_ctx_name,  \
                            ZB_ZCL_ARRAY_SIZE(ep_list_##device_ctx_name, zb_af_endpoint_desc_t*))
 

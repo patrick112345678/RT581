@@ -49,55 +49,55 @@
  */
 enum zb_zcl_level_control_attr_e
 {
-  /** @brief Current Level attribute */
-  ZB_ZCL_ATTR_LEVEL_CONTROL_CURRENT_LEVEL_ID          = 0x0000,
-  /** @brief Remaining Time attribute */
-  ZB_ZCL_ATTR_LEVEL_CONTROL_REMAINING_TIME_ID         = 0x0001,
-  /** @brief On Off Transition Time attribute */
-  /** The MinLevel attribute indicates the minimum value of CurrentLevel that is capable
-   *  of being assigned. */
-  ZB_ZCL_ATTR_LEVEL_CONTROL_MIN_LEVEL_ID              = 0x0002,
-  /** The MaxLevel attribute indicates the maximum value of CurrentLevel that is capable
-   *  of being assigned. */
-  ZB_ZCL_ATTR_LEVEL_CONTROL_MAX_LEVEL_ID              = 0x0003,
-  /** The CurrentFrequency attribute represents the frequency that the devices is
-   *  at CurrentLevel. */
-  ZB_ZCL_ATTR_LEVEL_CONTROL_CURRENT_FREQUENCY_ID      = 0x0004,
-  /** The MinFrequency attribute indicates the minimum value of CurrentFrequency that
-   *  is capable of being assigned. */
-  ZB_ZCL_ATTR_LEVEL_CONTROL_MIN_FREQUENCY_ID          = 0x0005,
-  /** The MaxFrequency attribute indicates the maximum value of CurrentFrequency that
-   *  is capable of being assigned. */
-  ZB_ZCL_ATTR_LEVEL_CONTROL_MAX_FREQUENCY_ID          = 0x0006,
+    /** @brief Current Level attribute */
+    ZB_ZCL_ATTR_LEVEL_CONTROL_CURRENT_LEVEL_ID          = 0x0000,
+    /** @brief Remaining Time attribute */
+    ZB_ZCL_ATTR_LEVEL_CONTROL_REMAINING_TIME_ID         = 0x0001,
+    /** @brief On Off Transition Time attribute */
+    /** The MinLevel attribute indicates the minimum value of CurrentLevel that is capable
+     *  of being assigned. */
+    ZB_ZCL_ATTR_LEVEL_CONTROL_MIN_LEVEL_ID              = 0x0002,
+    /** The MaxLevel attribute indicates the maximum value of CurrentLevel that is capable
+     *  of being assigned. */
+    ZB_ZCL_ATTR_LEVEL_CONTROL_MAX_LEVEL_ID              = 0x0003,
+    /** The CurrentFrequency attribute represents the frequency that the devices is
+     *  at CurrentLevel. */
+    ZB_ZCL_ATTR_LEVEL_CONTROL_CURRENT_FREQUENCY_ID      = 0x0004,
+    /** The MinFrequency attribute indicates the minimum value of CurrentFrequency that
+     *  is capable of being assigned. */
+    ZB_ZCL_ATTR_LEVEL_CONTROL_MIN_FREQUENCY_ID          = 0x0005,
+    /** The MaxFrequency attribute indicates the maximum value of CurrentFrequency that
+     *  is capable of being assigned. */
+    ZB_ZCL_ATTR_LEVEL_CONTROL_MAX_FREQUENCY_ID          = 0x0006,
 
-  ZB_ZCL_ATTR_LEVEL_CONTROL_ON_OFF_TRANSITION_TIME_ID = 0x0010,
-  /** @brief On Level attribute */
+    ZB_ZCL_ATTR_LEVEL_CONTROL_ON_OFF_TRANSITION_TIME_ID = 0x0010,
+    /** @brief On Level attribute */
 
-  /* TODO: A close relationship between this cluster and the On/Off
-   * cluster is needed. Refer to ZCL spec, subclause 3.10.2.1 */
-  ZB_ZCL_ATTR_LEVEL_CONTROL_ON_LEVEL_ID               = 0x0011,
+    /* TODO: A close relationship between this cluster and the On/Off
+     * cluster is needed. Refer to ZCL spec, subclause 3.10.2.1 */
+    ZB_ZCL_ATTR_LEVEL_CONTROL_ON_LEVEL_ID               = 0x0011,
 
-  /** The OnTransitionTime attribute represents the time taken to move the current level
-   *  from the minimum level to the maximum level when an On command is received by
-   *  an On/Off cluster on the same endpoint. */
-  ZB_ZCL_ATTR_LEVEL_CONTROL_ON_TRANSITION_TIME_ID     = 0x0012,
-  /** The OffTransitionTime attribute represents the time taken to move the current level
-   *  from the maximum level to the minimum level when an Off command is received by
-   *  an On/Off cluster on the same endpoint. */
-  ZB_ZCL_ATTR_LEVEL_CONTROL_OFF_TRANSITION_TIME_ID    = 0x0013,
-  /** The DefaultMoveRate attribute determines the movement rate, in units per second,
-   *  when a Move command is received with a Rate parameter of 0xFF. */
-  ZB_ZCL_ATTR_LEVEL_CONTROL_DEFAULT_MOVE_RATE_ID      = 0x0014,
-  /** The Options attribute is a bitmap that determines the default behavior of some
-   *  cluster commands. */
-  ZB_ZCL_ATTR_LEVEL_CONTROL_OPTIONS_ID                = 0x000F,
-  /** The StartUpCurrentLevel attribute SHALL define the desired startup level for a
-   *  device when it is supplied with power and this level SHALL be reflected in
-   *  the CurrentLevel attribute. */
-  ZB_ZCL_ATTR_LEVEL_CONTROL_START_UP_CURRENT_LEVEL_ID = 0x4000,
+    /** The OnTransitionTime attribute represents the time taken to move the current level
+     *  from the minimum level to the maximum level when an On command is received by
+     *  an On/Off cluster on the same endpoint. */
+    ZB_ZCL_ATTR_LEVEL_CONTROL_ON_TRANSITION_TIME_ID     = 0x0012,
+    /** The OffTransitionTime attribute represents the time taken to move the current level
+     *  from the maximum level to the minimum level when an Off command is received by
+     *  an On/Off cluster on the same endpoint. */
+    ZB_ZCL_ATTR_LEVEL_CONTROL_OFF_TRANSITION_TIME_ID    = 0x0013,
+    /** The DefaultMoveRate attribute determines the movement rate, in units per second,
+     *  when a Move command is received with a Rate parameter of 0xFF. */
+    ZB_ZCL_ATTR_LEVEL_CONTROL_DEFAULT_MOVE_RATE_ID      = 0x0014,
+    /** The Options attribute is a bitmap that determines the default behavior of some
+     *  cluster commands. */
+    ZB_ZCL_ATTR_LEVEL_CONTROL_OPTIONS_ID                = 0x000F,
+    /** The StartUpCurrentLevel attribute SHALL define the desired startup level for a
+     *  device when it is supplied with power and this level SHALL be reflected in
+     *  the CurrentLevel attribute. */
+    ZB_ZCL_ATTR_LEVEL_CONTROL_START_UP_CURRENT_LEVEL_ID = 0x4000,
 
-  /** @internal Special Move Variables attribute */
-  ZB_ZCL_ATTR_LEVEL_CONTROL_MOVE_STATUS_ID            = 0xefff
+    /** @internal Special Move Variables attribute */
+    ZB_ZCL_ATTR_LEVEL_CONTROL_MOVE_STATUS_ID            = 0xefff
 };
 
 /**
@@ -105,9 +105,9 @@ enum zb_zcl_level_control_attr_e
  */
 enum zb_zcl_level_control_options_e
 {
-  /** @brief ExecuteIfOff bit */
-  ZB_ZCL_LEVEL_CONTROL_OPTIONS_EXECUTE_IF_OFF    = 0,
-  ZB_ZCL_LEVEL_CONTROL_OPTIONS_RESERVED          = 1,
+    /** @brief ExecuteIfOff bit */
+    ZB_ZCL_LEVEL_CONTROL_OPTIONS_EXECUTE_IF_OFF    = 0,
+    ZB_ZCL_LEVEL_CONTROL_OPTIONS_RESERVED          = 1,
 };
 
 /** @brief Current Level attribute minimum value */
@@ -254,37 +254,37 @@ enum zb_zcl_level_control_options_e
  */
 typedef struct zb_zcl_level_control_move_addr_s
 {
-  zb_uint16_t src_addr;
-  zb_uint8_t  src_endpoint;
-  zb_uint8_t  dst_endpoint;
-  zb_uint8_t  cmd_id;
-  zb_uint8_t  seq_number;
-  zb_bool_t disable_default_response;
-  zb_uint16_t profile_id;
+    zb_uint16_t src_addr;
+    zb_uint8_t  src_endpoint;
+    zb_uint8_t  dst_endpoint;
+    zb_uint8_t  cmd_id;
+    zb_uint8_t  seq_number;
+    zb_bool_t disable_default_response;
+    zb_uint16_t profile_id;
 } zb_zcl_level_control_move_addr_t;
 
 /** @internal Structure of Move variables for Move alarm
  */
 typedef struct zb_zcl_level_control_move_variables_s
 {
-  /** @brief Level to set */
-  zb_uint8_t curr_level;
-  /** @brief End level */
-  zb_uint8_t end_level;
-  /** @brief On/Off flag: ZB_TRUE - need to setting On/Off attribute, ZB_FALSE - do not need */
-  zb_bool_t is_onoff;
-  /** @brief Address for response sending */
-  zb_zcl_level_control_move_addr_t addr;
-  /** @brief Start time for set Remaining Time attribute */
-  zb_uint16_t start_time;
+    /** @brief Level to set */
+    zb_uint8_t curr_level;
+    /** @brief End level */
+    zb_uint8_t end_level;
+    /** @brief On/Off flag: ZB_TRUE - need to setting On/Off attribute, ZB_FALSE - do not need */
+    zb_bool_t is_onoff;
+    /** @brief Address for response sending */
+    zb_zcl_level_control_move_addr_t addr;
+    /** @brief Start time for set Remaining Time attribute */
+    zb_uint16_t start_time;
 } zb_zcl_level_control_move_variables_t;
 
 /** @internal Structure of Move Status attribute for Move alarm
  */
 typedef struct zb_zcl_level_control_move_status_s
 {
-  zb_zcl_level_control_move_variables_t move_var;
-  zb_uint8_t buf_id;
+    zb_zcl_level_control_move_variables_t move_var;
+    zb_uint8_t buf_id;
 } zb_zcl_level_control_move_status_t;
 
 /*! Number of attributes mandatory for reporting in Level Control cluster */
@@ -303,26 +303,26 @@ typedef struct zb_zcl_level_control_move_status_s
 */
 enum zb_zcl_level_control_cmd_e
 {
-  /** Move To Level command */
-  ZB_ZCL_CMD_LEVEL_CONTROL_MOVE_TO_LEVEL             = 0x00,
-  /** Move command */
-  ZB_ZCL_CMD_LEVEL_CONTROL_MOVE                      = 0x01,
-  /** Step command */
-  ZB_ZCL_CMD_LEVEL_CONTROL_STEP                      = 0x02,
-  /** Stop command */
-  ZB_ZCL_CMD_LEVEL_CONTROL_STOP                      = 0x03,
-  /** Move To Level with On/Off command */
-  ZB_ZCL_CMD_LEVEL_CONTROL_MOVE_TO_LEVEL_WITH_ON_OFF = 0x04,
-  /** Move with On/Off command */
-  ZB_ZCL_CMD_LEVEL_CONTROL_MOVE_WITH_ON_OFF          = 0x05,
-  /** Step with On/Off command */
-  ZB_ZCL_CMD_LEVEL_CONTROL_STEP_WITH_ON_OFF          = 0x06,
-  /** Step with On/Off command */
-  ZB_ZCL_CMD_LEVEL_CONTROL_STOP_WITH_ON_OFF          = 0x07,
-  /** Upon receipt of "Move to Closest Frequency" command, the device shall change
-   *   its current frequency to the requested frequency, or to the closest frequency
-   *  that it can generate */
-  ZB_ZCL_CMD_LEVEL_CONTROL_MOVE_TO_CLOSEST_FREQUENCY = 0x08,
+    /** Move To Level command */
+    ZB_ZCL_CMD_LEVEL_CONTROL_MOVE_TO_LEVEL             = 0x00,
+    /** Move command */
+    ZB_ZCL_CMD_LEVEL_CONTROL_MOVE                      = 0x01,
+    /** Step command */
+    ZB_ZCL_CMD_LEVEL_CONTROL_STEP                      = 0x02,
+    /** Stop command */
+    ZB_ZCL_CMD_LEVEL_CONTROL_STOP                      = 0x03,
+    /** Move To Level with On/Off command */
+    ZB_ZCL_CMD_LEVEL_CONTROL_MOVE_TO_LEVEL_WITH_ON_OFF = 0x04,
+    /** Move with On/Off command */
+    ZB_ZCL_CMD_LEVEL_CONTROL_MOVE_WITH_ON_OFF          = 0x05,
+    /** Step with On/Off command */
+    ZB_ZCL_CMD_LEVEL_CONTROL_STEP_WITH_ON_OFF          = 0x06,
+    /** Step with On/Off command */
+    ZB_ZCL_CMD_LEVEL_CONTROL_STOP_WITH_ON_OFF          = 0x07,
+    /** Upon receipt of "Move to Closest Frequency" command, the device shall change
+     *   its current frequency to the requested frequency, or to the closest frequency
+     *  that it can generate */
+    ZB_ZCL_CMD_LEVEL_CONTROL_MOVE_TO_CLOSEST_FREQUENCY = 0x08,
 };
 
 /** @cond internals_doc */
@@ -353,10 +353,10 @@ enum zb_zcl_level_control_cmd_e
     @see ZCL spec, subclause 3.10.2.3.1.1*/
 typedef ZB_PACKED_PRE struct zb_zcl_level_control_req_options_s
 {
-  /** OptionsMask field */
-  zb_uint8_t options_mask;
-  /** OptionsOverride field */
-  zb_uint8_t options_override;
+    /** OptionsMask field */
+    zb_uint8_t options_mask;
+    /** OptionsOverride field */
+    zb_uint8_t options_override;
 } ZB_PACKED_STRUCT zb_zcl_level_control_req_options_t;
 
 /** @brief Move to Level payload length macro */
@@ -387,10 +387,10 @@ typedef ZB_PACKED_PRE struct zb_zcl_level_control_req_options_s
     @see ZCL spec, subclause 3.10.2.3.1.1*/
 typedef ZB_PACKED_PRE struct zb_zcl_level_control_move_to_level_req_s
 {
-  /** Level field */
-  zb_uint8_t level;
-  /** Transition time field */
-  zb_uint16_t transition_time;
+    /** Level field */
+    zb_uint8_t level;
+    /** Transition time field */
+    zb_uint16_t transition_time;
 } ZB_PACKED_STRUCT zb_zcl_level_control_move_to_level_req_t;
 
 /** @brief Move to Level payload length macro */
@@ -520,17 +520,17 @@ typedef ZB_PACKED_PRE struct zb_zcl_level_control_move_to_level_req_s
 
 enum zb_zcl_level_control_move_mode_e
 {
-  ZB_ZCL_LEVEL_CONTROL_MOVE_MODE_UP   = 0x00,
-  ZB_ZCL_LEVEL_CONTROL_MOVE_MODE_DOWN = 0x01
+    ZB_ZCL_LEVEL_CONTROL_MOVE_MODE_UP   = 0x00,
+    ZB_ZCL_LEVEL_CONTROL_MOVE_MODE_DOWN = 0x01
 };
 
 /*! @brief Structured representation of MOVE command payload */
 typedef ZB_PACKED_PRE struct zb_zcl_level_control_move_req_s
 {
-  /** Move Mode field */
-  zb_uint8_t move_mode;
-  /** Rate field */
-  zb_uint8_t rate;
+    /** Move Mode field */
+    zb_uint8_t move_mode;
+    /** Rate field */
+    zb_uint8_t rate;
 } ZB_PACKED_STRUCT zb_zcl_level_control_move_req_t;
 
 /** @brief Move payload length macro */
@@ -656,19 +656,19 @@ typedef ZB_PACKED_PRE struct zb_zcl_level_control_move_req_s
 
 enum zb_zcl_level_control_step_mode_e
 {
-  ZB_ZCL_LEVEL_CONTROL_STEP_MODE_UP   = 0x00,
-  ZB_ZCL_LEVEL_CONTROL_STEP_MODE_DOWN = 0x01
+    ZB_ZCL_LEVEL_CONTROL_STEP_MODE_UP   = 0x00,
+    ZB_ZCL_LEVEL_CONTROL_STEP_MODE_DOWN = 0x01
 };
 
 /*! @brief Structured representation of STEP command payload */
 typedef ZB_PACKED_PRE struct zb_zcl_level_control_step_req_s
 {
-  /** Step Mode field */
-  zb_uint8_t step_mode;
-  /** Step Size field */
-  zb_uint8_t step_size;
-  /** Transition Time field */
-  zb_uint16_t transition_time;
+    /** Step Mode field */
+    zb_uint8_t step_mode;
+    /** Step Size field */
+    zb_uint8_t step_size;
+    /** Transition Time field */
+    zb_uint16_t transition_time;
 } ZB_PACKED_STRUCT zb_zcl_level_control_step_req_t;
 
 /** @brief Step payload length macro */
@@ -876,18 +876,18 @@ typedef ZB_PACKED_PRE struct zb_zcl_level_control_step_req_s
 /** @cond internals_doc */
 typedef struct zb_zcl_level_control_set_value_param_s
 {
-  zb_uint8_t new_value;
+    zb_uint8_t new_value;
 } zb_zcl_level_control_set_value_param_t;
 /*! @}
  *  @endcond */ /* internals_doc */
 
-  /* definition to parse request */
+/* definition to parse request */
 
-  /* command response structure */
+/* command response structure */
 
-  /* definition to parse response */
+/* definition to parse response */
 
-  /* definition to send command request */
+/* definition to send command request */
 
 /*! @} */ /* Level Control cluster commands */
 

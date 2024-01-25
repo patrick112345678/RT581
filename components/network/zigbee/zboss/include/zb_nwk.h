@@ -109,8 +109,8 @@ typedef zb_uint8_t zb_nwk_status_t;
 /** @brief Multicast types mode. */
 typedef enum zb_nwk_multicast_mode_e
 {
-  ZB_NWK_MULTICAST_MODE_NONMEMBER                    = 0x00, /**< Multicast non-member mode*/
-  ZB_NWK_MULTICAST_MODE_MEMBER                       = 0x01  /**< Multicast member mode*/
+    ZB_NWK_MULTICAST_MODE_NONMEMBER                    = 0x00, /**< Multicast non-member mode*/
+    ZB_NWK_MULTICAST_MODE_MEMBER                       = 0x01  /**< Multicast member mode*/
 }
 zb_nwk_multicast_mode_t;
 
@@ -170,54 +170,54 @@ typedef zb_uint8_t zb_nlde_tx_opt_e;
 /** @brief Parameters for NLDE-DATA.request primitive. */
 typedef struct zb_nlde_data_req_s
 {
-  zb_uint16_t  dst_addr;        /**< Destination address.  */
-  zb_uint8_t   radius;          /**< The distance, in hops, that a frame will be allowed to travel
+    zb_uint16_t  dst_addr;        /**< Destination address.  */
+    zb_uint8_t   radius;          /**< The distance, in hops, that a frame will be allowed to travel
                                   * through the network. */
-  zb_uint8_t addr_mode;    /**< The type of destination address supplied by the DstAddr parameter,
+    zb_uint8_t addr_mode;    /**< The type of destination address supplied by the DstAddr parameter,
                              * see @ref address_modes  */
-  zb_uint8_t nonmember_radius; /**< The distance, in hops, that a multicast frame will be relayed
+    zb_uint8_t nonmember_radius; /**< The distance, in hops, that a multicast frame will be relayed
                                  * by nodes not a member of the group. A value of 0x07 is treated
                                  * as infinity.  */
-  zb_uint8_t discovery_route; /**< The DiscoverRoute parameter may be used to control route
+    zb_uint8_t discovery_route; /**< The DiscoverRoute parameter may be used to control route
                                 * discovery operations for the transit of this frame (see
                                 * sub-clause3.6.3.5): 0x00 = suppress route discovery 0x01 = enable
                                 * route discovery  */
-  zb_uint8_t security_enable; /**< The SecurityEnable parameter may be used to enable NWK layer
+    zb_uint8_t security_enable; /**< The SecurityEnable parameter may be used to enable NWK layer
                                 * security processing for the current frame. If the
                                 * nwkSecurityLevel attribute of the NIB has a value of 0, meaning
                                 * no security, then this parameter will be ignored.  Otherwise,
                                 * a value of TRUE denotes that the security processing specified by
                                 * the security level will be applied, and a value of FALSE denotes
                                 * that no security processing will be applied.  */
-  zb_uint8_t ndsu_handle; /**< The handle associated with the NSDU to be transmitted by the NWK
+    zb_uint8_t ndsu_handle; /**< The handle associated with the NSDU to be transmitted by the NWK
                             * layer entity. */
-  /*3.2.1.1.1 spec r21*/
-  /* 14/06/2016 CR [AEV] start */
+    /*3.2.1.1.1 spec r21*/
+    /* 14/06/2016 CR [AEV] start */
 #ifdef ZB_USEALIAS
-  zb_uint8_t use_alias;   /**<The next higher layer MAY use the UseAlias
-			   * parameter to request alias usage by NWK
-			   * layer for the current frame. If the UseAlias
-			   * parameter has a value of FALSE, meaning no
-			   * alias usage,
-			   * then the parameters AliasSrcAddr and AliasSeqNumb will be ignored.
-			   * Otherwise, a value of TRUE denotesthat the
-			   * values supplied in AliasSrcAddr and AliasSeqNumb are to be used.
-			   * Values: TRUE or FALSE
-			   */
-  zb_uint16_t alias_src_addr;/**The source address to be used for this NSDU.
-			      *	If the UseAlias parameter has a value of
-			      *	FALSE, the AliasSrcAddr parameter is ignored.
-			      * Values: Any valid device address except a broadcast address
-			      */
-  zb_uint8_t alias_seq_num;  /**The sequence number to be used for this
-			      * NSDU. If the UseAlias parameter has a value
-			      * of FALSE, the AliasSeqNumb parameter is ignored.
-			      * Values: 0x00-0xff
-			      */
+    zb_uint8_t use_alias;   /**<The next higher layer MAY use the UseAlias
+               * parameter to request alias usage by NWK
+               * layer for the current frame. If the UseAlias
+               * parameter has a value of FALSE, meaning no
+               * alias usage,
+               * then the parameters AliasSrcAddr and AliasSeqNumb will be ignored.
+               * Otherwise, a value of TRUE denotesthat the
+               * values supplied in AliasSrcAddr and AliasSeqNumb are to be used.
+               * Values: TRUE or FALSE
+               */
+    zb_uint16_t alias_src_addr;/**The source address to be used for this NSDU.
+                  * If the UseAlias parameter has a value of
+                  * FALSE, the AliasSrcAddr parameter is ignored.
+                  * Values: Any valid device address except a broadcast address
+                  */
+    zb_uint8_t alias_seq_num;  /**The sequence number to be used for this
+                  * NSDU. If the UseAlias parameter has a value
+                  * of FALSE, the AliasSeqNumb parameter is ignored.
+                  * Values: 0x00-0xff
+                  */
 #endif /*ZB_USEALIAS*/
-  /* 14/06/2016 CR [AEV] end */
+    /* 14/06/2016 CR [AEV] end */
 #ifdef ZB_APSDE_REQ_ROUTING_FEATURES
-  zb_uint8_t extension_flags; /** The field for extension flags storing:
+    zb_uint8_t extension_flags; /** The field for extension flags storing:
                                *  - force mesh route discovery
                                *  - force send route record
                                */
@@ -294,8 +294,8 @@ void zb_nlde_data_indication(zb_uint8_t param);
 /** @brief Arguments of the NLME-GET.request routine. */
 typedef ZB_PACKED_PRE struct zb_nlme_get_request_s
 {
-  zb_nib_attribute_t nib_attribute; /**< Attribute value, see @ref zb_nib_attribute_t. */
-  zb_callback_t      confirm_cb; /*!< User's callback to be called as NLME-GET.confirm  */
+    zb_nib_attribute_t nib_attribute; /**< Attribute value, see @ref zb_nib_attribute_t. */
+    zb_callback_t      confirm_cb; /*!< User's callback to be called as NLME-GET.confirm  */
 } ZB_PACKED_STRUCT
 zb_nlme_get_request_t;
 
@@ -314,19 +314,19 @@ void zb_nlme_get_request(zb_uint8_t param);
 /** @brief Arguments of the NLME-GET.confirm routine. */
 typedef ZB_PACKED_PRE struct zb_nlme_get_confirm_s
 {
-  zb_nwk_status_t status; /**< The result of the operation. */
-  zb_nib_attribute_t nib_attribute;  /**< Attribute value, see @ref zb_nib_attribute_t. */
-  zb_uint16_t attribute_length; /**< Length of the attribute's value. */
-  /* next is attribute value */
+    zb_nwk_status_t status; /**< The result of the operation. */
+    zb_nib_attribute_t nib_attribute;  /**< Attribute value, see @ref zb_nib_attribute_t. */
+    zb_uint16_t attribute_length; /**< Length of the attribute's value. */
+    /* next is attribute value */
 } ZB_PACKED_STRUCT
 zb_nlme_get_confirm_t;
 
 /** @brief Arguments of the NLME-SET.request routine. */
 typedef ZB_PACKED_PRE struct zb_nlme_set_request_s
 {
-  zb_nib_attribute_t nib_attribute; /**< Attribute value, see @ref zb_nib_attribute_t. */
-  zb_uint16_t        attr_length;          /**< Size of nib_attribute.  */
-  zb_callback_t      confirm_cb; /*!< User's callback to be called as NLME-SET.confirm  */
+    zb_nib_attribute_t nib_attribute; /**< Attribute value, see @ref zb_nib_attribute_t. */
+    zb_uint16_t        attr_length;          /**< Size of nib_attribute.  */
+    zb_callback_t      confirm_cb; /*!< User's callback to be called as NLME-SET.confirm  */
 } ZB_PACKED_STRUCT
 zb_nlme_set_request_t;
 
@@ -345,8 +345,8 @@ void zb_nlme_set_request(zb_uint8_t param);
 /** @brief Arguments of the NLME-SET.confirm routine. */
 typedef ZB_PACKED_PRE struct zb_nlme_set_confirm_s
 {
-  zb_nwk_status_t status;           /**< The result of the operation. */
-  zb_nib_attribute_t nib_attribute; /**< Attribute value, see @ref zb_nib_attribute_t. */
+    zb_nwk_status_t status;           /**< The result of the operation. */
+    zb_nib_attribute_t nib_attribute; /**< Attribute value, see @ref zb_nib_attribute_t. */
 } ZB_PACKED_STRUCT
 zb_nlme_set_confirm_t;
 
@@ -359,10 +359,10 @@ zb_nlme_set_confirm_t;
 */
 typedef struct zb_nlme_network_discovery_request_s
 {
-  zb_channel_list_t scan_channels_list; /**< A list of channel pages and the channels
+    zb_channel_list_t scan_channels_list; /**< A list of channel pages and the channels
                                                                * within those pages that the discovery shall
                                                                * be performed upon. */
-  zb_uint8_t        scan_duration;                            /**< Time to spend scanning each channel */
+    zb_uint8_t        scan_duration;                            /**< Time to spend scanning each channel */
 }
 zb_nlme_network_discovery_request_t;
 
@@ -383,46 +383,46 @@ void zb_nlme_network_discovery_request(zb_uint8_t param);
  */
 typedef ZB_PACKED_PRE struct zb_nlme_network_descriptor_s
 {
-  zb_bitfield_t panid_ref:7; /**< Reference to extended Pan ID
+    zb_bitfield_t panid_ref: 7; /**< Reference to extended Pan ID
                               * of the network. Was zb_address_pan_id_ref_t.
                               * Must be beeg enough to hold ZB_PANID_TABLE_SIZE.
                               * ZB_PANID_TABLE_SIZE is now 16, so 7 is more than enough.
                               */
-  zb_bitfield_t    channel_page:5; /**< channel page. in r22 0 to 31  */
-  zb_bitfield_t    logical_channel:6; /**< The current logical channel occupied by
+    zb_bitfield_t    channel_page: 5; /**< channel page. in r22 0 to 31  */
+    zb_bitfield_t    logical_channel: 6; /**< The current logical channel occupied by
                                        * the network. In r22 0 to 63 */
-  /* use bitfields to fit descriptors array to the single buffer */
-  zb_bitfield_t stack_profile:2; /**< Stack profile identifier. 4 bits by
+    /* use bitfields to fit descriptors array to the single buffer */
+    zb_bitfield_t stack_profile: 2; /**< Stack profile identifier. 4 bits by
                                   * standard, but need 2 bits
                                   * actually. */
 #if 0
-  /* Defined by standard, but not actually required for us */
-  zb_bitfield_t Zigbee_version:4; /**< The version of the Zigbee protocol */
-  zb_bitfield_t beacon_order:4; /**< How often the MAC sub-layer beacon is to
+    /* Defined by standard, but not actually required for us */
+    zb_bitfield_t Zigbee_version: 4; /**< The version of the Zigbee protocol */
+    zb_bitfield_t beacon_order: 4; /**< How often the MAC sub-layer beacon is to
                                  * be transmitted */
-  zb_bitfield_t superframe_order:4; /**< The length of the active period of the
+    zb_bitfield_t superframe_order: 4; /**< The length of the active period of the
                                      * superframe  */
 #endif
-  zb_bitfield_t permit_joining:1; /**< Indecates that at least one router on
+    zb_bitfield_t permit_joining: 1; /**< Indecates that at least one router on
                                    * the network currently permits joining */
-  zb_bitfield_t router_capacity:1; /**< True if device is capable of accepting
+    zb_bitfield_t router_capacity: 1; /**< True if device is capable of accepting
                                     * join requests from roter-capable devices */
-  zb_bitfield_t end_device_capacity:1; /**< True if device is capable of accepting
+    zb_bitfield_t end_device_capacity: 1; /**< True if device is capable of accepting
                                     * join requests from end devices */
-  zb_bitfield_t processed:1; /**< True if record is processed */
-  zb_uint8_t    nwk_update_id;
+    zb_bitfield_t processed: 1; /**< True if record is processed */
+    zb_uint8_t    nwk_update_id;
 } ZB_PACKED_STRUCT
 zb_nlme_network_descriptor_t;
 
 /** @brief Arguments of the NLME-NETWORK-DISCOVERY.confirm routine. */
 typedef ZB_PACKED_PRE struct zb_nlme_network_discovery_confirm_s
 {
-  zb_ret_t status;  /**< Our error or MAC status codes (see Table 3-11
+    zb_ret_t status;  /**< Our error or MAC status codes (see Table 3-11
                      * NLME-NETWORK-DISCOVERY.confirm Parameters:
                      * Any status value returned with the
                      * MLME-SCAN.confirm primitive.) */
-  zb_uint8_t network_count; /**< Number of discovered networks */
-  /* next here is an array of zb_nlme_network_descriptor_t */
+    zb_uint8_t network_count; /**< Number of discovered networks */
+    /* next here is an array of zb_nlme_network_descriptor_t */
 } ZB_PACKED_STRUCT
 zb_nlme_network_discovery_confirm_t;
 
@@ -447,16 +447,16 @@ void zb_nlme_network_discovery_confirm(zb_uint8_t param);
 */
 typedef struct zb_nlme_network_formation_request_s
 {
-  zb_channel_list_t scan_channels_list; /**< The list of all channel pages and
+    zb_channel_list_t scan_channels_list; /**< The list of all channel pages and
                                                                * the associated channels that shall be scanned. */
-  zb_uint8_t scan_duration; /**< Time to spend scanning each channel */
-  zb_uint8_t distributed_network;
-  zb_uint16_t distributed_network_address;
-  zb_ieee_addr_t extpanid;
+    zb_uint8_t scan_duration; /**< Time to spend scanning each channel */
+    zb_uint8_t distributed_network;
+    zb_uint16_t distributed_network_address;
+    zb_ieee_addr_t extpanid;
 #if 0                       /* not supported by mac anyway */
-  zb_uint8_t beacon_order; /**< The beacon order */
-  zb_uint8_t superframe_order; /**< The superframe order */
-  zb_uint8_t battery_life_extension; /**< If true - start support battery
+    zb_uint8_t beacon_order; /**< The beacon order */
+    zb_uint8_t superframe_order; /**< The superframe order */
+    zb_uint8_t battery_life_extension; /**< If true - start support battery
                                            * life extension */
 #endif
 }
@@ -482,7 +482,7 @@ void zb_nlme_network_formation_request(zb_uint8_t param);
 */
 typedef ZB_PACKED_PRE struct zb_nlme_network_formation_confirm_s
 {
-  zb_nwk_status_t status; /**< MAC status codes */
+    zb_nwk_status_t status; /**< MAC status codes */
 } ZB_PACKED_STRUCT
 zb_nlme_network_formation_confirm_t;
 
@@ -504,7 +504,7 @@ void zb_nlme_network_formation_confirm(zb_uint8_t param);
 */
 typedef ZB_PACKED_PRE struct zb_nlme_permit_joining_confirm_s
 {
-  zb_mac_status_t status; /**< MAC status codes */
+    zb_mac_status_t status; /**< MAC status codes */
 } ZB_PACKED_STRUCT
 zb_nlme_permit_joining_confirm_t;
 
@@ -526,9 +526,9 @@ void zb_nlme_permit_joining_confirm(zb_uint8_t param);
 */
 typedef ZB_PACKED_PRE struct zb_nlme_start_router_request_s
 {
-  zb_uint8_t beacon_order;                  /**< The beacon order */
-  zb_uint8_t superframe_order;              /**< The superframe order */
-  zb_uint8_t battery_life_extension;        /**< If true - start support battery
+    zb_uint8_t beacon_order;                  /**< The beacon order */
+    zb_uint8_t superframe_order;              /**< The superframe order */
+    zb_uint8_t battery_life_extension;        /**< If true - start support battery
                                            * life extension */
 } ZB_PACKED_STRUCT
 zb_nlme_start_router_request_t;
@@ -552,7 +552,7 @@ void zb_nlme_start_router_request(zb_uint8_t param);
 */
 typedef ZB_PACKED_PRE struct zb_nlme_start_router_confirm_s
 {
-  zb_mac_status_t status; /**< MAC status codes */
+    zb_mac_status_t status; /**< MAC status codes */
 } ZB_PACKED_STRUCT
 zb_nlme_start_router_confirm_t;
 
@@ -576,9 +576,9 @@ void zb_nlme_start_router_confirm(zb_uint8_t param);
 */
 typedef ZB_PACKED_PRE struct zb_energy_detect_channel_info_s
 {
-  zb_bitfield_t channel_page_idx : 3;
-  zb_bitfield_t channel_number : 5; /*!< bit # in the channel mask. Note: not a logical channel!  */
-  zb_uint8_t energy_detected;
+    zb_bitfield_t channel_page_idx : 3;
+    zb_bitfield_t channel_number : 5; /*!< bit # in the channel mask. Note: not a logical channel!  */
+    zb_uint8_t energy_detected;
 } ZB_PACKED_STRUCT zb_energy_detect_channel_info_t;
 
 /**
@@ -586,8 +586,8 @@ typedef ZB_PACKED_PRE struct zb_energy_detect_channel_info_s
 */
 typedef ZB_PACKED_PRE struct zb_energy_detect_list_s
 {
-  zb_uint8_t channel_count;
-  zb_energy_detect_channel_info_t channel_info[ZB_ED_SCAN_MAX_CHANNELS_COUNT];
+    zb_uint8_t channel_count;
+    zb_energy_detect_channel_info_t channel_info[ZB_ED_SCAN_MAX_CHANNELS_COUNT];
 } ZB_PACKED_STRUCT zb_energy_detect_list_t;
 
 /**
@@ -595,9 +595,9 @@ typedef ZB_PACKED_PRE struct zb_energy_detect_list_s
 */
 typedef struct zb_nlme_ed_scan_request_s
 {
-  zb_channel_page_t scan_channels_list[ZB_CHANNEL_PAGES_NUM]; /**< The list of all channel pages and the
+    zb_channel_page_t scan_channels_list[ZB_CHANNEL_PAGES_NUM]; /**< The list of all channel pages and the
                                                                * associated channels that shall be scanned. */
-  zb_uint8_t scan_duration;                                   /**< Time to spend scanning each channel */
+    zb_uint8_t scan_duration;                                   /**< Time to spend scanning each channel */
 }
 zb_nlme_ed_scan_request_t;
 
@@ -621,9 +621,9 @@ void zb_nlme_ed_scan_request(zb_uint8_t param);
 */
 typedef ZB_PACKED_PRE struct zb_nlme_ed_scan_confirm_s
 {
-  zb_mac_status_t status;               /**< MAC status codes */
-  zb_uint32_t unscanned_channels;       /**< Indicate not scanned channels */
-  /* next is the list of zb_uint8_t describes energy measurements */
+    zb_mac_status_t status;               /**< MAC status codes */
+    zb_uint32_t unscanned_channels;       /**< Indicate not scanned channels */
+    /* next is the list of zb_uint8_t describes energy measurements */
 } ZB_PACKED_STRUCT
 zb_nlme_ed_scan_confirm_t;
 
@@ -644,12 +644,12 @@ void zb_nlme_ed_scan_confirm(zb_uint8_t param);
  */
 typedef ZB_PACKED_PRE struct zb_nlme_beacon_survey_scan_request_s
 {
-  /*!< Channel mask */
-  zb_uint32_t channel_mask;
-  /*!< Channel page */
-  zb_uint8_t channel_page;
-  /*!< Scan type of the 'Beacon Survey' procedure (see @mac_scan_type) */
-  zb_uint8_t scan_type;
+    /*!< Channel mask */
+    zb_uint32_t channel_mask;
+    /*!< Channel page */
+    zb_uint8_t channel_page;
+    /*!< Scan type of the 'Beacon Survey' procedure (see @mac_scan_type) */
+    zb_uint8_t scan_type;
 }
 ZB_PACKED_STRUCT zb_nlme_beacon_survey_scan_request_t;
 
@@ -695,20 +695,20 @@ typedef zb_uint8_t zb_nlme_rejoin_method_t;
 */
 typedef struct zb_nlme_join_request_s
 {
-  zb_ext_pan_id_t extended_pan_id; /**< Extended Pan ID
+    zb_ext_pan_id_t extended_pan_id; /**< Extended Pan ID
                                                         * of the network */
-  zb_channel_list_t scan_channels_list; /**< The list of all channel pages and
+    zb_channel_list_t scan_channels_list; /**< The list of all channel pages and
                                                                * the associated channels that shall be scanned. */
-  zb_mac_capability_info_t capability_information; /**< The operating capabilities of the
+    zb_mac_capability_info_t capability_information; /**< The operating capabilities of the
                                       * device */
-  zb_nlme_rejoin_method_t rejoin_network; /**< Join network method @see @ref nlme_rejoin_method */
-  zb_uint8_t scan_duration; /**< Time to spend scanning each channel */
-  zb_uint8_t security_enable;   /*!< If the value of RejoinNetwork is 0x02 and this is TRUE than the device will try to rejoin securely.
+    zb_nlme_rejoin_method_t rejoin_network; /**< Join network method @see @ref nlme_rejoin_method */
+    zb_uint8_t scan_duration; /**< Time to spend scanning each channel */
+    zb_uint8_t security_enable;   /*!< If the value of RejoinNetwork is 0x02 and this is TRUE than the device will try to rejoin securely.
                                   Otherwise, this is set to FALSE.  */
 
-  /* There was insecure_rejoin: Insecure rejoining. Originaly it was "secure_rejoin,
-                                * as specified in the spec. But because by default it is set to
-                                * ZB_FALSE (zero), let's handle it as "insecure" flag. */
+    /* There was insecure_rejoin: Insecure rejoining. Originaly it was "secure_rejoin,
+                                  * as specified in the spec. But because by default it is set to
+                                  * ZB_FALSE (zero), let's handle it as "insecure" flag. */
 }
 zb_nlme_join_request_t;
 
@@ -732,13 +732,13 @@ void zb_nlme_join_request(zb_uint8_t param);
 */
 typedef ZB_PACKED_PRE struct zb_nlme_join_indication_s
 {
-  zb_uint16_t network_address;                      /**< The network address of an entity */
-  zb_ieee_addr_t extended_address;                  /**< 64-bit IEEE address of an entity */
-  zb_mac_capability_info_t capability_information;  /**< The operating capabilities of the
+    zb_uint16_t network_address;                      /**< The network address of an entity */
+    zb_ieee_addr_t extended_address;                  /**< 64-bit IEEE address of an entity */
+    zb_mac_capability_info_t capability_information;  /**< The operating capabilities of the
                                                      * device */
-  zb_nlme_rejoin_method_t rejoin_network;           /**< Join network method @see
+    zb_nlme_rejoin_method_t rejoin_network;           /**< Join network method @see
                                                      * @ref nlme_rejoin_method */
-  zb_uint8_t secure_rejoin;                         /**< Secure joining */
+    zb_uint8_t secure_rejoin;                         /**< Secure joining */
 } ZB_PACKED_STRUCT
 zb_nlme_join_indication_t;
 
@@ -758,11 +758,11 @@ void zb_nlme_join_indication(zb_uint8_t param);
 */
 typedef ZB_PACKED_PRE struct zb_nlme_join_confirm_s
 {
-  zb_ret_t status;                           /**< MAC or NWK status codes */
-  zb_uint16_t network_address;                      /**< Allocated network address */
-  zb_ext_pan_id_t extended_pan_id;                  /**< Extended Pan ID
+    zb_ret_t status;                           /**< MAC or NWK status codes */
+    zb_uint16_t network_address;                      /**< Allocated network address */
+    zb_ext_pan_id_t extended_pan_id;                  /**< Extended Pan ID
                                                      * of the network */
-  zb_uint8_t active_channel;                        /**< Current network channel */
+    zb_uint8_t active_channel;                        /**< Current network channel */
 } ZB_PACKED_STRUCT
 zb_nlme_join_confirm_t;
 
@@ -783,8 +783,8 @@ void zb_nlme_join_confirm(zb_uint8_t param);
 */
 typedef ZB_PACKED_PRE struct zb_nlme_direct_join_request_s
 {
-  zb_ieee_addr_t device_address;                    /**< 64-bit IEEE address of the device to be directly joined */
-  zb_mac_capability_info_t capability_information;  /**< The operating capabilities of the device */
+    zb_ieee_addr_t device_address;                    /**< 64-bit IEEE address of the device to be directly joined */
+    zb_mac_capability_info_t capability_information;  /**< The operating capabilities of the device */
 } ZB_PACKED_STRUCT
 zb_nlme_direct_join_request_t;
 
@@ -806,8 +806,8 @@ void zb_nlme_direct_join_request(zb_uint8_t param);
 */
 typedef ZB_PACKED_PRE struct zb_nlme_direct_join_confirm_s
 {
-  zb_nwk_status_t status;           /**< MAC status codes */
-  zb_ieee_addr_t device_address;    /**< 64-bit IEEE address */
+    zb_nwk_status_t status;           /**< MAC status codes */
+    zb_ieee_addr_t device_address;    /**< 64-bit IEEE address */
 } ZB_PACKED_STRUCT
 zb_nlme_direct_join_confirm_t;
 
@@ -829,11 +829,11 @@ void zb_nlme_direct_join_confirm(zb_uint8_t param);
 */
 typedef ZB_PACKED_PRE struct zb_nlme_leave_request_s
 {
-  zb_ieee_addr_t device_address; /**< 64-bit IEEE address of the device to
+    zb_ieee_addr_t device_address; /**< 64-bit IEEE address of the device to
                                   * remove, zero fill if device itself */
-  zb_uint8_t remove_children; /**< If true - remove child devices from the
+    zb_uint8_t remove_children; /**< If true - remove child devices from the
                                     * network */
-  zb_uint8_t rejoin; /**< If true - Join after leave */
+    zb_uint8_t rejoin; /**< If true - Join after leave */
 } ZB_PACKED_STRUCT
 zb_nlme_leave_request_t;
 
@@ -884,8 +884,8 @@ void zb_nlme_leave_indication(zb_uint8_t param);
 */
 typedef ZB_PACKED_PRE struct zb_nlme_leave_confirm_s
 {
-  zb_nwk_status_t status;           /**< MAC status codes */
-  zb_ieee_addr_t device_address;    /**< 64-bit IEEE address */
+    zb_nwk_status_t status;           /**< MAC status codes */
+    zb_ieee_addr_t device_address;    /**< 64-bit IEEE address */
 } ZB_PACKED_STRUCT
 zb_nlme_leave_confirm_t;
 
@@ -919,8 +919,8 @@ void zb_nlme_leave_confirm(zb_uint8_t param);
 */
 typedef ZB_PACKED_PRE struct zb_nlme_reset_request_s
 {
-  zb_bool_t warm_start; /**< if false - reset all stack values */
-  zb_bool_t no_nib_reinit;
+    zb_bool_t warm_start; /**< if false - reset all stack values */
+    zb_bool_t no_nib_reinit;
 } ZB_PACKED_STRUCT
 zb_nlme_reset_request_t;
 
@@ -942,7 +942,7 @@ void zb_nlme_reset_request(zb_uint8_t param);
 */
 typedef ZB_PACKED_PRE struct zb_nlme_reset_confirm_s
 {
-  zb_nwk_status_t status; /**< The result of the operation */
+    zb_nwk_status_t status; /**< The result of the operation */
 } ZB_PACKED_STRUCT
 zb_nlme_reset_confirm_t;
 
@@ -966,9 +966,9 @@ void zb_nlme_reset_confirm(zb_uint8_t param);
 */
 typedef ZB_PACKED_PRE struct zb_nlme_sync_request_s
 {
-  zb_uint8_t track; /**< Whether ot not the sync should be maintained for
+    zb_uint8_t track; /**< Whether ot not the sync should be maintained for
                      * future beacons */
-  zb_time_t  poll_rate; /*!< MAC poll rate */
+    zb_time_t  poll_rate; /*!< MAC poll rate */
 } ZB_PACKED_STRUCT
 zb_nlme_sync_request_t;
 
@@ -992,7 +992,7 @@ void zb_nlme_sync_request(zb_uint8_t param);
 */
 typedef ZB_PACKED_PRE struct zb_nlme_sync_confirm_s
 {
-  zb_nwk_status_t status; /**< The result of the operation */
+    zb_nwk_status_t status; /**< The result of the operation */
 } ZB_PACKED_STRUCT
 zb_nlme_sync_confirm_t;
 
@@ -1030,10 +1030,10 @@ void zb_nlme_status_indication(zb_uint8_t param);
 */
 typedef ZB_PACKED_PRE struct zb_nlme_route_discovery_request_s
 {
-  zb_addr_mode_t address_mode;  /**< Kind of destination address provided, one of @ref address_modes */
-  zb_uint16_t network_addr;     /**< The destination of the route discovery */
-  zb_uint8_t radius;            /**< Number of hopes */
-  zb_bool_t no_route_cache;    /**< True - no route table should be
+    zb_addr_mode_t address_mode;  /**< Kind of destination address provided, one of @ref address_modes */
+    zb_uint16_t network_addr;     /**< The destination of the route discovery */
+    zb_uint8_t radius;            /**< Number of hopes */
+    zb_bool_t no_route_cache;    /**< True - no route table should be
                                  * established */
 } ZB_PACKED_STRUCT
 zb_nlme_route_discovery_request_t;
@@ -1059,7 +1059,7 @@ void zb_nlme_route_discovery_request(zb_uint8_t param);
 */
 typedef ZB_PACKED_PRE struct zb_nlme_route_discovery_confirm_s
 {
-  zb_uint8_t status;            /**< @see nwk_status indeed  */
+    zb_uint8_t status;            /**< @see nwk_status indeed  */
 } ZB_PACKED_STRUCT
 zb_nlme_route_discovery_confirm_t;
 
@@ -1082,9 +1082,9 @@ void zb_nlme_route_discovery_confirm(zb_uint8_t param);
 /** @brief Arguments of the NLME-SEND-STATUS.confirm routine. */
 typedef ZB_PACKED_PRE struct zb_nlme_send_status_s
 {
-  zb_uint16_t dest_addr; /**< address to send status information to */
-  zb_nlme_status_indication_t status; /**< status information, @ref zb_nlme_status_indication_s */
-  zb_uint8_t ndsu_handle; /**<  The handle associated with the NSDU to be transmitted by the NWK
+    zb_uint16_t dest_addr; /**< address to send status information to */
+    zb_nlme_status_indication_t status; /**< status information, @ref zb_nlme_status_indication_s */
+    zb_uint8_t ndsu_handle; /**<  The handle associated with the NSDU to be transmitted by the NWK
                             *   layer entity */
 } ZB_PACKED_STRUCT
 zb_nlme_send_status_t;
@@ -1192,15 +1192,15 @@ void zb_nwk_init(void);
 /** @brief NWK multicast control. */
 typedef ZB_PACKED_PRE struct zb_nwk_multicast_control_field_s
 {
-  /* Better not use bitfields for protocols, use bitmask instead. But keep it now: multicast is already obsoilete in r21. */
+    /* Better not use bitfields for protocols, use bitmask instead. But keep it now: multicast is already obsoilete in r21. */
 #ifdef ZB_LITTLE_ENDIAN
-    zb_bitfield_t multicast_mode:2;          /**< */
-    zb_bitfield_t nonmember_radius:3;        /**< */
-    zb_bitfield_t max_nonmember_radius:3;    /**< */
+    zb_bitfield_t multicast_mode: 2;         /**< */
+    zb_bitfield_t nonmember_radius: 3;       /**< */
+    zb_bitfield_t max_nonmember_radius: 3;   /**< */
 #else
-    zb_bitfield_t max_nonmember_radius:3;    /**< */
-    zb_bitfield_t nonmember_radius:3;        /**< */
-    zb_bitfield_t multicast_mode:2;          /**< */
+    zb_bitfield_t max_nonmember_radius: 3;   /**< */
+    zb_bitfield_t nonmember_radius: 3;       /**< */
+    zb_bitfield_t multicast_mode: 2;         /**< */
 #endif
 } ZB_PACKED_STRUCT
 zb_nwk_multicast_control_field_t;
@@ -1219,47 +1219,47 @@ zb_nwk_multicast_control_field_t;
  */
 typedef ZB_PACKED_PRE struct zb_nwk_nwk_hdr_s
 {
-  zb_uint8_t                       frame_control[2];    /**< Frame Control Field */
-  zb_uint16_t                      dst_addr;            /**< Destination 16-bit address */
-  zb_uint16_t                      src_addr;            /**< Source 16-bit address */
-  zb_uint8_t                       radius;              /**< Radius */
-  zb_uint8_t                       seq_num;             /**< Sequence Number */
-  zb_ieee_addr_t                   dst_ieee_addr;       /**< Destination 64-bit address */
-  zb_ieee_addr_t                   src_ieee_addr;       /**< Source 64-bit address */
+    zb_uint8_t                       frame_control[2];    /**< Frame Control Field */
+    zb_uint16_t                      dst_addr;            /**< Destination 16-bit address */
+    zb_uint16_t                      src_addr;            /**< Source 16-bit address */
+    zb_uint8_t                       radius;              /**< Radius */
+    zb_uint8_t                       seq_num;             /**< Sequence Number */
+    zb_ieee_addr_t                   dst_ieee_addr;       /**< Destination 64-bit address */
+    zb_ieee_addr_t                   src_ieee_addr;       /**< Source 64-bit address */
 #if defined ZB_PRO_STACK && !defined ZB_NO_NWK_MULTICAST
-  zb_nwk_multicast_control_field_t mcast_control;       /**< NWK multicast control */
+    zb_nwk_multicast_control_field_t mcast_control;       /**< NWK multicast control */
 #else
-  zb_uint8_t                       mcast_control;
+    zb_uint8_t                       mcast_control;
 #endif
 } ZB_PACKED_STRUCT zb_nwk_hdr_t;
 
 typedef ZB_PACKED_PRE struct zb_nwk_alloc_hdr_req_s
 {
 #ifndef ZB_NO_NWK_MULTICAST
-  zb_bool_t      is_multicast;
+    zb_bool_t      is_multicast;
 #endif
-  zb_bool_t      is_secured;
-  zb_bool_t      is_cmd_frame;
-  zb_bool_t      is_has_src_ieee;
-  zb_bool_t      is_has_dst_ieee;
-  zb_uint16_t    src_addr;
-  zb_uint16_t    dst_addr;
-  zb_ieee_addr_t dst_ieee_addr;
-  zb_ieee_addr_t src_ieee_addr;
+    zb_bool_t      is_secured;
+    zb_bool_t      is_cmd_frame;
+    zb_bool_t      is_has_src_ieee;
+    zb_bool_t      is_has_dst_ieee;
+    zb_uint16_t    src_addr;
+    zb_uint16_t    dst_addr;
+    zb_ieee_addr_t dst_ieee_addr;
+    zb_ieee_addr_t src_ieee_addr;
 } ZB_PACKED_STRUCT zb_nwk_alloc_hdr_req_t;
 
 /** @brief APSDE data indication params transmitted to upper layers */
 typedef ZB_PACKED_PRE struct zb_apsde_data_ind_params_s
 {
-  zb_uint16_t mac_dst_addr; /**< mac dst address. ZB_MAC_SHORT_ADDR_NOT_ALLOCATED
+    zb_uint16_t mac_dst_addr; /**< mac dst address. ZB_MAC_SHORT_ADDR_NOT_ALLOCATED
                              * if unknown or long  */
-  zb_uint16_t mac_src_addr; /**< mac src address. ZB_MAC_SHORT_ADDR_NOT_ALLOCATED
+    zb_uint16_t mac_src_addr; /**< mac src address. ZB_MAC_SHORT_ADDR_NOT_ALLOCATED
                              * if unknown or long  */
-  zb_uint8_t  lqi;
+    zb_uint8_t  lqi;
 
-  zb_int8_t   rssi;
+    zb_int8_t   rssi;
 
-  zb_uint8_t  handle;       /*!<handle for transmitted/received packet */
+    zb_uint8_t  handle;       /*!<handle for transmitted/received packet */
 } ZB_PACKED_STRUCT zb_apsde_data_ind_params_t;
 
 /** @brief Frame type value from the NWK FCF field: data. */
@@ -1522,12 +1522,12 @@ do                                                                          \
 #define ZB_NWK_GET_SRC_ADDR(nwk_hdr, addr) \
 ZB_LETOH16(addr, &((zb_nwk_hdr_t *)nwk_hdr)->src_addr)
 
-   /**
-      Get destination address from the NWK header
+/**
+   Get destination address from the NWK header
 
-      @param nwk_hdr - pointer to the network packet header
-      @param addr - pointer to the short address
-    */
+   @param nwk_hdr - pointer to the network packet header
+   @param addr - pointer to the short address
+ */
 #define ZB_NWK_GET_DST_ADDR(nwk_hdr, addr) \
 ZB_LETOH16(addr, &((zb_nwk_hdr_t *)nwk_hdr)->dst_addr)
 
@@ -1585,11 +1585,11 @@ ZB_LETOH16(addr, &((zb_nwk_hdr_t *)nwk_hdr)->dst_addr)
 */
 typedef ZB_PACKED_PRE struct zb_nwk_cmd_rreq_s
 {
-  zb_uint8_t opt;                /**< Command options */
-  zb_uint8_t rreq_id;            /**< Route request id */
-  zb_uint16_t dest_addr;         /**< Final destination address */
-  zb_uint8_t path_cost;           /**< Route request total path cost */
-  zb_ieee_addr_t dest_long_addr; /**< Final destination long address. */
+    zb_uint8_t opt;                /**< Command options */
+    zb_uint8_t rreq_id;            /**< Route request id */
+    zb_uint16_t dest_addr;         /**< Final destination address */
+    zb_uint8_t path_cost;           /**< Route request total path cost */
+    zb_ieee_addr_t dest_long_addr; /**< Final destination long address. */
 } ZB_PACKED_STRUCT
 zb_nwk_cmd_rreq_t;
 
@@ -1654,11 +1654,11 @@ zb_nwk_cmd_rreq_t;
 */
 typedef ZB_PACKED_PRE struct zb_nwk_cmd_rrep_s
 {
-  zb_uint8_t opt;                 /**< Command options */
-  zb_uint8_t rreq_id;             /**< Route request id */
-  zb_uint16_t originator;         /**< Originator address */
-  zb_uint16_t responder;          /**< Responder address */
-  zb_uint8_t path_cost;           /**< Path cost */
+    zb_uint8_t opt;                 /**< Command options */
+    zb_uint8_t rreq_id;             /**< Route request id */
+    zb_uint16_t originator;         /**< Originator address */
+    zb_uint16_t responder;          /**< Responder address */
+    zb_uint8_t path_cost;           /**< Path cost */
 } ZB_PACKED_STRUCT
 zb_nwk_cmd_rrep_t;
 
@@ -1667,7 +1667,7 @@ zb_nwk_cmd_rrep_t;
 */
 typedef ZB_PACKED_PRE struct zb_nwk_rejoin_request_s
 {
-  zb_mac_capability_info_t capability_information; /**< The operating capabilities of the
+    zb_mac_capability_info_t capability_information; /**< The operating capabilities of the
                                                     * device */
 } ZB_PACKED_STRUCT
 zb_nwk_rejoin_request_t;
@@ -1677,8 +1677,8 @@ zb_nwk_rejoin_request_t;
 */
 typedef ZB_PACKED_PRE struct zb_nwk_rejoin_response_s
 {
-  zb_uint16_t network_addr;         /**< Network address */
-  zb_uint8_t rejoin_status;         /**< Rejoin status */
+    zb_uint16_t network_addr;         /**< Network address */
+    zb_uint8_t rejoin_status;         /**< Rejoin status */
 } ZB_PACKED_STRUCT
 zb_nwk_rejoin_response_t;
 
@@ -1723,9 +1723,9 @@ void zb_nwk_update_beacon_payload(zb_uint8_t param);
  */
 typedef ZB_PACKED_PRE struct zb_nwk_report_cmd_s
 {
-  zb_uint8_t command_options;       /**< Command options */
-  zb_ext_pan_id_t epid;             /**< 64-bit EPID that identifies the network that the reporting device */
-  zb_uint16_t panids[1];            /**< Pan ID Conflict Report list */
+    zb_uint8_t command_options;       /**< Command options */
+    zb_ext_pan_id_t epid;             /**< 64-bit EPID that identifies the network that the reporting device */
+    zb_uint16_t panids[1];            /**< Pan ID Conflict Report list */
 } ZB_PACKED_STRUCT zb_nwk_report_cmd_t;
 
 #define ZB_NWK_REPORT_INFO_COUNT(options) ((options) & 0xfU)
@@ -1741,19 +1741,19 @@ typedef ZB_PACKED_PRE struct zb_nwk_report_cmd_s
  */
 typedef ZB_PACKED_PRE struct zb_nwk_update_cmd_s
 {
-  zb_uint8_t command_options;   /**< NWK command options*/
-  zb_ext_pan_id_t epid;         /**< 64-bit Network ID*/
-  zb_uint8_t update_id;         /**< 16-bit Network ID*/
-  zb_uint16_t new_panid;        /**< 16-bit new Network ID*/
+    zb_uint8_t command_options;   /**< NWK command options*/
+    zb_ext_pan_id_t epid;         /**< 64-bit Network ID*/
+    zb_uint8_t update_id;         /**< 16-bit Network ID*/
+    zb_uint16_t new_panid;        /**< 16-bit new Network ID*/
 } ZB_PACKED_STRUCT zb_nwk_update_cmd_t;
 
 #ifdef ZB_PRO_STACK
 
 typedef ZB_PACKED_PRE struct zb_nwk_cmd_rrec_s
 {
-  /*zb_uint8_t opt;*/ /**< Command options */
-  zb_uint8_t relay_cnt; /** relay count */
-  zb_uint16_t relay_addr; /** relay address */
+    /*zb_uint8_t opt;*/ /**< Command options */
+    zb_uint8_t relay_cnt; /** relay count */
+    zb_uint16_t relay_addr; /** relay address */
 } ZB_PACKED_STRUCT
 zb_nwk_cmd_rrec_t;
 
@@ -1837,26 +1837,26 @@ void nwk_timeout_resp_handler(zb_bufid_t buf, zb_nwk_hdr_t *nwk_hdr, zb_nwk_ed_t
  */
 typedef enum zb_nwk_power_delta_cmd_options_e
 {
-  ZB_NWK_LPD_CMD_OPTIONS_NOTIFICATION = 0x0,
-  ZB_NWK_LPD_CMD_OPTIONS_REQUEST      = 0x1,
-  ZB_NWK_LPD_CMD_OPTIONS_RESPONSE     = 0x2,
-  ZB_NWK_LPD_CMD_OPTIONS_RESERVED     = 0x3,
+    ZB_NWK_LPD_CMD_OPTIONS_NOTIFICATION = 0x0,
+    ZB_NWK_LPD_CMD_OPTIONS_REQUEST      = 0x1,
+    ZB_NWK_LPD_CMD_OPTIONS_RESPONSE     = 0x2,
+    ZB_NWK_LPD_CMD_OPTIONS_RESERVED     = 0x3,
 } zb_nwk_power_delta_cmd_options_t;
 
 #define ZB_NWK_LPD_CMD_OPTIONS_MASK 0x03U
 
 typedef ZB_PACKED_PRE struct zb_nwk_link_power_delta_payload_s
 {
-  zb_uint8_t cmd_options;
-  zb_uint8_t list_count;
+    zb_uint8_t cmd_options;
+    zb_uint8_t list_count;
 } ZB_PACKED_STRUCT
 zb_nwk_link_power_delta_payload_t;
 
 
 typedef ZB_PACKED_PRE struct zb_nwk_power_list_entry_s
 {
-  zb_uint16_t short_addr;
-  zb_uint8_t power_delta;
+    zb_uint16_t short_addr;
+    zb_uint8_t power_delta;
 } ZB_PACKED_STRUCT
 zb_nwk_power_list_entry_t;
 
@@ -2083,22 +2083,22 @@ void zb_nwk_load_pib(zb_uint8_t param);
 /* Send NWK Network Status pkt on assert with custom payload - epid is 0xdeadbeef + file_id + line_number */
 typedef ZB_PACKED_PRE struct zb_nlme_assert_ind_frame_s
 {
-  /* nwk hdr */
-  zb_uint8_t                       frame_control[2];    /**< Frame Control Field */
-  zb_uint16_t                      dst_addr;            /**< Destination 16-bit address */
-  zb_uint16_t                      src_addr;            /**< Source 16-bit address */
-  zb_uint8_t                       radius;              /**< Radius */
-  zb_uint8_t                       seq_num;             /**< Sequence Number */
-  zb_ieee_addr_t                   dst_ieee_addr;       /**< Destination 64-bit address */
+    /* nwk hdr */
+    zb_uint8_t                       frame_control[2];    /**< Frame Control Field */
+    zb_uint16_t                      dst_addr;            /**< Destination 16-bit address */
+    zb_uint16_t                      src_addr;            /**< Source 16-bit address */
+    zb_uint8_t                       radius;              /**< Radius */
+    zb_uint8_t                       seq_num;             /**< Sequence Number */
+    zb_ieee_addr_t                   dst_ieee_addr;       /**< Destination 64-bit address */
 
-  /* cmd - use Network Report  */
-  zb_uint8_t cmd_id;
-  zb_uint8_t command_options;
+    /* cmd - use Network Report  */
+    zb_uint8_t cmd_id;
+    zb_uint8_t command_options;
 
-  /* use our structure instead of pan_id */
-  zb_uint32_t sig;
-  zb_uint16_t file_id;
-  zb_int_t line;
+    /* use our structure instead of pan_id */
+    zb_uint32_t sig;
+    zb_uint16_t file_id;
+    zb_int_t line;
 } ZB_PACKED_STRUCT
 zb_nlme_assert_ind_frame_t;
 
@@ -2141,11 +2141,11 @@ zb_uint8_t zb_nwk_get_nbr_rx_on_idle_by_ieee(zb_ieee_addr_t addr);
 
 typedef struct zb_nwk_neighbor_element_s
 {
-  zb_uint8_t relationship;
-  zb_uint8_t device_type;
-  zb_bool_t rx_on_when_idle;
-  zb_uint8_t depth;
-  zb_uint8_t permit_joining;
+    zb_uint8_t relationship;
+    zb_uint8_t device_type;
+    zb_bool_t rx_on_when_idle;
+    zb_uint8_t depth;
+    zb_uint8_t permit_joining;
 }
 zb_nwk_neighbor_element_t;
 

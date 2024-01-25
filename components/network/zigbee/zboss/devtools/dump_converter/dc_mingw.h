@@ -34,15 +34,17 @@ typedef unsigned int u_int8_t;
 typedef unsigned long bpf_u_int32;
 typedef unsigned short int u_int16_t;
 
-struct ether_header {
+struct ether_header
+{
     u_int8_t ether_dhost[ETH_ALEN];
     u_int8_t ether_shost[ETH_ALEN];
     u_int16_t ether_type;
 } __attribute__ ((__packed__));
 
-struct iphdr {
-    unsigned int ihl:4;
-    unsigned int version:4;
+struct iphdr
+{
+    unsigned int ihl: 4;
+    unsigned int version: 4;
     u_int8_t tos;
     u_int16_t tot_len;
     u_int16_t id;
@@ -54,13 +56,15 @@ struct iphdr {
     u_int32_t daddr;
 };
 
-struct pcap_pkthdr {
+struct pcap_pkthdr
+{
     struct timeval ts;
     bpf_u_int32 caplen;
     bpf_u_int32 len;
 };
 
-struct udphdr {
+struct udphdr
+{
     u_int16_t source;
     u_int16_t dest;
     u_int16_t len;

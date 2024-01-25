@@ -53,7 +53,7 @@ zb_uint16_t g_attr_on_time  = 0;
 zb_uint16_t g_attr_off_wait_time  = 0;
 
 ZB_ZCL_DECLARE_ON_OFF_ATTRIB_LIST_ZLL(on_off_attr_list, &g_attr_on_off,
-    &g_attr_global_scene_ctrl, &g_attr_on_time, &g_attr_off_wait_time);
+                                      &g_attr_global_scene_ctrl, &g_attr_on_time, &g_attr_off_wait_time);
 
 /* Basic cluster attributes data */
 zb_uint8_t g_attr_zcl_version = ZB_ZCL_BASIC_ZCL_VERSION_DEFAULT_VALUE;
@@ -67,8 +67,8 @@ zb_uint8_t g_attr_power_source = ZB_ZCL_BASIC_POWER_SOURCE_DEFAULT_VALUE;
 zb_char_t g_attr_sw_build_id[] = "\x0f" "111.111.111.111";
 
 ZB_ZCL_DECLARE_BASIC_ATTRIB_LIST_ZLL(basic_attr_list, &g_attr_zcl_version, &g_attr_app_version,
-    &g_attr_stack_version, &g_attr_hardware_version, &g_attr_manufacturer_name, &g_attr_model_id,
-    &g_attr_date_code, &g_attr_power_source, &g_attr_sw_build_id);
+                                     &g_attr_stack_version, &g_attr_hardware_version, &g_attr_manufacturer_name, &g_attr_model_id,
+                                     &g_attr_date_code, &g_attr_power_source, &g_attr_sw_build_id);
 
 /* Identify cluster attributes data */
 zb_uint16_t g_attr_identify_time = ZB_ZCL_IDENTIFY_IDENTIFY_TIME_DEFAULT_VALUE;
@@ -88,8 +88,8 @@ zb_uint8_t g_attr_scenes_scene_valid = ZB_ZCL_SCENES_SCENE_VALID_DEFAULT_VALUE;
 zb_uint8_t g_attr_scenes_name_support = ZB_ZCL_SCENES_NAME_SUPPORT_DEFAULT_VALUE;
 
 ZB_ZCL_DECLARE_SCENES_ATTRIB_LIST(scenes_attr_list, &g_attr_scenes_scene_count,
-    &g_attr_scenes_current_scene, &g_attr_scenes_current_group,
-    &g_attr_scenes_scene_valid, &g_attr_scenes_name_support);
+                                  &g_attr_scenes_current_scene, &g_attr_scenes_current_group,
+                                  &g_attr_scenes_scene_valid, &g_attr_scenes_name_support);
 
 /********************* Declare device **************************/
 ZB_ZLL_DECLARE_ON_OFF_LIGHT_CLUSTER_LIST(
@@ -104,96 +104,96 @@ ZB_ZLL_DECLARE_ON_OFF_LIGHT_CTX(on_off_light_ctx, on_off_light_ep);
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
 #if ! (defined KEIL || defined ZB_PLATFORM_LINUX_ARM_2400)
 
-  if ( argc < 3 )
-  {
-    printf("%s <read pipe path> <write pipe path>\n", argv[0]);
-    return 0;
-  }
+    if ( argc < 3 )
+    {
+        printf("%s <read pipe path> <write pipe path>\n", argv[0]);
+        return 0;
+    }
 #endif
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("zr1");
+    ZB_INIT("zr1");
 
 
-  zb_set_default_ed_descriptor_values();
+    zb_set_default_ed_descriptor_values();
 
-  ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_zr_addr);
+    ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_zr_addr);
 
-  /** [REGISTER] */
-  /* Register device list */
-  ZB_AF_REGISTER_DEVICE_CTX(&on_off_light_ctx);
+    /** [REGISTER] */
+    /* Register device list */
+    ZB_AF_REGISTER_DEVICE_CTX(&on_off_light_ctx);
 
-  ZB_ZCL_REGISTER_DEVICE_CB(test_device_cb);
-  /** [REGISTER] */
+    ZB_ZCL_REGISTER_DEVICE_CB(test_device_cb);
+    /** [REGISTER] */
 
-  ZB_ZLL_REGISTER_COMMISSIONING_CB(zll_task_state_changed);
+    ZB_ZLL_REGISTER_COMMISSIONING_CB(zll_task_state_changed);
 
-  ZB_AIB().aps_channel_mask = 1l << MY_CHANNEL;
+    ZB_AIB().aps_channel_mask = 1l << MY_CHANNEL;
 
-  ZB_SET_NIB_SECURITY_LEVEL(0);
+    ZB_SET_NIB_SECURITY_LEVEL(0);
 
-  if (zb_zll_dev_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "ERROR zb_zll_dev_start failed", (FMT__0));
-  }
-  else
-  {
-    zcl_main_loop();
-  }
+    if (zb_zll_dev_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "ERROR zb_zll_dev_start failed", (FMT__0));
+    }
+    else
+    {
+        zcl_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 void zb_zdo_startup_complete(zb_uint8_t param)
 {
-  zb_buf_t *buf = ZB_BUF_FROM_REF(param);
-  if (buf->u.hdr.status == 0 || buf->u.hdr.status == ZB_NWK_STATUS_ALREADY_PRESENT)
-  {
-    TRACE_MSG(TRACE_ZCL1, "Device STARTED OK", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(
-        TRACE_ERROR,
-        "ERROR Device started FAILED status %d",
-        (FMT__D, (int)buf->u.hdr.status));
-  }
-  zb_free_buf(buf);
+    zb_buf_t *buf = ZB_BUF_FROM_REF(param);
+    if (buf->u.hdr.status == 0 || buf->u.hdr.status == ZB_NWK_STATUS_ALREADY_PRESENT)
+    {
+        TRACE_MSG(TRACE_ZCL1, "Device STARTED OK", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(
+            TRACE_ERROR,
+            "ERROR Device started FAILED status %d",
+            (FMT__D, (int)buf->u.hdr.status));
+    }
+    zb_free_buf(buf);
 }
 
 void zll_task_state_changed(zb_uint8_t param)
 {
-  zb_buf_t* buffer = ZB_BUF_FROM_REF(param);
-  zb_zll_transaction_task_status_t* task_status =
-      ZB_GET_BUF_PARAM(buffer, zb_zll_transaction_task_status_t);
+    zb_buf_t *buffer = ZB_BUF_FROM_REF(param);
+    zb_zll_transaction_task_status_t *task_status =
+        ZB_GET_BUF_PARAM(buffer, zb_zll_transaction_task_status_t);
 
-  TRACE_MSG(TRACE_ZLL3, "> zll_task_state_changed param %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_ZLL3, "> zll_task_state_changed param %hd", (FMT__H, param));
 
-  if (task_status->task == ZB_ZLL_DEVICE_START_TASK)
-  {
-  }
+    if (task_status->task == ZB_ZLL_DEVICE_START_TASK)
+    {
+    }
 
-  zb_free_buf(ZB_BUF_FROM_REF(param));
+    zb_free_buf(ZB_BUF_FROM_REF(param));
 
-  TRACE_MSG(TRACE_ZLL3, "< zll_task_state_changed", (FMT__0));
+    TRACE_MSG(TRACE_ZLL3, "< zll_task_state_changed", (FMT__0));
 }/* void zll_task_state_changed(zb_uint8_t param) */
 
 void test_device_cb(zb_uint8_t  param)
 {
-  zb_buf_t* buffer = ZB_BUF_FROM_REF(param);
-  zb_zcl_device_callback_param_t *cb_param = ZB_GET_BUF_PARAM(buffer, zb_zcl_device_callback_param_t);
-  switch (cb_param->device_cb_id)
-  {
+    zb_buf_t *buffer = ZB_BUF_FROM_REF(param);
+    zb_zcl_device_callback_param_t *cb_param = ZB_GET_BUF_PARAM(buffer, zb_zcl_device_callback_param_t);
+    switch (cb_param->device_cb_id)
+    {
     default:
-      break;
-  }
+        break;
+    }
 }
 
 #else /* defined ZB_ENABLE_ZLL && defined ZB_ZLL_DEFINE_DEVICE_ON_OFF_LIGHT */
@@ -202,8 +202,8 @@ void test_device_cb(zb_uint8_t  param)
 
 int main()
 {
-  printf("ZLL is not supported\n");
-  return 0;
+    printf("ZLL is not supported\n");
+    return 0;
 }
 
 #endif /* defined ZB_ENABLE_ZLL && defined ZB_ZLL_DEFINE_DEVICE_ON_OFF_LIGHT */

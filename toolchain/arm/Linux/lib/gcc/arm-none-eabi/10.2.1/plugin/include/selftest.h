@@ -25,7 +25,8 @@ along with GCC; see the file COPYING3.  If not see
 
 #if CHECKING_P
 
-namespace selftest {
+namespace selftest
+{
 
 /* A struct describing the source-location of a selftest, to make it
    easier to track down failing tests.  */
@@ -33,12 +34,12 @@ namespace selftest {
 class location
 {
 public:
-  location (const char *file, int line, const char *function)
-    : m_file (file), m_line (line), m_function (function) {}
+    location (const char *file, int line, const char *function)
+        : m_file (file), m_line (line), m_function (function) {}
 
-  const char *m_file;
-  int m_line;
-  const char *m_function;
+    const char *m_file;
+    int m_line;
+    const char *m_function;
 };
 
 /* A macro for use in selftests and by the ASSERT_ macros below,
@@ -58,34 +59,34 @@ extern void pass (const location &loc, const char *msg);
 /* Report the failed outcome of some aspect of the test and abort.  */
 
 extern void fail (const location &loc, const char *msg)
-  ATTRIBUTE_NORETURN;
+ATTRIBUTE_NORETURN;
 
 /* As "fail", but using printf-style formatted output.  */
 
 extern void fail_formatted (const location &loc, const char *fmt, ...)
-  ATTRIBUTE_PRINTF_2 ATTRIBUTE_NORETURN;
+ATTRIBUTE_PRINTF_2 ATTRIBUTE_NORETURN;
 
 /* Implementation detail of ASSERT_STREQ.  */
 
 extern void assert_streq (const location &loc,
-			  const char *desc_val1, const char *desc_val2,
-			  const char *val1, const char *val2);
+                          const char *desc_val1, const char *desc_val2,
+                          const char *val1, const char *val2);
 
 /* Implementation detail of ASSERT_STR_CONTAINS.  */
 
 extern void assert_str_contains (const location &loc,
-				 const char *desc_haystack,
-				 const char *desc_needle,
-				 const char *val_haystack,
-				 const char *val_needle);
+                                 const char *desc_haystack,
+                                 const char *desc_needle,
+                                 const char *val_haystack,
+                                 const char *val_needle);
 
 /* Implementation detail of ASSERT_STR_STARTSWITH.  */
 
 extern void assert_str_startswith (const location &loc,
-				   const char *desc_str,
-				   const char *desc_prefix,
-				   const char *val_str,
-				   const char *val_prefix);
+                                   const char *desc_str,
+                                   const char *desc_prefix,
+                                   const char *val_str,
+                                   const char *val_prefix);
 
 
 /* A named temporary file for use in selftests.
@@ -95,13 +96,16 @@ extern void assert_str_startswith (const location &loc,
 
 class named_temp_file
 {
- public:
-  named_temp_file (const char *suffix);
-  ~named_temp_file ();
-  const char *get_filename () const { return m_filename; }
+public:
+    named_temp_file (const char *suffix);
+    ~named_temp_file ();
+    const char *get_filename () const
+    {
+        return m_filename;
+    }
 
- private:
-  char *m_filename;
+private:
+    char *m_filename;
 };
 
 /* A class for writing out a temporary sourcefile for use in selftests
@@ -109,9 +113,9 @@ class named_temp_file
 
 class temp_source_file : public named_temp_file
 {
- public:
-  temp_source_file (const location &loc, const char *suffix,
-		    const char *content);
+public:
+    temp_source_file (const location &loc, const char *suffix,
+                      const char *content);
 };
 
 /* RAII-style class for avoiding introducing locale-specific differences
@@ -125,13 +129,13 @@ class temp_source_file : public named_temp_file
 
 class auto_fix_quotes
 {
- public:
-  auto_fix_quotes ();
-  ~auto_fix_quotes ();
+public:
+    auto_fix_quotes ();
+    ~auto_fix_quotes ();
 
- private:
-  const char *m_saved_open_quote;
-  const char *m_saved_close_quote;
+private:
+    const char *m_saved_open_quote;
+    const char *m_saved_close_quote;
 };
 
 /* Various selftests involving location-handling require constructing a
@@ -159,24 +163,24 @@ class line_table_case;
 
 class line_table_test
 {
- public:
-  /* Default constructor.  Override "line_table", using sane defaults
-     for the temporary line_table.  */
-  line_table_test ();
+public:
+    /* Default constructor.  Override "line_table", using sane defaults
+       for the temporary line_table.  */
+    line_table_test ();
 
-  /* Constructor.  Override "line_table", using the case described by C.  */
-  line_table_test (const line_table_case &c);
+    /* Constructor.  Override "line_table", using the case described by C.  */
+    line_table_test (const line_table_case &c);
 
-  /* Destructor.  Restore the saved line_table.  */
-  ~line_table_test ();
+    /* Destructor.  Restore the saved line_table.  */
+    ~line_table_test ();
 };
 
 /* Helper function for selftests that need a function decl.  */
 
 extern tree make_fndecl (tree return_type,
-			 const char *name,
-			 vec <tree> &param_types,
-			 bool is_variadic = false);
+                         const char *name,
+                         vec <tree> &param_types,
+                         bool is_variadic = false);
 
 /* Run TESTCASE multiple times, once for each case in our test matrix.  */
 
@@ -210,13 +214,13 @@ extern const char *path_to_selftest_files;
 
 class test_runner
 {
- public:
-  test_runner (const char *name);
-  ~test_runner ();
+public:
+    test_runner (const char *name);
+    ~test_runner ();
 
- private:
-  const char *m_name;
-  long m_start_time;
+private:
+    const char *m_name;
+    long m_start_time;
 };
 
 /* Declarations for specific families of tests (by source file), in
@@ -279,40 +283,40 @@ extern int num_passes;
    ::selftest::pass if it is true,
    ::selftest::fail if it false.  */
 
-#define ASSERT_TRUE(EXPR)				\
+#define ASSERT_TRUE(EXPR)               \
   ASSERT_TRUE_AT (SELFTEST_LOCATION, (EXPR))
 
 /* Like ASSERT_TRUE, but treat LOC as the effective location of the
    selftest.  */
 
-#define ASSERT_TRUE_AT(LOC, EXPR)			\
-  SELFTEST_BEGIN_STMT					\
-  const char *desc_ = "ASSERT_TRUE (" #EXPR ")";	\
-  bool actual_ = (EXPR);				\
-  if (actual_)						\
-    ::selftest::pass ((LOC), desc_);			\
-  else							\
-    ::selftest::fail ((LOC), desc_);			\
+#define ASSERT_TRUE_AT(LOC, EXPR)           \
+  SELFTEST_BEGIN_STMT                   \
+  const char *desc_ = "ASSERT_TRUE (" #EXPR ")";    \
+  bool actual_ = (EXPR);                \
+  if (actual_)                      \
+    ::selftest::pass ((LOC), desc_);            \
+  else                          \
+    ::selftest::fail ((LOC), desc_);            \
   SELFTEST_END_STMT
 
 /* Evaluate EXPR and coerce to bool, calling
    ::selftest::pass if it is false,
    ::selftest::fail if it true.  */
 
-#define ASSERT_FALSE(EXPR)					\
+#define ASSERT_FALSE(EXPR)                  \
   ASSERT_FALSE_AT (SELFTEST_LOCATION, (EXPR))
 
 /* Like ASSERT_FALSE, but treat LOC as the effective location of the
    selftest.  */
 
-#define ASSERT_FALSE_AT(LOC, EXPR)				\
-  SELFTEST_BEGIN_STMT						\
-  const char *desc_ = "ASSERT_FALSE (" #EXPR ")";		\
-  bool actual_ = (EXPR);					\
-  if (actual_)							\
-    ::selftest::fail ((LOC), desc_);				\
-  else								\
-    ::selftest::pass ((LOC), desc_);				\
+#define ASSERT_FALSE_AT(LOC, EXPR)              \
+  SELFTEST_BEGIN_STMT                       \
+  const char *desc_ = "ASSERT_FALSE (" #EXPR ")";       \
+  bool actual_ = (EXPR);                    \
+  if (actual_)                          \
+    ::selftest::fail ((LOC), desc_);                \
+  else                              \
+    ::selftest::pass ((LOC), desc_);                \
   SELFTEST_END_STMT
 
 /* Evaluate VAL1 and VAL2 and compare them with ==, calling
@@ -325,13 +329,13 @@ extern int num_passes;
 /* Like ASSERT_EQ, but treat LOC as the effective location of the
    selftest.  */
 
-#define ASSERT_EQ_AT(LOC, VAL1, VAL2)		       \
-  SELFTEST_BEGIN_STMT					       \
+#define ASSERT_EQ_AT(LOC, VAL1, VAL2)              \
+  SELFTEST_BEGIN_STMT                          \
   const char *desc_ = "ASSERT_EQ (" #VAL1 ", " #VAL2 ")"; \
-  if ((VAL1) == (VAL2))				       \
-    ::selftest::pass ((LOC), desc_);			       \
-  else							       \
-    ::selftest::fail ((LOC), desc_);			       \
+  if ((VAL1) == (VAL2))                    \
+    ::selftest::pass ((LOC), desc_);                   \
+  else                                 \
+    ::selftest::fail ((LOC), desc_);                   \
   SELFTEST_END_STMT
 
 /* Evaluate VAL1 and VAL2 and compare them with known_eq, calling
@@ -344,26 +348,26 @@ extern int num_passes;
 /* Like ASSERT_KNOWN_EQ, but treat LOC as the effective location of the
    selftest.  */
 
-#define ASSERT_KNOWN_EQ_AT(LOC, VAL1, VAL2)			\
-  SELFTEST_BEGIN_STMT							\
-  const char *desc = "ASSERT_KNOWN_EQ (" #VAL1 ", " #VAL2 ")";	\
-  if (known_eq (VAL1, VAL2))					\
-    ::selftest::pass ((LOC), desc);					\
-  else									\
-    ::selftest::fail ((LOC), desc);					\
+#define ASSERT_KNOWN_EQ_AT(LOC, VAL1, VAL2)         \
+  SELFTEST_BEGIN_STMT                           \
+  const char *desc = "ASSERT_KNOWN_EQ (" #VAL1 ", " #VAL2 ")";  \
+  if (known_eq (VAL1, VAL2))                    \
+    ::selftest::pass ((LOC), desc);                 \
+  else                                  \
+    ::selftest::fail ((LOC), desc);                 \
   SELFTEST_END_STMT
 
 /* Evaluate VAL1 and VAL2 and compare them with !=, calling
    ::selftest::pass if they are non-equal,
    ::selftest::fail if they are equal.  */
 
-#define ASSERT_NE(VAL1, VAL2)			       \
-  SELFTEST_BEGIN_STMT					       \
+#define ASSERT_NE(VAL1, VAL2)                  \
+  SELFTEST_BEGIN_STMT                          \
   const char *desc_ = "ASSERT_NE (" #VAL1 ", " #VAL2 ")"; \
-  if ((VAL1) != (VAL2))				       \
-    ::selftest::pass (SELFTEST_LOCATION, desc_);	       \
-  else							       \
-    ::selftest::fail (SELFTEST_LOCATION, desc_);	       \
+  if ((VAL1) != (VAL2))                    \
+    ::selftest::pass (SELFTEST_LOCATION, desc_);           \
+  else                                 \
+    ::selftest::fail (SELFTEST_LOCATION, desc_);           \
   SELFTEST_END_STMT
 
 /* Evaluate VAL1 and VAL2 and compare them with maybe_ne, calling
@@ -376,70 +380,70 @@ extern int num_passes;
 /* Like ASSERT_MAYBE_NE, but treat LOC as the effective location of the
    selftest.  */
 
-#define ASSERT_MAYBE_NE_AT(LOC, VAL1, VAL2)			\
-  SELFTEST_BEGIN_STMT							\
-  const char *desc = "ASSERT_MAYBE_NE (" #VAL1 ", " #VAL2 ")";	\
-  if (maybe_ne (VAL1, VAL2))					\
-    ::selftest::pass ((LOC), desc);					\
-  else									\
-    ::selftest::fail ((LOC), desc);					\
+#define ASSERT_MAYBE_NE_AT(LOC, VAL1, VAL2)         \
+  SELFTEST_BEGIN_STMT                           \
+  const char *desc = "ASSERT_MAYBE_NE (" #VAL1 ", " #VAL2 ")";  \
+  if (maybe_ne (VAL1, VAL2))                    \
+    ::selftest::pass ((LOC), desc);                 \
+  else                                  \
+    ::selftest::fail ((LOC), desc);                 \
   SELFTEST_END_STMT
 
 /* Evaluate LHS and RHS and compare them with >, calling
    ::selftest::pass if LHS > RHS,
    ::selftest::fail otherwise.  */
 
-#define ASSERT_GT(LHS, RHS)				\
+#define ASSERT_GT(LHS, RHS)             \
   ASSERT_GT_AT ((SELFTEST_LOCATION), (LHS), (RHS))
 
 /* Like ASSERT_GT, but treat LOC as the effective location of the
    selftest.  */
 
-#define ASSERT_GT_AT(LOC, LHS, RHS)		       \
-  SELFTEST_BEGIN_STMT					       \
-  const char *desc_ = "ASSERT_GT (" #LHS ", " #RHS ")";	       \
-  if ((LHS) > (RHS))					       \
-    ::selftest::pass ((LOC), desc_);			       \
-  else							       \
-    ::selftest::fail ((LOC), desc_);			       \
+#define ASSERT_GT_AT(LOC, LHS, RHS)            \
+  SELFTEST_BEGIN_STMT                          \
+  const char *desc_ = "ASSERT_GT (" #LHS ", " #RHS ")";        \
+  if ((LHS) > (RHS))                           \
+    ::selftest::pass ((LOC), desc_);                   \
+  else                                 \
+    ::selftest::fail ((LOC), desc_);                   \
   SELFTEST_END_STMT
 
 /* Evaluate LHS and RHS and compare them with <, calling
    ::selftest::pass if LHS < RHS,
    ::selftest::fail otherwise.  */
 
-#define ASSERT_LT(LHS, RHS)				\
+#define ASSERT_LT(LHS, RHS)             \
   ASSERT_LT_AT ((SELFTEST_LOCATION), (LHS), (RHS))
 
 /* Like ASSERT_LT, but treat LOC as the effective location of the
    selftest.  */
 
-#define ASSERT_LT_AT(LOC, LHS, RHS)		       \
-  SELFTEST_BEGIN_STMT					       \
-  const char *desc_ = "ASSERT_LT (" #LHS ", " #RHS ")";	       \
-  if ((LHS) < (RHS))					       \
-    ::selftest::pass ((LOC), desc_);			       \
-  else							       \
-    ::selftest::fail ((LOC), desc_);			       \
+#define ASSERT_LT_AT(LOC, LHS, RHS)            \
+  SELFTEST_BEGIN_STMT                          \
+  const char *desc_ = "ASSERT_LT (" #LHS ", " #RHS ")";        \
+  if ((LHS) < (RHS))                           \
+    ::selftest::pass ((LOC), desc_);                   \
+  else                                 \
+    ::selftest::fail ((LOC), desc_);                   \
   SELFTEST_END_STMT
 
 /* Evaluate VAL1 and VAL2 and compare them with strcmp, calling
    ::selftest::pass if they are equal (and both are non-NULL),
    ::selftest::fail if they are non-equal, or are both NULL.  */
 
-#define ASSERT_STREQ(VAL1, VAL2)				    \
-  SELFTEST_BEGIN_STMT						    \
+#define ASSERT_STREQ(VAL1, VAL2)                    \
+  SELFTEST_BEGIN_STMT                           \
   ::selftest::assert_streq (SELFTEST_LOCATION, #VAL1, #VAL2, \
-			    (VAL1), (VAL2));		    \
+                (VAL1), (VAL2));            \
   SELFTEST_END_STMT
 
 /* Like ASSERT_STREQ, but treat LOC as the effective location of the
    selftest.  */
 
-#define ASSERT_STREQ_AT(LOC, VAL1, VAL2)			    \
-  SELFTEST_BEGIN_STMT						    \
-  ::selftest::assert_streq ((LOC), #VAL1, #VAL2,		    \
-			    (VAL1), (VAL2));		    \
+#define ASSERT_STREQ_AT(LOC, VAL1, VAL2)                \
+  SELFTEST_BEGIN_STMT                           \
+  ::selftest::assert_streq ((LOC), #VAL1, #VAL2,            \
+                (VAL1), (VAL2));            \
   SELFTEST_END_STMT
 
 /* Evaluate HAYSTACK and NEEDLE and use strstr to determine if NEEDLE
@@ -447,42 +451,42 @@ extern int num_passes;
    ::selftest::pass if NEEDLE is found.
    ::selftest::fail if it is not found.  */
 
-#define ASSERT_STR_CONTAINS(HAYSTACK, NEEDLE)				\
-  SELFTEST_BEGIN_STMT							\
+#define ASSERT_STR_CONTAINS(HAYSTACK, NEEDLE)               \
+  SELFTEST_BEGIN_STMT                           \
   ::selftest::assert_str_contains (SELFTEST_LOCATION, #HAYSTACK, #NEEDLE, \
-				   (HAYSTACK), (NEEDLE));		\
+                   (HAYSTACK), (NEEDLE));       \
   SELFTEST_END_STMT
 
 /* Like ASSERT_STR_CONTAINS, but treat LOC as the effective location of the
    selftest.  */
 
-#define ASSERT_STR_CONTAINS_AT(LOC, HAYSTACK, NEEDLE)			\
-  SELFTEST_BEGIN_STMT							\
-  ::selftest::assert_str_contains (LOC, #HAYSTACK, #NEEDLE,		\
-				   (HAYSTACK), (NEEDLE));		\
+#define ASSERT_STR_CONTAINS_AT(LOC, HAYSTACK, NEEDLE)           \
+  SELFTEST_BEGIN_STMT                           \
+  ::selftest::assert_str_contains (LOC, #HAYSTACK, #NEEDLE,     \
+                   (HAYSTACK), (NEEDLE));       \
   SELFTEST_END_STMT
 
 /* Evaluate STR and PREFIX and determine if STR starts with PREFIX.
      ::selftest::pass if STR does start with PREFIX.
      ::selftest::fail if does not, or either is NULL.  */
 
-#define ASSERT_STR_STARTSWITH(STR, PREFIX)				    \
-  SELFTEST_BEGIN_STMT							    \
-  ::selftest::assert_str_startswith (SELFTEST_LOCATION, #STR, #PREFIX,	    \
-				     (STR), (PREFIX));			    \
+#define ASSERT_STR_STARTSWITH(STR, PREFIX)                  \
+  SELFTEST_BEGIN_STMT                               \
+  ::selftest::assert_str_startswith (SELFTEST_LOCATION, #STR, #PREFIX,      \
+                     (STR), (PREFIX));              \
   SELFTEST_END_STMT
 
 /* Evaluate PRED1 (VAL1), calling ::selftest::pass if it is true,
    ::selftest::fail if it is false.  */
 
-#define ASSERT_PRED1(PRED1, VAL1)				\
-  SELFTEST_BEGIN_STMT						\
-  const char *desc_ = "ASSERT_PRED1 (" #PRED1 ", " #VAL1 ")";	\
-  bool actual_ = (PRED1) (VAL1);				\
-  if (actual_)							\
-    ::selftest::pass (SELFTEST_LOCATION, desc_);		\
-  else								\
-    ::selftest::fail (SELFTEST_LOCATION, desc_);		\
+#define ASSERT_PRED1(PRED1, VAL1)               \
+  SELFTEST_BEGIN_STMT                       \
+  const char *desc_ = "ASSERT_PRED1 (" #PRED1 ", " #VAL1 ")";   \
+  bool actual_ = (PRED1) (VAL1);                \
+  if (actual_)                          \
+    ::selftest::pass (SELFTEST_LOCATION, desc_);        \
+  else                              \
+    ::selftest::fail (SELFTEST_LOCATION, desc_);        \
   SELFTEST_END_STMT
 
 #define SELFTEST_BEGIN_STMT do {

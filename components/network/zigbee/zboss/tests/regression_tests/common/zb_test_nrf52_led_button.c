@@ -49,105 +49,105 @@
 
 void zb_osif_led_button_init(zb_callback_t callback)
 {
-  static zb_uint8_t inited = 0;
-  ret_code_t err_code;
-  zb_uint8_t i;
-  nrf_drv_gpiote_in_config_t config = NRFX_GPIOTE_RAW_CONFIG_IN_SENSE_LOTOHI(true);
+    static zb_uint8_t inited = 0;
+    ret_code_t err_code;
+    zb_uint8_t i;
+    nrf_drv_gpiote_in_config_t config = NRFX_GPIOTE_RAW_CONFIG_IN_SENSE_LOTOHI(true);
 
-  config.pull = NRF_GPIO_PIN_PULLUP;
+    config.pull = NRF_GPIO_PIN_PULLUP;
 
-  if (!inited)
-  {
-    bsp_board_init(BSP_INIT_LEDS | BSP_INIT_BUTTONS);
-
-    /* Additional check if it was initialised
-       somewhere else in the tests. */
-    if (!nrf_drv_gpiote_is_init())
+    if (!inited)
     {
-      err_code = nrf_drv_gpiote_init();
+        bsp_board_init(BSP_INIT_LEDS | BSP_INIT_BUTTONS);
 
-      ZB_ASSERT(err_code == NRFX_SUCCESS);
+        /* Additional check if it was initialised
+           somewhere else in the tests. */
+        if (!nrf_drv_gpiote_is_init())
+        {
+            err_code = nrf_drv_gpiote_init();
+
+            ZB_ASSERT(err_code == NRFX_SUCCESS);
+        }
+
+        nrf_drv_gpiote_in_init(BUTTON0, &config, (nrfx_gpiote_evt_handler_t)callback);
+        nrf_drv_gpiote_in_event_enable(BUTTON0, true);
+
+        inited = 1;
     }
-
-    nrf_drv_gpiote_in_init(BUTTON0, &config, (nrfx_gpiote_evt_handler_t)callback);
-    nrf_drv_gpiote_in_event_enable(BUTTON0, true);
-
-    inited = 1;
-  }
 }
 
 static zb_ret_t led_on_off(zb_uint8_t led_no, zb_uint8_t on)
 {
-  uint32_t led_idx;
-  zb_ret_t ret = RET_OK;
+    uint32_t led_idx;
+    zb_ret_t ret = RET_OK;
 
-  if (led_no == 0)
-  {
-    led_idx = LED0;
-  }
-  else if (led_no == 1)
-  {
-    led_idx = LED1;
-  }
-  else if (led_no == 2)
-  {
-    led_idx = LED2;
-  }
-  else if (led_no == 3)
-  {
-    led_idx = LED3;
-  }
-  else
-  {
-    ret = RET_ERROR;
-  }
-
-  if (ret == RET_OK)
-  {
-    if (on)
+    if (led_no == 0)
     {
-      bsp_board_led_on(led_idx);
+        led_idx = LED0;
+    }
+    else if (led_no == 1)
+    {
+        led_idx = LED1;
+    }
+    else if (led_no == 2)
+    {
+        led_idx = LED2;
+    }
+    else if (led_no == 3)
+    {
+        led_idx = LED3;
     }
     else
     {
-      bsp_board_led_off(led_idx);
+        ret = RET_ERROR;
     }
-  }
 
-  return ret;
+    if (ret == RET_OK)
+    {
+        if (on)
+        {
+            bsp_board_led_on(led_idx);
+        }
+        else
+        {
+            bsp_board_led_off(led_idx);
+        }
+    }
+
+    return ret;
 }
 
 void zb_osif_led_on(zb_uint8_t led_no)
 {
-  led_on_off(led_no, 1);
+    led_on_off(led_no, 1);
 }
 
 void zb_osif_led_off(zb_uint8_t led_no)
 {
-  led_on_off(led_no, 0);
+    led_on_off(led_no, 0);
 }
 
 #else
 
 void zb_osif_led_button_init(zb_callback_t callback)
 {
-  ZVUNUSED(callback);
+    ZVUNUSED(callback);
 }
 
 static zb_ret_t led_on_off(zb_uint8_t led_no, zb_uint8_t on)
 {
-  ZVUNUSED(led_no);
-  ZVUNUSED(on);
+    ZVUNUSED(led_no);
+    ZVUNUSED(on);
 }
 
 void zb_osif_led_on(zb_uint8_t led_no)
 {
-  ZVUNUSED(led_no);
+    ZVUNUSED(led_no);
 }
 
 void zb_osif_led_off(zb_uint8_t led_no)
 {
-  ZVUNUSED(led_no);
+    ZVUNUSED(led_no);
 }
 
 #endif /* ZB_USE_BUTTONS */

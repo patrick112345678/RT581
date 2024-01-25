@@ -86,29 +86,29 @@ typedef zb_uint8_t zb_zigbee_pie_sub_id_t;
 
 typedef struct zb_hie_header_s
 {
-  zb_uint8_t length;
-  zb_hie_element_id_t element_id;
+    zb_uint8_t length;
+    zb_hie_element_id_t element_id;
 }
 zb_hie_header_t;
 
 typedef struct zb_pie_header_s
 {
-  zb_uint16_t length;
-  zb_pie_group_id_t group_id;
+    zb_uint16_t length;
+    zb_pie_group_id_t group_id;
 }
 zb_pie_header_t;
 
 typedef struct zb_nie_header_s
 {
-  zb_uint16_t length;
-  zb_nie_sub_id_t sub_id;
+    zb_uint16_t length;
+    zb_nie_sub_id_t sub_id;
 }
 zb_nie_header_t;
 
 typedef struct zb_zigbee_pie_header_s
 {
-  zb_uint8_t length;
-  zb_zigbee_pie_sub_id_t sub_id;
+    zb_uint8_t length;
+    zb_zigbee_pie_sub_id_t sub_id;
 }
 zb_zigbee_pie_header_t;
 
@@ -141,10 +141,10 @@ zb_zigbee_pie_header_t;
  * @brief Call ZB_SET_HIE_HEADER and increment ptr by HIE header length
  * @see ZB_SET_HIE_HEADER
  */
-#define ZB_SET_NEXT_HIE_HEADER(ptr, element_id, length)	\
-{							\
-  ZB_SET_HIE_HEADER((ptr), (element_id), (length));	\
-  (ptr) += ZB_HIE_HEADER_LENGTH;			\
+#define ZB_SET_NEXT_HIE_HEADER(ptr, element_id, length) \
+{                           \
+  ZB_SET_HIE_HEADER((ptr), (element_id), (length)); \
+  (ptr) += ZB_HIE_HEADER_LENGTH;            \
 }
 
 /**
@@ -181,10 +181,10 @@ zb_zigbee_pie_header_t;
  * @param sub_id
  * @param length
  */
-#define ZB_SET_SHORT_NIE_HEADER(ptr, sub_id, length)		\
-{								\
-  (ptr)[ZB_PKT_16B_ZERO_BYTE] = (length) & 0xFFU;		\
-  (ptr)[ZB_PKT_16B_FIRST_BYTE] = (sub_id) & 0x7FU;		\
+#define ZB_SET_SHORT_NIE_HEADER(ptr, sub_id, length)        \
+{                               \
+  (ptr)[ZB_PKT_16B_ZERO_BYTE] = (length) & 0xFFU;       \
+  (ptr)[ZB_PKT_16B_FIRST_BYTE] = (sub_id) & 0x7FU;      \
 }
 
 /**
@@ -192,10 +192,10 @@ zb_zigbee_pie_header_t;
  *  short NIE header length
  * @see ZB_SET_SHORT_NIE_HEADER
  */
-#define ZB_SET_NEXT_SHORT_NIE_HEADER(ptr, group_id, length)	\
-{							\
-  ZB_SET_SHORT_NIE_HEADER((ptr), (group_id), (length));	\
-  (ptr) += ZB_NIE_HEADER_LENGTH;			\
+#define ZB_SET_NEXT_SHORT_NIE_HEADER(ptr, group_id, length) \
+{                           \
+  ZB_SET_SHORT_NIE_HEADER((ptr), (group_id), (length)); \
+  (ptr) += ZB_NIE_HEADER_LENGTH;            \
 }
 
 /**
@@ -207,11 +207,11 @@ zb_zigbee_pie_header_t;
  * @param sub_id
  * @param length
  */
-#define ZB_SET_LONG_NIE_HEADER(ptr, sub_id, length)		\
-{						 		\
- (ptr)[ZB_PKT_16B_ZERO_BYTE] = (length) & 0xFF;			\
- (ptr)[ZB_PKT_16B_FIRST_BYTE] = (((length) >> 8) & 0x7)		\
-   | (((sub_id) & 0xF) << 3) | 0x80;				\
+#define ZB_SET_LONG_NIE_HEADER(ptr, sub_id, length)     \
+{                               \
+ (ptr)[ZB_PKT_16B_ZERO_BYTE] = (length) & 0xFF;         \
+ (ptr)[ZB_PKT_16B_FIRST_BYTE] = (((length) >> 8) & 0x7)     \
+   | (((sub_id) & 0xF) << 3) | 0x80;                \
 }
 
 /**
@@ -219,10 +219,10 @@ zb_zigbee_pie_header_t;
  *  long NIE header length
  * @see ZB_SET_LONG_NIE_HEADER
  */
-#define ZB_SET_NEXT_LONG_NIE_HEADER(ptr, group_id, length)	\
-{							\
-  ZB_SET_LONG_NIE_HEADER((ptr), (group_id), (length));	\
-  (ptr) += ZB_NIE_HEADER_LENGTH;			\
+#define ZB_SET_NEXT_LONG_NIE_HEADER(ptr, group_id, length)  \
+{                           \
+  ZB_SET_LONG_NIE_HEADER((ptr), (group_id), (length));  \
+  (ptr) += ZB_NIE_HEADER_LENGTH;            \
 }
 
 /**
@@ -235,11 +235,11 @@ zb_zigbee_pie_header_t;
  * @param sub_id
  * @param length
  */
-#define ZB_SET_ZIGBEE_PIE_HEADER(ptr, sub_id, length)			\
-{									\
-  (ptr)[ZB_PKT_16B_ZERO_BYTE] = ((length) & 0x3FU)			\
-    | (((sub_id) & 0x3U) << 6);						\
-  (ptr)[ZB_PKT_16B_FIRST_BYTE] = ((sub_id) >> 2) & 0xFFU;		\
+#define ZB_SET_ZIGBEE_PIE_HEADER(ptr, sub_id, length)           \
+{                                   \
+  (ptr)[ZB_PKT_16B_ZERO_BYTE] = ((length) & 0x3FU)          \
+    | (((sub_id) & 0x3U) << 6);                     \
+  (ptr)[ZB_PKT_16B_FIRST_BYTE] = ((sub_id) >> 2) & 0xFFU;       \
 }
 
 /**
@@ -247,10 +247,10 @@ zb_zigbee_pie_header_t;
  *  Zigbee PIE header length
  * @see ZB_SET_ZIGBEE_PIE_HEADER
  */
-#define ZB_SET_NEXT_ZIGBEE_PIE_HEADER(ptr, sub_id, length)	\
-{								\
-  ZB_SET_ZIGBEE_PIE_HEADER((ptr), (sub_id), (length));		\
-  (ptr) += ZB_ZIGBEE_PIE_HEADER_LENGTH;				\
+#define ZB_SET_NEXT_ZIGBEE_PIE_HEADER(ptr, sub_id, length)  \
+{                               \
+  ZB_SET_ZIGBEE_PIE_HEADER((ptr), (sub_id), (length));      \
+  (ptr) += ZB_ZIGBEE_PIE_HEADER_LENGTH;             \
 }
 
 /* Getters */
@@ -273,8 +273,8 @@ zb_zigbee_pie_header_t;
  * @param ptr - pointer to HIE location
  * @param hie_hdr_ptr - pointer to zb_hie_header_t structure
  */
-#define ZB_GET_HIE_HEADER(ptr, hie_hdr_ptr)				\
-  (hie_hdr_ptr)->length = ZB_HIE_GET_LENGTH(ptr),		\
+#define ZB_GET_HIE_HEADER(ptr, hie_hdr_ptr)             \
+  (hie_hdr_ptr)->length = ZB_HIE_GET_LENGTH(ptr),       \
   (hie_hdr_ptr)->element_id = ZB_HIE_GET_ELEMENT_ID(ptr)
 
 /**
@@ -282,10 +282,10 @@ zb_zigbee_pie_header_t;
  *  HIE header length
  * @see ZB_GET_HIE_HEADER
  */
-#define ZB_GET_NEXT_HIE_HEADER(ptr, hie_hdr_ptr)		\
-{								\
-  ZB_GET_HIE_HEADER((ptr), (hie_hdr_ptr));			\
-  (ptr) += ZB_HIE_HEADER_LENGTH;				\
+#define ZB_GET_NEXT_HIE_HEADER(ptr, hie_hdr_ptr)        \
+{                               \
+  ZB_GET_HIE_HEADER((ptr), (hie_hdr_ptr));          \
+  (ptr) += ZB_HIE_HEADER_LENGTH;                \
 }
 
 /*
@@ -303,8 +303,8 @@ zb_zigbee_pie_header_t;
  * @param ptr - pointer to PIE location
  * @param pie_hdr_ptr - pointer to zb_pie_header_t structure
  */
-#define ZB_GET_PIE_HEADER(ptr, pie_hdr_ptr)			\
-  (pie_hdr_ptr)->length = ZB_PAYLOAD_PIE_HEADER_GET_LENGTH(ptr),	\
+#define ZB_GET_PIE_HEADER(ptr, pie_hdr_ptr)         \
+  (pie_hdr_ptr)->length = ZB_PAYLOAD_PIE_HEADER_GET_LENGTH(ptr),    \
   (pie_hdr_ptr)->group_id = (zb_pie_group_id_t)ZB_PAYLOAD_PIE_HEADER_GET_GROUP_ID(ptr)
 
 /**
@@ -312,10 +312,10 @@ zb_zigbee_pie_header_t;
  *  PIE header length
  * @see ZB_GET_PIE_HEADER
  */
-#define ZB_GET_NEXT_PIE_HEADER(ptr, pie_hdr_ptr)		\
-{								\
-  ZB_GET_PIE_HEADER((ptr), (pie_hdr_ptr));			\
-  (ptr) += ZB_PIE_HEADER_LENGTH;				\
+#define ZB_GET_NEXT_PIE_HEADER(ptr, pie_hdr_ptr)        \
+{                               \
+  ZB_GET_PIE_HEADER((ptr), (pie_hdr_ptr));          \
+  (ptr) += ZB_PIE_HEADER_LENGTH;                \
 }
 
 /**
@@ -354,18 +354,18 @@ zb_zigbee_pie_header_t;
  * @param ptr - pointer to NIE location
  * @param nie_hdr_ptr - pointer to zb_nie_header_short_t structure
  */
-#define ZB_GET_NIE_HEADER(ptr, nie_hdr_ptr)			\
-{								\
-  if (ZB_GET_NIE_HEADER_TYPE(ptr) == ZB_NIE_HEADER_TYPE_LONG)	\
-  {								\
-    (nie_hdr_ptr)->length = ZB_NIE_LONG_HEADER_GET_LENGTH(ptr);	\
-    (nie_hdr_ptr)->sub_id = ZB_NIE_LONG_HEADER_GET_SUB_ID(ptr);	\
-  }								\
-  else								\
-  {								\
+#define ZB_GET_NIE_HEADER(ptr, nie_hdr_ptr)         \
+{                               \
+  if (ZB_GET_NIE_HEADER_TYPE(ptr) == ZB_NIE_HEADER_TYPE_LONG)   \
+  {                             \
+    (nie_hdr_ptr)->length = ZB_NIE_LONG_HEADER_GET_LENGTH(ptr); \
+    (nie_hdr_ptr)->sub_id = ZB_NIE_LONG_HEADER_GET_SUB_ID(ptr); \
+  }                             \
+  else                              \
+  {                             \
     (nie_hdr_ptr)->length = ZB_NIE_SHORT_HEADER_GET_LENGTH(ptr); \
     (nie_hdr_ptr)->sub_id = ZB_NIE_SHORT_HEADER_GET_SUB_ID(ptr); \
-  }								\
+  }                             \
 }
 
 /**
@@ -373,10 +373,10 @@ zb_zigbee_pie_header_t;
  *  NIE header length
  * @see ZB_GET_PIE_HEADER
  */
-#define ZB_GET_NEXT_NIE_HEADER(ptr, nie_hdr_ptr)		\
-{								\
-  ZB_GET_NIE_HEADER((ptr), (nie_hdr_ptr));			\
-  (ptr) += ZB_NIE_HEADER_LENGTH;				\
+#define ZB_GET_NEXT_NIE_HEADER(ptr, nie_hdr_ptr)        \
+{                               \
+  ZB_GET_NIE_HEADER((ptr), (nie_hdr_ptr));          \
+  (ptr) += ZB_NIE_HEADER_LENGTH;                \
 }
 
 /*
@@ -393,9 +393,9 @@ zb_zigbee_pie_header_t;
  * @param ptr - pointer to Zigbee PIE location
  * @param hdr_ptr - pointer to zb_zigbee_pie_header_t structure
  */
-#define ZB_GET_ZIGBEE_PIE_HEADER(ptr, hdr_ptr)			                       \
-{									                                           \
-  (hdr_ptr)->length = ZB_ZIGBEE_PIE_HEADER_GET_LENGTH(ptr);		               \
+#define ZB_GET_ZIGBEE_PIE_HEADER(ptr, hdr_ptr)                                 \
+{                                                                              \
+  (hdr_ptr)->length = ZB_ZIGBEE_PIE_HEADER_GET_LENGTH(ptr);                    \
   (hdr_ptr)->sub_id = ZB_ZIGBEE_PIE_HEADER_GET_SUB_ID(ptr); \
 }
 
@@ -404,10 +404,10 @@ zb_zigbee_pie_header_t;
  *  Zigbee PIE header length
  * @see ZB_GET_ZIGBEE_PIE_HEADER
  */
-#define ZB_GET_NEXT_ZIGBEE_PIE_HEADER(ptr, hdr_ptr)			\
-{								\
-  ZB_GET_ZIGBEE_PIE_HEADER((ptr), (hdr_ptr));			\
-  (ptr) += ZB_ZIGBEE_PIE_HEADER_LENGTH;				\
+#define ZB_GET_NEXT_ZIGBEE_PIE_HEADER(ptr, hdr_ptr)         \
+{                               \
+  ZB_GET_ZIGBEE_PIE_HEADER((ptr), (hdr_ptr));           \
+  (ptr) += ZB_ZIGBEE_PIE_HEADER_LENGTH;             \
 }
 
 /* Specific IE functions, add more as needed */
@@ -423,12 +423,12 @@ zb_zigbee_pie_header_t;
  * @param ptr - location to write into
  * @param len - length of additional payload
  */
-#define ZB_SET_PIE_ZIGBEE_VENDOR_HEADER(ptr, len)			\
-{									\
-  ZB_SET_PIE_HEADER((ptr), ZB_PIE_GROUP_VENDOR_SPECIFIC, (len) + 3U);	\
-  (ptr)[ZB_PIE_HEADER_LENGTH] = 0x1BU;					\
-  (ptr)[ZB_PIE_HEADER_LENGTH + 1U] = 0x19U;				\
-  (ptr)[ZB_PIE_HEADER_LENGTH + 2U] = 0x4AU;				\
+#define ZB_SET_PIE_ZIGBEE_VENDOR_HEADER(ptr, len)           \
+{                                   \
+  ZB_SET_PIE_HEADER((ptr), ZB_PIE_GROUP_VENDOR_SPECIFIC, (len) + 3U);   \
+  (ptr)[ZB_PIE_HEADER_LENGTH] = 0x1BU;                  \
+  (ptr)[ZB_PIE_HEADER_LENGTH + 1U] = 0x19U;             \
+  (ptr)[ZB_PIE_HEADER_LENGTH + 2U] = 0x4AU;             \
 }
 
 /**
@@ -436,13 +436,13 @@ zb_zigbee_pie_header_t;
  *  PIE Zigbee vendor header length
  * @see ZB_SET_PIE_ZIGBEE_VENDOR_HEADER
  */
-#define ZB_SET_NEXT_PIE_ZIGBEE_VENDOR_HEADER(ptr, len)			\
-{									\
-  ZB_SET_PIE_ZIGBEE_VENDOR_HEADER((ptr), (len));				\
-  (ptr) += ZB_PIE_VENDOR_HEADER_LENGTH;					\
+#define ZB_SET_NEXT_PIE_ZIGBEE_VENDOR_HEADER(ptr, len)          \
+{                                   \
+  ZB_SET_PIE_ZIGBEE_VENDOR_HEADER((ptr), (len));                \
+  (ptr) += ZB_PIE_VENDOR_HEADER_LENGTH;                 \
 }
 
-#define ZB_IE_CHECK_ZIGBEE_VENDOR(ptr)			\
+#define ZB_IE_CHECK_ZIGBEE_VENDOR(ptr)          \
   ((ptr)[0] == 0x1BU && (ptr)[1] == 0x19U && (ptr)[2] == 0x4AU)
 
 #define ZB_TX_POWER_IE_DESCRIPTOR_LEN (ZB_ZIGBEE_PIE_HEADER_LENGTH + 1U)
@@ -455,10 +455,10 @@ zb_zigbee_pie_header_t;
  * @param ptr - location to write into
  * @param len - length of additional payload
  */
-#define ZB_SET_TX_POWER_IE_DESCRIPTOR(ptr, tx_power)			\
-{									\
-  ZB_SET_ZIGBEE_PIE_HEADER(ptr, ZB_ZIGBEE_PIE_SUB_ID_TX_POWER, 1U);	\
-  (ptr)[ZB_ZIGBEE_PIE_HEADER_LENGTH] = (tx_power) & 0xFFU;		\
+#define ZB_SET_TX_POWER_IE_DESCRIPTOR(ptr, tx_power)            \
+{                                   \
+  ZB_SET_ZIGBEE_PIE_HEADER(ptr, ZB_ZIGBEE_PIE_SUB_ID_TX_POWER, 1U); \
+  (ptr)[ZB_ZIGBEE_PIE_HEADER_LENGTH] = (tx_power) & 0xFFU;      \
 }
 
 /**
@@ -466,10 +466,10 @@ zb_zigbee_pie_header_t;
  *  Sub-IE TX Power descriptor length
  * @see ZB_SET_TX_POWER_IE_DESCRIPTOR
  */
-#define ZB_SET_NEXT_TX_POWER_IE_DESCRIPTOR(ptr, tx_power)		\
-{									\
-  ZB_SET_TX_POWER_IE_DESCRIPTOR((ptr), (tx_power));			\
-  (ptr) += ZB_TX_POWER_IE_DESCRIPTOR_LEN;				\
+#define ZB_SET_NEXT_TX_POWER_IE_DESCRIPTOR(ptr, tx_power)       \
+{                                   \
+  ZB_SET_TX_POWER_IE_DESCRIPTOR((ptr), (tx_power));         \
+  (ptr) += ZB_TX_POWER_IE_DESCRIPTOR_LEN;               \
 }
 
 /* EB Filter IE flags, see 7.4.4.6 of 802.15.4-2015 */
@@ -485,10 +485,10 @@ zb_zigbee_pie_header_t;
  * @param ptr - pointer to PIE location
  * @return 1 if the condition is true, 0 otherwise
  */
-#define ZB_CHECK_IS_HT1(ptr)				\
-  (ZB_IE_HEADER_GET_TYPE(ptr) == ZB_IE_HEADER_TYPE_HIE	\
-   && ZB_HIE_GET_LENGTH(ptr) == 0U			\
-   && ZB_HIE_GET_ELEMENT_ID(ptr) == ZB_HIE_ELEMENT_HT1)	\
+#define ZB_CHECK_IS_HT1(ptr)                \
+  (ZB_IE_HEADER_GET_TYPE(ptr) == ZB_IE_HEADER_TYPE_HIE  \
+   && ZB_HIE_GET_LENGTH(ptr) == 0U          \
+   && ZB_HIE_GET_ELEMENT_ID(ptr) == ZB_HIE_ELEMENT_HT1) \
 
 
 /**
@@ -502,7 +502,7 @@ zb_zigbee_pie_header_t;
  * @param skipped_bytes_ptr - number of skipped bytes will be stored here
  * @return ZB_TRUE if no errors, ZB_FALSE when given corrupted packet
  */
-#define ZB_SKIP_HIE_TILL_HT(ptr, max_len, skipped_bytes_ptr)	\
+#define ZB_SKIP_HIE_TILL_HT(ptr, max_len, skipped_bytes_ptr)    \
   zb_skip_hie_till_ht((ptr), (max_len), (skipped_bytes_ptr))
 
 
@@ -598,47 +598,47 @@ zb_zigbee_pie_header_t;
 /* parsed filter EB IE */
 typedef struct zb_eb_filter_ie_s
 {
-  zb_uint8_t mask;
+    zb_uint8_t mask;
 } zb_eb_filter_ie_t;
 
 /* parsed TX power IE*/
 typedef struct zb_tx_power_ie_s
 {
-  zb_int8_t tx_power_value;
+    zb_int8_t tx_power_value;
 } zb_tx_power_ie_t;
 
 /* parsed MLME PIE*/
 typedef struct zb_mlme_pie_parsed_s
 {
-  zb_bool_t eb_filter_set;
-  zb_eb_filter_ie_t eb_filter;
+    zb_bool_t eb_filter_set;
+    zb_eb_filter_ie_t eb_filter;
 } zb_mlme_pie_parsed_t;
 
 /* parsed Zigbee EB Payload IE */
 typedef struct zb_eb_payload_ie_parsed_s
 {
-  zb_uint8_t *beacon_payload_ptr;
-  zb_uint8_t beacon_payload_len;
-  zb_uint16_t superframe_spec;
-  zb_uint16_t source_short_addr;
+    zb_uint8_t *beacon_payload_ptr;
+    zb_uint8_t beacon_payload_len;
+    zb_uint16_t superframe_spec;
+    zb_uint16_t source_short_addr;
 } zb_eb_payload_ie_parsed_t;
 
 /* parsed Zigbee Rejoin IE */
 typedef struct zb_rejoin_ie_s
 {
-  zb_ext_pan_id_t extended_pan_id;
-  zb_uint16_t src_short_addr;
+    zb_ext_pan_id_t extended_pan_id;
+    zb_uint16_t src_short_addr;
 } zb_rejoin_ie_t;
 
 /* parsed Vendor Specific PIE (Zigbee) */
 typedef struct zb_zigbee_vendor_pie_parsed_s
 {
-  zb_bool_t eb_payload_set;
-  zb_eb_payload_ie_parsed_t eb_payload;
-  zb_bool_t rejoin_desc_set;
-  zb_rejoin_ie_t rejoin_desc;
-  zb_bool_t tx_power_set;
-  zb_tx_power_ie_t tx_power;
+    zb_bool_t eb_payload_set;
+    zb_eb_payload_ie_parsed_t eb_payload;
+    zb_bool_t rejoin_desc_set;
+    zb_rejoin_ie_t rejoin_desc;
+    zb_bool_t tx_power_set;
+    zb_tx_power_ie_t tx_power;
 } zb_zigbee_vendor_pie_parsed_t;
 
 
@@ -651,13 +651,13 @@ zb_bool_t zb_skip_hie_till_ht(zb_uint8_t *ptr, zb_uint32_t max_len, zb_uint32_t 
  * @brief Function to parse Zigbee vendor PIE starting at ptr
  */
 zb_bool_t zb_parse_zigbee_vendor_pie(zb_uint8_t *ptr, zb_uint32_t len,
-				     zb_zigbee_vendor_pie_parsed_t *parsed);
+                                     zb_zigbee_vendor_pie_parsed_t *parsed);
 
 /*
  * @brief Function to parse mlme PIE starting at ptr
  */
 zb_bool_t zb_parse_mlme_pie(zb_uint8_t *ptr, zb_uint32_t len,
-			    zb_mlme_pie_parsed_t *parsed);
+                            zb_mlme_pie_parsed_t *parsed);
 #endif /* ZB_ENHANCED_BEACON_SUPPORT */
 
 #endif

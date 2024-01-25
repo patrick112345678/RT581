@@ -58,109 +58,109 @@ static void send_request_key(zb_uint8_t param);
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  ZB_SET_TRAF_DUMP_ON();
+    ZB_SET_TRAF_DUMP_ON();
 
-  ZB_INIT("zdo_2_zr");
-#if UART_CONTROL	
-	test_control_init();
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    ZB_INIT("zdo_2_zr");
+#if UART_CONTROL
+    test_control_init();
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 #endif
 
-  zb_set_long_address(g_ieee_addr_r1);
-  zb_cert_test_set_common_channel_settings();
-  zb_cert_test_set_zr_role();
+    zb_set_long_address(g_ieee_addr_r1);
+    zb_cert_test_set_common_channel_settings();
+    zb_cert_test_set_zr_role();
 
-  MAC_ADD_VISIBLE_LONG((zb_uint8_t*) g_ieee_addr_ed1);
-  MAC_ADD_VISIBLE_LONG((zb_uint8_t*) g_ieee_addr_c);
+    MAC_ADD_VISIBLE_LONG((zb_uint8_t *) g_ieee_addr_ed1);
+    MAC_ADD_VISIBLE_LONG((zb_uint8_t *) g_ieee_addr_c);
 
-  zb_set_max_children(1);
-  zb_zdo_set_aps_unsecure_join(INSECURE_JOIN_ZR1);
+    zb_set_max_children(1);
+    zb_zdo_set_aps_unsecure_join(INSECURE_JOIN_ZR1);
 
-  zb_set_nvram_erase_at_start(ZB_TRUE);
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zboss_main_loop();
-  }
+    zb_set_nvram_erase_at_start(ZB_TRUE);
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zboss_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_zdo_app_signal_hdr_t *sg_p = NULL;
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, &sg_p);
+    zb_zdo_app_signal_hdr_t *sg_p = NULL;
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, &sg_p);
 
-  TRACE_MSG(TRACE_APP1, "zboss_signal_handler: status %hd signal %hd",
-            (FMT__H_H, ZB_GET_APP_SIGNAL_STATUS(param), sig));
+    TRACE_MSG(TRACE_APP1, "zboss_signal_handler: status %hd signal %hd",
+              (FMT__H_H, ZB_GET_APP_SIGNAL_STATUS(param), sig));
 
-  switch (sig)
-  {
+    switch (sig)
+    {
     case ZB_ZDO_SIGNAL_DEFAULT_START:
-      if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
-      {
-	TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
+        if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
+        {
+            TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
 
-	if (is_first_start)
-	{
-	  ZB_SCHEDULE_ALARM(send_request_key, 0, ZB_TIME_ONE_SECOND);
-	  is_first_start = ZB_FALSE;
-	}
-      }
-      else
-      {
-	TRACE_MSG(TRACE_ERROR, "Device start FAILED status %d",
-		  (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
-      }
-      break; /* ZB_ZDO_SIGNAL_DEFAULT_START */
+            if (is_first_start)
+            {
+                ZB_SCHEDULE_ALARM(send_request_key, 0, ZB_TIME_ONE_SECOND);
+                is_first_start = ZB_FALSE;
+            }
+        }
+        else
+        {
+            TRACE_MSG(TRACE_ERROR, "Device start FAILED status %d",
+                      (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
+        }
+        break; /* ZB_ZDO_SIGNAL_DEFAULT_START */
 
     default:
-      if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
-      {
-	TRACE_MSG(TRACE_APS1, "zboss_signal_handler: status OK, status %d",
-		  (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
-      }
-      else
-      {
-	TRACE_MSG(TRACE_ERROR, "zboss_signal_handler: status FAILED, status %d",
-		  (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
-      }
-      break;
-  }
+        if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
+        {
+            TRACE_MSG(TRACE_APS1, "zboss_signal_handler: status OK, status %d",
+                      (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
+        }
+        else
+        {
+            TRACE_MSG(TRACE_ERROR, "zboss_signal_handler: status FAILED, status %d",
+                      (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
+        }
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 static void send_request_key(zb_uint8_t param)
 {
-  zb_bufid_t buf = zb_buf_get_out();
+    zb_bufid_t buf = zb_buf_get_out();
 
-  ZVUNUSED(param);
+    ZVUNUSED(param);
 
-  TRACE_MSG(TRACE_ERROR, ">>send_request_key", (FMT__0));
+    TRACE_MSG(TRACE_ERROR, ">>send_request_key", (FMT__0));
 
-  if (buf)
-  {
-    zb_apsme_request_key_req_t *req_param;
+    if (buf)
+    {
+        zb_apsme_request_key_req_t *req_param;
 
-    req_param = ZB_BUF_GET_PARAM(buf, zb_apsme_request_key_req_t);
+        req_param = ZB_BUF_GET_PARAM(buf, zb_apsme_request_key_req_t);
 
-    ZB_IEEE_ADDR_COPY(req_param->dest_address, &g_ieee_addr_c);
-    req_param->key_type = ZB_REQUEST_TC_LINK_KEY;
+        ZB_IEEE_ADDR_COPY(req_param->dest_address, &g_ieee_addr_c);
+        req_param->key_type = ZB_REQUEST_TC_LINK_KEY;
 
-    zb_secur_apsme_request_key(buf);
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "TEST FAILED: Could not get out buf!", (FMT__0));
-  }
+        zb_secur_apsme_request_key(buf);
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "TEST FAILED: Could not get out buf!", (FMT__0));
+    }
 
-  TRACE_MSG(TRACE_ERROR, "<<send_request_key", (FMT__0));
+    TRACE_MSG(TRACE_ERROR, "<<send_request_key", (FMT__0));
 }

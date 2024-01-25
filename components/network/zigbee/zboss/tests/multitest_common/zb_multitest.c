@@ -30,15 +30,15 @@ static zb_test_ctx_t s_test_ctx;
 
 void zb_multitest_reset_test_ctx(void)
 {
-  ZB_BZERO(&s_test_ctx, sizeof(s_test_ctx));
+    ZB_BZERO(&s_test_ctx, sizeof(s_test_ctx));
 
-  s_test_ctx.page = ZB_MULTITEST_DEAULT_PAGE;
-  s_test_ctx.channel = ZB_MULTITEST_DEAULT_CHANNEL;
-  s_test_ctx.mode = ZB_TEST_CONTROL_ALARMS;
+    s_test_ctx.page = ZB_MULTITEST_DEAULT_PAGE;
+    s_test_ctx.channel = ZB_MULTITEST_DEAULT_CHANNEL;
+    s_test_ctx.mode = ZB_TEST_CONTROL_ALARMS;
 }
 
 
-zb_test_ctx_t* zb_multitest_get_test_ctx(void)
+zb_test_ctx_t *zb_multitest_get_test_ctx(void)
 {
-  return &s_test_ctx;
+    return &s_test_ctx;
 }

@@ -18,17 +18,17 @@ extern "C"
 
 __STATIC_INLINE void xdma_enable(void)
 {
-  XDMA->XDMA_CTL0 |=XDMA_ENABLE;
+    XDMA->XDMA_CTL0 |= XDMA_ENABLE;
 }
 
 __STATIC_INLINE void xdma_disable(void)
 {
-  XDMA->XDMA_CTL0 &=~XDMA_ENABLE;
+    XDMA->XDMA_CTL0 &= ~XDMA_ENABLE;
 }
 
 __STATIC_INLINE void xdma_reset(void)
 {
-   XDMA->XDMA_CTL1 |=XDMA_RESET;
+    XDMA->XDMA_CTL1 |= XDMA_RESET;
 }
 
 #ifdef __cplusplus

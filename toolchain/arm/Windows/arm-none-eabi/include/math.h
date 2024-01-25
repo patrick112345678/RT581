@@ -13,7 +13,7 @@ _BEGIN_STD_C
 #define _M_LN2        0.693147180559945309417
 
 #if __GNUC_PREREQ (3, 3)
- /* gcc >= 3.3 implicitly defines builtins for HUGE_VALx values.  */
+/* gcc >= 3.3 implicitly defines builtins for HUGE_VALx values.  */
 
 # ifndef HUGE_VAL
 #  define HUGE_VAL (__builtin_huge_val())
@@ -37,46 +37,50 @@ _BEGIN_STD_C
 
 #else /* !gcc >= 3.3  */
 
- /*      No builtins.  Use fixed defines instead.  (All 3 HUGE plus the INFINITY
-  * and NAN macros are required to be constant expressions.  Using a variable--
-  * even a static const--does not meet this requirement, as it cannot be
-  * evaluated at translation time.)
-  *      The infinities are done using numbers that are far in excess of
-  * something that would be expected to be encountered in a floating-point
-  * implementation.  (A more certain way uses values from float.h, but that is
-  * avoided because system includes are not supposed to include each other.)
-  *      This method might produce warnings from some compilers.  (It does in
-  * newer GCCs, but not for ones that would hit this #else.)  If this happens,
-  * please report details to the Newlib mailing list.  */
+/*      No builtins.  Use fixed defines instead.  (All 3 HUGE plus the INFINITY
+ * and NAN macros are required to be constant expressions.  Using a variable--
+ * even a static const--does not meet this requirement, as it cannot be
+ * evaluated at translation time.)
+ *      The infinities are done using numbers that are far in excess of
+ * something that would be expected to be encountered in a floating-point
+ * implementation.  (A more certain way uses values from float.h, but that is
+ * avoided because system includes are not supposed to include each other.)
+ *      This method might produce warnings from some compilers.  (It does in
+ * newer GCCs, but not for ones that would hit this #else.)  If this happens,
+ * please report details to the Newlib mailing list.  */
 
- #ifndef HUGE_VAL
-  #define HUGE_VAL (1.0e999999999)
- #endif
+#ifndef HUGE_VAL
+#define HUGE_VAL (1.0e999999999)
+#endif
 
- #ifndef HUGE_VALF
-  #define HUGE_VALF (1.0e999999999F)
- #endif
+#ifndef HUGE_VALF
+#define HUGE_VALF (1.0e999999999F)
+#endif
 
- #if !defined(HUGE_VALL)  &&  defined(_HAVE_LONG_DOUBLE)
-  #define HUGE_VALL (1.0e999999999L)
- #endif
+#if !defined(HUGE_VALL)  &&  defined(_HAVE_LONG_DOUBLE)
+#define HUGE_VALL (1.0e999999999L)
+#endif
 
- #if !defined(INFINITY)
-  #define INFINITY (HUGE_VALF)
- #endif
+#if !defined(INFINITY)
+#define INFINITY (HUGE_VALF)
+#endif
 
- #if !defined(NAN)
-  #if defined(__GNUC__)  &&  defined(__cplusplus)
-    /* Exception:  older g++ versions warn about the divide by 0 used in the
-     * normal case (even though older gccs do not).  This trick suppresses the
-     * warning, but causes errors for plain gcc, so is only used in the one
-     * special case.  */
-    static const union { __ULong __i[1]; float __d; } __Nanf = {0x7FC00000};
-    #define NAN (__Nanf.__d)
-  #else
-    #define NAN (0.0F/0.0F)
-  #endif
- #endif
+#if !defined(NAN)
+#if defined(__GNUC__)  &&  defined(__cplusplus)
+/* Exception:  older g++ versions warn about the divide by 0 used in the
+ * normal case (even though older gccs do not).  This trick suppresses the
+ * warning, but causes errors for plain gcc, so is only used in the one
+ * special case.  */
+static const union
+{
+    __ULong __i[1];
+    float __d;
+} __Nanf = {0x7FC00000};
+#define NAN (__Nanf.__d)
+#else
+#define NAN (0.0F/0.0F)
+#endif
+#endif
 
 #endif /* !gcc >= 3.3  */
 
@@ -142,30 +146,30 @@ extern int isnan (double);
  * solved, but autoconf has a bug which makes the solution more difficult, so
  * it has been skipped for now.)  */
 #if !defined(FLT_EVAL_METHOD) && defined(__FLT_EVAL_METHOD__)
-  #define FLT_EVAL_METHOD __FLT_EVAL_METHOD__
-  #define __TMP_FLT_EVAL_METHOD
+#define FLT_EVAL_METHOD __FLT_EVAL_METHOD__
+#define __TMP_FLT_EVAL_METHOD
 #endif /* FLT_EVAL_METHOD */
 #if defined FLT_EVAL_METHOD
-  #if FLT_EVAL_METHOD == 0
-    typedef float  float_t;
-    typedef double double_t;
-   #elif FLT_EVAL_METHOD == 1
-    typedef double float_t;
-    typedef double double_t;
-   #elif FLT_EVAL_METHOD == 2
-    typedef long double float_t;
-    typedef long double double_t;
-   #else
-    /* Implementation-defined.  Assume float_t and double_t have been
-     * defined previously for this configuration (e.g. config.h). */
-  #endif
+#if FLT_EVAL_METHOD == 0
+typedef float  float_t;
+typedef double double_t;
+#elif FLT_EVAL_METHOD == 1
+typedef double float_t;
+typedef double double_t;
+#elif FLT_EVAL_METHOD == 2
+typedef long double float_t;
+typedef long double double_t;
 #else
-    /* Assume basic definitions.  */
-    typedef float  float_t;
-    typedef double double_t;
+/* Implementation-defined.  Assume float_t and double_t have been
+ * defined previously for this configuration (e.g. config.h). */
+#endif
+#else
+/* Assume basic definitions.  */
+typedef float  float_t;
+typedef double double_t;
 #endif
 #if defined(__TMP_FLT_EVAL_METHOD)
-  #undef FLT_EVAL_METHOD
+#undef FLT_EVAL_METHOD
 #endif
 
 #define FP_NAN         0
@@ -218,61 +222,61 @@ extern int __signbitd (double);
  *       (prototypes for them are earlier in this header).  */
 
 #if __GNUC_PREREQ (4, 4)
-  #define fpclassify(__x) (__builtin_fpclassify (FP_NAN, FP_INFINITE, \
-						 FP_NORMAL, FP_SUBNORMAL, \
-						 FP_ZERO, __x))
-  #ifndef isfinite
-    #define isfinite(__x)	(__builtin_isfinite (__x))
-  #endif
-  #ifndef isinf
-    #define isinf(__x) (__builtin_isinf_sign (__x))
-  #endif
-  #ifndef isnan
-    #define isnan(__x) (__builtin_isnan (__x))
-  #endif
-  #define isnormal(__x) (__builtin_isnormal (__x))
+#define fpclassify(__x) (__builtin_fpclassify (FP_NAN, FP_INFINITE, \
+                         FP_NORMAL, FP_SUBNORMAL, \
+                         FP_ZERO, __x))
+#ifndef isfinite
+#define isfinite(__x)   (__builtin_isfinite (__x))
+#endif
+#ifndef isinf
+#define isinf(__x) (__builtin_isinf_sign (__x))
+#endif
+#ifndef isnan
+#define isnan(__x) (__builtin_isnan (__x))
+#endif
+#define isnormal(__x) (__builtin_isnormal (__x))
 #else
-  #define fpclassify(__x) \
-	  ((sizeof(__x) == sizeof(float))  ? __fpclassifyf(__x) : \
-	  __fpclassifyd(__x))
-  #ifndef isfinite
-    #define isfinite(__y) \
-	    (__extension__ ({int __cy = fpclassify(__y); \
-			     __cy != FP_INFINITE && __cy != FP_NAN;}))
-  #endif
-  #ifndef isinf
-    #define isinf(__x) (fpclassify(__x) == FP_INFINITE)
-  #endif
-  #ifndef isnan
-    #define isnan(__x) (fpclassify(__x) == FP_NAN)
-  #endif
-  #define isnormal(__x) (fpclassify(__x) == FP_NORMAL)
+#define fpclassify(__x) \
+      ((sizeof(__x) == sizeof(float))  ? __fpclassifyf(__x) : \
+      __fpclassifyd(__x))
+#ifndef isfinite
+#define isfinite(__y) \
+        (__extension__ ({int __cy = fpclassify(__y); \
+                 __cy != FP_INFINITE && __cy != FP_NAN;}))
+#endif
+#ifndef isinf
+#define isinf(__x) (fpclassify(__x) == FP_INFINITE)
+#endif
+#ifndef isnan
+#define isnan(__x) (fpclassify(__x) == FP_NAN)
+#endif
+#define isnormal(__x) (fpclassify(__x) == FP_NORMAL)
 #endif
 
 #if __GNUC_PREREQ (4, 0)
-  #if defined(_HAVE_LONG_DOUBLE)
-    #define signbit(__x) \
-	    ((sizeof(__x) == sizeof(float))  ? __builtin_signbitf(__x) : \
-	     (sizeof(__x) == sizeof(double)) ? __builtin_signbit (__x) : \
-					       __builtin_signbitl(__x))
-  #else
-    #define signbit(__x) \
-	    ((sizeof(__x) == sizeof(float))  ? __builtin_signbitf(__x) : \
-					       __builtin_signbit (__x))
-  #endif
+#if defined(_HAVE_LONG_DOUBLE)
+#define signbit(__x) \
+        ((sizeof(__x) == sizeof(float))  ? __builtin_signbitf(__x) : \
+         (sizeof(__x) == sizeof(double)) ? __builtin_signbit (__x) : \
+                           __builtin_signbitl(__x))
 #else
-  #define signbit(__x) \
-	  ((sizeof(__x) == sizeof(float))  ?  __signbitf(__x) : \
-		  __signbitd(__x))
+#define signbit(__x) \
+        ((sizeof(__x) == sizeof(float))  ? __builtin_signbitf(__x) : \
+                           __builtin_signbit (__x))
+#endif
+#else
+#define signbit(__x) \
+      ((sizeof(__x) == sizeof(float))  ?  __signbitf(__x) : \
+          __signbitd(__x))
 #endif
 
 #if __GNUC_PREREQ (2, 97)
-#define isgreater(__x,__y)	(__builtin_isgreater (__x, __y))
-#define isgreaterequal(__x,__y)	(__builtin_isgreaterequal (__x, __y))
-#define isless(__x,__y)		(__builtin_isless (__x, __y))
-#define islessequal(__x,__y)	(__builtin_islessequal (__x, __y))
-#define islessgreater(__x,__y)	(__builtin_islessgreater (__x, __y))
-#define isunordered(__x,__y)	(__builtin_isunordered (__x, __y))
+#define isgreater(__x,__y)  (__builtin_isgreater (__x, __y))
+#define isgreaterequal(__x,__y) (__builtin_isgreaterequal (__x, __y))
+#define isless(__x,__y)     (__builtin_isless (__x, __y))
+#define islessequal(__x,__y)    (__builtin_islessequal (__x, __y))
+#define islessgreater(__x,__y)  (__builtin_islessgreater (__x, __y))
+#define isunordered(__x,__y)    (__builtin_isunordered (__x, __y))
 #else
 #define isgreater(x,y) \
           (__extension__ ({__typeof__(x) __x = (x); __typeof__(y) __y = (y); \
@@ -582,32 +586,32 @@ extern int *__signgam (void);
 
 #if __BSD_VISIBLE || __XSI_VISIBLE
 
-#define MAXFLOAT	3.40282347e+38F
+#define MAXFLOAT    3.40282347e+38F
 
-#define M_E		2.7182818284590452354
-#define M_LOG2E		1.4426950408889634074
-#define M_LOG10E	0.43429448190325182765
-#define M_LN2		_M_LN2
-#define M_LN10		2.30258509299404568402
-#define M_PI		3.14159265358979323846
-#define M_PI_2		1.57079632679489661923
-#define M_PI_4		0.78539816339744830962
-#define M_1_PI		0.31830988618379067154
-#define M_2_PI		0.63661977236758134308
-#define M_2_SQRTPI	1.12837916709551257390
-#define M_SQRT2		1.41421356237309504880
-#define M_SQRT1_2	0.70710678118654752440
+#define M_E     2.7182818284590452354
+#define M_LOG2E     1.4426950408889634074
+#define M_LOG10E    0.43429448190325182765
+#define M_LN2       _M_LN2
+#define M_LN10      2.30258509299404568402
+#define M_PI        3.14159265358979323846
+#define M_PI_2      1.57079632679489661923
+#define M_PI_4      0.78539816339744830962
+#define M_1_PI      0.31830988618379067154
+#define M_2_PI      0.63661977236758134308
+#define M_2_SQRTPI  1.12837916709551257390
+#define M_SQRT2     1.41421356237309504880
+#define M_SQRT1_2   0.70710678118654752440
 
 #endif
 
 #if __BSD_VISIBLE
 
 #define M_TWOPI         (M_PI * 2.0)
-#define M_3PI_4		2.3561944901923448370E0
+#define M_3PI_4     2.3561944901923448370E0
 #define M_SQRTPI        1.77245385090551602792981
 #define M_LN2LO         1.9082149292705877000E-10
 #define M_LN2HI         6.9314718036912381649E-1
-#define M_SQRT3	1.73205080756887719000
+#define M_SQRT3 1.73205080756887719000
 #define M_IVLN10        0.43429448190325182765 /* 1 / log(10) */
 #define M_LOG2_E        _M_LN2
 #define M_INVLN2        1.4426950408889633870E0  /* 1 / log(2) */

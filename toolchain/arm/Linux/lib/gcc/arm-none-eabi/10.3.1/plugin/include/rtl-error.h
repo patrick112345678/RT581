@@ -24,8 +24,8 @@ along with GCC; see the file COPYING3.  If not see
 #include "diagnostic-core.h"
 
 extern void error_for_asm (const rtx_insn *, const char *,
-			   ...) ATTRIBUTE_GCC_DIAG(2,3);
+                           ...) ATTRIBUTE_GCC_DIAG(2, 3);
 extern void warning_for_asm (const rtx_insn *, const char *,
-			     ...) ATTRIBUTE_GCC_DIAG(2,3);
+                             ...) ATTRIBUTE_GCC_DIAG(2, 3);
 
 #endif /* GCC_RTL_ERROR_H */

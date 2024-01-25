@@ -44,7 +44,7 @@ extern void dbxout_stab_value_label (const char *);
 extern void dbxout_stab_value_label_diff (const char *, const char *);
 extern void dbxout_stab_value_internal_label (const char *, int *);
 extern void dbxout_stab_value_internal_label_diff (const char *, int *,
-						   const char *);
+        const char *);
 #endif
 
 /* Language description for N_SO stabs.  */

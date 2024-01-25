@@ -49,16 +49,16 @@
 /** @brief APSME GET common message header. */
 typedef ZB_PACKED_PRE struct zb_aps_command_header_s
 {
-  zb_uint8_t fc;                                    /*!< Frame control */
-  zb_uint8_t aps_counter;                           /*!< APS counter  */
-  zb_uint8_t aps_command_id;                        /*!< APS command */
+    zb_uint8_t fc;                                    /*!< Frame control */
+    zb_uint8_t aps_counter;                           /*!< APS counter  */
+    zb_uint8_t aps_command_id;                        /*!< APS command */
 } ZB_PACKED_STRUCT zb_aps_command_header_t;
 
 /** @brief APSME GET common packet header. */
 typedef ZB_PACKED_PRE struct zb_aps_command_pkt_header_s
 {
-  zb_uint8_t fc;                                    /*!< Frame control */
-  zb_uint8_t aps_counter;                           /*!< APS counter  */
+    zb_uint8_t fc;                                    /*!< Frame control */
+    zb_uint8_t aps_counter;                           /*!< APS counter  */
 } ZB_PACKED_STRUCT zb_aps_command_pkt_header_t;
 
 /** @endcond */ /* internals_doc */
@@ -78,21 +78,21 @@ typedef ZB_PACKED_PRE struct zb_aps_command_pkt_header_s
   */
 typedef struct zb_apsde_data_req_s
 {
-  zb_addr_u dst_addr;  /*!< Destination address */
-  zb_uint16_t  profileid;    /*!< The identifier of the profile for which this
+    zb_addr_u dst_addr;  /*!< Destination address */
+    zb_uint16_t  profileid;    /*!< The identifier of the profile for which this
                                   frame is intended.  */
-  zb_uint16_t  clusterid;    /*!< The identifier of the object for which this
+    zb_uint16_t  clusterid;    /*!< The identifier of the object for which this
                                   frame is intended.  */
-  zb_uint8_t   dst_endpoint; /*!< either the number of the individual endpoint
+    zb_uint8_t   dst_endpoint; /*!< either the number of the individual endpoint
                                   of the entity to which the ASDU is being
                                   transferred or the broadcast endpoint (0xff).  */
-  zb_uint8_t   src_endpoint; /*!< The individual endpoint of the entity from
+    zb_uint8_t   src_endpoint; /*!< The individual endpoint of the entity from
                                   which the ASDU is being transferred. */
-  zb_uint8_t   radius;       /*!< The distance, in hops, that a frame will be
+    zb_uint8_t   radius;       /*!< The distance, in hops, that a frame will be
                                   allowed to travel through the network. */
-  zb_uint8_t   addr_mode;    /*!< The type of destination address supplied by
+    zb_uint8_t   addr_mode;    /*!< The type of destination address supplied by
                                   the DstAddr parameter - see @ref aps_addr_mode  */
-  zb_uint8_t   tx_options;   /*!< The transmission options for the ASDU to be
+    zb_uint8_t   tx_options;   /*!< The transmission options for the ASDU to be
                                   transferred. These are a bitwise OR of one or
                                   more of the following:
                                   0x01 = Security enabled transmission
@@ -100,27 +100,27 @@ typedef struct zb_apsde_data_req_s
                                   0x04 = Acknowledged transmission
                                   0x08 = Fragmentation permitted.
                                   See @ref apsde_tx_opt          */
-  /*2.2.4.1.1.1 spec r21*/
-  zb_uint8_t   use_alias;    /*!< The next higher layer may use the UseAlias parameter
-			          to request alias usage by NWK layer for the current frame.
-				  If the UseAlias parameter has a value of FALSE,
-				  meaning no alias usage, then the parameters
-				  AliasSrcAddr and AliasSeqNumb will be ignored.
-				  Otherwise, a value of TRUE denotes that the values supplied in
-				  AliasSrcAddr and AliasSeqNumb are to be used
-				  Values: TRUE or FALSE */
-  zb_uint16_t   alias_src_addr;/*!< The source address to be used for this NSDU.
-				    If the UseAlias parameter has a value of FALSE,
-				    the AliasSrcAddr parameter is ignored.
-				    Values: Any valid device address except broadcast address */
-  zb_uint8_t    alias_seq_num; /*!< The sequence number to be used for this NSDU.
-				    If the UseAlias parameter has a value of FALSE,
-				    the AliasSeqNumb parameter is ignored.
-				    Values: 0x00-0xff */
+    /*2.2.4.1.1.1 spec r21*/
+    zb_uint8_t   use_alias;    /*!< The next higher layer may use the UseAlias parameter
+                      to request alias usage by NWK layer for the current frame.
+                  If the UseAlias parameter has a value of FALSE,
+                  meaning no alias usage, then the parameters
+                  AliasSrcAddr and AliasSeqNumb will be ignored.
+                  Otherwise, a value of TRUE denotes that the values supplied in
+                  AliasSrcAddr and AliasSeqNumb are to be used
+                  Values: TRUE or FALSE */
+    zb_uint16_t   alias_src_addr;/*!< The source address to be used for this NSDU.
+                    If the UseAlias parameter has a value of FALSE,
+                    the AliasSrcAddr parameter is ignored.
+                    Values: Any valid device address except broadcast address */
+    zb_uint8_t    alias_seq_num; /*!< The sequence number to be used for this NSDU.
+                    If the UseAlias parameter has a value of FALSE,
+                    the AliasSeqNumb parameter is ignored.
+                    Values: 0x00-0xff */
 #ifdef APS_FRAGMENTATION
 #define NCP_APSDE_PARAM_SIZE ZB_OFFSETOF(zb_apsde_data_req_t, extended_fc)
-  zb_uint8_t extended_fc;  /* Extended Frame Control - internal use only */
-  zb_uint8_t block_num;    /* Fragmentation: for the first segment - total payload len */
+    zb_uint8_t extended_fc;  /* Extended Frame Control - internal use only */
+    zb_uint8_t block_num;    /* Fragmentation: for the first segment - total payload len */
 #else
 #define NCP_APSDE_PARAM_SIZE sizeof(zb_apsde_data_req_t)
 #endif
@@ -129,17 +129,17 @@ typedef struct zb_apsde_data_req_s
 /** @brief Parameters of the APSDE-DATA.confirm primitive. */
 typedef ZB_PACKED_PRE struct zb_apsde_data_confirm_s
 {
-  zb_addr_u      dst_addr;        /*!< The destination address for the binding entry. */
-  zb_uint8_t     dst_endpoint;    /*!< The destination endpoint for the binding entry. */
-  zb_uint8_t     src_endpoint;    /*!< The source endpoint for the binding entry. */
-  /* FIXME: Do we use this field?? */
-  zb_time_t      tx_time;         /*!< A time indication for the transmitted packet based on the
+    zb_addr_u      dst_addr;        /*!< The destination address for the binding entry. */
+    zb_uint8_t     dst_endpoint;    /*!< The destination endpoint for the binding entry. */
+    zb_uint8_t     src_endpoint;    /*!< The source endpoint for the binding entry. */
+    /* FIXME: Do we use this field?? */
+    zb_time_t      tx_time;         /*!< A time indication for the transmitted packet based on the
                                        local clock, as provided by the NWK layer. */
-  zb_uint8_t     addr_mode;       /*!< The type of destination address supplied by
+    zb_uint8_t     addr_mode;       /*!< The type of destination address supplied by
                                        the DstAddr parameter - see @ref aps_addr_mode  */
 #define FIRST_INTERNAL_APSDE_CONF_FIELD status
-  zb_ret_t       status;          /*!< The status of corresponding request. */
-  zb_bool_t      need_unlock;
+    zb_ret_t       status;          /*!< The status of corresponding request. */
+    zb_bool_t      need_unlock;
 } ZB_PACKED_STRUCT zb_apsde_data_confirm_t;
 
 /**
@@ -287,9 +287,9 @@ void data_indication(zb_uint8_t param)
   */
 typedef ZB_PACKED_PRE struct zb_apsme_get_group_membership_req_s
 {
-  zb_callback_t  confirm_cb;    /*!< The callback to be called when the operation is completed. */
-  zb_ushort_t    n_groups;      /*!< Group addresses amount. */
-  zb_uint16_t    groups[1];     /*!< First element if list with group addresses. */
+    zb_callback_t  confirm_cb;    /*!< The callback to be called when the operation is completed. */
+    zb_ushort_t    n_groups;      /*!< Group addresses amount. */
+    zb_uint16_t    groups[1];     /*!< First element if list with group addresses. */
 } ZB_PACKED_STRUCT zb_apsme_get_group_membership_req_t;
 
 /*
@@ -303,9 +303,9 @@ ZB_ASSERT_IF_NOT_ALIGNED(ZB_OFFSETOF(zb_apsme_get_group_membership_req_t, groups
   */
 typedef struct zb_apsme_get_group_membership_conf_s
 {
-  zb_uint16_t groups[ZB_APS_GROUP_TABLE_SIZE];  /*!< List with group addresses. */
-  zb_ushort_t n_groups;                         /*!< Group addresses amount. */
-  zb_ushort_t capacity;                         /*!< Group table capacity */
+    zb_uint16_t groups[ZB_APS_GROUP_TABLE_SIZE];  /*!< List with group addresses. */
+    zb_ushort_t n_groups;                         /*!< Group addresses amount. */
+    zb_ushort_t capacity;                         /*!< Group table capacity */
 } zb_apsme_get_group_membership_conf_t;
 
 /** @endcond */ /* internals_doc */
@@ -359,7 +359,7 @@ void zb_aps_init(void);
 /** @} */
 
 zb_uint8_t aps_find_src_ref(
-  zb_address_ieee_ref_t src_addr_ref, zb_uint8_t src_end, zb_uint16_t cluster_id);
+    zb_address_ieee_ref_t src_addr_ref, zb_uint8_t src_end, zb_uint16_t cluster_id);
 
 #ifdef ZB_COORDINATOR_ROLE
 /** @brief APSME-UPDATE-DEVICE.indication primitive.
@@ -378,9 +378,9 @@ void zb_apsme_update_device_indication(zb_uint8_t param);
   * @param secure  - if true, secure transfer at NWK level.
   */
 void zb_aps_send_command(zb_uint8_t param, zb_uint16_t dest_addr, zb_uint8_t command, zb_bool_t secure
-    /** @param secure_aps_i - if true, secure APS level.*/
-    , zb_uint8_t secure_aps_i
-  );
+                         /** @param secure_aps_i - if true, secure APS level.*/
+                         , zb_uint8_t secure_aps_i
+                        );
 
 /** \par Macros for APS FC parse-compose */
 
@@ -420,7 +420,7 @@ void zb_aps_send_command(zb_uint8_t param, zb_uint16_t dest_addr, zb_uint8_t com
 /**
  * @name APS frame type
  * @anchor aps_frame_type
- * 
+ *
  * Note: These values were members of `enum zb_aps_frame_type_e` type but were converted to a
  * set of macros due to MISRA violations.
  */
@@ -512,7 +512,7 @@ void zb_aps_hdr_parse(zb_bufid_t packet, zb_aps_hdr_t *aps_hdr, zb_bool_t cut_nw
  * */
 zb_bool_t zb_aps_is_in_group(zb_uint16_t grp_id);
 
-zb_aps_group_table_ent_t* zb_aps_get_group_table_entry(zb_uint16_t group_addr);
+zb_aps_group_table_ent_t *zb_aps_get_group_table_entry(zb_uint16_t group_addr);
 
 /** @brief Filling Nlde request.
   * @param param - buffer for fill request.
@@ -545,8 +545,8 @@ zb_ret_t zb_aps_group_table_add(zb_aps_group_table_t *table, zb_uint16_t group, 
 zb_ret_t zb_aps_group_table_remove(zb_aps_group_table_t *table, zb_uint16_t group, zb_uint8_t ep);
 void zb_aps_group_table_remove_all(zb_aps_group_table_t *table);
 zb_bool_t zb_aps_group_table_is_endpoint_in_group(zb_aps_group_table_t *table,
-                                                  zb_uint16_t group_id,
-                                                  zb_uint8_t endpoint);
+        zb_uint16_t group_id,
+        zb_uint8_t endpoint);
 void zb_apsme_internal_get_group_membership_request(zb_aps_group_table_t *table, zb_uint8_t param);
 
 

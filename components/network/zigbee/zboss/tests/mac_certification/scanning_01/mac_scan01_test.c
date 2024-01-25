@@ -158,7 +158,7 @@ void zb_mlme_scan_confirm(zb_uint8_t param)
     scan_confirm = ZB_BUF_GET_PARAM(param, zb_mac_scan_confirm_t);
     TRACE_MSG(TRACE_NWK3,
               "status %hd (m.b. 0x00 = SUCCESS), scan type: %hd (m.b. 0x00 = ED Scan), unscanned_channels: %hd",
-              (__FILE__,__LINE__, 6, scan_confirm -> status, scan_confirm -> scan_type,  scan_confirm -> unscanned_channels));
+              (__FILE__, __LINE__, 6, scan_confirm -> status, scan_confirm -> scan_type,  scan_confirm -> unscanned_channels));
 
     ed = 0;
     for ( i = 0; i < ZB_MAC_SUPPORTED_CHANNELS; i++ )

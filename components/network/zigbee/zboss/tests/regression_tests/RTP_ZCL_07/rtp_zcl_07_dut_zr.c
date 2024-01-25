@@ -130,33 +130,33 @@ static zb_uint16_t g_color_control_couple_color_temp_to_level_min = ZB_ZCL_COLOR
 static zb_uint16_t g_color_control_start_up_color_temp = ZB_ZCL_COLOR_CONTROL_COLOR_TEMP_PHYSICAL_MAX_MIREDS_DEFAULT_VALUE;
 
 ZB_ZCL_DECLARE_COLOR_CONTROL_ATTRIB_LIST_EXT(rtp_zcl_07_dut_zr_color_control_attr_list,
-    &g_color_control_current_hue, &g_color_control_current_saturation, &g_color_control_remaining_time,
-    &g_color_control_current_X, &g_color_control_current_Y,
-    &g_color_control_color_temperature, &g_color_control_color_mode,
-    &g_color_control_options, &g_color_control_number_primaries,
-    &g_color_control_primary_1_X, &g_color_control_primary_1_Y, &g_color_control_primary_1_intensity,
-    &g_color_control_primary_2_X, &g_color_control_primary_2_Y, &g_color_control_primary_2_intensity,
-    &g_color_control_primary_3_X, &g_color_control_primary_3_Y, &g_color_control_primary_3_intensity,
-    &g_color_control_primary_4_X, &g_color_control_primary_4_Y, &g_color_control_primary_4_intensity,
-    &g_color_control_primary_5_X, &g_color_control_primary_5_Y, &g_color_control_primary_5_intensity,
-    &g_color_control_primary_6_X, &g_color_control_primary_6_Y, &g_color_control_primary_6_intensity,
-    &g_color_control_enhanced_current_hue, &g_color_control_enhanced_color_mode,
-    &g_color_control_color_loop_active, &g_color_control_color_loop_direction,
-    &g_color_control_color_loop_time, &g_color_control_color_loop_start, &g_color_control_color_loop_stored,
-    &g_color_control_color_capabilities,
-    &g_color_control_color_temp_physical_min, &g_color_control_color_temp_physical_max,
-    &g_color_control_couple_color_temp_to_level_min, &g_color_control_start_up_color_temp);
+        &g_color_control_current_hue, &g_color_control_current_saturation, &g_color_control_remaining_time,
+        &g_color_control_current_X, &g_color_control_current_Y,
+        &g_color_control_color_temperature, &g_color_control_color_mode,
+        &g_color_control_options, &g_color_control_number_primaries,
+        &g_color_control_primary_1_X, &g_color_control_primary_1_Y, &g_color_control_primary_1_intensity,
+        &g_color_control_primary_2_X, &g_color_control_primary_2_Y, &g_color_control_primary_2_intensity,
+        &g_color_control_primary_3_X, &g_color_control_primary_3_Y, &g_color_control_primary_3_intensity,
+        &g_color_control_primary_4_X, &g_color_control_primary_4_Y, &g_color_control_primary_4_intensity,
+        &g_color_control_primary_5_X, &g_color_control_primary_5_Y, &g_color_control_primary_5_intensity,
+        &g_color_control_primary_6_X, &g_color_control_primary_6_Y, &g_color_control_primary_6_intensity,
+        &g_color_control_enhanced_current_hue, &g_color_control_enhanced_color_mode,
+        &g_color_control_color_loop_active, &g_color_control_color_loop_direction,
+        &g_color_control_color_loop_time, &g_color_control_color_loop_start, &g_color_control_color_loop_stored,
+        &g_color_control_color_capabilities,
+        &g_color_control_color_temp_physical_min, &g_color_control_color_temp_physical_max,
+        &g_color_control_couple_color_temp_to_level_min, &g_color_control_start_up_color_temp);
 
 /********************* Declare device **************************/
 DECLARE_DUT_CLUSTER_LIST(rtp_zcl_07_dut_zr_device_clusters,
-                        rtp_zcl_07_dut_zr_basic_attr_list,
-                        rtp_zcl_07_dut_zr_identify_attr_list,
-                        rtp_zcl_07_dut_zr_on_off_attr_list,
-                        rtp_zcl_07_dut_zr_color_control_attr_list);
+                         rtp_zcl_07_dut_zr_basic_attr_list,
+                         rtp_zcl_07_dut_zr_identify_attr_list,
+                         rtp_zcl_07_dut_zr_on_off_attr_list,
+                         rtp_zcl_07_dut_zr_color_control_attr_list);
 
 DECLARE_DUT_EP(rtp_zcl_07_dut_zr_device_ep,
-              DUT_ENDPOINT,
-              rtp_zcl_07_dut_zr_device_clusters);
+               DUT_ENDPOINT,
+               rtp_zcl_07_dut_zr_device_clusters);
 
 DECLARE_DUT_CTX(rtp_zcl_07_dut_zr_device_ctx, rtp_zcl_07_dut_zr_device_ep);
 
@@ -171,111 +171,111 @@ zb_bool_t zb_zcl_process_color_control_specific_commands_srv(zb_uint8_t param);
 /************************Main*************************************/
 MAIN()
 {
-  ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
-  ZB_SET_TRACE_LEVEL(4);
-  ARGV_UNUSED;
+    ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
+    ZB_SET_TRACE_LEVEL(4);
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("zdo_dut_zr");
-
-
-  zb_set_long_address(g_ieee_addr_dut);
-
-  zb_reg_test_set_common_channel_settings();
-  zb_set_network_router_role((1l << TEST_CHANNEL));
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    ZB_INIT("zdo_dut_zr");
 
 
-  zb_secur_setup_nwk_key(g_nwk_key, 0);
+    zb_set_long_address(g_ieee_addr_dut);
 
-  ZB_AF_REGISTER_DEVICE_CTX(&rtp_zcl_07_dut_zr_device_ctx);
+    zb_reg_test_set_common_channel_settings();
+    zb_set_network_router_role((1l << TEST_CHANNEL));
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_COLOR_CONTROL,
-                              ZB_ZCL_CLUSTER_SERVER_ROLE,
-                              (zb_zcl_cluster_check_value_t) test_check_value_color_control_srv,
-                              (zb_zcl_cluster_write_attr_hook_t) test_attr_hook_color_control_srv,
-                              (zb_zcl_cluster_handler_t) zb_zcl_process_color_control_specific_commands_srv);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    zb_secur_setup_nwk_key(g_nwk_key, 0);
 
-  TRACE_DEINIT();
+    ZB_AF_REGISTER_DEVICE_CTX(&rtp_zcl_07_dut_zr_device_ctx);
 
-  MAIN_RETURN(0);
+    zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_COLOR_CONTROL,
+                                ZB_ZCL_CLUSTER_SERVER_ROLE,
+                                (zb_zcl_cluster_check_value_t) test_check_value_color_control_srv,
+                                (zb_zcl_cluster_write_attr_hook_t) test_attr_hook_color_control_srv,
+                                (zb_zcl_cluster_handler_t) zb_zcl_process_color_control_specific_commands_srv);
+
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
+
+    TRACE_DEINIT();
+
+    MAIN_RETURN(0);
 }
 
 /********************ZDO Startup*****************************/
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  switch (sig)
-  {
+    switch (sig)
+    {
     case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
-      }
-      break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
+        TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
+        }
+        break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
 
     case ZB_BDB_SIGNAL_STEERING:
-      TRACE_MSG(TRACE_APS1, "signal: ZB_BDB_SIGNAL_STEERING, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        ZB_SCHEDULE_CALLBACK(trigger_fb_target, 0);
-      }
-      break; /* ZB_BDB_SIGNAL_STEERING */
+        TRACE_MSG(TRACE_APS1, "signal: ZB_BDB_SIGNAL_STEERING, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            ZB_SCHEDULE_CALLBACK(trigger_fb_target, 0);
+        }
+        break; /* ZB_BDB_SIGNAL_STEERING */
 
     default:
-      TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
-      break;
-  }
+        TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 static void trigger_fb_target(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  ZB_BDB().bdb_commissioning_time = DUT_FB_DURATION;
-  zb_bdb_finding_binding_target(DUT_ENDPOINT);
+    ZB_BDB().bdb_commissioning_time = DUT_FB_DURATION;
+    zb_bdb_finding_binding_target(DUT_ENDPOINT);
 }
 
 
 static zb_ret_t test_check_value_color_control_srv(zb_uint16_t attr_id, zb_uint8_t endpoint, zb_uint8_t *value)
 {
-  ZVUNUSED(endpoint);
+    ZVUNUSED(endpoint);
 
-  if (attr_id == ZB_ZCL_ATTR_COLOR_CONTROL_CURRENT_SATURATION_ID ||
-      attr_id == ZB_ZCL_ATTR_COLOR_CONTROL_CURRENT_HUE_ID)
-  {
-    TRACE_MSG(TRACE_APP1, "test_check_value_color_control_srv: attr_id=%d, value=%hd", (FMT__D_H, attr_id, *value));
-  }
+    if (attr_id == ZB_ZCL_ATTR_COLOR_CONTROL_CURRENT_SATURATION_ID ||
+            attr_id == ZB_ZCL_ATTR_COLOR_CONTROL_CURRENT_HUE_ID)
+    {
+        TRACE_MSG(TRACE_APP1, "test_check_value_color_control_srv: attr_id=%d, value=%hd", (FMT__D_H, attr_id, *value));
+    }
 
-  return RET_OK;
+    return RET_OK;
 }
 
 static void test_attr_hook_color_control_srv(zb_uint8_t endpoint, zb_uint16_t attr_id, zb_uint8_t *new_value)
 {
-  ZVUNUSED(endpoint);
+    ZVUNUSED(endpoint);
 
-  if (attr_id == ZB_ZCL_ATTR_COLOR_CONTROL_CURRENT_SATURATION_ID ||
-      attr_id == ZB_ZCL_ATTR_COLOR_CONTROL_CURRENT_HUE_ID)
-  {
-    TRACE_MSG(TRACE_APP1, "test_attr_hook_color_control_srv: attr_id=%d, new_value=%hd", (FMT__D_H, attr_id, *new_value));
-  }
+    if (attr_id == ZB_ZCL_ATTR_COLOR_CONTROL_CURRENT_SATURATION_ID ||
+            attr_id == ZB_ZCL_ATTR_COLOR_CONTROL_CURRENT_HUE_ID)
+    {
+        TRACE_MSG(TRACE_APP1, "test_attr_hook_color_control_srv: attr_id=%d, new_value=%hd", (FMT__D_H, attr_id, *new_value));
+    }
 }
 
 

@@ -35,21 +35,24 @@ along with GCC; see the file COPYING3.  If not see
 
 class diagnostic_event_id_t
 {
- public:
-  diagnostic_event_id_t () : m_index (UNKNOWN_EVENT_IDX) {}
-  diagnostic_event_id_t (int zero_based_idx) : m_index (zero_based_idx) {}
+public:
+    diagnostic_event_id_t () : m_index (UNKNOWN_EVENT_IDX) {}
+    diagnostic_event_id_t (int zero_based_idx) : m_index (zero_based_idx) {}
 
-  bool known_p () const { return m_index != UNKNOWN_EVENT_IDX; }
+    bool known_p () const
+    {
+        return m_index != UNKNOWN_EVENT_IDX;
+    }
 
-  int one_based () const
-  {
-    gcc_assert (known_p ());
-    return m_index + 1;
-  }
+    int one_based () const
+    {
+        gcc_assert (known_p ());
+        return m_index + 1;
+    }
 
- private:
-  static const int UNKNOWN_EVENT_IDX = -1;
-  int m_index; // zero-based
+private:
+    static const int UNKNOWN_EVENT_IDX = -1;
+    int m_index; // zero-based
 };
 
 /* A pointer to a diagnostic_event_id_t, for use with the "%@" format

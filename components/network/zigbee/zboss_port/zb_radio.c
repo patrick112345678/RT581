@@ -1,12 +1,12 @@
 /**
  * @file zb_radio.c
  * @author Rex Huang (rex.huang@rafaelmicro.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2023-08-24
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 //=============================================================================
 //                Include
@@ -50,7 +50,7 @@
 #define ZB_RADIO_RX_FRAME_BUFFER_NUM         16
 
 
-typedef struct 
+typedef struct
 {
     uint8_t *mPsdu; ///< The PSDU.
 
@@ -96,10 +96,11 @@ typedef struct
             bool mAckedWithFramePending : 1; ///< This indicates if this frame was acknowledged with frame pending set.
             bool mAckedWithSecEnhAck : 1; ///< This indicates if this frame was acknowledged with secured enhance ACK.
         } mRxInfo;
-    } mInfo;    
-}zbRadioFrame;
+    } mInfo;
+} zbRadioFrame;
 
-typedef struct  {
+typedef struct
+{
     utils_dlist_t       dlist;
     zbRadioFrame        frame;
 } zbRadio_rxFrame_t;
@@ -117,7 +118,8 @@ enum
 //                Private Struct
 //=============================================================================
 
-typedef struct _otRadio_t {
+typedef struct _otRadio_t
+{
     utils_dlist_t           rxFrameList;
     utils_dlist_t           frameList;
     uint32_t                dbgRxFrameNum;
@@ -160,10 +162,14 @@ void zb_radioSendPacket(zb_bufid_t buf, zb_uint8_t wait_type)
     pkt = zb_buf_begin(buf);
     len = zb_buf_len(buf);
 
-  if (ZB_FCF_GET_ACK_REQUEST_BIT(ZB_MAC_GET_FCF_PTR(pkt)))
-    lmac15p4_tx_data_send(1, pkt, len, 0x03, ZB_FCF_GET_SEQ_NUMBER(pkt));
-  else
-    lmac15p4_tx_data_send(1, pkt, len, 0x02, ZB_FCF_GET_SEQ_NUMBER(pkt));    
+    if (ZB_FCF_GET_ACK_REQUEST_BIT(ZB_MAC_GET_FCF_PTR(pkt)))
+    {
+        lmac15p4_tx_data_send(1, pkt, len, 0x03, ZB_FCF_GET_SEQ_NUMBER(pkt));
+    }
+    else
+    {
+        lmac15p4_tx_data_send(1, pkt, len, 0x02, ZB_FCF_GET_SEQ_NUMBER(pkt));
+    }
 
     //log_info_hexdump("Tx", pkt, len);
 }
@@ -180,17 +186,17 @@ void zb_radioUpdateAddressFilter(void)
     sCoordinator = MAC_PIB().mac_pan_coordinator;
     sPromiscuous = MAC_PIB().mac_promiscuous_mode;
 
-    sExtendAddr_0 = (MAC_PIB().mac_extended_address[0]|MAC_PIB().mac_extended_address[1]<<8|
-                                MAC_PIB().mac_extended_address[2]<<16|MAC_PIB().mac_extended_address[3]<<24);
-    sExtendAddr_1 = (MAC_PIB().mac_extended_address[4]|MAC_PIB().mac_extended_address[5]<<8|
-                                MAC_PIB().mac_extended_address[6]<<16|MAC_PIB().mac_extended_address[7]<<24);
+    sExtendAddr_0 = (MAC_PIB().mac_extended_address[0] | MAC_PIB().mac_extended_address[1] << 8 |
+                     MAC_PIB().mac_extended_address[2] << 16 | MAC_PIB().mac_extended_address[3] << 24);
+    sExtendAddr_1 = (MAC_PIB().mac_extended_address[4] | MAC_PIB().mac_extended_address[5] << 8 |
+                     MAC_PIB().mac_extended_address[6] << 16 | MAC_PIB().mac_extended_address[7] << 24);
 
     lmac15p4_address_filter_set(1, sPromiscuous, sShortAddress, sExtendAddr_0, sExtendAddr_1, sPANID, sCoordinator);
 }
 
 void zb_radioSetPendingBit(void)
 {
-    if(sPendingBit != 1)
+    if (sPendingBit != 1)
     {
         sPendingBit = 1;
         lmac15p4_ack_pending_bit_set(1, sPendingBit);
@@ -198,11 +204,11 @@ void zb_radioSetPendingBit(void)
 }
 void zb_radioClearPendingBit(void)
 {
-    if(sPendingBit != 0)
+    if (sPendingBit != 0)
     {
         sPendingBit = 0;
         lmac15p4_ack_pending_bit_set(1, sPendingBit);
-    }    
+    }
 }
 zb_bool_t zb_radioPendBit(void)
 {
@@ -216,32 +222,32 @@ void zb_radioTask(zb_system_event_t trxEvent)
 
     zbRadio_rxFrame_t *pframe;
 
-    if (!(ZB_SYSTEM_EVENT_RADIO_ALL_MASK & trxEvent)) 
+    if (!(ZB_SYSTEM_EVENT_RADIO_ALL_MASK & trxEvent))
     {
         return;
     }
 
-    if ((ZB_SYSTEM_EVENT_RADIO_TX_ALL_MASK & trxEvent)) 
+    if ((ZB_SYSTEM_EVENT_RADIO_TX_ALL_MASK & trxEvent))
     {
-        if (trxEvent & ZB_SYSTEM_EVENT_RADIO_TX_DONE_NO_ACK_REQ) 
+        if (trxEvent & ZB_SYSTEM_EVENT_RADIO_TX_DONE_NO_ACK_REQ)
         {
             TRANS_CTX().tx_status = 0;
             TRANS_CTX().csma_backoffs = 0;
         }
-        if (trxEvent & ZB_SYSTEM_EVENT_RADIO_TX_ACKED) 
+        if (trxEvent & ZB_SYSTEM_EVENT_RADIO_TX_ACKED)
         {
             TRANS_CTX().tx_status = 0;
             TRANS_CTX().csma_backoffs = 0;
             ZB_MAC_SET_ACK_RECEIVED(0);
         }
-        if(trxEvent & ZB_SYSTEM_EVENT_RADIO_TX_ACKED_PD)
+        if (trxEvent & ZB_SYSTEM_EVENT_RADIO_TX_ACKED_PD)
         {
             TRANS_CTX().tx_status = 0;
             TRANS_CTX().csma_backoffs = 0;
             ZB_MAC_SET_ACK_RECEIVED(1);
             MAC_CTX().flags.in_pending_data = ZB_TRUE;
         }
-        if (trxEvent & ZB_SYSTEM_EVENT_RADIO_TX_NO_ACK || trxEvent & ZB_SYSTEM_EVENT_RADIO_TX_CCA_FAIL) 
+        if (trxEvent & ZB_SYSTEM_EVENT_RADIO_TX_NO_ACK || trxEvent & ZB_SYSTEM_EVENT_RADIO_TX_CCA_FAIL)
         {
             TRANS_CTX().tx_status = 1;
             TRANS_CTX().failed_tx++;
@@ -249,22 +255,22 @@ void zb_radioTask(zb_system_event_t trxEvent)
             MAC_CTX().retry_counter = MAC_PIB().mac_max_frame_retries;
         }
 
-        ZB_MAC_SET_TX_INT_STATUS_BIT();  
+        ZB_MAC_SET_TX_INT_STATUS_BIT();
     }
-    
-    if (trxEvent & ZB_SYSTEM_EVENT_RADIO_RX_DONE ) 
+
+    if (trxEvent & ZB_SYSTEM_EVENT_RADIO_RX_DONE )
     {
         pframe = NULL;
 
         b_p = ZB_RING_BUFFER_PUT_RESERVE(&MAC_CTX().mac_rx_queue);
 
-        if(!b_p)
+        if (!b_p)
         {
             ZB_NOTIFY(ZB_SYSTEM_EVENT_RADIO_RX_DONE);
         }
 
         ZB_ENTER_CRITICAL();
-        if (!utils_dlist_empty(&zbRadio_var.rxFrameList)) 
+        if (!utils_dlist_empty(&zbRadio_var.rxFrameList))
         {
             pframe = (zbRadio_rxFrame_t *)zbRadio_var.rxFrameList.next;
             zbRadio_var.dbgRxFrameNum --;
@@ -272,7 +278,7 @@ void zb_radioTask(zb_system_event_t trxEvent)
         }
         ZB_EXIT_CRITICAL();
 
-        if (pframe) 
+        if (pframe)
         {
             /* Process Rx pakcet */
             bptr = zb_buf_initial_alloc(*b_p, (zb_uint_t)pframe->frame.mLength);
@@ -292,7 +298,7 @@ void zb_radioTask(zb_system_event_t trxEvent)
             utils_dlist_add_tail(&pframe->dlist, &zbRadio_var.frameList);
             zbRadio_var.dbgFrameNum ++;
 
-            if (!utils_dlist_empty(&zbRadio_var.rxFrameList)) 
+            if (!utils_dlist_empty(&zbRadio_var.rxFrameList))
             {
                 ZB_NOTIFY(ZB_SYSTEM_EVENT_RADIO_RX_DONE);
             }
@@ -303,7 +309,7 @@ void zb_radioTask(zb_system_event_t trxEvent)
             log_warn("zbRadio_var.dbgRxFrameNum %d", zbRadio_var.dbgRxFrameNum);
         }
     }
-    else if (trxEvent & ZB_SYSTEM_EVENT_RADIO_RX_NO_BUFF) 
+    else if (trxEvent & ZB_SYSTEM_EVENT_RADIO_RX_NO_BUFF)
     {
 
     }
@@ -311,17 +317,19 @@ void zb_radioTask(zb_system_event_t trxEvent)
 
 
 static void _RxDoneEvent(uint16_t packet_length, uint8_t *rx_data_address,
-                           uint8_t crc_status, uint8_t rssi, uint8_t snr)
+                         uint8_t crc_status, uint8_t rssi, uint8_t snr)
 {
     zbRadio_rxFrame_t *p = NULL;
 
-    if(zboss_start_run == 0)
+    if (zboss_start_run == 0)
+    {
         return;
+    }
 
     if (crc_status == 0)
     {
         ZB_ENTER_CRITICAL();
-        if (!utils_dlist_empty(&zbRadio_var.frameList)) 
+        if (!utils_dlist_empty(&zbRadio_var.frameList))
         {
             p = (zbRadio_rxFrame_t *)zbRadio_var.frameList.next;
             zbRadio_var.dbgFrameNum --;
@@ -329,11 +337,11 @@ static void _RxDoneEvent(uint16_t packet_length, uint8_t *rx_data_address,
         }
         ZB_EXIT_CRITICAL();
 
-        if (p) 
+        if (p)
         {
-            memcpy(p->frame.mPsdu, (rx_data_address + 8), (packet_length-9));
-            p->frame.mLength = (packet_length-13);
-       
+            memcpy(p->frame.mPsdu, (rx_data_address + 8), (packet_length - 9));
+            p->frame.mLength = (packet_length - 13);
+
             p->frame.mChannel = sCurrentChannel;
             p->frame.mInfo.mRxInfo.mRssi = -rssi;
             p->frame.mInfo.mRxInfo.mLqi = ((100 - rssi) * 0xFF) / 100;
@@ -341,7 +349,7 @@ static void _RxDoneEvent(uint16_t packet_length, uint8_t *rx_data_address,
             ZB_ENTER_CRITICAL();
             utils_dlist_add_tail(&p->dlist, &zbRadio_var.rxFrameList);
             zbRadio_var.dbgRxFrameNum ++;
-            if (zbRadio_var.dbgMaxPendingFrameNum < zbRadio_var.dbgRxFrameNum) 
+            if (zbRadio_var.dbgMaxPendingFrameNum < zbRadio_var.dbgRxFrameNum)
             {
                 zbRadio_var.dbgMaxPendingFrameNum = zbRadio_var.dbgRxFrameNum;
             }
@@ -358,23 +366,23 @@ static void _RxDoneEvent(uint16_t packet_length, uint8_t *rx_data_address,
 
 static void _TxDoneEvent(uint32_t tx_status)
 {
-    if (0 == tx_status) 
+    if (0 == tx_status)
     {
         ZB_NOTIFY(ZB_SYSTEM_EVENT_RADIO_TX_DONE_NO_ACK_REQ);
     }
-    else if(0x10 == tx_status)
+    else if (0x10 == tx_status)
     {
         ZB_NOTIFY(ZB_SYSTEM_EVENT_RADIO_TX_CCA_FAIL);
     }
-    else if (0x20 == tx_status ) 
+    else if (0x20 == tx_status )
     {
         ZB_NOTIFY(ZB_SYSTEM_EVENT_RADIO_TX_NO_ACK);
     }
-    else if (0x80 == tx_status ) 
+    else if (0x80 == tx_status )
     {
         ZB_NOTIFY(ZB_SYSTEM_EVENT_RADIO_TX_ACKED);
     }
-    else if(0x40 == tx_status )
+    else if (0x40 == tx_status )
     {
         ZB_NOTIFY(ZB_SYSTEM_EVENT_RADIO_TX_ACKED_PD);
     }
@@ -390,7 +398,7 @@ void zb_radioInit(void)
     utils_dlist_init(&zbRadio_var.frameList);
     utils_dlist_init(&zbRadio_var.rxFrameList);
 
-    for (int i = 0; i < ZB_RADIO_RX_FRAME_BUFFER_NUM; i ++) 
+    for (int i = 0; i < ZB_RADIO_RX_FRAME_BUFFER_NUM; i ++)
     {
         pframe = (zbRadio_rxFrame_t *) (zbRadio_var.buffPool + TOTAL_RX_FRAME_SIZE * (i + 2));
         pframe->frame.mPsdu = ((uint8_t *)pframe) + ALIGNED_RX_FRAME_SIZE;
@@ -409,15 +417,15 @@ void zb_radioInit(void)
     /* PHY PIB */
     //lmac15p4_phy_pib_set(PHY_PIB_TURNAROUND_TIMER, PHY_PIB_CCA_DETECT_MODE, PHY_PIB_CCA_THRESHOLD, PHY_PIB_CCA_DETECTED_TIME);
     /* MAC PIB */
-    //lmac15p4_mac_pib_set(MAC_PIB_UNIT_BACKOFF_PERIOD, MAC_PIB_MAC_ACK_WAIT_DURATION, 
-    //                    MAC_PIB_MAC_MAX_BE, 
-    //                    MAC_PIB_MAC_MAX_CSMACA_BACKOFFS, 
-    //                    MAC_PIB_MAC_MAX_FRAME_TOTAL_WAIT_TIME, MAC_PIB_MAC_MAX_FRAME_RETRIES, 
+    //lmac15p4_mac_pib_set(MAC_PIB_UNIT_BACKOFF_PERIOD, MAC_PIB_MAC_ACK_WAIT_DURATION,
+    //                    MAC_PIB_MAC_MAX_BE,
+    //                    MAC_PIB_MAC_MAX_CSMACA_BACKOFFS,
+    //                    MAC_PIB_MAC_MAX_FRAME_TOTAL_WAIT_TIME, MAC_PIB_MAC_MAX_FRAME_RETRIES,
     //                    MAC_PIB_MAC_MIN_BE);
 
 
     lmac15p4_channel_set(LMAC154_CHANNEL_22);
-  
+
     /* Auto ACK */
     lmac15p4_auto_ack_set(true);
     /* Auto State */

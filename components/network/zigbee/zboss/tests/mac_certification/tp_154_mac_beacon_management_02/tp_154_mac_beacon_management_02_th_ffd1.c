@@ -53,93 +53,93 @@ static void test_mlme_scan_request(zb_uint8_t param);
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  ZB_INIT("tp_154_mac_beacon_management_02_th_ffd1");
+    ZB_INIT("tp_154_mac_beacon_management_02_th_ffd1");
 
-  ZB_SCHEDULE_CALLBACK(test_started_cb, 0);
+    ZB_SCHEDULE_CALLBACK(test_started_cb, 0);
 #if UART_CONTROL
-  test_control_init();
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    test_control_init();
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 #endif
-  while(1)
-  {
-    zb_sched_loop_iteration();
-  }
+    while (1)
+    {
+        zb_sched_loop_iteration();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 static void test_started_cb(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  TRACE_MSG(TRACE_APP1, "Device STARTED OK", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "Device STARTED OK", (FMT__0));
 
-  zb_buf_get_out_delayed(test_mlme_reset_request);
+    zb_buf_get_out_delayed(test_mlme_reset_request);
 }
 
 
 static void test_mlme_reset_request(zb_uint8_t param)
 {
-  zb_mlme_reset_request_t *reset_req = ZB_BUF_GET_PARAM(param, zb_mlme_reset_request_t);
-  reset_req->set_default_pib = 1;
+    zb_mlme_reset_request_t *reset_req = ZB_BUF_GET_PARAM(param, zb_mlme_reset_request_t);
+    reset_req->set_default_pib = 1;
 
-  TRACE_MSG(TRACE_APP1, "MLME-RESET.request()", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "MLME-RESET.request()", (FMT__0));
 
-  ZB_SCHEDULE_CALLBACK(zb_mlme_reset_request, param);
+    ZB_SCHEDULE_CALLBACK(zb_mlme_reset_request, param);
 }
 
 static void test_set_ieee_addr(zb_uint8_t param)
 {
-  zb_mlme_set_request_t *req;
+    zb_mlme_set_request_t *req;
 
-  TRACE_MSG(TRACE_APP1, "MLME-SET.request() mac IEEE addr", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "MLME-SET.request() mac IEEE addr", (FMT__0));
 
-  req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + sizeof(zb_ieee_addr_t));
-  ZB_BZERO(req, sizeof(zb_mlme_set_request_t) + sizeof(zb_ieee_addr_t));
+    req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + sizeof(zb_ieee_addr_t));
+    ZB_BZERO(req, sizeof(zb_mlme_set_request_t) + sizeof(zb_ieee_addr_t));
 
-  req->pib_attr = ZB_PIB_ATTRIBUTE_EXTEND_ADDRESS;
-  req->pib_length = sizeof(zb_ieee_addr_t);
-  ZB_MEMCPY((zb_uint8_t *)(req+1), g_ieee_addr, sizeof(zb_ieee_addr_t));
+    req->pib_attr = ZB_PIB_ATTRIBUTE_EXTEND_ADDRESS;
+    req->pib_length = sizeof(zb_ieee_addr_t);
+    ZB_MEMCPY((zb_uint8_t *)(req + 1), g_ieee_addr, sizeof(zb_ieee_addr_t));
 
-  req->confirm_cb_u.cb = test_mlme_scan_request;
-  zb_mlme_set_request(param);
+    req->confirm_cb_u.cb = test_mlme_scan_request;
+    zb_mlme_set_request(param);
 }
 
 static void test_mlme_scan_request(zb_uint8_t param)
 {
 
-  TRACE_MSG(TRACE_APP1, "MLME-SCAN.request()", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "MLME-SCAN.request()", (FMT__0));
 
 
-  ZB_MLME_BUILD_SCAN_REQUEST(param, TEST_PAGE, TEST_CHANNEL_MASK, TEST_SCAN_TYPE, TEST_SCAN_DURATION);
-  ZB_SCHEDULE_CALLBACK(zb_mlme_scan_request, param);
+    ZB_MLME_BUILD_SCAN_REQUEST(param, TEST_PAGE, TEST_CHANNEL_MASK, TEST_SCAN_TYPE, TEST_SCAN_DURATION);
+    ZB_SCHEDULE_CALLBACK(zb_mlme_scan_request, param);
 }
 
 /***************** MAC Callbacks *****************/
 ZB_MLME_RESET_CONFIRM(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_APP1, "MLME-RESET.confirm()", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "MLME-RESET.confirm()", (FMT__0));
 
-  /* Call the next test step */
-  ZB_SCHEDULE_CALLBACK(test_set_ieee_addr, param);
+    /* Call the next test step */
+    ZB_SCHEDULE_CALLBACK(test_set_ieee_addr, param);
 }
 
 ZB_MLME_BEACON_NOTIFY_INDICATION(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_APP1, "MLME-BEACON-NOTIFY.indication()", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "MLME-BEACON-NOTIFY.indication()", (FMT__0));
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 ZB_MLME_SCAN_CONFIRM(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_APP1, "MLME-SCAN.confirm()", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "MLME-SCAN.confirm()", (FMT__0));
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 /*! @} */

@@ -22,9 +22,9 @@ along with GCC; see the file COPYING3.  If not see
 
 extern void expand_label (tree);
 extern bool parse_output_constraint (const char **, int, int, int,
-				     bool *, bool *, bool *);
+                                     bool *, bool *, bool *);
 extern bool parse_input_constraint (const char **, int, int, int, int,
-				    const char * const *, bool *, bool *);
+                                    const char *const *, bool *, bool *);
 extern tree resolve_asm_operand_names (tree, tree, tree, tree);
 #ifdef HARD_CONST
 /* Silly ifdef to avoid having all includers depend on hard-reg-set.h.  */

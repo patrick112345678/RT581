@@ -30,9 +30,9 @@
 
 typedef struct zb_r22_reg_test_ctx_s
 {
-  zb_uint8_t page;
-  zb_uint8_t channel;
-  zb_test_control_mode_t mode;
+    zb_uint8_t page;
+    zb_uint8_t channel;
+    zb_test_control_mode_t mode;
 } zb_r22_reg_test_ctx_t;
 
 extern zb_r22_reg_test_ctx_t g_reg_test_ctx;

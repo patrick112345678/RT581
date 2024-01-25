@@ -74,17 +74,17 @@ typedef enum zb_test_control_mode_e
 {
     ZB_TEST_CONTROL_ALARMS = 0,
     ZB_TEST_CONTROL_BUTTONS,
-		ZB_TEST_CONTROL_UART,
+    ZB_TEST_CONTROL_UART,
     ZB_TEST_CONTROL_UNUSED
 } zb_test_control_mode_t;
 
 typedef struct zb_test_control_ctx_s
 {
-	zb_bool_t step_in_progress;
-  zb_uint8_t steps_num;
-  zb_uint8_t step_idx;
-  zb_callback_t steps_action_cb;
-  zb_test_control_mode_t used_mode;
+    zb_bool_t step_in_progress;
+    zb_uint8_t steps_num;
+    zb_uint8_t step_idx;
+    zb_callback_t steps_action_cb;
+    zb_test_control_mode_t used_mode;
 } zb_test_control_ctx_t;
 
 /**

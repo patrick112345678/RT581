@@ -37,63 +37,63 @@ static zb_ieee_addr_t g_ieee_addr = {0x02, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
-  {
+    /* Init device, load IB values from nvram or set it to default */
+    {
 
-    ZB_INIT("zdo_3_thzr2");
+        ZB_INIT("zdo_3_thzr2");
 
-   }
+    }
 
-  /* set ieee addr */
-  ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_ieee_addr);
+    /* set ieee addr */
+    ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_ieee_addr);
 
-  /* become an ED */
-  ZB_BDB().bdb_primary_channel_set = (1 << 14);
-  ZB_BDB().bdb_mode = 1;
+    /* become an ED */
+    ZB_BDB().bdb_primary_channel_set = (1 << 14);
+    ZB_BDB().bdb_mode = 1;
 
-  if (zdo_dev_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    if (zdo_dev_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 static void second_join(zb_uint8_t param)
 {
-  (void)param;
-  TRACE_MSG(TRACE_ZCL1, "Starting second network steering", (FMT__0));
-  bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
+    (void)param;
+    TRACE_MSG(TRACE_ZCL1, "Starting second network steering", (FMT__0));
+    bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
 }
 
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  static zb_int_t fail_cnt = 0;
-  zb_buf_t *buf = ZB_BUF_FROM_REF(param);
+    static zb_int_t fail_cnt = 0;
+    zb_buf_t *buf = ZB_BUF_FROM_REF(param);
 
-  if (buf->u.hdr.status == 0)
-  {
-    TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
-    zb_free_buf(buf);
-  }
-  else if (fail_cnt > 0)
-  {
-    TRACE_MSG(TRACE_ERROR, "Device start FAILED status %d", (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
-  }
-  else
-  {
-    fail_cnt++;
-    TRACE_MSG(TRACE_ERROR, "start attempt FAILED status %d", (FMT__D, (int)buf->u.hdr.status));
-    zb_free_buf(buf);
-    ZB_SCHEDULE_ALARM(second_join, 0, 30*ZB_TIME_ONE_SECOND);
-  }
+    if (buf->u.hdr.status == 0)
+    {
+        TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
+        zb_free_buf(buf);
+    }
+    else if (fail_cnt > 0)
+    {
+        TRACE_MSG(TRACE_ERROR, "Device start FAILED status %d", (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
+    }
+    else
+    {
+        fail_cnt++;
+        TRACE_MSG(TRACE_ERROR, "start attempt FAILED status %d", (FMT__D, (int)buf->u.hdr.status));
+        zb_free_buf(buf);
+        ZB_SCHEDULE_ALARM(second_join, 0, 30 * ZB_TIME_ONE_SECOND);
+    }
 }

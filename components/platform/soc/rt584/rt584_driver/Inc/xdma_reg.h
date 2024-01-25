@@ -19,10 +19,11 @@
     Memory Mapped Structure for WDT TIMER Controller
 @{ */
 
-typedef struct {
+typedef struct
+{
     __IO uint32_t XDMA_CTL0;        /*0x00*/
     __O  uint32_t XDMA_CTL1;        /*0x04*/
-    
+
 } XDMA_T;
 
 /**

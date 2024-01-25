@@ -31,62 +31,62 @@
 /* Public interface */
 void bulb_hal_init()
 {
-  zb_osif_led_button_init();
-  //zb_osif_led_on(BULB_LED_POVER);
+    zb_osif_led_button_init();
+    //zb_osif_led_on(BULB_LED_POVER);
 }
 
 void bulb_hal_set_level(zb_uint8_t level)
 {
-  ZVUNUSED(level);
+    ZVUNUSED(level);
 }
 
 void bulb_hal_set_on_off(zb_bool_t on)
 {
-#ifndef BOARD_PCA10059 
-  if (on)
-  {
-    zb_osif_led_on(BULB_LED_LIGHT);
-  }
-  else
-  {
-    zb_osif_led_off(BULB_LED_LIGHT);
-  }
+#ifndef BOARD_PCA10059
+    if (on)
+    {
+        zb_osif_led_on(BULB_LED_LIGHT);
+    }
+    else
+    {
+        zb_osif_led_off(BULB_LED_LIGHT);
+    }
 #endif
 }
 
 void bulb_hal_set_connect(zb_uint8_t on)
 {
-#ifndef BOARD_PCA10059 
-  if (on)
-  {
-    zb_osif_led_on(BULB_LED_CONNECT);
-  }
-  else
-  {
-    zb_osif_led_off(BULB_LED_CONNECT);
-  }
+#ifndef BOARD_PCA10059
+    if (on)
+    {
+        zb_osif_led_on(BULB_LED_CONNECT);
+    }
+    else
+    {
+        zb_osif_led_off(BULB_LED_CONNECT);
+    }
 #endif
 }
 
 void bulb_hal_set_power(zb_uint8_t on)
 {
-#ifndef BOARD_PCA10059 
-  if (on)
-  {
-    zb_osif_led_on(BULB_LED_POVER);
-  }
-  else
-  {
-    zb_osif_led_off(BULB_LED_POVER);
-  }
+#ifndef BOARD_PCA10059
+    if (on)
+    {
+        zb_osif_led_on(BULB_LED_POVER);
+    }
+    else
+    {
+        zb_osif_led_off(BULB_LED_POVER);
+    }
 #endif
 }
 
 zb_bool_t bulb_hal_is_button_pressed()
 {
-  zb_bool_t ret = ZB_FALSE;
-  ret = (zb_bool_t) zb_osif_button_state(BULB_BUTTON);
-  return ret;
+    zb_bool_t ret = ZB_FALSE;
+    ret = (zb_bool_t) zb_osif_button_state(BULB_BUTTON);
+    return ret;
 }
 
 #endif /* ZB_USE_BUTTONS */

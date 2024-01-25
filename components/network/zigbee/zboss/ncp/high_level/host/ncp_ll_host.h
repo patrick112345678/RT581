@@ -90,12 +90,12 @@ int ncp_host_ll_proto_init(ncp_ll_call_me_cb_t call_me_cb);
    @return RET_OK - ok, can do next tx, RET_EMPTY - ok, can't do next tx, RET_BUSY - can't do that tx
  */
 int ncp_host_ll_quant(
-  void *tx_buf,
-  zb_uint_t tx_size,
-  void *rx_buf,
-  zb_uint_t rx_buf_size,
-  zb_uint_t *received_bytes,
-  zb_uint_t *alarm_timeout_ms);
+    void *tx_buf,
+    zb_uint_t tx_size,
+    void *rx_buf,
+    zb_uint_t rx_buf_size,
+    zb_uint_t *received_bytes,
+    zb_uint_t *alarm_timeout_ms);
 
 zb_ret_t zb_linux_turn_off_radio();
 

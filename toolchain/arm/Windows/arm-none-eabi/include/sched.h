@@ -32,16 +32,16 @@ extern "C" {
  *  XBD 13 - Set Scheduling Parameters, P1003.1b-2008, p. 1803
  */
 int sched_setparam(
-  pid_t                     __pid,
-  const struct sched_param *__param
+    pid_t                     __pid,
+    const struct sched_param *__param
 );
 
 /*
  *  XBD 13 - Set Scheduling Parameters, P1003.1b-2008, p. 1800
  */
 int sched_getparam(
-  pid_t                     __pid,
-  struct sched_param       *__param
+    pid_t                     __pid,
+    struct sched_param       *__param
 );
 
 /*
@@ -49,35 +49,35 @@ int sched_getparam(
  *         P1003.1b-2008, p. 1805
  */
 int sched_setscheduler(
-  pid_t                     __pid,
-  int                       __policy,
-  const struct sched_param *__param
+    pid_t                     __pid,
+    int                       __policy,
+    const struct sched_param *__param
 );
 
 /*
  *  XBD 13 - Get Scheduling Policy, P1003.1b-2008, p. 1801
  */
 int sched_getscheduler(
-  pid_t                     __pid
+    pid_t                     __pid
 );
 
 /*
  *  XBD 13 - Get Scheduling Parameter Limits, P1003.1b-2008, p. 1799
  */
 int sched_get_priority_max(
-  int __policy
+    int __policy
 );
 
 int sched_get_priority_min(
-  int  __policy
+    int  __policy
 );
 
 /*
  *  XBD 13 - Get Scheduling Parameter Limits, P1003.1b-2008, p. 1802
  */
 int sched_rr_get_interval(
-  pid_t             __pid,
-  struct timespec  *__interval
+    pid_t             __pid,
+    struct timespec  *__interval
 );
 #endif /* _POSIX_PRIORITY_SCHEDULING */
 

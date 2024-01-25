@@ -49,113 +49,113 @@ static void start_fixed_poll(zb_uint8_t unused);
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
-  ZB_INIT("zdo_4_zed");
-#if UART_CONTROL	
-	test_control_init();
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    /* Init device, load IB values from nvram or set it to default */
+    ZB_INIT("zdo_4_zed");
+#if UART_CONTROL
+    test_control_init();
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 #endif
 
-  /* set ieee addr */
-  zb_set_long_address(g_ieee_addr_ed);
-  /* become an ED */
-  zb_cert_test_set_common_channel_settings();
-  zb_cert_test_set_zed_role();
-  zb_set_rx_on_when_idle(ZB_FALSE);
-  zb_zdo_set_aps_unsecure_join(ZB_TRUE);
+    /* set ieee addr */
+    zb_set_long_address(g_ieee_addr_ed);
+    /* become an ED */
+    zb_cert_test_set_common_channel_settings();
+    zb_cert_test_set_zed_role();
+    zb_set_rx_on_when_idle(ZB_FALSE);
+    zb_zdo_set_aps_unsecure_join(ZB_TRUE);
 
-  zdo_set_aging_timeout(ED_AGING_TIMEOUT_2MIN);
-  MAC_ADD_INVISIBLE_SHORT(0x0000);
+    zdo_set_aging_timeout(ED_AGING_TIMEOUT_2MIN);
+    MAC_ADD_INVISIBLE_SHORT(0x0000);
 
 #ifdef SECURITY_LEVEL
-  zb_cert_test_set_security_level(SECURITY_LEVEL);
+    zb_cert_test_set_security_level(SECURITY_LEVEL);
 #endif
 
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zboss_main_loop();
-  }
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zboss_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 static void test_change_ed_timeout(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_ERROR, "change ed timeout to %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_ERROR, "change ed timeout to %hd", (FMT__H, param));
 
-  zdo_set_aging_timeout(param);
+    zdo_set_aging_timeout(param);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  if (status == 0)
-  {
-    switch (sig)
+    if (status == 0)
     {
-      case ZB_ZDO_SIGNAL_DEFAULT_START:
-      case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      case ZB_BDB_SIGNAL_DEVICE_REBOOT:
-	TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
+        switch (sig)
+        {
+        case ZB_ZDO_SIGNAL_DEFAULT_START:
+        case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
+        case ZB_BDB_SIGNAL_DEVICE_REBOOT:
+            TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
 
-	if (is_first_start)
-	{
-	  is_first_start = ZB_FALSE;
-	  MAC_REMOVE_INVISIBLE_SHORT(0x0000);
-	  start_fixed_poll(0);
-	}
-	else
-	{
-	  test_change_ed_timeout(ED_AGING_TIMEOUT_10SEC);
-	}
-	break; /* ZB_ZDO_SIGNAL_DEFAULT_START */
+            if (is_first_start)
+            {
+                is_first_start = ZB_FALSE;
+                MAC_REMOVE_INVISIBLE_SHORT(0x0000);
+                start_fixed_poll(0);
+            }
+            else
+            {
+                test_change_ed_timeout(ED_AGING_TIMEOUT_10SEC);
+            }
+            break; /* ZB_ZDO_SIGNAL_DEFAULT_START */
 
-      case ZB_COMMON_SIGNAL_CAN_SLEEP:
+        case ZB_COMMON_SIGNAL_CAN_SLEEP:
 #ifdef ZB_USE_SLEEP
-    	  zb_sleep_now();
+            zb_sleep_now();
 #endif /* ZB_USE_SLEEP */
-        break;
+            break;
 
-      default:
-	TRACE_MSG(TRACE_ERROR, "Unknown signal %hd", (FMT__H, sig));
-	break;
+        default:
+            TRACE_MSG(TRACE_ERROR, "Unknown signal %hd", (FMT__H, sig));
+            break;
+        }
     }
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, status));
-  }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, status));
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 static void start_fixed_poll(zb_uint8_t unused)
 {
-  TRACE_MSG(TRACE_ZDO1, ">>start_fixed_poll", (FMT__0));
+    TRACE_MSG(TRACE_ZDO1, ">>start_fixed_poll", (FMT__0));
 
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
 #ifndef NCP_MODE_HOST
-  ZDO_CTX().pim.poll_in_progress = ZB_FALSE;
-  zb_zdo_pim_stop_poll(0);
-  zb_zdo_pim_set_long_poll_interval(TEST_ZED_POLL_TIMEOUT_MS);
-  zb_zdo_pim_permit_turbo_poll(ZB_TRUE); /* permit adaptive poll */
-  zb_zdo_pim_start_poll(0);
+    ZDO_CTX().pim.poll_in_progress = ZB_FALSE;
+    zb_zdo_pim_stop_poll(0);
+    zb_zdo_pim_set_long_poll_interval(TEST_ZED_POLL_TIMEOUT_MS);
+    zb_zdo_pim_permit_turbo_poll(ZB_TRUE); /* permit adaptive poll */
+    zb_zdo_pim_start_poll(0);
 #else
-  ZB_ASSERT(ZB_FALSE && "TODO: use NCP API here");
+    ZB_ASSERT(ZB_FALSE && "TODO: use NCP API here");
 #endif
 
-  TRACE_MSG(TRACE_ZDO1, "<<start_fixed_poll", (FMT__0));
+    TRACE_MSG(TRACE_ZDO1, "<<start_fixed_poll", (FMT__0));
 }

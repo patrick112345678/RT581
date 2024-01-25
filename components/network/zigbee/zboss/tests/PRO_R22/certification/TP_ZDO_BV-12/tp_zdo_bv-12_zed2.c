@@ -46,107 +46,107 @@ static zb_af_simple_desc_1_1_t g_test_simple_desc;
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
 #ifdef APS_SECUR
-  aps_secure = 1;
+    aps_secure = 1;
 #endif
 
-  ZB_INIT("zdo_zed2");
-#if UART_CONTROL	
-	test_control_init();
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    ZB_INIT("zdo_zed2");
+#if UART_CONTROL
+    test_control_init();
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 #endif
 
-  zb_set_long_address(g_ieee_addr_ed2);
+    zb_set_long_address(g_ieee_addr_ed2);
 
-  /* zb_cert_test_set_security_level(0); */
+    /* zb_cert_test_set_security_level(0); */
 
-  zb_cert_test_set_common_channel_settings();
-  zb_cert_test_set_zed_role();
-  zb_set_rx_on_when_idle(ZB_FALSE);
+    zb_cert_test_set_common_channel_settings();
+    zb_cert_test_set_zed_role();
+    zb_set_rx_on_when_idle(ZB_FALSE);
 
-  zb_set_simple_descriptor((zb_af_simple_desc_1_1_t*)&g_test_simple_desc,
-                           TEST_ED2_EP /* endpoint */,        0x0103 /* app_profile_id */,
-                           0xaaaa /* app_device_id */,        0x0   /* app_device_version*/,
-                           0x1 /* app_input_cluster_count */, 0x1 /* app_output_cluster_count */);
-  zb_set_input_cluster_id((zb_af_simple_desc_1_1_t*)&g_test_simple_desc, 0,  0x001c);
-  zb_set_output_cluster_id((zb_af_simple_desc_1_1_t*)&g_test_simple_desc, 0,  0x0054);
-  zb_add_simple_descriptor((zb_af_simple_desc_1_1_t*)&g_test_simple_desc);
+    zb_set_simple_descriptor((zb_af_simple_desc_1_1_t *)&g_test_simple_desc,
+                             TEST_ED2_EP /* endpoint */,        0x0103 /* app_profile_id */,
+                             0xaaaa /* app_device_id */,        0x0   /* app_device_version*/,
+                             0x1 /* app_input_cluster_count */, 0x1 /* app_output_cluster_count */);
+    zb_set_input_cluster_id((zb_af_simple_desc_1_1_t *)&g_test_simple_desc, 0,  0x001c);
+    zb_set_output_cluster_id((zb_af_simple_desc_1_1_t *)&g_test_simple_desc, 0,  0x0054);
+    zb_add_simple_descriptor((zb_af_simple_desc_1_1_t *)&g_test_simple_desc);
 
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zboss_main_loop();
-  }
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zboss_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 static void test_nwk_addr_req_for_zed1_delayed(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  if (zb_buf_get_out_delayed(test_nwk_addr_req_for_zed1) != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "test_nwk_addr_req_for_zed1_delayed: buffer allocation error", (FMT__0));
-  }
+    if (zb_buf_get_out_delayed(test_nwk_addr_req_for_zed1) != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "test_nwk_addr_req_for_zed1_delayed: buffer allocation error", (FMT__0));
+    }
 }
 
 static void test_nwk_addr_req_for_zed1(zb_uint8_t param)
 {
-  zb_zdo_nwk_addr_req_param_t *req_param;
-  TRACE_MSG(TRACE_APS1, ">> send_nwk_addr_request %hd", (FMT__H, param));
+    zb_zdo_nwk_addr_req_param_t *req_param;
+    TRACE_MSG(TRACE_APS1, ">> send_nwk_addr_request %hd", (FMT__H, param));
 
-  req_param = ZB_BUF_GET_PARAM(param, zb_zdo_nwk_addr_req_param_t);
+    req_param = ZB_BUF_GET_PARAM(param, zb_zdo_nwk_addr_req_param_t);
 
     req_param->dst_addr = 0x0000;
     ZB_IEEE_ADDR_COPY(req_param->ieee_addr, g_ieee_addr_ed1);
     req_param->request_type = ZB_ZDO_SINGLE_DEVICE_RESP;
     req_param-> start_index = 0;
 
-  zb_zdo_nwk_addr_req(param, NULL);
+    zb_zdo_nwk_addr_req(param, NULL);
 
-  TRACE_MSG(TRACE_APS1, "<< send_nwk_addr_request %hd", (FMT__H, param));
-  }
+    TRACE_MSG(TRACE_APS1, "<< send_nwk_addr_request %hd", (FMT__H, param));
+}
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-    switch(sig)
+    switch (sig)
     {
-      case ZB_ZDO_SIGNAL_DEFAULT_START:
-      case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      case ZB_BDB_SIGNAL_DEVICE_REBOOT:
-      TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        ZB_SCHEDULE_CALLBACK(test_nwk_addr_req_for_zed1_delayed, 0);
-      }
+    case ZB_ZDO_SIGNAL_DEFAULT_START:
+    case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
+    case ZB_BDB_SIGNAL_DEVICE_REBOOT:
+        TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            ZB_SCHEDULE_CALLBACK(test_nwk_addr_req_for_zed1_delayed, 0);
+        }
         break;
 
-      case ZB_COMMON_SIGNAL_CAN_SLEEP:
-      if (status == 0)
-      {
+    case ZB_COMMON_SIGNAL_CAN_SLEEP:
+        if (status == 0)
+        {
 #ifdef ZB_USE_SLEEP
-    	  zb_sleep_now();
+            zb_sleep_now();
 #endif /* ZB_USE_SLEEP */
-      }
+        }
         break;
 
-      default:
-      TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
+    default:
+        TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
         break;
     }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }

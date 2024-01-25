@@ -535,17 +535,17 @@ zb_int8_t zb_mac_lbt_rssi_threshold_by_page(zb_uint8_t logical_page);
  */
 typedef enum zb_mac_lbt_ret_e
 {
-  ZB_MAC_LBT_RET_OK      = 0,  /* LBTrcOk: success */
-  ZB_MAC_LBT_RET_BUSY    = 1,  /* LBTrcLBTBsy: timeout */
-  ZB_MAC_LBT_RET_LBT_MAX = 2,  /* LBTrcLBTMax: retries limit reached */
-  ZB_MAC_LBT_RET_TX_MAX  = 3,  /* LBTrcTxMax: maximum TX retries limit reached */
-  ZB_MAC_LBT_RET_TX_TO   = 4,  /* LBTrcTxTo: Tx timeout */
-  ZB_MAC_LBT_RET_RX_TO   = 5,  /* LBTrcTxTo: Tx timeout */
-  ZB_MAC_LBT_RET_ACK     = 6,  /* LBTrcAck: Valid ACK received */
-  ZB_MAC_LBT_RET_ACK_TO  = 7,  /* LBTrcAckTo: Ack transmission failed */
-  ZB_MAC_LBT_RET_RX_INV  = 8,  /* LBTrcRxInv: Invalid message received */
-  ZB_MAC_LBT_RET_TX_TO_PKT = 99, /* LBTrcTxToPkt: Single transmission exceeded */
-  ZB_MAC_LBT_RET_TX_TO_MAX = 100 /* LBTrcTxToMax: Transmission have exceeded
+    ZB_MAC_LBT_RET_OK      = 0,  /* LBTrcOk: success */
+    ZB_MAC_LBT_RET_BUSY    = 1,  /* LBTrcLBTBsy: timeout */
+    ZB_MAC_LBT_RET_LBT_MAX = 2,  /* LBTrcLBTMax: retries limit reached */
+    ZB_MAC_LBT_RET_TX_MAX  = 3,  /* LBTrcTxMax: maximum TX retries limit reached */
+    ZB_MAC_LBT_RET_TX_TO   = 4,  /* LBTrcTxTo: Tx timeout */
+    ZB_MAC_LBT_RET_RX_TO   = 5,  /* LBTrcTxTo: Tx timeout */
+    ZB_MAC_LBT_RET_ACK     = 6,  /* LBTrcAck: Valid ACK received */
+    ZB_MAC_LBT_RET_ACK_TO  = 7,  /* LBTrcAckTo: Ack transmission failed */
+    ZB_MAC_LBT_RET_RX_INV  = 8,  /* LBTrcRxInv: Invalid message received */
+    ZB_MAC_LBT_RET_TX_TO_PKT = 99, /* LBTrcTxToPkt: Single transmission exceeded */
+    ZB_MAC_LBT_RET_TX_TO_MAX = 100 /* LBTrcTxToMax: Transmission have exceeded
                                   * the maximum rate in the last hour */
 } zb_mac_lbt_ret_t;
 
@@ -589,9 +589,9 @@ zb_int8_t zb_mac_get_tx_power(void);
 #define ZB_MAC_POWER_CONTROL_IS_POWER_APPLY_LOCKED() (MAC_CTX().flags.power_update_locked)
 
 zb_ret_t zb_mac_power_ctrl_update_ent_by_ieee(zb_ieee_addr_t ieee_addr,
-                                              zb_int8_t rx_power,
-                                              zb_int8_t rssi,
-                                              zb_uint8_t create);
+        zb_int8_t rx_power,
+        zb_int8_t rssi,
+        zb_uint8_t create);
 
 zb_ret_t zb_mac_power_ctrl_update_ent(zb_ieee_addr_t ieee_addr,
                                       zb_uint16_t short_addr,
@@ -600,16 +600,16 @@ zb_ret_t zb_mac_power_ctrl_update_ent(zb_ieee_addr_t ieee_addr,
                                       zb_uint8_t create);
 
 zb_ret_t zb_mac_power_ctrl_tbl_update_rssi_by_short(zb_uint16_t short_addr,
-                                                    zb_int8_t rssi);
+        zb_int8_t rssi);
 
 zb_ret_t zb_mac_power_ctrl_tbl_update_rssi_by_ieee(zb_ieee_addr_t ieee_addr,
-                                                   zb_int8_t rssi);
+        zb_int8_t rssi);
 
 zb_ret_t zb_mac_power_ctrl_get_tx_power_by_ieee(zb_ieee_addr_t ieee_addr,
-                                                zb_int8_t *tx_power);
+        zb_int8_t *tx_power);
 
 zb_ret_t zb_mac_power_ctrl_get_tx_power_by_short(zb_uint16_t short_addr,
-                                                 zb_int8_t *tx_power);
+        zb_int8_t *tx_power);
 
 zb_ret_t zb_mac_power_ctrl_apply_tx_power_by_short(zb_uint16_t short_addr);
 
@@ -664,8 +664,8 @@ void zb_mac_send_data_conf(zb_bufid_t param, zb_mac_status_t status, zb_bool_t c
 
 enum zb_radio_stats_events_e
 {
-  RADIO_STAT_QUEUE_ITEM_FREE,
-  RADIO_STAT_ITERATION
+    RADIO_STAT_QUEUE_ITEM_FREE,
+    RADIO_STAT_ITERATION
 };
 
 #ifndef ZB_RADIO_STATISTIC_ENABLE

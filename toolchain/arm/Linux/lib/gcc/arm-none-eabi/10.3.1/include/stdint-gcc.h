@@ -231,7 +231,7 @@ typedef __UINTMAX_TYPE__ uintmax_t;
 #define WINT_MIN __WINT_MIN__
 
 #endif /* (!defined __cplusplus || __cplusplus >= 201103L
-	   || defined __STDC_LIMIT_MACROS)  */
+       || defined __STDC_LIMIT_MACROS)  */
 
 #if (!defined __cplusplus || __cplusplus >= 201103L \
      || defined __STDC_CONSTANT_MACROS)
@@ -258,7 +258,7 @@ typedef __UINTMAX_TYPE__ uintmax_t;
 #define UINTMAX_C(c) __UINTMAX_C(c)
 
 #endif /* (!defined __cplusplus || __cplusplus >= 201103L
-	   || defined __STDC_CONSTANT_MACROS) */
+       || defined __STDC_CONSTANT_MACROS) */
 
 #if (defined __STDC_WANT_IEC_60559_BFP_EXT__ \
      || (defined (__STDC_VERSION__) && __STDC_VERSION__ > 201710L))

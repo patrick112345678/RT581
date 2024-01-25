@@ -59,20 +59,20 @@
 
 /** @endcond */
 
- /**
- *  @brief Declare attribute list for Basic cluster with HA additions.
- *  @param attr_list [IN] - attribute list name.
- *  @param zcl_version [IN] - pointer to variable storing ZCL version  attribute value.
- *  @param app_version [IN] - pointer to the variable storing application version.
- *  @param stack_version [IN] - pointer to the variable storing stack version.
- *  @param hardware_version [IN] - pointer to the variable storing hardware version.
- *  @param manufacturer_name [IN] - pointer to the variable storing manufacturer name.
- *  @param model_id [IN] - pointer to the variable storing model identifier.
- *  @param date_code [IN] - pointer to the variable storing date code.
- *  @param power_source [IN] - pointer to variable storing power source attribute value.
- *  @param location_id [IN] - pointer to variable storing location description attribute value.
- *  @param ph_env [IN] - pointer to variable storing physical environment attribute value.
- */
+/**
+*  @brief Declare attribute list for Basic cluster with HA additions.
+*  @param attr_list [IN] - attribute list name.
+*  @param zcl_version [IN] - pointer to variable storing ZCL version  attribute value.
+*  @param app_version [IN] - pointer to the variable storing application version.
+*  @param stack_version [IN] - pointer to the variable storing stack version.
+*  @param hardware_version [IN] - pointer to the variable storing hardware version.
+*  @param manufacturer_name [IN] - pointer to the variable storing manufacturer name.
+*  @param model_id [IN] - pointer to the variable storing model identifier.
+*  @param date_code [IN] - pointer to the variable storing date code.
+*  @param power_source [IN] - pointer to variable storing power source attribute value.
+*  @param location_id [IN] - pointer to variable storing location description attribute value.
+*  @param ph_env [IN] - pointer to variable storing physical environment attribute value.
+*/
 #define ZB_ZCL_DECLARE_BASIC_ATTRIB_LIST_FULL(                              \
   attr_list,                                                                        \
   zcl_version,                                                                      \

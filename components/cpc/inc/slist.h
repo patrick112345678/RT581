@@ -21,14 +21,14 @@ extern "C"
 {
 #endif
 
-    /// List node type
-    typedef struct slist_node slist_node_t;
+/// List node type
+typedef struct slist_node slist_node_t;
 
-    /// List node
-    struct slist_node
-    {
-        slist_node_t *node; ///< List node
-    };
+/// List node
+struct slist_node
+{
+    slist_node_t *node; ///< List node
+};
 
 #ifndef DOXYGEN
 #define container_of(ptr, type, member) (type *)((uintptr_t)(ptr) - ((uintptr_t)(&((type *)0)->member)))
@@ -42,19 +42,19 @@ extern "C"
                                                                  (entry) = SLIST_ENTRY((entry)->member.node, type, member))
 #endif
 
-    void slist_init(slist_node_t **head);
+void slist_init(slist_node_t **head);
 
-    void slist_push(slist_node_t **head, slist_node_t *item);
+void slist_push(slist_node_t **head, slist_node_t *item);
 
-    void slist_push_back(slist_node_t **head, slist_node_t *item);
+void slist_push_back(slist_node_t **head, slist_node_t *item);
 
-    slist_node_t *slist_pop(slist_node_t **head);
+slist_node_t *slist_pop(slist_node_t **head);
 
-    void slist_insert(slist_node_t *item, slist_node_t *pos);
+void slist_insert(slist_node_t *item, slist_node_t *pos);
 
-    void slist_remove(slist_node_t **head, slist_node_t *item);
+void slist_remove(slist_node_t **head, slist_node_t *item);
 
-    void slist_sort(slist_node_t **head, bool (*cmp_fnct)(slist_node_t *item_l, slist_node_t *item_r));
+void slist_sort(slist_node_t **head, bool (*cmp_fnct)(slist_node_t *item_l, slist_node_t *item_r));
 
 #ifdef __cplusplus
 }

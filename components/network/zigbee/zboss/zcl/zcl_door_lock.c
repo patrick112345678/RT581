@@ -33,24 +33,24 @@
 
 static zb_uint8_t gs_door_lock_client_received_commands[] =
 {
-  ZB_ZCL_CLUSTER_ID_DOOR_LOCK_CLIENT_ROLE_RECEIVED_CMD_LIST
+    ZB_ZCL_CLUSTER_ID_DOOR_LOCK_CLIENT_ROLE_RECEIVED_CMD_LIST
 };
 
 static zb_uint8_t gs_door_lock_server_received_commands[] =
 {
-  ZB_ZCL_CLUSTER_ID_DOOR_LOCK_SERVER_ROLE_RECEIVED_CMD_LIST
+    ZB_ZCL_CLUSTER_ID_DOOR_LOCK_SERVER_ROLE_RECEIVED_CMD_LIST
 };
 
 static zb_discover_cmd_list_t gs_door_lock_client_cmd_list =
 {
-  sizeof(gs_door_lock_client_received_commands), gs_door_lock_client_received_commands,
-  sizeof(gs_door_lock_server_received_commands), gs_door_lock_server_received_commands
+    sizeof(gs_door_lock_client_received_commands), gs_door_lock_client_received_commands,
+    sizeof(gs_door_lock_server_received_commands), gs_door_lock_server_received_commands
 };
 
 static zb_discover_cmd_list_t gs_door_lock_server_cmd_list =
 {
-  sizeof(gs_door_lock_server_received_commands), gs_door_lock_server_received_commands,
-  sizeof(gs_door_lock_client_received_commands), gs_door_lock_client_received_commands
+    sizeof(gs_door_lock_server_received_commands), gs_door_lock_server_received_commands,
+    sizeof(gs_door_lock_client_received_commands), gs_door_lock_client_received_commands
 };
 
 
@@ -60,334 +60,334 @@ zb_bool_t zb_zcl_process_door_lock_specific_commands_cli(zb_uint8_t param);
 
 void zb_zcl_door_lock_init_server()
 {
-  zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_DOOR_LOCK,
-                              ZB_ZCL_CLUSTER_SERVER_ROLE,
-                              check_value_door_lock_server,
-                              (zb_zcl_cluster_write_attr_hook_t)NULL,
-                              zb_zcl_process_door_lock_specific_commands_srv);
+    zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_DOOR_LOCK,
+                                ZB_ZCL_CLUSTER_SERVER_ROLE,
+                                check_value_door_lock_server,
+                                (zb_zcl_cluster_write_attr_hook_t)NULL,
+                                zb_zcl_process_door_lock_specific_commands_srv);
 }
 
 void zb_zcl_door_lock_init_client()
 {
-  zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_DOOR_LOCK,
-                              ZB_ZCL_CLUSTER_CLIENT_ROLE,
-                              (zb_zcl_cluster_check_value_t)NULL,
-                              (zb_zcl_cluster_write_attr_hook_t)NULL,
-                              zb_zcl_process_door_lock_specific_commands_cli);
+    zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_DOOR_LOCK,
+                                ZB_ZCL_CLUSTER_CLIENT_ROLE,
+                                (zb_zcl_cluster_check_value_t)NULL,
+                                (zb_zcl_cluster_write_attr_hook_t)NULL,
+                                zb_zcl_process_door_lock_specific_commands_cli);
 }
 
 zb_ret_t check_value_door_lock_server(zb_uint16_t attr_id, zb_uint8_t endpoint, zb_uint8_t *value)
 {
-  zb_ret_t ret = RET_OK;
-  ZVUNUSED(endpoint);
+    zb_ret_t ret = RET_OK;
+    ZVUNUSED(endpoint);
 
-  switch( attr_id )
-  {
-  case ZB_ZCL_ATTR_DOOR_LOCK_LOCK_STATE_ID:
-
-    if( *value > ZB_ZCL_ATTR_DOOR_LOCK_LOCK_STATE_UNLOCKED &&  *value < ZB_ZCL_ATTR_DOOR_LOCK_LOCK_STATE_UNDEFINED )
+    switch ( attr_id )
     {
-      ret = RET_ERROR;
+    case ZB_ZCL_ATTR_DOOR_LOCK_LOCK_STATE_ID:
+
+        if ( *value > ZB_ZCL_ATTR_DOOR_LOCK_LOCK_STATE_UNLOCKED &&  *value < ZB_ZCL_ATTR_DOOR_LOCK_LOCK_STATE_UNDEFINED )
+        {
+            ret = RET_ERROR;
+        }
+        break;
+
+    case ZB_ZCL_ATTR_DOOR_LOCK_LOCK_TYPE_ID:
+        if ( *value > ZB_ZCL_ATTR_DOOR_LOCK_LOCK_TYPE_OTHER &&  *value < ZB_ZCL_ATTR_DOOR_LOCK_LOCK_TYPE_UNDEFINED )
+        {
+            ret = RET_ERROR;
+        }
+        break;
+
+    case ZB_ZCL_ATTR_DOOR_LOCK_ACTUATOR_ENABLED_ID:
+        if (*value != ZB_ZCL_ATTR_DOOR_LOCK_ACTUATOR_ENABLED_DISABLED &&
+                *value != ZB_ZCL_ATTR_DOOR_LOCK_ACTUATOR_ENABLED_ENABLED)
+        {
+            ret = RET_ERROR;
+        }
+        break;
+
+    default:
+        break;
     }
-    break;
 
-  case ZB_ZCL_ATTR_DOOR_LOCK_LOCK_TYPE_ID:
-    if( *value > ZB_ZCL_ATTR_DOOR_LOCK_LOCK_TYPE_OTHER &&  *value < ZB_ZCL_ATTR_DOOR_LOCK_LOCK_TYPE_UNDEFINED )
-    {
-      ret = RET_ERROR;
-    }
-    break;
-
-  case ZB_ZCL_ATTR_DOOR_LOCK_ACTUATOR_ENABLED_ID:
-      if(*value != ZB_ZCL_ATTR_DOOR_LOCK_ACTUATOR_ENABLED_DISABLED &&
-         *value != ZB_ZCL_ATTR_DOOR_LOCK_ACTUATOR_ENABLED_ENABLED)
-      {
-        ret = RET_ERROR;
-      }
-      break;
-
-  default:
-    break;
-  }
-
-  TRACE_MSG(TRACE_ZCL1, "check_value_door_lock ret %hd", (FMT__H, ret));
-  return ret;
+    TRACE_MSG(TRACE_ZCL1, "check_value_door_lock ret %hd", (FMT__H, ret));
+    return ret;
 }
 
 static zb_zcl_status_t zb_zcl_door_lock_map_ret_code_to_zcl_status(zb_ret_t ret_code)
 {
-  zb_zcl_status_t status;
+    zb_zcl_status_t status;
 
-  ZB_ASSERT(ret_code != RET_BUSY);
+    ZB_ASSERT(ret_code != RET_BUSY);
 
-  switch (ret_code)
-  {
+    switch (ret_code)
+    {
     case RET_OK:
-      status = ZB_ZCL_STATUS_SUCCESS;
-      break;
+        status = ZB_ZCL_STATUS_SUCCESS;
+        break;
     case RET_INVALID_PARAMETER_1:
-      status = ZB_ZCL_STATUS_INVALID_FIELD;
-      break;
+        status = ZB_ZCL_STATUS_INVALID_FIELD;
+        break;
     case RET_INVALID_PARAMETER:
-      status = ZB_ZCL_STATUS_INVALID_VALUE;
-      break;
+        status = ZB_ZCL_STATUS_INVALID_VALUE;
+        break;
     case RET_ERROR:
-      status = ZB_ZCL_STATUS_HW_FAIL;
-      break;
+        status = ZB_ZCL_STATUS_HW_FAIL;
+        break;
     default:
-      status = ZB_ZCL_STATUS_FAIL;
-      break;
-  }
+        status = ZB_ZCL_STATUS_FAIL;
+        break;
+    }
 
-  return status;
+    return status;
 }
 
 /** @brief Lock Door command */
 static zb_ret_t zb_zcl_door_lock_lock_door_handler(zb_uint8_t param, const zb_zcl_parsed_hdr_t *cmd_info)
 {
-  zb_ret_t ret = RET_OK;
-  zb_zcl_door_lock_read_lock_door_res_payload_t pl_out;
-  zb_bool_t security = (zb_bool_t)ZB_APS_FC_GET_SECURITY(cmd_info->addr_data.common_data.fc);
-  
+    zb_ret_t ret = RET_OK;
+    zb_zcl_door_lock_read_lock_door_res_payload_t pl_out;
+    zb_bool_t security = (zb_bool_t)ZB_APS_FC_GET_SECURITY(cmd_info->addr_data.common_data.fc);
 
-  TRACE_MSG(TRACE_ZCL1, "> zb_zcl_door_lock_lock_door_handler %hx", (FMT__H, param));
 
-  ZB_BZERO(&pl_out, sizeof(pl_out));
+    TRACE_MSG(TRACE_ZCL1, "> zb_zcl_door_lock_lock_door_handler %hx", (FMT__H, param));
 
-  ZB_ZCL_DEVICE_CMD_PARAM_INIT_WITH(param,
-    ZB_ZCL_DOOR_LOCK_LOCK_DOOR_CB_ID, RET_OK, cmd_info, NULL, &pl_out);
+    ZB_BZERO(&pl_out, sizeof(pl_out));
 
-  if (ZCL_CTX().device_cb != NULL)
-  {
-    (ZCL_CTX().device_cb)(param);
-  }
+    ZB_ZCL_DEVICE_CMD_PARAM_INIT_WITH(param,
+                                      ZB_ZCL_DOOR_LOCK_LOCK_DOOR_CB_ID, RET_OK, cmd_info, NULL, &pl_out);
 
-  if (ZB_ZCL_DEVICE_CMD_PARAM_STATUS(param) == RET_OK)
-  {
-    ZB_ZCL_DOOR_LOCK_SEND_LOCK_DOOR_RES(param,
-      ZB_ZCL_PARSED_HDR_SHORT_DATA(cmd_info).source.u.short_addr,
-      ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
-      ZB_ZCL_PARSED_HDR_SHORT_DATA(cmd_info).src_endpoint,
-      ZB_ZCL_PARSED_HDR_SHORT_DATA(cmd_info).dst_endpoint,
-      cmd_info->profile_id,
-      cmd_info->seq_number,
-      pl_out.status,
-      security);
-    ret = RET_BUSY;
-  }
-  else
-  {
-    ret = RET_ERROR;
-  }
+    if (ZCL_CTX().device_cb != NULL)
+    {
+        (ZCL_CTX().device_cb)(param);
+    }
 
-  TRACE_MSG(TRACE_ZCL1, "< zb_zcl_door_lock_lock_door_handler ret %hx", (FMT__H, ret));
+    if (ZB_ZCL_DEVICE_CMD_PARAM_STATUS(param) == RET_OK)
+    {
+        ZB_ZCL_DOOR_LOCK_SEND_LOCK_DOOR_RES(param,
+                                            ZB_ZCL_PARSED_HDR_SHORT_DATA(cmd_info).source.u.short_addr,
+                                            ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
+                                            ZB_ZCL_PARSED_HDR_SHORT_DATA(cmd_info).src_endpoint,
+                                            ZB_ZCL_PARSED_HDR_SHORT_DATA(cmd_info).dst_endpoint,
+                                            cmd_info->profile_id,
+                                            cmd_info->seq_number,
+                                            pl_out.status,
+                                            security);
+        ret = RET_BUSY;
+    }
+    else
+    {
+        ret = RET_ERROR;
+    }
 
-  return ret;
+    TRACE_MSG(TRACE_ZCL1, "< zb_zcl_door_lock_lock_door_handler ret %hx", (FMT__H, ret));
+
+    return ret;
 }
 
 /** @brief Unlock Door command */
 static zb_ret_t zb_zcl_door_lock_unlock_door_handler(zb_uint8_t param, const zb_zcl_parsed_hdr_t *cmd_info)
 {
-  zb_ret_t ret = RET_OK;
-  zb_zcl_door_lock_read_unlock_door_res_payload_t pl_out;
-  zb_bool_t security = (zb_bool_t)ZB_APS_FC_GET_SECURITY(cmd_info->addr_data.common_data.fc);
+    zb_ret_t ret = RET_OK;
+    zb_zcl_door_lock_read_unlock_door_res_payload_t pl_out;
+    zb_bool_t security = (zb_bool_t)ZB_APS_FC_GET_SECURITY(cmd_info->addr_data.common_data.fc);
 
-  TRACE_MSG(TRACE_ZCL1, "> zb_zcl_door_lock_unlock_door_handler %hx", (FMT__H, param));
+    TRACE_MSG(TRACE_ZCL1, "> zb_zcl_door_lock_unlock_door_handler %hx", (FMT__H, param));
 
-  ZB_BZERO(&pl_out, sizeof(pl_out));
+    ZB_BZERO(&pl_out, sizeof(pl_out));
 
-  ZB_ZCL_DEVICE_CMD_PARAM_INIT_WITH(param,
-    ZB_ZCL_DOOR_LOCK_UNLOCK_DOOR_CB_ID, RET_OK, cmd_info, NULL, &pl_out);
+    ZB_ZCL_DEVICE_CMD_PARAM_INIT_WITH(param,
+                                      ZB_ZCL_DOOR_LOCK_UNLOCK_DOOR_CB_ID, RET_OK, cmd_info, NULL, &pl_out);
 
-  if (ZCL_CTX().device_cb != NULL)
-  {
-    (ZCL_CTX().device_cb)(param);
-  }
+    if (ZCL_CTX().device_cb != NULL)
+    {
+        (ZCL_CTX().device_cb)(param);
+    }
 
-  if (ZB_ZCL_DEVICE_CMD_PARAM_STATUS(param) == RET_OK)
-  {
-    ZB_ZCL_DOOR_LOCK_SEND_UNLOCK_DOOR_RES(param,
-      ZB_ZCL_PARSED_HDR_SHORT_DATA(cmd_info).source.u.short_addr,
-      ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
-      ZB_ZCL_PARSED_HDR_SHORT_DATA(cmd_info).src_endpoint,
-      ZB_ZCL_PARSED_HDR_SHORT_DATA(cmd_info).dst_endpoint,
-      cmd_info->profile_id,
-      cmd_info->seq_number,
-      pl_out.status,
-      security);
-    ret = RET_BUSY;
-  }
-  else
-  {
-    ret = RET_ERROR;
-  }
+    if (ZB_ZCL_DEVICE_CMD_PARAM_STATUS(param) == RET_OK)
+    {
+        ZB_ZCL_DOOR_LOCK_SEND_UNLOCK_DOOR_RES(param,
+                                              ZB_ZCL_PARSED_HDR_SHORT_DATA(cmd_info).source.u.short_addr,
+                                              ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
+                                              ZB_ZCL_PARSED_HDR_SHORT_DATA(cmd_info).src_endpoint,
+                                              ZB_ZCL_PARSED_HDR_SHORT_DATA(cmd_info).dst_endpoint,
+                                              cmd_info->profile_id,
+                                              cmd_info->seq_number,
+                                              pl_out.status,
+                                              security);
+        ret = RET_BUSY;
+    }
+    else
+    {
+        ret = RET_ERROR;
+    }
 
-  TRACE_MSG(TRACE_ZCL1, "< zb_zcl_door_lock_unlock_door_handler ret %hx", (FMT__H, ret));
+    TRACE_MSG(TRACE_ZCL1, "< zb_zcl_door_lock_unlock_door_handler ret %hx", (FMT__H, ret));
 
-  return ret;
+    return ret;
 }
 
 /** @brief Lock Door Response command */
 static zb_ret_t zb_zcl_door_lock_lock_door_resp_handler(zb_uint8_t param, const zb_zcl_parsed_hdr_t *cmd_info)
 {
-  zb_ret_t ret = RET_OK;
-  zb_zcl_door_lock_read_lock_door_res_payload_t *pl_in = NULL;
+    zb_ret_t ret = RET_OK;
+    zb_zcl_door_lock_read_lock_door_res_payload_t *pl_in = NULL;
 
-  TRACE_MSG(TRACE_ZCL1, "> zb_zcl_door_lock_lock_door_resp_handler %hx", (FMT__H, param));
+    TRACE_MSG(TRACE_ZCL1, "> zb_zcl_door_lock_lock_door_resp_handler %hx", (FMT__H, param));
 
-  pl_in = ZB_ZCL_DOOR_LOCK_READ_LOCK_DOOR_RES(param);
+    pl_in = ZB_ZCL_DOOR_LOCK_READ_LOCK_DOOR_RES(param);
 
-  if (!pl_in)
-  {
-    TRACE_MSG(TRACE_ZCL1, "Error payload of ZB_ZCL_DOOR_LOCK_READ_LOCK_DOOR_RES", (FMT__0));
-
-    ret = RET_INVALID_PARAMETER_1;
-  }
-  else
-  {
-    ZB_ZCL_DEVICE_CMD_PARAM_INIT_WITH(param,
-      ZB_ZCL_DOOR_LOCK_LOCK_DOOR_RESP_CB_ID, RET_OK, cmd_info, pl_in, NULL);
-
-    if (ZCL_CTX().device_cb != NULL)
+    if (!pl_in)
     {
-      (ZCL_CTX().device_cb)(param);
+        TRACE_MSG(TRACE_ZCL1, "Error payload of ZB_ZCL_DOOR_LOCK_READ_LOCK_DOOR_RES", (FMT__0));
+
+        ret = RET_INVALID_PARAMETER_1;
+    }
+    else
+    {
+        ZB_ZCL_DEVICE_CMD_PARAM_INIT_WITH(param,
+                                          ZB_ZCL_DOOR_LOCK_LOCK_DOOR_RESP_CB_ID, RET_OK, cmd_info, pl_in, NULL);
+
+        if (ZCL_CTX().device_cb != NULL)
+        {
+            (ZCL_CTX().device_cb)(param);
+        }
+
+        ret = (ZB_ZCL_DEVICE_CMD_PARAM_STATUS(param) == RET_OK ? RET_OK : RET_ERROR);
     }
 
-    ret = (ZB_ZCL_DEVICE_CMD_PARAM_STATUS(param) == RET_OK ? RET_OK : RET_ERROR);
-  }
+    TRACE_MSG(TRACE_ZCL1, "< zb_zcl_door_lock_lock_door_resp_handler ret %hx", (FMT__H, ret));
 
-  TRACE_MSG(TRACE_ZCL1, "< zb_zcl_door_lock_lock_door_resp_handler ret %hx", (FMT__H, ret));
-
-  return ret;
+    return ret;
 }
 
 /** @brief Unlock Door Response command */
 static zb_ret_t zb_zcl_door_lock_unlock_door_resp_handler(zb_uint8_t param, const zb_zcl_parsed_hdr_t *cmd_info)
 {
-  zb_ret_t ret = RET_OK;
-  zb_zcl_door_lock_read_unlock_door_res_payload_t *pl_in = NULL;
+    zb_ret_t ret = RET_OK;
+    zb_zcl_door_lock_read_unlock_door_res_payload_t *pl_in = NULL;
 
-  TRACE_MSG(TRACE_ZCL1, "> zb_zcl_door_lock_unlock_door_resp_handler %hx", (FMT__H, param));
+    TRACE_MSG(TRACE_ZCL1, "> zb_zcl_door_lock_unlock_door_resp_handler %hx", (FMT__H, param));
 
-  pl_in = ZB_ZCL_DOOR_LOCK_READ_UNLOCK_DOOR_RES(param);
+    pl_in = ZB_ZCL_DOOR_LOCK_READ_UNLOCK_DOOR_RES(param);
 
-  if (!pl_in)
-  {
-    TRACE_MSG(TRACE_ZCL1, "Error payload of ZB_ZCL_DOOR_LOCK_READ_UNLOCK_DOOR_RES", (FMT__0));
-
-    ret = RET_INVALID_PARAMETER_1;
-  }
-  else
-  {
-    ZB_ZCL_DEVICE_CMD_PARAM_INIT_WITH(param,
-      ZB_ZCL_DOOR_LOCK_UNLOCK_DOOR_RESP_CB_ID, RET_OK, cmd_info, pl_in, NULL);
-
-    if (ZCL_CTX().device_cb != NULL)
+    if (!pl_in)
     {
-      (ZCL_CTX().device_cb)(param);
+        TRACE_MSG(TRACE_ZCL1, "Error payload of ZB_ZCL_DOOR_LOCK_READ_UNLOCK_DOOR_RES", (FMT__0));
+
+        ret = RET_INVALID_PARAMETER_1;
+    }
+    else
+    {
+        ZB_ZCL_DEVICE_CMD_PARAM_INIT_WITH(param,
+                                          ZB_ZCL_DOOR_LOCK_UNLOCK_DOOR_RESP_CB_ID, RET_OK, cmd_info, pl_in, NULL);
+
+        if (ZCL_CTX().device_cb != NULL)
+        {
+            (ZCL_CTX().device_cb)(param);
+        }
+
+        ret = (ZB_ZCL_DEVICE_CMD_PARAM_STATUS(param) == RET_OK ? RET_OK : RET_ERROR);
     }
 
-    ret = (ZB_ZCL_DEVICE_CMD_PARAM_STATUS(param) == RET_OK ? RET_OK : RET_ERROR);
-  }
+    TRACE_MSG(TRACE_ZCL1, "< zb_zcl_door_lock_unlock_door_resp_handler ret %hx", (FMT__H, ret));
 
-  TRACE_MSG(TRACE_ZCL1, "< zb_zcl_door_lock_unlock_door_resp_handler ret %hx", (FMT__H, ret));
-
-  return ret;
+    return ret;
 }
 
 zb_bool_t zb_zcl_process_door_lock_specific_commands_srv(zb_uint8_t param)
 {
-  zb_ret_t ret = RET_OK;
-  zb_bool_t processed = ZB_TRUE;
-  zb_zcl_parsed_hdr_t cmd_info;
+    zb_ret_t ret = RET_OK;
+    zb_bool_t processed = ZB_TRUE;
+    zb_zcl_parsed_hdr_t cmd_info;
 
-  if (ZB_ZCL_GENERAL_GET_CMD_LISTS_PARAM == param)
-  {
-    ZCL_CTX().zb_zcl_cluster_cmd_list = &gs_door_lock_server_cmd_list;
-    return ZB_TRUE;
-  }
+    if (ZB_ZCL_GENERAL_GET_CMD_LISTS_PARAM == param)
+    {
+        ZCL_CTX().zb_zcl_cluster_cmd_list = &gs_door_lock_server_cmd_list;
+        return ZB_TRUE;
+    }
 
-  ZB_ZCL_COPY_PARSED_HEADER(param, &cmd_info);
+    ZB_ZCL_COPY_PARSED_HEADER(param, &cmd_info);
 
-  TRACE_MSG(TRACE_ZCL1,
-            "> zb_zcl_process_door_lock_specific_commands_srv: param %d, cmd %d",
-            (FMT__H_H, param, cmd_info.cmd_id));
+    TRACE_MSG(TRACE_ZCL1,
+              "> zb_zcl_process_door_lock_specific_commands_srv: param %d, cmd %d",
+              (FMT__H_H, param, cmd_info.cmd_id));
 
-  ZB_ASSERT(ZB_ZCL_CLUSTER_ID_DOOR_LOCK == cmd_info.cluster_id);
-  ZB_ASSERT(ZB_ZCL_FRAME_DIRECTION_TO_SRV == cmd_info.cmd_direction);
+    ZB_ASSERT(ZB_ZCL_CLUSTER_ID_DOOR_LOCK == cmd_info.cluster_id);
+    ZB_ASSERT(ZB_ZCL_FRAME_DIRECTION_TO_SRV == cmd_info.cmd_direction);
 
-  switch (cmd_info.cmd_id)
-  {
-  case ZB_ZCL_CMD_DOOR_LOCK_LOCK_DOOR:
-    ret = zb_zcl_door_lock_lock_door_handler(param, &cmd_info);
-    break;
-  case ZB_ZCL_CMD_DOOR_LOCK_UNLOCK_DOOR:
-    ret = zb_zcl_door_lock_unlock_door_handler(param, &cmd_info);
-    break;
-  default:
-    processed = ZB_FALSE;
-    break;
-  }
+    switch (cmd_info.cmd_id)
+    {
+    case ZB_ZCL_CMD_DOOR_LOCK_LOCK_DOOR:
+        ret = zb_zcl_door_lock_lock_door_handler(param, &cmd_info);
+        break;
+    case ZB_ZCL_CMD_DOOR_LOCK_UNLOCK_DOOR:
+        ret = zb_zcl_door_lock_unlock_door_handler(param, &cmd_info);
+        break;
+    default:
+        processed = ZB_FALSE;
+        break;
+    }
 
-  if (processed && ret != RET_BUSY)
-  {
-    zb_zcl_send_default_handler(param, &cmd_info,
-                                zb_zcl_door_lock_map_ret_code_to_zcl_status(ret));
-  }
+    if (processed && ret != RET_BUSY)
+    {
+        zb_zcl_send_default_handler(param, &cmd_info,
+                                    zb_zcl_door_lock_map_ret_code_to_zcl_status(ret));
+    }
 
-  TRACE_MSG(TRACE_ZCL1,
-            "< zb_zcl_process_door_lock_specific_commands_srv: processed %d",
-            (FMT__D, processed));
+    TRACE_MSG(TRACE_ZCL1,
+              "< zb_zcl_process_door_lock_specific_commands_srv: processed %d",
+              (FMT__D, processed));
 
-  return processed;
+    return processed;
 }
 
 zb_bool_t zb_zcl_process_door_lock_specific_commands_cli(zb_uint8_t param)
 {
-  zb_ret_t ret = RET_OK;
-  zb_bool_t processed = ZB_TRUE;
-  zb_zcl_parsed_hdr_t cmd_info;
+    zb_ret_t ret = RET_OK;
+    zb_bool_t processed = ZB_TRUE;
+    zb_zcl_parsed_hdr_t cmd_info;
 
-  if (ZB_ZCL_GENERAL_GET_CMD_LISTS_PARAM == param)
-  {
-    ZCL_CTX().zb_zcl_cluster_cmd_list = &gs_door_lock_client_cmd_list;
-    return ZB_TRUE;
-  }
+    if (ZB_ZCL_GENERAL_GET_CMD_LISTS_PARAM == param)
+    {
+        ZCL_CTX().zb_zcl_cluster_cmd_list = &gs_door_lock_client_cmd_list;
+        return ZB_TRUE;
+    }
 
-  ZB_ZCL_COPY_PARSED_HEADER(param, &cmd_info);
+    ZB_ZCL_COPY_PARSED_HEADER(param, &cmd_info);
 
-  TRACE_MSG(TRACE_ZCL1,
-            "> zb_zcl_process_door_lock_specific_commands_cli: param %d, cmd %d",
-            (FMT__H_H, param, cmd_info.cmd_id));
+    TRACE_MSG(TRACE_ZCL1,
+              "> zb_zcl_process_door_lock_specific_commands_cli: param %d, cmd %d",
+              (FMT__H_H, param, cmd_info.cmd_id));
 
-  ZB_ASSERT(ZB_ZCL_CLUSTER_ID_DOOR_LOCK == cmd_info.cluster_id);
-  ZB_ASSERT(ZB_ZCL_FRAME_DIRECTION_TO_CLI == cmd_info.cmd_direction);
+    ZB_ASSERT(ZB_ZCL_CLUSTER_ID_DOOR_LOCK == cmd_info.cluster_id);
+    ZB_ASSERT(ZB_ZCL_FRAME_DIRECTION_TO_CLI == cmd_info.cmd_direction);
 
-  switch (cmd_info.cmd_id)
-  {
-  case ZB_ZCL_CMD_DOOR_LOCK_LOCK_DOOR_RES:
-    ret = zb_zcl_door_lock_lock_door_resp_handler(param, &cmd_info);
-    break;
-  case ZB_ZCL_CMD_DOOR_LOCK_UNLOCK_DOOR_RES:
-    ret = zb_zcl_door_lock_unlock_door_resp_handler(param, &cmd_info);
-    break;
-  case ZB_ZCL_CMD_DOOR_LOCK_OPERATION_EVENT_NOTIFICATION_ID:
-    break;
-  default:
-    processed = ZB_FALSE;
-    break;
-  }
+    switch (cmd_info.cmd_id)
+    {
+    case ZB_ZCL_CMD_DOOR_LOCK_LOCK_DOOR_RES:
+        ret = zb_zcl_door_lock_lock_door_resp_handler(param, &cmd_info);
+        break;
+    case ZB_ZCL_CMD_DOOR_LOCK_UNLOCK_DOOR_RES:
+        ret = zb_zcl_door_lock_unlock_door_resp_handler(param, &cmd_info);
+        break;
+    case ZB_ZCL_CMD_DOOR_LOCK_OPERATION_EVENT_NOTIFICATION_ID:
+        break;
+    default:
+        processed = ZB_FALSE;
+        break;
+    }
 
-  if (processed && ret != RET_BUSY)
-  {
-    zb_zcl_send_default_handler(param, &cmd_info,
-                                zb_zcl_door_lock_map_ret_code_to_zcl_status(ret));
-  }
+    if (processed && ret != RET_BUSY)
+    {
+        zb_zcl_send_default_handler(param, &cmd_info,
+                                    zb_zcl_door_lock_map_ret_code_to_zcl_status(ret));
+    }
 
-  TRACE_MSG(TRACE_ZCL1,
-            "< zb_zcl_process_door_lock_specific_commands_cli: processed %d",
-            (FMT__D, processed));
+    TRACE_MSG(TRACE_ZCL1,
+              "< zb_zcl_process_door_lock_specific_commands_cli: processed %d",
+              (FMT__D, processed));
 
-  return processed;
+    return processed;
 }
 #endif /* ZB_ZCL_SUPPORT_CLUSTER_DOOR_LOCK */

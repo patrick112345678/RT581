@@ -44,7 +44,7 @@
  *
  * Also, tests should be easily verifiable. I mean, we need to provide clear
  * pass verdict criteria for test executor. For example, for test "Battery
- * value is 0" I think it would better to send four battery measurements one 
+ * value is 0" I think it would better to send four battery measurements one
  * after another with some timeout. Values for voltage are 0, 3, 0, 2 in volts.
  * So, test executor should verify that result of test is two measurements from
  * gateway to cloud with 3.0 and 2.0 voltage values. It is easy to verify that

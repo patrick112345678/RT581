@@ -56,14 +56,14 @@
 
 void zb_trace_put_bytes(zb_uint16_t file_id, zb_uint8_t *buf, zb_short_t len)
 {
-  ZVUNUSED(file_id);
-  (void)zb_osif_file_write(s_trace_file, buf, len);
+    ZVUNUSED(file_id);
+    (void)zb_osif_file_write(s_trace_file, buf, len);
 
 #ifdef ZB_NET_TRACE
-  if (!zb_nettrace_is_blocked_for(file_id))
-  {
-    zb_nettrace_put_bytes(buf, len);
-  }
+    if (!zb_nettrace_is_blocked_for(file_id))
+    {
+        zb_nettrace_put_bytes(buf, len);
+    }
 #endif
 }
 
@@ -75,81 +75,81 @@ void zb_trace_put_bytes(zb_uint16_t file_id, zb_uint8_t *buf, zb_short_t len)
  * @param args_size - number of added parameters
  */
 void zb_trace_msg_bin_file(
-  zb_uint_t mask,
-  zb_uint_t level,
+    zb_uint_t mask,
+    zb_uint_t level,
 #if defined ZB_BINARY_AND_TEXT_TRACE_MODE
-  zb_char_t *file_name,
+    zb_char_t *file_name,
 #endif
-  zb_uint16_t file_id,
-  zb_int_t line_number,
-  zb_int_t args_size, ...)
+    zb_uint16_t file_id,
+    zb_int_t line_number,
+    zb_int_t args_size, ...)
 {
-  zb_uint16_t batch_size;
+    zb_uint16_t batch_size;
 
 #if defined ZB_BINARY_AND_TEXT_TRACE_MODE
-  ZVUNUSED(file_name);
+    ZVUNUSED(file_name);
 #endif
-  if (!zb_trace_check(level, mask))
-  {
-    return;
-  }
-
-  /* If ZB_TRACE_LEVEL not defined, output nothing */
-#ifdef ZB_TRACE_LEVEL
-  if (!s_trace_file)
-  {
-    return;
-  }
-
-#ifdef ZB_NET_TRACE
-  if (zb_nettrace_is_blocked_for(file_id))
-  {
-    return;
-  }
-#endif
-
-  zb_osif_trace_lock();
-
-  /* align args_size to multiple of zb_minimal_vararg_t and
-   * calculate the whole size of trace record
-   */
-  batch_size = zb_trace_rec_size((zb_uint16_t *)&args_size);
-
-#ifdef ZB_NET_TRACE
-  zb_nettrace_batch_start(batch_size);
-#endif
-
-  zb_trace_put_hdr(file_id, batch_size);
-  zb_trace_put_u16(file_id, zb_trace_get_counter() & 0xffff);
-  zb_trace_put_u16(file_id, file_id);
-  zb_trace_put_u16(file_id, line_number);
-  zb_trace_inc_counter();
-
-  {
-    va_list arglist;
-    zb_int_t size = args_size;
-
-    va_start(arglist, args_size);
-
-    while (size > 0)
+    if (!zb_trace_check(level, mask))
     {
-      zb_minimal_vararg_t v = va_arg(arglist, zb_minimal_vararg_t);
-      zb_trace_put_vararg(file_id, v);
-      size -= sizeof(v);
+        return;
     }
 
-    va_end(arglist);
-  }
+    /* If ZB_TRACE_LEVEL not defined, output nothing */
+#ifdef ZB_TRACE_LEVEL
+    if (!s_trace_file)
+    {
+        return;
+    }
 
-  zb_osif_file_flush(s_trace_file);
 #ifdef ZB_NET_TRACE
-  zb_nettrace_batch_flush();
+    if (zb_nettrace_is_blocked_for(file_id))
+    {
+        return;
+    }
 #endif
-  zb_osif_trace_unlock();
+
+    zb_osif_trace_lock();
+
+    /* align args_size to multiple of zb_minimal_vararg_t and
+     * calculate the whole size of trace record
+     */
+    batch_size = zb_trace_rec_size((zb_uint16_t *)&args_size);
+
+#ifdef ZB_NET_TRACE
+    zb_nettrace_batch_start(batch_size);
+#endif
+
+    zb_trace_put_hdr(file_id, batch_size);
+    zb_trace_put_u16(file_id, zb_trace_get_counter() & 0xffff);
+    zb_trace_put_u16(file_id, file_id);
+    zb_trace_put_u16(file_id, line_number);
+    zb_trace_inc_counter();
+
+    {
+        va_list arglist;
+        zb_int_t size = args_size;
+
+        va_start(arglist, args_size);
+
+        while (size > 0)
+        {
+            zb_minimal_vararg_t v = va_arg(arglist, zb_minimal_vararg_t);
+            zb_trace_put_vararg(file_id, v);
+            size -= sizeof(v);
+        }
+
+        va_end(arglist);
+    }
+
+    zb_osif_file_flush(s_trace_file);
+#ifdef ZB_NET_TRACE
+    zb_nettrace_batch_flush();
+#endif
+    zb_osif_trace_unlock();
 #else
-  (void)file_id;
-  (void)line_number;
-  (void)args_size;
+    (void)file_id;
+    (void)line_number;
+    (void)args_size;
 #endif  /* ZB_TRACE_LEVEL */
 }
 

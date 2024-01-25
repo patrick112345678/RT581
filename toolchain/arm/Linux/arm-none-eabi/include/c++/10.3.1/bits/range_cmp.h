@@ -38,21 +38,23 @@ namespace std _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
-  struct __is_transparent; // not defined
+struct __is_transparent; // not defined
 
-  // Define std::identity here so that <iterator> and <ranges>
-  // don't need to include <bits/stl_function.h> to get it.
+// Define std::identity here so that <iterator> and <ranges>
+// don't need to include <bits/stl_function.h> to get it.
 
-  /// [func.identity] The identity function.
-  struct identity
-  {
+/// [func.identity] The identity function.
+struct identity
+{
     template<typename _Tp>
-      constexpr _Tp&&
-      operator()(_Tp&& __t) const noexcept
-      { return std::forward<_Tp>(__t); }
+    constexpr _Tp &&
+    operator()(_Tp &&__t) const noexcept
+    {
+        return std::forward<_Tp>(__t);
+    }
 
     using is_transparent = __is_transparent;
-  };
+};
 
 #ifdef __cpp_lib_concepts
 // Define this here, included by all the headers that need to define it.
@@ -60,119 +62,143 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 namespace ranges
 {
-  namespace __detail
-  {
-    // BUILTIN-PTR-CMP(T, <, U)
-    // This determines whether t < u results in a call to a built-in operator<
-    // comparing pointers. It doesn't work for function pointers (PR 93628).
+namespace __detail
+{
+// BUILTIN-PTR-CMP(T, <, U)
+// This determines whether t < u results in a call to a built-in operator<
+// comparing pointers. It doesn't work for function pointers (PR 93628).
+template<typename _Tp, typename _Up>
+concept __less_builtin_ptr_cmp
+    = requires (_Tp && __t, _Up && __u)
+{
+    {
+        __t < __u
+    }
+    -> same_as<bool>;
+}
+&&convertible_to<_Tp, const volatile void *>
+&&convertible_to<_Up, const volatile void *>
+&&(! requires(_Tp &&__t, _Up &&__u)
+{
+    operator<(std::forward<_Tp>(__t), std::forward<_Up>(__u));
+}
+&& ! requires(_Tp &&__t, _Up &&__u)
+{
+    std::forward<_Tp>(__t).operator < (std::forward<_Up>(__u));
+});
+} // namespace __detail
+
+// [range.cmp] Concept-constrained comparisons
+
+// _GLIBCXX_RESOLVE_LIB_DEFECTS
+// 3530 BUILTIN-PTR-MEOW should not opt the type out of syntactic checks
+
+/// ranges::equal_to function object type.
+struct equal_to
+{
     template<typename _Tp, typename _Up>
-      concept __less_builtin_ptr_cmp
-	= requires (_Tp&& __t, _Up&& __u) { { __t < __u } -> same_as<bool>; }
-	  && convertible_to<_Tp, const volatile void*>
-	  && convertible_to<_Up, const volatile void*>
-	  && (! requires(_Tp&& __t, _Up&& __u)
-	      { operator<(std::forward<_Tp>(__t), std::forward<_Up>(__u)); }
-	      && ! requires(_Tp&& __t, _Up&& __u)
-	      { std::forward<_Tp>(__t).operator<(std::forward<_Up>(__u)); });
-  } // namespace __detail
-
-  // [range.cmp] Concept-constrained comparisons
-
-  // _GLIBCXX_RESOLVE_LIB_DEFECTS
-  // 3530 BUILTIN-PTR-MEOW should not opt the type out of syntactic checks
-
-  /// ranges::equal_to function object type.
-  struct equal_to
-  {
-    template<typename _Tp, typename _Up>
-      requires equality_comparable_with<_Tp, _Up>
-      constexpr bool
-      operator()(_Tp&& __t, _Up&& __u) const
-      noexcept(noexcept(std::declval<_Tp>() == std::declval<_Up>()))
-      { return std::forward<_Tp>(__t) == std::forward<_Up>(__u); }
+    requires equality_comparable_with<_Tp, _Up>
+    constexpr bool
+    operator()(_Tp &&__t, _Up &&__u) const
+    noexcept(noexcept(std::declval<_Tp>() == std::declval<_Up>()))
+    {
+        return std::forward<_Tp>(__t) == std::forward<_Up>(__u);
+    }
 
     using is_transparent = __is_transparent;
-  };
+};
 
-  /// ranges::not_equal_to function object type.
-  struct not_equal_to
-  {
+/// ranges::not_equal_to function object type.
+struct not_equal_to
+{
     template<typename _Tp, typename _Up>
-      requires equality_comparable_with<_Tp, _Up>
-      constexpr bool
-      operator()(_Tp&& __t, _Up&& __u) const
-      noexcept(noexcept(std::declval<_Up>() == std::declval<_Tp>()))
-      { return !equal_to{}(std::forward<_Tp>(__t), std::forward<_Up>(__u)); }
+    requires equality_comparable_with<_Tp, _Up>
+    constexpr bool
+    operator()(_Tp &&__t, _Up &&__u) const
+    noexcept(noexcept(std::declval<_Up>() == std::declval<_Tp>()))
+    {
+        return !equal_to{}(std::forward<_Tp>(__t), std::forward<_Up>(__u));
+    }
 
     using is_transparent = __is_transparent;
-  };
+};
 
-  /// ranges::less function object type.
-  struct less
-  {
+/// ranges::less function object type.
+struct less
+{
     template<typename _Tp, typename _Up>
-      requires totally_ordered_with<_Tp, _Up>
-      constexpr bool
-      operator()(_Tp&& __t, _Up&& __u) const
-      noexcept(noexcept(std::declval<_Tp>() < std::declval<_Up>()))
-      {
-	if constexpr (__detail::__less_builtin_ptr_cmp<_Tp, _Up>)
-	  {
+    requires totally_ordered_with<_Tp, _Up>
+    constexpr bool
+    operator()(_Tp &&__t, _Up &&__u) const
+    noexcept(noexcept(std::declval<_Tp>() < std::declval<_Up>()))
+    {
+        if constexpr (__detail::__less_builtin_ptr_cmp<_Tp, _Up>)
+        {
 #ifdef __cpp_lib_is_constant_evaluated
-	    if (std::is_constant_evaluated())
-	      return __t < __u;
+            if (std::is_constant_evaluated())
+            {
+                return __t < __u;
+            }
 #endif
-	    auto __x = reinterpret_cast<__UINTPTR_TYPE__>(
-	      static_cast<const volatile void*>(std::forward<_Tp>(__t)));
-	    auto __y = reinterpret_cast<__UINTPTR_TYPE__>(
-	      static_cast<const volatile void*>(std::forward<_Up>(__u)));
-	    return __x < __y;
-	  }
-	else
-	  return std::forward<_Tp>(__t) < std::forward<_Up>(__u);
-      }
+            auto __x = reinterpret_cast<__UINTPTR_TYPE__>(
+                           static_cast<const volatile void *>(std::forward<_Tp>(__t)));
+            auto __y = reinterpret_cast<__UINTPTR_TYPE__>(
+                           static_cast<const volatile void *>(std::forward<_Up>(__u)));
+            return __x < __y;
+        }
+        else
+        {
+            return std::forward<_Tp>(__t) < std::forward<_Up>(__u);
+        }
+    }
 
     using is_transparent = __is_transparent;
-  };
+};
 
-  /// ranges::greater function object type.
-  struct greater
-  {
+/// ranges::greater function object type.
+struct greater
+{
     template<typename _Tp, typename _Up>
-      requires totally_ordered_with<_Tp, _Up>
-      constexpr bool
-      operator()(_Tp&& __t, _Up&& __u) const
-      noexcept(noexcept(std::declval<_Up>() < std::declval<_Tp>()))
-      { return less{}(std::forward<_Up>(__u), std::forward<_Tp>(__t)); }
+    requires totally_ordered_with<_Tp, _Up>
+    constexpr bool
+    operator()(_Tp &&__t, _Up &&__u) const
+    noexcept(noexcept(std::declval<_Up>() < std::declval<_Tp>()))
+    {
+        return less{}(std::forward<_Up>(__u), std::forward<_Tp>(__t));
+    }
 
     using is_transparent = __is_transparent;
-  };
+};
 
-  /// ranges::greater_equal function object type.
-  struct greater_equal
-  {
+/// ranges::greater_equal function object type.
+struct greater_equal
+{
     template<typename _Tp, typename _Up>
-      requires totally_ordered_with<_Tp, _Up>
-      constexpr bool
-      operator()(_Tp&& __t, _Up&& __u) const
-      noexcept(noexcept(std::declval<_Tp>() < std::declval<_Up>()))
-      { return !less{}(std::forward<_Tp>(__t), std::forward<_Up>(__u)); }
+    requires totally_ordered_with<_Tp, _Up>
+    constexpr bool
+    operator()(_Tp &&__t, _Up &&__u) const
+    noexcept(noexcept(std::declval<_Tp>() < std::declval<_Up>()))
+    {
+        return !less{}(std::forward<_Tp>(__t), std::forward<_Up>(__u));
+    }
 
     using is_transparent = __is_transparent;
-  };
+};
 
-  /// ranges::less_equal function object type.
-  struct less_equal
-  {
+/// ranges::less_equal function object type.
+struct less_equal
+{
     template<typename _Tp, typename _Up>
-      requires totally_ordered_with<_Tp, _Up>
-      constexpr bool
-      operator()(_Tp&& __t, _Up&& __u) const
-      noexcept(noexcept(std::declval<_Up>() < std::declval<_Tp>()))
-      { return !less{}(std::forward<_Up>(__u), std::forward<_Tp>(__t)); }
+    requires totally_ordered_with<_Tp, _Up>
+    constexpr bool
+    operator()(_Tp &&__t, _Up &&__u) const
+    noexcept(noexcept(std::declval<_Up>() < std::declval<_Tp>()))
+    {
+        return !less{}(std::forward<_Up>(__u), std::forward<_Tp>(__t));
+    }
 
     using is_transparent = __is_transparent;
-  };
+};
 
 } // namespace ranges
 #endif // library concepts

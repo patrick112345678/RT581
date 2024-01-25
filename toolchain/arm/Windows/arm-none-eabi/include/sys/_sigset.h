@@ -1,6 +1,6 @@
 /*-
  * Copyright (c) 1982, 1986, 1989, 1991, 1993
- *	The Regents of the University of California.  All rights reserved.
+ *  The Regents of the University of California.  All rights reserved.
  * (c) UNIX System Laboratories, Inc.
  * All or some portions of this file are derived from material licensed
  * to the University of California by American Telephone and Telegraph
@@ -31,12 +31,12 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  *
- *	@(#)signal.h	8.4 (Berkeley) 5/4/95
+ *  @(#)signal.h    8.4 (Berkeley) 5/4/95
  * $FreeBSD$
  */
 
 #ifndef _SYS__SIGSET_H_
-#define	_SYS__SIGSET_H_
+#define _SYS__SIGSET_H_
 
 typedef unsigned long __sigset_t;
 

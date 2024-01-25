@@ -44,65 +44,65 @@
 */
 enum zb_zcl_meter_identification_attr_e
 {
-  /* (M) */
-  ZB_ZCl_ATTR_METER_IDENTIFICATION_COMPANY_NAME      = 0x0000,  /**< @e CompanyName is a ZCL Octet String field capable
+    /* (M) */
+    ZB_ZCl_ATTR_METER_IDENTIFICATION_COMPANY_NAME      = 0x0000,  /**< @e CompanyName is a ZCL Octet String field capable
                                                                   *  of storing up to 16 character string (the first
                                                                   *  Octet indicates length) encoded in the UTF-8 format.
                                                                   *  Company Name defines the meter manufacturer name,
                                                                   *  decided by manufacturer
                                                                   */
-  /* (M) */
-  ZB_ZCl_ATTR_METER_IDENTIFICATION_METER_TYPE_ID     = 0x0001,  /**< @e MeterTypeID defines the Meter installation features,
+    /* (M) */
+    ZB_ZCl_ATTR_METER_IDENTIFICATION_METER_TYPE_ID     = 0x0001,  /**< @e MeterTypeID defines the Meter installation features,
                                                                   * decided by manufacturer.
                                                                   */
-  /* (M) */
-  ZB_ZCl_ATTR_METER_IDENTIFICATION_DATA_QUALITY_ID   = 0x0004,  /**< @e DataQualityID defines the Meter Simple Metering
+    /* (M) */
+    ZB_ZCl_ATTR_METER_IDENTIFICATION_DATA_QUALITY_ID   = 0x0004,  /**< @e DataQualityID defines the Meter Simple Metering
                                                                   * information certification type, decided by manufacturer.
                                                                   */
-  /* (O) */
-  ZB_ZCl_ATTR_METER_IDENTIFICATION_CUSTOMER_NAME     = 0x0005,  /**< @e CustomerName is a ZCL Character String field capable
+    /* (O) */
+    ZB_ZCl_ATTR_METER_IDENTIFICATION_CUSTOMER_NAME     = 0x0005,  /**< @e CustomerName is a ZCL Character String field capable
                                                                   * of storing up to 16 character string (the first Octet
                                                                   * indicates length) encoded in the ASCII format.
                                                                   */
-  /* (O) */
-  ZB_ZCl_ATTR_METER_IDENTIFICATION_MODEL             = 0x0006,  /**< @e Model is a ZCL Octet String field capable of storing
+    /* (O) */
+    ZB_ZCl_ATTR_METER_IDENTIFICATION_MODEL             = 0x0006,  /**< @e Model is a ZCL Octet String field capable of storing
                                                                   * up to 16 character string (the first Octet indicates length)
                                                                   * encoded in the UTF-8 format. @e Model defines the meter model
                                                                   * name, decided by manufacturer.
                                                                   */
-  /* (O) */
-  ZB_ZCl_ATTR_METER_IDENTIFICATION_PART_NUMBER       = 0x0007,  /**< @e PartNumber is a ZCL Octet String field capable of storing
+    /* (O) */
+    ZB_ZCl_ATTR_METER_IDENTIFICATION_PART_NUMBER       = 0x0007,  /**< @e PartNumber is a ZCL Octet String field capable of storing
                                                                   * up to 16 character string (the first Octet indicates length)
                                                                   * encoded in the UTF-8 format. @e PartNumber defines the meter part
                                                                   * number, decided by manufacturer.
                                                                   */
-  /* (O) */
-  ZB_ZCl_ATTR_METER_IDENTIFICATION_PRODUCT_REVISION  = 0x0008,  /**< @e ProductRevision is a ZCL Octet String field capable
+    /* (O) */
+    ZB_ZCl_ATTR_METER_IDENTIFICATION_PRODUCT_REVISION  = 0x0008,  /**< @e ProductRevision is a ZCL Octet String field capable
                                                                   * of storing up to 6 character string (the first Octet
                                                                   * indicates length) encoded in the UTF-8 format.
                                                                   * @e ProductRevision defines the meter revision code,
                                                                   * decided by manufacturer.
                                                                   */
-  /* (O) */
-  ZB_ZCl_ATTR_METER_IDENTIFICATION_SOFTWARE_REVISION = 0x000A,  /**< @e SoftwareRevision is a ZCL Octet String field capable
+    /* (O) */
+    ZB_ZCl_ATTR_METER_IDENTIFICATION_SOFTWARE_REVISION = 0x000A,  /**< @e SoftwareRevision is a ZCL Octet String field capable
                                                                   * of storing up to 6 character string (the first Octet indicates
                                                                   * length) encoded in the UTF-8 format. SoftwareRevision defines
                                                                   * the meter software revision code, decided by manufacturer.
                                                                   */
-  /* (O) */
-  ZB_ZCl_ATTR_METER_IDENTIFICATION_UTILITY_NAME      = 0x000B,  /**< @e UtilityName is a ZCL Character String field capable of
+    /* (O) */
+    ZB_ZCl_ATTR_METER_IDENTIFICATION_UTILITY_NAME      = 0x000B,  /**< @e UtilityName is a ZCL Character String field capable of
                                                                   * storing up to 16 character string (the first Octet indicates
                                                                   * length) encoded in the ASCII format.
                                                                   */
-  /* (M) */
-  ZB_ZCl_ATTR_METER_IDENTIFICATION_POD               = 0x000C,  /**< @e POD (Point of Delivery) is a ZCL Character String field
+    /* (M) */
+    ZB_ZCl_ATTR_METER_IDENTIFICATION_POD               = 0x000C,  /**< @e POD (Point of Delivery) is a ZCL Character String field
                                                                   * capable of storing up to 16 character string (the first Octet
                                                                   * indicates length) encoded in the ASCII format. POD is the unique
                                                                   * identification ID of the premise connection point. It is also a
                                                                   * contractual information known by the clients and indicated in the bill.
                                                                   */
-  /* (M) */
-  ZB_ZCl_ATTR_METER_IDENTIFICATION_AVAILABLE_POWER   = 0x000D,  /**< @e AvailablePower represents the @e InstantaneousDemand that
+    /* (M) */
+    ZB_ZCl_ATTR_METER_IDENTIFICATION_AVAILABLE_POWER   = 0x000D,  /**< @e AvailablePower represents the @e InstantaneousDemand that
                                                                  * can be distributed to the customer (e.g., @e 3.3KW power)
                                                                  * without any risk of overload. The Available Power SHALL use
                                                                  * the same formatting conventions as the one used in the simple
@@ -110,8 +110,8 @@ enum zb_zcl_meter_identification_attr_e
                                                                  * @e InstantaneousDemand attribute, i.e.,
                                                                  * the @e UnitOfMeasure and @e DemandFormatting.
                                                                  */
-  /* (M) */
-  ZB_ZCl_ATTR_METER_IDENTIFICATION_POWER_THRESHOLD   = 0x000E   /**< @e PowerThreshold represents a threshold of @e InstantaneousDemand
+    /* (M) */
+    ZB_ZCl_ATTR_METER_IDENTIFICATION_POWER_THRESHOLD   = 0x000E   /**< @e PowerThreshold represents a threshold of @e InstantaneousDemand
                                                                   * distributed to the customer (e.g., 4.191KW) that will lead to an
                                                                   * imminent risk of overload.
                                                                   */
@@ -123,13 +123,13 @@ enum zb_zcl_meter_identification_attr_e
  */
 typedef enum zb_zcl_meter_identification_meter_type_e
 {
-  ZB_ZCL_METER_TYPE_UTILITY_PRIMARY    = 0x0000,  /**< Utility Primary Meter */
-  ZB_ZCL_METER_TYPE_UTILITY_PRODUCTION = 0x0001,  /**< Utility Production Meter */
-  ZB_ZCL_METER_TYPE_UTILITY_SECONDARY  = 0x0002,  /**< Utility Secondary Meter */
-  ZB_ZCL_METER_TYPE_PRIVATE_PRIMARY    = 0x0100,  /**< Private Primary Meter */
-  ZB_ZCL_METER_TYPE_PRIVATE_PRODUCTION = 0x0101,  /**< Private Production Meter */
-  ZB_ZCL_METER_TYPE_PRIVATE_SECONDARY  = 0x0102,  /**< Private Secondary Meters */
-  ZB_ZCL_METER_TYPE_GENERIC            = 0x0110   /**< Generic Meter */
+    ZB_ZCL_METER_TYPE_UTILITY_PRIMARY    = 0x0000,  /**< Utility Primary Meter */
+    ZB_ZCL_METER_TYPE_UTILITY_PRODUCTION = 0x0001,  /**< Utility Production Meter */
+    ZB_ZCL_METER_TYPE_UTILITY_SECONDARY  = 0x0002,  /**< Utility Secondary Meter */
+    ZB_ZCL_METER_TYPE_PRIVATE_PRIMARY    = 0x0100,  /**< Private Primary Meter */
+    ZB_ZCL_METER_TYPE_PRIVATE_PRODUCTION = 0x0101,  /**< Private Production Meter */
+    ZB_ZCL_METER_TYPE_PRIVATE_SECONDARY  = 0x0102,  /**< Private Secondary Meters */
+    ZB_ZCL_METER_TYPE_GENERIC            = 0x0110   /**< Generic Meter */
 } zb_zcl_meter_identification_meter_type_t;
 
 
@@ -138,10 +138,10 @@ typedef enum zb_zcl_meter_identification_meter_type_e
  */
 typedef enum zb_zcl_meter_identification_data_quality_e
 {
-  ZB_ZCL_DATA_QUALITY_ALL_DATA_CERTIFIED                       = 0x0000,  /**< All Data Certified */
-  ZB_ZCL_DATA_QUALITY_ONLY_INSTANTANEOUS_POWER_NOT_CERTIFIED   = 0x0001,  /**< Only Instantaneous Power not Certified */
-  ZB_ZCL_DATA_QUALITY_ONLY_CUMULATED_CONSUMPTION_NOT_CERTIFIED = 0x0002,  /**< Only Cumulated Consumption not Certified */
-  ZB_ZCL_DATA_QUALITY_NOT_CERTIFIED_DATA                       = 0x0003   /**< Not Certified data */
+    ZB_ZCL_DATA_QUALITY_ALL_DATA_CERTIFIED                       = 0x0000,  /**< All Data Certified */
+    ZB_ZCL_DATA_QUALITY_ONLY_INSTANTANEOUS_POWER_NOT_CERTIFIED   = 0x0001,  /**< Only Instantaneous Power not Certified */
+    ZB_ZCL_DATA_QUALITY_ONLY_CUMULATED_CONSUMPTION_NOT_CERTIFIED = 0x0002,  /**< Only Cumulated Consumption not Certified */
+    ZB_ZCL_DATA_QUALITY_NOT_CERTIFIED_DATA                       = 0x0003   /**< Not Certified data */
 } zb_zcl_meter_identification_data_quality_t;
 
 /** @brief Default value for Company Name attribute */

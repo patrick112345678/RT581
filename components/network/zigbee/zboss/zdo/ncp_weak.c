@@ -50,87 +50,87 @@ ZB_WEAK_PRE void sncp_auto_turbo_poll_stop(void) ZB_WEAK;
 
 void ncp_signal(ncp_signal_t signal, zb_uint8_t param)
 {
-  ZVUNUSED(signal);
-  zb_buf_free(param);
+    ZVUNUSED(signal);
+    zb_buf_free(param);
 }
 
 #if defined ZB_ENABLE_SE_MIN_CONFIG
 void ncp_se_signal(zse_commissioning_signal_t signal, zb_uint8_t param)
 {
-  ZVUNUSED(signal);
-  zb_buf_free(param);
+    ZVUNUSED(signal);
+    zb_buf_free(param);
 }
 #endif /* ZB_ENABLE_SE_MIN_CONFIG */
 
 zb_bool_t ncp_catch_zcl_packet(zb_uint8_t param, zb_zcl_parsed_hdr_t *cmd_info, zb_uint8_t zcl_parse_status)
 {
-  ZVUNUSED(param);
-  ZVUNUSED(cmd_info);
-  ZVUNUSED(zcl_parse_status);
-  return ZB_FALSE;
+    ZVUNUSED(param);
+    ZVUNUSED(cmd_info);
+    ZVUNUSED(zcl_parse_status);
+    return ZB_FALSE;
 }
 
 zb_bool_t ncp_catch_aps_data_conf(zb_uint8_t param)
 {
-  ZVUNUSED(param);
-  return ZB_FALSE;
+    ZVUNUSED(param);
+    return ZB_FALSE;
 }
 
 zb_bool_t ncp_catch_nwk_disc_conf(zb_uint8_t param)
 {
-  ZVUNUSED(param);
-  return ZB_FALSE;
+    ZVUNUSED(param);
+    return ZB_FALSE;
 }
 
 #if defined ZB_ENABLE_SE_MIN_CONFIG
 zb_bool_t ncp_partner_lk_failed(zb_uint8_t param)
 {
-  ZVUNUSED(param);
-  return ZB_FALSE;
+    ZVUNUSED(param);
+    return ZB_FALSE;
 }
 #endif /* ZB_ENABLE_SE_MIN_CONFIG */
 
 void ncp_address_update_ind(zb_uint16_t short_address)
 {
-  ZVUNUSED(short_address);
+    ZVUNUSED(short_address);
 }
 
 void ncp_apsme_remote_bind_unbind_ind(zb_uint8_t param, zb_bool_t bind)
 {
-  ZVUNUSED(param);
-  ZVUNUSED(bind);
+    ZVUNUSED(param);
+    ZVUNUSED(bind);
 }
 
 #ifdef ZB_APSDE_REQ_ROUTING_FEATURES
 void ncp_route_reply_ind(zb_nwk_cmd_rrep_t *rrep)
 {
-  ZVUNUSED(rrep);
+    ZVUNUSED(rrep);
 }
 
 void ncp_nwk_route_req_send_ind(zb_nwk_cmd_rreq_t *rreq)
 {
-  ZVUNUSED(rreq);
+    ZVUNUSED(rreq);
 }
 
 void ncp_nwk_route_send_rrec_ind(zb_nwk_cmd_rrec_t *rrec)
 {
-  ZVUNUSED(rrec);
+    ZVUNUSED(rrec);
 }
 #endif
 
 void sncp_auto_turbo_poll_ed_timeout(zb_bool_t is_on)
 {
-  ZVUNUSED(is_on);
+    ZVUNUSED(is_on);
 }
 
 void sncp_auto_turbo_poll_aps_rx(zb_bool_t is_on)
 {
-  ZVUNUSED(is_on);
+    ZVUNUSED(is_on);
 }
 
 void sncp_auto_turbo_poll_aps_tx(zb_bool_t is_on)
 {
-  ZVUNUSED(is_on);
+    ZVUNUSED(is_on);
 }
 
 void sncp_auto_turbo_poll_stop(void)

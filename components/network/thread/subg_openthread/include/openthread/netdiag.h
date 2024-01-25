@@ -263,7 +263,7 @@ typedef struct otNetworkDiagTlv
         {
             uint8_t mCount;
             otNetworkDiagChildEntry
-                mTable[OT_NETWORK_BASE_TLV_MAX_LENGTH / OT_NETWORK_DIAGNOSTIC_CHILD_TABLE_ENTRY_SIZE];
+            mTable[OT_NETWORK_BASE_TLV_MAX_LENGTH / OT_NETWORK_DIAGNOSTIC_CHILD_TABLE_ENTRY_SIZE];
         } mChildTable;
         struct
         {
@@ -304,9 +304,9 @@ otError otThreadGetNextDiagnosticTlv(const otMessage       *aMessage,
  *
  */
 typedef void (*otReceiveDiagnosticGetCallback)(otError              aError,
-                                               otMessage           *aMessage,
-                                               const otMessageInfo *aMessageInfo,
-                                               void                *aContext);
+        otMessage           *aMessage,
+        const otMessageInfo *aMessageInfo,
+        void                *aContext);
 
 /**
  * Send a Network Diagnostic Get request.

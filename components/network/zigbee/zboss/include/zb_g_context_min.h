@@ -73,8 +73,8 @@ extern zb_intr_globals_t g_izb;
 */
 struct zb_globals_s
 {
-  zb_sched_globals_t      sched;    /*!< Global schedule context */
-  zb_buf_pool_t           bpool;    /*!< Global buffer pool context */
+    zb_sched_globals_t      sched;    /*!< Global schedule context */
+    zb_buf_pool_t           bpool;    /*!< Global buffer pool context */
 };
 
 /**
@@ -82,7 +82,7 @@ struct zb_globals_s
  */
 struct zb_intr_globals_s
 {
-  zb_timer_t  time;
+    zb_timer_t  time;
 };
 
 #define ZB_TIMER_CTX() g_izb.time

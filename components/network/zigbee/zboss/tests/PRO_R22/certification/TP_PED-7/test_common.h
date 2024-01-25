@@ -36,15 +36,17 @@ static const zb_uint16_t TEST_PAN_ID = 0x1AAA;
 
 /* Key 0 */
 static const zb_uint8_t g_nwk_key0[16] = { 0xab, 0xcd, 0xef, 0x01, 0x23, 0x45, 0x67, 0x89,
-                              0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+                                           0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+                                         };
 /* Key 1 */
 static const zb_uint8_t g_nwk_key1[16] = { 0xab, 0xcd, 0xef, 0x01, 0x23, 0x45, 0x67, 0x89,
-                              0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01};
+                                           0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01
+                                         };
 /* Extended Pan Id */
 static const zb_ieee_addr_t g_ext_pan_id = {0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 
-#define TIME_ZC_LQI_REQ1		        (20 * ZB_TIME_ONE_SECOND)
-#define TIME_ZC_LQI_REQ2		        (80 * ZB_TIME_ONE_SECOND)
-#define TIME_ZC_LQI_REQ3		        (220 * ZB_TIME_ONE_SECOND)
+#define TIME_ZC_LQI_REQ1                (20 * ZB_TIME_ONE_SECOND)
+#define TIME_ZC_LQI_REQ2                (80 * ZB_TIME_ONE_SECOND)
+#define TIME_ZC_LQI_REQ3                (220 * ZB_TIME_ONE_SECOND)
 
 #endif  /* __TP_PED_7_TEST_COMMON */

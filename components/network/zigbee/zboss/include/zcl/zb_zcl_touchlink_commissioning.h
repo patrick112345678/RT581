@@ -81,8 +81,8 @@
  * response command frames. */
 typedef enum zb_zll_general_status_e
 {
-  ZB_ZLL_GENERAL_STATUS_SUCCESS,  /**< Status: OK. */
-  ZB_ZLL_GENERAL_STATUS_FAILURE   /**< Status: Error. */
+    ZB_ZLL_GENERAL_STATUS_SUCCESS,  /**< Status: OK. */
+    ZB_ZLL_GENERAL_STATUS_FAILURE   /**< Status: Error. */
 } zb_zll_general_status_t;
 
 /**
@@ -93,7 +93,7 @@ typedef enum zb_zll_general_status_e
  *  @param callback [IN] - callback to call upon send packet confirmation.
  *  @return packet send schedule status (see @ref zb_ret_t).
  */
-zb_ret_t zb_zll_send_packet(zb_bufid_t buffer, zb_uint8_t* data_ptr, zb_ieee_addr_t dst_addr_long, zb_callback_t callback);
+zb_ret_t zb_zll_send_packet(zb_bufid_t buffer, zb_uint8_t *data_ptr, zb_ieee_addr_t dst_addr_long, zb_callback_t callback);
 #define ZB_ZLL_SEND_PACKET(buffer, data_ptr, dst_addr_long, callback) \
   zb_zll_send_packet(buffer, data_ptr, dst_addr_long, callback)
 
@@ -107,7 +107,7 @@ zb_ret_t zb_zll_send_packet(zb_bufid_t buffer, zb_uint8_t* data_ptr, zb_ieee_add
 
 /* TODO Remove internal API function calling */
 /** @brief Get NIB Ext Pan ID */
-zb_uint8_t* zb_zll_get_nib_ext_pan_id(void);
+zb_uint8_t *zb_zll_get_nib_ext_pan_id(void);
 
 /* TODO Remove internal API function calling */
 /** @brief Get NIB Update ID */
@@ -124,14 +124,14 @@ zb_uint8_t zb_zll_get_nib_update_id(void);
 */
 enum zb_zll_commissioning_touchlink_cmd_e
 {
-  ZB_ZLL_CMD_COMMISSIONING_SCAN_REQ                    = 0x00,
-  ZB_ZLL_CMD_COMMISSIONING_DEVICE_INFORMATION_REQ      = 0x02,
-  ZB_ZLL_CMD_COMMISSIONING_IDENTIFY_REQ                = 0x06,
-  ZB_ZLL_CMD_COMMISSIONING_RESET_TO_FACTORY_NEW_REQ    = 0x07,
-  ZB_ZLL_CMD_COMMISSIONING_NETWORK_START_REQ           = 0x10,
-  ZB_ZLL_CMD_COMMISSIONING_NETWORK_JOIN_ROUTER_REQ     = 0x12,
-  ZB_ZLL_CMD_COMMISSIONING_NETWORK_JOIN_END_DEVICE_REQ = 0x14,
-  ZB_ZLL_CMD_COMMISSIONING_NETWORK_UPDATE_REQ          = 0x16
+    ZB_ZLL_CMD_COMMISSIONING_SCAN_REQ                    = 0x00,
+    ZB_ZLL_CMD_COMMISSIONING_DEVICE_INFORMATION_REQ      = 0x02,
+    ZB_ZLL_CMD_COMMISSIONING_IDENTIFY_REQ                = 0x06,
+    ZB_ZLL_CMD_COMMISSIONING_RESET_TO_FACTORY_NEW_REQ    = 0x07,
+    ZB_ZLL_CMD_COMMISSIONING_NETWORK_START_REQ           = 0x10,
+    ZB_ZLL_CMD_COMMISSIONING_NETWORK_JOIN_ROUTER_REQ     = 0x12,
+    ZB_ZLL_CMD_COMMISSIONING_NETWORK_JOIN_END_DEVICE_REQ = 0x14,
+    ZB_ZLL_CMD_COMMISSIONING_NETWORK_UPDATE_REQ          = 0x16
 };
 
 /*! @brief  Touchlink commissioning cluster utility command identifiers
@@ -139,8 +139,8 @@ enum zb_zll_commissioning_touchlink_cmd_e
 */
 enum zb_zll_commissioning_utility_cmd_e
 {
-  ZB_ZLL_CMD_COMMISSIONING_GET_GROUP_IDENTIFIERS_REQUEST = 0x41,
-  ZB_ZLL_CMD_COMMISSIONING_GET_ENDPOINT_LIST_REQUEST     = 0x42
+    ZB_ZLL_CMD_COMMISSIONING_GET_GROUP_IDENTIFIERS_REQUEST = 0x41,
+    ZB_ZLL_CMD_COMMISSIONING_GET_ENDPOINT_LIST_REQUEST     = 0x42
 };
 
 /*! @brief Touchlink commissioning cluster response command identifiers
@@ -148,11 +148,11 @@ enum zb_zll_commissioning_utility_cmd_e
 */
 enum zb_zll_commissioning_touchlink_cmd_resp_e
 {
-  ZB_ZLL_CMD_COMMISSIONING_SCAN_RES                    = 0x01,
-  ZB_ZLL_CMD_COMMISSIONING_DEVICE_INFORMATION_RES      = 0x03,
-  ZB_ZLL_CMD_COMMISSIONING_NETWORK_START_RES           = 0x11,
-  ZB_ZLL_CMD_COMMISSIONING_NETWORK_JOIN_ROUTER_RES     = 0x13,
-  ZB_ZLL_CMD_COMMISSIONING_NETWORK_JOIN_END_DEVICE_RES = 0x15
+    ZB_ZLL_CMD_COMMISSIONING_SCAN_RES                    = 0x01,
+    ZB_ZLL_CMD_COMMISSIONING_DEVICE_INFORMATION_RES      = 0x03,
+    ZB_ZLL_CMD_COMMISSIONING_NETWORK_START_RES           = 0x11,
+    ZB_ZLL_CMD_COMMISSIONING_NETWORK_JOIN_ROUTER_RES     = 0x13,
+    ZB_ZLL_CMD_COMMISSIONING_NETWORK_JOIN_END_DEVICE_RES = 0x15
 };
 
 /*! @brief Touchlink commissioning cluster utility response command identifiers
@@ -160,9 +160,9 @@ enum zb_zll_commissioning_touchlink_cmd_resp_e
 */
 enum zb_zll_commissioning_utility_cmd_resp_e
 {
-  ZB_ZLL_CMD_COMMISSIONING_ENDPOINT_INFORMATION           = 0x40,
-  ZB_ZLL_CMD_COMMISSIONING_GET_GROUP_IDENTIFIERS_RESPONSE = 0x41,
-  ZB_ZLL_CMD_COMMISSIONING_GET_ENDPOINT_LIST_RESPONSE     = 0x42
+    ZB_ZLL_CMD_COMMISSIONING_ENDPOINT_INFORMATION           = 0x40,
+    ZB_ZLL_CMD_COMMISSIONING_GET_GROUP_IDENTIFIERS_RESPONSE = 0x41,
+    ZB_ZLL_CMD_COMMISSIONING_GET_ENDPOINT_LIST_RESPONSE     = 0x42
 };
 
 /************************** Scan request command definitions ****************************/
@@ -172,18 +172,18 @@ enum zb_zll_commissioning_utility_cmd_resp_e
   */
 typedef ZB_PACKED_PRE struct zb_zll_commissioning_scan_req_s
 {
-  /** @brief Inter-PAN transaction identifier
-    * @see ZCL spec, subclause 13.3.2.1.1.1.
-    */
-  zb_uint32_t trans_id;
-  /** @brief Zigbee information
-    * @see ZCL spec, subclause 13.3.2.1.1.2.
-    */
-  zb_uint8_t zb_info;
-  /** @brief Touchlink information
-    * @see ZCL spec, subclause 13.3.2.1.1.3.
-    */
-  zb_uint8_t zll_info;
+    /** @brief Inter-PAN transaction identifier
+      * @see ZCL spec, subclause 13.3.2.1.1.1.
+      */
+    zb_uint32_t trans_id;
+    /** @brief Zigbee information
+      * @see ZCL spec, subclause 13.3.2.1.1.2.
+      */
+    zb_uint8_t zb_info;
+    /** @brief Touchlink information
+      * @see ZCL spec, subclause 13.3.2.1.1.3.
+      */
+    zb_uint8_t zll_info;
 } ZB_PACKED_STRUCT zb_zll_commissioning_scan_req_t;
 
 /** @brief Touchlink information bit values.
@@ -191,10 +191,10 @@ typedef ZB_PACKED_PRE struct zb_zll_commissioning_scan_req_s
   */
 enum zb_zll_info_e
 {
-  ZB_ZLL_INFO_FACTORY_NEW = 0x01,
-  ZB_ZLL_INFO_ADDR_ASSIGNMENT = 0x02,
-  ZB_ZLL_INFO_TOUCHLINK_INITIATOR = 0x10,
-  ZB_ZLL_INFO_TOUCHLINK_PRIOR = 0x20
+    ZB_ZLL_INFO_FACTORY_NEW = 0x01,
+    ZB_ZLL_INFO_ADDR_ASSIGNMENT = 0x02,
+    ZB_ZLL_INFO_TOUCHLINK_INITIATOR = 0x10,
+    ZB_ZLL_INFO_TOUCHLINK_PRIOR = 0x20
 };
 
 /** @brief Get Touchlink Info current value */
@@ -264,31 +264,31 @@ void zb_zll_commissioning_send_scan_req(zb_bufid_t buffer, zb_callback_t callbac
  */
 typedef ZB_PACKED_PRE struct zb_zll_commissioning_ep_info_s
 {
-  /** @brief Endpoint identifier.
-    *
-    * This field shall only be present when the number of sub-devices field is equal to 1.
-    */
-  zb_uint8_t endpoint_id;
-  /** @brief Profile identifier.
-    *
-    * This field shall only be present when the number of sub-devices field is equal to 1.
-    */
-  zb_uint16_t profile_id;
-  /** @brief Device identifier.
-    *
-    * This field shall only be present when the number of sub-devices field is equal to 1.
-    */
-  zb_uint16_t device_id;
-  /** @brief Version.
-    *
-    * This field shall only be present when the number of sub-devices field is equal to 1.
-    */
-  zb_uint8_t version;
-  /** @brief Group identifiers count.
-    *
-    * This field shall only be present when the number of sub-devices field is equal to 1.
-    */
-  zb_uint8_t n_group_ids;
+    /** @brief Endpoint identifier.
+      *
+      * This field shall only be present when the number of sub-devices field is equal to 1.
+      */
+    zb_uint8_t endpoint_id;
+    /** @brief Profile identifier.
+      *
+      * This field shall only be present when the number of sub-devices field is equal to 1.
+      */
+    zb_uint16_t profile_id;
+    /** @brief Device identifier.
+      *
+      * This field shall only be present when the number of sub-devices field is equal to 1.
+      */
+    zb_uint16_t device_id;
+    /** @brief Version.
+      *
+      * This field shall only be present when the number of sub-devices field is equal to 1.
+      */
+    zb_uint8_t version;
+    /** @brief Group identifiers count.
+      *
+      * This field shall only be present when the number of sub-devices field is equal to 1.
+      */
+    zb_uint8_t n_group_ids;
 } ZB_PACKED_STRUCT zb_zll_commissioning_ep_info_t;
 
 /** @brief Parsed Commissioning.ScanResponse structure.
@@ -296,38 +296,38 @@ typedef ZB_PACKED_PRE struct zb_zll_commissioning_ep_info_s
   */
 typedef ZB_PACKED_PRE struct zb_zll_commissioning_scan_res_s
 {
-  /** @brief Inter-PAN transaction identifier. */
-  zb_uint32_t trans_id;
-  /** @brief RSSI correction. */
-  zb_uint8_t rssi_correction;
-  /** @brief Zigbee device information. */
-  zb_uint8_t zb_info;
-  /** @brief Touchlink information. */
-  zb_uint8_t zll_info;
-  /** @brief Key bitmask. */
-  zb_uint16_t key_bitmask;
-  /** @brief Response identifier. */
-  zb_uint32_t resp_id;
-  /** @brief Extended Pan ID. */
-  zb_ext_pan_id_t ext_pan_id;
-  /** @brief Network update identifier. */
-  zb_uint8_t nwk_upd_id;
-  /** @brief Logical channel. */
-  zb_uint8_t channel;
-  /** @brief Pan ID. */
-  zb_uint16_t pan_id;
-  /** @brief Network address. */
-  zb_uint16_t nwk_addr;
-  /** @brief Number of sub-devices. */
-  zb_uint8_t n_subdevs;
-  /** @brief Total group identifiers. */
-  zb_uint8_t group_ids_total;
+    /** @brief Inter-PAN transaction identifier. */
+    zb_uint32_t trans_id;
+    /** @brief RSSI correction. */
+    zb_uint8_t rssi_correction;
+    /** @brief Zigbee device information. */
+    zb_uint8_t zb_info;
+    /** @brief Touchlink information. */
+    zb_uint8_t zll_info;
+    /** @brief Key bitmask. */
+    zb_uint16_t key_bitmask;
+    /** @brief Response identifier. */
+    zb_uint32_t resp_id;
+    /** @brief Extended Pan ID. */
+    zb_ext_pan_id_t ext_pan_id;
+    /** @brief Network update identifier. */
+    zb_uint8_t nwk_upd_id;
+    /** @brief Logical channel. */
+    zb_uint8_t channel;
+    /** @brief Pan ID. */
+    zb_uint16_t pan_id;
+    /** @brief Network address. */
+    zb_uint16_t nwk_addr;
+    /** @brief Number of sub-devices. */
+    zb_uint8_t n_subdevs;
+    /** @brief Total group identifiers. */
+    zb_uint8_t group_ids_total;
 
-  /**
-   *  @brief Endpoint information.
-   *  Shall be present if device has only single endpoint.
-   */
-  zb_zll_commissioning_ep_info_t endpoint_info;
+    /**
+     *  @brief Endpoint information.
+     *  Shall be present if device has only single endpoint.
+     */
+    zb_zll_commissioning_ep_info_t endpoint_info;
 } ZB_PACKED_STRUCT zb_zll_commissioning_scan_res_t;
 
 /**
@@ -449,10 +449,10 @@ typedef ZB_PACKED_PRE struct zb_zll_commissioning_scan_res_s
   */
 typedef ZB_PACKED_PRE struct zb_zll_commissioning_device_information_req_s
 {
-  /** @brief Inter-PAN transaction identifier. */
-  zb_uint32_t trans_id;
-  /** @brief Start index. */
-  zb_uint8_t start_idx;
+    /** @brief Inter-PAN transaction identifier. */
+    zb_uint32_t trans_id;
+    /** @brief Start index. */
+    zb_uint8_t start_idx;
 } ZB_PACKED_STRUCT zb_zll_commissioning_device_information_req_t;
 
 /** @brief Schedules sending Commissioning.DeviceInformationRequest command.
@@ -513,14 +513,14 @@ typedef ZB_PACKED_PRE struct zb_zll_commissioning_device_information_req_s
   */
 typedef ZB_PACKED_PRE struct zb_zll_commissioning_device_information_common_res_s
 {
-  /** @brief Inter-PAN transaction identifier. */
-  zb_uint32_t trans_id;
-  /** @brief Number of sub-devices. */
-  zb_uint8_t n_subdevs;
-  /** @brief Start index. */
-  zb_uint8_t start_idx;
-  /** @brief Device information record count. */
-  zb_uint8_t n_records;
+    /** @brief Inter-PAN transaction identifier. */
+    zb_uint32_t trans_id;
+    /** @brief Number of sub-devices. */
+    zb_uint8_t n_subdevs;
+    /** @brief Start index. */
+    zb_uint8_t start_idx;
+    /** @brief Device information record count. */
+    zb_uint8_t n_records;
 } ZB_PACKED_STRUCT zb_zll_commissioning_device_information_common_res_t;
 
 /** @brief Maximum number of device information records in the response. */
@@ -532,13 +532,13 @@ typedef ZB_PACKED_PRE struct zb_zll_commissioning_device_information_common_res_
   */
 typedef ZB_PACKED_PRE struct zb_zll_commissioning_device_information_ep_info_res_s
 {
-  zb_ieee_addr_t ieee_addr;   /**< IEEE address of the sub-device. */
-  zb_uint8_t ep_id;           /**< Device's endpoint identifier. */
-  zb_uint16_t profile_id;     /**< Profile identifier. */
-  zb_uint16_t device_id;      /**< Device identifier. */
-  zb_uint8_t version;         /**< Device version. */
-  zb_uint8_t group_id_count;  /**< Group identifier count. */
-  zb_uint8_t sort;            /**< Sort. */
+    zb_ieee_addr_t ieee_addr;   /**< IEEE address of the sub-device. */
+    zb_uint8_t ep_id;           /**< Device's endpoint identifier. */
+    zb_uint16_t profile_id;     /**< Profile identifier. */
+    zb_uint16_t device_id;      /**< Device identifier. */
+    zb_uint8_t version;         /**< Device version. */
+    zb_uint8_t group_id_count;  /**< Group identifier count. */
+    zb_uint8_t sort;            /**< Sort. */
 } ZB_PACKED_STRUCT zb_zll_commissioning_device_information_ep_info_res_t;
 
 /** @brief Starts filling in Commissioning.DeviceInformationResponse command.
@@ -676,10 +676,10 @@ typedef ZB_PACKED_PRE struct zb_zll_commissioning_device_information_ep_info_res
  */
 typedef ZB_PACKED_PRE struct zb_zll_commissioning_identify_req_s
 {
-  /** @brief Inter-PAN transaction identifier. */
-  zb_uint32_t trans_id;
-  /** @brief Identify duration. */
-  zb_uint16_t duration;
+    /** @brief Inter-PAN transaction identifier. */
+    zb_uint32_t trans_id;
+    /** @brief Identify duration. */
+    zb_uint16_t duration;
 } ZB_PACKED_STRUCT zb_zll_commissioning_identify_req_t;
 
 /**
@@ -739,15 +739,15 @@ typedef ZB_PACKED_PRE struct zb_zll_commissioning_identify_req_s
  */
 typedef ZB_PACKED_PRE struct zb_zll_commissioning_identify_req_param_s
 {
-  zb_ieee_addr_t dst_addr;    /**< @brief Destination device address. */
-  /**
-   *  @brief Time to identify.
-   *  Has special values:
-   *  @li @ref ZB_ZLL_IDENTIFY_STOP - instructs target to exit identify mode.
-   *  @li @ref ZB_ZLL_IDENTIFY_DEFAULT_TIME - instructs target to identify for a default period
-   *  known by the receiver.
-   */
-  zb_uint16_t identify_time;
+    zb_ieee_addr_t dst_addr;    /**< @brief Destination device address. */
+    /**
+     *  @brief Time to identify.
+     *  Has special values:
+     *  @li @ref ZB_ZLL_IDENTIFY_STOP - instructs target to exit identify mode.
+     *  @li @ref ZB_ZLL_IDENTIFY_DEFAULT_TIME - instructs target to identify for a default period
+     *  known by the receiver.
+     */
+    zb_uint16_t identify_time;
 } ZB_PACKED_STRUCT zb_zll_commissioning_identify_req_param_t;
 
 /**
@@ -815,8 +815,8 @@ zb_ret_t zb_zll_identify(zb_uint8_t param);
   */
 typedef ZB_PACKED_PRE struct zb_zll_commissioning_reset_to_fn_s
 {
-  /** @brief Inter-PAN transaction identifier. */
-  zb_uint32_t trans_id;
+    /** @brief Inter-PAN transaction identifier. */
+    zb_uint32_t trans_id;
 } ZB_PACKED_STRUCT zb_zll_commissioning_reset_to_fn_t;
 
 /**
@@ -870,21 +870,21 @@ typedef ZB_PACKED_PRE struct zb_zll_commissioning_reset_to_fn_s
  */
 typedef ZB_PACKED_PRE struct zb_zll_commissioning_network_start_req_s
 {
-  zb_uint32_t trans_id;             /**< Inter-PAN transaction identifier. */
-  zb_ext_pan_id_t ext_pan_id;       /**< Extended Pan ID. */
-  zb_uint8_t key_idx;               /**< Key index. */
-  zb_uint8_t encr_nwk_key[16];      /**< Encrypted network key. */
-  zb_uint8_t channel;               /**< Logical channel. */
-  zb_uint16_t pan_id;               /**< Pan ID. */
-  zb_uint16_t short_addr;           /**< Network address. */
-  zb_uint16_t group_ids_begin;      /**< Group identifiers begin. */
-  zb_uint16_t group_ids_end;        /**< Group identifiers end. */
-  zb_uint16_t free_nwk_addrs_begin; /**< Free network address range begin. */
-  zb_uint16_t free_nwk_addrs_end;   /**< Free network address range end. */
-  zb_uint16_t free_group_ids_begin; /**< Free group identifiers range begin. */
-  zb_uint16_t free_group_ids_end;   /**< Free group identifiers range end. */
-  zb_ieee_addr_t initiator_ieee;    /**< Initiator IEEE address. */
-  zb_uint16_t initiator_short;      /**< Initiator network address. */
+    zb_uint32_t trans_id;             /**< Inter-PAN transaction identifier. */
+    zb_ext_pan_id_t ext_pan_id;       /**< Extended Pan ID. */
+    zb_uint8_t key_idx;               /**< Key index. */
+    zb_uint8_t encr_nwk_key[16];      /**< Encrypted network key. */
+    zb_uint8_t channel;               /**< Logical channel. */
+    zb_uint16_t pan_id;               /**< Pan ID. */
+    zb_uint16_t short_addr;           /**< Network address. */
+    zb_uint16_t group_ids_begin;      /**< Group identifiers begin. */
+    zb_uint16_t group_ids_end;        /**< Group identifiers end. */
+    zb_uint16_t free_nwk_addrs_begin; /**< Free network address range begin. */
+    zb_uint16_t free_nwk_addrs_end;   /**< Free network address range end. */
+    zb_uint16_t free_group_ids_begin; /**< Free group identifiers range begin. */
+    zb_uint16_t free_group_ids_end;   /**< Free group identifiers range end. */
+    zb_ieee_addr_t initiator_ieee;    /**< Initiator IEEE address. */
+    zb_uint16_t initiator_short;      /**< Initiator network address. */
 } ZB_PACKED_STRUCT zb_zll_commissioning_network_start_req_t;
 
 /**
@@ -1001,12 +1001,12 @@ typedef ZB_PACKED_PRE struct zb_zll_commissioning_network_start_req_s
  */
 typedef ZB_PACKED_PRE struct zb_zll_commissioning_network_start_res_s
 {
-  zb_uint32_t trans_id;       /**< Inter-PAN transaction identifier. */
-  zb_uint8_t status;          /**< Status. */
-  zb_ext_pan_id_t ext_pan_id; /**< Extended Pan ID. */
-  zb_uint8_t nwk_upd_id;      /**< Network update identifier. */
-  zb_uint8_t channel;         /**< Logical channel. */
-  zb_uint16_t pan_id;         /**< Pqn ID. */
+    zb_uint32_t trans_id;       /**< Inter-PAN transaction identifier. */
+    zb_uint8_t status;          /**< Status. */
+    zb_ext_pan_id_t ext_pan_id; /**< Extended Pan ID. */
+    zb_uint8_t nwk_upd_id;      /**< Network update identifier. */
+    zb_uint8_t channel;         /**< Logical channel. */
+    zb_uint16_t pan_id;         /**< Pqn ID. */
 } ZB_PACKED_STRUCT zb_zll_commissioning_network_start_res_t;
 
 /**
@@ -1091,20 +1091,20 @@ typedef ZB_PACKED_PRE struct zb_zll_commissioning_network_start_res_s
  */
 typedef ZB_PACKED_PRE struct zb_zll_commissioning_network_join_router_req_s
 {
-  zb_uint32_t trans_id;             /**< Inter-PAN transaction identifier. */
-  zb_ext_pan_id_t ext_pan_id;       /**< Extended Pan ID. */
-  zb_uint8_t key_idx;               /**< Key index. */
-  zb_uint8_t encr_nwk_key[16];      /**< Encrypted network key. */
-  zb_uint8_t nwk_upd_id;            /**< Network update identifier. */
-  zb_uint8_t channel;               /**< Logical channel. */
-  zb_uint16_t pan_id;               /**< Pan ID. */
-  zb_uint16_t short_addr;           /**< Network address. */
-  zb_uint16_t group_ids_begin;      /**< Group identifiers begin. */
-  zb_uint16_t group_ids_end;        /**< Group identifiers end. */
-  zb_uint16_t free_nwk_addrs_begin; /**< Free network address range begin. */
-  zb_uint16_t free_nwk_addrs_end;   /**< Free network address range end. */
-  zb_uint16_t free_group_ids_begin; /**< Free group identifiers range begin. */
-  zb_uint16_t free_group_ids_end;   /**< Free group identifiers range end. */
+    zb_uint32_t trans_id;             /**< Inter-PAN transaction identifier. */
+    zb_ext_pan_id_t ext_pan_id;       /**< Extended Pan ID. */
+    zb_uint8_t key_idx;               /**< Key index. */
+    zb_uint8_t encr_nwk_key[16];      /**< Encrypted network key. */
+    zb_uint8_t nwk_upd_id;            /**< Network update identifier. */
+    zb_uint8_t channel;               /**< Logical channel. */
+    zb_uint16_t pan_id;               /**< Pan ID. */
+    zb_uint16_t short_addr;           /**< Network address. */
+    zb_uint16_t group_ids_begin;      /**< Group identifiers begin. */
+    zb_uint16_t group_ids_end;        /**< Group identifiers end. */
+    zb_uint16_t free_nwk_addrs_begin; /**< Free network address range begin. */
+    zb_uint16_t free_nwk_addrs_end;   /**< Free network address range end. */
+    zb_uint16_t free_group_ids_begin; /**< Free group identifiers range begin. */
+    zb_uint16_t free_group_ids_end;   /**< Free group identifiers range end. */
 } ZB_PACKED_STRUCT zb_zll_commissioning_network_join_router_req_t;
 
 /**
@@ -1206,8 +1206,8 @@ typedef ZB_PACKED_PRE struct zb_zll_commissioning_network_join_router_req_s
  */
 typedef ZB_PACKED_PRE struct zb_zll_commissioning_network_join_router_res_s
 {
-  zb_uint32_t trans_id; /**< Inter-PAN transaction identifier. */
-  zb_uint8_t status;    /**< Status. */
+    zb_uint32_t trans_id; /**< Inter-PAN transaction identifier. */
+    zb_uint8_t status;    /**< Status. */
 } ZB_PACKED_STRUCT zb_zll_commissioning_network_join_router_res_t;
 
 /**
@@ -1267,20 +1267,20 @@ typedef ZB_PACKED_PRE struct zb_zll_commissioning_network_join_router_res_s
   */
 typedef ZB_PACKED_PRE struct zb_zll_commissioning_network_join_end_device_req_s
 {
-  zb_uint32_t trans_id;             /**< Inter-PAN transaction identifier. */
-  zb_ext_pan_id_t ext_pan_id;       /**< Extended Pan ID. */
-  zb_uint8_t key_idx;               /**< Key index. */
-  zb_uint8_t encr_nwk_key[16];      /**< Encrypted network key. */
-  zb_uint8_t nwk_upd_id;            /**< Network update identifier. */
-  zb_uint8_t channel;               /**< Logical channel. */
-  zb_uint16_t pan_id;               /**< Pan ID. */
-  zb_uint16_t short_addr;           /**< Network address. */
-  zb_uint16_t group_ids_begin;      /**< Group identifiers begin. */
-  zb_uint16_t group_ids_end;        /**< Group identifiers end. */
-  zb_uint16_t free_nwk_addrs_begin; /**< Free network address range begin. */
-  zb_uint16_t free_nwk_addrs_end;   /**< Free network address range end. */
-  zb_uint16_t free_group_ids_begin; /**< Free group identifiers range begin. */
-  zb_uint16_t free_group_ids_end;   /**< Free group identifiers range end. */
+    zb_uint32_t trans_id;             /**< Inter-PAN transaction identifier. */
+    zb_ext_pan_id_t ext_pan_id;       /**< Extended Pan ID. */
+    zb_uint8_t key_idx;               /**< Key index. */
+    zb_uint8_t encr_nwk_key[16];      /**< Encrypted network key. */
+    zb_uint8_t nwk_upd_id;            /**< Network update identifier. */
+    zb_uint8_t channel;               /**< Logical channel. */
+    zb_uint16_t pan_id;               /**< Pan ID. */
+    zb_uint16_t short_addr;           /**< Network address. */
+    zb_uint16_t group_ids_begin;      /**< Group identifiers begin. */
+    zb_uint16_t group_ids_end;        /**< Group identifiers end. */
+    zb_uint16_t free_nwk_addrs_begin; /**< Free network address range begin. */
+    zb_uint16_t free_nwk_addrs_end;   /**< Free network address range end. */
+    zb_uint16_t free_group_ids_begin; /**< Free group identifiers range begin. */
+    zb_uint16_t free_group_ids_end;   /**< Free group identifiers range end. */
 } ZB_PACKED_STRUCT zb_zll_commissioning_network_join_end_device_req_t;
 
 /**
@@ -1383,8 +1383,8 @@ typedef ZB_PACKED_PRE struct zb_zll_commissioning_network_join_end_device_req_s
  */
 typedef ZB_PACKED_PRE struct zb_zll_commissioning_network_join_end_device_res_s
 {
-  zb_uint32_t trans_id; /**< Inter-PAN transaction identifier. */
-  zb_uint8_t status;    /**< Status. */
+    zb_uint32_t trans_id; /**< Inter-PAN transaction identifier. */
+    zb_uint8_t status;    /**< Status. */
 } ZB_PACKED_STRUCT zb_zll_commissioning_network_join_end_device_res_t;
 
 /**
@@ -1445,12 +1445,12 @@ typedef ZB_PACKED_PRE struct zb_zll_commissioning_network_join_end_device_res_s
  */
 typedef ZB_PACKED_PRE struct zb_zll_commissioning_network_update_req_s
 {
-  zb_uint32_t trans_id;             /**< Inter-PAN transaction identifier. */
-  zb_ext_pan_id_t ext_pan_id;       /**< Extended Pan ID. */
-  zb_uint8_t nwk_upd_id;            /**< Network update identifier. */
-  zb_uint8_t channel;               /**< Logical channel. */
-  zb_uint16_t pan_id;               /**< Pan ID. */
-  zb_uint16_t short_addr;           /**< Network address. */
+    zb_uint32_t trans_id;             /**< Inter-PAN transaction identifier. */
+    zb_ext_pan_id_t ext_pan_id;       /**< Extended Pan ID. */
+    zb_uint8_t nwk_upd_id;            /**< Network update identifier. */
+    zb_uint8_t channel;               /**< Logical channel. */
+    zb_uint16_t pan_id;               /**< Pan ID. */
+    zb_uint16_t short_addr;           /**< Network address. */
 } ZB_PACKED_STRUCT zb_zll_commissioning_network_update_req_t;
 
 /**
@@ -1546,7 +1546,7 @@ typedef ZB_PACKED_PRE struct zb_zll_commissioning_network_update_req_s
   */
 typedef ZB_PACKED_PRE struct zb_zll_commissioning_get_group_ids_req_s
 {
-  zb_uint8_t start_idx; /**< Start index. */
+    zb_uint8_t start_idx; /**< Start index. */
 } ZB_PACKED_STRUCT zb_zll_commissioning_get_group_ids_req_t;
 
 /** @brief Schedules sending Commissioning.GetGroupIdentifiersRequest command.
@@ -1609,9 +1609,9 @@ typedef ZB_PACKED_PRE struct zb_zll_commissioning_get_group_ids_req_s
   */
 typedef ZB_PACKED_PRE struct zb_zll_commissioning_get_group_ids_res_permanent_s
 {
-  zb_uint8_t total;     /**< Total. */
-  zb_uint8_t start_idx; /**< Start index. */
-  zb_uint8_t count;     /**< Count. */
+    zb_uint8_t total;     /**< Total. */
+    zb_uint8_t start_idx; /**< Start index. */
+    zb_uint8_t count;     /**< Count. */
 } ZB_PACKED_STRUCT zb_zll_commissioning_get_group_ids_res_permanent_t;
 
 /** @brief Group information record for Commissioning.GetGroupIdentifiersResponse command.
@@ -1619,8 +1619,8 @@ typedef ZB_PACKED_PRE struct zb_zll_commissioning_get_group_ids_res_permanent_s
   */
 typedef ZB_PACKED_PRE struct zb_zll_commissioning_group_info_record_s
 {
-  zb_uint16_t group_id;   /**< Group identifier. */
-  zb_uint8_t group_type;  /**< Group type. */
+    zb_uint16_t group_id;   /**< Group identifier. */
+    zb_uint8_t group_type;  /**< Group type. */
 } ZB_PACKED_STRUCT zb_zll_commissioning_group_info_record_t;
 
 /** @brief Group type value for group_type field of @ref zb_zll_commissioning_group_info_record_s.
@@ -1737,7 +1737,7 @@ typedef ZB_PACKED_PRE struct zb_zll_commissioning_group_info_record_s
   */
 typedef ZB_PACKED_PRE struct zb_zll_commissioning_get_endpoint_list_req_s
 {
-  zb_uint8_t start_idx; /**< Start index. */
+    zb_uint8_t start_idx; /**< Start index. */
 } ZB_PACKED_STRUCT zb_zll_commissioning_get_endpoint_list_req_t;
 
 /** @brief Schedules sending Commissioning.GetEndpointListRequest command.
@@ -1801,9 +1801,9 @@ typedef ZB_PACKED_PRE struct zb_zll_commissioning_get_endpoint_list_req_s
   */
 typedef ZB_PACKED_PRE struct zb_zll_commissioning_get_endpoint_list_res_s
 {
-  zb_uint8_t total;     /**< Total. */
-  zb_uint8_t start_idx; /**< Start index. */
-  zb_uint8_t count;     /**< Count. */
+    zb_uint8_t total;     /**< Total. */
+    zb_uint8_t start_idx; /**< Start index. */
+    zb_uint8_t count;     /**< Count. */
 } ZB_PACKED_STRUCT zb_zll_commissioning_get_endpoint_list_res_t;
 
 /** @brief Endpoint information record for Commissioning.GetEndpointListResponse command.
@@ -1811,11 +1811,11 @@ typedef ZB_PACKED_PRE struct zb_zll_commissioning_get_endpoint_list_res_s
   */
 typedef ZB_PACKED_PRE struct zb_zll_commissioning_endpoint_info_record_s
 {
-  zb_uint16_t addr_short; /**< Network address. */
-  zb_uint8_t endpoint;    /**< Endpoint identifier. */
-  zb_uint16_t profile_id; /**< Profile identifier. */
-  zb_uint16_t device_id;  /**< Device identifier. */
-  zb_uint8_t version;     /**< Version. */
+    zb_uint16_t addr_short; /**< Network address. */
+    zb_uint8_t endpoint;    /**< Endpoint identifier. */
+    zb_uint16_t profile_id; /**< Profile identifier. */
+    zb_uint16_t device_id;  /**< Device identifier. */
+    zb_uint8_t version;     /**< Version. */
 } ZB_PACKED_STRUCT zb_zll_commissioning_endpoint_info_record_t;
 
 /** @brief Fills in mandatory part of Commissioning.GetGroupIdentifiersResponse payload.
@@ -1945,12 +1945,12 @@ typedef ZB_PACKED_PRE struct zb_zll_commissioning_endpoint_info_record_s
   */
 typedef ZB_PACKED_PRE struct zb_zll_commissioning_endpoint_information_s
 {
-  zb_ieee_addr_t addr_long; /**< IEEE address. */
-  zb_uint16_t addr_short;   /**< Network address. */
-  zb_uint8_t endpoint;      /**< Endpoint identifier. */
-  zb_uint16_t profile_id;   /**< Profile identifier. */
-  zb_uint16_t device_id;    /**< Device identifier. */
-  zb_uint8_t version;       /**< Version. */
+    zb_ieee_addr_t addr_long; /**< IEEE address. */
+    zb_uint16_t addr_short;   /**< Network address. */
+    zb_uint8_t endpoint;      /**< Endpoint identifier. */
+    zb_uint16_t profile_id;   /**< Profile identifier. */
+    zb_uint16_t device_id;    /**< Device identifier. */
+    zb_uint8_t version;       /**< Version. */
 } ZB_PACKED_STRUCT zb_zll_commissioning_endpoint_information_t;
 
 /** @brief Schedules sending Commissioning.EndpointInformation command.

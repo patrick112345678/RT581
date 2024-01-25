@@ -221,7 +221,7 @@
     namespace __cxx1998 { }
 
     namespace __detail {
-      namespace __variant { }				// C++17
+      namespace __variant { }               // C++17
     }
 
     namespace rel_ops { }
@@ -234,18 +234,18 @@
     }
 
     namespace tr2 { }
-    
+
     namespace decimal { }
 
-    namespace chrono { }				// C++11
-    namespace placeholders { }				// C++11
-    namespace regex_constants { }			// C++11
-    namespace this_thread { }				// C++11
-    inline namespace literals {				// C++14
-      inline namespace chrono_literals { }		// C++14
-      inline namespace complex_literals { }		// C++14
-      inline namespace string_literals { }		// C++14
-      inline namespace string_view_literals { }		// C++17
+    namespace chrono { }                // C++11
+    namespace placeholders { }              // C++11
+    namespace regex_constants { }           // C++11
+    namespace this_thread { }               // C++11
+    inline namespace literals {             // C++14
+      inline namespace chrono_literals { }      // C++14
+      inline namespace complex_literals { }     // C++14
+      inline namespace string_literals { }      // C++14
+      inline namespace string_view_literals { }     // C++17
     }
   }
 
@@ -261,11 +261,11 @@
 */
 namespace std
 {
-  typedef __SIZE_TYPE__ 	size_t;
-  typedef __PTRDIFF_TYPE__	ptrdiff_t;
+typedef __SIZE_TYPE__     size_t;
+typedef __PTRDIFF_TYPE__  ptrdiff_t;
 
 #if __cplusplus >= 201103L
-  typedef decltype(nullptr)	nullptr_t;
+typedef decltype(nullptr) nullptr_t;
 #endif
 }
 
@@ -283,11 +283,11 @@ namespace std
 #if _GLIBCXX_USE_CXX11_ABI
 namespace std
 {
-  inline namespace __cxx11 __attribute__((__abi_tag__ ("cxx11"))) { }
+inline namespace __cxx11 __attribute__((__abi_tag__ ("cxx11"))) { }
 }
 namespace __gnu_cxx
 {
-  inline namespace __cxx11 __attribute__((__abi_tag__ ("cxx11"))) { }
+inline namespace __cxx11 __attribute__((__abi_tag__ ("cxx11"))) { }
 }
 # define _GLIBCXX_NAMESPACE_CXX11 __cxx11::
 # define _GLIBCXX_BEGIN_NAMESPACE_CXX11 namespace __cxx11 {
@@ -301,7 +301,7 @@ namespace __gnu_cxx
 #endif
 
 // Defined if inline namespaces are used for versioning.
-# define _GLIBCXX_INLINE_VERSION 0 
+# define _GLIBCXX_INLINE_VERSION 0
 
 // Inline namespace for symbol versioning.
 #if _GLIBCXX_INLINE_VERSION
@@ -312,14 +312,15 @@ namespace std
 {
 inline _GLIBCXX_BEGIN_NAMESPACE_VERSION
 #if __cplusplus >= 201402L
-  inline namespace literals {
-    inline namespace chrono_literals { }
-    inline namespace complex_literals { }
-    inline namespace string_literals { }
+inline namespace literals
+{
+inline namespace chrono_literals { }
+inline namespace complex_literals { }
+inline namespace string_literals { }
 #if __cplusplus > 201402L
-    inline namespace string_view_literals { }
+inline namespace string_view_literals { }
 #endif // C++17
-  }
+}
 #endif // C++14
 _GLIBCXX_END_NAMESPACE_VERSION
 }
@@ -341,24 +342,24 @@ namespace std
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
-  // Non-inline namespace for components replaced by alternates in active mode.
-  namespace __cxx1998
-  {
+// Non-inline namespace for components replaced by alternates in active mode.
+namespace __cxx1998
+{
 # if _GLIBCXX_USE_CXX11_ABI
-  inline namespace __cxx11 __attribute__((__abi_tag__ ("cxx11"))) { }
+inline namespace __cxx11 __attribute__((__abi_tag__ ("cxx11"))) { }
 # endif
-  }
+}
 
 _GLIBCXX_END_NAMESPACE_VERSION
 
-  // Inline namespace for debug mode.
+// Inline namespace for debug mode.
 # ifdef _GLIBCXX_DEBUG
-  inline namespace __debug { }
+inline namespace __debug { }
 # endif
 
-  // Inline namespaces for parallel mode.
+// Inline namespaces for parallel mode.
 # ifdef _GLIBCXX_PARALLEL
-  inline namespace __parallel { }
+inline namespace __parallel { }
 # endif
 }
 
@@ -370,7 +371,7 @@ _GLIBCXX_END_NAMESPACE_VERSION
 // Check for invalid use due to lack for weak symbols.
 # if __NO_INLINE__ && !__GXX_WEAK__
 #  warning currently using inlined namespace mode which may fail \
-   without inlining due to lack of weak symbols
+without inlining due to lack of weak symbols
 # endif
 #endif
 
@@ -387,7 +388,7 @@ _GLIBCXX_END_NAMESPACE_VERSION
 #if defined(_GLIBCXX_DEBUG)
 # define _GLIBCXX_STD_C __cxx1998
 # define _GLIBCXX_BEGIN_NAMESPACE_CONTAINER \
-	 namespace _GLIBCXX_STD_C {
+     namespace _GLIBCXX_STD_C {
 # define _GLIBCXX_END_NAMESPACE_CONTAINER }
 #else
 # define _GLIBCXX_STD_C std
@@ -398,7 +399,7 @@ _GLIBCXX_END_NAMESPACE_VERSION
 #ifdef _GLIBCXX_PARALLEL
 # define _GLIBCXX_STD_A __cxx1998
 # define _GLIBCXX_BEGIN_NAMESPACE_ALGO \
-	 namespace _GLIBCXX_STD_A {
+     namespace _GLIBCXX_STD_A {
 # define _GLIBCXX_END_NAMESPACE_ALGO }
 #else
 # define _GLIBCXX_STD_A std
@@ -414,7 +415,7 @@ _GLIBCXX_END_NAMESPACE_VERSION
 #if defined _GLIBCXX_LONG_DOUBLE_COMPAT && defined __LONG_DOUBLE_128__
 namespace std
 {
-  inline namespace __gnu_cxx_ldbl128 { }
+inline namespace __gnu_cxx_ldbl128 { }
 }
 # define _GLIBCXX_NAMESPACE_LDBL __gnu_cxx_ldbl128::
 # define _GLIBCXX_BEGIN_NAMESPACE_LDBL namespace __gnu_cxx_ldbl128 {
@@ -450,23 +451,23 @@ namespace std
   || defined(_GLIBCXX_PARALLEL) || defined(_GLIBCXX_PARALLEL_ASSERTIONS)
 namespace std
 {
-  // Avoid the use of assert, because we're trying to keep the <cassert>
-  // include out of the mix.
-  extern "C++" inline void
-  __replacement_assert(const char* __file, int __line,
-		       const char* __function, const char* __condition)
-  {
+// Avoid the use of assert, because we're trying to keep the <cassert>
+// include out of the mix.
+extern "C++" inline void
+__replacement_assert(const char *__file, int __line,
+                     const char *__function, const char *__condition)
+{
     __builtin_printf("%s:%d: %s: Assertion '%s' failed.\n", __file, __line,
-		     __function, __condition);
+                     __function, __condition);
     __builtin_abort();
-  }
 }
-#define __glibcxx_assert_impl(_Condition)				 \
-  do 									 \
-  {							      		 \
+}
+#define __glibcxx_assert_impl(_Condition)                \
+  do                                     \
+  {                                      \
     if (! (_Condition))                                                  \
       std::__replacement_assert(__FILE__, __LINE__, __PRETTY_FUNCTION__, \
-				#_Condition);				 \
+                #_Condition);                \
   } while (false)
 #endif
 
@@ -548,9 +549,9 @@ namespace std
 // Conditionally enable annotations for the Transactional Memory TS on C++11.
 // Most of the following conditions are due to limitations in the current
 // implementation.
-#if __cplusplus >= 201103L && _GLIBCXX_USE_CXX11_ABI			\
-  && _GLIBCXX_USE_DUAL_ABI && __cpp_transactional_memory >= 201500L	\
-  &&  !_GLIBCXX_FULLY_DYNAMIC_STRING && _GLIBCXX_USE_WEAK_REF		\
+#if __cplusplus >= 201103L && _GLIBCXX_USE_CXX11_ABI            \
+  && _GLIBCXX_USE_DUAL_ABI && __cpp_transactional_memory >= 201500L \
+  &&  !_GLIBCXX_FULLY_DYNAMIC_STRING && _GLIBCXX_USE_WEAK_REF       \
   && _GLIBCXX_USE_ALLOCATOR_NEW
 #define _GLIBCXX_TXN_SAFE transaction_safe
 #define _GLIBCXX_TXN_SAFE_DYN transaction_safe_dynamic

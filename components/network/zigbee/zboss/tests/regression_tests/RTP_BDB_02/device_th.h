@@ -108,7 +108,7 @@
   @param cluster_list - endpoint cluster list
  */
 #define DECLARE_TH_EP(ep_name, ep_id, cluster_list)                                    \
-DECLARE_TH_SIMPLE_DESC(								\
+DECLARE_TH_SIMPLE_DESC(                             \
     ep_name,                                                                            \
     ep_id,                                                                              \
     TH_IN_CLUSTER_NUM,                                                                 \

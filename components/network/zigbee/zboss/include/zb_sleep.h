@@ -31,13 +31,13 @@
 
 typedef struct zb_sleep_ctx_s
 {
-  zb_bool_t     permit_sleep_signal;
-  zb_time_t     last_timestamp;
-  zb_time_t     timer;
-  zb_uint32_t   threshold;
-  zb_bitbool_t  enabled:1;
-  zb_bitbool_t  sleeping_now:1;
-  zb_bitbool_t  intr:1;
+    zb_bool_t     permit_sleep_signal;
+    zb_time_t     last_timestamp;
+    zb_time_t     timer;
+    zb_uint32_t   threshold;
+    zb_bitbool_t  enabled: 1;
+    zb_bitbool_t  sleeping_now: 1;
+    zb_bitbool_t  intr: 1;
 } zb_sleep_ctx_t;
 
 void zb_sleep_init(void);

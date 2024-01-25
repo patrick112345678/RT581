@@ -62,7 +62,7 @@ Following things are platform-dependent:
 
 #include "zb_config.h"
 
- /**
+/**
 OSIF platform selection. One of pre-defined platform should be selected in
 zb_config.h configurations.
 zb_osif_platform.h is different in different platforms repo.
@@ -358,15 +358,15 @@ int zb_osif_stream_write(zb_osif_file_t *stream, zb_uint8_t *buf, zb_uint_t len)
 
 enum zb_file_path_base_type_e
 {
-  ZB_FILE_PATH_BASE_ROMFS_BINARIES,    /* ROM FS */  /* elf binaries, etc */
-  ZB_FILE_PATH_BASE_MNTFS_BINARIES,    /* RW FS */   /* prod config, etc */
-  ZB_FILE_PATH_BASE_MNTFS_USER_DATA,   /* RW FS */   /* nvram. etc */
-  ZB_FILE_PATH_BASE_MNTFS_TRACE_LOGS,  /* RW FS */
-  ZB_FILE_PATH_BASE_RAMFS_UNIX_SOCKET, /* RAM FS */
-  ZB_FILE_PATH_BASE_RAMFS_TRACE_LOGS,  /* RAM FS */
-  ZB_FILE_PATH_BASE_RAMFS_TMP_DATA,    /* RAM FS */
+    ZB_FILE_PATH_BASE_ROMFS_BINARIES,    /* ROM FS */  /* elf binaries, etc */
+    ZB_FILE_PATH_BASE_MNTFS_BINARIES,    /* RW FS */   /* prod config, etc */
+    ZB_FILE_PATH_BASE_MNTFS_USER_DATA,   /* RW FS */   /* nvram. etc */
+    ZB_FILE_PATH_BASE_MNTFS_TRACE_LOGS,  /* RW FS */
+    ZB_FILE_PATH_BASE_RAMFS_UNIX_SOCKET, /* RAM FS */
+    ZB_FILE_PATH_BASE_RAMFS_TRACE_LOGS,  /* RAM FS */
+    ZB_FILE_PATH_BASE_RAMFS_TMP_DATA,    /* RAM FS */
 
-  ZB_FILE_PATH_BASE_MAX_TYPE
+    ZB_FILE_PATH_BASE_MAX_TYPE
 };
 
 #define ZB_MAX_FILE_PATH_SIZE 256
@@ -378,13 +378,13 @@ enum zb_file_path_base_type_e
 
 typedef struct zb_file_path_base_type_s
 {
-  zb_bool_t declared;
-  char      base[ZB_MAX_FILE_PATH_SIZE];
+    zb_bool_t declared;
+    char      base[ZB_MAX_FILE_PATH_SIZE];
 } zb_file_path_base_type_t;
 
 void zb_file_path_init(void);
 zb_ret_t zb_file_path_declare(zb_uint8_t base_type, const char *base);
-const char* zb_file_path_get(zb_uint8_t base_type, const char *default_base);
+const char *zb_file_path_get(zb_uint8_t base_type, const char *default_base);
 void zb_file_path_get_with_postfix(zb_uint8_t base_type, const char *default_base, const char *postfix, char *file_path);
 #define ZB_FILE_PATH_GET(base_type, default_base) \
   zb_file_path_get(base_type, default_base)

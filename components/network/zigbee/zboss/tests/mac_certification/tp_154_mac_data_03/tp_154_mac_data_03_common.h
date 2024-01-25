@@ -42,54 +42,54 @@
 /** Test step enumeration. */
 enum test_step_e
 {
-  TEST_STEP_INITIAL,
-  TH2DUT_SHORT2SHORT_UNICAST_NOACK,
-  TH2DUT_SHORT2SHORT_UNICAST_ACK,
-  TH2DUT_SHORT2EXT_UNICAST_ACK,
-  TH2DUT_EXT2SHORT_UNICAST_ACK,
-  TH2DUT_EXT2EXT_UNICAST_ACK,
-  TH2DUT_EXT2BROADCAST,
-  TH2DUT_SHORT2BROADCAST,
-  TH2DUT_SHORT2BROADCAST_BCAST_PANID,
-  DUT2TH_SHORT2SHORT_UNICAST_NOACK,
-  DUT2TH_SHORT2SHORT_UNICAST_ACK,
-  DUT2TH_SHORT2EXT_UNICAST_ACK,
-  DUT2TH_EXT2SHORT_UNICAST_ACK,
-  DUT2TH_EXT2EXT_UNICAST_ACK,
-  DUT2TH_EXT2BROADCAST,
-  DUT2TH_SHORT2BROADCAST,
-  DUT2TH_SHORT2BROADCAST_BCAST_PANID,
-  TEST_STEP_FINISHED
+    TEST_STEP_INITIAL,
+    TH2DUT_SHORT2SHORT_UNICAST_NOACK,
+    TH2DUT_SHORT2SHORT_UNICAST_ACK,
+    TH2DUT_SHORT2EXT_UNICAST_ACK,
+    TH2DUT_EXT2SHORT_UNICAST_ACK,
+    TH2DUT_EXT2EXT_UNICAST_ACK,
+    TH2DUT_EXT2BROADCAST,
+    TH2DUT_SHORT2BROADCAST,
+    TH2DUT_SHORT2BROADCAST_BCAST_PANID,
+    DUT2TH_SHORT2SHORT_UNICAST_NOACK,
+    DUT2TH_SHORT2SHORT_UNICAST_ACK,
+    DUT2TH_SHORT2EXT_UNICAST_ACK,
+    DUT2TH_EXT2SHORT_UNICAST_ACK,
+    DUT2TH_EXT2EXT_UNICAST_ACK,
+    DUT2TH_EXT2BROADCAST,
+    DUT2TH_SHORT2BROADCAST,
+    DUT2TH_SHORT2BROADCAST_BCAST_PANID,
+    TEST_STEP_FINISHED
 };
 
 typedef struct zb_dut2th_result_s
 {
-  zb_bool_t a;
-	zb_bool_t b;
-	zb_bool_t c;
-	zb_bool_t d;
-	zb_bool_t e;
-	zb_bool_t f;
-	zb_bool_t g;
-	zb_bool_t g2;
+    zb_bool_t a;
+    zb_bool_t b;
+    zb_bool_t c;
+    zb_bool_t d;
+    zb_bool_t e;
+    zb_bool_t f;
+    zb_bool_t g;
+    zb_bool_t g2;
 } zb_dut2th_result_t;
 
 typedef struct zb_th2dut_result_s
 {
-	zb_bool_t h;
-	zb_bool_t i;
-	zb_bool_t j;
-	zb_bool_t k;
-	zb_bool_t l;
-	zb_bool_t m;
-	zb_bool_t n;
-	zb_bool_t n2;
+    zb_bool_t h;
+    zb_bool_t i;
+    zb_bool_t j;
+    zb_bool_t k;
+    zb_bool_t l;
+    zb_bool_t m;
+    zb_bool_t n;
+    zb_bool_t n2;
 } zb_th2dut_result_t;
 
 typedef struct zb_mac_test_s
 {
-	zb_dut2th_result_t    dut2th;  
-  zb_th2dut_result_t    th2dut;          
+    zb_dut2th_result_t    dut2th;
+    zb_th2dut_result_t    th2dut;
 } zb_mac_test3_t;
 
 extern zb_mac_test3_t test_result3;

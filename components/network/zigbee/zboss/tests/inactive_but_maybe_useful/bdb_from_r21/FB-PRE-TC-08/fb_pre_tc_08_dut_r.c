@@ -76,26 +76,26 @@ static zb_int16_t  attr_min_temp_value = ZB_ZCL_ATTR_TEMP_MEASUREMENT_MIN_VALUE_
 static zb_int16_t  attr_max_temp_value = ZB_ZCL_ATTR_TEMP_MEASUREMENT_MAX_VALUE_MAX_VALUE;
 static zb_uint16_t attr_temp_tolerance = ZB_ZCL_ATTR_TEMP_MEASUREMENT_TOLERANCE_MAX_VALUE;
 ZB_ZCL_DECLARE_TEMP_MEASUREMENT_ATTRIB_LIST(temp_meas_attr_list,
-                                            &attr_temp_value,
-                                            &attr_min_temp_value,
-                                            &attr_max_temp_value,
-                                            &attr_temp_tolerance);
+        &attr_temp_value,
+        &attr_min_temp_value,
+        &attr_max_temp_value,
+        &attr_temp_tolerance);
 
 static zb_uint16_t attr_illum_value     = ZB_ZCL_ATTR_ILLUMINANCE_MEASUREMENT_MEASURED_VALUE_DEFAULT;
 static zb_uint16_t attr_min_illum_value = ZB_ZCL_ATTR_ILLUMINANCE_MEASUREMENT_MIN_MEASURED_VALUE_MIN_VALUE;
 static zb_uint16_t attr_max_illum_value = ZB_ZCL_ATTR_ILLUMINANCE_MEASUREMENT_MAX_MEASURED_VALUE_MAX_VALUE;
 ZB_ZCL_DECLARE_ILLUMINANCE_MEASUREMENT_ATTRIB_LIST(illum_meas_attr_list,
-                                                   &attr_illum_value,
-                                                   &attr_min_illum_value,
-                                                   &attr_max_illum_value);
+        &attr_illum_value,
+        &attr_min_illum_value,
+        &attr_max_illum_value);
 
 static zb_uint16_t attr_rel_humidity_value     = ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_VALUE_UNKNOWN;
 static zb_uint16_t attr_min_rel_humidity_value = ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_MIN_VALUE_MAX_VALUE;
 static zb_uint16_t attr_max_rel_humidity_value = ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_MAX_VALUE_MIN_VALUE;
 ZB_ZCL_DECLARE_REL_HUMIDITY_MEASUREMENT_ATTRIB_LIST(rel_humidity_meas_attr_list,
-                                                   &attr_rel_humidity_value,
-                                                   &attr_min_rel_humidity_value,
-                                                   &attr_max_rel_humidity_value);
+        &attr_rel_humidity_value,
+        &attr_min_rel_humidity_value,
+        &attr_max_rel_humidity_value);
 
 
 /********************* Declare device **************************/
@@ -128,40 +128,40 @@ static void init_default_reporting();
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("zdo_dut");
+    ZB_INIT("zdo_dut");
 
 
-  ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_ieee_addr_dut);
+    ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_ieee_addr_dut);
 
-  ZB_BDB().bdb_primary_channel_set = TEST_BDB_PRIMARY_CHANNEL_SET;
-  ZB_BDB().bdb_secondary_channel_set = TEST_BDB_SECONDARY_CHANNEL_SET;
-  ZB_BDB().bdb_mode = 1;
+    ZB_BDB().bdb_primary_channel_set = TEST_BDB_PRIMARY_CHANNEL_SET;
+    ZB_BDB().bdb_secondary_channel_set = TEST_BDB_SECONDARY_CHANNEL_SET;
+    ZB_BDB().bdb_mode = 1;
 
-  /* Assignment required to force Distributed formation */
-  ZB_NIB_DEVICE_TYPE() = ZB_NWK_DEVICE_TYPE_ROUTER;
-  ZB_IEEE_ADDR_COPY(ZB_AIB().trust_center_address, g_unknown_ieee_addr);
-  zb_secur_setup_nwk_key(g_nwk_key, 0);
+    /* Assignment required to force Distributed formation */
+    ZB_NIB_DEVICE_TYPE() = ZB_NWK_DEVICE_TYPE_ROUTER;
+    ZB_IEEE_ADDR_COPY(ZB_AIB().trust_center_address, g_unknown_ieee_addr);
+    zb_secur_setup_nwk_key(g_nwk_key, 0);
 
-  ZB_AF_REGISTER_DEVICE_CTX(&target_device_ctx);
-  init_default_reporting();
-  ZB_AIB().aps_use_nvram = 1;
+    ZB_AF_REGISTER_DEVICE_CTX(&target_device_ctx);
+    init_default_reporting();
+    ZB_AIB().aps_use_nvram = 1;
 
-  if (zdo_dev_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    if (zdo_dev_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 
@@ -172,152 +172,152 @@ static zb_bool_t finding_binding_cb(zb_int16_t status,
                                     zb_uint8_t ep,
                                     zb_uint16_t cluster)
 {
-  TRACE_MSG(TRACE_ZCL1, "finding_binding_cb status %d addr " TRACE_FORMAT_64 " ep %hd cluster %d",
-            (FMT__D_A_H_D, status, TRACE_ARG_64(addr), ep, cluster));
-  return ZB_TRUE;
+    TRACE_MSG(TRACE_ZCL1, "finding_binding_cb status %d addr " TRACE_FORMAT_64 " ep %hd cluster %d",
+              (FMT__D_A_H_D, status, TRACE_ARG_64(addr), ep, cluster));
+    return ZB_TRUE;
 }
 
 
 static void trigger_fb_initiator(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
-  ZB_BDB().bdb_commissioning_time = DUT_FB_DURATION;
-  zb_bdb_finding_binding_initiator(DUT_ENDPOINT, finding_binding_cb);
+    ZVUNUSED(unused);
+    ZB_BDB().bdb_commissioning_time = DUT_FB_DURATION;
+    zb_bdb_finding_binding_initiator(DUT_ENDPOINT, finding_binding_cb);
 }
 
 
 static void trigger_fb_target(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
-  ZB_BDB().bdb_commissioning_time = DUT_FB_DURATION;
-  zb_bdb_finding_binding_target(DUT_ENDPOINT);
+    ZVUNUSED(unused);
+    ZB_BDB().bdb_commissioning_time = DUT_FB_DURATION;
+    zb_bdb_finding_binding_target(DUT_ENDPOINT);
 }
 
 
 static void init_default_reporting()
 {
-  zb_zcl_reporting_info_t rep_info;
+    zb_zcl_reporting_info_t rep_info;
 
-  TRACE_MSG(TRACE_ZCL1, ">>init_default_reporting", (FMT__0));
+    TRACE_MSG(TRACE_ZCL1, ">>init_default_reporting", (FMT__0));
 
-  /* Temperature value */
-  ZB_BZERO(&rep_info, sizeof(rep_info));
-  {
-    rep_info.direction = ZB_ZCL_CONFIGURE_REPORTING_SEND_REPORT;
-    rep_info.ep = DUT_ENDPOINT;
-    rep_info.cluster_id = ZB_ZCL_CLUSTER_ID_TEMP_MEASUREMENT;
-    rep_info.attr_id = ZB_ZCL_ATTR_TEMP_MEASUREMENT_VALUE_ID;
-    rep_info.dst.profile_id = ZB_AF_HA_PROFILE_ID;
+    /* Temperature value */
+    ZB_BZERO(&rep_info, sizeof(rep_info));
+    {
+        rep_info.direction = ZB_ZCL_CONFIGURE_REPORTING_SEND_REPORT;
+        rep_info.ep = DUT_ENDPOINT;
+        rep_info.cluster_id = ZB_ZCL_CLUSTER_ID_TEMP_MEASUREMENT;
+        rep_info.attr_id = ZB_ZCL_ATTR_TEMP_MEASUREMENT_VALUE_ID;
+        rep_info.dst.profile_id = ZB_AF_HA_PROFILE_ID;
 
-    rep_info.u.send_info.def_min_interval = DUT_TEMP_VALUE_MIN_INTERVAL;
-    rep_info.u.send_info.def_max_interval = DUT_TEMP_VALUE_MAX_INTERVAL;
-    rep_info.u.send_info.delta.s16    = DUT_TEMP_VALUE_CHANGE;
-  }
-  zb_zcl_put_reporting_info(&rep_info, ZB_TRUE);
+        rep_info.u.send_info.def_min_interval = DUT_TEMP_VALUE_MIN_INTERVAL;
+        rep_info.u.send_info.def_max_interval = DUT_TEMP_VALUE_MAX_INTERVAL;
+        rep_info.u.send_info.delta.s16    = DUT_TEMP_VALUE_CHANGE;
+    }
+    zb_zcl_put_reporting_info(&rep_info, ZB_TRUE);
 
-  /* Temperatuure tolerance */
-  ZB_BZERO(&rep_info, sizeof(rep_info));
-  {
-    rep_info.direction = ZB_ZCL_CONFIGURE_REPORTING_SEND_REPORT;
-    rep_info.ep = DUT_ENDPOINT;
-    rep_info.cluster_id = ZB_ZCL_CLUSTER_ID_TEMP_MEASUREMENT;
-    rep_info.attr_id = ZB_ZCL_ATTR_TEMP_MEASUREMENT_TOLERANCE_ID;
-    rep_info.dst.profile_id = ZB_AF_HA_PROFILE_ID;
+    /* Temperatuure tolerance */
+    ZB_BZERO(&rep_info, sizeof(rep_info));
+    {
+        rep_info.direction = ZB_ZCL_CONFIGURE_REPORTING_SEND_REPORT;
+        rep_info.ep = DUT_ENDPOINT;
+        rep_info.cluster_id = ZB_ZCL_CLUSTER_ID_TEMP_MEASUREMENT;
+        rep_info.attr_id = ZB_ZCL_ATTR_TEMP_MEASUREMENT_TOLERANCE_ID;
+        rep_info.dst.profile_id = ZB_AF_HA_PROFILE_ID;
 
-    rep_info.u.send_info.def_min_interval = DUT_TEMP_TOLERANCE_MIN_INTERVAL;
-    rep_info.u.send_info.def_max_interval = DUT_TEMP_TOLERANCE_MAX_INTERVAL;
-    rep_info.u.send_info.delta.u16    = DUT_TEMP_TOLERANCE_CHANGE;
-  }
-  zb_zcl_put_reporting_info(&rep_info, ZB_TRUE);
+        rep_info.u.send_info.def_min_interval = DUT_TEMP_TOLERANCE_MIN_INTERVAL;
+        rep_info.u.send_info.def_max_interval = DUT_TEMP_TOLERANCE_MAX_INTERVAL;
+        rep_info.u.send_info.delta.u16    = DUT_TEMP_TOLERANCE_CHANGE;
+    }
+    zb_zcl_put_reporting_info(&rep_info, ZB_TRUE);
 
-  /* Illuminance value */
-  ZB_BZERO(&rep_info, sizeof(rep_info));
-  {
-    rep_info.direction = ZB_ZCL_CONFIGURE_REPORTING_SEND_REPORT;
-    rep_info.ep = DUT_ENDPOINT;
-    rep_info.cluster_id = ZB_ZCL_CLUSTER_ID_ILLUMINANCE_MEASUREMENT;
-    rep_info.attr_id = ZB_ZCL_ATTR_ILLUMINANCE_MEASUREMENT_MEASURED_VALUE_ID;
-    rep_info.dst.profile_id = ZB_AF_HA_PROFILE_ID;
+    /* Illuminance value */
+    ZB_BZERO(&rep_info, sizeof(rep_info));
+    {
+        rep_info.direction = ZB_ZCL_CONFIGURE_REPORTING_SEND_REPORT;
+        rep_info.ep = DUT_ENDPOINT;
+        rep_info.cluster_id = ZB_ZCL_CLUSTER_ID_ILLUMINANCE_MEASUREMENT;
+        rep_info.attr_id = ZB_ZCL_ATTR_ILLUMINANCE_MEASUREMENT_MEASURED_VALUE_ID;
+        rep_info.dst.profile_id = ZB_AF_HA_PROFILE_ID;
 
-    rep_info.u.send_info.def_min_interval = DUT_ILLUMINANCE_VALUE_MIN_INTERVAL;
-    rep_info.u.send_info.def_max_interval = DUT_ILLUMINANCE_VALUE_MAX_INTERVAL;
-    rep_info.u.send_info.delta.s16    = DUT_ILLUMINANCE_VALUE_CHANGE;
-  }
-  zb_zcl_put_reporting_info(&rep_info, ZB_TRUE);
+        rep_info.u.send_info.def_min_interval = DUT_ILLUMINANCE_VALUE_MIN_INTERVAL;
+        rep_info.u.send_info.def_max_interval = DUT_ILLUMINANCE_VALUE_MAX_INTERVAL;
+        rep_info.u.send_info.delta.s16    = DUT_ILLUMINANCE_VALUE_CHANGE;
+    }
+    zb_zcl_put_reporting_info(&rep_info, ZB_TRUE);
 
-  /* Illuminance value */
-  ZB_BZERO(&rep_info, sizeof(rep_info));
-  {
-    rep_info.direction = ZB_ZCL_CONFIGURE_REPORTING_SEND_REPORT;
-    rep_info.ep = DUT_ENDPOINT;
-    rep_info.cluster_id = ZB_ZCL_CLUSTER_ID_ILLUMINANCE_MEASUREMENT;
-    rep_info.attr_id = ZB_ZCL_ATTR_ILLUMINANCE_MEASUREMENT_MEASURED_VALUE_ID;
-    rep_info.dst.profile_id = ZB_AF_HA_PROFILE_ID;
+    /* Illuminance value */
+    ZB_BZERO(&rep_info, sizeof(rep_info));
+    {
+        rep_info.direction = ZB_ZCL_CONFIGURE_REPORTING_SEND_REPORT;
+        rep_info.ep = DUT_ENDPOINT;
+        rep_info.cluster_id = ZB_ZCL_CLUSTER_ID_ILLUMINANCE_MEASUREMENT;
+        rep_info.attr_id = ZB_ZCL_ATTR_ILLUMINANCE_MEASUREMENT_MEASURED_VALUE_ID;
+        rep_info.dst.profile_id = ZB_AF_HA_PROFILE_ID;
 
-    rep_info.u.send_info.def_min_interval = DUT_ILLUMINANCE_VALUE_MIN_INTERVAL;
-    rep_info.u.send_info.def_max_interval = DUT_ILLUMINANCE_VALUE_MAX_INTERVAL;
-    rep_info.u.send_info.delta.u16    = DUT_ILLUMINANCE_VALUE_CHANGE;
-  }
-  zb_zcl_put_reporting_info(&rep_info, ZB_TRUE);
+        rep_info.u.send_info.def_min_interval = DUT_ILLUMINANCE_VALUE_MIN_INTERVAL;
+        rep_info.u.send_info.def_max_interval = DUT_ILLUMINANCE_VALUE_MAX_INTERVAL;
+        rep_info.u.send_info.delta.u16    = DUT_ILLUMINANCE_VALUE_CHANGE;
+    }
+    zb_zcl_put_reporting_info(&rep_info, ZB_TRUE);
 
     /* Relative Humidity value */
-  ZB_BZERO(&rep_info, sizeof(rep_info));
-  {
-    rep_info.direction = ZB_ZCL_CONFIGURE_REPORTING_SEND_REPORT;
-    rep_info.ep = DUT_ENDPOINT;
-    rep_info.cluster_id = ZB_ZCL_CLUSTER_ID_REL_HUMIDITY_MEASUREMENT;
-    rep_info.attr_id = ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_VALUE_ID;
-    rep_info.dst.profile_id = ZB_AF_HA_PROFILE_ID;
+    ZB_BZERO(&rep_info, sizeof(rep_info));
+    {
+        rep_info.direction = ZB_ZCL_CONFIGURE_REPORTING_SEND_REPORT;
+        rep_info.ep = DUT_ENDPOINT;
+        rep_info.cluster_id = ZB_ZCL_CLUSTER_ID_REL_HUMIDITY_MEASUREMENT;
+        rep_info.attr_id = ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_VALUE_ID;
+        rep_info.dst.profile_id = ZB_AF_HA_PROFILE_ID;
 
-    rep_info.u.send_info.def_min_interval = DUT_REL_HUMIDITY_VALUE_MIN_INTERVAL;
-    rep_info.u.send_info.def_max_interval = DUT_REL_HUMIDITY_VALUE_MAX_INTERVAL;
-    rep_info.u.send_info.delta.u16    = DUT_REL_HUMIDITY_VALUE_CHANGE;
-  }
-  zb_zcl_put_reporting_info(&rep_info, ZB_TRUE);
+        rep_info.u.send_info.def_min_interval = DUT_REL_HUMIDITY_VALUE_MIN_INTERVAL;
+        rep_info.u.send_info.def_max_interval = DUT_REL_HUMIDITY_VALUE_MAX_INTERVAL;
+        rep_info.u.send_info.delta.u16    = DUT_REL_HUMIDITY_VALUE_CHANGE;
+    }
+    zb_zcl_put_reporting_info(&rep_info, ZB_TRUE);
 
-  TRACE_MSG(TRACE_ZCL1, "<<init_default_reporting", (FMT__0));
+    TRACE_MSG(TRACE_ZCL1, "<<init_default_reporting", (FMT__0));
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
-  {
-    switch(sig)
+    if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
     {
-      case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-        TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
-        bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
-        break;
+        switch (sig)
+        {
+        case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
+            TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
+            bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
+            break;
 
-      case ZB_BDB_SIGNAL_STEERING:
-        TRACE_MSG(TRACE_APS1, "Steering on network completed", (FMT__0));
-        ZB_SCHEDULE_ALARM(trigger_fb_initiator, 0, DUT_FB_INITIATOR_DELAY);
-        ZB_SCHEDULE_ALARM(trigger_fb_target, 0, DUT_FB_TARGET_DELAY);
-        break;
+        case ZB_BDB_SIGNAL_STEERING:
+            TRACE_MSG(TRACE_APS1, "Steering on network completed", (FMT__0));
+            ZB_SCHEDULE_ALARM(trigger_fb_initiator, 0, DUT_FB_INITIATOR_DELAY);
+            ZB_SCHEDULE_ALARM(trigger_fb_target, 0, DUT_FB_TARGET_DELAY);
+            break;
 
-      case ZB_BDB_SIGNAL_FINDING_AND_BINDING_TARGET_FINISHED:
-        TRACE_MSG(TRACE_APS1, "Finding&binding target done", (FMT__0));
-        break;
+        case ZB_BDB_SIGNAL_FINDING_AND_BINDING_TARGET_FINISHED:
+            TRACE_MSG(TRACE_APS1, "Finding&binding target done", (FMT__0));
+            break;
 
-      case ZB_BDB_SIGNAL_FINDING_AND_BINDING_INITIATOR_FINISHED:
-        TRACE_MSG(TRACE_APS1, "Finding&binding initiator done", (FMT__0));
-        break;
-        
-      default:
-        TRACE_MSG(TRACE_APS1, "Unknown signal", (FMT__0));
+        case ZB_BDB_SIGNAL_FINDING_AND_BINDING_INITIATOR_FINISHED:
+            TRACE_MSG(TRACE_APS1, "Finding&binding initiator done", (FMT__0));
+            break;
+
+        default:
+            TRACE_MSG(TRACE_APS1, "Unknown signal", (FMT__0));
+        }
     }
-  }
-  else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
-  {
-    TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
-  }
-  zb_free_buf(ZB_BUF_FROM_REF(param));
+    else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
+    {
+        TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
+    }
+    zb_free_buf(ZB_BUF_FROM_REF(param));
 }
 
 

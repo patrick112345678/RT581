@@ -84,7 +84,7 @@
 
 #include <parallel/types.h>
 
-/** 
+/**
   * @brief Determine at compile(?)-time if the parallel variant of an
   * algorithm should be called.
   * @param __c A condition that is convertible to bool that is overruled by
@@ -117,12 +117,12 @@ parallel_condition(bool __c)
 
 namespace __gnu_parallel
 {
-  /// class _Settings
-  /// Run-time settings for the parallel mode including all tunable parameters.
-  struct _Settings
-  {
+/// class _Settings
+/// Run-time settings for the parallel mode including all tunable parameters.
+struct _Settings
+{
     _AlgorithmStrategy          algorithm_strategy;
-    
+
     _SortAlgorithm              sort_algorithm;
     _PartialSumAlgorithm        partial_sum_algorithm;
     _MultiwayMergeAlgorithm     multiway_merge_algorithm;
@@ -242,7 +242,7 @@ namespace __gnu_parallel
     /// Minimal input size for parallel std::transform.
     _SequenceIndex              transform_minimal_n;
 
-    /// Minimal input size for unique_copy. 
+    /// Minimal input size for unique_copy.
     _SequenceIndex              unique_copy_minimal_n;
 
     _SequenceIndex              workstealing_chunk_size;
@@ -275,68 +275,68 @@ namespace __gnu_parallel
     float                       find_scale_factor;
 
     /// Get the global settings.
-    _GLIBCXX_CONST static const _Settings&
+    _GLIBCXX_CONST static const _Settings &
     get() throw();
 
     /// Set the global settings.
     static void
-    set(_Settings&) throw();
+    set(_Settings &) throw();
 
-    explicit 
+    explicit
     _Settings() :
-            algorithm_strategy(heuristic),
-            sort_algorithm(MWMS),
-            partial_sum_algorithm(LINEAR),
-            multiway_merge_algorithm(LOSER_TREE),
-            find_algorithm(CONSTANT_SIZE_BLOCKS),
-            sort_splitting(EXACT),
-            merge_splitting(EXACT),
-            multiway_merge_splitting(EXACT),
-            accumulate_minimal_n(1000),
-            adjacent_difference_minimal_n(1000),
-            count_minimal_n(1000),
-            fill_minimal_n(1000),
-            find_increasing_factor(2.0),
-            find_initial_block_size(256),
-            find_maximum_block_size(8192),
-            find_sequential_search_size(256),
-            for_each_minimal_n(1000),
-            generate_minimal_n(1000),
-            max_element_minimal_n(1000),
-            merge_minimal_n(1000),
-            merge_oversampling(10),
-            min_element_minimal_n(1000),
-            multiway_merge_minimal_n(1000),
-            multiway_merge_minimal_k(2), multiway_merge_oversampling(10),
-            nth_element_minimal_n(1000),
-            partition_chunk_size(1000),
-            partition_chunk_share(0.0),
-            partition_minimal_n(1000),
-            partial_sort_minimal_n(1000),
-            partial_sum_dilation(1.0f),
-            partial_sum_minimal_n(1000),
-            random_shuffle_minimal_n(1000),
-            replace_minimal_n(1000),
-            set_difference_minimal_n(1000),
-            set_intersection_minimal_n(1000),
-            set_symmetric_difference_minimal_n(1000),
-            set_union_minimal_n(1000),
-            sort_minimal_n(1000),
-            sort_mwms_oversampling(10),
-            sort_qs_num_samples_preset(100),
-            sort_qsb_base_case_maximal_n(100),
-            transform_minimal_n(1000),
-            unique_copy_minimal_n(10000),
-            workstealing_chunk_size(100),
-            L1_cache_size(16 << 10),
-            L2_cache_size(256 << 10),
-            TLB_size(128),
-            cache_line_size(64),
-            qsb_steals(0),
-            search_minimal_n(1000),
-            find_scale_factor(0.01f)
+        algorithm_strategy(heuristic),
+        sort_algorithm(MWMS),
+        partial_sum_algorithm(LINEAR),
+        multiway_merge_algorithm(LOSER_TREE),
+        find_algorithm(CONSTANT_SIZE_BLOCKS),
+        sort_splitting(EXACT),
+        merge_splitting(EXACT),
+        multiway_merge_splitting(EXACT),
+        accumulate_minimal_n(1000),
+        adjacent_difference_minimal_n(1000),
+        count_minimal_n(1000),
+        fill_minimal_n(1000),
+        find_increasing_factor(2.0),
+        find_initial_block_size(256),
+        find_maximum_block_size(8192),
+        find_sequential_search_size(256),
+        for_each_minimal_n(1000),
+        generate_minimal_n(1000),
+        max_element_minimal_n(1000),
+        merge_minimal_n(1000),
+        merge_oversampling(10),
+        min_element_minimal_n(1000),
+        multiway_merge_minimal_n(1000),
+        multiway_merge_minimal_k(2), multiway_merge_oversampling(10),
+        nth_element_minimal_n(1000),
+        partition_chunk_size(1000),
+        partition_chunk_share(0.0),
+        partition_minimal_n(1000),
+        partial_sort_minimal_n(1000),
+        partial_sum_dilation(1.0f),
+        partial_sum_minimal_n(1000),
+        random_shuffle_minimal_n(1000),
+        replace_minimal_n(1000),
+        set_difference_minimal_n(1000),
+        set_intersection_minimal_n(1000),
+        set_symmetric_difference_minimal_n(1000),
+        set_union_minimal_n(1000),
+        sort_minimal_n(1000),
+        sort_mwms_oversampling(10),
+        sort_qs_num_samples_preset(100),
+        sort_qsb_base_case_maximal_n(100),
+        transform_minimal_n(1000),
+        unique_copy_minimal_n(10000),
+        workstealing_chunk_size(100),
+        L1_cache_size(16 << 10),
+        L2_cache_size(256 << 10),
+        TLB_size(128),
+        cache_line_size(64),
+        qsb_steals(0),
+        search_minimal_n(1000),
+        find_scale_factor(0.01f)
     { }
-  };
+};
 }
 
 #endif /* _GLIBCXX_PARALLEL_SETTINGS_H */

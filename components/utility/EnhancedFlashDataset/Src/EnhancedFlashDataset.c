@@ -15,13 +15,13 @@
  */
 EfErrCode enhanced_flash_dataset_init(void)
 {
-    extern EfErrCode efd_port_init(efd_env const ** default_env, size_t * default_env_size);
+    extern EfErrCode efd_port_init(efd_env const **default_env, size_t *default_env_size);
     extern EfErrCode efd_env_init(efd_env const * default_env, size_t default_env_size);
     extern EfErrCode efd_iap_init(void);
     extern EfErrCode efd_log_init(void);
 
     size_t default_env_set_size = 0;
-    const efd_env * default_env_set;
+    const efd_env *default_env_set;
     EfErrCode result    = EFD_NO_ERR;
     static bool init_ok = false;
 

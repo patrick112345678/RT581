@@ -31,7 +31,7 @@ zb_r22_cert_test_ctx_t g_cert_test_ctx;
 
 void zb_cert_test_set_init_globals()
 {
-  g_cert_test_ctx.page = ZB_CERT_TEST_DEAULT_PAGE;
-  g_cert_test_ctx.channel = ZB_CERT_TEST_DEAULT_CHANNEL;
-  g_cert_test_ctx.mode  = ZB_TEST_CONTROL_UART;
+    g_cert_test_ctx.page = ZB_CERT_TEST_DEAULT_PAGE;
+    g_cert_test_ctx.channel = ZB_CERT_TEST_DEAULT_CHANNEL;
+    g_cert_test_ctx.mode  = ZB_TEST_CONTROL_UART;
 }

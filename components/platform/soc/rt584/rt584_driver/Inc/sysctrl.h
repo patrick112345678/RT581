@@ -207,31 +207,31 @@ extern void enable_pin_opendrain(uint32_t pin_number);
 extern void disable_pin_opendrain(uint32_t pin_number);
 
 /*
- * Change CPU AHB CLOCK, 
+ * Change CPU AHB CLOCK,
  *      return STATUS_SUCCESS(0) for change success.
  *      return STATUS_ERROR      for change fail.
- * 
+ *
  */
 extern uint32_t change_ahb_system_clk(uint32_t clk_mode);
 
 /*
- * Get CPU AHB CLOCK, 
+ * Get CPU AHB CLOCK,
  *      return SYS_CLK_32MHZ      for CPU AHB 32MHz clock.
  *      return SYS_CLK_48MHZ      for CPU AHB 48MHz clock.
  *      return SYS_CLK_64MHZ      for CPU AHB 64MHz clock.
- * 
+ *
  */
 extern uint32_t get_ahb_system_clk(void);
 
 /*
  * Select Slow clock source.
  * Available mode:
- *         SLOW_CLOCK_INTERNAL   --- default value. 
+ *         SLOW_CLOCK_INTERNAL   --- default value.
  *                  If system don't call this function, then slow clock source is from internal RCO by default.
- *         
+ *
  *          SLOW_CLOCK_FROM_GPIO ---
  *                 If system set this mode, system should use an external 32K source from GPIO.
- *                
+ *
  *
  */
 extern void set_slow_clock_source(uint32_t mode);

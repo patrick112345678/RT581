@@ -27,57 +27,57 @@
 
 void izs_hal_hw_init(void)
 {
-  /* TODO: Init HW parts if needed. */
+    /* TODO: Init HW parts if needed. */
 }
 
 
 void izs_emulation_motion_alarm(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_APP1, "izs_emulation_motion_alarm: alarm %hd", (FMT__H, param));
-  izs_update_ias_zone_status(ZB_ZCL_IAS_ZONE_ZONE_STATUS_ALARM1, param);
-  ZB_SCHEDULE_APP_ALARM(izs_emulation_motion_alarm, !param, ZB_TIME_ONE_SECOND * ZB_RANDOM_VALUE(20));
+    TRACE_MSG(TRACE_APP1, "izs_emulation_motion_alarm: alarm %hd", (FMT__H, param));
+    izs_update_ias_zone_status(ZB_ZCL_IAS_ZONE_ZONE_STATUS_ALARM1, param);
+    ZB_SCHEDULE_APP_ALARM(izs_emulation_motion_alarm, !param, ZB_TIME_ONE_SECOND * ZB_RANDOM_VALUE(20));
 }
 
 void izs_hal_hw_enable(void)
 {
-  /* Start Motion alarms emulation. */
-  ZB_SCHEDULE_APP_CALLBACK(izs_emulation_motion_alarm, 0);
+    /* Start Motion alarms emulation. */
+    ZB_SCHEDULE_APP_CALLBACK(izs_emulation_motion_alarm, 0);
 }
 
 void izs_hal_hw_disable(void)
 {
-  /* Stop Motion alarms emulation. */
-  ZB_SCHEDULE_APP_ALARM_CANCEL(izs_emulation_motion_alarm, ZB_ALARM_ANY_PARAM);
+    /* Stop Motion alarms emulation. */
+    ZB_SCHEDULE_APP_ALARM_CANCEL(izs_emulation_motion_alarm, ZB_ALARM_ANY_PARAM);
 }
 
 zb_uint16_t izs_get_current_time_qsec(void)
 {
-  zb_uint16_t t = 0;
+    zb_uint16_t t = 0;
 
-  TRACE_MSG(TRACE_APP1, "> izs_get_current_time_qsec", (FMT__0));
-  t = ZB_TIME_QUARTERECONDS( ZB_TIMER_GET() );
-  TRACE_MSG(TRACE_APP1, "< izs_get_current_time_qsec", (FMT__0));
-  return t;
+    TRACE_MSG(TRACE_APP1, "> izs_get_current_time_qsec", (FMT__0));
+    t = ZB_TIME_QUARTERECONDS( ZB_TIMER_GET() );
+    TRACE_MSG(TRACE_APP1, "< izs_get_current_time_qsec", (FMT__0));
+    return t;
 }
 
 zb_bool_t izs_hal_get_button_state(zb_uint16_t button)
 {
-  ZVUNUSED(button);
-  return ZB_FALSE;
+    ZVUNUSED(button);
+    return ZB_FALSE;
 }
 
 void izs_hal_led_blink(zb_uint8_t times)
 {
-  ZVUNUSED(times);
+    ZVUNUSED(times);
 }
 
 void izs_hal_power_led_on(zb_uint8_t param)
 {
-  ZVUNUSED(param);
+    ZVUNUSED(param);
 }
 
 void izs_hal_power_led_off(zb_uint8_t param)
 {
-  ZVUNUSED(param);
+    ZVUNUSED(param);
 }
 

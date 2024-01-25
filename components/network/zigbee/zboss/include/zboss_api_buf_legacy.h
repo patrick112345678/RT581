@@ -82,24 +82,24 @@
  */
 typedef ZB_PACKED_PRE struct zb_bigbuf_hdr_s
 {
-  zb_uint16_t len;              /*!< current layer buffer length  */
-  zb_uint16_t data_offset;      /*!< data offset in buffer buf*/
-  zb_uint8_t handle;           /*!< The handle associated with the NSDU to be
+    zb_uint16_t len;              /*!< current layer buffer length  */
+    zb_uint16_t data_offset;      /*!< data offset in buffer buf*/
+    zb_uint8_t handle;           /*!< The handle associated with the NSDU to be
                                 * transmitted by the NWK layer entity.  */
-  zb_bitfield_t is_in_buf:1;    /*!< if 1, this is input buffer */
+    zb_bitfield_t is_in_buf: 1;   /*!< if 1, this is input buffer */
 
-  zb_bitfield_t encrypt_type:3; /*!< payload must be encrypted before send, if
+    zb_bitfield_t encrypt_type: 3; /*!< payload must be encrypted before send, if
                                  * !0. \see zb_secur_buf_encr_type_e.
                                  */
-  zb_bitfield_t use_same_key:1;    /*!< if 1, use same nwk key# packet was
+    zb_bitfield_t use_same_key: 1;    /*!< if 1, use same nwk key# packet was
                                     * encrypted by */
-  zb_bitfield_t zdo_cmd_no_resp:1; /*!< if 1, this is ZDO command with no
+    zb_bitfield_t zdo_cmd_no_resp: 1; /*!< if 1, this is ZDO command with no
                                     * response - call callback at confirm  */
-  zb_bitfield_t is_rx_buf:1;    /*!< if 1, this is buffer with received packet and
+    zb_bitfield_t is_rx_buf: 1;    /*!< if 1, this is buffer with received packet and
                                  * nwk_mac_addrs_t is at buffer tail */
-  zb_bitfield_t has_aps_payload:1;   /*!< if 1, than packet comes from APS */
+    zb_bitfield_t has_aps_payload: 1;  /*!< if 1, than packet comes from APS */
 
-  zb_int16_t status;            /*!< some status to be passed with packet  */
+    zb_int16_t status;            /*!< some status to be passed with packet  */
 } ZB_PACKED_STRUCT zb_bigbuf_hdr_t;
 
 /**
@@ -108,18 +108,18 @@ typedef ZB_PACKED_PRE struct zb_bigbuf_hdr_s
 #ifdef ZB_BIGBUF
 typedef struct zb_bigbuf_s
 {
-  union
-  {
-    zb_bigbuf_hdr_t hdr;                   /*!< Buffer header, if buffer is used */
-    //struct zb_bigbuf_s *next;              /*!< Ref to next free buffer, if buffer is not used*/
-  } u; /*!< Buffer header */
-  //zb_uint8_t   *buf;                    /*!< Dynamically allocated buffer for payload */
-  zb_uint8_t   *buf;                       /*!< Allocated buffer Data*/
-  zb_uint16_t  buf_len;                   /*!< Allocated buffer Len*/
-  //zb_uint8_t   flag;                      /*!< busy and other flags possible*/
+    union
+    {
+        zb_bigbuf_hdr_t hdr;                   /*!< Buffer header, if buffer is used */
+        //struct zb_bigbuf_s *next;              /*!< Ref to next free buffer, if buffer is not used*/
+    } u; /*!< Buffer header */
+    //zb_uint8_t   *buf;                    /*!< Dynamically allocated buffer for payload */
+    zb_uint8_t   *buf;                       /*!< Allocated buffer Data*/
+    zb_uint16_t  buf_len;                   /*!< Allocated buffer Len*/
+    //zb_uint8_t   flag;                      /*!< busy and other flags possible*/
 #ifdef ZB_DEBUG_BUFFERS_EXT
-  zb_buf_usage_t buf_allocation;
-  zb_buf_usage_t buf_usages[ZB_DEBUG_BUFFERS_EXT_USAGES_COUNT];
+    zb_buf_usage_t buf_allocation;
+    zb_buf_usage_t buf_usages[ZB_DEBUG_BUFFERS_EXT_USAGES_COUNT];
 #endif
 } zb_bigbuf_t;
 #endif /*ZB_BIGBUF*/
@@ -140,7 +140,7 @@ typedef struct zb_bigbuf_s
 
 #ifdef ZB_BUF_SHIELD
 
-zb_bool_t zb_buf_check_full(zb_int_t file_id,zb_uint8_t param);
+zb_bool_t zb_buf_check_full(zb_int_t file_id, zb_uint8_t param);
 
 
 #define ZB_BUF_CHECK_INLINE(param) \
@@ -174,7 +174,7 @@ zb_bigbuf_t *zb_get_bigbuf(
  *
  * @note don't call it directly, use @ref ZB_BUF_BEGIN() instead
  */
-zb_uint8_t* zb_buf_begin_leg(TRACE_PROTO zb_buf_t *zbbuf);
+zb_uint8_t *zb_buf_begin_leg(TRACE_PROTO zb_buf_t *zbbuf);
 
 
 /**
@@ -187,7 +187,7 @@ zb_uint8_t* zb_buf_begin_leg(TRACE_PROTO zb_buf_t *zbbuf);
 #ifdef ZB_BIGBUF
 zb_uint16_t zb_buf_len_leg(TRACE_PROTO zb_buf_t *zbbuf);
 #else
-  zb_uint8_t zb_buf_len_leg(TRACE_PROTO zb_buf_t *zbbuf);
+zb_uint8_t zb_buf_len_leg(TRACE_PROTO zb_buf_t *zbbuf);
 #endif
 
 /**
@@ -253,7 +253,7 @@ zb_buf_t *zb_get_out_buf(void);
  * @param from_file - TRACE_ID of the file from which function is invoked
  * @param from_line - line from which function is invoked
  */
-zb_buf_t* zb_buf_from_ref(zb_uint8_t ref, zb_uint16_t from_file, zb_uint16_t from_line);
+zb_buf_t *zb_buf_from_ref(zb_uint8_t ref, zb_uint16_t from_file, zb_uint16_t from_line);
 
 /**
  * Calculate pointer of the buffer by buffer reference.
@@ -578,7 +578,7 @@ void *zb_get_buf_tail(zb_buf_t *zbbuf, zb_uint8_t size);
      zb_zdo_nwk_addr_req(ZB_REF_FROM_BUF(buf), NULL);
    @endcode
  */
- #define ZB_SET_BUF_PARAM(zbbuf, param, type) (ZB_BUF_IS_BUSY_INLINE(ZB_REF_FROM_BUF(zbbuf)) *((type *)ZB_GET_BUF_TAIL(zbbuf, sizeof(type))) = (param) )
+#define ZB_SET_BUF_PARAM(zbbuf, param, type) (ZB_BUF_IS_BUSY_INLINE(ZB_REF_FROM_BUF(zbbuf)) *((type *)ZB_GET_BUF_TAIL(zbbuf, sizeof(type))) = (param) )
 
 /**
    Place data of size sizeof(type) at the end of buffer
@@ -648,7 +648,7 @@ do {                                      \
  */
 zb_ret_t zb_get_in_buf_delayed(
 #ifdef ZB_DEBUG_BUFFERS
-  zb_uint16_t from_file, zb_uint16_t from_line,
+    zb_uint16_t from_file, zb_uint16_t from_line,
 #endif
     zb_callback_t callback);
 
@@ -678,7 +678,7 @@ zb_ret_t zb_get_in_buf_delayed(
  */
 zb_ret_t zb_get_out_buf_delayed(
 #ifdef ZB_DEBUG_BUFFERS
-  zb_uint16_t from_file, zb_uint16_t from_line,
+    zb_uint16_t from_file, zb_uint16_t from_line,
 #endif
     zb_callback_t callback);
 
@@ -719,12 +719,12 @@ zb_ret_t zb_get_out_buf_delayed(
  */
 zb_ret_t zb_get_buf_delayed_2param(
 #ifdef ZB_DEBUG_BUFFERS
-  zb_uint16_t from_file, zb_uint16_t from_line,
+    zb_uint16_t from_file, zb_uint16_t from_line,
 #endif
-  zb_callback2_t callback,
-  zb_uint8_t buf_type,
-  zb_bool_t use_2_param,
-  zb_uint16_t user_param);
+    zb_callback2_t callback,
+    zb_uint8_t buf_type,
+    zb_bool_t use_2_param,
+    zb_uint16_t user_param);
 
 /**
  * @brief Allocate out buffer, call a callback with extra user parameter when the buffer is available.

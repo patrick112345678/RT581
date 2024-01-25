@@ -49,19 +49,19 @@ typedef void (*perform_next_state_t)(zb_uint8_t param);
 
 typedef zb_bool_t (*custom_comm_cb_t)(zb_zgpd_id_t *zgpd_id, zb_zgp_comm_status_t  result);
 typedef void (*zgp_srv_clst_read_attr_handler_cb_t)
-                            (zb_uint8_t              param,
-                             zb_zcl_read_attr_res_t *read_attr_resp);
+(zb_uint8_t              param,
+ zb_zcl_read_attr_res_t *read_attr_resp);
 
 typedef void (*zgp_cli_clst_read_attr_handler_cb_t)
-                            (zb_uint8_t              param,
-                             zb_zcl_read_attr_res_t *read_attr_resp);
+(zb_uint8_t              param,
+ zb_zcl_read_attr_res_t *read_attr_resp);
 typedef void (*zgp_srv_clst_write_attr_handler_cb_t)
-                            (zb_uint8_t               param,
-                             zb_zcl_write_attr_res_t *write_attr_resp);
+(zb_uint8_t               param,
+ zb_zcl_write_attr_res_t *write_attr_resp);
 
 typedef void (*zgp_cli_clst_write_attr_handler_cb_t)
-                            (zb_uint8_t               param,
-                             zb_zcl_write_attr_res_t *write_attr_resp);
+(zb_uint8_t               param,
+ zb_zcl_write_attr_res_t *write_attr_resp);
 typedef void (*zgp_clst_gp_pairing_handler_cb_t)(zb_uint8_t param);
 typedef void (*zgp_clst_gp_prx_comm_mode_handler_cb_t)(zb_uint8_t param);
 typedef void (*zgp_clst_gp_sink_tbl_req_cb_t)(zb_uint8_t param);
@@ -79,55 +79,55 @@ void zgpd_set_ieee_and_call(zb_uint8_t param, zb_callback_t func);
 
 enum cur_btn_state
 {
-  NEXT_STATE_SKIP,
-  NEXT_STATE_PASSED,
-  NEXT_STATE_SKIP_AFTER_CMD,
-  NEXT_STATES_SEQUENCE_PASSED,
+    NEXT_STATE_SKIP,
+    NEXT_STATE_PASSED,
+    NEXT_STATE_SKIP_AFTER_CMD,
+    NEXT_STATES_SEQUENCE_PASSED,
 };
 
 typedef struct zgpd_test_device_ctx_s
 {
-  zb_uint8_t test_state;
-  zb_uint8_t err_cnt;
-  zb_uint8_t pause;
+    zb_uint8_t test_state;
+    zb_uint8_t err_cnt;
+    zb_uint8_t pause;
 #ifdef USE_HW_DEFAULT_BUTTON_SEQUENCE
-  zb_uint8_t skip_next_state;
+    zb_uint8_t skip_next_state;
 #endif
-  make_gpdf_t make_gpdf_cb;
-  perform_next_state_t perform_next_state_cb;
+    make_gpdf_t make_gpdf_cb;
+    perform_next_state_t perform_next_state_cb;
 
 #ifdef ZB_USE_BUTTONS
-  zgp_left_button_handler_t left_button_handler;
-  zgp_up_button_handler_t up_button_handler;
-  zgp_down_button_handler_t down_button_handler;
-  zgp_right_button_handler_t right_button_handler;
+    zgp_left_button_handler_t left_button_handler;
+    zgp_up_button_handler_t up_button_handler;
+    zgp_down_button_handler_t down_button_handler;
+    zgp_right_button_handler_t right_button_handler;
 #endif
 } zgpd_test_device_ctx_t;
 
 typedef struct zgpc_test_device_ctx_s
 {
-  zb_uint8_t test_state;
-  zb_uint8_t err_cnt;
-  zb_uint8_t pause;
-  zb_uint8_t skip_next_state;
-  send_zcl_t send_zcl_cb;
-  zb_callback_t next_zcl_cb;
-  zb_callback_t steering_hndlr_cb;
-  perform_next_state_t perform_next_state_cb;
-  custom_comm_cb_t custom_comm_cb;
-  zgp_srv_clst_read_attr_handler_cb_t srv_r_attr_hndlr_cb;
-  zgp_cli_clst_read_attr_handler_cb_t cli_r_attr_hndlr_cb;
-  zgp_srv_clst_write_attr_handler_cb_t srv_w_attr_hndlr_cb;
-  zgp_cli_clst_write_attr_handler_cb_t cli_w_attr_hndlr_cb;
-  zgp_clst_gp_pairing_handler_cb_t gp_pairing_hndlr_cb;
-  zgp_clst_gp_prx_comm_mode_handler_cb_t gp_prx_comm_mode_hndlr_cb;
-  zgp_clst_gp_sink_tbl_req_cb_t gp_sink_tbl_req_cb;
+    zb_uint8_t test_state;
+    zb_uint8_t err_cnt;
+    zb_uint8_t pause;
+    zb_uint8_t skip_next_state;
+    send_zcl_t send_zcl_cb;
+    zb_callback_t next_zcl_cb;
+    zb_callback_t steering_hndlr_cb;
+    perform_next_state_t perform_next_state_cb;
+    custom_comm_cb_t custom_comm_cb;
+    zgp_srv_clst_read_attr_handler_cb_t srv_r_attr_hndlr_cb;
+    zgp_cli_clst_read_attr_handler_cb_t cli_r_attr_hndlr_cb;
+    zgp_srv_clst_write_attr_handler_cb_t srv_w_attr_hndlr_cb;
+    zgp_cli_clst_write_attr_handler_cb_t cli_w_attr_hndlr_cb;
+    zgp_clst_gp_pairing_handler_cb_t gp_pairing_hndlr_cb;
+    zgp_clst_gp_prx_comm_mode_handler_cb_t gp_prx_comm_mode_hndlr_cb;
+    zgp_clst_gp_sink_tbl_req_cb_t gp_sink_tbl_req_cb;
 
 #ifdef ZB_USE_BUTTONS
-  zgp_left_button_handler_t left_button_handler;
-  zgp_up_button_handler_t up_button_handler;
-  zgp_down_button_handler_t down_button_handler;
-  zgp_right_button_handler_t right_button_handler;
+    zgp_left_button_handler_t left_button_handler;
+    zgp_up_button_handler_t up_button_handler;
+    zgp_down_button_handler_t down_button_handler;
+    zgp_right_button_handler_t right_button_handler;
 #endif
 } zgpc_test_device_ctx_t;
 

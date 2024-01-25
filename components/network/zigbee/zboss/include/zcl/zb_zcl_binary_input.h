@@ -56,44 +56,44 @@
 /** @brief Binary Input cluster attribute identifiers. */
 enum zb_zcl_binary_input_attr_e
 {
-  /** This attribute, of type Character string, MAY be used to hold a human readable
-   *  description of the ACTIVE state of a binary PresentValue. */
-  ZB_ZCL_ATTR_BINARY_INPUT_ACTIVE_TEXT_ID               = 0x0004,
-  /** The Description attribute, of type Character string, MAY be used to hold a
-   *  description of the usage of the input, output or value, as appropriate
-   *  to the cluster. */
-  ZB_ZCL_ATTR_BINARY_INPUT_DESCRIPTION_ID               = 0x001C,
-  /** This attribute, of type Character string, MAY be used to hold a human readable
-   *  description of the INACTIVE state of a binary PresentValue. */
-  ZB_ZCL_ATTR_BINARY_INPUT_INACTIVE_TEXT_ID             = 0x002E,
+    /** This attribute, of type Character string, MAY be used to hold a human readable
+     *  description of the ACTIVE state of a binary PresentValue. */
+    ZB_ZCL_ATTR_BINARY_INPUT_ACTIVE_TEXT_ID               = 0x0004,
+    /** The Description attribute, of type Character string, MAY be used to hold a
+     *  description of the usage of the input, output or value, as appropriate
+     *  to the cluster. */
+    ZB_ZCL_ATTR_BINARY_INPUT_DESCRIPTION_ID               = 0x001C,
+    /** This attribute, of type Character string, MAY be used to hold a human readable
+     *  description of the INACTIVE state of a binary PresentValue. */
+    ZB_ZCL_ATTR_BINARY_INPUT_INACTIVE_TEXT_ID             = 0x002E,
 
-  /** @brief OutOfService attribute */
-  ZB_ZCL_ATTR_BINARY_INPUT_OUT_OF_SERVICE_ID            = 0x0051,
-  /** This attribute, of type enumeration, indicates the relationship between
-   *  the physical state of the input (or output as appropriate for the cluster)
-   *  and the logical state represented by a binary PresentValue attribute,
-   *  when OutOfService is FALSE. */
-  ZB_ZCL_ATTR_BINARY_INPUT_POLARITY_ID                  = 0x0054,
+    /** @brief OutOfService attribute */
+    ZB_ZCL_ATTR_BINARY_INPUT_OUT_OF_SERVICE_ID            = 0x0051,
+    /** This attribute, of type enumeration, indicates the relationship between
+     *  the physical state of the input (or output as appropriate for the cluster)
+     *  and the logical state represented by a binary PresentValue attribute,
+     *  when OutOfService is FALSE. */
+    ZB_ZCL_ATTR_BINARY_INPUT_POLARITY_ID                  = 0x0054,
 
-  /** @brief PresentValue attribute */
-  ZB_ZCL_ATTR_BINARY_INPUT_PRESENT_VALUE_ID             = 0x0055,
+    /** @brief PresentValue attribute */
+    ZB_ZCL_ATTR_BINARY_INPUT_PRESENT_VALUE_ID             = 0x0055,
 
-// adding GP specific attributes
-  ZB_ZCL_ATTR_GP_ATTR_BINARY_INPUT_BATTERY_VALUE_ID     = 0x0056,
-  ZB_ZCL_ATTR_GP_ATTR_BINARY_INPUT_TEMPERATURE_VALUE_ID = 0x0057,
-  ZB_ZCL_ATTR_GP_ATTR_BINARY_INPUT_TAMPER_VALUE_ID      = 0x0058,
-// end GP specific attributes
-  /** The Reliability attribute, of type 8-bit enumeration, provides an indication
-   *  of whether the PresentValue or the operation of the physical input,
-   *  output or value in question (as appropriate for the cluster) is reliable
-   *  as far as can be determined and, if not, why not. */
-  ZB_ZCL_ATTR_BINARY_INPUT_RELIABILITY_ID               = 0x0067,
+    // adding GP specific attributes
+    ZB_ZCL_ATTR_GP_ATTR_BINARY_INPUT_BATTERY_VALUE_ID     = 0x0056,
+    ZB_ZCL_ATTR_GP_ATTR_BINARY_INPUT_TEMPERATURE_VALUE_ID = 0x0057,
+    ZB_ZCL_ATTR_GP_ATTR_BINARY_INPUT_TAMPER_VALUE_ID      = 0x0058,
+    // end GP specific attributes
+    /** The Reliability attribute, of type 8-bit enumeration, provides an indication
+     *  of whether the PresentValue or the operation of the physical input,
+     *  output or value in question (as appropriate for the cluster) is reliable
+     *  as far as can be determined and, if not, why not. */
+    ZB_ZCL_ATTR_BINARY_INPUT_RELIABILITY_ID               = 0x0067,
 
-  /** @brief StatusFlag attribute */
-  ZB_ZCL_ATTR_BINARY_INPUT_STATUS_FLAG_ID               = 0x006F,
-  /** The ApplicationType attribute is an unsigned 32-bit integer that indicates
-   *  the specific application usage for this cluster. */
-  ZB_ZCL_ATTR_BINARY_INPUT_APPLICATION_TYPE_ID          = 0x0100,
+    /** @brief StatusFlag attribute */
+    ZB_ZCL_ATTR_BINARY_INPUT_STATUS_FLAG_ID               = 0x006F,
+    /** The ApplicationType attribute is an unsigned 32-bit integer that indicates
+     *  the specific application usage for this cluster. */
+    ZB_ZCL_ATTR_BINARY_INPUT_APPLICATION_TYPE_ID          = 0x0100,
 };
 
 /**
@@ -102,11 +102,11 @@ enum zb_zcl_binary_input_attr_e
  */
 enum zb_zcl_binary_input_status_flag_value_e
 {
-  ZB_ZCL_BINARY_INPUT_STATUS_FLAG_NORMAL    = 0x00,       /**< Normal (default) state. */
-  ZB_ZCL_BINARY_INPUT_STATUS_FLAG_IN_ALARM  = 0x01,       /**< In alarm bit. */
-  ZB_ZCL_BINARY_INPUT_STATUS_FLAG_FAULT     = 0x02,       /**< Fault bit. */
-  ZB_ZCL_BINARY_INPUT_STATUS_FLAG_OVERRIDEN = 0x04,       /**< Overridden bit. */
-  ZB_ZCL_BINARY_INPUT_STATUS_FLAG_OUT_OF_SERVICE = 0x08,  /**< Out of service bit. */
+    ZB_ZCL_BINARY_INPUT_STATUS_FLAG_NORMAL    = 0x00,       /**< Normal (default) state. */
+    ZB_ZCL_BINARY_INPUT_STATUS_FLAG_IN_ALARM  = 0x01,       /**< In alarm bit. */
+    ZB_ZCL_BINARY_INPUT_STATUS_FLAG_FAULT     = 0x02,       /**< Fault bit. */
+    ZB_ZCL_BINARY_INPUT_STATUS_FLAG_OVERRIDEN = 0x04,       /**< Overridden bit. */
+    ZB_ZCL_BINARY_INPUT_STATUS_FLAG_OUT_OF_SERVICE = 0x08,  /**< Out of service bit. */
 };
 
 /** @brief Default value for ActiveText attribute */

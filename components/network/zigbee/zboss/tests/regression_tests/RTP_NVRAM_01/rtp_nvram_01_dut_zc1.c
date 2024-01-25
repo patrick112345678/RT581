@@ -62,7 +62,7 @@ static zb_ieee_addr_t g_ieee_addr_dut_zc = IEEE_ADDR_DUT_ZC;
 
 typedef ZB_PACKED_PRE struct test_device_nvram_dataset_s
 {
-  zb_uint8_t data[TEST_NVRAM_PAYLOAD_SIZE];
+    zb_uint8_t data[TEST_NVRAM_PAYLOAD_SIZE];
 } ZB_PACKED_STRUCT test_device_nvram_dataset_t;
 
 static zb_uint16_t test_get_nvram_data_size();
@@ -72,104 +72,104 @@ static void trigger_steering(zb_uint8_t unused);
 
 MAIN()
 {
-  ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
-  ZB_SET_TRACE_LEVEL(4);
-  ARGV_UNUSED;
+    ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
+    ZB_SET_TRACE_LEVEL(4);
+    ARGV_UNUSED;
 
-  ZB_INIT("zdo_dut_zc");
+    ZB_INIT("zdo_dut_zc");
 
-  zb_set_long_address(g_ieee_addr_dut_zc);
+    zb_set_long_address(g_ieee_addr_dut_zc);
 
-  zb_secur_setup_nwk_key((zb_uint8_t*) g_nwk_key, 0);
+    zb_secur_setup_nwk_key((zb_uint8_t *) g_nwk_key, 0);
 
-  zb_reg_test_set_common_channel_settings();
-  zb_set_network_coordinator_role((1l << TEST_CHANNEL));
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    zb_reg_test_set_common_channel_settings();
+    zb_set_network_coordinator_role((1l << TEST_CHANNEL));
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  zb_nvram_register_app1_write_cb(test_nvram_write_app_data, test_get_nvram_data_size);
+    zb_nvram_register_app1_write_cb(test_nvram_write_app_data, test_get_nvram_data_size);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  switch (sig)
-  {
+    switch (sig)
+    {
     case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        ZB_SCHEDULE_CALLBACK(trigger_steering, 0);
-      }
-      break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
+        TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            ZB_SCHEDULE_CALLBACK(trigger_steering, 0);
+        }
+        break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
 
     case ZB_BDB_SIGNAL_STEERING:
-      TRACE_MSG(TRACE_APS1, "signal: ZB_BDB_SIGNAL_STEERING, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        zb_nvram_write_dataset(ZB_NVRAM_APP_DATA1);
-      }
-      break; /* ZB_BDB_SIGNAL_STEERING */
+        TRACE_MSG(TRACE_APS1, "signal: ZB_BDB_SIGNAL_STEERING, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            zb_nvram_write_dataset(ZB_NVRAM_APP_DATA1);
+        }
+        break; /* ZB_BDB_SIGNAL_STEERING */
 
     default:
-      TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
-      break;
-  }
+        TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 static void trigger_steering(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
+    bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
 }
 
 static zb_uint16_t test_get_nvram_data_size()
 {
-  TRACE_MSG(TRACE_APP1, "test_get_nvram_data_size, ret %hd", (FMT__H, sizeof(test_device_nvram_dataset_t)));
-  return sizeof(test_device_nvram_dataset_t);
+    TRACE_MSG(TRACE_APP1, "test_get_nvram_data_size, ret %hd", (FMT__H, sizeof(test_device_nvram_dataset_t)));
+    return sizeof(test_device_nvram_dataset_t);
 }
 
 static zb_ret_t test_nvram_write_app_data(zb_uint8_t page, zb_uint32_t pos)
 {
-  zb_ret_t ret;
-  zb_int16_t i;
-  test_device_nvram_dataset_t ds;
+    zb_ret_t ret;
+    zb_int16_t i;
+    test_device_nvram_dataset_t ds;
 
-  TRACE_MSG(TRACE_APP1, ">> test_nvram_write_app_data, page %hd, pos %d", (FMT__H_D, page, pos));
+    TRACE_MSG(TRACE_APP1, ">> test_nvram_write_app_data, page %hd, pos %d", (FMT__H_D, page, pos));
 
-  for (i = 0; i < TEST_NVRAM_PAYLOAD_SIZE; i++)
-  {
-    ds.data[i] = i;
-  }
+    for (i = 0; i < TEST_NVRAM_PAYLOAD_SIZE; i++)
+    {
+        ds.data[i] = i;
+    }
 
-  TRACE_MSG(TRACE_APP1, "Trying to write nvram APP_DATA1 dataset, len %d", (FMT__D, sizeof(ds)));
+    TRACE_MSG(TRACE_APP1, "Trying to write nvram APP_DATA1 dataset, len %d", (FMT__D, sizeof(ds)));
 
-  ZB_REGRESSION_TESTS_API().perform_crash_on_nvram_write = ZB_TRUE;
+    ZB_REGRESSION_TESTS_API().perform_crash_on_nvram_write = ZB_TRUE;
 
-  ret = zb_nvram_write_data(page, pos, (zb_uint8_t*)&ds, sizeof(ds));
+    ret = zb_nvram_write_data(page, pos, (zb_uint8_t *)&ds, sizeof(ds));
 
-  TRACE_MSG(TRACE_APP1, "<< test_nvram_write_app_data, ret %d", (FMT__D, ret));
+    TRACE_MSG(TRACE_APP1, "<< test_nvram_write_app_data, ret %d", (FMT__D, ret));
 
-  return ret;
+    return ret;
 }
 
 /*! @} */

@@ -13,14 +13,14 @@
 
 #include <stdio.h>
 
-#define	FSETLOCKING_QUERY	0
-#define	FSETLOCKING_INTERNAL	1
-#define	FSETLOCKING_BYCALLER	2
+#define FSETLOCKING_QUERY   0
+#define FSETLOCKING_INTERNAL    1
+#define FSETLOCKING_BYCALLER    2
 
 _BEGIN_STD_C
 
-void	 __fpurge (FILE *);
-int	 __fsetlocking (FILE *, int);
+void     __fpurge (FILE *);
+int  __fsetlocking (FILE *, int);
 
 /* TODO:
 
@@ -30,35 +30,56 @@ int	 __fsetlocking (FILE *, int);
 #ifdef  __GNUC__
 
 _ELIDABLE_INLINE size_t
-__fbufsize (FILE *__fp) { return (size_t) __fp->_bf._size; }
+__fbufsize (FILE *__fp)
+{
+    return (size_t) __fp->_bf._size;
+}
 
 _ELIDABLE_INLINE int
-__freading (FILE *__fp) { return (__fp->_flags & __SRD) != 0; }
+__freading (FILE *__fp)
+{
+    return (__fp->_flags & __SRD) != 0;
+}
 
 _ELIDABLE_INLINE int
-__fwriting (FILE *__fp) { return (__fp->_flags & __SWR) != 0; }
+__fwriting (FILE *__fp)
+{
+    return (__fp->_flags & __SWR) != 0;
+}
 
 _ELIDABLE_INLINE int
-__freadable (FILE *__fp) { return (__fp->_flags & (__SRD | __SRW)) != 0; }
+__freadable (FILE *__fp)
+{
+    return (__fp->_flags & (__SRD | __SRW)) != 0;
+}
 
 _ELIDABLE_INLINE int
-__fwritable (FILE *__fp) { return (__fp->_flags & (__SWR | __SRW)) != 0; }
+__fwritable (FILE *__fp)
+{
+    return (__fp->_flags & (__SWR | __SRW)) != 0;
+}
 
 _ELIDABLE_INLINE int
-__flbf (FILE *__fp) { return (__fp->_flags & __SLBF) != 0; }
+__flbf (FILE *__fp)
+{
+    return (__fp->_flags & __SLBF) != 0;
+}
 
 _ELIDABLE_INLINE size_t
-__fpending (FILE *__fp) { return __fp->_p - __fp->_bf._base; }
+__fpending (FILE *__fp)
+{
+    return __fp->_p - __fp->_bf._base;
+}
 
 #else
 
-size_t	 __fbufsize (FILE *);
-int	 __freading (FILE *);
-int	 __fwriting (FILE *);
-int	 __freadable (FILE *);
-int	 __fwritable (FILE *);
-int	 __flbf (FILE *);
-size_t	 __fpending (FILE *);
+size_t   __fbufsize (FILE *);
+int  __freading (FILE *);
+int  __fwriting (FILE *);
+int  __freadable (FILE *);
+int  __fwritable (FILE *);
+int  __flbf (FILE *);
+size_t   __fpending (FILE *);
 
 #ifndef __cplusplus
 

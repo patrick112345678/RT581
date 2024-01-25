@@ -40,82 +40,82 @@
 
 void button1_handler(zb_uint8_t param)
 {
-  ZVUNUSED(param);
+    ZVUNUSED(param);
 }
 
 void button2_handler(zb_uint8_t param)
 {
-  ZVUNUSED(param);
+    ZVUNUSED(param);
 }
 
 void button3_handler(zb_uint8_t param)
 {
-  ZVUNUSED(param);
+    ZVUNUSED(param);
 }
 
 void sp_hal_device_started()
 {
-  zb_osif_led_on(SP_LED_POWER);
+    zb_osif_led_on(SP_LED_POWER);
 }
 
 void sp_hal_gpio_init()
 {
-  zb_osif_led_button_init();
+    zb_osif_led_button_init();
 
 #ifdef SP_SAMPLE_BUTTONS
-  if (zb_osif_button_state(BUTTON_0))
-  {
-    if (zb_osif_button_state(BUTTON_1))
+    if (zb_osif_button_state(BUTTON_0))
     {
-      zb_osif_led_off(SP_LED_POWER);
+        if (zb_osif_button_state(BUTTON_1))
+        {
+            zb_osif_led_off(SP_LED_POWER);
+        }
     }
-  }
 #ifdef ZB_USE_BUTTONS
-  zb_button_register_handler(BUTTON_0, 0, button1_handler);
-  zb_button_register_handler(BUTTON_1, 0, button2_handler);
-  zb_button_register_handler(BUTTON_2, 0, button3_handler);
+    zb_button_register_handler(BUTTON_0, 0, button1_handler);
+    zb_button_register_handler(BUTTON_1, 0, button2_handler);
+    zb_button_register_handler(BUTTON_2, 0, button3_handler);
 #endif
 #endif  /* SP_SAMPLE_BUTTONS */
 }
 
 void sp_platform_init()
 {
-  TRACE_MSG(TRACE_APP2, "sp_platform_init", (FMT__0));
+    TRACE_MSG(TRACE_APP2, "sp_platform_init", (FMT__0));
 
-  sp_hw_init(0);
+    sp_hw_init(0);
 }
 
 zb_ret_t sp_hal_init()
 {
-  sp_hal_gpio_init();
-  sp_hal_device_started();
+    sp_hal_gpio_init();
+    sp_hal_device_started();
 
-  return RET_OK;
+    return RET_OK;
 }
 
 zb_bool_t sp_get_button_state(zb_uint16_t button)
 {
-  zb_bool_t ret = RET_OK;
+    zb_bool_t ret = RET_OK;
 
-  TRACE_MSG(TRACE_APP2, "sp_get_button_state: button %d", (FMT__D, button));
+    TRACE_MSG(TRACE_APP2, "sp_get_button_state: button %d", (FMT__D, button));
 
 #ifdef SP_SAMPLE_BUTTONS
-  ret = (zb_bool_t) zb_osif_button_state(button);
+    ret = (zb_bool_t) zb_osif_button_state(button);
 #endif
 
-  return ret;
+    return ret;
 }
 
 void sp_relay_on_off(zb_bool_t is_on)
 {
-  if (is_on)
-  {
-    zb_osif_led_on(SP_LED_ON_OFF);
-  }
-  else
-  {
-    zb_osif_led_off(SP_LED_ON_OFF);
-  }
+    if (is_on)
+    {
+        zb_osif_led_on(SP_LED_ON_OFF);
+    }
+    else
+    {
+        zb_osif_led_off(SP_LED_ON_OFF);
+    }
 }
 
 void sp_update_button_state_ctx(zb_uint8_t button_state)
@@ -124,12 +124,12 @@ void sp_update_button_state_ctx(zb_uint8_t button_state)
 
 void sp_hal_set_connect(zb_bool_t on)
 {
-  if (on)
-  {
-    zb_osif_led_on(SP_LED_CONNECT);
-  }
-  else
-  {
-    zb_osif_led_off(SP_LED_CONNECT);
-  }
+    if (on)
+    {
+        zb_osif_led_on(SP_LED_CONNECT);
+    }
+    else
+    {
+        zb_osif_led_off(SP_LED_CONNECT);
+    }
 }

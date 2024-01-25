@@ -58,13 +58,25 @@ static bool       sGpioValue = false;
 static uint8_t    sRawPowerSetting[OPENTHREAD_CONFIG_POWER_CALIBRATION_RAW_POWER_SETTING_SIZE];
 static uint16_t   sRawPowerSettingLength = 0;
 
-void otPlatDiagModeSet(bool aMode) { sDiagMode = aMode; }
+void otPlatDiagModeSet(bool aMode)
+{
+    sDiagMode = aMode;
+}
 
-bool otPlatDiagModeGet(void) { return sDiagMode; }
+bool otPlatDiagModeGet(void)
+{
+    return sDiagMode;
+}
 
-void otPlatDiagChannelSet(uint8_t aChannel) { OT_UNUSED_VARIABLE(aChannel); }
+void otPlatDiagChannelSet(uint8_t aChannel)
+{
+    OT_UNUSED_VARIABLE(aChannel);
+}
 
-void otPlatDiagTxPowerSet(int8_t aTxPower) { OT_UNUSED_VARIABLE(aTxPower); }
+void otPlatDiagTxPowerSet(int8_t aTxPower)
+{
+    OT_UNUSED_VARIABLE(aTxPower);
+}
 
 void otPlatDiagRadioReceived(otInstance *aInstance, otRadioFrame *aFrame, otError aError)
 {
@@ -73,7 +85,10 @@ void otPlatDiagRadioReceived(otInstance *aInstance, otRadioFrame *aFrame, otErro
     OT_UNUSED_VARIABLE(aError);
 }
 
-void otPlatDiagAlarmCallback(otInstance *aInstance) { OT_UNUSED_VARIABLE(aInstance); }
+void otPlatDiagAlarmCallback(otInstance *aInstance)
+{
+    OT_UNUSED_VARIABLE(aInstance);
+}
 
 otError otPlatDiagGpioSet(uint32_t aGpio, bool aValue)
 {
@@ -120,8 +135,8 @@ exit:
 }
 
 otError otPlatDiagRadioSetRawPowerSetting(otInstance    *aInstance,
-                                          const uint8_t *aRawPowerSetting,
-                                          uint16_t       aRawPowerSettingLength)
+        const uint8_t *aRawPowerSetting,
+        uint16_t       aRawPowerSettingLength)
 {
     OT_UNUSED_VARIABLE(aInstance);
     otError error = OT_ERROR_NONE;
@@ -136,8 +151,8 @@ exit:
 }
 
 otError otPlatDiagRadioGetRawPowerSetting(otInstance *aInstance,
-                                          uint8_t    *aRawPowerSetting,
-                                          uint16_t   *aRawPowerSettingLength)
+        uint8_t    *aRawPowerSetting,
+        uint16_t   *aRawPowerSettingLength)
 {
     OT_UNUSED_VARIABLE(aInstance);
     otError error = OT_ERROR_NONE;

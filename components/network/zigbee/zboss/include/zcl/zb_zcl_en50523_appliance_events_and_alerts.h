@@ -39,7 +39,7 @@
 */
 enum zb_zcl_en50523_appl_ev_and_alerts_recv_cmd_e
 {
-  ZB_ZCL_CMD_EN50523_APPL_EV_AND_ALERTS_GET_ALERTS_ID = 0x00, /**< "Get alerts" command. */
+    ZB_ZCL_CMD_EN50523_APPL_EV_AND_ALERTS_GET_ALERTS_ID = 0x00, /**< "Get alerts" command. */
 };
 
 /*! @brief EN50523 Appliance events and alerts cluster
@@ -48,12 +48,12 @@ enum zb_zcl_en50523_appl_ev_and_alerts_recv_cmd_e
 */
 enum zb_zcl_en50523_appl_ev_and_alerts_send_cmd_e
 {
-  /*! "Get alerts response" command. */
-  ZB_ZCL_CMD_EN50523_APPL_EV_AND_ALERTS_GET_ALERTS_RESP_ID     = 0x00,
-  /*! "Alerts notification" command. */
-  ZB_ZCL_CMD_EN50523_APPL_EV_AND_ALERTS_ALERTS_NOTIFICATION_ID = 0x01,
-  /*! "Event notification" command. */
-  ZB_ZCL_CMD_EN50523_APPL_EV_AND_ALERTS_EVENT_NOTIFICATION_ID  = 0x02,
+    /*! "Get alerts response" command. */
+    ZB_ZCL_CMD_EN50523_APPL_EV_AND_ALERTS_GET_ALERTS_RESP_ID     = 0x00,
+    /*! "Alerts notification" command. */
+    ZB_ZCL_CMD_EN50523_APPL_EV_AND_ALERTS_ALERTS_NOTIFICATION_ID = 0x01,
+    /*! "Event notification" command. */
+    ZB_ZCL_CMD_EN50523_APPL_EV_AND_ALERTS_EVENT_NOTIFICATION_ID  = 0x02,
 };
 
 /** @cond internals_doc */
@@ -104,22 +104,22 @@ enum zb_zcl_en50523_appl_ev_and_alerts_send_cmd_e
 /*! @brief Type of alert */
 enum zb_zcl_en50523_appl_ev_and_alerts_alerts_type_e
 {
-  ZB_ZCL_EN50523_APPL_EV_AND_ALERTS_ALERTS_TYPE_UNSTRUCTURED = 0x00,
+    ZB_ZCL_EN50523_APPL_EV_AND_ALERTS_ALERTS_TYPE_UNSTRUCTURED = 0x00,
 };
 
 /*! @brief Alert category */
 enum zb_zcl_en50523_appl_ev_and_alerts_alert_category_e
 {
-  ZB_ZCL_EN50523_APPL_EV_AND_ALERTS_ALERT_CATEGORY_WARNING = 0x01,
-  ZB_ZCL_EN50523_APPL_EV_AND_ALERTS_ALERT_CATEGORY_DANGER  = 0x02,
-  ZB_ZCL_EN50523_APPL_EV_AND_ALERTS_ALERT_CATEGORY_FAILURE = 0x03,
+    ZB_ZCL_EN50523_APPL_EV_AND_ALERTS_ALERT_CATEGORY_WARNING = 0x01,
+    ZB_ZCL_EN50523_APPL_EV_AND_ALERTS_ALERT_CATEGORY_DANGER  = 0x02,
+    ZB_ZCL_EN50523_APPL_EV_AND_ALERTS_ALERT_CATEGORY_FAILURE = 0x03,
 };
 
 /*! @brief Alert presence recovery */
 enum zb_zcl_en50523_appl_ev_and_alerts_alert_presence_e
 {
-  ZB_ZCL_EN50523_APPL_EV_AND_ALERTS_ALERT_RECOVERY = 0x00,
-  ZB_ZCL_EN50523_APPL_EV_AND_ALERTS_ALERT_PRESENCE = 0x01,
+    ZB_ZCL_EN50523_APPL_EV_AND_ALERTS_ALERT_RECOVERY = 0x00,
+    ZB_ZCL_EN50523_APPL_EV_AND_ALERTS_ALERT_PRESENCE = 0x01,
 };
 
 /*! @brief Get Number of Alerts */
@@ -161,17 +161,17 @@ enum zb_zcl_en50523_appl_ev_and_alerts_alert_presence_e
 /*! @brief Alert structure */
 typedef ZB_PACKED_PRE struct zb_zcl_en50523_appl_ev_and_alerts_alert_struct_s
 {
-  /** Alert field - Alert ID, Category, Presence recovery, Manufacturer specific bits */
-  zb_uint8_t alert[3];
+    /** Alert field - Alert ID, Category, Presence recovery, Manufacturer specific bits */
+    zb_uint8_t alert[3];
 } ZB_PACKED_STRUCT zb_zcl_en50523_appl_ev_and_alerts_alert_struct_t;
 
 /*! @brief Structure representation of Get Alerts Response command */
 typedef ZB_PACKED_PRE struct zb_zcl_en50523_appl_ev_and_alerts_get_alerts_resp_s
 {
-  /** Alerts count fields - Number of Alerts, Type of alert */
-  zb_uint8_t alerts_count;
-  /** Alert structure fields, see zb_zcl_en50523_appl_ev_and_alerts_alert_struct_t */
-  zb_zcl_en50523_appl_ev_and_alerts_alert_struct_t alert_struct[ZB_ZCL_EN50523_APPL_EV_AND_ALERTS_MAX_ALERTS_NUM];
+    /** Alerts count fields - Number of Alerts, Type of alert */
+    zb_uint8_t alerts_count;
+    /** Alert structure fields, see zb_zcl_en50523_appl_ev_and_alerts_alert_struct_t */
+    zb_zcl_en50523_appl_ev_and_alerts_alert_struct_t alert_struct[ZB_ZCL_EN50523_APPL_EV_AND_ALERTS_MAX_ALERTS_NUM];
 
 } ZB_PACKED_STRUCT zb_zcl_en50523_appl_ev_and_alerts_get_alerts_resp_t;
 
@@ -253,10 +253,10 @@ typedef ZB_PACKED_PRE struct zb_zcl_en50523_appl_ev_and_alerts_get_alerts_resp_s
 /*! @brief Structure representation of Alerts Notification command */
 typedef ZB_PACKED_PRE struct zb_zcl_en50523_appl_ev_and_alerts_alerts_notif_s
 {
-  /** Alerts count fields - Number of Alerts, Type of alert */
-  zb_uint8_t alerts_count;
-  /** Alert structure fields, see zb_zcl_en50523_appl_ev_and_alerts_alert_struct_t */
-  zb_zcl_en50523_appl_ev_and_alerts_alert_struct_t alert_struct[ZB_ZCL_EN50523_APPL_EV_AND_ALERTS_MAX_ALERTS_NUM];
+    /** Alerts count fields - Number of Alerts, Type of alert */
+    zb_uint8_t alerts_count;
+    /** Alert structure fields, see zb_zcl_en50523_appl_ev_and_alerts_alert_struct_t */
+    zb_zcl_en50523_appl_ev_and_alerts_alert_struct_t alert_struct[ZB_ZCL_EN50523_APPL_EV_AND_ALERTS_MAX_ALERTS_NUM];
 
 } ZB_PACKED_STRUCT zb_zcl_en50523_appl_ev_and_alerts_alerts_notif_t;
 
@@ -344,11 +344,11 @@ typedef ZB_PACKED_PRE struct zb_zcl_en50523_appl_ev_and_alerts_alerts_notif_s
 /*! @brief Event Identification */
 enum zb_zcl_en50523_appl_ev_and_alerts_event_identification_e
 {
-  ZB_ZCL_EN50523_APPL_EV_AND_ALERTS_EVENT_ID_END_OF_CYCLE    = 0x01,
-  ZB_ZCL_EN50523_APPL_EV_AND_ALERTS_EVENT_ID_TEMP_REACHED    = 0x04,
-  ZB_ZCL_EN50523_APPL_EV_AND_ALERTS_EVENT_ID_END_OF_COOKING  = 0x05,
-  ZB_ZCL_EN50523_APPL_EV_AND_ALERTS_EVENT_ID_SWITCHING_OFF   = 0x06,
-  ZB_ZCL_EN50523_APPL_EV_AND_ALERTS_EVENT_ID_WRONG_DATA      = 0xf7,
+    ZB_ZCL_EN50523_APPL_EV_AND_ALERTS_EVENT_ID_END_OF_CYCLE    = 0x01,
+    ZB_ZCL_EN50523_APPL_EV_AND_ALERTS_EVENT_ID_TEMP_REACHED    = 0x04,
+    ZB_ZCL_EN50523_APPL_EV_AND_ALERTS_EVENT_ID_END_OF_COOKING  = 0x05,
+    ZB_ZCL_EN50523_APPL_EV_AND_ALERTS_EVENT_ID_SWITCHING_OFF   = 0x06,
+    ZB_ZCL_EN50523_APPL_EV_AND_ALERTS_EVENT_ID_WRONG_DATA      = 0xf7,
 };
 
 /*! @brief Structure representation of Event Notification command
@@ -357,8 +357,8 @@ enum zb_zcl_en50523_appl_ev_and_alerts_event_identification_e
 */
 typedef ZB_PACKED_PRE struct zb_zcl_en50523_appl_ev_and_alerts_event_notif_s
 {
-  zb_uint8_t event_header;
-  zb_uint8_t event_identification;
+    zb_uint8_t event_header;
+    zb_uint8_t event_identification;
 
 } ZB_PACKED_STRUCT zb_zcl_en50523_appl_ev_and_alerts_event_notif_t;
 

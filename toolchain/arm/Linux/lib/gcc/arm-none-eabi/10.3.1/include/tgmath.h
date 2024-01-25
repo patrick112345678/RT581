@@ -42,10 +42,10 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
    it is a function of n arguments.  We only define these macros for
    values of n that are needed. */
 
-#define __TGMATH_CPLX(z,R,C)				\
+#define __TGMATH_CPLX(z,R,C)                \
   __builtin_tgmath (R##f, R, R##l, C##f, C, C##l, (z))
 
-#define __TGMATH_CPLX_2(z1,z2,R,C)				\
+#define __TGMATH_CPLX_2(z1,z2,R,C)              \
   __builtin_tgmath (R##f, R, R##l, C##f, C, C##l, (z1), (z2))
 
 #define __TGMATH_REAL(x,R) \

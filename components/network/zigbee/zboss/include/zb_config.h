@@ -1184,14 +1184,14 @@ exponent.
 /* As defined in D.6 Zigbee/r22 spec */
 #define ZB_MAC_MIN_BE 5U
 
- /**
+/**
 The maximum value of the
 backoff exponent, BE, in the
 CSMA-CA algorithm. See
 7.5.1.4 for a detailed
 explanation of the backoff
 exponent.
- */
+*/
 /* As defined in D.6 Zigbee/r22 spec */
 #define ZB_MAC_MAX_BE 8U
 

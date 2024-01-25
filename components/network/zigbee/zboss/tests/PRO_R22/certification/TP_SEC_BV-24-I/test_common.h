@@ -56,7 +56,7 @@ static const zb_uint8_t g_key1[16] = { 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA,
 
 //#define TIME_ZC_CONNECTION                 (10 * ZB_TIME_ONE_SECOND)
 
-#define TIME_ZED_POLL_TIMEOUT_MS	   350000
+#define TIME_ZED_POLL_TIMEOUT_MS       350000
 
 /* insecure join configuration */
 #define INSECURE_JOIN_ZC                ZB_FALSE

@@ -49,10 +49,10 @@
 */
 enum zb_zcl_keep_alive_attr_e
 {
-  /*! @brief TC Keep-Alive Base attribute */
-  ZB_ZCL_ATTR_KEEP_ALIVE_TC_KEEP_ALIVE_BASE_ID   = 0,
-  /*! @brief TC Keep-Alive Jitter attribute */
-  ZB_ZCL_ATTR_KEEP_ALIVE_TC_KEEP_ALIVE_JITTER_ID = 1
+    /*! @brief TC Keep-Alive Base attribute */
+    ZB_ZCL_ATTR_KEEP_ALIVE_TC_KEEP_ALIVE_BASE_ID   = 0,
+    /*! @brief TC Keep-Alive Jitter attribute */
+    ZB_ZCL_ATTR_KEEP_ALIVE_TC_KEEP_ALIVE_JITTER_ID = 1
 };
 
 /** @brief Default value for TC Keep-Alive Base attribute */
@@ -113,15 +113,15 @@ enum zb_zcl_keep_alive_attr_e
 typedef struct zb_zcl_keep_alive_attrs_s
 {
 
-  /** @copydoc ZB_ZCL_ATTR_KEEP_ALIVE_TC_KEEP_ALIVE_BASE_ID
-   * @see ZB_ZCL_ATTR_KEEP_ALIVE_TC_KEEP_ALIVE_BASE_ID
-   */
-  zb_uint8_t base;
+    /** @copydoc ZB_ZCL_ATTR_KEEP_ALIVE_TC_KEEP_ALIVE_BASE_ID
+     * @see ZB_ZCL_ATTR_KEEP_ALIVE_TC_KEEP_ALIVE_BASE_ID
+     */
+    zb_uint8_t base;
 
-  /** @copydoc ZB_ZCL_ATTR_KEEP_ALIVE_TC_KEEP_ALIVE_JITTER_ID
-   * @see ZB_ZCL_ATTR_KEEP_ALIVE_TC_KEEP_ALIVE_JITTER_ID
-   */
-  zb_uint16_t jitter;
+    /** @copydoc ZB_ZCL_ATTR_KEEP_ALIVE_TC_KEEP_ALIVE_JITTER_ID
+     * @see ZB_ZCL_ATTR_KEEP_ALIVE_TC_KEEP_ALIVE_JITTER_ID
+     */
+    zb_uint16_t jitter;
 } zb_zcl_keep_alive_attrs_t;
 
 

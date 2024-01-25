@@ -1,9 +1,9 @@
 /**************************************************************************//**
  * @file     CRYPTO.h
- * @version  
+ * @version
  * @brief    CRYPTO ACCELEATOR driver header file
  *
- * @copyright 
+ * @copyright
  ******************************************************************************/
 #ifndef ___CRYPTO_H__
 #define ___CRYPTO_H__
@@ -23,15 +23,15 @@ extern "C"
 
 /*secp256r1 curve is 256 bytes, 8*uint32_t = 256 */
 #define secp256r1_op_num      8
-    
+
 extern uint32_t gfp_ecc_curve_p256_init(void);
 
 
 extern void gfp_point_p256_mult(
-    uint32_t *p_result_x, 
-    uint32_t *p_result_y, 
-    uint32_t *target_x, 
-    uint32_t *target_y, 
+    uint32_t *p_result_x,
+    uint32_t *p_result_y,
+    uint32_t *target_x,
+    uint32_t *target_y,
     uint32_t *target_k
 );
 

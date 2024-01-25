@@ -51,49 +51,49 @@ static zb_uint8_t g_key_c[16] = { 0x12, 0x33, 0x33, 0x33, 0x33, 0x33, 0x33, 0x33
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("zdo_2_zr");
+    ZB_INIT("zdo_2_zr");
 
 
-  ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_ieee_addr);
+    ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_ieee_addr);
 
-  ZB_AIB().aps_insecure_join = ZB_TRUE;
+    ZB_AIB().aps_insecure_join = ZB_TRUE;
 
-  ZB_NIB().max_children = 1;
+    ZB_NIB().max_children = 1;
 
-  ZB_BDB().bdb_mode = ZB_TRUE;
+    ZB_BDB().bdb_mode = ZB_TRUE;
 
-  if (zdo_dev_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    if (zdo_dev_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 static void zb_send_test_update(zb_uint8_t param);
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_buf_t *buf = ZB_BUF_FROM_REF(param);
-  if (buf->u.hdr.status == 0)
-  {
-    TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, (int)buf->u.hdr.status));
-  }
-  zb_free_buf(buf);
+    zb_buf_t *buf = ZB_BUF_FROM_REF(param);
+    if (buf->u.hdr.status == 0)
+    {
+        TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, (int)buf->u.hdr.status));
+    }
+    zb_free_buf(buf);
 }
 
 

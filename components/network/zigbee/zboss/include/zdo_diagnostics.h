@@ -46,15 +46,15 @@
 
 typedef ZB_PACKED_PRE struct zdo_diagnostics_ctx_s
 {
-  zdo_diagnostics_info_t diagnostics_info;
-  zb_callback_t get_stats_cb;
+    zdo_diagnostics_info_t diagnostics_info;
+    zb_callback_t get_stats_cb;
 } ZB_PACKED_STRUCT zdo_diagnostics_ctx_t;
 
 typedef ZB_PACKED_PRE struct zdo_diagnostics_full_stats_s
 {
-  zb_mac_diagnostic_info_t mac_stats;
-  zdo_diagnostics_info_t zdo_stats;
-  zb_uint8_t status;
+    zb_mac_diagnostic_info_t mac_stats;
+    zdo_diagnostics_info_t zdo_stats;
+    zb_uint8_t status;
 } ZB_PACKED_STRUCT zdo_diagnostics_full_stats_t;
 
 /*! @brief Diagnostics cluster attribute identifiers
@@ -62,82 +62,82 @@ typedef ZB_PACKED_PRE struct zdo_diagnostics_full_stats_s
 */
 typedef enum zdo_diagnostics_counter_id_e
 {
-  /** @brief number_of_resets, Zigbee Diagnostic Cluster spec 1.2.2.1.1 */
-  ZDO_DIAGNOSTICS_NUMBER_OF_RESETS_ID = 0,
-  /** This attribute keeps track of the number of writes to persistent memory. */
-  ZDO_DIAGNOSTICS_PERSISTENT_MEMORY_WRITES_ID = 1,
-  /** APSRxBcast Attribute A counter that is incremented each time
-   *  the APS layer receives a broadcast. */
-  ZDO_DIAGNOSTICS_APS_RX_BCAST_ID = 2,
-  /** @brief aps_tx_bcast, HA spec 9.3.2.2.2 */
-  ZDO_DIAGNOSTICS_APS_TX_BCAST_ID = 3,
-  /** APSRxUcast Attribute A counter that is incremented each time
-   *  the APS layer receives a unicast. */
-  ZDO_DIAGNOSTICS_APS_RX_UCAST_ID = 4,
-  /** @brief aps_tx_ucast_success, HA spec 9.3.2.2.2 */
-  ZDO_DIAGNOSTICS_APS_TX_UCAST_SUCCESS_ID = 5,
-  /** APSTxUcastRetry Attribute A counter that is incremented each time
-   *  the APS layer retries the sending of a unicast. */
-  ZDO_DIAGNOSTICS_APS_TX_UCAST_RETRY_ID = 6,
-  /** @brief aps_tx_ucast_fail, HA spec 9.3.2.2.2 */
-  ZDO_DIAGNOSTICS_APS_TX_UCAST_FAIL_ID = 7,
-  /** RouteDiscInitiated Attribute. A counter that is incremented each time the
-   *  network layer submits a route discovery message to the MAC. HA spec 9.2.2.2.2.13 */
-  ZDO_DIAGNOSTICS_ROUTE_DISC_INITIATED_ID = 8,
-  /** NeighborAdded Attribute A counter that is incremented each time
-   *  an entry is added to the neighbor table. */
-  ZDO_DIAGNOSTICS_NEIGHBOR_ADDED_ID = 9,
-  /** NeighborRemoved Attribute A counter that is incremented each time
-   *  an entry is removed from the neighbor table. */
-  ZDO_DIAGNOSTICS_NEIGHBOR_REMOVED_ID = 10,
-  /** A counter that is incremented each time a neighbor table entry becomes stale
-   *  because the neighbor has not been heard from. */
-  ZDO_DIAGNOSTICS_NEIGHBOR_STALE_ID = 11,
-  /** @brief join_indication, HA spec 1.2.2.2.17 */
-  ZDO_DIAGNOSTICS_JOIN_INDICATION_ID = 12,
-  /** A counter that is incremented each time an entry is removed from the child table. */
-  ZDO_DIAGNOSTICS_CHILD_MOVED_ID = 13,
-  /** A counter that is incremented each time a message is dropped at the network
-   *  layer because the APS frame counter was not higher than the last message seen
-   *  from that source. */
-  ZDO_DIAGNOSTICS_NWKFC_FAILURE_ID = 14,
-  /** A counter that is incremented each time a message is dropped at the APS layer
-   *  because the APS frame counter was not higher than the last message seen from
-   *  that source. */
-  ZDO_DIAGNOSTICS_APSFC_FAILURE_ID = 15,
-  /** A counter that is incremented each time a message is dropped at the APS layer
-   *  because it had APS encryption but the key associated with the sender has
-   *  not been authenticated, and thus the key is not authorized for use
-   *  in APS data messages. */
-  ZDO_DIAGNOSTICS_APS_UNAUTHORIZED_KEY_ID = 16,
-  /** A counter that is incremented each time a NWK encrypted message was received
-   *  but dropped because decryption failed. */
-  ZDO_DIAGNOSTICS_NWK_DECRYPT_FAILURES_ID = 17,
-  /** A counter that is incremented each time an APS encrypted message was received
-   *  but dropped because decryption failed. */
-  ZDO_DIAGNOSTICS_APS_DECRYPT_FAILURES_ID = 18,
-  /** @brief average_mac_retry_per_aps_message_sent, HA spec 9.3.2.2.2.27 */
-  ZDO_DIAGNOSTICS_PACKET_BUFFER_ALLOCATE_FAILURES_ID = 19,
-  /** A counter that is incremented each time a unicast packet is relayed. */
-  ZDO_DIAGNOSTICS_RELAYED_UCAST_ID = 20,
-  ZDO_DIAGNOSTICS_PHYTOMACQUEUELIMITREACHED_ID = 21,
-  /** A counter that is incremented each time a packet was dropped due to a packet
-   *  validation error. This could be due to length or other formatting problems
-   *  in the packet. */
-  ZDO_DIAGNOSTICS_PACKET_VALIDATEDROPCOUNT_ID = 22,
-  /** @brief PacketBufferAllocateFeatures, Zigbee Diagnostic Cluster spec 1.2.2.2.24 */
-  ZDO_DIAGNOSTICS_AVERAGE_MAC_RETRY_PER_APS_ID = 23,
+    /** @brief number_of_resets, Zigbee Diagnostic Cluster spec 1.2.2.1.1 */
+    ZDO_DIAGNOSTICS_NUMBER_OF_RESETS_ID = 0,
+    /** This attribute keeps track of the number of writes to persistent memory. */
+    ZDO_DIAGNOSTICS_PERSISTENT_MEMORY_WRITES_ID = 1,
+    /** APSRxBcast Attribute A counter that is incremented each time
+     *  the APS layer receives a broadcast. */
+    ZDO_DIAGNOSTICS_APS_RX_BCAST_ID = 2,
+    /** @brief aps_tx_bcast, HA spec 9.3.2.2.2 */
+    ZDO_DIAGNOSTICS_APS_TX_BCAST_ID = 3,
+    /** APSRxUcast Attribute A counter that is incremented each time
+     *  the APS layer receives a unicast. */
+    ZDO_DIAGNOSTICS_APS_RX_UCAST_ID = 4,
+    /** @brief aps_tx_ucast_success, HA spec 9.3.2.2.2 */
+    ZDO_DIAGNOSTICS_APS_TX_UCAST_SUCCESS_ID = 5,
+    /** APSTxUcastRetry Attribute A counter that is incremented each time
+     *  the APS layer retries the sending of a unicast. */
+    ZDO_DIAGNOSTICS_APS_TX_UCAST_RETRY_ID = 6,
+    /** @brief aps_tx_ucast_fail, HA spec 9.3.2.2.2 */
+    ZDO_DIAGNOSTICS_APS_TX_UCAST_FAIL_ID = 7,
+    /** RouteDiscInitiated Attribute. A counter that is incremented each time the
+     *  network layer submits a route discovery message to the MAC. HA spec 9.2.2.2.2.13 */
+    ZDO_DIAGNOSTICS_ROUTE_DISC_INITIATED_ID = 8,
+    /** NeighborAdded Attribute A counter that is incremented each time
+     *  an entry is added to the neighbor table. */
+    ZDO_DIAGNOSTICS_NEIGHBOR_ADDED_ID = 9,
+    /** NeighborRemoved Attribute A counter that is incremented each time
+     *  an entry is removed from the neighbor table. */
+    ZDO_DIAGNOSTICS_NEIGHBOR_REMOVED_ID = 10,
+    /** A counter that is incremented each time a neighbor table entry becomes stale
+     *  because the neighbor has not been heard from. */
+    ZDO_DIAGNOSTICS_NEIGHBOR_STALE_ID = 11,
+    /** @brief join_indication, HA spec 1.2.2.2.17 */
+    ZDO_DIAGNOSTICS_JOIN_INDICATION_ID = 12,
+    /** A counter that is incremented each time an entry is removed from the child table. */
+    ZDO_DIAGNOSTICS_CHILD_MOVED_ID = 13,
+    /** A counter that is incremented each time a message is dropped at the network
+     *  layer because the APS frame counter was not higher than the last message seen
+     *  from that source. */
+    ZDO_DIAGNOSTICS_NWKFC_FAILURE_ID = 14,
+    /** A counter that is incremented each time a message is dropped at the APS layer
+     *  because the APS frame counter was not higher than the last message seen from
+     *  that source. */
+    ZDO_DIAGNOSTICS_APSFC_FAILURE_ID = 15,
+    /** A counter that is incremented each time a message is dropped at the APS layer
+     *  because it had APS encryption but the key associated with the sender has
+     *  not been authenticated, and thus the key is not authorized for use
+     *  in APS data messages. */
+    ZDO_DIAGNOSTICS_APS_UNAUTHORIZED_KEY_ID = 16,
+    /** A counter that is incremented each time a NWK encrypted message was received
+     *  but dropped because decryption failed. */
+    ZDO_DIAGNOSTICS_NWK_DECRYPT_FAILURES_ID = 17,
+    /** A counter that is incremented each time an APS encrypted message was received
+     *  but dropped because decryption failed. */
+    ZDO_DIAGNOSTICS_APS_DECRYPT_FAILURES_ID = 18,
+    /** @brief average_mac_retry_per_aps_message_sent, HA spec 9.3.2.2.2.27 */
+    ZDO_DIAGNOSTICS_PACKET_BUFFER_ALLOCATE_FAILURES_ID = 19,
+    /** A counter that is incremented each time a unicast packet is relayed. */
+    ZDO_DIAGNOSTICS_RELAYED_UCAST_ID = 20,
+    ZDO_DIAGNOSTICS_PHYTOMACQUEUELIMITREACHED_ID = 21,
+    /** A counter that is incremented each time a packet was dropped due to a packet
+     *  validation error. This could be due to length or other formatting problems
+     *  in the packet. */
+    ZDO_DIAGNOSTICS_PACKET_VALIDATEDROPCOUNT_ID = 22,
+    /** @brief PacketBufferAllocateFeatures, Zigbee Diagnostic Cluster spec 1.2.2.2.24 */
+    ZDO_DIAGNOSTICS_AVERAGE_MAC_RETRY_PER_APS_ID = 23,
 #ifdef ZB_ENABLE_NWK_RETRANSMIT
-  /** A counter that is incremented on the NWK layer
-   *  each time tries number of a packet resending are gone.
-   *
-   * @note It's a non-standard counter that depends on ZB_ENABLE_NWK_RETRANSMIT and
-   *       will be zero always when the macro isn't set. */
-  ZDO_DIAGNOSTICS_NWK_RETRY_OVERFLOW_ID = 24,
+    /** A counter that is incremented on the NWK layer
+     *  each time tries number of a packet resending are gone.
+     *
+     * @note It's a non-standard counter that depends on ZB_ENABLE_NWK_RETRANSMIT and
+     *       will be zero always when the macro isn't set. */
+    ZDO_DIAGNOSTICS_NWK_RETRY_OVERFLOW_ID = 24,
 #endif /* ZB_ENABLE_NWK_RETRANSMIT */
-  /** A non-standard counter of the number of times the NWK broadcast was dropped
-   *  because the broadcast table was full. */
-  ZDO_DIAGNOSTICS_NWK_BCAST_TABLE_FULL = 25
+    /** A non-standard counter of the number of times the NWK broadcast was dropped
+     *  because the broadcast table was full. */
+    ZDO_DIAGNOSTICS_NWK_BCAST_TABLE_FULL = 25
 } zdo_diagnostics_counter_id_t;
 
 /*! @} */ /* Diagnostics cluster attributes */

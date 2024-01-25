@@ -34,11 +34,11 @@
 
 typedef ZB_PACKED_PRE struct zb_aps_intrp_data_header_s
 {
-  zb_uint16_t nwk_fcf;          /*!< */
-  zb_uint8_t aps_fcf;           /*!< */
-  zb_uint16_t group_addr;       /*!< */
-  zb_uint16_t cluster_id;       /*!< */
-  zb_uint16_t profile_id;       /*!< */
+    zb_uint16_t nwk_fcf;          /*!< */
+    zb_uint8_t aps_fcf;           /*!< */
+    zb_uint16_t group_addr;       /*!< */
+    zb_uint16_t cluster_id;       /*!< */
+    zb_uint16_t profile_id;       /*!< */
 } ZB_PACKED_STRUCT zb_aps_intrp_data_header_t;
 
 /** @brief Additional NWK frame type for inter-PAN exchange.
@@ -83,16 +83,16 @@ void zb_intrp_data_request(zb_uint8_t param);
   */
 typedef struct zb_intrp_hdr_s
 {
-  zb_uint16_t nwk_fcf;
-  zb_uint16_t group_addr;
-  zb_uint16_t cluster_id;
-  zb_uint16_t profile_id;
-  zb_uint8_t aps_fcf;
+    zb_uint16_t nwk_fcf;
+    zb_uint16_t group_addr;
+    zb_uint16_t cluster_id;
+    zb_uint16_t profile_id;
+    zb_uint8_t aps_fcf;
 } zb_intrp_hdr_t;
 
 #if defined ZB_ENABLE_INTER_PAN_EXCHANGE
 /** @brief Parses Stub-APS header. */
-void zb_parse_intrp_hdr(zb_intrp_hdr_t* header, zb_bufid_t  buffer);
+void zb_parse_intrp_hdr(zb_intrp_hdr_t *header, zb_bufid_t  buffer);
 #endif /* ZB_ENABLE_INTER_PAN_EXCHANGE */
 
 #if defined ZB_ENABLE_INTER_PAN_EXCHANGE
@@ -114,8 +114,8 @@ void zb_intrp_data_frame_indication(zb_uint8_t param, zb_mac_mhr_t *mac_hdr, zb_
   */
 typedef struct zb_intrp_data_confirm_s
 {
-  /** An integer handle associated with the transmitted frame. */
-  zb_uint8_t asdu_handle;
+    /** An integer handle associated with the transmitted frame. */
+    zb_uint8_t asdu_handle;
 } zb_intrp_data_confirm_t;
 
 #if defined ZB_ENABLE_INTER_PAN_EXCHANGE
@@ -133,12 +133,13 @@ void zb_intrp_data_frame_confirm(zb_uint8_t param);
 #define ZB_APS_INTRP_MCHAN_FUNC_SELECTOR() interpan_mchan_selector
 
 /* Strutcture to store pointers to interpan multichannel functions */
-typedef struct zb_aps_inter_pan_mchan_func_selector_s {
-  zb_ret_t (* put_aps_packet_to_queue)(zb_uint8_t param);
-  zb_ret_t (* put_nwk_packet_to_queue)(zb_uint8_t param);
-  zb_ret_t (* intrp_mchan_data_req_confirmed)(zb_bufid_t buffer);
-  zb_ret_t (* intrp_data_req_with_chan_change)(zb_bufid_t buffer, zb_channel_page_t channel_page_mask, zb_uint32_t chan_wait_ms, zb_callback_t cb);
-  void (* af_interpan_set_data_indication)(zb_af_inter_pan_handler_t cb);
+typedef struct zb_aps_inter_pan_mchan_func_selector_s
+{
+    zb_ret_t (* put_aps_packet_to_queue)(zb_uint8_t param);
+    zb_ret_t (* put_nwk_packet_to_queue)(zb_uint8_t param);
+    zb_ret_t (* intrp_mchan_data_req_confirmed)(zb_bufid_t buffer);
+    zb_ret_t (* intrp_data_req_with_chan_change)(zb_bufid_t buffer, zb_channel_page_t channel_page_mask, zb_uint32_t chan_wait_ms, zb_callback_t cb);
+    void (* af_interpan_set_data_indication)(zb_af_inter_pan_handler_t cb);
 } zb_aps_inter_pan_mchan_func_selector_t;
 
 extern zb_aps_inter_pan_mchan_func_selector_t interpan_mchan_selector;

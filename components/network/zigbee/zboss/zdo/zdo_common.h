@@ -45,6 +45,6 @@ void zdo_handle_mgmt_leave_rsp(zb_uint16_t src);
 /*! \addtogroup legacy_callbacks */
 /*! @{ */
 
-zb_uint8_t* zb_copy_cluster_id(zb_uint8_t *cluster_dst, zb_uint8_t *cluster_src, zb_uint8_t cluster_num);
+zb_uint8_t *zb_copy_cluster_id(zb_uint8_t *cluster_dst, zb_uint8_t *cluster_src, zb_uint8_t cluster_num);
 
 #endif /* ZDO_COMMON_H */

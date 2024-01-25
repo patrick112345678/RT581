@@ -27,11 +27,11 @@ along with GCC; see the file COPYING3.  If not see
 
 
 enum pp_c_pretty_print_flags
-  {
-     pp_c_flag_abstract = 1 << 1,
-     pp_c_flag_gnu_v3 = 1 << 2,
-     pp_c_flag_last_bit = 3
-  };
+{
+    pp_c_flag_abstract = 1 << 1,
+    pp_c_flag_gnu_v3 = 1 << 2,
+    pp_c_flag_last_bit = 3
+};
 
 
 /* The data type used to bundle information necessary for pretty-printing
@@ -50,47 +50,47 @@ typedef void (*c_pretty_print_fn) (c_pretty_printer *, tree);
 class c_pretty_printer : public pretty_printer
 {
 public:
-  c_pretty_printer ();
-  pretty_printer *clone () const OVERRIDE;
+    c_pretty_printer ();
+    pretty_printer *clone () const OVERRIDE;
 
-  // Format string, possibly translated.
-  void translate_string (const char *);
+    // Format string, possibly translated.
+    void translate_string (const char *);
 
-  virtual void constant (tree);
-  virtual void id_expression (tree);
-  virtual void primary_expression (tree);
-  virtual void postfix_expression (tree);
-  virtual void unary_expression (tree);
-  virtual void multiplicative_expression (tree);
-  virtual void conditional_expression (tree);
-  virtual void assignment_expression (tree);
-  virtual void expression (tree);
+    virtual void constant (tree);
+    virtual void id_expression (tree);
+    virtual void primary_expression (tree);
+    virtual void postfix_expression (tree);
+    virtual void unary_expression (tree);
+    virtual void multiplicative_expression (tree);
+    virtual void conditional_expression (tree);
+    virtual void assignment_expression (tree);
+    virtual void expression (tree);
 
-  virtual void type_id (tree);
-  virtual void statement (tree);
+    virtual void type_id (tree);
+    virtual void statement (tree);
 
-  virtual void declaration (tree);
-  virtual void declaration_specifiers (tree);
-  virtual void simple_type_specifier (tree);
-  virtual void function_specifier (tree);
-  virtual void storage_class_specifier (tree);
-  virtual void declarator (tree);
-  virtual void direct_declarator (tree);
-  virtual void abstract_declarator (tree);
-  virtual void direct_abstract_declarator (tree);
+    virtual void declaration (tree);
+    virtual void declaration_specifiers (tree);
+    virtual void simple_type_specifier (tree);
+    virtual void function_specifier (tree);
+    virtual void storage_class_specifier (tree);
+    virtual void declarator (tree);
+    virtual void direct_declarator (tree);
+    virtual void abstract_declarator (tree);
+    virtual void direct_abstract_declarator (tree);
 
-  virtual void initializer (tree);
-  /* Points to the first element of an array of offset-list.
-     Not used yet.  */
-  int *offset_list;
+    virtual void initializer (tree);
+    /* Points to the first element of an array of offset-list.
+       Not used yet.  */
+    int *offset_list;
 
-  pp_flags flags;
+    pp_flags flags;
 
-  /* These must be overridden by each of the C and C++ front-end to
-     reflect their understanding of syntactic productions when they differ.  */
-  c_pretty_print_fn type_specifier_seq;
-  c_pretty_print_fn ptr_operator;
-  c_pretty_print_fn parameter_list;
+    /* These must be overridden by each of the C and C++ front-end to
+       reflect their understanding of syntactic productions when they differ.  */
+    c_pretty_print_fn type_specifier_seq;
+    c_pretty_print_fn ptr_operator;
+    c_pretty_print_fn parameter_list;
 };
 
 #define pp_c_tree_identifier(PPI, ID)              \

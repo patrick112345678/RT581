@@ -28,7 +28,7 @@ along with GCC; see the file COPYING3.  If not see
    override this.  */
 
 #ifndef REGMODE_NATURAL_SIZE
-#define REGMODE_NATURAL_SIZE(MODE)	UNITS_PER_WORD
+#define REGMODE_NATURAL_SIZE(MODE)  UNITS_PER_WORD
 #endif
 
 /* Maximum register number used in this function, plus one.  */
@@ -57,8 +57,8 @@ extern int max_regno;
 
 struct regstat_n_sets_and_refs_t
 {
-  int sets;			/* # of times (REG n) is set */
-  int refs;			/* # of times (REG n) is used or set */
+    int sets;         /* # of times (REG n) is set */
+    int refs;         /* # of times (REG n) is used or set */
 };
 
 extern struct regstat_n_sets_and_refs_t *regstat_n_sets_and_refs;
@@ -67,7 +67,7 @@ extern struct regstat_n_sets_and_refs_t *regstat_n_sets_and_refs;
 static inline int
 REG_N_REFS (int regno)
 {
-  return regstat_n_sets_and_refs[regno].refs;
+    return regstat_n_sets_and_refs[regno].refs;
 }
 
 /* Indexed by n, gives number of times (REG n) is used or set.  */
@@ -78,7 +78,7 @@ REG_N_REFS (int regno)
 static inline int
 REG_N_SETS (int regno)
 {
-  return regstat_n_sets_and_refs[regno].sets;
+    return regstat_n_sets_and_refs[regno].sets;
 }
 
 /* Indexed by n, gives number of times (REG n) is set.  */
@@ -103,10 +103,10 @@ extern void dump_reg_info (FILE *);
    calling regstat_free_ri.  */
 struct reg_info_t
 {
-  int freq;			/* # estimated frequency (REG n) is used or set */
-  int deaths;			/* # of times (REG n) dies */
-  int calls_crossed;		/* # of calls (REG n) is live across */
-  int basic_block;		/* # of basic blocks (REG n) is used in */
+    int freq;         /* # estimated frequency (REG n) is used or set */
+    int deaths;           /* # of times (REG n) dies */
+    int calls_crossed;        /* # of calls (REG n) is live across */
+    int basic_block;      /* # of basic blocks (REG n) is used in */
 };
 
 extern struct reg_info_t *reg_info_p;
@@ -128,14 +128,14 @@ extern size_t reg_info_p_size;
    or profile driven feedback is available and the function is never executed,
    frequency is always equivalent.  Otherwise rescale the basic block
    frequency.  */
-#define REG_FREQ_FROM_BB(bb) ((optimize_function_for_size_p (cfun)	      \
-			       || !cfun->cfg->count_max.initialized_p ())     \
-			      ? REG_FREQ_MAX				      \
-			      : ((bb)->count.to_frequency (cfun)	      \
-				* REG_FREQ_MAX / BB_FREQ_MAX)		      \
-			      ? ((bb)->count.to_frequency (cfun)	      \
-				 * REG_FREQ_MAX / BB_FREQ_MAX)		      \
-			      : 1)
+#define REG_FREQ_FROM_BB(bb) ((optimize_function_for_size_p (cfun)        \
+                   || !cfun->cfg->count_max.initialized_p ())     \
+                  ? REG_FREQ_MAX                      \
+                  : ((bb)->count.to_frequency (cfun)          \
+                * REG_FREQ_MAX / BB_FREQ_MAX)             \
+                  ? ((bb)->count.to_frequency (cfun)          \
+                 * REG_FREQ_MAX / BB_FREQ_MAX)            \
+                  : 1)
 
 /* Indexed by N, gives number of insns in which register N dies.
    Note that if register N is live around loops, it can die
@@ -148,7 +148,7 @@ extern size_t reg_info_p_size;
 /* Get the number of consecutive words required to hold pseudo-reg N.  */
 
 #define PSEUDO_REGNO_SIZE(N) \
-  ((GET_MODE_SIZE (PSEUDO_REGNO_MODE (N)) + UNITS_PER_WORD - 1)		\
+  ((GET_MODE_SIZE (PSEUDO_REGNO_MODE (N)) + UNITS_PER_WORD - 1)     \
    / UNITS_PER_WORD)
 
 /* Get the number of bytes required to hold pseudo-reg N.  */
@@ -197,36 +197,37 @@ extern int caller_save_needed;
 #endif
 
 /* Target-dependent globals.  */
-struct target_regs {
-  /* For each starting hard register, the number of consecutive hard
-     registers that a given machine mode occupies.  */
-  unsigned char x_hard_regno_nregs[FIRST_PSEUDO_REGISTER][MAX_MACHINE_MODE];
+struct target_regs
+{
+    /* For each starting hard register, the number of consecutive hard
+       registers that a given machine mode occupies.  */
+    unsigned char x_hard_regno_nregs[FIRST_PSEUDO_REGISTER][MAX_MACHINE_MODE];
 
-  /* For each hard register, the widest mode object that it can contain.
-     This will be a MODE_INT mode if the register can hold integers.  Otherwise
-     it will be a MODE_FLOAT or a MODE_CC mode, whichever is valid for the
-     register.  */
-  machine_mode x_reg_raw_mode[FIRST_PSEUDO_REGISTER];
+    /* For each hard register, the widest mode object that it can contain.
+       This will be a MODE_INT mode if the register can hold integers.  Otherwise
+       it will be a MODE_FLOAT or a MODE_CC mode, whichever is valid for the
+       register.  */
+    machine_mode x_reg_raw_mode[FIRST_PSEUDO_REGISTER];
 
-  /* Vector indexed by machine mode saying whether there are regs of
-     that mode.  */
-  bool x_have_regs_of_mode[MAX_MACHINE_MODE];
+    /* Vector indexed by machine mode saying whether there are regs of
+       that mode.  */
+    bool x_have_regs_of_mode[MAX_MACHINE_MODE];
 
-  /* 1 if the corresponding class contains a register of the given mode.  */
-  char x_contains_reg_of_mode[N_REG_CLASSES][MAX_MACHINE_MODE];
+    /* 1 if the corresponding class contains a register of the given mode.  */
+    char x_contains_reg_of_mode[N_REG_CLASSES][MAX_MACHINE_MODE];
 
-  /* 1 if the corresponding class contains a register of the given mode
-     which is not global and can therefore be allocated.  */
-  char x_contains_allocatable_reg_of_mode[N_REG_CLASSES][MAX_MACHINE_MODE];
+    /* 1 if the corresponding class contains a register of the given mode
+       which is not global and can therefore be allocated.  */
+    char x_contains_allocatable_reg_of_mode[N_REG_CLASSES][MAX_MACHINE_MODE];
 
-  /* Record for each mode whether we can move a register directly to or
-     from an object of that mode in memory.  If we can't, we won't try
-     to use that mode directly when accessing a field of that mode.  */
-  char x_direct_load[NUM_MACHINE_MODES];
-  char x_direct_store[NUM_MACHINE_MODES];
+    /* Record for each mode whether we can move a register directly to or
+       from an object of that mode in memory.  If we can't, we won't try
+       to use that mode directly when accessing a field of that mode.  */
+    char x_direct_load[NUM_MACHINE_MODES];
+    char x_direct_store[NUM_MACHINE_MODES];
 
-  /* Record for each mode whether we can float-extend from memory.  */
-  bool x_float_extend_from_mem[NUM_MACHINE_MODES][NUM_MACHINE_MODES];
+    /* Record for each mode whether we can float-extend from memory.  */
+    bool x_float_extend_from_mem[NUM_MACHINE_MODES][NUM_MACHINE_MODES];
 };
 
 extern struct target_regs default_target_regs;
@@ -255,7 +256,7 @@ extern struct target_regs *this_target_regs;
 ALWAYS_INLINE unsigned char
 hard_regno_nregs (unsigned int regno, machine_mode mode)
 {
-  return this_target_regs->x_hard_regno_nregs[regno][mode];
+    return this_target_regs->x_hard_regno_nregs[regno][mode];
 }
 
 /* Return an exclusive upper bound on the registers occupied by hard
@@ -264,7 +265,7 @@ hard_regno_nregs (unsigned int regno, machine_mode mode)
 static inline unsigned int
 end_hard_regno (machine_mode mode, unsigned int regno)
 {
-  return regno + hard_regno_nregs (regno, mode);
+    return regno + hard_regno_nregs (regno, mode);
 }
 
 /* Add to REGS all the registers required to store a value of mode MODE
@@ -272,72 +273,84 @@ end_hard_regno (machine_mode mode, unsigned int regno)
 
 static inline void
 add_to_hard_reg_set (HARD_REG_SET *regs, machine_mode mode,
-		     unsigned int regno)
+                     unsigned int regno)
 {
-  unsigned int end_regno;
+    unsigned int end_regno;
 
-  end_regno = end_hard_regno (mode, regno);
-  do
-    SET_HARD_REG_BIT (*regs, regno);
-  while (++regno < end_regno);
+    end_regno = end_hard_regno (mode, regno);
+    do
+    {
+        SET_HARD_REG_BIT (*regs, regno);
+    } while (++regno < end_regno);
 }
 
 /* Likewise, but remove the registers.  */
 
 static inline void
 remove_from_hard_reg_set (HARD_REG_SET *regs, machine_mode mode,
-			  unsigned int regno)
+                          unsigned int regno)
 {
-  unsigned int end_regno;
+    unsigned int end_regno;
 
-  end_regno = end_hard_regno (mode, regno);
-  do
-    CLEAR_HARD_REG_BIT (*regs, regno);
-  while (++regno < end_regno);
+    end_regno = end_hard_regno (mode, regno);
+    do
+    {
+        CLEAR_HARD_REG_BIT (*regs, regno);
+    } while (++regno < end_regno);
 }
 
 /* Return true if REGS contains the whole of (reg:MODE REGNO).  */
 
 static inline bool
 in_hard_reg_set_p (const_hard_reg_set regs, machine_mode mode,
-		   unsigned int regno)
+                   unsigned int regno)
 {
-  unsigned int end_regno;
+    unsigned int end_regno;
 
-  gcc_assert (HARD_REGISTER_NUM_P (regno));
-  
-  if (!TEST_HARD_REG_BIT (regs, regno))
-    return false;
+    gcc_assert (HARD_REGISTER_NUM_P (regno));
 
-  end_regno = end_hard_regno (mode, regno);
-
-  if (!HARD_REGISTER_NUM_P (end_regno - 1))
-    return false;
-
-  while (++regno < end_regno)
     if (!TEST_HARD_REG_BIT (regs, regno))
-      return false;
+    {
+        return false;
+    }
 
-  return true;
+    end_regno = end_hard_regno (mode, regno);
+
+    if (!HARD_REGISTER_NUM_P (end_regno - 1))
+    {
+        return false;
+    }
+
+    while (++regno < end_regno)
+        if (!TEST_HARD_REG_BIT (regs, regno))
+        {
+            return false;
+        }
+
+    return true;
 }
 
 /* Return true if (reg:MODE REGNO) includes an element of REGS.  */
 
 static inline bool
 overlaps_hard_reg_set_p (const_hard_reg_set regs, machine_mode mode,
-			 unsigned int regno)
+                         unsigned int regno)
 {
-  unsigned int end_regno;
+    unsigned int end_regno;
 
-  if (TEST_HARD_REG_BIT (regs, regno))
-    return true;
-
-  end_regno = end_hard_regno (mode, regno);
-  while (++regno < end_regno)
     if (TEST_HARD_REG_BIT (regs, regno))
-      return true;
+    {
+        return true;
+    }
 
-  return false;
+    end_regno = end_hard_regno (mode, regno);
+    while (++regno < end_regno)
+        if (TEST_HARD_REG_BIT (regs, regno))
+        {
+            return true;
+        }
+
+    return false;
 }
 
 /* Like add_to_hard_reg_set, but use a REGNO/NREGS range instead of
@@ -345,32 +358,38 @@ overlaps_hard_reg_set_p (const_hard_reg_set regs, machine_mode mode,
 
 static inline void
 add_range_to_hard_reg_set (HARD_REG_SET *regs, unsigned int regno,
-			   int nregs)
+                           int nregs)
 {
-  while (nregs-- > 0)
-    SET_HARD_REG_BIT (*regs, regno + nregs);
+    while (nregs-- > 0)
+    {
+        SET_HARD_REG_BIT (*regs, regno + nregs);
+    }
 }
 
 /* Likewise, but remove the registers.  */
 
 static inline void
 remove_range_from_hard_reg_set (HARD_REG_SET *regs, unsigned int regno,
-				int nregs)
+                                int nregs)
 {
-  while (nregs-- > 0)
-    CLEAR_HARD_REG_BIT (*regs, regno + nregs);
+    while (nregs-- > 0)
+    {
+        CLEAR_HARD_REG_BIT (*regs, regno + nregs);
+    }
 }
 
 /* Like overlaps_hard_reg_set_p, but use a REGNO/NREGS range instead of
    REGNO and MODE.  */
 static inline bool
 range_overlaps_hard_reg_set_p (const_hard_reg_set set, unsigned regno,
-			       int nregs)
+                               int nregs)
 {
-  while (nregs-- > 0)
-    if (TEST_HARD_REG_BIT (set, regno + nregs))
-      return true;
-  return false;
+    while (nregs-- > 0)
+        if (TEST_HARD_REG_BIT (set, regno + nregs))
+        {
+            return true;
+        }
+    return false;
 }
 
 /* Like in_hard_reg_set_p, but use a REGNO/NREGS range instead of
@@ -378,10 +397,12 @@ range_overlaps_hard_reg_set_p (const_hard_reg_set set, unsigned regno,
 static inline bool
 range_in_hard_reg_set_p (const_hard_reg_set set, unsigned regno, int nregs)
 {
-  while (nregs-- > 0)
-    if (!TEST_HARD_REG_BIT (set, regno + nregs))
-      return false;
-  return true;
+    while (nregs-- > 0)
+        if (!TEST_HARD_REG_BIT (set, regno + nregs))
+        {
+            return false;
+        }
+    return true;
 }
 
 #endif /* GCC_REGS_H */

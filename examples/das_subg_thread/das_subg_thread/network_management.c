@@ -302,30 +302,6 @@ void nwk_mgm_child_reg_table_display()
             {
                 ++count;
                 log_info("[%u] %s %04X %04X %02X%02X%02X%02X%02X%02X%02X%02X %d %u\n",
-                     count,
-                     otThreadDeviceRoleToString(nwk_mgm_child_reg_table[i].role),
-                     nwk_mgm_child_reg_table[i].parent,
-                     nwk_mgm_child_reg_table[i].rloc,
-                     nwk_mgm_child_reg_table[i].extaddr[0],
-                     nwk_mgm_child_reg_table[i].extaddr[1],
-                     nwk_mgm_child_reg_table[i].extaddr[2],
-                     nwk_mgm_child_reg_table[i].extaddr[3],
-                     nwk_mgm_child_reg_table[i].extaddr[4],
-                     nwk_mgm_child_reg_table[i].extaddr[5],
-                     nwk_mgm_child_reg_table[i].extaddr[6],
-                     nwk_mgm_child_reg_table[i].extaddr[7],
-                     nwk_mgm_child_reg_table[i].rssi,
-                     nwk_mgm_child_reg_table[i].validtime);
-            }
-        }
-        for (i = 0; i < NWK_MGM_CHILD_REQ_TATLE_SIZE; i++)
-        {
-            if (nwk_mgm_child_reg_table[i].used)
-            {
-                if (nwk_mgm_child_reg_table[i].role == OT_DEVICE_ROLE_CHILD)
-                {
-                    ++count;
-                    log_info("[%u] %s %04X %04X %02X%02X%02X%02X%02X%02X%02X%02X %d %u\n",
                          count,
                          otThreadDeviceRoleToString(nwk_mgm_child_reg_table[i].role),
                          nwk_mgm_child_reg_table[i].parent,
@@ -340,6 +316,30 @@ void nwk_mgm_child_reg_table_display()
                          nwk_mgm_child_reg_table[i].extaddr[7],
                          nwk_mgm_child_reg_table[i].rssi,
                          nwk_mgm_child_reg_table[i].validtime);
+            }
+        }
+        for (i = 0; i < NWK_MGM_CHILD_REQ_TATLE_SIZE; i++)
+        {
+            if (nwk_mgm_child_reg_table[i].used)
+            {
+                if (nwk_mgm_child_reg_table[i].role == OT_DEVICE_ROLE_CHILD)
+                {
+                    ++count;
+                    log_info("[%u] %s %04X %04X %02X%02X%02X%02X%02X%02X%02X%02X %d %u\n",
+                             count,
+                             otThreadDeviceRoleToString(nwk_mgm_child_reg_table[i].role),
+                             nwk_mgm_child_reg_table[i].parent,
+                             nwk_mgm_child_reg_table[i].rloc,
+                             nwk_mgm_child_reg_table[i].extaddr[0],
+                             nwk_mgm_child_reg_table[i].extaddr[1],
+                             nwk_mgm_child_reg_table[i].extaddr[2],
+                             nwk_mgm_child_reg_table[i].extaddr[3],
+                             nwk_mgm_child_reg_table[i].extaddr[4],
+                             nwk_mgm_child_reg_table[i].extaddr[5],
+                             nwk_mgm_child_reg_table[i].extaddr[6],
+                             nwk_mgm_child_reg_table[i].extaddr[7],
+                             nwk_mgm_child_reg_table[i].rssi,
+                             nwk_mgm_child_reg_table[i].validtime);
                 }
             }
         }
@@ -353,20 +353,20 @@ void nwk_mgm_child_reg_table_display()
                 {
                     ++count;
                     log_info("[%u] %s %04X %04X %02X%02X%02X%02X%02X%02X%02X%02X %d %u\n",
-                         count,
-                         otThreadDeviceRoleToString(nwk_mgm_child_reg_table[i].role),
-                         nwk_mgm_child_reg_table[i].parent,
-                         nwk_mgm_child_reg_table[i].rloc,
-                         nwk_mgm_child_reg_table[i].extaddr[0],
-                         nwk_mgm_child_reg_table[i].extaddr[1],
-                         nwk_mgm_child_reg_table[i].extaddr[2],
-                         nwk_mgm_child_reg_table[i].extaddr[3],
-                         nwk_mgm_child_reg_table[i].extaddr[4],
-                         nwk_mgm_child_reg_table[i].extaddr[5],
-                         nwk_mgm_child_reg_table[i].extaddr[6],
-                         nwk_mgm_child_reg_table[i].extaddr[7],
-                         nwk_mgm_child_reg_table[i].rssi,
-                         nwk_mgm_child_reg_table[i].validtime);
+                             count,
+                             otThreadDeviceRoleToString(nwk_mgm_child_reg_table[i].role),
+                             nwk_mgm_child_reg_table[i].parent,
+                             nwk_mgm_child_reg_table[i].rloc,
+                             nwk_mgm_child_reg_table[i].extaddr[0],
+                             nwk_mgm_child_reg_table[i].extaddr[1],
+                             nwk_mgm_child_reg_table[i].extaddr[2],
+                             nwk_mgm_child_reg_table[i].extaddr[3],
+                             nwk_mgm_child_reg_table[i].extaddr[4],
+                             nwk_mgm_child_reg_table[i].extaddr[5],
+                             nwk_mgm_child_reg_table[i].extaddr[6],
+                             nwk_mgm_child_reg_table[i].extaddr[7],
+                             nwk_mgm_child_reg_table[i].rssi,
+                             nwk_mgm_child_reg_table[i].validtime);
                 }
             }
         }
@@ -379,24 +379,24 @@ static void nwk_mgm_reset()
 {
     OT_THREAD_SAFE(
         otInstance *instance = otrGetInstance();
-        if(instance)
+        if (instance)
+{
+    otDeviceRole mRole = otThreadGetDeviceRole(instance);
+        if (OT_DEVICE_ROLE_ROUTER == mRole || OT_DEVICE_ROLE_CHILD == mRole)
         {
-            otDeviceRole mRole = otThreadGetDeviceRole(instance);
-            if (OT_DEVICE_ROLE_ROUTER == mRole || OT_DEVICE_ROLE_CHILD == mRole)
-            {
-                otOperationalDataset dataset;
-                // otOperationalDatasetTlvs sDatasetTlvs;
+            otOperationalDataset dataset;
+            // otOperationalDatasetTlvs sDatasetTlvs;
 
-                memset(&dataset, 0, sizeof(otOperationalDataset));
+            memset(&dataset, 0, sizeof(otOperationalDataset));
 
-                dataset.mActiveTimestamp.mSeconds = 0;
-                dataset.mComponents.mIsActiveTimestampPresent = false;
-                OT_ASSERT(otDatasetSetActive(instance, &dataset) == OT_ERROR_NONE);
-                // OT_ASSERT(otDatasetUpdateTlvs(&dataset, &sDatasetTlvs) == OT_ERROR_NONE);
-                // OT_ASSERT(otDatasetSetActiveTlvs(instance &sDatasetTlvs) == OT_ERROR_NONE);
-                OT_ASSERT(otThreadBecomeDetached(instance) == OT_ERROR_NONE);
-            }
+            dataset.mActiveTimestamp.mSeconds = 0;
+            dataset.mComponents.mIsActiveTimestampPresent = false;
+            OT_ASSERT(otDatasetSetActive(instance, &dataset) == OT_ERROR_NONE);
+            // OT_ASSERT(otDatasetUpdateTlvs(&dataset, &sDatasetTlvs) == OT_ERROR_NONE);
+            // OT_ASSERT(otDatasetSetActiveTlvs(instance &sDatasetTlvs) == OT_ERROR_NONE);
+            OT_ASSERT(otThreadBecomeDetached(instance) == OT_ERROR_NONE);
         }
+    }
     )
 }
 
@@ -460,7 +460,7 @@ static int nwk_mgm_data_parse(uint8_t type, uint8_t *payload, uint16_t payloadle
 }
 static void nwk_mgm_data_piece(uint8_t type, uint8_t *payload, uint16_t *payloadlength, void *data)
 {
-    uint8_t *ptr = (uint8_t*)data;
+    uint8_t *ptr = (uint8_t *)data;
     nwk_mgm_child_reg_data_t *child_reg_data = NULL;
     nwk_mgm_child_reg_ack_info_t *child_reg_data_ack = NULL;
     nwk_mgm_kick_child_info_t *kick_child_data = NULL;
@@ -527,237 +527,237 @@ static void nwk_mgm_childs_register_proccess(otMessage *aMessage, const otMessag
     uint16_t i = 0, k = 0, payloadlength;
     OT_THREAD_SAFE(
         otInstance *instance = otrGetInstance();
-        if(instance)
+        if (instance)
+{
+    mRole = otThreadGetDeviceRole(instance);
+        do
         {
-            mRole = otThreadGetDeviceRole(instance);
-            do
+            if (length > 0)
             {
-                if (length > 0)
+                if (NULL != buf)
                 {
-                    if (NULL != buf)
+                    if (otCoapMessageGetType(aMessage) == OT_COAP_TYPE_CONFIRMABLE)
                     {
-                        if (otCoapMessageGetType(aMessage) == OT_COAP_TYPE_CONFIRMABLE)
+                        /*do ack packet*/
+                        responseCode = OT_COAP_CODE_VALID;
+                        responseMessage = otCoapNewMessage(instance, NULL);
+                        if (responseMessage == NULL)
                         {
-                            /*do ack packet*/
-                            responseCode = OT_COAP_CODE_VALID;
-                            responseMessage = otCoapNewMessage(instance, NULL);
-                            if (responseMessage == NULL)
+                            error = OT_ERROR_NO_BUFS;
+                            break;
+                        }
+                        error = otCoapMessageInitResponse(responseMessage, aMessage, OT_COAP_TYPE_ACKNOWLEDGMENT, responseCode);
+                        if (error != OT_ERROR_NONE)
+                        {
+                            break;
+                        }
+                        memset(&child_reg_data_ack, 0x0, sizeof(nwk_mgm_child_reg_ack_info_t));
+                        child_reg_data_ack.data_type = NWK_MGM_TYPE_CHILD_REG_ACK;
+                        child_reg_data_ack.state = 0; // success = 0, fail = 1
+                        child_reg_data_ack.kick_num = 0;
+                        reg_table_is_full = false;
+
+                        if (mRole == OT_DEVICE_ROLE_LEADER)
+                        {
+                            if (nwk_mgm_data_parse(NWK_MGM_TYPE_CHILD_REG, buf, length, &child_reg_data))
                             {
-                                error = OT_ERROR_NO_BUFS;
                                 break;
                             }
-                            error = otCoapMessageInitResponse(responseMessage, aMessage, OT_COAP_TYPE_ACKNOWLEDGMENT, responseCode);
+                            nwk_mgm_printf("self %04x,%04x, %02X%02X%02X%02X%02X%02X%02X%02X \n",
+                                           child_reg_data.parent,
+                                           child_reg_data.self_rloc,
+                                           child_reg_data.self_extaddr[0],
+                                           child_reg_data.self_extaddr[1],
+                                           child_reg_data.self_extaddr[2],
+                                           child_reg_data.self_extaddr[3],
+                                           child_reg_data.self_extaddr[4],
+                                           child_reg_data.self_extaddr[5],
+                                           child_reg_data.self_extaddr[6],
+                                           child_reg_data.self_extaddr[7]);
+
+                            /*add my self*/
+                            if (nwk_mgm_child_reg_table_add(OT_DEVICE_ROLE_ROUTER,
+                                                            child_reg_data.parent,
+                                                            child_reg_data.self_rloc,
+                                                            child_reg_data.self_extaddr, (-128)))
+                            {
+                                nwk_mgm_printf("unexpected router add fail\n");
+                                reg_table_is_full = true;
+                                child_reg_data_ack.state = 1; // success = 0, fail = 1
+                                child_reg_data_ack.child_info[child_reg_data_ack.kick_num].rloc = child_reg_data.self_rloc;
+                                memcpy(child_reg_data_ack.child_info[child_reg_data_ack.kick_num].extaddr, child_reg_data.self_extaddr, OT_EXT_ADDRESS_SIZE);
+                                child_reg_data_ack.child_info[child_reg_data_ack.kick_num].rssi = 0;
+                                child_reg_data_ack.kick_num++;
+                            }
+                            /*check child table*/
+                            for (i = 0; i < NWK_MGM_CHILD_REQ_TATLE_SIZE; i++)
+                            {
+                                if (nwk_mgm_child_reg_table[i].used)
+                                {
+                                    if (nwk_mgm_child_reg_table[i].parent == child_reg_data.self_rloc)
+                                    {
+                                        for (k = 0; k < child_reg_data.num; k++)
+                                        {
+                                            if (memcmp(nwk_mgm_child_reg_table[i].extaddr, child_reg_data.child_info[k].extaddr, OT_EXT_ADDRESS_SIZE) == 0)
+                                            {
+                                                break;
+                                            }
+                                        }
+
+                                        if (k >= child_reg_data.num)
+                                        {
+                                            nwk_mgm_printf("data rm %04x %04x %02X%02X%02X%02X%02X%02X%02X%02X\n",
+                                                           child_reg_data.self_rloc,
+                                                           nwk_mgm_child_reg_table[i].rloc,
+                                                           nwk_mgm_child_reg_table[i].extaddr[0],
+                                                           nwk_mgm_child_reg_table[i].extaddr[1],
+                                                           nwk_mgm_child_reg_table[i].extaddr[2],
+                                                           nwk_mgm_child_reg_table[i].extaddr[3],
+                                                           nwk_mgm_child_reg_table[i].extaddr[4],
+                                                           nwk_mgm_child_reg_table[i].extaddr[5],
+                                                           nwk_mgm_child_reg_table[i].extaddr[6],
+                                                           nwk_mgm_child_reg_table[i].extaddr[7]);
+                                            nwk_mgm_child_reg_table_remove(OT_DEVICE_ROLE_CHILD, (uint8_t *)nwk_mgm_child_reg_table[i].extaddr);
+                                        }
+                                    }
+                                }
+                            }
+                            /*updata child table*/
+                            nwk_mgm_printf("rece %u \n", child_reg_data.num);
+                            for (i = 0; i < child_reg_data.num; i++)
+                            {
+                                nwk_mgm_printf("child %04x,%04x, %02X%02X%02X%02X%02X%02X%02X%02X, %d \n",
+                                               child_reg_data.self_rloc,
+                                               child_reg_data.child_info[i].rloc,
+                                               child_reg_data.child_info[i].extaddr[0],
+                                               child_reg_data.child_info[i].extaddr[1],
+                                               child_reg_data.child_info[i].extaddr[2],
+                                               child_reg_data.child_info[i].extaddr[3],
+                                               child_reg_data.child_info[i].extaddr[4],
+                                               child_reg_data.child_info[i].extaddr[5],
+                                               child_reg_data.child_info[i].extaddr[6],
+                                               child_reg_data.child_info[i].extaddr[7],
+                                               child_reg_data.child_info[i].rssi);
+                                if (nwk_mgm_child_reg_table_add(OT_DEVICE_ROLE_CHILD,
+                                                                child_reg_data.self_rloc,
+                                                                child_reg_data.child_info[i].rloc,
+                                                                child_reg_data.child_info[i].extaddr,
+                                                                child_reg_data.child_info[i].rssi))
+                                {
+                                    reg_table_is_full = true;
+                                    child_reg_data_ack.state = 1; // success = 0, fail = 1
+                                    child_reg_data_ack.child_info[child_reg_data_ack.kick_num].rloc = child_reg_data.child_info[i].rloc;
+                                    memcpy(child_reg_data_ack.child_info[child_reg_data_ack.kick_num].extaddr, child_reg_data.child_info[i].extaddr, OT_EXT_ADDRESS_SIZE);
+                                    child_reg_data_ack.child_info[child_reg_data_ack.kick_num].rssi = child_reg_data.child_info[i].rssi;
+                                    child_reg_data_ack.kick_num++;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            nwk_mgm_printf("isn't leader \n");
+                        }
+                        nwk_mgm_printf("ack send %u \n", child_reg_data_ack.kick_num);
+                        payload = pvPortMalloc(sizeof(nwk_mgm_child_reg_ack_info_t));
+                        if (payload)
+                        {
+                            nwk_mgm_data_piece(NWK_MGM_TYPE_CHILD_REG_ACK, payload, &payloadlength, &child_reg_data_ack);
+                            error = otCoapMessageSetPayloadMarker(responseMessage);
                             if (error != OT_ERROR_NONE)
                             {
                                 break;
                             }
-                            memset(&child_reg_data_ack, 0x0, sizeof(nwk_mgm_child_reg_ack_info_t));
-                            child_reg_data_ack.data_type = NWK_MGM_TYPE_CHILD_REG_ACK;
-                            child_reg_data_ack.state = 0; // success = 0, fail = 1
-                            child_reg_data_ack.kick_num = 0;
-                            reg_table_is_full = false;
-
-                            if (mRole == OT_DEVICE_ROLE_LEADER)
-                            {
-                                if (nwk_mgm_data_parse(NWK_MGM_TYPE_CHILD_REG, buf, length, &child_reg_data))
-                                {
-                                    break;
-                                }
-                                nwk_mgm_printf("self %04x,%04x, %02X%02X%02X%02X%02X%02X%02X%02X \n",
-                                            child_reg_data.parent,
-                                            child_reg_data.self_rloc,
-                                            child_reg_data.self_extaddr[0],
-                                            child_reg_data.self_extaddr[1],
-                                            child_reg_data.self_extaddr[2],
-                                            child_reg_data.self_extaddr[3],
-                                            child_reg_data.self_extaddr[4],
-                                            child_reg_data.self_extaddr[5],
-                                            child_reg_data.self_extaddr[6],
-                                            child_reg_data.self_extaddr[7]);
-
-                                /*add my self*/
-                                if (nwk_mgm_child_reg_table_add(OT_DEVICE_ROLE_ROUTER,
-                                                                child_reg_data.parent,
-                                                                child_reg_data.self_rloc,
-                                                                child_reg_data.self_extaddr, (-128)))
-                                {
-                                    nwk_mgm_printf("unexpected router add fail\n");
-                                    reg_table_is_full = true;
-                                    child_reg_data_ack.state = 1; // success = 0, fail = 1
-                                    child_reg_data_ack.child_info[child_reg_data_ack.kick_num].rloc = child_reg_data.self_rloc;
-                                    memcpy(child_reg_data_ack.child_info[child_reg_data_ack.kick_num].extaddr, child_reg_data.self_extaddr, OT_EXT_ADDRESS_SIZE);
-                                    child_reg_data_ack.child_info[child_reg_data_ack.kick_num].rssi = 0;
-                                    child_reg_data_ack.kick_num++;
-                                }
-                                /*check child table*/
-                                for (i = 0; i < NWK_MGM_CHILD_REQ_TATLE_SIZE; i++)
-                                {
-                                    if (nwk_mgm_child_reg_table[i].used)
-                                    {
-                                        if (nwk_mgm_child_reg_table[i].parent == child_reg_data.self_rloc)
-                                        {
-                                            for (k = 0; k < child_reg_data.num; k++)
-                                            {
-                                                if (memcmp(nwk_mgm_child_reg_table[i].extaddr, child_reg_data.child_info[k].extaddr, OT_EXT_ADDRESS_SIZE) == 0)
-                                                {
-                                                    break;
-                                                }
-                                            }
-
-                                            if (k >= child_reg_data.num)
-                                            {
-                                                nwk_mgm_printf("data rm %04x %04x %02X%02X%02X%02X%02X%02X%02X%02X\n",
-                                                            child_reg_data.self_rloc,
-                                                            nwk_mgm_child_reg_table[i].rloc,
-                                                            nwk_mgm_child_reg_table[i].extaddr[0],
-                                                            nwk_mgm_child_reg_table[i].extaddr[1],
-                                                            nwk_mgm_child_reg_table[i].extaddr[2],
-                                                            nwk_mgm_child_reg_table[i].extaddr[3],
-                                                            nwk_mgm_child_reg_table[i].extaddr[4],
-                                                            nwk_mgm_child_reg_table[i].extaddr[5],
-                                                            nwk_mgm_child_reg_table[i].extaddr[6],
-                                                            nwk_mgm_child_reg_table[i].extaddr[7]);
-                                                nwk_mgm_child_reg_table_remove(OT_DEVICE_ROLE_CHILD, (uint8_t*)nwk_mgm_child_reg_table[i].extaddr);
-                                            }
-                                        }
-                                    }
-                                }
-                                /*updata child table*/
-                                nwk_mgm_printf("rece %u \n", child_reg_data.num);
-                                for (i = 0; i < child_reg_data.num; i++)
-                                {
-                                    nwk_mgm_printf("child %04x,%04x, %02X%02X%02X%02X%02X%02X%02X%02X, %d \n",
-                                                child_reg_data.self_rloc,
-                                                child_reg_data.child_info[i].rloc,
-                                                child_reg_data.child_info[i].extaddr[0],
-                                                child_reg_data.child_info[i].extaddr[1],
-                                                child_reg_data.child_info[i].extaddr[2],
-                                                child_reg_data.child_info[i].extaddr[3],
-                                                child_reg_data.child_info[i].extaddr[4],
-                                                child_reg_data.child_info[i].extaddr[5],
-                                                child_reg_data.child_info[i].extaddr[6],
-                                                child_reg_data.child_info[i].extaddr[7],
-                                                child_reg_data.child_info[i].rssi);
-                                    if (nwk_mgm_child_reg_table_add(OT_DEVICE_ROLE_CHILD,
-                                                                    child_reg_data.self_rloc,
-                                                                    child_reg_data.child_info[i].rloc,
-                                                                    child_reg_data.child_info[i].extaddr,
-                                                                    child_reg_data.child_info[i].rssi))
-                                    {
-                                        reg_table_is_full = true;
-                                        child_reg_data_ack.state = 1; // success = 0, fail = 1
-                                        child_reg_data_ack.child_info[child_reg_data_ack.kick_num].rloc = child_reg_data.child_info[i].rloc;
-                                        memcpy(child_reg_data_ack.child_info[child_reg_data_ack.kick_num].extaddr, child_reg_data.child_info[i].extaddr, OT_EXT_ADDRESS_SIZE);
-                                        child_reg_data_ack.child_info[child_reg_data_ack.kick_num].rssi = child_reg_data.child_info[i].rssi;
-                                        child_reg_data_ack.kick_num++;
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                nwk_mgm_printf("isn't leader \n");
-                            }
-                            nwk_mgm_printf("ack send %u \n", child_reg_data_ack.kick_num);
-                            payload = pvPortMalloc(sizeof(nwk_mgm_child_reg_ack_info_t));
-                            if (payload)
-                            {
-                                nwk_mgm_data_piece(NWK_MGM_TYPE_CHILD_REG_ACK, payload, &payloadlength, &child_reg_data_ack);
-                                error = otCoapMessageSetPayloadMarker(responseMessage);
-                                if (error != OT_ERROR_NONE)
-                                {
-                                    break;
-                                }
-                                error = otMessageAppend(responseMessage, payload, payloadlength);
-                                if (error != OT_ERROR_NONE)
-                                {
-                                    break;
-                                }
-                            }
-                            error = otCoapSendResponseWithParameters(instance, responseMessage, aMessageInfo, NULL);
+                            error = otMessageAppend(responseMessage, payload, payloadlength);
                             if (error != OT_ERROR_NONE)
                             {
                                 break;
                             }
                         }
+                        error = otCoapSendResponseWithParameters(instance, responseMessage, aMessageInfo, NULL);
+                        if (error != OT_ERROR_NONE)
+                        {
+                            break;
+                        }
                     }
                 }
-            } while (0);
-            if (payload)
-            {
-                vPortFree(payload);
             }
-            if (error != OT_ERROR_NONE && responseMessage != NULL)
-            {
-                otMessageFree(responseMessage);
-            }
+        } while (0);
+        if (payload)
+        {
+            vPortFree(payload);
         }
+        if (error != OT_ERROR_NONE && responseMessage != NULL)
+        {
+            otMessageFree(responseMessage);
+        }
+    }
     )
-    
+
 }
 
 static void nwk_mgm_childs_register_ack_proccess(uint8_t *buf, uint16_t length)
 {
     OT_THREAD_SAFE(
         otInstance *instance = otrGetInstance();
-        if(instance)
+        if (instance)
+{
+    otDeviceRole mRole = otThreadGetDeviceRole(instance);
+        nwk_mgm_child_reg_ack_info_t child_reg_data_ack;
+        otExtAddress aExtAddress;
+        aExtAddress = *otLinkGetExtendedAddress(instance);
+        do
         {
-            otDeviceRole mRole = otThreadGetDeviceRole(instance);
-            nwk_mgm_child_reg_ack_info_t child_reg_data_ack;
-            otExtAddress aExtAddress;
-            aExtAddress = *otLinkGetExtendedAddress(instance);
-            do
+            if (length > 0)
             {
-                if (length > 0)
+                if (NULL != buf)
                 {
-                    if (NULL != buf)
+                    if (mRole == OT_DEVICE_ROLE_ROUTER)
                     {
-                        if (mRole == OT_DEVICE_ROLE_ROUTER)
+                        if (nwk_mgm_data_parse(NWK_MGM_TYPE_CHILD_REG_ACK, buf, length, &child_reg_data_ack))
                         {
-                            if (nwk_mgm_data_parse(NWK_MGM_TYPE_CHILD_REG_ACK, buf, length, &child_reg_data_ack))
+                            break;
+                        }
+                        nwk_mgm_printf("ack state %u\n", child_reg_data_ack.state);
+                        reg_table_is_full = child_reg_data_ack.state;
+                        if (child_reg_data_ack.state)
+                        {
+                            for (uint16_t i = 0; i < child_reg_data_ack.kick_num; i++)
                             {
-                                break;
-                            }
-                            nwk_mgm_printf("ack state %u\n", child_reg_data_ack.state);
-                            reg_table_is_full = child_reg_data_ack.state;
-                            if (child_reg_data_ack.state)
-                            {
-                                for (uint16_t i = 0; i < child_reg_data_ack.kick_num; i++)
+                                nwk_mgm_printf("kick %04x, %02X%02X%02X%02X%02X%02X%02X%02X, %d \n",
+                                               child_reg_data_ack.child_info[i].rloc,
+                                               child_reg_data_ack.child_info[i].extaddr[0],
+                                               child_reg_data_ack.child_info[i].extaddr[1],
+                                               child_reg_data_ack.child_info[i].extaddr[2],
+                                               child_reg_data_ack.child_info[i].extaddr[3],
+                                               child_reg_data_ack.child_info[i].extaddr[4],
+                                               child_reg_data_ack.child_info[i].extaddr[5],
+                                               child_reg_data_ack.child_info[i].extaddr[6],
+                                               child_reg_data_ack.child_info[i].extaddr[7],
+                                               child_reg_data_ack.child_info[i].rssi);
+                                if (memcmp(child_reg_data_ack.child_info[i].extaddr, aExtAddress.m8, OT_EXT_ADDRESS_SIZE) == 0)
                                 {
-                                    nwk_mgm_printf("kick %04x, %02X%02X%02X%02X%02X%02X%02X%02X, %d \n",
-                                                child_reg_data_ack.child_info[i].rloc,
-                                                child_reg_data_ack.child_info[i].extaddr[0],
-                                                child_reg_data_ack.child_info[i].extaddr[1],
-                                                child_reg_data_ack.child_info[i].extaddr[2],
-                                                child_reg_data_ack.child_info[i].extaddr[3],
-                                                child_reg_data_ack.child_info[i].extaddr[4],
-                                                child_reg_data_ack.child_info[i].extaddr[5],
-                                                child_reg_data_ack.child_info[i].extaddr[6],
-                                                child_reg_data_ack.child_info[i].extaddr[7],
-                                                child_reg_data_ack.child_info[i].rssi);
-                                    if (memcmp(child_reg_data_ack.child_info[i].extaddr, aExtAddress.m8, OT_EXT_ADDRESS_SIZE) == 0)
+                                    nwk_mgm_printf("kick self \n");
+                                    if (OT_ERROR_NONE != otLinkBlackListAddPanId(instance, otLinkGetPanId(instance)))
                                     {
-                                        nwk_mgm_printf("kick self \n");
-                                        if (OT_ERROR_NONE != otLinkBlackListAddPanId(instance, otLinkGetPanId(instance)))
-                                        {
-                                            nwk_mgm_printf("black add fill \n");
-                                        }
-                                        nwk_mgm_reset();
-                                        break;
+                                        nwk_mgm_printf("black add fill \n");
                                     }
-                                    else
-                                    {
-                                        nwk_mgm_kick_child_post(child_reg_data_ack.child_info[i].rloc,
-                                                                otLinkGetPanId(instance),
-                                                                (uint8_t*)child_reg_data_ack.child_info[i].extaddr);
-                                        otLinkRemoveChildren(instance, child_reg_data_ack.child_info[i].rloc);
-                                    }
+                                    nwk_mgm_reset();
+                                    break;
+                                }
+                                else
+                                {
+                                    nwk_mgm_kick_child_post(child_reg_data_ack.child_info[i].rloc,
+                                                            otLinkGetPanId(instance),
+                                                            (uint8_t *)child_reg_data_ack.child_info[i].extaddr);
+                                    otLinkRemoveChildren(instance, child_reg_data_ack.child_info[i].rloc);
                                 }
                             }
                         }
                     }
                 }
-            } while (0);
-        }
+            }
+        } while (0);
+    }
     )
 }
 
@@ -766,34 +766,34 @@ static void nwk_mgm_kick_child_proccess(uint8_t *buf, uint16_t length)
     nwk_mgm_kick_child_info_t kick_child_data;
     OT_THREAD_SAFE(
         otInstance *instance = otrGetInstance();
-        if(instance)
+        if (instance)
+{
+    otDeviceRole mRole = otThreadGetDeviceRole(instance);
+
+        do
         {
-            otDeviceRole mRole = otThreadGetDeviceRole(instance);
-
-            do
+            if (length > 0)
             {
-                if (length > 0)
+                if (NULL != buf)
                 {
-                    if (NULL != buf)
+                    if (nwk_mgm_data_parse(NWK_MGM_TYPE_CHILD_KICK, buf, length, &kick_child_data))
                     {
-                        if (nwk_mgm_data_parse(NWK_MGM_TYPE_CHILD_KICK, buf, length, &kick_child_data))
-                        {
-                            break;
-                        }
-                        if (mRole == OT_DEVICE_ROLE_CHILD || mRole == OT_DEVICE_ROLE_ROUTER)
-                        {
-                            nwk_mgm_printf("kick %04x \n", kick_child_data.panid);
+                        break;
+                    }
+                    if (mRole == OT_DEVICE_ROLE_CHILD || mRole == OT_DEVICE_ROLE_ROUTER)
+                    {
+                        nwk_mgm_printf("kick %04x \n", kick_child_data.panid);
 
-                            if (OT_ERROR_NONE != otLinkBlackListAddPanId(instance, kick_child_data.panid))
-                            {
-                                nwk_mgm_printf("black add fill \n");
-                            }
-                            nwk_mgm_reset();
+                        if (OT_ERROR_NONE != otLinkBlackListAddPanId(instance, kick_child_data.panid))
+                        {
+                            nwk_mgm_printf("black add fill \n");
                         }
+                        nwk_mgm_reset();
                     }
                 }
-            } while (0);
-        }
+            }
+        } while (0);
+    }
     )
 }
 
@@ -878,64 +878,64 @@ otError nwk_mgm_coap_request(otCoapCode aCoapCode, otIp6Address coapDestinationI
     otMessageInfo messageInfo;
     OT_THREAD_SAFE(
         otInstance *instance = otrGetInstance();
-        if(instance)
-        {
-            do
+        if (instance)
+{
+    do
+    {
+        message = otCoapNewMessage(instance, NULL);
+            if (NULL == message)
             {
-                message = otCoapNewMessage(instance, NULL);
-                if (NULL == message)
-                {
-                    error = OT_ERROR_NO_BUFS;
-                    break;
-                }
-                otCoapMessageInit(message, coapType, aCoapCode);
-                otCoapMessageGenerateToken(message, OT_COAP_DEFAULT_TOKEN_LENGTH);
+                error = OT_ERROR_NO_BUFS;
+                break;
+            }
+            otCoapMessageInit(message, coapType, aCoapCode);
+            otCoapMessageGenerateToken(message, OT_COAP_DEFAULT_TOKEN_LENGTH);
 
-                error = otCoapMessageAppendUriPathOptions(message, coap_Path);
+            error = otCoapMessageAppendUriPathOptions(message, coap_Path);
+            if (OT_ERROR_NONE != error)
+            {
+                break;
+            }
+
+            if (payloadLength > 0)
+            {
+                error = otCoapMessageSetPayloadMarker(message);
                 if (OT_ERROR_NONE != error)
                 {
                     break;
                 }
-
-                if (payloadLength > 0)
-                {
-                    error = otCoapMessageSetPayloadMarker(message);
-                    if (OT_ERROR_NONE != error)
-                    {
-                        break;
-                    }
-                }
-
-                // Embed content into message if given
-                if (payloadLength > 0)
-                {
-                    error = otMessageAppend(message, payload, payloadLength);
-                    if (OT_ERROR_NONE != error)
-                    {
-                        break;
-                    }
-                }
-
-                memset(&messageInfo, 0, sizeof(messageInfo));
-                messageInfo.mPeerAddr = coapDestinationIp;
-                messageInfo.mPeerPort = OT_DEFAULT_COAP_PORT;
-
-                if ((coapType == OT_COAP_TYPE_CONFIRMABLE) || (aCoapCode == OT_COAP_CODE_GET))
-                {
-                    error = otCoapSendRequestWithParameters(instance, message, &messageInfo, &nwk_mgm_ack_process,
-                                                            NULL, NULL);
-                }
-                else
-                {
-                    error = otCoapSendRequestWithParameters(instance, message, &messageInfo, NULL, NULL, NULL);
-                }
-            } while (0);
-
-            if ((error != OT_ERROR_NONE) && (message != NULL))
-            {
-                otMessageFree(message);
             }
+
+            // Embed content into message if given
+            if (payloadLength > 0)
+            {
+                error = otMessageAppend(message, payload, payloadLength);
+                if (OT_ERROR_NONE != error)
+                {
+                    break;
+                }
+            }
+
+            memset(&messageInfo, 0, sizeof(messageInfo));
+            messageInfo.mPeerAddr = coapDestinationIp;
+            messageInfo.mPeerPort = OT_DEFAULT_COAP_PORT;
+
+            if ((coapType == OT_COAP_TYPE_CONFIRMABLE) || (aCoapCode == OT_COAP_CODE_GET))
+            {
+                error = otCoapSendRequestWithParameters(instance, message, &messageInfo, &nwk_mgm_ack_process,
+                                                        NULL, NULL);
+            }
+            else
+            {
+                error = otCoapSendRequestWithParameters(instance, message, &messageInfo, NULL, NULL, NULL);
+            }
+        } while (0);
+
+        if ((error != OT_ERROR_NONE) && (message != NULL))
+        {
+            otMessageFree(message);
         }
+    }
     )
     return error;
 }
@@ -944,33 +944,211 @@ void nwk_mgm_child_register_post()
 {
     OT_THREAD_SAFE(
         otInstance *instance = otrGetInstance();
-        if(instance)
+        if (instance)
+{
+    otError error = OT_ERROR_NONE;
+    otCoapCode CoapCode = OT_COAP_CODE_POST;
+    otIp6Address coapDestinationIp = *otThreadGetRloc(instance);
+        coapDestinationIp.mFields.m8[14] = 0xfc;
+        coapDestinationIp.mFields.m8[15] = 0x00;
+        char string[OT_IP6_ADDRESS_STRING_SIZE];
+        otIp6AddressToString(&coapDestinationIp, string, sizeof(string));
+
+        otCoapType coapType = OT_COAP_TYPE_CONFIRMABLE;
+        nwk_mgm_child_reg_data_t child_reg_data;
+        uint8_t *payload = NULL;
+        uint16_t payloadlength = 0;
+        otRouterInfo parentInfo;
+        otExtAddress aExtAddress;
+        otChildInfo childInfo;
+
+        memset(&child_reg_data, 0x0, sizeof(nwk_mgm_child_reg_data_t));
+        child_reg_data.data_type = NWK_MGM_TYPE_CHILD_REG;
+        otThreadGetParentInfo(instance, &parentInfo);
+        child_reg_data.parent = parentInfo.mRloc16;
+        child_reg_data.self_rloc = otThreadGetRloc16(instance);
+        aExtAddress = *otLinkGetExtendedAddress(instance);
+        memcpy(child_reg_data.self_extaddr, aExtAddress.m8, OT_EXT_ADDRESS_SIZE);
+
+        child_reg_data.num = 0;
+        uint16_t childernmax = otThreadGetMaxAllowedChildren(instance);
+
+        for (uint16_t i = 0; i < childernmax; i++)
         {
-            otError error = OT_ERROR_NONE;
-            otCoapCode CoapCode = OT_COAP_CODE_POST;
-            otIp6Address coapDestinationIp = *otThreadGetRloc(instance);
-            coapDestinationIp.mFields.m8[14] = 0xfc;
-            coapDestinationIp.mFields.m8[15] = 0x00;
+            if ((otThreadGetChildInfoByIndex(instance, i, &childInfo) != OT_ERROR_NONE) ||
+                    childInfo.mIsStateRestoring)
+            {
+                continue;
+            }
+
+            child_reg_data.child_info[child_reg_data.num].rloc = childInfo.mRloc16;
+            memcpy(child_reg_data.child_info[child_reg_data.num].extaddr, &childInfo.mExtAddress, OT_EXT_ADDRESS_SIZE);
+            child_reg_data.child_info[child_reg_data.num].rssi = childInfo.mAverageRssi;
+            child_reg_data.num++;
+        }
+
+        payload = pvPortMalloc(sizeof(nwk_mgm_child_reg_data_t));
+        if (payload)
+        {
+            nwk_mgm_data_piece(NWK_MGM_TYPE_CHILD_REG, payload, &payloadlength, &child_reg_data);
+            error = nwk_mgm_coap_request(CoapCode, coapDestinationIp, coapType, payload, payloadlength, RAFAEL_NWK_MGM_URL);
+            nwk_mgm_printf("register %s %u %u \n", string, error, payloadlength);
+            vPortFree(payload);
+            nwk_mgm_router_update_timer_set(NWK_MGM_ROUTER_KEEP_ALIVE_TIME);
+        }
+    }
+    )
+
+    return;
+}
+
+static void nwk_mgm_kick_child_post(uint16_t rloc, uint16_t panid, uint8_t *extaddr)
+{
+    OT_THREAD_SAFE(
+        otInstance *instance = otrGetInstance();
+        if (instance)
+{
+    otError error = OT_ERROR_NONE;
+    otCoapCode CoapCode = OT_COAP_CODE_POST;
+    otIp6Address coapDestinationIp;
+    nwk_mgm_kick_child_info_t kick_child_data;
+    uint8_t *payload = NULL;
+    uint16_t payloadlength = 0;
+
+    payload = pvPortMalloc(sizeof(nwk_mgm_kick_child_info_t));
+        if (payload)
+        {
+            kick_child_data.data_type = NWK_MGM_TYPE_CHILD_KICK;
+            kick_child_data.rloc = rloc;
+            kick_child_data.panid = panid;
+            nwk_mgm_data_piece(NWK_MGM_TYPE_CHILD_KICK, payload, &payloadlength, &kick_child_data);
+
+            coapDestinationIp = *otThreadGetLinkLocalIp6Address(instance);
+            memcpy(&coapDestinationIp.mFields.m8[8], extaddr, OT_EXT_ADDRESS_SIZE);
+            coapDestinationIp.mFields.m8[8] ^= (1 << 1);
+
+            otCoapType coapType = OT_COAP_TYPE_NON_CONFIRMABLE;
+
             char string[OT_IP6_ADDRESS_STRING_SIZE];
             otIp6AddressToString(&coapDestinationIp, string, sizeof(string));
 
-            otCoapType coapType = OT_COAP_TYPE_CONFIRMABLE;
-            nwk_mgm_child_reg_data_t child_reg_data;
-            uint8_t *payload = NULL;
-            uint16_t payloadlength = 0;
-            otRouterInfo parentInfo;
-            otExtAddress aExtAddress;
+            error = nwk_mgm_coap_request(CoapCode, coapDestinationIp, coapType, payload, payloadlength, RAFAEL_NWK_MGM_URL);
+            nwk_mgm_printf("kick %s %u \n", string, error);
+            if (payload)
+            {
+                vPortFree(payload);
+            }
+        }
+    }
+    )
+    return;
+}
+
+void nwk_mgm_neighbor_Change_Callback(otNeighborTableEvent aEvent, const otNeighborTableEntryInfo *aEntryInfo)
+{
+    OT_THREAD_SAFE(
+        otInstance *instance = otrGetInstance();
+        if (instance)
+{
+    otDeviceRole mRole;
+
+    mRole = otThreadGetDeviceRole(instance);
+
+        if (mRole == OT_DEVICE_ROLE_LEADER)
+        {
+            if (NULL == nwk_mgm_child_reg_table)
+            {
+                printf("malloc table %u \r\n", (sizeof(nwk_mgm_child_reg_table_t) * NWK_MGM_CHILD_REQ_TATLE_SIZE));
+                nwk_mgm_child_reg_table = pvPortMalloc(sizeof(nwk_mgm_child_reg_table_t) * NWK_MGM_CHILD_REQ_TATLE_SIZE);
+                memset(nwk_mgm_child_reg_table, 0x0, sizeof(nwk_mgm_child_reg_table_t) * NWK_MGM_CHILD_REQ_TATLE_SIZE);
+            }
+            switch (aEvent)
+            {
+            case OT_NEIGHBOR_TABLE_EVENT_CHILD_ADDED:
+                if (nwk_mgm_child_reg_table_add(OT_DEVICE_ROLE_CHILD,
+                                                otThreadGetRloc16(instance),
+                                                aEntryInfo->mInfo.mChild.mRloc16,
+                                                (uint8_t *)aEntryInfo->mInfo.mChild.mExtAddress.m8,
+                                                aEntryInfo->mInfo.mChild.mAverageRssi))
+                {
+                    nwk_mgm_printf("leader add fail \n");
+                    nwk_mgm_kick_child_post(aEntryInfo->mInfo.mChild.mRloc16,
+                                            otLinkGetPanId(instance),
+                                            (uint8_t *)aEntryInfo->mInfo.mChild.mExtAddress.m8);
+                    otLinkRemoveChildren(instance, aEntryInfo->mInfo.mChild.mRloc16);
+                }
+                nwk_mgm_router_update_timer_set(NWK_MGM_ROUTER_KEEP_ALIVE_TIME);
+                break;
+
+            case OT_NEIGHBOR_TABLE_EVENT_CHILD_REMOVED:
+                nwk_mgm_printf("leader remove \n");
+                nwk_mgm_child_reg_table_remove(OT_DEVICE_ROLE_CHILD, (uint8_t *)aEntryInfo->mInfo.mChild.mExtAddress.m8);
+                break;
+
+            default:
+                break;
+            }
+        }
+        else if (mRole == OT_DEVICE_ROLE_ROUTER)
+        {
+            if (aEvent == OT_NEIGHBOR_TABLE_EVENT_CHILD_ADDED || aEvent == OT_NEIGHBOR_TABLE_EVENT_CHILD_REMOVED)
+            {
+                nwk_mgm_reg_send_timer_set(10);
+            }
+            if (nwk_mgm_child_reg_table)
+            {
+                vPortFree(nwk_mgm_child_reg_table);
+                nwk_mgm_child_reg_table = NULL;
+            }
+        }
+        else
+        {
+            if (nwk_mgm_child_reg_table)
+            {
+                vPortFree(nwk_mgm_child_reg_table);
+                nwk_mgm_child_reg_table = NULL;
+            }
+        }
+    }
+    )
+}
+
+static void nwk_mgm_child_register_post_resend()
+{
+    OT_THREAD_SAFE(
+        otInstance *instance = otrGetInstance();
+        if (instance)
+{
+    otDeviceRole mRole = otThreadGetDeviceRole(instance);
+
+        if (mRole == OT_DEVICE_ROLE_ROUTER)
+        {
+            nwk_mgm_child_register_post();
+        }
+    }
+    )
+}
+
+static void mgm_router_update_timer_handler()
+{
+    OT_THREAD_SAFE(
+        otInstance *instance = otrGetInstance();
+        if (instance)
+{
+    otDeviceRole mRole = otThreadGetDeviceRole(instance);
+
+        if (mRole == OT_DEVICE_ROLE_ROUTER)
+        {
+            nwk_mgm_child_register_post();
+            if (nwk_mgm_child_reg_table)
+            {
+                vPortFree(nwk_mgm_child_reg_table);
+                nwk_mgm_child_reg_table = NULL;
+            }
+        }
+        else if (mRole == OT_DEVICE_ROLE_LEADER)
+        {
             otChildInfo childInfo;
-
-            memset(&child_reg_data, 0x0, sizeof(nwk_mgm_child_reg_data_t));
-            child_reg_data.data_type = NWK_MGM_TYPE_CHILD_REG;
-            otThreadGetParentInfo(instance, &parentInfo);
-            child_reg_data.parent = parentInfo.mRloc16;
-            child_reg_data.self_rloc = otThreadGetRloc16(instance);
-            aExtAddress = *otLinkGetExtendedAddress(instance);
-            memcpy(child_reg_data.self_extaddr, aExtAddress.m8, OT_EXT_ADDRESS_SIZE);
-
-            child_reg_data.num = 0;
             uint16_t childernmax = otThreadGetMaxAllowedChildren(instance);
 
             for (uint16_t i = 0; i < childernmax; i++)
@@ -981,205 +1159,27 @@ void nwk_mgm_child_register_post()
                     continue;
                 }
 
-                child_reg_data.child_info[child_reg_data.num].rloc = childInfo.mRloc16;
-                memcpy(child_reg_data.child_info[child_reg_data.num].extaddr, &childInfo.mExtAddress, OT_EXT_ADDRESS_SIZE);
-                child_reg_data.child_info[child_reg_data.num].rssi = childInfo.mAverageRssi;
-                child_reg_data.num++;
-            }
-
-            payload = pvPortMalloc(sizeof(nwk_mgm_child_reg_data_t));
-            if (payload)
-            {
-                nwk_mgm_data_piece(NWK_MGM_TYPE_CHILD_REG, payload, &payloadlength, &child_reg_data);
-                error = nwk_mgm_coap_request(CoapCode, coapDestinationIp, coapType, payload, payloadlength, RAFAEL_NWK_MGM_URL);
-                nwk_mgm_printf("register %s %u %u \n", string, error, payloadlength);
-                vPortFree(payload);
-                nwk_mgm_router_update_timer_set(NWK_MGM_ROUTER_KEEP_ALIVE_TIME);
+                nwk_mgm_child_reg_table_add(OT_DEVICE_ROLE_CHILD,
+                                            otThreadGetRloc16(instance),
+                                            childInfo.mRloc16,
+                                            childInfo.mExtAddress.m8,
+                                            childInfo.mAverageRssi);
             }
         }
-    )
-
-    return;
-}
-
-static void nwk_mgm_kick_child_post(uint16_t rloc, uint16_t panid, uint8_t *extaddr)
-{
-    OT_THREAD_SAFE(
-        otInstance *instance = otrGetInstance();
-        if(instance)
+        else
         {
-            otError error = OT_ERROR_NONE;
-            otCoapCode CoapCode = OT_COAP_CODE_POST;
-            otIp6Address coapDestinationIp;
-            nwk_mgm_kick_child_info_t kick_child_data;
-            uint8_t *payload = NULL;
-            uint16_t payloadlength = 0;
-
-            payload = pvPortMalloc(sizeof(nwk_mgm_kick_child_info_t));
-            if (payload)
+            if (nwk_mgm_child_reg_table)
             {
-                kick_child_data.data_type = NWK_MGM_TYPE_CHILD_KICK;
-                kick_child_data.rloc = rloc;
-                kick_child_data.panid = panid;
-                nwk_mgm_data_piece(NWK_MGM_TYPE_CHILD_KICK, payload, &payloadlength, &kick_child_data);
-
-                coapDestinationIp = *otThreadGetLinkLocalIp6Address(instance);
-                memcpy(&coapDestinationIp.mFields.m8[8], extaddr, OT_EXT_ADDRESS_SIZE);
-                coapDestinationIp.mFields.m8[8] ^= (1 << 1);
-
-                otCoapType coapType = OT_COAP_TYPE_NON_CONFIRMABLE;
-
-                char string[OT_IP6_ADDRESS_STRING_SIZE];
-                otIp6AddressToString(&coapDestinationIp, string, sizeof(string));
-
-                error = nwk_mgm_coap_request(CoapCode, coapDestinationIp, coapType, payload, payloadlength, RAFAEL_NWK_MGM_URL);
-                nwk_mgm_printf("kick %s %u \n", string, error);
-                if (payload)
-                {
-                    vPortFree(payload);
-                }
+                vPortFree(nwk_mgm_child_reg_table);
+                nwk_mgm_child_reg_table = NULL;
             }
         }
-    )
-    return;
-}
-
-void nwk_mgm_neighbor_Change_Callback(otNeighborTableEvent aEvent, const otNeighborTableEntryInfo *aEntryInfo)
-{
-     OT_THREAD_SAFE(
-        otInstance *instance = otrGetInstance();
-        if(instance)
-        {
-            otDeviceRole mRole;
-
-            mRole = otThreadGetDeviceRole(instance);
-
-            if (mRole == OT_DEVICE_ROLE_LEADER)
-            {
-                if (NULL == nwk_mgm_child_reg_table)
-                {
-                    printf("malloc table %u \r\n", (sizeof(nwk_mgm_child_reg_table_t) * NWK_MGM_CHILD_REQ_TATLE_SIZE));
-                    nwk_mgm_child_reg_table = pvPortMalloc(sizeof(nwk_mgm_child_reg_table_t) * NWK_MGM_CHILD_REQ_TATLE_SIZE);
-                    memset(nwk_mgm_child_reg_table, 0x0, sizeof(nwk_mgm_child_reg_table_t) * NWK_MGM_CHILD_REQ_TATLE_SIZE);
-                }
-                switch (aEvent)
-                {
-                case OT_NEIGHBOR_TABLE_EVENT_CHILD_ADDED:
-                    if (nwk_mgm_child_reg_table_add(OT_DEVICE_ROLE_CHILD,
-                                                    otThreadGetRloc16(instance),
-                                                    aEntryInfo->mInfo.mChild.mRloc16,
-                                                    (uint8_t*)aEntryInfo->mInfo.mChild.mExtAddress.m8,
-                                                    aEntryInfo->mInfo.mChild.mAverageRssi))
-                    {
-                        nwk_mgm_printf("leader add fail \n");
-                        nwk_mgm_kick_child_post(aEntryInfo->mInfo.mChild.mRloc16,
-                                                otLinkGetPanId(instance),
-                                                (uint8_t*)aEntryInfo->mInfo.mChild.mExtAddress.m8);
-                        otLinkRemoveChildren(instance, aEntryInfo->mInfo.mChild.mRloc16);
-                    }
-                    nwk_mgm_router_update_timer_set(NWK_MGM_ROUTER_KEEP_ALIVE_TIME);
-                    break;
-
-                case OT_NEIGHBOR_TABLE_EVENT_CHILD_REMOVED:
-                    nwk_mgm_printf("leader remove \n");
-                    nwk_mgm_child_reg_table_remove(OT_DEVICE_ROLE_CHILD, (uint8_t*)aEntryInfo->mInfo.mChild.mExtAddress.m8);
-                    break;
-
-                default:
-                    break;
-                }
-            }
-            else if (mRole == OT_DEVICE_ROLE_ROUTER)
-            {
-                if (aEvent == OT_NEIGHBOR_TABLE_EVENT_CHILD_ADDED || aEvent == OT_NEIGHBOR_TABLE_EVENT_CHILD_REMOVED)
-                {
-                    nwk_mgm_reg_send_timer_set(10);
-                }
-                if (nwk_mgm_child_reg_table)
-                {
-                    vPortFree(nwk_mgm_child_reg_table);
-                    nwk_mgm_child_reg_table = NULL;
-                }
-            }
-            else
-            {
-                if (nwk_mgm_child_reg_table)
-                {
-                    vPortFree(nwk_mgm_child_reg_table);
-                    nwk_mgm_child_reg_table = NULL;
-                }
-            }
-        }
-    )    
-}
-
-static void nwk_mgm_child_register_post_resend()
-{
-     OT_THREAD_SAFE(
-        otInstance *instance = otrGetInstance();
-        if(instance)
-        {
-            otDeviceRole mRole = otThreadGetDeviceRole(instance);
-
-            if (mRole == OT_DEVICE_ROLE_ROUTER)
-            {
-                nwk_mgm_child_register_post();
-            }
-        }
+        nwk_mgm_router_update_timer_set(NWK_MGM_ROUTER_KEEP_ALIVE_TIME);
+    }
     )
 }
 
-static void mgm_router_update_timer_handler()
-{
-    OT_THREAD_SAFE(
-        otInstance *instance = otrGetInstance();
-        if(instance)
-        {
-            otDeviceRole mRole = otThreadGetDeviceRole(instance);
-
-            if (mRole == OT_DEVICE_ROLE_ROUTER)
-            {
-                nwk_mgm_child_register_post();
-                if (nwk_mgm_child_reg_table)
-                {
-                    vPortFree(nwk_mgm_child_reg_table);
-                    nwk_mgm_child_reg_table = NULL;
-                }
-            }
-            else if (mRole == OT_DEVICE_ROLE_LEADER)
-            {
-                otChildInfo childInfo;
-                uint16_t childernmax = otThreadGetMaxAllowedChildren(instance);
-
-                for (uint16_t i = 0; i < childernmax; i++)
-                {
-                    if ((otThreadGetChildInfoByIndex(instance, i, &childInfo) != OT_ERROR_NONE) ||
-                            childInfo.mIsStateRestoring)
-                    {
-                        continue;
-                    }
-
-                    nwk_mgm_child_reg_table_add(OT_DEVICE_ROLE_CHILD,
-                                                otThreadGetRloc16(instance),
-                                                childInfo.mRloc16,
-                                                childInfo.mExtAddress.m8,
-                                                childInfo.mAverageRssi);
-                }
-            }
-            else
-            {
-                if (nwk_mgm_child_reg_table)
-                {
-                    vPortFree(nwk_mgm_child_reg_table);
-                    nwk_mgm_child_reg_table = NULL;
-                }
-            }
-            nwk_mgm_router_update_timer_set(NWK_MGM_ROUTER_KEEP_ALIVE_TIME);
-        }
-    )
-}
-
-static void nwk_mgm_timer_handler( TimerHandle_t xTimer ) 
+static void nwk_mgm_timer_handler( TimerHandle_t xTimer )
 {
     if ((mgm_reg_send_timer > 0 && (--mgm_reg_send_timer == 0)))
     {
@@ -1212,11 +1212,11 @@ otError nwk_mgm_init(otInstance *aInstance)
 
         if (NULL == nwk_mgm_timer)
         {
-            nwk_mgm_timer = xTimerCreate("nwk_mgm_timer", 
-                                                (1000), 
-                                                false, 
-                                                ( void * ) 0, 
-                                                nwk_mgm_timer_handler);
+            nwk_mgm_timer = xTimerCreate("nwk_mgm_timer",
+                                         (1000),
+                                         false,
+                                         ( void * ) 0,
+                                         nwk_mgm_timer_handler);
 
             xTimerStart(nwk_mgm_timer, 0 );
         }

@@ -52,126 +52,126 @@ static zb_short_t state = 0;
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  ZB_INIT("ack_frame_delivery_01_ffd1");
+    ZB_INIT("ack_frame_delivery_01_ffd1");
 
-  ZB_IEEE_ADDR_COPY(ZB_PIB_EXTENDED_ADDRESS(), &g_ffd1_addr);  
-  MAC_PIB().mac_pan_id = 0x1aaa;
+    ZB_IEEE_ADDR_COPY(ZB_PIB_EXTENDED_ADDRESS(), &g_ffd1_addr);
+    MAC_PIB().mac_pan_id = 0x1aaa;
 
-  {
-    zb_bufid_t buf = zb_get_out_buf();
-    zb_mlme_set_request_t *set_req;
+    {
+        zb_bufid_t buf = zb_get_out_buf();
+        zb_mlme_set_request_t *set_req;
 
-    /* set rx_on_when_idle to false */
-    req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + sizeof(zb_uint8_t), set_req);	  	  
-	  set_req->pib_attr = ZB_PIB_ATTRIBUTE_RX_ON_WHEN_IDLE;
-    set_req->pib_length = sizeof(zb_uint8_t);
-    *((zb_uint8_t *)(set_req + 1)) = 0x0;
-    
-    ZB_SCHEDULE_CALLBACK(zb_mlme_set_request, param);
-  }
+        /* set rx_on_when_idle to false */
+        req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + sizeof(zb_uint8_t), set_req);
+        set_req->pib_attr = ZB_PIB_ATTRIBUTE_RX_ON_WHEN_IDLE;
+        set_req->pib_length = sizeof(zb_uint8_t);
+        *((zb_uint8_t *)(set_req + 1)) = 0x0;
 
-  while(1)
-  {
-    zb_sched_loop_iteration();
-  }
+        ZB_SCHEDULE_CALLBACK(zb_mlme_set_request, param);
+    }
 
-  TRACE_DEINIT();
+    while (1)
+    {
+        zb_sched_loop_iteration();
+    }
 
-  MAIN_RETURN(0);
+    TRACE_DEINIT();
+
+    MAIN_RETURN(0);
 }
 
 
 void zb_mlme_set_confirm(zb_uint8_t param)
-{  
-  zb_uint16_t addr = ASSOCIATE_TO;
+{
+    zb_uint16_t addr = ASSOCIATE_TO;
 
-  TRACE_MSG(TRACE_NWK2, "zb_mlme_set_confirm", (FMT__0));
+    TRACE_MSG(TRACE_NWK2, "zb_mlme_set_confirm", (FMT__0));
 
-  if ( state == 0 )
-  {
-    /* connect to the coord */
-    ZB_MLME_BUILD_ASSOCIATE_REQUEST(param, CHANNEL,
-                                    ASSOCIATE_TO_PAN,
-                                    ZB_ADDR_16BIT_DEV_OR_BROADCAST, &addr,
-                                    CAP_INFO);
+    if ( state == 0 )
+    {
+        /* connect to the coord */
+        ZB_MLME_BUILD_ASSOCIATE_REQUEST(param, CHANNEL,
+                                        ASSOCIATE_TO_PAN,
+                                        ZB_ADDR_16BIT_DEV_OR_BROADCAST, &addr,
+                                        CAP_INFO);
 
-    ZB_SCHEDULE_CALLBACK(zb_mlme_associate_request, param);    
-  }
-  else
-  {
-    zb_buf_free(param);
-  }
+        ZB_SCHEDULE_CALLBACK(zb_mlme_associate_request, param);
+    }
+    else
+    {
+        zb_buf_free(param);
+    }
 
-  state++;
+    state++;
 }
 
 
 static void change_panid(zb_uint16_t pan_id, zb_uint16_t timeout)
 {
-  zb_bufid_t buf = zb_get_out_buf();
-  zb_mlme_set_request_t *set_req;
+    zb_bufid_t buf = zb_get_out_buf();
+    zb_mlme_set_request_t *set_req;
 
-  TRACE_MSG(TRACE_NWK2, "change_panid", (FMT__0));
+    TRACE_MSG(TRACE_NWK2, "change_panid", (FMT__0));
 
-  req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + sizeof(zb_uint16_t), set_req);
-  set_req->pib_attr = ZB_PIB_ATTRIBUTE_PANID;
-  set_req->pib_length = sizeof(zb_uint16_t);
-  *((zb_uint16_t *)(set_req + 1)) = pan_id;
-  ZB_SCHEDULE_ALARM(zb_mlme_set_request, param, ZB_MILLISECONDS_TO_BEACON_INTERVAL(timeout));
+    req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + sizeof(zb_uint16_t), set_req);
+    set_req->pib_attr = ZB_PIB_ATTRIBUTE_PANID;
+    set_req->pib_length = sizeof(zb_uint16_t);
+    *((zb_uint16_t *)(set_req + 1)) = pan_id;
+    ZB_SCHEDULE_ALARM(zb_mlme_set_request, param, ZB_MILLISECONDS_TO_BEACON_INTERVAL(timeout));
 }
 
 
 void zb_mlme_associate_confirm(zb_uint8_t param)
 {
-  zb_mlme_associate_confirm_t *request = ZB_BUF_GET_PARAM(param, zb_mlme_associate_confirm_t);
+    zb_mlme_associate_confirm_t *request = ZB_BUF_GET_PARAM(param, zb_mlme_associate_confirm_t);
 
-  TRACE_MSG(TRACE_NWK2, "zb_mlme_associate_confirm param %hd status %hd short_address %hd",
-            (FMT__H_H_H, param, request->status, request->assoc_short_address));
+    TRACE_MSG(TRACE_NWK2, "zb_mlme_associate_confirm param %hd status %hd short_address %hd",
+              (FMT__H_H_H, param, request->status, request->assoc_short_address));
 
-/* FIXME: idle doesn't work for 2410, change pan id instead */
+    /* FIXME: idle doesn't work for 2410, change pan id instead */
 #if 0
-  /* set rx_on_when_idle to true */
-  {
-    zb_mlme_set_request_t *set_req = ZB_BUF_GET_PARAM(param, zb_mlme_set_request_t);
-    
-    set_req->pib_attr = ZB_PIB_ATTRIBUTE_RX_ON_WHEN_IDLE;
-    set_req->pib_length = sizeof(zb_uint8_t);
-    *((zb_uint8_t *)(set_req + 1)) = 0x1;
-        
-    ZB_SCHEDULE_ALARM(zb_mlme_set_request, param, ZB_MILLISECONDS_TO_BEACON_INTERVAL(10000));
-  }
-#else  
-  {
-    zb_buf_free(param);    
-        
-    /* change pan id to wrong */
-    change_panid(0xDEAD, 0);
+    /* set rx_on_when_idle to true */
+    {
+        zb_mlme_set_request_t *set_req = ZB_BUF_GET_PARAM(param, zb_mlme_set_request_t);
 
-    /* change pan id back to be able to receive data */
-    change_panid(ASSOCIATE_TO_PAN, 10000);
+        set_req->pib_attr = ZB_PIB_ATTRIBUTE_RX_ON_WHEN_IDLE;
+        set_req->pib_length = sizeof(zb_uint8_t);
+        *((zb_uint8_t *)(set_req + 1)) = 0x1;
 
-    /* change pan id to wrong again */
-    change_panid(0xDEAD, 20000);
-  }
+        ZB_SCHEDULE_ALARM(zb_mlme_set_request, param, ZB_MILLISECONDS_TO_BEACON_INTERVAL(10000));
+    }
+#else
+    {
+        zb_buf_free(param);
+
+        /* change pan id to wrong */
+        change_panid(0xDEAD, 0);
+
+        /* change pan id back to be able to receive data */
+        change_panid(ASSOCIATE_TO_PAN, 10000);
+
+        /* change pan id to wrong again */
+        change_panid(0xDEAD, 20000);
+    }
 #endif
 }
 
 void zb_mcps_data_indication(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_MAC1, ">> zb_mcps_data_indication param %hd", (FMT__H, param));
-  
-  /* set rx_on_when_idle to true */
-  {
-    zb_mlme_set_request_t *set_req = ZB_BUF_GET_PARAM(param, zb_mlme_set_request_t);
-    
-    set_req->pib_attr = ZB_PIB_ATTRIBUTE_RX_ON_WHEN_IDLE;
-    set_req->pib_length = sizeof(zb_uint8_t);
-    *((zb_uint8_t *)(set_req + 1)) = 0x0;
-        
-    ZB_SCHEDULE_ALARM(zb_mlme_set_request, param, ZB_MILLISECONDS_TO_BEACON_INTERVAL(1000));
-  }
+    TRACE_MSG(TRACE_MAC1, ">> zb_mcps_data_indication param %hd", (FMT__H, param));
+
+    /* set rx_on_when_idle to true */
+    {
+        zb_mlme_set_request_t *set_req = ZB_BUF_GET_PARAM(param, zb_mlme_set_request_t);
+
+        set_req->pib_attr = ZB_PIB_ATTRIBUTE_RX_ON_WHEN_IDLE;
+        set_req->pib_length = sizeof(zb_uint8_t);
+        *((zb_uint8_t *)(set_req + 1)) = 0x0;
+
+        ZB_SCHEDULE_ALARM(zb_mlme_set_request, param, ZB_MILLISECONDS_TO_BEACON_INTERVAL(1000));
+    }
 }
 
 /*! @} */

@@ -31,6 +31,6 @@
 
 void test_hal_indicate_action_ti1352(test_action_t event)
 {
-  TRACE_MSG(TRACE_APP1, "test_hal_indicate_action_ti1352(): event %hd", (FMT__D, event));
-  /* TODO: */
+    TRACE_MSG(TRACE_APP1, "test_hal_indicate_action_ti1352(): event %hd", (FMT__D, event));
+    /* TODO: */
 }

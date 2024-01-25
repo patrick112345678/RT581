@@ -1,4 +1,4 @@
-/*	$NetBSD: strings.h,v 1.3 2008/04/28 20:22:54 martin Exp $	*/
+/*  $NetBSD: strings.h,v 1.3 2008/04/28 20:22:54 martin Exp $   */
 
 /*-
  * Copyright (c) 2007 The NetBSD Foundation, Inc.
@@ -48,7 +48,7 @@
 
 #if __BSD_VISIBLE
 __ssp_redirect0(void, explicit_bzero, (void *__buf, size_t __len), \
-    (__buf, __len));
+                (__buf, __len));
 #endif
 
 #endif /* __SSP_FORTIFY_LEVEL > 0 */

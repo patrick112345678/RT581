@@ -119,7 +119,7 @@ typedef enum
  */
 typedef enum
 {
-    PWM_TRIG_DISABLE=0,
+    PWM_TRIG_DISABLE = 0,
     PWM_TRIG_ENABLE,
 } pwm_counter_trig_t;
 
@@ -128,7 +128,7 @@ typedef enum
  */
 typedef enum
 {
-    PWM_REG_MODE_DISABLE=0,
+    PWM_REG_MODE_DISABLE = 0,
     PWM_REG_MODE_ENABLE,
 } pwm_register_mode_t;
 
@@ -137,7 +137,7 @@ typedef enum
  */
 typedef enum
 {
-    PWM_REGMODE_DATA1=0,
+    PWM_REGMODE_DATA1 = 0,
     PWM_REGMODE_DATA2,
 } pwm_regmode_data_t;
 /**@brief PWM DMA auto table.
@@ -168,7 +168,7 @@ typedef enum
 #define PWM_RSEQ_DONE_INT_CLR           (0x01UL << PWM_RSEQ_DONE_INT_CLR_SHFT)
 #define PWM_TSEQ_DONE_INT_CLR           (0x01UL << PWM_TSEQ_DONE_INT_CLR_SHFT)
 #define PWM_TRSEQ_DONE_INT_CLR          (0x01UL << PWM_TRSEQ_DONE_INT_CLR_SHFT)
-#define PWM_REG_MODE_INT_CLR          	(0x01UL << PWM_REG_MODE_INT_CLR_SHFT)
+#define PWM_REG_MODE_INT_CLR            (0x01UL << PWM_REG_MODE_INT_CLR_SHFT)
 
 #define PWM_RDMA0_INT_MASK_ENABLE       (0x01UL << PWM_RDMA0_INT_MASK_SHFT)
 #define PWM_RDMA0_ERR_INT_MASK_ENABLE   (0x01UL << PWM_RDMA0_ERR_INT_MASK_SHFT)
@@ -214,19 +214,19 @@ typedef struct
     pwm_clk_div_t         pwm_clk_div;         /**< PWM gated clock divider value configuration. */
     pwm_counter_mode_t    pwm_counter_mode;    /**< PWM counter mode configuration. */
     pwm_dma_smp_fmt_t     pwm_dma_smp_fmt;     /**< PWM DMA sample format configuration. */
-    pwm_seq_mode_t        pwm_seq_mode;        /**< PWM sequence play mode configuration. */		
+    pwm_seq_mode_t        pwm_seq_mode;        /**< PWM sequence play mode configuration. */
 } pwm_seq_para_head_t;
 
 typedef struct
 {
-		pwm_id_t              pwm_id;               /**< PWM ID designation. */
-		pwm_seq_mode_t        pwm_seq_mode;         /**< PWM sequence play mode configuration. */
-		pwm_dma_smp_fmt_t     pwm_dma_smp_fmt;      /**< PWM DMA sample format configuration. */
-		pwm_counter_mode_t    pwm_counter_mode;     /**< PWM counter mode configuration. */
-		pwm_counter_trig_t		pwm_counter_trig;			/**< PWM counter mode configuration. */
-		pwm_register_mode_t		pwm_reg_mode;					/**< PWM counter mode configuration. */
-		pwm_regmode_data_t		pwm_play_number;			/**< PWM counter mode configuration. */
-		uint16_t              pwm_count_end_val;    /**< PWM counter end value configuration. */
+    pwm_id_t              pwm_id;               /**< PWM ID designation. */
+    pwm_seq_mode_t        pwm_seq_mode;         /**< PWM sequence play mode configuration. */
+    pwm_dma_smp_fmt_t     pwm_dma_smp_fmt;      /**< PWM DMA sample format configuration. */
+    pwm_counter_mode_t    pwm_counter_mode;     /**< PWM counter mode configuration. */
+    pwm_counter_trig_t      pwm_counter_trig;           /**< PWM counter mode configuration. */
+    pwm_register_mode_t     pwm_reg_mode;                   /**< PWM counter mode configuration. */
+    pwm_regmode_data_t      pwm_play_number;            /**< PWM counter mode configuration. */
+    uint16_t              pwm_count_end_val;    /**< PWM counter end value configuration. */
 } pwm_reg_para_head_t;
 
 
@@ -267,7 +267,7 @@ uint32_t Pwm_Start(pwm_seq_para_head_t *pwm_para_config);
 uint32_t Pwm_Stop(pwm_id_t id);
 
 uint32_t Pwm_reg_Start(pwm_id_t id);
-uint32_t Pwm_register_mode(pwm_id_t id,pwm_reg_para_head_t *pwm_reg_config);
+uint32_t Pwm_register_mode(pwm_id_t id, pwm_reg_para_head_t *pwm_reg_config);
 #ifdef __cplusplus
 }
 #endif

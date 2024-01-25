@@ -38,14 +38,14 @@ static zb_uint8_t g_oob_key[16] = TEST_OOB_KEY;
 /*! Program states according to test scenario */
 enum test_states_e
 {
-  TEST_STATE_INITIATE,
-  TEST_STATE_COMMISSIONING_A,
-  TEST_STATE_COMMISSIONING_B,
-  TEST_STATE_COMMISSIONING_C,
-  TEST_STATE_DECOMMISSIONING_D,
-  TEST_STATE_DECOMMISSIONING_E,
-  TEST_STATE_DECOMMISSIONING_2,
-  TEST_STATE_FINISHED
+    TEST_STATE_INITIATE,
+    TEST_STATE_COMMISSIONING_A,
+    TEST_STATE_COMMISSIONING_B,
+    TEST_STATE_COMMISSIONING_C,
+    TEST_STATE_DECOMMISSIONING_D,
+    TEST_STATE_DECOMMISSIONING_E,
+    TEST_STATE_DECOMMISSIONING_2,
+    TEST_STATE_FINISHED
 };
 
 
@@ -55,91 +55,91 @@ ZB_ZGPD_DECLARE_COMMISSIONING_CALLBACK()
 
 static void perform_next_state(zb_uint8_t param)
 {
-  ZVUNUSED(param);
-  TEST_DEVICE_CTX.test_state++;
+    ZVUNUSED(param);
+    TEST_DEVICE_CTX.test_state++;
 
-  TRACE_MSG(TRACE_APP1, "perform_next_state: state = %d.",
-            (FMT__D, TEST_DEVICE_CTX.test_state));
+    TRACE_MSG(TRACE_APP1, "perform_next_state: state = %d.",
+              (FMT__D, TEST_DEVICE_CTX.test_state));
 
-  switch (TEST_DEVICE_CTX.test_state)
-  {
+    switch (TEST_DEVICE_CTX.test_state)
+    {
     case TEST_STATE_COMMISSIONING_A:
-      zb_zgpd_start_commissioning(comm_cb);
-      ZB_ZGPD_SET_PAUSE(2*TEST_ZGPD_NEXT_STATE_DELAY);
-      break;
+        zb_zgpd_start_commissioning(comm_cb);
+        ZB_ZGPD_SET_PAUSE(2 * TEST_ZGPD_NEXT_STATE_DELAY);
+        break;
     case TEST_STATE_COMMISSIONING_B:
-      ZB_ZGPD_CHACK_SET(ZB_ZGPD_CH_REPLACE_SKP);
-      ZB_ZGPD_CHACK_SET(ZB_ZGPD_CH_REPLACE_SKE);
-      ZB_ZGPD_CHACK_SET(ZB_ZGPD_CH_INSERT_SK);
-      ZGPD->ch_replace_security_key_present = 0;
-      ZGPD->ch_replace_security_key_encrypted = 0;
-      ZGPD->ch_insert_security_key = 0;
-      zb_zgpd_start_commissioning(comm_cb);
-      ZB_ZGPD_SET_PAUSE(TEST_ZGPD_NEXT_STATE_DELAY);
-      break;
+        ZB_ZGPD_CHACK_SET(ZB_ZGPD_CH_REPLACE_SKP);
+        ZB_ZGPD_CHACK_SET(ZB_ZGPD_CH_REPLACE_SKE);
+        ZB_ZGPD_CHACK_SET(ZB_ZGPD_CH_INSERT_SK);
+        ZGPD->ch_replace_security_key_present = 0;
+        ZGPD->ch_replace_security_key_encrypted = 0;
+        ZGPD->ch_insert_security_key = 0;
+        zb_zgpd_start_commissioning(comm_cb);
+        ZB_ZGPD_SET_PAUSE(TEST_ZGPD_NEXT_STATE_DELAY);
+        break;
     case TEST_STATE_COMMISSIONING_C:
-      ZB_ZGPD_CHACK_RESET_ALL();
-      ZGPD->ch_replace_src_id = ~TEST_ZGPD_SRC_ID;
-      ZB_ZGPD_CHACK_SET(ZB_ZGPD_CH_REPLACE_SRCID);
-      ZB_ZGPD_CHACK_SET(ZB_ZGPD_CH_UNPROTECT_PACKET);
-      ZB_ZGPD_SET_PAUSE(TEST_ZGPD_NEXT_STATE_DELAY);
-      zb_zgpd_start_commissioning(comm_cb);
-      break;
+        ZB_ZGPD_CHACK_RESET_ALL();
+        ZGPD->ch_replace_src_id = ~TEST_ZGPD_SRC_ID;
+        ZB_ZGPD_CHACK_SET(ZB_ZGPD_CH_REPLACE_SRCID);
+        ZB_ZGPD_CHACK_SET(ZB_ZGPD_CH_UNPROTECT_PACKET);
+        ZB_ZGPD_SET_PAUSE(TEST_ZGPD_NEXT_STATE_DELAY);
+        zb_zgpd_start_commissioning(comm_cb);
+        break;
 
     case TEST_STATE_DECOMMISSIONING_D:
-      ZB_ZGPD_CHACK_RESET_ALL();
-      ZGPD->ch_replace_src_id = ~TEST_ZGPD_SRC_ID;
-      ZB_ZGPD_CHACK_SET(ZB_ZGPD_CH_REPLACE_SRCID);
-      zb_zgpd_decommission();
-      ZB_SCHEDULE_ALARM(perform_next_state, param,
-                        TEST_ZGPD_NEXT_STATE_DELAY * ZB_TIME_ONE_SECOND);
-      break;
+        ZB_ZGPD_CHACK_RESET_ALL();
+        ZGPD->ch_replace_src_id = ~TEST_ZGPD_SRC_ID;
+        ZB_ZGPD_CHACK_SET(ZB_ZGPD_CH_REPLACE_SRCID);
+        zb_zgpd_decommission();
+        ZB_SCHEDULE_ALARM(perform_next_state, param,
+                          TEST_ZGPD_NEXT_STATE_DELAY * ZB_TIME_ONE_SECOND);
+        break;
     case TEST_STATE_DECOMMISSIONING_E:
-      ZB_ZGPD_CHACK_RESET_ALL();
-      ZB_ZGPD_CHACK_SET(ZB_ZGPD_CH_UNPROTECT_PACKET);
-      zb_zgpd_decommission();
-      ZB_SCHEDULE_ALARM(perform_next_state, param,
-                        (3*TEST_ZGPD_NEXT_STATE_DELAY) * ZB_TIME_ONE_SECOND);
-      break;
+        ZB_ZGPD_CHACK_RESET_ALL();
+        ZB_ZGPD_CHACK_SET(ZB_ZGPD_CH_UNPROTECT_PACKET);
+        zb_zgpd_decommission();
+        ZB_SCHEDULE_ALARM(perform_next_state, param,
+                          (3 * TEST_ZGPD_NEXT_STATE_DELAY) * ZB_TIME_ONE_SECOND);
+        break;
     case TEST_STATE_DECOMMISSIONING_2:
-      ZB_ZGPD_CHACK_RESET_ALL();
-      zb_zgpd_decommission();
-      ZB_SCHEDULE_ALARM(perform_next_state, param,
-                        TEST_ZGPD_NEXT_STATE_DELAY * ZB_TIME_ONE_SECOND);
-      break;
+        ZB_ZGPD_CHACK_RESET_ALL();
+        zb_zgpd_decommission();
+        ZB_SCHEDULE_ALARM(perform_next_state, param,
+                          TEST_ZGPD_NEXT_STATE_DELAY * ZB_TIME_ONE_SECOND);
+        break;
     case TEST_STATE_FINISHED:
-      TRACE_MSG(TRACE_APP1, "Test finished. Status: OK", (FMT__0));
-      break;
+        TRACE_MSG(TRACE_APP1, "Test finished. Status: OK", (FMT__0));
+        break;
     default:
-      ZB_SCHEDULE_ALARM(test_send_command, 0, ZB_TIME_ONE_SECOND);
-  };
+        ZB_SCHEDULE_ALARM(test_send_command, 0, ZB_TIME_ONE_SECOND);
+    };
 }
 
 static void make_gpdf(zb_buf_t *buf, zb_uint8_t **ptr)
 {
-  ZVUNUSED(buf);
-  ZVUNUSED(ptr);
+    ZVUNUSED(buf);
+    ZVUNUSED(ptr);
 }
 
 static void zgp_custom_startup()
 {
-  #if ! (defined KEIL || defined ZB_PLATFORM_LINUX_ARM_2400)
+#if ! (defined KEIL || defined ZB_PLATFORM_LINUX_ARM_2400)
 #endif
 
-/* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("th_gpd");
+    ZB_INIT("th_gpd");
 
 
-  ZB_ZGPD_INIT_ZGPD_CTX(ZB_ZGP_APP_ID_0000, ZB_ZGPD_COMMISSIONING_UNIDIR, ZB_ZGP_ON_OFF_SWITCH_DEV_ID);
+    ZB_ZGPD_INIT_ZGPD_CTX(ZB_ZGP_APP_ID_0000, ZB_ZGPD_COMMISSIONING_UNIDIR, ZB_ZGP_ON_OFF_SWITCH_DEV_ID);
 
-  ZB_ZGPD_SET_SRC_ID(g_zgpd_srcId);
+    ZB_ZGPD_SET_SRC_ID(g_zgpd_srcId);
 
-  ZB_ZGPD_SET_SECURITY_LEVEL(ZB_ZGP_SEC_LEVEL_FULL_NO_ENC);
-  ZB_ZGPD_SET_SECURITY_KEY_TYPE(ZB_ZGP_SEC_KEY_TYPE_GROUP);
-  ZB_ZGPD_SET_OOB_KEY(g_oob_key);
+    ZB_ZGPD_SET_SECURITY_LEVEL(ZB_ZGP_SEC_LEVEL_FULL_NO_ENC);
+    ZB_ZGPD_SET_SECURITY_KEY_TYPE(ZB_ZGP_SEC_KEY_TYPE_GROUP);
+    ZB_ZGPD_SET_OOB_KEY(g_oob_key);
 
-  ZGPD->channel = TEST_CHANNEL;
+    ZGPD->channel = TEST_CHANNEL;
 }
 
 ZB_ZGPD_TH_DECLARE_STARTUP_PROCESS()
@@ -149,11 +149,11 @@ ZB_ZGPD_TH_DECLARE_STARTUP_PROCESS()
 #include <stdio.h>
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  printf("ZB_CERTIFICATION_HACKS and ZB_ZGPD_ROLE zb_config.h\n");
+    printf("ZB_CERTIFICATION_HACKS and ZB_ZGPD_ROLE zb_config.h\n");
 
-  MAIN_RETURN(1);
+    MAIN_RETURN(1);
 }
 
 #endif

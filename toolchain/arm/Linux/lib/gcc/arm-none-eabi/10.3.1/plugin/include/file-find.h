@@ -26,15 +26,15 @@ along with GCC; see the file COPYING3.  If not see
 
 struct prefix_list
 {
-  const char *prefix;         /* String to prepend to the path.  */
-  struct prefix_list *next;   /* Next in linked list.  */
+    const char *prefix;         /* String to prepend to the path.  */
+    struct prefix_list *next;   /* Next in linked list.  */
 };
 
 struct path_prefix
 {
-  struct prefix_list *plist;  /* List of prefixes to try */
-  int max_len;                /* Max length of a prefix in PLIST */
-  const char *name;           /* Name of this list (used in config stuff) */
+    struct prefix_list *plist;  /* List of prefixes to try */
+    int max_len;                /* Max length of a prefix in PLIST */
+    const char *name;           /* Name of this list (used in config stuff) */
 };
 
 extern void find_file_set_debug (bool);

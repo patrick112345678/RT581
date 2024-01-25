@@ -182,7 +182,7 @@
 #define ZB_HA_DECLARE_SIMPLE_GW_CTX(device_ctx, ep_name)                \
   ZBOSS_DECLARE_DEVICE_CTX_1_EP(device_ctx, ep_name)
 #endif
- /* No CVC ctx */
+/* No CVC ctx */
 
 /*! @} */
 

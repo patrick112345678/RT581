@@ -35,65 +35,65 @@ static zb_uint8_t   g_zgpd_key[] = TEST_SEC_KEY;
 
 enum
 {
-  TEST_STATE_INITIATE,
-  TEST_STATE_SEND_CMD_ON,
-  TEST_STATE_SEND_CMD_OFF,
-  TEST_STATE_SEND_CMD_TOGGLE,
-  TEST_STATE_FINISHED
+    TEST_STATE_INITIATE,
+    TEST_STATE_SEND_CMD_ON,
+    TEST_STATE_SEND_CMD_OFF,
+    TEST_STATE_SEND_CMD_TOGGLE,
+    TEST_STATE_FINISHED
 };
 
 ZB_ZGPD_DECLARE_SIMPLE_TEST_TEMPLATE(TEST_DEVICE_CTX, 1000)
 
 static void make_gpdf(zb_buf_t *buf, zb_uint8_t **ptr)
 {
-  ZVUNUSED(buf);
-  switch (TEST_DEVICE_CTX.test_state)
-  {
+    ZVUNUSED(buf);
+    switch (TEST_DEVICE_CTX.test_state)
+    {
     case TEST_STATE_SEND_CMD_ON:
-      ZB_GPDF_PUT_UINT8(*ptr, ZB_GPDF_CMD_ON);
-      break;
+        ZB_GPDF_PUT_UINT8(*ptr, ZB_GPDF_CMD_ON);
+        break;
     case TEST_STATE_SEND_CMD_OFF:
-      ZB_GPDF_PUT_UINT8(*ptr, ZB_GPDF_CMD_OFF);
-      break;
+        ZB_GPDF_PUT_UINT8(*ptr, ZB_GPDF_CMD_OFF);
+        break;
     case TEST_STATE_SEND_CMD_TOGGLE:
-      ZB_GPDF_PUT_UINT8(*ptr, ZB_GPDF_CMD_TOGGLE);
-      break;
-  };
+        ZB_GPDF_PUT_UINT8(*ptr, ZB_GPDF_CMD_TOGGLE);
+        break;
+    };
 }
 
 static void perform_next_state(zb_uint8_t param)
 {
-  ZVUNUSED(param);
-  TEST_DEVICE_CTX.test_state++;
+    ZVUNUSED(param);
+    TEST_DEVICE_CTX.test_state++;
 
-  switch (TEST_DEVICE_CTX.test_state)
-  {
+    switch (TEST_DEVICE_CTX.test_state)
+    {
     case TEST_STATE_FINISHED:
-      TRACE_MSG(TRACE_APP1, "Test finished. Status: OK", (FMT__0));
-      break;
+        TRACE_MSG(TRACE_APP1, "Test finished. Status: OK", (FMT__0));
+        break;
     default:
-      ZB_SCHEDULE_ALARM(test_send_command, 0, ZB_TIME_ONE_SECOND);
-  };
+        ZB_SCHEDULE_ALARM(test_send_command, 0, ZB_TIME_ONE_SECOND);
+    };
 }
 
 static void zgp_custom_startup()
 {
-  #if ! (defined KEIL || defined ZB_PLATFORM_LINUX_ARM_2400)
+#if ! (defined KEIL || defined ZB_PLATFORM_LINUX_ARM_2400)
 #endif
 
-/* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("dut_gpd");
+    ZB_INIT("dut_gpd");
 
 
-  ZB_ZGPD_INIT_ZGPD_CTX(ZB_ZGP_APP_ID_0000, ZB_ZGPD_COMMISSIONING_UNIDIR, ZB_ZGP_ON_OFF_SWITCH_DEV_ID);
+    ZB_ZGPD_INIT_ZGPD_CTX(ZB_ZGP_APP_ID_0000, ZB_ZGPD_COMMISSIONING_UNIDIR, ZB_ZGP_ON_OFF_SWITCH_DEV_ID);
 
-  ZB_ZGPD_SET_SRC_ID(g_zgpd_srcId);
-  ZB_ZGPD_SET_SECURITY_LEVEL(ZB_ZGP_SEC_LEVEL_NO_SECURITY);
-  ZB_ZGPD_SET_SECURITY_KEY_TYPE(ZB_ZGP_SEC_KEY_TYPE_NO_KEY);
-  ZB_ZGPD_SET_OOB_KEY(g_zgpd_key);
+    ZB_ZGPD_SET_SRC_ID(g_zgpd_srcId);
+    ZB_ZGPD_SET_SECURITY_LEVEL(ZB_ZGP_SEC_LEVEL_NO_SECURITY);
+    ZB_ZGPD_SET_SECURITY_KEY_TYPE(ZB_ZGP_SEC_KEY_TYPE_NO_KEY);
+    ZB_ZGPD_SET_OOB_KEY(g_zgpd_key);
 
-  ZGPD->channel = TEST_CHANNEL;
+    ZGPD->channel = TEST_CHANNEL;
 }
 
 ZB_ZGPD_DECLARE_STARTUP_PROCESS()

@@ -3,8 +3,8 @@
  * Auto generated Run-Time-Environment Configuration File
  *      *** Do not modify ! ***
  *
- * Project: 'thread_lib' 
- * Target:  'freertos_thread_SubG_MTD_platform' 
+ * Project: 'thread_lib'
+ * Target:  'freertos_thread_SubG_MTD_platform'
  */
 
 #ifndef RTE_COMPONENTS_H
@@ -12,7 +12,7 @@
 
 
 /*
- * Define the Device Header File: 
+ * Define the Device Header File:
  */
 #define CMSIS_device_header "ARMCM3.h"
 

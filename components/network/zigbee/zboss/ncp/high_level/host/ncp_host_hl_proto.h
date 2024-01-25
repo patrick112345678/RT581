@@ -41,7 +41,7 @@
  * @param len - length of the packet
  *
  */
-void ncp_host_handle_configuration_response(void* data, zb_uint16_t len);
+void ncp_host_handle_configuration_response(void *data, zb_uint16_t len);
 
 /**
  * Handles a CONFIGURATION indication.
@@ -50,7 +50,7 @@ void ncp_host_handle_configuration_response(void* data, zb_uint16_t len);
  * @param len - length of the packet
  *
  */
-void ncp_host_handle_configuration_indication(void* data, zb_uint16_t len);
+void ncp_host_handle_configuration_indication(void *data, zb_uint16_t len);
 
 /**
  * Handles an AF response.
@@ -59,7 +59,7 @@ void ncp_host_handle_configuration_indication(void* data, zb_uint16_t len);
  * @param len - length of the packet
  *
  */
-void ncp_host_handle_af_response(void* data, zb_uint16_t len);
+void ncp_host_handle_af_response(void *data, zb_uint16_t len);
 
 /**
  * Handles an AF indication.
@@ -68,7 +68,7 @@ void ncp_host_handle_af_response(void* data, zb_uint16_t len);
  * @param len - length of the packet
  *
  */
-void ncp_host_handle_af_indication(void* data, zb_uint16_t len);
+void ncp_host_handle_af_indication(void *data, zb_uint16_t len);
 
 /**
  * Handles a ZDO response.
@@ -77,7 +77,7 @@ void ncp_host_handle_af_indication(void* data, zb_uint16_t len);
  * @param len - length of the packet
  *
  */
-void ncp_host_handle_zdo_response(void* data, zb_uint16_t len);
+void ncp_host_handle_zdo_response(void *data, zb_uint16_t len);
 
 /**
  * Handles a ZDO indication.
@@ -86,7 +86,7 @@ void ncp_host_handle_zdo_response(void* data, zb_uint16_t len);
  * @param len - length of the packet
  *
  */
-void ncp_host_handle_zdo_indication(void* data, zb_uint16_t len);
+void ncp_host_handle_zdo_indication(void *data, zb_uint16_t len);
 
 #ifdef ZB_ENABLE_INTER_PAN_NON_DEFAULT_CHANNEL
 /**
@@ -96,7 +96,7 @@ void ncp_host_handle_zdo_indication(void* data, zb_uint16_t len);
  * @param len - length of the packet
  *
  */
-void ncp_host_handle_intrp_indication(void* data, zb_uint16_t len);
+void ncp_host_handle_intrp_indication(void *data, zb_uint16_t len);
 
 /**
  * Handles an Inter-PAN data response.
@@ -105,7 +105,7 @@ void ncp_host_handle_intrp_indication(void* data, zb_uint16_t len);
  * @param len - length of the packet
  *
  */
-void ncp_host_handle_intrp_response(void* data, zb_uint16_t len);
+void ncp_host_handle_intrp_response(void *data, zb_uint16_t len);
 #endif /* ZB_ENABLE_INTER_PAN_NON_DEFAULT_CHANNEL */
 
 /**
@@ -115,7 +115,7 @@ void ncp_host_handle_intrp_response(void* data, zb_uint16_t len);
  * @param len - length of the packet
  *
  */
-void ncp_host_handle_aps_response(void* data, zb_uint16_t len);
+void ncp_host_handle_aps_response(void *data, zb_uint16_t len);
 
 /**
  * Handles an APS indication.
@@ -124,7 +124,7 @@ void ncp_host_handle_aps_response(void* data, zb_uint16_t len);
  * @param len - length of the packet
  *
  */
-void ncp_host_handle_aps_indication(void* data, zb_uint16_t len);
+void ncp_host_handle_aps_indication(void *data, zb_uint16_t len);
 
 /**
  * Handles an NWKMGMT response.
@@ -133,7 +133,7 @@ void ncp_host_handle_aps_indication(void* data, zb_uint16_t len);
  * @param len - length of the packet
  *
  */
-void ncp_host_handle_nwkmgmt_response(void* data, zb_uint16_t len);
+void ncp_host_handle_nwkmgmt_response(void *data, zb_uint16_t len);
 
 /**
  * Handles an NWKMGMT indication.
@@ -142,7 +142,7 @@ void ncp_host_handle_nwkmgmt_response(void* data, zb_uint16_t len);
  * @param len - length of the packet
  *
  */
-void ncp_host_handle_nwkmgmt_indication(void* data, zb_uint16_t len);
+void ncp_host_handle_nwkmgmt_indication(void *data, zb_uint16_t len);
 
 /**
  * Handles a SECUR response.
@@ -151,7 +151,7 @@ void ncp_host_handle_nwkmgmt_indication(void* data, zb_uint16_t len);
  * @param len - length of the packet
  *
  */
-void ncp_host_handle_secur_response(void* data, zb_uint16_t len);
+void ncp_host_handle_secur_response(void *data, zb_uint16_t len);
 
 /**
  * Handles a SECUR indication.
@@ -160,7 +160,7 @@ void ncp_host_handle_secur_response(void* data, zb_uint16_t len);
  * @param len - length of the packet
  *
  */
-void ncp_host_handle_secur_indication(void* data, zb_uint16_t len);
+void ncp_host_handle_secur_indication(void *data, zb_uint16_t len);
 
 /**
  * Handles a MANUF_TEST response.
@@ -169,7 +169,7 @@ void ncp_host_handle_secur_indication(void* data, zb_uint16_t len);
  * @param len - length of the packet
  *
  */
-void ncp_host_handle_manuf_test_response(void* data, zb_uint16_t len);
+void ncp_host_handle_manuf_test_response(void *data, zb_uint16_t len);
 
 /**
  * Handles a MANUF_TEST indication.
@@ -178,7 +178,7 @@ void ncp_host_handle_manuf_test_response(void* data, zb_uint16_t len);
  * @param len - length of the packet
  *
  */
-void ncp_host_handle_manuf_test_indication(void* data, zb_uint16_t len);
+void ncp_host_handle_manuf_test_indication(void *data, zb_uint16_t len);
 
 /**
  * Handles an OTA response.
@@ -187,7 +187,7 @@ void ncp_host_handle_manuf_test_indication(void* data, zb_uint16_t len);
  * @param len - length of the packet
  *
  */
-void ncp_host_handle_ota_response(void* data, zb_uint16_t len);
+void ncp_host_handle_ota_response(void *data, zb_uint16_t len);
 
 /**
  * Handles an OTA indication.
@@ -196,7 +196,7 @@ void ncp_host_handle_ota_response(void* data, zb_uint16_t len);
  * @param len - length of the packet
  *
  */
-void ncp_host_handle_ota_indication(void* data, zb_uint16_t len);
+void ncp_host_handle_ota_indication(void *data, zb_uint16_t len);
 
 
 /**
@@ -210,8 +210,8 @@ void ncp_host_handle_ota_indication(void* data, zb_uint16_t len);
  * @return status of operation
  */
 zb_ret_t ncp_host_get_buf_for_blocking_request(zb_uint16_t call_id,
-                                               ncp_host_hl_tx_buf_handle_t* handle,
-                                               zb_uint8_t* tsn);
+        ncp_host_hl_tx_buf_handle_t *handle,
+        zb_uint8_t *tsn);
 
 /**
  * Obtains a buffer for a nonblocking request
@@ -224,8 +224,8 @@ zb_ret_t ncp_host_get_buf_for_blocking_request(zb_uint16_t call_id,
  * @return status of operation
  */
 zb_ret_t ncp_host_get_buf_for_nonblocking_request(zb_uint16_t call_id,
-                                                  ncp_host_hl_tx_buf_handle_t* buf,
-                                                  zb_uint8_t* tsn);
+        ncp_host_hl_tx_buf_handle_t *buf,
+        zb_uint8_t *tsn);
 
 /**
  * Marks current blocking request as finished which enables processing of other blocking requests.

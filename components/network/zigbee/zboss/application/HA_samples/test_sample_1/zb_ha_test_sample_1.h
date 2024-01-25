@@ -233,7 +233,7 @@
       ZB_ZCL_CLUSTER_ID_DIAGNOSTICS                                                              \
     }                                                                                             \
   }
-  
+
 /*!
   @brief Declare simple descriptor for HA_TEST_SAMPLE_1 Device
   @param ep_name - endpoint variable name
@@ -283,7 +283,7 @@
     (zb_af_simple_desc_1_1_t*)&simple_desc_##ep_name,                          \
     ZB_HA_TEST_SAMPLE_1_REPORT_ATTR_COUNT, reporting_info## device_ctx_name,   \
     0, NULL)
-    
+
 #define ZB_HA_DECLARE_HA_TEST_SAMPLE_1_EP_EXT(ep_name, ep_id, cluster_list)        \
   ZB_ZCL_DECLARE_HA_TEST_SAMPLE_1_SIMPLE_DESC_EXT(ep_name, ep_id,                  \
     ZB_HA_TEST_SAMPLE_1_IN_CLUSTER_NUM_EXT, ZB_HA_TEST_SAMPLE_1_OUT_CLUSTER_NUM);  \

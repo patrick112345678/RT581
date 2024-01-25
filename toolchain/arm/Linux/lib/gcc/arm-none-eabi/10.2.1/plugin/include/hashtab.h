@@ -1,4 +1,4 @@
-/* An expandable hash tables datatype.  
+/* An expandable hash tables datatype.
    Copyright (C) 1999-2020 Free Software Foundation, Inc.
    Contributed by Vladimir Makarov (vmakarov@cygnus.com).
 
@@ -56,7 +56,7 @@ typedef int (*htab_eq) (const void *, const void *);
 /* Cleanup function called whenever a live element is removed from
    the hash table.  */
 typedef void (*htab_del) (void *);
-  
+
 /* Function called by htab_traverse for each live element.  The first
    arg is the slot of the element (which can be passed to htab_clear_slot
    if desired), the second arg is the auxiliary pointer handed to
@@ -92,48 +92,49 @@ typedef void (*htab_free_with_arg) (void *, void *);
    functions mentioned below.  The size of this structure is subject to
    change.  */
 
-struct htab {
-  /* Pointer to hash function.  */
-  htab_hash hash_f;
+struct htab
+{
+    /* Pointer to hash function.  */
+    htab_hash hash_f;
 
-  /* Pointer to comparison function.  */
-  htab_eq eq_f;
+    /* Pointer to comparison function.  */
+    htab_eq eq_f;
 
-  /* Pointer to cleanup function.  */
-  htab_del del_f;
+    /* Pointer to cleanup function.  */
+    htab_del del_f;
 
-  /* Table itself.  */
-  void **entries;
+    /* Table itself.  */
+    void **entries;
 
-  /* Current size (in entries) of the hash table.  */
-  size_t size;
+    /* Current size (in entries) of the hash table.  */
+    size_t size;
 
-  /* Current number of elements including also deleted elements.  */
-  size_t n_elements;
+    /* Current number of elements including also deleted elements.  */
+    size_t n_elements;
 
-  /* Current number of deleted elements in the table.  */
-  size_t n_deleted;
+    /* Current number of deleted elements in the table.  */
+    size_t n_deleted;
 
-  /* The following member is used for debugging. Its value is number
-     of all calls of `htab_find_slot' for the hash table. */
-  unsigned int searches;
+    /* The following member is used for debugging. Its value is number
+       of all calls of `htab_find_slot' for the hash table. */
+    unsigned int searches;
 
-  /* The following member is used for debugging.  Its value is number
-     of collisions fixed for time of work with the hash table. */
-  unsigned int collisions;
+    /* The following member is used for debugging.  Its value is number
+       of collisions fixed for time of work with the hash table. */
+    unsigned int collisions;
 
-  /* Pointers to allocate/free functions.  */
-  htab_alloc alloc_f;
-  htab_free free_f;
+    /* Pointers to allocate/free functions.  */
+    htab_alloc alloc_f;
+    htab_free free_f;
 
-  /* Alternate allocate/free functions, which take an extra argument.  */
-  void *alloc_arg;
-  htab_alloc_with_arg alloc_with_arg_f;
-  htab_free_with_arg free_with_arg_f;
+    /* Alternate allocate/free functions, which take an extra argument.  */
+    void *alloc_arg;
+    htab_alloc_with_arg alloc_with_arg_f;
+    htab_free_with_arg free_with_arg_f;
 
-  /* Current size (in entries) of the hash table, as an index into the
-     table of primes.  */
-  unsigned int size_prime_index;
+    /* Current size (in entries) of the hash table, as an index into the
+       table of primes.  */
+    unsigned int size_prime_index;
 };
 
 typedef struct htab *htab_t;
@@ -143,45 +144,45 @@ enum insert_option {NO_INSERT, INSERT};
 
 /* The prototypes of the package functions. */
 
-extern htab_t	htab_create_alloc  (size_t, htab_hash,
+extern htab_t   htab_create_alloc  (size_t, htab_hash,
                                     htab_eq, htab_del,
                                     htab_alloc, htab_free);
 
-extern htab_t	htab_create_alloc_ex (size_t, htab_hash,
+extern htab_t   htab_create_alloc_ex (size_t, htab_hash,
                                       htab_eq, htab_del,
                                       void *, htab_alloc_with_arg,
                                       htab_free_with_arg);
 
 extern htab_t  htab_create_typed_alloc (size_t, htab_hash, htab_eq, htab_del,
-					htab_alloc, htab_alloc, htab_free);
+                                        htab_alloc, htab_alloc, htab_free);
 
 /* Backward-compatibility functions.  */
 extern htab_t htab_create (size_t, htab_hash, htab_eq, htab_del);
 extern htab_t htab_try_create (size_t, htab_hash, htab_eq, htab_del);
 
-extern void	htab_set_functions_ex (htab_t, htab_hash,
-                                       htab_eq, htab_del,
-                                       void *, htab_alloc_with_arg,
-                                       htab_free_with_arg);
+extern void htab_set_functions_ex (htab_t, htab_hash,
+                                   htab_eq, htab_del,
+                                   void *, htab_alloc_with_arg,
+                                   htab_free_with_arg);
 
-extern void	htab_delete (htab_t);
-extern void	htab_empty (htab_t);
+extern void htab_delete (htab_t);
+extern void htab_empty (htab_t);
 
-extern void *	htab_find (htab_t, const void *);
-extern void **	htab_find_slot (htab_t, const void *, enum insert_option);
-extern void *	htab_find_with_hash (htab_t, const void *, hashval_t);
-extern void **	htab_find_slot_with_hash (htab_t, const void *,
-					  hashval_t, enum insert_option);
-extern void	htab_clear_slot	(htab_t, void **);
-extern void	htab_remove_elt	(htab_t, const void *);
-extern void	htab_remove_elt_with_hash (htab_t, const void *, hashval_t);
+extern void    *htab_find (htab_t, const void *);
+extern void   **htab_find_slot (htab_t, const void *, enum insert_option);
+extern void    *htab_find_with_hash (htab_t, const void *, hashval_t);
+extern void   **htab_find_slot_with_hash (htab_t, const void *,
+        hashval_t, enum insert_option);
+extern void htab_clear_slot (htab_t, void **);
+extern void htab_remove_elt (htab_t, const void *);
+extern void htab_remove_elt_with_hash (htab_t, const void *, hashval_t);
 
-extern void	htab_traverse (htab_t, htab_trav, void *);
-extern void	htab_traverse_noresize (htab_t, htab_trav, void *);
+extern void htab_traverse (htab_t, htab_trav, void *);
+extern void htab_traverse_noresize (htab_t, htab_trav, void *);
 
-extern size_t	htab_size (htab_t);
-extern size_t	htab_elements (htab_t);
-extern double	htab_collisions	(htab_t);
+extern size_t   htab_size (htab_t);
+extern size_t   htab_elements (htab_t);
+extern double   htab_collisions (htab_t);
 
 /* A hash function for pointers.  */
 extern htab_hash htab_hash_pointer;

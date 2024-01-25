@@ -48,18 +48,18 @@
 */
 enum zb_zcl_custom_cluster_attr_e
 {
-  ZB_ZCL_CUSTOM_CLUSTER_ATTR_U8_ID           = 0x0001,
-  ZB_ZCL_CUSTOM_CLUSTER_ATTR_S16_ID          = 0x0002,
-  ZB_ZCL_CUSTOM_CLUSTER_ATTR_24BIT_ID        = 0x0003,
-  ZB_ZCL_CUSTOM_CLUSTER_ATTR_32BITMAP_ID     = 0x0004,
-  ZB_ZCL_CUSTOM_CLUSTER_ATTR_IEEE_ID         = 0x0005,
-  ZB_ZCL_CUSTOM_CLUSTER_ATTR_CHAR_STRING_ID  = 0x0006,
-  ZB_ZCL_CUSTOM_CLUSTER_ATTR_UTC_TIME_ID     = 0x0007,
-  ZB_ZCL_CUSTOM_CLUSTER_ATTR_OCTET_STRING_ID = 0x0008,
-  ZB_ZCL_CUSTOM_CLUSTER_ATTR_BOOL_ID         = 0x0009,
-  ZB_ZCL_CUSTOM_CLUSTER_ATTR_128_BIT_KEY_ID  = 0x000a,
-  ZB_ZCL_CUSTOM_CLUSTER_ATTR_U16_ID          = 0x000b,
-  ZB_ZCL_CUSTOM_CLUSTER_ATTR_U32_ID          = 0x000c
+    ZB_ZCL_CUSTOM_CLUSTER_ATTR_U8_ID           = 0x0001,
+    ZB_ZCL_CUSTOM_CLUSTER_ATTR_S16_ID          = 0x0002,
+    ZB_ZCL_CUSTOM_CLUSTER_ATTR_24BIT_ID        = 0x0003,
+    ZB_ZCL_CUSTOM_CLUSTER_ATTR_32BITMAP_ID     = 0x0004,
+    ZB_ZCL_CUSTOM_CLUSTER_ATTR_IEEE_ID         = 0x0005,
+    ZB_ZCL_CUSTOM_CLUSTER_ATTR_CHAR_STRING_ID  = 0x0006,
+    ZB_ZCL_CUSTOM_CLUSTER_ATTR_UTC_TIME_ID     = 0x0007,
+    ZB_ZCL_CUSTOM_CLUSTER_ATTR_OCTET_STRING_ID = 0x0008,
+    ZB_ZCL_CUSTOM_CLUSTER_ATTR_BOOL_ID         = 0x0009,
+    ZB_ZCL_CUSTOM_CLUSTER_ATTR_128_BIT_KEY_ID  = 0x000a,
+    ZB_ZCL_CUSTOM_CLUSTER_ATTR_U16_ID          = 0x000b,
+    ZB_ZCL_CUSTOM_CLUSTER_ATTR_U32_ID          = 0x000c
 };
 
 #define ZB_ZCL_CUSTOM_CLUSTER_ATTR_U8_DEFAULT_VALUE 0
@@ -88,30 +88,30 @@ enum zb_zcl_custom_cluster_attr_e
 /*! @brief Custom cluster commands identifiers */
 enum zb_zcl_custom_cluster_cmd_e
 {
-  ZB_ZCL_CUSTOM_CLUSTER_CMD1_ID = 0x21,
-  ZB_ZCL_CUSTOM_CLUSTER_CMD2_ID = 0x22,
-  ZB_ZCL_CUSTOM_CLUSTER_CMD3_ID = 0x23
+    ZB_ZCL_CUSTOM_CLUSTER_CMD1_ID = 0x21,
+    ZB_ZCL_CUSTOM_CLUSTER_CMD2_ID = 0x22,
+    ZB_ZCL_CUSTOM_CLUSTER_CMD3_ID = 0x23
 };
 
 /*! @brief Custom cluster responses identifiers */
 enum zb_zcl_custom_cluster_resp_e
 {
-  ZB_ZCL_CUSTOM_CLUSTER_CMD1_RESP_ID = 0xF1,
-  ZB_ZCL_CUSTOM_CLUSTER_CMD2_RESP_ID = 0xF2
+    ZB_ZCL_CUSTOM_CLUSTER_CMD1_RESP_ID = 0xF1,
+    ZB_ZCL_CUSTOM_CLUSTER_CMD2_RESP_ID = 0xF2
 };
 
 /******** Custom cluster command 1 ********/
 
 enum zb_zcl_custom_cluster_cmd1_mode_e
 {
-  ZB_ZCL_CUSTOM_CLUSTER_CMD1_MODE1 = 0x01,
-  ZB_ZCL_CUSTOM_CLUSTER_CMD1_MODE2 = 0x02
+    ZB_ZCL_CUSTOM_CLUSTER_CMD1_MODE1 = 0x01,
+    ZB_ZCL_CUSTOM_CLUSTER_CMD1_MODE2 = 0x02
 };
 
 typedef ZB_PACKED_PRE struct zb_zcl_custom_cluster_cmd1_req_s
 {
-  zb_uint8_t mode;
-  zb_uint8_t value;
+    zb_uint8_t mode;
+    zb_uint8_t value;
 }
 ZB_PACKED_STRUCT zb_zcl_custom_cluster_cmd1_req_t;
 
@@ -160,7 +160,7 @@ ZB_PACKED_STRUCT zb_zcl_custom_cluster_cmd1_req_t;
 
 typedef ZB_PACKED_PRE struct zb_zcl_custom_cluster_cmd1_resp_s
 {
-  zb_uint8_t status;
+    zb_uint8_t status;
 }
 ZB_PACKED_STRUCT zb_zcl_custom_cluster_cmd1_resp_t;
 
@@ -207,16 +207,16 @@ ZB_PACKED_STRUCT zb_zcl_custom_cluster_cmd1_resp_t;
 
 enum zb_zcl_custom_cluster_cmd2_param_e
 {
-  ZB_ZCL_CUSTOM_CLUSTER_CMD2_PARAM1 = 0x01,
-  ZB_ZCL_CUSTOM_CLUSTER_CMD2_PARAM2 = 0x02,
-  ZB_ZCL_CUSTOM_CLUSTER_CMD2_PARAM3 = 0x03,
-  ZB_ZCL_CUSTOM_CLUSTER_CMD2_PARAM4 = 0x04
+    ZB_ZCL_CUSTOM_CLUSTER_CMD2_PARAM1 = 0x01,
+    ZB_ZCL_CUSTOM_CLUSTER_CMD2_PARAM2 = 0x02,
+    ZB_ZCL_CUSTOM_CLUSTER_CMD2_PARAM3 = 0x03,
+    ZB_ZCL_CUSTOM_CLUSTER_CMD2_PARAM4 = 0x04
 };
 
 typedef ZB_PACKED_PRE struct zb_zcl_custom_cluster_cmd2_req_s
 {
-  zb_uint8_t param;
-  zb_uint16_t value;
+    zb_uint8_t param;
+    zb_uint16_t value;
 }
 ZB_PACKED_STRUCT zb_zcl_custom_cluster_cmd2_req_t;
 
@@ -268,7 +268,7 @@ ZB_PACKED_STRUCT zb_zcl_custom_cluster_cmd2_req_t;
 
 typedef ZB_PACKED_PRE struct zb_zcl_custom_cluster_cmd2_resp_s
 {
-  zb_uint8_t status;
+    zb_uint8_t status;
 }
 ZB_PACKED_STRUCT zb_zcl_custom_cluster_cmd2_resp_t;
 
@@ -315,7 +315,7 @@ ZB_PACKED_STRUCT zb_zcl_custom_cluster_cmd2_resp_t;
 
 typedef ZB_PACKED_PRE struct zb_zcl_custom_cluster_cmd3_req_s
 {
-  zb_char_t zcl_str[ZB_ZCL_CUSTOM_CLUSTER_ATTR_CHAR_STRING_MAX_SIZE];
+    zb_char_t zcl_str[ZB_ZCL_CUSTOM_CLUSTER_ATTR_CHAR_STRING_MAX_SIZE];
 }
 ZB_PACKED_STRUCT zb_zcl_custom_cluster_cmd3_req_t;
 

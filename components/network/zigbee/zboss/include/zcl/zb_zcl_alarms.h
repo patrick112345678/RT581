@@ -46,8 +46,8 @@
 */
 enum zb_zcl_alarms_attr_e
 {
-  /*! @brief AlarmCount attribute */
-  ZB_ZCL_ATTR_ALARMS_ALARM_COUNT_ID = 0x0000
+    /*! @brief AlarmCount attribute */
+    ZB_ZCL_ATTR_ALARMS_ALARM_COUNT_ID = 0x0000
 };
 
 /*! @} */ /* Alarms cluster attributes */
@@ -61,19 +61,19 @@ enum zb_zcl_alarms_attr_e
 */
 enum zb_zcl_alarms_cmd_e
 {
-  ZB_ZCL_CMD_ALARMS_RESET_ALARM_ID         = 0x00, /**< "Reset alarm" command. */
-  ZB_ZCL_CMD_ALARMS_RESET_ALL_ALARMS_ID    = 0x01, /**< "Reset all alarms" command. */
-  ZB_ZCL_CMD_ALARMS_GET_ALARM_ID           = 0x02, /**< "Get alarms" command. */
-  ZB_ZCL_CMD_ALARMS_RESET_ALARM_LOG_ID     = 0x03  /**< "Reset alarm log" command. */
+    ZB_ZCL_CMD_ALARMS_RESET_ALARM_ID         = 0x00, /**< "Reset alarm" command. */
+    ZB_ZCL_CMD_ALARMS_RESET_ALL_ALARMS_ID    = 0x01, /**< "Reset all alarms" command. */
+    ZB_ZCL_CMD_ALARMS_GET_ALARM_ID           = 0x02, /**< "Get alarms" command. */
+    ZB_ZCL_CMD_ALARMS_RESET_ALARM_LOG_ID     = 0x03  /**< "Reset alarm log" command. */
 };
 
 /*! @brief Structured representation of Reset alarm command payload */
 typedef ZB_PACKED_PRE struct zb_zcl_alarms_reset_alarm_req_s
 {
-  /** Alarm Code field */
-  zb_uint8_t alarm_code;
-  /** Cluster ID field */
-  zb_uint16_t cluster_id;
+    /** Alarm Code field */
+    zb_uint8_t alarm_code;
+    /** Cluster ID field */
+    zb_uint16_t cluster_id;
 } ZB_PACKED_STRUCT zb_zcl_alarms_reset_alarm_req_t;
 
 /** @brief Reset alarm payload length macro */
@@ -200,8 +200,8 @@ typedef ZB_PACKED_PRE struct zb_zcl_alarms_reset_alarm_req_s
 */
 enum zb_zcl_alarms_cmd_resp_e
 {
-  ZB_ZCL_CMD_ALARMS_ALARM_ID               = 0x00,  /**< Alarm command identifier. */
-  ZB_ZCL_CMD_ALARMS_GET_ALARM_RES_ID       = 0x01   /**< Get alarm response command identifier. */
+    ZB_ZCL_CMD_ALARMS_ALARM_ID               = 0x00,  /**< Alarm command identifier. */
+    ZB_ZCL_CMD_ALARMS_GET_ALARM_RES_ID       = 0x01   /**< Get alarm response command identifier. */
 };
 
 /** @cond internals_doc */
@@ -223,16 +223,16 @@ typedef zb_zcl_alarms_reset_alarm_req_t zb_zcl_alarms_alarm_res_t;
 
 typedef ZB_PACKED_PRE struct zb_zcl_alarm_get_alarm_hdr_res_s
 {
-  zb_uint8_t status;         /**< Status field */
+    zb_uint8_t status;         /**< Status field */
 } ZB_PACKED_STRUCT zb_zcl_alarm_get_alarm_hdr_res_t;
 
 /** @brief Get alarm response command structure */
 typedef ZB_PACKED_PRE struct zb_zcl_alarm_get_alarm_res_s
 {
-  zb_uint8_t status;         /**< Status field */
-  zb_uint8_t alarm_code;     /**< Alarm code field */
-  zb_uint16_t cluster_id;    /**< Cluster ID field */
-  zb_uint32_t timestamp;     /**< TimeStamp field */
+    zb_uint8_t status;         /**< Status field */
+    zb_uint8_t alarm_code;     /**< Alarm code field */
+    zb_uint16_t cluster_id;    /**< Cluster ID field */
+    zb_uint32_t timestamp;     /**< TimeStamp field */
 } ZB_PACKED_STRUCT zb_zcl_alarm_get_alarm_res_t;
 
 /** @internal Get alarm response size */

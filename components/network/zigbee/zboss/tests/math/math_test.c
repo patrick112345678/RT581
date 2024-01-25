@@ -9,13 +9,13 @@
 
 MAIN()
 {
-  int ret = 0;
-  ARGV_UNUSED;
+    int ret = 0;
+    ARGV_UNUSED;
 
-  ret += tests_zb_uint24();
-  ret += tests_zb_uint48();
-  ret += tests_zb_int24();
-  ret += tests_zb_int48();
+    ret += tests_zb_uint24();
+    ret += tests_zb_uint48();
+    ret += tests_zb_int24();
+    ret += tests_zb_int48();
 
-  return ret;
+    return ret;
 }

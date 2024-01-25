@@ -30,9 +30,9 @@
 
 typedef enum ncp_hl_reset_opt_e
 {
-  NO_OPTIONS = 0,
-  NVRAM_ERASE,
-  FACTORY_RESET
+    NO_OPTIONS = 0,
+    NVRAM_ERASE,
+    FACTORY_RESET
 }
 ncp_hl_reset_opt_t;
 

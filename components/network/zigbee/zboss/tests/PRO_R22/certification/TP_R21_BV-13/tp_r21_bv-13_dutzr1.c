@@ -56,147 +56,147 @@ static void test_set_permit_join(zb_uint8_t param, zb_uint16_t permit_join_durat
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
-  ZB_INIT("zdo_2_dutzr1");
-#if UART_CONTROL	
-	test_control_init();
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    /* Init device, load IB values from nvram or set it to default */
+    ZB_INIT("zdo_2_dutzr1");
+#if UART_CONTROL
+    test_control_init();
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 #endif
-	
-  zb_cert_test_set_common_channel_settings();
-  zb_cert_test_set_zr_role();
-  zb_set_long_address(g_ieee_addr_dutzr1);
-  zb_zdo_set_aps_unsecure_join(ZB_TRUE);
-  zb_set_max_children(0);       /* so zr2 joins zc */
+
+    zb_cert_test_set_common_channel_settings();
+    zb_cert_test_set_zr_role();
+    zb_set_long_address(g_ieee_addr_dutzr1);
+    zb_zdo_set_aps_unsecure_join(ZB_TRUE);
+    zb_set_max_children(0);       /* so zr2 joins zc */
 
 #ifdef SECURITY_LEVEL
-  zb_cert_test_set_security_level(SECURITY_LEVEL);
+    zb_cert_test_set_security_level(SECURITY_LEVEL);
 #endif
 
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zboss_main_loop();
-  }
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zboss_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_ERROR, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_ERROR, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  if (0 == status)
-  {
-    switch(sig)
+    if (0 == status)
     {
-      case ZB_ZDO_SIGNAL_DEFAULT_START:
-      case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      case ZB_BDB_SIGNAL_DEVICE_REBOOT:
-        TRACE_MSG(TRACE_ERROR, "Device STARTED OK", (FMT__0));
-        ZB_SCHEDULE_ALARM(test_brcast_tbuffer_req_delayed, 0,
-                          TEST_ZR1_FIRST_TBUFFER_REQUEST_DELAY);
-        break;
-      case ZB_ZDO_SIGNAL_DEVICE_ANNCE:
-        test_set_permit_join(0, 0xff);
-        break;
-      default:
-        TRACE_MSG(TRACE_ERROR, "Unknown signal %hd", (FMT__H, sig));
+        switch (sig)
+        {
+        case ZB_ZDO_SIGNAL_DEFAULT_START:
+        case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
+        case ZB_BDB_SIGNAL_DEVICE_REBOOT:
+            TRACE_MSG(TRACE_ERROR, "Device STARTED OK", (FMT__0));
+            ZB_SCHEDULE_ALARM(test_brcast_tbuffer_req_delayed, 0,
+                              TEST_ZR1_FIRST_TBUFFER_REQUEST_DELAY);
+            break;
+        case ZB_ZDO_SIGNAL_DEVICE_ANNCE:
+            test_set_permit_join(0, 0xff);
+            break;
+        default:
+            TRACE_MSG(TRACE_ERROR, "Unknown signal %hd", (FMT__H, sig));
+        }
     }
-  }
-  else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
-  {
-    TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, status));
-  }
+    else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
+    {
+        TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, status));
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 
 static void test_set_permit_join(zb_uint8_t param, zb_uint16_t permit_join_duration)
 {
-  TRACE_MSG(TRACE_APS1, ">> test_close_permit_join param %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_APS1, ">> test_close_permit_join param %hd", (FMT__H, param));
 
-  if (!param)
-  {
-    zb_buf_get_out_delayed_ext(test_set_permit_join, permit_join_duration, 0);
-  }
-  else
-  {
-    zb_nlme_permit_joining_request_t *req;
+    if (!param)
+    {
+        zb_buf_get_out_delayed_ext(test_set_permit_join, permit_join_duration, 0);
+    }
+    else
+    {
+        zb_nlme_permit_joining_request_t *req;
 
-    zb_set_max_children(1);
-    req = zb_buf_get_tail(param, sizeof(zb_nlme_permit_joining_request_t));
-    ZB_BZERO(req, sizeof(zb_nlme_permit_joining_request_t));
-    req->permit_duration = (permit_join_duration & 0xFF); /* Safe downcast */
+        zb_set_max_children(1);
+        req = zb_buf_get_tail(param, sizeof(zb_nlme_permit_joining_request_t));
+        ZB_BZERO(req, sizeof(zb_nlme_permit_joining_request_t));
+        req->permit_duration = (permit_join_duration & 0xFF); /* Safe downcast */
 
-    zb_nlme_permit_joining_request(param);
-  }
+        zb_nlme_permit_joining_request(param);
+    }
 
-  TRACE_MSG(TRACE_APS1, "<< test_close_permit_join", (FMT__0));
+    TRACE_MSG(TRACE_APS1, "<< test_close_permit_join", (FMT__0));
 }
 
 
 static void test_brcast_tbuffer_req_delayed(zb_uint8_t param)
 {
-  static int i = 1;
+    static int i = 1;
 
-  ZVUNUSED(param);
-  if (i == 2)
-  {
-    change_outgoing_nwk_fr_cnt(0);
-  }
+    ZVUNUSED(param);
+    if (i == 2)
+    {
+        change_outgoing_nwk_fr_cnt(0);
+    }
 
-  zb_buf_get_out_delayed(brcast_tbuffer_request);
-  if (i < 3)
-  {
-    ZB_SCHEDULE_ALARM(test_brcast_tbuffer_req_delayed, 0,
-                      TEST_ZR1_NEXT_TBUFFER_REQUEST_DELAY);
-  }
-  ++i;
+    zb_buf_get_out_delayed(brcast_tbuffer_request);
+    if (i < 3)
+    {
+        ZB_SCHEDULE_ALARM(test_brcast_tbuffer_req_delayed, 0,
+                          TEST_ZR1_NEXT_TBUFFER_REQUEST_DELAY);
+    }
+    ++i;
 }
 
 
 static void change_outgoing_nwk_fr_cnt(zb_uint8_t param)
 {
-  ZVUNUSED(param);
-  TRACE_MSG(TRACE_APS2, ">>change_outgoing_nwk_fr_cnt", (FMT__0));
-  /* change outgoing nwk frame counter */
-  zb_cert_test_nib_set_outgoing_frame_counter(0x80000001);
-  TRACE_MSG(TRACE_APS2, "<<change_outgoing_nwk_fr_cnt", (FMT__0));
+    ZVUNUSED(param);
+    TRACE_MSG(TRACE_APS2, ">>change_outgoing_nwk_fr_cnt", (FMT__0));
+    /* change outgoing nwk frame counter */
+    zb_cert_test_nib_set_outgoing_frame_counter(0x80000001);
+    TRACE_MSG(TRACE_APS2, "<<change_outgoing_nwk_fr_cnt", (FMT__0));
 }
 
 
 static void brcast_tbuffer_request(zb_uint8_t param)
 {
-  zb_buffer_test_req_param_t *req_param;
+    zb_buffer_test_req_param_t *req_param;
 
-  TRACE_MSG(TRACE_APS1, ">>brcast_tbuffer_request", (FMT__0));
+    TRACE_MSG(TRACE_APS1, ">>brcast_tbuffer_request", (FMT__0));
 
-  req_param = ZB_BUF_GET_PARAM(param, zb_buffer_test_req_param_t);
-  BUFFER_TEST_REQ_SET_DEFAULT(req_param);
-  req_param->dst_addr = 0xffff;
+    req_param = ZB_BUF_GET_PARAM(param, zb_buffer_test_req_param_t);
+    BUFFER_TEST_REQ_SET_DEFAULT(req_param);
+    req_param->dst_addr = 0xffff;
 
-  zb_tp_buffer_test_request(param, NULL);
+    zb_tp_buffer_test_request(param, NULL);
 
-  TRACE_MSG(TRACE_APS1, "<<brcast_tbuffer_request", (FMT__0));
+    TRACE_MSG(TRACE_APS1, "<<brcast_tbuffer_request", (FMT__0));
 }
 
 

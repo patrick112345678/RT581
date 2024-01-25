@@ -62,26 +62,26 @@ void zb_zcl_set_real_time_clock_callback(zb_zcl_time_set_real_time_clock_t cb);
 /** This enum defines possible authoritative levels of time server */
 enum time_server_authoritative_level_e
 {
-  ZB_ZCL_TIME_SERVER_NOT_CHOSEN = 0,
-  ZB_ZCL_TIME_HAS_SYNCHRONIZED_BIT,
-  ZB_ZCL_TIME_HAS_MASTER_BIT,
-  ZB_ZCL_TIME_HAS_MASTER_AND_SUPERSEDING_BITS,
-  ZB_ZCL_TIME_COORDINATOR_WITH_MASTER_AND_SUPERSEDING_BITS
+    ZB_ZCL_TIME_SERVER_NOT_CHOSEN = 0,
+    ZB_ZCL_TIME_HAS_SYNCHRONIZED_BIT,
+    ZB_ZCL_TIME_HAS_MASTER_BIT,
+    ZB_ZCL_TIME_HAS_MASTER_AND_SUPERSEDING_BITS,
+    ZB_ZCL_TIME_COORDINATOR_WITH_MASTER_AND_SUPERSEDING_BITS
 };
 
 /** Time synchronization payload  */
 typedef struct zb_zcl_time_sync_payload_s
 {
-  /** Network time received from the most authoritative Time server */
-  zb_uint32_t time;
-  /** Source address of the most authoritative Time server */
-  zb_uint16_t addr;
-  /** Source endpoint of the most authoritative Time server */
-  zb_uint8_t endpoint;
-  /** Authoritative level of Time source server.
-   * @see @ref time_server_authoritative_level_e
-   */
-  zb_uint8_t level;
+    /** Network time received from the most authoritative Time server */
+    zb_uint32_t time;
+    /** Source address of the most authoritative Time server */
+    zb_uint16_t addr;
+    /** Source endpoint of the most authoritative Time server */
+    zb_uint8_t endpoint;
+    /** Authoritative level of Time source server.
+     * @see @ref time_server_authoritative_level_e
+     */
+    zb_uint8_t level;
 } zb_zcl_time_sync_payload_t;
 
 /** @endcond */ /* internals_doc */
@@ -109,7 +109,7 @@ typedef struct zb_zcl_time_sync_payload_s
  * @brief Callback to call when new time server found during synchronization.
  */
 typedef void (*zb_zcl_time_sync_time_server_found_cb_t)(zb_ret_t status, zb_uint32_t auth_level, zb_uint16_t short_addr,
-                                                        zb_uint8_t ep, zb_uint32_t nw_time);
+        zb_uint8_t ep, zb_uint32_t nw_time);
 
 
 /**
@@ -141,40 +141,40 @@ zb_bool_t zb_zcl_time_server_read_attr_handle(zb_uint8_t param);
 */
 enum zb_zcl_time_attr_e
 {
-  /*! @brief Time attribute */
-  ZB_ZCL_ATTR_TIME_TIME_ID             = 0x0000,
-  /*! @brief Time Status attribute */
-  ZB_ZCL_ATTR_TIME_TIME_STATUS_ID      = 0x0001,
-  /*! @brief Time Zone attribute */
-  ZB_ZCL_ATTR_TIME_TIME_ZONE_ID        = 0x0002,
-  /*! @brief Dst Start attribute */
-  ZB_ZCL_ATTR_TIME_DST_START_ID        = 0x0003,
-  /*! @brief Dst End attribute */
-  ZB_ZCL_ATTR_TIME_DST_END_ID          = 0x0004,
-  /*! @brief Dst Shift attribute */
-  ZB_ZCL_ATTR_TIME_DST_SHIFT_ID        = 0x0005,
-  /*! @brief Standard Time attribute */
-  ZB_ZCL_ATTR_TIME_STANDARD_TIME_ID    = 0x0006,
-  /*! @brief Local Time attribute */
-  ZB_ZCL_ATTR_TIME_LOCAL_TIME_ID       = 0x0007,
-  /*! @brief Last Set Time attribute */
-  ZB_ZCL_ATTR_TIME_LAST_SET_TIME_ID    = 0x0008,
-  /*! @brief Valid Until Time attribute */
-  ZB_ZCL_ATTR_TIME_VALID_UNTIL_TIME_ID = 0x0009
+    /*! @brief Time attribute */
+    ZB_ZCL_ATTR_TIME_TIME_ID             = 0x0000,
+    /*! @brief Time Status attribute */
+    ZB_ZCL_ATTR_TIME_TIME_STATUS_ID      = 0x0001,
+    /*! @brief Time Zone attribute */
+    ZB_ZCL_ATTR_TIME_TIME_ZONE_ID        = 0x0002,
+    /*! @brief Dst Start attribute */
+    ZB_ZCL_ATTR_TIME_DST_START_ID        = 0x0003,
+    /*! @brief Dst End attribute */
+    ZB_ZCL_ATTR_TIME_DST_END_ID          = 0x0004,
+    /*! @brief Dst Shift attribute */
+    ZB_ZCL_ATTR_TIME_DST_SHIFT_ID        = 0x0005,
+    /*! @brief Standard Time attribute */
+    ZB_ZCL_ATTR_TIME_STANDARD_TIME_ID    = 0x0006,
+    /*! @brief Local Time attribute */
+    ZB_ZCL_ATTR_TIME_LOCAL_TIME_ID       = 0x0007,
+    /*! @brief Last Set Time attribute */
+    ZB_ZCL_ATTR_TIME_LAST_SET_TIME_ID    = 0x0008,
+    /*! @brief Valid Until Time attribute */
+    ZB_ZCL_ATTR_TIME_VALID_UNTIL_TIME_ID = 0x0009
 };
 
 /*! @brief Permissible values for Time Status attribute,
     @see ZCL spec, subclause 3.12.2.2.2 */
 enum zb_zcl_time_time_status_e
 {
-  /*! Master value */
-  ZB_ZCL_TIME_MASTER          = 0,
-  /*! Synchronized value */
-  ZB_ZCL_TIME_SYNCHRONIZED    = 1,
-  /*! Master Zone Dst value */
-  ZB_ZCL_TIME_MASTER_ZONE_DST = 2,
-  /*! Superseding value */
-  ZB_ZCL_TIME_SUPERSEDING     = 3
+    /*! Master value */
+    ZB_ZCL_TIME_MASTER          = 0,
+    /*! Synchronized value */
+    ZB_ZCL_TIME_SYNCHRONIZED    = 1,
+    /*! Master Zone Dst value */
+    ZB_ZCL_TIME_MASTER_ZONE_DST = 2,
+    /*! Superseding value */
+    ZB_ZCL_TIME_SUPERSEDING     = 3
 };
 
 
@@ -374,55 +374,55 @@ enum zb_zcl_time_time_status_e
 typedef struct zb_zcl_time_attrs_s
 {
 
-  /** @copydoc ZB_ZCL_ATTR_TIME_TIME_ID
-   * @see ZB_ZCL_ATTR_TIME_TIME_ID
-   */
-  zb_uint32_t time;
+    /** @copydoc ZB_ZCL_ATTR_TIME_TIME_ID
+     * @see ZB_ZCL_ATTR_TIME_TIME_ID
+     */
+    zb_uint32_t time;
 
-  /** @copydoc ZB_ZCL_ATTR_TIME_TIME_STATUS_ID
-   * @see ZB_ZCL_ATTR_TIME_TIME_STATUS_ID
-   */
-  zb_uint8_t time_status;
+    /** @copydoc ZB_ZCL_ATTR_TIME_TIME_STATUS_ID
+     * @see ZB_ZCL_ATTR_TIME_TIME_STATUS_ID
+     */
+    zb_uint8_t time_status;
 
-  /** @copydoc ZB_ZCL_ATTR_TIME_TIME_ZONE_ID
-   * @see ZB_ZCL_ATTR_TIME_TIME_ZONE_ID
-   */
-  zb_int32_t time_zone;
+    /** @copydoc ZB_ZCL_ATTR_TIME_TIME_ZONE_ID
+     * @see ZB_ZCL_ATTR_TIME_TIME_ZONE_ID
+     */
+    zb_int32_t time_zone;
 
-  /** @copydoc ZB_ZCL_ATTR_TIME_DST_START_ID
-   * @see ZB_ZCL_ATTR_TIME_DST_START_ID
-   */
-  zb_uint32_t dst_start;
+    /** @copydoc ZB_ZCL_ATTR_TIME_DST_START_ID
+     * @see ZB_ZCL_ATTR_TIME_DST_START_ID
+     */
+    zb_uint32_t dst_start;
 
-  /** @copydoc ZB_ZCL_ATTR_TIME_DST_END_ID
-   * @see ZB_ZCL_ATTR_TIME_DST_END_ID
-   */
-  zb_uint32_t dst_end;
+    /** @copydoc ZB_ZCL_ATTR_TIME_DST_END_ID
+     * @see ZB_ZCL_ATTR_TIME_DST_END_ID
+     */
+    zb_uint32_t dst_end;
 
-  /** @copydoc ZB_ZCL_ATTR_TIME_DST_SHIFT_ID
-   * @see ZB_ZCL_ATTR_TIME_DST_SHIFT_ID
-   */
-  zb_uint32_t dst_shift;
+    /** @copydoc ZB_ZCL_ATTR_TIME_DST_SHIFT_ID
+     * @see ZB_ZCL_ATTR_TIME_DST_SHIFT_ID
+     */
+    zb_uint32_t dst_shift;
 
-  /** @copydoc ZB_ZCL_ATTR_TIME_STANDARD_TIME_ID
-   * @see ZB_ZCL_ATTR_TIME_STANDARD_TIME_ID
-   */
-  zb_uint32_t standard_time;
+    /** @copydoc ZB_ZCL_ATTR_TIME_STANDARD_TIME_ID
+     * @see ZB_ZCL_ATTR_TIME_STANDARD_TIME_ID
+     */
+    zb_uint32_t standard_time;
 
-  /** @copydoc ZB_ZCL_ATTR_TIME_LOCAL_TIME_ID
-   * @see ZB_ZCL_ATTR_TIME_LOCAL_TIME_ID
-   */
-  zb_uint32_t local_time;
+    /** @copydoc ZB_ZCL_ATTR_TIME_LOCAL_TIME_ID
+     * @see ZB_ZCL_ATTR_TIME_LOCAL_TIME_ID
+     */
+    zb_uint32_t local_time;
 
-  /** @copydoc ZB_ZCL_ATTR_TIME_LAST_SET_TIME_ID
-   * @see ZB_ZCL_ATTR_TIME_LAST_SET_TIME_ID
-   */
-  zb_uint32_t last_set_time;
+    /** @copydoc ZB_ZCL_ATTR_TIME_LAST_SET_TIME_ID
+     * @see ZB_ZCL_ATTR_TIME_LAST_SET_TIME_ID
+     */
+    zb_uint32_t last_set_time;
 
-  /** @copydoc ZB_ZCL_ATTR_TIME_VALID_UNTIL_TIME_ID
-   * @see ZB_ZCL_ATTR_TIME_VALID_UNTIL_TIME_ID
-   */
-  zb_uint32_t valid_until_time;
+    /** @copydoc ZB_ZCL_ATTR_TIME_VALID_UNTIL_TIME_ID
+     * @see ZB_ZCL_ATTR_TIME_VALID_UNTIL_TIME_ID
+     */
+    zb_uint32_t valid_until_time;
 } zb_zcl_time_attrs_t;
 
 

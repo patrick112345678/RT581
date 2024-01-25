@@ -1,12 +1,12 @@
 /**
  * @file ot_uart.c
  * @author Rex Huang (rex.huang@rafaelmicro.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2023-07-25
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 
 /**
@@ -35,7 +35,8 @@
 
 extern hosal_uart_dev_t uartstdio;
 
-typedef struct _otUart {
+typedef struct _otUart
+{
     uint16_t    start;
     uint16_t    end;
     uint32_t    recvLen;
@@ -73,13 +74,15 @@ otError otPlatUartFlush(void)
     return OT_ERROR_NONE;
 }
 
-void ot_uartTask (ot_system_event_t sevent) 
+void ot_uartTask (ot_system_event_t sevent)
 {
-    if (!(OT_SYSETM_EVENT_UART_ALL_MASK & sevent)) {
+    if (!(OT_SYSETM_EVENT_UART_ALL_MASK & sevent))
+    {
         return;
     }
 #if !CFG_CPC_ENABLE
-    if (OT_SYSTEM_EVENT_UART_RXD & sevent) {
+    if (OT_SYSTEM_EVENT_UART_RXD & sevent)
+    {
         otPlatUartReceived(otUart_var.rxbuf, strlen((char *)otUart_var.rxbuf));
     }
 #endif
@@ -89,12 +92,12 @@ static int _cli_cmd_ot(int argc, char **argv, cb_shell_out_t log_out, void *pExt
 {
 
     memset(otUart_var.rxbuf, 0x00, sizeof(otUart_var.rxbuf));
-    if(argc > 1)
+    if (argc > 1)
     {
-        for(int i=1; i<argc; i++)
-        {    
+        for (int i = 1; i < argc; i++)
+        {
             strcat((char *)otUart_var.rxbuf, argv[i]);
-            strcat((char *)otUart_var.rxbuf, " ");            
+            strcat((char *)otUart_var.rxbuf, " ");
         }
         strcat((char *)otUart_var.rxbuf, "\r\n");
     }
@@ -104,8 +107,8 @@ static int _cli_cmd_ot(int argc, char **argv, cb_shell_out_t log_out, void *pExt
 }
 
 const sh_cmd_t g_cli_cmd_ot STATIC_CLI_CMD_ATTRIBUTE =
-{ 
-    .pCmd_name    = "ot", 
-    .pDescription = "Openthread command line", 
+{
+    .pCmd_name    = "ot",
+    .pDescription = "Openthread command line",
     .cmd_exec     = _cli_cmd_ot,
 };

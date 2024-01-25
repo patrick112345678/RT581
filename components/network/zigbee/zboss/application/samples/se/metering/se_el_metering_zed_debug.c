@@ -68,9 +68,9 @@ void metering_tunneling_close_tunnel(zb_uint8_t param);
  */
 typedef ZB_PACKED_PRE struct metering_dev_nvram_data_s
 {
-  zb_uint48_t curr_summ_delivered;          /**< CurrentSummationDelivered attribute value */
-  zb_uint8_t status;                        /**< Status attribute value */
-  zb_uint8_t aling[1];
+    zb_uint48_t curr_summ_delivered;          /**< CurrentSummationDelivered attribute value */
+    zb_uint8_t status;                        /**< Status attribute value */
+    zb_uint8_t aling[1];
 } ZB_PACKED_STRUCT metering_dev_nvram_data_t;
 
 ZB_ASSERT_IF_NOT_ALIGNED_TO_4(metering_dev_nvram_data_t);
@@ -80,9 +80,9 @@ ZB_ASSERT_IF_NOT_ALIGNED_TO_4(metering_dev_nvram_data_t);
 
 typedef struct metering_dev_tunneling_data_s
 {
-  zb_uint16_t tunnel_id;
-  zb_uint16_t srv_addr;
-  zb_uint8_t srv_ep;
+    zb_uint16_t tunnel_id;
+    zb_uint16_t srv_addr;
+    zb_uint8_t srv_ep;
 } metering_dev_tunneling_data_t;
 
 /** @struct metering_dev_ctx_s
@@ -90,15 +90,15 @@ typedef struct metering_dev_tunneling_data_s
  */
 typedef struct metering_dev_ctx_s
 {
-  zb_bool_t first_measurement_done;
+    zb_bool_t first_measurement_done;
 
-  /* metering device attributes */
-  zb_zcl_basic_attrs_t basic_attrs;          /**< Basic cluster attributes */
-  zb_zcl_kec_attrs_t kec_attrs;              /**< Key Establishement cluster attributes */
-  zb_zcl_identify_attrs_t identify_attrs;    /**< Identify cluster attributes */
-  zb_zcl_metering_attrs_t metering_attrs;    /**< Metering cluster attributes */
-  metering_dev_tunneling_data_t metering_tunneling;
-  zb_zcl_prepayment_attrs_t prepayment_attrs;
+    /* metering device attributes */
+    zb_zcl_basic_attrs_t basic_attrs;          /**< Basic cluster attributes */
+    zb_zcl_kec_attrs_t kec_attrs;              /**< Key Establishement cluster attributes */
+    zb_zcl_identify_attrs_t identify_attrs;    /**< Identify cluster attributes */
+    zb_zcl_metering_attrs_t metering_attrs;    /**< Metering cluster attributes */
+    metering_dev_tunneling_data_t metering_tunneling;
+    zb_zcl_prepayment_attrs_t prepayment_attrs;
 } metering_dev_ctx_t;
 
 /* Device context */
@@ -141,143 +141,143 @@ ZB_SE_DECLARE_METERING_DEV_CTX(metering_dev_zcl_ctx, metering_dev_ep);
 /** Trace Metering attributes by attribute id. */
 static void metering_dev_show_attr(zb_uint16_t attr_id)
 {
-  switch (attr_id)
-  {
+    switch (attr_id)
+    {
     case ZB_ZCL_ATTR_METERING_CURRENT_SUMMATION_DELIVERED_ID:
     {
-      TRACE_MSG(TRACE_APP1, "Current Summation Delivered: %ld %ld",
-                (FMT__L_L, g_dev_ctx.metering_attrs.curr_summ_delivered.high, g_dev_ctx.metering_attrs.curr_summ_delivered.low));
+        TRACE_MSG(TRACE_APP1, "Current Summation Delivered: %ld %ld",
+                  (FMT__L_L, g_dev_ctx.metering_attrs.curr_summ_delivered.high, g_dev_ctx.metering_attrs.curr_summ_delivered.low));
     }
     break;
 
     case ZB_ZCL_ATTR_METERING_STATUS_ID:
-      TRACE_MSG(TRACE_APP1, "Device Status: 0x%x", (FMT__D, g_dev_ctx.metering_attrs.status));
-      if (g_dev_ctx.metering_attrs.status & ZB_ZCL_METERING_ELECTRICITY_CHECK_METER)
-      {
-        TRACE_MSG(TRACE_APP1, "   - check meter", (FMT__0));
-      }
-      if (g_dev_ctx.metering_attrs.status & ZB_ZCL_METERING_ELECTRICITY_LOW_BATTERY)
-      {
-        TRACE_MSG(TRACE_APP1, "   - low battery", (FMT__0));
-      }
-      if (g_dev_ctx.metering_attrs.status & ZB_ZCL_METERING_ELECTRICITY_TAMPER_DETECT)
-      {
-        TRACE_MSG(TRACE_APP1, "   - tamper detect", (FMT__0));
-      }
-      if (g_dev_ctx.metering_attrs.status & ZB_ZCL_METERING_ELECTRICITY_POWER_FAILURE)
-      {
-        TRACE_MSG(TRACE_APP1, "   - power failure", (FMT__0));
-      }
-      if (g_dev_ctx.metering_attrs.status & ZB_ZCL_METERING_ELECTRICITY_POWER_QUALITY)
-      {
-        TRACE_MSG(TRACE_APP1, "   - power quality", (FMT__0));
-      }
-      if (g_dev_ctx.metering_attrs.status & ZB_ZCL_METERING_ELECTRICITY_LEAK_DETECT)
-      {
-        TRACE_MSG(TRACE_APP1, "   - leak detect", (FMT__0));
-      }
-      if (g_dev_ctx.metering_attrs.status & ZB_ZCL_METERING_ELECTRICITY_SERVICE_DISCONNECT_OPEN)
-      {
-        TRACE_MSG(TRACE_APP1, "   - service disconnect open", (FMT__0));
-      }
-      break;
+        TRACE_MSG(TRACE_APP1, "Device Status: 0x%x", (FMT__D, g_dev_ctx.metering_attrs.status));
+        if (g_dev_ctx.metering_attrs.status & ZB_ZCL_METERING_ELECTRICITY_CHECK_METER)
+        {
+            TRACE_MSG(TRACE_APP1, "   - check meter", (FMT__0));
+        }
+        if (g_dev_ctx.metering_attrs.status & ZB_ZCL_METERING_ELECTRICITY_LOW_BATTERY)
+        {
+            TRACE_MSG(TRACE_APP1, "   - low battery", (FMT__0));
+        }
+        if (g_dev_ctx.metering_attrs.status & ZB_ZCL_METERING_ELECTRICITY_TAMPER_DETECT)
+        {
+            TRACE_MSG(TRACE_APP1, "   - tamper detect", (FMT__0));
+        }
+        if (g_dev_ctx.metering_attrs.status & ZB_ZCL_METERING_ELECTRICITY_POWER_FAILURE)
+        {
+            TRACE_MSG(TRACE_APP1, "   - power failure", (FMT__0));
+        }
+        if (g_dev_ctx.metering_attrs.status & ZB_ZCL_METERING_ELECTRICITY_POWER_QUALITY)
+        {
+            TRACE_MSG(TRACE_APP1, "   - power quality", (FMT__0));
+        }
+        if (g_dev_ctx.metering_attrs.status & ZB_ZCL_METERING_ELECTRICITY_LEAK_DETECT)
+        {
+            TRACE_MSG(TRACE_APP1, "   - leak detect", (FMT__0));
+        }
+        if (g_dev_ctx.metering_attrs.status & ZB_ZCL_METERING_ELECTRICITY_SERVICE_DISCONNECT_OPEN)
+        {
+            TRACE_MSG(TRACE_APP1, "   - service disconnect open", (FMT__0));
+        }
+        break;
 
     default:
-      break;
-  }
+        break;
+    }
 }
 
 
 /** Save Metering device's data into NVRAM. */
 static void metering_dev_save_data(zb_uint8_t param)
 {
-  ZVUNUSED(param);
-  /* If we fail, trace is given and assertion is triggered */
-  (void)zb_nvram_write_dataset(ZB_NVRAM_APP_DATA1);
-  ZB_SCHEDULE_APP_ALARM(metering_dev_save_data, 0, METERING_DEV_APP_DATA_PERSISTING_TIMEOUT);
+    ZVUNUSED(param);
+    /* If we fail, trace is given and assertion is triggered */
+    (void)zb_nvram_write_dataset(ZB_NVRAM_APP_DATA1);
+    ZB_SCHEDULE_APP_ALARM(metering_dev_save_data, 0, METERING_DEV_APP_DATA_PERSISTING_TIMEOUT);
 }
 
 /** Read Metering device's stored data from NVRAM. */
 void metering_dev_read_nvram_app_data(zb_uint8_t page, zb_uint32_t pos, zb_uint16_t payload_length)
 {
-  metering_dev_nvram_data_t data;
-  zb_ret_t ret;
+    metering_dev_nvram_data_t data;
+    zb_ret_t ret;
 
-  ZB_ASSERT(payload_length == sizeof(data));
+    ZB_ASSERT(payload_length == sizeof(data));
 
-  TRACE_MSG(TRACE_APP1, ">> metering_dev_read_nvram_app_data: page %hd pos %d", (FMT__H_D, page, pos));
+    TRACE_MSG(TRACE_APP1, ">> metering_dev_read_nvram_app_data: page %hd pos %d", (FMT__H_D, page, pos));
 
-  /* If we fail, trace is given and assertion is triggered */
-  ret = zb_nvram_read_data(page, pos, (zb_uint8_t *)&data, sizeof(data));
+    /* If we fail, trace is given and assertion is triggered */
+    ret = zb_nvram_read_data(page, pos, (zb_uint8_t *)&data, sizeof(data));
 
-  if (ret == RET_OK)
-  {
-    ZB_MEMCPY(&g_dev_ctx.metering_attrs.curr_summ_delivered, &data.curr_summ_delivered, sizeof(data.curr_summ_delivered));
-    g_dev_ctx.metering_attrs.status = data.status;
+    if (ret == RET_OK)
+    {
+        ZB_MEMCPY(&g_dev_ctx.metering_attrs.curr_summ_delivered, &data.curr_summ_delivered, sizeof(data.curr_summ_delivered));
+        g_dev_ctx.metering_attrs.status = data.status;
 
-    TRACE_MSG(TRACE_APP1, "Loaded metering device info", (FMT__0));
-    metering_dev_show_attr(ZB_ZCL_ATTR_METERING_CURRENT_SUMMATION_DELIVERED_ID);
-    metering_dev_show_attr(ZB_ZCL_ATTR_METERING_STATUS_ID);
-  }
+        TRACE_MSG(TRACE_APP1, "Loaded metering device info", (FMT__0));
+        metering_dev_show_attr(ZB_ZCL_ATTR_METERING_CURRENT_SUMMATION_DELIVERED_ID);
+        metering_dev_show_attr(ZB_ZCL_ATTR_METERING_STATUS_ID);
+    }
 
-  TRACE_MSG(TRACE_APP1, "<< metering_dev_read_nvram_app_data: ret %d", (FMT__D, ret));
+    TRACE_MSG(TRACE_APP1, "<< metering_dev_read_nvram_app_data: ret %d", (FMT__D, ret));
 }
 
 /** Application callback called on NVRAM writing operation (application dataset). */
 zb_ret_t metering_dev_write_nvram_app_data(zb_uint8_t page, zb_uint32_t pos)
 {
-  metering_dev_nvram_data_t data;
-  zb_ret_t ret;
+    metering_dev_nvram_data_t data;
+    zb_ret_t ret;
 
-  TRACE_MSG(TRACE_APP1, ">> metering_dev_write_nvram_app_data: page %hd, pos %d", (FMT__H_D, page, pos));
+    TRACE_MSG(TRACE_APP1, ">> metering_dev_write_nvram_app_data: page %hd, pos %d", (FMT__H_D, page, pos));
 
-  ZB_MEMCPY(&data.curr_summ_delivered, &g_dev_ctx.metering_attrs.curr_summ_delivered, sizeof(data.curr_summ_delivered));
-  data.status = g_dev_ctx.metering_attrs.status;
+    ZB_MEMCPY(&data.curr_summ_delivered, &g_dev_ctx.metering_attrs.curr_summ_delivered, sizeof(data.curr_summ_delivered));
+    data.status = g_dev_ctx.metering_attrs.status;
 
-  /* If we fail, trace is given and assertion is triggered */
-  ret = zb_nvram_write_data(page, pos, (zb_uint8_t *)&data, sizeof(data));
+    /* If we fail, trace is given and assertion is triggered */
+    ret = zb_nvram_write_data(page, pos, (zb_uint8_t *)&data, sizeof(data));
 
-  TRACE_MSG(TRACE_APP1, "<< metering_dev_write_nvram_app_data: ret %d", (FMT__D, ret));
+    TRACE_MSG(TRACE_APP1, "<< metering_dev_write_nvram_app_data: ret %d", (FMT__D, ret));
 
-  return ret;
+    return ret;
 }
 
 /** Get NVRAM application dataset size. */
 zb_uint16_t metering_dev_get_nvram_data_size()
 {
-  TRACE_MSG(TRACE_APP1, "metering_dev_get_nvram_data_size: ret %hd", (FMT__H, sizeof(metering_dev_nvram_data_t)));
-  return sizeof(metering_dev_nvram_data_t);
+    TRACE_MSG(TRACE_APP1, "metering_dev_get_nvram_data_size: ret %hd", (FMT__H, sizeof(metering_dev_nvram_data_t)));
+    return sizeof(metering_dev_nvram_data_t);
 }
 
 /** Init device context. */
 void metering_dev_ctx_init()
 {
-  TRACE_MSG(TRACE_APP1, ">> metering_dev_ctx_init", (FMT__0));
+    TRACE_MSG(TRACE_APP1, ">> metering_dev_ctx_init", (FMT__0));
 
-  ZB_MEMSET(&g_dev_ctx, 0, sizeof(g_dev_ctx));
+    ZB_MEMSET(&g_dev_ctx, 0, sizeof(g_dev_ctx));
 
-  TRACE_MSG(TRACE_APP1, "<< metering_dev_ctx_init", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "<< metering_dev_ctx_init", (FMT__0));
 }
 
 /** Init device ZCL attributes. */
 void metering_dev_clusters_attrs_init(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_APP1, ">> metering_dev_clusters_attrs_init", (FMT__0));
-  ZVUNUSED(param);
+    TRACE_MSG(TRACE_APP1, ">> metering_dev_clusters_attrs_init", (FMT__0));
+    ZVUNUSED(param);
 
-  g_dev_ctx.basic_attrs.zcl_version = ZB_ZCL_BASIC_ZCL_VERSION_DEFAULT_VALUE;
-  g_dev_ctx.basic_attrs.power_source = ZB_ZCL_BASIC_POWER_SOURCE_DEFAULT_VALUE;
+    g_dev_ctx.basic_attrs.zcl_version = ZB_ZCL_BASIC_ZCL_VERSION_DEFAULT_VALUE;
+    g_dev_ctx.basic_attrs.power_source = ZB_ZCL_BASIC_POWER_SOURCE_DEFAULT_VALUE;
 
-  g_dev_ctx.kec_attrs.kec_suite = ZB_KEC_SUPPORTED_CRYPTO_ATTR;
+    g_dev_ctx.kec_attrs.kec_suite = ZB_KEC_SUPPORTED_CRYPTO_ATTR;
 
-  g_dev_ctx.identify_attrs.identify_time = 0;
+    g_dev_ctx.identify_attrs.identify_time = 0;
 
-  g_dev_ctx.metering_attrs.status = ZB_ZCL_METERING_STATUS_DEFAULT_VALUE;
-  g_dev_ctx.metering_attrs.unit_of_measure = ZB_ZCL_METERING_UNIT_OF_MEASURE_KW_KWH_BINARY;
-  g_dev_ctx.metering_attrs.summation_formatting = METERING_DEV_SUMMATION_FORMATTING;
-  g_dev_ctx.metering_attrs.device_type = ZB_ZCL_METERING_DEVICE_TYPE_ELECTRIC_METERING;
+    g_dev_ctx.metering_attrs.status = ZB_ZCL_METERING_STATUS_DEFAULT_VALUE;
+    g_dev_ctx.metering_attrs.unit_of_measure = ZB_ZCL_METERING_UNIT_OF_MEASURE_KW_KWH_BINARY;
+    g_dev_ctx.metering_attrs.summation_formatting = METERING_DEV_SUMMATION_FORMATTING;
+    g_dev_ctx.metering_attrs.device_type = ZB_ZCL_METERING_DEVICE_TYPE_ELECTRIC_METERING;
 
-  TRACE_MSG(TRACE_APP1, "<< metering_dev_clusters_attrs_init", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "<< metering_dev_clusters_attrs_init", (FMT__0));
 }
 
 /** Init default reporting configuration of ZCL attributes (Metering - Current Summation Delivered
@@ -285,32 +285,32 @@ void metering_dev_clusters_attrs_init(zb_uint8_t param)
 */
 void metering_dev_default_reporting_init(zb_uint8_t param)
 {
-  zb_zcl_reporting_info_t rep_info;
+    zb_zcl_reporting_info_t rep_info;
 
-  TRACE_MSG(TRACE_APP1, ">> metering_dev_default_reporting_init", (FMT__0));
-  ZVUNUSED(param);
+    TRACE_MSG(TRACE_APP1, ">> metering_dev_default_reporting_init", (FMT__0));
+    ZVUNUSED(param);
 
-  ZB_BZERO(&rep_info, sizeof(zb_zcl_reporting_info_t));
-  rep_info.direction = ZB_ZCL_CONFIGURE_REPORTING_SEND_REPORT;
-  rep_info.ep = METERING_DEV_ENDPOINT;
-  rep_info.cluster_id = ZB_ZCL_CLUSTER_ID_METERING;
-  rep_info.cluster_role = ZB_ZCL_CLUSTER_SERVER_ROLE;
-  rep_info.dst.profile_id = ZB_AF_SE_PROFILE_ID;
+    ZB_BZERO(&rep_info, sizeof(zb_zcl_reporting_info_t));
+    rep_info.direction = ZB_ZCL_CONFIGURE_REPORTING_SEND_REPORT;
+    rep_info.ep = METERING_DEV_ENDPOINT;
+    rep_info.cluster_id = ZB_ZCL_CLUSTER_ID_METERING;
+    rep_info.cluster_role = ZB_ZCL_CLUSTER_SERVER_ROLE;
+    rep_info.dst.profile_id = ZB_AF_SE_PROFILE_ID;
 
-  rep_info.u.send_info.min_interval = ZB_SE_METERING_DATA_UPDATE_RATE;
-  rep_info.u.send_info.max_interval = ZB_ZCL_MAX_REPORTING_INTERVAL_DEFAULT;
-  rep_info.u.send_info.def_min_interval = ZB_SE_METERING_DATA_UPDATE_RATE;
-  rep_info.u.send_info.def_max_interval = ZB_ZCL_MAX_REPORTING_INTERVAL_DEFAULT;
-  rep_info.u.send_info.delta.u32 = 0;
+    rep_info.u.send_info.min_interval = ZB_SE_METERING_DATA_UPDATE_RATE;
+    rep_info.u.send_info.max_interval = ZB_ZCL_MAX_REPORTING_INTERVAL_DEFAULT;
+    rep_info.u.send_info.def_min_interval = ZB_SE_METERING_DATA_UPDATE_RATE;
+    rep_info.u.send_info.def_max_interval = ZB_ZCL_MAX_REPORTING_INTERVAL_DEFAULT;
+    rep_info.u.send_info.delta.u32 = 0;
 
-  rep_info.attr_id = ZB_ZCL_ATTR_METERING_CURRENT_SUMMATION_DELIVERED_ID;
-  /* Note: that call writes to nvram! Call it only after device started. */
-  zb_zcl_put_default_reporting_info(&rep_info);
+    rep_info.attr_id = ZB_ZCL_ATTR_METERING_CURRENT_SUMMATION_DELIVERED_ID;
+    /* Note: that call writes to nvram! Call it only after device started. */
+    zb_zcl_put_default_reporting_info(&rep_info);
 
-  rep_info.attr_id = ZB_ZCL_ATTR_METERING_STATUS_ID;
-  zb_zcl_put_default_reporting_info(&rep_info);
+    rep_info.attr_id = ZB_ZCL_ATTR_METERING_STATUS_ID;
+    zb_zcl_put_default_reporting_info(&rep_info);
 
-  TRACE_MSG(TRACE_APP1, "<< metering_dev_default_reporting_init", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "<< metering_dev_default_reporting_init", (FMT__0));
 }
 
 /** Application device callback for ZCL commands. Used for:
@@ -320,62 +320,62 @@ void metering_dev_default_reporting_init(zb_uint8_t param)
  */
 static void metering_zcl_cmd_device_cb(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_APP1, ">> metering_zcl_cmd_device_cb param %hd id %d", (FMT__H_D,
-    param, ZB_ZCL_DEVICE_CMD_PARAM_CB_ID(param)));
+    TRACE_MSG(TRACE_APP1, ">> metering_zcl_cmd_device_cb param %hd id %d", (FMT__H_D,
+              param, ZB_ZCL_DEVICE_CMD_PARAM_CB_ID(param)));
 
-  switch (ZB_ZCL_DEVICE_CMD_PARAM_CB_ID(param))
-  {
+    switch (ZB_ZCL_DEVICE_CMD_PARAM_CB_ID(param))
+    {
     case ZB_ZCL_TUNNELING_REQUEST_TUNNEL_RESPONSE_CB_ID:
     {
-      const zb_zcl_tunneling_request_tunnel_response_t *resp =
-        ZB_ZCL_DEVICE_CMD_PARAM_IN_GET(param, zb_zcl_tunneling_request_tunnel_response_t);
+        const zb_zcl_tunneling_request_tunnel_response_t *resp =
+            ZB_ZCL_DEVICE_CMD_PARAM_IN_GET(param, zb_zcl_tunneling_request_tunnel_response_t);
 
-      TRACE_MSG(TRACE_APP1, "ZB_ZCL_TUNNELING_REQUEST_TUNNEL_RESPONSE_CB_ID", (FMT__0));
-      if (resp->tunnel_status == ZB_ZCL_TUNNELING_TUNNEL_STATUS_SUCCESS)
-      {
-        /* Send tunneling data */
-        g_dev_ctx.metering_tunneling.tunnel_id = resp->tunnel_id;
-        ZB_GET_OUT_BUF_DELAYED(metering_tunneling_tx);
-      }
-      else
-      {
-        /* Forget tunneling srv */
-        g_dev_ctx.metering_tunneling.srv_addr = ZB_UNKNOWN_SHORT_ADDR;
-        g_dev_ctx.metering_tunneling.srv_ep = 0;
-      }
+        TRACE_MSG(TRACE_APP1, "ZB_ZCL_TUNNELING_REQUEST_TUNNEL_RESPONSE_CB_ID", (FMT__0));
+        if (resp->tunnel_status == ZB_ZCL_TUNNELING_TUNNEL_STATUS_SUCCESS)
+        {
+            /* Send tunneling data */
+            g_dev_ctx.metering_tunneling.tunnel_id = resp->tunnel_id;
+            ZB_GET_OUT_BUF_DELAYED(metering_tunneling_tx);
+        }
+        else
+        {
+            /* Forget tunneling srv */
+            g_dev_ctx.metering_tunneling.srv_addr = ZB_UNKNOWN_SHORT_ADDR;
+            g_dev_ctx.metering_tunneling.srv_ep = 0;
+        }
     }
     break;
 
     case ZB_ZCL_TUNNELING_TRANSFER_DATA_SRV_CB_ID:
     {
-      const zb_zcl_tunneling_transfer_data_payload_t *tr_data =
-        ZB_ZCL_DEVICE_CMD_PARAM_IN_GET(param, zb_zcl_tunneling_transfer_data_payload_t);
-      TRACE_MSG(TRACE_APP1, "ZB_ZCL_TUNNELING_TRANSFER_DATA_SRV_CB_ID", (FMT__0));
-      DUMP_TRAF("recv:", tr_data->tun_data, tr_data->data_size, 0);
-      ZB_GET_OUT_BUF_DELAYED(metering_tunneling_close_tunnel);
-      ZB_ZCL_DEVICE_CMD_PARAM_STATUS(param) = RET_OK;
+        const zb_zcl_tunneling_transfer_data_payload_t *tr_data =
+            ZB_ZCL_DEVICE_CMD_PARAM_IN_GET(param, zb_zcl_tunneling_transfer_data_payload_t);
+        TRACE_MSG(TRACE_APP1, "ZB_ZCL_TUNNELING_TRANSFER_DATA_SRV_CB_ID", (FMT__0));
+        DUMP_TRAF("recv:", tr_data->tun_data, tr_data->data_size, 0);
+        ZB_GET_OUT_BUF_DELAYED(metering_tunneling_close_tunnel);
+        ZB_ZCL_DEVICE_CMD_PARAM_STATUS(param) = RET_OK;
     }
     break;
 
     case ZB_ZCL_TUNNELING_TRANSFER_DATA_ERROR_SRV_CB_ID:
     {
-      const zb_zcl_tunneling_transfer_data_error_t *tr_error =
-        ZB_ZCL_DEVICE_CMD_PARAM_IN_GET(param, zb_zcl_tunneling_transfer_data_error_t);
-      TRACE_MSG(TRACE_APP1, "ZB_ZCL_TUNNELING_TRANSFER_DATA_ERROR_SRV_CB_ID: reason %hd", (FMT__H, tr_error->transfer_data_status));
-      if (tr_error->transfer_data_status == ZB_ZCL_TUNNELING_TRANSFER_DATA_STATUS_DATA_OVERFLOW)
-      {
-        ZB_GET_OUT_BUF_DELAYED(metering_tunneling_close_tunnel);
-      }
-      ZB_ZCL_DEVICE_CMD_PARAM_STATUS(param) = RET_OK;
+        const zb_zcl_tunneling_transfer_data_error_t *tr_error =
+            ZB_ZCL_DEVICE_CMD_PARAM_IN_GET(param, zb_zcl_tunneling_transfer_data_error_t);
+        TRACE_MSG(TRACE_APP1, "ZB_ZCL_TUNNELING_TRANSFER_DATA_ERROR_SRV_CB_ID: reason %hd", (FMT__H, tr_error->transfer_data_status));
+        if (tr_error->transfer_data_status == ZB_ZCL_TUNNELING_TRANSFER_DATA_STATUS_DATA_OVERFLOW)
+        {
+            ZB_GET_OUT_BUF_DELAYED(metering_tunneling_close_tunnel);
+        }
+        ZB_ZCL_DEVICE_CMD_PARAM_STATUS(param) = RET_OK;
     }
     break;
 
     default:
-      TRACE_MSG(TRACE_APP1, "Undefined callback was called, id=%d",
-                (FMT__D, ZB_ZCL_DEVICE_CMD_PARAM_CB_ID(param)));
-      break;
-  }
-  TRACE_MSG(TRACE_APP1, ">> metering_zcl_cmd_device_cb param", (FMT__0));
+        TRACE_MSG(TRACE_APP1, "Undefined callback was called, id=%d",
+                  (FMT__D, ZB_ZCL_DEVICE_CMD_PARAM_CB_ID(param)));
+        break;
+    }
+    TRACE_MSG(TRACE_APP1, ">> metering_zcl_cmd_device_cb param", (FMT__0));
 }
 
 /** [METERING_DEV_INIT] */
@@ -383,115 +383,115 @@ static void metering_zcl_cmd_device_cb(zb_uint8_t param)
  * register device context and ZCL cmd device callback), init application attributes/context. */
 void metering_dev_app_init(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_APP1, ">> metering_dev_app_init", (FMT__0));
-/** [METERING_DEV_INIT] */
-  ZVUNUSED(param);
+    TRACE_MSG(TRACE_APP1, ">> metering_dev_app_init", (FMT__0));
+    /** [METERING_DEV_INIT] */
+    ZVUNUSED(param);
 
-  zb_osif_led_button_init();
-  zb_nvram_register_app1_read_cb(metering_dev_read_nvram_app_data);
-  zb_nvram_register_app1_write_cb(metering_dev_write_nvram_app_data, metering_dev_get_nvram_data_size);
+    zb_osif_led_button_init();
+    zb_nvram_register_app1_read_cb(metering_dev_read_nvram_app_data);
+    zb_nvram_register_app1_write_cb(metering_dev_write_nvram_app_data, metering_dev_get_nvram_data_size);
 
-  if (zb_osif_button_state(BUTTON_LEFT) && zb_osif_button_state(BUTTON_RIGHT))
-  {
-    zb_se_start_nvram_erase_indication();
-    zb_set_nvram_erase_at_start(ZB_TRUE);
-    zb_se_stop_nvram_erase_indication();
-  }
-  /** [REGISTER_DEVICE_CTX] */
-  ZB_AF_REGISTER_DEVICE_CTX(&metering_dev_zcl_ctx);
-  /** [REGISTER_DEVICE_CTX] */
+    if (zb_osif_button_state(BUTTON_LEFT) && zb_osif_button_state(BUTTON_RIGHT))
+    {
+        zb_se_start_nvram_erase_indication();
+        zb_set_nvram_erase_at_start(ZB_TRUE);
+        zb_se_stop_nvram_erase_indication();
+    }
+    /** [REGISTER_DEVICE_CTX] */
+    ZB_AF_REGISTER_DEVICE_CTX(&metering_dev_zcl_ctx);
+    /** [REGISTER_DEVICE_CTX] */
 
-  /* device configuration */
-  metering_dev_ctx_init();
-  metering_dev_clusters_attrs_init(0);
-  ZB_ZCL_REGISTER_DEVICE_CB(metering_zcl_cmd_device_cb);
+    /* device configuration */
+    metering_dev_ctx_init();
+    metering_dev_clusters_attrs_init(0);
+    ZB_ZCL_REGISTER_DEVICE_CB(metering_zcl_cmd_device_cb);
 
-  /* ZB configuration */
+    /* ZB configuration */
 #ifdef ENABLE_RUNTIME_APP_CONFIG
-  zb_set_long_address(g_dev_addr);
+    zb_set_long_address(g_dev_addr);
 #ifdef ENABLE_PRECOMMISSIONED_REJOIN
-  zb_set_use_extended_pan_id(&g_ext_pan_id);
+    zb_set_use_extended_pan_id(&g_ext_pan_id);
 #endif
 #endif
 #if defined ZB_SUBGHZ_BAND_ENABLED
-  {
-    zb_channel_list_t channel_list;
-    zb_channel_list_init(channel_list);
-    zb_channel_page_list_set_mask(channel_list, 0, METERING_DEV_CHANNEL_MASK1);
-    zb_channel_page_list_set_mask(channel_list, METERING_DEV_CHANNEL_PAGE_I2, METERING_DEV_CHANNEL_MASK2);
-    TRACE_MSG(TRACE_APP1, "ZED in MM mode start: page %d mask 0x%x page %d mask 0x%x",
-    (FMT__D_D_D_D, METERING_DEV_CHANNEL_PAGE_I1, METERING_DEV_CHANNEL_MASK1, METERING_DEV_CHANNEL_PAGE_I2, METERING_DEV_CHANNEL_MASK2));
-    zb_se_set_network_ed_role_select_device(channel_list);
-  }
+    {
+        zb_channel_list_t channel_list;
+        zb_channel_list_init(channel_list);
+        zb_channel_page_list_set_mask(channel_list, 0, METERING_DEV_CHANNEL_MASK1);
+        zb_channel_page_list_set_mask(channel_list, METERING_DEV_CHANNEL_PAGE_I2, METERING_DEV_CHANNEL_MASK2);
+        TRACE_MSG(TRACE_APP1, "ZED in MM mode start: page %d mask 0x%x page %d mask 0x%x",
+                  (FMT__D_D_D_D, METERING_DEV_CHANNEL_PAGE_I1, METERING_DEV_CHANNEL_MASK1, METERING_DEV_CHANNEL_PAGE_I2, METERING_DEV_CHANNEL_MASK2));
+        zb_se_set_network_ed_role_select_device(channel_list);
+    }
 #else
-/** [METERING_DEV_SET_ROLE] */
-  zb_se_set_network_ed_role(METERING_DEV_CHANNEL_MASK1);
+    /** [METERING_DEV_SET_ROLE] */
+    zb_se_set_network_ed_role(METERING_DEV_CHANNEL_MASK1);
 #endif
-  /* Act as Sleepy End Device */
-  zb_set_rx_on_when_idle(ZB_FALSE);
-/** [METERING_DEV_SET_ROLE] */
+    /* Act as Sleepy End Device */
+    zb_set_rx_on_when_idle(ZB_FALSE);
+    /** [METERING_DEV_SET_ROLE] */
 
-  TRACE_MSG(TRACE_APP1, "<< metering_dev_app_init", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "<< metering_dev_app_init", (FMT__0));
 }
 
 
 /** Generate and accumulate measurements - emulate real device. */
 static void metering_dev_measure(zb_uint8_t param)
 {
-  zb_int24_t instantaneous_consumption;
-  zb_int32_t measure;
-  zb_uint48_t new_curr_summ_delivered;
-  zb_uint8_t new_metering_status;
+    zb_int24_t instantaneous_consumption;
+    zb_int32_t measure;
+    zb_uint48_t new_curr_summ_delivered;
+    zb_uint8_t new_metering_status;
 
-  ZVUNUSED(param);
+    ZVUNUSED(param);
 
-  /* Update InstantaneousDemand and CurrentSummationDelivered every time we are here
-   * (for now it is once a second).
-   *
-   * ZSE spec, subclause D.3.2.2.1.1
-   *    CurrentSummationDelivered represents the most recent summed value of Energy, Gas,
-   *    or Water delivered and consumed in the premises. CurrentSummationDelivered is updated
-   *    continuously as new measurements are made.
-   *
-   * ZSE spec, subclause D.3.2.2.5.1:
-   *    InstantaneousDemand is updated continuously as new measurements are made.
-   *    The frequency of updates to this field is specific to the metering device, but
-   *    should be within the range of once every second to once every 5 seconds.
-   */
-  measure = (zb_int32_t)ZB_RANDOM_VALUE(7);
-  ZB_INT24_FROM_INT32(instantaneous_consumption, measure);
-  new_curr_summ_delivered = g_dev_ctx.metering_attrs.curr_summ_delivered;
-  ZB_UINT48_ADD_INT24(new_curr_summ_delivered, instantaneous_consumption);
+    /* Update InstantaneousDemand and CurrentSummationDelivered every time we are here
+     * (for now it is once a second).
+     *
+     * ZSE spec, subclause D.3.2.2.1.1
+     *    CurrentSummationDelivered represents the most recent summed value of Energy, Gas,
+     *    or Water delivered and consumed in the premises. CurrentSummationDelivered is updated
+     *    continuously as new measurements are made.
+     *
+     * ZSE spec, subclause D.3.2.2.5.1:
+     *    InstantaneousDemand is updated continuously as new measurements are made.
+     *    The frequency of updates to this field is specific to the metering device, but
+     *    should be within the range of once every second to once every 5 seconds.
+     */
+    measure = (zb_int32_t)ZB_RANDOM_VALUE(7);
+    ZB_INT24_FROM_INT32(instantaneous_consumption, measure);
+    new_curr_summ_delivered = g_dev_ctx.metering_attrs.curr_summ_delivered;
+    ZB_UINT48_ADD_INT24(new_curr_summ_delivered, instantaneous_consumption);
 
-  TRACE_MSG(TRACE_APP1, "instantaneous electricity consumption: %ld %ld",
-            (FMT__L_L, instantaneous_consumption.high, instantaneous_consumption.low));
+    TRACE_MSG(TRACE_APP1, "instantaneous electricity consumption: %ld %ld",
+              (FMT__L_L, instantaneous_consumption.high, instantaneous_consumption.low));
 
-  ZB_ZCL_SET_ATTRIBUTE(METERING_DEV_ENDPOINT,
-                       ZB_ZCL_CLUSTER_ID_METERING,
-                       ZB_ZCL_CLUSTER_SERVER_ROLE,
-                       ZB_ZCL_ATTR_METERING_CURRENT_SUMMATION_DELIVERED_ID,
-                       (zb_uint8_t *)&new_curr_summ_delivered,
-                       ZB_FALSE);
+    ZB_ZCL_SET_ATTRIBUTE(METERING_DEV_ENDPOINT,
+                         ZB_ZCL_CLUSTER_ID_METERING,
+                         ZB_ZCL_CLUSTER_SERVER_ROLE,
+                         ZB_ZCL_ATTR_METERING_CURRENT_SUMMATION_DELIVERED_ID,
+                         (zb_uint8_t *)&new_curr_summ_delivered,
+                         ZB_FALSE);
 
-  new_metering_status = (1L << measure);
+    new_metering_status = (1L << measure);
 
-  ZB_ZCL_SET_ATTRIBUTE(METERING_DEV_ENDPOINT,
-                       ZB_ZCL_CLUSTER_ID_METERING,
-                       ZB_ZCL_CLUSTER_SERVER_ROLE,
-                       ZB_ZCL_ATTR_METERING_STATUS_ID,
-                       (zb_uint8_t *)&new_metering_status,
-                       ZB_FALSE);
+    ZB_ZCL_SET_ATTRIBUTE(METERING_DEV_ENDPOINT,
+                         ZB_ZCL_CLUSTER_ID_METERING,
+                         ZB_ZCL_CLUSTER_SERVER_ROLE,
+                         ZB_ZCL_ATTR_METERING_STATUS_ID,
+                         (zb_uint8_t *)&new_metering_status,
+                         ZB_FALSE);
 
-  metering_dev_show_attr(ZB_ZCL_ATTR_METERING_CURRENT_SUMMATION_DELIVERED_ID);
-  metering_dev_show_attr(ZB_ZCL_ATTR_METERING_STATUS_ID);
+    metering_dev_show_attr(ZB_ZCL_ATTR_METERING_CURRENT_SUMMATION_DELIVERED_ID);
+    metering_dev_show_attr(ZB_ZCL_ATTR_METERING_STATUS_ID);
 
-  if (g_dev_ctx.first_measurement_done == ZB_FALSE)
-  {
-    ZB_SCHEDULE_APP_CALLBACK(metering_dev_save_data, 0);
-    g_dev_ctx.first_measurement_done = ZB_TRUE;
-  }
+    if (g_dev_ctx.first_measurement_done == ZB_FALSE)
+    {
+        ZB_SCHEDULE_APP_CALLBACK(metering_dev_save_data, 0);
+        g_dev_ctx.first_measurement_done = ZB_TRUE;
+    }
 
-  ZB_SCHEDULE_APP_ALARM(metering_dev_measure, 0, METERING_DEV_MEASURE_TIMEOUT);
+    ZB_SCHEDULE_APP_ALARM(metering_dev_measure, 0, METERING_DEV_MEASURE_TIMEOUT);
 }
 
 
@@ -499,56 +499,98 @@ static void metering_dev_measure(zb_uint8_t param)
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  ZB_SET_TRACE_ON();
-  ZB_SET_TRAF_DUMP_ON();
+    ZB_SET_TRACE_ON();
+    ZB_SET_TRAF_DUMP_ON();
 
-  ZB_INIT("metering_device");
+    ZB_INIT("metering_device");
 
-  metering_dev_app_init(0);
+    metering_dev_app_init(0);
 
-  if (zboss_start_no_autostart() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start_no_autostart() failed", (FMT__0));
-  }
-  else
-  {
-    zboss_main_loop();
-  }
+    if (zboss_start_no_autostart() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start_no_autostart() failed", (FMT__0));
+    }
+    else
+    {
+        zboss_main_loop();
+    }
 
-  TRACE_DEINIT();
-  MAIN_RETURN(0);
+    TRACE_DEINIT();
+    MAIN_RETURN(0);
 }
 
 /** Left button handler: start/stop join. */
 static void metering_dev_left_button_handler(zb_uint8_t param)
 {
-  if (!param)
-  {
-    /* Button is pressed, get buffer for outgoing command */
-    ZB_GET_OUT_BUF_DELAYED(metering_dev_left_button_handler);
-  }
-  else
-  {
-    if (zb_se_auto_join_start(param) == RET_OK)
+    if (!param)
     {
-      TRACE_MSG(TRACE_APP1, "start auto_join", (FMT__0));
-      zb_se_indicate_commissioning_started();
+        /* Button is pressed, get buffer for outgoing command */
+        ZB_GET_OUT_BUF_DELAYED(metering_dev_left_button_handler);
     }
     else
     {
-      zb_se_auto_join_stop();
-      zb_se_indicate_commissioning_stopped();
-      TRACE_MSG(TRACE_APP1, "stop auto_join", (FMT__0));
-      zb_free_buf(ZB_BUF_FROM_REF(param));
+        if (zb_se_auto_join_start(param) == RET_OK)
+        {
+            TRACE_MSG(TRACE_APP1, "start auto_join", (FMT__0));
+            zb_se_indicate_commissioning_started();
+        }
+        else
+        {
+            zb_se_auto_join_stop();
+            zb_se_indicate_commissioning_stopped();
+            TRACE_MSG(TRACE_APP1, "stop auto_join", (FMT__0));
+            zb_free_buf(ZB_BUF_FROM_REF(param));
+        }
     }
-  }
 }
 
 void metering_dev_request_tunnel(zb_uint8_t param)
 {
-  ZB_ZCL_TUNNELING_SEND_REQUEST_TUNNEL(param,
+    ZB_ZCL_TUNNELING_SEND_REQUEST_TUNNEL(param,
+                                         g_dev_ctx.metering_tunneling.srv_addr,
+                                         ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
+                                         g_dev_ctx.metering_tunneling.srv_ep,
+                                         METERING_DEV_ENDPOINT,
+                                         ZB_AF_SE_PROFILE_ID,
+                                         ZB_ZCL_ENABLE_DEFAULT_RESPONSE,
+                                         NULL, /* no callback */
+                                         ZB_ZCL_TUNNELING_PROTOCOL_MANUFACTURER_DEFINED,
+                                         METERING_TUNNELING_MANUFACTURER_CODE, /* manufacturer_code */
+                                         ZB_FALSE, /* no flow control */
+                                         ZB_ZCL_TUNNELING_MAX_INCOMING_TRANSFER_SIZE);
+}
+
+void metering_tunneling_tx(zb_uint8_t param)
+{
+    zb_uint8_t tunneling_data[METERING_TUNNELING_PAYLOAD_SIZE];
+    zb_uint8_t i;
+
+    TRACE_MSG(TRACE_APP1, "metering_tunneling_tx param %hd", (FMT__H, param));
+
+    for (i = 0; i < ZB_ARRAY_SIZE(tunneling_data); ++i)
+    {
+        tunneling_data[i] = i;
+    }
+
+    if (ZB_ZCL_TUNNELING_CLIENT_SEND_TRANSFER_DATA(param,
+            METERING_DEV_ENDPOINT,
+            ZB_AF_SE_PROFILE_ID,
+            ZB_ZCL_ENABLE_DEFAULT_RESPONSE,
+            NULL, /* no callback */
+            g_dev_ctx.metering_tunneling.tunnel_id,
+            ZB_ARRAY_SIZE(tunneling_data) * sizeof(zb_uint8_t),
+            tunneling_data) != RET_OK)
+    {
+        TRACE_MSG(TRACE_APP1, "error sending tunneling tx!", (FMT__H, param));
+        ZB_FREE_BUF_BY_REF(param);
+    }
+}
+
+void metering_tunneling_close_tunnel(zb_uint8_t param)
+{
+    ZB_ZCL_TUNNELING_SEND_CLOSE_TUNNEL(param,
                                        g_dev_ctx.metering_tunneling.srv_addr,
                                        ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
                                        g_dev_ctx.metering_tunneling.srv_ep,
@@ -556,99 +598,57 @@ void metering_dev_request_tunnel(zb_uint8_t param)
                                        ZB_AF_SE_PROFILE_ID,
                                        ZB_ZCL_ENABLE_DEFAULT_RESPONSE,
                                        NULL, /* no callback */
-                                       ZB_ZCL_TUNNELING_PROTOCOL_MANUFACTURER_DEFINED,
-                                       METERING_TUNNELING_MANUFACTURER_CODE, /* manufacturer_code */
-                                       ZB_FALSE, /* no flow control */
-                                       ZB_ZCL_TUNNELING_MAX_INCOMING_TRANSFER_SIZE);
-}
-
-void metering_tunneling_tx(zb_uint8_t param)
-{
-  zb_uint8_t tunneling_data[METERING_TUNNELING_PAYLOAD_SIZE];
-  zb_uint8_t i;
-
-  TRACE_MSG(TRACE_APP1, "metering_tunneling_tx param %hd", (FMT__H, param));
-
-  for (i = 0; i < ZB_ARRAY_SIZE(tunneling_data); ++i)
-  {
-    tunneling_data[i] = i;
-  }
-
-  if (ZB_ZCL_TUNNELING_CLIENT_SEND_TRANSFER_DATA(param,
-                                      METERING_DEV_ENDPOINT,
-                                      ZB_AF_SE_PROFILE_ID,
-                                      ZB_ZCL_ENABLE_DEFAULT_RESPONSE,
-                                      NULL, /* no callback */
-                                      g_dev_ctx.metering_tunneling.tunnel_id,
-                                      ZB_ARRAY_SIZE(tunneling_data) * sizeof(zb_uint8_t),
-                                      tunneling_data) != RET_OK)
-  {
-    TRACE_MSG(TRACE_APP1, "error sending tunneling tx!", (FMT__H, param));
-    ZB_FREE_BUF_BY_REF(param);
-  }
-}
-
-void metering_tunneling_close_tunnel(zb_uint8_t param)
-{
-  ZB_ZCL_TUNNELING_SEND_CLOSE_TUNNEL(param,
-                                     g_dev_ctx.metering_tunneling.srv_addr,
-                                     ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
-                                     g_dev_ctx.metering_tunneling.srv_ep,
-                                     METERING_DEV_ENDPOINT,
-                                     ZB_AF_SE_PROFILE_ID,
-                                     ZB_ZCL_ENABLE_DEFAULT_RESPONSE,
-                                     NULL, /* no callback */
-                                     g_dev_ctx.metering_tunneling.tunnel_id);
+                                       g_dev_ctx.metering_tunneling.tunnel_id);
 }
 
 
 #ifdef TEST_DUTY_C
 static void crash_poll_keepalive(zb_uint8_t param)
 {
-  if (!param)
-  {
-    ZB_GET_OUT_BUF_DELAYED(crash_poll_keepalive);
-  }
-  /* If suspended, stop sending. */
-  else
-  {
-    if (!s_tx_suspended)
+    if (!param)
     {
-      zb_buf_t *buf = ZB_BUF_FROM_REF(param);
-      zb_uint8_t *cmd_ptr = ZB_BUF_BEGIN(buf);
-      zb_uint16_t tc_short_addr = 0;
-      zb_af_endpoint_desc_t *ep_desc = NULL;
-
-      ZB_ZCL_GENERAL_INIT_READ_ATTR_REQ(buf, cmd_ptr, ZB_ZCL_ENABLE_DEFAULT_RESPONSE);
-
-      ZB_ZCL_GENERAL_ADD_ID_READ_ATTR_REQ(cmd_ptr, ZB_ZCL_ATTR_KEEP_ALIVE_TC_KEEP_ALIVE_BASE_ID);
-      ZB_ZCL_GENERAL_ADD_ID_READ_ATTR_REQ(cmd_ptr, ZB_ZCL_ATTR_KEEP_ALIVE_TC_KEEP_ALIVE_JITTER_ID);
-
-      ep_desc = get_endpoint_by_cluster_with_role(ZB_ZCL_CLUSTER_ID_KEEP_ALIVE,
-                                                  ZB_ZCL_CLUSTER_CLIENT_ROLE);
-      ZB_ASSERT(ep_desc);
-
-      ZB_ZCL_GENERAL_SEND_READ_ATTR_REQ(buf,
-                                        cmd_ptr,
-                                        tc_short_addr,
-                                        ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
-                                        METERING_DEV_ENDPOINT,
-                                        ep_desc->ep_id,
-                                        ZB_AF_SE_PROFILE_ID,
-                                        ZB_ZCL_CLUSTER_ID_KEEP_ALIVE,
-                                        NULL);
+        ZB_GET_OUT_BUF_DELAYED(crash_poll_keepalive);
     }
+    /* If suspended, stop sending. */
     else
     {
-      zb_free_buf(ZB_BUF_FROM_REF(param));
-    }
-    {
-      static zb_int_t n = 0;
+        if (!s_tx_suspended)
+        {
+            zb_buf_t *buf = ZB_BUF_FROM_REF(param);
+            zb_uint8_t *cmd_ptr = ZB_BUF_BEGIN(buf);
+            zb_uint16_t tc_short_addr = 0;
+            zb_af_endpoint_desc_t *ep_desc = NULL;
 
-      n++;
-      ZB_SCHEDULE_APP_ALARM(crash_poll_keepalive, 0, ZB_MILLISECONDS_TO_BEACON_INTERVAL(n == 50 ? 31000 : 500));
+            ZB_ZCL_GENERAL_INIT_READ_ATTR_REQ(buf, cmd_ptr, ZB_ZCL_ENABLE_DEFAULT_RESPONSE);
+
+            ZB_ZCL_GENERAL_ADD_ID_READ_ATTR_REQ(cmd_ptr, ZB_ZCL_ATTR_KEEP_ALIVE_TC_KEEP_ALIVE_BASE_ID);
+            ZB_ZCL_GENERAL_ADD_ID_READ_ATTR_REQ(cmd_ptr, ZB_ZCL_ATTR_KEEP_ALIVE_TC_KEEP_ALIVE_JITTER_ID);
+
+            ep_desc = get_endpoint_by_cluster_with_role(ZB_ZCL_CLUSTER_ID_KEEP_ALIVE,
+                      ZB_ZCL_CLUSTER_CLIENT_ROLE);
+            ZB_ASSERT(ep_desc);
+
+            ZB_ZCL_GENERAL_SEND_READ_ATTR_REQ(buf,
+                                              cmd_ptr,
+                                              tc_short_addr,
+                                              ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
+                                              METERING_DEV_ENDPOINT,
+                                              ep_desc->ep_id,
+                                              ZB_AF_SE_PROFILE_ID,
+                                              ZB_ZCL_CLUSTER_ID_KEEP_ALIVE,
+                                              NULL);
+        }
+        else
+        {
+            zb_free_buf(ZB_BUF_FROM_REF(param));
+        }
+        {
+            static zb_int_t n = 0;
+
+            n++;
+            ZB_SCHEDULE_APP_ALARM(crash_poll_keepalive, 0, ZB_MILLISECONDS_TO_BEACON_INTERVAL(n == 50 ? 31000 : 500));
+        }
     }
-  }
 }
 #endif
 
@@ -657,31 +657,31 @@ static void crash_poll_keepalive(zb_uint8_t param)
 
 void call_simple_desc_req(zb_uint8_t param)
 {
-  zb_zdo_simple_desc_req_t * req;
+    zb_zdo_simple_desc_req_t *req;
 
-  ZB_BUF_INITIAL_ALLOC(ZB_BUF_FROM_REF(param), sizeof(zb_zdo_simple_desc_req_t), req);
-  ZB_BZERO(req, sizeof(zb_zdo_simple_desc_req_t));
+    ZB_BUF_INITIAL_ALLOC(ZB_BUF_FROM_REF(param), sizeof(zb_zdo_simple_desc_req_t), req);
+    ZB_BZERO(req, sizeof(zb_zdo_simple_desc_req_t));
 
-  req->nwk_addr = 0;
-  req->endpoint = 1;
-  zb_zdo_simple_desc_req(param, NULL);
+    req->nwk_addr = 0;
+    req->endpoint = 1;
+    zb_zdo_simple_desc_req(param, NULL);
 }
 
 
 void call_match_desc_req(zb_uint8_t param)
 {
-  zb_zdo_match_desc_param_t *req;
+    zb_zdo_match_desc_param_t *req;
 
-  ZB_BUF_INITIAL_ALLOC(ZB_BUF_FROM_REF(param), sizeof(zb_zdo_match_desc_param_t) + (1) * sizeof(zb_uint16_t), req);
+    ZB_BUF_INITIAL_ALLOC(ZB_BUF_FROM_REF(param), sizeof(zb_zdo_match_desc_param_t) + (1) * sizeof(zb_uint16_t), req);
 
-  req->nwk_addr = 0;
-  req->addr_of_interest = 0;
-  req->profile_id = ZB_AF_SE_PROFILE_ID;
-  req->num_in_clusters = 1;
-  req->num_out_clusters = 0;
-  req->cluster_list[0] = ZB_ZCL_CLUSTER_ID_SUB_GHZ;
+    req->nwk_addr = 0;
+    req->addr_of_interest = 0;
+    req->profile_id = ZB_AF_SE_PROFILE_ID;
+    req->num_in_clusters = 1;
+    req->num_out_clusters = 0;
+    req->cluster_list[0] = ZB_ZCL_CLUSTER_ID_SUB_GHZ;
 
-  zb_zdo_match_desc_req(param, NULL);
+    zb_zdo_match_desc_req(param, NULL);
 }
 #endif
 
@@ -692,142 +692,142 @@ void call_match_desc_req(zb_uint8_t param)
 /** [SIGNAL_HANDLER] */
 void zboss_signal_handler(zb_uint8_t param)
 {
-  zb_zdo_app_signal_hdr_t *sg_p = NULL;
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, &sg_p);
+    zb_zdo_app_signal_hdr_t *sg_p = NULL;
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, &sg_p);
 
-  if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
-  {
-    switch (sig)
+    if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
     {
-      case ZB_ZDO_SIGNAL_SKIP_STARTUP:
-        TRACE_MSG(TRACE_APP1, "ZB_ZDO_SIGNAL_SKIP_STARTUP: boot, not started yet", (FMT__0));
-        /* This call is here because reporting configuration is saved to nvram, so it must be called after nvram loaded. */
-        metering_dev_default_reporting_init(0);
+        switch (sig)
+        {
+        case ZB_ZDO_SIGNAL_SKIP_STARTUP:
+            TRACE_MSG(TRACE_APP1, "ZB_ZDO_SIGNAL_SKIP_STARTUP: boot, not started yet", (FMT__0));
+            /* This call is here because reporting configuration is saved to nvram, so it must be called after nvram loaded. */
+            metering_dev_default_reporting_init(0);
 #ifdef ENABLE_RUNTIME_APP_CONFIG
-        zb_secur_ic_str_set(el_metering_installcode);
+            zb_secur_ic_str_set(el_metering_installcode);
 #ifdef SE_CRYPTOSUITE_1
-        zb_se_load_ecc_cert(KEC_CS1, ca_public_key_cs1, el_metering_certificate_cs1, el_metering_private_key_cs1);
+            zb_se_load_ecc_cert(KEC_CS1, ca_public_key_cs1, el_metering_certificate_cs1, el_metering_private_key_cs1);
 #endif
 #ifdef SE_CRYPTOSUITE_2
-        zb_se_load_ecc_cert(KEC_CS2, ca_public_key_cs2, el_metering_certificate_cs2, el_metering_private_key_cs2);
+            zb_se_load_ecc_cert(KEC_CS2, ca_public_key_cs2, el_metering_certificate_cs2, el_metering_private_key_cs2);
 #endif
 #endif /* ENABLE_RUNTIME_APP_CONFIG */
-        zboss_start_continue();
-        break;
+            zboss_start_continue();
+            break;
 
-      case ZB_SE_SIGNAL_SKIP_JOIN:
-        /* wait button click to start commissioning */
-        TRACE_MSG(TRACE_APP1, "ZB_SE_SIGNAL_SKIP_JOIN", (FMT__0));
+        case ZB_SE_SIGNAL_SKIP_JOIN:
+            /* wait button click to start commissioning */
+            TRACE_MSG(TRACE_APP1, "ZB_SE_SIGNAL_SKIP_JOIN", (FMT__0));
 #ifdef ZB_USE_BUTTONS
-        zb_button_register_handler(BUTTON_LEFT, 0, metering_dev_left_button_handler);
+            zb_button_register_handler(BUTTON_LEFT, 0, metering_dev_left_button_handler);
 #else
-        metering_dev_left_button_handler(0);
+            metering_dev_left_button_handler(0);
 #endif
-        break;
+            break;
 
-      case ZB_SIGNAL_DEVICE_FIRST_START:
-      case ZB_SIGNAL_DEVICE_REBOOT:
-        TRACE_MSG(TRACE_APP1, "Device STARTED OK: first_start %hd",
-                  (FMT__H, sig == ZB_SIGNAL_DEVICE_FIRST_START));
+        case ZB_SIGNAL_DEVICE_FIRST_START:
+        case ZB_SIGNAL_DEVICE_REBOOT:
+            TRACE_MSG(TRACE_APP1, "Device STARTED OK: first_start %hd",
+                      (FMT__H, sig == ZB_SIGNAL_DEVICE_FIRST_START));
+            {
+                zb_uint8_t key[ZB_CCM_KEY_SIZE];
+                zb_se_debug_get_link_key(0, key);
+                TRACE_MSG(TRACE_ERROR, "TCLK: " TRACE_FORMAT_128, (FMT__B, TRACE_ARG_128(key)));
+                zb_se_debug_get_nwk_key(key);
+                TRACE_MSG(TRACE_ERROR, "NWK key: " TRACE_FORMAT_128, (FMT__B, TRACE_ARG_128(key)));
+                zb_se_debug_get_ic_key(key);
+                TRACE_MSG(TRACE_ERROR, "TCLK by installcode: " TRACE_FORMAT_128, (FMT__B, TRACE_ARG_128(key)));
+            }
+            ZB_SCHEDULE_APP_ALARM_CANCEL(metering_dev_measure, ZB_ALARM_ANY_PARAM);
+            ZB_SCHEDULE_APP_CALLBACK(metering_dev_measure, 0);
+            zb_se_indicate_default_start();
+            break;
+
+        case ZB_SE_SIGNAL_CBKE_OK:
+            TRACE_MSG(TRACE_APP1, "ZB_SE_SIGNAL_CBKE_OK: Key Establishment with Trust Center (CBKE) OK", (FMT__0));
+            break;
+
+        case ZB_SE_SIGNAL_SERVICE_DISCOVERY_START:
+            TRACE_MSG(TRACE_APP1, "Start Service Discovery", (FMT__0));
+            zb_se_service_discovery_start(METERING_DEV_ENDPOINT);
+            zb_se_indicate_service_discovery_started();
+            break;
+
+        case ZB_SE_SIGNAL_SERVICE_DISCOVERY_DO_BIND:
         {
-          zb_uint8_t key[ZB_CCM_KEY_SIZE];
-          zb_se_debug_get_link_key(0, key);
-          TRACE_MSG(TRACE_ERROR, "TCLK: " TRACE_FORMAT_128, (FMT__B, TRACE_ARG_128(key)));
-          zb_se_debug_get_nwk_key(key);
-          TRACE_MSG(TRACE_ERROR, "NWK key: " TRACE_FORMAT_128, (FMT__B, TRACE_ARG_128(key)));
-          zb_se_debug_get_ic_key(key);
-          TRACE_MSG(TRACE_ERROR, "TCLK by installcode: " TRACE_FORMAT_128, (FMT__B, TRACE_ARG_128(key)));
+            zb_se_signal_service_discovery_bind_params_t *bind_params =
+                ZB_ZDO_SIGNAL_GET_PARAMS(sg_p, zb_se_signal_service_discovery_bind_params_t);
+
+            TRACE_MSG(TRACE_APP1, "can bind cluster %d commodity_type %d remote_dev " TRACE_FORMAT_64,
+                      (FMT__D_D_A, bind_params->cluster_id, bind_params->commodity_type,
+                       TRACE_ARG_64(bind_params->device_addr)));
+
+            if (bind_params->cluster_id == ZB_ZCL_CLUSTER_ID_TUNNELING)
+            {
+                /* Do not bind, but request tunnel to this dev */
+                g_dev_ctx.metering_tunneling.srv_addr = zb_address_short_by_ieee(bind_params->device_addr);
+                g_dev_ctx.metering_tunneling.srv_ep = bind_params->endpoint;
+                ZB_SCHEDULE_APP_CALLBACK(metering_dev_request_tunnel, param);
+                param = 0;
+            }
         }
-        ZB_SCHEDULE_APP_ALARM_CANCEL(metering_dev_measure, ZB_ALARM_ANY_PARAM);
-        ZB_SCHEDULE_APP_CALLBACK(metering_dev_measure, 0);
-        zb_se_indicate_default_start();
         break;
 
-      case ZB_SE_SIGNAL_CBKE_OK:
-        TRACE_MSG(TRACE_APP1, "ZB_SE_SIGNAL_CBKE_OK: Key Establishment with Trust Center (CBKE) OK", (FMT__0));
-        break;
-
-      case ZB_SE_SIGNAL_SERVICE_DISCOVERY_START:
-        TRACE_MSG(TRACE_APP1, "Start Service Discovery", (FMT__0));
-        zb_se_service_discovery_start(METERING_DEV_ENDPOINT);
-        zb_se_indicate_service_discovery_started();
-        break;
-
-      case ZB_SE_SIGNAL_SERVICE_DISCOVERY_DO_BIND:
-      {
-        zb_se_signal_service_discovery_bind_params_t *bind_params =
-          ZB_ZDO_SIGNAL_GET_PARAMS(sg_p, zb_se_signal_service_discovery_bind_params_t);
-
-        TRACE_MSG(TRACE_APP1, "can bind cluster %d commodity_type %d remote_dev " TRACE_FORMAT_64,
-                  (FMT__D_D_A, bind_params->cluster_id, bind_params->commodity_type,
-                   TRACE_ARG_64(bind_params->device_addr)));
-
-        if (bind_params->cluster_id == ZB_ZCL_CLUSTER_ID_TUNNELING)
+        case ZB_SE_SIGNAL_SERVICE_DISCOVERY_BIND_OK:
         {
-          /* Do not bind, but request tunnel to this dev */
-          g_dev_ctx.metering_tunneling.srv_addr = zb_address_short_by_ieee(bind_params->device_addr);
-          g_dev_ctx.metering_tunneling.srv_ep = bind_params->endpoint;
-          ZB_SCHEDULE_APP_CALLBACK(metering_dev_request_tunnel, param);
-          param = 0;
+            zb_uint16_t *addr = ZB_ZDO_SIGNAL_GET_PARAMS(sg_p, zb_uint16_t);
+            TRACE_MSG(TRACE_APP1, "Bind dev 0x%x OK", (FMT__D, *addr));
+            break;
         }
-      }
-      break;
 
-      case ZB_SE_SIGNAL_SERVICE_DISCOVERY_BIND_OK:
-      {
-        zb_uint16_t *addr = ZB_ZDO_SIGNAL_GET_PARAMS(sg_p, zb_uint16_t);
-        TRACE_MSG(TRACE_APP1, "Bind dev 0x%x OK", (FMT__D, *addr));
-        break;
-      }
-
-      case ZB_SE_SIGNAL_SERVICE_DISCOVERY_OK:
-        TRACE_MSG(TRACE_APP1, "Service Discovery OK", (FMT__0));
-        zb_se_indicate_commissioning_stopped();
+        case ZB_SE_SIGNAL_SERVICE_DISCOVERY_OK:
+            TRACE_MSG(TRACE_APP1, "Service Discovery OK", (FMT__0));
+            zb_se_indicate_commissioning_stopped();
 #ifdef TEST_DUTY_C
-//        zb_start_high_freq_msgs(ZB_ZCL_CLUSTER_ID_KEEP_ALIVE);
-        ZB_SCHEDULE_APP_ALARM(crash_poll_keepalive, 0, ZB_MILLISECONDS_TO_BEACON_INTERVAL(1000));
+            //        zb_start_high_freq_msgs(ZB_ZCL_CLUSTER_ID_KEEP_ALIVE);
+            ZB_SCHEDULE_APP_ALARM(crash_poll_keepalive, 0, ZB_MILLISECONDS_TO_BEACON_INTERVAL(1000));
 #endif
 #ifdef TEST_SUBG_FILTERING
-        ZB_GET_OUT_BUF_DELAYED(call_simple_desc_req);
-        ZB_GET_OUT_BUF_DELAYED(call_match_desc_req);
+            ZB_GET_OUT_BUF_DELAYED(call_simple_desc_req);
+            ZB_GET_OUT_BUF_DELAYED(call_match_desc_req);
 #endif
-        break;
+            break;
 
-      case ZB_SE_SIGNAL_SERVICE_DISCOVERY_FAILED:
-        TRACE_MSG(TRACE_APP1, "Service Discovery failed", (FMT__0));
-        zb_se_indicate_commissioning_fail();
-        break;
+        case ZB_SE_SIGNAL_SERVICE_DISCOVERY_FAILED:
+            TRACE_MSG(TRACE_APP1, "Service Discovery failed", (FMT__0));
+            zb_se_indicate_commissioning_fail();
+            break;
 
-      case ZB_SIGNAL_SUBGHZ_SUSPEND:
-        TRACE_MSG(TRACE_APP1, "sub-ghz. TX suspended", (FMT__0));
-        s_tx_suspended = 1;
-        break;
-      case ZB_SIGNAL_SUBGHZ_RESUME:
-        TRACE_MSG(TRACE_APP1, "sub-ghz. TX resumed", (FMT__0));
-        s_tx_suspended = 0;
-        break;
+        case ZB_SIGNAL_SUBGHZ_SUSPEND:
+            TRACE_MSG(TRACE_APP1, "sub-ghz. TX suspended", (FMT__0));
+            s_tx_suspended = 1;
+            break;
+        case ZB_SIGNAL_SUBGHZ_RESUME:
+            TRACE_MSG(TRACE_APP1, "sub-ghz. TX resumed", (FMT__0));
+            s_tx_suspended = 0;
+            break;
 
-      default:
-        TRACE_MSG(TRACE_APP1, "zboss_signal_handler: skip sig %hd status %hd",
-                  (FMT__H_H_H, param, sig, ZB_GET_APP_SIGNAL_STATUS(param)));
-        break;
+        default:
+            TRACE_MSG(TRACE_APP1, "zboss_signal_handler: skip sig %hd status %hd",
+                      (FMT__H_H_H, param, sig, ZB_GET_APP_SIGNAL_STATUS(param)));
+            break;
+        }
     }
-  }
-  else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
-  {
-    TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
-  }
-  else
-  {
-    zb_se_indicate_commissioning_fail();
-    TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
-  }
+    else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
+    {
+        TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
+    }
+    else
+    {
+        zb_se_indicate_commissioning_fail();
+        TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
+    }
 
-  if (param)
-  {
-    zb_free_buf(ZB_BUF_FROM_REF(param));
-  }
+    if (param)
+    {
+        zb_free_buf(ZB_BUF_FROM_REF(param));
+    }
 
-  TRACE_MSG(TRACE_APP1, "<< zboss_signal_handler", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "<< zboss_signal_handler", (FMT__0));
 }
 /** [SIGNAL_HANDLER] */

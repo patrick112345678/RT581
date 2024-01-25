@@ -21,6 +21,6 @@
 #ifndef GIMPLE_SSA_WARN_RESTRICT_H
 
 extern int check_bounds_or_overlap (gimple *, tree, tree, tree, tree,
-				    bool = false, bool = true);
+                                    bool = false, bool = true);
 
 #endif /* GIMPLE_SSA_WARN_RESTRICT_H */

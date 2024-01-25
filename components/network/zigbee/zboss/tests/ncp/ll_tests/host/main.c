@@ -43,16 +43,16 @@ useconds_t sleep_timeout = 0;
 
 unsigned long int osif_transceiver_time_get()
 {
-  struct timeval tmv;
+    struct timeval tmv;
 
-  gettimeofday(&tmv, NULL);
-  return (tmv.tv_sec * (1000000) + tmv.tv_usec);
+    gettimeofday(&tmv, NULL);
+    return (tmv.tv_sec * (1000000) + tmv.tv_usec);
 }
 
 /* [ncp_host_ll_quant] */
 void callme_cb(void)
 {
-  callme_flag = 1;
+    callme_flag = 1;
 }
 
 uint32_t received_bytes;
@@ -60,40 +60,40 @@ uint32_t alarm_timeout_ms;
 
 void ll_quant(void)
 {
-  ncp_host_ll_quant(NULL, 0, rx_buf, BUF_SIZE, &received_bytes, &alarm_timeout_ms);
-  rx_buf_ind += received_bytes;
-  if (rx_buf_ind == 13)
-  {
-    rx_buf_ind = 0;
-    send_flag = 1;
-  }
-  sleep_timeout = alarm_timeout_ms;
+    ncp_host_ll_quant(NULL, 0, rx_buf, BUF_SIZE, &received_bytes, &alarm_timeout_ms);
+    rx_buf_ind += received_bytes;
+    if (rx_buf_ind == 13)
+    {
+        rx_buf_ind = 0;
+        send_flag = 1;
+    }
+    sleep_timeout = alarm_timeout_ms;
 }
 
 int main(void)
 {
-  ncp_host_ll_proto_init(callme_cb);
+    ncp_host_ll_proto_init(callme_cb);
 
-  while(1)
-  {
-    if (!callme_flag)
+    while (1)
     {
-      usleep(sleep_timeout);
+        if (!callme_flag)
+        {
+            usleep(sleep_timeout);
+        }
+        else
+        {
+            callme_flag = 0;
+        }
+        if (send_flag)
+        {
+            memcpy(tx_buf, "Hello, World!", 13);
+            ncp_host_ll_quant(tx_buf, 13, NULL, 0, &received_bytes, &alarm_timeout_ms);
+            sleep_timeout = alarm_timeout_ms;
+        }
+        else
+        {
+            ll_quant();
+        }
     }
-    else
-    {
-      callme_flag = 0;
-    }
-    if (send_flag)
-    {
-      memcpy(tx_buf, "Hello, World!", 13);
-      ncp_host_ll_quant(tx_buf, 13, NULL, 0, &received_bytes, &alarm_timeout_ms);
-      sleep_timeout = alarm_timeout_ms;
-    }
-    else
-    {
-      ll_quant();
-    }
-  }
 }
 /* [ncp_host_ll_quant] */

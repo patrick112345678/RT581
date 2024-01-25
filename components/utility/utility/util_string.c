@@ -124,9 +124,9 @@ unsigned long utility_strtox(const char *str, char **ep, uint8_t dig)
 
     str = _utility_trim_spaces(str);
 
-    if (*str == '0' && *(str+1) == 'x')
+    if (*str == '0' && *(str + 1) == 'x')
     {
-        str+=2;
+        str += 2;
     }
 
     for (nr_digits = 0; nr_digits < dig; ++nr_digits)

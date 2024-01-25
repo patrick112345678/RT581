@@ -50,7 +50,7 @@ zb_zse_ctx_t g_zse_ctx;
  */
 void zse_cluster_set_app_zcl_cmd_handler(zgp_cluster_app_zcl_cmd_handler_t handler)
 {
-  zse_cluster_app_zcl_cmd_handler = handler;
+    zse_cluster_app_zcl_cmd_handler = handler;
 }
 
 #endif
@@ -58,35 +58,35 @@ void zse_cluster_set_app_zcl_cmd_handler(zgp_cluster_app_zcl_cmd_handler_t handl
 
 void zb_zse_init()
 {
-  TRACE_MSG(TRACE_ZSE2, ">> zb_zse_init", (FMT__0));
+    TRACE_MSG(TRACE_ZSE2, ">> zb_zse_init", (FMT__0));
 #ifdef ZB_SE_ENABLE_KEC_CLUSTER
-  zb_kec_init();
+    zb_kec_init();
 #endif
 
 #if defined ZB_ENABLE_SE_SAS
-  zb_se_init_sas();
+    zb_se_init_sas();
 #endif /* defined ZB_ENABLE_SE_SAS */
 
 #if defined(ZB_SE_ENABLE_SERVICE_DISCOVERY_PROCESSING)
-  zb_se_service_discovery_reset_dev();
-  ZSE_CTXC().service_disc.match_desc_tsn = ZB_ZDO_INVALID_TSN;
-  //ZSE_CTXC().service_disc.multiple_commodity_enabled = 1;
-  ZSE_SERVICE_DISCOVERY_SET_MULTIPLE_COMMODITY();
+    zb_se_service_discovery_reset_dev();
+    ZSE_CTXC().service_disc.match_desc_tsn = ZB_ZDO_INVALID_TSN;
+    //ZSE_CTXC().service_disc.multiple_commodity_enabled = 1;
+    ZSE_SERVICE_DISCOVERY_SET_MULTIPLE_COMMODITY();
 #endif
 
 #if defined(ZB_SE_ENABLE_STEADY_STATE_PROCESSING)
-  ZSE_CTXC().steady_state.poll_method = ZSE_TC_POLL_NOT_SUPPORTED;
-  ZSE_CTXC().steady_state.tsn = ZB_ZDO_INVALID_TSN;
+    ZSE_CTXC().steady_state.poll_method = ZSE_TC_POLL_NOT_SUPPORTED;
+    ZSE_CTXC().steady_state.tsn = ZB_ZDO_INVALID_TSN;
 #endif
 
 #ifdef ZB_ZCL_SUPPORT_CLUSTER_TIME
-  ZSE_CTXC().time_server.server_auth_level = ZB_ZCL_TIME_SERVER_NOT_CHOSEN;
-  ZSE_CTXC().second_time_server.server_auth_level = ZB_ZCL_TIME_SERVER_NOT_CHOSEN;
-  ZSE_CTXC().time_server.server_short_addr = 0xffff;
-  ZSE_CTXC().second_time_server.server_short_addr = 0xffff;
+    ZSE_CTXC().time_server.server_auth_level = ZB_ZCL_TIME_SERVER_NOT_CHOSEN;
+    ZSE_CTXC().second_time_server.server_auth_level = ZB_ZCL_TIME_SERVER_NOT_CHOSEN;
+    ZSE_CTXC().time_server.server_short_addr = 0xffff;
+    ZSE_CTXC().second_time_server.server_short_addr = 0xffff;
 #endif  /* ZB_ZCL_SUPPORT_CLUSTER_TIME */
 
-  TRACE_MSG(TRACE_ZSE2, "<< zb_zse_init", (FMT__0));
+    TRACE_MSG(TRACE_ZSE2, "<< zb_zse_init", (FMT__0));
 }
 
 

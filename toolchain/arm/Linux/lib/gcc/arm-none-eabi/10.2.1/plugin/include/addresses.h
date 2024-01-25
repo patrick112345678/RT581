@@ -26,22 +26,24 @@ along with GCC; see the file COPYING3.  If not see
 
 static inline enum reg_class
 base_reg_class (machine_mode mode ATTRIBUTE_UNUSED,
-		addr_space_t as ATTRIBUTE_UNUSED,
-		enum rtx_code outer_code ATTRIBUTE_UNUSED,
-		enum rtx_code index_code ATTRIBUTE_UNUSED)
+                addr_space_t as ATTRIBUTE_UNUSED,
+                enum rtx_code outer_code ATTRIBUTE_UNUSED,
+                enum rtx_code index_code ATTRIBUTE_UNUSED)
 {
 #ifdef MODE_CODE_BASE_REG_CLASS
-  return MODE_CODE_BASE_REG_CLASS (MACRO_MODE (mode), as, outer_code,
-				   index_code);
+    return MODE_CODE_BASE_REG_CLASS (MACRO_MODE (mode), as, outer_code,
+                                     index_code);
 #else
 #ifdef MODE_BASE_REG_REG_CLASS
-  if (index_code == REG)
-    return MODE_BASE_REG_REG_CLASS (MACRO_MODE (mode));
+    if (index_code == REG)
+    {
+        return MODE_BASE_REG_REG_CLASS (MACRO_MODE (mode));
+    }
 #endif
 #ifdef MODE_BASE_REG_CLASS
-  return MODE_BASE_REG_CLASS (MACRO_MODE (mode));
+    return MODE_BASE_REG_CLASS (MACRO_MODE (mode));
 #else
-  return BASE_REG_CLASS;
+    return BASE_REG_CLASS;
 #endif
 #endif
 }
@@ -53,23 +55,25 @@ base_reg_class (machine_mode mode ATTRIBUTE_UNUSED,
 
 static inline bool
 ok_for_base_p_1 (unsigned regno ATTRIBUTE_UNUSED,
-		 machine_mode mode ATTRIBUTE_UNUSED,
-		 addr_space_t as ATTRIBUTE_UNUSED,
-		 enum rtx_code outer_code ATTRIBUTE_UNUSED,
-		 enum rtx_code index_code ATTRIBUTE_UNUSED)
+                 machine_mode mode ATTRIBUTE_UNUSED,
+                 addr_space_t as ATTRIBUTE_UNUSED,
+                 enum rtx_code outer_code ATTRIBUTE_UNUSED,
+                 enum rtx_code index_code ATTRIBUTE_UNUSED)
 {
 #ifdef REGNO_MODE_CODE_OK_FOR_BASE_P
-  return REGNO_MODE_CODE_OK_FOR_BASE_P (regno, MACRO_MODE (mode), as,
-					outer_code, index_code);
+    return REGNO_MODE_CODE_OK_FOR_BASE_P (regno, MACRO_MODE (mode), as,
+                                          outer_code, index_code);
 #else
 #ifdef REGNO_MODE_OK_FOR_REG_BASE_P
-  if (index_code == REG)
-    return REGNO_MODE_OK_FOR_REG_BASE_P (regno, MACRO_MODE (mode));
+    if (index_code == REG)
+    {
+        return REGNO_MODE_OK_FOR_REG_BASE_P (regno, MACRO_MODE (mode));
+    }
 #endif
 #ifdef REGNO_MODE_OK_FOR_BASE_P
-  return REGNO_MODE_OK_FOR_BASE_P (regno, MACRO_MODE (mode));
+    return REGNO_MODE_OK_FOR_BASE_P (regno, MACRO_MODE (mode));
 #else
-  return REGNO_OK_FOR_BASE_P (regno);
+    return REGNO_OK_FOR_BASE_P (regno);
 #endif
 #endif
 }
@@ -79,12 +83,14 @@ ok_for_base_p_1 (unsigned regno ATTRIBUTE_UNUSED,
 
 static inline bool
 regno_ok_for_base_p (unsigned regno, machine_mode mode, addr_space_t as,
-		     enum rtx_code outer_code, enum rtx_code index_code)
+                     enum rtx_code outer_code, enum rtx_code index_code)
 {
-  if (regno >= FIRST_PSEUDO_REGISTER && reg_renumber[regno] >= 0)
-    regno = reg_renumber[regno];
+    if (regno >= FIRST_PSEUDO_REGISTER && reg_renumber[regno] >= 0)
+    {
+        regno = reg_renumber[regno];
+    }
 
-  return ok_for_base_p_1 (regno, mode, as, outer_code, index_code);
+    return ok_for_base_p_1 (regno, mode, as, outer_code, index_code);
 }
 
 #endif /* GCC_ADDRESSES_H */

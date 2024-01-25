@@ -53,15 +53,15 @@ static const zb_uint8_t g_key0[16] = { 0xab, 0xcd, 0xef, 0x01, 0x23, 0x45, 0x67,
 
 #define TIME_ZC_REMOVE_DEV_ZED1         ((50 * ZB_TIME_ONE_SECOND) + TIME_ZC_CONNECTION)
 #define TIME_ZC_LEAVE_REQ_NONEX         ((5 * ZB_TIME_ONE_SECOND) + TIME_ZC_REMOVE_DEV_ZED1)
-#define TIME_ZC_LEAVE_REQ_ZED2  	((5 * ZB_TIME_ONE_SECOND) + TIME_ZC_LEAVE_REQ_NONEX)
-#define TIME_ZC_LQI_REQ		        ((10 * ZB_TIME_ONE_SECOND) + TIME_ZC_LEAVE_REQ_ZED2)
+#define TIME_ZC_LEAVE_REQ_ZED2      ((5 * ZB_TIME_ONE_SECOND) + TIME_ZC_LEAVE_REQ_NONEX)
+#define TIME_ZC_LQI_REQ             ((10 * ZB_TIME_ONE_SECOND) + TIME_ZC_LEAVE_REQ_ZED2)
 #define TIME_ZC_LEAVE_REQ_ZR            ((5 * ZB_TIME_ONE_SECOND) + TIME_ZC_LQI_REQ)
 
-#define TIME_ZED_STOP_POLL	       	(5 * ZB_TIME_ONE_SECOND)
+#define TIME_ZED_STOP_POLL          (5 * ZB_TIME_ONE_SECOND)
 #define TIME_ZED1_START_POLL            (20 * ZB_TIME_ONE_SECOND)
 
-#define ZED_LONG_POLL_TO_MS	   	350000
-#define ZED1_POLL_TO_3SEC_MS		3000
+#define ZED_LONG_POLL_TO_MS     350000
+#define ZED1_POLL_TO_3SEC_MS        3000
 
 /* insecure join configuration */
 #define INSECURE_JOIN_ZC               ZB_FALSE

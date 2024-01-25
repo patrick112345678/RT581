@@ -33,17 +33,17 @@
 
 zb_uint8_t zdo_get_aging_timeout()
 {
-  return ZB_GET_ED_TIMEOUT();
+    return ZB_GET_ED_TIMEOUT();
 }
 
 void zdo_set_aging_timeout(zb_uint8_t timeout)
 {
-  ZVUNUSED(timeout);
-  zb_set_ed_timeout(timeout);
-  zb_set_keepalive_timeout(zb_nwk_get_default_keepalive_timeout());
+    ZVUNUSED(timeout);
+    zb_set_ed_timeout(timeout);
+    zb_set_keepalive_timeout(zb_nwk_get_default_keepalive_timeout());
 }
 
 zb_time_t zdo_get_ed_keepalive_timeout()
 {
-  return ZB_GET_KEEPALIVE_TIMEOUT();
+    return ZB_GET_KEEPALIVE_TIMEOUT();
 }

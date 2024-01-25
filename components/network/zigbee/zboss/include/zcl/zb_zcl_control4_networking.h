@@ -50,43 +50,43 @@
 
 enum zb_zcl_control4_networking_attr_e
 {
-  ZB_ZCL_ATTR_CONTROL4_NETWORKING_DEVICE_TYPE_ID = 0x0000,
+    ZB_ZCL_ATTR_CONTROL4_NETWORKING_DEVICE_TYPE_ID = 0x0000,
 
-  ZB_ZCL_ATTR_CONTROL4_NETWORKING_ANNOUNCE_WINDOW_ID = 0x0001,
+    ZB_ZCL_ATTR_CONTROL4_NETWORKING_ANNOUNCE_WINDOW_ID = 0x0001,
 
-  ZB_ZCL_ATTR_CONTROL4_NETWORKING_MTORR_PERIOD_ID = 0x0002,
+    ZB_ZCL_ATTR_CONTROL4_NETWORKING_MTORR_PERIOD_ID = 0x0002,
 
-  ZB_ZCL_ATTR_CONTROL4_NETWORKING_FIRMWARE_VERSION_ID = 0x0004,
+    ZB_ZCL_ATTR_CONTROL4_NETWORKING_FIRMWARE_VERSION_ID = 0x0004,
 
-  ZB_ZCL_ATTR_CONTROL4_NETWORKING_REFLASH_VERSION_ID = 0x0005,
+    ZB_ZCL_ATTR_CONTROL4_NETWORKING_REFLASH_VERSION_ID = 0x0005,
 
-  ZB_ZCL_ATTR_CONTROL4_NETWORKING_BOOT_COUNT_ID = 0x0006,
+    ZB_ZCL_ATTR_CONTROL4_NETWORKING_BOOT_COUNT_ID = 0x0006,
 
-  ZB_ZCL_ATTR_CONTROL4_NETWORKING_PRODUCT_STRING_ID = 0x0007,
+    ZB_ZCL_ATTR_CONTROL4_NETWORKING_PRODUCT_STRING_ID = 0x0007,
 
-  ZB_ZCL_ATTR_CONTROL4_NETWORKING_ACCESS_POINT_NODE_ID_ID = 0x0008,
+    ZB_ZCL_ATTR_CONTROL4_NETWORKING_ACCESS_POINT_NODE_ID_ID = 0x0008,
 
-  ZB_ZCL_ATTR_CONTROL4_NETWORKING_ACCESS_POINT_LONG_ID_ID = 0x0009,
+    ZB_ZCL_ATTR_CONTROL4_NETWORKING_ACCESS_POINT_LONG_ID_ID = 0x0009,
 
-  ZB_ZCL_ATTR_CONTROL4_NETWORKING_ACCESS_POINT_COST_ID = 0x000a,
+    ZB_ZCL_ATTR_CONTROL4_NETWORKING_ACCESS_POINT_COST_ID = 0x000a,
 
-  ZB_ZCL_ATTR_CONTROL4_NETWORKING_MESH_CHANNEL_ID = 0x000c,
+    ZB_ZCL_ATTR_CONTROL4_NETWORKING_MESH_CHANNEL_ID = 0x000c,
 
-  ZB_ZCL_ATTR_CONTROL4_NETWORKING_AVG_RSSI_ID = 0x0013,
+    ZB_ZCL_ATTR_CONTROL4_NETWORKING_AVG_RSSI_ID = 0x0013,
 
-  ZB_ZCL_ATTR_CONTROL4_NETWORKING_AVG_LQI_ID = 0x0014,
+    ZB_ZCL_ATTR_CONTROL4_NETWORKING_AVG_LQI_ID = 0x0014,
 
-  ZB_ZCL_ATTR_CONTROL4_NETWORKING_BATTERY_LEVEL_ID = 0x0015,
+    ZB_ZCL_ATTR_CONTROL4_NETWORKING_BATTERY_LEVEL_ID = 0x0015,
 
-  ZB_ZCL_ATTR_CONTROL4_NETWORKING_RADIO_4_BARS_ID = 0x0016
+    ZB_ZCL_ATTR_CONTROL4_NETWORKING_RADIO_4_BARS_ID = 0x0016
 };
 
 enum zb_zcl_control4_networking_device_type_e
 {
-  /*! "Non-sleepy end device" value */
-  ZB_ZCL_CONTROL4_NETWORKING_DEVICE_TYPE_END_DEVICE = 0x03,
-  /*! "Sleepy end device" value */
-  ZB_ZCL_CONTROL4_NETWORKING_DEVICE_TYPE_SLEEPY_END_DEVICE  = 0x04
+    /*! "Non-sleepy end device" value */
+    ZB_ZCL_CONTROL4_NETWORKING_DEVICE_TYPE_END_DEVICE = 0x03,
+    /*! "Sleepy end device" value */
+    ZB_ZCL_CONTROL4_NETWORKING_DEVICE_TYPE_SLEEPY_END_DEVICE  = 0x04
 };
 
 
@@ -200,7 +200,7 @@ enum zb_zcl_control4_networking_device_type_e
  */
 enum zb_zcl_control4_networking_cmd_e
 {
-  ZB_ZCL_CMD_CONTROL4_NETWORKING_IMMEDIATE_ANNOUNCE_ID     = 0x00 /**< "Immediate announce command" command. */
+    ZB_ZCL_CMD_CONTROL4_NETWORKING_IMMEDIATE_ANNOUNCE_ID     = 0x00 /**< "Immediate announce command" command. */
 };
 
 #define ZB_ZCL_CLUSTER_ID_CONTROL4_NETWORKING_CLIENT_ROLE_GENERATED_CMD_LIST                     \
@@ -397,10 +397,10 @@ enum zb_zcl_control4_networking_cmd_e
 */
 typedef enum zb_zcl_control4_network_state_e
 {
-  ZB_ZCL_CONTROL4_NETWORK_STATE_IDLE,
-  ZB_ZCL_CONTROL4_NETWORK_STATE_SEARCHING_ZAP,
-  ZB_ZCL_CONTROL4_NETWORK_STATE_RUNNING,
-  ZB_ZCL_CONTROL4_NETWORK_STATE_STOPPED,
+    ZB_ZCL_CONTROL4_NETWORK_STATE_IDLE,
+    ZB_ZCL_CONTROL4_NETWORK_STATE_SEARCHING_ZAP,
+    ZB_ZCL_CONTROL4_NETWORK_STATE_RUNNING,
+    ZB_ZCL_CONTROL4_NETWORK_STATE_STOPPED,
 } zb_zcl_control4_network_state_t;
 
 /**
@@ -408,21 +408,21 @@ typedef enum zb_zcl_control4_network_state_e
 */
 typedef enum zb_zcl_control4_zap_discover_event_e
 {
-  /** Information from ZAP (NODE ID and/or LONG_NODE_ID) received and is different from the
-   * current and default value. Bindings and/or reporting in the user application may require to be updated
-   */
-  ZB_ZCL_CONTROL4_NETWORK_ZAP_UPDATED,
-  /** ZAP discovered failed after retrying ZB_ZCL_CONTROL4_NETWORK_SEARCHING_ZAP_ATTEMPTS times.
-   *  User application may retry restart the Control4 network cluster or leave the network.
-   */
-  ZB_ZCL_CONTROL4_NETWORK_ZAP_DISCOVER_FAILED,
+    /** Information from ZAP (NODE ID and/or LONG_NODE_ID) received and is different from the
+     * current and default value. Bindings and/or reporting in the user application may require to be updated
+     */
+    ZB_ZCL_CONTROL4_NETWORK_ZAP_UPDATED,
+    /** ZAP discovered failed after retrying ZB_ZCL_CONTROL4_NETWORK_SEARCHING_ZAP_ATTEMPTS times.
+     *  User application may retry restart the Control4 network cluster or leave the network.
+     */
+    ZB_ZCL_CONTROL4_NETWORK_ZAP_DISCOVER_FAILED,
 } zb_zcl_control4_zap_discover_event_t;
 
 /** Control4 ZAP discover user app notification payload */
 typedef struct zb_zcl_control4_zap_info_notify_s
 {
-  /** Event for user application to handle*/
-  zb_zcl_control4_zap_discover_event_t event;
+    /** Event for user application to handle*/
+    zb_zcl_control4_zap_discover_event_t event;
 } zb_zcl_control4_zap_info_notify_t;
 
 /**

@@ -48,104 +48,104 @@ static zb_af_simple_desc_2_3_t test_simple_desc;
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
-  ZB_INIT("zdo_zr1");
-#if UART_CONTROL	
-	test_control_init();
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    /* Init device, load IB values from nvram or set it to default */
+    ZB_INIT("zdo_zr1");
+#if UART_CONTROL
+    test_control_init();
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 #endif
-	
-  zb_set_default_ffd_descriptor_values(ZB_ROUTER);
 
-/* set power descriptor to appropriate values (sadly, these values differs from
- * test to test */
-//zb_set_node_power_descriptor(ZB_POWER_MODE_SYNC_ON_WHEN_IDLE,
- //                            ZB_POWER_SRC_CONSTANT | ZB_POWER_SRC_RECHARGEABLE_BATTERY | ZB_POWER_SRC_DISPOSABLE_BATTERY,
- //                              ZB_POWER_SRC_CONSTANT, ZB_POWER_LEVEL_100);
-/*
-  simple descriptor for test
-  SimpleDescriptor=
-  ProfileID = 0x7f01 (Test Profile)
-  NumInClusters = 0x02
-  InClusterList = 0x0054, 0x00e0
-  NumOutClusters = 0x03
-  OutClusterList = 0x001c, 0x0038, 0x00a8
-*/
+    zb_set_default_ffd_descriptor_values(ZB_ROUTER);
 
-
-  zb_set_simple_descriptor((zb_af_simple_desc_1_1_t*)&test_simple_desc,
-                           1 /* endpoint */,                0x7f01 /* app_profile_id */,
-                           0x0 /* app_device_id */,         0x0   /* app_device_version*/,
-                           0x2 /* app_input_cluster_count */, 0x3 /* app_output_cluster_count */);
+    /* set power descriptor to appropriate values (sadly, these values differs from
+     * test to test */
+    //zb_set_node_power_descriptor(ZB_POWER_MODE_SYNC_ON_WHEN_IDLE,
+    //                            ZB_POWER_SRC_CONSTANT | ZB_POWER_SRC_RECHARGEABLE_BATTERY | ZB_POWER_SRC_DISPOSABLE_BATTERY,
+    //                              ZB_POWER_SRC_CONSTANT, ZB_POWER_LEVEL_100);
+    /*
+      simple descriptor for test
+      SimpleDescriptor=
+      ProfileID = 0x7f01 (Test Profile)
+      NumInClusters = 0x02
+      InClusterList = 0x0054, 0x00e0
+      NumOutClusters = 0x03
+      OutClusterList = 0x001c, 0x0038, 0x00a8
+    */
 
 
-  zb_set_input_cluster_id((zb_af_simple_desc_1_1_t*)&test_simple_desc, 0,  0x54);
-  zb_set_input_cluster_id((zb_af_simple_desc_1_1_t*)&test_simple_desc, 1,  0xe0);
+    zb_set_simple_descriptor((zb_af_simple_desc_1_1_t *)&test_simple_desc,
+                             1 /* endpoint */,                0x7f01 /* app_profile_id */,
+                             0x0 /* app_device_id */,         0x0   /* app_device_version*/,
+                             0x2 /* app_input_cluster_count */, 0x3 /* app_output_cluster_count */);
 
-  zb_set_output_cluster_id((zb_af_simple_desc_1_1_t*)&test_simple_desc, 0,  0x1c);
-  zb_set_output_cluster_id((zb_af_simple_desc_1_1_t*)&test_simple_desc, 1,  0x38);
-  zb_set_output_cluster_id((zb_af_simple_desc_1_1_t*)&test_simple_desc, 2,  0xa8);
 
-  zb_add_simple_descriptor((zb_af_simple_desc_1_1_t*)&test_simple_desc);
+    zb_set_input_cluster_id((zb_af_simple_desc_1_1_t *)&test_simple_desc, 0,  0x54);
+    zb_set_input_cluster_id((zb_af_simple_desc_1_1_t *)&test_simple_desc, 1,  0xe0);
 
-  /* set ieee addr */
-  zb_set_long_address(g_ieee_addr);
+    zb_set_output_cluster_id((zb_af_simple_desc_1_1_t *)&test_simple_desc, 0,  0x1c);
+    zb_set_output_cluster_id((zb_af_simple_desc_1_1_t *)&test_simple_desc, 1,  0x38);
+    zb_set_output_cluster_id((zb_af_simple_desc_1_1_t *)&test_simple_desc, 2,  0xa8);
 
-  /* turn off security */
-  /* zb_cert_test_set_security_level(0); */
+    zb_add_simple_descriptor((zb_af_simple_desc_1_1_t *)&test_simple_desc);
 
-  /* become an ED */
-  zb_cert_test_set_common_channel_settings();
-  zb_cert_test_set_zr_role();
+    /* set ieee addr */
+    zb_set_long_address(g_ieee_addr);
 
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    /* turn off security */
+    /* zb_cert_test_set_security_level(0); */
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zboss_main_loop();
-  }
+    /* become an ED */
+    zb_cert_test_set_common_channel_settings();
+    zb_cert_test_set_zr_role();
 
-  TRACE_DEINIT();
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  MAIN_RETURN(0);
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zboss_main_loop();
+    }
+
+    TRACE_DEINIT();
+
+    MAIN_RETURN(0);
 }
 
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_ERROR, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_ERROR, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  if (0 == status)
-  {
-    switch(sig)
+    if (0 == status)
     {
-      case ZB_ZDO_SIGNAL_DEFAULT_START:
-      case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      case ZB_BDB_SIGNAL_DEVICE_REBOOT:
-        TRACE_MSG(TRACE_ERROR, "Device STARTED OK", (FMT__0));
-        break;
+        switch (sig)
+        {
+        case ZB_ZDO_SIGNAL_DEFAULT_START:
+        case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
+        case ZB_BDB_SIGNAL_DEVICE_REBOOT:
+            TRACE_MSG(TRACE_ERROR, "Device STARTED OK", (FMT__0));
+            break;
 
-      default:
-        TRACE_MSG(TRACE_ERROR, "Unknown signal %hd", (FMT__H, sig));
+        default:
+            TRACE_MSG(TRACE_ERROR, "Unknown signal %hd", (FMT__H, sig));
+        }
     }
-  }
-  else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
-  {
-    TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, status));
-  }
+    else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
+    {
+        TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, status));
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }

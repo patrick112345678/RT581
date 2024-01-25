@@ -67,12 +67,12 @@ extern zb_intr_globals_t g_izb;
 struct zb_intr_globals_s
 {
 #ifdef ZB_HAVE_IOCTX
-  zb_io_ctx_t             ioctx;
+    zb_io_ctx_t             ioctx;
 #endif
 #if defined( ENABLE_USB_SERIAL_IMITATOR )
-  zb_usbc_ctx_t           usbctx; /*!< USB imitator IO context. */
+    zb_usbc_ctx_t           usbctx; /*!< USB imitator IO context. */
 #endif /* defined( ENABLE_USB_SERIAL_IMITATOR ) */
-  zb_timer_t              time;
+    zb_timer_t              time;
 };
 
 #define ZB_IOCTX() g_izb.ioctx
@@ -111,17 +111,17 @@ void led_hw_init(void)
     gpio_cfg_output(LED2);
     gpio_cfg_output(LED3);
 
-    #if (BOARD==A048)
+#if (BOARD==A048)
     gpio_pin_set(LED0);
     gpio_pin_set(LED1);
     gpio_pin_set(LED2);
     gpio_pin_set(LED3);
-    #else
+#else
     gpio_pin_clear(LED0);
     gpio_pin_clear(LED1);
     gpio_pin_clear(LED2);
     gpio_pin_clear(LED3);
-    #endif
+#endif
 
 #else
     pin_set_mode(LED0, MODE_GPIO);
@@ -157,61 +157,69 @@ void led_hw_init(void)
 
 void hw_key_isr(uint32_t pin, void *isr_param)
 {
-  zb_uint8_t ui8KeysPressed;
-  zb_uint8_t pinHighLow=0;
+    zb_uint8_t ui8KeysPressed;
+    zb_uint8_t pinHighLow = 0;
 
-  //
-  // Get bitmask of buttons pushed (clear directional keys' bitmask)
-  //
-  ui8KeysPressed = pin;
+    //
+    // Get bitmask of buttons pushed (clear directional keys' bitmask)
+    //
+    ui8KeysPressed = pin;
 
-  //
-  // Determine which LEDs to toggle
-  //
-  if(ui8KeysPressed == KEY0)
-  {
+    //
+    // Determine which LEDs to toggle
+    //
+    if (ui8KeysPressed == KEY0)
+    {
 #if (BOARD==A047)
-    pinHighLow = gpio_pin_get(KEY0);
-    if(pinHighLow == 0)
-      zb_button_on_cb(0);
-    else
-      zb_button_off_cb(0);
+        pinHighLow = gpio_pin_get(KEY0);
+        if (pinHighLow == 0)
+        {
+            zb_button_on_cb(0);
+        }
+        else
+        {
+            zb_button_off_cb(0);
+        }
 #else
-    zb_button_on_cb(0);
-    zb_button_off_cb(0);
+        zb_button_on_cb(0);
+        zb_button_off_cb(0);
 #endif
-  }
-  if(ui8KeysPressed == KEY1)
-  {
+    }
+    if (ui8KeysPressed == KEY1)
+    {
 #if (BOARD==A047)
-    pinHighLow = gpio_pin_get(KEY1);
-    if(pinHighLow == 0)
-      zb_button_on_cb(1);
-    else
-      zb_button_off_cb(1);
+        pinHighLow = gpio_pin_get(KEY1);
+        if (pinHighLow == 0)
+        {
+            zb_button_on_cb(1);
+        }
+        else
+        {
+            zb_button_off_cb(1);
+        }
 #else
-    zb_button_on_cb(1);
-    zb_button_off_cb(1);
+        zb_button_on_cb(1);
+        zb_button_off_cb(1);
 #endif
 
-  }
-  if(ui8KeysPressed == KEY2)
-  {
-    zb_button_on_cb(2);
-    zb_button_off_cb(2);
-  }
-  if(ui8KeysPressed == KEY3)
-  {
-    zb_button_on_cb(3);
-    zb_button_off_cb(3);
-  }
+    }
+    if (ui8KeysPressed == KEY2)
+    {
+        zb_button_on_cb(2);
+        zb_button_off_cb(2);
+    }
+    if (ui8KeysPressed == KEY3)
+    {
+        zb_button_on_cb(3);
+        zb_button_off_cb(3);
+    }
 
 #if (BOARD==A015)
-  if(ui8KeysPressed == KEY4)
-  {
-    zb_button_on_cb(4);
-    zb_button_off_cb(4);
-  }
+    if (ui8KeysPressed == KEY4)
+    {
+        zb_button_on_cb(4);
+        zb_button_off_cb(4);
+    }
 #endif
 
 }
@@ -224,18 +232,18 @@ void key_hw_init(void)
     pin_set_mode(KEY2, MODE_GPIO);
     pin_set_mode(KEY3, MODE_GPIO);
 
-	  #if (BOARD==A047)
-    gpio_cfg_input(KEY0,GPIO_PIN_INT_BOTH_EDGE);
-    gpio_cfg_input(KEY1,GPIO_PIN_INT_BOTH_EDGE);
-    #endif
+#if (BOARD==A047)
+    gpio_cfg_input(KEY0, GPIO_PIN_INT_BOTH_EDGE);
+    gpio_cfg_input(KEY1, GPIO_PIN_INT_BOTH_EDGE);
+#endif
 
-	  #if (BOARD==A048)
-    gpio_cfg_input(KEY0,GPIO_PIN_INT_EDGE_RISING);
-    gpio_cfg_input(KEY1,GPIO_PIN_INT_EDGE_RISING);
-    #endif
+#if (BOARD==A048)
+    gpio_cfg_input(KEY0, GPIO_PIN_INT_EDGE_RISING);
+    gpio_cfg_input(KEY1, GPIO_PIN_INT_EDGE_RISING);
+#endif
 
-    gpio_cfg_input(KEY2,GPIO_PIN_INT_EDGE_RISING);
-    gpio_cfg_input(KEY3,GPIO_PIN_INT_EDGE_RISING);
+    gpio_cfg_input(KEY2, GPIO_PIN_INT_EDGE_RISING);
+    gpio_cfg_input(KEY3, GPIO_PIN_INT_EDGE_RISING);
 
     gpio_set_debounce_time(DEBOUNCE_SLOWCLOCKS_512);
 
@@ -263,14 +271,14 @@ void key_hw_init(void)
     pin_set_mode(KEY6, MODE_GPIO);
     pin_set_mode(KEY7, MODE_GPIO);
 
-    gpio_cfg_input(KEY0,GPIO_PIN_INT_EDGE_RISING);
-    gpio_cfg_input(KEY1,GPIO_PIN_INT_EDGE_RISING);
-    gpio_cfg_input(KEY2,GPIO_PIN_INT_EDGE_RISING);
-    gpio_cfg_input(KEY3,GPIO_PIN_INT_EDGE_RISING);
-    gpio_cfg_input(KEY4,GPIO_PIN_INT_EDGE_RISING);
-    gpio_cfg_input(KEY5,GPIO_PIN_INT_EDGE_RISING);
-    gpio_cfg_input(KEY6,GPIO_PIN_INT_EDGE_RISING);
-    gpio_cfg_input(KEY7,GPIO_PIN_INT_EDGE_RISING);
+    gpio_cfg_input(KEY0, GPIO_PIN_INT_EDGE_RISING);
+    gpio_cfg_input(KEY1, GPIO_PIN_INT_EDGE_RISING);
+    gpio_cfg_input(KEY2, GPIO_PIN_INT_EDGE_RISING);
+    gpio_cfg_input(KEY3, GPIO_PIN_INT_EDGE_RISING);
+    gpio_cfg_input(KEY4, GPIO_PIN_INT_EDGE_RISING);
+    gpio_cfg_input(KEY5, GPIO_PIN_INT_EDGE_RISING);
+    gpio_cfg_input(KEY6, GPIO_PIN_INT_EDGE_RISING);
+    gpio_cfg_input(KEY7, GPIO_PIN_INT_EDGE_RISING);
 
     gpio_register_isr(KEY0, hw_key_isr, NULL);
     gpio_register_isr(KEY1, hw_key_isr, NULL);
@@ -321,15 +329,15 @@ extern void mac_rt570_hw_init(void);
 
 void zb_rt570_init(void)
 {
-  /*we should set pinmux here or in SystemInit */
-  init_default_pin_mux();
+    /*we should set pinmux here or in SystemInit */
+    init_default_pin_mux();
 
-  dma_init();
-  RfMcu_DmaInit();
-  zb_osif_led_button_init();
-  mac_rt570_hw_init();
-  timer_set();
-  zb_osif_timer_init();
+    dma_init();
+    RfMcu_DmaInit();
+    zb_osif_led_button_init();
+    mac_rt570_hw_init();
+    timer_set();
+    zb_osif_timer_init();
 }
 
 void zb_reset(zb_uint8_t param)
@@ -349,17 +357,17 @@ zb_uint32_t zb_random_seed(void)
 
 zb_uint32_t zb_get_utc_time()
 {
-   return 0;
+    return 0;
 }
 
 
 #if defined ZB_TRACE_LEVEL && defined ZB_TRACE_OVER_JTAG
-size_t __write(int handle, const unsigned char * buffer, size_t size);
+size_t __write(int handle, const unsigned char *buffer, size_t size);
 
 /* trace over jtag */
 void zb_osif_serial_put_bytes(zb_uint8_t *buf, zb_short_t len)
 {
-  __write(1, buf, len);
+    __write(1, buf, len);
 }
 
 void zb_osif_serial_init()
@@ -375,28 +383,28 @@ void zb_osif_serial_init()
  */
 static void timer_inter_handler(uint32_t timer_id)
 {
-  zb_time_t timer, stop_timer;
+    zb_time_t timer, stop_timer;
 
-  ZB_TIMER_CTX().timer++;
+    ZB_TIMER_CTX().timer++;
 
-  /* assign to prevent warnings in IAR */
-  timer = ZB_TIMER_CTX().timer;
-  stop_timer = ZB_TIMER_CTX().timer_stop;
+    /* assign to prevent warnings in IAR */
+    timer = ZB_TIMER_CTX().timer;
+    stop_timer = ZB_TIMER_CTX().timer_stop;
 
-  /* Stop timer if it expired or not running. */
-	/*
-  if (!ZB_TIMER_CTX().started ||
+    /* Stop timer if it expired or not running. */
+    /*
+    if (!ZB_TIMER_CTX().started ||
        ZB_TIME_GE(timer, stop_timer))
-  {
+    {
     ZB_STOP_HW_TIMER();
     ZB_TIMER_CTX().timer_stop = ZB_TIMER_CTX().timer;
     ZB_TIMER_CTX().started = 0;
-  }
-  else
-	*/
-  {
-    ZB_START_HW_TIMER();
-  }
+    }
+    else
+    */
+    {
+        ZB_START_HW_TIMER();
+    }
 
 }
 
@@ -417,37 +425,45 @@ uint32_t timer_status(uint32_t timer_id)
 
     timer = base[timer_id];
 
-    if(timer->CONTROL.bit.EN == 1)
+    if (timer->CONTROL.bit.EN == 1)
+    {
         return 1;
+    }
     else
+    {
         return 0;
+    }
 }
 
 void timer_set(void)
 {
-  timer_config_mode_t cfg;
-  uint8_t timerID = 0;
+    timer_config_mode_t cfg;
+    uint8_t timerID = 0;
 
-if( UsedTimer == Timer0)  //use timer0 32Mhz clock
-  /*the input clock is 32M/s, so it will become 1M ticks per second */
-  cfg.prescale = TIMER_PRESCALE_32;
-else if (UsedTimer == Timer3) //use timer3 32Khz clock to suport power saving mode
-  /*the input clock is 32K/s, so it will become 4K ticks per second */
-  cfg.prescale = TIMER_PRESCALE_8;
+    if ( UsedTimer == Timer0) //use timer0 32Mhz clock
+        /*the input clock is 32M/s, so it will become 1M ticks per second */
+    {
+        cfg.prescale = TIMER_PRESCALE_32;
+    }
+    else if (UsedTimer == Timer3) //use timer3 32Khz clock to suport power saving mode
+        /*the input clock is 32K/s, so it will become 4K ticks per second */
+    {
+        cfg.prescale = TIMER_PRESCALE_8;
+    }
 
 
-  cfg.mode =TIMER_PERIODIC_MODE;
-  cfg.int_en = TRUE;
+    cfg.mode = TIMER_PERIODIC_MODE;
+    cfg.int_en = TRUE;
 
-  Timer_Open(UsedTimer, cfg, timer_inter_handler);
+    Timer_Open(UsedTimer, cfg, timer_inter_handler);
 
 }
 
 void timer_set_for_sleep(uint32_t tick)
 {
-  //the unit of tick(sleep time) is mS, RT58x used timer3 as the sleep timer
-  //the currently timer3 is 4K ticks per second, 1ms as 4 timer tick
-  Timer_Start(Timer3, tick*4);
+    //the unit of tick(sleep time) is mS, RT58x used timer3 as the sleep timer
+    //the currently timer3 is 4K ticks per second, 1ms as 4 timer tick
+    Timer_Start(Timer3, tick * 4);
 }
 
 
@@ -455,7 +471,7 @@ void timer_set_for_sleep(uint32_t tick)
 static void zb_osif_timer_init(void)
 {
 
-  ZB_START_HW_TIMER();
+    ZB_START_HW_TIMER();
 }
 
 
@@ -471,7 +487,7 @@ void osif_sleep_using_transc_timer(zb_time_t timeout)
 
 int SysTickIsEnabled(void)
 {
-  return 0;
+    return 0;
 }
 
 #if defined ZB_TRACE_LEVEL && defined ZB_SERIAL_FOR_TRACE
@@ -498,17 +514,20 @@ static void uart0_callback(uint32_t event, void *p_context)
         UART_EVENT_TX_DONE  is for asynchronous mode send
         UART_EVENT_RX_DONE  is for synchronous  mode receive
      */
-    if (event & UART_EVENT_TX_DONE) {
+    if (event & UART_EVENT_TX_DONE)
+    {
         /*if you use multi-tasking, signal the waiting task here.*/
         SER_CTX().tx_in_progress = 0;
     }
 
-    if (event & UART_EVENT_RX_DONE) {
+    if (event & UART_EVENT_RX_DONE)
+    {
         /*if you use multi-tasking, signal the waiting task here.*/
     }
 
     if (event & (UART_EVENT_RX_OVERFLOW | UART_EVENT_RX_BREAK |
-            UART_EVENT_RX_FRAMING_ERROR | UART_EVENT_RX_PARITY_ERROR )) {
+                 UART_EVENT_RX_FRAMING_ERROR | UART_EVENT_RX_PARITY_ERROR ))
+    {
 
         //it's almost impossible for those error case.
         //do something ...
@@ -521,7 +540,7 @@ void  init_debug_console(void)
 {
     uint32_t status = STATUS_SUCCESS;
     uart_config_t  uart0_drv_config;
-		uint32_t  handle;
+    uint32_t  handle;
     static uint8_t            tempbuffer[4];
 
     /*init uart0, 115200, 8bits 1 stopbit, none parity, no flow control.*/
@@ -530,12 +549,12 @@ void  init_debug_console(void)
     uart0_drv_config.hwfc     = UART_HWFC_DISABLED;
     uart0_drv_config.parity   = UART_PARITY_NONE;
 
-	/* Important: p_contex will be the second parameter in uart callback.
+    /* Important: p_contex will be the second parameter in uart callback.
      * In this example, we do NOT use p_context, (So we just use handle for sample)
      * but you can use it for whaterever you want.
      */
     handle = 0;
-	  uart0_drv_config.p_context = (void *) handle;
+    uart0_drv_config.p_context = (void *) handle;
 
     uart0_drv_config.stopbit  = UART_STOPBIT_ONE;
     uart0_drv_config.interrupt_priority = IRQ_PRIORITY_NORMAL;
@@ -543,13 +562,13 @@ void  init_debug_console(void)
     uart_init(0, &uart0_drv_config, uart0_callback);
 
 
-    if(status!=STATUS_SUCCESS)
+    if (status != STATUS_SUCCESS)
     {
-         while(1);
+        while (1);
     }
 
     /*uart device is auto power on in uart_init function */
-    uart_rx(0, tempbuffer , 1);
+    uart_rx(0, tempbuffer, 1);
 
 }
 #else
@@ -564,15 +583,15 @@ static void uart0_callback(char ch)
 void zb_osif_serial_init()
 {
 
-  /*init debug uart port for printf*/
+    /*init debug uart port for printf*/
 #ifdef PRINTF_USE_RT58X_LIB
-  console_drv_init(UART_BAUDRATE_115200);
+    console_drv_init(UART_BAUDRATE_115200);
 #else
-  //rt58x_bsp_init();
+    //rt58x_bsp_init();
 #endif
-  //init_debug_console();
+    //init_debug_console();
 
-  //printf("UART init done!\n", temp);
+    //printf("UART init done!\n", temp);
 }
 
 /* trace over uart */
@@ -580,7 +599,7 @@ extern void transmit_chars(uint32_t id);
 int ZBOSS_Trace(char *ptr, int len);
 void zb_osif_serial_put_bytes(const zb_uint8_t *buf, zb_short_t len)
 {
-   ZBOSS_Trace((char *)buf, len);
+    ZBOSS_Trace((char *)buf, len);
 }
 
 void rt_uart_transmit_chars(uint32_t id)
@@ -594,15 +613,15 @@ void rt_uart_transmit_chars(uint32_t id)
 
     /* Fill fifo with bytes from buffer */
     zb_uint8_t volatile *p = ZB_RING_BUFFER_PEEK(&SER_CTX().tx_buf);
-    if( p )
+    if ( p )
     {
-      //uart->THR = *p;
-      SER_CTX().tx_in_progress = 1;
-      ZB_RING_BUFFER_FLUSH_GET(&SER_CTX().tx_buf);
+        //uart->THR = *p;
+        SER_CTX().tx_in_progress = 1;
+        ZB_RING_BUFFER_FLUSH_GET(&SER_CTX().tx_buf);
     }
     else
     {
-      SER_CTX().tx_in_progress = 0;
+        SER_CTX().tx_in_progress = 0;
     }
 }
 
@@ -624,15 +643,15 @@ void rt_uart_receive_chars(uint32_t id)
     //
     if (SER_CTX().byte_received_cb)
     {
-        while(uart->LSR&UART_LSR_DR)
+        while (uart->LSR & UART_LSR_DR)
         {
             SER_CTX().byte_received_cb(uart->RBR);
         }
     }
     else
     {
-      uint8_t temp=0;
-      temp += uart->RBR;
+        uint8_t temp = 0;
+        temp += uart->RBR;
     }
 
 }
@@ -663,36 +682,41 @@ extern void RT570_idle_set(void);
 
 zb_uint32_t zb_osif_sleep(zb_uint32_t sleep_tmo)
 {
-  zb_uint32_t slept_time;
+    zb_uint32_t slept_time;
 
-  RT570_sleep_set();
+    RT570_sleep_set();
 
-  //gpio_pin_clear(LED1);
+    //gpio_pin_clear(LED1);
 
-  if(sleep_tmo > 0x3FFFFFFF) {
-    sleep_tmo = 0x3FFFFFFF;
-  }
-  timer_set_for_sleep(sleep_tmo);
+    if (sleep_tmo > 0x3FFFFFFF)
+    {
+        sleep_tmo = 0x3FFFFFFF;
+    }
+    timer_set_for_sleep(sleep_tmo);
 
-  timer_dlyint_cfg(Timer3, 0);
+    timer_dlyint_cfg(Timer3, 0);
 
-  //going to sleep
-  outp32(0x40800000, 0x1);
-  __WFI();
+    //going to sleep
+    outp32(0x40800000, 0x1);
+    __WFI();
 
-  //system wakeup
-  slept_time = Timer_Current_Get(Timer3);
-  RT570_idle_set();
-  //gpio_pin_set(LED1);
-  ZB_START_HW_TIMER();
+    //system wakeup
+    slept_time = Timer_Current_Get(Timer3);
+    RT570_idle_set();
+    //gpio_pin_set(LED1);
+    ZB_START_HW_TIMER();
 
-  if(slept_time == 0)
-    return sleep_tmo;
-  else
-    return slept_time/4; //transfer timer ticks to ms
+    if (slept_time == 0)
+    {
+        return sleep_tmo;
+    }
+    else
+    {
+        return slept_time / 4;    //transfer timer ticks to ms
+    }
 }
 
 void zb_osif_wake_up()
 {
-	aes_fw_init();
+    aes_fw_init();
 }

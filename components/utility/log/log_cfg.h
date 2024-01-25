@@ -1,12 +1,12 @@
 /**
  * @file log_cfg.h
  * @author Rex Huang (rex.huang@rafaelmicro.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2023-08-01
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 #ifndef __LOG_CFG_H__
 #define __LOG_CFG_H__

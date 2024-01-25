@@ -441,7 +441,7 @@ __weak cpc_system_status_t cpc_get_reset_reason(void)
 }
 static void reset_cb(TimerHandle_t xTimer)
 {
-  //cpc_system_reset(0);
+    //cpc_system_reset(0);
 }
 
 /***************************************************************************/ /**
@@ -479,8 +479,8 @@ static void send_reset_reason(void)
                        NULL);
 
     // configASSERT(status == STATUS_OK); //Ignore error
-  sResetTimer = xTimerCreate("Reset_T", 500, false, NULL, reset_cb);
-  xTimerStart(sResetTimer, 0);    
+    sResetTimer = xTimerCreate("Reset_T", 500, false, NULL, reset_cb);
+    xTimerStart(sResetTimer, 0);
 }
 
 /*******************************************************************************
@@ -706,7 +706,7 @@ static void on_property_get_security_state(cpc_system_cmd_t *tx_command)
                                                                                *   The primary queried the status of a specific endpoint number.
                                                                                ******************************************************************************/
 static void on_property_get_endpoint_state(cpc_system_cmd_t *tx_command,
-                                           uint8_t ep_id)
+        uint8_t ep_id)
 {
     cpc_system_property_cmd_t *reply_prop_cmd_buff;
     cpc_endpoint_state_t *reply_ep_state;
@@ -730,7 +730,7 @@ static void on_property_get_endpoint_state(cpc_system_cmd_t *tx_command,
                                                                                *   The primary queried the encryption state of a specific endpoint number.
                                                                                ******************************************************************************/
 static void on_property_get_endpoint_encryption(cpc_system_cmd_t *tx_command,
-                                                uint8_t ep_id)
+        uint8_t ep_id)
 {
     cpc_system_property_cmd_t *reply_prop_cmd_buff;
     cpc_endpoint_handle_t dummy_ep;
@@ -845,7 +845,7 @@ static void on_property_set_state(uint8_t endpoint_id,
                                                                                *   The primary enables/disables u-frame processing on the secondary.
                                                                                ******************************************************************************/
 static void on_property_set_uframe_processing(cpc_system_cmd_t *tx_command,
-                                              cpc_system_cmd_t *rx_command)
+        cpc_system_cmd_t *rx_command)
 {
     cpc_system_property_cmd_t *tx_property_command;
     cpc_system_property_cmd_t *rx_property_command;
@@ -889,7 +889,7 @@ static void on_property_set_enter_irq(cpc_system_cmd_t *tx_command,
                                                                                *   The primary sets the reboot mode.
                                                                                ******************************************************************************/
 static void on_property_set_bootloader_reboot_mode(cpc_system_cmd_t *tx_command,
-                                                   cpc_system_cmd_t *rx_command)
+        cpc_system_cmd_t *rx_command)
 {
     cpc_system_property_cmd_t *tx_property_command;
     cpc_system_property_cmd_t *rx_property_command;

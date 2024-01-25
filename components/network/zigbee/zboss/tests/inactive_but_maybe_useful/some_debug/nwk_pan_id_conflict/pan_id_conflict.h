@@ -34,7 +34,7 @@
 
 typedef struct app_ctx_s
 {
-  zb_bool_t enable_send_incorrect_beacon;
+    zb_bool_t enable_send_incorrect_beacon;
 } app_ctx_t;
 
 #endif /* BULB_H */

@@ -141,7 +141,7 @@ typedef zb_channel_page_t zb_channel_list_t[ZB_CHANNEL_PAGES_NUM];
           0xff in case of error
 */
 zb_uint8_t zb_pages_remap_logical_channel(zb_uint8_t channel_page,
-                                          zb_uint8_t logical_channel);
+        zb_uint8_t logical_channel);
 
 #define ZB_PAGES_REMAP_LOGICAL_CHANNEL(page, lchannel_number) zb_pages_remap_logical_channel(page, lchannel_number)
 
@@ -240,7 +240,7 @@ zb_uint8_t zb_pages_remap_logical_channel(zb_uint8_t channel_page,
  * @param src - source channel page list
  */
 void zb_channel_page_list_copy(zb_channel_list_t dst,
-                                    zb_channel_list_t src);
+                               zb_channel_list_t src);
 
 /**
  * @brief Sets channels mask for specified element of channel page list.
@@ -250,8 +250,8 @@ void zb_channel_page_list_copy(zb_channel_list_t dst,
  * @param mask - channels mask to set
  */
 void zb_channel_page_list_set_mask(zb_channel_list_t list,
-                                        zb_uint8_t         idx,
-                                        zb_uint32_t        mask);
+                                   zb_uint8_t         idx,
+                                   zb_uint32_t        mask);
 
 /**
  * @brief Gets channels mask of specified element of channel page list.
@@ -262,7 +262,7 @@ void zb_channel_page_list_set_mask(zb_channel_list_t list,
  * @return Channels mask.
  */
 zb_uint32_t zb_channel_page_list_get_mask(zb_channel_list_t list,
-                                          zb_uint8_t         idx);
+        zb_uint8_t         idx);
 
 /**
  * @brief Sets channel page for specified element of channel page list.
@@ -272,8 +272,8 @@ zb_uint32_t zb_channel_page_list_get_mask(zb_channel_list_t list,
  * @param page - channel page to set
  */
 void zb_channel_page_list_set_page(zb_channel_list_t list,
-                                        zb_uint8_t         idx,
-                                        zb_uint8_t         page);
+                                   zb_uint8_t         idx,
+                                   zb_uint8_t         page);
 
 /**
  * @brief Gets channel page of specified element of channel page list.
@@ -284,7 +284,7 @@ void zb_channel_page_list_set_page(zb_channel_list_t list,
  * @return Channel page.
  */
 zb_uint8_t zb_channel_page_list_get_page(zb_channel_list_t list,
-                                         zb_uint8_t         idx);
+        zb_uint8_t         idx);
 
 
 /**
@@ -325,7 +325,7 @@ zb_uint32_t zb_channel_page_get_all_channels_mask_by_page(zb_uint8_t page);
  * @param mask - channels mask to set
  */
 void zb_channel_page_list_set_2_4GHz_mask(zb_channel_list_t list,
-                                               zb_uint32_t        mask);
+        zb_uint32_t        mask);
 
 /**
  * @brief Gets channels mask of the list element of channel page list that
@@ -449,8 +449,8 @@ zb_ret_t zb_channel_page_get_max_channel_number(zb_uint8_t page, zb_uint8_t *cha
  *         RET_INVALID_PARAMETER - unacceptable logical channel for specified channel page.
  */
 zb_ret_t zb_channel_page_channel_logical_to_number(zb_uint8_t page,
-                                                   zb_uint8_t logical_channel,
-                                                   zb_uint8_t *channel_number);
+        zb_uint8_t logical_channel,
+        zb_uint8_t *channel_number);
 
 /**
  * @brief Converts channel number within channel mask to logical channel for
@@ -468,8 +468,8 @@ zb_ret_t zb_channel_page_channel_logical_to_number(zb_uint8_t page,
  *         RET_INVALID_PARAMETER - unacceptable logical channel for specified channel page.
  */
 zb_ret_t zb_channel_page_channel_number_to_logical(zb_uint8_t page,
-                                                   zb_uint8_t channel_number,
-                                                   zb_uint8_t *logical_channel);
+        zb_uint8_t channel_number,
+        zb_uint8_t *logical_channel);
 
 /**
  * @brief Sets bit in channel mask corresponding to specified channel number.
@@ -482,8 +482,8 @@ zb_ret_t zb_channel_page_channel_number_to_logical(zb_uint8_t page,
  *         RET_INVALID_PARAMETER - unacceptable channel number for specified channel page.
  */
 zb_ret_t zb_channel_page_list_set_channel(zb_channel_list_t list,
-                                          zb_uint8_t         idx,
-                                          zb_uint8_t         channel_number);
+        zb_uint8_t         idx,
+        zb_uint8_t         channel_number);
 
 /**
  * @brief Sets bit in channel mask corresponding to specified channel number.
@@ -496,8 +496,8 @@ zb_ret_t zb_channel_page_list_set_channel(zb_channel_list_t list,
  *         RET_INVALID_PARAMETER - unacceptable channel number for specified channel page.
  */
 zb_ret_t zb_channel_page_list_set_logical_channel(zb_channel_list_t list,
-                                                  zb_uint8_t         page,
-                                                  zb_uint8_t         channel_number);
+        zb_uint8_t         page,
+        zb_uint8_t         channel_number);
 
 
 
@@ -512,11 +512,11 @@ zb_ret_t zb_channel_page_list_set_logical_channel(zb_channel_list_t list,
  *         RET_INVALID_PARAMETER - unacceptable channel number for specified channel page.
  */
 zb_ret_t zb_channel_page_list_unset_channel(zb_channel_list_t list,
-                                            zb_uint8_t         idx,
-                                            zb_uint8_t         channel_number);
+        zb_uint8_t         idx,
+        zb_uint8_t         channel_number);
 
 zb_uint8_t zb_channel_page_list_get_channels_num(zb_channel_list_t list,
-                                                 zb_uint8_t         idx);
+        zb_uint8_t         idx);
 
 
 #ifdef ZB_MAC_CONFIGURABLE_TX_POWER

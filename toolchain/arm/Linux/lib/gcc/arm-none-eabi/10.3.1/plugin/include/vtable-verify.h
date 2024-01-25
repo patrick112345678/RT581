@@ -51,16 +51,16 @@ extern int total_num_verified_vcalls;
 
 struct vtable_registration
 {
-  tree vtable_decl;            /* The var decl of the vtable.               */
-  vec<unsigned> offsets;       /* The offsets array.                        */
+    tree vtable_decl;            /* The var decl of the vtable.               */
+    vec<unsigned> offsets;       /* The offsets array.                        */
 };
 
 struct registration_hasher : nofree_ptr_hash <struct vtable_registration>
-{
-  static inline hashval_t hash (const vtable_registration *);
-  static inline bool equal (const vtable_registration *,
-			    const vtable_registration *);
-};
+    {
+        static inline hashval_t hash (const vtable_registration *);
+        static inline bool equal (const vtable_registration *,
+                                  const vtable_registration *);
+    };
 
 typedef hash_table<registration_hasher> register_table_type;
 typedef register_table_type::iterator registration_iterator_type;
@@ -71,21 +71,22 @@ typedef register_table_type::iterator registration_iterator_type;
     'children' means immediate descendants in the class hierarchy;
     'descendant' means any descendant however many levels deep. */
 
-struct vtv_graph_node {
-  tree class_type;                  /* The record_type of the class.        */
-  unsigned class_uid;               /* A unique, monotonically
+struct vtv_graph_node
+{
+    tree class_type;                  /* The record_type of the class.        */
+    unsigned class_uid;               /* A unique, monotonically
                                        ascending id for class node.
                                        Each vtable map node also has
                                        an id.  The class uid is the
                                        same as the vtable map node id
                                        for nodes corresponding to the
                                        same class.                          */
-  unsigned num_processed_children;  /* # of children for whom we have
+    unsigned num_processed_children;  /* # of children for whom we have
                                        computed the class hierarchy
                                        transitive closure.                  */
-  vec<struct vtv_graph_node *> parents;  /* Vector of parents in the graph. */
-  vec<struct vtv_graph_node *> children; /* Vector of children in the graph.*/
-  sbitmap descendants;              /* Bitmap representing all this node's
+    vec<struct vtv_graph_node *> parents;  /* Vector of parents in the graph. */
+    vec<struct vtv_graph_node *> children; /* Vector of children in the graph.*/
+    sbitmap descendants;              /* Bitmap representing all this node's
                                        descendants in the graph.            */
 };
 
@@ -103,21 +104,22 @@ struct vtv_graph_node {
    of the vtbl_map_node, which gives us an easy way to use bitmaps to
    represent and find the vtable map nodes.  */
 
-struct vtbl_map_node {
-  tree vtbl_map_decl;                 /* The var decl for the vtable map
+struct vtbl_map_node
+{
+    tree vtbl_map_decl;                 /* The var decl for the vtable map
                                          variable.                          */
-  tree class_name;                    /* The DECL_ASSEMBLER_NAME of the
+    tree class_name;                    /* The DECL_ASSEMBLER_NAME of the
                                          class.                             */
-  struct vtv_graph_node *class_info;  /* Our class hierarchy info for the
+    struct vtv_graph_node *class_info;  /* Our class hierarchy info for the
                                          class.                             */
-  unsigned uid;                       /* The unique id for the vtable map
+    unsigned uid;                       /* The unique id for the vtable map
                                          variable.                          */
-  struct vtbl_map_node *next, *prev;  /* Pointers for the linked list
+    struct vtbl_map_node *next, *prev;  /* Pointers for the linked list
                                          structure.                         */
-  register_table_type *registered;     /* Hashtable of vtable pointers for which
+    register_table_type *registered;     /* Hashtable of vtable pointers for which
                                          we have generated a _VLTRegisterPair
                                          call with this vtable map variable. */
-  bool is_used;          /* Boolean indicating if we used this vtable map
+    bool is_used;          /* Boolean indicating if we used this vtable map
                             variable in a call to __VLTVerifyVtablePointer. */
 };
 
@@ -136,8 +138,8 @@ extern struct vtbl_map_node *vtbl_map_get_node (tree);
 extern struct vtbl_map_node *find_or_create_vtbl_map_node (tree);
 extern void vtbl_map_node_class_insert (struct vtbl_map_node *, unsigned);
 extern bool vtbl_map_node_registration_find (struct vtbl_map_node *,
-                                             tree, unsigned);
+        tree, unsigned);
 extern bool vtbl_map_node_registration_insert (struct vtbl_map_node *,
-                                               tree, unsigned);
+        tree, unsigned);
 
 #endif /* VTABLE_VERIFY_H */

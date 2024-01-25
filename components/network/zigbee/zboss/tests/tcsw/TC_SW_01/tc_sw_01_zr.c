@@ -55,99 +55,99 @@ void call_simple_desc_req(zb_uint8_t param);
 
 static void start_rejoin(zb_uint8_t param)
 {
-  zb_ext_pan_id_t ext_pan_id;
-  /* rejoin to current pan */
-  zb_get_extended_pan_id(ext_pan_id);
-  zdo_initiate_rejoin(param,
-                      ext_pan_id,
-                      ZB_AIB().aps_channel_mask_list,
-                      ZB_FALSE);
+    zb_ext_pan_id_t ext_pan_id;
+    /* rejoin to current pan */
+    zb_get_extended_pan_id(ext_pan_id);
+    zdo_initiate_rejoin(param,
+                        ext_pan_id,
+                        ZB_AIB().aps_channel_mask_list,
+                        ZB_FALSE);
 }
 
 static void zc_is_dead(zb_uint8_t param)
 {
-  ZVUNUSED(param);
-  /* rejoin */
-  TRACE_MSG(TRACE_APP1, "LET'S REJOIN", (FMT__0));
-  zb_buf_get_out_delayed(start_rejoin);
+    ZVUNUSED(param);
+    /* rejoin */
+    TRACE_MSG(TRACE_APP1, "LET'S REJOIN", (FMT__0));
+    zb_buf_get_out_delayed(start_rejoin);
 }
 
 static void simple_desc_callback(zb_uint8_t param)
 {
-  ZB_SCHEDULE_ALARM_CANCEL(zc_is_dead, 0);
-  ZB_SCHEDULE_ALARM(call_simple_desc_req, param, 5 * ZB_TIME_ONE_SECOND);
+    ZB_SCHEDULE_ALARM_CANCEL(zc_is_dead, 0);
+    ZB_SCHEDULE_ALARM(call_simple_desc_req, param, 5 * ZB_TIME_ONE_SECOND);
 }
 
 
 void call_simple_desc_req(zb_uint8_t param)
 {
-  zb_zdo_simple_desc_req_t * req;
+    zb_zdo_simple_desc_req_t *req;
 
-  req = zb_buf_initial_alloc(param, sizeof(zb_zdo_simple_desc_req_t));
+    req = zb_buf_initial_alloc(param, sizeof(zb_zdo_simple_desc_req_t));
 
-  req->nwk_addr = 0; //send to coordinator
-  req->endpoint = 1;
+    req->nwk_addr = 0; //send to coordinator
+    req->endpoint = 1;
 
-  ZB_SCHEDULE_ALARM(zc_is_dead, 0, 3 * ZB_TIME_ONE_SECOND);
-  zb_zdo_simple_desc_req(param, simple_desc_callback);
+    ZB_SCHEDULE_ALARM(zc_is_dead, 0, 3 * ZB_TIME_ONE_SECOND);
+    zb_zdo_simple_desc_req(param, simple_desc_callback);
 }
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  ZB_SET_TRAF_DUMP_ON();
-  ZB_SET_TRACE_ON();
-  ZB_INIT("zdo_th_zr");
+    ZB_SET_TRAF_DUMP_ON();
+    ZB_SET_TRACE_ON();
+    ZB_INIT("zdo_th_zr");
 
-  zb_set_long_address(g_ieee_addr_th_zr);
+    zb_set_long_address(g_ieee_addr_th_zr);
 
-  zb_set_network_router_role(1l << TEST_CHANNEL);
+    zb_set_network_router_role(1l << TEST_CHANNEL);
 
-  zb_set_max_children(0);
+    zb_set_max_children(0);
 
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  if (zdo_dev_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    if (zdo_dev_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  switch (sig)
-  {
+    switch (sig)
+    {
     case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
-      ZB_SCHEDULE_ALARM(call_simple_desc_req, param, 5 * ZB_TIME_ONE_SECOND);
-      param = 0;
-      break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
+        TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
+        ZB_SCHEDULE_ALARM(call_simple_desc_req, param, 5 * ZB_TIME_ONE_SECOND);
+        param = 0;
+        break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
 
     case ZB_BDB_SIGNAL_STEERING:
-      TRACE_MSG(TRACE_APP1, "signal: ZB_BDB_SIGNAL_STEERING, status %d", (FMT__D, status));
-      break; /* ZB_BDB_SIGNAL_STEERING */
+        TRACE_MSG(TRACE_APP1, "signal: ZB_BDB_SIGNAL_STEERING, status %d", (FMT__D, status));
+        break; /* ZB_BDB_SIGNAL_STEERING */
 
     default:
-      TRACE_MSG(TRACE_APP1, "Unknown signal, sig %hd, status %d", (FMT__H_D, sig, status));
-      break;
-  }
+        TRACE_MSG(TRACE_APP1, "Unknown signal, sig %hd, status %d", (FMT__H_D, sig, status));
+        break;
+    }
 
-  if (param)
-  {
-    zb_buf_free(param);
-  }
+    if (param)
+    {
+        zb_buf_free(param);
+    }
 }

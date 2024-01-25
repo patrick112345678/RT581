@@ -63,16 +63,16 @@
 
 union zb_zcl_attr_var_u
 {
-  zb_uint8_t u8;
-  zb_int8_t s8;
-  zb_uint16_t u16;
-  zb_int16_t s16;
-  zb_uint24_t u24;
-  zb_int24_t s24;
-  zb_uint32_t u32;
-  zb_int32_t s32;
-  zb_uint48_t u48;
-  zb_uint8_t data_buf[4];
+    zb_uint8_t u8;
+    zb_int8_t s8;
+    zb_uint16_t u16;
+    zb_int16_t s16;
+    zb_uint24_t u24;
+    zb_int24_t s24;
+    zb_uint32_t u32;
+    zb_int32_t s32;
+    zb_uint48_t u48;
+    zb_uint8_t data_buf[4];
 };
 
 /** @cond internals_doc */
@@ -80,42 +80,42 @@ union zb_zcl_attr_var_u
 /** @brief Structure for storing Reporting information */
 typedef struct zb_zcl_reporting_info_s
 {
-  zb_uint8_t direction;   /*!< Direction: report is send or received */
-  zb_uint8_t ep;          /*!< Endpoint number */
-  zb_uint16_t cluster_id; /*!< Cluster ID for reporting */
-  zb_uint8_t cluster_role;
-  zb_uint16_t attr_id;    /*!< Attribute ID for reporting */
-  zb_uint8_t flags;       /*!< Flags to inform status of reporting */
-  zb_time_t run_time;     /*!< Time to run next reporting activity */
-  union
-  {
-    struct
+    zb_uint8_t direction;   /*!< Direction: report is send or received */
+    zb_uint8_t ep;          /*!< Endpoint number */
+    zb_uint16_t cluster_id; /*!< Cluster ID for reporting */
+    zb_uint8_t cluster_role;
+    zb_uint16_t attr_id;    /*!< Attribute ID for reporting */
+    zb_uint8_t flags;       /*!< Flags to inform status of reporting */
+    zb_time_t run_time;     /*!< Time to run next reporting activity */
+    union
     {
-      zb_uint16_t min_interval; /*!< Actual minimum reporting interval */
-      zb_uint16_t max_interval; /*!< Actual maximum reporting interval */
-      union zb_zcl_attr_var_u delta; /*!< Actual reportable change */
-      union zb_zcl_attr_var_u reported_value; /*!< The last reported value */
-      zb_uint16_t def_min_interval; /*!< Default minimum reporting interval */
-      zb_uint16_t def_max_interval; /*!< Default maximum reporting interval */
-    }
-    send_info;  /*!< send_info is stored on cluster server side (as usual) and describes how
+        struct
+        {
+            zb_uint16_t min_interval; /*!< Actual minimum reporting interval */
+            zb_uint16_t max_interval; /*!< Actual maximum reporting interval */
+            union zb_zcl_attr_var_u delta; /*!< Actual reportable change */
+            union zb_zcl_attr_var_u reported_value; /*!< The last reported value */
+            zb_uint16_t def_min_interval; /*!< Default minimum reporting interval */
+            zb_uint16_t def_max_interval; /*!< Default maximum reporting interval */
+        }
+        send_info;  /*!< send_info is stored on cluster server side (as usual) and describes how
                   attribute should be reported */
+        struct
+        {
+            zb_uint16_t timeout; /*!< Timeout period */
+        }
+        recv_info; /*!< recv_info is stored on cluster client side (as usual) and describes how
+                 attribute report is received */
+    }
+    u;
+
     struct
     {
-      zb_uint16_t timeout; /*!< Timeout period */
+        zb_uint16_t short_addr; /*!< Destination short address */
+        zb_uint8_t  endpoint;   /*!< Destination endpoint */
+        zb_uint16_t profile_id; /*!< Profile id */
     }
-    recv_info; /*!< recv_info is stored on cluster client side (as usual) and describes how
-                 attribute report is received */
-  }
-  u;
-
-  struct
-  {
-    zb_uint16_t short_addr; /*!< Destination short address */
-    zb_uint8_t  endpoint;   /*!< Destination endpoint */
-    zb_uint16_t profile_id; /*!< Profile id */
-  }
-  dst;
+    dst;
 }
 zb_zcl_reporting_info_t;
 
@@ -126,34 +126,34 @@ zb_zcl_reporting_info_t;
 /** @brief Structure for storing Reporting information to NVRAM */
 typedef ZB_PACKED_PRE struct zb_zcl_reporting_info_nvram_s
 {
-  zb_uint8_t direction;   /*!< Direction: report is send or received */
-  zb_uint8_t ep;          /*!< Endpoint number */
-  zb_uint16_t cluster_id; /*!< Cluster ID for reporting */
-  zb_uint8_t cluster_role; /*!< Cluster role */
-  zb_uint16_t attr_id;    /*!< Attribute ID for reporting */
-  zb_uint8_t flags;       /*!< Flags to inform status of reporting */
+    zb_uint8_t direction;   /*!< Direction: report is send or received */
+    zb_uint8_t ep;          /*!< Endpoint number */
+    zb_uint16_t cluster_id; /*!< Cluster ID for reporting */
+    zb_uint8_t cluster_role; /*!< Cluster role */
+    zb_uint16_t attr_id;    /*!< Attribute ID for reporting */
+    zb_uint8_t flags;       /*!< Flags to inform status of reporting */
 
-  zb_uint16_t min_interval; /*!< Minimum reporting interval or timeout for client*/
-  zb_uint16_t max_interval; /*!< Maximum reporting interval */
-  /* FIXME: Should be U48 here! Leave it as is to do not perform migration! U32 delta is enough for
-   * the most cases... */
-  zb_uint32_t delta; /*!< Reportable change */
+    zb_uint16_t min_interval; /*!< Minimum reporting interval or timeout for client*/
+    zb_uint16_t max_interval; /*!< Maximum reporting interval */
+    /* FIXME: Should be U48 here! Leave it as is to do not perform migration! U32 delta is enough for
+     * the most cases... */
+    zb_uint32_t delta; /*!< Reportable change */
 
-  zb_uint16_t short_addr_dest; /*!< Destination short address */
-  zb_uint8_t  endpoint_dest;   /*!< Destination endpoint */
-  zb_uint16_t profile_id_dest; /*!< Profile id */
-  zb_uint8_t align[3];
+    zb_uint16_t short_addr_dest; /*!< Destination short address */
+    zb_uint8_t  endpoint_dest;   /*!< Destination endpoint */
+    zb_uint16_t profile_id_dest; /*!< Profile id */
+    zb_uint8_t align[3];
 } ZB_PACKED_STRUCT zb_zcl_reporting_info_nvram_t;
 
 #endif /* defined ZB_USE_NVRAM */
 
 typedef struct zb_zcl_reporting_ctx_s
 {
-  zb_uint16_t min_interval;
-  zb_uint16_t max_interval;
-  zb_uint16_t timeout;
+    zb_uint16_t min_interval;
+    zb_uint16_t max_interval;
+    zb_uint16_t timeout;
 
-  zb_uint8_t buf_ref;
+    zb_uint8_t buf_ref;
 }
 zb_zcl_reporting_ctx_t;
 
@@ -183,14 +183,14 @@ typedef void (*zb_zcl_report_attr_cb_t)(
 /** Enumeration of reporting info flag values */
 typedef enum zb_zcl_reporting_flags_e
 {
-  ZB_ZCL_REPORTING_SLOT_BUSY = 0x01,      /*!< Reporting info slot is busy */
-  ZB_ZCL_REPORT_ATTR         = 0x01 << 1, /*!< Current attribute should be reported */
-  ZB_ZCL_REPORT_IS_ALLOWED   = 0x01 << 2, /*!< Reporting for attribute is allowed if
+    ZB_ZCL_REPORTING_SLOT_BUSY = 0x01,      /*!< Reporting info slot is busy */
+    ZB_ZCL_REPORT_ATTR         = 0x01 << 1, /*!< Current attribute should be reported */
+    ZB_ZCL_REPORT_IS_ALLOWED   = 0x01 << 2, /*!< Reporting for attribute is allowed if
                                            * min_interval timeout condition is met */
-  ZB_ZCL_REPORTING_STOP      = 0x01 << 3, /*!< Stop reporting this attribute */
-  ZB_ZCL_REPORT_TIMER_STARTED = 0x01 << 4,
-  ZB_ZCL_REPORT_IS_SENT      = 0x01 << 5,
-  ZB_ZCL_REPORT_IS_FIRST     = 0x01 << 6, /*!< First report for this attribute */
+    ZB_ZCL_REPORTING_STOP      = 0x01 << 3, /*!< Stop reporting this attribute */
+    ZB_ZCL_REPORT_TIMER_STARTED = 0x01 << 4,
+    ZB_ZCL_REPORT_IS_SENT      = 0x01 << 5,
+    ZB_ZCL_REPORT_IS_FIRST     = 0x01 << 6, /*!< First report for this attribute */
 }
 zb_zcl_reporting_flags_t;
 
@@ -234,24 +234,24 @@ void zb_zcl_report_attr_cmd_handler(zb_uint8_t param);
 
 void zb_zcl_report_received(zb_uint8_t ep, zb_uint16_t cluster_id, zb_uint8_t cluster_role, zb_uint16_t attr_id);
 
-zb_ret_t zb_zcl_put_reporting_info(zb_zcl_reporting_info_t* rep_info_ptr, zb_bool_t override);
+zb_ret_t zb_zcl_put_reporting_info(zb_zcl_reporting_info_t *rep_info_ptr, zb_bool_t override);
 
 zb_ret_t zb_zcl_put_reporting_info_from_req(zb_zcl_configure_reporting_req_t *config_rep_req,
-                                            zb_zcl_attr_addr_info_t* attr_addr_info);
+        zb_zcl_attr_addr_info_t *attr_addr_info);
 
 void zb_zcl_init_reporting_info(void);
 
-zb_zcl_reporting_info_t* zb_zcl_find_reporting_info(  zb_uint8_t ep,
-                                                      zb_uint16_t cluster_id,
-                                                      zb_uint8_t cluster_role,
-                                                      zb_uint16_t attr_id);
+zb_zcl_reporting_info_t *zb_zcl_find_reporting_info(  zb_uint8_t ep,
+        zb_uint16_t cluster_id,
+        zb_uint8_t cluster_role,
+        zb_uint16_t attr_id);
 
-zb_zcl_reporting_info_t* zb_zcl_get_next_reporting_info(
-  zb_zcl_reporting_info_t *rep_info_init, zb_uint8_t is_manuf_spec);
+zb_zcl_reporting_info_t *zb_zcl_get_next_reporting_info(
+    zb_zcl_reporting_info_t *rep_info_init, zb_uint8_t is_manuf_spec);
 
 void zb_zcl_reporting_cb(zb_uint8_t param);
 
-void zb_zcl_save_reported_value(zb_zcl_reporting_info_t *rep_info, zb_zcl_attr_t* attr_desc);
+void zb_zcl_save_reported_value(zb_zcl_reporting_info_t *rep_info, zb_zcl_attr_t *attr_desc);
 
 void zb_zcl_mark_attr_for_reporting(zb_uint8_t ep, zb_uint16_t cluster_id, zb_uint8_t cluster_role, zb_uint16_t attr_id);
 
@@ -287,7 +287,7 @@ zb_ret_t zb_zcl_stop_attr_reporting(zb_uint8_t ep, zb_uint16_t cluster_id, zb_ui
 zb_bool_t zcl_is_attr_reported(zb_uint8_t ep, zb_uint16_t cluster_id, zb_uint8_t cluster_role, zb_uint16_t attr_id);
 
 /* TODO: Document */
-zb_ret_t zb_zcl_put_reporting_info(zb_zcl_reporting_info_t* rep_info_ptr, zb_bool_t override);
+zb_ret_t zb_zcl_put_reporting_info(zb_zcl_reporting_info_t *rep_info_ptr, zb_bool_t override);
 
 /** @} */
 

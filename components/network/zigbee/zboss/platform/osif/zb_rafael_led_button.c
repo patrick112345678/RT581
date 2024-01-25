@@ -41,47 +41,47 @@ extern void key_hw_init(void);
 
 void zb_osif_led_button_init(void)
 {
-  led_hw_init();
-  key_hw_init();
+    led_hw_init();
+    key_hw_init();
 }
 
 zb_bool_t zb_setup_buttons_cb(zb_callback_t cb)
 {
-  static zb_uint8_t inited = 0;
-  (void)cb;
-  if (inited)
-  {
-    return ZB_FALSE;
-  }
-  else
-  {
-    inited++;
-    return ZB_TRUE;
-  }
+    static zb_uint8_t inited = 0;
+    (void)cb;
+    if (inited)
+    {
+        return ZB_FALSE;
+    }
+    else
+    {
+        inited++;
+        return ZB_TRUE;
+    }
 }
 
 static zb_uint_t led_no_to_led_const(zb_uint8_t led_no)
 {
 #if 0 //JJ
-  switch (led_no)
-  {
+    switch (led_no)
+    {
     case 0:
-      return BSP_LED_1;
-      break;
+        return BSP_LED_1;
+        break;
     case 1:
-      return BSP_LED_2;
-      break;
+        return BSP_LED_2;
+        break;
     case 2:
-      return BSP_LED_3;
-      break;
+        return BSP_LED_3;
+        break;
     case 3:
-      return BSP_LED_4;
-      break;
+        return BSP_LED_4;
+        break;
     default:
-      /* probably impossible, but let's use an adequate value */
-      return BSP_LED_ALL;
-      break;
-  }
+        /* probably impossible, but let's use an adequate value */
+        return BSP_LED_ALL;
+        break;
+    }
 #endif
     return 0;
 }
@@ -89,7 +89,7 @@ static zb_uint_t led_no_to_led_const(zb_uint8_t led_no)
 
 void zb_osif_led_on(zb_uint8_t led_no)
 {
-//JJ  bspLedSet(led_no_to_led_const(led_no));
+    //JJ  bspLedSet(led_no_to_led_const(led_no));
 }
 
 
@@ -102,24 +102,24 @@ void zb_osif_led_off(zb_uint8_t led_no)
 
 zb_bool_t zb_osif_button_state(zb_uint8_t arg)
 {
-  /* can't use this function actually. TODO: check how to implement. */
-  return 0;
+    /* can't use this function actually. TODO: check how to implement. */
+    return 0;
 }
 
 
 void zb_osif_button_cb(zb_uint8_t arg)
 {
 #if 0  //JJ
-  (void)arg;
-  /* Now implemented by polling button state. TODO: use interrupt */
-  if (zb_osif_button_state(arg))
-  {
-    zb_button_on_cb(0);
-  }
-  else
-  {
-    zb_button_off_cb(0);
-  }
+    (void)arg;
+    /* Now implemented by polling button state. TODO: use interrupt */
+    if (zb_osif_button_state(arg))
+    {
+        zb_button_on_cb(0);
+    }
+    else
+    {
+        zb_button_off_cb(0);
+    }
 #endif
 }
 

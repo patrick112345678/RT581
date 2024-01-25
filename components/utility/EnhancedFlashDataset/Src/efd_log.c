@@ -158,15 +158,18 @@ static EfErrCode write_sector_status(uint32_t addr, SectorStatus status)
     /* calculate the sector staus magic */
     switch (status)
     {
-    case SECTOR_STATUS_EMPUT: {
+    case SECTOR_STATUS_EMPUT:
+    {
         header = LOG_SECTOR_MAGIC;
         return efd_port_write(header_addr, &header, sizeof(header));
     }
-    case SECTOR_STATUS_USING: {
+    case SECTOR_STATUS_USING:
+    {
         header = SECTOR_STATUS_MAGIC_USING;
         return efd_port_write(header_addr + sizeof(header), &header, sizeof(header));
     }
-    case SECTOR_STATUS_FULL: {
+    case SECTOR_STATUS_FULL:
+    {
         header = SECTOR_STATUS_MAGIC_FULL;
         return efd_port_write(header_addr + sizeof(header) * 2, &header, sizeof(header));
     }
@@ -184,7 +187,7 @@ static EfErrCode write_sector_status(uint32_t addr, SectorStatus status)
  */
 static uint32_t find_sec_using_end_addr(uint32_t addr)
 {
-/* read section data buffer size */
+    /* read section data buffer size */
 #define READ_BUF_SIZE 32
 
     uint32_t sector_start = addr, data_start = addr, continue_ff = 0, read_buf_size = 0, i;
@@ -289,7 +292,8 @@ static void find_start_and_end_addr(void)
         /* compare last and current status */
         switch (last_sec_status)
         {
-        case SECTOR_STATUS_EMPUT: {
+        case SECTOR_STATUS_EMPUT:
+        {
             switch (cur_sec_status)
             {
             case SECTOR_STATUS_EMPUT:
@@ -306,7 +310,8 @@ static void find_start_and_end_addr(void)
             empty_sec_counts++;
             break;
         }
-        case SECTOR_STATUS_USING: {
+        case SECTOR_STATUS_USING:
+        {
             switch (cur_sec_status)
             {
             case SECTOR_STATUS_EMPUT:
@@ -329,7 +334,8 @@ static void find_start_and_end_addr(void)
             using_sec_counts++;
             break;
         }
-        case SECTOR_STATUS_FULL: {
+        case SECTOR_STATUS_FULL:
+        {
             switch (cur_sec_status)
             {
             case SECTOR_STATUS_EMPUT:
@@ -470,7 +476,7 @@ size_t efd_log_get_total_size(void)
  *
  * @return result
  */
-static EfErrCode log_seq_read(uint32_t addr, uint32_t * log, size_t size)
+static EfErrCode log_seq_read(uint32_t addr, uint32_t *log, size_t size)
 {
     EfErrCode result = EFD_NO_ERR;
     size_t read_size = 0, read_size_temp = 0;
@@ -542,7 +548,7 @@ static uint32_t log_index2addr(size_t index)
  *
  * @return result
  */
-EfErrCode efd_log_read(size_t index, uint32_t * log, size_t size)
+EfErrCode efd_log_read(size_t index, uint32_t *log, size_t size)
 {
     EfErrCode result        = EFD_NO_ERR;
     size_t cur_using_size   = efd_log_get_used_size();
@@ -666,7 +672,7 @@ EfErrCode efd_log_read(size_t index, uint32_t * log, size_t size)
  *
  * @return result
  */
-EfErrCode efd_log_write(const uint32_t * log, size_t size)
+EfErrCode efd_log_write(const uint32_t *log, size_t size)
 {
     EfErrCode result  = EFD_NO_ERR;
     size_t write_size = 0, writable_size = 0;

@@ -93,8 +93,8 @@ APPLICATION_SIMPLE / APPLICATION_MODERATE / APPLICATION_COMPLEX
 
 #endif  /* ZB_CONFIG_OVERALL_NETWORK_SIZE */
 
- /* Reserve in address translation table for aliases: 1/4, at least
-  * 4. Table size must be < 255, so let's limit net size to 200 */
+/* Reserve in address translation table for aliases: 1/4, at least
+ * 4. Table size must be < 255, so let's limit net size to 200 */
 #define ZB_IEEE_ADDR_TABLE_SIZE_RESERVE(n) ((n + 15U)/16U * 4U)
 
 /*
@@ -208,7 +208,7 @@ APPLICATION_SIMPLE / APPLICATION_MODERATE / APPLICATION_COMPLEX
 #endif  /* ZB_CONFIG_HIGH_TRAFFIC */
 
 /* check that 5 bits of src_table_index is enough */
-ZB_ASSERT_COMPILE_DECL(ZB_CONFIG_APS_SRC_BINDING_TABLE_SIZE <= (1U<<5U));
+ZB_ASSERT_COMPILE_DECL(ZB_CONFIG_APS_SRC_BINDING_TABLE_SIZE <= (1U << 5U));
 
 /*
   Complexity of the application interconnection to other Zigbee devices.
@@ -273,10 +273,10 @@ ZB_ASSERT_COMPILE_DECL(ZB_CONFIG_APS_SRC_BINDING_TABLE_SIZE <= (1U<<5U));
 
 #endif  /* ZB_CONFIG_APPLICATION_COMPLEX */
 
-#ifdef ZB_CONFIG_SCHEDULER_Q_SIZE 
+#ifdef ZB_CONFIG_SCHEDULER_Q_SIZE
 /**
    The purpose of the define. Ret code handling implementation on the application side
-   (via ZB_SCHEDULE_USER_APP_ALARM and ZB_SCHEDULE_USER_APP_CALLBACK) implies that we have some part 
+   (via ZB_SCHEDULE_USER_APP_ALARM and ZB_SCHEDULE_USER_APP_CALLBACK) implies that we have some part
    of the callback and alarm queues which can not be used from the user app and always should be reserved
    for stack schedule purposes. So, let's define this part as 12 (for both immediate callbacks and alarms)
    for all configurations.

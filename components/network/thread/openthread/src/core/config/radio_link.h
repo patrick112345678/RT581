@@ -63,7 +63,7 @@
 
 #ifdef OPENTHREAD_CONFIG_MULTI_RADIO
 #error "OPENTHREAD_CONFIG_MULTI_RADIO should not be defined directly." \
-       "It is derived from CONFIG_RADIO_LINK_<TYPE>_ENABLE options."
+"It is derived from CONFIG_RADIO_LINK_<TYPE>_ENABLE options."
 #endif
 
 #if (OPENTHREAD_CONFIG_RADIO_LINK_IEEE_802_15_4_ENABLE && OPENTHREAD_CONFIG_RADIO_LINK_TREL_ENABLE)

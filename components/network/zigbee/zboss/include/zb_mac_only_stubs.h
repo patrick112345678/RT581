@@ -64,34 +64,34 @@ void secur_nwk_generate_keys()
 }
 
 zb_ret_t zb_nwk_secure_frame(zb_bufid_t src, zb_uint_t mac_hdr_size, zb_bufid_t dst)
- {
-  ZVUNUSED(src);
-  ZVUNUSED(dst);
-  ZVUNUSED(mac_hdr_size);
-  return 0;
+{
+    ZVUNUSED(src);
+    ZVUNUSED(dst);
+    ZVUNUSED(mac_hdr_size);
+    return 0;
 }
 
 zb_ret_t zb_aps_secure_frame(zb_bufid_t src, zb_uint_t mac_hdr_size, zb_bufid_t dst, zb_bool_t is_tunnel)
 {
-  ZVUNUSED(src);
-  ZVUNUSED(dst);
-  ZVUNUSED(is_tunnel);
-  ZVUNUSED(mac_hdr_size);
-  return 0;
+    ZVUNUSED(src);
+    ZVUNUSED(dst);
+    ZVUNUSED(is_tunnel);
+    ZVUNUSED(mac_hdr_size);
+    return 0;
 }
 
 void zb_zdo_check_fails(zb_uint8_t param)
 {
-  if ( param )
-  {
-    zb_buf_free(param);
-  }
+    if ( param )
+    {
+        zb_buf_free(param);
+    }
 }
 
 #ifndef USE_ZB_MLME_RESET_CONFIRM
 void zb_mlme_reset_confirm(zb_uint8_t param)
 {
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 #endif
 
@@ -99,7 +99,7 @@ void zb_mlme_reset_confirm(zb_uint8_t param)
 #ifndef USE_ZB_MLME_SET_CONFIRM
 void zb_mlme_set_confirm(zb_uint8_t param)
 {
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 #endif
 
@@ -107,7 +107,7 @@ void zb_mlme_set_confirm(zb_uint8_t param)
 #ifndef USE_ZB_MLME_START_CONFIRM
 void zb_mlme_start_confirm(zb_uint8_t param)
 {
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 #endif
 
@@ -115,63 +115,63 @@ void zb_mlme_start_confirm(zb_uint8_t param)
 #ifndef USE_ZB_MCPS_DATA_CONFIRM
 void zb_mcps_data_confirm(zb_uint8_t param)
 {
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 #endif
 
 #ifndef USE_ZB_MLME_BEACON_NOTIFY_INDICATION
 void zb_mlme_beacon_notify_indication(zb_uint8_t param)
 {
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 #endif
 
 #ifndef USE_ZB_MLME_POLL_CONFIRM
 void zb_mlme_poll_confirm(zb_uint8_t param)
 {
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 #endif
 
 #ifndef USE_ZB_MLME_ORPHAN_INDICATION
 void zb_mlme_orphan_indication(zb_uint8_t param)
 {
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 #endif
 
 #ifndef USE_ZB_MLME_ASSOCIATE_CONFIRM
 void zb_mlme_associate_confirm(zb_uint8_t param)
 {
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 #endif
 
 #ifndef USE_ZB_MLME_ASSOCIATE_INDICATION
 void zb_mlme_associate_indication(zb_uint8_t param)
 {
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 #endif
 
 #ifndef USE_ZB_MLME_SCAN_CONFIRM
 void zb_mlme_scan_confirm(zb_uint8_t param)
 {
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 #endif
 
 #ifndef USE_ZB_MCPS_DATA_INDICATION
 void zb_mcps_data_indication(zb_uint8_t param)
 {
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 #endif
 
 #ifndef USE_ZB_MCPS_POLL_INDICATION
 void zb_mcps_poll_indication(zb_uint8_t param)
 {
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 #endif
 
@@ -179,7 +179,7 @@ void zb_mcps_poll_indication(zb_uint8_t param)
 #ifndef USE_ZB_MLME_COMM_STATUS_INDICATION
 void zb_mlme_comm_status_indication(zb_uint8_t param)
 {
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 #endif
 
@@ -187,14 +187,14 @@ void zb_mlme_comm_status_indication(zb_uint8_t param)
 #ifndef USE_ZB_MLME_PURGE_CONFIRM
 void zb_mlme_purge_confirm(zb_uint8_t param)
 {
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 #endif
 
 #ifndef USE_ZB_MLME_DUTY_CYCLE_MODE_INDICATION
 void zb_mlme_duty_cycle_mode_indication(zb_uint8_t param)
 {
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 #endif
 
@@ -208,22 +208,22 @@ void zb_nwk_neighbor_init()
 
 void zb_nwk_nib_init(zb_bool_t is_first)
 {
-  (void)is_first;
+    (void)is_first;
 }
 
 void zb_check_and_handle_oom(zb_time_t t)
 {
-  ZVUNUSED(t);
+    ZVUNUSED(t);
 }
 
 void zb_mlme_get_power_information_table_confirm(zb_uint8_t param)
 {
-  ZVUNUSED(param);
+    ZVUNUSED(param);
 }
 
 void zb_mlme_set_power_information_table_confirm(zb_uint8_t param)
 {
-  ZVUNUSED(param);
+    ZVUNUSED(param);
 }
 
 void zb_zse_init(void)
@@ -232,7 +232,7 @@ void zb_zse_init(void)
 
 void zb_mcps_purge_indirect_queue_confirm(zb_uint8_t param)
 {
-  ZVUNUSED(param);
+    ZVUNUSED(param);
 }
 
 #endif  /* ZB_MAC_ONLY_STACK */

@@ -27,54 +27,54 @@
 
 zb_ret_t ncp_host_nwk_formation(zb_bufid_t buf)
 {
-  zb_ret_t ret = RET_BUSY;
-  zb_nlme_network_formation_request_t *req = ZB_BUF_GET_PARAM(buf, zb_nlme_network_formation_request_t);
+    zb_ret_t ret = RET_BUSY;
+    zb_nlme_network_formation_request_t *req = ZB_BUF_GET_PARAM(buf, zb_nlme_network_formation_request_t);
 
-  TRACE_MSG(TRACE_TRANSPORT2, ">> ncp_host_nwk_formation", (FMT__0));
+    TRACE_MSG(TRACE_TRANSPORT2, ">> ncp_host_nwk_formation", (FMT__0));
 
-  ret = ncp_host_nwk_formation_transport(req);
-  zb_buf_free(buf);
+    ret = ncp_host_nwk_formation_transport(req);
+    zb_buf_free(buf);
 
-  TRACE_MSG(TRACE_TRANSPORT2, "<< ncp_host_nwk_formation, ret %d", (FMT__D, ret));
+    TRACE_MSG(TRACE_TRANSPORT2, "<< ncp_host_nwk_formation, ret %d", (FMT__D, ret));
 
-  return ret;
+    return ret;
 }
 
 zb_ret_t ncp_host_nwk_permit_joining(zb_bufid_t buf)
 {
-  zb_ret_t ret = RET_BUSY;
-  zb_nlme_permit_joining_request_t *req = ZB_BUF_GET_PARAM(buf, zb_nlme_permit_joining_request_t);
+    zb_ret_t ret = RET_BUSY;
+    zb_nlme_permit_joining_request_t *req = ZB_BUF_GET_PARAM(buf, zb_nlme_permit_joining_request_t);
 
-  TRACE_MSG(TRACE_TRANSPORT2, ">> ncp_host_nwk_permit_joining", (FMT__0));
+    TRACE_MSG(TRACE_TRANSPORT2, ">> ncp_host_nwk_permit_joining", (FMT__0));
 
-  ret = ncp_host_nwk_permit_joining_transport(req);
-  zb_buf_free(buf);
+    ret = ncp_host_nwk_permit_joining_transport(req);
+    zb_buf_free(buf);
 
-  TRACE_MSG(TRACE_TRANSPORT2, "<< ncp_host_nwk_permit_joining, ret %d", (FMT__D, ret));
+    TRACE_MSG(TRACE_TRANSPORT2, "<< ncp_host_nwk_permit_joining, ret %d", (FMT__D, ret));
 
-  return ret;
+    return ret;
 }
 
 void adaptor_handle_nwk_formation_response(zb_ret_t status)
 {
-  zb_bufid_t buf = zb_buf_get(ZB_TRUE, 0);
+    zb_bufid_t buf = zb_buf_get(ZB_TRUE, 0);
 
-  TRACE_MSG(TRACE_TRANSPORT3, ">> adaptor_handle_nwk_formation_response", (FMT__0));
+    TRACE_MSG(TRACE_TRANSPORT3, ">> adaptor_handle_nwk_formation_response", (FMT__0));
 
-  zb_buf_set_status(buf, status);
-  ncp_host_handle_nwk_formation_response(buf);
+    zb_buf_set_status(buf, status);
+    ncp_host_handle_nwk_formation_response(buf);
 
-  TRACE_MSG(TRACE_TRANSPORT3, "<< adaptor_handle_nwk_formation_response", (FMT__0));
+    TRACE_MSG(TRACE_TRANSPORT3, "<< adaptor_handle_nwk_formation_response", (FMT__0));
 }
 
 void adaptor_handle_nwk_permit_joining_response(zb_ret_t status)
 {
-  zb_bufid_t buf = zb_buf_get(ZB_TRUE, 0);
+    zb_bufid_t buf = zb_buf_get(ZB_TRUE, 0);
 
-  TRACE_MSG(TRACE_TRANSPORT3, ">> adaptor_handle_nwk_permit_joining_response", (FMT__0));
+    TRACE_MSG(TRACE_TRANSPORT3, ">> adaptor_handle_nwk_permit_joining_response", (FMT__0));
 
-  zb_buf_set_status(buf, status);
-  ncp_host_handle_nwk_permit_joining_response(buf);
+    zb_buf_set_status(buf, status);
+    ncp_host_handle_nwk_permit_joining_response(buf);
 
-  TRACE_MSG(TRACE_TRANSPORT3, "<< adaptor_handle_nwk_permit_joining_response", (FMT__0));
+    TRACE_MSG(TRACE_TRANSPORT3, "<< adaptor_handle_nwk_permit_joining_response", (FMT__0));
 }

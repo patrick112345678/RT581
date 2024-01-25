@@ -118,7 +118,7 @@
   @param cluster_list - endpoint cluster list
  */
 #define DECLARE_DUT_EP(ep_name, ep_id, cluster_list)                                    \
-DECLARE_DUT_SIMPLE_DESC(								                                                \
+DECLARE_DUT_SIMPLE_DESC(                                                                                \
     ep_name,                                                                            \
     ep_id,                                                                              \
     DUT_IN_CLUSTER_NUM,                                                                 \

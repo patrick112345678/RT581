@@ -28,12 +28,12 @@
 
 void zb_nwk_unlock_in(zb_uint8_t param)
 {
-  ZVUNUSED(param);
+    ZVUNUSED(param);
 }
 
 zb_ret_t zb_mac_logic_iteration(void)
 {
-  return RET_OK;
+    return RET_OK;
 }
 
 /* to be implemented! */
@@ -64,12 +64,12 @@ void zb_nwk_blacklist_reset(void)
 
 void zb_nwk_blacklist_add(zb_ext_pan_id_t ext_pan_id)
 {
-  ZVUNUSED(ext_pan_id);
+    ZVUNUSED(ext_pan_id);
 }
 
 zb_bool_t zb_nwk_blacklist_is_full(void)
 {
-  return ZB_FALSE;
+    return ZB_FALSE;
 }
 
 /* 2-nd priority */
@@ -86,10 +86,10 @@ zb_bool_t zb_nwk_blacklist_is_full(void)
 */
 void zb_zdo_get_diag_data(zb_uint16_t short_address, zb_uint8_t *lqi, zb_int8_t *rssi)
 {
-  ZVUNUSED(short_address);
+    ZVUNUSED(short_address);
 
-  *lqi = ZB_MAC_LQI_UNDEFINED;
-  *rssi = ZB_MAC_RSSI_UNDEFINED;
+    *lqi = ZB_MAC_LQI_UNDEFINED;
+    *rssi = ZB_MAC_RSSI_UNDEFINED;
 }
 
 
@@ -104,64 +104,64 @@ void zb_zdo_get_diag_data(zb_uint16_t short_address, zb_uint8_t *lqi, zb_int8_t 
  */
 zb_aps_device_key_pair_set_t *zb_secur_get_link_key_by_address(zb_ieee_addr_t address, zb_secur_key_attributes_t attr)
 {
-  ZVUNUSED(address);
-  ZVUNUSED(attr);
+    ZVUNUSED(address);
+    ZVUNUSED(attr);
 
-  return NULL;
+    return NULL;
 }
 
 
 /* used in zb_address.c:zb_address_update() in conflict resolving */
 zb_bool_t zb_nwk_neighbor_exists(zb_address_ieee_ref_t addr_ref)
 {
-  ZVUNUSED(addr_ref);
+    ZVUNUSED(addr_ref);
 
-  return ZB_FALSE;
+    return ZB_FALSE;
 }
 
 
 void zb_check_oom_status(zb_uint8_t param)
 {
-  ZVUNUSED(param);
+    ZVUNUSED(param);
 }
 
 
 zb_uint16_t zb_aps_get_max_trans_size(zb_uint16_t short_addr)
 {
-  ZVUNUSED(short_addr);
+    ZVUNUSED(short_addr);
 
-  return 0;
+    return 0;
 }
 
 
 void zb_zdo_rejoin_backoff_continue(zb_uint8_t param)
 {
-  ZVUNUSED(param);
+    ZVUNUSED(param);
 }
 
 
 zb_ret_t zb_zdo_rejoin_backoff_start(zb_bool_t insecure_rejoin)
 {
-  ZVUNUSED(insecure_rejoin);
-  ZB_ASSERT(ZB_FALSE);
-  return 0;
+    ZVUNUSED(insecure_rejoin);
+    ZB_ASSERT(ZB_FALSE);
+    return 0;
 }
 
 
 zb_bool_t zb_zdo_rejoin_backoff_force(void)
 {
-  ZB_ASSERT(ZB_FALSE);
-  return 0;
+    ZB_ASSERT(ZB_FALSE);
+    return 0;
 }
 
 zb_bool_t zb_zdo_rejoin_backoff_is_running(void)
 {
-  ZB_ASSERT(ZB_FALSE);
-  return 0;
+    ZB_ASSERT(ZB_FALSE);
+    return 0;
 }
 
 
 void zb_zdo_rejoin_backoff_cancel(void)
 {
-  ZB_ASSERT(ZB_FALSE);
+    ZB_ASSERT(ZB_FALSE);
 }

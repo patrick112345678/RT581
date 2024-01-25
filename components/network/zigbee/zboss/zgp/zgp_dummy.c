@@ -39,150 +39,150 @@ void zb_zgp_init()
 
 void zb_zgp_set_skip_gpdf(zb_uint8_t skip)
 {
-  ZVUNUSED(skip);
+    ZVUNUSED(skip);
 }
 
 zb_uint8_t zb_zgp_get_skip_gpdf(void)
 {
-  return 1;
+    return 1;
 }
 
 void zb_zgp_sync_pib(zb_uint8_t param)
 {
-  ZVUNUSED(param);
+    ZVUNUSED(param);
 }
 
 zb_uint16_t zb_zgp_ctx_size()
 {
-  return 0;
+    return 0;
 }
 
 void zb_cgp_data_cfm(zb_uint8_t param)
 {
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 void zgp_init_by_scheduler(zb_uint8_t param)
 {
-  ZVUNUSED(param);
+    ZVUNUSED(param);
 }
 
 void zgp_handle_dev_annce(zb_zdo_device_annce_t *da)
 {
-  ZVUNUSED(da);
+    ZVUNUSED(da);
 }
 
 void zb_gp_mcps_data_indication(zb_uint8_t param)
 {
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 #ifdef ZB_USE_NVRAM
 
 zb_ret_t zb_nvram_write_zgp_proxy_table_dataset(zb_uint8_t page, zb_uint32_t pos)
 {
-  ZVUNUSED(page);
-  ZVUNUSED(pos);
+    ZVUNUSED(page);
+    ZVUNUSED(pos);
 
-  return RET_OK;
+    return RET_OK;
 }
 
 void zb_nvram_read_zgp_proxy_table_dataset(
-  zb_uint8_t page, zb_uint32_t pos, zb_uint16_t length, zb_nvram_ver_t nvram_ver, zb_uint16_t ds_ver)
+    zb_uint8_t page, zb_uint32_t pos, zb_uint16_t length, zb_nvram_ver_t nvram_ver, zb_uint16_t ds_ver)
 {
-  ZVUNUSED(page);
-  ZVUNUSED(pos);
-  ZVUNUSED(length);
-  ZVUNUSED(nvram_ver);
-  ZVUNUSED(ds_ver);
+    ZVUNUSED(page);
+    ZVUNUSED(pos);
+    ZVUNUSED(length);
+    ZVUNUSED(nvram_ver);
+    ZVUNUSED(ds_ver);
 }
 
 zb_uint16_t zb_nvram_zgp_proxy_table_length()
 {
-  return 0;
+    return 0;
 }
 
 void zb_nvram_update_zgp_proxy_tbl_offset(zb_uint8_t page, zb_uint32_t dataset_pos, zb_uint32_t pos)
 {
-  ZVUNUSED(page);
-  ZVUNUSED(dataset_pos);
-  ZVUNUSED(pos);
+    ZVUNUSED(page);
+    ZVUNUSED(dataset_pos);
+    ZVUNUSED(pos);
 }
 
 void zb_nvram_read_zgp_sink_table_dataset(
-  zb_uint8_t page, zb_uint32_t pos, zb_uint16_t length, zb_nvram_ver_t nvram_ver, zb_uint16_t ds_ver)
+    zb_uint8_t page, zb_uint32_t pos, zb_uint16_t length, zb_nvram_ver_t nvram_ver, zb_uint16_t ds_ver)
 {
-  ZVUNUSED(page);
-  ZVUNUSED(pos);
-  ZVUNUSED(length);
-  ZVUNUSED(nvram_ver);
-  ZVUNUSED(ds_ver);
+    ZVUNUSED(page);
+    ZVUNUSED(pos);
+    ZVUNUSED(length);
+    ZVUNUSED(nvram_ver);
+    ZVUNUSED(ds_ver);
 }
 
 zb_ret_t zb_nvram_write_zgp_sink_table_dataset(zb_uint8_t page, zb_uint32_t pos)
 {
-  ZVUNUSED(page);
-  ZVUNUSED(pos);
+    ZVUNUSED(page);
+    ZVUNUSED(pos);
 
-  return RET_OK;
+    return RET_OK;
 }
 
 zb_uint16_t zb_nvram_zgp_sink_table_length()
 {
-  return 0;
+    return 0;
 }
 
 void zb_nvram_update_zgp_sink_tbl_offset(zb_uint8_t page, zb_uint32_t dataset_pos, zb_uint32_t pos)
 {
-  ZVUNUSED(page);
-  ZVUNUSED(dataset_pos);
-  ZVUNUSED(pos);
+    ZVUNUSED(page);
+    ZVUNUSED(dataset_pos);
+    ZVUNUSED(pos);
 }
 
 void zb_nvram_read_zgp_cluster_dataset(
-  zb_uint8_t page, zb_uint32_t pos, zb_uint16_t length, zb_nvram_ver_t nvram_ver, zb_uint16_t ds_ver)
+    zb_uint8_t page, zb_uint32_t pos, zb_uint16_t length, zb_nvram_ver_t nvram_ver, zb_uint16_t ds_ver)
 {
-  ZVUNUSED(page);
-  ZVUNUSED(pos);
-  ZVUNUSED(length);
-  ZVUNUSED(nvram_ver);
-  ZVUNUSED(ds_ver);
+    ZVUNUSED(page);
+    ZVUNUSED(pos);
+    ZVUNUSED(length);
+    ZVUNUSED(nvram_ver);
+    ZVUNUSED(ds_ver);
 }
 
 zb_ret_t zb_nvram_write_zgp_cluster_dataset(zb_uint8_t page, zb_uint32_t pos)
 {
-  ZVUNUSED(page);
-  ZVUNUSED(pos);
+    ZVUNUSED(page);
+    ZVUNUSED(pos);
 
-  return RET_OK;
+    return RET_OK;
 }
 
 zb_uint16_t zb_nvram_zgp_cluster_length()
 {
-  return 0;
+    return 0;
 }
 
 zb_ret_t zb_zgp_nvram_write_app_tbl_dataset(zb_uint8_t page, zb_uint32_t pos)
 {
-  ZVUNUSED(page);
-  ZVUNUSED(pos);
+    ZVUNUSED(page);
+    ZVUNUSED(pos);
 
-  return RET_OK;
+    return RET_OK;
 }
 
 void zb_zgp_nvram_read_app_tbl_dataset(zb_uint8_t page, zb_uint32_t pos,
-                                                zb_uint16_t length, zb_nvram_ver_t nvram_ver, zb_uint16_t ds_ver)
+                                       zb_uint16_t length, zb_nvram_ver_t nvram_ver, zb_uint16_t ds_ver)
 {
-  ZVUNUSED(page);
-  ZVUNUSED(pos);
-  ZVUNUSED(length);
-  ZVUNUSED(nvram_ver);
-  ZVUNUSED(ds_ver);
+    ZVUNUSED(page);
+    ZVUNUSED(pos);
+    ZVUNUSED(length);
+    ZVUNUSED(nvram_ver);
+    ZVUNUSED(ds_ver);
 }
 
 zb_uint16_t zb_zgp_nvram_app_tbl_length(void)
 {
-  return 0;
+    return 0;
 }
 
 #endif /* ZB_USE_NVRAM */

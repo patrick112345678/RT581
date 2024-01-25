@@ -1182,9 +1182,9 @@ otError otPlatRadioGetRegion(otInstance *aInstance, uint16_t *aRegionCode);
  *
  */
 otError otPlatRadioConfigureEnhAckProbing(otInstance         *aInstance,
-                                          otLinkMetrics       aLinkMetrics,
-                                          otShortAddress      aShortAddress,
-                                          const otExtAddress *aExtAddress);
+        otLinkMetrics       aLinkMetrics,
+        otShortAddress      aShortAddress,
+        const otExtAddress *aExtAddress);
 
 /**
  * Add a calibrated power of the specified channel to the power calibration table.
@@ -1276,9 +1276,9 @@ otError otPlatRadioSetChannelTargetPower(otInstance *aInstance, uint8_t aChannel
  *
  */
 extern otError otPlatRadioGetRawPowerSetting(otInstance *aInstance,
-                                             uint8_t     aChannel,
-                                             uint8_t    *aRawPowerSetting,
-                                             uint16_t   *aRawPowerSettingLength);
+        uint8_t     aChannel,
+        uint8_t    *aRawPowerSetting,
+        uint16_t   *aRawPowerSettingLength);
 
 /**
  * @}

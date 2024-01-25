@@ -33,8 +33,8 @@
 
 /* Functions to be called after upper layer, to write data to transport buffers */
 zb_ret_t ncp_host_apsde_data_request_transport(zb_apsde_data_req_t *req, zb_uint8_t param_len,
-                                               zb_uint16_t data_len, zb_uint8_t *data_ptr,
-                                               zb_uint8_t *tsn);
+        zb_uint16_t data_len, zb_uint8_t *data_ptr,
+        zb_uint8_t *tsn);
 
 zb_ret_t ncp_host_nwk_formation_transport(zb_nlme_network_formation_request_t *req);
 
@@ -42,8 +42,8 @@ zb_ret_t ncp_host_nwk_permit_joining_transport(zb_nlme_permit_joining_request_t 
 
 /* Functions to be called before upper layer, to read data from transport buffers */
 void adaptor_handle_apsde_data_indication(zb_apsde_data_indication_t *ind,
-                                          zb_uint8_t *data_ptr,
-                                          zb_uint8_t params_len, zb_uint16_t data_len);
+        zb_uint8_t *data_ptr,
+        zb_uint8_t params_len, zb_uint16_t data_len);
 
 void adaptor_handle_apsde_data_request_response(zb_apsde_data_confirm_t *conf);
 

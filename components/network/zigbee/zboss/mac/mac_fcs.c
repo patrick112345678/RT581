@@ -38,20 +38,20 @@
 
 void zb_mac_fcs_add(zb_bufid_t buf)
 {
-  zb_uint16_t crc;
-  zb_uint8_t *p;
+    zb_uint16_t crc;
+    zb_uint8_t *p;
 
-  crc = zb_crc16(zb_buf_begin(buf), 0, zb_buf_len(buf));
+    crc = zb_crc16(zb_buf_begin(buf), 0, zb_buf_len(buf));
 
 #if defined ZB_MAC_TESTING_MODE
-  if (MAC_CTX().cert_hacks.invalid_fcs)
-  {
-    crc = 0xBAD1;
-  }
+    if (MAC_CTX().cert_hacks.invalid_fcs)
+    {
+        crc = 0xBAD1;
+    }
 #endif
 
-  p = zb_buf_alloc_right(buf, 2);
-  ZB_HTOLE16(p, &crc);
+    p = zb_buf_alloc_right(buf, 2);
+    ZB_HTOLE16(p, &crc);
 }
 
 #endif

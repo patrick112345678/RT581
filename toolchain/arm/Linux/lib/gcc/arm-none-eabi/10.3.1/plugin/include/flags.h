@@ -45,12 +45,12 @@ extern bool final_insns_dump_p;
 class target_flag_state
 {
 public:
-  /* Each falign-foo can generate up to two levels of alignment:
-     -falign-foo=N:M[:N2:M2] */
-  align_flags x_align_loops;
-  align_flags x_align_jumps;
-  align_flags x_align_labels;
-  align_flags x_align_functions;
+    /* Each falign-foo can generate up to two levels of alignment:
+       -falign-foo=N:M[:N2:M2] */
+    align_flags x_align_loops;
+    align_flags x_align_jumps;
+    align_flags x_align_labels;
+    align_flags x_align_functions;
 };
 
 extern class target_flag_state default_target_flag_state;
@@ -60,10 +60,10 @@ extern class target_flag_state *this_target_flag_state;
 #define this_target_flag_state (&default_target_flag_state)
 #endif
 
-#define align_loops	 (this_target_flag_state->x_align_loops)
-#define align_jumps	 (this_target_flag_state->x_align_jumps)
-#define align_labels	 (this_target_flag_state->x_align_labels)
-#define align_functions	 (this_target_flag_state->x_align_functions)
+#define align_loops  (this_target_flag_state->x_align_loops)
+#define align_jumps  (this_target_flag_state->x_align_jumps)
+#define align_labels     (this_target_flag_state->x_align_labels)
+#define align_functions  (this_target_flag_state->x_align_functions)
 
 /* Returns TRUE if generated code should match ABI version N or
    greater is in use.  */

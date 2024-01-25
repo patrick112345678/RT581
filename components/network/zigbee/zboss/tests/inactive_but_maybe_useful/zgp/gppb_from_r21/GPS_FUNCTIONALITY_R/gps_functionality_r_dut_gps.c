@@ -38,59 +38,59 @@ static zb_ieee_addr_t g_zc_addr = DUT_GPS_IEEE_ADDR;
 /*! Program states according to test scenario */
 enum test_states_e
 {
-  TEST_STATE_INITIAL,
-  TEST_STATE_FINISHED
+    TEST_STATE_INITIAL,
+    TEST_STATE_FINISHED
 };
 
 ZB_ZGPC_DECLARE_SIMPLE_TEST_TEMPLATE(TEST_DEVICE_CTX, 1000)
 
 static void send_zcl(zb_uint8_t buf_ref, zb_callback_t cb)
 {
-  ZVUNUSED(buf_ref);
-  ZVUNUSED(cb);
+    ZVUNUSED(buf_ref);
+    ZVUNUSED(cb);
 }
 
 static void perform_next_state(zb_uint8_t param)
 {
-  if (TEST_DEVICE_CTX.pause)
-  {
-    ZB_SCHEDULE_ALARM(perform_next_state, 0,
-                      ZB_TIME_ONE_SECOND*TEST_DEVICE_CTX.pause);
-    TEST_DEVICE_CTX.pause = 0;
-    return;
-  }
+    if (TEST_DEVICE_CTX.pause)
+    {
+        ZB_SCHEDULE_ALARM(perform_next_state, 0,
+                          ZB_TIME_ONE_SECOND * TEST_DEVICE_CTX.pause);
+        TEST_DEVICE_CTX.pause = 0;
+        return;
+    }
 
-  TEST_DEVICE_CTX.test_state++;
+    TEST_DEVICE_CTX.test_state++;
 
-  switch (TEST_DEVICE_CTX.test_state)
-  {
+    switch (TEST_DEVICE_CTX.test_state)
+    {
     case TEST_STATE_FINISHED:
-      TRACE_MSG(TRACE_APP1, "Test finished. Status: OK", (FMT__0));
-      break;
+        TRACE_MSG(TRACE_APP1, "Test finished. Status: OK", (FMT__0));
+        break;
     default:
     {
-      if (param)
-      {
-        zb_free_buf(ZB_BUF_FROM_REF(param));
-      }
-      ZB_SCHEDULE_ALARM(test_send_command, 0, ZB_TIME_ONE_SECOND);
+        if (param)
+        {
+            zb_free_buf(ZB_BUF_FROM_REF(param));
+        }
+        ZB_SCHEDULE_ALARM(test_send_command, 0, ZB_TIME_ONE_SECOND);
     }
-  }
+    }
 }
 
 static void zgpc_custom_startup()
 {
-/* Init device, load IB values from nvram or set it to default */
-  ZB_INIT("dut_gps");
+    /* Init device, load IB values from nvram or set it to default */
+    ZB_INIT("dut_gps");
 
-  /* let's always be coordinator */
-  ZB_AIB().aps_designated_coordinator = 1;
-  ZB_AIB().aps_channel_mask = (1<<TEST_CHANNEL);
-  ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_zc_addr);
+    /* let's always be coordinator */
+    ZB_AIB().aps_designated_coordinator = 1;
+    ZB_AIB().aps_channel_mask = (1 << TEST_CHANNEL);
+    ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_zc_addr);
 
-  ZB_PIBCACHE_PAN_ID() = 0x1aaa;
+    ZB_PIBCACHE_PAN_ID() = 0x1aaa;
 
-  ZGP_CTX().device_role = ZGP_DEVICE_COMBO_BASIC;
+    ZGP_CTX().device_role = ZGP_DEVICE_COMBO_BASIC;
 }
 
 ZB_ZGPC_DECLARE_STARTUP_PROCESS()

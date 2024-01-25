@@ -53,17 +53,17 @@ void bulb_identify_handler(zb_uint8_t param);
 /* attributes of Basic cluster */
 typedef struct bulb_device_basic_attr_s
 {
-  zb_uint8_t zcl_version;
-  zb_uint8_t app_version;
-  zb_uint8_t stack_version;
-  zb_uint8_t hw_version;
-  zb_char_t mf_name[32];
-  zb_char_t model_id[32];
-  zb_char_t date_code[16];
-  zb_uint8_t power_source;
-  zb_char_t location_id[17];
-  zb_uint8_t ph_env;
-  zb_char_t sw_build_id[3];
+    zb_uint8_t zcl_version;
+    zb_uint8_t app_version;
+    zb_uint8_t stack_version;
+    zb_uint8_t hw_version;
+    zb_char_t mf_name[32];
+    zb_char_t model_id[32];
+    zb_char_t date_code[16];
+    zb_uint8_t power_source;
+    zb_char_t location_id[17];
+    zb_uint8_t ph_env;
+    zb_char_t sw_build_id[3];
 }
 bulb_device_basic_attr_t;
 
@@ -72,7 +72,7 @@ bulb_device_basic_attr_t;
 #define BULB_INIT_BASIC_HW_VERSION        BULB_FIRMWARE_MANUF_CODE      /* define manufacturer code */
 #define BULB_INIT_BASIC_APP_VERSION       BULB_FIRMWARE_MINOR           /* define f/w revision */
 
-#define BULB_INIT_BASIC_MANUF_NAME	  "DSR"
+#define BULB_INIT_BASIC_MANUF_NAME    "DSR"
 
 /* Note: instead of the 1st space string len will be set */
 #define BULB_INIT_BASIC_MODEL_ID     "Dim_Light"
@@ -83,48 +83,48 @@ bulb_device_basic_attr_t;
 /* attributes of Identify cluster */
 typedef struct bulb_device_identify_attr_s
 {
-  zb_uint16_t identify_time;
+    zb_uint16_t identify_time;
 }
 bulb_device_identify_attr_t;
 
 /* attributes of ON/Off cluster */
 typedef struct bulb_device_on_off_attr_s
 {
-  zb_bool_t on_off;
+    zb_bool_t on_off;
 }
 bulb_device_on_off_attr_t;
 
 /* attributes of Level Control cluster */
 typedef struct bulb_device_level_control_attr_s
 {
-  zb_uint8_t current_level;
-  zb_uint16_t remaining_time;
+    zb_uint8_t current_level;
+    zb_uint16_t remaining_time;
 }
 bulb_device_level_control_attr_t;
 
 typedef struct bulb_device_ctx_s
 {
-  bulb_device_basic_attr_t basic_attr;
-  bulb_device_identify_attr_t identify_attr;
-  bulb_device_on_off_attr_t on_off_attr;
-  bulb_device_level_control_attr_t level_control_attr;
+    bulb_device_basic_attr_t basic_attr;
+    bulb_device_identify_attr_t identify_attr;
+    bulb_device_on_off_attr_t on_off_attr;
+    bulb_device_level_control_attr_t level_control_attr;
 }
 bulb_device_ctx_t;
 
 
 typedef struct bulb_device_reporting_default_s
 {
-  zb_uint16_t cluster_id;
-  zb_uint16_t attr_id;
-  zb_uint8_t attr_type;
+    zb_uint16_t cluster_id;
+    zb_uint16_t attr_id;
+    zb_uint8_t attr_type;
 }
 bulb_device_reporting_default_t;
 
 typedef ZB_PACKED_PRE struct bulb_device_nvram_dataset_s
 {
-  zb_uint8_t onoff_state;
-  zb_uint8_t current_level;
-  zb_uint8_t reserved[2]; /* Alignment. Reserved for future use */
+    zb_uint8_t onoff_state;
+    zb_uint8_t current_level;
+    zb_uint8_t reserved[2]; /* Alignment. Reserved for future use */
 } ZB_PACKED_STRUCT
 bulb_device_nvram_dataset_t;
 

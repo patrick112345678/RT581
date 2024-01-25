@@ -34,12 +34,13 @@ typedef void (*wdt_isr_handler_t)();
 
 /**@brief wdt config structure holding configuration settings for the wdt timer.
  */
-typedef struct {
-    uint8_t    int_enable     :1;
-    uint8_t    reset_enable   :1;
-    uint8_t    lock_enable    :1;
-    uint8_t    prescale       :3;
-    uint8_t    reserved       :2;
+typedef struct
+{
+    uint8_t    int_enable     : 1;
+    uint8_t    reset_enable   : 1;
+    uint8_t    lock_enable    : 1;
+    uint8_t    prescale       : 3;
+    uint8_t    reserved       : 2;
     uint32_t min_window;
     uint16_t clock_divider;
 } wdt_config_mode_t;
@@ -84,7 +85,7 @@ __STATIC_INLINE void wdt_kick(void)
 
 __STATIC_INLINE void wdt_interrupt_clear(void)
 {
-    WDT->CLEAR =1;
+    WDT->CLEAR = 1;
 }
 
 __STATIC_INLINE uint32_t wdt_current_get(void)
@@ -99,7 +100,7 @@ __STATIC_INLINE uint32_t wdt_occur_get(void)
 
 __STATIC_INLINE void wdt_occur_set(uint8_t value)
 {
-     WDT->RST_OCCUR.bit.RESET_OCCUR = value;
+    WDT->RST_OCCUR.bit.RESET_OCCUR = value;
 }
 
 #ifdef __cplusplus

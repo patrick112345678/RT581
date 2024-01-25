@@ -20,7 +20,8 @@
     RT584 uart is NOT UART 16550 compatible... it is new design.
 @{ */
 
-typedef struct {    
+typedef struct
+{
     __IO uint32_t RBR;              /*0x00, it is THR also*/
     __IO uint32_t IER;              /*0x04*/
     __IO uint32_t FCR;              /*0x08*/
@@ -42,7 +43,7 @@ typedef struct {
     __I  uint32_t xDMA_TX_RLEN;     /*0x48*/
     __IO uint32_t xDMA_RX_ENABLE;   /*0x4C*/
     __IO uint32_t xDMA_TX_ENABLE;   /*0x50*/
-       
+
 } UART_T;
 
 
@@ -101,7 +102,7 @@ typedef struct {
 #define UART_MSR_DCTS       0x01   /*Modem Status : Delta Clear To Send */
 
 #define UART_ENABLE         0x01   /*Set 1 to start UART after all setting is ready*/
-#define UART_DISABLE        0x00   
+#define UART_DISABLE        0x00
 
 /*
  * These are the definitions for the Interrupt Enable Register
@@ -127,7 +128,7 @@ typedef struct {
 #define UART_LSR_BRK_ERROR_BITS     0x1E /* BI, FE, PE, OE bits */
 
 /*
- * ISR 
+ * ISR
  */
 
 #define ISR_RDA_INTR      0x01        /* ISR: Received Data Available */

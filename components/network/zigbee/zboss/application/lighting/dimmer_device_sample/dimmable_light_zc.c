@@ -82,8 +82,8 @@ zb_uint8_t g_attr_scenes_scene_valid;
 zb_uint8_t g_attr_scenes_name_support;
 
 ZB_ZCL_DECLARE_SCENES_ATTRIB_LIST(scenes_attr_list, &g_attr_scenes_scene_count,
-    &g_attr_scenes_current_scene, &g_attr_scenes_current_group,
-    &g_attr_scenes_scene_valid, &g_attr_scenes_name_support);
+                                  &g_attr_scenes_current_scene, &g_attr_scenes_current_group,
+                                  &g_attr_scenes_scene_valid, &g_attr_scenes_name_support);
 
 
 /* On/Off cluster attributes data */
@@ -127,194 +127,194 @@ zb_uint16_t g_color_control_primary_6_Y = 0;
 zb_uint8_t g_color_control_primary_6_intensity = 6;
 
 ZB_ZCL_DECLARE_COLOR_CONTROL_ATTRIB_LIST_EXT(color_control_attr_list,
-    &g_color_control_current_hue, &g_color_control_current_saturation, &g_color_control_remaining_time,
-    &g_color_control_current_X, &g_color_control_current_Y,
-    &g_color_control_color_temperature, &g_color_control_color_mode,
-    &g_color_control_number_primaries,
-    &g_color_control_primary_1_X, &g_color_control_primary_1_Y, &g_color_control_primary_1_intensity,
-    &g_color_control_primary_2_X, &g_color_control_primary_2_Y, &g_color_control_primary_2_intensity,
-    &g_color_control_primary_3_X, &g_color_control_primary_3_Y, &g_color_control_primary_3_intensity,
-    &g_color_control_primary_4_X, &g_color_control_primary_4_Y, &g_color_control_primary_4_intensity,
-    &g_color_control_primary_5_X, &g_color_control_primary_5_Y, &g_color_control_primary_5_intensity,
-    &g_color_control_primary_6_X, &g_color_control_primary_6_Y, &g_color_control_primary_6_intensity);
+        &g_color_control_current_hue, &g_color_control_current_saturation, &g_color_control_remaining_time,
+        &g_color_control_current_X, &g_color_control_current_Y,
+        &g_color_control_color_temperature, &g_color_control_color_mode,
+        &g_color_control_number_primaries,
+        &g_color_control_primary_1_X, &g_color_control_primary_1_Y, &g_color_control_primary_1_intensity,
+        &g_color_control_primary_2_X, &g_color_control_primary_2_Y, &g_color_control_primary_2_intensity,
+        &g_color_control_primary_3_X, &g_color_control_primary_3_Y, &g_color_control_primary_3_intensity,
+        &g_color_control_primary_4_X, &g_color_control_primary_4_Y, &g_color_control_primary_4_intensity,
+        &g_color_control_primary_5_X, &g_color_control_primary_5_Y, &g_color_control_primary_5_intensity,
+        &g_color_control_primary_6_X, &g_color_control_primary_6_Y, &g_color_control_primary_6_intensity);
 
 /********************* Declare device **************************/
 
 ZB_HA_DECLARE_CUSTOM_DIMMABLE_LIGHT_CLUSTER_LIST(
-  dimmable_light_clusters, basic_attr_list,
-  identify_attr_list,
-  scenes_attr_list,
-  groups_attr_list,
-  on_off_attr_list,
-  level_control_attr_list,
-  color_control_attr_list);
+    dimmable_light_clusters, basic_attr_list,
+    identify_attr_list,
+    scenes_attr_list,
+    groups_attr_list,
+    on_off_attr_list,
+    level_control_attr_list,
+    color_control_attr_list);
 
 ZB_HA_DECLARE_CUSTOM_DIMMABLE_LIGHT_EP(
-  dimmable_light_ep, HA_DIMMABLE_LIGHT_ENDPOINT,
-  dimmable_light_clusters);
+    dimmable_light_ep, HA_DIMMABLE_LIGHT_ENDPOINT,
+    dimmable_light_clusters);
 
 ZB_HA_DECLARE_CUSTOM_DIMMABLE_LIGHT_CTX(
-  dimmable_light_ctx,
-  dimmable_light_ep);
+    dimmable_light_ctx,
+    dimmable_light_ep);
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
 #if !(defined KEIL || defined SDCC || defined ZB_IAR)
 #endif
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("dimmer_switch_dut");
+    ZB_INIT("dimmer_switch_dut");
 
 
-  zb_set_default_ed_descriptor_values();
-  //ZB_PIBCACHE_RX_ON_WHEN_IDLE() = ZB_TRUE_U;
-  ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_zc_addr);
+    zb_set_default_ed_descriptor_values();
+    //ZB_PIBCACHE_RX_ON_WHEN_IDLE() = ZB_TRUE_U;
+    ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_zc_addr);
 
-  ZB_PIBCACHE_PAN_ID() = TEST_PAN_ID;
+    ZB_PIBCACHE_PAN_ID() = TEST_PAN_ID;
 
-  ZB_ZCL_REGISTER_DEVICE_CB(test_device_cb);
+    ZB_ZCL_REGISTER_DEVICE_CB(test_device_cb);
 
-  ZB_AIB().aps_designated_coordinator = 1;
-  ZB_AIB().aps_channel_mask = (1L << 17);
-  /****************** Register Device ********************************/
-  ZB_AF_REGISTER_DEVICE_CTX(&dimmable_light_ctx);
-  ZB_AF_SET_ENDPOINT_HANDLER(HA_DIMMABLE_LIGHT_ENDPOINT,
-                             zcl_specific_cluster_cmd_handler);
+    ZB_AIB().aps_designated_coordinator = 1;
+    ZB_AIB().aps_channel_mask = (1L << 17);
+    /****************** Register Device ********************************/
+    ZB_AF_REGISTER_DEVICE_CTX(&dimmable_light_ctx);
+    ZB_AF_SET_ENDPOINT_HANDLER(HA_DIMMABLE_LIGHT_ENDPOINT,
+                               zcl_specific_cluster_cmd_handler);
 
-  ZB_SET_NIB_SECURITY_LEVEL(0);
+    ZB_SET_NIB_SECURITY_LEVEL(0);
 
-  if (zdo_dev_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ZCL3, "zdo_dev_start failed", (FMT__0));
-  }
-  else
-  {
-    zcl_main_loop();
-  }
+    if (zdo_dev_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ZCL3, "zdo_dev_start failed", (FMT__0));
+    }
+    else
+    {
+        zcl_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 zb_uint8_t zcl_specific_cluster_cmd_handler(zb_uint8_t param)
 {
-  zb_buf_t *zcl_cmd_buf = (zb_buf_t *)ZB_BUF_FROM_REF(param);
-  zb_zcl_parsed_hdr_t *cmd_info = ZB_GET_BUF_PARAM(zcl_cmd_buf, zb_zcl_parsed_hdr_t);
-  zb_bool_t cmd_processed = ZB_FALSE;
+    zb_buf_t *zcl_cmd_buf = (zb_buf_t *)ZB_BUF_FROM_REF(param);
+    zb_zcl_parsed_hdr_t *cmd_info = ZB_GET_BUF_PARAM(zcl_cmd_buf, zb_zcl_parsed_hdr_t);
+    zb_bool_t cmd_processed = ZB_FALSE;
 
-  TRACE_MSG(TRACE_ZCL1, "> zcl_specific_cluster_cmd_handler %i", (FMT__H, param));
-  TRACE_MSG(TRACE_ZCL3, "payload size: %i", (FMT__D, ZB_BUF_LEN(zcl_cmd_buf)));
+    TRACE_MSG(TRACE_ZCL1, "> zcl_specific_cluster_cmd_handler %i", (FMT__H, param));
+    TRACE_MSG(TRACE_ZCL3, "payload size: %i", (FMT__D, ZB_BUF_LEN(zcl_cmd_buf)));
 
-  if (cmd_info->cmd_direction == ZB_ZCL_FRAME_DIRECTION_TO_CLI)
-  {
-    TRACE_MSG(TRACE_ZCL1,
-              "CLNT role cluster 0x%d is not supported",
-              (FMT__D, cmd_info->cluster_id));
-  }
-  else
-  {
-    // Command from client to server ZB_ZCL_FRAME_DIRECTION_TO_SRV
-    if ((cmd_info->cluster_id == ZB_ZCL_CLUSTER_ID_LEVEL_CONTROL)
-         || (cmd_info->cluster_id == ZB_ZCL_CLUSTER_ID_COLOR_CONTROL))
+    if (cmd_info->cmd_direction == ZB_ZCL_FRAME_DIRECTION_TO_CLI)
     {
-        if (cmd_info->is_common_command)
-        {
-          switch (cmd_info->cmd_id)
-          {
-            default:
-              TRACE_MSG(TRACE_ZCL2, "Skip general command %hd", (FMT__H, cmd_info->cmd_id));
-              break;
-          }
-        }
-        else
-        {
-          TRACE_MSG(TRACE_ZCL2, "Cluster command %hd, skip it", (FMT__H, cmd_info->cmd_id));
-        }
+        TRACE_MSG(TRACE_ZCL1,
+                  "CLNT role cluster 0x%d is not supported",
+                  (FMT__D, cmd_info->cluster_id));
     }
     else
     {
-        TRACE_MSG(TRACE_ZCL1,
-                  "SRV role, cluster 0x%d is not supported or app processing is not needed",
-                  (FMT__D, cmd_info->cluster_id));
+        // Command from client to server ZB_ZCL_FRAME_DIRECTION_TO_SRV
+        if ((cmd_info->cluster_id == ZB_ZCL_CLUSTER_ID_LEVEL_CONTROL)
+                || (cmd_info->cluster_id == ZB_ZCL_CLUSTER_ID_COLOR_CONTROL))
+        {
+            if (cmd_info->is_common_command)
+            {
+                switch (cmd_info->cmd_id)
+                {
+                default:
+                    TRACE_MSG(TRACE_ZCL2, "Skip general command %hd", (FMT__H, cmd_info->cmd_id));
+                    break;
+                }
+            }
+            else
+            {
+                TRACE_MSG(TRACE_ZCL2, "Cluster command %hd, skip it", (FMT__H, cmd_info->cmd_id));
+            }
+        }
+        else
+        {
+            TRACE_MSG(TRACE_ZCL1,
+                      "SRV role, cluster 0x%d is not supported or app processing is not needed",
+                      (FMT__D, cmd_info->cluster_id));
+        }
     }
-  }
 
-  TRACE_MSG(TRACE_ZCL1, "< zcl_specific_cluster_cmd_handler %hd", (FMT__H, cmd_processed));
-  return cmd_processed;
+    TRACE_MSG(TRACE_ZCL1, "< zcl_specific_cluster_cmd_handler %hd", (FMT__H, cmd_processed));
+    return cmd_processed;
 }
 
 zb_ret_t level_control_set_level(zb_uint8_t new_level)
 {
-  TRACE_MSG(TRACE_ZCL1, "> level_control_set_level", (FMT__0));
-  g_current_level = new_level;
+    TRACE_MSG(TRACE_ZCL1, "> level_control_set_level", (FMT__0));
+    g_current_level = new_level;
 
-  TRACE_MSG(TRACE_ZCL1, "New level is %i", (FMT__H, new_level));
-  TRACE_MSG(TRACE_ZCL1, "< level_control_set_level", (FMT__0));
-  return RET_OK;
+    TRACE_MSG(TRACE_ZCL1, "New level is %i", (FMT__H, new_level));
+    TRACE_MSG(TRACE_ZCL1, "< level_control_set_level", (FMT__0));
+    return RET_OK;
 }
 
 void test_device_cb(zb_uint8_t param) ZB_CALLBACK
 {
-  zb_buf_t* buffer = ZB_BUF_FROM_REF(param);
-  zb_zcl_device_callback_param_t *device_cb_param =
+    zb_buf_t *buffer = ZB_BUF_FROM_REF(param);
+    zb_zcl_device_callback_param_t *device_cb_param =
     ZB_GET_BUF_PARAM(buffer, zb_zcl_device_callback_param_t);
-  switch (device_cb_param->device_cb_id)
-  {
+    switch (device_cb_param->device_cb_id)
+    {
     case ZB_ZCL_LEVEL_CONTROL_SET_VALUE_CB_ID:
-      device_cb_param->status =
+        device_cb_param->status =
         level_control_set_level(device_cb_param->cb_param.level_control_set_value_param.new_value);
-      break;
+        break;
 
     case ZB_ZCL_SET_ATTR_VALUE_CB_ID:
-      if (device_cb_param->cb_param.set_attr_value_param.cluster_id == ZB_ZCL_CLUSTER_ID_ON_OFF &&
-          device_cb_param->cb_param.set_attr_value_param.attr_id == ZB_ZCL_ATTR_ON_OFF_ON_OFF_ID)
-      {
-        g_attr_on_off = device_cb_param->cb_param.set_attr_value_param.values.data8;
-        TRACE_MSG(TRACE_ZCL1, "on/off setting: %hd", (FMT__H, device_cb_param->cb_param.set_attr_value_param.values.data8));
-        device_cb_param->status = RET_OK;
-      }
-      else if (device_cb_param->cb_param.set_attr_value_param.cluster_id == ZB_ZCL_CLUSTER_ID_COLOR_CONTROL)
-      {
-        /* Color control value update - check attr_id, send value to device h/w etc. */
-        /* ZCL attr value will be updated automatically, it is not needed to do it here. */
-        device_cb_param->status = RET_OK;
-      }
-      else
-      {
-        TRACE_MSG(TRACE_ZCL1, "ZB_ZCL_SET_ATTR_VALUE_CB_ID: cluster_id %d", (FMT__D, device_cb_param->cb_param.set_attr_value_param.cluster_id));
-        device_cb_param->status = RET_ERROR;
-      }
-      break;
+        if (device_cb_param->cb_param.set_attr_value_param.cluster_id == ZB_ZCL_CLUSTER_ID_ON_OFF &&
+                device_cb_param->cb_param.set_attr_value_param.attr_id == ZB_ZCL_ATTR_ON_OFF_ON_OFF_ID)
+        {
+            g_attr_on_off = device_cb_param->cb_param.set_attr_value_param.values.data8;
+            TRACE_MSG(TRACE_ZCL1, "on/off setting: %hd", (FMT__H, device_cb_param->cb_param.set_attr_value_param.values.data8));
+            device_cb_param->status = RET_OK;
+        }
+        else if (device_cb_param->cb_param.set_attr_value_param.cluster_id == ZB_ZCL_CLUSTER_ID_COLOR_CONTROL)
+        {
+            /* Color control value update - check attr_id, send value to device h/w etc. */
+            /* ZCL attr value will be updated automatically, it is not needed to do it here. */
+            device_cb_param->status = RET_OK;
+        }
+        else
+        {
+            TRACE_MSG(TRACE_ZCL1, "ZB_ZCL_SET_ATTR_VALUE_CB_ID: cluster_id %d", (FMT__D, device_cb_param->cb_param.set_attr_value_param.cluster_id));
+            device_cb_param->status = RET_ERROR;
+        }
+        break;
 
     default:
-      device_cb_param->status = RET_ERROR;
-      break;
-  }
+        device_cb_param->status = RET_ERROR;
+        break;
+    }
 }
 
 void zb_zdo_startup_complete(zb_uint8_t param)
 {
-  zb_buf_t *buf = ZB_BUF_FROM_REF(param);
+    zb_buf_t *buf = ZB_BUF_FROM_REF(param);
 
-  TRACE_MSG(TRACE_ZCL1, "> zb_zdo_startup_complete %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_ZCL1, "> zb_zdo_startup_complete %hd", (FMT__H, param));
 
-  if (buf->u.hdr.status == 0)
-  {
-    TRACE_MSG(TRACE_ERROR, "Device STARTED OK", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(
-        TRACE_ERROR,
-        "Device started FAILED status %d",
-        (FMT__D, (int)buf->u.hdr.status));
-    zb_free_buf(buf);
-  }
-  TRACE_MSG(TRACE_ZCL1, "< zb_zdo_startup_complete", (FMT__0));
+    if (buf->u.hdr.status == 0)
+    {
+        TRACE_MSG(TRACE_ERROR, "Device STARTED OK", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(
+            TRACE_ERROR,
+            "Device started FAILED status %d",
+            (FMT__D, (int)buf->u.hdr.status));
+        zb_free_buf(buf);
+    }
+    TRACE_MSG(TRACE_ZCL1, "< zb_zdo_startup_complete", (FMT__0));
 }
 
 #else // defined ZB_ENABLE_HA
@@ -322,8 +322,8 @@ void zb_zdo_startup_complete(zb_uint8_t param)
 #include <stdio.h>
 int main()
 {
-  printf(" HA is not supported\n");
-  return 0;
+    printf(" HA is not supported\n");
+    return 0;
 }
 
 #endif // defined ZB_ENABLE_HA

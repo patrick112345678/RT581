@@ -28,10 +28,10 @@ typedef bool (*gimple_predicate)(tree);
 extern tree force_gimple_operand_1 (tree, gimple_seq *, gimple_predicate, tree);
 extern tree force_gimple_operand (tree, gimple_seq *, bool, tree);
 extern tree force_gimple_operand_gsi_1 (gimple_stmt_iterator *, tree,
-					gimple_predicate, tree,
-					bool, enum gsi_iterator_update);
+                                        gimple_predicate, tree,
+                                        bool, enum gsi_iterator_update);
 extern tree force_gimple_operand_gsi (gimple_stmt_iterator *, tree, bool, tree,
-				      bool, enum gsi_iterator_update);
+                                      bool, enum gsi_iterator_update);
 extern void gimple_regimplify_operands (gimple *, gimple_stmt_iterator *);
 
 #endif /* GCC_GIMPLIFY_ME_H */

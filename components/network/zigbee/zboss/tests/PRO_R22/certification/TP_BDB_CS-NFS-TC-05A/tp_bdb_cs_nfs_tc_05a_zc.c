@@ -49,84 +49,85 @@ static zb_ieee_addr_t g_ieee_addr1 = {0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 
 static zb_uint8_t g_key_nwk[16] = { 0xab, 0xcd, 0xef, 0x01, 0x23, 0x45, 0x67, 0x89, 0, 0, 0, 0, 0, 0, 0, 0};
 
 #if 0
-static zb_uint8_t g_ic3[16+2] = {0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0xAC, 0xE1};
+static zb_uint8_t g_ic3[16 + 2] = {0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0xAC, 0xE1};
 #endif
 
-static zb_uint8_t g_ic1[16+2] = {0x83, 0xFE, 0xD3, 0x40, 0x7A, 0x93, 0x97, 0x23,
-                                 0xA5, 0xC6, 0x39, 0xB2, 0x69, 0x16, 0xD5, 0x05,
-                                 /* CRC */ 0xC3, 0xB5};
+static zb_uint8_t g_ic1[16 + 2] = {0x83, 0xFE, 0xD3, 0x40, 0x7A, 0x93, 0x97, 0x23,
+                                   0xA5, 0xC6, 0x39, 0xB2, 0x69, 0x16, 0xD5, 0x05,
+                                   /* CRC */ 0xC3, 0xB5
+                                  };
 /* Derived key is 66 b6 90 09 81 e1 ee 3c a4 20 6b 6b 86 1c 02 bb (normal). Add
  * it to Wireshark. */
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("zdo_1_zc");
-#if UART_CONTROL	
-	test_control_init();
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    ZB_INIT("zdo_1_zc");
+#if UART_CONTROL
+    test_control_init();
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 #endif
 
 
-  zb_set_long_address(g_ieee_addr);
-  zb_set_pan_id(0x1aaa);
-  zb_set_network_coordinator_role((1l << TEST_CHANNEL));
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    zb_set_long_address(g_ieee_addr);
+    zb_set_pan_id(0x1aaa);
+    zb_set_network_coordinator_role((1l << TEST_CHANNEL));
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  zb_secur_setup_nwk_key(g_key_nwk, 0);
-  zb_set_max_children(2);
+    zb_secur_setup_nwk_key(g_key_nwk, 0);
+    zb_set_max_children(2);
 
-  zb_zdo_set_aps_unsecure_join(ZB_TRUE);
+    zb_zdo_set_aps_unsecure_join(ZB_TRUE);
 
-  zb_set_installcode_policy(ZB_TRUE);
+    zb_set_installcode_policy(ZB_TRUE);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  switch (sig)
-  {
+    switch (sig)
+    {
     case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      TRACE_MSG(TRACE_APS1, "Device started, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-	/* Add IC now: it requires NVRAM init done */
+        TRACE_MSG(TRACE_APS1, "Device started, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            /* Add IC now: it requires NVRAM init done */
 
-        //zb_secur_ic_add(g_ieee_addr1, g_ic3, NULL);
-        //zb_secur_ic_add(g_ieee_addr1, g_ic3, NULL);
+            //zb_secur_ic_add(g_ieee_addr1, g_ic3, NULL);
+            //zb_secur_ic_add(g_ieee_addr1, g_ic3, NULL);
 
-        /* Really need only that line, other is IC storage debug */
-        zb_secur_ic_add(g_ieee_addr1, ZB_IC_TYPE_128, g_ic1, NULL);
-        bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
-      }
-      break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
+            /* Really need only that line, other is IC storage debug */
+            zb_secur_ic_add(g_ieee_addr1, ZB_IC_TYPE_128, g_ic1, NULL);
+            bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
+        }
+        break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
 
     default:
-      TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
-      break;
-  }
+        TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 

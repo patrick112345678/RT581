@@ -22,12 +22,12 @@ along with GCC; see the file COPYING3.  If not see
 
 /* Provided in collect-utils.c.  */
 extern void notice (const char *, ...)
-  __attribute__ ((format (printf, 1, 2)));
+__attribute__ ((format (printf, 1, 2)));
 extern void fatal_signal (int);
 
 extern struct pex_obj *collect_execute (const char *, char **,
-					const char *, const char *,
-					int, bool);
+                                        const char *, const char *,
+                                        int, bool);
 extern int collect_wait (const char *, struct pex_obj *);
 extern void do_wait (const char *, struct pex_obj *);
 extern void fork_execute (const char *, char **, bool);

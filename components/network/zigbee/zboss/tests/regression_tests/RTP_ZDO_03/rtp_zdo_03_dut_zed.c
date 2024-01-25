@@ -60,92 +60,92 @@ static zb_bool_t g_test_sleep_trace = ZB_TRUE;
 
 MAIN()
 {
-  ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP | TRACE_SUBSYSTEM_MAC);
-  ZB_SET_TRACE_LEVEL(1);
-  ARGV_UNUSED;
+    ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP | TRACE_SUBSYSTEM_MAC);
+    ZB_SET_TRACE_LEVEL(1);
+    ARGV_UNUSED;
 
-  ZB_INIT("zdo_dut_zed");
+    ZB_INIT("zdo_dut_zed");
 
-  zb_set_long_address(g_ieee_addr_dut_zed);
+    zb_set_long_address(g_ieee_addr_dut_zed);
 
-  zb_reg_test_set_common_channel_settings();
-  zb_set_network_ed_role((1l << TEST_CHANNEL));
-  zb_set_rx_on_when_idle(ZB_FALSE);
+    zb_reg_test_set_common_channel_settings();
+    zb_set_network_ed_role((1l << TEST_CHANNEL));
+    zb_set_rx_on_when_idle(ZB_FALSE);
 
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_APS1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_APS1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  switch (sig)
-  {
+    switch (sig)
+    {
     case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        test_step_register(test_bdb_reset, 0, RTP_ZDO_03_STEP_1_TIME_ZED);
-        test_step_register(test_retry_join, 0, RTP_ZDO_03_STEP_2_TIME_ZED);
+        TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            test_step_register(test_bdb_reset, 0, RTP_ZDO_03_STEP_1_TIME_ZED);
+            test_step_register(test_retry_join, 0, RTP_ZDO_03_STEP_2_TIME_ZED);
 
-        test_control_start(TEST_MODE, RTP_ZDO_03_STEP_1_DELAY_ZED);
-      }
-      break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
+            test_control_start(TEST_MODE, RTP_ZDO_03_STEP_1_DELAY_ZED);
+        }
+        break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
 
     case ZB_COMMON_SIGNAL_CAN_SLEEP:
-      if (g_test_sleep_trace)
-      {
-        TRACE_MSG(TRACE_APP1, "signal: ZB_COMMON_SIGNAL_CAN_SLEEP, status %d", (FMT__D, status));
-        if (!ZB_TRANSCEIVER_GET_RX_ON_OFF())
+        if (g_test_sleep_trace)
         {
-          TRACE_MSG(TRACE_APP1, "zb_zdo_startup_complete(): Transceiver is OFF - test OK", (FMT__0));
+            TRACE_MSG(TRACE_APP1, "signal: ZB_COMMON_SIGNAL_CAN_SLEEP, status %d", (FMT__D, status));
+            if (!ZB_TRANSCEIVER_GET_RX_ON_OFF())
+            {
+                TRACE_MSG(TRACE_APP1, "zb_zdo_startup_complete(): Transceiver is OFF - test OK", (FMT__0));
+            }
+            else
+            {
+                TRACE_MSG(TRACE_APP1, "zb_zdo_startup_complete(): Transceiver is ON - test FAILED", (FMT__0));
+            }
+            g_test_sleep_trace = ZB_FALSE;
         }
-        else
-        {
-          TRACE_MSG(TRACE_APP1, "zb_zdo_startup_complete(): Transceiver is ON - test FAILED", (FMT__0));
-        }
-        g_test_sleep_trace = ZB_FALSE;
-      }
-      break; /* ZB_COMMON_SIGNAL_CAN_SLEEP */
+        break; /* ZB_COMMON_SIGNAL_CAN_SLEEP */
 
     default:
-      TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
-      break;
-  }
+        TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 static void test_bdb_reset(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  zb_bdb_reset_via_local_action(0);
+    zb_bdb_reset_via_local_action(0);
 }
 
 static void test_retry_join(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  TRACE_MSG(TRACE_APP1, ">>retry_join", (FMT__0));
+    TRACE_MSG(TRACE_APP1, ">>retry_join", (FMT__0));
 
-  bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
+    bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
 }
 
 /*! @} */

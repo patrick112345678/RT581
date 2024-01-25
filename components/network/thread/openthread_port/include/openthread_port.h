@@ -59,7 +59,8 @@ extern "C" {
 #define OT_UART_RX_BUFFSIZE 384
 #endif
 
-typedef enum _ot_system_event {
+typedef enum _ot_system_event
+{
     OT_SYSTEM_EVENT_NONE                                = 0,
 
     OT_SYSTEM_EVENT_OT_TASKLET                          = 0x00000001,
@@ -78,14 +79,14 @@ typedef enum _ot_system_event {
     OT_SYSTEM_EVENT_RADIO_TX_ACKED                      = 0x00000400,
     OT_SYSTEM_EVENT_RADIO_TX_NO_ACK                     = 0x00000800,
     OT_SYSTEM_EVENT_RADIO_TX_CCA_FAIL                   = 0x00001000,
-    OT_SYSTEM_EVENT_RADIO_TX_ALL_MASK                   = OT_SYSTEM_EVENT_RADIO_TX_DONE_NO_ACK_REQ | 
-        OT_SYSTEM_EVENT_RADIO_TX_ERROR | OT_SYSTEM_EVENT_RADIO_TX_ACKED | OT_SYSTEM_EVENT_RADIO_TX_NO_ACK | OT_SYSTEM_EVENT_RADIO_TX_CCA_FAIL,
+    OT_SYSTEM_EVENT_RADIO_TX_ALL_MASK                   = OT_SYSTEM_EVENT_RADIO_TX_DONE_NO_ACK_REQ |
+            OT_SYSTEM_EVENT_RADIO_TX_ERROR | OT_SYSTEM_EVENT_RADIO_TX_ACKED | OT_SYSTEM_EVENT_RADIO_TX_NO_ACK | OT_SYSTEM_EVENT_RADIO_TX_CCA_FAIL,
 
     OT_SYSTEM_EVENT_RADIO_RX_NO_BUFF                    = 0x00002000,
     OT_SYSTEM_EVENT_RADIO_RX_DONE                       = 0x00004000,
     OT_SYSTEM_EVENT_RADIO_RX_CRC_FIALED                 = 0x00008000,
-    OT_SYSTEM_EVENT_RADIO_RX_ALL_MASK                   = OT_SYSTEM_EVENT_RADIO_RX_NO_BUFF | 
-        OT_SYSTEM_EVENT_RADIO_RX_DONE | OT_SYSTEM_EVENT_RADIO_RX_CRC_FIALED,
+    OT_SYSTEM_EVENT_RADIO_RX_ALL_MASK                   = OT_SYSTEM_EVENT_RADIO_RX_NO_BUFF |
+            OT_SYSTEM_EVENT_RADIO_RX_DONE | OT_SYSTEM_EVENT_RADIO_RX_CRC_FIALED,
     OT_SYSTEM_EVENT_RADIO_ALL_MASK                      = OT_SYSTEM_EVENT_RADIO_TX_ALL_MASK | OT_SYSTEM_EVENT_RADIO_RX_ALL_MASK,
 
     OT_SYSTEM_EVENT_APP                                 = 0xff000000,
@@ -116,7 +117,7 @@ void otrStackInit(void);
 void otrStart(void);
 
 /****************************************************************************//**
- * @brief  Initializes user code with OpenThread related before OpenThread 
+ * @brief  Initializes user code with OpenThread related before OpenThread
  *          main event loop execution. This function is called after
  *          Openthread instance created and by OpenThread task.
  *
@@ -125,7 +126,7 @@ void otrStart(void);
  * @return None
  *
 *******************************************************************************/
-void otrInitUser(otInstance * instance);
+void otrInitUser(otInstance *instance);
 
 /****************************************************************************//**
  * @brief  Get current OpenThread instance.
@@ -155,7 +156,7 @@ void ot_uartTask (ot_system_event_t sevent);
  * @return None
  *
 *******************************************************************************/
-void ot_uartRecieved(uint8_t * rxbuf, uint32_t rxlen);
+void ot_uartRecieved(uint8_t *rxbuf, uint32_t rxlen);
 void ot_uartSetFd(int fd);
 void ot_uartLog(const char *fmt, va_list argp);
 
@@ -256,13 +257,13 @@ void otrLock(void);
 void otrUnlock(void);
 
 /****************************************************************************//**
- * @brief  Macro OT_THREAD_SAFE provides a method to access OpenThread with 
+ * @brief  Macro OT_THREAD_SAFE provides a method to access OpenThread with
  * thread-safe in other tasks running context.
- * 
+ *
  * ot_initUser and OpenThread callback functions already are thread-safe protected.
- * 
+ *
  * Note, do NOT call return in this macro block.
- * 
+ *
  * @param ...  OpenThread api call statement
  *
 *******************************************************************************/
@@ -272,14 +273,14 @@ void otrUnlock(void);
     {                                       \
         __VA_ARGS__;                        \
     } while (0);                            \
-    otrUnlock();                            
+    otrUnlock();
 
 /****************************************************************************//**
- * @brief  Macro OT_THREAD_SAFE_RET provides a method to access OpenThread with 
+ * @brief  Macro OT_THREAD_SAFE_RET provides a method to access OpenThread with
  * thread-safe in other tasks running context.
- * 
+ *
  * ot_initUser and OpenThread callback functions already are thread-safe protected.
- * 
+ *
  * Note, do NOT call return in this macro block.
  *
  * @param ret   return value
@@ -292,7 +293,7 @@ void otrUnlock(void);
         otrLock();                          \
         (ret) = __VA_ARGS__;                \
         otrUnlock();                        \
-    } while (0)                             
+    } while (0)
 
 
 #define OT_ENTER_CRITICAL()                 taskENTER_CRITICAL()
@@ -327,10 +328,10 @@ void otrAppProcess(ot_system_event_t sevent);
 
 
 /****************************************************************************//**
- * @brief  An interface to application to invoke openthread task to execute otrAppProcess, 
+ * @brief  An interface to application to invoke openthread task to execute otrAppProcess,
  *          which is used to call in application interrupt context.
  *
- * @param  ebit, event bit for otrAppProcess. 
+ * @param  ebit, event bit for otrAppProcess.
  *              please reference to OT_SYSTEM_EVENT_APP for valid bits.
  *
  * @return None
@@ -340,10 +341,10 @@ void otrAppProcess(ot_system_event_t sevent);
 
 
 /****************************************************************************//**
- * @brief  An interface to application to invoke openthread task to execute otrAppProcess, 
+ * @brief  An interface to application to invoke openthread task to execute otrAppProcess,
  *          which is used to call in application task context.
  *
- * @param  ebit, event bit for otrAppProcess. 
+ * @param  ebit, event bit for otrAppProcess.
  *              please reference to OT_SYSTEM_EVENT_APP for valid bits.
  *
  * @return None
@@ -351,7 +352,7 @@ void otrAppProcess(ot_system_event_t sevent);
 *******************************************************************************/
 #define OT_APP_NOTIFY(ebit)                 OT_ENTER_CRITICAL(); ot_system_event_var |=  ((ot_system_event_t)ebit & OT_SYSTEM_EVENT_APP); OT_EXIT_CRITICAL(); otSysEventSignalPending()
 
-#else 
+#else
 /** openthread without rtos */
 
 #define OT_ENTER_CRITICAL()                 __asm volatile( "csrc mstatus, 8" )

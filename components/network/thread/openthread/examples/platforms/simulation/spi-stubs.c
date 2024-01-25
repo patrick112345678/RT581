@@ -55,10 +55,10 @@ otError otPlatSpiSlaveEnable(otPlatSpiSlaveTransactionCompleteCallback aComplete
 void otPlatSpiSlaveDisable(void) {}
 
 otError otPlatSpiSlavePrepareTransaction(uint8_t *aOutputBuf,
-                                         uint16_t aOutputBufLen,
-                                         uint8_t *aInputBuf,
-                                         uint16_t aInputBufLen,
-                                         bool     aRequestTransactionFlag)
+        uint16_t aOutputBufLen,
+        uint8_t *aInputBuf,
+        uint16_t aInputBufLen,
+        bool     aRequestTransactionFlag)
 {
     OT_UNUSED_VARIABLE(aOutputBuf);
     OT_UNUSED_VARIABLE(aOutputBufLen);

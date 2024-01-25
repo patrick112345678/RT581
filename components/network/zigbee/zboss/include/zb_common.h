@@ -73,16 +73,16 @@ void zb_ib_set_defaults(zb_char_t *rx_pipe);
 
 enum zb_dev_specific_e
 {
-  /*! Standard device */
-  ZB_STANDARD_SPECIFIC_DEVICE = 0x00,
-  /*! Manufactured device */
-  ZB_MANUFACTURED_SPECIFIC_DEVICE = 0x01
+    /*! Standard device */
+    ZB_STANDARD_SPECIFIC_DEVICE = 0x00,
+    /*! Manufactured device */
+    ZB_MANUFACTURED_SPECIFIC_DEVICE = 0x01
 };
 
 /* Definitions for multiple tests in the same FW image / same Linux binary */
 #ifdef ZB_MULTI_TEST
 extern zb_int_t g_argc;
-extern char** g_argv;
+extern char **g_argv;
 #define ZB_ARGV g_argv
 #define ZB_ARGC g_argc
 #undef MAIN
@@ -116,7 +116,7 @@ extern char** g_argv;
 #define ZB_ZDO_STARTUP_COMPLETE void zb_zdo_startup_complete
 #define ZGPD_STARTUP_COMPLETE void zgpd_startup_complete
 
-  /* List of MAC primitives' callbacks */
+/* List of MAC primitives' callbacks */
 #define ZB_MLME_ASSOCIATE_INDICATION void zb_mlme_associate_indication
 #define ZB_MLME_ASSOCIATE_CONFIRM void zb_mlme_associate_confirm
 #define ZB_MLME_BEACON_NOTIFY_INDICATION void zb_mlme_beacon_notify_indication

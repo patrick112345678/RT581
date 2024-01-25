@@ -38,30 +38,30 @@
 
 static void se_commissioning_formation_channels_mask(zb_channel_list_t list)
 {
-  se_pref_channels_create_mask((zb_bool_t)(ZSE_CTXC().commissioning.formation_retries == 0), list);
+    se_pref_channels_create_mask((zb_bool_t)(ZSE_CTXC().commissioning.formation_retries == 0), list);
 }
 
 
 static void se_start_formation(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_ZDO1, "SE start Formation %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_ZDO1, "SE start Formation %hd", (FMT__H, param));
 
-  /* SE uses centrilized security, so always ZC. */
-  ZB_ASSERT(zb_get_device_type() == ZB_NWK_DEVICE_TYPE_COORDINATOR);
-  ZSE_CTXC().commissioning.state = SE_STATE_FORMATION;
-  ZSE_CTXC().commissioning.formation_retries = 0;
-  ZSE_CTXC().commissioning.startup_control = ZSE_STARTUP_UNCOMMISSIONED;
-  se_minimal_tc_init();
-  ZB_SCHEDULE_CALLBACK(zdo_start_formation, param);
+    /* SE uses centrilized security, so always ZC. */
+    ZB_ASSERT(zb_get_device_type() == ZB_NWK_DEVICE_TYPE_COORDINATOR);
+    ZSE_CTXC().commissioning.state = SE_STATE_FORMATION;
+    ZSE_CTXC().commissioning.formation_retries = 0;
+    ZSE_CTXC().commissioning.startup_control = ZSE_STARTUP_UNCOMMISSIONED;
+    se_minimal_tc_init();
+    ZB_SCHEDULE_CALLBACK(zdo_start_formation, param);
 }
 
 
 static void se_formation_force_link(void)
 {
-  zdo_formation_force_link();
+    zdo_formation_force_link();
 
-  FORMATION_SELECTOR().start_formation = se_start_formation;
-  FORMATION_SELECTOR().get_formation_channels_mask = se_commissioning_formation_channels_mask;
+    FORMATION_SELECTOR().start_formation = se_start_formation;
+    FORMATION_SELECTOR().get_formation_channels_mask = se_commissioning_formation_channels_mask;
 }
 
 
@@ -69,9 +69,9 @@ static void se_formation_force_link(void)
 
 void zb_se_set_network_coordinator_role(zb_uint32_t channel_mask)
 {
-  se_commissioning_force_link();
-  se_formation_force_link();
-  zb_set_network_coordinator_role_with_mode(channel_mask, ZB_COMMISSIONING_SE);
+    se_commissioning_force_link();
+    se_formation_force_link();
+    zb_set_network_coordinator_role_with_mode(channel_mask, ZB_COMMISSIONING_SE);
 }
 
 #endif /* ZB_COORDINATOR_ROLE */

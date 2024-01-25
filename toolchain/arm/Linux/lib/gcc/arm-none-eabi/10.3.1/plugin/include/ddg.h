@@ -41,121 +41,122 @@ enum dep_data_type {REG_OR_MEM_DEP, REG_DEP, MEM_DEP, REG_AND_MEM_DEP};
 /* A structure that represents a node in the DDG.  */
 struct ddg_node
 {
-  /* Each node has a unique CUID index.  These indices increase monotonically
-     (according to the order of the corresponding INSN in the BB), starting
-     from 0 with no gaps.  */
-  int cuid;
+    /* Each node has a unique CUID index.  These indices increase monotonically
+       (according to the order of the corresponding INSN in the BB), starting
+       from 0 with no gaps.  */
+    int cuid;
 
-  /* The insn represented by the node.  */
-  rtx_insn *insn;
+    /* The insn represented by the node.  */
+    rtx_insn *insn;
 
-  /* A note preceding INSN (or INSN itself), such that all insns linked
-     from FIRST_NOTE until INSN (inclusive of both) are moved together
-     when reordering the insns.  This takes care of notes that should
-     continue to precede INSN.  */
-  rtx_insn *first_note;
+    /* A note preceding INSN (or INSN itself), such that all insns linked
+       from FIRST_NOTE until INSN (inclusive of both) are moved together
+       when reordering the insns.  This takes care of notes that should
+       continue to precede INSN.  */
+    rtx_insn *first_note;
 
-  /* Incoming and outgoing dependency edges.  */
-  ddg_edge_ptr in;
-  ddg_edge_ptr out;
+    /* Incoming and outgoing dependency edges.  */
+    ddg_edge_ptr in;
+    ddg_edge_ptr out;
 
-  /* Each bit corresponds to a ddg_node according to its cuid, and is
-     set iff the node is a successor/predecessor of "this" node.  */
-  sbitmap successors;
-  sbitmap predecessors;
+    /* Each bit corresponds to a ddg_node according to its cuid, and is
+       set iff the node is a successor/predecessor of "this" node.  */
+    sbitmap successors;
+    sbitmap predecessors;
 
-  /* Temporary array used for Floyd-Warshall algorithm to find
-     scc recurrence length.  */
-  int *max_dist;
+    /* Temporary array used for Floyd-Warshall algorithm to find
+       scc recurrence length.  */
+    int *max_dist;
 
-  /* For general use by algorithms manipulating the ddg.  */
-  union {
-    int count;
-    void *info;
-  } aux;
+    /* For general use by algorithms manipulating the ddg.  */
+    union
+    {
+        int count;
+        void *info;
+    } aux;
 };
 
 /* A structure that represents an edge in the DDG.  */
 struct ddg_edge
 {
-  /* The source and destination nodes of the dependency edge.  */
-  ddg_node_ptr src;
-  ddg_node_ptr dest;
+    /* The source and destination nodes of the dependency edge.  */
+    ddg_node_ptr src;
+    ddg_node_ptr dest;
 
-  /* TRUE, OUTPUT or ANTI dependency.  */
-  dep_type type;
+    /* TRUE, OUTPUT or ANTI dependency.  */
+    dep_type type;
 
-  /* REG or MEM dependency.  */
-  dep_data_type data_type;
+    /* REG or MEM dependency.  */
+    dep_data_type data_type;
 
-  /* Latency of the dependency.  */
-  int latency;
+    /* Latency of the dependency.  */
+    int latency;
 
-  /* The distance: number of loop iterations the dependency crosses.  */
-  int distance;
+    /* The distance: number of loop iterations the dependency crosses.  */
+    int distance;
 
-  /* The following two fields are used to form a linked list of the in/out
-     going edges to/from each node.  */
-  ddg_edge_ptr next_in;
-  ddg_edge_ptr next_out;
+    /* The following two fields are used to form a linked list of the in/out
+       going edges to/from each node.  */
+    ddg_edge_ptr next_in;
+    ddg_edge_ptr next_out;
 
-  /* Is true when edge is already in scc.  */
-  bool in_scc;
+    /* Is true when edge is already in scc.  */
+    bool in_scc;
 };
 
 /* This structure holds the Data Dependence Graph for a basic block.  */
 struct ddg
 {
-  /* The basic block for which this DDG is built.  */
-  basic_block bb;
+    /* The basic block for which this DDG is built.  */
+    basic_block bb;
 
-  /* Number of instructions in the basic block.  */
-  int num_nodes;
+    /* Number of instructions in the basic block.  */
+    int num_nodes;
 
-  /* Number of load/store instructions in the BB - statistics.  */
-  int num_loads;
-  int num_stores;
+    /* Number of load/store instructions in the BB - statistics.  */
+    int num_loads;
+    int num_stores;
 
-  /* This array holds the nodes in the graph; it is indexed by the node
-     cuid, which follows the order of the instructions in the BB.  */
-  ddg_node_ptr nodes;
+    /* This array holds the nodes in the graph; it is indexed by the node
+       cuid, which follows the order of the instructions in the BB.  */
+    ddg_node_ptr nodes;
 
-  /* The branch closing the loop.  */
-  ddg_node_ptr closing_branch;
+    /* The branch closing the loop.  */
+    ddg_node_ptr closing_branch;
 
-  /* Build dependence edges for closing_branch, when set.  In certain cases,
-     the closing branch can be dealt with separately from the insns of the
-     loop, and then no such deps are needed.  */
-  int closing_branch_deps;
+    /* Build dependence edges for closing_branch, when set.  In certain cases,
+       the closing branch can be dealt with separately from the insns of the
+       loop, and then no such deps are needed.  */
+    int closing_branch_deps;
 
-  /* Array and number of backarcs (edges with distance > 0) in the DDG.  */
-  int num_backarcs;
-  ddg_edge_ptr *backarcs;
+    /* Array and number of backarcs (edges with distance > 0) in the DDG.  */
+    int num_backarcs;
+    ddg_edge_ptr *backarcs;
 };
 
 
 /* Holds information on an SCC (Strongly Connected Component) of the DDG.  */
 struct ddg_scc
 {
-  /* A bitmap that represents the nodes of the DDG that are in the SCC.  */
-  sbitmap nodes;
+    /* A bitmap that represents the nodes of the DDG that are in the SCC.  */
+    sbitmap nodes;
 
-  /* Array and number of backarcs (edges with distance > 0) in the SCC.  */
-  ddg_edge_ptr *backarcs;
-  int num_backarcs;
+    /* Array and number of backarcs (edges with distance > 0) in the SCC.  */
+    ddg_edge_ptr *backarcs;
+    int num_backarcs;
 
-  /* The maximum of (total_latency/total_distance) over all cycles in SCC.  */
-  int recurrence_length;
+    /* The maximum of (total_latency/total_distance) over all cycles in SCC.  */
+    int recurrence_length;
 };
 
 /* This structure holds the SCCs of the DDG.  */
 struct ddg_all_sccs
 {
-  /* Array that holds the SCCs in the DDG, and their number.  */
-  ddg_scc_ptr *sccs;
-  int num_sccs;
+    /* Array that holds the SCCs in the DDG, and their number.  */
+    ddg_scc_ptr *sccs;
+    int num_sccs;
 
-  ddg_ptr ddg;
+    ddg_ptr ddg;
 };
 
 

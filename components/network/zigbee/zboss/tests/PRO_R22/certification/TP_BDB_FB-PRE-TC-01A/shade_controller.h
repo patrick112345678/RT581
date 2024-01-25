@@ -129,7 +129,7 @@
  */
 
 #define DECLARE_SHADE_CONTROLLER_EP(ep_name, ep_id, cluster_list)                       \
-  DECLARE_SHADE_CONTROLLER_SIMPLE_DESC(							\
+  DECLARE_SHADE_CONTROLLER_SIMPLE_DESC(                         \
     ep_name,                                                                            \
     ep_id,                                                                              \
     SHADE_CONTROLLER_IN_CLUSTER_NUM,                                                    \

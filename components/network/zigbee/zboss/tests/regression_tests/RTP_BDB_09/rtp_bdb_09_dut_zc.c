@@ -92,85 +92,85 @@ static void trigger_fb_initiator(zb_uint8_t unused);
 
 MAIN()
 {
-  ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
-  ZB_SET_TRACE_LEVEL(4);
-  ARGV_UNUSED;
+    ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
+    ZB_SET_TRACE_LEVEL(4);
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("zdo_dut_zc");
+    ZB_INIT("zdo_dut_zc");
 
 
-  zb_set_long_address(g_ieee_addr_dut);
+    zb_set_long_address(g_ieee_addr_dut);
 
-  zb_reg_test_set_common_channel_settings();
-  zb_set_network_coordinator_role((1l << TEST_CHANNEL));
-  zb_secur_setup_nwk_key(g_nwk_key, 0);
+    zb_reg_test_set_common_channel_settings();
+    zb_set_network_coordinator_role((1l << TEST_CHANNEL));
+    zb_secur_setup_nwk_key(g_nwk_key, 0);
 
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  ZB_AF_REGISTER_DEVICE_CTX(&rtp_bdb_09_dut_zc_device_ctx);
+    ZB_AF_REGISTER_DEVICE_CTX(&rtp_bdb_09_dut_zc_device_ctx);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 
 /***********************************Implementation**********************************/
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
 
-  zb_zdo_app_signal_hdr_t *sg_p = NULL;
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, &sg_p);
-  zb_zdo_signal_fb_initiator_finished_params_t *fb_initiator_finished_params;
+    zb_zdo_app_signal_hdr_t *sg_p = NULL;
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, &sg_p);
+    zb_zdo_signal_fb_initiator_finished_params_t *fb_initiator_finished_params;
 
-  TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  switch (sig)
-  {
+    switch (sig)
+    {
     case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
-      }
-      break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
+        TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
+        }
+        break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
 
     case ZB_ZDO_SIGNAL_DEVICE_ANNCE:
-      TRACE_MSG(TRACE_APS1, "signal: ZB_ZDO_SIGNAL_DEVICE_ANNCE, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        test_step_register(trigger_fb_initiator, 0, RTP_BDB_09_STEP_1_TIME_ZC);
+        TRACE_MSG(TRACE_APS1, "signal: ZB_ZDO_SIGNAL_DEVICE_ANNCE, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            test_step_register(trigger_fb_initiator, 0, RTP_BDB_09_STEP_1_TIME_ZC);
 
-        test_control_start(TEST_MODE, RTP_BDB_09_STEP_1_DELAY_ZC);
-      }
-      break; /* ZB_ZDO_SIGNAL_DEVICE_ANNCE */
+            test_control_start(TEST_MODE, RTP_BDB_09_STEP_1_DELAY_ZC);
+        }
+        break; /* ZB_ZDO_SIGNAL_DEVICE_ANNCE */
 
     case ZB_BDB_SIGNAL_FINDING_AND_BINDING_INITIATOR_FINISHED:
-      TRACE_MSG(TRACE_APS1, "signal: ZB_BDB_SIGNAL_FINDING_AND_BINDING_INITIATOR_FINISHED, status %d", (FMT__D, status));
+        TRACE_MSG(TRACE_APS1, "signal: ZB_BDB_SIGNAL_FINDING_AND_BINDING_INITIATOR_FINISHED, status %d", (FMT__D, status));
 
-      fb_initiator_finished_params = ZB_ZDO_SIGNAL_GET_PARAMS(sg_p, zb_zdo_signal_fb_initiator_finished_params_t);
+        fb_initiator_finished_params = ZB_ZDO_SIGNAL_GET_PARAMS(sg_p, zb_zdo_signal_fb_initiator_finished_params_t);
 
-      TRACE_MSG(TRACE_APP1, "BDB finding and binding initiator finished, status %d", (FMT__D, fb_initiator_finished_params->status));
-      break; /* ZB_BDB_SIGNAL_FINDING_AND_BINDING_INITIATOR_FINISHED */
+        TRACE_MSG(TRACE_APP1, "BDB finding and binding initiator finished, status %d", (FMT__D, fb_initiator_finished_params->status));
+        break; /* ZB_BDB_SIGNAL_FINDING_AND_BINDING_INITIATOR_FINISHED */
 
     default:
-      TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
-      break;
-  }
+        TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 
@@ -179,16 +179,16 @@ static zb_bool_t finding_binding_cb(zb_int16_t status,
                                     zb_uint8_t ep,
                                     zb_uint16_t cluster)
 {
-  TRACE_MSG(TRACE_APP1, "finding_binding_cb status %d addr " TRACE_FORMAT_64 " ep %hd cluster %d",
-            (FMT__D_A_H_D, status, TRACE_ARG_64(addr), ep, cluster));
-  return ZB_TRUE;
+    TRACE_MSG(TRACE_APP1, "finding_binding_cb status %d addr " TRACE_FORMAT_64 " ep %hd cluster %d",
+              (FMT__D_A_H_D, status, TRACE_ARG_64(addr), ep, cluster));
+    return ZB_TRUE;
 }
 
 static void trigger_fb_initiator(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  zb_bdb_finding_binding_initiator(DUT_ENDPOINT, finding_binding_cb);
+    zb_bdb_finding_binding_initiator(DUT_ENDPOINT, finding_binding_cb);
 }
 
 /*! @} */

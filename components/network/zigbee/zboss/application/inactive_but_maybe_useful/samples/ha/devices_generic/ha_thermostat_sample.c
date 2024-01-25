@@ -63,21 +63,21 @@ zb_uint8_t system_mode = ZB_ZCL_THERMOSTAT_CONTROL_SYSTEM_MODE_DEFAULT_VALUE;
 zb_uint8_t start_of_week = ZB_ZCL_THERMOSTAT_START_OF_WEEK_SUNDAY;
 
 ZB_ZCL_DECLARE_THERMOSTAT_ATTRIB_LIST(thermostat_attr_list,
-      &local_temperature, &local_temperature_calibration,
-      &occupied_cooling_setpoint, &occupied_heating_setpoint,
-      &control_seq_of_operation, &system_mode, &start_of_week);
+                                      &local_temperature, &local_temperature_calibration,
+                                      &occupied_cooling_setpoint, &occupied_heating_setpoint,
+                                      &control_seq_of_operation, &system_mode, &start_of_week);
 
 zb_uint8_t fan_mode = ZB_ZCL_FAN_CONTROL_FAN_MODE_DEFAULT_VALUE;
 zb_uint8_t fan_mode_sequence = ZB_ZCL_FAN_CONTROL_FAN_MODE_SEQUENCE_DEFAULT_VALUE;
 
 ZB_ZCL_DECLARE_FAN_CONTROL_ATTRIB_LIST(fan_control_attr_list,
-    &fan_mode, &fan_mode_sequence);
+                                       &fan_mode, &fan_mode_sequence);
 
 zb_uint8_t temperature_display_mode = ZB_ZCL_THERMOSTAT_UI_CONFIG_TEMPERATURE_DISPLAY_MODE_DEFAULT_VALUE;
 zb_uint8_t keypad_lockout = ZB_ZCL_THERMOSTAT_UI_CONFIG_KEYPAD_LOCKOUT_DEFAULT_VALUE;
 
 ZB_ZCL_DECLARE_THERMOSTAT_UI_CONFIG_ATTRIB_LIST(thermostat_ui_config_attr_list,
-    &temperature_display_mode, &keypad_lockout);
+        &temperature_display_mode, &keypad_lockout);
 
 /********************* Declare device **************************/
 
@@ -88,7 +88,7 @@ ZB_HA_DECLARE_THERMOSTAT_CLUSTER_LIST(thermostat_clusters,
                                       fan_control_attr_list,
                                       thermostat_ui_config_attr_list);
 
-  ZB_HA_DECLARE_THERMOSTAT_EP(thermostat_ep, ENDPOINT, thermostat_clusters);
+ZB_HA_DECLARE_THERMOSTAT_EP(thermostat_ep, ENDPOINT, thermostat_clusters);
 
 ZB_HA_DECLARE_THERMOSTAT_CTX(thermostat_ctx, thermostat_ep);
 
@@ -106,70 +106,70 @@ void SpiIrqHdlr(void)
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  ZB_INIT("ha_thermostat_sample");
+    ZB_INIT("ha_thermostat_sample");
 
-  /* 2018/08/10 CR:MAJOR (rev. 39308): Coordinator is always rx on when idle. */
-  zb_set_rx_on_when_idle(ZB_TRUE);
-  zb_set_long_address(g_zc_addr);
-  zb_set_network_coordinator_role(ZB_DEFAULT_APS_CHANNEL_MASK);
-  zb_set_default_ffd_descriptor_values(ZB_COORDINATOR);
-  ZB_PIBCACHE_PAN_ID() = 0x1aaa;
+    /* 2018/08/10 CR:MAJOR (rev. 39308): Coordinator is always rx on when idle. */
+    zb_set_rx_on_when_idle(ZB_TRUE);
+    zb_set_long_address(g_zc_addr);
+    zb_set_network_coordinator_role(ZB_DEFAULT_APS_CHANNEL_MASK);
+    zb_set_default_ffd_descriptor_values(ZB_COORDINATOR);
+    ZB_PIBCACHE_PAN_ID() = 0x1aaa;
 
-  /****************** Register Device ********************************/
-  ZB_AF_REGISTER_DEVICE_CTX(&thermostat_ctx);
+    /****************** Register Device ********************************/
+    ZB_AF_REGISTER_DEVICE_CTX(&thermostat_ctx);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
-  }
-  else
-  {
-    zboss_main_loop();
-  }
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
+    }
+    else
+    {
+        zboss_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 
 void zboss_signal_handler(zb_uint8_t param)
 {
-  zb_zdo_app_signal_hdr_t *sg_p = NULL;
-  zb_zdo_app_signal_t sig = zb_get_app_signal(param, &sg_p);
+    zb_zdo_app_signal_hdr_t *sg_p = NULL;
+    zb_zdo_app_signal_t sig = zb_get_app_signal(param, &sg_p);
 
-  TRACE_MSG(TRACE_APP1, ">>zboss_signal_handler: status %hd signal %hd",
-            (FMT__H_H, ZB_GET_APP_SIGNAL_STATUS(param), sig));
+    TRACE_MSG(TRACE_APP1, ">>zboss_signal_handler: status %hd signal %hd",
+              (FMT__H_H, ZB_GET_APP_SIGNAL_STATUS(param), sig));
 
-  if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
-  {
-    switch(sig)
+    if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
     {
-      case ZB_ZDO_SIGNAL_DEFAULT_START:
-      case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      case ZB_BDB_SIGNAL_DEVICE_REBOOT:
-        TRACE_MSG(TRACE_APP1, "Device STARTED OK", (FMT__0));
-      break;
+        switch (sig)
+        {
+        case ZB_ZDO_SIGNAL_DEFAULT_START:
+        case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
+        case ZB_BDB_SIGNAL_DEVICE_REBOOT:
+            TRACE_MSG(TRACE_APP1, "Device STARTED OK", (FMT__0));
+            break;
 
-      default:
-        TRACE_MSG(TRACE_APP1, "Unknown signal %hd", (FMT__H, sig));
+        default:
+            TRACE_MSG(TRACE_APP1, "Unknown signal %hd", (FMT__H, sig));
+        }
     }
-  }
-  else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
-  {
-    TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
-  }
+    else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
+    {
+        TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
+    }
 
-  if (param)
-  {
-    ZB_FREE_BUF(ZB_BUF_FROM_REF(param));
-  }
+    if (param)
+    {
+        ZB_FREE_BUF(ZB_BUF_FROM_REF(param));
+    }
 
-  TRACE_MSG(TRACE_APP1, "<<zboss_signal_handler", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "<<zboss_signal_handler", (FMT__0));
 }

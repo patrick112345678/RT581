@@ -53,24 +53,24 @@
 #endif /* SE_CERT_H */
 /* ------------------------- IHD device ----------------------------------- */
 zb_ieee_addr_t ihd_dev_addr = IHD_DEV_ADDR;
-char ihd_installcode[]= "966b9f3ef98ae605 9708";
+char ihd_installcode[] = "966b9f3ef98ae605 9708";
 
 /* ------------------------- Electric Metering device --------------------- */
 zb_ieee_addr_t el_metering_dev_addr = EL_METERING_DEV_ADDR;
-char el_metering_installcode[]= "966b9f3ef98ae605 9708";
+char el_metering_installcode[] = "966b9f3ef98ae605 9708";
 
 /* ------------------------- Gas Metering device -------------------------- */
 zb_ieee_addr_t gas_metering_dev_addr = GAS_METERING_DEV_ADDR;
-char gas_metering_installcode[]= "966b9f3ef98ae605 9708";
+char gas_metering_installcode[] = "966b9f3ef98ae605 9708";
 
 /* -------------- Programmable Controlled Thermostat device --------------- */
 zb_ieee_addr_t pct_dev_addr = PCT_DEV_ADDR;
-char pct_installcode[]= "966b9f3ef98ae605 9708";
+char pct_installcode[] = "966b9f3ef98ae605 9708";
 
 /* - Additional device for support of complementary MAC devices (for unified HEX) - */
 #ifdef ADDITIONAL_DEV_ADDR
 zb_ieee_addr_t add_dev_addr = ADDITIONAL_DEV_ADDR;
-char add_installcode[]= "966b9f3ef98ae605 9708";
+char add_installcode[] = "966b9f3ef98ae605 9708";
 #endif
 
 #endif /* SE_INSTALLCODES_H */

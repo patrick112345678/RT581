@@ -57,10 +57,10 @@
 */
 enum zb_zcl_on_off_switch_configuration_attr_e
 {
-  /*! Switch type attribute identifier (switch information) */
-  ZB_ZCL_ATTR_ON_OFF_SWITCH_CONFIGURATION_SWITCH_TYPE_ID    = 0x0000,
-  /*! Switch actions attribute identifier (switch settings) */
-  ZB_ZCL_ATTR_ON_OFF_SWITCH_CONFIGURATION_SWITCH_ACTIONS_ID = 0x0010
+    /*! Switch type attribute identifier (switch information) */
+    ZB_ZCL_ATTR_ON_OFF_SWITCH_CONFIGURATION_SWITCH_TYPE_ID    = 0x0000,
+    /*! Switch actions attribute identifier (switch settings) */
+    ZB_ZCL_ATTR_ON_OFF_SWITCH_CONFIGURATION_SWITCH_ACTIONS_ID = 0x0010
 };
 
 /*! @brief Permissible values for switch type attribute
@@ -68,12 +68,12 @@ enum zb_zcl_on_off_switch_configuration_attr_e
 */
 enum zb_zcl_on_off_switch_configuration_switch_type_e
 {
-  /*! Toggle switch */
-  ZB_ZCL_ON_OFF_SWITCH_CONFIGURATION_SWITCH_TYPE_TOGGLE        = 0,
-  /*! Momentary switch */
-  ZB_ZCL_ON_OFF_SWITCH_CONFIGURATION_SWITCH_TYPE_MOMENTARY     = 1,
-  /*! Multifunction switch */
-  ZB_ZCL_ON_OFF_SWITCH_CONFIGURATION_SWITCH_TYPE_MULTIFUNCTION = 2
+    /*! Toggle switch */
+    ZB_ZCL_ON_OFF_SWITCH_CONFIGURATION_SWITCH_TYPE_TOGGLE        = 0,
+    /*! Momentary switch */
+    ZB_ZCL_ON_OFF_SWITCH_CONFIGURATION_SWITCH_TYPE_MOMENTARY     = 1,
+    /*! Multifunction switch */
+    ZB_ZCL_ON_OFF_SWITCH_CONFIGURATION_SWITCH_TYPE_MULTIFUNCTION = 2
 };
 
 /*! @brief Maximal value for switch type attribute */
@@ -87,23 +87,23 @@ enum zb_zcl_on_off_switch_configuration_switch_type_e
 */
 enum zb_zcl_on_off_switch_configuration_switch_actions_e
 {
-  /*! @brief First type command pattern
+    /*! @brief First type command pattern
 
-      @li Send "On" on arriving to State2 from State1;
-      @li Send "Off" on arriving to State1 from State2.
-  */
-  ZB_ZCL_ON_OFF_SWITCH_CONFIGURATION_SWITCH_ACTIONS_TYPE1  = 0,
-  /*! @brief Second type command pattern
+        @li Send "On" on arriving to State2 from State1;
+        @li Send "Off" on arriving to State1 from State2.
+    */
+    ZB_ZCL_ON_OFF_SWITCH_CONFIGURATION_SWITCH_ACTIONS_TYPE1  = 0,
+    /*! @brief Second type command pattern
 
-      @li Send "On" on arriving to State1 from State2;
-      @li Send "Off" on arriving to State2 from State1.
-  */
-  ZB_ZCL_ON_OFF_SWITCH_CONFIGURATION_SWITCH_ACTIONS_TYPE2  = 1,
-  /*! @brief Toggle command pattern
+        @li Send "On" on arriving to State1 from State2;
+        @li Send "Off" on arriving to State2 from State1.
+    */
+    ZB_ZCL_ON_OFF_SWITCH_CONFIGURATION_SWITCH_ACTIONS_TYPE2  = 1,
+    /*! @brief Toggle command pattern
 
-      Send "Toggle" on state change
-  */
-  ZB_ZCL_ON_OFF_SWITCH_CONFIGURATION_SWITCH_ACTIONS_TOGGLE = 2
+        Send "Toggle" on state change
+    */
+    ZB_ZCL_ON_OFF_SWITCH_CONFIGURATION_SWITCH_ACTIONS_TOGGLE = 2
 };
 
 /*! @brief Maximal value for switch actions attribute */

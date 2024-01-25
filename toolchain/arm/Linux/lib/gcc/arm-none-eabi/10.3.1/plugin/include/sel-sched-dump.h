@@ -25,7 +25,7 @@ along with GCC; see the file COPYING3.  If not see
 
 /* These values control the dumping of control flow graph to the .dot file.  */
 enum sel_dump_cfg_def
-  {
+{
     /* Dump only current region.  */
     SEL_DUMP_CFG_CURRENT_REGION = 2,
 
@@ -62,11 +62,11 @@ enum sel_dump_cfg_def
                           | SEL_DUMP_CFG_FENCES
                           | SEL_DUMP_CFG_INSN_SEQNO
                           | SEL_DUMP_CFG_BB_LOOP)
-  };
+};
 
 /* These values control the dumping of insns containing in expressions.  */
 enum dump_insn_rtx_def
-  {
+{
     /* Dump insn's UID.  */
     DUMP_INSN_RTX_UID = 2,
 
@@ -78,8 +78,8 @@ enum dump_insn_rtx_def
 
     /* Dump all of the above.  */
     DUMP_INSN_RTX_ALL = (DUMP_INSN_RTX_UID | DUMP_INSN_RTX_PATTERN
-			 | DUMP_INSN_RTX_BBN)
-  };
+                         | DUMP_INSN_RTX_BBN)
+};
 
 extern void dump_insn_rtx_1 (rtx, int);
 extern void dump_insn_rtx (rtx);
@@ -88,7 +88,7 @@ extern void debug_insn_rtx (rtx);
 /* These values control dumping of vinsns.  The meaning of different fields
    of a vinsn is explained in sel-sched-ir.h.  */
 enum dump_vinsn_def
-  {
+{
     /* Dump the insn behind this vinsn.  */
     DUMP_VINSN_INSN_RTX = 2,
 
@@ -103,8 +103,8 @@ enum dump_vinsn_def
 
     /* Dump all of the above.  */
     DUMP_VINSN_ALL = (DUMP_VINSN_INSN_RTX | DUMP_VINSN_TYPE | DUMP_VINSN_COUNT
-		      | DUMP_VINSN_COST)
-  };
+                      | DUMP_VINSN_COST)
+};
 
 extern void dump_vinsn_1 (vinsn_t, int);
 extern void dump_vinsn (vinsn_t);
@@ -119,7 +119,7 @@ extern void debug_verbose (vinsn_def *ptr);
 /* These values control dumping of expressions.  The meaning of the fields
    is explained in sel-sched-ir.h.  */
 enum dump_expr_def
-  {
+{
     /* Dump the vinsn behind this expression.  */
     DUMP_EXPR_VINSN = 2,
 
@@ -143,9 +143,9 @@ enum dump_expr_def
 
     /* Dump all of the above.  */
     DUMP_EXPR_ALL = (DUMP_EXPR_VINSN | DUMP_EXPR_SPEC | DUMP_EXPR_PRIORITY
-		     | DUMP_EXPR_SCHED_TIMES | DUMP_EXPR_SPEC_DONE_DS
-		     | DUMP_EXPR_ORIG_BB | DUMP_EXPR_USEFULNESS)
-  };
+                     | DUMP_EXPR_SCHED_TIMES | DUMP_EXPR_SPEC_DONE_DS
+                     | DUMP_EXPR_ORIG_BB | DUMP_EXPR_USEFULNESS)
+};
 
 extern void dump_expr_1 (expr_t, int);
 extern void dump_expr (expr_t);
@@ -161,27 +161,27 @@ extern void debug_verbose (expr_def *ptr);
    dump_insn_rtx_def is that these fields are for insns in stream only.  */
 enum dump_insn_def
 {
-  /* Dump expression of this insn.  */
-  DUMP_INSN_EXPR = 2,
+    /* Dump expression of this insn.  */
+    DUMP_INSN_EXPR = 2,
 
-  /* Dump insn's seqno.  */
-  DUMP_INSN_SEQNO = 4,
+    /* Dump insn's seqno.  */
+    DUMP_INSN_SEQNO = 4,
 
-  /* Dump the cycle on which insn was scheduled.  */
-  DUMP_INSN_SCHED_CYCLE = 8,
+    /* Dump the cycle on which insn was scheduled.  */
+    DUMP_INSN_SCHED_CYCLE = 8,
 
-  /* Dump insn's UID.  */
-  DUMP_INSN_UID = 16,
+    /* Dump insn's UID.  */
+    DUMP_INSN_UID = 16,
 
-  /* Dump insn's pattern.  */
-  DUMP_INSN_PATTERN = 32,
+    /* Dump insn's pattern.  */
+    DUMP_INSN_PATTERN = 32,
 
-  /* Dump insn's basic block number.  */
-  DUMP_INSN_BBN = 64,
+    /* Dump insn's basic block number.  */
+    DUMP_INSN_BBN = 64,
 
-  /* Dump all of the above.  */
-  DUMP_INSN_ALL = (DUMP_INSN_EXPR | DUMP_INSN_SEQNO | DUMP_INSN_BBN
-		   | DUMP_INSN_SCHED_CYCLE | DUMP_INSN_UID | DUMP_INSN_PATTERN)
+    /* Dump all of the above.  */
+    DUMP_INSN_ALL = (DUMP_INSN_EXPR | DUMP_INSN_SEQNO | DUMP_INSN_BBN
+                     | DUMP_INSN_SCHED_CYCLE | DUMP_INSN_UID | DUMP_INSN_PATTERN)
 };
 
 extern void dump_insn_1 (insn_t, int);
@@ -195,7 +195,7 @@ extern bool sched_dump_to_dot_p;
 
 /* Functions from sel-sched-dump.c.  */
 extern void sel_print (const char *fmt, ...) ATTRIBUTE_PRINTF_1;
-extern const char * sel_print_insn (const rtx_insn *, int);
+extern const char *sel_print_insn (const rtx_insn *, int);
 extern void free_sel_dump_data (void);
 
 extern void block_start (void);

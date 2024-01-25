@@ -80,7 +80,7 @@ void aps_clear_all_dups(void);
    @return nothing
  */
 void zb_aps_in_command_handle(zb_uint8_t param, zb_uint16_t keypair_i
-                             , zb_secur_key_id_t key_id
+                              , zb_secur_key_id_t key_id
                              );
 
 

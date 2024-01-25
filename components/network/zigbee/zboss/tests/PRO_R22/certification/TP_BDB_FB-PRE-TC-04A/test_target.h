@@ -195,12 +195,12 @@
 
 
 /* Declare device ctx */
-#define DECLARE_TARGET_NO_REP_CTX(device_ctx, ep1_name, ep2_name)	\
+#define DECLARE_TARGET_NO_REP_CTX(device_ctx, ep1_name, ep2_name)   \
     ZB_AF_START_DECLARE_ENDPOINT_LIST(ep_list_##device_ctx)             \
-      &ep1_name,							\
-      &ep2_name,							\
-    ZB_AF_FINISH_DECLARE_ENDPOINT_LIST;					\
-    ZBOSS_DECLARE_DEVICE_CTX(device_ctx, ep_list_##device_ctx,		\
+      &ep1_name,                            \
+      &ep2_name,                            \
+    ZB_AF_FINISH_DECLARE_ENDPOINT_LIST;                 \
+    ZBOSS_DECLARE_DEVICE_CTX(device_ctx, ep_list_##device_ctx,      \
                              ZB_ZCL_ARRAY_SIZE(ep_list_##device_ctx, zb_af_endpoint_desc_t*))
 
 

@@ -45,50 +45,50 @@
 */
 enum zb_zcl_fan_control_attr_e
 {
-  /*! @brief Fan Mode attribute */
-  ZB_ZCL_ATTR_FAN_CONTROL_FAN_MODE_ID             = 0x0000,
-  /*! @brief Fan Mode Sequence attribute */
-  ZB_ZCL_ATTR_FAN_CONTROL_FAN_MODE_SEQUENCE_ID    = 0x0001
+    /*! @brief Fan Mode attribute */
+    ZB_ZCL_ATTR_FAN_CONTROL_FAN_MODE_ID             = 0x0000,
+    /*! @brief Fan Mode Sequence attribute */
+    ZB_ZCL_ATTR_FAN_CONTROL_FAN_MODE_SEQUENCE_ID    = 0x0001
 };
 
 /*! @brief Values for Fan Mode attribute,
     @see ZCL spec, subclause 6.4.2.2.1 */
 enum zb_zcl_fan_control_fan_mode_e
 {
-  /*! Off value */
-  ZB_ZCL_FAN_CONTROL_FAN_MODE_OFF      = 0x00,
-  /*! Low value */
-  ZB_ZCL_FAN_CONTROL_FAN_MODE_LOW      = 0x01,
-  /*! Medium value */
-  ZB_ZCL_FAN_CONTROL_FAN_MODE_MEDIUM   = 0x02,
-  /*! High value */
-  ZB_ZCL_FAN_CONTROL_FAN_MODE_HIGH     = 0x03,
-  /*! On value */
-  ZB_ZCL_FAN_CONTROL_FAN_MODE_ON       = 0x04,
-  /*! Auto value */
-  ZB_ZCL_FAN_CONTROL_FAN_MODE_AUTO     = 0x05,
-  /*! Smart value */
-  ZB_ZCL_FAN_CONTROL_FAN_MODE_SMART    = 0x06,
+    /*! Off value */
+    ZB_ZCL_FAN_CONTROL_FAN_MODE_OFF      = 0x00,
+    /*! Low value */
+    ZB_ZCL_FAN_CONTROL_FAN_MODE_LOW      = 0x01,
+    /*! Medium value */
+    ZB_ZCL_FAN_CONTROL_FAN_MODE_MEDIUM   = 0x02,
+    /*! High value */
+    ZB_ZCL_FAN_CONTROL_FAN_MODE_HIGH     = 0x03,
+    /*! On value */
+    ZB_ZCL_FAN_CONTROL_FAN_MODE_ON       = 0x04,
+    /*! Auto value */
+    ZB_ZCL_FAN_CONTROL_FAN_MODE_AUTO     = 0x05,
+    /*! Smart value */
+    ZB_ZCL_FAN_CONTROL_FAN_MODE_SMART    = 0x06,
 
-  ZB_ZCL_FAN_CONTROL_FAN_MODE_RESERVED = 0x07
+    ZB_ZCL_FAN_CONTROL_FAN_MODE_RESERVED = 0x07
 };
 
 /*! @brief Values for Fan Mode Sequence attribute,
     @see ZCL spec, subclause 6.4.2.2.2 */
 enum zb_zcl_fan_control_fan_mode_sequence_e
 {
-  /*! Low/Med/High value */
-  ZB_ZCL_FAN_CONTROL_FAN_MODE_SEQUENCE_LOW_MED_HIGH      = 0x00,
-  /*! Low/High value */
-  ZB_ZCL_FAN_CONTROL_FAN_MODE_SEQUENCE_LOW_HIGH          = 0x01,
-  /*! Low/Med/High/Auto value */
-  ZB_ZCL_FAN_CONTROL_FAN_MODE_SEQUENCE_LOW_MED_HIGH_AUTO = 0x02,
-  /*! Low/High/Auto value */
-  ZB_ZCL_FAN_CONTROL_FAN_MODE_SEQUENCE_LOW_HIGH_AUTO     = 0x03,
-  /*! On/Auto value */
-  ZB_ZCL_FAN_CONTROL_FAN_MODE_SEQUENCE_ON_AUTO           = 0x04,
+    /*! Low/Med/High value */
+    ZB_ZCL_FAN_CONTROL_FAN_MODE_SEQUENCE_LOW_MED_HIGH      = 0x00,
+    /*! Low/High value */
+    ZB_ZCL_FAN_CONTROL_FAN_MODE_SEQUENCE_LOW_HIGH          = 0x01,
+    /*! Low/Med/High/Auto value */
+    ZB_ZCL_FAN_CONTROL_FAN_MODE_SEQUENCE_LOW_MED_HIGH_AUTO = 0x02,
+    /*! Low/High/Auto value */
+    ZB_ZCL_FAN_CONTROL_FAN_MODE_SEQUENCE_LOW_HIGH_AUTO     = 0x03,
+    /*! On/Auto value */
+    ZB_ZCL_FAN_CONTROL_FAN_MODE_SEQUENCE_ON_AUTO           = 0x04,
 
-  ZB_ZCL_FAN_CONTROL_FAN_MODE_SEQUENCE_RESERVED          = 0x05
+    ZB_ZCL_FAN_CONTROL_FAN_MODE_SEQUENCE_RESERVED          = 0x05
 };
 
 /** @brief Default value for Fan Mode attribute */

@@ -124,7 +124,7 @@
 /** @brief General purpose parameter type. */
 enum zb_param_e
 {
-   ZB_UNUSED_PARAM = 0
+    ZB_UNUSED_PARAM = 0
 };
 
 #if defined WIN32 && !defined ZB_WINDOWS
@@ -458,10 +458,10 @@ typedef bool zb_bitbool_t;
 #endif
 
 #if defined __GNUC__ || defined __TI_COMPILER_VERSION__
-  #define ZB_PACKED_STRUCT __attribute__ ((packed))
-  #define ZB_WEAK __attribute__ ((weak))
+#define ZB_PACKED_STRUCT __attribute__ ((packed))
+#define ZB_WEAK __attribute__ ((weak))
 #else
-  #define ZB_PACKED_STRUCT
+#define ZB_PACKED_STRUCT
 #endif
 
 /* IAR or Keil ARM CPU */
@@ -488,9 +488,9 @@ typedef bool zb_bitbool_t;
 #endif
 
 #if defined __GNUC__
-  #define ZB_DEPRECATED __attribute__((deprecated))
+#define ZB_DEPRECATED __attribute__((deprecated))
 #else
-  #define ZB_DEPRECATED
+#define ZB_DEPRECATED
 #endif /* __GNUC__ */
 
 /*
@@ -510,11 +510,11 @@ extern ZB_CODE ZB_CONST zb_64bit_addr_t g_unknown_ieee_addr;
 /*
    Return true if long address is zero
  */
-  /* g_zero_addr is declared as ZB_CONST which allows IAR to place it in CODE memory.
-     Compiled this by IAR 7.60 for 8051.
-     This placement changes pointer type making it unusable
-     Is this cast needed here?
-  */
+/* g_zero_addr is declared as ZB_CONST which allows IAR to place it in CODE memory.
+   Compiled this by IAR 7.60 for 8051.
+   This placement changes pointer type making it unusable
+   Is this cast needed here?
+*/
 #define ZB_IS_64BIT_ADDR_ZERO(addr) (ZB_MEMCMP((addr), (void const*)g_zero_addr, 8) == 0)
 #define ZB_IS_64BIT_ADDR_UNKNOWN(addr) (ZB_MEMCMP((addr), (void const*)g_unknown_ieee_addr, 8) == 0)
 
@@ -570,8 +570,8 @@ typedef zb_64bit_addr_t zb_ext_pan_id_t;
 
 typedef ZB_PACKED_PRE union zb_addr_u_t
 {
-  zb_uint16_t  addr_short;
-  zb_ieee_addr_t addr_long;
+    zb_uint16_t  addr_short;
+    zb_ieee_addr_t addr_long;
 } ZB_PACKED_STRUCT
 zb_addr_u;
 
@@ -682,12 +682,12 @@ void zb_htobe32(zb_uint8_t ZB_XDATA *ptr, zb_uint8_t ZB_XDATA *val);
 void zb_htole16(zb_uint8_t ZB_XDATA *ptr, zb_uint8_t ZB_XDATA *val);
 #define ZB_HTOLE16(ptr, val) zb_htole16((zb_uint8_t*)(ptr), (zb_uint8_t*)(val))
 
-#define ZB_HTOLE16_ONPLACE(val) 		\
-{						\
+#define ZB_HTOLE16_ONPLACE(val)         \
+{                       \
   zb_uint8_t *pval = (zb_uint8_t*)(&(val));     \
-  zb_uint8_t a = pval[0];			\
-  pval[0] = pval[1]; 				\
-  pval[1] = a;  				\
+  zb_uint8_t a = pval[0];           \
+  pval[0] = pval[1];                \
+  pval[1] = a;                  \
 }
 
 #define ZB_HTOLE32_ONPLACE(val) { zb_uint32_t _v = (val); ZB_HTOLE32(&(val), &_v); }
@@ -741,7 +741,7 @@ void zb_htole32(zb_uint8_t ZB_XDATA *ptr, zb_uint8_t ZB_XDATA *val);
    @param val - value
  */
 //void zb_put_next_htole16(zb_uint8_t **dst, zb_uint16_t val);
-void* zb_put_next_htole16(zb_uint8_t *dst, zb_uint16_t val);
+void *zb_put_next_htole16(zb_uint8_t *dst, zb_uint16_t val);
 
 #ifdef ZB_LITTLE_ENDIAN
 #define ZB_PUT_NEXT_HTOLE16(ptr, val)                \
@@ -758,7 +758,7 @@ void* zb_put_next_htole16(zb_uint8_t *dst, zb_uint16_t val);
 }
 #endif                          /* ZB_LITTLE_ENDIAN */
 
-void* zb_put_next_htole32(zb_uint8_t *dst, zb_uint32_t val1);
+void *zb_put_next_htole32(zb_uint8_t *dst, zb_uint32_t val1);
 
 #define ZB_PUT_NEXT_HTOLE32(ptr, val) (ptr) = zb_put_next_htole32((ptr), (val))
 
@@ -773,8 +773,8 @@ void zb_get_next_letoh16(zb_uint16_t *dst, zb_uint8_t **src);
 }
 #endif
 
-void* zb_put_next_2_htole16(zb_uint8_t *dst, zb_uint16_t val1, zb_uint16_t val2);
-void* zb_put_next_2_htole32(zb_uint8_t *dst, zb_uint32_t val1, zb_uint32_t val2);
+void *zb_put_next_2_htole16(zb_uint8_t *dst, zb_uint16_t val1, zb_uint16_t val2);
+void *zb_put_next_2_htole32(zb_uint8_t *dst, zb_uint32_t val1, zb_uint32_t val2);
 #define ZB_LETOH64(dst, src) zb_memcpy8((zb_uint8_t*)dst, (zb_uint8_t*)src)
 
 /**
@@ -975,53 +975,53 @@ void* zb_put_next_2_htole32(zb_uint8_t *dst, zb_uint32_t val1, zb_uint32_t val2)
 
 typedef ZB_PACKED_PRE struct zb_int24_s
 {
-  zb_uint16_t low;
-  zb_int8_t   high;
+    zb_uint16_t low;
+    zb_int8_t   high;
 } ZB_PACKED_STRUCT zb_int24_t;
 
 typedef ZB_PACKED_PRE struct zb_uint24_s
 {
-  zb_uint16_t low;
-  zb_uint8_t high;
+    zb_uint16_t low;
+    zb_uint8_t high;
 } ZB_PACKED_STRUCT zb_uint24_t;
 
 typedef ZB_PACKED_PRE struct zb_uint48_s
 {
-  zb_uint32_t low;
-  zb_uint16_t high;
+    zb_uint32_t low;
+    zb_uint16_t high;
 } ZB_PACKED_STRUCT zb_uint48_t;
 
 
 typedef ZB_PACKED_PRE struct zb_int48_s
 {
-  zb_uint32_t low;
-  zb_int16_t high;
+    zb_uint32_t low;
+    zb_int16_t high;
 } ZB_PACKED_STRUCT zb_int48_t;
 
 #else /* defined ZB_BIG_ENDIAN */
 
 typedef ZB_PACKED_PRE struct zb_int24_s
 {
-  zb_int8_t   high;
-  zb_uint16_t low;
+    zb_int8_t   high;
+    zb_uint16_t low;
 } ZB_PACKED_STRUCT zb_int24_t;
 
 typedef ZB_PACKED_PRE struct zb_uint24_s
 {
-  zb_uint8_t high;
-  zb_uint16_t low;
+    zb_uint8_t high;
+    zb_uint16_t low;
 } ZB_PACKED_STRUCT zb_uint24_t;
 
 typedef ZB_PACKED_PRE struct zb_uint48_s
 {
-  zb_uint16_t high;
-  zb_uint32_t low;
+    zb_uint16_t high;
+    zb_uint32_t low;
 } ZB_PACKED_STRUCT zb_uint48_t;
 
 typedef ZB_PACKED_PRE struct zb_int48_s
 {
-  zb_int16_t high;
-  zb_uint32_t low;
+    zb_int16_t high;
+    zb_uint32_t low;
 } ZB_PACKED_STRUCT zb_int48_t;
 
 #endif /* ZB_LITTLE_ENDIAN/ZB_BIG_ENDIAN */

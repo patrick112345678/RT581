@@ -44,6 +44,6 @@ bool refs_same_for_tbaa_p (tree, tree);
    other memories, creating a barrier across which no memory reference
    can move.  Note that there are other legacy ways to create such
    memory barriers, including an address of SCRATCH.  */
-#define ALIAS_SET_MEMORY_BARRIER	((alias_set_type) -1)
+#define ALIAS_SET_MEMORY_BARRIER    ((alias_set_type) -1)
 
 #endif /* GCC_ALIAS_H */

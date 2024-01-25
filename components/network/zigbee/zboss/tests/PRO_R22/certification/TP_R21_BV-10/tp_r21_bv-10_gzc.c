@@ -61,77 +61,77 @@ static const zb_ieee_addr_t g_ieee_addr1 = {0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
-  ZB_INIT("zdo_1_gzc");
-#if UART_CONTROL	
-	test_control_init();
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    /* Init device, load IB values from nvram or set it to default */
+    ZB_INIT("zdo_1_gzc");
+#if UART_CONTROL
+    test_control_init();
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 #endif
-	
-  zb_set_long_address(g_ieee_addr);
-  zb_set_use_extended_pan_id(g_ext_panid);
 
-  zb_set_pan_id(0x1aaa);
+    zb_set_long_address(g_ieee_addr);
+    zb_set_use_extended_pan_id(g_ext_panid);
 
-  /* let's always be coordinator */
-  zb_cert_test_set_common_channel_settings();
-  zb_cert_test_set_zc_role();
-  zb_secur_setup_nwk_key((zb_uint8_t*) g_key_nwk, 0);
+    zb_set_pan_id(0x1aaa);
 
-  /* only ZR1 is visible for ZC */
-  MAC_ADD_VISIBLE_LONG((zb_uint8_t*) g_ieee_addr1);
-  zb_set_max_children(1);
+    /* let's always be coordinator */
+    zb_cert_test_set_common_channel_settings();
+    zb_cert_test_set_zc_role();
+    zb_secur_setup_nwk_key((zb_uint8_t *) g_key_nwk, 0);
 
-  /* allow joining without perm_join (for connection through zr) */
-  ZB_TCPOL().authenticate_always = 1;
+    /* only ZR1 is visible for ZC */
+    MAC_ADD_VISIBLE_LONG((zb_uint8_t *) g_ieee_addr1);
+    zb_set_max_children(1);
 
-  zb_zdo_set_aps_unsecure_join(ZB_TRUE);
+    /* allow joining without perm_join (for connection through zr) */
+    ZB_TCPOL().authenticate_always = 1;
 
-  /* Simulate legacy ZC (without Stack Revision in Node Descriptor's Server Flags). */
-  /* Set this flag before device initialization. */
-  ZB_CERT_HACKS().report_legacy_stack_revision_in_node_descr = 1;
-  zb_set_default_ffd_descriptor_values(ZB_COORDINATOR);
-  zb_bdb_set_legacy_device_support(ZB_TRUE);
+    zb_zdo_set_aps_unsecure_join(ZB_TRUE);
 
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    /* Simulate legacy ZC (without Stack Revision in Node Descriptor's Server Flags). */
+    /* Set this flag before device initialization. */
+    ZB_CERT_HACKS().report_legacy_stack_revision_in_node_descr = 1;
+    zb_set_default_ffd_descriptor_values(ZB_COORDINATOR);
+    zb_bdb_set_legacy_device_support(ZB_TRUE);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zboss_main_loop();
-  }
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  TRACE_DEINIT();
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zboss_main_loop();
+    }
 
-  MAIN_RETURN(0);
+    TRACE_DEINIT();
+
+    MAIN_RETURN(0);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-    switch(sig)
+    switch (sig)
     {
-      case ZB_ZDO_SIGNAL_DEFAULT_START:
-      case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      case ZB_BDB_SIGNAL_DEVICE_REBOOT:
-      TRACE_MSG(TRACE_APS1, "Device started, status %d", (FMT__D, status));
-      break; /* ZB_ZDO_SIGNAL_DEFAULT_START */
+    case ZB_ZDO_SIGNAL_DEFAULT_START:
+    case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
+    case ZB_BDB_SIGNAL_DEVICE_REBOOT:
+        TRACE_MSG(TRACE_APS1, "Device started, status %d", (FMT__D, status));
+        break; /* ZB_ZDO_SIGNAL_DEFAULT_START */
 
-      default:
-      TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
-      break;
+    default:
+        TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
+        break;
     }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 /*! @} */

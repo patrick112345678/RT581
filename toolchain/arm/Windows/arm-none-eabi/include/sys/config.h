@@ -2,7 +2,7 @@
 #define __SYS_CONFIG_H__
 
 #include <machine/ieeefp.h>  /* floating point macros */
-#include <sys/features.h>	/* POSIX defs */
+#include <sys/features.h>   /* POSIX defs */
 
 #ifdef __aarch64__
 #define MALLOC_ALIGNMENT 16
@@ -40,7 +40,7 @@
 
 #if (defined(__CR16__) || defined(__CR16C__) ||defined(__CR16CP__))
 #ifndef __INT32__
-#define __SMALL_BITFIELDS      
+#define __SMALL_BITFIELDS
 #undef INT_MAX
 #undef UINT_MAX
 #define INT_MAX 32767

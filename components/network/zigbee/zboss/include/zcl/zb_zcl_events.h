@@ -46,19 +46,19 @@
  */
 typedef enum zb_zcl_events_srv_cmd_e
 {
-  ZB_ZCL_EVENTS_SRV_CMD_PUBLISH_EVENT                   = 0x00,  /**< This command is generated upon an event trigger from within the reporting
+    ZB_ZCL_EVENTS_SRV_CMD_PUBLISH_EVENT                   = 0x00,  /**< This command is generated upon an event trigger from within the reporting
                                                                   * device and if enabled by the associated Event Configuration (bitmap)
                                                                   * attribute in the Device Management cluster
                                                                   * @see zb_zcl_events_publish_event_payload_t
                                                                   */
 
-  ZB_ZCL_EVENTS_SRV_CMD_PUBLISH_EVENT_LOG               = 0x01,  /**< This command is generated on receipt of a Get Event Log command.
+    ZB_ZCL_EVENTS_SRV_CMD_PUBLISH_EVENT_LOG               = 0x01,  /**< This command is generated on receipt of a Get Event Log command.
                                                                   * The command shall return the most recent event first, up to the number
                                                                   * of events requested.
                                                                   * @see zb_zcl_events_publish_event_log_payload_t
                                                                   */
 
-  ZB_ZCL_EVENTS_SRV_CMD_CLEAR_EVENT_LOG_RESPONSE        = 0x02,  /**< This command is generated on receipt of a Clear Event Log Request command.
+    ZB_ZCL_EVENTS_SRV_CMD_CLEAR_EVENT_LOG_RESPONSE        = 0x02,  /**< This command is generated on receipt of a Clear Event Log Request command.
                                                                   * @see zb_zcl_events_clear_event_log_response_t
                                                                   */
 
@@ -70,13 +70,13 @@ typedef enum zb_zcl_events_srv_cmd_e
  */
 typedef enum zb_zcl_events_cli_cmd_e
 {
-  ZB_ZCL_EVENTS_CLI_CMD_GET_EVENT_LOG                   = 0x00,  /**< The GetEventLog command allows a client to request events from a server’s
+    ZB_ZCL_EVENTS_CLI_CMD_GET_EVENT_LOG                   = 0x00,  /**< The GetEventLog command allows a client to request events from a server’s
                                                                    * event logs. One or  more PublishEventLog commands are returned on receipt
                                                                    * of this command.
                                                                    * @see zb_zcl_events_get_event_log_payload_t
                                                                    */
 
-  ZB_ZCL_EVENTS_CLI_CMD_CLEAR_EVENT_LOG_REQUEST         = 0x01,  /**< This command requests that an Events server device clear the specified
+    ZB_ZCL_EVENTS_CLI_CMD_CLEAR_EVENT_LOG_REQUEST         = 0x01,  /**< This command requests that an Events server device clear the specified
                                                                   * event log(s). The Events server device SHOULD clear the requested events
                                                                   * logs, however it is understood that market specific restrictions may be
                                                                   * applied to prevent this.
@@ -106,12 +106,12 @@ typedef enum zb_zcl_events_cli_cmd_e
  */
 typedef enum zb_zcl_events_log_id_e
 {
-  ZB_ZCL_EVENTS_LOG_ID_ALL_LOGS          = 0x00,  /**< All logs */
-  ZB_ZCL_EVENTS_LOG_ID_TAMPER_LOG,                /**< Tamper Log */
-  ZB_ZCL_EVENTS_LOG_ID_FAULT_LOG,                 /**< Fault Log */
-  ZB_ZCL_EVENTS_LOG_ID_GENERAL_EVENT_LOG,         /**< General Event Log */
-  ZB_ZCL_EVENTS_LOG_ID_SECURITY_EVENT_LOG,        /**< Security Event Log */
-  ZB_ZCL_EVENTS_LOG_ID_NETWORK_EVENT_LOG          /**< Network Event Log */
+    ZB_ZCL_EVENTS_LOG_ID_ALL_LOGS          = 0x00,  /**< All logs */
+    ZB_ZCL_EVENTS_LOG_ID_TAMPER_LOG,                /**< Tamper Log */
+    ZB_ZCL_EVENTS_LOG_ID_FAULT_LOG,                 /**< Fault Log */
+    ZB_ZCL_EVENTS_LOG_ID_GENERAL_EVENT_LOG,         /**< General Event Log */
+    ZB_ZCL_EVENTS_LOG_ID_SECURITY_EVENT_LOG,        /**< Security Event Log */
+    ZB_ZCL_EVENTS_LOG_ID_NETWORK_EVENT_LOG          /**< Network Event Log */
 } zb_zcl_events_log_id_t;
 
 
@@ -190,43 +190,43 @@ typedef enum zb_zcl_events_log_id_e
  */
 typedef ZB_PACKED_PRE struct zb_zcl_events_get_event_log_payload_s
 {
-  /** The least significant nibble is an enumeration indicating
-   * the Log ID from particular enumeration.
-   * The most significant nibble is a bitmap indicating
-   * control options. It determines the detailing level of provided log
-   * information.
-   */
-  zb_uint8_t event_control_log_id;                  /* (M) */
+    /** The least significant nibble is an enumeration indicating
+     * the Log ID from particular enumeration.
+     * The most significant nibble is a bitmap indicating
+     * control options. It determines the detailing level of provided log
+     * information.
+     */
+    zb_uint8_t event_control_log_id;                  /* (M) */
 
 
-  /** The Event ID specifies a particular event to be queried; a value of
-   * 0x0000 is reserved to indicate all Event IDs.
-   */
-  zb_uint16_t event_id;                             /* (M) */
+    /** The Event ID specifies a particular event to be queried; a value of
+     * 0x0000 is reserved to indicate all Event IDs.
+     */
+    zb_uint16_t event_id;                             /* (M) */
 
-  /**This field specifies the start time (earliest time) of the range of events
-   * to be returned. Events that match the search criteria and have a timestamp
-   * greater than or equal to the start time shall be returned.
-   */
-  zb_uint32_t start_time;                           /* (M) */
+    /**This field specifies the start time (earliest time) of the range of events
+     * to be returned. Events that match the search criteria and have a timestamp
+     * greater than or equal to the start time shall be returned.
+     */
+    zb_uint32_t start_time;                           /* (M) */
 
-  /** Specifies the end time (latest time) of the range of events to be reported
-   * in the response. Events that match the search criteria and have a timestamp
-   * less than the specified end time shall be returned. Events with a timestamp
-   * equal to that of the End Time shall not be returned
-   */
-  zb_uint32_t end_time;                             /* (M) */
+    /** Specifies the end time (latest time) of the range of events to be reported
+     * in the response. Events that match the search criteria and have a timestamp
+     * less than the specified end time shall be returned. Events with a timestamp
+     * equal to that of the End Time shall not be returned
+     */
+    zb_uint32_t end_time;                             /* (M) */
 
-  /** This parameter indicates the maximum number of events requested i.e.
-   * the maximum number of events that the client is willing to receive;
-   * the value 0x00 indicates all events that fall into the defined criteria.
-   */
-  zb_uint8_t number_of_events;                      /* (M) */
+    /** This parameter indicates the maximum number of events requested i.e.
+     * the maximum number of events that the client is willing to receive;
+     * the value 0x00 indicates all events that fall into the defined criteria.
+     */
+    zb_uint8_t number_of_events;                      /* (M) */
 
-  /** The Event Offset field provides a mechanism to allow client devices
-   * to page through multiple events which match a given search criteria.
-   */
-  zb_uint16_t event_offset;                         /* (M) */
+    /** The Event Offset field provides a mechanism to allow client devices
+     * to page through multiple events which match a given search criteria.
+     */
+    zb_uint16_t event_offset;                         /* (M) */
 
 } ZB_PACKED_STRUCT zb_zcl_events_get_event_log_payload_t;
 
@@ -236,41 +236,42 @@ typedef ZB_PACKED_PRE struct zb_zcl_events_get_event_log_payload_s
  */
 typedef ZB_PACKED_PRE struct zb_zcl_events_clear_event_log_request_s
 {
-  /** The least significant nibble specifies the Log to be cleared.
-   * The most significant nibble is reserved.
-   */
-  zb_uint8_t log_id;
+    /** The least significant nibble specifies the Log to be cleared.
+     * The most significant nibble is reserved.
+     */
+    zb_uint8_t log_id;
 } ZB_PACKED_STRUCT zb_zcl_events_clear_event_log_request_t;
 
 
 /** @ref ZB_ZCL_EVENTS_SRV_CMD_PUBLISH_EVENT "PublishEvent" Command payload
  * @see SE spec, subclause 11.2.4.1
  */
-typedef ZB_PACKED_PRE struct zb_zcl_events_publish_event_payload_s {
+typedef ZB_PACKED_PRE struct zb_zcl_events_publish_event_payload_s
+{
 
-  /** The least significant nibble is an enumeration indicating the Log ID.
-   * The most significant nibble is reserved.
-   */
-  zb_uint8_t log_id;                                 /* (M) */
+    /** The least significant nibble is an enumeration indicating the Log ID.
+     * The most significant nibble is reserved.
+     */
+    zb_uint8_t log_id;                                 /* (M) */
 
-  /** The Event ID specifies a particular event
-   */
-  zb_uint16_t event_id;                              /* (M) */
+    /** The Event ID specifies a particular event
+     */
+    zb_uint16_t event_id;                              /* (M) */
 
-  /** The timestamp of the event occurrence in UTC format.
-   */
-  zb_uint32_t event_time;                            /* (M) */
+    /** The timestamp of the event occurrence in UTC format.
+     */
+    zb_uint32_t event_time;                            /* (M) */
 
-  /** An 8-bit bitmap specifying actions to be taken regarding particular event.
-   */
-  zb_uint8_t event_control;                          /* (M) */
+    /** An 8-bit bitmap specifying actions to be taken regarding particular event.
+     */
+    zb_uint8_t event_control;                          /* (M) */
 
-  /** A variable length octet string array used to hold additional
-   * information captured when the event occurred. The first element (element 0)
-   * of the array indicates the length of the string, NOT including the first
-   * element.
-   */
-  zb_uint8_t event_data[44];
+    /** A variable length octet string array used to hold additional
+     * information captured when the event occurred. The first element (element 0)
+     * of the array indicates the length of the string, NOT including the first
+     * element.
+     */
+    zb_uint8_t event_data[44];
 
 } ZB_PACKED_STRUCT zb_zcl_events_publish_event_payload_t;
 
@@ -281,33 +282,33 @@ typedef ZB_PACKED_PRE struct zb_zcl_events_publish_event_payload_s {
  */
 typedef ZB_PACKED_PRE struct zb_zcl_events_sub_log_payload_s
 {
-  /*Log Payload representation*/
-/******************************************************************************/
-  /** The least significant nibble represents the Log Payload Control.
-   * It determines availability of events to cross payload frame boundary.
-   * The most significant nibble indicates the number of events contained within
-   * the log payload of this command.
-   */
-  zb_uint8_t number_of_events_log_payload_control;
+    /*Log Payload representation*/
+    /******************************************************************************/
+    /** The least significant nibble represents the Log Payload Control.
+     * It determines availability of events to cross payload frame boundary.
+     * The most significant nibble indicates the number of events contained within
+     * the log payload of this command.
+     */
+    zb_uint8_t number_of_events_log_payload_control;
 
-  /** The least significant nibble is an enumeration indicating the Log ID.
-   * The most significant nibble is reserved.
-   */
-  zb_uint8_t log_id;
+    /** The least significant nibble is an enumeration indicating the Log ID.
+     * The most significant nibble is reserved.
+     */
+    zb_uint8_t log_id;
 
-  /*The Event ID specifies a particular event.*/
-  zb_uint16_t event_id;
+    /*The Event ID specifies a particular event.*/
+    zb_uint16_t event_id;
 
-  /*The timestamp of the event occurrence in UTC format.*/
-  zb_uint32_t event_time;
+    /*The timestamp of the event occurrence in UTC format.*/
+    zb_uint32_t event_time;
 
-  /** A variable length octet string array used to hold additional information
-   * captured when the event occurred. The first element (element 0) of the
-   * array indicates the length of the string, NOT including the first element.
-   */
-  zb_uint8_t event_data[47];
-/******************************************************************************/
-/* Log Payload representation */
+    /** A variable length octet string array used to hold additional information
+     * captured when the event occurred. The first element (element 0) of the
+     * array indicates the length of the string, NOT including the first element.
+     */
+    zb_uint8_t event_data[47];
+    /******************************************************************************/
+    /* Log Payload representation */
 } ZB_PACKED_STRUCT zb_zcl_events_sub_log_payload_t;
 
 
@@ -316,26 +317,26 @@ typedef ZB_PACKED_PRE struct zb_zcl_events_sub_log_payload_s
  */
 typedef ZB_PACKED_PRE struct zb_zcl_events_publish_event_log_payload_s
 {
-  /** This field indicates the total number of events found which match the
-   * search criteria received in the associated Get Event Log command.
-   */
-  zb_uint16_t total_number_of_matching_events;        /* (M) */
+    /** This field indicates the total number of events found which match the
+     * search criteria received in the associated Get Event Log command.
+     */
+    zb_uint16_t total_number_of_matching_events;        /* (M) */
 
-  /** In the case where the entire number of events being returned does not
-   * fit into a single message, the Command Index is used to count the required
-   * number of Publish Event Log commands.
-   */
-  zb_uint8_t command_index;                           /* (M) */
+    /** In the case where the entire number of events being returned does not
+     * fit into a single message, the Command Index is used to count the required
+     * number of Publish Event Log commands.
+     */
+    zb_uint8_t command_index;                           /* (M) */
 
-  /** This parameter indicates the total number of Publish Event Log
-   * commands that are required to return the requested event logs.
-   */
-  zb_uint8_t total_commands;                          /* (M) */
+    /** This parameter indicates the total number of Publish Event Log
+     * commands that are required to return the requested event logs.
+     */
+    zb_uint8_t total_commands;                          /* (M) */
 
-  /** The Log Payload is a series of events and associated data.
-   * @see zb_zcl_events_sub_log_payload_t
-   */
-  zb_zcl_events_sub_log_payload_t *log_payload;
+    /** The Log Payload is a series of events and associated data.
+     * @see zb_zcl_events_sub_log_payload_t
+     */
+    zb_zcl_events_sub_log_payload_t *log_payload;
 
 } ZB_PACKED_STRUCT zb_zcl_events_publish_event_log_payload_t;
 
@@ -355,13 +356,13 @@ typedef ZB_PACKED_PRE struct zb_zcl_events_publish_event_log_payload_s
  */
 typedef enum zb_zcl_events_cleared_events_logs_bitmap_e
 {
-  ZB_ZCL_EVENTS_CLEARED_EVENTS_LOGS_ALL      = 1 << 0,  /**< All logs cleared */
-  ZB_ZCL_EVENTS_CLEARED_EVENTS_LOGS_TAMPER   = 1 << 1,  /**< Tamper log cleared */
-  ZB_ZCL_EVENTS_CLEARED_EVENTS_LOGS_FAULT    = 1 << 2,  /**< Fault log cleared */
-  ZB_ZCL_EVENTS_CLEARED_EVENTS_LOGS_GENERAL  = 1 << 3,  /**< General event log cleared */
-  ZB_ZCL_EVENTS_CLEARED_EVENTS_LOGS_SECURITY = 1 << 4,  /**< Security event log cleared */
-  ZB_ZCL_EVENTS_CLEARED_EVENTS_LOGS_NETWORK  = 1 << 5,  /**< network event log cleared */
-  /* 6-7 bits are reserved */
+    ZB_ZCL_EVENTS_CLEARED_EVENTS_LOGS_ALL      = 1 << 0,  /**< All logs cleared */
+    ZB_ZCL_EVENTS_CLEARED_EVENTS_LOGS_TAMPER   = 1 << 1,  /**< Tamper log cleared */
+    ZB_ZCL_EVENTS_CLEARED_EVENTS_LOGS_FAULT    = 1 << 2,  /**< Fault log cleared */
+    ZB_ZCL_EVENTS_CLEARED_EVENTS_LOGS_GENERAL  = 1 << 3,  /**< General event log cleared */
+    ZB_ZCL_EVENTS_CLEARED_EVENTS_LOGS_SECURITY = 1 << 4,  /**< Security event log cleared */
+    ZB_ZCL_EVENTS_CLEARED_EVENTS_LOGS_NETWORK  = 1 << 5,  /**< network event log cleared */
+    /* 6-7 bits are reserved */
 } zb_zcl_events_cleared_events_logs_bitmap_t;
 
 
@@ -370,10 +371,10 @@ typedef enum zb_zcl_events_cleared_events_logs_bitmap_e
  */
 typedef ZB_PACKED_PRE struct zb_zcl_events_clear_event_log_response_s
 {
-  /** This 8-bit Bitmask indicates which logs have been cleared.
-    * @see SE spec, Table D-191 and @ref zb_zcl_events_cleared_events_logs_bitmap_t
-    */
-  zb_uint8_t cleared_events_logs;
+    /** This 8-bit Bitmask indicates which logs have been cleared.
+      * @see SE spec, Table D-191 and @ref zb_zcl_events_cleared_events_logs_bitmap_t
+      */
+    zb_uint8_t cleared_events_logs;
 } ZB_PACKED_STRUCT zb_zcl_events_clear_event_log_response_t;
 
 
@@ -393,8 +394,8 @@ typedef ZB_PACKED_PRE struct zb_zcl_events_clear_event_log_response_s
  * @param payload - Packet payload (@ref zb_zcl_events_publish_event_payload_t).
  */
 void zb_events_server_send_publish_event(zb_uint8_t param, zb_addr_u *dst_addr,
-                                              zb_uint8_t dst_addr_mode, zb_uint8_t dst_ep,
-                                              zb_uint8_t src_ep, zb_zcl_events_publish_event_payload_t *payload);
+        zb_uint8_t dst_addr_mode, zb_uint8_t dst_ep,
+        zb_uint8_t src_ep, zb_zcl_events_publish_event_payload_t *payload);
 
 /** Function for send @ref ZB_ZCL_EVENTS_SRV_CMD_PUBLISH_EVENT_LOG "PublishEventLog" command.
  * @param param - Reference to buffer.
@@ -405,8 +406,8 @@ void zb_events_server_send_publish_event(zb_uint8_t param, zb_addr_u *dst_addr,
  * @param payload - Packet payload (@ref zb_zcl_events_publish_event_log_payload_t).
  */
 void zb_events_server_send_publish_event_log(zb_uint8_t param, zb_addr_u *dst_addr,
-                                                  zb_uint8_t dst_addr_mode, zb_uint8_t dst_ep,
-                                                  zb_uint8_t src_ep, zb_zcl_events_publish_event_log_payload_t *payload);
+        zb_uint8_t dst_addr_mode, zb_uint8_t dst_ep,
+        zb_uint8_t src_ep, zb_zcl_events_publish_event_log_payload_t *payload);
 
 /** Function for send @ref ZB_ZCL_EVENTS_SRV_CMD_CLEAR_EVENT_LOG_RESPONSE "ClearEventLogResponse" command.
  * @param param - Reference to buffer.
@@ -417,8 +418,8 @@ void zb_events_server_send_publish_event_log(zb_uint8_t param, zb_addr_u *dst_ad
  * @param payload - Packet payload: pointer to zb_uint8_t.
  */
 void zb_events_server_send_clear_event_log_response(zb_uint8_t param, zb_addr_u *dst_addr,
-                                                         zb_uint8_t dst_addr_mode, zb_uint8_t dst_ep,
-                                                         zb_uint8_t src_ep, zb_uint8_t *payload); /*zb_uint8_t zb_zcl_events_ClearedEventsLogs;*/
+        zb_uint8_t dst_addr_mode, zb_uint8_t dst_ep,
+        zb_uint8_t src_ep, zb_uint8_t *payload); /*zb_uint8_t zb_zcl_events_ClearedEventsLogs;*/
 
 /** Function for send @ref ZB_ZCL_EVENTS_CLI_CMD_GET_EVENT_LOG "GetEventLog" command.
   * @param param - Reference to buffer.
@@ -430,8 +431,8 @@ void zb_events_server_send_clear_event_log_response(zb_uint8_t param, zb_addr_u 
   * zb_zcl_events_get_event_log_payload_t).
   */
 void zb_events_client_send_get_event_log(zb_uint8_t param, zb_addr_u *dst_addr,
-                                              zb_uint8_t dst_addr_mode, zb_uint8_t dst_ep,
-                                              zb_uint8_t src_ep, zb_zcl_events_get_event_log_payload_t *payload);
+        zb_uint8_t dst_addr_mode, zb_uint8_t dst_ep,
+        zb_uint8_t src_ep, zb_zcl_events_get_event_log_payload_t *payload);
 
 /** Function for send @ref ZB_ZCL_EVENTS_CLI_CMD_CLEAR_EVENT_LOG_REQUEST "ClearEventLogRequest" command.
  * @param param - Reference to buffer.
@@ -442,8 +443,8 @@ void zb_events_client_send_get_event_log(zb_uint8_t param, zb_addr_u *dst_addr,
  * @param payload - Packet payload: pointer to zb_uint8_t.
  */
 void zb_events_client_send_clear_event_log_request(zb_uint8_t param, zb_addr_u *dst_addr,
-                                                        zb_uint8_t dst_addr_mode, zb_uint8_t dst_ep,
-                                                        zb_uint8_t src_ep, zb_uint8_t *payload); /*zb_uint8_t zb_zcl_events_cel_log_id;*/
+        zb_uint8_t dst_addr_mode, zb_uint8_t dst_ep,
+        zb_uint8_t src_ep, zb_uint8_t *payload); /*zb_uint8_t zb_zcl_events_cel_log_id;*/
 
 /** Macro for call @ref zb_events_server_send_publish_event function */
 #define ZB_ZCL_EVENTS_SEND_CMD_PUBLISH_EVENT(_param, _dst_addr, _dst_addr_mode, \

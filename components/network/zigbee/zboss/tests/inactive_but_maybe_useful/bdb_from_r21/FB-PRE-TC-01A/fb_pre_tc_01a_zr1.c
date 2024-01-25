@@ -79,90 +79,90 @@ DECLARE_METERING_CONTROLLER_CTX(metering_controller_ctx, metering_controller_ep)
 
 static zb_bool_t finding_binding_cb(zb_int16_t status, zb_ieee_addr_t addr, zb_uint8_t ep, zb_uint16_t cluster)
 {
-  TRACE_MSG(TRACE_ZCL1, "finding_binding_cb status %d addr " TRACE_FORMAT_64 " ep %hd cluster %d",
-            (FMT__D_A_H_D, status, TRACE_ARG_64(addr), ep, cluster));
-  return ZB_TRUE;
+    TRACE_MSG(TRACE_ZCL1, "finding_binding_cb status %d addr " TRACE_FORMAT_64 " ep %hd cluster %d",
+              (FMT__D_A_H_D, status, TRACE_ARG_64(addr), ep, cluster));
+    return ZB_TRUE;
 }
 
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("zdo_3_zr1");
+    ZB_INIT("zdo_3_zr1");
 
 
-  ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_ieee_addr);
-  ZB_AIB().aps_insecure_join = ZB_TRUE;
-  ZB_NIB().max_children = 1;
-  ZB_BDB().bdb_primary_channel_set = (1 << 14);
-  ZB_BDB().bdb_mode = 1;
-  ZB_AF_REGISTER_DEVICE_CTX(&metering_controller_ctx);
+    ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_ieee_addr);
+    ZB_AIB().aps_insecure_join = ZB_TRUE;
+    ZB_NIB().max_children = 1;
+    ZB_BDB().bdb_primary_channel_set = (1 << 14);
+    ZB_BDB().bdb_mode = 1;
+    ZB_AF_REGISTER_DEVICE_CTX(&metering_controller_ctx);
 
-  if (zdo_dev_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    if (zdo_dev_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 
 static void cancel_fb_target(zb_uint8_t param)
 {
-  (void)param;
-  TRACE_MSG(TRACE_APS1, "Cancel f&b target", (FMT__0));
-  zb_bdb_finding_binding_target_cancel();
+    (void)param;
+    TRACE_MSG(TRACE_APS1, "Cancel f&b target", (FMT__0));
+    zb_bdb_finding_binding_target_cancel();
 }
 
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
-  {
-    switch(sig)
+    if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
     {
-      case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-        TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
-        bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
-        break;
+        switch (sig)
+        {
+        case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
+            TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
+            bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
+            break;
 
-      case ZB_BDB_SIGNAL_DEVICE_REBOOT:
-        TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
-        TRACE_MSG(TRACE_APS1, "Device STARTED after REBOOT", (FMT__0));
-        break;
+        case ZB_BDB_SIGNAL_DEVICE_REBOOT:
+            TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
+            TRACE_MSG(TRACE_APS1, "Device STARTED after REBOOT", (FMT__0));
+            break;
 
-      case ZB_BDB_SIGNAL_STEERING:
-        TRACE_MSG(TRACE_APS1, "Successfull steering. Start F&B target", (FMT__0));
-      //binding
-        zb_bdb_finding_binding_target(DUT_ENDPOINT);
-        /* stop f&b before 180s timeout to run the test faster */
-        ZB_SCHEDULE_ALARM(cancel_fb_target, 0, ZB_MILLISECONDS_TO_BEACON_INTERVAL(5*1000));
-        break;
+        case ZB_BDB_SIGNAL_STEERING:
+            TRACE_MSG(TRACE_APS1, "Successfull steering. Start F&B target", (FMT__0));
+            //binding
+            zb_bdb_finding_binding_target(DUT_ENDPOINT);
+            /* stop f&b before 180s timeout to run the test faster */
+            ZB_SCHEDULE_ALARM(cancel_fb_target, 0, ZB_MILLISECONDS_TO_BEACON_INTERVAL(5 * 1000));
+            break;
 
-      default:
-        TRACE_MSG(TRACE_APS1, "Unknown signal", (FMT__0));
+        default:
+            TRACE_MSG(TRACE_APS1, "Unknown signal", (FMT__0));
+        }
     }
-  }
-  else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
-  {
-    TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
-  }
-  zb_free_buf(ZB_BUF_FROM_REF(param));
+    else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
+    {
+        TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
+    }
+    zb_free_buf(ZB_BUF_FROM_REF(param));
 }
 
 

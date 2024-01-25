@@ -88,7 +88,7 @@ static zb_ieee_addr_t g_ieee_addr_zc = IEEE_ADDR_ZC;
 static zb_uint16_t g_short_addr_zcl_client = ZB_NWK_BROADCAST_ALL_DEVICES;
 
 static zb_bool_t test_finding_binding_cb(zb_int16_t status, zb_ieee_addr_t addr,
-  zb_uint8_t ep, zb_uint16_t cluster);
+        zb_uint8_t ep, zb_uint16_t cluster);
 static void test_start_fb_initiator(zb_uint8_t param);
 static void test_send_zcl_req_cb(zb_uint8_t param);
 static void test_send_zcl_req(zb_uint8_t param);
@@ -96,167 +96,167 @@ static void test_send_zcl_req_delayed(zb_uint8_t param);
 
 MAIN()
 {
-  ZB_SET_TRACE_MASK(TP_LONG_RUNNING_01_DEVICES_TRACE_MASK);
-  ZB_SET_TRACE_LEVEL(4);
-  ARGV_UNUSED;
+    ZB_SET_TRACE_MASK(TP_LONG_RUNNING_01_DEVICES_TRACE_MASK);
+    ZB_SET_TRACE_LEVEL(4);
+    ARGV_UNUSED;
 
-  ZB_INIT("zdo_zr");
+    ZB_INIT("zdo_zr");
 
-  zb_set_long_address(g_ieee_addr_zr);
+    zb_set_long_address(g_ieee_addr_zr);
 
-  zb_set_network_router_role((1l << TEST_CHANNEL));
+    zb_set_network_router_role((1l << TEST_CHANNEL));
 
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  ZB_AF_REGISTER_DEVICE_CTX(&tp_long_running_01_zr_device_ctx);
+    ZB_AF_REGISTER_DEVICE_CTX(&tp_long_running_01_zr_device_ctx);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 
 /***********************************Implementation**********************************/
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  switch (sig)
-  {
+    switch (sig)
+    {
     case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
-      }
-      break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
+        TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
+        }
+        break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
 
     case ZB_BDB_SIGNAL_STEERING:
-      TRACE_MSG(TRACE_APP1, "signal: ZB_BDB_SIGNAL_STEERING, status %d", (FMT__D, status));
+        TRACE_MSG(TRACE_APP1, "signal: ZB_BDB_SIGNAL_STEERING, status %d", (FMT__D, status));
 
-      if (status == 0)
-      {
-        ZB_SCHEDULE_ALARM(test_start_fb_initiator, 0, TP_LONG_RUNNING_01_ZR_FB_INITIATOR_START_DELAY);
-      }
+        if (status == 0)
+        {
+            ZB_SCHEDULE_ALARM(test_start_fb_initiator, 0, TP_LONG_RUNNING_01_ZR_FB_INITIATOR_START_DELAY);
+        }
 
-      break; /* ZB_BDB_SIGNAL_STEERING */
+        break; /* ZB_BDB_SIGNAL_STEERING */
 
     case ZB_BDB_SIGNAL_FINDING_AND_BINDING_INITIATOR_FINISHED:
-      TRACE_MSG(TRACE_APP1, "signal: ZB_BDB_SIGNAL_FINDING_AND_BINDING_INITIATOR_FINISHED, status %d", (FMT__D, status));
-      break;
+        TRACE_MSG(TRACE_APP1, "signal: ZB_BDB_SIGNAL_FINDING_AND_BINDING_INITIATOR_FINISHED, status %d", (FMT__D, status));
+        break;
 
     default:
-      TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
-      break;
-  }
+        TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 
 static zb_bool_t test_finding_binding_cb(zb_int16_t status, zb_ieee_addr_t addr,
-  zb_uint8_t ep, zb_uint16_t cluster)
+        zb_uint8_t ep, zb_uint16_t cluster)
 {
-  TRACE_MSG(TRACE_APP1, ">> test_finding_binding_cb, status %d, addr " TRACE_FORMAT_64 ", ep %hd, cluster %d",
-            (FMT__D_A_H_D, status, TRACE_ARG_64(addr), ep, cluster));
+    TRACE_MSG(TRACE_APP1, ">> test_finding_binding_cb, status %d, addr " TRACE_FORMAT_64 ", ep %hd, cluster %d",
+              (FMT__D_A_H_D, status, TRACE_ARG_64(addr), ep, cluster));
 
-  if (status == ZB_BDB_COMM_BIND_SUCCESS && cluster == ZB_ZCL_CLUSTER_ID_ON_OFF)
-  {
-    ZB_ASSERT(ZB_IEEE_ADDR_CMP(addr, g_ieee_addr_zc));
-    g_short_addr_zcl_client = 0x0000;
+    if (status == ZB_BDB_COMM_BIND_SUCCESS && cluster == ZB_ZCL_CLUSTER_ID_ON_OFF)
+    {
+        ZB_ASSERT(ZB_IEEE_ADDR_CMP(addr, g_ieee_addr_zc));
+        g_short_addr_zcl_client = 0x0000;
 
-    ZB_SCHEDULE_APP_ALARM(test_send_zcl_req_delayed, 0, TP_LONG_RUNNING_01_ZR_ZCL_REQ_DELAY);
-  }
+        ZB_SCHEDULE_APP_ALARM(test_send_zcl_req_delayed, 0, TP_LONG_RUNNING_01_ZR_ZCL_REQ_DELAY);
+    }
 
-  return ZB_TRUE;
+    return ZB_TRUE;
 }
 
 
 static void test_start_fb_initiator(zb_uint8_t param)
 {
-  ZVUNUSED(param);
+    ZVUNUSED(param);
 
-  TRACE_MSG(TRACE_APP1, ">> test_start_fb_initiator", (FMT__0));
+    TRACE_MSG(TRACE_APP1, ">> test_start_fb_initiator", (FMT__0));
 
-  zb_bdb_finding_binding_initiator(ZR_ENDPOINT, test_finding_binding_cb);
+    zb_bdb_finding_binding_initiator(ZR_ENDPOINT, test_finding_binding_cb);
 
-  TRACE_MSG(TRACE_APP1, "<< test_start_fb_initiator", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "<< test_start_fb_initiator", (FMT__0));
 }
 
 
 static void test_send_zcl_req_cb(zb_uint8_t param)
 {
-  zb_zcl_command_send_status_t *cmd_send_status = ZB_BUF_GET_PARAM(param, zb_zcl_command_send_status_t);
-  TRACE_MSG(TRACE_APP1, ">> test_send_zcl_req_cb, param %hd, status %hd", (FMT__H_H, param, cmd_send_status->status));
+    zb_zcl_command_send_status_t *cmd_send_status = ZB_BUF_GET_PARAM(param, zb_zcl_command_send_status_t);
+    TRACE_MSG(TRACE_APP1, ">> test_send_zcl_req_cb, param %hd, status %hd", (FMT__H_H, param, cmd_send_status->status));
 
 #ifndef TP_LONG_RUNNING_01_ZR_ZCL_REQ_INDEPENDENT
-  ZB_SCHEDULE_APP_CALLBACK(test_send_zcl_req_delayed, param);
+    ZB_SCHEDULE_APP_CALLBACK(test_send_zcl_req_delayed, param);
 #else
-  zb_buf_free(param);
+    zb_buf_free(param);
 #endif /* TP_LONG_RUNNING_01_ZR_ZCL_REQ_INDEPENDENT */
 
-  TRACE_MSG(TRACE_APP1, "<< test_send_zcl_req_cb", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "<< test_send_zcl_req_cb", (FMT__0));
 }
 
 
 static void test_send_zcl_req(zb_uint8_t param)
 {
-  zb_uint16_t addr = 0;
+    zb_uint16_t addr = 0;
 
-  if (param == ZB_BUF_INVALID)
-  {
-    zb_buf_get_out_delayed(test_send_zcl_req);
-    return;
-  }
+    if (param == ZB_BUF_INVALID)
+    {
+        zb_buf_get_out_delayed(test_send_zcl_req);
+        return;
+    }
 
-  TRACE_MSG(TRACE_APP1, ">> test_send_zcl_req", (FMT__0));
+    TRACE_MSG(TRACE_APP1, ">> test_send_zcl_req", (FMT__0));
 
-  ZB_ZCL_ON_OFF_SEND_REQ(
-    param,
-    addr,
-    ZB_APS_ADDR_MODE_DST_ADDR_ENDP_NOT_PRESENT,
-    0,
-    ZR_ENDPOINT,
-    ZB_AF_HA_PROFILE_ID,
-    ZB_FALSE,
-    ZB_ZCL_CMD_ON_OFF_OFF_ID,
-    test_send_zcl_req_cb
+    ZB_ZCL_ON_OFF_SEND_REQ(
+        param,
+        addr,
+        ZB_APS_ADDR_MODE_DST_ADDR_ENDP_NOT_PRESENT,
+        0,
+        ZR_ENDPOINT,
+        ZB_AF_HA_PROFILE_ID,
+        ZB_FALSE,
+        ZB_ZCL_CMD_ON_OFF_OFF_ID,
+        test_send_zcl_req_cb
     );
 
-  TRACE_MSG(TRACE_APP1, "<< test_send_zcl_req", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "<< test_send_zcl_req", (FMT__0));
 }
 
 
 static void test_send_zcl_req_delayed(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_APP1, ">> test_send_zcl_req_delayed, param %hd, addr 0x%x", (FMT__H_D, param, g_short_addr_zcl_client));
+    TRACE_MSG(TRACE_APP1, ">> test_send_zcl_req_delayed, param %hd, addr 0x%x", (FMT__H_D, param, g_short_addr_zcl_client));
 
-  if (param == ZB_BUF_INVALID)
-  {
-    zb_buf_get_out_delayed(test_send_zcl_req);
-  }
-  else
-  {
-    ZB_SCHEDULE_APP_CALLBACK(test_send_zcl_req, param);
-  }
+    if (param == ZB_BUF_INVALID)
+    {
+        zb_buf_get_out_delayed(test_send_zcl_req);
+    }
+    else
+    {
+        ZB_SCHEDULE_APP_CALLBACK(test_send_zcl_req, param);
+    }
 
 #ifdef TP_LONG_RUNNING_01_ZR_ZCL_REQ_INDEPENDENT
-  ZB_SCHEDULE_ALARM(test_send_zcl_req_delayed, 0, TP_LONG_RUNNING_01_ZR_ZCL_REQ_INTERVAL);
+    ZB_SCHEDULE_ALARM(test_send_zcl_req_delayed, 0, TP_LONG_RUNNING_01_ZR_ZCL_REQ_INTERVAL);
 #endif /* TP_LONG_RUNNING_01_ZR_ZCL_REQ_INDEPENDENT */
 
-  TRACE_MSG(TRACE_APP1, "<< test_send_zcl_req_delayed", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "<< test_send_zcl_req_delayed", (FMT__0));
 }
 
 /*! @} */

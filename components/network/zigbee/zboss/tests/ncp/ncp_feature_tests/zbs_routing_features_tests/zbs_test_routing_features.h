@@ -36,16 +36,16 @@
 /*** Production config data ***/
 typedef ZB_PACKED_PRE struct se_app_production_config_t
 {
-  zb_uint16_t version; /*!< Version of production configuration (reserved for future changes) */
-  zb_uint16_t manuf_code;
-  zb_char_t manuf_name[16];
-  zb_char_t model_id[16];
+    zb_uint16_t version; /*!< Version of production configuration (reserved for future changes) */
+    zb_uint16_t manuf_code;
+    zb_char_t manuf_name[16];
+    zb_char_t model_id[16];
 }
 ZB_PACKED_STRUCT se_app_production_config_t;
 
 enum se_app_prod_cfg_version_e
 {
-  SE_APP_PROD_CFG_VERISON_1_0 = 1,
+    SE_APP_PROD_CFG_VERISON_1_0 = 1,
 };
 
 #define ZB_SE_CBKE_ZC_DEV_IN_CLUSTER_NUM 3

@@ -30,41 +30,43 @@ extern rtx expand_widening_mult (machine_mode, rtx, rtx, rtx, int, optab);
 /* Describes the type of an expand_operand.  Each value is associated
    with a create_*_operand function; see the comments above those
    functions for details.  */
-enum expand_operand_type {
-  EXPAND_FIXED,
-  EXPAND_OUTPUT,
-  EXPAND_INPUT,
-  EXPAND_CONVERT_TO,
-  EXPAND_CONVERT_FROM,
-  EXPAND_ADDRESS,
-  EXPAND_INTEGER
+enum expand_operand_type
+{
+    EXPAND_FIXED,
+    EXPAND_OUTPUT,
+    EXPAND_INPUT,
+    EXPAND_CONVERT_TO,
+    EXPAND_CONVERT_FROM,
+    EXPAND_ADDRESS,
+    EXPAND_INTEGER
 };
 
 /* Information about an operand for instruction expansion.  */
-class expand_operand {
+class expand_operand
+{
 public:
-  /* The type of operand.  */
-  ENUM_BITFIELD (expand_operand_type) type : 8;
+    /* The type of operand.  */
+    ENUM_BITFIELD (expand_operand_type) type : 8;
 
-  /* True if any conversion should treat VALUE as being unsigned
-     rather than signed.  Only meaningful for certain types.  */
-  unsigned int unsigned_p : 1;
+    /* True if any conversion should treat VALUE as being unsigned
+       rather than signed.  Only meaningful for certain types.  */
+    unsigned int unsigned_p : 1;
 
-  /* Is the target operand.  */
-  unsigned int target : 1;
+    /* Is the target operand.  */
+    unsigned int target : 1;
 
-  /* Unused; available for future use.  */
-  unsigned int unused : 6;
+    /* Unused; available for future use.  */
+    unsigned int unused : 6;
 
-  /* The mode passed to the convert_*_operand function.  It has a
-     type-dependent meaning.  */
-  ENUM_BITFIELD (machine_mode) mode : 16;
+    /* The mode passed to the convert_*_operand function.  It has a
+       type-dependent meaning.  */
+    ENUM_BITFIELD (machine_mode) mode : 16;
 
-  /* The value of the operand.  */
-  rtx value;
+    /* The value of the operand.  */
+    rtx value;
 
-  /* The value of an EXPAND_INTEGER operand.  */
-  poly_int64 int_value;
+    /* The value of an EXPAND_INTEGER operand.  */
+    poly_int64 int_value;
 };
 
 /* Initialize OP with the given fields.  Initialise the other fields
@@ -72,17 +74,17 @@ public:
 
 static inline void
 create_expand_operand (class expand_operand *op,
-		       enum expand_operand_type type,
-		       rtx value, machine_mode mode,
-		       bool unsigned_p, poly_int64 int_value = 0)
+                       enum expand_operand_type type,
+                       rtx value, machine_mode mode,
+                       bool unsigned_p, poly_int64 int_value = 0)
 {
-  op->type = type;
-  op->unsigned_p = unsigned_p;
-  op->target = 0;
-  op->unused = 0;
-  op->mode = mode;
-  op->value = value;
-  op->int_value = int_value;
+    op->type = type;
+    op->unsigned_p = unsigned_p;
+    op->target = 0;
+    op->unused = 0;
+    op->mode = mode;
+    op->value = value;
+    op->int_value = int_value;
 }
 
 /* Make OP describe an operand that must use rtx X, even if X is volatile.  */
@@ -90,7 +92,7 @@ create_expand_operand (class expand_operand *op,
 static inline void
 create_fixed_operand (class expand_operand *op, rtx x)
 {
-  create_expand_operand (op, EXPAND_FIXED, x, VOIDmode, false);
+    create_expand_operand (op, EXPAND_FIXED, x, VOIDmode, false);
 }
 
 /* Make OP describe an output operand that must have mode MODE.
@@ -100,9 +102,9 @@ create_fixed_operand (class expand_operand *op, rtx x)
 
 static inline void
 create_output_operand (class expand_operand *op, rtx x,
-		       machine_mode mode)
+                       machine_mode mode)
 {
-  create_expand_operand (op, EXPAND_OUTPUT, x, mode, false);
+    create_expand_operand (op, EXPAND_OUTPUT, x, mode, false);
 }
 
 /* Make OP describe an input operand that must have mode MODE and
@@ -112,9 +114,9 @@ create_output_operand (class expand_operand *op, rtx x,
 
 static inline void
 create_input_operand (class expand_operand *op, rtx value,
-		      machine_mode mode)
+                      machine_mode mode)
 {
-  create_expand_operand (op, EXPAND_INPUT, value, mode, false);
+    create_expand_operand (op, EXPAND_INPUT, value, mode, false);
 }
 
 /* Like create_input_operand, except that VALUE must first be converted
@@ -122,9 +124,9 @@ create_input_operand (class expand_operand *op, rtx value,
 
 static inline void
 create_convert_operand_to (class expand_operand *op, rtx value,
-			   machine_mode mode, bool unsigned_p)
+                           machine_mode mode, bool unsigned_p)
 {
-  create_expand_operand (op, EXPAND_CONVERT_TO, value, mode, unsigned_p);
+    create_expand_operand (op, EXPAND_CONVERT_TO, value, mode, unsigned_p);
 }
 
 /* Make OP describe an input operand that should have the same value
@@ -138,9 +140,9 @@ create_convert_operand_to (class expand_operand *op, rtx value,
 
 static inline void
 create_convert_operand_from (class expand_operand *op, rtx value,
-			     machine_mode mode, bool unsigned_p)
+                             machine_mode mode, bool unsigned_p)
 {
-  create_expand_operand (op, EXPAND_CONVERT_FROM, value, mode, unsigned_p);
+    create_expand_operand (op, EXPAND_CONVERT_FROM, value, mode, unsigned_p);
 }
 
 
@@ -150,7 +152,7 @@ create_convert_operand_from (class expand_operand *op, rtx value,
 static inline void
 create_address_operand (class expand_operand *op, rtx value)
 {
-  create_expand_operand (op, EXPAND_ADDRESS, value, Pmode, false);
+    create_expand_operand (op, EXPAND_ADDRESS, value, Pmode, false);
 }
 
 extern void create_integer_operand (class expand_operand *, poly_int64);
@@ -164,38 +166,38 @@ extern void create_integer_operand (class expand_operand *, poly_int64);
 
 enum optab_methods
 {
-  OPTAB_DIRECT,
-  OPTAB_LIB,
-  OPTAB_WIDEN,
-  OPTAB_LIB_WIDEN,
-  OPTAB_MUST_WIDEN
+    OPTAB_DIRECT,
+    OPTAB_LIB,
+    OPTAB_WIDEN,
+    OPTAB_LIB_WIDEN,
+    OPTAB_MUST_WIDEN
 };
 
-extern rtx expand_widen_pattern_expr (struct separate_ops *, rtx , rtx , rtx,
+extern rtx expand_widen_pattern_expr (struct separate_ops *, rtx, rtx, rtx,
                                       rtx, int);
 extern rtx expand_ternary_op (machine_mode mode, optab ternary_optab,
-			      rtx op0, rtx op1, rtx op2, rtx target,
-			      int unsignedp);
+                              rtx op0, rtx op1, rtx op2, rtx target,
+                              int unsignedp);
 extern rtx simplify_expand_binop (machine_mode mode, optab binoptab,
-				  rtx op0, rtx op1, rtx target, int unsignedp,
-				  enum optab_methods methods);
+                                  rtx op0, rtx op1, rtx target, int unsignedp,
+                                  enum optab_methods methods);
 extern bool force_expand_binop (machine_mode, optab, rtx, rtx, rtx, int,
-				enum optab_methods);
+                                enum optab_methods);
 extern rtx expand_vector_broadcast (machine_mode, rtx);
 
 /* Generate code for a simple binary or unary operation.  "Simple" in
    this case means "can be unambiguously described by a (mode, code)
    pair and mapped to a single optab."  */
 extern rtx expand_simple_binop (machine_mode, enum rtx_code, rtx,
-				rtx, rtx, int, enum optab_methods);
+                                rtx, rtx, int, enum optab_methods);
 
 /* Expand a binary operation given optab and rtx operands.  */
 extern rtx expand_binop (machine_mode, optab, rtx, rtx, rtx, int,
-			 enum optab_methods);
+                         enum optab_methods);
 
 /* Expand a binary operation with both signed and unsigned forms.  */
 extern rtx sign_expand_binop (machine_mode, optab, optab, rtx, rtx,
-			      rtx, int, enum optab_methods);
+                              rtx, int, enum optab_methods);
 
 /* Generate code to perform an operation on one operand with two results.  */
 extern int expand_twoval_unop (optab, rtx, rtx, rtx, int);
@@ -206,9 +208,9 @@ extern int expand_twoval_binop (optab, rtx, rtx, rtx, rtx, int);
 /* Generate code to perform an operation on two operands with two
    results, using a library function.  */
 extern bool expand_twoval_binop_libfunc (optab, rtx, rtx, rtx, rtx,
-					 enum rtx_code);
+        enum rtx_code);
 extern rtx expand_simple_unop (machine_mode, enum rtx_code, rtx, rtx,
-			       int);
+                               int);
 
 /* Expand a unary arithmetic operation given optab rtx operand.  */
 extern rtx expand_unop (machine_mode, optab, rtx, rtx, int);
@@ -234,15 +236,15 @@ extern void emit_libcall_block (rtx_insn *, rtx, rtx, rtx);
    jumps, conditional moves, store flag operations.  */
 enum can_compare_purpose
 {
-  ccp_jump,
-  ccp_cmov,
-  ccp_store_flag
+    ccp_jump,
+    ccp_cmov,
+    ccp_store_flag
 };
 
 /* Nonzero if a compare of mode MODE can be done straightforwardly
    (without splitting it into pieces).  */
 extern int can_compare_p (enum rtx_code, machine_mode,
-			  enum can_compare_purpose);
+                          enum can_compare_purpose);
 
 /* Return whether the backend can emit a vector comparison for code CODE,
    comparing operands of mode CMP_OP_MODE and producing a result with
@@ -250,13 +252,13 @@ extern int can_compare_p (enum rtx_code, machine_mode,
 extern bool can_vcond_compare_p (enum rtx_code, machine_mode, machine_mode);
 
 extern rtx prepare_operand (enum insn_code, rtx, int, machine_mode,
-			    machine_mode, int);
+                            machine_mode, int);
 /* Emit a pair of rtl insns to compare two rtx's and to jump
    to a label if the comparison is true.  */
 extern void emit_cmp_and_jump_insns (rtx, rtx, enum rtx_code, rtx,
-				     machine_mode, int, rtx,
-				     profile_probability prob
-					= profile_probability::uninitialized ());
+                                     machine_mode, int, rtx,
+                                     profile_probability prob
+                                     = profile_probability::uninitialized ());
 
 /* Generate code to indirectly jump to a location given in the rtx LOC.  */
 extern void emit_indirect_jump (rtx);
@@ -269,14 +271,14 @@ extern void emit_indirect_jump (rtx);
 
 /* Emit a conditional move operation.  */
 rtx emit_conditional_move (rtx, enum rtx_code, rtx, rtx, machine_mode,
-			   rtx, rtx, machine_mode, int);
+                           rtx, rtx, machine_mode, int);
 
 /* Emit a conditional negate or bitwise complement operation.  */
 rtx emit_conditional_neg_or_complement (rtx, rtx_code, machine_mode, rtx,
-					 rtx, rtx);
+                                        rtx, rtx);
 
 rtx emit_conditional_add (rtx, enum rtx_code, rtx, rtx, machine_mode,
-			  rtx, rtx, machine_mode, int);
+                          rtx, rtx, machine_mode, int);
 
 /* Create but don't emit one rtl instruction to perform certain operations.
    Modes must match; operands must meet the operation's predicates.
@@ -316,7 +318,7 @@ extern rtx_insn *gen_cond_trap (enum rtx_code, rtx, rtx, rtx);
 /* Generate code for VEC_PERM_EXPR.  */
 extern rtx expand_vec_perm_var (machine_mode, rtx, rtx, rtx, rtx);
 extern rtx expand_vec_perm_const (machine_mode, rtx, rtx,
-				  const vec_perm_builder &, machine_mode, rtx);
+                                  const vec_perm_builder &, machine_mode, rtx);
 
 /* Generate code for vector comparison.  */
 extern rtx expand_vec_cmp_expr (tree, tree, rtx);
@@ -334,34 +336,34 @@ extern rtx expand_sync_lock_test_and_set (rtx, rtx, rtx);
 extern rtx expand_atomic_test_and_set (rtx, rtx, enum memmodel);
 extern rtx expand_atomic_exchange (rtx, rtx, rtx, enum memmodel);
 extern bool expand_atomic_compare_and_swap (rtx *, rtx *, rtx, rtx, rtx, bool,
-					    enum memmodel, enum memmodel);
+        enum memmodel, enum memmodel);
 /* Generate memory barriers.  */
 extern void expand_mem_thread_fence (enum memmodel);
 extern void expand_mem_signal_fence (enum memmodel);
 
 rtx expand_atomic_load (rtx, rtx, enum memmodel);
 rtx expand_atomic_store (rtx, rtx, enum memmodel, bool);
-rtx expand_atomic_fetch_op (rtx, rtx, rtx, enum rtx_code, enum memmodel, 
-			      bool);
+rtx expand_atomic_fetch_op (rtx, rtx, rtx, enum rtx_code, enum memmodel,
+                            bool);
 
 extern bool insn_operand_matches (enum insn_code icode, unsigned int opno,
-				  rtx operand);
+                                  rtx operand);
 extern bool valid_multiword_target_p (rtx);
 extern void create_convert_operand_from_type (class expand_operand *op,
-					      rtx value, tree type);
+        rtx value, tree type);
 extern bool maybe_legitimize_operands (enum insn_code icode,
-				       unsigned int opno, unsigned int nops,
-				       class expand_operand *ops);
+                                       unsigned int opno, unsigned int nops,
+                                       class expand_operand *ops);
 extern rtx_insn *maybe_gen_insn (enum insn_code icode, unsigned int nops,
-				 class expand_operand *ops);
+                                 class expand_operand *ops);
 extern bool maybe_expand_insn (enum insn_code icode, unsigned int nops,
-			       class expand_operand *ops);
+                               class expand_operand *ops);
 extern bool maybe_expand_jump_insn (enum insn_code icode, unsigned int nops,
-				    class expand_operand *ops);
+                                    class expand_operand *ops);
 extern void expand_insn (enum insn_code icode, unsigned int nops,
-			 class expand_operand *ops);
+                         class expand_operand *ops);
 extern void expand_jump_insn (enum insn_code icode, unsigned int nops,
-			      class expand_operand *ops);
+                              class expand_operand *ops);
 
 extern enum rtx_code get_rtx_code (enum tree_code tcode, bool unsignedp);
 

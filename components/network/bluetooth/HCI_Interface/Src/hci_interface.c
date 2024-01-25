@@ -1,12 +1,12 @@
 /**
  * @file hci_interface.c
  * @author Rex Huang (rex.huang@rafaelmicro.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2023-07-31
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 
 /**************************************************************************************************
@@ -32,7 +32,8 @@
 #define HCI_INTERFACE_FRAME_MAX_SIZE           (sizeof(ble_hci_message_t))
 
 
-typedef struct  {
+typedef struct
+{
     utils_dlist_t     dlist;
     uint16_t len;
     uint8_t *pdata;
@@ -41,7 +42,8 @@ typedef struct  {
 #define HCI_INTERFACE_ALIGHNED_FRAME_SIZE         ((sizeof(hci_rx_msg_t) + 3) & 0xfffffffc)
 #define HCI_INTERFACE_TOTAL_FRAME_SIZE            (HCI_INTERFACE_ALIGHNED_FRAME_SIZE + HCI_INTERFACE_FRAME_MAX_SIZE)
 
-typedef struct  {
+typedef struct
+{
     utils_dlist_t           rxFrameList;
     utils_dlist_t           rxEventList;
     utils_dlist_t           frameList;
@@ -50,7 +52,8 @@ typedef struct  {
 } hci_interface_frame_t;
 
 
-typedef enum  {
+typedef enum
+{
     HIC_INTERFACE_EVENT_STATE_NONE                       = 0,
 
     HIC_INTERFACE_EVENT_STATE_HCI_EVT                    = 0x00000002,
@@ -83,23 +86,25 @@ static void __hci_data(hci_interface_event_t evt)
 
     do
     {
-        if (!(HIC_INTERFACE_EVENT_STATE_HCI_DATA & evt)) 
+        if (!(HIC_INTERFACE_EVENT_STATE_HCI_DATA & evt))
         {
             break;
         }
         pframe = NULL;
         enter_critical_section();
-        if(!utils_dlist_empty(&g_hci_frame.rxFrameList))
+        if (!utils_dlist_empty(&g_hci_frame.rxFrameList))
         {
             pframe = (hci_rx_msg_t *)g_hci_frame.rxFrameList.next;
             utils_dlist_del(&pframe->dlist);
         }
         leave_critical_section();
 
-        if(pframe) 
+        if (pframe)
         {
-            if(g_hci_data_cb)
-                g_hci_data_cb(pframe->pdata, pframe->len);           
+            if (g_hci_data_cb)
+            {
+                g_hci_data_cb(pframe->pdata, pframe->len);
+            }
 
             enter_critical_section();
             utils_dlist_add_tail(&pframe->dlist, &g_hci_frame.frameList);
@@ -116,13 +121,13 @@ static void __hci_evt(hci_interface_event_t evt)
 
     do
     {
-        if (!(HIC_INTERFACE_EVENT_STATE_HCI_EVT & evt)) 
+        if (!(HIC_INTERFACE_EVENT_STATE_HCI_EVT & evt))
         {
             break;
         }
         pframe = NULL;
         enter_critical_section();
-        if(!utils_dlist_empty(&g_hci_frame.rxEventList))
+        if (!utils_dlist_empty(&g_hci_frame.rxEventList))
         {
             pframe = (hci_rx_msg_t *)g_hci_frame.rxEventList.next;
             g_hci_frame.dbgRxFrameNum--;
@@ -131,10 +136,12 @@ static void __hci_evt(hci_interface_event_t evt)
         }
         leave_critical_section();
 
-        if(pframe) 
+        if (pframe)
         {
-            if(g_hci_evt_cb)
+            if (g_hci_evt_cb)
+            {
                 g_hci_evt_cb(pframe->pdata, pframe->len);
+            }
 
             enter_critical_section();
             utils_dlist_add_tail(&pframe->dlist, &g_hci_frame.frameList);
@@ -159,7 +166,7 @@ static void __hci_signal(void)
 static void __hci_proc(void *pvParameters)
 {
     hci_interface_event_t sevent = HIC_INTERFACE_EVENT_STATE_NONE;
-    for(;;)
+    for (;;)
     {
         HCI_INTERFACE_GET_NOTIFY(sevent);
         __hci_evt(sevent);
@@ -170,28 +177,28 @@ static void __hci_proc(void *pvParameters)
 
 static int __evt_cb(void *p_arg)
 {
-    hci_rx_msg_t *p=NULL;
+    hci_rx_msg_t *p = NULL;
     uint16_t data_len;
     ble_hci_message_t *pmesg;
 
     do
     {
         enter_critical_section();
-        if (!utils_dlist_empty(&g_hci_frame.frameList)) 
+        if (!utils_dlist_empty(&g_hci_frame.frameList))
         {
             p = (hci_rx_msg_t *)g_hci_frame.frameList.next;
             utils_dlist_del(&p->dlist);
-        }        
+        }
         leave_critical_section();
 
-        if(p)
+        if (p)
         {
             pmesg = (ble_hci_message_t *)(p_arg);
             data_len = pmesg->hci_message.hci_event.length + 3;
 
             p->len = data_len;
             memcpy(p->pdata, pmesg, data_len);
-            
+
             enter_critical_section();
             utils_dlist_add_tail(&p->dlist, &g_hci_frame.rxEventList);
 
@@ -202,33 +209,33 @@ static int __evt_cb(void *p_arg)
             HCI_INTERFACE_NOTIFY(HIC_INTERFACE_EVENT_STATE_HCI_EVT);
         }
     } while (0);
-    
+
     return 0;
 }
 
 static int __data_cb(void *p_arg)
 {
-    hci_rx_msg_t *p=NULL;
+    hci_rx_msg_t *p = NULL;
     uint16_t data_len;
     ble_hci_message_t *pmesg;
     do
     {
         enter_critical_section();
-        if (!utils_dlist_empty(&g_hci_frame.frameList)) 
+        if (!utils_dlist_empty(&g_hci_frame.frameList))
         {
             p = (hci_rx_msg_t *)g_hci_frame.frameList.next;
             utils_dlist_del(&p->dlist);
-        }        
+        }
         leave_critical_section();
 
-        if(p)
+        if (p)
         {
             pmesg = (ble_hci_message_t *)(p_arg);
             data_len = pmesg->hci_message.hci_acl_data.length + 5;
 
             p->len = data_len;
             memcpy(p->pdata, pmesg, data_len);
-            
+
             enter_critical_section();
             utils_dlist_add_tail(&p->dlist, &g_hci_frame.rxFrameList);
             leave_critical_section();
@@ -251,7 +258,7 @@ void hci_interface_init(void)
     utils_dlist_init(&g_hci_frame.frameList);
     utils_dlist_init(&g_hci_frame.rxFrameList);
     utils_dlist_init(&g_hci_frame.rxEventList);
-    for (int i = 0; i < HCI_INTERFACE_FRAME_BUFFER_NUM; i ++) 
+    for (int i = 0; i < HCI_INTERFACE_FRAME_BUFFER_NUM; i ++)
     {
         pframe = (hci_rx_msg_t *) (g_hci_frame.buffPool + (HCI_INTERFACE_TOTAL_FRAME_SIZE * i));
         pframe->pdata = ((uint8_t *)pframe) + HCI_INTERFACE_ALIGHNED_FRAME_SIZE;
@@ -269,11 +276,11 @@ void hci_interface_init(void)
 
 void hci_interface_callback_set(hci_interface_callback_type_t type, hci_interface_callback_t pfn_callback)
 {
-    if(type == HIC_INTERFACE_CALLBACK_TYPE_EVENT)
+    if (type == HIC_INTERFACE_CALLBACK_TYPE_EVENT)
     {
         g_hci_evt_cb = pfn_callback;
-    }   
-    else if(type == HIC_INTERFACE_CALLBACK_TYPE_DATA)
+    }
+    else if (type == HIC_INTERFACE_CALLBACK_TYPE_DATA)
     {
         g_hci_data_cb = pfn_callback;
     }
@@ -284,7 +291,7 @@ int hci_interface_message_write(ble_hci_message_t *pmesg)
 {
     int rval = 0;
     uint8_t transport_id, hci_command_length;
-    uint16_t hci_acl_data_length;    
+    uint16_t hci_acl_data_length;
 
     transport_id = pmesg->hci_message.ble_hci_array[0];
 
@@ -292,40 +299,40 @@ int hci_interface_message_write(ble_hci_message_t *pmesg)
     {
         switch (transport_id)
         {
-            /* HCI Commnad */
-            case 0x01:
-                hci_command_length = pmesg->hci_message.hci_command.length
-                                    + 1/*transport*/ + 2/*opcode*/ + 1/*length*/;
-                do
-                {
-                    rval = hosal_rf_wrire_command((uint8_t *)pmesg, hci_command_length);
-                } while (rval != HOSAL_RF_STATUS_SUCCESS);
+        /* HCI Commnad */
+        case 0x01:
+            hci_command_length = pmesg->hci_message.hci_command.length
+                                 + 1/*transport*/ + 2/*opcode*/ + 1/*length*/;
+            do
+            {
+                rval = hosal_rf_wrire_command((uint8_t *)pmesg, hci_command_length);
+            } while (rval != HOSAL_RF_STATUS_SUCCESS);
             break;
 
-            /*HCI ACL Data*/
-            case 0x02:
-                ghci_message_tx_data.transport_id = 0x02;
-                ghci_message_tx_data.sequence = g_tx_sn;
-                ghci_message_tx_data.handle = pmesg->hci_message.hci_acl_data.handle;
-                ghci_message_tx_data.pb_flag = pmesg->hci_message.hci_acl_data.pb_flag;
-                ghci_message_tx_data.bc_flag = pmesg->hci_message.hci_acl_data.bc_flag;
-                ghci_message_tx_data.length = pmesg->hci_message.hci_acl_data.length;
-                memcpy(ghci_message_tx_data.data, pmesg->hci_message.hci_acl_data.data, ghci_message_tx_data.length);
+        /*HCI ACL Data*/
+        case 0x02:
+            ghci_message_tx_data.transport_id = 0x02;
+            ghci_message_tx_data.sequence = g_tx_sn;
+            ghci_message_tx_data.handle = pmesg->hci_message.hci_acl_data.handle;
+            ghci_message_tx_data.pb_flag = pmesg->hci_message.hci_acl_data.pb_flag;
+            ghci_message_tx_data.bc_flag = pmesg->hci_message.hci_acl_data.bc_flag;
+            ghci_message_tx_data.length = pmesg->hci_message.hci_acl_data.length;
+            memcpy(ghci_message_tx_data.data, pmesg->hci_message.hci_acl_data.data, ghci_message_tx_data.length);
 
-                hci_acl_data_length = pmesg->hci_message.hci_acl_data.length
-                                    + 1/*transport*/ + 2/* sequence */ + 2/*handle*/ + 2/*length*/;
-                do
-                {
-                    rval = hosal_rf_write_tx_data((uint8_t *)&ghci_message_tx_data, hci_acl_data_length);
-                } while (rval != HOSAL_RF_STATUS_SUCCESS);
-                g_tx_sn++;
+            hci_acl_data_length = pmesg->hci_message.hci_acl_data.length
+                                  + 1/*transport*/ + 2/* sequence */ + 2/*handle*/ + 2/*length*/;
+            do
+            {
+                rval = hosal_rf_write_tx_data((uint8_t *)&ghci_message_tx_data, hci_acl_data_length);
+            } while (rval != HOSAL_RF_STATUS_SUCCESS);
+            g_tx_sn++;
             break;
-            
-            default:
+
+        default:
             break;
         }
         /* code */
     } while (0);
-    
+
     return rval;
 }

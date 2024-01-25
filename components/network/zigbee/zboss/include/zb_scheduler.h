@@ -49,7 +49,7 @@
 
    @return is equal.
  */
-typedef zb_bool_t (ZB_CODE * zb_callback_compare_t)(zb_uint8_t param, void* param2);
+typedef zb_bool_t (ZB_CODE *zb_callback_compare_t)(zb_uint8_t param, void *param2);
 
 #endif
 
@@ -64,7 +64,7 @@ typedef zb_bool_t (ZB_CODE * zb_callback_compare_t)(zb_uint8_t param, void* para
    @param param - callback parameter equals schedule record param fields
    @return short address for joining device, or -1 (0xFFFF) which means using the internal mechanisms of addresses assignment
  */
-typedef zb_uint16_t (ZB_CODE * zb_addr_assignment_cb_t)(zb_ieee_addr_t ieee_addr);
+typedef zb_uint16_t (ZB_CODE *zb_addr_assignment_cb_t)(zb_ieee_addr_t ieee_addr);
 
 /*! @cond internals_doc */
 #endif
@@ -77,8 +77,8 @@ typedef zb_uint16_t (ZB_CODE * zb_addr_assignment_cb_t)(zb_ieee_addr_t ieee_addr
 
 typedef ZB_PACKED_PRE struct zb_mac_cb_ent_s
 {
- zb_callback_t func;   /* currently, it is the same as common queue, */
- zb_uint8_t param;     /* but, possibly, it is better to remove param from it */
+    zb_callback_t func;   /* currently, it is the same as common queue, */
+    zb_uint8_t param;     /* but, possibly, it is better to remove param from it */
 }
 ZB_PACKED_STRUCT
 zb_mac_cb_ent_t;
@@ -104,37 +104,37 @@ ZB_RING_BUFFER_DECLARE(zb_delayed_cb_q, zb_delayed_buf_q_ent_t, ZB_BUF_Q_SIZE);
    Data structures for the delayed execution.
  */
 
-typedef void (ZB_CODE * zb_zdo_sleep_ind_cb_t)(zb_uint32_t sleep_tmo);
+typedef void (ZB_CODE *zb_zdo_sleep_ind_cb_t)(zb_uint32_t sleep_tmo);
 
 typedef struct zb_sched_globals_s
 {
 #ifndef ZB_CONFIGURABLE_MEM
-  zb_cb_q_t cb_q;           /*!< immediate callbacks queue  */
+    zb_cb_q_t cb_q;           /*!< immediate callbacks queue  */
 #define ZB_CB_Q (&ZG->sched.cb_q)
-  zb_uint32_t cb_flag_bm[(ZB_SCHEDULER_Q_SIZE + 31U)/32U];
+    zb_uint32_t cb_flag_bm[(ZB_SCHEDULER_Q_SIZE + 31U) / 32U];
 #else
-  zb_cb_q_t *cb_q;
+    zb_cb_q_t *cb_q;
 #define ZB_CB_Q (ZG->sched.cb_q)
-  zb_uint32_t *cb_flag_bm;
+    zb_uint32_t *cb_flag_bm;
 #endif
 #ifndef ZB_ALIEN_SCHEDULER
-  zb_mac_tx_q_t mac_tx_q;	/* queue of callback's waiting for tx */
+    zb_mac_tx_q_t mac_tx_q;   /* queue of callback's waiting for tx */
 #endif
 #if defined( ENABLE_USB_SERIAL_IMITATOR )
-  zb_callback_t usbc_rx_cb; /*!< Callback to be called on USB data presence. */
+    zb_callback_t usbc_rx_cb; /*!< Callback to be called on USB data presence. */
 #endif /* defined( ENABLE_USB_SERIAL_IMITATOR ) */
 #ifndef ZB_CONFIGURABLE_MEM
-  zb_tm_q_ent_t tm_buffer[ZB_SCHEDULER_Q_SIZE]; /*!< buffer for the timer queue entries  */
+    zb_tm_q_ent_t tm_buffer[ZB_SCHEDULER_Q_SIZE]; /*!< buffer for the timer queue entries  */
 #else
-  zb_tm_q_ent_t *tm_buffer;
+    zb_tm_q_ent_t *tm_buffer;
 #endif
-  /*  Use list macros for indexed lists and use byte instead pointer here. */
-  ZB_POOLED_LIST8_DEFINE(tm_queue);    /*!< delayed callbacks queue  */
-  ZB_POOLED_LIST8_DEFINE(tm_freelist); /*!< freelist of the timer queue entries  */
-  zb_delayed_cb_q_t delayed_queue[2]; /*!< queue to store delayed callbacks for getting in and out buffers (@ref buffer_types)*/
-  zb_uint8_t tm_buffer_usage;   /*!< Usage of timer queue  */
-  zb_uint8_t delayed_buf_usage; /*!< Usage of waiting for free buffer queue  */
-  zb_bool_t stop;
+    /*  Use list macros for indexed lists and use byte instead pointer here. */
+    ZB_POOLED_LIST8_DEFINE(tm_queue);    /*!< delayed callbacks queue  */
+    ZB_POOLED_LIST8_DEFINE(tm_freelist); /*!< freelist of the timer queue entries  */
+    zb_delayed_cb_q_t delayed_queue[2]; /*!< queue to store delayed callbacks for getting in and out buffers (@ref buffer_types)*/
+    zb_uint8_t tm_buffer_usage;   /*!< Usage of timer queue  */
+    zb_uint8_t delayed_buf_usage; /*!< Usage of waiting for free buffer queue  */
+    zb_bool_t stop;
 } zb_sched_globals_t;
 
 /**
@@ -198,7 +198,7 @@ void zb_scheduler_trace_file_line(zb_uint32_t file_id, zb_uint32_t line_number, 
    @param param - default parameter for comparer
    @return param of scheduled function or 0 if not found.
  */
-zb_uint8_t zb_schedule_alarm_cancel_compare(zb_callback_t func, zb_callback_compare_t comp, void* param);
+zb_uint8_t zb_schedule_alarm_cancel_compare(zb_callback_t func, zb_callback_compare_t comp, void *param);
 #endif /* !ZB_MINIMAL_CONTEXT */
 
 #endif
@@ -302,7 +302,7 @@ void zb_schedule_callback_from_alien(zb_callback_t func, zb_uint8_t param);
 static void add_buf_schedule_table(zb_uint8_t param, zb_bool_t usage, zb_callback_t func, zb_callback2_t func2);
 #endif
 #ifdef ZB_DEBUG_BUFFERS_EXT
-  void zb_schedule_trace_queue();
+void zb_schedule_trace_queue();
 #define ZB_SCHEDULE_TRACE_QUEUE()       zb_schedule_trace_queue()
 #else
 #define ZB_SCHEDULE_TRACE_QUEUE()

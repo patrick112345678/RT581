@@ -38,11 +38,11 @@ static zb_uint8_t g_oob_key[16] = TEST_OOB_KEY;
 /*! Program states according to test scenario */
 enum test_states_e
 {
-  TEST_STATE_INITIATE,
-  TEST_STATE_COMMISSIONING,
-  TEST_STATE_SEND_GPDF1,
-  TEST_STATE_SEND_GPDF2,
-  TEST_STATE_FINISHED
+    TEST_STATE_INITIATE,
+    TEST_STATE_COMMISSIONING,
+    TEST_STATE_SEND_GPDF1,
+    TEST_STATE_SEND_GPDF2,
+    TEST_STATE_FINISHED
 };
 
 
@@ -52,59 +52,59 @@ ZB_ZGPD_DECLARE_COMMISSIONING_CALLBACK()
 
 static void perform_next_state(zb_uint8_t param)
 {
-  ZVUNUSED(param);
-  TEST_DEVICE_CTX.test_state++;
+    ZVUNUSED(param);
+    TEST_DEVICE_CTX.test_state++;
 
-  switch (TEST_DEVICE_CTX.test_state)
-  {
+    switch (TEST_DEVICE_CTX.test_state)
+    {
     case TEST_STATE_COMMISSIONING:
-      zb_zgpd_start_commissioning(comm_cb);
-      ZB_ZGPD_SET_PAUSE(TH_GPD_NEXT_CMD_DELAY);
-      break;
+        zb_zgpd_start_commissioning(comm_cb);
+        ZB_ZGPD_SET_PAUSE(TH_GPD_NEXT_CMD_DELAY);
+        break;
     case TEST_STATE_FINISHED:
-      TRACE_MSG(TRACE_APP1, "Test finished. Status: OK", (FMT__0));
-      break;
+        TRACE_MSG(TRACE_APP1, "Test finished. Status: OK", (FMT__0));
+        break;
     default:
-      ZB_SCHEDULE_ALARM(test_send_command, 0, ZB_TIME_ONE_SECOND);
-  };
+        ZB_SCHEDULE_ALARM(test_send_command, 0, ZB_TIME_ONE_SECOND);
+    };
 }
 
 static void make_gpdf(zb_buf_t *buf, zb_uint8_t **ptr)
 {
-  ZVUNUSED(buf);
-  switch (TEST_DEVICE_CTX.test_state)
-  {
+    ZVUNUSED(buf);
+    switch (TEST_DEVICE_CTX.test_state)
+    {
     case TEST_STATE_SEND_GPDF1:
-      ZB_GPDF_PUT_UINT8(*ptr, ZB_GPDF_CMD_ON);
-      ZB_ZGPD_SET_PAUSE(TH_GPD_NEXT_CMD_DELAY);
-      break;
+        ZB_GPDF_PUT_UINT8(*ptr, ZB_GPDF_CMD_ON);
+        ZB_ZGPD_SET_PAUSE(TH_GPD_NEXT_CMD_DELAY);
+        break;
     case TEST_STATE_SEND_GPDF2:
-      ZB_ZGPD_CHACK_SET(ZB_ZGPD_CH_REPLACE_RXAFTERTX);
-      ZGPD->ch_replace_rxaftertx = 1;
-      ZB_GPDF_PUT_UINT8(*ptr, ZB_GPDF_CMD_OFF);
-      break;
-  }
+        ZB_ZGPD_CHACK_SET(ZB_ZGPD_CH_REPLACE_RXAFTERTX);
+        ZGPD->ch_replace_rxaftertx = 1;
+        ZB_GPDF_PUT_UINT8(*ptr, ZB_GPDF_CMD_OFF);
+        break;
+    }
 }
 
 static void zgp_custom_startup()
 {
-  #if ! (defined KEIL || defined ZB_PLATFORM_LINUX_ARM_2400)
+#if ! (defined KEIL || defined ZB_PLATFORM_LINUX_ARM_2400)
 #endif
 
-/* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("th_gpd");
+    ZB_INIT("th_gpd");
 
 
-  ZB_ZGPD_INIT_ZGPD_CTX(ZB_ZGP_APP_ID_0000, ZB_ZGPD_COMMISSIONING_BIDIR, ZB_ZGP_ON_OFF_SWITCH_DEV_ID);
+    ZB_ZGPD_INIT_ZGPD_CTX(ZB_ZGP_APP_ID_0000, ZB_ZGPD_COMMISSIONING_BIDIR, ZB_ZGP_ON_OFF_SWITCH_DEV_ID);
 
-  ZB_ZGPD_SET_SRC_ID(g_zgpd_srcId);
-  ZB_ZGPD_SET_SECURITY_LEVEL(ZB_ZGP_SEC_LEVEL_FULL_NO_ENC);
-  ZB_ZGPD_SET_SECURITY_KEY_TYPE(ZB_ZGP_SEC_KEY_TYPE_ZGPD_INDIVIDUAL);
-  ZB_ZGPD_SET_OOB_KEY(g_oob_key);
-  ZB_ZGPD_REQUEST_SECURITY_KEY();
+    ZB_ZGPD_SET_SRC_ID(g_zgpd_srcId);
+    ZB_ZGPD_SET_SECURITY_LEVEL(ZB_ZGP_SEC_LEVEL_FULL_NO_ENC);
+    ZB_ZGPD_SET_SECURITY_KEY_TYPE(ZB_ZGP_SEC_KEY_TYPE_ZGPD_INDIVIDUAL);
+    ZB_ZGPD_SET_OOB_KEY(g_oob_key);
+    ZB_ZGPD_REQUEST_SECURITY_KEY();
 
-  ZGPD->channel = TEST_CHANNEL;
+    ZGPD->channel = TEST_CHANNEL;
 }
 
 #endif /* ZB_CERTIFICATION_HACKS */

@@ -75,17 +75,17 @@
 #define ZBNCP_LL_HDR_SIZE         5u                        /**< Size of the LL packet header */
 #define ZBNCP_LL_HDR_CRC_SIZE     1u                        /**< Size of the LL packet header CRC */
 #define ZBNCP_LL_BODY_CRC_OFFSET  (ZBNCP_LL_SIGN_SIZE + ZBNCP_LL_HDR_SIZE)
-                                                            /**< Offset of the LL packet body CRC */
+/**< Offset of the LL packet body CRC */
 #define ZBNCP_LL_BODY_CRC_SIZE    2u                        /**< Size of the LL packet body CRC */
 #define ZBNCP_LL_BODY_OFFSET      (ZBNCP_LL_BODY_CRC_OFFSET + ZBNCP_LL_BODY_CRC_SIZE)
-                                                            /**< Offset of the LL packet body data */
+/**< Offset of the LL packet body data */
 #define ZBNCP_LL_BODY_SIZE_MAX    (ZBNCP_LL_PKT_SIZE_MAX - ZBNCP_LL_BODY_OFFSET)
-                                                            /**< Maximum size of LL packet body data */
+/**< Maximum size of LL packet body data */
 #define ZBNCP_LL_HDR_LEN_MIN      (ZBNCP_LL_HDR_SIZE)       /**< Minimum value of LL packet length in the header */
 #define ZBNCP_LL_HDR_LEN_BCRC     (ZBNCP_LL_HDR_LEN_MIN + ZBNCP_LL_BODY_CRC_SIZE)
-                                                            /**< Minimum value of LL packet length in the header plus a body CRC */
+/**< Minimum value of LL packet length in the header plus a body CRC */
 #define ZBNCP_LL_HDR_LEN_MAX      (ZBNCP_LL_HDR_LEN_BCRC + ZBNCP_LL_BODY_SIZE_MAX)
-                                                            /**< Maximum value of LL packet length in the header */
+/**< Maximum value of LL packet length in the header */
 
 /* @brief Structure of the NCP low-level packet header */
 #if defined ZBNCP_PACKED_PRE
@@ -93,35 +93,35 @@
 #endif
 typedef struct zbncp_ll_hdr_s
 {
-  zbncp_uint16_t len;      /**< Packet length not including packet signature */
-  zbncp_uint8_t type;     /**< Packet type */
-  zbncp_uint8_t flags;    /**< Packet flags and frame number */
-  zbncp_uint8_t crc;      /**< Packet header CRC */
+    zbncp_uint16_t len;      /**< Packet length not including packet signature */
+    zbncp_uint8_t type;     /**< Packet type */
+    zbncp_uint8_t flags;    /**< Packet flags and frame number */
+    zbncp_uint8_t crc;      /**< Packet header CRC */
 } ZBNCP_PACKED_STRUCT
 zbncp_ll_hdr_t;
 
 /* @brief Structure of the NCP low-level packet body */
 typedef struct zbncp_ll_body_s
 {
-  zbncp_uint16_t crc;     /**< Packet body CRC */
-  zbncp_uint8_t data[ZBNCP_LL_BODY_SIZE_MAX];
-                          /**< Packet body data */
+    zbncp_uint16_t crc;     /**< Packet body CRC */
+    zbncp_uint8_t data[ZBNCP_LL_BODY_SIZE_MAX];
+    /**< Packet body data */
 } ZBNCP_PACKED_STRUCT
 zbncp_ll_body_t;
 
 typedef struct zbncp_ll_pkt_wo_bodys
 {
-  zbncp_uint16_t sign;    /**< Packet signature */
-  zbncp_ll_hdr_t hdr;     /**< Packet header */
+    zbncp_uint16_t sign;    /**< Packet signature */
+    zbncp_ll_hdr_t hdr;     /**< Packet header */
 } ZBNCP_PACKED_STRUCT
 zbncp_ll_pkt_wo_body_t;
 
 /* @brief Structure of the whole NCP low-level packet */
 typedef struct zbncp_ll_pkt_s
 {
-  zbncp_uint16_t sign;    /**< Packet signature */
-  zbncp_ll_hdr_t hdr;     /**< Packet header */
-  zbncp_ll_body_t body;   /**< Packet body (if present) */
+    zbncp_uint16_t sign;    /**< Packet signature */
+    zbncp_ll_hdr_t hdr;     /**< Packet header */
+    zbncp_ll_body_t body;   /**< Packet body (if present) */
 } ZBNCP_PACKED_STRUCT
 zbncp_ll_pkt_t;
 #if defined ZBNCP_PACKED_POST
@@ -138,7 +138,7 @@ ZBNCP_DBG_STATIC_ASSERT(sizeof(zbncp_ll_pkt_t ) == ZBNCP_LL_PKT_SIZE_MAX)
  */
 static inline zbncp_uint8_t zbncp_ll_flags_ack_num(zbncp_uint8_t flags)
 {
-  return ((flags >> ZBNCP_LL_ACK_NUM_SHIFT) & ZBNCP_LL_NUM_MASK);
+    return ((flags >> ZBNCP_LL_ACK_NUM_SHIFT) & ZBNCP_LL_NUM_MASK);
 }
 
 /**
@@ -146,7 +146,7 @@ static inline zbncp_uint8_t zbncp_ll_flags_ack_num(zbncp_uint8_t flags)
  */
 static inline zbncp_uint8_t zbncp_ll_flags_pkt_num(zbncp_uint8_t flags)
 {
-  return ((flags >> ZBNCP_LL_PKT_NUM_SHIFT) & ZBNCP_LL_NUM_MASK);
+    return ((flags >> ZBNCP_LL_PKT_NUM_SHIFT) & ZBNCP_LL_NUM_MASK);
 }
 
 /**
@@ -154,8 +154,8 @@ static inline zbncp_uint8_t zbncp_ll_flags_pkt_num(zbncp_uint8_t flags)
  */
 static inline zbncp_size_t zbncp_ll_hdr_body_size(const zbncp_ll_hdr_t *hdr)
 {
-  zbncp_size_t hlen = (zbncp_size_t) hdr->len;
-  return ((hlen >= ZBNCP_LL_HDR_LEN_BCRC) ? (hlen - ZBNCP_LL_HDR_LEN_BCRC) : 0u);
+    zbncp_size_t hlen = (zbncp_size_t) hdr->len;
+    return ((hlen >= ZBNCP_LL_HDR_LEN_BCRC) ? (hlen - ZBNCP_LL_HDR_LEN_BCRC) : 0u);
 }
 
 /**
@@ -163,8 +163,8 @@ static inline zbncp_size_t zbncp_ll_hdr_body_size(const zbncp_ll_hdr_t *hdr)
  */
 static inline zbncp_uint8_t zbncp_ll_hdr_calc_crc(const zbncp_ll_hdr_t *hdr)
 {
-  zbncp_size_t len = (ZBNCP_LL_HDR_SIZE - ZBNCP_LL_HDR_CRC_SIZE);
-  return zbncp_crc8(ZBNCP_CRC8_INIT_VAL, hdr, len);
+    zbncp_size_t len = (ZBNCP_LL_HDR_SIZE - ZBNCP_LL_HDR_CRC_SIZE);
+    return zbncp_crc8(ZBNCP_CRC8_INIT_VAL, hdr, len);
 }
 
 /**
@@ -172,8 +172,8 @@ static inline zbncp_uint8_t zbncp_ll_hdr_calc_crc(const zbncp_ll_hdr_t *hdr)
  */
 static inline zbncp_bool_t zbncp_ll_hdr_crc_is_valid(const zbncp_ll_hdr_t *hdr)
 {
-  zbncp_uint8_t hcrc = zbncp_ll_hdr_calc_crc(hdr);
-  return (hdr->crc == hcrc);
+    zbncp_uint8_t hcrc = zbncp_ll_hdr_calc_crc(hdr);
+    return (hdr->crc == hcrc);
 }
 
 /**
@@ -182,7 +182,7 @@ static inline zbncp_bool_t zbncp_ll_hdr_crc_is_valid(const zbncp_ll_hdr_t *hdr)
  */
 static inline zbncp_bool_t zbncp_ll_hdr_type_is_supported(const zbncp_ll_hdr_t *hdr)
 {
-  return (hdr->type == ZBNCP_LL_TYPE_NCP);
+    return (hdr->type == ZBNCP_LL_TYPE_NCP);
 }
 
 /**
@@ -190,7 +190,7 @@ static inline zbncp_bool_t zbncp_ll_hdr_type_is_supported(const zbncp_ll_hdr_t *
  */
 static inline zbncp_bool_t zbncp_ll_hdr_size_is_valid(const zbncp_ll_hdr_t *hdr)
 {
-  return ((hdr->len >= ZBNCP_LL_HDR_LEN_MIN) && (hdr->len <= ZBNCP_LL_HDR_LEN_MAX));
+    return ((hdr->len >= ZBNCP_LL_HDR_LEN_MIN) && (hdr->len <= ZBNCP_LL_HDR_LEN_MAX));
 }
 
 /**
@@ -199,16 +199,16 @@ static inline zbncp_bool_t zbncp_ll_hdr_size_is_valid(const zbncp_ll_hdr_t *hdr)
  */
 static inline zbncp_uint16_t zbncp_ll_calc_hdr_len(zbncp_size_t bsize)
 {
-  zbncp_size_t hlen = 0u;
-  if (bsize <= ZBNCP_LL_BODY_SIZE_MAX)
-  {
-    hlen = ZBNCP_LL_HDR_SIZE;
-    if (bsize > 0u)
+    zbncp_size_t hlen = 0u;
+    if (bsize <= ZBNCP_LL_BODY_SIZE_MAX)
     {
-      hlen = (hlen + ZBNCP_LL_BODY_CRC_SIZE + bsize);
+        hlen = ZBNCP_LL_HDR_SIZE;
+        if (bsize > 0u)
+        {
+            hlen = (hlen + ZBNCP_LL_BODY_CRC_SIZE + bsize);
+        }
     }
-  }
-  return (zbncp_uint16_t)hlen;
+    return (zbncp_uint16_t)hlen;
 }
 
 /**
@@ -216,8 +216,8 @@ static inline zbncp_uint16_t zbncp_ll_calc_hdr_len(zbncp_size_t bsize)
  */
 static inline zbncp_size_t zbncp_ll_calc_total_pkt_size(zbncp_size_t bsize)
 {
-  zbncp_size_t hlen = zbncp_ll_calc_hdr_len(bsize);
-  return (ZBNCP_LL_SIGN_SIZE + hlen);
+    zbncp_size_t hlen = zbncp_ll_calc_hdr_len(bsize);
+    return (ZBNCP_LL_SIGN_SIZE + hlen);
 }
 
 /**
@@ -225,7 +225,7 @@ static inline zbncp_size_t zbncp_ll_calc_total_pkt_size(zbncp_size_t bsize)
  */
 static inline zbncp_uint16_t zbncp_ll_calc_body_crc(const zbncp_ll_body_t *body, zbncp_size_t bsize)
 {
-  return zbncp_crc16(ZBNCP_CRC16_INIT_VAL, body->data, bsize);
+    return zbncp_crc16(ZBNCP_CRC16_INIT_VAL, body->data, bsize);
 }
 
 #endif /* ZBNCP_INCLUDE_GUARD_LL_PKT_H */

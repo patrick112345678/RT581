@@ -18,7 +18,7 @@ extern uint8_t _heap2_size;
 #define SYS_APP_TASK_STACK_SIZE 8192
 #endif
 
-#ifndef SYS_APP_TASK_PRIORITY 
+#ifndef SYS_APP_TASK_PRIORITY
 #define SYS_APP_TASK_PRIORITY 5
 #endif
 
@@ -33,12 +33,14 @@ static HeapRegion_t xHeapRegions[] =
 void __attribute__((weak)) vApplicationStackOverflowHook(TaskHandle_t xTask, char *pcTaskName )
 {
     puts("Stack Overflow checked\r\n");
-	if(pcTaskName){
-		printf("Stack name %s\r\n", pcTaskName);
-	}
+    if (pcTaskName)
+    {
+        printf("Stack name %s\r\n", pcTaskName);
+    }
     taskDISABLE_INTERRUPTS();
     NVIC_DisableIRQ(Wdt_IRQn);
-    while (1) {
+    while (1)
+    {
         /*empty here*/
     }
 }
@@ -46,17 +48,18 @@ void __attribute__((weak)) vApplicationStackOverflowHook(TaskHandle_t xTask, cha
 void __attribute__((weak)) vApplicationMallocFailedHook(void)
 {
     printf("Memory Allocate Failed. Current left size is %d bytes\r\n",
-        xPortGetFreeHeapSize()
-    );
+           xPortGetFreeHeapSize()
+          );
     taskDISABLE_INTERRUPTS();
     NVIC_DisableIRQ(Wdt_IRQn);
-    while (1) {
+    while (1)
+    {
         /*empty here*/
     }
 }
 
 void __attribute__((weak)) vApplicationIdleHook(void)
-{   
+{
     __WFI();
     /*empty*/
 }
@@ -121,7 +124,7 @@ void __attribute__((weak)) vApplicationGetTimerTaskMemory(StaticTask_t **ppxTime
     *pulTimerTaskStackSize = configTIMER_TASK_STACK_DEPTH;
 }
 
-void __attribute__((weak)) vAssertCalled(const char * const pcFileName, unsigned long ulLine)
+void __attribute__((weak)) vAssertCalled(const char *const pcFileName, unsigned long ulLine)
 {
     char *current_task_name = (char *)pcTaskGetTaskName(xTaskGetCurrentTaskHandle());
     printf("assert: [%s] %s:%ld\n", current_task_name, pcFileName, ulLine);
@@ -150,15 +153,15 @@ static void _dump_boot_info(void)
     puts(" Target Board: ");
     puts(CONFIG_TARGET_BOARD);
 
-#ifdef CONFIG_TARGET_CUSTOMER    
+#ifdef CONFIG_TARGET_CUSTOMER
     puts(" Customer: ");
-    puts(CONFIG_TARGET_CUSTOMER);    
+    puts(CONFIG_TARGET_CUSTOMER);
 #endif
     puts("\r\n");
 
     puts("Build Version: ");
-    puts(RAFAEL_SDK_VER); 
-    puts("\r\n");    
+    puts(RAFAEL_SDK_VER);
+    puts("\r\n");
 
     puts("Build Date: ");
     puts(__DATE__);
@@ -168,9 +171,9 @@ static void _dump_boot_info(void)
     puts("\r\n");
 
     printf("Heap %u@%p, %u@%p\r\n",
-            (unsigned int)&_heap_size, &_heap_start,
-            (unsigned int)&_heap2_size, &_heap2_start
-    );
+           (unsigned int)&_heap_size, &_heap_start,
+           (unsigned int)&_heap2_size, &_heap2_start
+          );
 
     puts("------------------------------------------------------------\r\n");
 }
@@ -182,7 +185,7 @@ static void app_main_entry(void *pvParameters)
     vTaskDelete(NULL);
 }
 
-#if (CONFIG_PLATOFRM_ENABLE_SLEEP == 1)   
+#if (CONFIG_PLATOFRM_ENABLE_SLEEP == 1)
 static void __init_sleep()
 {
     timern_t *TIMER;
@@ -211,21 +214,21 @@ void vPortSuppressTicksAndSleep(TickType_t xExpectedIdleTime_ms)
 
     __disable_irq();
 
-    if( eTaskConfirmSleepModeStatus() == eAbortSleep)
+    if ( eTaskConfirmSleepModeStatus() == eAbortSleep)
     {
         __enable_irq();
         return;
     }
 
-    if(xExpectedIdleTime_ms > 0)
+    if (xExpectedIdleTime_ms > 0)
     {
-        if(Lpm_Get_Low_Power_Mask_Status() != LOW_POWER_NO_MASK)
+        if (Lpm_Get_Low_Power_Mask_Status() != LOW_POWER_NO_MASK)
         {
             __WFI();
         }
         else
         {
-            TIMER->LOAD = ((xExpectedIdleTime_ms) * 40) -1;
+            TIMER->LOAD = ((xExpectedIdleTime_ms) * 40) - 1;
             TIMER->CLEAR = 1;
             TIMER->CONTROL.bit.INT_ENABLE = 1;
             TIMER->CONTROL.bit.EN = 1;
@@ -236,19 +239,19 @@ void vPortSuppressTicksAndSleep(TickType_t xExpectedIdleTime_ms)
             TIMER->CONTROL.bit.INT_ENABLE = 0;
             TIMER->CLEAR = 1;
             Delay_us(250);
-            now_v = (TIMER->VALUE/40);
+            now_v = (TIMER->VALUE / 40);
 
-            if(now_v > (xExpectedIdleTime_ms))
+            if (now_v > (xExpectedIdleTime_ms))
             {
                 now_v = 0;
             }
             xModifiableIdleTime = (xExpectedIdleTime_ms) - now_v;
 
-            vTaskStepTick( xModifiableIdleTime );            
+            vTaskStepTick( xModifiableIdleTime );
         }
     }
 
-     __enable_irq();
+    __enable_irq();
 }
 
 #endif
@@ -265,7 +268,7 @@ void rt582_utick_set_clear()
     TIMER->CONTROL.reg = 0;
 
     //Timer_Int_Callback_Register(3, __u_tick);
-    
+
     TIMER->CONTROL.bit.PRESCALE = TIMER_PRESCALE_1;
     TIMER->CONTROL.bit.MODE = TIMER_PERIODIC_MODE;
     TIMER->CONTROL.bit.INT_ENABLE = 1;
@@ -288,18 +291,18 @@ int rt582_main(void)
     dma_init();
     enhanced_flash_dataset_init();
 
-#if (CONFIG_PLATOFRM_ENABLE_SLEEP == 1)   
+#if (CONFIG_PLATOFRM_ENABLE_SLEEP == 1)
     __init_sleep();
 #endif
 
     printf("Starting RT582 now %d.... \r\n", SYS_APP_TASK_STACK_SIZE);
 
-    if( xTaskCreate(app_main_entry,
-            (char*)"main",
-            SYS_APP_TASK_STACK_SIZE,
-            NULL,
-            SYS_APP_TASK_PRIORITY,
-            NULL) != pdPASS )
+    if ( xTaskCreate(app_main_entry,
+                     (char *)"main",
+                     SYS_APP_TASK_STACK_SIZE,
+                     NULL,
+                     SYS_APP_TASK_PRIORITY,
+                     NULL) != pdPASS )
     {
         puts("Task create fail....\r\n");
     }
@@ -307,7 +310,7 @@ int rt582_main(void)
     puts("[OS] Starting OS Scheduler...\r\n");
 
     vTaskStartScheduler();
-    while(1);
+    while (1);
 
     return 0;
 }

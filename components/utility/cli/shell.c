@@ -168,7 +168,7 @@ _shell_log(const char *fmt, ...)
     printf(fmt);
     //va_start(args, fmt);
     //utility_vsprintf(log_buf, sizeof(log_buf), fmt, args);
-   // va_end(args);
+    // va_end(args);
     if (pIO && pIO->cb_write )
     {
         rval = pIO->cb_write((uint8_t *)log_buf, strlen(log_buf), g_sh_dev.pUser_data);

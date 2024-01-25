@@ -93,36 +93,36 @@ static void send_read_attr_req(zb_uint8_t param);
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("zdo_dut");
-#if UART_CONTROL	
-	test_control_init();
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    ZB_INIT("zdo_dut");
+#if UART_CONTROL
+    test_control_init();
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 #endif
 
 
-  zb_set_long_address(g_ieee_addr_dut);
+    zb_set_long_address(g_ieee_addr_dut);
 
-  zb_set_network_ed_role((1l << TEST_CHANNEL));
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    zb_set_network_ed_role((1l << TEST_CHANNEL));
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  ZB_AF_REGISTER_DEVICE_CTX(&fb_cdp_tc_01_dut_ed_on_off_controller_ctx);
+    ZB_AF_REGISTER_DEVICE_CTX(&fb_cdp_tc_01_dut_ed_on_off_controller_ctx);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 
@@ -131,71 +131,71 @@ static zb_bool_t finding_binding_cb(zb_int16_t status,
                                     zb_uint8_t ep,
                                     zb_uint16_t cluster)
 {
-  TRACE_MSG(TRACE_ZCL1, "finding_binding_cb status %d addr " TRACE_FORMAT_64 " ep %hd cluster %d",
-            (FMT__D_A_H_D, status, TRACE_ARG_64(addr), ep, cluster));
-  return ZB_TRUE;
+    TRACE_MSG(TRACE_ZCL1, "finding_binding_cb status %d addr " TRACE_FORMAT_64 " ep %hd cluster %d",
+              (FMT__D_A_H_D, status, TRACE_ARG_64(addr), ep, cluster));
+    return ZB_TRUE;
 }
 
 
 static void trigger_fb_initiator(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
-  zb_bdb_finding_binding_initiator(DUT_ENDPOINT1, finding_binding_cb);
+    ZVUNUSED(unused);
+    zb_bdb_finding_binding_initiator(DUT_ENDPOINT1, finding_binding_cb);
 }
 
 
 static void send_read_attr_req_delayed(zb_uint8_t param)
 {
-  ZVUNUSED(param);
-  zb_buf_get_out_delayed(send_read_attr_req);
+    ZVUNUSED(param);
+    zb_buf_get_out_delayed(send_read_attr_req);
 }
 
 
 static void send_read_attr_req(zb_uint8_t param)
 {
-  zb_uint8_t *cmd_ptr;
-  zb_uint16_t addr = 0xffff;
+    zb_uint8_t *cmd_ptr;
+    zb_uint16_t addr = 0xffff;
 
-  TRACE_MSG(TRACE_ZCL1, ">>send_read_attr_req: buf = %d", (FMT__D, param));
-  ZB_ZCL_GENERAL_INIT_READ_ATTR_REQ(param, cmd_ptr, ZB_ZCL_ENABLE_DEFAULT_RESPONSE);
-  ZB_ZCL_GENERAL_ADD_ID_READ_ATTR_REQ(cmd_ptr, 0x0000);
-  ZB_ZCL_GENERAL_SEND_READ_ATTR_REQ(param, cmd_ptr,
-                                   addr,
-                                   ZB_APS_ADDR_MODE_DST_ADDR_ENDP_NOT_PRESENT,
-                                   0xff,
-                                   DUT_ENDPOINT1,
-                                   ZB_AF_HA_PROFILE_ID,
-                                   DUT_MATCHING_CLUSTER,
-                                   NULL);
+    TRACE_MSG(TRACE_ZCL1, ">>send_read_attr_req: buf = %d", (FMT__D, param));
+    ZB_ZCL_GENERAL_INIT_READ_ATTR_REQ(param, cmd_ptr, ZB_ZCL_ENABLE_DEFAULT_RESPONSE);
+    ZB_ZCL_GENERAL_ADD_ID_READ_ATTR_REQ(cmd_ptr, 0x0000);
+    ZB_ZCL_GENERAL_SEND_READ_ATTR_REQ(param, cmd_ptr,
+                                      addr,
+                                      ZB_APS_ADDR_MODE_DST_ADDR_ENDP_NOT_PRESENT,
+                                      0xff,
+                                      DUT_ENDPOINT1,
+                                      ZB_AF_HA_PROFILE_ID,
+                                      DUT_MATCHING_CLUSTER,
+                                      NULL);
 
-  TRACE_MSG(TRACE_ZCL1, "<<send_read_attr_req", (FMT__0));
+    TRACE_MSG(TRACE_ZCL1, "<<send_read_attr_req", (FMT__0));
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  switch (sig)
-  {
+    switch (sig)
+    {
     case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      TRACE_MSG(TRACE_APS1, "Device started, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        ZB_SCHEDULE_CALLBACK(trigger_fb_initiator, 0);
-        ZB_SCHEDULE_ALARM(send_read_attr_req_delayed, 0,
-                          TEST_DUT_START_COMMUNICATION_DELAY);
-      }
-      break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
+        TRACE_MSG(TRACE_APS1, "Device started, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            ZB_SCHEDULE_CALLBACK(trigger_fb_initiator, 0);
+            ZB_SCHEDULE_ALARM(send_read_attr_req_delayed, 0,
+                              TEST_DUT_START_COMMUNICATION_DELAY);
+        }
+        break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
 
     default:
-      TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
-      break;
-  }
+        TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 

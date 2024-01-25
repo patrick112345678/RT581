@@ -47,9 +47,9 @@ along with GCC; see the file COPYING3.  If not see
    o DIAGNOSTICS_COLOR_AUTO: depending on the output stream.  */
 typedef enum
 {
-  DIAGNOSTICS_COLOR_NO       = 0,
-  DIAGNOSTICS_COLOR_YES      = 1,
-  DIAGNOSTICS_COLOR_AUTO     = 2
+    DIAGNOSTICS_COLOR_NO       = 0,
+    DIAGNOSTICS_COLOR_YES      = 1,
+    DIAGNOSTICS_COLOR_AUTO     = 2
 } diagnostic_color_rule_t;
 
 const char *colorize_start (bool, const char *, size_t);
@@ -59,7 +59,7 @@ bool colorize_init (diagnostic_color_rule_t);
 inline const char *
 colorize_start (bool show_color, const char *name)
 {
-  return colorize_start (show_color, name, strlen (name));
+    return colorize_start (show_color, name, strlen (name));
 }
 
 #endif /* ! GCC_DIAGNOSTIC_COLOR_H */

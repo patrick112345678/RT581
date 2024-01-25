@@ -44,18 +44,18 @@
 
 void zb_mac_send_zgpd_frame(zb_uint8_t param)
 {
-  zb_mcps_data_req_params_t *data_req_params = ZB_BUF_GET_PARAM(param, zb_mcps_data_req_params_t);
+    zb_mcps_data_req_params_t *data_req_params = ZB_BUF_GET_PARAM(param, zb_mcps_data_req_params_t);
 
-  TRACE_MSG(TRACE_MAC3, "zb_mac_send_zgpd_frame frame %hd, channel %hd, tx_time %ld",
-            (FMT__H_H_L, param, MAC_PIB().phy_current_channel, data_req_params->src_addr.tx_at));
+    TRACE_MSG(TRACE_MAC3, "zb_mac_send_zgpd_frame frame %hd, channel %hd, tx_time %ld",
+              (FMT__H_H_L, param, MAC_PIB().phy_current_channel, data_req_params->src_addr.tx_at));
 
-  ZB_ASSERT(MAC_CTX().flags.tx_ok_to_send);
-  MAC_CTX().flags.tx_q_busy = ZB_TRUE;
-  MAC_CTX().flags.tx_radio_busy = ZB_TRUE;
-  ZB_MAC_CLEAR_ACK_NEEDED();
-  ZB_TRANS_SEND_FRAME(data_req_params->mhr_len, param, ZB_MAC_TX_WAIT_ZGP);
+    ZB_ASSERT(MAC_CTX().flags.tx_ok_to_send);
+    MAC_CTX().flags.tx_q_busy = ZB_TRUE;
+    MAC_CTX().flags.tx_radio_busy = ZB_TRUE;
+    ZB_MAC_CLEAR_ACK_NEEDED();
+    ZB_TRANS_SEND_FRAME(data_req_params->mhr_len, param, ZB_MAC_TX_WAIT_ZGP);
 
-  TRACE_MSG(TRACE_MAC3, "<< zb_mac_send_zgpd_frame", (FMT__0));
+    TRACE_MSG(TRACE_MAC3, "<< zb_mac_send_zgpd_frame", (FMT__0));
 }
 
 #endif  /* ZB_ENABLE_ZGP_DIRECT */

@@ -28,9 +28,9 @@
 
 typedef ZB_PACKED_PRE struct
 {
-  char serial_number[ZB_NCP_SERIAL_NUMBER_LENGTH];
-  zb_uint8_t vendor_data_size;
-  zb_uint8_t vendor_data[ZB_NCP_MAX_VENDOR_DATA_SIZE];
+    char serial_number[ZB_NCP_SERIAL_NUMBER_LENGTH];
+    zb_uint8_t vendor_data_size;
+    zb_uint8_t vendor_data[ZB_NCP_MAX_VENDOR_DATA_SIZE];
 }
 ZB_PACKED_STRUCT ncp_app_production_config_t;
 

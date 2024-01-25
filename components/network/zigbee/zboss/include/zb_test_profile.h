@@ -84,8 +84,8 @@
 /* Check cluster id for membership in Test Profile 2 */
 
 #define IS_CLUSTERID_TEST_PROFILE_BASE( _p )  ( ( _p == TP_BUFFER_TEST_REQUEST_CLID)            \
-    	                                          || (_p == TP_BUFFER_TEST_REQUEST_CLID2)         \
-    	                                          || (_p == TP_BUFFER_TEST_RESPONSE_CLID) )
+                                                  || (_p == TP_BUFFER_TEST_REQUEST_CLID2)         \
+                                                  || (_p == TP_BUFFER_TEST_RESPONSE_CLID) )
 #ifdef USE_RESP_FOR_COUNTED_BUFS
 #define IS_CLUSTER_TEST_PROFILE_COUNTED( _p )  ( (_p == TP_TRANSMIT_COUNTED_PACKETS_REQ_CLID) || (_p == TP_TRANSMIT_COUNTED_PACKETS_RES_CLID) )
 #else
@@ -112,10 +112,10 @@ extern zb_uint16_t counted_packets_counter;
  */
 typedef ZB_PACKED_PRE struct zb_tp_transmit_counted_packets_req_s
 {
-  zb_uint8_t len;           /*!< Length (in bytes) of the packet */
-  zb_uint16_t counter;      /*!< Octet sequence counter  */
-  /* #AT */
-  zb_uint8_t req_data[1];   /*!< Data for transmit */
+    zb_uint8_t len;           /*!< Length (in bytes) of the packet */
+    zb_uint16_t counter;      /*!< Octet sequence counter  */
+    /* #AT */
+    zb_uint8_t req_data[1];   /*!< Data for transmit */
 }
 ZB_PACKED_STRUCT
 zb_tp_transmit_counted_packets_req_t;
@@ -125,14 +125,14 @@ zb_tp_transmit_counted_packets_req_t;
  */
 typedef struct zb_tp_transmit_counted_packets_param_s
 {
-  zb_uint8_t  len;            /*!< Length (in bytes) of the packet */
-  zb_uint16_t packets_number; /*!< packets number to send */
-  zb_uint16_t idle_time;      /*!< time before next packet is sent */
-  zb_uint16_t dst_addr;       /*!< destination address */
-  zb_uint8_t  addr_mode;      /*!< address type (group or device address) */
-  zb_uint8_t  src_ep;         /*!< source endpoint id */
-  zb_uint8_t  dst_ep;         /*!< destination endpoint id */
-  zb_uint8_t  radius;         /*!< radius (set to 0 to use default) */
+    zb_uint8_t  len;            /*!< Length (in bytes) of the packet */
+    zb_uint16_t packets_number; /*!< packets number to send */
+    zb_uint16_t idle_time;      /*!< time before next packet is sent */
+    zb_uint16_t dst_addr;       /*!< destination address */
+    zb_uint8_t  addr_mode;      /*!< address type (group or device address) */
+    zb_uint8_t  src_ep;         /*!< source endpoint id */
+    zb_uint8_t  dst_ep;         /*!< destination endpoint id */
+    zb_uint8_t  radius;         /*!< radius (set to 0 to use default) */
 }
 zb_tp_transmit_counted_packets_param_t;
 
@@ -141,9 +141,9 @@ zb_tp_transmit_counted_packets_param_t;
  */
 typedef ZB_PACKED_PRE struct zb_buffer_test_req_s
 {
-  zb_uint8_t len;               /*!< Length (in bytes) of the packet */
-  /* #AT */
-  zb_uint8_t req_data[1];       /*!< Data for request */
+    zb_uint8_t len;               /*!< Length (in bytes) of the packet */
+    /* #AT */
+    zb_uint8_t req_data[1];       /*!< Data for request */
 }
 ZB_PACKED_STRUCT
 zb_buffer_test_req_t;
@@ -153,15 +153,15 @@ zb_buffer_test_req_t;
  */
 typedef struct zb_buffer_test_req_param_s
 {
-  zb_uint8_t len;           /*!< Length (in bytes) of the packet */
-  zb_uint16_t dst_addr;     /*!< destination address */
-  zb_uint8_t addr_mode;     /*!< address type (group or device address) */
-  zb_uint8_t src_ep;        /*!< Source endpoint */
-  zb_uint8_t dst_ep;        /*!< Destination endpoint */
-  zb_uint8_t radius;        /*!< Radius */
-  zb_uint16_t profile_id;    /*!< profile id */
+    zb_uint8_t len;           /*!< Length (in bytes) of the packet */
+    zb_uint16_t dst_addr;     /*!< destination address */
+    zb_uint8_t addr_mode;     /*!< address type (group or device address) */
+    zb_uint8_t src_ep;        /*!< Source endpoint */
+    zb_uint8_t dst_ep;        /*!< Destination endpoint */
+    zb_uint8_t radius;        /*!< Radius */
+    zb_uint16_t profile_id;    /*!< profile id */
 #ifdef TEST_BLE_STRESS
-  zb_uint8_t seq_num;       /*!< sequence num */
+    zb_uint8_t seq_num;       /*!< sequence num */
 #endif
 }
 zb_buffer_test_req_param_t;
@@ -174,11 +174,11 @@ zb_buffer_test_req_param_t;
    src and dst ep - 240;
  */
 #define BUFFER_TEST_REQ_SET_DEFAULT( _p ) _p->len = 0x0AU;                                     \
-		                                      _p->dst_addr = 0x0000U;                             \
-		                                      _p->addr_mode = ZB_APS_ADDR_MODE_16_ENDP_PRESENT;   \
-		                                      _p->src_ep = ZB_TEST_PROFILE_EP;                    \
-		                                      _p->dst_ep = ZB_TEST_PROFILE_EP;                    \
-		                                      _p->radius = MAX_NWK_RADIUS;                        \
+                                              _p->dst_addr = 0x0000U;                             \
+                                              _p->addr_mode = ZB_APS_ADDR_MODE_16_ENDP_PRESENT;   \
+                                              _p->src_ep = ZB_TEST_PROFILE_EP;                    \
+                                              _p->dst_ep = ZB_TEST_PROFILE_EP;                    \
+                                              _p->radius = MAX_NWK_RADIUS;                        \
                                                       _p->profile_id = ZB_TEST_PROFILE_ID
 
 /**
@@ -201,9 +201,9 @@ zb_buffer_test_req_param_t;
  */
 typedef struct zb_buffer_test_req_param_EP_s
 {
-  zb_uint8_t len;        /*!< Length (in bytes) of the packet */
-  zb_uint8_t src_ep;     /*!< Source endpoint */
-  zb_uint8_t dst_ep;     /*!< Destination endpoint */
+    zb_uint8_t len;        /*!< Length (in bytes) of the packet */
+    zb_uint8_t src_ep;     /*!< Source endpoint */
+    zb_uint8_t dst_ep;     /*!< Destination endpoint */
 }
 zb_buffer_test_req_param_EP_t;
 
@@ -216,8 +216,8 @@ zb_buffer_test_req_param_EP_t;
 */
 typedef ZB_PACKED_PRE struct zb_buffer_test_response_s
 {
-  zb_uint8_t len;     /*!< Length (in bytes) of the packet */
-  zb_uint8_t status;  /*!< Status of the response */
+    zb_uint8_t len;     /*!< Length (in bytes) of the packet */
+    zb_uint8_t status;  /*!< Status of the response */
 }
 ZB_PACKED_STRUCT
 zb_buffer_test_response_t;
@@ -227,12 +227,12 @@ zb_buffer_test_response_t;
 */
 typedef ZB_PACKED_PRE struct zb_buffer_test_response_param_s
 {
-  zb_uint8_t len;       /*!< Length (in bytes) of the packet */
-  zb_uint8_t status;    /*!< Status of the response */
-  zb_uint16_t dst_addr; /*!< Status of the response */
-  zb_uint8_t addr_mode; /*!< address type (group or device address) */
-  zb_uint8_t src_ep;    /*!< Source endpoint */
-  zb_uint8_t dst_ep;    /*!< Destination endpoint */
+    zb_uint8_t len;       /*!< Length (in bytes) of the packet */
+    zb_uint8_t status;    /*!< Status of the response */
+    zb_uint16_t dst_addr; /*!< Status of the response */
+    zb_uint8_t addr_mode; /*!< address type (group or device address) */
+    zb_uint8_t src_ep;    /*!< Source endpoint */
+    zb_uint8_t dst_ep;    /*!< Destination endpoint */
 }
 ZB_PACKED_STRUCT
 zb_buffer_test_response_param_t;
@@ -286,14 +286,14 @@ void tp_send_counted_packet_ext(zb_uint8_t param);
    @snippet doxygen_snippets.dox? tp_send_req_by_short_zdo_test_profile_c
  */
 void tp_send_req_by_short_ext(zb_uint16_t command_id,
-                            zb_uint8_t param,
-                            zb_uint16_t profile_id,
-                            zb_uint16_t addr,
-                            zb_uint8_t addr_mode,
-                            zb_uint8_t src_ep,
-                            zb_uint8_t dst_ep,
-                            zb_uint8_t tx_options,
-                            zb_uint8_t radius);
+                              zb_uint8_t param,
+                              zb_uint16_t profile_id,
+                              zb_uint16_t addr,
+                              zb_uint8_t addr_mode,
+                              zb_uint8_t src_ep,
+                              zb_uint8_t dst_ep,
+                              zb_uint8_t tx_options,
+                              zb_uint8_t radius);
 
 /**
     Send packet and set callback on confirm

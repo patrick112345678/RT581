@@ -49,17 +49,17 @@
 */
 enum zb_zcl_groups_attr_e
 {
-  /** @brief NameSupport attribute */
-  ZB_ZCL_ATTR_GROUPS_NAME_SUPPORT_ID = 0
+    /** @brief NameSupport attribute */
+    ZB_ZCL_ATTR_GROUPS_NAME_SUPPORT_ID = 0
 };
 
 /** @brief Values for NameSupport attribute */
 enum zb_zcl_groups_name_support_e
 {
-  /** "Not supported" value */
-  ZB_ZCL_ATTR_GROUPS_NAME_NOT_SUPPORTED = 0,
-  /** "On" value */
-  ZB_ZCL_ATTR_GROUPS_NAME_SUPPORTED  = 1 << 7 /* set to 1 the most significant bit */
+    /** "Not supported" value */
+    ZB_ZCL_ATTR_GROUPS_NAME_NOT_SUPPORTED = 0,
+    /** "On" value */
+    ZB_ZCL_ATTR_GROUPS_NAME_SUPPORTED  = 1 << 7 /* set to 1 the most significant bit */
 };
 
 /**
@@ -84,13 +84,13 @@ enum zb_zcl_groups_name_support_e
  */
 enum zb_zcl_groups_cmd_e
 {
-  ZB_ZCL_CMD_GROUPS_ADD_GROUP                = 0x00,  /**< Add group command identifier. */
-  ZB_ZCL_CMD_GROUPS_VIEW_GROUP               = 0x01,  /**< View group command identifier. */
-  ZB_ZCL_CMD_GROUPS_GET_GROUP_MEMBERSHIP     = 0x02,  /**< Get group membership command identifier.
+    ZB_ZCL_CMD_GROUPS_ADD_GROUP                = 0x00,  /**< Add group command identifier. */
+    ZB_ZCL_CMD_GROUPS_VIEW_GROUP               = 0x01,  /**< View group command identifier. */
+    ZB_ZCL_CMD_GROUPS_GET_GROUP_MEMBERSHIP     = 0x02,  /**< Get group membership command identifier.
                                                         */
-  ZB_ZCL_CMD_GROUPS_REMOVE_GROUP             = 0x03,  /**< Remove group command identifier. */
-  ZB_ZCL_CMD_GROUPS_REMOVE_ALL_GROUPS        = 0x04,  /**< Remove all groups command identifier. */
-  ZB_ZCL_CMD_GROUPS_ADD_GROUP_IF_IDENTIFYING = 0x05   /**< Add group if identifying command
+    ZB_ZCL_CMD_GROUPS_REMOVE_GROUP             = 0x03,  /**< Remove group command identifier. */
+    ZB_ZCL_CMD_GROUPS_REMOVE_ALL_GROUPS        = 0x04,  /**< Remove all groups command identifier. */
+    ZB_ZCL_CMD_GROUPS_ADD_GROUP_IF_IDENTIFYING = 0x05   /**< Add group if identifying command
                                                         identifier. */
 };
 
@@ -99,12 +99,12 @@ enum zb_zcl_groups_cmd_e
 */
 enum zb_zcl_groups_cmd_resp_e
 {
-  ZB_ZCL_CMD_GROUPS_ADD_GROUP_RES            = 0x00,  /**< Add group response command identifier. */
-  ZB_ZCL_CMD_GROUPS_VIEW_GROUP_RES           = 0x01,  /**< View group response command identifier.
+    ZB_ZCL_CMD_GROUPS_ADD_GROUP_RES            = 0x00,  /**< Add group response command identifier. */
+    ZB_ZCL_CMD_GROUPS_VIEW_GROUP_RES           = 0x01,  /**< View group response command identifier.
                                                         */
-  ZB_ZCL_CMD_GROUPS_GET_GROUP_MEMBERSHIP_RES = 0x02,  /**< Get group response membership command
+    ZB_ZCL_CMD_GROUPS_GET_GROUP_MEMBERSHIP_RES = 0x02,  /**< Get group response membership command
                                                         identifier. */
-  ZB_ZCL_CMD_GROUPS_REMOVE_GROUP_RES         = 0x03   /**< Remove group response command identifier.
+    ZB_ZCL_CMD_GROUPS_REMOVE_GROUP_RES         = 0x03   /**< Remove group response command identifier.
                                                         */
 };
 
@@ -160,8 +160,8 @@ enum zb_zcl_groups_cmd_resp_e
 /** @brief Add group command structure */
 typedef ZB_PACKED_PRE struct zb_zcl_groups_add_group_req_s
 {
-  zb_uint16_t group_id;      /**< Group id */
-  zb_char_t   group_name[1]; /**< Group name, optional */
+    zb_uint16_t group_id;      /**< Group id */
+    zb_char_t   group_name[1]; /**< Group name, optional */
 }
 ZB_PACKED_STRUCT
 zb_zcl_groups_add_group_req_t;
@@ -199,8 +199,8 @@ zb_zcl_groups_add_group_req_t;
 /** @brief Add group response command structure */
 typedef ZB_PACKED_PRE struct zb_zcl_groups_add_group_res_s
 {
-  zb_uint8_t  status;        /**< Operation status */
-  zb_uint16_t group_id;      /**< Group id */
+    zb_uint8_t  status;        /**< Operation status */
+    zb_uint16_t group_id;      /**< Group id */
 }
 ZB_PACKED_STRUCT
 zb_zcl_groups_add_group_res_t;
@@ -280,7 +280,7 @@ zb_zcl_groups_add_group_res_t;
 /** @brief View group command structure */
 typedef ZB_PACKED_PRE struct zb_zcl_groups_view_group_req_s
 {
-  zb_uint16_t group_id;      /**< Group id */
+    zb_uint16_t group_id;      /**< Group id */
 }
 ZB_PACKED_STRUCT
 zb_zcl_groups_view_group_req_t;
@@ -317,9 +317,9 @@ zb_zcl_groups_view_group_req_t;
 /** @brief View group command response structure */
 typedef ZB_PACKED_PRE struct zb_zcl_groups_view_group_res_s
 {
-  zb_uint8_t status;         /**< Operation status */
-  zb_uint16_t group_id;      /**< Group id */
-  zb_uint8_t group_name[1];  /**< Group name */
+    zb_uint8_t status;         /**< Operation status */
+    zb_uint16_t group_id;      /**< Group id */
+    zb_uint8_t group_name[1];  /**< Group name */
 }
 ZB_PACKED_STRUCT
 zb_zcl_groups_view_group_res_t;
@@ -396,8 +396,8 @@ zb_zcl_groups_view_group_res_t;
 /** @brief Get Group Membership command structure */
 typedef ZB_PACKED_PRE struct zb_zcl_groups_get_group_membership_req_s
 {
-  zb_uint8_t group_count;    /**< Group  count */
-  zb_uint16_t group_id[1];      /**< Group id list */
+    zb_uint8_t group_count;    /**< Group  count */
+    zb_uint16_t group_id[1];      /**< Group id list */
 }
 ZB_PACKED_STRUCT
 zb_zcl_groups_get_group_membership_req_t;
@@ -443,9 +443,9 @@ zb_zcl_groups_get_group_membership_req_t;
 /** @brief Get Group Membership command response structure */
 typedef ZB_PACKED_PRE struct zb_zcl_groups_get_group_membership_res_s
 {
-  zb_uint8_t capacity;       /**< Capacity of group table */
-  zb_uint8_t group_count;    /**< Group  count */
-  zb_uint16_t group_id[1];   /**< Group id list */
+    zb_uint8_t capacity;       /**< Capacity of group table */
+    zb_uint8_t group_count;    /**< Group  count */
+    zb_uint16_t group_id[1];   /**< Group id list */
 }
 ZB_PACKED_STRUCT
 zb_zcl_groups_get_group_membership_res_t;
@@ -554,7 +554,7 @@ zb_zcl_groups_get_group_membership_res_t;
 /** @brief Remove Group command structure */
 typedef ZB_PACKED_PRE struct zb_zcl_groups_remove_group_req_s
 {
-  zb_uint16_t group_id;      /**< Group id */
+    zb_uint16_t group_id;      /**< Group id */
 }
 ZB_PACKED_STRUCT
 zb_zcl_groups_remove_group_req_t;
@@ -591,8 +591,8 @@ zb_zcl_groups_remove_group_req_t;
 /** @brief Remove group response command structure */
 typedef ZB_PACKED_PRE struct zb_zcl_groups_remove_group_res_s
 {
-  zb_uint8_t  status;        /**< Operation status */
-  zb_uint16_t group_id;      /**< Group id */
+    zb_uint8_t  status;        /**< Operation status */
+    zb_uint16_t group_id;      /**< Group id */
 }
 ZB_PACKED_STRUCT
 zb_zcl_groups_remove_group_res_t;

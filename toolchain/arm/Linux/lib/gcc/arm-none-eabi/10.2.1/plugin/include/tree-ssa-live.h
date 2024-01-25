@@ -44,43 +44,43 @@ along with GCC; see the file COPYING3.  If not see
 
 typedef struct _var_map
 {
-  /* The partition manager of all variables.  */
-  partition var_partition;
+    /* The partition manager of all variables.  */
+    partition var_partition;
 
-  /* Vector for managing partitions views.  */
-  int *partition_to_view;
-  int *view_to_partition;
+    /* Vector for managing partitions views.  */
+    int *partition_to_view;
+    int *view_to_partition;
 
-  /* Current number of partitions in var_map based on the current view.  */
-  unsigned int num_partitions;
+    /* Current number of partitions in var_map based on the current view.  */
+    unsigned int num_partitions;
 
-  /* Original full partition size.  */
-  unsigned int partition_size;
+    /* Original full partition size.  */
+    unsigned int partition_size;
 
-  /* Number of base variables in the base var list.  */
-  int num_basevars;
+    /* Number of base variables in the base var list.  */
+    int num_basevars;
 
-  /* Map of partitions numbers to base variable table indexes.  */
-  int *partition_to_base_index;
+    /* Map of partitions numbers to base variable table indexes.  */
+    int *partition_to_base_index;
 
-  /* Bitmap of basic block.  It describes the region within which the analysis
-     is done.  Using pointer avoids allocating memory in out-of-ssa case.  */
-  bitmap bmp_bbs;
+    /* Bitmap of basic block.  It describes the region within which the analysis
+       is done.  Using pointer avoids allocating memory in out-of-ssa case.  */
+    bitmap bmp_bbs;
 
-  /* Vector of basic block in the region.  */
-  vec<basic_block> vec_bbs;
+    /* Vector of basic block in the region.  */
+    vec<basic_block> vec_bbs;
 
-  /* True if this map is for out-of-ssa, otherwise for live range
-     computation.  When for out-of-ssa, it also means the var map is computed
-     for whole current function.  */
-  bool outofssa_p;
+    /* True if this map is for out-of-ssa, otherwise for live range
+       computation.  When for out-of-ssa, it also means the var map is computed
+       for whole current function.  */
+    bool outofssa_p;
 } *var_map;
 
 
 /* Value used to represent no partition number.  */
-#define NO_PARTITION		-1
+#define NO_PARTITION        -1
 
-extern var_map init_var_map (int, class loop* = NULL);
+extern var_map init_var_map (int, class loop * = NULL);
 extern void delete_var_map (var_map);
 extern int var_union (var_map, tree, tree);
 extern void partition_view_normal (var_map);
@@ -99,11 +99,13 @@ extern void debug (_var_map *ptr);
 inline bool
 region_contains_p (var_map map, basic_block bb)
 {
-  /* It's possible that the function is called with ENTRY_BLOCK/EXIT_BLOCK.  */
-  if (map->outofssa_p)
-    return (bb->index != ENTRY_BLOCK && bb->index != EXIT_BLOCK);
+    /* It's possible that the function is called with ENTRY_BLOCK/EXIT_BLOCK.  */
+    if (map->outofssa_p)
+    {
+        return (bb->index != ENTRY_BLOCK && bb->index != EXIT_BLOCK);
+    }
 
-  return bitmap_bit_p (map->bmp_bbs, bb->index);
+    return bitmap_bit_p (map->bmp_bbs, bb->index);
 }
 
 
@@ -112,7 +114,7 @@ region_contains_p (var_map map, basic_block bb)
 static inline unsigned
 num_var_partitions (var_map map)
 {
-  return map->num_partitions;
+    return map->num_partitions;
 }
 
 
@@ -122,12 +124,14 @@ num_var_partitions (var_map map)
 static inline tree
 partition_to_var (var_map map, int i)
 {
-  tree name;
-  if (map->view_to_partition)
-    i = map->view_to_partition[i];
-  i = partition_find (map->var_partition, i);
-  name = ssa_name (i);
-  return name;
+    tree name;
+    if (map->view_to_partition)
+    {
+        i = map->view_to_partition[i];
+    }
+    i = partition_find (map->var_partition, i);
+    name = ssa_name (i);
+    return name;
 }
 
 
@@ -137,14 +141,18 @@ partition_to_var (var_map map, int i)
 static inline tree
 version_to_var (var_map map, int version)
 {
-  int part;
-  part = partition_find (map->var_partition, version);
-  if (map->partition_to_view)
-    part = map->partition_to_view[part];
-  if (part == NO_PARTITION)
-    return NULL_TREE;
+    int part;
+    part = partition_find (map->var_partition, version);
+    if (map->partition_to_view)
+    {
+        part = map->partition_to_view[part];
+    }
+    if (part == NO_PARTITION)
+    {
+        return NULL_TREE;
+    }
 
-  return partition_to_var (map, part);
+    return partition_to_var (map, part);
 }
 
 
@@ -154,12 +162,14 @@ version_to_var (var_map map, int version)
 static inline int
 var_to_partition (var_map map, tree var)
 {
-  int part;
+    int part;
 
-  part = partition_find (map->var_partition, SSA_NAME_VERSION (var));
-  if (map->partition_to_view)
-    part = map->partition_to_view[part];
-  return part;
+    part = partition_find (map->var_partition, SSA_NAME_VERSION (var));
+    if (map->partition_to_view)
+    {
+        part = map->partition_to_view[part];
+    }
+    return part;
 }
 
 
@@ -169,12 +179,14 @@ var_to_partition (var_map map, tree var)
 static inline tree
 var_to_partition_to_var (var_map map, tree var)
 {
-  int part;
+    int part;
 
-  part = var_to_partition (map, var);
-  if (part == NO_PARTITION)
-    return NULL_TREE;
-  return partition_to_var (map, part);
+    part = var_to_partition (map, var);
+    if (part == NO_PARTITION)
+    {
+        return NULL_TREE;
+    }
+    return partition_to_var (map, part);
 }
 
 
@@ -183,9 +195,9 @@ var_to_partition_to_var (var_map map, tree var)
 static inline int
 basevar_index (var_map map, int partition)
 {
-  gcc_checking_assert (partition >= 0
-	      	       && partition <= (int) num_var_partitions (map));
-  return map->partition_to_base_index[partition];
+    gcc_checking_assert (partition >= 0
+                         && partition <= (int) num_var_partitions (map));
+    return map->partition_to_base_index[partition];
 }
 
 
@@ -194,7 +206,7 @@ basevar_index (var_map map, int partition)
 static inline int
 num_basevars (var_map map)
 {
-  return map->num_basevars;
+    return map->num_basevars;
 }
 
 
@@ -230,46 +242,46 @@ num_basevars (var_map map)
 
 typedef struct tree_live_info_d
 {
-  /* Var map this relates to.  */
-  var_map map;
+    /* Var map this relates to.  */
+    var_map map;
 
-  /* Bitmap indicating which partitions are global.  */
-  bitmap global;
+    /* Bitmap indicating which partitions are global.  */
+    bitmap global;
 
-  /* Bitmaps of live on entry blocks for partition elements.  */
-  bitmap_head *livein;
+    /* Bitmaps of live on entry blocks for partition elements.  */
+    bitmap_head *livein;
 
-  /* Bitmaps of what variables are live on exit for a basic blocks.  */
-  bitmap_head *liveout;
+    /* Bitmaps of what variables are live on exit for a basic blocks.  */
+    bitmap_head *liveout;
 
-  /* Number of basic blocks when live on exit calculated.  */
-  int num_blocks;
+    /* Number of basic blocks when live on exit calculated.  */
+    int num_blocks;
 
-  /* Vector used when creating live ranges as a visited stack.  */
-  int *work_stack;
+    /* Vector used when creating live ranges as a visited stack.  */
+    int *work_stack;
 
-  /* Top of workstack.  */
-  int *stack_top;
+    /* Top of workstack.  */
+    int *stack_top;
 
-  /* Obstacks to allocate the bitmaps on.  */
-  bitmap_obstack livein_obstack;
-  bitmap_obstack liveout_obstack;
+    /* Obstacks to allocate the bitmaps on.  */
+    bitmap_obstack livein_obstack;
+    bitmap_obstack liveout_obstack;
 } *tree_live_info_p;
 
 
-#define LIVEDUMP_ENTRY	0x01
-#define LIVEDUMP_EXIT	0x02
-#define LIVEDUMP_ALL	(LIVEDUMP_ENTRY | LIVEDUMP_EXIT)
+#define LIVEDUMP_ENTRY  0x01
+#define LIVEDUMP_EXIT   0x02
+#define LIVEDUMP_ALL    (LIVEDUMP_ENTRY | LIVEDUMP_EXIT)
 extern void delete_tree_live_info (tree_live_info_p);
 extern tree_live_info_p calculate_live_ranges (var_map, bool);
 extern void debug (tree_live_info_d &ref);
 extern void debug (tree_live_info_d *ptr);
 extern void dump_live_info (FILE *, tree_live_info_p, int);
 
-typedef hash_map<int_hash <unsigned int, -1U>, unsigned int> live_vars_map;
+typedef hash_map < int_hash < unsigned int, -1U >, unsigned int > live_vars_map;
 extern vec<bitmap_head> compute_live_vars (struct function *, live_vars_map *);
 extern bitmap live_vars_at_stmt (vec<bitmap_head> &, live_vars_map *,
-				 gimple *);
+                                 gimple *);
 extern void destroy_live_vars (vec<bitmap_head> &);
 
 /*  Return TRUE if P is marked as a global in LIVE.  */
@@ -277,8 +289,8 @@ extern void destroy_live_vars (vec<bitmap_head> &);
 static inline int
 partition_is_global (tree_live_info_p live, int p)
 {
-  gcc_checking_assert (live->global);
-  return bitmap_bit_p (live->global, p);
+    gcc_checking_assert (live->global);
+    return bitmap_bit_p (live->global, p);
 }
 
 
@@ -288,11 +300,11 @@ partition_is_global (tree_live_info_p live, int p)
 static inline bitmap
 live_on_entry (tree_live_info_p live, basic_block bb)
 {
-  gcc_checking_assert (live->livein
-		       && bb != ENTRY_BLOCK_PTR_FOR_FN (cfun)
-		       && bb != EXIT_BLOCK_PTR_FOR_FN (cfun));
+    gcc_checking_assert (live->livein
+                         && bb != ENTRY_BLOCK_PTR_FOR_FN (cfun)
+                         && bb != EXIT_BLOCK_PTR_FOR_FN (cfun));
 
-  return &live->livein[bb->index];
+    return &live->livein[bb->index];
 }
 
 
@@ -302,11 +314,11 @@ live_on_entry (tree_live_info_p live, basic_block bb)
 static inline bitmap
 live_on_exit (tree_live_info_p live, basic_block bb)
 {
-  gcc_checking_assert (live->liveout
-		       && bb != ENTRY_BLOCK_PTR_FOR_FN (cfun)
-		       && bb != EXIT_BLOCK_PTR_FOR_FN (cfun));
+    gcc_checking_assert (live->liveout
+                         && bb != ENTRY_BLOCK_PTR_FOR_FN (cfun)
+                         && bb != EXIT_BLOCK_PTR_FOR_FN (cfun));
 
-  return &live->liveout[bb->index];
+    return &live->liveout[bb->index];
 }
 
 
@@ -315,17 +327,17 @@ live_on_exit (tree_live_info_p live, basic_block bb)
 static inline var_map
 live_var_map (tree_live_info_p live)
 {
-  return live->map;
+    return live->map;
 }
 
 
 /* Mark partition P as live on entry to basic block BB in LIVE.  */
 
 static inline void
-make_live_on_entry (tree_live_info_p live, basic_block bb , int p)
+make_live_on_entry (tree_live_info_p live, basic_block bb, int p)
 {
-  bitmap_set_bit (&live->livein[bb->index], p);
-  bitmap_set_bit (live->global, p);
+    bitmap_set_bit (&live->livein[bb->index], p);
+    bitmap_set_bit (live->global, p);
 }
 
 #endif /* _TREE_SSA_LIVE_H  */

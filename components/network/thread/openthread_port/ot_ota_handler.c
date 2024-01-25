@@ -460,8 +460,8 @@ static void ota_event_queue_push(uint8_t event, uint8_t *data, uint16_t data_len
     event_data.event = event;
     memcpy(&event_data.data, data, data_lens);
     event_data.data_lens = data_lens;
-    while(xQueueSend(ota_even_queue, (void *)&event_data, portMAX_DELAY) != pdPASS); 
-    xTaskNotifyGive(ota_taskHandle);   
+    while (xQueueSend(ota_even_queue, (void *)&event_data, portMAX_DELAY) != pdPASS);
+    xTaskNotifyGive(ota_taskHandle);
 }
 
 static int ota_data_parse(uint8_t type, uint8_t *payload, uint16_t payloadlength, void *data)
@@ -2065,11 +2065,11 @@ void ota_event_handler()
     ota_event_data_t event_data;
     memset(&event_data, 0x0, sizeof(ota_event_data_t));
     /*process ota event*/
-    for(;;)
+    for (;;)
     {
         do
         {
-            if(xQueueReceive(ota_even_queue, (void*)&event_data, 0) == pdPASS)
+            if (xQueueReceive(ota_even_queue, (void *)&event_data, 0) == pdPASS)
             {
                 break;
             }
@@ -2177,7 +2177,7 @@ otError ota_init(otInstance *aInstance)
         ota_even_queue = xQueueCreate(5, sizeof(ota_event_data_t));
 
         xReturned = xTaskCreate(ota_event_handler, "ota_task", 512, NULL, configMAX_PRIORITIES - 1, &ota_taskHandle);
-        if( xReturned != pdPASS )
+        if ( xReturned != pdPASS )
         {
             log_error("ota_event_handler task create fail\n");
         }

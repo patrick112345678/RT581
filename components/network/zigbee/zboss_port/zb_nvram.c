@@ -1,12 +1,12 @@
 /**
  * @file zb_nvram.c
  * @author Rex Huang (rex.huang@rafaelmicro.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2023-08-24
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 //=============================================================================
 //                Include
@@ -28,7 +28,7 @@
 #define PAGE_SIZE               (uint32_t)0x4000  /* Page size = 16KByte */
 #define PAGE_COUNT  2
 
-#define ERASE_BLOCK_SIZE (uint32_t)0x1000 
+#define ERASE_BLOCK_SIZE (uint32_t)0x1000
 #define BLOCK_SIZE      sizeof(uint32_t)
 
 #define ZB_ASSERT_IF_VAL_IS_NOT_ALIGNED_TO_4(val) \
@@ -37,7 +37,7 @@
 
 //Zigbee nvram use 0xF4000 ~ 0xFC000 in mp_sector
 #define NVRAM_START_ADDRESS  ((uint32_t)0xE0000) //((uint32_t)0x002777fc)  NVRAM start address:
-                                                    //   from sector2 : after 16KByte of used
+//   from sector2 : after 16KByte of used
 
 #define PAGE0_BASE_ADDRESS    ((uint32_t)(NVRAM_START_ADDRESS + 0x0000))
 
@@ -91,9 +91,9 @@ zb_ret_t zb_osif_nvram_read_memory(zb_uint32_t address, zb_uint32_t len, zb_uint
     while (len >= BLOCK_SIZE)
     {
         read_block = flash_read_byte(address);
-        read_block += flash_read_byte(address+1)<<8;
-        read_block += flash_read_byte(address+2)<<16;
-        read_block += flash_read_byte(address+3)<<24;
+        read_block += flash_read_byte(address + 1) << 8;
+        read_block += flash_read_byte(address + 2) << 16;
+        read_block += flash_read_byte(address + 3) << 24;
 
         ZB_MEMCPY(buf, &read_block, BLOCK_SIZE);
 
@@ -111,11 +111,11 @@ zb_ret_t zb_osif_nvram_read(zb_uint8_t page, zb_uint32_t pos, zb_uint8_t *buf, z
 {
     zb_uint32_t address;
 
-    if(page>=PAGE_COUNT)
+    if (page >= PAGE_COUNT)
     {
         return RET_PAGE_NOT_FOUND;
     }
-    if(pos+len>=PAGE_SIZE)
+    if (pos + len >= PAGE_SIZE)
     {
         return RET_INVALID_PARAMETER;
     }
@@ -126,7 +126,7 @@ zb_ret_t zb_osif_nvram_read(zb_uint8_t page, zb_uint32_t pos, zb_uint8_t *buf, z
     ZB_OSIF_GLOBAL_LOCK();
 
     zb_osif_nvram_read_memory(address, len, buf);
-    ZB_OSIF_GLOBAL_UNLOCK();    
+    ZB_OSIF_GLOBAL_UNLOCK();
     return RET_OK;
 }
 
@@ -136,11 +136,11 @@ zb_ret_t zb_osif_nvram_write(zb_uint8_t page, zb_uint32_t pos, void *buf, zb_uin
     uint32_t address;
     int32_t write_status = NVRAM_WRITE_SUCCESS;
 
-    if(page>=PAGE_COUNT)
+    if (page >= PAGE_COUNT)
     {
         return RET_PAGE_NOT_FOUND;
     }
-    if(pos+len>=PAGE_SIZE)
+    if (pos + len >= PAGE_SIZE)
     {
         return RET_INVALID_PARAMETER;
     }
@@ -158,32 +158,32 @@ zb_ret_t zb_osif_nvram_write(zb_uint8_t page, zb_uint32_t pos, void *buf, zb_uin
     {
         do
         {
-            while(flash_check_busy());
-            flash_write_byte(address, *(uint8_t*)buf);
-            while(flash_check_busy());
-            flash_write_byte(address+1, *((uint8_t*)buf + 1));
-            while(flash_check_busy());
-            flash_write_byte(address+2, *((uint8_t*)buf + 2));
-            while(flash_check_busy());
-            flash_write_byte(address+3, *((uint8_t*)buf + 3));
-            while(flash_check_busy());
+            while (flash_check_busy());
+            flash_write_byte(address, *(uint8_t *)buf);
+            while (flash_check_busy());
+            flash_write_byte(address + 1, *((uint8_t *)buf + 1));
+            while (flash_check_busy());
+            flash_write_byte(address + 2, *((uint8_t *)buf + 2));
+            while (flash_check_busy());
+            flash_write_byte(address + 3, *((uint8_t *)buf + 3));
+            while (flash_check_busy());
 
-            buf = (uint8_t*)buf + 4;
+            buf = (uint8_t *)buf + 4;
             address += 4;
             len -= 4;
-        
+
         } while (len >= 4 && !write_status);
     }
     else
     {
-        flash_write_byte(address, *(uint8_t*)buf);
-        while(flash_check_busy());
-        flash_write_byte(address+1, *((uint8_t*)buf + 1));
-        while(flash_check_busy());
-        flash_write_byte(address+2, *((uint8_t*)buf + 2));
-        while(flash_check_busy());
-        flash_write_byte(address+3, *((uint8_t*)buf + 3));
-        while(flash_check_busy());
+        flash_write_byte(address, *(uint8_t *)buf);
+        while (flash_check_busy());
+        flash_write_byte(address + 1, *((uint8_t *)buf + 1));
+        while (flash_check_busy());
+        flash_write_byte(address + 2, *((uint8_t *)buf + 2));
+        while (flash_check_busy());
+        flash_write_byte(address + 3, *((uint8_t *)buf + 3));
+        while (flash_check_busy());
 
     }
     ZB_OSIF_GLOBAL_UNLOCK();
@@ -191,7 +191,7 @@ zb_ret_t zb_osif_nvram_write(zb_uint8_t page, zb_uint32_t pos, void *buf, zb_uin
 
     //log_info("<< zb_osif_nvram_write status %d", (write_status));
 
-    return write_status == NVRAM_WRITE_SUCCESS ? RET_OK : -ret;    
+    return write_status == NVRAM_WRITE_SUCCESS ? RET_OK : -ret;
 }
 
 
@@ -202,7 +202,7 @@ zb_ret_t zb_osif_nvram_erase_async(zb_uint8_t page)
     zb_uint8_t erased_blocks = 0;
     zb_uint_t ret = 0;
 
-    if(page>=PAGE_COUNT)
+    if (page >= PAGE_COUNT)
     {
         return RET_PAGE_NOT_FOUND;
     }
@@ -213,11 +213,11 @@ zb_ret_t zb_osif_nvram_erase_async(zb_uint8_t page)
     ZB_OSIF_GLOBAL_LOCK();
     while (erased_blocks < (PAGE_SIZE / ERASE_BLOCK_SIZE) && erase_status == NVRAM_WRITE_SUCCESS)
     {
-        while(flash_check_busy());
+        while (flash_check_busy());
         // JJ erase_status = FlashMainPageErase(address);
         erase_status = flash_erase(FLASH_ERASE_SECTOR, address);
         /*we use polling to check busy state.. */
-        while(flash_check_busy());
+        while (flash_check_busy());
 
         address += ERASE_BLOCK_SIZE;
         ++erased_blocks;
@@ -231,5 +231,5 @@ zb_ret_t zb_osif_nvram_erase_async(zb_uint8_t page)
 
 void zb_osif_nvram_flush()
 {
-  /* empty */
+    /* empty */
 }

@@ -1,12 +1,12 @@
 /**
  * @file hosal_rf.h
  * @author Rex Huang (rex.huang@rafaelmicro.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2023-07-26
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 
 
@@ -15,7 +15,7 @@
 typedef int (*hosal_rf_callback_t)(void *p_arg);
 
 /**
- * @brief 
+ * @brief
  *
  */
 typedef enum
@@ -93,15 +93,15 @@ typedef enum
     HOSAL_RF_MODEM_SUBG_OQPSK           = 4,
 } hosal_rf_modem_t;
 
-typedef enum 
+typedef enum
 {
     HOSAL_RF_TX_POWER_LVL_20DBM     = 0,
     HOSAL_RF_TX_POWER_LVL_14DBM     = 1,
     HOSAL_RF_TX_POWER_LVL_0BM       = 2,
 } hosal_rf_tx_power_level_t;
 
-typedef enum 
-{ 
+typedef enum
+{
     HOSAL_RF_PHY_DATA_RATE_2M     = 0,
     HOSAL_RF_PHY_DATA_RATE_1M,
     HOSAL_RF_PHY_DATA_RATE_500K,
@@ -113,7 +113,7 @@ typedef enum
     HOSAL_RF_PHY_DATA_RATE_75K,
 } hosal_rf_phy_data_rate_t;
 
-typedef struct 
+typedef struct
 {
     uint32_t backoff_period;
     uint32_t ack_wait_duration;
@@ -124,7 +124,7 @@ typedef struct
     uint8_t max_frame_retries;
 } hosal_rf_15p4_mac_pib_t;
 
-typedef struct 
+typedef struct
 {
     uint16_t turnaround_time;
     uint16_t cca_duration;
@@ -132,7 +132,7 @@ typedef struct
     uint8_t cca_threshold;
 } hosal_rf_15p4_phy_pib_t;
 
-typedef struct 
+typedef struct
 {
     uint32_t promiscuous;
     uint32_t is_coordinator;
@@ -142,14 +142,14 @@ typedef struct
     uint16_t panid;
 } hosal_rf_15p4_address_filter_t;
 
-typedef struct 
+typedef struct
 {
     uint8_t *pdata;
     uint8_t *ptime;
 } hosal_rf_15p4_ack_packet_t;
 
 
-typedef struct 
+typedef struct
 {
     uint32_t control_type;
     uint8_t *addr;
@@ -163,19 +163,19 @@ typedef struct
     uint8_t *pData;
 } hosal_rf_tx_data_t;
 
-typedef struct 
+typedef struct
 {
     uint8_t   crc_type;
     uint8_t   whiten_enable;
 } hosal_rf_mac_set_t;
 
-typedef struct 
+typedef struct
 {
     uint8_t   data_rate;
     uint8_t   modulation_index;
 } hosal_rf_modem_config_set_t;
 
-typedef struct 
+typedef struct
 {
     uint8_t enable;
     uint8_t inverse;

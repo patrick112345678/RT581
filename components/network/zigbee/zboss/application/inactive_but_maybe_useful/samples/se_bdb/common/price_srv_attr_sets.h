@@ -40,12 +40,12 @@
 /******************************************************************************/
 typedef struct zb_zcl_price_tier_label_s
 {
-  zb_uint8_t value[1 + 12];
+    zb_uint8_t value[1 + 12];
 } zb_zcl_price_tier_label_t;
 
 typedef struct zb_zcl_price_attr_set_price_label_s
 {
-  zb_zcl_price_tier_label_t labels[48];
+    zb_zcl_price_tier_label_t labels[48];
 } zb_zcl_price_attr_set_price_label_t;
 
 #define ZB_SET_ATTR_DESCR_WITH_ZB_ZCL_ATTR_PRICE_SRV_TIERN_PRICE_LABEL(tier, data_ptr) \
@@ -168,15 +168,15 @@ typedef struct zb_zcl_price_attr_set_price_label_s
 /** Block threshold primitive. */
 typedef struct zb_zcl_price_block_threshold_attr_element_s
 {
-  zb_uint48_t value[15];
-  zb_uint8_t  count;
+    zb_uint48_t value[15];
+    zb_uint8_t  count;
 } zb_zcl_price_block_threshold_attr_element_t;
 
 #define ZB_ZCL_PRICE_BLOCK_THRESHOLD_ATTR_ELEMENT_INIT {.value = {{0}}, .count = 0}
 
 typedef struct zb_zcl_price_attr_set_block_threshold_s
 {
-  zb_zcl_price_block_threshold_attr_element_t tier[16];
+    zb_zcl_price_block_threshold_attr_element_t tier[16];
 } zb_zcl_price_attr_set_block_threshold_t;
 
 #define ZB_ZCL_PRICE_ATTR_SET_BLOCK_THRESHOLD_INIT { \
@@ -253,12 +253,13 @@ typedef struct zb_zcl_price_attr_set_block_threshold_s
   ZB_SET_ATTR_DESCR_WITH_ZB_ZCL_ATTR_PRICE_SRV_TIERN_BLOCK_THRESHOLD_LIST(15, data_ptr)
 
 /******************************************************************************/
-typedef struct zb_zcl_price_attr_set_block_period_s {
-  zb_uint32_t start_of_block_period;
-  zb_uint24_t block_period_duration;
-  zb_uint24_t threshold_multiplier;
-  zb_uint24_t threshold_divisor;
-  zb_uint8_t  block_period_duration_type;
+typedef struct zb_zcl_price_attr_set_block_period_s
+{
+    zb_uint32_t start_of_block_period;
+    zb_uint24_t block_period_duration;
+    zb_uint24_t threshold_multiplier;
+    zb_uint24_t threshold_divisor;
+    zb_uint8_t  block_period_duration_type;
 } zb_zcl_price_attr_set_block_period_t;
 
 #define ZB_ZCL_PRICE_ATTR_SET_BLOCK_PERIOD_INIT {0}
@@ -273,13 +274,13 @@ typedef struct zb_zcl_price_attr_set_block_period_s {
 /******************************************************************************/
 typedef struct zb_zcl_price_attr_set_commodity_s
 {
-  zb_uint8_t  commodity_type;
-  zb_uint32_t standing_charge;
-  zb_uint32_t conversion_factor;
-  zb_uint32_t conversion_trailing_digit;
-  zb_uint32_t calorific_value;
-  zb_uint8_t  calorific_value_unit;
-  zb_uint8_t  calorific_value_trailing_digit;
+    zb_uint8_t  commodity_type;
+    zb_uint32_t standing_charge;
+    zb_uint32_t conversion_factor;
+    zb_uint32_t conversion_trailing_digit;
+    zb_uint32_t calorific_value;
+    zb_uint8_t  calorific_value_unit;
+    zb_uint8_t  calorific_value_trailing_digit;
 } zb_zcl_price_attr_set_commodity_t;
 
 #define ZB_ZCL_PRICE_ATTR_SET_COMMODITY_INIT { \
@@ -302,12 +303,12 @@ typedef struct zb_zcl_price_attr_set_commodity_s
 /******************************************************************************/
 typedef struct zb_zcl_price_block_price_information_attrs_tier_s
 {
-  zb_uint32_t block_price[16];
+    zb_uint32_t block_price[16];
 } zb_zcl_price_block_price_information_attrs_tier_t;
 
 typedef struct zb_zcl_price_attr_set_block_price_information_s
 {
-  zb_zcl_price_block_price_information_attrs_tier_t tier[16];
+    zb_zcl_price_block_price_information_attrs_tier_t tier[16];
 } zb_zcl_price_attr_set_block_price_information_t;
 
 #define ZB_ZCL_PRICE_ATTR_SET_BLOCK_PRICE_INFORMATION_INIT { .tier = { {.block_price = {0}}}}
@@ -376,9 +377,9 @@ typedef struct zb_zcl_price_attr_set_block_price_information_s
 /******************************************************************************/
 typedef struct zb_zcl_price_attr_set_extended_price_information_s
 {
-  /** Extended tiers (16 to 48). */
-  zb_uint32_t tiers[48 - 16 + 1];
-  zb_uint32_t cpp[2];
+    /** Extended tiers (16 to 48). */
+    zb_uint32_t tiers[48 - 16 + 1];
+    zb_uint32_t cpp[2];
 } zb_zcl_price_attr_set_extended_price_information_t;
 
 #define ZB_ZCL_PRICE_ATTR_SET_EXTENDED_PRICE_INFORMATION_INIT {. tiers = {0}, .cpp = {0}}
@@ -429,17 +430,17 @@ typedef struct zb_zcl_price_attr_set_extended_price_information_s
 /******************************************************************************/
 typedef struct zb_zcl_price_attr_set_tariff_information_s
 {
-  zb_uint8_t  tariff_label[1 + 24];
-  zb_uint8_t  number_of_price_tiers_in_use;
-  zb_uint8_t  number_of_block_thresholds_in_use;
-  zb_uint8_t  tier_block_mode;
-  zb_uint8_t  unit_of_measure;
-  zb_uint16_t currency;
-  zb_uint8_t  price_trailing_digit;
-  zb_uint8_t  tariff_resolution_period;
-  zb_uint32_t co2;
-  zb_uint8_t  co2_unit;
-  zb_uint8_t  co2_trailing_digit;
+    zb_uint8_t  tariff_label[1 + 24];
+    zb_uint8_t  number_of_price_tiers_in_use;
+    zb_uint8_t  number_of_block_thresholds_in_use;
+    zb_uint8_t  tier_block_mode;
+    zb_uint8_t  unit_of_measure;
+    zb_uint16_t currency;
+    zb_uint8_t  price_trailing_digit;
+    zb_uint8_t  tariff_resolution_period;
+    zb_uint32_t co2;
+    zb_uint8_t  co2_unit;
+    zb_uint8_t  co2_trailing_digit;
 } zb_zcl_price_attr_set_tariff_information_t;
 
 #define ZB_ZCL_PRICE_ATTR_SET_TARIFF_INFORMATION_INIT { \
@@ -467,11 +468,11 @@ typedef struct zb_zcl_price_attr_set_tariff_information_s
 /******************************************************************************/
 typedef struct zb_zcl_price_attr_set_billing_information_s
 {
-  zb_uint32_t current_billing_period_start;
-  zb_uint24_t current_billing_period_duration;
-  zb_uint32_t last_billing_period_start;
-  zb_uint24_t last_billing_period_duration;
-  zb_uint32_t last_billing_period_consolidated_bill;
+    zb_uint32_t current_billing_period_start;
+    zb_uint24_t current_billing_period_duration;
+    zb_uint32_t last_billing_period_start;
+    zb_uint24_t last_billing_period_duration;
+    zb_uint32_t last_billing_period_consolidated_bill;
 } zb_zcl_price_attr_set_billing_information_t;
 
 #define ZB_ZCL_PRICE_ATTR_SET_BILLING_INFORMATION_INIT {0}
@@ -486,19 +487,19 @@ typedef struct zb_zcl_price_attr_set_billing_information_s
 /******************************************************************************/
 typedef struct zb_zcl_price_credit_payment_attr_elm_s
 {
-  zb_uint8_t value;
-  zb_uint8_t date;
-  zb_uint8_t ref;
+    zb_uint8_t value;
+    zb_uint8_t date;
+    zb_uint8_t ref;
 } zb_zcl_price_credit_payment_attr_elm_t;
 
 typedef struct zb_zcl_price_attr_set_credit_payment_s
 {
-  zb_uint32_t due_date;
-  zb_uint8_t  status;
-  zb_int32_t  over_due_amount;
-  zb_int32_t  credit_payment;
-  zb_uint8_t  credit_payment_period;
-  zb_zcl_price_credit_payment_attr_elm_t credit_payments[5];
+    zb_uint32_t due_date;
+    zb_uint8_t  status;
+    zb_int32_t  over_due_amount;
+    zb_int32_t  credit_payment;
+    zb_uint8_t  credit_payment_period;
+    zb_zcl_price_credit_payment_attr_elm_t credit_payments[5];
 } zb_zcl_price_attr_set_credit_payment_t;
 
 
@@ -584,7 +585,7 @@ typedef struct zb_zcl_price_attr_set_credit_payment_s
 
 typedef struct zb_zcl_price_attr_set_received_block_threshold_s
 {
-  zb_uint48_t values[15];
+    zb_uint48_t values[15];
 } zb_zcl_price_attr_set_received_block_threshold_t;
 
 #define ZB_ZCL_PRICE_ATTR_SET_RECEIVED_BLOCK_THRESHOLD_INIT {.values = {{0}}}
@@ -609,10 +610,10 @@ typedef struct zb_zcl_price_attr_set_received_block_threshold_s
 /******************************************************************************/
 typedef struct zb_zcl_price_attr_set_received_block_period_s
 {
-  zb_uint32_t start_of_block_period;
-  zb_uint24_t block_period_duration;
-  zb_uint24_t threshold_multiplier;
-  zb_uint24_t threshold_divisor;
+    zb_uint32_t start_of_block_period;
+    zb_uint24_t block_period_duration;
+    zb_uint24_t threshold_multiplier;
+    zb_uint24_t threshold_divisor;
 } zb_zcl_price_attr_set_received_block_period_t;
 
 #define ZB_ZCL_PRICE_ATTR_SET_RECEIVED_BLOCK_PERIOD_INIT {0}
@@ -686,8 +687,8 @@ typedef struct zb_zcl_price_attr_set_received_block_period_s
 /******************************************************************************/
 typedef struct zb_zcl_price_attr_set_received_extended_price_information_s
 {
-  /** Extended tiers (16 to 48). */
-  zb_uint32_t tiers[48 - 16 + 1];
+    /** Extended tiers (16 to 48). */
+    zb_uint32_t tiers[48 - 16 + 1];
 } zb_zcl_price_attr_set_received_extended_price_information_t;
 
 #define ZB_ZCL_PRICE_ATTR_SET_RECEIVED_EXTENDED_PRICE_INFORMATION_INIT {.tiers = {0}}
@@ -733,14 +734,14 @@ typedef struct zb_zcl_price_attr_set_received_extended_price_information_s
 /******************************************************************************/
 typedef struct zb_zcl_price_attr_set_received_tariff_information_s
 {
-  zb_uint8_t  tariff_label[1 + 24];
-  zb_uint8_t  number_of_price_tiers_in_use;
-  zb_uint8_t  number_of_block_thresholds_in_use;
-  zb_uint8_t  tier_block_mode;
-  zb_uint8_t  tariff_resolution_period;
-  zb_uint32_t co2;
-  zb_uint8_t  co2_unit;
-  zb_uint8_t  co2_trailing_digit;
+    zb_uint8_t  tariff_label[1 + 24];
+    zb_uint8_t  number_of_price_tiers_in_use;
+    zb_uint8_t  number_of_block_thresholds_in_use;
+    zb_uint8_t  tier_block_mode;
+    zb_uint8_t  tariff_resolution_period;
+    zb_uint32_t co2;
+    zb_uint8_t  co2_unit;
+    zb_uint8_t  co2_trailing_digit;
 } zb_zcl_price_attr_set_received_tariff_information_t;
 
 #define ZB_ZCL_PRICE_ATTR_SET_RECEIVED_TARIFF_INFORMATION_INIT \
@@ -765,31 +766,34 @@ typedef struct zb_zcl_price_attr_set_received_tariff_information_s
   ZB_SET_ATTR_DESCR_WITH_ZB_ZCL_ATTR_PRICE_SRV_RECEIVED_LAST_BILLING_PERIOD_CONSOLIDATED_BILL( &(data_ptr)->last_billing_period_consolidated_bill)
 
 /******************************************************************************/
-typedef struct zb_zcl_price_attr_delivered_values_s {
-  zb_zcl_price_attr_set_price_label_t                 tier_label;
-  zb_zcl_price_attr_set_block_threshold_t             block_threshold;
-  zb_zcl_price_attr_set_block_period_t                block_period;
-  zb_zcl_price_attr_set_commodity_t                   commodity;
-  zb_zcl_price_attr_set_block_price_information_t     block_price_information;
-  zb_zcl_price_attr_set_extended_price_information_t  extended_price_information;
-  zb_zcl_price_attr_set_tariff_information_t          tariff_information;
-  zb_zcl_price_attr_set_billing_information_t         billing_information;
-  zb_zcl_price_attr_set_credit_payment_t              credit_payment;
+typedef struct zb_zcl_price_attr_delivered_values_s
+{
+    zb_zcl_price_attr_set_price_label_t                 tier_label;
+    zb_zcl_price_attr_set_block_threshold_t             block_threshold;
+    zb_zcl_price_attr_set_block_period_t                block_period;
+    zb_zcl_price_attr_set_commodity_t                   commodity;
+    zb_zcl_price_attr_set_block_price_information_t     block_price_information;
+    zb_zcl_price_attr_set_extended_price_information_t  extended_price_information;
+    zb_zcl_price_attr_set_tariff_information_t          tariff_information;
+    zb_zcl_price_attr_set_billing_information_t         billing_information;
+    zb_zcl_price_attr_set_credit_payment_t              credit_payment;
 } zb_zcl_price_attr_delivered_values_t;
 
-typedef struct zb_zcl_price_attr_received_values_s {
-  zb_zcl_price_attr_set_price_label_t                         tier_label;
-  zb_zcl_price_attr_set_received_block_threshold_t            block_threshold;
-  zb_zcl_price_attr_set_received_block_period_t               block_period;
-  zb_zcl_price_attr_set_block_price_information_t             block_price_information;
-  zb_zcl_price_attr_set_received_extended_price_information_t extended_price_information;
-  zb_zcl_price_attr_set_received_tariff_information_t         tariff_information;
-  zb_zcl_price_attr_set_billing_information_t                 billing_information;
+typedef struct zb_zcl_price_attr_received_values_s
+{
+    zb_zcl_price_attr_set_price_label_t                         tier_label;
+    zb_zcl_price_attr_set_received_block_threshold_t            block_threshold;
+    zb_zcl_price_attr_set_received_block_period_t               block_period;
+    zb_zcl_price_attr_set_block_price_information_t             block_price_information;
+    zb_zcl_price_attr_set_received_extended_price_information_t extended_price_information;
+    zb_zcl_price_attr_set_received_tariff_information_t         tariff_information;
+    zb_zcl_price_attr_set_billing_information_t                 billing_information;
 } zb_zcl_price_attr_received_values_t;
 
-typedef struct zb_zcl_price_attr_values_s {
-  zb_zcl_price_attr_delivered_values_t delv;
-  zb_zcl_price_attr_received_values_t  recv;
+typedef struct zb_zcl_price_attr_values_s
+{
+    zb_zcl_price_attr_delivered_values_t delv;
+    zb_zcl_price_attr_received_values_t  recv;
 } zb_zcl_price_attr_values_t;
 
 #define ZB_ZCL_PRICE_ATTR_VALUES_INIT {                                                             \
@@ -841,9 +845,9 @@ typedef struct zb_zcl_price_attr_values_s {
 
 typedef struct zb_zcl_price_cli_attr_values_s
 {
-  zb_uint8_t price_increase_randomize_minutes;
-  zb_uint8_t price_decrease_randomize_minutes;
-  zb_uint8_t commodity_type;
+    zb_uint8_t price_increase_randomize_minutes;
+    zb_uint8_t price_decrease_randomize_minutes;
+    zb_uint8_t commodity_type;
 } zb_zcl_price_cli_attr_values_t;
 
 #define ZB_ZCL_DECLARE_PRICE_CLI_ATTR_LIST_FROM_STRUCT(attr_list, values)         \

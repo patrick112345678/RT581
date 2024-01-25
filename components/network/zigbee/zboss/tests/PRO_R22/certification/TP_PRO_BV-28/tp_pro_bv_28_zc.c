@@ -39,113 +39,113 @@ static zb_ieee_addr_t g_ieee_addr = {0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
-  ZB_INIT("zdo_zc");
-#if UART_CONTROL	
-	test_control_init();
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    /* Init device, load IB values from nvram or set it to default */
+    ZB_INIT("zdo_zc");
+#if UART_CONTROL
+    test_control_init();
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 #endif
-	
-  zb_set_pan_id(0x1aaa);
 
-  /* let's always be coordinator */
-  zb_cert_test_set_common_channel_settings();
-  zb_cert_test_set_zc_role();
-  zb_aib_tcpol_set_update_trust_center_link_keys_required(ZB_FALSE);
+    zb_set_pan_id(0x1aaa);
 
-  /* set ieee addr */
-  zb_set_long_address(g_ieee_addr);
+    /* let's always be coordinator */
+    zb_cert_test_set_common_channel_settings();
+    zb_cert_test_set_zc_role();
+    zb_aib_tcpol_set_update_trust_center_link_keys_required(ZB_FALSE);
 
-  /* turn off security */
-  /* zb_cert_test_set_security_level(0); */
+    /* set ieee addr */
+    zb_set_long_address(g_ieee_addr);
 
-  zb_set_max_children(100);
-  zb_bdb_set_legacy_device_support(ZB_TRUE);
-  zb_set_nvram_erase_at_start(ZB_TRUE);
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zboss_main_loop();
-  }
+    /* turn off security */
+    /* zb_cert_test_set_security_level(0); */
 
-  TRACE_DEINIT();
+    zb_set_max_children(100);
+    zb_bdb_set_legacy_device_support(ZB_TRUE);
+    zb_set_nvram_erase_at_start(ZB_TRUE);
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zboss_main_loop();
+    }
 
-  MAIN_RETURN(0);
+    TRACE_DEINIT();
+
+    MAIN_RETURN(0);
 }
 
 #define PERMIT_JOINING_TIME_FOR_PRO_BV_28 255
 
 void handler_permit_join_cb(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_ERROR, "permit joining done", (FMT__0));
-  zb_buf_free(param);
+    TRACE_MSG(TRACE_ERROR, "permit joining done", (FMT__0));
+    zb_buf_free(param);
 }
 
 static void send_permit_joining_req(zb_uint8_t param)
 {
-  zb_zdo_mgmt_permit_joining_req_param_t *request;
+    zb_zdo_mgmt_permit_joining_req_param_t *request;
 
-  TRACE_MSG(TRACE_ZDO2, "send_permit_joining_req %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_ZDO2, "send_permit_joining_req %hd", (FMT__H, param));
 
-  if (!param)
-  {
-    zb_buf_get_out_delayed(send_permit_joining_req);
-  }
-  else
-  {
-    request = ZB_BUF_GET_PARAM(param, zb_zdo_mgmt_permit_joining_req_param_t);
-    request->dest_addr = ZB_PIBCACHE_NETWORK_ADDRESS(); //JJ zb_cert_test_get_network_addr();
-    request->permit_duration = PERMIT_JOINING_TIME_FOR_PRO_BV_28;
-    request->tc_significance = 1;
-    zb_zdo_mgmt_permit_joining_req(param, handler_permit_join_cb);
-  }
+    if (!param)
+    {
+        zb_buf_get_out_delayed(send_permit_joining_req);
+    }
+    else
+    {
+        request = ZB_BUF_GET_PARAM(param, zb_zdo_mgmt_permit_joining_req_param_t);
+        request->dest_addr = ZB_PIBCACHE_NETWORK_ADDRESS(); //JJ zb_cert_test_get_network_addr();
+        request->permit_duration = PERMIT_JOINING_TIME_FOR_PRO_BV_28;
+        request->tc_significance = 1;
+        zb_zdo_mgmt_permit_joining_req(param, handler_permit_join_cb);
+    }
 }
 
 static void send_permit_joining_req_alarm(zb_uint8_t param)
 {
-  ZVUNUSED(param);
-  zb_buf_get_out_delayed(send_permit_joining_req);
-  ZB_SCHEDULE_ALARM(send_permit_joining_req_alarm, 0, ZB_TIME_ONE_SECOND * 5); //JJ PERMIT_JOINING_TIME_FOR_PRO_BV_28);
+    ZVUNUSED(param);
+    zb_buf_get_out_delayed(send_permit_joining_req);
+    ZB_SCHEDULE_ALARM(send_permit_joining_req_alarm, 0, ZB_TIME_ONE_SECOND * 5); //JJ PERMIT_JOINING_TIME_FOR_PRO_BV_28);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_ERROR, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_ERROR, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  if (0 == status)
-  {
-    switch(sig)
+    if (0 == status)
     {
-      case ZB_ZDO_SIGNAL_DEFAULT_START:
-      case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      case ZB_BDB_SIGNAL_DEVICE_REBOOT:
-        TRACE_MSG(TRACE_ERROR, "Device STARTED OK", (FMT__0));
-        ZB_SCHEDULE_CALLBACK(send_permit_joining_req_alarm, 0);
-        break;
+        switch (sig)
+        {
+        case ZB_ZDO_SIGNAL_DEFAULT_START:
+        case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
+        case ZB_BDB_SIGNAL_DEVICE_REBOOT:
+            TRACE_MSG(TRACE_ERROR, "Device STARTED OK", (FMT__0));
+            ZB_SCHEDULE_CALLBACK(send_permit_joining_req_alarm, 0);
+            break;
 
-      default:
-        TRACE_MSG(TRACE_ERROR, "Unknown signal %hd", (FMT__H, sig));
+        default:
+            TRACE_MSG(TRACE_ERROR, "Unknown signal %hd", (FMT__H, sig));
+        }
     }
-  }
-  else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
-  {
-    TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, status));
-  }
+    else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
+    {
+        TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, status));
+    }
 
-  if (param)
-  {
-    zb_buf_free(param);
-  }
+    if (param)
+    {
+        zb_buf_free(param);
+    }
 }

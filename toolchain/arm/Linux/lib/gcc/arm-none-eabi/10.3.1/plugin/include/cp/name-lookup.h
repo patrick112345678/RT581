@@ -31,18 +31,19 @@ typedef struct binding_entry_s *binding_entry;
 /* The type of a routine repeatedly called by binding_table_foreach.  */
 typedef void (*bt_foreach_proc) (binding_entry, void *);
 
-struct GTY(()) binding_entry_s {
-  binding_entry chain;
-  tree name;
-  tree type;
+struct GTY(()) binding_entry_s
+{
+    binding_entry chain;
+    tree name;
+    tree type;
 };
 
 /* These macros indicate the initial chains count for binding_table.  */
-#define SCOPE_DEFAULT_HT_SIZE		(1 << 3)
-#define CLASS_SCOPE_HT_SIZE		(1 << 3)
-#define NAMESPACE_ORDINARY_HT_SIZE	(1 << 5)
-#define NAMESPACE_STD_HT_SIZE		(1 << 8)
-#define GLOBAL_SCOPE_HT_SIZE		(1 << 8)
+#define SCOPE_DEFAULT_HT_SIZE       (1 << 3)
+#define CLASS_SCOPE_HT_SIZE     (1 << 3)
+#define NAMESPACE_ORDINARY_HT_SIZE  (1 << 5)
+#define NAMESPACE_STD_HT_SIZE       (1 << 8)
+#define GLOBAL_SCOPE_HT_SIZE        (1 << 8)
 
 extern void binding_table_foreach (binding_table, bt_foreach_proc, void *);
 extern binding_entry binding_table_find (binding_table, tree);
@@ -62,90 +63,95 @@ typedef struct cp_binding_level cp_binding_level;
    currently being defined.  */
 #define INHERITED_VALUE_BINDING_P(NODE) ((NODE)->value_is_inherited)
 
-struct GTY(()) cxx_binding {
-  /* Link to chain together various bindings for this name.  */
-  cxx_binding *previous;
-  /* The non-type entity this name is bound to.  */
-  tree value;
-  /* The type entity this name is bound to.  */
-  tree type;
-  /* The scope at which this binding was made.  */
-  cp_binding_level *scope;
-  unsigned value_is_inherited : 1;
-  unsigned is_local : 1;
+struct GTY(()) cxx_binding
+{
+    /* Link to chain together various bindings for this name.  */
+    cxx_binding *previous;
+    /* The non-type entity this name is bound to.  */
+    tree value;
+    /* The type entity this name is bound to.  */
+    tree type;
+    /* The scope at which this binding was made.  */
+    cp_binding_level *scope;
+    unsigned value_is_inherited : 1;
+    unsigned is_local : 1;
 };
 
 /* Datatype used to temporarily save C++ bindings (for implicit
    instantiations purposes and like).  Implemented in decl.c.  */
-struct GTY(()) cxx_saved_binding {
-  /* The name of the current binding.  */
-  tree identifier;
-  /* The binding we're saving.  */
-  cxx_binding *binding;
-  tree real_type_value;
+struct GTY(()) cxx_saved_binding
+{
+    /* The name of the current binding.  */
+    tree identifier;
+    /* The binding we're saving.  */
+    cxx_binding *binding;
+    tree real_type_value;
 };
 
 
 extern tree identifier_type_value (tree);
 extern void set_identifier_type_value (tree, tree);
-extern void push_binding (tree, tree, cp_binding_level*);
+extern void push_binding (tree, tree, cp_binding_level *);
 extern void pop_local_binding (tree, tree);
 extern void pop_bindings_and_leave_scope (void);
 extern tree constructor_name (tree);
 extern bool constructor_name_p (tree, tree);
 
 /* The kinds of scopes we recognize.  */
-enum scope_kind {
-  sk_block = 0,      /* An ordinary block scope.  This enumerator must
-			have the value zero because "cp_binding_level"
-			is initialized by using "memset" to set the
-			contents to zero, and the default scope kind
-			is "sk_block".  */
-  sk_cleanup,	     /* A scope for (pseudo-)scope for cleanup.  It is
-			pseudo in that it is transparent to name lookup
-			activities.  */
-  sk_try,	     /* A try-block.  */
-  sk_catch,	     /* A catch-block.  */
-  sk_for,	     /* The scope of the variable declared in a
-			init-statement.  */
-  sk_cond,	     /* The scope of the variable declared in the condition
-			of an if or switch statement.  */
-  sk_function_parms, /* The scope containing function parameters.  */
-  sk_class,	     /* The scope containing the members of a class.  */
-  sk_scoped_enum,    /* The scope containing the enumerators of a C++11
+enum scope_kind
+{
+    sk_block = 0,      /* An ordinary block scope.  This enumerator must
+            have the value zero because "cp_binding_level"
+            is initialized by using "memset" to set the
+            contents to zero, and the default scope kind
+            is "sk_block".  */
+    sk_cleanup,        /* A scope for (pseudo-)scope for cleanup.  It is
+            pseudo in that it is transparent to name lookup
+            activities.  */
+    sk_try,        /* A try-block.  */
+    sk_catch,      /* A catch-block.  */
+    sk_for,        /* The scope of the variable declared in a
+            init-statement.  */
+    sk_cond,       /* The scope of the variable declared in the condition
+            of an if or switch statement.  */
+    sk_function_parms, /* The scope containing function parameters.  */
+    sk_class,      /* The scope containing the members of a class.  */
+    sk_scoped_enum,    /* The scope containing the enumerators of a C++11
                         scoped enumeration.  */
-  sk_namespace,	     /* The scope containing the members of a
-			namespace, including the global scope.  */
-  sk_template_parms, /* A scope for template parameters.  */
-  sk_template_spec,  /* Like sk_template_parms, but for an explicit
-			specialization.  Since, by definition, an
-			explicit specialization is introduced by
-			"template <>", this scope is always empty.  */
-  sk_transaction,    /* A synchronized or atomic statement.  */
-  sk_omp	     /* An OpenMP structured block.  */
+    sk_namespace,      /* The scope containing the members of a
+            namespace, including the global scope.  */
+    sk_template_parms, /* A scope for template parameters.  */
+    sk_template_spec,  /* Like sk_template_parms, but for an explicit
+            specialization.  Since, by definition, an
+            explicit specialization is introduced by
+            "template <>", this scope is always empty.  */
+    sk_transaction,    /* A synchronized or atomic statement.  */
+    sk_omp         /* An OpenMP structured block.  */
 };
 
 /* The scope where the class/struct/union/enum tag applies.  */
-enum tag_scope {
-  ts_current = 0,	/* Current scope only.  This is for the
-			     class-key identifier;
-			   case mentioned in [basic.lookup.elab]/2,
-			   or the class/enum definition
-			     class-key identifier { ... };  */
-  ts_global = 1,	/* All scopes.  This is the 3.4.1
-			   [basic.lookup.unqual] lookup mentioned
-			   in [basic.lookup.elab]/2.  */
-  ts_within_enclosing_non_class = 2,	/* Search within enclosing non-class
-					   only, for friend class lookup
-					   according to [namespace.memdef]/3
-					   and [class.friend]/9.  */
-  ts_lambda = 3			/* Declaring a lambda closure.  */
+enum tag_scope
+{
+    ts_current = 0,   /* Current scope only.  This is for the
+                 class-key identifier;
+               case mentioned in [basic.lookup.elab]/2,
+               or the class/enum definition
+                 class-key identifier { ... };  */
+    ts_global = 1,    /* All scopes.  This is the 3.4.1
+               [basic.lookup.unqual] lookup mentioned
+               in [basic.lookup.elab]/2.  */
+    ts_within_enclosing_non_class = 2,    /* Search within enclosing non-class
+                       only, for friend class lookup
+                       according to [namespace.memdef]/3
+                       and [class.friend]/9.  */
+    ts_lambda = 3         /* Declaring a lambda closure.  */
 };
 
-struct GTY(()) cp_class_binding {
-  cxx_binding *base;
-  /* The bound name.  */
-  tree identifier;
+struct GTY(()) cp_class_binding
+{
+    cxx_binding *base;
+    /* The bound name.  */
+    tree identifier;
 };
 
 /* For each binding contour we allocate a binding_level structure
@@ -169,81 +175,82 @@ struct GTY(()) cp_class_binding {
    CURRENT_BINDING_LEVEL.  You should use lookup_name_current_level
    instead.  */
 
-struct GTY(()) cp_binding_level {
-  /* A chain of _DECL nodes for all variables, constants, functions,
-      and typedef types.  These are in the reverse of the order
-      supplied.  There may be OVERLOADs on this list, too, but they
-      are wrapped in TREE_LISTs; the TREE_VALUE is the OVERLOAD.  */
-  tree names;
+struct GTY(()) cp_binding_level
+{
+    /* A chain of _DECL nodes for all variables, constants, functions,
+        and typedef types.  These are in the reverse of the order
+        supplied.  There may be OVERLOADs on this list, too, but they
+        are wrapped in TREE_LISTs; the TREE_VALUE is the OVERLOAD.  */
+    tree names;
 
-  /* Using directives.  */
-  vec<tree, va_gc> *using_directives;
+    /* Using directives.  */
+    vec<tree, va_gc> *using_directives;
 
-  /* For the binding level corresponding to a class, the entities
-      declared in the class or its base classes.  */
-  vec<cp_class_binding, va_gc> *class_shadowed;
+    /* For the binding level corresponding to a class, the entities
+        declared in the class or its base classes.  */
+    vec<cp_class_binding, va_gc> *class_shadowed;
 
-  /* Similar to class_shadowed, but for IDENTIFIER_TYPE_VALUE, and
-      is used for all binding levels. The TREE_PURPOSE is the name of
-      the entity, the TREE_TYPE is the associated type.  In addition
-      the TREE_VALUE is the IDENTIFIER_TYPE_VALUE before we entered
-      the class.  */
-  tree type_shadowed;
+    /* Similar to class_shadowed, but for IDENTIFIER_TYPE_VALUE, and
+        is used for all binding levels. The TREE_PURPOSE is the name of
+        the entity, the TREE_TYPE is the associated type.  In addition
+        the TREE_VALUE is the IDENTIFIER_TYPE_VALUE before we entered
+        the class.  */
+    tree type_shadowed;
 
-  /* For each level (except not the global one),
-      a chain of BLOCK nodes for all the levels
-      that were entered and exited one level down.  */
-  tree blocks;
+    /* For each level (except not the global one),
+        a chain of BLOCK nodes for all the levels
+        that were entered and exited one level down.  */
+    tree blocks;
 
-  /* The entity (namespace, class, function) the scope of which this
-      binding contour corresponds to.  Otherwise NULL.  */
-  tree this_entity;
+    /* The entity (namespace, class, function) the scope of which this
+        binding contour corresponds to.  Otherwise NULL.  */
+    tree this_entity;
 
-  /* The binding level which this one is contained in (inherits from).  */
-  cp_binding_level *level_chain;
+    /* The binding level which this one is contained in (inherits from).  */
+    cp_binding_level *level_chain;
 
-  /* STATEMENT_LIST for statements in this binding contour.
-      Only used at present for SK_CLEANUP temporary bindings.  */
-  tree statement_list;
+    /* STATEMENT_LIST for statements in this binding contour.
+        Only used at present for SK_CLEANUP temporary bindings.  */
+    tree statement_list;
 
-  /* Binding depth at which this level began.  */
-  int binding_depth;
+    /* Binding depth at which this level began.  */
+    int binding_depth;
 
-  /* The kind of scope that this object represents.  However, a
-      SK_TEMPLATE_SPEC scope is represented with KIND set to
-      SK_TEMPLATE_PARMS and EXPLICIT_SPEC_P set to true.  */
-  ENUM_BITFIELD (scope_kind) kind : 4;
+    /* The kind of scope that this object represents.  However, a
+        SK_TEMPLATE_SPEC scope is represented with KIND set to
+        SK_TEMPLATE_PARMS and EXPLICIT_SPEC_P set to true.  */
+    ENUM_BITFIELD (scope_kind) kind : 4;
 
-  /* True if this scope is an SK_TEMPLATE_SPEC scope.  This field is
-      only valid if KIND == SK_TEMPLATE_PARMS.  */
-  BOOL_BITFIELD explicit_spec_p : 1;
+    /* True if this scope is an SK_TEMPLATE_SPEC scope.  This field is
+        only valid if KIND == SK_TEMPLATE_PARMS.  */
+    BOOL_BITFIELD explicit_spec_p : 1;
 
-  /* true means make a BLOCK for this level regardless of all else.  */
-  unsigned keep : 1;
+    /* true means make a BLOCK for this level regardless of all else.  */
+    unsigned keep : 1;
 
-  /* Nonzero if this level can safely have additional
-      cleanup-needing variables added to it.  */
-  unsigned more_cleanups_ok : 1;
-  unsigned have_cleanups : 1;
+    /* Nonzero if this level can safely have additional
+        cleanup-needing variables added to it.  */
+    unsigned more_cleanups_ok : 1;
+    unsigned have_cleanups : 1;
 
-  /* Transient state set if this scope is of sk_class kind
-     and is in the process of defining 'this_entity'.  Reset
-     on leaving the class definition to allow for the scope
-     to be subsequently re-used as a non-defining scope for
-     'this_entity'.  */
-  unsigned defining_class_p : 1;
+    /* Transient state set if this scope is of sk_class kind
+       and is in the process of defining 'this_entity'.  Reset
+       on leaving the class definition to allow for the scope
+       to be subsequently re-used as a non-defining scope for
+       'this_entity'.  */
+    unsigned defining_class_p : 1;
 
-  /* true for SK_FUNCTION_PARMS of immediate functions.  */
-  unsigned immediate_fn_ctx_p : 1;
+    /* true for SK_FUNCTION_PARMS of immediate functions.  */
+    unsigned immediate_fn_ctx_p : 1;
 
-  /* 22 bits left to fill a 32-bit word.  */
+    /* 22 bits left to fill a 32-bit word.  */
 };
 
 /* The binding level currently in effect.  */
 
-#define current_binding_level			\
+#define current_binding_level           \
   (*(cfun && cp_function_chain && cp_function_chain->bindings \
-   ? &cp_function_chain->bindings		\
+   ? &cp_function_chain->bindings       \
    : &scope_chain->bindings))
 
 /* The binding level of the current class, if any.  */
@@ -263,12 +270,12 @@ extern bool local_bindings_p (void);
 extern bool template_parm_scope_p (void);
 extern scope_kind innermost_scope_kind (void);
 extern cp_binding_level *begin_scope (scope_kind, tree);
-extern void print_binding_stack	(void);
+extern void print_binding_stack (void);
 extern void pop_everything (void);
 extern void keep_next_level (bool);
 extern bool is_ancestor (tree ancestor, tree descendant);
 extern bool is_nested_namespace (tree parent, tree descendant,
-				 bool inline_only = false);
+                                 bool inline_only = false);
 extern tree push_scope (tree);
 extern void pop_scope (tree);
 extern tree push_inner_scope (tree);
@@ -285,7 +292,7 @@ extern tree get_namespace_binding (tree ns, tree id);
 extern void set_global_binding (tree decl);
 inline tree get_global_binding (tree id)
 {
-  return get_namespace_binding (NULL_TREE, id);
+    return get_namespace_binding (NULL_TREE, id);
 }
 extern tree lookup_qualified_name (tree, tree, int = 0, bool = true, /*hidden*/bool = false);
 extern tree lookup_qualified_name (tree t, const char *p, int = 0, bool = true, bool = false);
@@ -309,7 +316,7 @@ extern tree get_class_binding (tree, tree, bool want_type = false);
 extern tree *find_member_slot (tree klass, tree name);
 extern tree *add_member_slot (tree klass, tree name);
 extern void resort_type_member_vec (void *, void *,
-				    gt_pointer_operator, void *);
+                                    gt_pointer_operator, void *);
 extern void set_class_bindings (tree, unsigned extra = 0);
 extern void insert_late_enum_def_bindings (tree, tree);
 extern tree innermost_non_namespace_value (tree);

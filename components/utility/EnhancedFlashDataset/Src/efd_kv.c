@@ -137,7 +137,7 @@ struct sector_hdr_data
     uint32_t reserved;
 } __attribute__((__packed__));
 ;
-typedef struct sector_hdr_data * sector_hdr_data_t;
+typedef struct sector_hdr_data *sector_hdr_data_t;
 
 struct sector_meta_data
 {
@@ -154,7 +154,7 @@ struct sector_meta_data
     uint32_t empty_env;              /**< the next empty ENV node start address */
 } __attribute__((__packed__));
 ;
-typedef struct sector_meta_data * sector_meta_data_t;
+typedef struct sector_meta_data *sector_meta_data_t;
 
 struct env_hdr_data
 {
@@ -166,7 +166,7 @@ struct env_hdr_data
     uint32_t value_len;                          /**< value length */
 } __attribute__((__packed__));
 ;
-typedef struct env_hdr_data * env_hdr_data_t;
+typedef struct env_hdr_data *env_hdr_data_t;
 
 struct env_cache_node
 {
@@ -175,7 +175,7 @@ struct env_cache_node
     uint32_t addr;     /**< ENV node address */
 } __attribute__((__packed__));
 ;
-typedef struct env_cache_node * env_cache_node_t;
+typedef struct env_cache_node *env_cache_node_t;
 
 struct sector_cache_node
 {
@@ -183,14 +183,14 @@ struct sector_cache_node
     uint32_t empty_addr; /**< sector empty address */
 } __attribute__((__packed__));
 ;
-typedef struct sector_cache_node * sector_cache_node_t;
+typedef struct sector_cache_node *sector_cache_node_t;
 
 static void gc_collect(void);
 
 /* ENV start address in flash */
 static uint32_t env_start_addr = 0;
 /* default ENV set, must be initialized by user */
-static efd_env const * default_env_set;
+static efd_env const *default_env_set;
 /* default ENV set size, must be initialized by user */
 static size_t default_env_set_size = 0;
 /* initialize OK flag */
@@ -334,7 +334,7 @@ static void update_sector_cache(uint32_t sec_addr, uint32_t empty_addr)
 /*
  * Get sector //info from cache. It's return true when cache is hit.
  */
-static bool get_sector_from_cache(uint32_t sec_addr, uint32_t * empty_addr)
+static bool get_sector_from_cache(uint32_t sec_addr, uint32_t *empty_addr)
 {
     size_t i;
 
@@ -353,7 +353,7 @@ static bool get_sector_from_cache(uint32_t sec_addr, uint32_t * empty_addr)
     return false;
 }
 
-static void update_env_cache(const char * name, size_t name_len, uint32_t addr)
+static void update_env_cache(const char *name, size_t name_len, uint32_t addr)
 {
     size_t i, empty_index = EFD_ENV_CACHE_TABLE_SIZE, min_activity_index = EFD_ENV_CACHE_TABLE_SIZE;
     uint16_t name_crc = (uint16_t) (efd_calc_crc32(0, name, name_len) >> 16), min_activity = 0xFFFF;
@@ -411,7 +411,7 @@ static void update_env_cache(const char * name, size_t name_len, uint32_t addr)
 /*
  * Get ENV //info from cache. It's return true when cache is hit.
  */
-static bool get_env_from_cache(const char * name, size_t name_len, uint32_t * addr)
+static bool get_env_from_cache(const char *name, size_t name_len, uint32_t *addr)
 {
     size_t i;
     uint16_t name_crc = (uint16_t) (efd_calc_crc32(0, name, name_len) >> 16);
@@ -755,8 +755,8 @@ static uint32_t get_next_sector_addr(sector_meta_data_t pre_sec)
     }
 }
 
-static void env_iterator(env_node_obj_t env, void * arg1, void * arg2,
-                         bool (*callback)(env_node_obj_t env, void * arg1, void * arg2))
+static void env_iterator(env_node_obj_t env, void *arg1, void *arg2,
+                         bool (*callback)(env_node_obj_t env, void *arg1, void *arg2))
 {
     struct sector_meta_data sector;
     uint32_t sec_addr;
@@ -791,10 +791,10 @@ static void env_iterator(env_node_obj_t env, void * arg1, void * arg2,
     }
 }
 
-static bool find_env_cb(env_node_obj_t env, void * arg1, void * arg2)
+static bool find_env_cb(env_node_obj_t env, void *arg1, void *arg2)
 {
-    const char * key = arg1;
-    bool * find_ok   = arg2;
+    const char *key = arg1;
+    bool *find_ok   = arg2;
     size_t key_len   = strlen(key);
 
     if (key_len != env->name_len)
@@ -810,7 +810,7 @@ static bool find_env_cb(env_node_obj_t env, void * arg1, void * arg2)
     return false;
 }
 
-static bool find_env_no_cache(const char * key, env_node_obj_t env)
+static bool find_env_no_cache(const char *key, env_node_obj_t env)
 {
     bool find_ok = false;
 
@@ -819,7 +819,7 @@ static bool find_env_no_cache(const char * key, env_node_obj_t env)
     return find_ok;
 }
 
-static bool find_env(const char * key, env_node_obj_t env)
+static bool find_env(const char *key, env_node_obj_t env)
 {
     bool find_ok = false;
 
@@ -845,7 +845,7 @@ static bool find_env(const char * key, env_node_obj_t env)
     return find_ok;
 }
 
-static bool efd_is_str(uint8_t * value, size_t len)
+static bool efd_is_str(uint8_t *value, size_t len)
 {
 #define __is_print(ch) ((unsigned int) ((ch) - ' ') < 127u - ' ')
     size_t i;
@@ -860,7 +860,7 @@ static bool efd_is_str(uint8_t * value, size_t len)
     return true;
 }
 
-static size_t get_env(const char * key, void * value_buf, size_t buf_len, size_t * value_len)
+static size_t get_env(const char *key, void *value_buf, size_t buf_len, size_t *value_len)
 {
     struct env_node_obj env;
     size_t read_len = 0;
@@ -900,7 +900,7 @@ static size_t get_env(const char * key, void * value_buf, size_t buf_len, size_t
  *
  * @return TRUE: find the ENV is OK, else return false
  */
-bool efd_get_env_obj(const char * key, env_node_obj_t env)
+bool efd_get_env_obj(const char *key, env_node_obj_t env)
 {
     bool find_ok = false;
 
@@ -931,7 +931,7 @@ bool efd_get_env_obj(const char * key, env_node_obj_t env)
  *
  * @return the actually get size on successful
  */
-size_t efd_get_env_blob(const char * key, void * value_buf, size_t buf_len, size_t * saved_value_len)
+size_t efd_get_env_blob(const char *key, void *value_buf, size_t buf_len, size_t *saved_value_len)
 {
     size_t read_len = 0;
 
@@ -962,7 +962,7 @@ size_t efd_get_env_blob(const char * key, void * value_buf, size_t buf_len, size
  *
  * @return value
  */
-char * efd_get_env(const char * key)
+char *efd_get_env(const char *key)
 {
     static char value[EFD_STR_ENV_VALUE_MAX_SIZE + 1];
     size_t get_size;
@@ -994,7 +994,7 @@ char * efd_get_env(const char * key)
  *
  * @return the actually read size on successful
  */
-size_t efd_read_env_value(env_node_obj_t env, uint8_t * value_buf, size_t buf_len)
+size_t efd_read_env_value(env_node_obj_t env, uint8_t *value_buf, size_t buf_len)
 {
     size_t read_len = 0;
 
@@ -1073,7 +1073,7 @@ static EfErrCode format_sector(uint32_t addr, uint32_t combined_value)
     return result;
 }
 
-static EfErrCode update_sec_status(sector_meta_data_t sector, size_t new_env_len, bool * is_full)
+static EfErrCode update_sec_status(sector_meta_data_t sector, size_t new_env_len, bool *is_full)
 {
     uint8_t status_table[STORE_STATUS_TABLE_SIZE];
     EfErrCode result = EFD_NO_ERR;
@@ -1110,8 +1110,8 @@ static EfErrCode update_sec_status(sector_meta_data_t sector, size_t new_env_len
     return result;
 }
 
-static void sector_iterator(sector_meta_data_t sector, sector_store_status_t status, void * arg1, void * arg2,
-                            bool (*callback)(sector_meta_data_t sector, void * arg1, void * arg2), bool traversal_env)
+static void sector_iterator(sector_meta_data_t sector, sector_store_status_t status, void *arg1, void *arg2,
+                            bool (*callback)(sector_meta_data_t sector, void *arg1, void *arg2), bool traversal_env)
 {
     uint32_t sec_addr;
 
@@ -1135,7 +1135,7 @@ static void sector_iterator(sector_meta_data_t sector, sector_store_status_t sta
     }
 }
 
-static bool sector_statistics_cb(sector_meta_data_t sector, void * arg1, void * arg2)
+static bool sector_statistics_cb(sector_meta_data_t sector, void *arg1, void *arg2)
 {
     size_t *empty_sector = arg1, *using_sector = arg2;
 
@@ -1151,16 +1151,16 @@ static bool sector_statistics_cb(sector_meta_data_t sector, void * arg1, void * 
     return false;
 }
 
-static bool alloc_env_cb(sector_meta_data_t sector, void * arg1, void * arg2)
+static bool alloc_env_cb(sector_meta_data_t sector, void *arg1, void *arg2)
 {
-    size_t * env_size    = arg1;
-    uint32_t * empty_env = arg2;
+    size_t *env_size    = arg1;
+    uint32_t *empty_env = arg2;
 
     /* 1. sector has space
      * 2. the NO dirty sector
      * 3. the dirty sector only when the gc_request is false */
     if (sector->check_ok && sector->remain > *env_size &&
-        ((sector->status.dirty == SECTOR_DIRTY_FALSE) || (sector->status.dirty == SECTOR_DIRTY_TRUE && !gc_request)))
+            ((sector->status.dirty == SECTOR_DIRTY_FALSE) || (sector->status.dirty == SECTOR_DIRTY_TRUE && !gc_request)))
     {
         *empty_env = sector->empty_env;
         return true;
@@ -1198,7 +1198,7 @@ static uint32_t alloc_env(sector_meta_data_t sector, size_t env_size)
     return empty_env;
 }
 
-static EfErrCode del_env(const char * key, env_node_obj_t old_env, bool complete_del)
+static EfErrCode del_env(const char *key, env_node_obj_t old_env, bool complete_del)
 {
     EfErrCode result = EFD_NO_ERR;
     uint32_t dirty_status_addr;
@@ -1367,9 +1367,9 @@ static uint32_t new_env_by_kv(sector_meta_data_t sector, size_t key_len, size_t 
     return new_env(sector, env_len);
 }
 
-static bool gc_check_cb(sector_meta_data_t sector, void * arg1, void * arg2)
+static bool gc_check_cb(sector_meta_data_t sector, void *arg1, void *arg2)
 {
-    size_t * empty_sec = arg1;
+    size_t *empty_sec = arg1;
 
     if (sector->check_ok)
     {
@@ -1379,7 +1379,7 @@ static bool gc_check_cb(sector_meta_data_t sector, void * arg1, void * arg2)
     return false;
 }
 
-static bool do_gc(sector_meta_data_t sector, void * arg1, void * arg2)
+static bool do_gc(sector_meta_data_t sector, void *arg1, void *arg2)
 {
     struct env_node_obj env;
 
@@ -1420,7 +1420,9 @@ static void gc_collect(void)
     size_t empty_sec = 0;
 #if (LPWR_FLASH_PROTECT_ENABLE == 1 && CHIP_DEVICE_CONFIG_ENABLE_SED != 1)
     if (flash_vbat_read() < 2500)
+    {
         return;
+    }
 #endif
     /* GC check the empty sector number */
     sector_iterator(&sector, SECTOR_STORE_EMPTY, &empty_sec, NULL, gc_check_cb, false);
@@ -1437,7 +1439,7 @@ static void gc_collect(void)
     gc_request = false;
 }
 
-static EfErrCode align_write(uint32_t addr, const uint32_t * buf, size_t size)
+static EfErrCode align_write(uint32_t addr, const uint32_t *buf, size_t size)
 {
     EfErrCode result = EFD_NO_ERR;
     size_t align_remain;
@@ -1455,7 +1457,8 @@ static EfErrCode align_write(uint32_t addr, const uint32_t * buf, size_t size)
     align_remain = EFD_WG_ALIGN_DOWN(size); // use align_remain temporary to save aligned size.
 
     if (align_remain > 0)
-    { // it may be 0 in this function.
+    {
+        // it may be 0 in this function.
         result = efd_port_write(addr, buf, align_remain);
     }
 
@@ -1469,7 +1472,7 @@ static EfErrCode align_write(uint32_t addr, const uint32_t * buf, size_t size)
     return result;
 }
 
-static EfErrCode create_env_blob(sector_meta_data_t sector, const char * key, const void * value, size_t len)
+static EfErrCode create_env_blob(sector_meta_data_t sector, const char *key, const void *value, size_t len)
 {
     EfErrCode result = EFD_NO_ERR;
     struct env_hdr_data env_hdr;
@@ -1568,7 +1571,7 @@ static EfErrCode create_env_blob(sector_meta_data_t sector, const char * key, co
  *
  * @return result
  */
-EfErrCode efd_del_env(const char * key)
+EfErrCode efd_del_env(const char *key)
 {
     EfErrCode result = EFD_NO_ERR;
 
@@ -1599,12 +1602,12 @@ EfErrCode efd_del_env(const char * key)
  *
  * @return result
  */
-EfErrCode efd_del_and_save_env(const char * key)
+EfErrCode efd_del_and_save_env(const char *key)
 {
     return efd_del_env(key);
 }
 
-static EfErrCode set_env(const char * key, const void * value_buf, size_t buf_len)
+static EfErrCode set_env(const char *key, const void *value_buf, size_t buf_len)
 {
     EfErrCode result = EFD_NO_ERR;
     static struct env_node_obj env;
@@ -1658,7 +1661,7 @@ static EfErrCode set_env(const char * key, const void * value_buf, size_t buf_le
  *
  * @return result
  */
-EfErrCode efd_set_env_blob(const char * key, const void * value_buf, size_t buf_len)
+EfErrCode efd_set_env_blob(const char *key, const void *value_buf, size_t buf_len)
 {
     EfErrCode result = EFD_NO_ERR;
 
@@ -1688,7 +1691,7 @@ EfErrCode efd_set_env_blob(const char * key, const void * value_buf, size_t buf_
  *
  * @return result
  */
-EfErrCode efd_set_env(const char * key, const char * value)
+EfErrCode efd_set_env(const char *key, const char *value)
 {
     return efd_set_env_blob(key, value, strlen(value));
 }
@@ -1704,7 +1707,7 @@ EfErrCode efd_set_env(const char * key, const char * value)
  *
  * @return result
  */
-EfErrCode efd_set_and_save_env(const char * key, const char * value)
+EfErrCode efd_set_and_save_env(const char *key, const char *value)
 {
     return efd_set_env_blob(key, value, strlen(value));
 }
@@ -1773,10 +1776,10 @@ __exit:
     return result;
 }
 
-static bool print_env_cb(env_node_obj_t env, void * arg1, void * arg2)
+static bool print_env_cb(env_node_obj_t env, void *arg1, void *arg2)
 {
     bool value_is_str = true, print_value = false;
-    size_t * using_size = arg1;
+    size_t *using_size = arg1;
 
     if (env->crc_is_ok)
     {
@@ -1791,7 +1794,7 @@ static bool print_env_cb(env_node_obj_t env, void * arg1, void * arg2)
             {
                 uint8_t buf[32];
                 size_t len, size;
-            __reload:
+__reload:
                 /* check the value is string */
                 for (len = 0, size = 0; len < env->value_len; len += size)
                 {
@@ -1855,7 +1858,7 @@ void info_env(void)
     env_iterator(&env, &using_size, NULL, print_env_cb);
     // log_info("\nmode: next generation\n");
     log_info("size: %lu/%lu bytes.\n", using_size + (SECTOR_NUM - EFD_GC_EMPTY_SEC_THRESHOLD) * SECTOR_HDR_DATA_SIZE,
-         ENV_AREA_SIZE - SECTOR_SIZE * EFD_GC_EMPTY_SEC_THRESHOLD);
+             ENV_AREA_SIZE - SECTOR_SIZE * EFD_GC_EMPTY_SEC_THRESHOLD);
     /* unlock the ENV cache */
     efd_port_env_unlock();
 }
@@ -1908,11 +1911,11 @@ static void env_auto_update(void)
 }
 #endif /* EFD_ENV_AUTO_UPDATE */
 
-static bool check_sec_hdr_cb(sector_meta_data_t sector, void * arg1, void * arg2)
+static bool check_sec_hdr_cb(sector_meta_data_t sector, void *arg1, void *arg2)
 {
     if (!sector->check_ok)
     {
-        size_t * failed_count = arg1;
+        size_t *failed_count = arg1;
 
         // log_info("Warning: Sector header check failed. Format this sector (0x%08x).\n", sector->addr);
         (*failed_count)++;
@@ -1922,7 +1925,7 @@ static bool check_sec_hdr_cb(sector_meta_data_t sector, void * arg1, void * arg2
     return false;
 }
 
-static bool check_and_recovery_gc_cb(sector_meta_data_t sector, void * arg1, void * arg2)
+static bool check_and_recovery_gc_cb(sector_meta_data_t sector, void *arg1, void *arg2)
 {
     if (sector->check_ok && sector->status.dirty == SECTOR_DIRTY_GC)
     {
@@ -1935,7 +1938,7 @@ static bool check_and_recovery_gc_cb(sector_meta_data_t sector, void * arg1, voi
     return false;
 }
 
-static bool check_and_recovery_env_cb(env_node_obj_t env, void * arg1, void * arg2)
+static bool check_and_recovery_env_cb(env_node_obj_t env, void *arg1, void *arg2)
 {
     /* recovery the prepare deleted ENV */
     if (env->crc_is_ok && env->status == ENV_PRE_DELETE)
@@ -2016,7 +2019,7 @@ __retry:
  *
  * @return result
  */
-EfErrCode efd_env_init(efd_env const * default_env, size_t default_env_size)
+EfErrCode efd_env_init(efd_env const *default_env, size_t default_env_size)
 {
     EfErrCode result = EFD_NO_ERR;
 

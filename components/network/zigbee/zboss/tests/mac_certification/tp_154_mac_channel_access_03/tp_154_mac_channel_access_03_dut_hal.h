@@ -28,18 +28,18 @@
 
 typedef enum test_action_e
 {
-  DATA_INDICATION_EV_ID,
-  LBT_START_EV_ID
+    DATA_INDICATION_EV_ID,
+    LBT_START_EV_ID
 } test_action_t;
 
 void test_hal_indicate_action_linux(test_action_t event);
 void test_hal_indicate_action_ti1352(test_action_t event);
 
 #ifdef ZB_CONFIG_LINUX_NSNG
-#define TEST_HAL_INDICATE_ACTION(event) 	    test_hal_indicate_action_linux(event)
+#define TEST_HAL_INDICATE_ACTION(event)         test_hal_indicate_action_linux(event)
 #else
 #define TEST_HAL_INDICATE_ACTION(event)         test_hal_indicate_action_ti1352(event)
 #endif
 
 
-#endif	/* TP_154_MAC_CHANNEL_ACCESS_03_DUT_HAL_H */
+#endif  /* TP_154_MAC_CHANNEL_ACCESS_03_DUT_HAL_H */

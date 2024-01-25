@@ -43,18 +43,18 @@ void test_device_scenes_table_init();
 
 typedef struct test_device_scenes_table_entry_s
 {
-  zb_zcl_scene_table_record_fixed_t common;
-  zb_int16_t occupied_cooling_setpoint;
-  zb_int16_t occupied_heating_setpoint;
-  zb_uint8_t system_mode;
+    zb_zcl_scene_table_record_fixed_t common;
+    zb_int16_t occupied_cooling_setpoint;
+    zb_int16_t occupied_heating_setpoint;
+    zb_uint8_t system_mode;
 }
 test_device_scenes_table_entry_t;
 
 typedef struct resp_info_s
 {
-  zb_zcl_parsed_hdr_t cmd_info;
-  zb_zcl_scenes_view_scene_req_t view_scene_req;
-  zb_zcl_scenes_get_scene_membership_req_t get_scene_membership_req;
+    zb_zcl_parsed_hdr_t cmd_info;
+    zb_zcl_scenes_view_scene_req_t view_scene_req;
+    zb_zcl_scenes_get_scene_membership_req_t get_scene_membership_req;
 } resp_info_t;
 
 #define TEST_DEVICE_SCENES_TABLE_SIZE 3

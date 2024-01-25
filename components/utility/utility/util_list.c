@@ -1,12 +1,12 @@
 /**
  * @file util_list.c
  * @author Rex Huang (rex.huang@rafaelmicro.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2023-07-27
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 
 
@@ -28,7 +28,8 @@ void utils_list_pool_init(struct utils_list *list, void *pool, size_t elmt_size,
     utils_list_init(list);
 
     // Add each element of the pool to this list, and init them one by one
-    for (i = 0; i < elmt_cnt; i++) {
+    for (i = 0; i < elmt_cnt; i++)
+    {
         if (default_value)
         {
             memcpy(pool, default_value, elmt_size);
@@ -108,7 +109,9 @@ void utils_list_extract(struct utils_list *list, struct utils_list_hdr *list_hdr
 
     // Check if list is empty or not
     if (scan_list == NULL)
+    {
         return;
+    }
 
     // check if searched element is first
     if (scan_list == list_hdr)
@@ -145,7 +148,7 @@ int utils_list_find(struct utils_list *list, struct utils_list_hdr *list_hdr)
 
     // Go through the list to find the element
     tmp_list_hdr = list->first;
-    while((tmp_list_hdr != list_hdr) && (tmp_list_hdr != NULL))
+    while ((tmp_list_hdr != list_hdr) && (tmp_list_hdr != NULL))
     {
         tmp_list_hdr = tmp_list_hdr->next;
     }
@@ -165,7 +168,7 @@ unsigned int utils_list_cnt(const struct utils_list *const list)
         elt = utils_list_next(elt);
     }
 
-    return(cnt);
+    return (cnt);
 }
 
 /**
@@ -183,13 +186,13 @@ unsigned int utils_list_cnt(const struct utils_list *const list)
  * @return              Pointer to the element found and removed (NULL otherwise).
  ****************************************************************************************
  */
-void utils_list_insert(struct utils_list * const list, struct utils_list_hdr * const element,
-                    int (*cmp)(struct utils_list_hdr const *elementA, struct utils_list_hdr const *elementB))
+void utils_list_insert(struct utils_list *const list, struct utils_list_hdr *const element,
+                       int (*cmp)(struct utils_list_hdr const *elementA, struct utils_list_hdr const *elementB))
 {
     struct utils_list_hdr *prev = NULL;
     struct utils_list_hdr *scan = list->first;
 
-    for(;;)
+    for (;;)
     {
         // scan the list until the end or cmp() returns true
         if (scan)
@@ -224,7 +227,7 @@ void utils_list_insert(struct utils_list * const list, struct utils_list_hdr * c
     }
 }
 
-void utils_list_insert_after(struct utils_list * const list, struct utils_list_hdr * const prev_element, struct utils_list_hdr * const element)
+void utils_list_insert_after(struct utils_list *const list, struct utils_list_hdr *const prev_element, struct utils_list_hdr *const element)
 {
     struct utils_list_hdr *scan = list->first;
 
@@ -261,7 +264,7 @@ void utils_list_insert_after(struct utils_list * const list, struct utils_list_h
     }
 }
 
-void utils_list_insert_before(struct utils_list * const list, struct utils_list_hdr * const next_element, struct utils_list_hdr * const element)
+void utils_list_insert_before(struct utils_list *const list, struct utils_list_hdr *const next_element, struct utils_list_hdr *const element)
 {
     if (next_element == NULL)
     {
@@ -338,7 +341,9 @@ void utils_list_remove(struct utils_list *list, struct utils_list_hdr *prev_elem
     {
         prev_element->next = element->next;
         if (list->last == element)
+        {
             list->last = prev_element;
+        }
     }
 
     element->next = NULL;

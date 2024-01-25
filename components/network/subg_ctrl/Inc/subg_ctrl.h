@@ -1,12 +1,12 @@
 /**
  * @file subg_ctrl.h
  * @author Rex Huang (rex.huang@rafaelmicro.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2023-08-10
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 
 #ifndef __SUBG_CTRL_H__
@@ -22,8 +22,8 @@ typedef enum
     SUBG_CTRL_MODU_OPQSK,
 } subg_ctrl_modulation_t;
 
-typedef enum 
-{ 
+typedef enum
+{
     SUBG_CTRL_DATA_RATE_2M     = 0,
     SUBG_CTRL_DATA_RATE_1M,
     SUBG_CTRL_DATA_RATE_500K,

@@ -446,9 +446,9 @@
 #define ZB_FCF_SET_FRAME_VERSION( p_fcf, frame_version )                \
   do                                                                    \
   {                                                                     \
-    ZB_ASSERT( (frame_version) == MAC_FRAME_IEEE_802_15_4_2003		\
-               || (frame_version) == MAC_FRAME_IEEE_802_15_4		\
-               || (frame_version) == MAC_FRAME_IEEE_802_15_4_2015 );	\
+    ZB_ASSERT( (frame_version) == MAC_FRAME_IEEE_802_15_4_2003      \
+               || (frame_version) == MAC_FRAME_IEEE_802_15_4        \
+               || (frame_version) == MAC_FRAME_IEEE_802_15_4_2015 );    \
                                                                         \
     ( ( ( zb_uint8_t* ) ( p_fcf ) )[ZB_PKT_16B_FIRST_BYTE] ) &= 0xCFU;  \
     ( ( ( zb_uint8_t* ) ( p_fcf ) )[ZB_PKT_16B_FIRST_BYTE] ) |= ( frame_version ) << 4U; \
@@ -712,7 +712,7 @@ zb_ushort_t zb_mac_get_beacon_payload_offset(zb_uint8_t *beacon);
 
 typedef ZB_PACKED_PRE struct zb_mac_purge_confirm_s
 {
-  zb_uint8_t status;
+    zb_uint8_t status;
 } ZB_PACKED_STRUCT
 zb_mac_purge_confirm_t;
 
@@ -797,8 +797,8 @@ zb_mac_purge_confirm_t;
 */
 typedef ZB_PACKED_PRE struct zb_mac_disassociate_indication_s
 {
-  zb_ieee_addr_t device_address;
-  zb_uint8_t     disassociate_reason;
+    zb_ieee_addr_t device_address;
+    zb_uint8_t     disassociate_reason;
 } ZB_PACKED_STRUCT
 zb_mac_disassociate_indication_t;
 
@@ -836,10 +836,10 @@ zb_mac_disassociate_indication_t;
 
 typedef ZB_PACKED_PRE struct zb_mac_disassociate_confirm_s
 {
-  zb_uint8_t      status;
-  zb_uint8_t      device_addr_mode;
-  zb_uint16_t     device_pan_id;
-  zb_addr_u device_addr;
+    zb_uint8_t      status;
+    zb_uint8_t      device_addr_mode;
+    zb_uint16_t     device_pan_id;
+    zb_addr_u device_addr;
 } ZB_PACKED_STRUCT
 zb_mac_disassociate_confirm_t;
 
@@ -902,23 +902,23 @@ zb_mac_disassociate_confirm_t;
 typedef ZB_PACKED_PRE struct zb_super_frame_spec_s
 {
 #ifdef ZB_LITTLE_ENDIAN
-  zb_bitfield_t beacon_order:4;
-  zb_bitfield_t superframe_order:4;
+    zb_bitfield_t beacon_order: 4;
+    zb_bitfield_t superframe_order: 4;
 
-  zb_bitfield_t final_cap_slot:4;
-  zb_bitfield_t battery_life_extension:1;
-  zb_bitfield_t reserved:1;
-  zb_bitfield_t pan_coordinator:1;
-  zb_bitfield_t associate_permit:1;
+    zb_bitfield_t final_cap_slot: 4;
+    zb_bitfield_t battery_life_extension: 1;
+    zb_bitfield_t reserved: 1;
+    zb_bitfield_t pan_coordinator: 1;
+    zb_bitfield_t associate_permit: 1;
 #else
-  zb_bitfield_t final_cap_slot:4;
-  zb_bitfield_t battery_life_extension:1;
-  zb_bitfield_t reserved:1;
-  zb_bitfield_t pan_coordinator:1;
-  zb_bitfield_t associate_permit:1;
+    zb_bitfield_t final_cap_slot: 4;
+    zb_bitfield_t battery_life_extension: 1;
+    zb_bitfield_t reserved: 1;
+    zb_bitfield_t pan_coordinator: 1;
+    zb_bitfield_t associate_permit: 1;
 
-  zb_bitfield_t beacon_order:4;
-  zb_bitfield_t superframe_order:4;
+    zb_bitfield_t beacon_order: 4;
+    zb_bitfield_t superframe_order: 4;
 #endif
 } ZB_PACKED_STRUCT
 zb_super_frame_spec_t;
@@ -1052,40 +1052,40 @@ zb_super_frame_spec_t;
 */
 typedef ZB_PACKED_PRE struct  zb_mac_beacon_payload_s
 {
-  zb_uint8_t protocol_id;       /**< for purposes of this specification,
+    zb_uint8_t protocol_id;       /**< for purposes of this specification,
                                    shall always be set to 0,
                                    indicating the Zigbee protocols.
                                 */
 #ifdef ZB_LITTLE_ENDIAN
-  zb_bitfield_t stack_profile:4;
-  zb_bitfield_t protocol_version:4;
+    zb_bitfield_t stack_profile: 4;
+    zb_bitfield_t protocol_version: 4;
 
-  /* Used by Amazon WWAH, reserved otherwise */
-  zb_bitfield_t long_uptime:1;
-  zb_bitfield_t tc_connectivity:1;
+    /* Used by Amazon WWAH, reserved otherwise */
+    zb_bitfield_t long_uptime: 1;
+    zb_bitfield_t tc_connectivity: 1;
 
-  zb_bitfield_t router_capacity:1;
-  zb_bitfield_t device_depth:4;
-  zb_bitfield_t end_device_capacity:1;
+    zb_bitfield_t router_capacity: 1;
+    zb_bitfield_t device_depth: 4;
+    zb_bitfield_t end_device_capacity: 1;
 
 #else /* #ifdef ZB_LITTLE_ENDIAN */
 
-  zb_bitfield_t long_uptime:1;
-  zb_bitfield_t tc_connectivity:1;
+    zb_bitfield_t long_uptime: 1;
+    zb_bitfield_t tc_connectivity: 1;
 
-  zb_bitfield_t router_capacity:1;
-  zb_bitfield_t device_depth:4;
-  zb_bitfield_t end_device_capacity:1;
+    zb_bitfield_t router_capacity: 1;
+    zb_bitfield_t device_depth: 4;
+    zb_bitfield_t end_device_capacity: 1;
 
-  zb_bitfield_t stack_profile:4;
-  zb_bitfield_t protocol_version:4;
+    zb_bitfield_t stack_profile: 4;
+    zb_bitfield_t protocol_version: 4;
 #endif /* #else ZB_LITTLE_ENDIAN */
 
-  zb_ext_pan_id_t extended_panid;
-  zb_uint8_t txoffset[3];         /**< This parameter is set to the
+    zb_ext_pan_id_t extended_panid;
+    zb_uint8_t txoffset[3];         /**< This parameter is set to the
                                      default value of 0xFFFFFF in
                                      a beaconless networks.  */
-  zb_uint8_t nwk_update_id;       /*!< This field reflects the value of
+    zb_uint8_t nwk_update_id;       /*!< This field reflects the value of
                                     nwkUpdateId from the NIB. */
 } ZB_PACKED_STRUCT
 zb_mac_beacon_payload_t;
@@ -1202,22 +1202,22 @@ zb_mac_beacon_payload_t;
 
 typedef ZB_PACKED_PRE struct zb_mac_pan_descriptor_s    // 7.1.5.1.1 table-41
 {
-  zb_uint8_t            coord_addr_mode;
-  zb_uint16_t           coord_pan_id;
-  zb_addr_u       coord_address;    /* pointer to 16-bit or 64-bit address, this
+    zb_uint8_t            coord_addr_mode;
+    zb_uint16_t           coord_pan_id;
+    zb_addr_u       coord_address;    /* pointer to 16-bit or 64-bit address, this
                                            * depends on value of coord_addr_mode  */
-  zb_uint8_t            channel_page;
-  zb_uint8_t            logical_channel;
-  zb_super_frame_spec_t super_frame_spec;
-  zb_uint8_t            gts_permit;
-  zb_uint8_t            link_quality;
-  /* Zigbee does not use security and uses beaconless mode, so skip other Pan descriptor
-     fields - for timestamp and security  */
+    zb_uint8_t            channel_page;
+    zb_uint8_t            logical_channel;
+    zb_super_frame_spec_t super_frame_spec;
+    zb_uint8_t            gts_permit;
+    zb_uint8_t            link_quality;
+    /* Zigbee does not use security and uses beaconless mode, so skip other Pan descriptor
+       fields - for timestamp and security  */
 #if defined ZB_MAC_TESTING_MODE
-  zb_time_t             timestamp; /* Optional Timestamp field */
+    zb_time_t             timestamp; /* Optional Timestamp field */
 #endif
 #if defined ZB_ENHANCED_BEACON_SUPPORT
-  zb_uint16_t           enh_beacon_nwk_addr; /* the field is required for enhanced beacons handling */
+    zb_uint16_t           enh_beacon_nwk_addr; /* the field is required for enhanced beacons handling */
 #endif /* ZB_ENHANCED_BEACON_SUPPORT */
 } ZB_PACKED_STRUCT
 zb_pan_descriptor_t;
@@ -1234,10 +1234,10 @@ zb_pan_descriptor_t;
 */
 typedef ZB_PACKED_PRE struct  zb_pending_address_spec_s
 {
-  zb_bitfield_t num_of_short_addr:3;
-  zb_bitfield_t rvd0:1;
-  zb_bitfield_t num_of_long_addr:3;
-  zb_bitfield_t rvd1:1;
+    zb_bitfield_t num_of_short_addr: 3;
+    zb_bitfield_t rvd0: 1;
+    zb_bitfield_t num_of_long_addr: 3;
+    zb_bitfield_t rvd1: 1;
 } ZB_PACKED_STRUCT
 zb_pending_address_spec_t;
 
@@ -1319,16 +1319,16 @@ do                                                                              
 
 typedef ZB_PACKED_PRE struct zb_mac_scan_confirm_s
 {
-  zb_uint8_t  status;
-  zb_uint8_t  scan_type;
-  zb_uint8_t  channel_page;
-  zb_uint8_t  result_list_size;
-  zb_uint32_t unscanned_channels;
+    zb_uint8_t  status;
+    zb_uint8_t  scan_type;
+    zb_uint8_t  channel_page;
+    zb_uint8_t  result_list_size;
+    zb_uint32_t unscanned_channels;
 
-  ZB_PACKED_PRE union
-  {
-    zb_uint8_t           energy_detect[ ZB_MAC_SUPPORTED_CHANNELS ];
-  } ZB_PACKED_STRUCT list;
+    ZB_PACKED_PRE union
+    {
+        zb_uint8_t           energy_detect[ ZB_MAC_SUPPORTED_CHANNELS ];
+    } ZB_PACKED_STRUCT list;
 } ZB_PACKED_STRUCT
 zb_mac_scan_confirm_t;
 
@@ -1508,18 +1508,18 @@ typedef zb_uint8_t zb_mac_status_t;
  */
 typedef enum zb_phy_status_e
 {
-  PHY_BUSY                  = 0x00,
-  PHY_BUSY_RX               = 0x01,
-  PHY_BUSY_TX               = 0x02,
-  PHY_FORCE_TRX_OFF         = 0x03,
-  PHY_IDLE                  = 0x04,
-  PHY_INVALID_PARAMETER     = 0x05,
-  PHY_RX_ON                 = 0x06,
-  PHY_SUCCESS               = 0x07,
-  PHY_TRX_OFF               = 0x08,
-  PHY_TX_ON                 = 0x09,
-  PHY_UNSUPPORTED_ATTRIBUTE = 0x0a,
-  PHY_READ_ONLY             = 0x0b
+    PHY_BUSY                  = 0x00,
+    PHY_BUSY_RX               = 0x01,
+    PHY_BUSY_TX               = 0x02,
+    PHY_FORCE_TRX_OFF         = 0x03,
+    PHY_IDLE                  = 0x04,
+    PHY_INVALID_PARAMETER     = 0x05,
+    PHY_RX_ON                 = 0x06,
+    PHY_SUCCESS               = 0x07,
+    PHY_TRX_OFF               = 0x08,
+    PHY_TX_ON                 = 0x09,
+    PHY_UNSUPPORTED_ATTRIBUTE = 0x0a,
+    PHY_READ_ONLY             = 0x0b
 } zb_phy_status_t;
 
 /**
@@ -1571,41 +1571,41 @@ ZB_PACKED_PRE
 #endif
 union zb_addr_time_u
 {
-  zb_uint16_t  addr_short;
-  zb_ieee_addr_t addr_long;
-  zb_time_t tx_at;              /**< No src addr. Transmit ZGPDF at given time  */
+    zb_uint16_t  addr_short;
+    zb_ieee_addr_t addr_long;
+    zb_time_t tx_at;              /**< No src addr. Transmit ZGPDF at given time  */
 };
 
 /** @brief Parameters for data request. */
 typedef ZB_PACKED_PRE struct zb_mcps_data_req_params_s
 {
 #ifndef ZB_MAC_EXT_DATA_REQ
-  /* Quite old, from 2007: short addresses only */
-  zb_uint16_t src_addr;             /**< Source address */
-  zb_uint16_t dst_addr;             /**< Destination address */
+    /* Quite old, from 2007: short addresses only */
+    zb_uint16_t src_addr;             /**< Source address */
+    zb_uint16_t dst_addr;             /**< Destination address */
 #else
-  /* In Zigbee 2007 never need to send data to/from long address, but need it for
-   * MAC certification testing and for interpan (ZLL). So actually we are here always. */
-  union zb_addr_time_u src_addr;         /**< Source address */
-  zb_addr_u      dst_addr;         /**< Destination address */
-  zb_uint16_t    dst_pan_id;       /**< Destination Pan ID */
+    /* In Zigbee 2007 never need to send data to/from long address, but need it for
+     * MAC certification testing and for interpan (ZLL). So actually we are here always. */
+    union zb_addr_time_u src_addr;         /**< Source address */
+    zb_addr_u      dst_addr;         /**< Destination address */
+    zb_uint16_t    dst_pan_id;       /**< Destination Pan ID */
 #endif  /* ZB_MAC_EXT_DATA_REQ */
-  zb_bitfield_t tx_options:5;      /**< Options. @see mac_tx_options_bits */
-  zb_bitfield_t src_addr_mode:2;      /**< Source address mode, one of @ref address_modes */
-  zb_bitfield_t reserved1:1;
-  zb_bitfield_t mhr_len:5;         /* mhr length, filled by MAC and used internally.
+    zb_bitfield_t tx_options: 5;     /**< Options. @see mac_tx_options_bits */
+    zb_bitfield_t src_addr_mode: 2;     /**< Source address mode, one of @ref address_modes */
+    zb_bitfield_t reserved1: 1;
+    zb_bitfield_t mhr_len: 5;         /* mhr length, filled by MAC and used internally.
                                     * Can't be >= 32 */
-  zb_bitfield_t dst_addr_mode:2;      /**< Destination address mode, one of @ref address_modes */
-  zb_bitfield_t reserved2:1;
+    zb_bitfield_t dst_addr_mode: 2;     /**< Destination address mode, one of @ref address_modes */
+    zb_bitfield_t reserved2: 1;
 #ifdef ZB_ENABLE_NWK_RETRANSMIT
-  zb_uint8_t    nwk_retry_cnt;
+    zb_uint8_t    nwk_retry_cnt;
 #endif
-  zb_uint8_t    msdu_handle;          /**< */
+    zb_uint8_t    msdu_handle;          /**< */
 #ifdef ZB_MAC_SECURITY
-  zb_uint8_t      security_level;   /**< */
-  zb_uint8_t      key_id_mode;      /**< */
-  zb_uint8_t      key_source[8];    /**< */
-  zb_uint8_t      key_index;        /**< */
+    zb_uint8_t      security_level;   /**< */
+    zb_uint8_t      key_id_mode;      /**< */
+    zb_uint8_t      key_source[8];    /**< */
+    zb_uint8_t      key_index;        /**< */
 #endif
 } ZB_PACKED_STRUCT
 zb_mcps_data_req_params_t;
@@ -1621,7 +1621,7 @@ zb_mcps_data_req_params_t;
  *
  * IEEE 802.15.4 frame payload (116 bytes)
  */
-ZB_ASSERT_COMPILE_DECL(ZB_IO_BUF_SIZE > (9 + 0x74 + (sizeof(zb_mcps_data_req_params_t) + ZB_BUF_ALLOC_ALIGN - 1) / ZB_BUF_ALLOC_ALIGN * ZB_BUF_ALLOC_ALIGN));
+ZB_ASSERT_COMPILE_DECL(ZB_IO_BUF_SIZE > (9 + 0x74 + (sizeof(zb_mcps_data_req_params_t) + ZB_BUF_ALLOC_ALIGN - 1) / ZB_BUF_ALLOC_ALIGN *ZB_BUF_ALLOC_ALIGN));
 
 
 /*!< MSDU handle for GPDFs sent from ZGP EP in Direct mode  */
@@ -1631,21 +1631,21 @@ ZB_ASSERT_COMPILE_DECL(ZB_IO_BUF_SIZE > (9 + 0x74 + (sizeof(zb_mcps_data_req_par
 /** @brief Parameters for data confirm call. */
 typedef ZB_PACKED_PRE struct zb_mcps_data_confirm_params_s
 {
-  /* Put some data_req parameters into confirm. Confirm call always removes MAC hdr now. */
-  zb_addr_u     src_addr;         /**< Source address */
-  zb_addr_u     dst_addr;         /**< Destination address */
-  zb_uint16_t   dst_pan_id;       /**< Destination Pan ID */
-  zb_mac_status_t status;
-  zb_bitfield_t tx_options:4;      /**< Options. @see mac_tx_options_bits. Note: no space for MAC_TX_OPTION_OK_TO_INDIRECT_TRANSMISSION_NOW used internally in non-DSR MAC adopter only */
-  zb_bitfield_t src_addr_mode:2;   /**< Source address mode, one of @ref address_modes */
-  zb_bitfield_t dst_addr_mode:2;   /**< Destination address mode, one of @ref address_modes */
+    /* Put some data_req parameters into confirm. Confirm call always removes MAC hdr now. */
+    zb_addr_u     src_addr;         /**< Source address */
+    zb_addr_u     dst_addr;         /**< Destination address */
+    zb_uint16_t   dst_pan_id;       /**< Destination Pan ID */
+    zb_mac_status_t status;
+    zb_bitfield_t tx_options: 4;     /**< Options. @see mac_tx_options_bits. Note: no space for MAC_TX_OPTION_OK_TO_INDIRECT_TRANSMISSION_NOW used internally in non-DSR MAC adopter only */
+    zb_bitfield_t src_addr_mode: 2;  /**< Source address mode, one of @ref address_modes */
+    zb_bitfield_t dst_addr_mode: 2;  /**< Destination address mode, one of @ref address_modes */
 
 #ifdef ZB_ENABLE_NWK_RETRANSMIT
-  zb_uint8_t nwk_retry_cnt;
+    zb_uint8_t nwk_retry_cnt;
 #endif
-  zb_uint8_t msdu_handle;   /**< MSDU handle value. */
+    zb_uint8_t msdu_handle;   /**< MSDU handle value. */
 #if defined ZB_MAC_TESTING_MODE
-  zb_time_t timestamp;      /**< Timestamp of TX done */
+    zb_time_t timestamp;      /**< Timestamp of TX done */
 #endif
 } ZB_PACKED_STRUCT zb_mcps_data_confirm_params_t;
 
@@ -1705,8 +1705,8 @@ void zb_mcps_poll_indication(zb_uint8_t param);
 /** @brief Defines MLME-POLL.indication primitive. */
 typedef ZB_PACKED_PRE struct zb_mlme_poll_indication_s
 {
-  zb_uint16_t         addr_mode;
-  zb_uint16_t         dev_addr;
+    zb_uint16_t         addr_mode;
+    zb_uint16_t         dev_addr;
 } ZB_PACKED_STRUCT
 zb_mlme_poll_indication_t;
 
@@ -1725,45 +1725,45 @@ ZB_PACKED_PRE
 #endif
 union zb_cb_align64_u
 {
-  zb_uint64_t u64;
-  zb_callback_t cb;
+    zb_uint64_t u64;
+    zb_callback_t cb;
 };
 
 /** @brief Defines MLME-GET.request primitive. */
 typedef ZB_PACKED_PRE struct zb_mlme_get_request_s
 {
-  zb_uint8_t            pib_attr;
-  zb_uint8_t            pib_index;
-  union zb_cb_align64_u confirm_cb_u;
+    zb_uint8_t            pib_attr;
+    zb_uint8_t            pib_index;
+    union zb_cb_align64_u confirm_cb_u;
 } ZB_PACKED_STRUCT zb_mlme_get_request_t;
 
 /** @brief Defines MLME-GET.confirm primitive. */
 typedef ZB_PACKED_PRE struct zb_mlme_get_confirm_s
 {
-  zb_mac_status_t    status;
-  zb_uint8_t  pib_attr;
-  zb_uint8_t         pib_index;
-  zb_uint8_t         pib_length;
+    zb_mac_status_t    status;
+    zb_uint8_t  pib_attr;
+    zb_uint8_t         pib_index;
+    zb_uint8_t         pib_length;
 } ZB_PACKED_STRUCT
 zb_mlme_get_confirm_t;
 
 /** @brief Defines MLME-SET.request primitive. */
 typedef ZB_PACKED_PRE struct zb_mlme_set_request_s
 {
-  zb_uint8_t  pib_attr;
-  zb_uint8_t         pib_index;
-  zb_uint8_t         pib_length;
-  union zb_cb_align64_u    confirm_cb_u;
+    zb_uint8_t  pib_attr;
+    zb_uint8_t         pib_index;
+    zb_uint8_t         pib_length;
+    union zb_cb_align64_u    confirm_cb_u;
 } ZB_PACKED_STRUCT
 zb_mlme_set_request_t;
 
 /** @brief Defines MLME-SET.confirm primitive. */
 typedef ZB_PACKED_PRE struct zb_mlme_set_confirm_s
 {
-  zb_mac_status_t status;
-  zb_uint8_t pib_attr;
-  zb_uint8_t pib_index; /*!< MAC Interface #  */
-  ZB_PACKED_PRE union zb_cb_align64_u confirm_cb_u;
+    zb_mac_status_t status;
+    zb_uint8_t pib_attr;
+    zb_uint8_t pib_index; /*!< MAC Interface #  */
+    ZB_PACKED_PRE union zb_cb_align64_u confirm_cb_u;
 } ZB_PACKED_STRUCT zb_mlme_set_confirm_t;
 
 #if defined ZB_JOINING_LIST_SUPPORT
@@ -1773,55 +1773,55 @@ typedef ZB_PACKED_PRE struct zb_mlme_set_confirm_s
  */
 typedef ZB_PACKED_PRE struct zb_mlme_get_ieee_joining_list_req_s
 {
-  zb_uint8_t         start_index;
-  zb_uint8_t         count;
+    zb_uint8_t         start_index;
+    zb_uint8_t         count;
 } ZB_PACKED_STRUCT
 zb_mlme_get_ieee_joining_list_req_t;
 
 /* @brief to be used as payload for zb_mlme_get_confirm_t */
 typedef ZB_PACKED_PRE struct zb_mlme_get_ieee_joining_list_res_s
 {
-  zb_uint8_t         start_index;
-  zb_uint8_t         total_length;
-  zb_uint8_t         joining_policy;
-  zb_uint8_t         addr_count;
+    zb_uint8_t         start_index;
+    zb_uint8_t         total_length;
+    zb_uint8_t         joining_policy;
+    zb_uint8_t         addr_count;
 } ZB_PACKED_STRUCT
 zb_mlme_get_ieee_joining_list_res_t;
 
 /* @brief */
 typedef enum zb_mlme_set_ieee_joining_list_req_type_e
 {
-  ZB_MLME_SET_IEEE_JL_REQ_RANGE = 0,
-  ZB_MLME_SET_IEEE_JL_REQ_INSERT,
-  ZB_MLME_SET_IEEE_JL_REQ_ERASE,
-  ZB_MLME_SET_IEEE_JL_REQ_CLEAR,
+    ZB_MLME_SET_IEEE_JL_REQ_RANGE = 0,
+    ZB_MLME_SET_IEEE_JL_REQ_INSERT,
+    ZB_MLME_SET_IEEE_JL_REQ_ERASE,
+    ZB_MLME_SET_IEEE_JL_REQ_CLEAR,
 } zb_mlme_set_ieee_joining_list_req_type_t;
 
 typedef ZB_PACKED_PRE struct zb_mlme_set_ieee_joining_list_range_s
 {
-  zb_uint8_t         start_index;    /* the first element to be replaced */
-  zb_uint8_t         items_count;
-  zb_uint8_t         joining_policy;
-  zb_uint8_t         list_size;      /* list size to set */
+    zb_uint8_t         start_index;    /* the first element to be replaced */
+    zb_uint8_t         items_count;
+    zb_uint8_t         joining_policy;
+    zb_uint8_t         list_size;      /* list size to set */
 } ZB_PACKED_STRUCT
 zb_mlme_set_ieee_joining_list_range_t;
 
 typedef ZB_PACKED_PRE struct zb_mlme_set_ieee_joining_list_clear_s
 {
-  zb_uint8_t         joining_policy; /* policy to set on clearing */
+    zb_uint8_t         joining_policy; /* policy to set on clearing */
 } ZB_PACKED_STRUCT
 zb_mlme_set_ieee_joining_list_clear_t;
 
 /* @brief to be used as payload for zb_mlme_set_request_t */
 typedef ZB_PACKED_PRE struct zb_mlme_set_ieee_joining_list_req_s
 {
-  zb_uint8_t         op_type;   /* operation type */
-  ZB_PACKED_PRE union
-  {
-    zb_mlme_set_ieee_joining_list_range_t range_params;
-    zb_mlme_set_ieee_joining_list_clear_t clear_params;
-    zb_ieee_addr_t ieee_value;
-  } ZB_PACKED_STRUCT param;
+    zb_uint8_t         op_type;   /* operation type */
+    ZB_PACKED_PRE union
+    {
+        zb_mlme_set_ieee_joining_list_range_t range_params;
+        zb_mlme_set_ieee_joining_list_clear_t clear_params;
+        zb_ieee_addr_t ieee_value;
+    } ZB_PACKED_STRUCT param;
 } ZB_PACKED_STRUCT
 zb_mlme_set_ieee_joining_list_req_t;
 
@@ -1866,15 +1866,15 @@ void zb_mlme_set_confirm(zb_uint8_t param);
 /** @brief Parameters for start request. */
 typedef ZB_PACKED_PRE struct zb_mlme_start_req_s
 {
-  zb_uint16_t pan_id;                               /**< Pan ID */
-  zb_uint8_t  logical_channel;                      /**< Logical channel */
-  zb_uint8_t  channel_page;                         /**< The channel page to use */
-  zb_uint8_t  beacon_order;                         /**< Beacon order */
-  zb_uint8_t  superframe_order;                     /**< Superframe order */
-  zb_bitfield_t  pan_coordinator:1;                 /**< Is Coordinator */
-  zb_bitfield_t  battery_life_extension:1;          /**< IS Battery life extension */
-  zb_bitfield_t  coord_realignment:1;               /**< */
-  zb_bitfield_t  reserved:5;                        /**< Reserved */
+    zb_uint16_t pan_id;                               /**< Pan ID */
+    zb_uint8_t  logical_channel;                      /**< Logical channel */
+    zb_uint8_t  channel_page;                         /**< The channel page to use */
+    zb_uint8_t  beacon_order;                         /**< Beacon order */
+    zb_uint8_t  superframe_order;                     /**< Superframe order */
+    zb_bitfield_t  pan_coordinator: 1;                /**< Is Coordinator */
+    zb_bitfield_t  battery_life_extension: 1;         /**< IS Battery life extension */
+    zb_bitfield_t  coord_realignment: 1;              /**< */
+    zb_bitfield_t  reserved: 5;                       /**< Reserved */
 } ZB_PACKED_STRUCT
 zb_mlme_start_req_t;
 
@@ -1897,13 +1897,13 @@ void zb_mlme_start_confirm (zb_uint8_t param);
 /** @brief Parameter for the zb_mlme_reset_request(). */
 typedef ZB_PACKED_PRE struct zb_mlme_reset_request_s
 {
-  zb_uint8_t           set_default_pib; /**< If TRUE, the MAC sublayer is reset, and all MAC PIB
+    zb_uint8_t           set_default_pib; /**< If TRUE, the MAC sublayer is reset, and all MAC PIB
                                            attributes are set to their default values. If FALSE, the
                                            MAC sublayer is reset, but all MAC PIB attributes retain
                                            their values prior to the generation of the
                                            MLME-RESET.request primitive.  */
 #ifdef ZB_MAC_RESET_AT_SHUT
-  zb_uint8_t           reset_at_shut;
+    zb_uint8_t           reset_at_shut;
 #endif
 } ZB_PACKED_STRUCT
 zb_mlme_reset_request_t;
@@ -1917,7 +1917,7 @@ void zb_mlme_reset_request (zb_uint8_t param);
 /** @brief Parameter for the zb_mlme_reset_confirm(). */
 typedef ZB_PACKED_PRE struct zb_mlme_reset_confirm_s
 {
-  zb_uint8_t status; /**< Status */
+    zb_uint8_t status; /**< Status */
 } ZB_PACKED_STRUCT
 zb_mlme_reset_confirm_t;
 
@@ -1953,14 +1953,14 @@ void zb_mlme_reset_confirm (zb_uint8_t param);
 
 typedef ZB_PACKED_PRE struct
 {
-  zb_uint8_t  scan_type;   /**< Indicates the type of scan performed. See @ref mac_scan_type
+    zb_uint8_t  scan_type;   /**< Indicates the type of scan performed. See @ref mac_scan_type
                               0x00 = ED scan (optional for RFD).
                               0x01 = active scan (optional for RFD).
                               0x02 = passive scan.
                               0x03 = orphan scan.
                               0x04 = enhanced active scan.
-			   */
-  zb_uint8_t  scan_duration; /**< A value used to calculate the length of time to
+               */
+    zb_uint8_t  scan_duration; /**< A value used to calculate the length of time to
                                 spend scanning each channel for ED, active,
                                 and passive scans. This parameter is ignored for
                                 orphan scans.
@@ -1968,8 +1968,8 @@ typedef ZB_PACKED_PRE struct
                                 [aBaseSuperframeDuration * (2**n + 1)]
                                 symbols, where n is the value of the
                                 ScanDuration parameter.  */
-  zb_uint8_t  channel_page;  /**< The channel page on which to perform the scan.  */
-  zb_uint32_t    channels;   /**< The 27bits (b , b ,... b ) indicate which
+    zb_uint8_t  channel_page;  /**< The channel page on which to perform the scan.  */
+    zb_uint32_t    channels;   /**< The 27bits (b , b ,... b ) indicate which
                                 channels are to be scanned (1=scan, 0=do not
                                 scan) for each of the 27 channels supported by
                                 the ChannelPage parameter.  */
@@ -1995,8 +1995,8 @@ void zb_mlme_scan_confirm(zb_uint8_t param);
  */
 typedef enum zb_mac_beacon_type_e
 {
-  ZB_MAC_BEACON_TYPE_BEACON,
-  ZB_MAC_BEACON_TYPE_ENHANCED_BEACON
+    ZB_MAC_BEACON_TYPE_BEACON,
+    ZB_MAC_BEACON_TYPE_ENHANCED_BEACON
 } zb_mac_beacon_type_t;
 
 /**
@@ -2023,17 +2023,17 @@ typedef enum zb_mac_beacon_type_e
  */
 typedef ZB_PACKED_PRE struct zb_mac_beacon_notify_indication_s
 {
-  zb_uint8_t                bsn;
-  zb_pan_descriptor_t       pan_descriptor;
-  zb_pending_address_spec_t pend_addr_spec;
-  zb_addr_u                 addr_list[ MAX_PENDING_ADDRESSES ];
-  zb_uint8_t                ebsn;
-  zb_mac_beacon_type_t      beacon_type;
-  zb_uint8_t                sdu_length;
-  zb_uint8_t                total_hie_size;
-  zb_uint8_t                total_pie_size;
-  zb_int8_t                 rssi;
-  zb_uint8_t                sdu[1];
+    zb_uint8_t                bsn;
+    zb_pan_descriptor_t       pan_descriptor;
+    zb_pending_address_spec_t pend_addr_spec;
+    zb_addr_u                 addr_list[ MAX_PENDING_ADDRESSES ];
+    zb_uint8_t                ebsn;
+    zb_mac_beacon_type_t      beacon_type;
+    zb_uint8_t                sdu_length;
+    zb_uint8_t                total_hie_size;
+    zb_uint8_t                total_pie_size;
+    zb_int8_t                 rssi;
+    zb_uint8_t                sdu[1];
 } ZB_PACKED_STRUCT
 zb_mac_beacon_notify_indication_t;
 
@@ -2058,14 +2058,14 @@ void zb_mlme_beacon_notify_indication(zb_uint8_t param);
  */
 typedef ZB_PACKED_PRE struct zb_mlme_associate_params_s
 {
-  zb_uint16_t     pan_id;
-  zb_addr_u coord_addr;
-  zb_uint8_t      coord_addr_mode;
-  zb_uint8_t      channel_page;
-  zb_uint8_t      logical_channel;
-  zb_mac_capability_info_t capability;
+    zb_uint16_t     pan_id;
+    zb_addr_u coord_addr;
+    zb_uint8_t      coord_addr_mode;
+    zb_uint8_t      channel_page;
+    zb_uint8_t      logical_channel;
+    zb_mac_capability_info_t capability;
 } ZB_PACKED_STRUCT
-  zb_mlme_associate_params_t;
+zb_mlme_associate_params_t;
 
 /**
  *  @brief Builds MLME-ASSOCIATE request. This request allows a device to request an association
@@ -2115,9 +2115,9 @@ do                                                                    \
  */
 typedef ZB_PACKED_PRE struct zb_mlme_associate_indication_s
 {
-  zb_ieee_addr_t           device_address;
-  zb_mac_capability_info_t capability;
-  zb_uint8_t               lqi; /* non-standard, but MAC has it and we really
+    zb_ieee_addr_t           device_address;
+    zb_mac_capability_info_t capability;
+    zb_uint8_t               lqi; /* non-standard, but MAC has it and we really
                                  * need it */
 } ZB_PACKED_STRUCT zb_mlme_associate_indication_t;
 
@@ -2130,9 +2130,9 @@ typedef ZB_PACKED_PRE struct zb_mlme_associate_indication_s
  */
 typedef ZB_PACKED_PRE struct zb_mlme_associate_response_s
 {
-  zb_ieee_addr_t device_address;
-  zb_uint16_t    short_address;
-  zb_uint8_t     status;
+    zb_ieee_addr_t device_address;
+    zb_uint16_t    short_address;
+    zb_uint8_t     status;
 } ZB_PACKED_STRUCT
 zb_mlme_associate_response_t;
 
@@ -2169,15 +2169,15 @@ zb_mlme_associate_response_t;
  */
 typedef ZB_PACKED_PRE struct zb_mlme_associate_confirm_s
 {
-  zb_uint16_t assoc_short_address;
-  zb_mac_status_t  status;
-  /* more fields (will it be used?):
-     SecurityLevel
-     KeyIdMode
-     KeySource
-     KeyIndex
-  */
-  zb_ieee_addr_t parent_address; /* non-standard field, but we really need it */
+    zb_uint16_t assoc_short_address;
+    zb_mac_status_t  status;
+    /* more fields (will it be used?):
+       SecurityLevel
+       KeyIdMode
+       KeySource
+       KeyIndex
+    */
+    zb_ieee_addr_t parent_address; /* non-standard field, but we really need it */
 } ZB_PACKED_STRUCT zb_mlme_associate_confirm_t;
 
 /**
@@ -2215,12 +2215,12 @@ void zb_mlme_associate_confirm(zb_uint8_t param);
 /** @brief Parameters for poll request. */
 typedef ZB_PACKED_PRE struct zb_mlme_poll_request_s
 {
-  zb_uint8_t  coord_addr_mode;      /**< */
-  zb_addr_u coord_addr;           /**< */
-  zb_uint16_t     coord_pan_id;         /**< */
-  zb_time_t       poll_rate;
+    zb_uint8_t  coord_addr_mode;      /**< */
+    zb_addr_u coord_addr;           /**< */
+    zb_uint16_t     coord_pan_id;         /**< */
+    zb_time_t       poll_rate;
 } ZB_PACKED_STRUCT
-  zb_mlme_poll_request_t;
+zb_mlme_poll_request_t;
 
 /**
  *  @brief Handles MLME-poll.confirm.
@@ -2242,13 +2242,13 @@ void zb_mlme_poll_request(zb_uint8_t param);
 /** @brief Parameters for sync loss indication. */
 typedef ZB_PACKED_PRE struct zb_mlme_sync_loss_ind_s
 {
-  zb_uint16_t pan_id; /* Pan ID with which the device lost
-	                   * synchronization or to which it was realigned */
-  zb_uint8_t loss_reason; /* Lost syncronisation reason */
-  zb_uint8_t logical_channel; /* Logical channel */
-  zb_uint8_t channel_page; /* Channel page */
+    zb_uint16_t pan_id; /* Pan ID with which the device lost
+                       * synchronization or to which it was realigned */
+    zb_uint8_t loss_reason; /* Lost syncronisation reason */
+    zb_uint8_t logical_channel; /* Logical channel */
+    zb_uint8_t channel_page; /* Channel page */
 } ZB_PACKED_STRUCT
-  zb_mlme_sync_loss_ind_t;
+zb_mlme_sync_loss_ind_t;
 
 /**
  *  @brief MLME-COMM-STATUS.indication data structure.
@@ -2259,13 +2259,13 @@ typedef ZB_PACKED_PRE struct zb_mlme_sync_loss_ind_s
  */
 typedef ZB_PACKED_PRE struct zb_mlme_comm_status_indication_s
 {
-  zb_addr_u src_addr;   /**< The individual device address of the entity from which the frame
+    zb_addr_u src_addr;   /**< The individual device address of the entity from which the frame
                            causing the error originated.  */
-  zb_uint8_t src_addr_mode;
-  zb_addr_u dst_addr;   /**< The individual device address of the device for which the frame
+    zb_uint8_t src_addr_mode;
+    zb_addr_u dst_addr;   /**< The individual device address of the device for which the frame
                            was intended */
-  zb_uint8_t dst_addr_mode;
-  zb_mac_status_t  status;      /**< The communications status.
+    zb_uint8_t dst_addr_mode;
+    zb_mac_status_t  status;      /**< The communications status.
                                    SUCCESS,
                                    TRANSACTION_OVERFLOW,
                                    TRANSACTION_EXPIRED,
@@ -2280,7 +2280,7 @@ typedef ZB_PACKED_PRE struct zb_mlme_comm_status_indication_s
                                    UNSUPPORTED_SECURITY or
                                    INVALID_PARAMETER
                                 */
-  zb_uint16_t pan_id;           /* 16-bit Pan ID of the device from which the frame was
+    zb_uint16_t pan_id;           /* 16-bit Pan ID of the device from which the frame was
                                    received or to which the frame was being sent. */
 } ZB_PACKED_STRUCT
 zb_mlme_comm_status_indication_t;
@@ -2298,7 +2298,7 @@ typedef zb_uint8_t zb_mac_duty_cycle_status_t;
 /** @brief Defines MLME-DUTY_CYCLE-MODE.indication primitive. */
 typedef ZB_PACKED_PRE struct zb_mlme_duty_cycle_mode_indication_s
 {
-  zb_uint8_t status;    /**< Current MAC Duty Cycle mode: @ref
+    zb_uint8_t status;    /**< Current MAC Duty Cycle mode: @ref
                          * zb_mac_duty_cycle_status_t value */
 } ZB_PACKED_STRUCT zb_mlme_duty_cycle_mode_indication_t;
 
@@ -2318,39 +2318,39 @@ zb_uint_t zb_mac_duty_cycle_get_time_period_sec(void);
 #if defined ZB_MAC_POWER_CONTROL
 typedef ZB_PACKED_PRE struct zb_mac_power_ctrl_info_tbl_ent_s
 {
-  zb_uint16_t short_addr;
-  zb_ieee_addr_t ieee_addr;
-  zb_int8_t tx_power;           /* TX power level */
-  zb_int8_t last_rssi;          /* Last RSSI level */
-  zb_uint8_t nwk_negotiated;    /* NWK negotiated */
+    zb_uint16_t short_addr;
+    zb_ieee_addr_t ieee_addr;
+    zb_int8_t tx_power;           /* TX power level */
+    zb_int8_t last_rssi;          /* Last RSSI level */
+    zb_uint8_t nwk_negotiated;    /* NWK negotiated */
 } ZB_PACKED_STRUCT zb_mac_power_ctrl_info_tbl_ent_t;
 
 typedef ZB_PACKED_PRE struct zb_mlme_get_power_info_tbl_req_s
 {
-  zb_uint16_t short_addr;
-  zb_ieee_addr_t ieee_addr;
+    zb_uint16_t short_addr;
+    zb_ieee_addr_t ieee_addr;
 } ZB_PACKED_STRUCT zb_mlme_get_power_info_tbl_req_t;
 
 void zb_mlme_get_power_information_table_request(zb_uint8_t param);
 
 typedef ZB_PACKED_PRE struct zb_mlme_get_power_info_tbl_conf_s
 {
-  zb_uint8_t status;
-  zb_mac_power_ctrl_info_tbl_ent_t ent;
+    zb_uint8_t status;
+    zb_mac_power_ctrl_info_tbl_ent_t ent;
 } ZB_PACKED_STRUCT zb_mlme_get_power_info_tbl_conf_t;
 
 void zb_mlme_get_power_information_table_confirm(zb_uint8_t param);
 
 typedef ZB_PACKED_PRE struct zb_mlme_set_power_info_tbl_req_s
 {
-  zb_mac_power_ctrl_info_tbl_ent_t ent;
+    zb_mac_power_ctrl_info_tbl_ent_t ent;
 } ZB_PACKED_STRUCT zb_mlme_set_power_info_tbl_req_t;
 
 void zb_mlme_set_power_information_table_request(zb_uint8_t param);
 
 typedef ZB_PACKED_PRE struct zb_mlme_set_power_info_tbl_conf_s
 {
-  zb_uint8_t status;
+    zb_uint8_t status;
 } ZB_PACKED_STRUCT zb_mlme_set_power_info_tbl_conf_t;
 
 void zb_mlme_set_power_information_table_confirm(zb_uint8_t param);
@@ -2371,14 +2371,14 @@ void zb_mlme_set_power_information_table_confirm(zb_uint8_t param);
 */
 typedef ZB_PACKED_PRE struct zb_coord_realignment_cmd_s
 {
-  /* MHR fields - are not described here */
-  zb_uint8_t cmd_frame_id;  /**< Command Frame Identifier == 0x08*/
-  zb_uint16_t pan_id;       /**< Pan ID */
-  zb_uint16_t coord_short_addr; /**< Coordinator Short Address */
-  zb_uint8_t logical_channel;    /**< Logical Channel */
-  zb_uint16_t short_addr;   /**< Short Address */
+    /* MHR fields - are not described here */
+    zb_uint8_t cmd_frame_id;  /**< Command Frame Identifier == 0x08*/
+    zb_uint16_t pan_id;       /**< Pan ID */
+    zb_uint16_t coord_short_addr; /**< Coordinator Short Address */
+    zb_uint8_t logical_channel;    /**< Logical Channel */
+    zb_uint16_t short_addr;   /**< Short Address */
 #if (MAC_FRAME_VERSION > MAC_FRAME_IEEE_802_15_4_2003)
-  zb_uint8_t  channel_page; /**< Channel page, may be omitted */
+    zb_uint8_t  channel_page; /**< Channel page, may be omitted */
 #endif
 } ZB_PACKED_STRUCT
 zb_coord_realignment_cmd_t;
@@ -2393,58 +2393,58 @@ zb_coord_realignment_cmd_t;
 */
 typedef struct zb_mac_mhr_s
 {
-  zb_addr_u dst_addr;     /**< */
-  zb_addr_u src_addr;     /**< */
-  zb_uint16_t src_pan_id;       /**< */
-  zb_uint16_t dst_pan_id;       /**< */
-  zb_uint8_t frame_control[2];  /**< */
-  zb_uint8_t seq_number;        /**< */
-  zb_uint8_t mhr_len;        /**< */
+    zb_addr_u dst_addr;     /**< */
+    zb_addr_u src_addr;     /**< */
+    zb_uint16_t src_pan_id;       /**< */
+    zb_uint16_t dst_pan_id;       /**< */
+    zb_uint8_t frame_control[2];  /**< */
+    zb_uint8_t seq_number;        /**< */
+    zb_uint8_t mhr_len;        /**< */
 
 #ifdef ZB_MAC_SECURITY
-  zb_uint8_t      security_level;
-  zb_uint8_t      key_id_mode;
-  zb_uint8_t      key_source[8];
-  zb_uint8_t      key_index;
-  zb_uint32_t     frame_counter;
+    zb_uint8_t      security_level;
+    zb_uint8_t      key_id_mode;
+    zb_uint8_t      key_source[8];
+    zb_uint8_t      key_index;
+    zb_uint32_t     frame_counter;
 #endif
 
 }
-  zb_mac_mhr_t;
+zb_mac_mhr_t;
 
 /**
    Parameters for sending beacon frame
 */
 typedef struct zb_beacon_frame_params_s
 {
-  zb_uint8_t src_addr_mode;     /**< */
-  zb_uint8_t security_enabled;  /**< */
-  zb_uint8_t frame_pending;     /**< */
-  zb_uint8_t ble;               /**< */
-  zb_uint8_t beacon_order;      /**< */
-  zb_uint8_t superframe_order;  /**< */
+    zb_uint8_t src_addr_mode;     /**< */
+    zb_uint8_t security_enabled;  /**< */
+    zb_uint8_t frame_pending;     /**< */
+    zb_uint8_t ble;               /**< */
+    zb_uint8_t beacon_order;      /**< */
+    zb_uint8_t superframe_order;  /**< */
 }
-  zb_beacon_frame_params_t;
+zb_beacon_frame_params_t;
 
 /**
    Parameters for sending data request
 */
 typedef enum zb_callback_type_e
 {
-  MAC_ASS_CONFIRM_CALLBACK = 0,     /**< */
-  MAC_POLL_REQUEST_CALLBACK = 1     /**< */
+    MAC_ASS_CONFIRM_CALLBACK = 0,     /**< */
+    MAC_POLL_REQUEST_CALLBACK = 1     /**< */
 }
-  zb_callback_type_t;
+zb_callback_type_t;
 
 typedef struct zb_mlme_data_req_params_s
 {
-  zb_uint8_t src_addr_mode;         /**< Source address mode */
-  zb_uint8_t dst_addr_mode;         /**< Destination address mode */
-  zb_addr_u src_addr;         /**< Source address */
-  zb_addr_u dst_addr;         /**< Destination address */
-  zb_callback_type_t cb_type;       /**< Callback for mlme-data-request function */
+    zb_uint8_t src_addr_mode;         /**< Source address mode */
+    zb_uint8_t dst_addr_mode;         /**< Destination address mode */
+    zb_addr_u src_addr;         /**< Source address */
+    zb_addr_u dst_addr;         /**< Destination address */
+    zb_callback_type_t cb_type;       /**< Callback for mlme-data-request function */
 }
-  zb_mlme_data_req_params_t;
+zb_mlme_data_req_params_t;
 
 /* Moved zb_mac_pending_data_t to zboss_api_internal.h */
 
@@ -2453,23 +2453,23 @@ typedef struct zb_mlme_data_req_params_s
 */
 typedef struct zb_mac_orphan_ind_s
 {
-  zb_ieee_addr_t orphan_addr; /*<! The 64-bits address of the orphaned device */
+    zb_ieee_addr_t orphan_addr; /*<! The 64-bits address of the orphaned device */
 }
-  zb_mac_orphan_ind_t;
+zb_mac_orphan_ind_t;
 
 /**
    Parameters for orphan response
 */
 typedef ZB_PACKED_PRE struct zb_mac_orphan_response_s
 {
-  zb_ieee_addr_t orphan_addr; /*<! The 64-bits address of the orphaned device */
-  zb_uint16_t short_addr; /*<! The 16-bit short address allocated to the
+    zb_ieee_addr_t orphan_addr; /*<! The 64-bits address of the orphaned device */
+    zb_uint16_t short_addr; /*<! The 16-bit short address allocated to the
                            * orphaned device if it is associated with this coordinator */
-  zb_uint8_t associated; /*!< TRUE if the orphaned device is associated with this
+    zb_uint8_t associated; /*!< TRUE if the orphaned device is associated with this
                            coordinator or FALSE otherwise */
 }
-  ZB_PACKED_STRUCT
-  zb_mac_orphan_response_t;
+ZB_PACKED_STRUCT
+zb_mac_orphan_response_t;
 
 
 /**
@@ -2610,9 +2610,9 @@ void zb_mlme_purge_confirm(zb_uint8_t param);
 */
 typedef struct zb_mlme_purge_request_s
 {
-  zb_uint8_t msdu_handle;
+    zb_uint8_t msdu_handle;
 }
-  zb_mlme_purge_request_t;
+zb_mlme_purge_request_t;
 
 typedef zb_mlme_purge_request_t zb_mlme_purge_confirm_t;
 
@@ -2635,13 +2635,13 @@ typedef zb_mlme_purge_request_t zb_mlme_purge_confirm_t;
 
 typedef ZB_PACKED_PRE struct zb_mac_src_match_params_s
 {
-  zb_uint8_t cmd;               /**< @ref mac_src_match_commands */
-  zb_uint8_t index;             /**< Index to synchronize with ZBOSS Neighbor table */
-  zb_uint8_t addr_mode;         /**< Address mode. Valid values are ZB_ADDR_16BIT_DEV_OR_BROADCAST or
+    zb_uint8_t cmd;               /**< @ref mac_src_match_commands */
+    zb_uint8_t index;             /**< Index to synchronize with ZBOSS Neighbor table */
+    zb_uint8_t addr_mode;         /**< Address mode. Valid values are ZB_ADDR_16BIT_DEV_OR_BROADCAST or
                                  * ZB_ADDR_64BIT_DEV */
-  zb_addr_u addr;               /**< Address  */
+    zb_addr_u addr;               /**< Address  */
 #ifdef ZB_MAC_POLL_INDICATION_CALLS_REDUCED
-  zb_uint16_t poll_timeout;     /**< Poll indication calls timeout (in sec) */
+    zb_uint16_t poll_timeout;     /**< Poll indication calls timeout (in sec) */
 #endif /* ZB_MAC_POLL_INDICATION_CALLS_REDUCED */
 } ZB_PACKED_STRUCT zb_mac_src_match_params_t;
 
@@ -2702,15 +2702,15 @@ void zb_mac_set_tx_power_provider_function(zb_tx_power_provider_t new_provider);
 
 typedef ZB_PACKED_PRE struct zb_mcps_purge_indir_q_req_s
 {
-  zb_uint8_t type;
-  zb_uint16_t short_addr;
-  zb_ieee_addr_t ieee_addr;
+    zb_uint8_t type;
+    zb_uint16_t short_addr;
+    zb_ieee_addr_t ieee_addr;
 } ZB_PACKED_STRUCT zb_mcps_purge_indir_q_req_t;
 
 typedef ZB_PACKED_PRE struct zb_mcps_purge_indir_q_conf_s
 {
-  zb_mac_status_t status;
-  zb_uint8_t type;
+    zb_mac_status_t status;
+    zb_uint8_t type;
 } ZB_PACKED_STRUCT zb_mcps_purge_indir_q_conf_t;
 
 void zb_mcps_purge_indirect_queue_request(zb_uint8_t param);

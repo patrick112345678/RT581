@@ -34,21 +34,21 @@
 */
 void send_write_attr_req_sample(zb_buf_t *data_buf, zb_uint16_t dst_addr, zb_uint8_t dst_ep, zb_uint8_t src_ep)
 {
-  zb_uint8_t *cmd_payload;
+    zb_uint8_t *cmd_payload;
 
-  cmd_payload = ZB_ZCL_START_PACKET(data_buf);
-  // Form command payload
-  // Add write attribute record 1
-  ZB_ZCL_PACKET_PUT_DATA16_VAL(cmd_payload, ZB_ZCL_ATTR_OOSC_SWITCH_TYPE_ID);  // attr id
-  ZB_ZCL_PACKET_PUT_DATA8(cmd_payload, ZB_ZCL_ATTR_TYPE_8BIT_ENUM);            // attr type
-  ZB_ZCL_PACKET_PUT_DATA8(cmd_payload, ZB_ZCL_ATTR_OOSC_SWITCH_TYPE_MOMENTARY);// data
-  // Add write attribute record 2
-  ZB_ZCL_PACKET_PUT_DATA16_VAL(cmd_payload, ZB_ZCL_ATTR_OOSC_SWITCH_ACTIONS_ID);// attr id
-  ZB_ZCL_PACKET_PUT_DATA8(cmd_payload, ZB_ZCL_ATTR_TYPE_8BIT_ENUM);             // attr type
-  ZB_ZCL_PACKET_PUT_DATA8(cmd_payload, ZB_ZCL_ATTR_OOSC_SWITCH_ACTIONS_TOGGLE); // data
+    cmd_payload = ZB_ZCL_START_PACKET(data_buf);
+    // Form command payload
+    // Add write attribute record 1
+    ZB_ZCL_PACKET_PUT_DATA16_VAL(cmd_payload, ZB_ZCL_ATTR_OOSC_SWITCH_TYPE_ID);  // attr id
+    ZB_ZCL_PACKET_PUT_DATA8(cmd_payload, ZB_ZCL_ATTR_TYPE_8BIT_ENUM);            // attr type
+    ZB_ZCL_PACKET_PUT_DATA8(cmd_payload, ZB_ZCL_ATTR_OOSC_SWITCH_TYPE_MOMENTARY);// data
+    // Add write attribute record 2
+    ZB_ZCL_PACKET_PUT_DATA16_VAL(cmd_payload, ZB_ZCL_ATTR_OOSC_SWITCH_ACTIONS_ID);// attr id
+    ZB_ZCL_PACKET_PUT_DATA8(cmd_payload, ZB_ZCL_ATTR_TYPE_8BIT_ENUM);             // attr type
+    ZB_ZCL_PACKET_PUT_DATA8(cmd_payload, ZB_ZCL_ATTR_OOSC_SWITCH_ACTIONS_TOGGLE); // data
 
-  ZB_ZCL_FINISH_PACKET(data_buf, cmd_payload);
+    ZB_ZCL_FINISH_PACKET(data_buf, cmd_payload);
 
-  ZB_ZCL_SEND_WRITE_ATTRS_CMD(data_buf, dst_addr, ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
-                              dst_ep, src_ep, ZB_AF_HA_PROFILE_ID, ZB_ZCL_CLUSTER_ID_ON_OFF_SWITCH_CONFIG);
+    ZB_ZCL_SEND_WRITE_ATTRS_CMD(data_buf, dst_addr, ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
+                                dst_ep, src_ep, ZB_AF_HA_PROFILE_ID, ZB_ZCL_CLUSTER_ID_ON_OFF_SWITCH_CONFIG);
 }

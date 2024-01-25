@@ -174,7 +174,7 @@ typedef union ble_hci_message
 } UNION_BLE_HCI_MESSAGE;
 
 
-typedef struct 
+typedef struct
 {
     UNION_BLE_HCI_MESSAGE hci_message;
 } ble_hci_message_t;

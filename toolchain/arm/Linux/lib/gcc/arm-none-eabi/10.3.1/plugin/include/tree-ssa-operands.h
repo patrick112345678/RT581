@@ -30,14 +30,14 @@ typedef tree *def_operand_p;
 typedef ssa_use_operand_t *use_operand_p;
 
 /* NULL operand types.  */
-#define NULL_USE_OPERAND_P 		((use_operand_p)NULL)
-#define NULL_DEF_OPERAND_P 		((def_operand_p)NULL)
+#define NULL_USE_OPERAND_P      ((use_operand_p)NULL)
+#define NULL_DEF_OPERAND_P      ((def_operand_p)NULL)
 
 /* This represents the USE operands of a stmt.  */
 struct use_optype_d
 {
-  struct use_optype_d *next;
-  struct ssa_use_operand_t use_ptr;
+    struct use_optype_d *next;
+    struct ssa_use_operand_t use_ptr;
 };
 typedef struct use_optype_d *use_optype_p;
 
@@ -45,47 +45,49 @@ typedef struct use_optype_d *use_optype_p;
    operand memory manager.  Operands are suballocated out of this block.  The
    MEM array varies in size.  */
 
-struct GTY((chain_next("%h.next"))) ssa_operand_memory_d {
-  struct ssa_operand_memory_d *next;
-  char mem[1];
+struct GTY((chain_next("%h.next"))) ssa_operand_memory_d
+{
+    struct ssa_operand_memory_d *next;
+    char mem[1];
 };
 
 /* Per-function operand caches.  */
-struct GTY(()) ssa_operands {
-   struct ssa_operand_memory_d *operand_memory;
-   unsigned operand_memory_index;
-   /* Current size of the operand memory buffer.  */
-   unsigned int ssa_operand_mem_size;
+struct GTY(()) ssa_operands
+{
+    struct ssa_operand_memory_d *operand_memory;
+    unsigned operand_memory_index;
+    /* Current size of the operand memory buffer.  */
+    unsigned int ssa_operand_mem_size;
 
-   bool ops_active;
+    bool ops_active;
 
-   struct use_optype_d * GTY ((skip (""))) free_uses;
+    struct use_optype_d *GTY ((skip (""))) free_uses;
 };
 
-#define USE_FROM_PTR(PTR)	get_use_from_ptr (PTR)
-#define DEF_FROM_PTR(PTR)	get_def_from_ptr (PTR)
-#define SET_USE(USE, V)		set_ssa_use_from_ptr (USE, V)
-#define SET_DEF(DEF, V)		((*(DEF)) = (V))
+#define USE_FROM_PTR(PTR)   get_use_from_ptr (PTR)
+#define DEF_FROM_PTR(PTR)   get_def_from_ptr (PTR)
+#define SET_USE(USE, V)     set_ssa_use_from_ptr (USE, V)
+#define SET_DEF(DEF, V)     ((*(DEF)) = (V))
 
-#define USE_STMT(USE)		(USE)->loc.stmt
+#define USE_STMT(USE)       (USE)->loc.stmt
 
-#define USE_OP_PTR(OP)		(&((OP)->use_ptr))
-#define USE_OP(OP)		(USE_FROM_PTR (USE_OP_PTR (OP)))
+#define USE_OP_PTR(OP)      (&((OP)->use_ptr))
+#define USE_OP(OP)      (USE_FROM_PTR (USE_OP_PTR (OP)))
 
-#define PHI_RESULT_PTR(PHI)	gimple_phi_result_ptr (PHI)
-#define PHI_RESULT(PHI)		DEF_FROM_PTR (PHI_RESULT_PTR (PHI))
-#define SET_PHI_RESULT(PHI, V)	SET_DEF (PHI_RESULT_PTR (PHI), (V))
+#define PHI_RESULT_PTR(PHI) gimple_phi_result_ptr (PHI)
+#define PHI_RESULT(PHI)     DEF_FROM_PTR (PHI_RESULT_PTR (PHI))
+#define SET_PHI_RESULT(PHI, V)  SET_DEF (PHI_RESULT_PTR (PHI), (V))
 /*
-#define PHI_ARG_DEF(PHI, I)	USE_FROM_PTR (PHI_ARG_DEF_PTR ((PHI), (I)))
+#define PHI_ARG_DEF(PHI, I) USE_FROM_PTR (PHI_ARG_DEF_PTR ((PHI), (I)))
 */
-#define PHI_ARG_DEF_PTR(PHI, I)	gimple_phi_arg_imm_use_ptr ((PHI), (I))
-#define PHI_ARG_DEF(PHI, I)	gimple_phi_arg_def ((PHI), (I))
-#define SET_PHI_ARG_DEF(PHI, I, V)					\
-				SET_USE (PHI_ARG_DEF_PTR ((PHI), (I)), (V))
-#define PHI_ARG_DEF_FROM_EDGE(PHI, E)					\
-				PHI_ARG_DEF ((PHI), (E)->dest_idx)
-#define PHI_ARG_DEF_PTR_FROM_EDGE(PHI, E)				\
-				PHI_ARG_DEF_PTR ((PHI), (E)->dest_idx)
+#define PHI_ARG_DEF_PTR(PHI, I) gimple_phi_arg_imm_use_ptr ((PHI), (I))
+#define PHI_ARG_DEF(PHI, I) gimple_phi_arg_def ((PHI), (I))
+#define SET_PHI_ARG_DEF(PHI, I, V)                  \
+                SET_USE (PHI_ARG_DEF_PTR ((PHI), (I)), (V))
+#define PHI_ARG_DEF_FROM_EDGE(PHI, E)                   \
+                PHI_ARG_DEF ((PHI), (E)->dest_idx)
+#define PHI_ARG_DEF_PTR_FROM_EDGE(PHI, E)               \
+                PHI_ARG_DEF_PTR ((PHI), (E)->dest_idx)
 #define PHI_ARG_INDEX_FROM_USE(USE)   phi_arg_index_from_use (USE)
 
 
@@ -109,14 +111,14 @@ extern void unlink_stmt_vdef (gimple *);
 static inline tree
 get_use_from_ptr (use_operand_p use)
 {
-  return *(use->use);
+    return *(use->use);
 }
 
 /* Return the tree pointed-to by DEF.  */
 static inline tree
 get_def_from_ptr (def_operand_p def)
 {
-  return *def;
+    return *def;
 }
 
 #endif  /* GCC_TREE_SSA_OPERANDS_H  */

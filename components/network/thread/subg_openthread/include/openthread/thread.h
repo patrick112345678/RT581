@@ -941,8 +941,8 @@ typedef void (*otThreadParentResponseCallback)(otThreadParentResponseInfo *aInfo
  *
  */
 void otThreadRegisterParentResponseCallback(otInstance                    *aInstance,
-                                            otThreadParentResponseCallback aCallback,
-                                            void                          *aContext);
+        otThreadParentResponseCallback aCallback,
+        void                          *aContext);
 
 /**
  * This structure represents the Thread Discovery Request data.
@@ -973,8 +973,8 @@ typedef void (*otThreadDiscoveryRequestCallback)(const otThreadDiscoveryRequestI
  *
  */
 void otThreadSetDiscoveryRequestCallback(otInstance                      *aInstance,
-                                         otThreadDiscoveryRequestCallback aCallback,
-                                         void                            *aContext);
+        otThreadDiscoveryRequestCallback aCallback,
+        void                            *aContext);
 
 /**
  * This function pointer type defines the callback to notify the outcome of a `otThreadLocateAnycastDestination()`
@@ -990,9 +990,9 @@ void otThreadSetDiscoveryRequestCallback(otInstance                      *aInsta
  *
  */
 typedef void (*otThreadAnycastLocatorCallback)(void               *aContext,
-                                               otError             aError,
-                                               const otIp6Address *aMeshLocalAddress,
-                                               uint16_t            aRloc16);
+        otError             aError,
+        const otIp6Address *aMeshLocalAddress,
+        uint16_t            aRloc16);
 
 /**
  * This function requests the closest destination of a given anycast address to be located.
@@ -1012,9 +1012,9 @@ typedef void (*otThreadAnycastLocatorCallback)(void               *aContext,
  *
  */
 otError otThreadLocateAnycastDestination(otInstance                    *aInstance,
-                                         const otIp6Address            *aAnycastAddress,
-                                         otThreadAnycastLocatorCallback aCallback,
-                                         void                          *aContext);
+        const otIp6Address            *aAnycastAddress,
+        otThreadAnycastLocatorCallback aCallback,
+        void                          *aContext);
 
 /**
  * This function indicates whether an anycast locate request is currently in progress.
@@ -1059,9 +1059,9 @@ void otThreadSendAddressNotification(otInstance               *aInstance,
  *
  */
 otError otThreadSendProactiveBackboneNotification(otInstance               *aInstance,
-                                                  otIp6Address             *aTarget,
-                                                  otIp6InterfaceIdentifier *aMlIid,
-                                                  uint32_t                  aTimeSinceLastTransaction);
+        otIp6Address             *aTarget,
+        otIp6InterfaceIdentifier *aMlIid,
+        uint32_t                  aTimeSinceLastTransaction);
 
 /**
  * This function notifies other nodes in the network (if any) and then stops Thread protocol operation.

@@ -32,87 +32,87 @@ zb_ret_t check_value_rel_humidity_measurement_server(zb_uint16_t attr_id, zb_uin
 
 void zb_zcl_rel_humidity_init_server()
 {
-  zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_REL_HUMIDITY_MEASUREMENT,
-                              ZB_ZCL_CLUSTER_SERVER_ROLE,
-                              check_value_rel_humidity_measurement_server,
-                              (zb_zcl_cluster_write_attr_hook_t)NULL,
-                              (zb_zcl_cluster_handler_t)NULL);
+    zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_REL_HUMIDITY_MEASUREMENT,
+                                ZB_ZCL_CLUSTER_SERVER_ROLE,
+                                check_value_rel_humidity_measurement_server,
+                                (zb_zcl_cluster_write_attr_hook_t)NULL,
+                                (zb_zcl_cluster_handler_t)NULL);
 }
 
 void zb_zcl_rel_humidity_init_client()
 {
-  zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_REL_HUMIDITY_MEASUREMENT,
-                              ZB_ZCL_CLUSTER_CLIENT_ROLE,
-                              (zb_zcl_cluster_check_value_t)NULL,
-                              (zb_zcl_cluster_write_attr_hook_t)NULL,
-                              (zb_zcl_cluster_handler_t)NULL);
+    zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_REL_HUMIDITY_MEASUREMENT,
+                                ZB_ZCL_CLUSTER_CLIENT_ROLE,
+                                (zb_zcl_cluster_check_value_t)NULL,
+                                (zb_zcl_cluster_write_attr_hook_t)NULL,
+                                (zb_zcl_cluster_handler_t)NULL);
 }
 
 zb_ret_t check_value_rel_humidity_measurement_server(zb_uint16_t attr_id, zb_uint8_t endpoint, zb_uint8_t *value)
 {
-  zb_ret_t ret = RET_OK;
+    zb_ret_t ret = RET_OK;
 
-  TRACE_MSG(TRACE_ZCL1, "> check_value_rel_humidity_measurement", (FMT__0));
+    TRACE_MSG(TRACE_ZCL1, "> check_value_rel_humidity_measurement", (FMT__0));
 
-  switch( attr_id )
-  {
+    switch ( attr_id )
+    {
     case ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_VALUE_ID:
-      if( ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_VALUE_UNKNOWN == ZB_ZCL_ATTR_GET16(value) )
-      {
-        ret = RET_OK;
-      }
-      else
-      {
-        zb_zcl_attr_t *attr_desc = zb_zcl_get_attr_desc_a(
-            endpoint,
-            ZB_ZCL_CLUSTER_ID_REL_HUMIDITY_MEASUREMENT,
-            ZB_ZCL_CLUSTER_SERVER_ROLE,
-            ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_MIN_VALUE_ID);
-
-        ZB_ASSERT(attr_desc);
-
-        ret = (ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc) ==
-                ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_MIN_VALUE_UNDEFINED
-            || ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc) <= ZB_ZCL_ATTR_GET16(value))
-          ? RET_OK : RET_ERROR;
-
-        if(ret)
+        if ( ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_VALUE_UNKNOWN == ZB_ZCL_ATTR_GET16(value) )
         {
-          attr_desc = zb_zcl_get_attr_desc_a(
-              endpoint,
-              ZB_ZCL_CLUSTER_ID_REL_HUMIDITY_MEASUREMENT,
-              ZB_ZCL_CLUSTER_SERVER_ROLE,
-              ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_MAX_VALUE_ID);
-
-          ZB_ASSERT(attr_desc);
-
-          ret = ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc) == ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_MAX_VALUE_UNDEFINED ||
-                ZB_ZCL_ATTR_GET16(value) <= ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc)
-            ? RET_OK : RET_ERROR;
+            ret = RET_OK;
         }
-      }
-      break;
+        else
+        {
+            zb_zcl_attr_t *attr_desc = zb_zcl_get_attr_desc_a(
+                                           endpoint,
+                                           ZB_ZCL_CLUSTER_ID_REL_HUMIDITY_MEASUREMENT,
+                                           ZB_ZCL_CLUSTER_SERVER_ROLE,
+                                           ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_MIN_VALUE_ID);
+
+            ZB_ASSERT(attr_desc);
+
+            ret = (ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc) ==
+                   ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_MIN_VALUE_UNDEFINED
+                   || ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc) <= ZB_ZCL_ATTR_GET16(value))
+                  ? RET_OK : RET_ERROR;
+
+            if (ret)
+            {
+                attr_desc = zb_zcl_get_attr_desc_a(
+                                endpoint,
+                                ZB_ZCL_CLUSTER_ID_REL_HUMIDITY_MEASUREMENT,
+                                ZB_ZCL_CLUSTER_SERVER_ROLE,
+                                ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_MAX_VALUE_ID);
+
+                ZB_ASSERT(attr_desc);
+
+                ret = ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc) == ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_MAX_VALUE_UNDEFINED ||
+                      ZB_ZCL_ATTR_GET16(value) <= ZB_ZCL_GET_ATTRIBUTE_VAL_16(attr_desc)
+                      ? RET_OK : RET_ERROR;
+            }
+        }
+        break;
 
     case ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_MIN_VALUE_ID:
-      ret = (
+        ret = (
 #if ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_MIN_VALUE_MIN_VALUE != 0
-          ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_MIN_VALUE_MIN_VALUE <= ZB_ZCL_ATTR_GET16(value) &&
+                  ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_MIN_VALUE_MIN_VALUE <= ZB_ZCL_ATTR_GET16(value) &&
 #endif
-              (ZB_ZCL_ATTR_GET16(value) <= ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_MIN_VALUE_MAX_VALUE) )
+                  (ZB_ZCL_ATTR_GET16(value) <= ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_MIN_VALUE_MAX_VALUE) )
               ? RET_OK : RET_ERROR;
-      break;
+        break;
 
     case ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_MAX_VALUE_ID:
-      ret = ( (ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_MAX_VALUE_MIN_VALUE <= ZB_ZCL_ATTR_GET16(value)) &&
-              (ZB_ZCL_ATTR_GET16(value) <= ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_MAX_VALUE_MAX_VALUE) )
+        ret = ( (ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_MAX_VALUE_MIN_VALUE <= ZB_ZCL_ATTR_GET16(value)) &&
+                (ZB_ZCL_ATTR_GET16(value) <= ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_MAX_VALUE_MAX_VALUE) )
               ? RET_OK : RET_ERROR;
-      break;
+        break;
 
     default:
-      break;
-  }
+        break;
+    }
 
-  TRACE_MSG(TRACE_ZCL1, "< check_value_rel_humidity_measurement ret %hd", (FMT__H, ret));
-  return ret;
+    TRACE_MSG(TRACE_ZCL1, "< check_value_rel_humidity_measurement ret %hd", (FMT__H, ret));
+    return ret;
 }
 #endif /* if defined (ZB_ZCL_SUPPORT_CLUSTER_REL_HUMIDITY_MEASUREMENT) */

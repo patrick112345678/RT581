@@ -47,26 +47,26 @@
 */
 enum zb_zcl_window_covering_info_attr_e
 {
-  /** @brief Window Covering Type attribute */
-  ZB_ZCL_ATTR_WINDOW_COVERING_WINDOW_COVERING_TYPE_ID                = 0x0000,
-  /** @brief PhysicalClosedLimit Lift attribute */
-  ZB_ZCL_ATTR_WINDOW_COVERING_PHYSICAL_CLOSED_LIMIT_LIFT_ID          = 0x0001,
-  /** @brief PhysicalClosedLimit Tilt attribute */
-  ZB_ZCL_ATTR_WINDOW_COVERING_PHY_CLOSED_LIMIT_TILT_ID               = 0x0002,
-  /** @brief CurrentPosition Lift attribute */
-  ZB_ZCL_ATTR_WINDOW_COVERING_CURRENT_POSITION_LIFT_ID               = 0x0003,
-  /** @brief CurrentPosition Tilt attribute */
-  ZB_ZCL_ATTR_WINDOW_COVERING_CURRENT_POSITION_TILT_ID               = 0x0004,
-  /** @brief Number of Actuations Lift attribute */
-  ZB_ZCL_ATTR_WINDOW_COVERING_NUMBER_OF_ACTUATIONS_LIFT_ID           = 0x0005,
-  /** @brief Number of Actuations Tilt attribute */
-  ZB_ZCL_ATTR_WINDOW_COVERING_NUMBER_OF_ACTUATIONS_TILT_ID           = 0x0006,
-  /** @brief Config/Status attribute */
-  ZB_ZCL_ATTR_WINDOW_COVERING_CONFIG_STATUS_ID                       = 0x0007,
-  /** @brief Current Position Lift Percentage attribute */
-  ZB_ZCL_ATTR_WINDOW_COVERING_CURRENT_POSITION_LIFT_PERCENTAGE_ID    = 0x0008,
-  /** @brief Current Position Tilt Percentage attribute */
-  ZB_ZCL_ATTR_WINDOW_COVERING_CURRENT_POSITION_TILT_PERCENTAGE_ID    = 0x0009
+    /** @brief Window Covering Type attribute */
+    ZB_ZCL_ATTR_WINDOW_COVERING_WINDOW_COVERING_TYPE_ID                = 0x0000,
+    /** @brief PhysicalClosedLimit Lift attribute */
+    ZB_ZCL_ATTR_WINDOW_COVERING_PHYSICAL_CLOSED_LIMIT_LIFT_ID          = 0x0001,
+    /** @brief PhysicalClosedLimit Tilt attribute */
+    ZB_ZCL_ATTR_WINDOW_COVERING_PHY_CLOSED_LIMIT_TILT_ID               = 0x0002,
+    /** @brief CurrentPosition Lift attribute */
+    ZB_ZCL_ATTR_WINDOW_COVERING_CURRENT_POSITION_LIFT_ID               = 0x0003,
+    /** @brief CurrentPosition Tilt attribute */
+    ZB_ZCL_ATTR_WINDOW_COVERING_CURRENT_POSITION_TILT_ID               = 0x0004,
+    /** @brief Number of Actuations Lift attribute */
+    ZB_ZCL_ATTR_WINDOW_COVERING_NUMBER_OF_ACTUATIONS_LIFT_ID           = 0x0005,
+    /** @brief Number of Actuations Tilt attribute */
+    ZB_ZCL_ATTR_WINDOW_COVERING_NUMBER_OF_ACTUATIONS_TILT_ID           = 0x0006,
+    /** @brief Config/Status attribute */
+    ZB_ZCL_ATTR_WINDOW_COVERING_CONFIG_STATUS_ID                       = 0x0007,
+    /** @brief Current Position Lift Percentage attribute */
+    ZB_ZCL_ATTR_WINDOW_COVERING_CURRENT_POSITION_LIFT_PERCENTAGE_ID    = 0x0008,
+    /** @brief Current Position Tilt Percentage attribute */
+    ZB_ZCL_ATTR_WINDOW_COVERING_CURRENT_POSITION_TILT_PERCENTAGE_ID    = 0x0009
 };
 
 /** @brief Permissible values for Type attribute
@@ -74,46 +74,46 @@ enum zb_zcl_window_covering_info_attr_e
   */
 enum zb_zcl_window_covering_window_covering_type_e
 {
-  /** Rollershade value */
-  ZB_ZCL_ATTR_WINDOW_COVERING_TYPE_ROLLERSHADE                       = 0x00,
-  /** Rollershade - 2 Motor value */
-  ZB_ZCL_ATTR_WINDOW_COVERING_TYPE_ROLLERSHADE_2_MOTOR               = 0x01,
-  /** Rollershade - Exterior value */
-  ZB_ZCL_ATTR_WINDOW_COVERING_TYPE_ROLLERSHADE_EXTERIOR              = 0x02,
-  /** Rollershade - Exterior - 2 Motor value */
-  ZB_ZCL_ATTR_WINDOW_COVERING_TYPE_ROLLERSHADE_EXTERIOR_2_MOTOR      = 0x03,
-  /** Drapery value */
-  ZB_ZCL_ATTR_WINDOW_COVERING_TYPE_DRAPERY                           = 0x04,
-  /** Awning value */
-  ZB_ZCL_ATTR_WINDOW_COVERING_TYPE_AWNING                            = 0x05,
-  /** Shutter value */
-  ZB_ZCL_ATTR_WINDOW_COVERING_TYPE_SHUTTER                           = 0x06,
-  /** Tilt Blind - Tilt Only value */
-  ZB_ZCL_ATTR_WINDOW_COVERING_TYPE_TILT_BLIND_TILT_ONLY              = 0x07,
-  /** Tilt Blind - Lift and Tilt value */
-  ZB_ZCL_ATTR_WINDOW_COVERING_TYPE_TILT_BLIND_LIFT_AND_TILT          = 0x08,
-  /** Projector screen value */
-  ZB_ZCL_ATTR_WINDOW_COVERING_TYPE_PROJECTOR_SCREEN                  = 0x09
+    /** Rollershade value */
+    ZB_ZCL_ATTR_WINDOW_COVERING_TYPE_ROLLERSHADE                       = 0x00,
+    /** Rollershade - 2 Motor value */
+    ZB_ZCL_ATTR_WINDOW_COVERING_TYPE_ROLLERSHADE_2_MOTOR               = 0x01,
+    /** Rollershade - Exterior value */
+    ZB_ZCL_ATTR_WINDOW_COVERING_TYPE_ROLLERSHADE_EXTERIOR              = 0x02,
+    /** Rollershade - Exterior - 2 Motor value */
+    ZB_ZCL_ATTR_WINDOW_COVERING_TYPE_ROLLERSHADE_EXTERIOR_2_MOTOR      = 0x03,
+    /** Drapery value */
+    ZB_ZCL_ATTR_WINDOW_COVERING_TYPE_DRAPERY                           = 0x04,
+    /** Awning value */
+    ZB_ZCL_ATTR_WINDOW_COVERING_TYPE_AWNING                            = 0x05,
+    /** Shutter value */
+    ZB_ZCL_ATTR_WINDOW_COVERING_TYPE_SHUTTER                           = 0x06,
+    /** Tilt Blind - Tilt Only value */
+    ZB_ZCL_ATTR_WINDOW_COVERING_TYPE_TILT_BLIND_TILT_ONLY              = 0x07,
+    /** Tilt Blind - Lift and Tilt value */
+    ZB_ZCL_ATTR_WINDOW_COVERING_TYPE_TILT_BLIND_LIFT_AND_TILT          = 0x08,
+    /** Projector screen value */
+    ZB_ZCL_ATTR_WINDOW_COVERING_TYPE_PROJECTOR_SCREEN                  = 0x09
 };
 
 /** @brief Permissible values for Config/Status attribute
     @see ZCL spec, subclause 9.4.2.1.2.7*/
 enum zb_zcl_window_covering_config_status_e
 {
-  /** Operational value */
-  ZB_ZCL_ATTR_WINDOW_COVERING_CONFIG_OPERATIONAL                   = 0x01,
-  /** Online value */
-  ZB_ZCL_ATTR_WINDOW_COVERING_CONFIG_ONLINE                        = 0x02,
-  /** Open/Up Commands have been reversed value */
-  ZB_ZCL_ATTR_WINDOW_COVERING_CONFIG_REVERSE_COMMANDS              = 0x04,
-  /** Lift control is Closed Loop value */
-  ZB_ZCL_ATTR_WINDOW_COVERING_CONFIG_LIFT_CONTROL_IS_CLOSED_LOOP   = 0x08,
-  /** Tilt control is Closed Loop value */
-  ZB_ZCL_ATTR_WINDOW_COVERING_CONFIG_TILT_CONTROL_IS_CLOSED_LOOP   = 0x10,
-  /** Lift Encoder Controlled value */
-  ZB_ZCL_ATTR_WINDOW_COVERING_CONFIG_LIFT_ENCODER_CONTROLLED       = 0x20,
-  /** Tilt Encoder Controlled value */
-  ZB_ZCL_ATTR_WINDOW_COVERING_CONFIG_TILT_ENCODER_CONTROLLED       = 0x40
+    /** Operational value */
+    ZB_ZCL_ATTR_WINDOW_COVERING_CONFIG_OPERATIONAL                   = 0x01,
+    /** Online value */
+    ZB_ZCL_ATTR_WINDOW_COVERING_CONFIG_ONLINE                        = 0x02,
+    /** Open/Up Commands have been reversed value */
+    ZB_ZCL_ATTR_WINDOW_COVERING_CONFIG_REVERSE_COMMANDS              = 0x04,
+    /** Lift control is Closed Loop value */
+    ZB_ZCL_ATTR_WINDOW_COVERING_CONFIG_LIFT_CONTROL_IS_CLOSED_LOOP   = 0x08,
+    /** Tilt control is Closed Loop value */
+    ZB_ZCL_ATTR_WINDOW_COVERING_CONFIG_TILT_CONTROL_IS_CLOSED_LOOP   = 0x10,
+    /** Lift Encoder Controlled value */
+    ZB_ZCL_ATTR_WINDOW_COVERING_CONFIG_LIFT_ENCODER_CONTROLLED       = 0x20,
+    /** Tilt Encoder Controlled value */
+    ZB_ZCL_ATTR_WINDOW_COVERING_CONFIG_TILT_ENCODER_CONTROLLED       = 0x40
 };
 
 /** @brief Window covering cluster settings attribute set identifiers
@@ -121,40 +121,40 @@ enum zb_zcl_window_covering_config_status_e
 */
 enum zb_zcl_window_covering_settings_attr_e
 {
-  /** @brief InstalledOpenLimit -  Lift attribute */
-  ZB_ZCL_ATTR_WINDOW_COVERING_INSTALLED_OPEN_LIMIT_LIFT_ID            = 0x0010,
-  /** @brief InstalledClosedLimit - Lift attribute */
-  ZB_ZCL_ATTR_WINDOW_COVERING_INSTALLED_CLOSED_LIMIT_LIFT_ID          = 0x0011,
-  /** @brief InstalledOpenLimit - Tilt attribute */
-  ZB_ZCL_ATTR_WINDOW_COVERING_INSTALLED_OPEN_LIMIT_TILT_ID            = 0x0012,
-  /** @brief InstalledClosedLimit - Tilt attribute */
-  ZB_ZCL_ATTR_WINDOW_COVERING_INSTALLED_CLOSED_LIMIT_TILT_ID          = 0x0013,
-  /** @brief Velocity - Lift attribute */
-  ZB_ZCL_ATTR_WINDOW_COVERING_VELOCITY_ID                             = 0x0014,
-  /** @brief Acceleration Time - Lift attribute */
-  ZB_ZCL_ATTR_WINDOW_COVERING_ACCELERATION_TIME_ID                    = 0x0015,
-  /** @brief Deceleration Time - Lift attribute */
-  ZB_ZCL_ATTR_WINDOW_COVERING_DECELERATION_TIME_ID                    = 0x0016,
-  /** @brief Mode attribute */
-  ZB_ZCL_ATTR_WINDOW_COVERING_MODE_ID                                 = 0x0017,
-  /** @brief Intermediate Setpoints - Lift attribute */
-  ZB_ZCL_ATTR_WINDOW_COVERING_INTERMEDIATE_SETPOINTS_LIFT_ID          = 0x0018,
-  /** @brief Intermediate Setpoints - Tilt attribute */
-  ZB_ZCL_ATTR_WINDOW_COVERING_INTERMEDIATE_SETPOINTS_TILT_ID          = 0x0019
+    /** @brief InstalledOpenLimit -  Lift attribute */
+    ZB_ZCL_ATTR_WINDOW_COVERING_INSTALLED_OPEN_LIMIT_LIFT_ID            = 0x0010,
+    /** @brief InstalledClosedLimit - Lift attribute */
+    ZB_ZCL_ATTR_WINDOW_COVERING_INSTALLED_CLOSED_LIMIT_LIFT_ID          = 0x0011,
+    /** @brief InstalledOpenLimit - Tilt attribute */
+    ZB_ZCL_ATTR_WINDOW_COVERING_INSTALLED_OPEN_LIMIT_TILT_ID            = 0x0012,
+    /** @brief InstalledClosedLimit - Tilt attribute */
+    ZB_ZCL_ATTR_WINDOW_COVERING_INSTALLED_CLOSED_LIMIT_TILT_ID          = 0x0013,
+    /** @brief Velocity - Lift attribute */
+    ZB_ZCL_ATTR_WINDOW_COVERING_VELOCITY_ID                             = 0x0014,
+    /** @brief Acceleration Time - Lift attribute */
+    ZB_ZCL_ATTR_WINDOW_COVERING_ACCELERATION_TIME_ID                    = 0x0015,
+    /** @brief Deceleration Time - Lift attribute */
+    ZB_ZCL_ATTR_WINDOW_COVERING_DECELERATION_TIME_ID                    = 0x0016,
+    /** @brief Mode attribute */
+    ZB_ZCL_ATTR_WINDOW_COVERING_MODE_ID                                 = 0x0017,
+    /** @brief Intermediate Setpoints - Lift attribute */
+    ZB_ZCL_ATTR_WINDOW_COVERING_INTERMEDIATE_SETPOINTS_LIFT_ID          = 0x0018,
+    /** @brief Intermediate Setpoints - Tilt attribute */
+    ZB_ZCL_ATTR_WINDOW_COVERING_INTERMEDIATE_SETPOINTS_TILT_ID          = 0x0019
 };
 
 /** @brief Permissible values for Mode attribute
     @see ZCL spec, subclause 9.4.2.1.5.7.1*/
 enum zb_zcl_window_covering_mode_e
 {
-  /** Reversed motor direction value */
-  ZB_ZCL_ATTR_WINDOW_COVERING_TYPE_REVERSED_MOTOR_DIRECTION               = 0x01,
-  /** Run in calibration mode value */
-  ZB_ZCL_ATTR_WINDOW_COVERING_TYPE_RUN_IN_CALIBRATION_MODE                = 0x02,
-  /** Motor is running in maintenance mode value */
-  ZB_ZCL_ATTR_WINDOW_COVERING_TYPE_MOTOR_IS_RUNNING_IN_MAINTENANCE_MODE   = 0x04,
-  /** LEDs will display feedback value */
-  ZB_ZCL_ATTR_WINDOW_COVERING_TYPE_LEDS_WILL_DISPLAY_FEEDBACK             = 0x08
+    /** Reversed motor direction value */
+    ZB_ZCL_ATTR_WINDOW_COVERING_TYPE_REVERSED_MOTOR_DIRECTION               = 0x01,
+    /** Run in calibration mode value */
+    ZB_ZCL_ATTR_WINDOW_COVERING_TYPE_RUN_IN_CALIBRATION_MODE                = 0x02,
+    /** Motor is running in maintenance mode value */
+    ZB_ZCL_ATTR_WINDOW_COVERING_TYPE_MOTOR_IS_RUNNING_IN_MAINTENANCE_MODE   = 0x04,
+    /** LEDs will display feedback value */
+    ZB_ZCL_ATTR_WINDOW_COVERING_TYPE_LEDS_WILL_DISPLAY_FEEDBACK             = 0x08
 };
 
 /** @brief Default value for PhysicalClosedLimitLift attribute */
@@ -442,20 +442,20 @@ enum zb_zcl_window_covering_mode_e
 */
 enum zb_zcl_window_covering_cmd_e
 {
-  /** Up/Open command */
-  ZB_ZCL_CMD_WINDOW_COVERING_UP_OPEN               = 0x00,
-  /** Down/Close command */
-  ZB_ZCL_CMD_WINDOW_COVERING_DOWN_CLOSE            = 0x01,
-  /** Stop command */
-  ZB_ZCL_CMD_WINDOW_COVERING_STOP                  = 0x02,
-  /** Go to Lift Value command */
-  ZB_ZCL_CMD_WINDOW_COVERING_GO_TO_LIFT_VALUE      = 0x04,
-  /** Go to Lift Percentage command */
-  ZB_ZCL_CMD_WINDOW_COVERING_GO_TO_LIFT_PERCENTAGE = 0x05,
-  /** Go to Tilt Value command */
-  ZB_ZCL_CMD_WINDOW_COVERING_GO_TO_TILT_VALUE      = 0x07,
-  /** Go to Tilt Percentage command */
-  ZB_ZCL_CMD_WINDOW_COVERING_GO_TO_TILT_PERCENTAGE = 0x08
+    /** Up/Open command */
+    ZB_ZCL_CMD_WINDOW_COVERING_UP_OPEN               = 0x00,
+    /** Down/Close command */
+    ZB_ZCL_CMD_WINDOW_COVERING_DOWN_CLOSE            = 0x01,
+    /** Stop command */
+    ZB_ZCL_CMD_WINDOW_COVERING_STOP                  = 0x02,
+    /** Go to Lift Value command */
+    ZB_ZCL_CMD_WINDOW_COVERING_GO_TO_LIFT_VALUE      = 0x04,
+    /** Go to Lift Percentage command */
+    ZB_ZCL_CMD_WINDOW_COVERING_GO_TO_LIFT_PERCENTAGE = 0x05,
+    /** Go to Tilt Value command */
+    ZB_ZCL_CMD_WINDOW_COVERING_GO_TO_TILT_VALUE      = 0x07,
+    /** Go to Tilt Percentage command */
+    ZB_ZCL_CMD_WINDOW_COVERING_GO_TO_TILT_PERCENTAGE = 0x08
 };
 
 /** @cond internals_doc */
@@ -480,31 +480,31 @@ enum zb_zcl_window_covering_cmd_e
 /** @brief Structured representation of GO_TO_LIFT_VALUE command payload */
 typedef ZB_PACKED_PRE struct zb_zcl_go_to_lift_value_req_s
 {
-  /** Lift Value */
-  zb_uint16_t      lift_value;
+    /** Lift Value */
+    zb_uint16_t      lift_value;
 } ZB_PACKED_STRUCT zb_zcl_go_to_lift_value_req_t;
 
 /** @brief Structured representation of GO_TO_LIFT_PERCENTAGE command payload
     @see ZCL spec, subclause 9.4.2.2.5.2.1*/
 typedef ZB_PACKED_PRE struct zb_zcl_go_to_lift_percentage_req_s
 {
-  /** Percentage Lift Value */
-  zb_uint8_t       percentage_lift_value;
+    /** Percentage Lift Value */
+    zb_uint8_t       percentage_lift_value;
 } ZB_PACKED_STRUCT zb_zcl_go_to_lift_percentage_req_t;
 
 /** @brief Structured representation of GO_TO_TILT_VALUE command payload */
 typedef ZB_PACKED_PRE struct zb_zcl_go_to_tilt_value_req_s
 {
-  /** Tilt Value */
-  zb_uint16_t      tilt_value;
+    /** Tilt Value */
+    zb_uint16_t      tilt_value;
 } ZB_PACKED_STRUCT zb_zcl_go_to_tilt_value_req_t;
 
 /** @brief Structured representation of GO_TO_TILT_PERCENTAGE command payload
     @see ZCL spec, subclause 9.4.2.2.5.5.1*/
 typedef ZB_PACKED_PRE struct zb_zcl_go_to_tilt_percentage_req_s
 {
-  /** Percentage Tilt Value */
-  zb_uint8_t       percentage_tilt_value;
+    /** Percentage Tilt Value */
+    zb_uint8_t       percentage_tilt_value;
 } ZB_PACKED_STRUCT zb_zcl_go_to_tilt_percentage_req_t;
 
 /** @brief Send Up/Open command

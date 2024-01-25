@@ -92,81 +92,82 @@ MAIN()
 
 void zb_mlme_reset_confirm(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_NWK2, "zb_mlme_reset_confirm", (FMT__0));
-  {
-    zb_mlme_set_request_t *set_req = ZB_BUF_GET_PARAM(param, zb_mlme_set_request_t);
+    TRACE_MSG(TRACE_NWK2, "zb_mlme_reset_confirm", (FMT__0));
+    {
+        zb_mlme_set_request_t *set_req = ZB_BUF_GET_PARAM(param, zb_mlme_set_request_t);
 
-    set_req -> pib_attr  = ZB_PIB_ATTRIBUTE_SHORT_ADDRESS;
-    set_req -> pib_length = sizeof(zb_uint16_t);
-    *((zb_uint16_t *)(set_req + 1)) = ZB_TEST_ADDR;
+        set_req -> pib_attr  = ZB_PIB_ATTRIBUTE_SHORT_ADDRESS;
+        set_req -> pib_length = sizeof(zb_uint16_t);
+        *((zb_uint16_t *)(set_req + 1)) = ZB_TEST_ADDR;
 
-//    ZB_SCHEDULE_CALLBACK(zb_mlme_set_request, ZB_REF_FROM_BUF(param));
-    ZB_SCHEDULE_CALLBACK(zb_mlme_set_request, param);
-  }
+        //    ZB_SCHEDULE_CALLBACK(zb_mlme_set_request, ZB_REF_FROM_BUF(param));
+        ZB_SCHEDULE_CALLBACK(zb_mlme_set_request, param);
+    }
 }
 
 void zb_mlme_set_confirm(zb_uint8_t param)
 {
-  static zb_uint8_t pass = 0;
-  zb_uint8_t size;
+    static zb_uint8_t pass = 0;
+    zb_uint8_t size;
 
-  TRACE_MSG(TRACE_NWK2, "zb_mlme_set_confirm_1", (FMT__0));
+    TRACE_MSG(TRACE_NWK2, "zb_mlme_set_confirm_1", (FMT__0));
 
-  if (!pass)
-  {
-    // 1 - st MLME-SET.request
-    zb_mlme_set_request_t *set_req = ZB_BUF_GET_PARAM(param, zb_mlme_set_request_t);
-
-    set_req -> pib_attr   = ZB_PIB_ATTRIBUTE_BEACON_PAYLOAD;
-    set_req -> pib_length = sizeof(zb_mac_beacon_payload_t);
-    *((zb_uint8_t *)(set_req + 1)) = ZB_TEST_BEACON_PAYLOAD_LENGTH;
-
-    size = sizeof(zb_mac_beacon_payload_t);
-    if (size > ZB_TEST_BEACON_PAYLOAD_LENGTH)
+    if (!pass)
     {
-      size = ZB_TEST_BEACON_PAYLOAD_LENGTH;
+        // 1 - st MLME-SET.request
+        zb_mlme_set_request_t *set_req = ZB_BUF_GET_PARAM(param, zb_mlme_set_request_t);
+
+        set_req -> pib_attr   = ZB_PIB_ATTRIBUTE_BEACON_PAYLOAD;
+        set_req -> pib_length = sizeof(zb_mac_beacon_payload_t);
+        *((zb_uint8_t *)(set_req + 1)) = ZB_TEST_BEACON_PAYLOAD_LENGTH;
+
+        size = sizeof(zb_mac_beacon_payload_t);
+        if (size > ZB_TEST_BEACON_PAYLOAD_LENGTH)
+        {
+            size = ZB_TEST_BEACON_PAYLOAD_LENGTH;
+        }
+
+        ZB_MEMSET((zb_uint8_t *)(set_req + 1), 0, sizeof(zb_mac_beacon_payload_t));
+        ZB_MEMCPY((zb_uint8_t *)(set_req + 1), ZB_TEST_BEACON_PAYLOAD, size);
+        pass++;
+        //    ZB_SCHEDULE_CALLBACK(zb_mlme_set_request, ZB_REF_FROM_BUF(param));
+        ZB_SCHEDULE_CALLBACK(zb_mlme_set_request, param);
     }
+    else
+        // 2 - nd MLME-SET.request
+    {
+        zb_mlme_start_req_t *req = ZB_BUF_GET_PARAM(param, zb_mlme_start_req_t);
 
-    ZB_MEMSET((zb_uint8_t *)(set_req + 1), 0, sizeof(zb_mac_beacon_payload_t));
-    ZB_MEMCPY((zb_uint8_t *)(set_req + 1), ZB_TEST_BEACON_PAYLOAD, size);
-    pass++;
-//    ZB_SCHEDULE_CALLBACK(zb_mlme_set_request, ZB_REF_FROM_BUF(param));
-    ZB_SCHEDULE_CALLBACK(zb_mlme_set_request, param);
-  } else
-  // 2 - nd MLME-SET.request
-  {
-    zb_mlme_start_req_t *req = ZB_BUF_GET_PARAM(param, zb_mlme_start_req_t);
+        TRACE_MSG(TRACE_NWK2, "zb_mlme_set_confirm_2", (FMT__0));
 
-    TRACE_MSG(TRACE_NWK2, "zb_mlme_set_confirm_2", (FMT__0));
+        /* start PAN */
+        ZB_BZERO(req, sizeof(*req));
+        req -> pan_id                 = TEST_PAN_ID;
+        req -> logical_channel        = ZB_TEST_CHANNEL;
+        req -> beacon_order           = ZB_TURN_OFF_ORDER;
+        req -> superframe_order       = ZB_TURN_OFF_ORDER;
+        req -> pan_coordinator        = ZB_TRUE;      /* will be coordinator */
+        req -> battery_life_extension = ZB_FALSE;
+        req -> coord_realignment      = ZB_FALSE;
 
-    /* start PAN */
-    ZB_BZERO(req, sizeof(*req));
-    req -> pan_id                 = TEST_PAN_ID;
-    req -> logical_channel        = ZB_TEST_CHANNEL;
-    req -> beacon_order           = ZB_TURN_OFF_ORDER;
-    req -> superframe_order       = ZB_TURN_OFF_ORDER;
-    req -> pan_coordinator        = ZB_TRUE;      /* will be coordinator */
-    req -> battery_life_extension = ZB_FALSE;
-    req -> coord_realignment      = ZB_FALSE;
-
-//    ZB_SCHEDULE_CALLBACK(zb_mlme_start_request, ZB_REF_FROM_BUF(param));
-    ZB_SCHEDULE_CALLBACK(zb_mlme_start_request, param);
-  }
+        //    ZB_SCHEDULE_CALLBACK(zb_mlme_start_request, ZB_REF_FROM_BUF(param));
+        ZB_SCHEDULE_CALLBACK(zb_mlme_start_request, param);
+    }
 }
 
 void usage(char **argv)
 {
 
-  printf("%s <read pipe path> <write pipe path>\n", argv[0]);
+    printf("%s <read pipe path> <write pipe path>\n", argv[0]);
 #else
-  ZVUNUSED(argv);
+    ZVUNUSED(argv);
 #endif
 }
 
 void zb_mlme_start_confirm(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_NWK2, "zb_mlme_start_confirm", (FMT__0));
-  zb_buf_free(param);
+    TRACE_MSG(TRACE_NWK2, "zb_mlme_start_confirm", (FMT__0));
+    zb_buf_free(param);
 }
 
 /*! @} */

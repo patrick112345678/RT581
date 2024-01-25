@@ -107,7 +107,7 @@ uint32_t SysTickValueGet(void);
 #define ZB_OSIF_GLOBAL_LOCK()         ZB_DISABLE_ALL_INTER()
 #define ZB_OSIF_GLOBAL_UNLOCK()       ZB_ENABLE_ALL_INTER()
 
-#define ZB_ABORT 
+#define ZB_ABORT
 //#define ZB_GO_IDLE() CPUwfi()
 /* Have problems with sleep when working without a debugger. Switch it iff temporary */
 #define ZB_GO_IDLE()

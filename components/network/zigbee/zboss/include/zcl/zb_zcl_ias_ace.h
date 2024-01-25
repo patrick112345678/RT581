@@ -45,15 +45,15 @@
  * see ZCL spec 8.3.2.3, table 8.11 */
 typedef ZB_PACKED_PRE struct zb_zcl_ias_ace_zone_table_s
 {
-  /** Zone ID */
-  zb_uint8_t zone_id;
-  /** Zone Type, see @ref zb_zcl_ias_zone_zonetype_e */
-  zb_uint16_t zone_type;
-  /** Zone Address */
-  zb_ieee_addr_t zone_address;
-  /** The pointer to a string with Zone Label. If the pointer is zero, the Zone Label
-   *  is not programmed */
-  zb_char_t *zone_label;
+    /** Zone ID */
+    zb_uint8_t zone_id;
+    /** Zone Type, see @ref zb_zcl_ias_zone_zonetype_e */
+    zb_uint16_t zone_type;
+    /** Zone Address */
+    zb_ieee_addr_t zone_address;
+    /** The pointer to a string with Zone Label. If the pointer is zero, the Zone Label
+     *  is not programmed */
+    zb_char_t *zone_label;
 } ZB_PACKED_STRUCT zb_zcl_ias_ace_zone_table_t;
 
 /** @brief IAS ACE Zone Table maximum length */
@@ -75,10 +75,10 @@ typedef ZB_PACKED_PRE struct zb_zcl_ias_ace_zone_table_s
 */
 enum zb_zcl_ias_ace_attr_e
 {
-  /*! @brief Ace table length, ZCL spec 8.3.2.3 */
-  ZB_ZCL_ATTR_IAS_ACE_ZONE_TABLE_LENGTH_ID = 0xeffe,
-  /*! @brief Ace table ZCL spec 8.3.2.3 */
-  ZB_ZCL_ATTR_IAS_ACE_ZONE_TABLE_ID = 0xefff,
+    /*! @brief Ace table length, ZCL spec 8.3.2.3 */
+    ZB_ZCL_ATTR_IAS_ACE_ZONE_TABLE_LENGTH_ID = 0xeffe,
+    /*! @brief Ace table ZCL spec 8.3.2.3 */
+    ZB_ZCL_ATTR_IAS_ACE_ZONE_TABLE_ID = 0xefff,
 
 };
 
@@ -134,28 +134,28 @@ enum zb_zcl_ias_ace_attr_e
 */
 enum zb_zcl_ias_ace_cmd_e
 {
-  /** Arm command, ZCL spec 8.3.2.4.1 */
-  ZB_ZCL_CMD_IAS_ACE_ARM_ID                       = 0x00,
-  /** Bypass command, ZCL spec 8.3.2.4.2 */
-  ZB_ZCL_CMD_IAS_ACE_BYPASS_ID                    = 0x01,
-  /** Emergency command, ZCL spec 8.3.2.4.3 */
-  ZB_ZCL_CMD_IAS_ACE_EMERGENCY_ID                 = 0x02,
-  /** Fire command, ZCL spec 8.3.2.4.3 */
-  ZB_ZCL_CMD_IAS_ACE_FIRE_ID                      = 0x03,
-  /** Panic command, ZCL spec 8.3.2.4.3 */
-  ZB_ZCL_CMD_IAS_ACE_PANIC_ID                     = 0x04,
-  /** Get Zone ID Map command, ZCL spec 8.3.2.4.4 */
-  ZB_ZCL_CMD_IAS_ACE_GET_ZONE_ID_MAP_ID           = 0x05,
-  /** Get Zone Information command, ZCL spec 8.3.2.4.5 */
-  ZB_ZCL_CMD_IAS_ACE_GET_ZONE_INFO_ID             = 0x06,
-  /** This command is used by ACE clients to request an update to the status
-   *  (e.g. security system arm state) of the ACE server (i.e. the IAS CIE) */
-  ZB_ZCL_CMD_IAS_ACE_GET_PANEL_STATUS_ID          = 0x07,
-  /** Provides IAS ACE clients with a way to retrieve the list of zones to be bypassed. */
-  ZB_ZCL_CMD_IAS_ACE_GET_BYPASSED_ZONE_LIST_ID    = 0x08,
-  /** This command is used by ACE clients to request an update of the status
-   *  of the IAS Zone devices managed by the ACE server (i.e. the IAS CIE). */
-  ZB_ZCL_CMD_IAS_ACE_GET_ZONE_STATUS_ID           = 0x09,
+    /** Arm command, ZCL spec 8.3.2.4.1 */
+    ZB_ZCL_CMD_IAS_ACE_ARM_ID                       = 0x00,
+    /** Bypass command, ZCL spec 8.3.2.4.2 */
+    ZB_ZCL_CMD_IAS_ACE_BYPASS_ID                    = 0x01,
+    /** Emergency command, ZCL spec 8.3.2.4.3 */
+    ZB_ZCL_CMD_IAS_ACE_EMERGENCY_ID                 = 0x02,
+    /** Fire command, ZCL spec 8.3.2.4.3 */
+    ZB_ZCL_CMD_IAS_ACE_FIRE_ID                      = 0x03,
+    /** Panic command, ZCL spec 8.3.2.4.3 */
+    ZB_ZCL_CMD_IAS_ACE_PANIC_ID                     = 0x04,
+    /** Get Zone ID Map command, ZCL spec 8.3.2.4.4 */
+    ZB_ZCL_CMD_IAS_ACE_GET_ZONE_ID_MAP_ID           = 0x05,
+    /** Get Zone Information command, ZCL spec 8.3.2.4.5 */
+    ZB_ZCL_CMD_IAS_ACE_GET_ZONE_INFO_ID             = 0x06,
+    /** This command is used by ACE clients to request an update to the status
+     *  (e.g. security system arm state) of the ACE server (i.e. the IAS CIE) */
+    ZB_ZCL_CMD_IAS_ACE_GET_PANEL_STATUS_ID          = 0x07,
+    /** Provides IAS ACE clients with a way to retrieve the list of zones to be bypassed. */
+    ZB_ZCL_CMD_IAS_ACE_GET_BYPASSED_ZONE_LIST_ID    = 0x08,
+    /** This command is used by ACE clients to request an update of the status
+     *  of the IAS Zone devices managed by the ACE server (i.e. the IAS CIE). */
+    ZB_ZCL_CMD_IAS_ACE_GET_ZONE_STATUS_ID           = 0x09,
 };
 
 /*! @brief IAS Ace cluster responce command identifiers
@@ -163,28 +163,28 @@ enum zb_zcl_ias_ace_cmd_e
 */
 enum zb_zcl_ias_ace_resp_cmd_e
 {
-  /** Arm Response command, ZCL spec 8.3.2.5.1 */
-  ZB_ZCL_CMD_IAS_ACE_ARM_RESP_ID                  = 0x00,
-  /** Get Zone ID Map Response command, ZCL spec 8.3.2.5.2 */
-  ZB_ZCL_CMD_IAS_ACE_GET_ZONE_ID_MAP_RESP_ID      = 0x01,
-  /** Get Zone Information Response command, ZCL spec 8.3.2.5.3 */
-  ZB_ZCL_CMD_IAS_ACE_GET_ZONE_INFO_RESP_ID        = 0x02,
-  /** This command updates ACE clients in the system of changes to zone status
-   *  recorded by the ACE server (e.g., IAS CIE device). */
-  ZB_ZCL_CMD_IAS_ACE_ZONE_STATUS_CHANGED_ID       = 0x03,
-  /** This command updates ACE clients in the system of changes to zone status
-   *  recorded by the ACE server (e.g., IAS CIE device). */
-  ZB_ZCL_CMD_IAS_ACE_PANEL_STATUS_CHANGED_ID      = 0x04,
-  /** This command updates ACE clients in the system of changes to panel status
-   *   recorded by the ACE server (e.g., IAS CIE device). */
-  ZB_ZCL_CMD_IAS_ACE_GET_PANEL_STATUS_RESPONSE_ID = 0x05,
-  /** Sets the list of bypassed zones on the IAS ACE client. */
-  ZB_ZCL_CMD_IAS_ACE_SET_BYPASSED_ZONE_LIST_ID    = 0x06,
-  /** Provides the response of the security panel to the request from the IAS ACE client
-   *  to bypass zones via a Bypass command. */
-  ZB_ZCL_CMD_IAS_ACE_BYPASS_RESPONSE_ID           = 0x07,
-  /** Get Zone Status Response Command. */
-  ZB_ZCL_CMD_IAS_ACE_GET_ZONE_STATUS_RESPONSE_ID  = 0x08,
+    /** Arm Response command, ZCL spec 8.3.2.5.1 */
+    ZB_ZCL_CMD_IAS_ACE_ARM_RESP_ID                  = 0x00,
+    /** Get Zone ID Map Response command, ZCL spec 8.3.2.5.2 */
+    ZB_ZCL_CMD_IAS_ACE_GET_ZONE_ID_MAP_RESP_ID      = 0x01,
+    /** Get Zone Information Response command, ZCL spec 8.3.2.5.3 */
+    ZB_ZCL_CMD_IAS_ACE_GET_ZONE_INFO_RESP_ID        = 0x02,
+    /** This command updates ACE clients in the system of changes to zone status
+     *  recorded by the ACE server (e.g., IAS CIE device). */
+    ZB_ZCL_CMD_IAS_ACE_ZONE_STATUS_CHANGED_ID       = 0x03,
+    /** This command updates ACE clients in the system of changes to zone status
+     *  recorded by the ACE server (e.g., IAS CIE device). */
+    ZB_ZCL_CMD_IAS_ACE_PANEL_STATUS_CHANGED_ID      = 0x04,
+    /** This command updates ACE clients in the system of changes to panel status
+     *   recorded by the ACE server (e.g., IAS CIE device). */
+    ZB_ZCL_CMD_IAS_ACE_GET_PANEL_STATUS_RESPONSE_ID = 0x05,
+    /** Sets the list of bypassed zones on the IAS ACE client. */
+    ZB_ZCL_CMD_IAS_ACE_SET_BYPASSED_ZONE_LIST_ID    = 0x06,
+    /** Provides the response of the security panel to the request from the IAS ACE client
+     *  to bypass zones via a Bypass command. */
+    ZB_ZCL_CMD_IAS_ACE_BYPASS_RESPONSE_ID           = 0x07,
+    /** Get Zone Status Response Command. */
+    ZB_ZCL_CMD_IAS_ACE_GET_ZONE_STATUS_RESPONSE_ID  = 0x08,
 };
 
 /** @cond internals_doc */
@@ -226,25 +226,25 @@ enum zb_zcl_ias_ace_resp_cmd_e
 */
 enum zb_zcl_ias_ace_arm_mode_e
 {
-  /** Disarm */
-  ZB_ZCL_IAS_ACE_ARM_MODE_DISARM  = 0x00,
-  /** Arm Day/Home Zones Only */
-  ZB_ZCL_IAS_ACE_ARM_MODE_DAY     = 0x01,
-  /** Arm Night/Sleep Zones Only */
-  ZB_ZCL_IAS_ACE_ARM_MODE_NIGHT   = 0x02,
-  /** Arm All Zones */
-  ZB_ZCL_IAS_ACE_ARM_MODE_ALL     = 0x03,
+    /** Disarm */
+    ZB_ZCL_IAS_ACE_ARM_MODE_DISARM  = 0x00,
+    /** Arm Day/Home Zones Only */
+    ZB_ZCL_IAS_ACE_ARM_MODE_DAY     = 0x01,
+    /** Arm Night/Sleep Zones Only */
+    ZB_ZCL_IAS_ACE_ARM_MODE_NIGHT   = 0x02,
+    /** Arm All Zones */
+    ZB_ZCL_IAS_ACE_ARM_MODE_ALL     = 0x03,
 };
 
 /*! @brief Structure representsation of Arm command, ZCL spec 8.3.2.4.1.1 */
 typedef ZB_PACKED_PRE struct zb_zcl_ias_ace_arm_s
 {
-  /** Arm Mode, see @ref zb_zcl_ias_ace_arm_mode_e*/
-  zb_uint8_t arm_mode;
-  /** Arm/Disarm Code */
-  zb_uchar_t  arm_disarm_code[ZB_ZCL_MAX_STRING_SIZE];
-  /** Zone ID */
-  zb_uint8_t zone_id;
+    /** Arm Mode, see @ref zb_zcl_ias_ace_arm_mode_e*/
+    zb_uint8_t arm_mode;
+    /** Arm/Disarm Code */
+    zb_uchar_t  arm_disarm_code[ZB_ZCL_MAX_STRING_SIZE];
+    /** Zone ID */
+    zb_uint8_t zone_id;
 
 } ZB_PACKED_STRUCT zb_zcl_ias_ace_arm_t;
 
@@ -318,12 +318,12 @@ typedef ZB_PACKED_PRE struct zb_zcl_ias_ace_arm_s
 /*! @brief Structure representsation of Bypass command, ZCL spec 8.3.2.4.2.1 */
 typedef ZB_PACKED_PRE struct zb_zcl_ias_ace_bypass_s
 {
-  /** Number of Zones */
-  zb_uint8_t length;
-  /** Zone ID array, see @ref zb_zcl_ias_ace_zone_table_s */
-  zb_uint8_t zone_id[ZB_ZCL_IAS_ACE_ZONE_TABLE_LENGTH];
-  /** Arm/Disarm Code */
-  zb_uchar_t  arm_disarm_code[ZB_ZCL_MAX_STRING_SIZE];
+    /** Number of Zones */
+    zb_uint8_t length;
+    /** Zone ID array, see @ref zb_zcl_ias_ace_zone_table_s */
+    zb_uint8_t zone_id[ZB_ZCL_IAS_ACE_ZONE_TABLE_LENGTH];
+    /** Arm/Disarm Code */
+    zb_uchar_t  arm_disarm_code[ZB_ZCL_MAX_STRING_SIZE];
 
 } ZB_PACKED_STRUCT zb_zcl_ias_ace_bypass_t;
 
@@ -511,8 +511,8 @@ typedef ZB_PACKED_PRE struct zb_zcl_ias_ace_bypass_s
 /*! @brief Structure representsation of Get Zone Information command, ZCL spec 8.3.2.4.5 */
 typedef ZB_PACKED_PRE struct zb_zcl_ias_ace_get_zone_info_s
 {
-  /** Zone ID, see @ref zb_zcl_ias_ace_zone_table_s */
-  zb_uint8_t zone_id;
+    /** Zone ID, see @ref zb_zcl_ias_ace_zone_table_s */
+    zb_uint8_t zone_id;
 
 } ZB_PACKED_STRUCT zb_zcl_ias_ace_get_zone_info_t;
 
@@ -619,14 +619,14 @@ typedef ZB_PACKED_PRE struct zb_zcl_ias_ace_get_zone_info_s
 /*! @brief Structure representsation of Get Zone Status command, ZCL spec 8.3.2.3.8.1 */
 typedef ZB_PACKED_PRE struct zb_zcl_ias_ace_get_zone_status_s
 {
-  /** Starting Zone ID, see @ref zb_zcl_ias_ace_zone_table_s */
-  zb_uint8_t  starting_zone_id;
-  /** Max Number of Zone IDs Requested Field */
-  zb_uint8_t  max_num_zone_ids;
-  /** Zone Status Mask Flag Field */
-  zb_uint8_t  zone_status_mask_flag;
-  /** Zone Status Mask Field, see @ref zb_zcl_ias_zone_zonestatus_e */
-  zb_uint16_t zone_status_mask;
+    /** Starting Zone ID, see @ref zb_zcl_ias_ace_zone_table_s */
+    zb_uint8_t  starting_zone_id;
+    /** Max Number of Zone IDs Requested Field */
+    zb_uint8_t  max_num_zone_ids;
+    /** Zone Status Mask Flag Field */
+    zb_uint8_t  zone_status_mask_flag;
+    /** Zone Status Mask Field, see @ref zb_zcl_ias_zone_zonestatus_e */
+    zb_uint16_t zone_status_mask;
 
 } ZB_PACKED_STRUCT zb_zcl_ias_ace_get_zone_status_t;
 
@@ -696,21 +696,21 @@ typedef ZB_PACKED_PRE struct zb_zcl_ias_ace_get_zone_status_s
 */
 enum zb_zcl_ias_ace_arm_not_e
 {
-  /*! All Zones Disarmed */
-  ZB_ZCL_IAS_ACE_ARM_NOT_DISARM  = 0x00,
-  /*! Only Day/Home Zones Armed */
-  ZB_ZCL_IAS_ACE_ARM_NOT_DAY     = 0x01,
-  /*! Only Night/Sleep Zones Armed */
-  ZB_ZCL_IAS_ACE_ARM_NOT_NIGHT   = 0x02,
-  /*! All Zones Armed */
-  ZB_ZCL_IAS_ACE_ARM_NOT_ALL     = 0x03,
+    /*! All Zones Disarmed */
+    ZB_ZCL_IAS_ACE_ARM_NOT_DISARM  = 0x00,
+    /*! Only Day/Home Zones Armed */
+    ZB_ZCL_IAS_ACE_ARM_NOT_DAY     = 0x01,
+    /*! Only Night/Sleep Zones Armed */
+    ZB_ZCL_IAS_ACE_ARM_NOT_NIGHT   = 0x02,
+    /*! All Zones Armed */
+    ZB_ZCL_IAS_ACE_ARM_NOT_ALL     = 0x03,
 };
 
 /*! @brief Structure representation of Arm Response command, ZCL spec 8.3.2.5.1  */
 typedef ZB_PACKED_PRE struct zb_zcl_ias_ace_arm_resp_s
 {
-  /** Arm Notification, see @ref zb_zcl_ias_ace_arm_not_e */
-  zb_uint8_t arm_notification;
+    /** Arm Notification, see @ref zb_zcl_ias_ace_arm_not_e */
+    zb_uint8_t arm_notification;
 
 } ZB_PACKED_STRUCT zb_zcl_ias_ace_arm_resp_t;
 
@@ -770,8 +770,8 @@ typedef ZB_PACKED_PRE struct zb_zcl_ias_ace_arm_resp_s
 /*! @brief Structure representsation of Get Zone ID Map Response command, ZCL spec 8.3.2.5.2.1  */
 typedef ZB_PACKED_PRE struct zb_zcl_ias_ace_get_zone_id_map_resp_s
 {
-  /** Zone ID Map */
-  zb_uint16_t zone_id_map[ZB_ZCL_IAS_ACE_GET_ZONE_ID_MAP_LENGTH];
+    /** Zone ID Map */
+    zb_uint16_t zone_id_map[ZB_ZCL_IAS_ACE_GET_ZONE_ID_MAP_LENGTH];
 
 } ZB_PACKED_STRUCT zb_zcl_ias_ace_get_zone_id_map_resp_t;
 
@@ -839,14 +839,14 @@ typedef ZB_PACKED_PRE struct zb_zcl_ias_ace_get_zone_id_map_resp_s
  * see @ ref zb_zcl_ias_ace_zone_table_s*/
 typedef ZB_PACKED_PRE struct zb_zcl_ias_ace_get_zone_info_resp_s
 {
-  /** Zone ID */
-  zb_uint8_t zone_id;
-  /** Zone Type, see @ref zb_zcl_ias_zone_zonetype_e */
-  zb_uint16_t zone_type;
-  /** Zone Address */
-  zb_ieee_addr_t address;
-  /** Zone Label Field */
-  zb_uchar_t zone_label[ZB_ZCL_MAX_STRING_SIZE];
+    /** Zone ID */
+    zb_uint8_t zone_id;
+    /** Zone Type, see @ref zb_zcl_ias_zone_zonetype_e */
+    zb_uint16_t zone_type;
+    /** Zone Address */
+    zb_ieee_addr_t address;
+    /** Zone Label Field */
+    zb_uchar_t zone_label[ZB_ZCL_MAX_STRING_SIZE];
 
 } ZB_PACKED_STRUCT zb_zcl_ias_ace_get_zone_info_resp_t;
 
@@ -923,25 +923,25 @@ typedef ZB_PACKED_PRE struct zb_zcl_ias_ace_get_zone_info_resp_s
 */
 enum zb_zcl_ias_ace_aud_notification_e
 {
-  /** Mute (i.e., no audible notification) */
-  ZB_ZCL_IAS_ACE_AUD_NOTIFICATION_MUTE           = 0x00,
-  /** Default sound */
-  ZB_ZCL_IAS_ACE_AUD_NOTIFICATION_DEF_SOUND      = 0x01,
-  /** Manufacturer specific */
-  ZB_ZCL_IAS_ACE_AUD_NOTIFICATION_MANUF_SPECIFIC = 0x80,
+    /** Mute (i.e., no audible notification) */
+    ZB_ZCL_IAS_ACE_AUD_NOTIFICATION_MUTE           = 0x00,
+    /** Default sound */
+    ZB_ZCL_IAS_ACE_AUD_NOTIFICATION_DEF_SOUND      = 0x01,
+    /** Manufacturer specific */
+    ZB_ZCL_IAS_ACE_AUD_NOTIFICATION_MANUF_SPECIFIC = 0x80,
 };
 
 /*! @brief Structure representsation of Zone Status Changed command, ZCL spec 8.3.2.4.4 */
 typedef ZB_PACKED_PRE struct zb_zcl_ias_ace_zone_status_changed_s
 {
-  /** Zone ID */
-  zb_uint8_t  zone_id;
-  /** Zone Status, see @ref zb_zcl_ias_zone_zonestatus_e */
-  zb_uint16_t zone_status;
-  /** Audible Notification, see @ref zb_zcl_ias_ace_aud_notification_e */
-  zb_uint8_t  aud_notification;
-  /** Zone Label Field */
-  zb_uchar_t   zone_label[ZB_ZCL_MAX_STRING_SIZE];
+    /** Zone ID */
+    zb_uint8_t  zone_id;
+    /** Zone Status, see @ref zb_zcl_ias_zone_zonestatus_e */
+    zb_uint16_t zone_status;
+    /** Audible Notification, see @ref zb_zcl_ias_ace_aud_notification_e */
+    zb_uint8_t  aud_notification;
+    /** Zone Label Field */
+    zb_uchar_t   zone_label[ZB_ZCL_MAX_STRING_SIZE];
 
 } ZB_PACKED_STRUCT zb_zcl_ias_ace_zone_status_changed_t;
 
@@ -1024,28 +1024,28 @@ typedef ZB_PACKED_PRE struct zb_zcl_ias_ace_zone_status_changed_s
 */
 enum zb_zcl_ias_ace_panel_status_e
 {
-  /** Panel disarmed (all zones disarmed) and ready to arm */
-  ZB_ZCL_IAS_ACE_PANEL_STATUS_DISARMED      = 0x00,
-  /** Armed stay */
-  ZB_ZCL_IAS_ACE_PANEL_STATUS_ARMED_STAY    = 0x01,
+    /** Panel disarmed (all zones disarmed) and ready to arm */
+    ZB_ZCL_IAS_ACE_PANEL_STATUS_DISARMED      = 0x00,
+    /** Armed stay */
+    ZB_ZCL_IAS_ACE_PANEL_STATUS_ARMED_STAY    = 0x01,
     /** Armed night */
-  ZB_ZCL_IAS_ACE_PANEL_STATUS_ARMED_NIGHT   = 0x02,
-  /** Armed away */
-  ZB_ZCL_IAS_ACE_PANEL_STATUS_ARMED_AWAY    = 0x03,
-  /** Exit delay */
-  ZB_ZCL_IAS_ACE_PANEL_STATUS_EXIT_DELAY    = 0x04,
-  /** Entry delay */
-  ZB_ZCL_IAS_ACE_PANEL_STATUS_ENTRY_DELAY   = 0x05,
-  /** Not ready to arm */
-  ZB_ZCL_IAS_ACE_PANEL_STATUS_NOT_READY     = 0x06,
-  /** In alarm */
-  ZB_ZCL_IAS_ACE_PANEL_STATUS_IN_ALARM      = 0x07,
-  /** Arming Stay */
-  ZB_ZCL_IAS_ACE_PANEL_STATUS_ARMING_STAY   = 0x08,
-  /** Arming Night */
-  ZB_ZCL_IAS_ACE_PANEL_STATUS_ARMING_NIGHT  = 0x09,
-  /** Arming Away */
-  ZB_ZCL_IAS_ACE_PANEL_STATUS_ARMING_AWAY   = 0x0a,
+    ZB_ZCL_IAS_ACE_PANEL_STATUS_ARMED_NIGHT   = 0x02,
+    /** Armed away */
+    ZB_ZCL_IAS_ACE_PANEL_STATUS_ARMED_AWAY    = 0x03,
+    /** Exit delay */
+    ZB_ZCL_IAS_ACE_PANEL_STATUS_EXIT_DELAY    = 0x04,
+    /** Entry delay */
+    ZB_ZCL_IAS_ACE_PANEL_STATUS_ENTRY_DELAY   = 0x05,
+    /** Not ready to arm */
+    ZB_ZCL_IAS_ACE_PANEL_STATUS_NOT_READY     = 0x06,
+    /** In alarm */
+    ZB_ZCL_IAS_ACE_PANEL_STATUS_IN_ALARM      = 0x07,
+    /** Arming Stay */
+    ZB_ZCL_IAS_ACE_PANEL_STATUS_ARMING_STAY   = 0x08,
+    /** Arming Night */
+    ZB_ZCL_IAS_ACE_PANEL_STATUS_ARMING_NIGHT  = 0x09,
+    /** Arming Away */
+    ZB_ZCL_IAS_ACE_PANEL_STATUS_ARMING_AWAY   = 0x0a,
 };
 
 /*! @brief IAS ACE Alarm Status Field
@@ -1053,33 +1053,33 @@ enum zb_zcl_ias_ace_panel_status_e
 */
 enum zb_zcl_ias_ace_alarm_status_e
 {
-  /** No alarm */
-  ZB_ZCL_IAS_ACE_ALARM_STATUS_NO_ALARM        = 0x00,
-  /** Burglar */
-  ZB_ZCL_IAS_ACE_ALARM_STATUS_BURGLAR         = 0x01,
-  /** Fire */
-  ZB_ZCL_IAS_ACE_ALARM_STATUS_FIRE            = 0x02,
-  /** Emergency */
-  ZB_ZCL_IAS_ACE_ALARM_STATUS_EMERGENCY       = 0x03,
-  /** Police Panic */
-  ZB_ZCL_IAS_ACE_ALARM_STATUS_POLICE_PANIC    = 0x04,
-  /** Fire Panic */
-  ZB_ZCL_IAS_ACE_ALARM_STATUS_FIRE_PANIC      = 0x05,
-  /** Emergency Panic */
-  ZB_ZCL_IAS_ACE_ALARM_STATUS_EMERGENCY_PANIC = 0x06,
+    /** No alarm */
+    ZB_ZCL_IAS_ACE_ALARM_STATUS_NO_ALARM        = 0x00,
+    /** Burglar */
+    ZB_ZCL_IAS_ACE_ALARM_STATUS_BURGLAR         = 0x01,
+    /** Fire */
+    ZB_ZCL_IAS_ACE_ALARM_STATUS_FIRE            = 0x02,
+    /** Emergency */
+    ZB_ZCL_IAS_ACE_ALARM_STATUS_EMERGENCY       = 0x03,
+    /** Police Panic */
+    ZB_ZCL_IAS_ACE_ALARM_STATUS_POLICE_PANIC    = 0x04,
+    /** Fire Panic */
+    ZB_ZCL_IAS_ACE_ALARM_STATUS_FIRE_PANIC      = 0x05,
+    /** Emergency Panic */
+    ZB_ZCL_IAS_ACE_ALARM_STATUS_EMERGENCY_PANIC = 0x06,
 };
 
 /*! @brief Structure representsation of Panel Status Changed command, ZCL spec 8.3.2.4.5 */
 typedef ZB_PACKED_PRE struct zb_zcl_ias_ace_panel_status_changed_s
 {
-  /** Panel Status, see @ref zb_zcl_ias_ace_panel_status_e */
-  zb_uint8_t panel_status;
-  /** Seconds Remaining Parameter */
-  zb_uint8_t seconds_remaining;
-  /** Audible Notification, see @ref zb_zcl_ias_ace_aud_notification_e */
-  zb_uint8_t aud_notification;
-  /** Alarm Status Field, see @ref zb_zcl_ias_ace_alarm_status_e */
-  zb_uint8_t alarm_status;
+    /** Panel Status, see @ref zb_zcl_ias_ace_panel_status_e */
+    zb_uint8_t panel_status;
+    /** Seconds Remaining Parameter */
+    zb_uint8_t seconds_remaining;
+    /** Audible Notification, see @ref zb_zcl_ias_ace_aud_notification_e */
+    zb_uint8_t aud_notification;
+    /** Alarm Status Field, see @ref zb_zcl_ias_ace_alarm_status_e */
+    zb_uint8_t alarm_status;
 
 } ZB_PACKED_STRUCT zb_zcl_ias_ace_panel_status_changed_t;
 
@@ -1150,14 +1150,14 @@ typedef ZB_PACKED_PRE struct zb_zcl_ias_ace_panel_status_changed_s
 /*! @brief Structure representsation of Get Panel Status Response command, ZCL spec 8.3.2.4.6 */
 typedef ZB_PACKED_PRE struct zb_zcl_ias_ace_get_panel_status_resp_s
 {
-  /** Panel Status, see @ref zb_zcl_ias_ace_panel_status_e */
-  zb_uint8_t panel_status;
-  /** Seconds Remaining Parameter */
-  zb_uint8_t seconds_remaining;
-  /** Audible Notification, see @ref zb_zcl_ias_ace_aud_notification_e */
-  zb_uint8_t aud_notification;
-  /** Alarm Status Field, see @ref zb_zcl_ias_ace_alarm_status_e */
-  zb_uint8_t alarm_status;
+    /** Panel Status, see @ref zb_zcl_ias_ace_panel_status_e */
+    zb_uint8_t panel_status;
+    /** Seconds Remaining Parameter */
+    zb_uint8_t seconds_remaining;
+    /** Audible Notification, see @ref zb_zcl_ias_ace_aud_notification_e */
+    zb_uint8_t aud_notification;
+    /** Alarm Status Field, see @ref zb_zcl_ias_ace_alarm_status_e */
+    zb_uint8_t alarm_status;
 
 } ZB_PACKED_STRUCT zb_zcl_ias_ace_get_panel_status_resp_t;
 
@@ -1222,10 +1222,10 @@ typedef ZB_PACKED_PRE struct zb_zcl_ias_ace_get_panel_status_resp_s
 /*! @brief Structure representsation of Set Bypassed Zone List command, ZCL spec 8.3.2.4.7 */
 typedef ZB_PACKED_PRE struct zb_zcl_ias_ace_set_bypassed_zone_list_s
 {
-  /** Number of Zones */
-  zb_uint8_t length;
-  /** Zone ID array, see @ref zb_zcl_ias_ace_zone_table_s */
-  zb_uint8_t zone_id[ZB_ZCL_IAS_ACE_ZONE_TABLE_LENGTH];
+    /** Number of Zones */
+    zb_uint8_t length;
+    /** Zone ID array, see @ref zb_zcl_ias_ace_zone_table_s */
+    zb_uint8_t zone_id[ZB_ZCL_IAS_ACE_ZONE_TABLE_LENGTH];
 
 } ZB_PACKED_STRUCT zb_zcl_ias_ace_set_bypassed_zone_list_t;
 
@@ -1347,29 +1347,29 @@ typedef ZB_PACKED_PRE struct zb_zcl_ias_ace_set_bypassed_zone_list_s
 */
 enum zb_zcl_ias_ace_bypass_result_e
 {
-  /** The Zone ID requested to be bypassed is successful. Zone is bypassed. */
-  ZB_ZCL_IAS_ACE_BYPASS_RESULT_BYPASSED         = 0x00,
-  /** The Zone ID requested to be bypassed is unsuccessful. Zone is not bypassed. */
-  ZB_ZCL_IAS_ACE_BYPASS_RESULT_NOT_BYPASSED     = 0x01,
-  /** The Zone ID requested to be bypassed is not eligible to be bypassed per the
-   *  policy or user configurations on the IAS ACE server. Zone is not bypassed. */
-  ZB_ZCL_IAS_ACE_BYPASS_RESULT_NOT_ALLOWED      = 0x02,
-  /** The Zone ID requested to be bypassed is not in the valid range of Zone IDs. */
-  ZB_ZCL_IAS_ACE_BYPASS_RESULT_INVALID_ZONE_ID  = 0x03,
-  /** The Zone ID requested to be bypassed is in the valid range of Zone IDs, but
-   *  the IAS ACE server does not have a record of the Zone ID requested. */
-  ZB_ZCL_IAS_ACE_BYPASS_RESULT_UNKNOWN_ZONE_ID  = 0x04,
-  /** A value returned indicating that the Arm/Disarm Code was entered incorrectly. */
-  ZB_ZCL_IAS_ACE_BYPASS_RESULT_INVALID_ARM_CODE = 0x05,
+    /** The Zone ID requested to be bypassed is successful. Zone is bypassed. */
+    ZB_ZCL_IAS_ACE_BYPASS_RESULT_BYPASSED         = 0x00,
+    /** The Zone ID requested to be bypassed is unsuccessful. Zone is not bypassed. */
+    ZB_ZCL_IAS_ACE_BYPASS_RESULT_NOT_BYPASSED     = 0x01,
+    /** The Zone ID requested to be bypassed is not eligible to be bypassed per the
+     *  policy or user configurations on the IAS ACE server. Zone is not bypassed. */
+    ZB_ZCL_IAS_ACE_BYPASS_RESULT_NOT_ALLOWED      = 0x02,
+    /** The Zone ID requested to be bypassed is not in the valid range of Zone IDs. */
+    ZB_ZCL_IAS_ACE_BYPASS_RESULT_INVALID_ZONE_ID  = 0x03,
+    /** The Zone ID requested to be bypassed is in the valid range of Zone IDs, but
+     *  the IAS ACE server does not have a record of the Zone ID requested. */
+    ZB_ZCL_IAS_ACE_BYPASS_RESULT_UNKNOWN_ZONE_ID  = 0x04,
+    /** A value returned indicating that the Arm/Disarm Code was entered incorrectly. */
+    ZB_ZCL_IAS_ACE_BYPASS_RESULT_INVALID_ARM_CODE = 0x05,
 };
 
 /*! @brief Structure representsation of Bypass Response command, ZCL spec 8.3.2.4.8 */
 typedef ZB_PACKED_PRE struct zb_zcl_ias_ace_bypass_resp_s
 {
-  /** Number of Zones */
-  zb_uint8_t length;
-  /** Bypass Result for Zone IDs, see @ref zb_zcl_ias_ace_bypass_result_e */
-  zb_uint8_t bypass_result[ZB_ZCL_IAS_ACE_ZONE_TABLE_LENGTH];
+    /** Number of Zones */
+    zb_uint8_t length;
+    /** Bypass Result for Zone IDs, see @ref zb_zcl_ias_ace_bypass_result_e */
+    zb_uint8_t bypass_result[ZB_ZCL_IAS_ACE_ZONE_TABLE_LENGTH];
 
 } ZB_PACKED_STRUCT zb_zcl_ias_ace_bypass_resp_t;
 
@@ -1448,22 +1448,22 @@ typedef ZB_PACKED_PRE struct zb_zcl_ias_ace_bypass_resp_s
 /*! @brief IAS ACE Zone Status structure */
 typedef ZB_PACKED_PRE struct zb_zcl_ias_ace_zone_status_s
 {
-  /** Zone ID, see @ref zb_zcl_ias_ace_zone_table_s */
-  zb_uint8_t  zone_id;
-  /** Zone Status, see @ref zb_zcl_ias_zone_zonestatus_e */
-  zb_uint16_t zone_status;
+    /** Zone ID, see @ref zb_zcl_ias_ace_zone_table_s */
+    zb_uint8_t  zone_id;
+    /** Zone Status, see @ref zb_zcl_ias_zone_zonestatus_e */
+    zb_uint16_t zone_status;
 
 } ZB_PACKED_STRUCT zb_zcl_ias_ace_zone_status_t;
 
 /*! @brief Structure representsation of Get Zone Status Response command, ZCL spec 8.3.2.4.9 */
 typedef ZB_PACKED_PRE struct zb_zcl_ias_ace_get_zone_status_resp_s
 {
-  /** Zone Status Complete Field */
-  zb_uint8_t zone_status_complete;
-  /** Number of Zones */
-  zb_uint8_t length;
-  /** Status of Zone IDs, see @ref zb_zcl_ias_ace_zone_status_t */
-  zb_zcl_ias_ace_zone_status_t zone_id_status[ZB_ZCL_IAS_ACE_ZONE_TABLE_LENGTH];
+    /** Zone Status Complete Field */
+    zb_uint8_t zone_status_complete;
+    /** Number of Zones */
+    zb_uint8_t length;
+    /** Status of Zone IDs, see @ref zb_zcl_ias_ace_zone_status_t */
+    zb_zcl_ias_ace_zone_status_t zone_id_status[ZB_ZCL_IAS_ACE_ZONE_TABLE_LENGTH];
 
 } ZB_PACKED_STRUCT zb_zcl_ias_ace_get_zone_status_resp_t;
 

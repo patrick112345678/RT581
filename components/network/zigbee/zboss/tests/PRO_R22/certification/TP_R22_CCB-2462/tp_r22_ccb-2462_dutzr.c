@@ -45,88 +45,88 @@ static void test_send_dev_annce_delayed(zb_uint8_t do_next_ts);
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  ZB_INIT("zdo_dutzr");
-#if UART_CONTROL	
-	test_control_init();
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    ZB_INIT("zdo_dutzr");
+#if UART_CONTROL
+    test_control_init();
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 #endif
-	
-  /* set ieee addr */
-  zb_set_long_address(g_ieee_addr_dutzr);
 
-  /* join as a router */
-  zb_cert_test_set_common_channel_settings();
-  zb_cert_test_set_zr_role();
+    /* set ieee addr */
+    zb_set_long_address(g_ieee_addr_dutzr);
 
-  zb_set_max_children(2);
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    /* join as a router */
+    zb_cert_test_set_common_channel_settings();
+    zb_cert_test_set_zr_role();
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    zb_set_max_children(2);
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  TRACE_DEINIT();
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  MAIN_RETURN(0);
+    TRACE_DEINIT();
+
+    MAIN_RETURN(0);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  switch (sig)
-  {
+    switch (sig)
+    {
     case ZB_ZDO_SIGNAL_DEFAULT_START:
-      TRACE_MSG(TRACE_APS1, "Device started, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        if (g_is_first_start)
+        TRACE_MSG(TRACE_APS1, "Device started, status %d", (FMT__D, status));
+        if (status == 0)
         {
-          g_is_first_start = ZB_FALSE;
+            if (g_is_first_start)
+            {
+                g_is_first_start = ZB_FALSE;
 
-          ZB_SCHEDULE_ALARM(test_send_dev_annce_delayed, 0, TEST_DUTZR_STARTUP_DELAY);
+                ZB_SCHEDULE_ALARM(test_send_dev_annce_delayed, 0, TEST_DUTZR_STARTUP_DELAY);
+            }
         }
-      }
-      break; /* ZB_ZDO_SIGNAL_DEFAULT_START */
+        break; /* ZB_ZDO_SIGNAL_DEFAULT_START */
 
     default:
-      TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
-      break;
-  }
+        TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 static void test_send_dev_annce_delayed(zb_uint8_t do_next_ts)
 {
-  if (do_next_ts)
-  {
-    g_step_idx++;
-  }
-
-  if (g_step_idx < TEST_DUTZR_MAX_TS)
-  {
-    TRACE_MSG(TRACE_APP1, "test_send_dev_annce_delayed: step %d", (FMT__D, g_step_idx));
-
-    if (zb_buf_get_out_delayed(zdo_send_device_annce) != RET_OK)
+    if (do_next_ts)
     {
-      TRACE_MSG(TRACE_ERROR, "test_send_dev_annce_delayed: zb_buf_get_out_delayed failed", (FMT__0));
+        g_step_idx++;
+    }
 
-      ZB_SCHEDULE_ALARM(test_send_dev_annce_delayed, 0, TEST_DUTZR_NEXT_TS_DELAY);
-    }
-    else
+    if (g_step_idx < TEST_DUTZR_MAX_TS)
     {
-      ZB_SCHEDULE_ALARM(test_send_dev_annce_delayed, 1, TEST_DUTZR_NEXT_TS_DELAY);
+        TRACE_MSG(TRACE_APP1, "test_send_dev_annce_delayed: step %d", (FMT__D, g_step_idx));
+
+        if (zb_buf_get_out_delayed(zdo_send_device_annce) != RET_OK)
+        {
+            TRACE_MSG(TRACE_ERROR, "test_send_dev_annce_delayed: zb_buf_get_out_delayed failed", (FMT__0));
+
+            ZB_SCHEDULE_ALARM(test_send_dev_annce_delayed, 0, TEST_DUTZR_NEXT_TS_DELAY);
+        }
+        else
+        {
+            ZB_SCHEDULE_ALARM(test_send_dev_annce_delayed, 1, TEST_DUTZR_NEXT_TS_DELAY);
+        }
     }
-  }
 }

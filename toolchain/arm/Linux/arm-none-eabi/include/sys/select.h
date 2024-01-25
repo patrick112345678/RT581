@@ -16,8 +16,8 @@
 #include <sys/timespec.h>
 
 #if !defined(_SIGSET_T_DECLARED)
-#define	_SIGSET_T_DECLARED
-typedef	__sigset_t	sigset_t;
+#define _SIGSET_T_DECLARED
+typedef __sigset_t  sigset_t;
 #endif
 
 #  define _SYS_TYPES_FD_SET
@@ -27,46 +27,47 @@ typedef	__sigset_t	sigset_t;
  * FD_SETSIZE may be defined by the user, but the default here
  * should be >= NOFILE (param.h).
  */
-#ifndef	FD_SETSIZE
-#define	FD_SETSIZE	64
+#ifndef FD_SETSIZE
+#define FD_SETSIZE  64
 #endif
 
-typedef unsigned long	__fd_mask;
+typedef unsigned long   __fd_mask;
 #if __BSD_VISIBLE
-typedef __fd_mask	fd_mask;
+typedef __fd_mask   fd_mask;
 #endif
 
-#define _NFDBITS	((int)sizeof(__fd_mask) * 8) /* bits per mask */
+#define _NFDBITS    ((int)sizeof(__fd_mask) * 8) /* bits per mask */
 #if __BSD_VISIBLE
-#define NFDBITS		_NFDBITS
+#define NFDBITS     _NFDBITS
 #endif
 
-#ifndef	_howmany
-#define	_howmany(x,y)	(((x) + ((y) - 1)) / (y))
+#ifndef _howmany
+#define _howmany(x,y)   (((x) + ((y) - 1)) / (y))
 #endif
 
-typedef	struct fd_set {
-	__fd_mask	__fds_bits[_howmany(FD_SETSIZE, _NFDBITS)];
+typedef struct fd_set
+{
+    __fd_mask   __fds_bits[_howmany(FD_SETSIZE, _NFDBITS)];
 } fd_set;
 #if __BSD_VISIBLE
-#define fds_bits	__fds_bits
+#define fds_bits    __fds_bits
 #endif
 
-#define __fdset_mask(n)	((__fd_mask)1 << ((n) % _NFDBITS))
-#define FD_CLR(n, p)	((p)->__fds_bits[(n)/_NFDBITS] &= ~__fdset_mask(n))
+#define __fdset_mask(n) ((__fd_mask)1 << ((n) % _NFDBITS))
+#define FD_CLR(n, p)    ((p)->__fds_bits[(n)/_NFDBITS] &= ~__fdset_mask(n))
 #if __BSD_VISIBLE
-#define FD_COPY(f, t)	(void)(*(t) = *(f))
+#define FD_COPY(f, t)   (void)(*(t) = *(f))
 #endif
-#define FD_ISSET(n, p)	(((p)->__fds_bits[(n)/_NFDBITS] & __fdset_mask(n)) != 0)
-#define FD_SET(n, p)	((p)->__fds_bits[(n)/_NFDBITS] |= __fdset_mask(n))
-#define FD_ZERO(p) do {					\
-        fd_set *_p;					\
-        __size_t _n;					\
-							\
-        _p = (p);					\
-        _n = _howmany(FD_SETSIZE, _NFDBITS);		\
-        while (_n > 0)					\
-                _p->__fds_bits[--_n] = 0;		\
+#define FD_ISSET(n, p)  (((p)->__fds_bits[(n)/_NFDBITS] & __fdset_mask(n)) != 0)
+#define FD_SET(n, p)    ((p)->__fds_bits[(n)/_NFDBITS] |= __fdset_mask(n))
+#define FD_ZERO(p) do {                 \
+        fd_set *_p;                 \
+        __size_t _n;                    \
+                            \
+        _p = (p);                   \
+        _n = _howmany(FD_SETSIZE, _NFDBITS);        \
+        while (_n > 0)                  \
+                _p->__fds_bits[--_n] = 0;       \
 } while (0)
 
 #if !defined (__INSIDE_CYGWIN_NET__)
@@ -74,11 +75,11 @@ typedef	struct fd_set {
 __BEGIN_DECLS
 
 int select __P ((int __n, fd_set *__readfds, fd_set *__writefds,
-		 fd_set *__exceptfds, struct timeval *__timeout));
+                 fd_set *__exceptfds, struct timeval *__timeout));
 #if __POSIX_VISIBLE >= 200112
 int pselect __P ((int __n, fd_set *__readfds, fd_set *__writefds,
-		  fd_set *__exceptfds, const struct timespec *__timeout,
-		  const sigset_t *__set));
+                  fd_set *__exceptfds, const struct timespec *__timeout,
+                  const sigset_t *__set));
 #endif
 
 __END_DECLS

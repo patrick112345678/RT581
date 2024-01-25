@@ -160,7 +160,7 @@
       ZB_ZCL_CLUSTER_ID_BASIC,                                                                  \
       ZB_ZCL_CLUSTER_ID_IDENTIFY,                                                               \
       ZB_ZCL_CLUSTER_ID_WINDOW_COVERING,                                                        \
-	    ZB_ZCL_CLUSTER_ID_SCENES,                                                                 \
+        ZB_ZCL_CLUSTER_ID_SCENES,                                                                 \
       ZB_ZCL_CLUSTER_ID_GROUPS                                                                  \
     }                                                                                           \
   }

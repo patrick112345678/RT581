@@ -138,9 +138,15 @@ static void platformSendSleepEvent(void)
 #if OPENTHREAD_SIMULATION_VIRTUAL_TIME_UART
 void platformUartRestore(void) {}
 
-otError otPlatUartEnable(void) { return OT_ERROR_NONE; }
+otError otPlatUartEnable(void)
+{
+    return OT_ERROR_NONE;
+}
 
-otError otPlatUartDisable(void) { return OT_ERROR_NONE; }
+otError otPlatUartDisable(void)
+{
+    return OT_ERROR_NONE;
+}
 
 otError otPlatUartSend(const uint8_t *aData, uint16_t aLength)
 {
@@ -160,7 +166,10 @@ otError otPlatUartSend(const uint8_t *aData, uint16_t aLength)
     return error;
 }
 
-otError otPlatUartFlush(void) { return OT_ERROR_NONE; }
+otError otPlatUartFlush(void)
+{
+    return OT_ERROR_NONE;
+}
 #endif // OPENTHREAD_SIMULATION_VIRTUAL_TIME_UART
 
 static void socket_init(void)
@@ -231,9 +240,15 @@ void otSysInit(int argc, char *argv[])
     signal(SIGHUP, &handleSignal);
 }
 
-bool otSysPseudoResetWasRequested(void) { return gPlatformPseudoResetWasRequested; }
+bool otSysPseudoResetWasRequested(void)
+{
+    return gPlatformPseudoResetWasRequested;
+}
 
-void otSysDeinit(void) { close(sSockFd); }
+void otSysDeinit(void)
+{
+    close(sSockFd);
+}
 
 void otSysProcessDrivers(otInstance *aInstance)
 {

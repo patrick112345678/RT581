@@ -1,12 +1,12 @@
 /**
  * @file cpc_secondary_init.h
  * @author Rex Huang (rex.huang@rafaelmicro.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2023-08-03
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 #ifndef CPC_SECONDARY_INIT_H
 #define CPC_SECONDARY_INIT_H

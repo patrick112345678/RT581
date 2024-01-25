@@ -1,12 +1,12 @@
 /**
  * @file util_log.h
  * @author Rex Huang (rex.huang@rafaelmicro.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2023-08-01
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 
 #ifndef __UTIL_LOG_H__
@@ -39,7 +39,8 @@ extern "C" {
 
 
 #define ULOG_USE_COLOR  (1)
-typedef enum LOG_BUF_OUT_DATA_TYPE {
+typedef enum LOG_BUF_OUT_DATA_TYPE
+{
     LOG_BUF_OUT_DATA_TYPE_HEX,
     LOG_BUF_OUT_DATA_TYPE_INT8,
     LOG_BUF_OUT_DATA_TYPE_UNT8,

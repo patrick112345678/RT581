@@ -1,12 +1,12 @@
 /**
  * @file ot_crypto.c
  * @author Rex Huang (rex.huang@rafaelmicro.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2023-07-25
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 #include <openthread/config.h>
 #include "openthread-system.h"
@@ -43,7 +43,7 @@ otError otPlatCryptoAesEncrypt(otCryptoContext *aContext, const uint8_t *aInput,
 {
     otError                error = OT_ERROR_NONE;
 
-   aes_ecb_encrypt(&saes_ecbctx, (uint8_t *)aInput, aOutput);
+    aes_ecb_encrypt(&saes_ecbctx, (uint8_t *)aInput, aOutput);
 
 
     return error;

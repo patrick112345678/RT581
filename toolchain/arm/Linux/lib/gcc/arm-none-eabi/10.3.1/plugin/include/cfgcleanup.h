@@ -24,9 +24,9 @@ along with GCC; see the file COPYING3.  If not see
 enum replace_direction { dir_none, dir_forward, dir_backward, dir_both };
 
 extern int flow_find_cross_jump (basic_block, basic_block, rtx_insn **,
-				 rtx_insn **, enum replace_direction*);
+                                 rtx_insn **, enum replace_direction *);
 extern int flow_find_head_matching_sequence (basic_block, basic_block,
-					     rtx_insn **, rtx_insn **, int);
+        rtx_insn **, rtx_insn **, int);
 extern bool delete_unreachable_blocks (void);
 extern void delete_dead_jumptables (void);
 extern bool cleanup_cfg (int);

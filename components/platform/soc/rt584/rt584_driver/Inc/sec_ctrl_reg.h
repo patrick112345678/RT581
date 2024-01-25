@@ -1,5 +1,5 @@
 /**************************************************************************//**
- * @file     
+ * @file
  * @version  V1.00
  * @brief    RafaelMicro Secure Control register definition header file
  *
@@ -13,10 +13,12 @@
    @{
 */
 
-typedef union sec_int_en_ctrl_s {
-    struct sec_int_en_ctrl_b {       
+typedef union sec_int_en_ctrl_s
+{
+    struct sec_int_en_ctrl_b
+    {
         uint32_t SEC_EN_ROM_ERR_INT                  : 1;
-        uint32_t SEC_EN_FLASH_ERR_INT                : 1;        
+        uint32_t SEC_EN_FLASH_ERR_INT                : 1;
         uint32_t SEC_EN_RAM_ERR_INT                  : 1;
         uint32_t SEC_EN_PERI_ERR_INT                 : 1;
         uint32_t SEC_EN_CRYPTO_ERR_INT               : 1;
@@ -27,10 +29,12 @@ typedef union sec_int_en_ctrl_s {
 } sec_int_en_ctrl_t;
 
 
-typedef union sec_int_clr_ctrl_s {
-    struct sec_int_clr_ctrl_b {       
+typedef union sec_int_clr_ctrl_s
+{
+    struct sec_int_clr_ctrl_b
+    {
         uint32_t SEC_CLR_ROM_ERR_INT                  : 1;
-        uint32_t SEC_CLR_FLASH_ERR_INT                : 1;        
+        uint32_t SEC_CLR_FLASH_ERR_INT                : 1;
         uint32_t SEC_CLR_RAM_ERR_INT                  : 1;
         uint32_t SEC_CLR_PERI_ERR_INT                 : 1;
         uint32_t SEC_CLR_CRYPTO_ERR_INT               : 1;
@@ -41,10 +45,12 @@ typedef union sec_int_clr_ctrl_s {
 } sec_int_clr_ctrl_t;
 
 
-typedef union sec_int_status_ctrl_s {
-    struct sec_int_status_ctrl_b {       
+typedef union sec_int_status_ctrl_s
+{
+    struct sec_int_status_ctrl_b
+    {
         uint32_t SEC_STATUS_ROM_ERR_INT                  : 1;
-        uint32_t SEC_STATUS_FLASH_ERR_INT                : 1;        
+        uint32_t SEC_STATUS_FLASH_ERR_INT                : 1;
         uint32_t SEC_STATUS_RAM_ERR_INT                  : 1;
         uint32_t SEC_STATUS_PERI_ERR_INT                 : 1;
         uint32_t SEC_STATUS_CRYPTO_ERR_INT               : 1;
@@ -56,37 +62,38 @@ typedef union sec_int_status_ctrl_s {
 
 
 /**
-    @addtogroup  RafaelMicro Secure Controller Register    
+    @addtogroup  RafaelMicro Secure Controller Register
     Memory Mapped Structure for Secure Controller
 @{ */
 
-typedef struct {
+typedef struct
+{
     __IO uint32_t SEC_FLASH_SEC_SIZE;     /*0x00*/
-    
+
     __IO uint32_t SEC_FLASH_NSC_START;    /*0x04*/
     __IO uint32_t SEC_FLASH_NSC_STOP;     /*0x08*/
-    
+
     __IO uint32_t SEC_FLASH_NS_STOP;      /*0x0C*/
-    
+
     __IO uint32_t SEC_RAM_SEC_SIZE;       /*0x10*/
-    
+
     __IO uint32_t SEC_RAM_NSC_START;      /*0x14*/
     __IO uint32_t SEC_RAM_NSC_STOP;       /*0x18*/
     __IO uint32_t RESV2;                  /*0x1C*/
-    
+
     __IO uint32_t SEC_PERI_ATTR0;         /*0x20*/
     __IO uint32_t SEC_PERI_ATTR1;         /*0x24*/
-    __IO uint32_t SEC_PERI_ATTR2;         /*0x28*/    
+    __IO uint32_t SEC_PERI_ATTR2;         /*0x28*/
     __IO uint32_t SEC_IDAU_CTRL;          /*0x2C*/
-    
+
     __IO sec_int_en_ctrl_t SEC_INT_EN;             /*0x30*/
-    
+
     __IO sec_int_clr_ctrl_t SEC_INT_CLR;            /*0x34*/
-    __IO sec_int_status_ctrl_t SEC_INT_STATUS;         /*0x38*/    
+    __IO sec_int_status_ctrl_t SEC_INT_STATUS;         /*0x38*/
     __IO uint32_t RESV1;                  /*0x3C*/
-    
+
     __IO uint32_t SEC_MCU_DEBUG;          /*0x40*/
-    __IO uint32_t SEC_LOCK_MCU_CTRL;      /*0x44*/    
+    __IO uint32_t SEC_LOCK_MCU_CTRL;      /*0x44*/
 } SEC_CTRL_T;
 
 

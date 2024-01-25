@@ -13,8 +13,10 @@
    @{
 */
 
-typedef union sysctrl_soc_pwm_sel_s {
-    struct sysctrl_soc_pwm_sel_b {
+typedef union sysctrl_soc_pwm_sel_s
+{
+    struct sysctrl_soc_pwm_sel_b
+    {
         uint32_t PWM0_SRC_SEL          : 2;
         uint32_t PWM1_SRC_SEL          : 2;
         uint32_t PWM2_SRC_SEL          : 2;
@@ -30,12 +32,13 @@ typedef union sysctrl_soc_pwm_sel_s {
     Memory Mapped Structure for SYS CONTROL Controller
 @{ */
 
-typedef struct {
+typedef struct
+{
     __I  uint32_t SOC_CHIP_INFO;                    /*0x00*/
     __IO uint32_t SYS_CLK_CTRL;                     /*0x04*/
     __IO uint32_t SYS_CLK_CTRL1;                    /*0x08*/
     __IO uint32_t SYS_POWER_STATE;                  /*0x0C*/
-    
+
     __IO uint32_t GPIO_MAP0;                        /*0x10*/
     __IO uint32_t GPIO_MAP1;                        /*0x14*/
     __IO uint32_t GPIO_MAP2;                        /*0x18*/
@@ -51,15 +54,15 @@ typedef struct {
     __IO uint32_t SRAM_LOWPOWER_2;                  /*0x48*/
     __IO sysctrl_soc_pwm_sel_t SOC_PWM_SEL;         /*0x4C*/
 
-    
+
     __IO uint32_t SRAM_LOWPOWER_4;      /*0x50*/
-        
+
     __IO uint32_t RESV1[2];             /*0x54~0x58*/
     __IO uint32_t SRAM_LOWPOWER_3;                  /*0x5C*/
 
     __IO uint32_t SYS_CLK_CTRL2;        /*0x60*/
     __IO uint32_t SYS_TEST;             /*0x64*/
-    
+
 } SYSCTRL_T;
 
 /**@}*/ /* end of SYS CONTROL Controller */
@@ -153,7 +156,7 @@ typedef struct {
 #define     SLOW_CLOCK_INTERNAL         0
 #define     SLOW_CLOCK_FROM_GPIO        1
 #define     SLOW_CLOCK_32M_DIV_1000     2
-#define     SLOW_CLOCK_XO_32K           3  
+#define     SLOW_CLOCK_XO_32K           3
 
 
 #define     SYS_SCRATCH_OFFSET       (0x60)

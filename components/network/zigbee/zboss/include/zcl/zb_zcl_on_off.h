@@ -57,38 +57,38 @@
 */
 enum zb_zcl_on_off_attr_e
 {
-  /*! @brief OnOff attribute */
-  ZB_ZCL_ATTR_ON_OFF_ON_OFF_ID            = 0,
-  /*! Global Scene Control attribute identifier. */
-  ZB_ZCL_ATTR_ON_OFF_GLOBAL_SCENE_CONTROL = 0x4000,
-  /*! On Time attribute identifier. */
-  ZB_ZCL_ATTR_ON_OFF_ON_TIME              = 0x4001,
-  /*! Off Wait Time attribute identifier. */
-  ZB_ZCL_ATTR_ON_OFF_OFF_WAIT_TIME        = 0x4002,
-  /*! The StartUpOnOff attribute SHALL define the desired startup behavior of a lamp
-   * device when it is supplied with power and this state SHALL be reflected in the OnOff attribute. */
-  ZB_ZCL_ATTR_ON_OFF_START_UP_ON_OFF      = 0x4003,
+    /*! @brief OnOff attribute */
+    ZB_ZCL_ATTR_ON_OFF_ON_OFF_ID            = 0,
+    /*! Global Scene Control attribute identifier. */
+    ZB_ZCL_ATTR_ON_OFF_GLOBAL_SCENE_CONTROL = 0x4000,
+    /*! On Time attribute identifier. */
+    ZB_ZCL_ATTR_ON_OFF_ON_TIME              = 0x4001,
+    /*! Off Wait Time attribute identifier. */
+    ZB_ZCL_ATTR_ON_OFF_OFF_WAIT_TIME        = 0x4002,
+    /*! The StartUpOnOff attribute SHALL define the desired startup behavior of a lamp
+     * device when it is supplied with power and this state SHALL be reflected in the OnOff attribute. */
+    ZB_ZCL_ATTR_ON_OFF_START_UP_ON_OFF      = 0x4003,
 };
 
 /*! @brief Permissible values for OnOff attribute */
 enum zb_zcl_on_off_on_off_e
 {
-  /*! "Off" value */
-  ZB_ZCL_ON_OFF_IS_OFF = 0,
-  /*! "On" value */
-  ZB_ZCL_ON_OFF_IS_ON  = 1
+    /*! "Off" value */
+    ZB_ZCL_ON_OFF_IS_OFF = 0,
+    /*! "On" value */
+    ZB_ZCL_ON_OFF_IS_ON  = 1
 };
 
 enum zb_zcl_on_off_start_up_on_off_e
 {
-  /*! "Off" value */
-  ZB_ZCL_ON_OFF_START_UP_ON_OFF_IS_OFF         = 0,
-  /*! "ON" value */
-  ZB_ZCL_ON_OFF_START_UP_ON_OFF_IS_ON          = 1,
-  /*! "Toggle" value */
-  ZB_ZCL_ON_OFF_START_UP_ON_OFF_IS_TOGGLE      = 2,
-  /*! "Previous" value */
-  ZB_ZCL_ON_OFF_START_UP_ON_OFF_IS_PREVIOUS = 0xFF
+    /*! "Off" value */
+    ZB_ZCL_ON_OFF_START_UP_ON_OFF_IS_OFF         = 0,
+    /*! "ON" value */
+    ZB_ZCL_ON_OFF_START_UP_ON_OFF_IS_ON          = 1,
+    /*! "Toggle" value */
+    ZB_ZCL_ON_OFF_START_UP_ON_OFF_IS_TOGGLE      = 2,
+    /*! "Previous" value */
+    ZB_ZCL_ON_OFF_START_UP_ON_OFF_IS_PREVIOUS = 0xFF
 };
 /** @brief Default value for OnOff attribute */
 #define ZB_ZCL_ON_OFF_ON_OFF_DEFAULT_VALUE (ZB_ZCL_ON_OFF_IS_OFF)
@@ -140,12 +140,12 @@ enum zb_zcl_on_off_start_up_on_off_e
 */
 enum zb_zcl_on_off_cmd_e
 {
-  ZB_ZCL_CMD_ON_OFF_OFF_ID                         = 0x00, /**< "Turn off" command. */
-  ZB_ZCL_CMD_ON_OFF_ON_ID                          = 0x01, /**< "Turn on" command. */
-  ZB_ZCL_CMD_ON_OFF_TOGGLE_ID                      = 0x02, /**< "Toggle state" command. */
-  ZB_ZCL_CMD_ON_OFF_OFF_WITH_EFFECT_ID             = 0x40, /**< "Off with effect" command. */
-  ZB_ZCL_CMD_ON_OFF_ON_WITH_RECALL_GLOBAL_SCENE_ID = 0x41, /**< "On with recall global scene" command. */
-  ZB_ZCL_CMD_ON_OFF_ON_WITH_TIMED_OFF_ID           = 0x42, /**< "On with timed off" command. */
+    ZB_ZCL_CMD_ON_OFF_OFF_ID                         = 0x00, /**< "Turn off" command. */
+    ZB_ZCL_CMD_ON_OFF_ON_ID                          = 0x01, /**< "Turn on" command. */
+    ZB_ZCL_CMD_ON_OFF_TOGGLE_ID                      = 0x02, /**< "Toggle state" command. */
+    ZB_ZCL_CMD_ON_OFF_OFF_WITH_EFFECT_ID             = 0x40, /**< "Off with effect" command. */
+    ZB_ZCL_CMD_ON_OFF_ON_WITH_RECALL_GLOBAL_SCENE_ID = 0x41, /**< "On with recall global scene" command. */
+    ZB_ZCL_CMD_ON_OFF_ON_WITH_TIMED_OFF_ID           = 0x42, /**< "On with timed off" command. */
 };
 
 /** @cond internals_doc */
@@ -267,30 +267,30 @@ enum zb_zcl_on_off_cmd_e
  * @see ZCL spec 3.8.2.3.4.1 */
 enum zb_zcl_on_off_effect_e
 {
-/**< Effect identifier field value: Delayed all off */
-  ZB_ZCL_ON_OFF_EFFECT_ID_DELAYED_ALL_OFF = 0x00,
-/**< Effect identifier field value: Dying light */
-  ZB_ZCL_ON_OFF_EFFECT_ID_DYING_LIGHT = 0x01
+    /**< Effect identifier field value: Delayed all off */
+    ZB_ZCL_ON_OFF_EFFECT_ID_DELAYED_ALL_OFF = 0x00,
+    /**< Effect identifier field value: Dying light */
+    ZB_ZCL_ON_OFF_EFFECT_ID_DYING_LIGHT = 0x01
 };
 
 /** Effect variant field for delayed enum
 * @see ZCL spec 3.8.2.3.4.2 */
 enum zb_zcl_on_off_effect_variant_delayed_e
 {
-/**< Effect variant field value: Fade to off in 0.8 seconds */
-  ZB_ZCL_ON_OFF_EFFECT_VARIANT_FADE = 0x00,
-/**< Effect variant field value: No fade */
-  ZB_ZCL_ON_OFF_EFFECT_VARIANT_NO_FADE = 0x01,
-/**< Effect variant field value: 50% dim down in 0.8 seconds then fade to off in 12 seconds */
-  ZB_ZCL_ON_OFF_EFFECT_VARIANT_50PART_FADE = 0x02
+    /**< Effect variant field value: Fade to off in 0.8 seconds */
+    ZB_ZCL_ON_OFF_EFFECT_VARIANT_FADE = 0x00,
+    /**< Effect variant field value: No fade */
+    ZB_ZCL_ON_OFF_EFFECT_VARIANT_NO_FADE = 0x01,
+    /**< Effect variant field value: 50% dim down in 0.8 seconds then fade to off in 12 seconds */
+    ZB_ZCL_ON_OFF_EFFECT_VARIANT_50PART_FADE = 0x02
 };
 
 /** Effect variant field for delayed enum
 * @see ZCL spec 3.8.2.3.4.2 */
 enum zb_zcl_on_off_effect_variant_dying_e
 {
-/**< Effect variant field value: 20% dim up in 0.5s then fade to off in 1 second */
-  ZB_ZCL_ON_OFF_EFFECT_VARIANT_20PART_FADE = 0x00
+    /**< Effect variant field value: 20% dim up in 0.5s then fade to off in 1 second */
+    ZB_ZCL_ON_OFF_EFFECT_VARIANT_20PART_FADE = 0x00
 };
 
 /** Accept only when on
@@ -300,21 +300,21 @@ enum zb_zcl_on_off_effect_variant_dying_e
 /*! @brief Structured representation of Off with effect command payload */
 typedef ZB_PACKED_PRE struct zb_zcl_on_off_off_with_effect_req_s
 {
-  /** Effect identify */
-  zb_uint8_t effect_id;
-  /** Effect variant */
-  zb_uint8_t effect_variant;
+    /** Effect identify */
+    zb_uint8_t effect_id;
+    /** Effect variant */
+    zb_uint8_t effect_variant;
 } ZB_PACKED_STRUCT zb_zcl_on_off_off_with_effect_req_t;
 
 /*! @brief Structured representation of On with timed off command payload */
 typedef ZB_PACKED_PRE struct zb_zcl_on_off_on_with_timed_off_req_s
 {
-  /** On/off control */
-  zb_uint8_t on_off;
-  /** On time variable */
-  zb_uint16_t on_time;
-  /** Off wait time variable */
-  zb_uint16_t off_wait_time;
+    /** On/off control */
+    zb_uint8_t on_off;
+    /** On time variable */
+    zb_uint16_t on_time;
+    /** Off wait time variable */
+    zb_uint16_t off_wait_time;
 } ZB_PACKED_STRUCT zb_zcl_on_off_on_with_timed_off_req_t;
 
 /** @brief Parses Off with Effect command
@@ -376,16 +376,16 @@ typedef ZB_PACKED_PRE struct zb_zcl_on_off_on_with_timed_off_req_s
 */
 typedef struct zb_zcl_on_off_set_effect_value_param_s
 {
-  zb_uint8_t effect_id;         /*!< Effect identify */
-  zb_uint8_t effect_variant;    /*!< Effect variant */
+    zb_uint8_t effect_id;         /*!< Effect identify */
+    zb_uint8_t effect_variant;    /*!< Effect variant */
 } zb_zcl_on_off_set_effect_value_param_t;
 
 /*! Struct for invoke User App & continue after */
 typedef struct zb_zcl_on_off_effect_user_app_schedule_e
 {
-  zb_zcl_parsed_hdr_t cmd_info;                 /**< Parameters for continue command,
+    zb_zcl_parsed_hdr_t cmd_info;                 /**< Parameters for continue command,
                                                      see @ref zb_zcl_parsed_hdr_s */
-  zb_zcl_on_off_set_effect_value_param_t param; /**< User App command parameters,
+    zb_zcl_on_off_set_effect_value_param_t param; /**< User App command parameters,
                                                      see @ref zb_zcl_on_off_set_effect_value_param_s */
 } zb_zcl_on_off_effect_user_app_schedule_t;
 
@@ -447,7 +447,7 @@ typedef struct zb_zcl_on_off_effect_user_app_schedule_e
  */
 typedef struct zb_zcl_on_off_attrs_s
 {
-  zb_uint8_t on_off;
+    zb_uint8_t on_off;
 } zb_zcl_on_off_attrs_t;
 
 #define ZB_SET_ATTR_DESCR_WITH_ZB_ZCL_ATTR_ON_OFF_START_UP_ON_OFF(data_ptr)  \
@@ -467,9 +467,9 @@ typedef struct zb_zcl_on_off_attrs_s
 /*! @internal Struct for invoke User App & continue after */
 typedef struct zb_on_off_user_app_schedule_e
 {
-  zb_zcl_parsed_hdr_t cmd_info;
-  zb_uint8_t new_value;
-  zb_bool_t is_run_timer;
+    zb_zcl_parsed_hdr_t cmd_info;
+    zb_uint8_t new_value;
+    zb_bool_t is_run_timer;
 } zb_on_off_user_app_schedule_t;
 
 

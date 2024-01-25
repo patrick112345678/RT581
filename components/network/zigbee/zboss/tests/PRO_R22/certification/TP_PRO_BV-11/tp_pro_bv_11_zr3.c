@@ -62,129 +62,129 @@ static zb_uint8_t dev_num = 2;
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  ZB_INIT("zdo_3_zr3");
-#if UART_CONTROL	
-	test_control_init();
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    ZB_INIT("zdo_3_zr3");
+#if UART_CONTROL
+    test_control_init();
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 #endif
-	
-  /* ZR3 */
-  MAC_ADD_INVISIBLE_SHORT(0);
 
-  zb_set_long_address(g_ieee_addr_r3);
+    /* ZR3 */
+    MAC_ADD_INVISIBLE_SHORT(0);
 
-  MAC_ADD_VISIBLE_LONG((zb_uint8_t*) g_ieee_addr_r2);
-  MAC_ADD_VISIBLE_LONG((zb_uint8_t*) g_ieee_addr_r4);
+    zb_set_long_address(g_ieee_addr_r3);
 
-  /* join as a router */
-  zb_cert_test_set_common_channel_settings();
-  zb_cert_test_set_zr_role();
-  zb_aib_tcpol_set_update_trust_center_link_keys_required(ZB_FALSE);
+    MAC_ADD_VISIBLE_LONG((zb_uint8_t *) g_ieee_addr_r2);
+    MAC_ADD_VISIBLE_LONG((zb_uint8_t *) g_ieee_addr_r4);
 
-  /* turn off security */
-  /* zb_cert_test_set_security_level(0); */
+    /* join as a router */
+    zb_cert_test_set_common_channel_settings();
+    zb_cert_test_set_zr_role();
+    zb_aib_tcpol_set_update_trust_center_link_keys_required(ZB_FALSE);
 
-  zb_set_max_children(1);
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    /* turn off security */
+    /* zb_cert_test_set_security_level(0); */
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zboss_main_loop();
-  }
+    zb_set_max_children(1);
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  TRACE_DEINIT();
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zboss_main_loop();
+    }
 
-  MAIN_RETURN(0);
+    TRACE_DEINIT();
+
+    MAIN_RETURN(0);
 }
 
 #if 0
 static void test_route_record_cmd(zb_uint8_t param)
 {
-  zb_bufid_t buf = zb_buf_get_out();
-  ZVUNUSED(param);
+    zb_bufid_t buf = zb_buf_get_out();
+    ZVUNUSED(param);
 
-  TRACE_MSG(TRACE_INFO3, ">>test_route_record_cmd", (FMT__0));
+    TRACE_MSG(TRACE_INFO3, ">>test_route_record_cmd", (FMT__0));
 
-  if (!buf)
-  {
-    TRACE_MSG(TRACE_NWK1, "test_route_record_cmd: error - unable to get data buffer", (FMT__0));
-    ZB_EXIT(1);
-  }
-  zb_nwk_send_rrec(buf, ZB_PIBCACHE_NETWORK_ADDRESS(), 0x0000);
-  TRACE_MSG(TRACE_INFO3, "<<test_route_record_cmd", (FMT__0));
+    if (!buf)
+    {
+        TRACE_MSG(TRACE_NWK1, "test_route_record_cmd: error - unable to get data buffer", (FMT__0));
+        ZB_EXIT(1);
+    }
+    zb_nwk_send_rrec(buf, ZB_PIBCACHE_NETWORK_ADDRESS(), 0x0000);
+    TRACE_MSG(TRACE_INFO3, "<<test_route_record_cmd", (FMT__0));
 }
 #endif
 
 static zb_uint16_t addr_ass_cb(zb_ieee_addr_t ieee_addr)
 {
-  zb_uint16_t res = -1;
-  TRACE_MSG(TRACE_APS3, ">>addr_assignmnet_cb " TRACE_FORMAT_64, (FMT__A, TRACE_ARG_64(ieee_addr)));
+    zb_uint16_t res = -1;
+    TRACE_MSG(TRACE_APS3, ">>addr_assignmnet_cb " TRACE_FORMAT_64, (FMT__A, TRACE_ARG_64(ieee_addr)));
 
-  if (ZB_IEEE_ADDR_CMP(ieee_addr, g_ieee_addr_r3))
-  {
-    res = g_short_addr_r3;
-  }
-  else
-  {
-    res = g_short_addr_r4;
-  }
+    if (ZB_IEEE_ADDR_CMP(ieee_addr, g_ieee_addr_r3))
+    {
+        res = g_short_addr_r3;
+    }
+    else
+    {
+        res = g_short_addr_r4;
+    }
 
-  TRACE_MSG(TRACE_APS3, "<<addr_assignmnet_cb: res = 0x%x;", (FMT__H, res));
-  return res;
+    TRACE_MSG(TRACE_APS3, "<<addr_assignmnet_cb: res = 0x%x;", (FMT__H, res));
+    return res;
 }
 
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_ERROR, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_ERROR, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  if (0 == status)
-  {
-    switch(sig)
+    if (0 == status)
     {
-      case ZB_ZDO_SIGNAL_DEFAULT_START:
-      case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      case ZB_BDB_SIGNAL_DEVICE_REBOOT:
-        TRACE_MSG(TRACE_ERROR, "Device STARTED OK", (FMT__0));
-
-        /* Setup address assignment callback */
-        zb_nwk_set_address_assignment_cb(addr_ass_cb);
-
-        if (dev_num == 3)
+        switch (sig)
         {
+        case ZB_ZDO_SIGNAL_DEFAULT_START:
+        case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
+        case ZB_BDB_SIGNAL_DEVICE_REBOOT:
+            TRACE_MSG(TRACE_ERROR, "Device STARTED OK", (FMT__0));
+
+            /* Setup address assignment callback */
+            zb_nwk_set_address_assignment_cb(addr_ass_cb);
+
+            if (dev_num == 3)
+            {
 #if 0
-          test_route_record_cmd(0);
+                test_route_record_cmd(0);
 #endif
 #if ZR4_USE_DATA_INDICATION
-          zb_af_set_data_indication(data_indication);
+                zb_af_set_data_indication(data_indication);
 #endif
+            }
+            break;
+
+        default:
+            TRACE_MSG(TRACE_ERROR, "Unknown signal %hd", (FMT__H, sig));
         }
-        break;
-
-      default:
-        TRACE_MSG(TRACE_ERROR, "Unknown signal %hd", (FMT__H, sig));
     }
-  }
-  else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
-  {
-    TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device start FAILED status %d", (FMT__D, status));
-  }
+    else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
+    {
+        TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device start FAILED status %d", (FMT__D, status));
+    }
 
-  if (param)
-  {
-    zb_buf_free(param);
-  }
+    if (param)
+    {
+        zb_buf_free(param);
+    }
 }

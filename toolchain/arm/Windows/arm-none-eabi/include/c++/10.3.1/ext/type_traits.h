@@ -34,188 +34,233 @@
 #include <bits/c++config.h>
 #include <bits/cpp_type_traits.h>
 
-extern "C++" {
-
-namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
+extern "C++"
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
-  // Define a nested type if some predicate holds.
-  template<bool, typename>
-    struct __enable_if 
+    namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
+    {
+    _GLIBCXX_BEGIN_NAMESPACE_VERSION
+
+    // Define a nested type if some predicate holds.
+    template<bool, typename>
+    struct __enable_if
     { };
 
-  template<typename _Tp>
+    template<typename _Tp>
     struct __enable_if<true, _Tp>
-    { typedef _Tp __type; };
-
-
-  // Conditional expression for types. If true, first, if false, second.
-  template<bool _Cond, typename _Iftrue, typename _Iffalse>
-    struct __conditional_type
-    { typedef _Iftrue __type; };
-
-  template<typename _Iftrue, typename _Iffalse>
-    struct __conditional_type<false, _Iftrue, _Iffalse>
-    { typedef _Iffalse __type; };
-
-
-  // Given an integral builtin type, return the corresponding unsigned type.
-  template<typename _Tp>
-    struct __add_unsigned
-    { 
-    private:
-      typedef __enable_if<std::__is_integer<_Tp>::__value, _Tp> __if_type;
-      
-    public:
-      typedef typename __if_type::__type __type; 
+    {
+        typedef _Tp __type;
     };
 
-  template<>
+
+    // Conditional expression for types. If true, first, if false, second.
+    template<bool _Cond, typename _Iftrue, typename _Iffalse>
+    struct __conditional_type
+    {
+        typedef _Iftrue __type;
+    };
+
+    template<typename _Iftrue, typename _Iffalse>
+    struct __conditional_type<false, _Iftrue, _Iffalse>
+    {
+        typedef _Iffalse __type;
+    };
+
+
+    // Given an integral builtin type, return the corresponding unsigned type.
+    template<typename _Tp>
+    struct __add_unsigned
+    {
+    private:
+        typedef __enable_if<std::__is_integer<_Tp>::__value, _Tp> __if_type;
+
+    public:
+        typedef typename __if_type::__type __type;
+    };
+
+    template<>
     struct __add_unsigned<char>
-    { typedef unsigned char __type; };
+    {
+        typedef unsigned char __type;
+    };
 
-  template<>
+    template<>
     struct __add_unsigned<signed char>
-    { typedef unsigned char __type; };
+    {
+        typedef unsigned char __type;
+    };
 
-  template<>
+    template<>
     struct __add_unsigned<short>
-    { typedef unsigned short __type; };
+    {
+        typedef unsigned short __type;
+    };
 
-  template<>
+    template<>
     struct __add_unsigned<int>
-    { typedef unsigned int __type; };
+    {
+        typedef unsigned int __type;
+    };
 
-  template<>
+    template<>
     struct __add_unsigned<long>
-    { typedef unsigned long __type; };
+    {
+        typedef unsigned long __type;
+    };
 
-  template<>
+    template<>
     struct __add_unsigned<long long>
-    { typedef unsigned long long __type; };
+    {
+        typedef unsigned long long __type;
+    };
 
-  // Declare but don't define.
-  template<>
+    // Declare but don't define.
+    template<>
     struct __add_unsigned<bool>;
 
-  template<>
+    template<>
     struct __add_unsigned<wchar_t>;
 
 
-  // Given an integral builtin type, return the corresponding signed type.
-  template<typename _Tp>
+    // Given an integral builtin type, return the corresponding signed type.
+    template<typename _Tp>
     struct __remove_unsigned
-    { 
+    {
     private:
-      typedef __enable_if<std::__is_integer<_Tp>::__value, _Tp> __if_type;
-      
+        typedef __enable_if<std::__is_integer<_Tp>::__value, _Tp> __if_type;
+
     public:
-      typedef typename __if_type::__type __type; 
+        typedef typename __if_type::__type __type;
     };
 
-  template<>
+    template<>
     struct __remove_unsigned<char>
-    { typedef signed char __type; };
+    {
+        typedef signed char __type;
+    };
 
-  template<>
+    template<>
     struct __remove_unsigned<unsigned char>
-    { typedef signed char __type; };
+    {
+        typedef signed char __type;
+    };
 
-  template<>
+    template<>
     struct __remove_unsigned<unsigned short>
-    { typedef short __type; };
+    {
+        typedef short __type;
+    };
 
-  template<>
+    template<>
     struct __remove_unsigned<unsigned int>
-    { typedef int __type; };
+    {
+        typedef int __type;
+    };
 
-  template<>
+    template<>
     struct __remove_unsigned<unsigned long>
-    { typedef long __type; };
+    {
+        typedef long __type;
+    };
 
-  template<>
+    template<>
     struct __remove_unsigned<unsigned long long>
-    { typedef long long __type; };
+    {
+        typedef long long __type;
+    };
 
-  // Declare but don't define.
-  template<>
+    // Declare but don't define.
+    template<>
     struct __remove_unsigned<bool>;
 
-  template<>
+    template<>
     struct __remove_unsigned<wchar_t>;
 
 
-  // For use in string and vstring.
-  template<typename _Type>
+    // For use in string and vstring.
+    template<typename _Type>
     inline bool
-    __is_null_pointer(_Type* __ptr)
-    { return __ptr == 0; }
+    __is_null_pointer(_Type * __ptr)
+    {
+        return __ptr == 0;
+    }
 
-  template<typename _Type>
+    template<typename _Type>
     inline bool
     __is_null_pointer(_Type)
-    { return false; }
+    {
+        return false;
+    }
 
 #if __cplusplus >= 201103L
-  inline bool
-  __is_null_pointer(std::nullptr_t)
-  { return true; }
+    inline bool
+    __is_null_pointer(std::nullptr_t)
+    {
+        return true;
+    }
 #endif
 
-  // For complex and cmath
-  template<typename _Tp, bool = std::__is_integer<_Tp>::__value>
+    // For complex and cmath
+    template<typename _Tp, bool = std::__is_integer<_Tp>::__value>
     struct __promote
-    { typedef double __type; };
+    {
+        typedef double __type;
+    };
 
-  // No nested __type member for non-integer non-floating point types,
-  // allows this type to be used for SFINAE to constrain overloads in
-  // <cmath> and <complex> to only the intended types.
-  template<typename _Tp>
+    // No nested __type member for non-integer non-floating point types,
+    // allows this type to be used for SFINAE to constrain overloads in
+    // <cmath> and <complex> to only the intended types.
+    template<typename _Tp>
     struct __promote<_Tp, false>
     { };
 
-  template<>
+    template<>
     struct __promote<long double>
-    { typedef long double __type; };
+    {
+        typedef long double __type;
+    };
 
-  template<>
+    template<>
     struct __promote<double>
-    { typedef double __type; };
+    {
+        typedef double __type;
+    };
 
-  template<>
+    template<>
     struct __promote<float>
-    { typedef float __type; };
+    {
+        typedef float __type;
+    };
 
-  template<typename _Tp, typename _Up,
-           typename _Tp2 = typename __promote<_Tp>::__type,
-           typename _Up2 = typename __promote<_Up>::__type>
+    template<typename _Tp, typename _Up,
+             typename _Tp2 = typename __promote<_Tp>::__type,
+             typename _Up2 = typename __promote<_Up>::__type>
     struct __promote_2
     {
-      typedef __typeof__(_Tp2() + _Up2()) __type;
+        typedef __typeof__(_Tp2() + _Up2()) __type;
     };
 
-  template<typename _Tp, typename _Up, typename _Vp,
-           typename _Tp2 = typename __promote<_Tp>::__type,
-           typename _Up2 = typename __promote<_Up>::__type,
-           typename _Vp2 = typename __promote<_Vp>::__type>
+    template<typename _Tp, typename _Up, typename _Vp,
+             typename _Tp2 = typename __promote<_Tp>::__type,
+             typename _Up2 = typename __promote<_Up>::__type,
+             typename _Vp2 = typename __promote<_Vp>::__type>
     struct __promote_3
     {
-      typedef __typeof__(_Tp2() + _Up2() + _Vp2()) __type;
+        typedef __typeof__(_Tp2() + _Up2() + _Vp2()) __type;
     };
 
-  template<typename _Tp, typename _Up, typename _Vp, typename _Wp,
-           typename _Tp2 = typename __promote<_Tp>::__type,
-           typename _Up2 = typename __promote<_Up>::__type,
-           typename _Vp2 = typename __promote<_Vp>::__type,
-           typename _Wp2 = typename __promote<_Wp>::__type>
+    template<typename _Tp, typename _Up, typename _Vp, typename _Wp,
+             typename _Tp2 = typename __promote<_Tp>::__type,
+             typename _Up2 = typename __promote<_Up>::__type,
+             typename _Vp2 = typename __promote<_Vp>::__type,
+             typename _Wp2 = typename __promote<_Wp>::__type>
     struct __promote_4
     {
-      typedef __typeof__(_Tp2() + _Up2() + _Vp2() + _Wp2()) __type;
+        typedef __typeof__(_Tp2() + _Up2() + _Vp2() + _Wp2()) __type;
     };
 
-_GLIBCXX_END_NAMESPACE_VERSION
-} // namespace
+    _GLIBCXX_END_NAMESPACE_VERSION
+    } // namespace
 } // extern "C++"
 
-#endif 
+#endif

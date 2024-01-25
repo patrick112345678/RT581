@@ -36,11 +36,11 @@ typedef void (*timer_isr_handler_t)(uint32_t timer_id);
 
 /**@brief timer config structure holding configuration settings for the timer.
  */
-typedef struct 
+typedef struct
 {
-    uint8_t    mode     :1;
-    uint8_t    prescale :3;
-    uint8_t    int_en   :1;
+    uint8_t    mode     : 1;
+    uint8_t    prescale : 3;
+    uint8_t    int_en   : 1;
 } timer_config_mode_t;
 
 

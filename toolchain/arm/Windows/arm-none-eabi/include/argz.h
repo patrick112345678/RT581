@@ -25,7 +25,7 @@ error_t argz_add_sep (char **argz, size_t *argz_len, const char *str, int sep);
 error_t argz_append (char **argz, size_t *argz_len, const char *buf, size_t buf_len);
 error_t argz_delete (char **argz, size_t *argz_len, char *entry);
 error_t argz_insert (char **argz, size_t *argz_len, char *before, const char *entry);
-char * argz_next (char *argz, size_t argz_len, const char *entry);
+char *argz_next (char *argz, size_t argz_len, const char *entry);
 error_t argz_replace (char **argz, size_t *argz_len, const char *str, const char *with, unsigned *replace_count);
 
 _END_STD_C

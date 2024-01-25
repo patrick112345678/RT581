@@ -55,28 +55,28 @@ zb_ieee_addr_t g_ieee_addr_r17 = {0x00, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00
 #if 0
 static void send_mgmt_lqi_request(zb_bufid_t param)
 {
-  zb_bufid_t buf = param;
-  zb_zdo_mgmt_lqi_param_t *req_param = ZB_BUF_GET_PARAM(buf, zb_zdo_mgmt_lqi_param_t);
+    zb_bufid_t buf = param;
+    zb_zdo_mgmt_lqi_param_t *req_param = ZB_BUF_GET_PARAM(buf, zb_zdo_mgmt_lqi_param_t);
 
-  TRACE_MSG(TRACE_ZDO1, ">>send_mgmt_lqi_request buf = %d", (FMT__D, param));
+    TRACE_MSG(TRACE_ZDO1, ">>send_mgmt_lqi_request buf = %d", (FMT__D, param));
 
-  req_param->dst_addr = 0;
-  req_param->start_index = 0;
-  zb_zdo_mgmt_lqi_req(param, NULL);
+    req_param->dst_addr = 0;
+    req_param->start_index = 0;
+    zb_zdo_mgmt_lqi_req(param, NULL);
 
-  TRACE_MSG(TRACE_ZDO1, "<<send_mgmt_lqi_request", (FMT__0));
+    TRACE_MSG(TRACE_ZDO1, "<<send_mgmt_lqi_request", (FMT__0));
 }
 #endif
 
 void test_after_startup_action(zb_uint8_t param)
 {
-  if (param == 0)
-  {
-    zb_buf_get_out_delayed(test_after_startup_action);
-  }
-  else
-  {
-    //ZB_SCHEDULE_ALARM(send_mgmt_lqi_request, param, ZB_TIME_ONE_SECOND * MGMT_LQI_REQUEST_DELAY_SECONDS);
-    zb_buf_free(param);
-  }
+    if (param == 0)
+    {
+        zb_buf_get_out_delayed(test_after_startup_action);
+    }
+    else
+    {
+        //ZB_SCHEDULE_ALARM(send_mgmt_lqi_request, param, ZB_TIME_ONE_SECOND * MGMT_LQI_REQUEST_DELAY_SECONDS);
+        zb_buf_free(param);
+    }
 }

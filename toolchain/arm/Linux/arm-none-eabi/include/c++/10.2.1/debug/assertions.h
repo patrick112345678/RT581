@@ -44,12 +44,12 @@
 #else
 
 // Verify that [_First, _Last) forms a non-empty iterator range.
-# define __glibcxx_requires_non_empty_range(_First,_Last)	\
+# define __glibcxx_requires_non_empty_range(_First,_Last)   \
   __glibcxx_assert(__builtin_expect(_First != _Last, true))
-# define __glibcxx_requires_subscript(_N)	\
+# define __glibcxx_requires_subscript(_N)   \
   __glibcxx_assert(__builtin_expect(_N < this->size(), true))
 // Verify that the container is nonempty
-# define __glibcxx_requires_nonempty()		\
+# define __glibcxx_requires_nonempty()      \
   __glibcxx_assert(__builtin_expect(!this->empty(), true))
 #endif
 

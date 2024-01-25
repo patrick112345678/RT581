@@ -3,16 +3,17 @@
  * @version  V1.00
  * @brief    true random number generator register definition header file
  *
- * @copyright 
+ * @copyright
  *****************************************************************************/
 #ifndef ___RT584_TRNG_REG_H__
 #define ___RT584_TRNG_REG_H__
 
 
-typedef struct trng_ctrl_struct {
-        
+typedef struct trng_ctrl_struct
+{
+
     __IO uint32_t       TRNG0;
-    __IO uint32_t       TRNG1;    
+    __IO uint32_t       TRNG1;
     __I  uint32_t       TRNG2;
     __IO uint32_t       TRNG3;
 

@@ -37,7 +37,7 @@ static const zb_uint16_t TEST_PAN_ID = 0xABCD;
 #define GROUP_ADDR      0x0001
 #define GROUP_EP        0xF0
 
-#define TEST_GZC_NEXT_TS_DELAY	(5  * ZB_TIME_ONE_SECOND)
+#define TEST_GZC_NEXT_TS_DELAY  (5  * ZB_TIME_ONE_SECOND)
 #define TEST_GZC_STARTUP_DELAY  (40 * ZB_TIME_ONE_SECOND)
 
 #endif  /* __TP_R22_CCB_2469_TEST_COMMON */

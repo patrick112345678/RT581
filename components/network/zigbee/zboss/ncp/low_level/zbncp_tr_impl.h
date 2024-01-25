@@ -29,7 +29,7 @@
 /** @brief Transport proxy used by low-level protocol. */
 struct zbncp_transport_s
 {
-  zbncp_transport_ops_t ops;  /**< Table of user-provided transport operations */
+    zbncp_transport_ops_t ops;  /**< Table of user-provided transport operations */
 };
 
 /**

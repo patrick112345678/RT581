@@ -28,47 +28,47 @@
 
 void sp_platform_init()
 {
-  TRACE_MSG(TRACE_APP2, "sp_platform_init", (FMT__0));
-  sp_hw_init(0);
+    TRACE_MSG(TRACE_APP2, "sp_platform_init", (FMT__0));
+    sp_hw_init(0);
 }
 
 zb_ret_t sp_hal_init()
 {
-  return RET_OK;
+    return RET_OK;
 }
 
 zb_bool_t sp_get_button_state(zb_uint16_t button)
 {
-  TRACE_MSG(TRACE_APP2, "sp_get_button_state: button %d", (FMT__D, button));
-  return ZB_FALSE;
+    TRACE_MSG(TRACE_APP2, "sp_get_button_state: button %d", (FMT__D, button));
+    return ZB_FALSE;
 }
 
 void sp_update_metering_data(zb_uint8_t param)
 {
-  ZVUNUSED(param);
-  TRACE_MSG(TRACE_APP2, "sp_update_metering_data stub", (FMT__0));
-  ZB_SCHEDULE_APP_ALARM(sp_update_metering_data, 0, ZB_TIME_ONE_SECOND * 30);
+    ZVUNUSED(param);
+    TRACE_MSG(TRACE_APP2, "sp_update_metering_data stub", (FMT__0));
+    ZB_SCHEDULE_APP_ALARM(sp_update_metering_data, 0, ZB_TIME_ONE_SECOND * 30);
 }
 
 void sp_update_button_state_ctx(zb_uint8_t button_state)
 {
-  TRACE_MSG(TRACE_APP2, "sp_update_button_state_ctx stub: state %hd", (FMT__H, button_state));
+    TRACE_MSG(TRACE_APP2, "sp_update_button_state_ctx stub: state %hd", (FMT__H, button_state));
 }
 
 void sp_relay_on_off(zb_bool_t is_on)
 {
-  if (is_on)
-  {
-    if (g_dev_ctx.led_state == SP_LED_NORMAL)
+    if (is_on)
     {
-      SP_LED_OFF();
+        if (g_dev_ctx.led_state == SP_LED_NORMAL)
+        {
+            SP_LED_OFF();
+        }
     }
-  }
-  else
-  {
-    if (g_dev_ctx.led_state == SP_LED_NORMAL)
+    else
     {
-      SP_LED_ON();
+        if (g_dev_ctx.led_state == SP_LED_NORMAL)
+        {
+            SP_LED_ON();
+        }
     }
-  }
 }

@@ -29,44 +29,44 @@
 #include "zb_common.h"
 #if (MODULE_ENABLE(SUPPORT_DEBUG_CONSOLE))
 #include "shell.h"
-#endif  
+#endif
 void zb_sched_init() /* __reentrant for sdcc, to save DSEG space */
 {
-  zb_uint8_t i;
+    zb_uint8_t i;
 
-  ZB_POOLED_LIST8_INIT(ZG->sched.tm_freelist);
-  ZB_POOLED_LIST8_INIT(ZG->sched.tm_queue);
-  for (i = 0 ; i < ZB_SCHEDULER_Q_SIZE ; ++i)
-  {
-    ZB_POOLED_LIST8_INSERT_HEAD(ZG->sched.tm_buffer, ZG->sched.tm_freelist, next, i);
-  }
+    ZB_POOLED_LIST8_INIT(ZG->sched.tm_freelist);
+    ZB_POOLED_LIST8_INIT(ZG->sched.tm_queue);
+    for (i = 0 ; i < ZB_SCHEDULER_Q_SIZE ; ++i)
+    {
+        ZB_POOLED_LIST8_INSERT_HEAD(ZG->sched.tm_buffer, ZG->sched.tm_freelist, next, i);
+    }
 }
 
 zb_bool_t zb_sheduler_is_stop()
 {
 #if (MODULE_ENABLE(SUPPORT_DEBUG_CONSOLE))
-  sh_args_t sh_arg = {0};
-  sh_arg.is_blocking = 0;
-  shell_proc(&sh_arg);
-#endif  
-  if (ZB_OSIF_IS_EXIT())
-  /*cstat !MISRAC2012-Rule-2.1_b */
-  /** @mdr{00011,0} */
-  {
-    return ZB_TRUE;
-  }
+    sh_args_t sh_arg = {0};
+    sh_arg.is_blocking = 0;
+    shell_proc(&sh_arg);
+#endif
+    if (ZB_OSIF_IS_EXIT())
+        /*cstat !MISRAC2012-Rule-2.1_b */
+        /** @mdr{00011,0} */
+    {
+        return ZB_TRUE;
+    }
 
-  if (ZG->sched.stop)
-  {
-    return ZB_TRUE;
-  }
-  return ZB_FALSE;
+    if (ZG->sched.stop)
+    {
+        return ZB_TRUE;
+    }
+    return ZB_FALSE;
 }
 
 void zb_sched_stop()
 {
-  TRACE_MSG(TRACE_ERROR, ">> zb_sched_stop", (FMT__0));
-  ZG->sched.stop = ZB_TRUE;
+    TRACE_MSG(TRACE_ERROR, ">> zb_sched_stop", (FMT__0));
+    ZG->sched.stop = ZB_TRUE;
 }
 
 

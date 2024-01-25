@@ -58,7 +58,7 @@ zb_uint16_t g_attr_ill_measured_value = ZB_ZCL_ATTR_ILLUMINANCE_MEASUREMENT_MEAS
 zb_uint16_t g_attr_ill_min_value = ZB_ZCL_ATTR_ILLUMINANCE_MEASUREMENT_MIN_MEASURED_VALUE_MIN_VALUE; /* Missing default value */
 zb_uint16_t g_attr_ill_max_value = ZB_ZCL_ATTR_ILLUMINANCE_MEASUREMENT_MIN_MEASURED_VALUE_MAX_VALUE; /* Missing default value */
 ZB_ZCL_DECLARE_ILLUMINANCE_MEASUREMENT_ATTRIB_LIST(illuminance_measurement_attr_list, &g_attr_ill_measured_value,
-                                                  &g_attr_ill_min_value, &g_attr_ill_max_value);
+        &g_attr_ill_min_value, &g_attr_ill_max_value);
 
 /* Temperature Measurement cluster attributes: */
 zb_uint16_t g_attr_temp_measured_value = ZB_ZCL_TEMP_MEASUREMENT_VALUE_DEFAULT_VALUE;
@@ -66,21 +66,21 @@ zb_uint16_t g_attr_temp_min_value = ZB_ZCL_TEMP_MEASUREMENT_MIN_VALUE_DEFAULT_VA
 zb_uint16_t g_attr_temp_max_value = ZB_ZCL_TEMP_MEASUREMENT_MAX_VALUE_DEFAULT_VALUE;
 zb_uint16_t g_attr_temp_tolerance = 0; /* Missing default value */
 ZB_ZCL_DECLARE_TEMP_MEASUREMENT_ATTRIB_LIST(temperature_measurement_attr_list, &g_attr_temp_measured_value,
-                                            &g_attr_temp_min_value, &g_attr_temp_max_value, &g_attr_temp_tolerance);
+        &g_attr_temp_min_value, &g_attr_temp_max_value, &g_attr_temp_tolerance);
 
 /* Water Content Measurement cluster attributes */
 zb_uint16_t g_attr_value = ZB_ZCL_REL_HUMIDITY_MEASUREMENT_VALUE_DEFAULT_VALUE;
 zb_uint16_t g_attr_min_value = ZB_ZCL_REL_HUMIDITY_MEASUREMENT_MIN_VALUE_DEFAULT_VALUE;
 zb_uint16_t g_attr_max_value = ZB_ZCL_REL_HUMIDITY_MEASUREMENT_MAX_VALUE_DEFAULT_VALUE;
 ZB_ZCL_DECLARE_REL_HUMIDITY_MEASUREMENT_ATTRIB_LIST(water_measurement_attr_list, &g_attr_value,
-                                                  &g_attr_min_value, &g_attr_max_value);
+        &g_attr_min_value, &g_attr_max_value);
 
 /* Occupancy Sensing cluster attributes */
 zb_uint8_t g_attr_occupancy = 0;
 zb_uint8_t g_attr_occupancy_sensor_type = 0;
 zb_uint8_t g_attr_occupancy_sensor_type_bitmap = 0;
 ZB_ZCL_DECLARE_OCCUPANCY_SENSING_ATTRIB_LIST(occupancy_sensing_attr_list, &g_attr_occupancy,
-                                            &g_attr_occupancy_sensor_type, &g_attr_occupancy_sensor_type_bitmap);
+        &g_attr_occupancy_sensor_type, &g_attr_occupancy_sensor_type_bitmap);
 
 /* Electrical Measurement cluster attributes */
 zb_uint32_t g_attr_measurement_type = ZB_ZCL_ELECTRICAL_MEASUREMENT_MEASUREMENT_TYPE_DEFAULT_VALUE;
@@ -89,8 +89,8 @@ ZB_ZCL_DECLARE_ELECTRICAL_MEASUREMENT_ATTRIB_LIST(electrical_measurent_attr_list
 
 /* Declare cluster list for the device */
 ZB_DECLARE_MEASUREMENT_SENSING_SERVER_CLUSTER_LIST(measurement_sensing_server_clusters, illuminance_measurement_attr_list,
-                                                  temperature_measurement_attr_list, water_measurement_attr_list,
-                                                  occupancy_sensing_attr_list, electrical_measurent_attr_list);
+        temperature_measurement_attr_list, water_measurement_attr_list,
+        occupancy_sensing_attr_list, electrical_measurent_attr_list);
 
 /* Declare server endpoint */
 ZB_DECLARE_MEASUREMENT_SENSING_SERVER_EP(measurement_sensing_server_ep, ZB_SERVER_ENDPOINT, measurement_sensing_server_clusters);
@@ -105,78 +105,78 @@ ZB_DECLARE_MEASUREMENT_SENSING_CTX(measurement_sensing_output_ctx, measurement_s
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Trace enable */
-  ZB_SET_TRACE_ON();
-  /* Traffic dump enable*/
-  ZB_SET_TRAF_DUMP_ON();
+    /* Trace enable */
+    ZB_SET_TRACE_ON();
+    /* Traffic dump enable*/
+    ZB_SET_TRAF_DUMP_ON();
 
-  /* Global ZBOSS initialization */
-  ZB_INIT("measurement_sensing_zr");
+    /* Global ZBOSS initialization */
+    ZB_INIT("measurement_sensing_zr");
 
-  /* Set up defaults for the commissioning */
-  zb_set_long_address(g_zc_addr);
-  zb_set_network_router_role(1l<<22);
+    /* Set up defaults for the commissioning */
+    zb_set_long_address(g_zc_addr);
+    zb_set_network_router_role(1l << 22);
 
-  zb_set_nvram_erase_at_start(ZB_FALSE);
-  zb_set_max_children(1);
+    zb_set_nvram_erase_at_start(ZB_FALSE);
+    zb_set_max_children(1);
 
-  /* [af_register_device_context] */
-  /* Register device ZCL context */
-  ZB_AF_REGISTER_DEVICE_CTX(&measurement_sensing_output_ctx);
+    /* [af_register_device_context] */
+    /* Register device ZCL context */
+    ZB_AF_REGISTER_DEVICE_CTX(&measurement_sensing_output_ctx);
 
-  /* Initiate the stack start without starting the commissioning */
-  if (zboss_start_no_autostart() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    /* Call the main loop */
-    zboss_main_loop();
-  }
+    /* Initiate the stack start without starting the commissioning */
+    if (zboss_start_no_autostart() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        /* Call the main loop */
+        zboss_main_loop();
+    }
 
-  /* Deinitialize trace */
-  TRACE_DEINIT();
+    /* Deinitialize trace */
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 /* Callback to handle the stack events */
 void zboss_signal_handler(zb_uint8_t param)
 {
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
-  {
-    switch(sig)
+    if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
     {
-      case ZB_ZDO_SIGNAL_SKIP_STARTUP:
-        zboss_start_continue();
-        break;
+        switch (sig)
+        {
+        case ZB_ZDO_SIGNAL_SKIP_STARTUP:
+            zboss_start_continue();
+            break;
 
-      case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      case ZB_BDB_SIGNAL_DEVICE_REBOOT:
-        TRACE_MSG(TRACE_APP1, "Device STARTED OK", (FMT__0));
-        break;
+        case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
+        case ZB_BDB_SIGNAL_DEVICE_REBOOT:
+            TRACE_MSG(TRACE_APP1, "Device STARTED OK", (FMT__0));
+            break;
 
-      default:
-        TRACE_MSG(TRACE_APP1, "Unknown signal %d", (FMT__D, (zb_uint16_t)sig));
+        default:
+            TRACE_MSG(TRACE_APP1, "Unknown signal %d", (FMT__D, (zb_uint16_t)sig));
+        }
     }
-  }
-  else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
-  {
-    TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d sig %d", (FMT__D_D, ZB_GET_APP_SIGNAL_STATUS(param), sig));
-  }
+    else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
+    {
+        TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d sig %d", (FMT__D_D, ZB_GET_APP_SIGNAL_STATUS(param), sig));
+    }
 
-  /* Free the buffer if it is not used */
-  if (param)
-  {
-    zb_buf_free(param);
-  }
+    /* Free the buffer if it is not used */
+    if (param)
+    {
+        zb_buf_free(param);
+    }
 }

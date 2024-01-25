@@ -31,8 +31,8 @@
 
 typedef enum
 {
-  ZB_TCSWAP_SECUR = 1,
-  ZB_TCSWAP_BINDINGS = 2
+    ZB_TCSWAP_SECUR = 1,
+    ZB_TCSWAP_BINDINGS = 2
 } zb_tcswap_dirty_state_t;
 
 

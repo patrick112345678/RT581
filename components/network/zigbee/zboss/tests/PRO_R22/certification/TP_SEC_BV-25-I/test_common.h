@@ -56,7 +56,7 @@ static const zb_uint8_t g_key1[16] = { 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA,
 #define TP_SEC_BV_25_I_STEP_6_DELAY_ZED  (140 * ZB_TIME_ONE_SECOND)
 #define TP_SEC_BV_25_I_STEP_6_TIME_ZED   (5 * ZB_TIME_ONE_SECOND)
 
-#define TIME_ZED_POLL_TIMEOUT_MS	   350000
+#define TIME_ZED_POLL_TIMEOUT_MS       350000
 
 /* insecure join configuration */
 #define INSECURE_JOIN_ZC                ZB_FALSE

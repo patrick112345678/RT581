@@ -83,15 +83,15 @@ event container should be released.
  */
 enum zb_fsm_ev_type_e
 {
-  ZB_FSM_EV_NONE = 0, /*!< Event is not used */
-  ZB_FSM_EV_UNDEF,    /*!< Event is allocated but not initialized properly */
-  ZB_FSM_EV_APP       /*!< App starts its specific events IDs with this value */
+    ZB_FSM_EV_NONE = 0, /*!< Event is not used */
+    ZB_FSM_EV_UNDEF,    /*!< Event is allocated but not initialized properly */
+    ZB_FSM_EV_APP       /*!< App starts its specific events IDs with this value */
 };
 
 
 typedef struct zb_fsm_ev_hdr_s
 {
-  zb_uint8_t fe_type;           /**< Event type, one of the @ref zb_fsm_ev_type_e values  */
+    zb_uint8_t fe_type;           /**< Event type, one of the @ref zb_fsm_ev_type_e values  */
 }
 zb_fsm_ev_hdr_t;
 
@@ -103,12 +103,12 @@ zb_fsm_ev_hdr_t;
  */
 typedef enum zb_fsm_desc_type_e
 {
-  ZB_FSM_DESC_NULL = 0, /**< Reserved descriptor type. Used for
+    ZB_FSM_DESC_NULL = 0, /**< Reserved descriptor type. Used for
                            initial FSM configuration */
-  ZB_FSM_DESC_APP,      /**< Application starts its FSM descriptors
+    ZB_FSM_DESC_APP,      /**< Application starts its FSM descriptors
                          * enumeration with this value */
 
-  ZB_FSM_DESC_DONE = (zb_uint8_t)-1, /**< Reserved descriptor type */
+    ZB_FSM_DESC_DONE = (zb_uint8_t) -1, /**< Reserved descriptor type */
 } zb_fsm_desc_type_t;
 
 /* Forward declaration */
@@ -140,7 +140,7 @@ typedef zb_ret_t(*zb_fsm_hnd_t)(struct zb_fsm_s *fsm, zb_fsm_ev_hdr_t *);
  */
 typedef struct zb_fsm_conf_s
 {
-  zb_uint32_t fc_allowed; /**< Allowed transitions bitmask */
+    zb_uint32_t fc_allowed; /**< Allowed transitions bitmask */
 }
 zb_fsm_conf_t;
 
@@ -151,10 +151,10 @@ zb_fsm_conf_t;
  */
 typedef struct zb_fsm_desc_s
 {
-  const zb_fsm_conf_t *fd_conf;      /**< Array of FSM configurations.
+    const zb_fsm_conf_t *fd_conf;      /**< Array of FSM configurations.
                                           Array index MUST be equal to FSM state */
-  zb_uint8_t           fd_max_state; /**< FSM state maximum value */
-  zb_fsm_hnd_t         fd_hnd;       /**< FSM event handler */
+    zb_uint8_t           fd_max_state; /**< FSM state maximum value */
+    zb_fsm_hnd_t         fd_hnd;       /**< FSM event handler */
 }
 zb_fsm_desc_t;
 
@@ -184,7 +184,7 @@ ZB_FSM_CHAIN_TYPE_DECLARE(1, 1);
  *
  * @note Event contains common header, but different data
  */
-typedef zb_fsm_ev_hdr_t*(*zb_fsm_ev_itr_t)(zb_fsm_ev_hdr_t *pool, zb_fsm_ev_hdr_t *fsm_ev);
+typedef zb_fsm_ev_hdr_t *(*zb_fsm_ev_itr_t)(zb_fsm_ev_hdr_t *pool, zb_fsm_ev_hdr_t *fsm_ev);
 
 /**
  * @brief FSM subsystem context
@@ -193,9 +193,9 @@ typedef zb_fsm_ev_hdr_t*(*zb_fsm_ev_itr_t)(zb_fsm_ev_hdr_t *pool, zb_fsm_ev_hdr_
  */
 typedef struct zb_fsm_sys_s
 {
-  const zb_fsm_desc_t  *fsms_desc;        /**< FSM descriptor array */
-  zb_fsm_ev_hdr_t      *fsms_ev_pool;     /**< FSM event pool, App specific */
-  zb_fsm_ev_itr_t       fsms_ev_iterator; /**< App specific event-pool iterator */
+    const zb_fsm_desc_t  *fsms_desc;        /**< FSM descriptor array */
+    zb_fsm_ev_hdr_t      *fsms_ev_pool;     /**< FSM event pool, App specific */
+    zb_fsm_ev_itr_t       fsms_ev_iterator; /**< App specific event-pool iterator */
 }
 zb_fsm_sys_t;
 
@@ -206,8 +206,8 @@ zb_fsm_sys_t;
  */
 enum zb_fsm_run_e
 {
-  ZB_FSM_WAIT = 0, /**< FSM is waiting an event */
-  ZB_FSM_RUN       /**< FSM is running  */
+    ZB_FSM_WAIT = 0, /**< FSM is waiting an event */
+    ZB_FSM_RUN       /**< FSM is running  */
 };
 
 typedef void(*zb_fsm_finish_cb_t)(struct zb_fsm_s *fsm);
@@ -220,14 +220,14 @@ typedef void(*zb_fsm_finish_cb_t)(struct zb_fsm_s *fsm);
  */
 typedef struct zb_fsm_s
 {
-  zb_uint8_t           fsm_state;     /**< Current FSM state  */
-  zb_uint8_t           fsm_run;       /**< FSM running status @ref zb_fsm_run_e */
-  zb_fsm_ev_hdr_t     *fsm_ev;        /**< Posted event */
-  const zb_fsm_desc_t *fsm_desc;      /**< Active FSM descriptor */
-  zb_fsm_sys_t        *fsm_sys;       /**< FSM subsystem context */
-  zb_fsm_chain_1_t    *fsm_chain;     /**< FSM descriptors chain */
-  zb_fsm_finish_cb_t   fsm_finish_cb; /**< Callback to be called on FSM finish. */
-  zb_ret_t             fsm_ret;       /**< Return code. Can be checked by user. */
+    zb_uint8_t           fsm_state;     /**< Current FSM state  */
+    zb_uint8_t           fsm_run;       /**< FSM running status @ref zb_fsm_run_e */
+    zb_fsm_ev_hdr_t     *fsm_ev;        /**< Posted event */
+    const zb_fsm_desc_t *fsm_desc;      /**< Active FSM descriptor */
+    zb_fsm_sys_t        *fsm_sys;       /**< FSM subsystem context */
+    zb_fsm_chain_1_t    *fsm_chain;     /**< FSM descriptors chain */
+    zb_fsm_finish_cb_t   fsm_finish_cb; /**< Callback to be called on FSM finish. */
+    zb_ret_t             fsm_ret;       /**< Return code. Can be checked by user. */
 }
 zb_fsm_t;
 
@@ -239,14 +239,14 @@ zb_fsm_t;
  */
 enum zb_fsm_common_state_e
 {
-  ZB_FSM_STATE_NONE = 0,
-  /**
-   * Initial FSM-specific state.
-   * Application should enumerate FSM states starting from this value.
-   */
-  ZB_FSM_STATE_APP_INITIAL,
-  /** Virtual state: no configuration defined for it */
-  ZB_FSM_STATE_FINAL = 31
+    ZB_FSM_STATE_NONE = 0,
+    /**
+     * Initial FSM-specific state.
+     * Application should enumerate FSM states starting from this value.
+     */
+    ZB_FSM_STATE_APP_INITIAL,
+    /** Virtual state: no configuration defined for it */
+    ZB_FSM_STATE_FINAL = 31
 };
 
 
@@ -338,7 +338,7 @@ zb_ret_t zb_fsm_event_post(zb_fsm_t *fsm, zb_fsm_ev_hdr_t *evt);
  *  @param [in] fsm - pointer to FSM entity.
  *  @return Pointer to event to be used.
  */
-zb_fsm_ev_hdr_t* zb_fsm_event_get(zb_fsm_t *fsm);
+zb_fsm_ev_hdr_t *zb_fsm_event_get(zb_fsm_t *fsm);
 
 /**
  *  @brief Put event container back to FSM sys event pool.
@@ -392,7 +392,7 @@ zb_fsm_failure(fsm, error_code, ZB_TRACE_FILE_ID, __LINE__)
  * Set error code and go to ZB_FSM_STATE_FINAL state.
  */
 void zb_fsm_failure(zb_fsm_t *fsm, zb_ret_t error_code, zb_uint16_t from_file,
-    zb_uint16_t from_line);
+                    zb_uint16_t from_line);
 
 /**
  *  @brief Set new FSM active descriptor.

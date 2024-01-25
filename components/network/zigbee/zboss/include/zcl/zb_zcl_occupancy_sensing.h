@@ -46,78 +46,78 @@
 */
 enum zb_zcl_occupancy_sensing_attr_e
 {
-  /** Occupancy attribute identifier */
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_OCCUPANCY_ID                                         = 0x0000,
-  /** Occupancy Sensor Type attribute identifier */
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_OCCUPANCY_SENSOR_TYPE_ID                             = 0x0001,
-  /** The OccupancySensorTypeBitmap attribute specifies the types of the occupancy
-   *  sensor. */
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_OCCUPANCY_SENSOR_TYPE_BITMAP_ID                      = 0x0002,
-  /** PIROccupiedToUnoccupiedDelay identifier */
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_PIR_OCC_TO_UNOCC_DELAY_ID                            = 0x0010,
-  /** PIRUnoccupiedToOccupiedDelay identifier */
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_PIR_UNOCC_TO_OCC_DELAY_ID                            = 0x0011,
-  /** PIRUnoccupiedToOccupiedThreshold identifier */
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_PIR_UNOCC_TO_OCC_THRESHOLD_ID                        = 0x0012,
-  /** The UltrasonicOccupiedToUnoccupiedDelay attribute is 16 bits in length and
-   *  specifies the time delay, in seconds, before the Ultrasonic sensor changes to its
-   *  unoccupied state after the last detection of movement in the sensed area. */
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_ULTRASONIC_OCCUPIED_TO_UNOCCUPIED_DELAY_ID           = 0x0020,
-  /** The UltrasonicUnoccupiedToOccupiedDelay attribute is 16 bits in length and
-   *  specifies the time delay, in seconds, before the Ultrasonic sensor changes
-   *  to its occupied state after the detection of movement in the sensed area. */
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_ULTRASONIC_UNOCCUPIED_TO_OCCUPIED_DELAY_ID           = 0x0021,
-  /** The UltrasonicUnoccupiedToOccupiedThreshold attribute is 8 bits in length and
-   *  specifies the number of movement detection events that must occur in the period
-   *  UltrasonicUnoccupiedToOccupiedDelay, before the Ultrasonic sensor changes to its
-   *  occupied state. */
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_ULTRASONIC_UNOCCUPIED_TO_OCCUPIED_THRESHOLD_ID       = 0x0022,
-  /** The PhysicalContactOccupiedToUnoccupiedDelay attribute is 16 bits in length and
-   *  specifies the time delay, in seconds, before the physical contact occupancy sensor
-   *  changes to its unoccupied state after detecting the unoccupied event. */
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_PHYSICAL_CONTACT_OCCUPIED_TO_UNOCCUPIED_DELAY_ID     = 0x0030,
-  /** The PhysicalContactUnoccupiedToOccupiedDelay attribute is 16 bits in length and
-   *  specifies the time delay, in seconds, before the physical contact sensor changes
-   *  to its occupied state after the detection of the occupied event. */
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_PHYSICAL_CONTACT_UNOCCUPIED_TO_OCCUPIED_DELAY_ID     = 0x0031,
-  /** The PhysicalContactUnoccupiedToOccupiedThreshold attribute is 8 bits in length and
-   *  specifies the number of movement detection events that must occur in the period
-   *  PhysicalContactUnoccupiedToOccupiedDelay, before the PIR sensor changes to its
-   *  occupied state. */
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_PHYSICAL_CONTACT_UNOCCUPIED_TO_OCCUPIED_THRESHOLD_ID = 0x0032,
-  /* Parking Sensor, Attributes for device Configuration, 2.5.1 */
-  /** @cond internals_doc */
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_REPORTING_MODE_ID                                   = 0x8001,
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_DEBUG_MODE_ID                                       = 0x8002,
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_SENSING_INTERVAL_ID                                 = 0x8003,
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_MAX_NBR_CONFIRM_PINGS_ID                            = 0x8004,
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_CONFIRM_PING_DELAY_ID                               = 0x8005,
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_NBR_CONFIRM_PINGS_TO_VALID_ID                       = 0x8006,
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_LOCAL_TEMPERATURE_OVERRIDE_ID                       = 0x8007,
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_REMOTE_TEMPERATURE_VALUE_ID                         = 0x8008,
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_HUMIDITY_COMPENSATION_ID                            = 0x800A,
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_TRANDUCER_SENSITIVITY_CALIBRATION_SOURCE_ID         = 0x800B,
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_TRANDUCER_SENSITIVITY_CALIBRATION_OVERRIDE_VALUE_ID = 0x800C,
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_SENSOR_TIME_VS_GAIN_LUT_ID                          = 0x800D,
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_LEARN_ID                                            = 0x800E,
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_RINGDOWN_DISTANCE_ID                                = 0x800F,
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_REFERENCE_FLOOR_DISTANCE_ID                         = 0x8010,
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_DETECTION_ALGORITHM_SELECTOR_ID                     = 0x8011,
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_FLOOR_DEADBAND_ID                                   = 0x8012,
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_MAIN_OBJECT_DEADBAND_ID                             = 0x8013,
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_DETECTION_THRESHOLD_ID                              = 0x8014,
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_FORCE_REPORT_ID                                     = 0x801C,
+    /** Occupancy attribute identifier */
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_OCCUPANCY_ID                                         = 0x0000,
+    /** Occupancy Sensor Type attribute identifier */
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_OCCUPANCY_SENSOR_TYPE_ID                             = 0x0001,
+    /** The OccupancySensorTypeBitmap attribute specifies the types of the occupancy
+     *  sensor. */
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_OCCUPANCY_SENSOR_TYPE_BITMAP_ID                      = 0x0002,
+    /** PIROccupiedToUnoccupiedDelay identifier */
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_PIR_OCC_TO_UNOCC_DELAY_ID                            = 0x0010,
+    /** PIRUnoccupiedToOccupiedDelay identifier */
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_PIR_UNOCC_TO_OCC_DELAY_ID                            = 0x0011,
+    /** PIRUnoccupiedToOccupiedThreshold identifier */
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_PIR_UNOCC_TO_OCC_THRESHOLD_ID                        = 0x0012,
+    /** The UltrasonicOccupiedToUnoccupiedDelay attribute is 16 bits in length and
+     *  specifies the time delay, in seconds, before the Ultrasonic sensor changes to its
+     *  unoccupied state after the last detection of movement in the sensed area. */
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_ULTRASONIC_OCCUPIED_TO_UNOCCUPIED_DELAY_ID           = 0x0020,
+    /** The UltrasonicUnoccupiedToOccupiedDelay attribute is 16 bits in length and
+     *  specifies the time delay, in seconds, before the Ultrasonic sensor changes
+     *  to its occupied state after the detection of movement in the sensed area. */
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_ULTRASONIC_UNOCCUPIED_TO_OCCUPIED_DELAY_ID           = 0x0021,
+    /** The UltrasonicUnoccupiedToOccupiedThreshold attribute is 8 bits in length and
+     *  specifies the number of movement detection events that must occur in the period
+     *  UltrasonicUnoccupiedToOccupiedDelay, before the Ultrasonic sensor changes to its
+     *  occupied state. */
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_ULTRASONIC_UNOCCUPIED_TO_OCCUPIED_THRESHOLD_ID       = 0x0022,
+    /** The PhysicalContactOccupiedToUnoccupiedDelay attribute is 16 bits in length and
+     *  specifies the time delay, in seconds, before the physical contact occupancy sensor
+     *  changes to its unoccupied state after detecting the unoccupied event. */
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_PHYSICAL_CONTACT_OCCUPIED_TO_UNOCCUPIED_DELAY_ID     = 0x0030,
+    /** The PhysicalContactUnoccupiedToOccupiedDelay attribute is 16 bits in length and
+     *  specifies the time delay, in seconds, before the physical contact sensor changes
+     *  to its occupied state after the detection of the occupied event. */
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_PHYSICAL_CONTACT_UNOCCUPIED_TO_OCCUPIED_DELAY_ID     = 0x0031,
+    /** The PhysicalContactUnoccupiedToOccupiedThreshold attribute is 8 bits in length and
+     *  specifies the number of movement detection events that must occur in the period
+     *  PhysicalContactUnoccupiedToOccupiedDelay, before the PIR sensor changes to its
+     *  occupied state. */
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_PHYSICAL_CONTACT_UNOCCUPIED_TO_OCCUPIED_THRESHOLD_ID = 0x0032,
+    /* Parking Sensor, Attributes for device Configuration, 2.5.1 */
+    /** @cond internals_doc */
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_REPORTING_MODE_ID                                   = 0x8001,
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_DEBUG_MODE_ID                                       = 0x8002,
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_SENSING_INTERVAL_ID                                 = 0x8003,
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_MAX_NBR_CONFIRM_PINGS_ID                            = 0x8004,
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_CONFIRM_PING_DELAY_ID                               = 0x8005,
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_NBR_CONFIRM_PINGS_TO_VALID_ID                       = 0x8006,
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_LOCAL_TEMPERATURE_OVERRIDE_ID                       = 0x8007,
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_REMOTE_TEMPERATURE_VALUE_ID                         = 0x8008,
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_HUMIDITY_COMPENSATION_ID                            = 0x800A,
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_TRANDUCER_SENSITIVITY_CALIBRATION_SOURCE_ID         = 0x800B,
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_TRANDUCER_SENSITIVITY_CALIBRATION_OVERRIDE_VALUE_ID = 0x800C,
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_SENSOR_TIME_VS_GAIN_LUT_ID                          = 0x800D,
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_LEARN_ID                                            = 0x800E,
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_RINGDOWN_DISTANCE_ID                                = 0x800F,
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_REFERENCE_FLOOR_DISTANCE_ID                         = 0x8010,
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_DETECTION_ALGORITHM_SELECTOR_ID                     = 0x8011,
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_FLOOR_DEADBAND_ID                                   = 0x8012,
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_MAIN_OBJECT_DEADBAND_ID                             = 0x8013,
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_DETECTION_THRESHOLD_ID                              = 0x8014,
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_FORCE_REPORT_ID                                     = 0x801C,
 
-  /* Parking Sensor, Reportable Attributes, 2.5.2 */
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_LOCAL_TEMPERATURE_VALUE_ID              = 0x8009,
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_CONFIDENCE_ID                           = 0x8015,
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_ECHO_RETURN_ARRAY_ID                    = 0x8017,
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_RX_SAMPLES_ARRAY_1_ID                   = 0x8018,
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_RX_SAMPLES_ARRAY_2_ID                   = 0x8019,
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_RX_SAMPLES_ARRAY_3_ID                   = 0x801A,
-  ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_RX_SAMPLES_ARRAY_4_ID                   = 0x801B
-  /*! @}
-   *  @endcond */ /* internals_doc */
+    /* Parking Sensor, Reportable Attributes, 2.5.2 */
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_LOCAL_TEMPERATURE_VALUE_ID              = 0x8009,
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_CONFIDENCE_ID                           = 0x8015,
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_ECHO_RETURN_ARRAY_ID                    = 0x8017,
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_RX_SAMPLES_ARRAY_1_ID                   = 0x8018,
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_RX_SAMPLES_ARRAY_2_ID                   = 0x8019,
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_RX_SAMPLES_ARRAY_3_ID                   = 0x801A,
+    ZB_ZCL_ATTR_OCCUPANCY_SENSING_CUSTOM_RX_SAMPLES_ARRAY_4_ID                   = 0x801B
+            /*! @}
+             *  @endcond */ /* internals_doc */
 };
 
 /** @brief Default value for PIROccToUnoccDelay attribute */
@@ -152,10 +152,10 @@ enum zb_zcl_occupancy_sensing_attr_e
 */
 enum zb_zcl_occupancy_sensing_occupancy_e
 {
-  /*! Unoccupied value */
-  ZB_ZCL_OCCUPANCY_SENSING_OCCUPANCY_UNOCCUPIED = 0,
-  /*! Occupied value */
-  ZB_ZCL_OCCUPANCY_SENSING_OCCUPANCY_OCCUPIED   = 1
+    /*! Unoccupied value */
+    ZB_ZCL_OCCUPANCY_SENSING_OCCUPANCY_UNOCCUPIED = 0,
+    /*! Occupied value */
+    ZB_ZCL_OCCUPANCY_SENSING_OCCUPANCY_OCCUPIED   = 1
 };
 
 /* Custom Attributes values */
@@ -172,37 +172,37 @@ enum zb_zcl_occupancy_sensing_occupancy_e
 */
 enum zb_zcl_occupancy_sensing_occupancy_sensor_type_e
 {
-  /*! PIR value */
-  ZB_ZCL_OCCUPANCY_SENSING_OCCUPANCY_SENSOR_TYPE_PIR                = 0,
-  /*! Ultrasonic value */
-  ZB_ZCL_OCCUPANCY_SENSING_OCCUPANCY_SENSOR_TYPE_ULTRASONIC         = 1,
-  /*! PIR and Ultrasonic value */
-  ZB_ZCL_OCCUPANCY_SENSING_OCCUPANCY_SENSOR_TYPE_PIR_AND_ULTRASONIC = 2,
-  /*! Reserved value */
-  ZB_ZCL_OCCUPANCY_SENSING_OCCUPANCY_SENSOR_TYPE_RESERVED           = 3
+    /*! PIR value */
+    ZB_ZCL_OCCUPANCY_SENSING_OCCUPANCY_SENSOR_TYPE_PIR                = 0,
+    /*! Ultrasonic value */
+    ZB_ZCL_OCCUPANCY_SENSING_OCCUPANCY_SENSOR_TYPE_ULTRASONIC         = 1,
+    /*! PIR and Ultrasonic value */
+    ZB_ZCL_OCCUPANCY_SENSING_OCCUPANCY_SENSOR_TYPE_PIR_AND_ULTRASONIC = 2,
+    /*! Reserved value */
+    ZB_ZCL_OCCUPANCY_SENSING_OCCUPANCY_SENSOR_TYPE_RESERVED           = 3
 };
 
 /** @cond internals_doc */
 enum zb_zcl_custom_reporting_mode_type_e
 {
-  ZB_ZCL_CUSTOM_OCCUPANCY_SENSING_REPORING_MODE_TYPE_REGULAR_REPORTING                = 0,
-  ZB_ZCL_CUSTOM_OCCUPANCY_SENSING_REPORING_MODE_TYPE_LOW_POWER_REPORTING              = 1
+    ZB_ZCL_CUSTOM_OCCUPANCY_SENSING_REPORING_MODE_TYPE_REGULAR_REPORTING                = 0,
+    ZB_ZCL_CUSTOM_OCCUPANCY_SENSING_REPORING_MODE_TYPE_LOW_POWER_REPORTING              = 1
 };
 
 
 enum zb_zcl_custom_debug_mode_type_e
 {
-  ZB_ZCL_OCCUPANCY_SENSING_CUSTOM_DEBUG_MODE_TYPE_SHORT                = 0,
-  ZB_ZCL_OCCUPANCY_SENSING_CUSTOM_DEBUG_MODE_TYPE_ENHANCED             = 1,
-  ZB_ZCL_OCCUPANCY_SENSING_CUSTOM_DEBUG_MODE_TYPE_DEBUG                = 2
+    ZB_ZCL_OCCUPANCY_SENSING_CUSTOM_DEBUG_MODE_TYPE_SHORT                = 0,
+    ZB_ZCL_OCCUPANCY_SENSING_CUSTOM_DEBUG_MODE_TYPE_ENHANCED             = 1,
+    ZB_ZCL_OCCUPANCY_SENSING_CUSTOM_DEBUG_MODE_TYPE_DEBUG                = 2
 };
 
 enum zb_zcl_custom_learn_type_e
 {
-  ZB_ZCL_OCCUPANCY_SENSING_CUSTOM_LEARN_NOT_YET_PERFORMED       = 0,
-  ZB_ZCL_OCCUPANCY_SENSING_CUSTOM_LEARN_IN_PROGRESS             = 1,
-  ZB_ZCL_OCCUPANCY_SENSING_CUSTOM_LEARN_FINISHED_WITH_A_FAILURE = 2,
-  ZB_ZCL_OCCUPANCY_SENSING_CUSTOM_LEARN_FINISHED_SUCCSESSFULLY  = 3
+    ZB_ZCL_OCCUPANCY_SENSING_CUSTOM_LEARN_NOT_YET_PERFORMED       = 0,
+    ZB_ZCL_OCCUPANCY_SENSING_CUSTOM_LEARN_IN_PROGRESS             = 1,
+    ZB_ZCL_OCCUPANCY_SENSING_CUSTOM_LEARN_FINISHED_WITH_A_FAILURE = 2,
+    ZB_ZCL_OCCUPANCY_SENSING_CUSTOM_LEARN_FINISHED_SUCCSESSFULLY  = 3
 };
 
 

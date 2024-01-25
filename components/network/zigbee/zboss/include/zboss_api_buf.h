@@ -40,31 +40,31 @@
  */
 typedef ZB_PACKED_PRE struct zb_buf_hdr_s
 {
-  zb_ret_t status;            /*!< some status to be passed with packet  */
-  zb_uint16_t len;              /*!< current layer buffer length  */
-  zb_uint16_t data_offset;      /*!< data offset in buffer buf*/
-  zb_uint8_t  multiplicity;     /*!< if greater that 1, then the following (multiplicity - 1) buffers
+    zb_ret_t status;            /*!< some status to be passed with packet  */
+    zb_uint16_t len;              /*!< current layer buffer length  */
+    zb_uint16_t data_offset;      /*!< data offset in buffer buf*/
+    zb_uint8_t  multiplicity;     /*!< if greater that 1, then the following (multiplicity - 1) buffers
                                  * are occupied with payload data and should not be treated as
                                  * having valid headers, etc.
                                  */
-  zb_uint8_t handle;           /*!< The handle associated with the NSDU to be
+    zb_uint8_t handle;           /*!< The handle associated with the NSDU to be
                                 * transmitted by the NWK layer entity.  */
-  zb_bitfield_t is_in_buf:1;    /*!< if 1, this is input buffer */
+    zb_bitfield_t is_in_buf: 1;   /*!< if 1, this is input buffer */
 
-  zb_bitfield_t encrypt_type:3; /*!< payload must be encrypted before send, if
+    zb_bitfield_t encrypt_type: 3; /*!< payload must be encrypted before send, if
                                  * !0. \see zb_secur_buf_encr_type_e.
                                  */
-  zb_bitfield_t use_same_key:1;    /*!< if 1, use same nwk key packet was
+    zb_bitfield_t use_same_key: 1;    /*!< if 1, use same nwk key packet was
                                     * encrypted by */
-  zb_bitfield_t zdo_cmd_no_resp:1; /*!< if 1, this is ZDO command with no
+    zb_bitfield_t zdo_cmd_no_resp: 1; /*!< if 1, this is ZDO command with no
                                     * response - call callback at confirm  */
-  zb_bitfield_t is_rx_buf:1;        /*!< if 1, this is buffer with received packet and
+    zb_bitfield_t is_rx_buf: 1;        /*!< if 1, this is buffer with received packet and
                                      * nwk_mac_addrs_t is at buffer tail */
-  zb_bitfield_t has_aps_payload:1;  /*!< if 1, than packet comes from APS, the flag is needed
+    zb_bitfield_t has_aps_payload: 1;  /*!< if 1, than packet comes from APS, the flag is needed
                                      * to increase APS packets counter in diagnostic data on packet sending
                                      */
-  zb_bitfield_t has_aps_user_payload:1;   /*!< if 1, than packet comes with APS user's payload */
-  zb_uint8_t reserved:7;
+    zb_bitfield_t has_aps_user_payload: 1;  /*!< if 1, than packet comes with APS user's payload */
+    zb_uint8_t reserved: 7;
 } ZB_PACKED_STRUCT zb_buf_hdr_t;
 
 /* if there is a platform with failed assertion, ZB_RESERVED_BUF_TO_ALIGN_HDR_SIZE
@@ -80,34 +80,34 @@ typedef ZB_PACKED_PRE struct zb_buf_hdr_s
 
 typedef struct zb_buf_usage_s
 {
-  /* In most cases zb_time_t is zb_uint32_t.
-   * To save memory we we use zb_uint16_t so store time. */
-  zb_uint16_t time;
-  zb_uint16_t file;
-  zb_uint16_t line;
+    /* In most cases zb_time_t is zb_uint32_t.
+     * To save memory we we use zb_uint16_t so store time. */
+    zb_uint16_t time;
+    zb_uint16_t file;
+    zb_uint16_t line;
 }
 zb_buf_usage_t;
 #endif
 #ifdef ZB_DEBUG_BUFFERS_EXT_RAF
 typedef struct zb_buf_schedule_s
 {
-  zb_bool_t usage; //0 for scheduling; 1 for call back
-  zb_bool_t used;
-  zb_uint16_t time;
-  zb_ushort_t schedulerid;
-  zb_callback_t func;
-  zb_callback2_t func2;
+    zb_bool_t usage; //0 for scheduling; 1 for call back
+    zb_bool_t used;
+    zb_uint16_t time;
+    zb_ushort_t schedulerid;
+    zb_callback_t func;
+    zb_callback2_t func2;
 }
 zb_buf_schedule_t;
 
 typedef struct zb_buf_size_s
 {
-  zb_uint16_t time;
-  zb_uint16_t file;
-  zb_uint16_t line;
-  zb_uint8_t size_before;
-  zb_uint8_t size_change;
-  zb_uint8_t size_after;
+    zb_uint16_t time;
+    zb_uint16_t file;
+    zb_uint16_t line;
+    zb_uint8_t size_before;
+    zb_uint8_t size_change;
+    zb_uint8_t size_after;
 }
 zb_buf_size_t;
 #endif
@@ -119,33 +119,33 @@ zb_buf_size_t;
 typedef struct zb_mult_buf_s
 {
 #ifdef ZB_BUF_SHIELD
-  //zb_uint8_t hdr_signature;    //GP add, remove
+    //zb_uint8_t hdr_signature;    //GP add, remove
 #endif
-/* 07/12/2019 EE CR:MINOR Lagecy code will access u.hdr, so need to keep u as union or structure
-   AN: Legacy code inside ZBOSS will use zb_leg_buf_t instead of zb_mult_buf_t.
-   EE: I mean legacy API for the new bufs implementation.
- */
-  zb_buf_hdr_t hdr;                   /*!< Buffer header, if buffer is used */
-  zb_uint8_t   buf[ZB_IO_BUF_SIZE];   /*!< Data*/
+    /* 07/12/2019 EE CR:MINOR Lagecy code will access u.hdr, so need to keep u as union or structure
+       AN: Legacy code inside ZBOSS will use zb_leg_buf_t instead of zb_mult_buf_t.
+       EE: I mean legacy API for the new bufs implementation.
+     */
+    zb_buf_hdr_t hdr;                   /*!< Buffer header, if buffer is used */
+    zb_uint8_t   buf[ZB_IO_BUF_SIZE];   /*!< Data*/
 #ifdef ZB_DEBUG_BUFFERS_EXT
-  zb_buf_usage_t buf_allocation;
-  zb_buf_usage_t buf_usages[ZB_DEBUG_BUFFERS_EXT_USAGES_COUNT];
+    zb_buf_usage_t buf_allocation;
+    zb_buf_usage_t buf_usages[ZB_DEBUG_BUFFERS_EXT_USAGES_COUNT];
 #endif
 #ifdef ZB_DEBUG_BUFFERS_EXT_RAF
-  zb_buf_usage_t buf_allocation_table[ZB_DEBUG_BUFFERS_EXT_RAF_ROUND_COUNT];
-  zb_buf_usage_t buf_free_table[ZB_DEBUG_BUFFERS_EXT_RAF_ROUND_COUNT];
+    zb_buf_usage_t buf_allocation_table[ZB_DEBUG_BUFFERS_EXT_RAF_ROUND_COUNT];
+    zb_buf_usage_t buf_free_table[ZB_DEBUG_BUFFERS_EXT_RAF_ROUND_COUNT];
 #ifdef ZB_DEBUG_BUFFERS_RAF_USAGE_RECORD
-  zb_buf_usage_t buf_usages_table[ZB_DEBUG_BUFFERS_EXT_RAF_ROUND_COUNT][ZB_DEBUG_BUFFERS_EXT_RAF_RECORD_COUNT];
+    zb_buf_usage_t buf_usages_table[ZB_DEBUG_BUFFERS_EXT_RAF_ROUND_COUNT][ZB_DEBUG_BUFFERS_EXT_RAF_RECORD_COUNT];
 #endif
 #ifdef ZB_DEBUG_BUFFERS_RAF_SCHEDULE_RECORD
-  zb_buf_schedule_t buf_schedule_table[ZB_DEBUG_BUFFERS_EXT_RAF_ROUND_COUNT][ZB_DEBUG_BUFFERS_EXT_RAF_RECORD_COUNT];
+    zb_buf_schedule_t buf_schedule_table[ZB_DEBUG_BUFFERS_EXT_RAF_ROUND_COUNT][ZB_DEBUG_BUFFERS_EXT_RAF_RECORD_COUNT];
 #endif
 #ifdef ZB_DEBUG_BUFFERS_RAF_SIZE_RECORD
-  zb_buf_size_t buf_size_table[ZB_DEBUG_BUFFERS_EXT_RAF_ROUND_COUNT][ZB_DEBUG_BUFFERS_EXT_RAF_RECORD_COUNT];
+    zb_buf_size_t buf_size_table[ZB_DEBUG_BUFFERS_EXT_RAF_ROUND_COUNT][ZB_DEBUG_BUFFERS_EXT_RAF_RECORD_COUNT];
 #endif
 #endif
 #ifdef ZB_BUF_SHIELD
-  //zb_uint8_t tail_signature;     //GP add, remove
+    //zb_uint8_t tail_signature;     //GP add, remove
 #endif
 } zb_mult_buf_t;
 
@@ -155,39 +155,39 @@ typedef struct zb_mult_buf_s
 typedef struct zb_leg_buf_s
 {
 #ifdef ZB_BUF_SHIELD
-  //zb_uint8_t hdr_signature;    //GP add, remove
+    //zb_uint8_t hdr_signature;    //GP add, remove
 #endif
-  union
-  {
-    zb_buf_hdr_t hdr;                   /*!< Buffer header, if buffer is used */
+    union
+    {
+        zb_buf_hdr_t hdr;                   /*!< Buffer header, if buffer is used */
 #ifndef ZB_USE_STD_MALLOC
-    struct zb_buf_s *next;              /*!< Ref to next free buffer, if buffer is not used*/
+        struct zb_buf_s *next;              /*!< Ref to next free buffer, if buffer is not used*/
 #endif
-  } u; /*!< Buffer header */
+    } u; /*!< Buffer header */
 #if defined ZB_USE_STD_MALLOC && defined ZB_USE_ALLOC_FOR_PAYLOAD_DATA
-  zb_uint8_t   *buf;                    /*!< Dynamically allocated buffer for payload */
+    zb_uint8_t   *buf;                    /*!< Dynamically allocated buffer for payload */
 #else
-  zb_uint8_t   buf[ZB_IO_BUF_SIZE];     /*!< Data*/
+    zb_uint8_t   buf[ZB_IO_BUF_SIZE];     /*!< Data*/
 #endif
 #ifdef ZB_DEBUG_BUFFERS_EXT
-  zb_buf_usage_t buf_allocation;
-  zb_buf_usage_t buf_usages[ZB_DEBUG_BUFFERS_EXT_USAGES_COUNT];
+    zb_buf_usage_t buf_allocation;
+    zb_buf_usage_t buf_usages[ZB_DEBUG_BUFFERS_EXT_USAGES_COUNT];
 #endif
 #ifdef ZB_DEBUG_BUFFERS_EXT_RAF
-  zb_buf_usage_t buf_allocation_table[ZB_DEBUG_BUFFERS_EXT_RAF_ROUND_COUNT];
-  zb_buf_usage_t buf_free_table[ZB_DEBUG_BUFFERS_EXT_RAF_ROUND_COUNT];
+    zb_buf_usage_t buf_allocation_table[ZB_DEBUG_BUFFERS_EXT_RAF_ROUND_COUNT];
+    zb_buf_usage_t buf_free_table[ZB_DEBUG_BUFFERS_EXT_RAF_ROUND_COUNT];
 #ifdef ZB_DEBUG_BUFFERS_RAF_USAGE_RECORD
-  zb_buf_usage_t buf_usages_table[ZB_DEBUG_BUFFERS_EXT_RAF_ROUND_COUNT][ZB_DEBUG_BUFFERS_EXT_RAF_RECORD_COUNT];
+    zb_buf_usage_t buf_usages_table[ZB_DEBUG_BUFFERS_EXT_RAF_ROUND_COUNT][ZB_DEBUG_BUFFERS_EXT_RAF_RECORD_COUNT];
 #endif
 #ifdef ZB_DEBUG_BUFFERS_RAF_SCHEDULE_RECORD
-  zb_buf_schedule_t buf_schedule_table[ZB_DEBUG_BUFFERS_EXT_RAF_ROUND_COUNT][ZB_DEBUG_BUFFERS_EXT_RAF_RECORD_COUNT];
+    zb_buf_schedule_t buf_schedule_table[ZB_DEBUG_BUFFERS_EXT_RAF_ROUND_COUNT][ZB_DEBUG_BUFFERS_EXT_RAF_RECORD_COUNT];
 #endif
 #ifdef ZB_DEBUG_BUFFERS_RAF_SIZE_RECORD
-  zb_buf_size_t buf_size_table[ZB_DEBUG_BUFFERS_EXT_RAF_ROUND_COUNT][ZB_DEBUG_BUFFERS_EXT_RAF_RECORD_COUNT];
+    zb_buf_size_t buf_size_table[ZB_DEBUG_BUFFERS_EXT_RAF_ROUND_COUNT][ZB_DEBUG_BUFFERS_EXT_RAF_RECORD_COUNT];
 #endif
 #endif
 #ifdef ZB_BUF_SHIELD
-  //zb_uint8_t tail_signature;     //GP add, remove
+    //zb_uint8_t tail_signature;     //GP add, remove
 #endif
 } zb_leg_buf_t;
 
@@ -236,13 +236,13 @@ typedef zb_uint8_t zb_bufid_t;
 #endif  /* ZB_DEBUG_BUFFERS */
 
 #ifdef ZB_DEBUG_BUFFERS_EXT
-  void zb_trace_bufs_usage(void);
-  #define ZB_TRACE_BUFS_USAGE() zb_trace_bufs_usage()
+void zb_trace_bufs_usage(void);
+#define ZB_TRACE_BUFS_USAGE() zb_trace_bufs_usage()
 #else
-  #define ZB_TRACE_BUFS_USAGE()
+#define ZB_TRACE_BUFS_USAGE()
 #endif
 #ifdef ZB_DEBUG_BUFFERS_EXT_RAF
-	void dump_buf_usage(zb_bufid_t bufid);
+void dump_buf_usage(zb_bufid_t bufid);
 #endif
 
 /** @cond internals_doc */
@@ -256,8 +256,8 @@ zb_ret_t zb_buf_get_in_delayed_func(TRACE_PROTO zb_callback_t callback);
 zb_ret_t zb_buf_get_out_delayed_ext_func(TRACE_PROTO zb_callback2_t callback, zb_uint16_t arg, zb_uint_t max_size);
 zb_ret_t zb_buf_get_in_delayed_ext_func(TRACE_PROTO zb_callback2_t callback, zb_uint16_t arg, zb_uint_t max_size);
 void zb_buf_free_func(TRACE_PROTO zb_bufid_t buf);
-void* zb_buf_begin_func(TRACE_PROTO zb_bufid_t buf);
-void* zb_buf_end_func(TRACE_PROTO zb_bufid_t buf);
+void *zb_buf_begin_func(TRACE_PROTO zb_bufid_t buf);
+void *zb_buf_end_func(TRACE_PROTO zb_bufid_t buf);
 zb_uint_t zb_buf_len_func(TRACE_PROTO zb_bufid_t buf);
 void zb_buf_copy_func(TRACE_PROTO zb_bufid_t dst_buf, zb_bufid_t src_buf);
 void *zb_buf_initial_alloc_func(TRACE_PROTO zb_bufid_t buf, zb_uint_t size);

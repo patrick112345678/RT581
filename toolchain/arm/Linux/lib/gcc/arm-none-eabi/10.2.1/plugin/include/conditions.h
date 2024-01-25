@@ -50,7 +50,12 @@ along with GCC; see the file COPYING3.  If not see
 #define CC_STATUS_MDEP_INIT 0
 #endif
 
-struct CC_STATUS {int flags; rtx value1, value2; CC_STATUS_MDEP mdep;};
+struct CC_STATUS
+{
+    int flags;
+    rtx value1, value2;
+    CC_STATUS_MDEP mdep;
+};
 
 /* While outputting an insn as assembler code,
    this is the status BEFORE that insn.  */

@@ -28,8 +28,8 @@
 
 #define DEV_CHANNEL_MASK (1L << 11)
 
-char ed1_installcode[]= "966b9f3ef98ae605 9708";
-char ed2_installcode[]= "966b9f3ef98ae605 9708";
+char ed1_installcode[] = "966b9f3ef98ae605 9708";
+char ed2_installcode[] = "966b9f3ef98ae605 9708";
 
 #define ZB_WWAH_DEVICE_ID 0x3131
 #define ZB_WWAH_DEVICE_VER 1
@@ -425,7 +425,7 @@ zb_ieee_addr_t g_zc_addr = {0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa};
 
 
 #define SP_INIT_BASIC_HW_VERSION        2
-#define SP_INIT_BASIC_MANUF_NAME	  "DSR"
+#define SP_INIT_BASIC_MANUF_NAME      "DSR"
 
 #define SP_DONT_CLOSE_NETWORK_AT_REBOOT
 
@@ -454,10 +454,10 @@ void sp_update_button_state_ctx(zb_uint8_t button_state);
 
 typedef enum sp_dev_state_e
 {
-  SP_DEV_INIT = 0,
-  SP_DEV_IDLE,
-  SP_DEV_COMMISSIONING,
-  SP_DEV_NORMAL
+    SP_DEV_INIT = 0,
+    SP_DEV_IDLE,
+    SP_DEV_COMMISSIONING,
+    SP_DEV_NORMAL
 }
 sp_dev_state_t;
 
@@ -498,24 +498,24 @@ sp_dev_state_t;
 /* attributes of Basic cluster */
 typedef struct sp_device_basic_attr_s
 {
-  zb_uint8_t zcl_version;
-  zb_uint8_t app_version;
-  zb_uint8_t stack_version;
-  zb_uint8_t hw_version;
-  zb_char_t mf_name[32];
-  zb_char_t model_id[32];
-  zb_char_t date_code[16];
-  zb_uint8_t power_source;
-  zb_char_t location_id[5];
-  zb_uint8_t ph_env;
-  zb_char_t sw_build_id[3];
+    zb_uint8_t zcl_version;
+    zb_uint8_t app_version;
+    zb_uint8_t stack_version;
+    zb_uint8_t hw_version;
+    zb_char_t mf_name[32];
+    zb_char_t model_id[32];
+    zb_char_t date_code[16];
+    zb_uint8_t power_source;
+    zb_char_t location_id[5];
+    zb_uint8_t ph_env;
+    zb_char_t sw_build_id[3];
 }
 sp_device_basic_attr_t;
 
 /* attributes of Identify cluster */
 typedef struct sp_device_identify_attr_s
 {
-  zb_uint16_t identify_time;
+    zb_uint16_t identify_time;
 }
 sp_device_identify_attr_t;
 
@@ -523,40 +523,40 @@ sp_device_identify_attr_t;
 /* Groups cluster attributes data */
 typedef struct sp_device_groups_attr_s
 {
-  zb_uint8_t name_support;
+    zb_uint8_t name_support;
 }
 sp_device_groups_attr_t;
 
 /* Door lock cluster attributes data */
 typedef struct door_lock_attr_s
 {
-  zb_uint8_t lock_state;
-  zb_uint8_t lock_type;
-  zb_uint8_t actuator_enabled;
-  zb_uint16_t rf_operation_event_mask;
+    zb_uint8_t lock_state;
+    zb_uint8_t lock_type;
+    zb_uint8_t actuator_enabled;
+    zb_uint16_t rf_operation_event_mask;
 } door_lock_attr_t;
 
 /* OTA Upgrade client cluster attributes data */
 typedef struct sp_device_ota_attr_s
 {
-  zb_ieee_addr_t upgrade_server;
-  zb_uint32_t file_offset;
-  zb_uint32_t file_version;
-  zb_uint16_t stack_version;
-  zb_uint32_t downloaded_file_ver;
-  zb_uint16_t downloaded_stack_ver;
-  zb_uint8_t image_status;
-  zb_uint16_t manufacturer;
-  zb_uint16_t image_type;
-  zb_uint16_t min_block_reque;
-  zb_uint16_t image_stamp;
-  zb_uint16_t server_addr;
-  zb_uint8_t server_ep;
+    zb_ieee_addr_t upgrade_server;
+    zb_uint32_t file_offset;
+    zb_uint32_t file_version;
+    zb_uint16_t stack_version;
+    zb_uint32_t downloaded_file_ver;
+    zb_uint16_t downloaded_stack_ver;
+    zb_uint8_t image_status;
+    zb_uint16_t manufacturer;
+    zb_uint16_t image_type;
+    zb_uint16_t min_block_reque;
+    zb_uint16_t image_stamp;
+    zb_uint16_t server_addr;
+    zb_uint8_t server_ep;
 }
 sp_device_ota_attr_t;
 
 #define SP_INIT_OTA_MIN_BLOCK_REQUE             10
-#define SP_INIT_OTA_IMAGE_STAMP			ZB_ZCL_OTA_UPGRADE_IMAGE_STAMP_MIN_VALUE
+#define SP_INIT_OTA_IMAGE_STAMP         ZB_ZCL_OTA_UPGRADE_IMAGE_STAMP_MIN_VALUE
 #define SP_OTA_IMAGE_BLOCK_DATA_SIZE_MAX        32
 #define SP_OTA_UPGRADE_SERVER                   { 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa }
 #define SP_OTA_UPGRADE_QUERY_TIMER_COUNTER      (12*60)
@@ -571,45 +571,45 @@ sp_device_ota_attr_t;
 
 typedef struct sp_ota_upgrade_ctx_s
 {
-  zb_uint32_t total_image_size;
-  zb_uint32_t addr_to_erase;
-  zb_uint32_t address;          /* Supposed to be constant value, init
+    zb_uint32_t total_image_size;
+    zb_uint32_t addr_to_erase;
+    zb_uint32_t address;          /* Supposed to be constant value, init
                                  * on OTA Upgrade start  */
-  void       *flash_dev;
-  zb_uint32_t fw_version;
-  zb_uint8_t param;     // buffer, contain process command (if sheduling process)
-  zb_bool_t is_started_manually;
+    void       *flash_dev;
+    zb_uint32_t fw_version;
+    zb_uint8_t param;     // buffer, contain process command (if sheduling process)
+    zb_bool_t is_started_manually;
 #ifndef ZB_USE_OSIF_OTA_ROUTINES
-  zb_uint8_t fw_image_portion[SP_OTA_IMAGE_BLOCK_DATA_SIZE_MAX * 2];
-  zb_uint32_t fw_image_portion_size;
-  zb_uint32_t file_length;        /*!< OTA file length got from next_image_resp  */
+    zb_uint8_t fw_image_portion[SP_OTA_IMAGE_BLOCK_DATA_SIZE_MAX * 2];
+    zb_uint32_t fw_image_portion_size;
+    zb_uint32_t file_length;        /*!< OTA file length got from next_image_resp  */
 
-  zb_uint32_t hash_addr;
-  zb_uint8_t hash[SP_OTA_UPGARDE_HASH_LENGTH];
-  zb_bool_t hash16_calc_ongoing;
+    zb_uint32_t hash_addr;
+    zb_uint8_t hash[SP_OTA_UPGARDE_HASH_LENGTH];
+    zb_bool_t hash16_calc_ongoing;
 #endif
 } sp_ota_upgrade_ctx_t;
 
 typedef struct door_lock_ctx_s
 {
-  sp_dev_state_t dev_state;
-  zb_time_t      button_press_time;    /* time last pressed button */
-  zb_time_t      button_release_time;  /* time last released button */
-  zb_uint8_t     button_bounce_flag;   /* button bounce flag*/
-  zb_uint8_t     button_changed_count;  /* time circle pressed/released duration one series */
+    sp_dev_state_t dev_state;
+    zb_time_t      button_press_time;    /* time last pressed button */
+    zb_time_t      button_release_time;  /* time last released button */
+    zb_uint8_t     button_bounce_flag;   /* button bounce flag*/
+    zb_uint8_t     button_changed_count;  /* time circle pressed/released duration one series */
 
-  /* Flag that is set if critical error appeared => deferred reset operation */
-  zb_uint16_t door_lock_client_addr;
-  zb_uint8_t door_lock_client_endpoint;
-  zb_time_t last_obtained_time;
-  zb_time_t obtained_at;
-  zb_bool_t reset_device;
-  sp_device_basic_attr_t basic_attr;
-  sp_device_identify_attr_t identify_attr;
-  sp_device_groups_attr_t groups_attr;
-  sp_device_ota_attr_t ota_attr;
-  sp_ota_upgrade_ctx_t ota_ctx;
-  door_lock_attr_t door_lock_attr;
+    /* Flag that is set if critical error appeared => deferred reset operation */
+    zb_uint16_t door_lock_client_addr;
+    zb_uint8_t door_lock_client_endpoint;
+    zb_time_t last_obtained_time;
+    zb_time_t obtained_at;
+    zb_bool_t reset_device;
+    sp_device_basic_attr_t basic_attr;
+    sp_device_identify_attr_t identify_attr;
+    sp_device_groups_attr_t groups_attr;
+    sp_device_ota_attr_t ota_attr;
+    sp_ota_upgrade_ctx_t ota_ctx;
+    door_lock_attr_t door_lock_attr;
 }
 door_lock_ctx_t;
 
@@ -652,9 +652,9 @@ void sp_update_on_off_state(zb_uint8_t is_on);
 
 typedef struct sp_device_reporting_default_s
 {
-  zb_uint16_t cluster_id;
-  zb_uint16_t attr_id;
-  zb_uint8_t attr_type;
+    zb_uint16_t cluster_id;
+    zb_uint16_t attr_id;
+    zb_uint8_t attr_type;
 }
 sp_device_reporting_default_t;
 
@@ -664,9 +664,9 @@ sp_device_reporting_default_t;
 #ifdef ZB_USE_NVRAM
 typedef ZB_PACKED_PRE struct wwah_door_lock_device_nvram_dataset_s
 {
-  zb_uint48_t curr_summ_delivered;
-  zb_uint8_t sp_onoff_state;
-  zb_uint8_t aligned[5];
+    zb_uint48_t curr_summ_delivered;
+    zb_uint8_t sp_onoff_state;
+    zb_uint8_t aligned[5];
 } ZB_PACKED_STRUCT
 sp_device_nvram_dataset_t;
 
@@ -676,12 +676,12 @@ ZB_ASSERT_IF_NOT_ALIGNED_TO_4(sp_device_nvram_dataset_t);
 /*** Production config data ***/
 typedef ZB_PACKED_PRE struct sp_production_config_t
 {
-  zb_uint16_t version; /*!< Version of production configuration (reserved for future changes) */
-  zb_char_t manuf_name[16];
-  zb_char_t model_id[16];
-  zb_uint16_t manuf_code;
-  zb_uint16_t overcurrent_ma;
-  zb_uint16_t overvoltage_dv;
+    zb_uint16_t version; /*!< Version of production configuration (reserved for future changes) */
+    zb_char_t manuf_name[16];
+    zb_char_t model_id[16];
+    zb_uint16_t manuf_code;
+    zb_uint16_t overcurrent_ma;
+    zb_uint16_t overvoltage_dv;
 }
 ZB_PACKED_STRUCT sp_production_config_t;
 
@@ -717,12 +717,12 @@ zb_uint8_t zb_write_fw(zb_uint32_t address, zb_uint8_t *buf, zb_uint16_t len);
 #define SP_INIT_BASIC_APP_VERSION       1
 
 /* OTA Upgrade client cluster attributes data */
-#define SP_INIT_OTA_FILE_VERSION	\
+#define SP_INIT_OTA_FILE_VERSION    \
   ( ((zb_uint32_t)ZBOSS_MAJOR) | ((zb_uint32_t)ZBOSS_MINOR << 8) | ((zb_uint32_t)ZBOSS_SDK_SMART_PLUG_MAJOR << 16) | ((zb_uint32_t)SP_INIT_BASIC_APP_VERSION << 24) )
-#define SP_INIT_OTA_HW_VERSION			SP_INIT_BASIC_HW_VERSION
-#define SP_INIT_OTA_MANUFACTURER		SP_DEVICE_MANUFACTURER_CODE
+#define SP_INIT_OTA_HW_VERSION          SP_INIT_BASIC_HW_VERSION
+#define SP_INIT_OTA_MANUFACTURER        SP_DEVICE_MANUFACTURER_CODE
 
-#define SP_INIT_OTA_IMAGE_TYPE			0x0012
+#define SP_INIT_OTA_IMAGE_TYPE          0x0012
 
 /* Note: instead of the 1st space string len will be set */
 #define SP_INIT_BASIC_MODEL_ID     "SPv313p691"

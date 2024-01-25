@@ -31,13 +31,13 @@ extern tree VN_TOP;
 /* A predicated value.  */
 struct vn_pval
 {
-  vn_pval *next;
-  /* The value of the expression this is attached to is RESULT in
-     case the expression is computed dominated by one of the blocks
-     in valid_dominated_by_p.  */
-  tree result;
-  unsigned n;
-  int valid_dominated_by_p[1];
+    vn_pval *next;
+    /* The value of the expression this is attached to is RESULT in
+       case the expression is computed dominated by one of the blocks
+       in valid_dominated_by_p.  */
+    tree result;
+    unsigned n;
+    int valid_dominated_by_p[1];
 };
 
 /* N-ary operations in the hashtable consist of length operands, an
@@ -47,22 +47,23 @@ struct vn_pval
 
 typedef struct vn_nary_op_s
 {
-  vn_nary_op_s *next;
-  vn_nary_op_s *unwind_to;
-  /* Unique identify that all expressions with the same value have. */
-  unsigned int value_id;
-  ENUM_BITFIELD(tree_code) opcode : 16;
-  unsigned length : 16;
-  hashval_t hashcode;
-  unsigned predicated_values : 1;
-  union {
-      /* If ! predicated_values this is the value of the expression.  */
-      tree result;
-      /* If predicated_values this is a list of values of the expression.  */
-      vn_pval *values;
-  } u;
-  tree type;
-  tree op[1];
+    vn_nary_op_s *next;
+    vn_nary_op_s *unwind_to;
+    /* Unique identify that all expressions with the same value have. */
+    unsigned int value_id;
+    ENUM_BITFIELD(tree_code) opcode : 16;
+    unsigned length : 16;
+    hashval_t hashcode;
+    unsigned predicated_values : 1;
+    union
+    {
+        /* If ! predicated_values this is the value of the expression.  */
+        tree result;
+        /* If predicated_values this is a list of values of the expression.  */
+        vn_pval *values;
+    } u;
+    tree type;
+    tree op[1];
 } *vn_nary_op_t;
 typedef const struct vn_nary_op_s *const_vn_nary_op_t;
 
@@ -71,7 +72,7 @@ typedef const struct vn_nary_op_s *const_vn_nary_op_t;
 static inline size_t
 sizeof_vn_nary_op (unsigned int length)
 {
-  return sizeof (struct vn_nary_op_s) + sizeof (tree) * length - sizeof (tree);
+    return sizeof (struct vn_nary_op_s) + sizeof (tree) * length - sizeof (tree);
 }
 
 /* Phi nodes in the hashtable consist of their non-VN_TOP phi
@@ -82,18 +83,18 @@ sizeof_vn_nary_op (unsigned int length)
 
 typedef struct vn_phi_s
 {
-  vn_phi_s *next;
-  /* Unique identifier that all expressions with the same value have. */
-  unsigned int value_id;
-  hashval_t hashcode;
-  basic_block block;
-  /* Controlling condition lhs/rhs.  */
-  tree cclhs;
-  tree ccrhs;
-  tree type;
-  tree result;
-  /* The number of args is determined by EDGE_COUT (block->preds).  */
-  tree phiargs[1];
+    vn_phi_s *next;
+    /* Unique identifier that all expressions with the same value have. */
+    unsigned int value_id;
+    hashval_t hashcode;
+    basic_block block;
+    /* Controlling condition lhs/rhs.  */
+    tree cclhs;
+    tree ccrhs;
+    tree type;
+    tree result;
+    /* The number of args is determined by EDGE_COUT (block->preds).  */
+    tree phiargs[1];
 } *vn_phi_t;
 typedef const struct vn_phi_s *const_vn_phi_t;
 
@@ -105,19 +106,19 @@ typedef const struct vn_phi_s *const_vn_phi_t;
 
 typedef struct vn_reference_op_struct
 {
-  ENUM_BITFIELD(tree_code) opcode : 16;
-  /* Dependence info, used for [TARGET_]MEM_REF only.  */
-  unsigned short clique;
-  unsigned short base;
-  unsigned reverse : 1;
-  /* For storing TYPE_ALIGN for array ref element size computation.  */
-  unsigned align : 6;
-  /* Constant offset this op adds or -1 if it is variable.  */
-  poly_int64_pod off;
-  tree type;
-  tree op0;
-  tree op1;
-  tree op2;
+    ENUM_BITFIELD(tree_code) opcode : 16;
+    /* Dependence info, used for [TARGET_]MEM_REF only.  */
+    unsigned short clique;
+    unsigned short base;
+    unsigned reverse : 1;
+    /* For storing TYPE_ALIGN for array ref element size computation.  */
+    unsigned align : 6;
+    /* Constant offset this op adds or -1 if it is variable.  */
+    poly_int64_pod off;
+    tree type;
+    tree op0;
+    tree op1;
+    tree op2;
 } vn_reference_op_s;
 typedef vn_reference_op_s *vn_reference_op_t;
 typedef const vn_reference_op_s *const_vn_reference_op_t;
@@ -125,7 +126,7 @@ typedef const vn_reference_op_s *const_vn_reference_op_t;
 inline unsigned
 vn_ref_op_align_unit (vn_reference_op_t op)
 {
-  return op->align ? ((unsigned)1 << (op->align - 1)) / BITS_PER_UNIT : 0;
+    return op->align ? ((unsigned)1 << (op->align - 1)) / BITS_PER_UNIT : 0;
 }
 
 /* A reference operation in the hashtable is representation as
@@ -137,26 +138,26 @@ vn_ref_op_align_unit (vn_reference_op_t op)
 
 typedef struct vn_reference_s
 {
-  vn_reference_s *next;
-  /* Unique identifier that all expressions with the same value have. */
-  unsigned int value_id;
-  hashval_t hashcode;
-  tree vuse;
-  alias_set_type set;
-  alias_set_type base_set;
-  tree type;
-  unsigned punned : 1;
-  vec<vn_reference_op_s> operands;
-  tree result;
-  tree result_vdef;
+    vn_reference_s *next;
+    /* Unique identifier that all expressions with the same value have. */
+    unsigned int value_id;
+    hashval_t hashcode;
+    tree vuse;
+    alias_set_type set;
+    alias_set_type base_set;
+    tree type;
+    unsigned punned : 1;
+    vec<vn_reference_op_s> operands;
+    tree result;
+    tree result_vdef;
 } *vn_reference_t;
 typedef const struct vn_reference_s *const_vn_reference_t;
 
 typedef struct vn_constant_s
 {
-  unsigned int value_id;
-  hashval_t hashcode;
-  tree constant;
+    unsigned int value_id;
+    hashval_t hashcode;
+    tree constant;
 } *vn_constant_t;
 
 enum vn_kind { VN_NONE, VN_CONSTANT, VN_NARY, VN_REFERENCE, VN_PHI };
@@ -168,9 +169,9 @@ enum vn_kind vn_get_stmt_kind (gimple *);
 static inline hashval_t
 vn_hash_type (tree type)
 {
-  return (INTEGRAL_TYPE_P (type)
-	  + (INTEGRAL_TYPE_P (type)
-	     ? TYPE_PRECISION (type) + TYPE_UNSIGNED (type) : 0));
+    return (INTEGRAL_TYPE_P (type)
+            + (INTEGRAL_TYPE_P (type)
+               ? TYPE_PRECISION (type) + TYPE_UNSIGNED (type) : 0));
 }
 
 /* Hash the constant CONSTANT with distinguishing type incompatible
@@ -179,10 +180,10 @@ vn_hash_type (tree type)
 static inline hashval_t
 vn_hash_constant_with_type (tree constant)
 {
-  inchash::hash hstate;
-  inchash::add_expr (constant, hstate);
-  hstate.merge_hash (vn_hash_type (TREE_TYPE (constant)));
-  return hstate.end ();
+    inchash::hash hstate;
+    inchash::add_expr (constant, hstate);
+    hstate.merge_hash (vn_hash_type (TREE_TYPE (constant)));
+    return hstate.end ();
 }
 
 /* Compare the constants C1 and C2 with distinguishing type incompatible
@@ -191,8 +192,8 @@ vn_hash_constant_with_type (tree constant)
 static inline bool
 vn_constant_eq_with_type (tree c1, tree c2)
 {
-  return (expressions_equal_p (c1, c2)
-	  && types_compatible_p (TREE_TYPE (c1), TREE_TYPE (c2)));
+    return (expressions_equal_p (c1, c2)
+            && types_compatible_p (TREE_TYPE (c1), TREE_TYPE (c2)));
 }
 
 /* Instead of having a local availability lattice for each basic-block
@@ -207,36 +208,36 @@ vn_constant_eq_with_type (tree c1, tree c2)
    LOCATION is the basic-block index and LEADER is its SSA name version.  */
 struct vn_avail
 {
-  vn_avail *next;
-  /* The basic-block LEADER is made available.  */
-  int location;
-  /* The LEADER for the value we are chained on.  */
-  int leader;
+    vn_avail *next;
+    /* The basic-block LEADER is made available.  */
+    int location;
+    /* The LEADER for the value we are chained on.  */
+    int leader;
 };
 
 typedef struct vn_ssa_aux
 {
-  /* SSA name this vn_ssa_aux is associated with in the lattice.  */
-  tree name;
-  /* Value number. This may be an SSA name or a constant.  */
-  tree valnum;
-  /* Statements to insert if needs_insertion is true.  */
-  gimple_seq expr;
+    /* SSA name this vn_ssa_aux is associated with in the lattice.  */
+    tree name;
+    /* Value number. This may be an SSA name or a constant.  */
+    tree valnum;
+    /* Statements to insert if needs_insertion is true.  */
+    gimple_seq expr;
 
-  /* AVAIL entries, last in RPO order is first.  This is only tracked
-     for SSA names also serving as values (NAME == VALNUM).  */
-  vn_avail *avail;
+    /* AVAIL entries, last in RPO order is first.  This is only tracked
+       for SSA names also serving as values (NAME == VALNUM).  */
+    vn_avail *avail;
 
-  /* Unique identifier that all expressions with the same value have. */
-  unsigned int value_id;
+    /* Unique identifier that all expressions with the same value have. */
+    unsigned int value_id;
 
-  /* Whether the SSA_NAME has been processed at least once.  */
-  unsigned visited : 1;
+    /* Whether the SSA_NAME has been processed at least once.  */
+    unsigned visited : 1;
 
-  /* Whether the SSA_NAME has no defining statement and thus an
-     insertion of such with EXPR as definition is required before
-     a use can be created of it.  */
-  unsigned needs_insertion : 1;
+    /* Whether the SSA_NAME has no defining statement and thus an
+       insertion of such with EXPR as definition is required before
+       a use can be created of it.  */
+    unsigned needs_insertion : 1;
 } *vn_ssa_aux_t;
 
 enum vn_lookup_kind { VN_NOWALK, VN_WALK, VN_WALKREWRITE };
@@ -248,24 +249,24 @@ tree vn_get_expr_for (tree);
 void scc_vn_restore_ssa_info (void);
 tree vn_nary_op_lookup_stmt (gimple *, vn_nary_op_t *);
 tree vn_nary_op_lookup_pieces (unsigned int, enum tree_code,
-			       tree, tree *, vn_nary_op_t *);
+                               tree, tree *, vn_nary_op_t *);
 vn_nary_op_t vn_nary_op_insert_pieces (unsigned int, enum tree_code,
-				       tree, tree *, tree, unsigned int);
+                                       tree, tree *, tree, unsigned int);
 bool ao_ref_init_from_vn_reference (ao_ref *, alias_set_type, alias_set_type,
-				    tree, vec<vn_reference_op_s> );
+                                    tree, vec<vn_reference_op_s> );
 vec<vn_reference_op_s> vn_reference_operands_for_lookup (tree);
 tree vn_reference_lookup_pieces (tree, alias_set_type, alias_set_type, tree,
-				 vec<vn_reference_op_s> ,
-				 vn_reference_t *, vn_lookup_kind);
+                                 vec<vn_reference_op_s>,
+                                 vn_reference_t *, vn_lookup_kind);
 tree vn_reference_lookup (tree, tree, vn_lookup_kind, vn_reference_t *, bool,
-			  tree * = NULL, tree = NULL_TREE);
+                          tree * = NULL, tree = NULL_TREE);
 void vn_reference_lookup_call (gcall *, vn_reference_t *, vn_reference_t);
 vn_reference_t vn_reference_insert_pieces (tree, alias_set_type, alias_set_type,
-					   tree, vec<vn_reference_op_s>,
-					   tree, unsigned int);
+        tree, vec<vn_reference_op_s>,
+        tree, unsigned int);
 
 bool vn_nary_op_eq (const_vn_nary_op_t const vno1,
-		    const_vn_nary_op_t const vno2);
+                    const_vn_nary_op_t const vno2);
 bool vn_nary_may_trap (vn_nary_op_t);
 bool vn_reference_may_trap (vn_reference_t);
 bool vn_reference_eq (const_vn_reference_t const, const_vn_reference_t const);

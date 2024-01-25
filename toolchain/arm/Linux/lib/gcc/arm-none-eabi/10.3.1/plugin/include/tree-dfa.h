@@ -30,11 +30,11 @@ extern tree ssa_default_def (struct function *, tree);
 extern void set_ssa_default_def (struct function *, tree, tree);
 extern tree get_or_create_ssa_default_def (struct function *, tree);
 extern tree get_ref_base_and_extent (tree, poly_int64_pod *, poly_int64_pod *,
-				     poly_int64_pod *, bool *);
+                                     poly_int64_pod *, bool *);
 extern tree get_ref_base_and_extent_hwi (tree, HOST_WIDE_INT *,
-					 HOST_WIDE_INT *, bool *);
+        HOST_WIDE_INT *, bool *);
 extern tree get_addr_base_and_unit_offset_1 (tree, poly_int64_pod *,
-					     tree (*) (tree));
+        tree (*) (tree));
 extern tree get_addr_base_and_unit_offset (tree, poly_int64_pod *);
 extern bool stmt_references_abnormal_ssa_name (gimple *);
 extern void replace_abnormal_ssa_names (gimple *);

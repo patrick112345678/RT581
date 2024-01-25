@@ -30,8 +30,10 @@ extern "C"
     Memory Mapped Structure for WDT TIMER Controller
 @{ */
 
-typedef union i2s_ms_set0_s {
-    struct i2s_ms_set0_b {
+typedef union i2s_ms_set0_s
+{
+    struct i2s_ms_set0_b
+    {
         uint32_t CFG_BCK_OSR    : 2;
         uint32_t CFG_I2S_MOD    : 2;
         uint32_t CFG_I2S_FMT    : 2;
@@ -54,7 +56,8 @@ typedef union i2s_ms_set0_s {
     Memory Mapped Structure for I2S Master Controller
 @{ */
 
-typedef struct {
+typedef struct
+{
     __IO  uint32_t       I2S_MS_CTL0;      //offset: 0x00
     __IO  uint32_t       I2S_MS_CTL1;      //offset: 0x04
     __IO  uint32_t       I2S_MCLK_SET0;    //offset: 0x08

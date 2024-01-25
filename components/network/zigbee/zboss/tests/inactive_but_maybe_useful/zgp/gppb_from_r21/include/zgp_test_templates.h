@@ -57,12 +57,12 @@
         (TEST_DEVICE_CTX.test_state + 1) == TEST_STATE_FINISHED)       \
     {                                                                  \
       TEST_DEVICE_CTX.skip_next_state = NEXT_STATE_SKIP;               \
-	  TEST_DEVICE_CTX.pause = 0;                                       \
+      TEST_DEVICE_CTX.pause = 0;                                       \
       ZB_ASSERT(TEST_DEVICE_CTX.perform_next_state_cb);                \
       TEST_DEVICE_CTX.perform_next_state_cb(param);                    \
     }                                                                  \
     else                                                               \
-	if (TEST_DEVICE_CTX.skip_next_state == NEXT_STATES_SEQUENCE_PASSED)\
+    if (TEST_DEVICE_CTX.skip_next_state == NEXT_STATES_SEQUENCE_PASSED)\
     {                                                                  \
       ZB_ASSERT(TEST_DEVICE_CTX.perform_next_state_cb);                \
       TEST_DEVICE_CTX.perform_next_state_cb(param);                    \

@@ -45,71 +45,71 @@ static zb_ieee_addr_t g_ieee_addr = {0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  ZB_INIT("zdo_zr1");
-#if UART_CONTROL	
-	test_control_init();
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    ZB_INIT("zdo_zr1");
+#if UART_CONTROL
+    test_control_init();
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 #endif
-	
-  /* set ieee addr */
-  zb_set_long_address(g_ieee_addr);
 
-  /* join as a router */
-  zb_cert_test_set_common_channel_settings();
-  zb_cert_test_set_zr_role();
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    /* set ieee addr */
+    zb_set_long_address(g_ieee_addr);
 
-/* #ifdef ZB_SECURITY */
-/*   /\* turn off security *\/ */
-/*   zb_cert_test_set_security_level(0); */
-/* #endif */
+    /* join as a router */
+    zb_cert_test_set_common_channel_settings();
+    zb_cert_test_set_zr_role();
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  zb_set_max_children(2);
-  ZB_CERT_HACKS().frag_skip_node_descr = 1;
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    /* #ifdef ZB_SECURITY */
+    /*   /\* turn off security *\/ */
+    /*   zb_cert_test_set_security_level(0); */
+    /* #endif */
 
-  TRACE_DEINIT();
+    zb_set_max_children(2);
+    ZB_CERT_HACKS().frag_skip_node_descr = 1;
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  MAIN_RETURN(0);
+    TRACE_DEINIT();
+
+    MAIN_RETURN(0);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  switch (sig)
-  {
+    switch (sig)
+    {
     case ZB_ZDO_SIGNAL_DEFAULT_START:
-      TRACE_MSG(TRACE_APS1, "Device started, status %d", (FMT__D, status));
-      if (status == 0)
-      {
+        TRACE_MSG(TRACE_APS1, "Device started, status %d", (FMT__D, status));
+        if (status == 0)
+        {
 #ifndef NCP_MODE_HOST
-        ZB_ZDO_NODE_DESC()->max_incoming_transfer_size = TEST_ASDU_LENGTH;
-        ZB_ZDO_NODE_DESC()->max_outgoing_transfer_size = TEST_ASDU_LENGTH;
-        ZG->aps.aib.aps_max_window_size = TEST_APSC_MAX_WINDOW_SIZE;
-        ZG->aps.aib.aps_interframe_delay = TEST_INTERFRAME_DELAY;
+            ZB_ZDO_NODE_DESC()->max_incoming_transfer_size = TEST_ASDU_LENGTH;
+            ZB_ZDO_NODE_DESC()->max_outgoing_transfer_size = TEST_ASDU_LENGTH;
+            ZG->aps.aib.aps_max_window_size = TEST_APSC_MAX_WINDOW_SIZE;
+            ZG->aps.aib.aps_interframe_delay = TEST_INTERFRAME_DELAY;
 #else
-        ZB_ASSERT(ZB_FALSE && "TODO: use NCP API here");
+            ZB_ASSERT(ZB_FALSE && "TODO: use NCP API here");
 #endif
-      }
-      break; /* ZB_ZDO_SIGNAL_DEFAULT_START */
+        }
+        break; /* ZB_ZDO_SIGNAL_DEFAULT_START */
 
     default:
-      TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
-      break;
-  }
+        TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }

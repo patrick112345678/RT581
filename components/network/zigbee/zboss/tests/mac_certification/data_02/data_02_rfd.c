@@ -52,105 +52,105 @@ void poll_alarm(zb_uint8_t param);
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  ZB_INIT("association_01_rfd");
+    ZB_INIT("association_01_rfd");
 
-  ZB_IEEE_ADDR_COPY(ZB_PIB_EXTENDED_ADDRESS(), &g_mac_addr);
-  MAC_PIB().mac_pan_id = 0x1aaa;
+    ZB_IEEE_ADDR_COPY(ZB_PIB_EXTENDED_ADDRESS(), &g_mac_addr);
+    MAC_PIB().mac_pan_id = 0x1aaa;
 
-  {
-    zb_bufid_t buf = zb_get_out_buf();
-    zb_uint16_t addr = ASSOCIATE_TO;
+    {
+        zb_bufid_t buf = zb_get_out_buf();
+        zb_uint16_t addr = ASSOCIATE_TO;
 
-    ZB_MLME_BUILD_ASSOCIATE_REQUEST(param, CHANNEL,
-                                    ASSOCIATE_TO_PAN,
-                                    ZB_ADDR_16BIT_DEV_OR_BROADCAST, &addr,
-                                    CAP_INFO);
+        ZB_MLME_BUILD_ASSOCIATE_REQUEST(param, CHANNEL,
+                                        ASSOCIATE_TO_PAN,
+                                        ZB_ADDR_16BIT_DEV_OR_BROADCAST, &addr,
+                                        CAP_INFO);
 
-    ZB_SCHEDULE_CALLBACK(zb_mlme_associate_request, param);
-  }
+        ZB_SCHEDULE_CALLBACK(zb_mlme_associate_request, param);
+    }
 
-  while(1)
-  {
-    zb_sched_loop_iteration();
-  }
+    while (1)
+    {
+        zb_sched_loop_iteration();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 
 void zb_mlme_associate_confirm(zb_uint8_t param)
 {
-  zb_mlme_associate_confirm_t *request = ZB_BUF_GET_PARAM(param, zb_mlme_associate_confirm_t);
+    zb_mlme_associate_confirm_t *request = ZB_BUF_GET_PARAM(param, zb_mlme_associate_confirm_t);
 
-  TRACE_MSG(TRACE_NWK2, "zb_mlme_associate_confirm param %hd status %hd short_address %hd",
-            (FMT__H_H_H, param, request->status, request->assoc_short_address));
+    TRACE_MSG(TRACE_NWK2, "zb_mlme_associate_confirm param %hd status %hd short_address %hd",
+              (FMT__H_H_H, param, request->status, request->assoc_short_address));
 
-  if (request->status == 0)
-  {
-    /* Tester to D.U.T.: Short Address to Short Address, Unicast, no ACK.  */
+    if (request->status == 0)
     {
-      zb_uint8_t *pl;
+        /* Tester to D.U.T.: Short Address to Short Address, Unicast, no ACK.  */
+        {
+            zb_uint8_t *pl;
 
-      req = zb_buf_initial_alloc(param, 5, pl);
-      pl[0] = 0x00;
-      pl[1] = 0x01;
-      pl[2] = 0x02;
-      pl[3] = 0x03;
-      pl[4] = 0x04;
+            req = zb_buf_initial_alloc(param, 5, pl);
+            pl[0] = 0x00;
+            pl[1] = 0x01;
+            pl[2] = 0x02;
+            pl[3] = 0x03;
+            pl[4] = 0x04;
+        }
+        {
+            zb_mcps_data_req_params_t *data_req = ZB_BUF_GET_PARAM(param, zb_mcps_data_req_params_t);
+
+            data_req->dst_addr.addr_short = 0x1122;
+            data_req->src_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
+            data_req->src_addr.addr_short = 0x3344;
+            data_req->dst_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
+            data_req->dst_pan_id = ASSOCIATE_TO_PAN;
+            data_req->msdu_handle = 0;
+            data_req->tx_options = 0;
+        }
+
+
+        TRACE_MSG(TRACE_MAC1, "Tester to D.U.T.: Short Address to Short Address, Unicast, no ACK.", (FMT__0));
+        ZB_SCHEDULE_CALLBACK(zb_mcps_data_request, param);
     }
-    {
-      zb_mcps_data_req_params_t *data_req = ZB_BUF_GET_PARAM(param, zb_mcps_data_req_params_t);
-
-      data_req->dst_addr.addr_short = 0x1122;
-      data_req->src_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
-      data_req->src_addr.addr_short = 0x3344;
-      data_req->dst_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
-      data_req->dst_pan_id = ASSOCIATE_TO_PAN;
-      data_req->msdu_handle = 0;
-      data_req->tx_options = 0;
-    }
-
-
-    TRACE_MSG(TRACE_MAC1, "Tester to D.U.T.: Short Address to Short Address, Unicast, no ACK.", (FMT__0));
-    ZB_SCHEDULE_CALLBACK(zb_mcps_data_request, param);
-  }
 }
 
 
 void zb_mcps_data_confirm(zb_uint8_t param)
 {
-  zb_mcps_data_confirm_params_t *confirm_params = ZB_BUF_GET_PARAM(param, zb_mcps_data_confirm_params_t);
-  TRACE_MSG(TRACE_NWK2, "zb_mcps_data_confirm param %hd handle 0x%hx status 0x%hx",
-            (FMT__H_H_H, (zb_uint8_t)param, (zb_uint8_t)confirm_params->msdu_handle, zb_buf_get_status(param)));
+    zb_mcps_data_confirm_params_t *confirm_params = ZB_BUF_GET_PARAM(param, zb_mcps_data_confirm_params_t);
+    TRACE_MSG(TRACE_NWK2, "zb_mcps_data_confirm param %hd handle 0x%hx status 0x%hx",
+              (FMT__H_H_H, (zb_uint8_t)param, (zb_uint8_t)confirm_params->msdu_handle, zb_buf_get_status(param)));
 
 
-  switch (state)
-  {
-    case 1:
-      /* Tester to D.U.T.: Short Address to Short Address, Unicast, with ACK */
+    switch (state)
     {
-      zb_uint8_t *pl;
-      req = zb_buf_initial_alloc(param, 5, pl);
-      pl[0] = 0x00;
-      pl[1] = 0x01;
-      pl[2] = 0x02;
-      pl[3] = 0x03;
-      pl[4] = 0x04;
+    case 1:
+        /* Tester to D.U.T.: Short Address to Short Address, Unicast, with ACK */
+    {
+        zb_uint8_t *pl;
+        req = zb_buf_initial_alloc(param, 5, pl);
+        pl[0] = 0x00;
+        pl[1] = 0x01;
+        pl[2] = 0x02;
+        pl[3] = 0x03;
+        pl[4] = 0x04;
     }
     {
-      zb_mcps_data_req_params_t *data_req = ZB_BUF_GET_PARAM(param, zb_mcps_data_req_params_t);
+        zb_mcps_data_req_params_t *data_req = ZB_BUF_GET_PARAM(param, zb_mcps_data_req_params_t);
 
-      data_req->dst_addr.addr_short = 0x1122;
-      data_req->src_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
-      data_req->src_addr.addr_short = 0x3344;
-      data_req->dst_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
-      data_req->dst_pan_id = ASSOCIATE_TO_PAN;
-      data_req->msdu_handle = 0;
-      data_req->tx_options = MAC_TX_OPTION_ACKNOWLEDGED_BIT;
+        data_req->dst_addr.addr_short = 0x1122;
+        data_req->src_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
+        data_req->src_addr.addr_short = 0x3344;
+        data_req->dst_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
+        data_req->dst_pan_id = ASSOCIATE_TO_PAN;
+        data_req->msdu_handle = 0;
+        data_req->tx_options = MAC_TX_OPTION_ACKNOWLEDGED_BIT;
     }
     TRACE_MSG(TRACE_MAC1, "Tester to D.U.T.: Short Address to Short Address, Unicast, with ACK", (FMT__0));
     ZB_SCHEDULE_CALLBACK(zb_mcps_data_request, param);
@@ -158,27 +158,27 @@ void zb_mcps_data_confirm(zb_uint8_t param)
     break;
 
     case 2:
-      /* Tester to D.U.T.: Short Address to Extended Address, Unicast with ACK  */
+        /* Tester to D.U.T.: Short Address to Extended Address, Unicast with ACK  */
 
     {
-      zb_uint8_t *pl;
-      req = zb_buf_initial_alloc(param, 5, pl);
-      pl[0] = 0x00;
-      pl[1] = 0x01;
-      pl[2] = 0x02;
-      pl[3] = 0x03;
-      pl[4] = 0x04;
+        zb_uint8_t *pl;
+        req = zb_buf_initial_alloc(param, 5, pl);
+        pl[0] = 0x00;
+        pl[1] = 0x01;
+        pl[2] = 0x02;
+        pl[3] = 0x03;
+        pl[4] = 0x04;
     }
     {
-      zb_mcps_data_req_params_t *data_req = ZB_BUF_GET_PARAM(param, zb_mcps_data_req_params_t);
+        zb_mcps_data_req_params_t *data_req = ZB_BUF_GET_PARAM(param, zb_mcps_data_req_params_t);
 
-      data_req->src_addr.addr_short = 0x3344;
-      data_req->src_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
-      ZB_IEEE_ADDR_COPY(data_req->dst_addr.addr_long, g_zc_addr);
-      data_req->dst_addr_mode = ZB_ADDR_64BIT_DEV;
-      data_req->dst_pan_id = ASSOCIATE_TO_PAN;
-      data_req->msdu_handle = 0;
-      data_req->tx_options = MAC_TX_OPTION_ACKNOWLEDGED_BIT;
+        data_req->src_addr.addr_short = 0x3344;
+        data_req->src_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
+        ZB_IEEE_ADDR_COPY(data_req->dst_addr.addr_long, g_zc_addr);
+        data_req->dst_addr_mode = ZB_ADDR_64BIT_DEV;
+        data_req->dst_pan_id = ASSOCIATE_TO_PAN;
+        data_req->msdu_handle = 0;
+        data_req->tx_options = MAC_TX_OPTION_ACKNOWLEDGED_BIT;
     }
     TRACE_MSG(TRACE_MAC1, "Tester to D.U.T.: Short Address to Extended Address, Unicast with ACK ", (FMT__0));
     ZB_SCHEDULE_CALLBACK(zb_mcps_data_request, param);
@@ -186,27 +186,27 @@ void zb_mcps_data_confirm(zb_uint8_t param)
     break;
 
     case 3:
-      /* Tester to D.U.T.: Extended Address to Short Address , Unicast with ACK */
+        /* Tester to D.U.T.: Extended Address to Short Address , Unicast with ACK */
 
     {
-      zb_uint8_t *pl;
-      req = zb_buf_initial_alloc(param, 5, pl);
-      pl[0] = 0x00;
-      pl[1] = 0x01;
-      pl[2] = 0x02;
-      pl[3] = 0x03;
-      pl[4] = 0x04;
+        zb_uint8_t *pl;
+        req = zb_buf_initial_alloc(param, 5, pl);
+        pl[0] = 0x00;
+        pl[1] = 0x01;
+        pl[2] = 0x02;
+        pl[3] = 0x03;
+        pl[4] = 0x04;
     }
     {
-      zb_mcps_data_req_params_t *data_req = ZB_BUF_GET_PARAM(param, zb_mcps_data_req_params_t);
+        zb_mcps_data_req_params_t *data_req = ZB_BUF_GET_PARAM(param, zb_mcps_data_req_params_t);
 
-      ZB_IEEE_ADDR_COPY(data_req->src_addr.addr_long, g_mac_addr);
-      data_req->src_addr_mode = ZB_ADDR_64BIT_DEV;
-      data_req->dst_addr.addr_short = 0x1122;
-      data_req->dst_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
-      data_req->dst_pan_id = ASSOCIATE_TO_PAN;
-      data_req->msdu_handle = 0;
-      data_req->tx_options = MAC_TX_OPTION_ACKNOWLEDGED_BIT;
+        ZB_IEEE_ADDR_COPY(data_req->src_addr.addr_long, g_mac_addr);
+        data_req->src_addr_mode = ZB_ADDR_64BIT_DEV;
+        data_req->dst_addr.addr_short = 0x1122;
+        data_req->dst_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
+        data_req->dst_pan_id = ASSOCIATE_TO_PAN;
+        data_req->msdu_handle = 0;
+        data_req->tx_options = MAC_TX_OPTION_ACKNOWLEDGED_BIT;
     }
     TRACE_MSG(TRACE_MAC1, "Tester to D.U.T.: Extended Address to Short Address , Unicast with ACK", (FMT__0));
     ZB_SCHEDULE_CALLBACK(zb_mcps_data_request, param);
@@ -215,26 +215,26 @@ void zb_mcps_data_confirm(zb_uint8_t param)
 
 
     case 4:
-      /* Tester to D.U.T.: Extended Address to Extended Address , Unicast with ACK  */
+        /* Tester to D.U.T.: Extended Address to Extended Address , Unicast with ACK  */
     {
-      zb_uint8_t *pl;
-      req = zb_buf_initial_alloc(param, 5, pl);
-      pl[0] = 0x00;
-      pl[1] = 0x01;
-      pl[2] = 0x02;
-      pl[3] = 0x03;
-      pl[4] = 0x04;
+        zb_uint8_t *pl;
+        req = zb_buf_initial_alloc(param, 5, pl);
+        pl[0] = 0x00;
+        pl[1] = 0x01;
+        pl[2] = 0x02;
+        pl[3] = 0x03;
+        pl[4] = 0x04;
     }
     {
-      zb_mcps_data_req_params_t *data_req = ZB_BUF_GET_PARAM(param, zb_mcps_data_req_params_t);
+        zb_mcps_data_req_params_t *data_req = ZB_BUF_GET_PARAM(param, zb_mcps_data_req_params_t);
 
-      ZB_IEEE_ADDR_COPY(data_req->src_addr.addr_long, g_mac_addr);
-      data_req->src_addr_mode = ZB_ADDR_64BIT_DEV;
-      ZB_IEEE_ADDR_COPY(data_req->dst_addr.addr_long, g_zc_addr);
-      data_req->dst_addr_mode = ZB_ADDR_64BIT_DEV;
-      data_req->dst_pan_id = ASSOCIATE_TO_PAN;
-      data_req->msdu_handle = 0;
-      data_req->tx_options = MAC_TX_OPTION_ACKNOWLEDGED_BIT;
+        ZB_IEEE_ADDR_COPY(data_req->src_addr.addr_long, g_mac_addr);
+        data_req->src_addr_mode = ZB_ADDR_64BIT_DEV;
+        ZB_IEEE_ADDR_COPY(data_req->dst_addr.addr_long, g_zc_addr);
+        data_req->dst_addr_mode = ZB_ADDR_64BIT_DEV;
+        data_req->dst_pan_id = ASSOCIATE_TO_PAN;
+        data_req->msdu_handle = 0;
+        data_req->tx_options = MAC_TX_OPTION_ACKNOWLEDGED_BIT;
     }
     TRACE_MSG(TRACE_MAC1, "Tester to D.U.T.: Extended Address to Extended Address , Unicast with ACK", (FMT__0));
     ZB_SCHEDULE_CALLBACK(zb_mcps_data_request, param);
@@ -242,27 +242,27 @@ void zb_mcps_data_confirm(zb_uint8_t param)
     break;
 
     case 5:
-      /* Tester to D.U.T.: Short Address to Broadcast Address  */
+        /* Tester to D.U.T.: Short Address to Broadcast Address  */
 
     {
-      zb_uint8_t *pl;
-      req = zb_buf_initial_alloc(param, 5, pl);
-      pl[0] = 0x00;
-      pl[1] = 0x01;
-      pl[2] = 0x02;
-      pl[3] = 0x03;
-      pl[4] = 0x04;
+        zb_uint8_t *pl;
+        req = zb_buf_initial_alloc(param, 5, pl);
+        pl[0] = 0x00;
+        pl[1] = 0x01;
+        pl[2] = 0x02;
+        pl[3] = 0x03;
+        pl[4] = 0x04;
     }
     {
-      zb_mcps_data_req_params_t *data_req = ZB_BUF_GET_PARAM(param, zb_mcps_data_req_params_t);
+        zb_mcps_data_req_params_t *data_req = ZB_BUF_GET_PARAM(param, zb_mcps_data_req_params_t);
 
-      ZB_IEEE_ADDR_COPY(data_req->src_addr.addr_long, g_mac_addr);
-      data_req->src_addr_mode = ZB_ADDR_64BIT_DEV;
-      data_req->dst_addr.addr_short = 0xffff;
-      data_req->dst_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
-      data_req->dst_pan_id = ASSOCIATE_TO_PAN;
-      data_req->msdu_handle = 0;
-      data_req->tx_options = 0;
+        ZB_IEEE_ADDR_COPY(data_req->src_addr.addr_long, g_mac_addr);
+        data_req->src_addr_mode = ZB_ADDR_64BIT_DEV;
+        data_req->dst_addr.addr_short = 0xffff;
+        data_req->dst_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
+        data_req->dst_pan_id = ASSOCIATE_TO_PAN;
+        data_req->msdu_handle = 0;
+        data_req->tx_options = 0;
     }
     TRACE_MSG(TRACE_MAC1, "Tester to D.U.T.: Short Address to Broadcast Address", (FMT__0));
     ZB_SCHEDULE_CALLBACK(zb_mcps_data_request, param);
@@ -270,116 +270,116 @@ void zb_mcps_data_confirm(zb_uint8_t param)
     break;
 
     case 6:
-      /* Tester to D.U.T.: Short Address to Broadcast Address  */
+        /* Tester to D.U.T.: Short Address to Broadcast Address  */
 
     {
-      zb_uint8_t *pl;
+        zb_uint8_t *pl;
 
-      req = zb_buf_initial_alloc(param, 5, pl);
-      pl[0] = 0x00;
-      pl[1] = 0x01;
-      pl[2] = 0x02;
-      pl[3] = 0x03;
-      pl[4] = 0x04;
+        req = zb_buf_initial_alloc(param, 5, pl);
+        pl[0] = 0x00;
+        pl[1] = 0x01;
+        pl[2] = 0x02;
+        pl[3] = 0x03;
+        pl[4] = 0x04;
     }
     {
-      zb_mcps_data_req_params_t *data_req = ZB_BUF_GET_PARAM(param, zb_mcps_data_req_params_t);
+        zb_mcps_data_req_params_t *data_req = ZB_BUF_GET_PARAM(param, zb_mcps_data_req_params_t);
 
-      data_req->src_addr.addr_short = 0x3344;
-      data_req->src_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
-      data_req->dst_addr.addr_short = 0xffff;
-      data_req->dst_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
-      data_req->dst_pan_id = ASSOCIATE_TO_PAN;
-      data_req->msdu_handle = 0;
-      data_req->tx_options = 0;
+        data_req->src_addr.addr_short = 0x3344;
+        data_req->src_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
+        data_req->dst_addr.addr_short = 0xffff;
+        data_req->dst_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
+        data_req->dst_pan_id = ASSOCIATE_TO_PAN;
+        data_req->msdu_handle = 0;
+        data_req->tx_options = 0;
     }
 
     TRACE_MSG(TRACE_MAC1, "Tester to D.U.T.: Short Address to Broadcast Address", (FMT__0));
     ZB_SCHEDULE_CALLBACK(zb_mcps_data_request, param);
     break;
 
-  case 7:
-    ZB_SCHEDULE_ALARM(poll_alarm, param, ZB_MILLISECONDS_TO_BEACON_INTERVAL(1000));
-    break;
-  }
+    case 7:
+        ZB_SCHEDULE_ALARM(poll_alarm, param, ZB_MILLISECONDS_TO_BEACON_INTERVAL(1000));
+        break;
+    }
 
-  state++;
+    state++;
 }
 
 void zb_mcps_data_indication(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_MAC1, ">> zb_mcps_data_indication param %hd", (FMT__H, param));
-  zb_buf_free(param);
+    TRACE_MSG(TRACE_MAC1, ">> zb_mcps_data_indication param %hd", (FMT__H, param));
+    zb_buf_free(param);
 }
 
 
 void poll_alarm(zb_uint8_t param)
 {
-  zb_mlme_poll_request_t *req = ZB_BUF_GET_PARAM(param, zb_mlme_poll_request_t);
+    zb_mlme_poll_request_t *req = ZB_BUF_GET_PARAM(param, zb_mlme_poll_request_t);
 
-  TRACE_MSG(TRACE_MAC1, "poll_alarm state %hd", (FMT__H, state));
+    TRACE_MSG(TRACE_MAC1, "poll_alarm state %hd", (FMT__H, state));
 
-  switch (state)
-  {
+    switch (state)
+    {
     case 8:
-      req->coord_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
-      req->coord_addr.addr_short = 0x1122;
-      req->coord_pan_id = ASSOCIATE_TO_PAN;
-      TRACE_MSG(TRACE_MAC1, "poll from short to short", (FMT__0));
-      ZB_SCHEDULE_CALLBACK(zb_mlme_poll_request, param);
-      break;
+        req->coord_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
+        req->coord_addr.addr_short = 0x1122;
+        req->coord_pan_id = ASSOCIATE_TO_PAN;
+        TRACE_MSG(TRACE_MAC1, "poll from short to short", (FMT__0));
+        ZB_SCHEDULE_CALLBACK(zb_mlme_poll_request, param);
+        break;
 
     case 9:
-      ZB_PIB_SHORT_ADDRESS() = -1;
-      req->coord_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
-      req->coord_addr.addr_short = 0x1122;
-      req->coord_pan_id = ASSOCIATE_TO_PAN;
-      TRACE_MSG(TRACE_MAC1, "poll from long to short", (FMT__0));
-      ZB_SCHEDULE_CALLBACK(zb_mlme_poll_request, param);
+        ZB_PIB_SHORT_ADDRESS() = -1;
+        req->coord_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
+        req->coord_addr.addr_short = 0x1122;
+        req->coord_pan_id = ASSOCIATE_TO_PAN;
+        TRACE_MSG(TRACE_MAC1, "poll from long to short", (FMT__0));
+        ZB_SCHEDULE_CALLBACK(zb_mlme_poll_request, param);
 
-      break;
+        break;
     case 10:
-      /* fall back to the poll from the short address */
-      ZB_PIB_SHORT_ADDRESS() = 0x3344;
-      req->coord_addr_mode = ZB_ADDR_64BIT_DEV;
-      ZB_IEEE_ADDR_COPY(req->coord_addr.addr_long, g_zc_addr);
-      req->coord_pan_id = ASSOCIATE_TO_PAN;
-      TRACE_MSG(TRACE_MAC1, "poll from short to long", (FMT__0));
-      ZB_SCHEDULE_CALLBACK(zb_mlme_poll_request, param);
-      break;
+        /* fall back to the poll from the short address */
+        ZB_PIB_SHORT_ADDRESS() = 0x3344;
+        req->coord_addr_mode = ZB_ADDR_64BIT_DEV;
+        ZB_IEEE_ADDR_COPY(req->coord_addr.addr_long, g_zc_addr);
+        req->coord_pan_id = ASSOCIATE_TO_PAN;
+        TRACE_MSG(TRACE_MAC1, "poll from short to long", (FMT__0));
+        ZB_SCHEDULE_CALLBACK(zb_mlme_poll_request, param);
+        break;
 
     case 11:
-      ZB_PIB_SHORT_ADDRESS() = -1;
-      req->coord_addr_mode = ZB_ADDR_64BIT_DEV;
-      ZB_IEEE_ADDR_COPY(req->coord_addr.addr_long, g_zc_addr);
-      req->coord_pan_id = ASSOCIATE_TO_PAN;
-      TRACE_MSG(TRACE_MAC1, "poll from long to long", (FMT__0));
-      ZB_SCHEDULE_CALLBACK(zb_mlme_poll_request, param);
-      break;
+        ZB_PIB_SHORT_ADDRESS() = -1;
+        req->coord_addr_mode = ZB_ADDR_64BIT_DEV;
+        ZB_IEEE_ADDR_COPY(req->coord_addr.addr_long, g_zc_addr);
+        req->coord_pan_id = ASSOCIATE_TO_PAN;
+        TRACE_MSG(TRACE_MAC1, "poll from long to long", (FMT__0));
+        ZB_SCHEDULE_CALLBACK(zb_mlme_poll_request, param);
+        break;
 
     case 12:
-      ZB_PIB_SHORT_ADDRESS() = 0x3344;
-      req->coord_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
-      req->coord_addr.addr_short = 0x1122;
-      req->coord_pan_id = ASSOCIATE_TO_PAN;
-      TRACE_MSG(TRACE_MAC1, "poll from short to short", (FMT__0));
-      ZB_SCHEDULE_CALLBACK(zb_mlme_poll_request, param);
-      break;
-  }
-  state++;
+        ZB_PIB_SHORT_ADDRESS() = 0x3344;
+        req->coord_addr_mode = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
+        req->coord_addr.addr_short = 0x1122;
+        req->coord_pan_id = ASSOCIATE_TO_PAN;
+        TRACE_MSG(TRACE_MAC1, "poll from short to short", (FMT__0));
+        ZB_SCHEDULE_CALLBACK(zb_mlme_poll_request, param);
+        break;
+    }
+    state++;
 }
 
 
 void zb_mlme_poll_confirm(zb_uint8_t param)
 {
-  if (state < 12)
-  {
-    ZB_SCHEDULE_ALARM(poll_alarm, param, ZB_MILLISECONDS_TO_BEACON_INTERVAL(1000));
-  }
-  else
-  {
-    ZB_SCHEDULE_ALARM(poll_alarm, param, ZB_MILLISECONDS_TO_BEACON_INTERVAL(10000));
-  }
+    if (state < 12)
+    {
+        ZB_SCHEDULE_ALARM(poll_alarm, param, ZB_MILLISECONDS_TO_BEACON_INTERVAL(1000));
+    }
+    else
+    {
+        ZB_SCHEDULE_ALARM(poll_alarm, param, ZB_MILLISECONDS_TO_BEACON_INTERVAL(10000));
+    }
 }
 
 

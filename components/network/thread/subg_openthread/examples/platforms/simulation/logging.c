@@ -120,7 +120,10 @@ void otPlatLog(otLogLevel aLogLevel, otLogRegion aLogRegion, const char *aFormat
 
 #else
 
-void platformLoggingInit(const char *aName) { OT_UNUSED_VARIABLE(aName); }
+void platformLoggingInit(const char *aName)
+{
+    OT_UNUSED_VARIABLE(aName);
+}
 void platformLoggingDeinit(void) {}
 
 #endif // (OPENTHREAD_CONFIG_LOG_OUTPUT == OPENTHREAD_CONFIG_LOG_OUTPUT_PLATFORM_DEFINED)

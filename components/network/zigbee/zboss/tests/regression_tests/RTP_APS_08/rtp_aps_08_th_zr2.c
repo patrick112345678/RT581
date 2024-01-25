@@ -89,7 +89,7 @@ static zb_uint8_t attr_current_level = ZB_ZCL_LEVEL_CONTROL_CURRENT_LEVEL_DEFAUL
 static zb_uint16_t attr_remaining_time = ZB_ZCL_LEVEL_CONTROL_REMAINING_TIME_DEFAULT_VALUE;
 
 ZB_ZCL_DECLARE_LEVEL_CONTROL_ATTRIB_LIST(rtp_aps_08_th_zr2_level_control_attr_list,
-                                         &attr_current_level, &attr_remaining_time);
+        &attr_current_level, &attr_remaining_time);
 
 /********************* Declare device **************************/
 DECLARE_TH_CLUSTER_LIST(rtp_aps_08_th_zr2_device_clusters,
@@ -99,8 +99,8 @@ DECLARE_TH_CLUSTER_LIST(rtp_aps_08_th_zr2_device_clusters,
                         rtp_aps_08_th_zr2_level_control_attr_list);
 
 DECLARE_TH_EP(rtp_aps_08_th_zr2_device_ep,
-               TH_ENDPOINT,
-               rtp_aps_08_th_zr2_device_clusters);
+              TH_ENDPOINT,
+              rtp_aps_08_th_zr2_device_clusters);
 
 DECLARE_TH_CTX(rtp_aps_08_th_zr2_device_ctx, rtp_aps_08_th_zr2_device_ep);
 /*************************************************************************/
@@ -112,155 +112,156 @@ static void test_send_custom_aps_ack(zb_bufid_t packet, zb_aps_hdr_t *aps_hdr);
 
 MAIN()
 {
-  ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
-  ZB_SET_TRACE_LEVEL(4);
-  ARGV_UNUSED;
+    ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
+    ZB_SET_TRACE_LEVEL(4);
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("zdo_th_zr2");
+    ZB_INIT("zdo_th_zr2");
 
 
-  zb_set_long_address(g_ieee_addr_th_zr2);
+    zb_set_long_address(g_ieee_addr_th_zr2);
 
-  zb_reg_test_set_common_channel_settings();
-  zb_set_network_router_role((1l << TEST_CHANNEL));
-  zb_secur_setup_nwk_key(g_nwk_key, 0);
+    zb_reg_test_set_common_channel_settings();
+    zb_set_network_router_role((1l << TEST_CHANNEL));
+    zb_secur_setup_nwk_key(g_nwk_key, 0);
 
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  ZB_AF_REGISTER_DEVICE_CTX(&rtp_aps_08_th_zr2_device_ctx);
+    ZB_AF_REGISTER_DEVICE_CTX(&rtp_aps_08_th_zr2_device_ctx);
 
-  zb_set_max_children(0);
+    zb_set_max_children(0);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 
 /***********************************Implementation**********************************/
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  switch (sig)
-  {
+    switch (sig)
+    {
     case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
-      }
-      break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
+        TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
+        }
+        break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
 
     case ZB_BDB_SIGNAL_STEERING:
-      TRACE_MSG(TRACE_APS1, "signal: ZB_BDB_SIGNAL_STEERING, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        zb_af_set_data_indication(test_data_indication_cb);
-      }
-      break; /* ZB_BDB_SIGNAL_STEERING */
+        TRACE_MSG(TRACE_APS1, "signal: ZB_BDB_SIGNAL_STEERING, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            zb_af_set_data_indication(test_data_indication_cb);
+        }
+        break; /* ZB_BDB_SIGNAL_STEERING */
 
     default:
-      TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
-      break;
-  }
+        TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 static zb_uint8_t test_data_indication_cb(zb_uint8_t param)
 {
-  zb_uint8_t param_tmp = zb_buf_get_out();
-  zb_uint8_t aps_counter, tsn;
-  zb_apsde_data_indication_t *ind;
-  zb_zcl_parsed_hdr_t cmd_info;
-  zb_zcl_status_t status;
-  zb_uint8_t ack_buf;
+    zb_uint8_t param_tmp = zb_buf_get_out();
+    zb_uint8_t aps_counter, tsn;
+    zb_apsde_data_indication_t *ind;
+    zb_zcl_parsed_hdr_t cmd_info;
+    zb_zcl_status_t status;
+    zb_uint8_t ack_buf;
 
-  TRACE_MSG(TRACE_APP1, "test_data_indication_cb(): param %d", (FMT__D, param));
+    TRACE_MSG(TRACE_APP1, "test_data_indication_cb(): param %d", (FMT__D, param));
 
-  if (param_tmp)
-  {
-    zb_buf_copy(param_tmp, param);
-  }
-  else
-  {
-    return ZB_FALSE;
-  }
-
-  ind = ZB_BUF_GET_PARAM(param_tmp, zb_apsde_data_indication_t);
-  aps_counter = ind->aps_counter;
-
-  if (ind->profileid == ZB_AF_HA_PROFILE_ID) {
-    ZB_BZERO(&cmd_info, sizeof(cmd_info));
-    status = zb_zcl_parse_header(param_tmp, &cmd_info);
-    tsn = cmd_info.seq_number;
-
-    if (status == ZB_ZCL_STATUS_SUCCESS && cmd_info.cmd_id == ZB_ZCL_CMD_ON_OFF_TOGGLE_ID)
+    if (param_tmp)
     {
-      ack_buf = zb_buf_get_out();
-      test_send_custom_aps_ack(ack_buf, ind);
+        zb_buf_copy(param_tmp, param);
     }
-  }
+    else
+    {
+        return ZB_FALSE;
+    }
 
-  zb_buf_free(param_tmp);
+    ind = ZB_BUF_GET_PARAM(param_tmp, zb_apsde_data_indication_t);
+    aps_counter = ind->aps_counter;
 
-  return ZB_FALSE;
+    if (ind->profileid == ZB_AF_HA_PROFILE_ID)
+    {
+        ZB_BZERO(&cmd_info, sizeof(cmd_info));
+        status = zb_zcl_parse_header(param_tmp, &cmd_info);
+        tsn = cmd_info.seq_number;
+
+        if (status == ZB_ZCL_STATUS_SUCCESS && cmd_info.cmd_id == ZB_ZCL_CMD_ON_OFF_TOGGLE_ID)
+        {
+            ack_buf = zb_buf_get_out();
+            test_send_custom_aps_ack(ack_buf, ind);
+        }
+    }
+
+    zb_buf_free(param_tmp);
+
+    return ZB_FALSE;
 }
 
 static void test_send_custom_aps_ack(zb_uint8_t param, zb_apsde_data_indication_t *ind)
 {
-  zb_bufid_t buf = param;
-  zb_short_t aps_hdr_size;
-  zb_uint8_t *apshdr;
-  zb_uint8_t fc = 0;
+    zb_bufid_t buf = param;
+    zb_short_t aps_hdr_size;
+    zb_uint8_t *apshdr;
+    zb_uint8_t fc = 0;
 
-  TRACE_MSG(TRACE_APS2, ">> test_send_custom_aps_ack %hd", (FMT__H, buf));
-  ZB_APS_FC_SET_FRAME_TYPE(fc, ZB_APS_FRAME_ACK);
+    TRACE_MSG(TRACE_APS2, ">> test_send_custom_aps_ack %hd", (FMT__H, buf));
+    ZB_APS_FC_SET_FRAME_TYPE(fc, ZB_APS_FRAME_ACK);
 
-  aps_hdr_size = (2 +       /* fc + aps counter */
-    2 +       /* src & dest endpoint */
-    4         /* cluster id, profile id */
-  );
+    aps_hdr_size = (2 +       /* fc + aps counter */
+                    2 +       /* src & dest endpoint */
+                    4         /* cluster id, profile id */
+                   );
 
-  ZB_APS_FC_SET_ACK_FORMAT(fc, 0);
-  apshdr = zb_buf_initial_alloc(buf, aps_hdr_size);
-  *apshdr = fc;
-  apshdr++;
+    ZB_APS_FC_SET_ACK_FORMAT(fc, 0);
+    apshdr = zb_buf_initial_alloc(buf, aps_hdr_size);
+    *apshdr = fc;
+    apshdr++;
 
-  *apshdr = ind->src_endpoint;
-  apshdr++;
+    *apshdr = ind->src_endpoint;
+    apshdr++;
 
-  TRACE_MSG(TRACE_APS2, "clusterid 0x%x", (FMT__D, ind->clusterid));
-  ZB_PUT_NEXT_HTOLE16(apshdr, ind->clusterid);
-  ZB_PUT_NEXT_HTOLE16(apshdr, ind->profileid);
+    TRACE_MSG(TRACE_APS2, "clusterid 0x%x", (FMT__D, ind->clusterid));
+    ZB_PUT_NEXT_HTOLE16(apshdr, ind->clusterid);
+    ZB_PUT_NEXT_HTOLE16(apshdr, ind->profileid);
 
-  TRACE_MSG(TRACE_APS2, "src_endpoint %d", (FMT__D, ind->src_endpoint));
-  *apshdr = ind->dst_endpoint;
-  apshdr++;
+    TRACE_MSG(TRACE_APS2, "src_endpoint %d", (FMT__D, ind->src_endpoint));
+    *apshdr = ind->dst_endpoint;
+    apshdr++;
 
-  *apshdr = ind->aps_counter;
-  apshdr++;
+    *apshdr = ind->aps_counter;
+    apshdr++;
 
-  fill_nldereq(buf, ind->src_addr, 1);
+    fill_nldereq(buf, ind->src_addr, 1);
 
-  ZB_SCHEDULE_ALARM(zb_nlde_data_request, buf, TEST_TIME_UNTIL_SECOND_ACK_SENDING);
+    ZB_SCHEDULE_ALARM(zb_nlde_data_request, buf, TEST_TIME_UNTIL_SECOND_ACK_SENDING);
 
-  TRACE_MSG(TRACE_APS2, "-aps_ack_send_handle", (FMT__0));
+    TRACE_MSG(TRACE_APS2, "-aps_ack_send_handle", (FMT__0));
 }
 
 /*! @} */

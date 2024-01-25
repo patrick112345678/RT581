@@ -672,8 +672,8 @@ otError otPlatCryptoEcdsaVerify(const otPlatCryptoEcdsaPublicKey *aPublicKey,
  *
  */
 otError otPlatCryptoEcdsaSignUsingKeyRef(otCryptoKeyRef                aKeyRef,
-                                         const otPlatCryptoSha256Hash *aHash,
-                                         otPlatCryptoEcdsaSignature   *aSignature);
+        const otPlatCryptoSha256Hash *aHash,
+        otPlatCryptoEcdsaSignature   *aSignature);
 
 /**
  * Get the associated public key from the key reference passed.
@@ -729,8 +729,8 @@ otError otPlatCryptoEcdsaGenerateAndImportKey(otCryptoKeyRef aKeyRef);
  *
  */
 otError otPlatCryptoEcdsaVerifyUsingKeyRef(otCryptoKeyRef                    aKeyRef,
-                                           const otPlatCryptoSha256Hash     *aHash,
-                                           const otPlatCryptoEcdsaSignature *aSignature);
+        const otPlatCryptoSha256Hash     *aHash,
+        const otPlatCryptoEcdsaSignature *aSignature);
 
 /**
  * Perform PKCS#5 PBKDF2 using CMAC (AES-CMAC-PRF-128).

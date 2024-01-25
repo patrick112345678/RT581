@@ -32,30 +32,30 @@ zb_ret_t check_value_custom_attr(zb_uint16_t attr_id, zb_uint8_t endpoint, zb_ui
 
 void zb_zcl_custom_attr_init_server()
 {
-  zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_CUSTOM_ATTR,
-                              ZB_ZCL_CLUSTER_SERVER_ROLE,
-                              (zb_zcl_cluster_check_value_t)check_value_custom_attr,
-                              (zb_zcl_cluster_write_attr_hook_t)NULL,
-                              (zb_zcl_cluster_handler_t)NULL);
+    zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_CUSTOM_ATTR,
+                                ZB_ZCL_CLUSTER_SERVER_ROLE,
+                                (zb_zcl_cluster_check_value_t)check_value_custom_attr,
+                                (zb_zcl_cluster_write_attr_hook_t)NULL,
+                                (zb_zcl_cluster_handler_t)NULL);
 }
 
 void zb_zcl_custom_attr_init_client()
 {
-  zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_CUSTOM_ATTR,
-                              ZB_ZCL_CLUSTER_CLIENT_ROLE,
-                              (zb_zcl_cluster_check_value_t)check_value_custom_attr,
-                              (zb_zcl_cluster_write_attr_hook_t)NULL,
-                              (zb_zcl_cluster_handler_t)NULL);
+    zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_CUSTOM_ATTR,
+                                ZB_ZCL_CLUSTER_CLIENT_ROLE,
+                                (zb_zcl_cluster_check_value_t)check_value_custom_attr,
+                                (zb_zcl_cluster_write_attr_hook_t)NULL,
+                                (zb_zcl_cluster_handler_t)NULL);
 }
 
 zb_ret_t check_value_custom_attr(zb_uint16_t attr_id, zb_uint8_t endpoint, zb_uint8_t *value)
 {
-  ZVUNUSED(endpoint);
+    ZVUNUSED(endpoint);
 
-  if (attr_id == ZB_ZCL_CUSTOM_CLUSTER_ATTR_U8_ID && *value == 0xff)
-  {
-    return RET_ERROR;
-  }
-  return RET_OK;
+    if (attr_id == ZB_ZCL_CUSTOM_CLUSTER_ATTR_U8_ID && *value == 0xff)
+    {
+        return RET_ERROR;
+    }
+    return RET_OK;
 }
 #endif /* ZB_ZCL_SUPPORT_CLUSTER_CUSTOM_CLUSTER */

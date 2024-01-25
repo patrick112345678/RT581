@@ -171,7 +171,8 @@ static int8_t GetRssi(uint16_t aChannel);
 
 #if OPENTHREAD_SIMULATION_VIRTUAL_TIME == 0
 
-static enum {
+static enum
+{
     kFilterOff,
     kFilterDenyList,
     kFilterAllowList,
@@ -212,7 +213,10 @@ static void AddNodeIdToFilter(uint16_t aNodeId)
     sFilterNodeIdsBitVector[index / 8] |= 0x80 >> (index % 8);
 }
 
-OT_TOOL_WEAK void otCliOutputFormat(const char *aFmt, ...) { OT_UNUSED_VARIABLE(aFmt); }
+OT_TOOL_WEAK void otCliOutputFormat(const char *aFmt, ...)
+{
+    OT_UNUSED_VARIABLE(aFmt);
+}
 
 otError ProcessNodeIdFilter(void *aContext, uint8_t aArgsLength, char *aArgs[])
 {
@@ -289,7 +293,10 @@ otError ProcessNodeIdFilter(void *aContext, uint8_t aArgsLength, char *aArgs[])
 }
 #endif // OPENTHREAD_SIMULATION_VIRTUAL_TIME == 0
 
-static bool IsTimeAfterOrEqual(uint32_t aTimeA, uint32_t aTimeB) { return (aTimeA - aTimeB) < (1U << 31); }
+static bool IsTimeAfterOrEqual(uint32_t aTimeA, uint32_t aTimeB)
+{
+    return (aTimeA - aTimeB) < (1U << 31);
+}
 
 static void ReverseExtAddress(otExtAddress *aReversed, const otExtAddress *aOrigin)
 {
@@ -333,7 +340,8 @@ static uint16_t crc16_citt(uint16_t aFcs, uint8_t aByte)
     // CRC-16/CCITT, CRC-16/CCITT-TRUE, CRC-CCITT
     // width=16 poly=0x1021 init=0x0000 refin=true refout=true xorout=0x0000 check=0x2189 name="KERMIT"
     // http://reveng.sourceforge.net/crc-catalogue/16.htm#crc.cat.kermit
-    static const uint16_t sFcsTable[256] = {
+    static const uint16_t sFcsTable[256] =
+    {
         0x0000, 0x1189, 0x2312, 0x329b, 0x4624, 0x57ad, 0x6536, 0x74bf, 0x8c48, 0x9dc1, 0xaf5a, 0xbed3, 0xca6c, 0xdbe5,
         0xe97e, 0xf8f7, 0x1081, 0x0108, 0x3393, 0x221a, 0x56a5, 0x472c, 0x75b7, 0x643e, 0x9cc9, 0x8d40, 0xbfdb, 0xae52,
         0xdaed, 0xcb64, 0xf9ff, 0xe876, 0x2102, 0x308b, 0x0210, 0x1399, 0x6726, 0x76af, 0x4434, 0x55bd, 0xad4a, 0xbcc3,
@@ -352,7 +360,8 @@ static uint16_t crc16_citt(uint16_t aFcs, uint8_t aByte)
         0xf59f, 0xe416, 0x90a9, 0x8120, 0xb3bb, 0xa232, 0x5ac5, 0x4b4c, 0x79d7, 0x685e, 0x1ce1, 0x0d68, 0x3ff3, 0x2e7a,
         0xe70e, 0xf687, 0xc41c, 0xd595, 0xa12a, 0xb0a3, 0x8238, 0x93b1, 0x6b46, 0x7acf, 0x4854, 0x59dd, 0x2d62, 0x3ceb,
         0x0e70, 0x1ff9, 0xf78f, 0xe606, 0xd49d, 0xc514, 0xb1ab, 0xa022, 0x92b9, 0x8330, 0x7bc7, 0x6a4e, 0x58d5, 0x495c,
-        0x3de3, 0x2c6a, 0x1ef1, 0x0f78};
+        0x3de3, 0x2c6a, 0x1ef1, 0x0f78
+    };
     return (aFcs >> 8) ^ sFcsTable[(aFcs ^ aByte) & 0xff];
 }
 
@@ -843,7 +852,10 @@ exit:
     return;
 }
 
-bool platformRadioIsTransmitPending(void) { return sState == OT_RADIO_STATE_TRANSMIT && !sTxWait; }
+bool platformRadioIsTransmitPending(void)
+{
+    return sState == OT_RADIO_STATE_TRANSMIT && !sTxWait;
+}
 
 #if OPENTHREAD_SIMULATION_VIRTUAL_TIME
 void platformRadioReceive(otInstance *aInstance, uint8_t *aBuf, uint16_t aBufLength)
@@ -892,7 +904,7 @@ void platformRadioUpdateFdSet(fd_set *aReadFdSet, fd_set *aWriteFdSet, struct ti
             tv.tv_usec = (remaining % MS_PER_S) * US_PER_MS;
         }
 
-        if (timercmp(&tv, aTimeout, <))
+        if (timercmp(&tv, aTimeout, < ))
         {
             *aTimeout = tv;
         }
@@ -1026,7 +1038,7 @@ void radioSendAck(void)
         otEXPECT(otMacFrameGetSrcAddr(&sReceiveFrame, &macAddress) == OT_ERROR_NONE);
 
         linkMetricsDataLen = otLinkMetricsEnhAckGenData(&macAddress, sReceiveFrame.mInfo.mRxInfo.mLqi,
-                                                        sReceiveFrame.mInfo.mRxInfo.mRssi, linkMetricsData);
+                             sReceiveFrame.mInfo.mRxInfo.mRssi, linkMetricsData);
 
         if (linkMetricsDataLen > 0)
         {
@@ -1398,9 +1410,9 @@ exit:
 
 #if OPENTHREAD_CONFIG_MLE_LINK_METRICS_SUBJECT_ENABLE
 otError otPlatRadioConfigureEnhAckProbing(otInstance          *aInstance,
-                                          otLinkMetrics        aLinkMetrics,
-                                          const otShortAddress aShortAddress,
-                                          const otExtAddress  *aExtAddress)
+        otLinkMetrics        aLinkMetrics,
+        const otShortAddress aShortAddress,
+        const otExtAddress  *aExtAddress)
 {
     OT_UNUSED_VARIABLE(aInstance);
 

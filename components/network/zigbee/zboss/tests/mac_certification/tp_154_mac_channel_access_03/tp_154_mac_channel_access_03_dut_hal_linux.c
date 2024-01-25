@@ -31,17 +31,17 @@
 
 void test_hal_indicate_action_linux(test_action_t event)
 {
-  switch (event)
-  {
+    switch (event)
+    {
     case DATA_INDICATION_EV_ID:
-      TRACE_MSG(TRACE_APP1, "test_hal_indicate_action_linux(): DATA_INDICATION_EV_ID", (FMT__0));
-      break;
+        TRACE_MSG(TRACE_APP1, "test_hal_indicate_action_linux(): DATA_INDICATION_EV_ID", (FMT__0));
+        break;
     case LBT_START_EV_ID:
-      TRACE_MSG(TRACE_APP1, "test_hal_indicate_action_linux(): LBT_START_EV_ID", (FMT__0));
-      break;
+        TRACE_MSG(TRACE_APP1, "test_hal_indicate_action_linux(): LBT_START_EV_ID", (FMT__0));
+        break;
     default:
-      TRACE_MSG(TRACE_APP1, "test_hal_indicate_action_linux(): unknown event!", (FMT__0));
-      break;
-  }
+        TRACE_MSG(TRACE_APP1, "test_hal_indicate_action_linux(): unknown event!", (FMT__0));
+        break;
+    }
 
 }

@@ -21,9 +21,10 @@
 #define GCC_BB_REORDER
 
 /* Target-specific globals.  */
-struct target_bb_reorder {
-  /* Length of unconditional jump instruction.  */
-  int x_uncond_jump_length;
+struct target_bb_reorder
+{
+    /* Length of unconditional jump instruction.  */
+    int x_uncond_jump_length;
 };
 
 extern struct target_bb_reorder default_target_bb_reorder;

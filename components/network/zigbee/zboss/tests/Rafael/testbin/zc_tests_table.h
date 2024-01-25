@@ -87,11 +87,12 @@ void NVRAM_ERASE_main();
 
 #if defined ZB_TEST_GROUP_RAFAEL
 
-static const zb_test_table_t s_tests_table[] = {
-{ "S_NWK_01_ZC", S_NWK_01_ZC_main, S_NWK_01_ZC_zb_zdo_startup_complete },
-{ "S_NWK_01_ZR1", S_NWK_01_ZR1_main, S_NWK_01_ZR1_zb_zdo_startup_complete },
+static const zb_test_table_t s_tests_table[] =
+{
+    { "S_NWK_01_ZC", S_NWK_01_ZC_main, S_NWK_01_ZC_zb_zdo_startup_complete },
+    { "S_NWK_01_ZR1", S_NWK_01_ZR1_main, S_NWK_01_ZR1_zb_zdo_startup_complete },
 
-{ "NVRAM_ERASE", NVRAM_ERASE_main, NULL},
+    { "NVRAM_ERASE", NVRAM_ERASE_main, NULL},
 };
 
 #endif

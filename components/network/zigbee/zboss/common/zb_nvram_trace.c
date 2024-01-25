@@ -44,8 +44,8 @@ static zb_ret_t zb_nvram_trace_flash_read(zb_uint32_t address, zb_uint8_t *buf, 
 
 typedef struct zb_nvram_trace_ctx_s
 {
-  zb_uint32_t write_pos;
-  zb_nvram_trace_size_t trace_size;
+    zb_uint32_t write_pos;
+    zb_nvram_trace_size_t trace_size;
 } zb_nvram_trace_ctx_t;
 
 static zb_nvram_trace_ctx_t gs_nvram_trace_ctx;
@@ -58,8 +58,8 @@ static zb_nvram_trace_ctx_t gs_nvram_trace_ctx;
  */
 void zb_nvram_trace_init()
 {
-  zb_osif_nvram_init(NULL);
-  ZB_BZERO(&gs_nvram_trace_ctx, sizeof(zb_nvram_trace_ctx_t));
+    zb_osif_nvram_init(NULL);
+    ZB_BZERO(&gs_nvram_trace_ctx, sizeof(zb_nvram_trace_ctx_t));
 }
 
 /**
@@ -71,15 +71,15 @@ void zb_nvram_trace_init()
  */
 zb_nvram_trace_size_t zb_nvram_trace_data_size()
 {
-  zb_nvram_trace_flash_read(ZB_NVRAM_TRACE_FLASH_ADDR, (zb_uint8_t*)&gs_nvram_trace_ctx.trace_size,
-                            sizeof(zb_uint16_t));
+    zb_nvram_trace_flash_read(ZB_NVRAM_TRACE_FLASH_ADDR, (zb_uint8_t *)&gs_nvram_trace_ctx.trace_size,
+                              sizeof(zb_uint16_t));
 
-  if (gs_nvram_trace_ctx.trace_size == ZB_NVRAM_TRACE_INVALID_LENGTH)
-  {
-    gs_nvram_trace_ctx.trace_size = 0;
-  }
+    if (gs_nvram_trace_ctx.trace_size == ZB_NVRAM_TRACE_INVALID_LENGTH)
+    {
+        gs_nvram_trace_ctx.trace_size = 0;
+    }
 
-  return gs_nvram_trace_ctx.trace_size;
+    return gs_nvram_trace_ctx.trace_size;
 }
 
 
@@ -94,8 +94,8 @@ zb_nvram_trace_size_t zb_nvram_trace_data_size()
  */
 void zb_nvram_trace_get(zb_uint8_t *buf)
 {
-  zb_nvram_trace_flash_read(ZB_NVRAM_TRACE_FLASH_ADDR+sizeof(zb_nvram_trace_size_t), buf,
-                            gs_nvram_trace_ctx.trace_size);
+    zb_nvram_trace_flash_read(ZB_NVRAM_TRACE_FLASH_ADDR + sizeof(zb_nvram_trace_size_t), buf,
+                              gs_nvram_trace_ctx.trace_size);
 }
 
 
@@ -112,20 +112,20 @@ void zb_nvram_trace_get(zb_uint8_t *buf)
  */
 void zb_nvram_trace_put(zb_uint_t off, zb_uint8_t *buf, zb_uint_t size)
 {
-  if (gs_nvram_trace_ctx.write_pos >=
-      ZB_NVRAM_TRACE_FLASH_SECTOR_SIZE + sizeof(zb_nvram_trace_size_t))
-  {
-    /* No free space */
-    return;
-  }
+    if (gs_nvram_trace_ctx.write_pos >=
+            ZB_NVRAM_TRACE_FLASH_SECTOR_SIZE + sizeof(zb_nvram_trace_size_t))
+    {
+        /* No free space */
+        return;
+    }
 
-  if (size > (ZB_NVRAM_TRACE_FLASH_SECTOR_SIZE + sizeof(zb_nvram_trace_size_t)
-              - gs_nvram_trace_ctx.write_pos))
-  {
-    size = ZB_NVRAM_TRACE_FLASH_SECTOR_SIZE + sizeof(zb_nvram_trace_size_t) - gs_nvram_trace_ctx.write_pos;
-  }
+    if (size > (ZB_NVRAM_TRACE_FLASH_SECTOR_SIZE + sizeof(zb_nvram_trace_size_t)
+                - gs_nvram_trace_ctx.write_pos))
+    {
+        size = ZB_NVRAM_TRACE_FLASH_SECTOR_SIZE + sizeof(zb_nvram_trace_size_t) - gs_nvram_trace_ctx.write_pos;
+    }
 
-  zb_nvram_trace_flash_write(ZB_NVRAM_TRACE_FLASH_ADDR+off, buf, size);
+    zb_nvram_trace_flash_write(ZB_NVRAM_TRACE_FLASH_ADDR + off, buf, size);
 }
 
 /**
@@ -135,31 +135,31 @@ void zb_nvram_trace_put(zb_uint_t off, zb_uint8_t *buf, zb_uint_t size)
  */
 zb_ret_t zb_nvram_trace_flash_erase()
 {
-  zb_ret_t ret;
+    zb_ret_t ret;
 
-  gs_nvram_trace_ctx.write_pos = 0;
-  gs_nvram_trace_ctx.trace_size = 0;
-  ret = zb_osif_erase_nvram_trace_sector();
+    gs_nvram_trace_ctx.write_pos = 0;
+    gs_nvram_trace_ctx.trace_size = 0;
+    ret = zb_osif_erase_nvram_trace_sector();
 
-  return ret;
+    return ret;
 }
 
 static zb_ret_t zb_nvram_trace_flash_write(zb_uint32_t address, zb_uint8_t *buf, zb_uint16_t len)
 {
-  zb_ret_t ret;
+    zb_ret_t ret;
 
-  gs_nvram_trace_ctx.write_pos += len;
-  ret = zb_osif_nvram_write_memory(address, len, buf);
+    gs_nvram_trace_ctx.write_pos += len;
+    ret = zb_osif_nvram_write_memory(address, len, buf);
 
-  return ret;
+    return ret;
 }
 
 static zb_ret_t zb_nvram_trace_flash_read(zb_uint32_t address, zb_uint8_t *buf, zb_uint16_t len)
 {
-  zb_ret_t ret;
-  ret = zb_osif_nvram_read_memory(address, len, buf);
+    zb_ret_t ret;
+    ret = zb_osif_nvram_read_memory(address, len, buf);
 
-  return ret;
+    return ret;
 }
 /*! @} */
 /*! @endcond */ /* DOXYGEN_DEBUG_SECTION */

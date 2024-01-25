@@ -35,19 +35,19 @@
 /* Bitfield */
 typedef enum zb_nettrace_mode_e
 {
-  ZB_NETTRACE_OFF,
-  ZB_NETTRACE_MEM_ONLY,     /* Crash dump only */
-  ZB_NETTRACE_NET,          /* Includes net trace and crash dump */
+    ZB_NETTRACE_OFF,
+    ZB_NETTRACE_MEM_ONLY,     /* Crash dump only */
+    ZB_NETTRACE_NET,          /* Includes net trace and crash dump */
 } zb_nettrace_mode_t;
 
 typedef struct zb_nettrace_ctx_s
 {
-  zb_callback_t put2net_start_cb;
-  zb_callback_t nettrace_startup_done;
-  zb_nettrace_mode_t trace_mode;
-  zb_bool_t net_put_is_running;
-  zb_bool_t atboot_tracing_active;
-  zb_bool_t          inited;
+    zb_callback_t put2net_start_cb;
+    zb_callback_t nettrace_startup_done;
+    zb_nettrace_mode_t trace_mode;
+    zb_bool_t net_put_is_running;
+    zb_bool_t atboot_tracing_active;
+    zb_bool_t          inited;
 } zb_nettrace_ctx_t;
 
 /**
@@ -72,9 +72,9 @@ void zb_nettrace_init(zb_nettrace_mode_t trace_mode);
    is completed and all atboot trace messages are processed
  */
 zb_ret_t zb_nettrace_startup(
-  zb_callback_t      put2net_start_cb,
-  zb_callback_t      put2net_atboot_func,
-  zb_callback_t      nettrace_startup_done);
+    zb_callback_t      put2net_start_cb,
+    zb_callback_t      put2net_atboot_func,
+    zb_callback_t      nettrace_startup_done);
 
 /**
    Switch mode of trace to net

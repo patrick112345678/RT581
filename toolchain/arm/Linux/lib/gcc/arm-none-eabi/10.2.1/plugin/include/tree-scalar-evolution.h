@@ -37,9 +37,9 @@ extern bool final_value_replacement_loop (class loop *);
 extern unsigned int scev_const_prop (void);
 extern bool expression_expensive_p (tree);
 extern bool simple_iv_with_niters (class loop *, class loop *, tree,
-				   struct affine_iv *, tree *, bool);
+                                   struct affine_iv *, tree *, bool);
 extern bool simple_iv (class loop *, class loop *, tree, struct affine_iv *,
-		       bool);
+                       bool);
 extern bool iv_can_overflow_p (class loop *, tree, tree, tree);
 extern tree compute_overall_effect_of_inner_loop (class loop *, tree);
 
@@ -49,8 +49,8 @@ extern tree compute_overall_effect_of_inner_loop (class loop *, tree);
 static inline basic_block
 block_before_loop (loop_p loop)
 {
-  edge preheader = loop_preheader_edge (loop);
-  return (preheader ? preheader->src : ENTRY_BLOCK_PTR_FOR_FN (cfun));
+    edge preheader = loop_preheader_edge (loop);
+    return (preheader ? preheader->src : ENTRY_BLOCK_PTR_FOR_FN (cfun));
 }
 
 /* Analyze all the parameters of the chrec that were left under a
@@ -60,15 +60,15 @@ block_before_loop (loop_p loop)
 static inline tree
 instantiate_parameters (class loop *loop, tree chrec)
 {
-  return instantiate_scev (loop_preheader_edge (loop), loop, chrec);
+    return instantiate_scev (loop_preheader_edge (loop), loop, chrec);
 }
 
 /* Returns the loop of the polynomial chrec CHREC.  */
 
 static inline class loop *
-get_chrec_loop (const_tree chrec)
+    get_chrec_loop (const_tree chrec)
 {
-  return get_loop (cfun, CHREC_VARIABLE (chrec));
+    return get_loop (cfun, CHREC_VARIABLE (chrec));
 }
 
 #endif  /* GCC_TREE_SCALAR_EVOLUTION_H  */

@@ -53,7 +53,7 @@ void zbncp_frag_initialize(zbncp_frag_ctx_t *frag_ctx);
  * @param size - size of transmitted data
  * @return 0 if everything OK, otherwise error
  */
-zbncp_int32_t zbncp_frag_store_tx_pkt(zbncp_frag_ctx_t *frag_ctx, const void* buf, zbncp_size_t size);
+zbncp_int32_t zbncp_frag_store_tx_pkt(zbncp_frag_ctx_t *frag_ctx, const void *buf, zbncp_size_t size);
 
 /**
  * @brief Pass place for copying a received packet to user
@@ -62,7 +62,7 @@ zbncp_int32_t zbncp_frag_store_tx_pkt(zbncp_frag_ctx_t *frag_ctx, const void* bu
  * @param buf - pointer to a memory where a packet will be stored
  * @param size - size of user buffer to not exceeding
  */
-void zbncp_frag_set_place_for_rx_pkt(zbncp_frag_ctx_t *frag_ctx, void* buf, zbncp_size_t size);
+void zbncp_frag_set_place_for_rx_pkt(zbncp_frag_ctx_t *frag_ctx, void *buf, zbncp_size_t size);
 
 /**
  * @brief Filling request to pass into low level

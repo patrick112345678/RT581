@@ -34,7 +34,7 @@ extern void set_phi_nodes (basic_block, gimple_seq);
 static inline use_operand_p
 gimple_phi_arg_imm_use_ptr (gimple *gs, int i)
 {
-  return &gimple_phi_arg (gs, i)->imm_use;
+    return &gimple_phi_arg (gs, i)->imm_use;
 }
 
 /* Return the phi argument which contains the specified use.  */
@@ -42,27 +42,27 @@ gimple_phi_arg_imm_use_ptr (gimple *gs, int i)
 static inline int
 phi_arg_index_from_use (use_operand_p use)
 {
-  struct phi_arg_d *element, *root;
-  size_t index;
-  gimple *phi;
+    struct phi_arg_d *element, *root;
+    size_t index;
+    gimple *phi;
 
-  /* Since the use is the first thing in a PHI argument element, we can
-     calculate its index based on casting it to an argument, and performing
-     pointer arithmetic.  */
+    /* Since the use is the first thing in a PHI argument element, we can
+       calculate its index based on casting it to an argument, and performing
+       pointer arithmetic.  */
 
-  phi = USE_STMT (use);
+    phi = USE_STMT (use);
 
-  element = (struct phi_arg_d *)use;
-  root = gimple_phi_arg (phi, 0);
-  index = element - root;
+    element = (struct phi_arg_d *)use;
+    root = gimple_phi_arg (phi, 0);
+    index = element - root;
 
-  /* Make sure the calculation doesn't have any leftover bytes.  If it does,
-     then imm_use is likely not the first element in phi_arg_d.  */
-  gcc_checking_assert ((((char *)element - (char *)root)
-			% sizeof (struct phi_arg_d)) == 0
-		       && index < gimple_phi_capacity (phi));
+    /* Make sure the calculation doesn't have any leftover bytes.  If it does,
+       then imm_use is likely not the first element in phi_arg_d.  */
+    gcc_checking_assert ((((char *)element - (char *)root)
+                          % sizeof (struct phi_arg_d)) == 0
+                         && index < gimple_phi_capacity (phi));
 
- return index;
+    return index;
 }
 
 #endif /* GCC_TREE_PHINODES_H */

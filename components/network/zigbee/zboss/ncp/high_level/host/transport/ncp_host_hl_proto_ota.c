@@ -26,30 +26,31 @@
 
 #include "ncp_host_hl_proto.h"
 
-void ncp_host_handle_ota_response(void* data, zb_uint16_t len)
+void ncp_host_handle_ota_response(void *data, zb_uint16_t len)
 {
-  ZVUNUSED(data);
-  ZVUNUSED(len);
-  /* We don't support OTA Commands for ZOI NCP */
-  ZB_ASSERT(0);
+    ZVUNUSED(data);
+    ZVUNUSED(len);
+    /* We don't support OTA Commands for ZOI NCP */
+    ZB_ASSERT(0);
 }
 
-void ncp_host_handle_ota_indication(void* data, zb_uint16_t len)
+void ncp_host_handle_ota_indication(void *data, zb_uint16_t len)
 {
-  ZVUNUSED(data);
-  ZVUNUSED(len);
-  /* We don't support OTA Commands for ZOI NCP */
-  ZB_ASSERT(0);
+    ZVUNUSED(data);
+    ZVUNUSED(len);
+    /* We don't support OTA Commands for ZOI NCP */
+    ZB_ASSERT(0);
 }
 
 zb_ret_t ncp_host_ota_run_bootloader(void)
 {
-  zb_ret_t ret = RET_BUSY;
-  ncp_host_hl_tx_buf_handle_t body;
+    zb_ret_t ret = RET_BUSY;
+    ncp_host_hl_tx_buf_handle_t body;
 
-  if (!ncp_host_get_buf_for_blocking_request(NCP_HL_OTA_RUN_BOOTLOADER, &body, NULL)) {
-    ret = ncp_host_hl_send_packet(&body);
-  }
+    if (!ncp_host_get_buf_for_blocking_request(NCP_HL_OTA_RUN_BOOTLOADER, &body, NULL))
+    {
+        ret = ncp_host_hl_send_packet(&body);
+    }
 
-  return ret;
+    return ret;
 }

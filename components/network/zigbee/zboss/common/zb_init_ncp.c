@@ -53,108 +53,108 @@ void zb_init(void)
 #endif
 {
 #ifdef ZB_INIT_HAS_ARGS
-  ZVUNUSED(trace_comment);
+    ZVUNUSED(trace_comment);
 #endif
-/*Init ZBOSS global context*/
+    /*Init ZBOSS global context*/
 
-  zb_globals_init();
+    zb_globals_init();
 
 #ifdef ZB_CHECK_OOM_STATUS
-  ZG->oom_check_enabled = 1;
+    ZG->oom_check_enabled = 1;
 #endif
 
-  /* FIXME: remove all that shit and use ZB_PLATFORM_INIT everywhere! EE. */
-  /* [MM]: 07/24/2015 Commented in scope of ZB PRO'15 certification,
-   * should be used ZB_PLATFORM_INIT() instead */
+    /* FIXME: remove all that shit and use ZB_PLATFORM_INIT everywhere! EE. */
+    /* [MM]: 07/24/2015 Commented in scope of ZB PRO'15 certification,
+     * should be used ZB_PLATFORM_INIT() instead */
 
 #if defined(ZB_PLATFORM_CM4_SUB_GHZ)
-  SystemCoreClockUpdate();
-  zb_cortexm4_init();
-  EXTI_RFINT2_Init();
-  ZB_cm4_sub_ghz_SysTick_start();
+    SystemCoreClockUpdate();
+    zb_cortexm4_init();
+    EXTI_RFINT2_Init();
+    ZB_cm4_sub_ghz_SysTick_start();
 #endif
 
-  ZB_PLATFORM_INIT();
+    ZB_PLATFORM_INIT();
 
-  /* Note: for trace over GP hal must call trace init later, in Application_Init() */
+    /* Note: for trace over GP hal must call trace init later, in Application_Init() */
 #ifdef ZB_INIT_HAS_ARGS
-  TRACE_INIT(trace_comment);
+    TRACE_INIT(trace_comment);
 #else
-  TRACE_INIT("");
+    TRACE_INIT("");
 #endif
 
-  ZB_ENABLE_ALL_INTER();
+    ZB_ENABLE_ALL_INTER();
 
-  zb_init_buffers();
+    zb_init_buffers();
 
-  zb_sched_init();
+    zb_sched_init();
 
 #ifdef ZB_USE_SLEEP
-  zb_sleep_init();
+    zb_sleep_init();
 #endif
 
 #ifdef ZB_ENABLE_ZCL
-  zb_zcl_init();
+    zb_zcl_init();
 #endif
 
 #if defined ZB_ENABLE_ZLL
-  zll_init();
+    zll_init();
 #endif /* defined ZB_ENABLE_ZLL */
 
 #ifdef ZB_ENABLE_ZGP
-  zb_zgp_init();
+    zb_zgp_init();
 #endif /* ZB_ENABLE_ZGP */
 
-  zdo_commissioning_init();
+    zdo_commissioning_init();
 
-  ncp_host_init();
+    ncp_host_init();
 
-  trace_context_sizes();
+    trace_context_sizes();
 }
 
 static void trace_context_sizes(void)
 {
-  /* Note: data size is not informatiove for "configurable mem" builds. */
+    /* Note: data size is not informatiove for "configurable mem" builds. */
 #ifdef ZB_ED_ROLE
-  TRACE_MSG(TRACE_INFO1, "ED build", (FMT__0));
+    TRACE_MSG(TRACE_INFO1, "ED build", (FMT__0));
 #else
-  TRACE_MSG(TRACE_INFO1, "FFD build", (FMT__0));
+    TRACE_MSG(TRACE_INFO1, "FFD build", (FMT__0));
 #endif
-  TRACE_MSG(TRACE_INFO1, "sizes: g_zb %d sched %d bpool %d addr %d",
-            (FMT__D_D_D_D_D_D_D, (zb_uint16_t)sizeof(g_zb), (zb_uint16_t)sizeof(g_zb.sched),
-             (zb_uint16_t)sizeof(g_zb.bpool), (zb_uint16_t)sizeof(g_zb.addr)));
+    TRACE_MSG(TRACE_INFO1, "sizes: g_zb %d sched %d bpool %d addr %d",
+              (FMT__D_D_D_D_D_D_D, (zb_uint16_t)sizeof(g_zb), (zb_uint16_t)sizeof(g_zb.sched),
+               (zb_uint16_t)sizeof(g_zb.bpool), (zb_uint16_t)sizeof(g_zb.addr)));
 #ifdef ZB_ENABLE_ZCL
-  TRACE_MSG(TRACE_INFO1, "zcl %d", (FMT__D, (zb_uint16_t)sizeof(g_zb.zcl)));
+    TRACE_MSG(TRACE_INFO1, "zcl %d", (FMT__D, (zb_uint16_t)sizeof(g_zb.zcl)));
 #endif
 #ifdef ZB_ENABLE_ZLL
-  TRACE_MSG(TRACE_INFO1, "zll %d", (FMT__D, (zb_uint16_t)sizeof(g_zb.zll)));
+    TRACE_MSG(TRACE_INFO1, "zll %d", (FMT__D, (zb_uint16_t)sizeof(g_zb.zll)));
 #endif
 #ifdef ZB_ENABLE_ZGP
-  TRACE_MSG(TRACE_INFO1, "zgp %d", (FMT__D, zb_zgp_ctx_size()));
+    TRACE_MSG(TRACE_INFO1, "zgp %d", (FMT__D, zb_zgp_ctx_size()));
 #endif
 #ifdef ZB_USE_NVRAM
-  TRACE_MSG(TRACE_INFO1, "nvram %d", (FMT__D, (zb_uint16_t)sizeof(g_zb.nvram)));
+    TRACE_MSG(TRACE_INFO1, "nvram %d", (FMT__D, (zb_uint16_t)sizeof(g_zb.nvram)));
 #endif
 #ifdef ZB_USE_BUTTONS
-  TRACE_MSG(TRACE_INFO1, "buttons %d", (FMT__D, (zb_uint16_t)sizeof(g_zb.button)));
+    TRACE_MSG(TRACE_INFO1, "buttons %d", (FMT__D, (zb_uint16_t)sizeof(g_zb.button)));
 #endif
 #ifdef ZB_USE_ERROR_INDICATION
-  TRACE_MSG(TRACE_INFO1, "err_ind %d", (FMT__D, (zb_uint16_t)sizeof(g_zb.err_ind)));
+    TRACE_MSG(TRACE_INFO1, "err_ind %d", (FMT__D, (zb_uint16_t)sizeof(g_zb.err_ind)));
 #endif
 #ifdef USE_ZB_WATCHDOG
-  TRACE_MSG(TRACE_INFO1, "watchdog %d", (FMT__D, (zb_uint16_t)sizeof(g_zb.watchdog)));
+    TRACE_MSG(TRACE_INFO1, "watchdog %d", (FMT__D, (zb_uint16_t)sizeof(g_zb.watchdog)));
 #endif
 
-  TRACE_MSG(TRACE_INFO1, "scheduler q size %d",
-            (FMT__D, (zb_uint16_t)ZB_SCHEDULER_Q_SIZE));
+    TRACE_MSG(TRACE_INFO1, "scheduler q size %d",
+              (FMT__D, (zb_uint16_t)ZB_SCHEDULER_Q_SIZE));
 
 #ifdef ZB_CONFIGURABLE_MEM
-  TRACE_MSG(TRACE_INFO1, "Configurable mem build, use ZBOSS lib defaults = %d", (FMT__D, gc_use_defaults));
+    TRACE_MSG(TRACE_INFO1, "Configurable mem build, use ZBOSS lib defaults = %d", (FMT__D, gc_use_defaults));
 #endif
 
-  TRACE_MSG(TRACE_INFO1, "ZB_IOBUF_POOL_SIZE %d", (FMT__D, ZB_IOBUF_POOL_SIZE));
+    TRACE_MSG(TRACE_INFO1, "ZB_IOBUF_POOL_SIZE %d", (FMT__D, ZB_IOBUF_POOL_SIZE));
 
-  /* TODO: trace sizes of all configurable components (ok, ok, we can just look into .map file) */
+    /* TODO: trace sizes of all configurable components (ok, ok, we can just look into .map file) */
 }
 
 /*! @} */

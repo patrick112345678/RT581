@@ -1,7 +1,7 @@
 /* From curses.h.  */
 /*
  * Copyright (c) 1981, 1993
- *	The Regents of the University of California.  All rights reserved.
+ *  The Regents of the University of California.  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -33,10 +33,10 @@
 
 #include <_ansi.h>
 
-#define unctrl(c)		__unctrl[(c) & 0xff]
-#define unctrllen(ch)		__unctrllen[(ch) & 0xff]
+#define unctrl(c)       __unctrl[(c) & 0xff]
+#define unctrllen(ch)       __unctrllen[(ch) & 0xff]
 
-extern __IMPORT const char * const __unctrl[256];	/* Control strings. */
-extern __IMPORT const char __unctrllen[256];	/* Control strings length. */
+extern __IMPORT const char *const __unctrl[256];    /* Control strings. */
+extern __IMPORT const char __unctrllen[256];    /* Control strings length. */
 
 #endif /* _UNCTRL_H_ */

@@ -94,26 +94,26 @@ typedef zb_uint32_t zb_nvram_tl_t;
  */
 typedef ZB_PACKED_PRE struct zb_nvram_dataset_hdr_1_0_s
 {
-  /* We must write time label separately from other fields.
-     If it is ok to write 2 bytes into flash, can use 4 bytes header, else use
-     4 bytes time label and 4 bytes for other fields. */
-  zb_nvram_tl_t time_label;     /*!< Time index - not real or Zigbee time */
+    /* We must write time label separately from other fields.
+       If it is ok to write 2 bytes into flash, can use 4 bytes header, else use
+       4 bytes time label and 4 bytes for other fields. */
+    zb_nvram_tl_t time_label;     /*!< Time index - not real or Zigbee time */
 #ifndef ZB_NVRAM_32BIT_TL
 #warning ("check maximum dataset length")
-  zb_lbitfield_t data_len:11;    /*!< Record length. It equals to header length + dataset length  <= 2k - is it enough? */
-  zb_bitfield_t data_set_type:5;    /*!< Dataset type. See @par zb_nvram_dataset_types_t  */
+    zb_lbitfield_t data_len: 11;   /*!< Record length. It equals to header length + dataset length  <= 2k - is it enough? */
+    zb_bitfield_t data_set_type: 5;   /*!< Dataset type. See @par zb_nvram_dataset_types_t  */
 #else
-  /* If must align anyway, need not use bitfields */
-  zb_uint16_t data_len;    /*!< Record length. It equals to header length + dataset length  */
-  zb_uint16_t data_set_type;    /*!< Dataset type. See @par zb_nvram_dataset_types_t  */
+    /* If must align anyway, need not use bitfields */
+    zb_uint16_t data_len;    /*!< Record length. It equals to header length + dataset length  */
+    zb_uint16_t data_set_type;    /*!< Dataset type. See @par zb_nvram_dataset_types_t  */
 #endif /* 32 bit */
 
-  /* FIXME: it looks like migration from old datasets-vistout-version is broken: there must be no data_set_version.
-     Anyway, it is useful for one-time nvram migration of very old devices, so just ignore it now.
-   */
-  zb_uint16_t data_set_version;     /*!< Dataset version.
+    /* FIXME: it looks like migration from old datasets-vistout-version is broken: there must be no data_set_version.
+       Anyway, it is useful for one-time nvram migration of very old devices, so just ignore it now.
+     */
+    zb_uint16_t data_set_version;     /*!< Dataset version.
                                      * Unique per dataset: each dataset fills it with its own version. */
-  zb_uint8_t reserved[2];  /*!< Alignment, reserved for future use. */
+    zb_uint8_t reserved[2];  /*!< Alignment, reserved for future use. */
 } ZB_PACKED_STRUCT
 zb_nvram_dataset_hdr_1_0_t;
 
@@ -134,24 +134,24 @@ zb_nvram_dataset_hdr_1_0_t;
  */
 typedef ZB_PACKED_PRE struct zb_nvram_dataset_hdr_7_0_s
 {
-  /* We must write time label separately from other fields.
-     If it is ok to write 2 bytes into flash, can use 4 bytes header, else use
-     4 bytes time label and 4 bytes for other fields. */
-  /* Note: to simplify migration keep that field in nvram v8 (with data set trailers). */
-  zb_nvram_tl_t time_label;     /*!< Time index - not real or ZigBee time */
+    /* We must write time label separately from other fields.
+       If it is ok to write 2 bytes into flash, can use 4 bytes header, else use
+       4 bytes time label and 4 bytes for other fields. */
+    /* Note: to simplify migration keep that field in nvram v8 (with data set trailers). */
+    zb_nvram_tl_t time_label;     /*!< Time index - not real or ZigBee time */
 #ifndef ZB_NVRAM_32BIT_TL
 #warning ("check maximum dataset length")
-  zb_lbitfield_t data_len:11;    /*!< Record length. It equal header length + dataset length  <= 2k - is it enough? */
-  zb_bitfield_t data_set_type:5;    /*!< Dataset type. See @par zb_nvram_dataset_types_t  */
+    zb_lbitfield_t data_len: 11;   /*!< Record length. It equal header length + dataset length  <= 2k - is it enough? */
+    zb_bitfield_t data_set_type: 5;   /*!< Dataset type. See @par zb_nvram_dataset_types_t  */
 #else
-  /* If must align anyway, need not use bitfields */
-  zb_uint16_t data_len;    /*!< Record length. It equal header length + dataset length  */
-  zb_uint16_t data_set_type;    /*!< Dataset type. See @par zb_nvram_dataset_types_t  */
+    /* If must align anyway, need not use bitfields */
+    zb_uint16_t data_len;    /*!< Record length. It equal header length + dataset length  */
+    zb_uint16_t data_set_type;    /*!< Dataset type. See @par zb_nvram_dataset_types_t  */
 #endif /* 32 bit */
-  zb_uint16_t data_set_version; /*!< Dataset version. Unique per each
+    zb_uint16_t data_set_version; /*!< Dataset version. Unique per each
                                  * dataset  */
-  zb_uint8_t transaction_status; /*!< Current transaction status. @see @ref nvram_transaction_state  */
-  zb_uint8_t reserved;       /*!< Alignment. Reserved for future
+    zb_uint8_t transaction_status; /*!< Current transaction status. @see @ref nvram_transaction_state  */
+    zb_uint8_t reserved;       /*!< Alignment. Reserved for future
                                    use  */
 } ZB_PACKED_STRUCT
 zb_nvram_dataset_hdr_7_0_t;
@@ -162,7 +162,7 @@ zb_nvram_dataset_hdr_7_0_t;
  */
 typedef ZB_PACKED_PRE struct zb_nvram_dataset_tail_8_0_s
 {
-  zb_nvram_tl_t time_label;     /*!< Time index - not real or ZigBee time - kind of TSN */
+    zb_nvram_tl_t time_label;     /*!< Time index - not real or ZigBee time - kind of TSN */
 } ZB_PACKED_STRUCT
 zb_nvram_dataset_tail_8_0_t;
 
@@ -172,9 +172,9 @@ zb_nvram_dataset_tail_8_0_t;
  */
 typedef ZB_PACKED_PRE struct zb_nvram_dataset_tail_9_0_s
 {
-  zb_nvram_tl_t time_label;     /*!< Time index - not real or ZigBee time - kind of TSN */
-  zb_uint16_t   crc;            /*!< CRC16 field for validate dataset integrity */
-  zb_uint16_t   reserved;       /*!< Reserved field for future needs */
+    zb_nvram_tl_t time_label;     /*!< Time index - not real or ZigBee time - kind of TSN */
+    zb_uint16_t   crc;            /*!< CRC16 field for validate dataset integrity */
+    zb_uint16_t   reserved;       /*!< Reserved field for future needs */
 } ZB_PACKED_STRUCT
 zb_nvram_dataset_tail_9_0_t;
 
@@ -235,11 +235,11 @@ typedef zb_nvram_dataset_hdr_7_0_t zb_nvram_dataset_hdr_t;
 
 typedef struct zb_nvram_position_s
 {
-  zb_nvram_tl_t time_label;
-  zb_lbitfield_t pos:30;
-  zb_lbitfield_t page:2;
-  zb_uint16_t payload_length;
-  zb_uint16_t version;
+    zb_nvram_tl_t time_label;
+    zb_lbitfield_t pos: 30;
+    zb_lbitfield_t page: 2;
+    zb_uint16_t payload_length;
+    zb_uint16_t version;
 } zb_nvram_position_t;
 
 
@@ -318,12 +318,12 @@ typedef zb_uint16_t zb_nvram_ver_t;
 
 typedef struct zb_nvram_migration_info_s
 {
-  zb_uint32_t src_pos;
-  zb_uint32_t dst_pos;
-  zb_uint8_t src_page;
-  zb_uint8_t dst_page;
-  zb_uint8_t length;
-  zb_nvram_ver_t nvram_ver;
+    zb_uint32_t src_pos;
+    zb_uint32_t dst_pos;
+    zb_uint8_t src_page;
+    zb_uint8_t dst_page;
+    zb_uint8_t length;
+    zb_nvram_ver_t nvram_ver;
 }
 zb_nvram_migration_info_t;
 
@@ -333,68 +333,68 @@ zb_nvram_migration_info_t;
  */
 typedef ZB_PACKED_PRE struct zb_nvram_dataset_common_ver_1_0_s
 {
-  zb_bitfield_t   aps_designated_coordinator : 1; /*!< This boolean flag indicates whether the
+    zb_bitfield_t   aps_designated_coordinator : 1; /*!< This boolean flag indicates whether the
                                               device should assume on startup that it must
                                               become a Zigbee coordinator.  */
-  zb_bitfield_t   aps_insecure_join : 1; /*!< A boolean flag, which defaults to TRUE and
+    zb_bitfield_t   aps_insecure_join : 1; /*!< A boolean flag, which defaults to TRUE and
                                            indicates whether it is OK to use insecure
                                            join on startup.  */
-  zb_bitfield_t   stack_profile:4;            /*!< Stack profile identifier  */
-  zb_bitfield_t   use_tc_alternative_key:1;   /*!< if 1, use alternative TC key */
-  zb_bitfield_t   reserved:1;
-  zb_uint8_t      depth;                     /*!< current node depth */
-  zb_uint16_t     nwk_manager_addr;             /*!< NWK manager address */
-  zb_uint16_t     panId;                        /*!< Pan ID */
-  zb_uint16_t     network_address;              /*!< Current network address */
+    zb_bitfield_t   stack_profile: 4;           /*!< Stack profile identifier  */
+    zb_bitfield_t   use_tc_alternative_key: 1;  /*!< if 1, use alternative TC key */
+    zb_bitfield_t   reserved: 1;
+    zb_uint8_t      depth;                     /*!< current node depth */
+    zb_uint16_t     nwk_manager_addr;             /*!< NWK manager address */
+    zb_uint16_t     panId;                        /*!< Pan ID */
+    zb_uint16_t     network_address;              /*!< Current network address */
 
-  zb_uint32_t     aps_channel_mask;     /*!< This is the mask containing allowable
+    zb_uint32_t     aps_channel_mask;     /*!< This is the mask containing allowable
                                            channels on which the device may attempt
                                            to form or join a network at startup time.  */
-  zb_ext_pan_id_t aps_use_extended_pan_id;
-  zb_ext_pan_id_t nwk_extended_pan_id;  /*!< Extended Pan ID for the PAN of which the device is a member */
-  zb_ieee_addr_t parent_address;            /*!< Parent address */
-  zb_ieee_addr_t trust_center_address;      /*!< Trust Center IEEE address */
-  zb_uint8_t nwk_key[ZB_CCM_KEY_SIZE];      /*!< Network Key */
-  zb_uint8_t nwk_key_seq;
-  zb_uint8_t tc_standard_key[ZB_CCM_KEY_SIZE];      /*!< Trust Center Standard Key */
-  zb_uint8_t tc_alternative_key[ZB_CCM_KEY_SIZE];   /*!< Trust Center Alternative Key */
+    zb_ext_pan_id_t aps_use_extended_pan_id;
+    zb_ext_pan_id_t nwk_extended_pan_id;  /*!< Extended Pan ID for the PAN of which the device is a member */
+    zb_ieee_addr_t parent_address;            /*!< Parent address */
+    zb_ieee_addr_t trust_center_address;      /*!< Trust Center IEEE address */
+    zb_uint8_t nwk_key[ZB_CCM_KEY_SIZE];      /*!< Network Key */
+    zb_uint8_t nwk_key_seq;
+    zb_uint8_t tc_standard_key[ZB_CCM_KEY_SIZE];      /*!< Trust Center Standard Key */
+    zb_uint8_t tc_alternative_key[ZB_CCM_KEY_SIZE];   /*!< Trust Center Alternative Key */
 
-  /* Custom fiedls*/
-  zb_uint8_t channel;                       /*!< Current channel. Custom field */
-  zb_uint8_t aligned[2];
+    /* Custom fiedls*/
+    zb_uint8_t channel;                       /*!< Current channel. Custom field */
+    zb_uint8_t aligned[2];
 
 } ZB_PACKED_STRUCT
 zb_nvram_dataset_common_ver_1_0_t;
 
 typedef ZB_PACKED_PRE struct zb_nvram_dataset_common_ver_2_0_s
 {
-  zb_bitfield_t   aps_designated_coordinator : 1; /*!< This boolean flag indicates whether the
+    zb_bitfield_t   aps_designated_coordinator : 1; /*!< This boolean flag indicates whether the
                                               device should assume on startup that it must
                                               become a Zigbee coordinator.  */
-  zb_bitfield_t   aps_insecure_join : 1; /*!< A boolean flag, which defaults to TRUE and
+    zb_bitfield_t   aps_insecure_join : 1; /*!< A boolean flag, which defaults to TRUE and
                                            indicates whether it is OK to use insecure
                                            join on startup.  */
-  zb_bitfield_t   stack_profile:4;            /*!< Stack profile identifier  */
-  zb_bitfield_t   reserved:2;
-  zb_uint8_t      depth;                     /*!< current node depth */
-  zb_uint16_t     nwk_manager_addr;             /*!< NWK manager address */
-  zb_uint16_t     panId;                        /*!< Pan ID */
-  zb_uint16_t     network_address;              /*!< Current network address */
+    zb_bitfield_t   stack_profile: 4;           /*!< Stack profile identifier  */
+    zb_bitfield_t   reserved: 2;
+    zb_uint8_t      depth;                     /*!< current node depth */
+    zb_uint16_t     nwk_manager_addr;             /*!< NWK manager address */
+    zb_uint16_t     panId;                        /*!< Pan ID */
+    zb_uint16_t     network_address;              /*!< Current network address */
 
-  zb_uint32_t     aps_channel_mask;     /*!< This is the mask containing allowable
+    zb_uint32_t     aps_channel_mask;     /*!< This is the mask containing allowable
                                            channels on which the device may attempt
                                            to form or join a network at startup time.  */
-  zb_ext_pan_id_t aps_use_extended_pan_id;
-  zb_ext_pan_id_t nwk_extended_pan_id;  /*!< Extended Pan ID for the PAN of which the device is a member */
-  zb_ieee_addr_t parent_address;            /*!< Parent address */
-  zb_ieee_addr_t trust_center_address;      /*!< Trust Center IEEE address */
-  zb_uint8_t nwk_key[ZB_CCM_KEY_SIZE];      /*!< Network Key */
-  zb_uint8_t nwk_key_seq;
-  zb_uint8_t tc_standard_key[ZB_CCM_KEY_SIZE];      /*!< Trust Center Standard Key */
+    zb_ext_pan_id_t aps_use_extended_pan_id;
+    zb_ext_pan_id_t nwk_extended_pan_id;  /*!< Extended Pan ID for the PAN of which the device is a member */
+    zb_ieee_addr_t parent_address;            /*!< Parent address */
+    zb_ieee_addr_t trust_center_address;      /*!< Trust Center IEEE address */
+    zb_uint8_t nwk_key[ZB_CCM_KEY_SIZE];      /*!< Network Key */
+    zb_uint8_t nwk_key_seq;
+    zb_uint8_t tc_standard_key[ZB_CCM_KEY_SIZE];      /*!< Trust Center Standard Key */
 
-  /* Custom fiedls*/
-  zb_uint8_t channel;                       /*!< Current channel. Custom field */
-  zb_uint8_t aligned[2];
+    /* Custom fiedls*/
+    zb_uint8_t channel;                       /*!< Current channel. Custom field */
+    zb_uint8_t aligned[2];
 
 } ZB_PACKED_STRUCT
 zb_nvram_dataset_common_ver_2_0_t;
@@ -402,48 +402,48 @@ zb_nvram_dataset_common_ver_2_0_t;
 
 typedef ZB_PACKED_PRE struct zb_nvram_dataset_common_ver_3_0_s
 {
-  zb_bitfield_t   aps_designated_coordinator : 1; /*!< This boolean flag indicates whether the
+    zb_bitfield_t   aps_designated_coordinator : 1; /*!< This boolean flag indicates whether the
                                               device should assume on startup that it must
                                               become a Zigbee coordinator.  */
-  zb_bitfield_t   aps_insecure_join : 1; /*!< A boolean flag, which defaults to TRUE and
+    zb_bitfield_t   aps_insecure_join : 1; /*!< A boolean flag, which defaults to TRUE and
                                            indicates whether it is OK to use insecure
                                            join on startup.  */
-  zb_bitfield_t   stack_profile:4;            /*!< Stack profile identifier  */
-  /*zb_bitfield_t   reserved:2;*/
-  zb_bitfield_t   device_type:2;    /*!< NIB device type */
-  zb_uint8_t      depth;                     /*!< current node depth */
-  zb_uint16_t     nwk_manager_addr;             /*!< NWK manager address */
-  zb_uint16_t     panId;                        /*!< Pan ID */
-  zb_uint16_t     network_address;              /*!< Current network address */
+    zb_bitfield_t   stack_profile: 4;           /*!< Stack profile identifier  */
+    /*zb_bitfield_t   reserved:2;*/
+    zb_bitfield_t   device_type: 2;   /*!< NIB device type */
+    zb_uint8_t      depth;                     /*!< current node depth */
+    zb_uint16_t     nwk_manager_addr;             /*!< NWK manager address */
+    zb_uint16_t     panId;                        /*!< Pan ID */
+    zb_uint16_t     network_address;              /*!< Current network address */
 
-  zb_channel_list_t aps_channel_mask_list; /*!< This is the masks list containing allowable
+    zb_channel_list_t aps_channel_mask_list; /*!< This is the masks list containing allowable
                                             * channels on which the device may attempt
                                             * to form or join a network at startup time. */
-  zb_ext_pan_id_t aps_use_extended_pan_id;
-  zb_ext_pan_id_t nwk_extended_pan_id;  /*!< The extended PAN identifier for the PAN of which the device is a member */
-  zb_ieee_addr_t parent_address;            /*!< Parent address */
-  zb_ieee_addr_t trust_center_address;      /*!< Trust Center IEEE address */
-  zb_uint8_t nwk_key[ZB_CCM_KEY_SIZE];      /*!< Network Key */
-  zb_uint8_t nwk_key_seq;
-  zb_uint8_t tc_standard_key[ZB_CCM_KEY_SIZE];      /*!< Trust Center Standard Key */
+    zb_ext_pan_id_t aps_use_extended_pan_id;
+    zb_ext_pan_id_t nwk_extended_pan_id;  /*!< The extended PAN identifier for the PAN of which the device is a member */
+    zb_ieee_addr_t parent_address;            /*!< Parent address */
+    zb_ieee_addr_t trust_center_address;      /*!< Trust Center IEEE address */
+    zb_uint8_t nwk_key[ZB_CCM_KEY_SIZE];      /*!< Network Key */
+    zb_uint8_t nwk_key_seq;
+    zb_uint8_t tc_standard_key[ZB_CCM_KEY_SIZE];      /*!< Trust Center Standard Key */
 
-  /* Custom fiedls*/
-  zb_uint8_t channel;                       /*!< Current channel. Custom field
+    /* Custom fiedls*/
+    zb_uint8_t channel;                       /*!< Current channel. Custom field
                                              * */
-  zb_uint8_t page;                       /*!< Current page. Custom field
+    zb_uint8_t page;                       /*!< Current page. Custom field
                                              * */
-  zb_nwk_mac_iface_tbl_ent_t mac_iface_tbl[ZB_NWK_MAC_IFACE_TBL_SIZE]; /*!<
+    zb_nwk_mac_iface_tbl_ent_t mac_iface_tbl[ZB_NWK_MAC_IFACE_TBL_SIZE]; /*!<
                                                                         * nwkMacInterfaceTable
                                                                         * from
                                                                         * NWK NIB()*/
-  /* There was 1 reserved byte */
-  zb_bitfield_t   hub_connectivity:1; /*!< gub connectivity for WWAH and r23 all hubs  */
-  zb_bitfield_t   rx_on:1;            /*!< rx-on-when-idle for ZED  */
-  zb_bitfield_t   tc_swapped:1;     /*!< TC swapout is in progress for ZC (not
+    /* There was 1 reserved byte */
+    zb_bitfield_t   hub_connectivity: 1; /*!< gub connectivity for WWAH and r23 all hubs  */
+    zb_bitfield_t   rx_on: 1;           /*!< rx-on-when-idle for ZED  */
+    zb_bitfield_t   tc_swapped: 1;     /*!< TC swapout is in progress for ZC (not
                                      * all known devices came back) / Joiner
                                      * detected TC swapout, not all precessing
                                      * completed. */
-  zb_bitfield_t   reserved:5;
+    zb_bitfield_t   reserved: 5;
 } ZB_PACKED_STRUCT
 zb_nvram_dataset_common_ver_3_0_t;
 
@@ -472,14 +472,14 @@ ZB_ASSERT_IF_NOT_ALIGNED_TO_4(zb_nvram_dataset_common_t);
 
 typedef ZB_PACKED_PRE struct zb_nvram_dataset_counters_ver_1_0_s
 {
-  zb_uint32_t nib_counter;
+    zb_uint32_t nib_counter;
 } ZB_PACKED_STRUCT
 zb_nvram_dataset_counters_ver_1_0_t;
 
 typedef ZB_PACKED_PRE struct zb_nvram_dataset_counters_ver_2_0_s
 {
-  zb_uint32_t nib_counter;
-  zb_uint32_t aib_counter;
+    zb_uint32_t nib_counter;
+    zb_uint32_t aib_counter;
 } ZB_PACKED_STRUCT
 zb_nvram_dataset_counters_ver_2_0_t;
 
@@ -507,38 +507,38 @@ ZB_ASSERT_IF_NOT_ALIGNED_TO_4(zb_nvram_dataset_counters_t);
  */
 typedef ZB_PACKED_PRE struct zb_nvram_dataset_ha_s
 {
-  /* IAS Zone data */
-  zb_ieee_addr_t cie_address;   /*!< CIE address */
+    /* IAS Zone data */
+    zb_ieee_addr_t cie_address;   /*!< CIE address */
 
-  zb_uint8_t cie_ep;            /*!< CIE EP used for notifications*/
-  zb_uint8_t zone_state;        /*!< Zone State */
-  zb_uint16_t cie_short_addr;   /*!< CIE short address used for notifications*/
+    zb_uint8_t cie_ep;            /*!< CIE EP used for notifications*/
+    zb_uint8_t zone_state;        /*!< Zone State */
+    zb_uint16_t cie_short_addr;   /*!< CIE short address used for notifications*/
 
-  zb_uint8_t zone_id;           /*!< ZoneID value */
-  /* Poll control data */
-  zb_uint8_t poll_ctrl_ep; /*!< poll control client endpoint */
-  zb_uint16_t poll_ctrl_short_addr; /*!< poll control client short addr*/
+    zb_uint8_t zone_id;           /*!< ZoneID value */
+    /* Poll control data */
+    zb_uint8_t poll_ctrl_ep; /*!< poll control client endpoint */
+    zb_uint16_t poll_ctrl_short_addr; /*!< poll control client short addr*/
 
-  /* Reserved data */
-  zb_uint8_t reserved; /* Reserved */
+    /* Reserved data */
+    zb_uint8_t reserved; /* Reserved */
 
-  /*Diagnostic cluster data */
-  zb_uint16_t number_of_resets; /*Number of resets*/
-  zb_uint16_t join_indication; /*Number of join attempts*/
-  zb_uint16_t packet_buffer_allocate_failures; /*Number of buffer allocation errors*/
+    /*Diagnostic cluster data */
+    zb_uint16_t number_of_resets; /*Number of resets*/
+    zb_uint16_t join_indication; /*Number of join attempts*/
+    zb_uint16_t packet_buffer_allocate_failures; /*Number of buffer allocation errors*/
 
-  /* EE: 12/16/2016: CR:MAJOR What is meaning of 1 byte after 2-bytes variable?
-     It could be useful if commission_state moved here.
-     Not sure: can we do that?
-     Also, remove any platform defines: NVRAM must have aligned records at any
-     platform. Here and everywhere. */
-  zb_uint8_t aligned[1];
+    /* EE: 12/16/2016: CR:MAJOR What is meaning of 1 byte after 2-bytes variable?
+       It could be useful if commission_state moved here.
+       Not sure: can we do that?
+       Also, remove any platform defines: NVRAM must have aligned records at any
+       platform. Here and everywhere. */
+    zb_uint8_t aligned[1];
 } ZB_PACKED_STRUCT
 zb_nvram_dataset_ha_t;
 
 typedef enum zb_nvram_dataset_ha_versions_e
 {
-  ZB_NVRAM_HA_DATA_DS_VER_1 = 0,
+    ZB_NVRAM_HA_DATA_DS_VER_1 = 0,
 }
 zb_nvram_dataset_ha_versions_t;
 
@@ -556,35 +556,35 @@ ZB_ASSERT_IF_NOT_ALIGNED_TO_4(zb_nvram_dataset_ha_t);
  */
 typedef ZB_PACKED_PRE struct zb_nvram_dataset_diagnostics_v1_s
 {
-  /*! @brief An attribute that is incremented
-   *         each time the device resets. */
-  zb_uint16_t number_of_resets;
+    /*! @brief An attribute that is incremented
+     *         each time the device resets. */
+    zb_uint16_t number_of_resets;
 
-  /*! @brief A counter that is incremented each time
-   *  an entry is added to the neighbor table. */
-  zb_uint16_t nwk_neighbor_added;
+    /*! @brief A counter that is incremented each time
+     *  an entry is added to the neighbor table. */
+    zb_uint16_t nwk_neighbor_added;
 
-  /*! @brief A counter that is incremented each time
-   *  an entry is removed from the neighbor table. */
-  zb_uint16_t nwk_neighbor_removed;
+    /*! @brief A counter that is incremented each time
+     *  an entry is removed from the neighbor table. */
+    zb_uint16_t nwk_neighbor_removed;
 
-  /*! @brief A counter that is incremented each time a neighbor table entry
-   *  becomes stale because the neighbor has not been heard from. */
-  zb_uint16_t nwk_neighbor_stale;
+    /*! @brief A counter that is incremented each time a neighbor table entry
+     *  becomes stale because the neighbor has not been heard from. */
+    zb_uint16_t nwk_neighbor_stale;
 
-  /*! @brief A counter that is incremented each time
-   *         a node joins or rejoins the network via this node. */
-  zb_uint16_t join_indication;
+    /*! @brief A counter that is incremented each time
+     *         a node joins or rejoins the network via this node. */
+    zb_uint16_t join_indication;
 
-  /*! @brief A counter that is incremented each time an entry
-   *  is removed from the child table. */
-  zb_uint16_t childs_removed;
+    /*! @brief A counter that is incremented each time an entry
+     *  is removed from the child table. */
+    zb_uint16_t childs_removed;
 
-  /*! @brief A counter that is incremented each time
-   *         the stack failed to allocate a packet buffers. */
-  zb_uint16_t packet_buffer_allocate_failures;
+    /*! @brief A counter that is incremented each time
+     *         the stack failed to allocate a packet buffers. */
+    zb_uint16_t packet_buffer_allocate_failures;
 
-  zb_uint8_t alignment[2]; /* total size == 16 bytes */
+    zb_uint8_t alignment[2]; /* total size == 16 bytes */
 } ZB_PACKED_STRUCT
 zb_nvram_dataset_diagnostics_v1_t;
 
@@ -626,44 +626,44 @@ ZB_ASSERT_IF_NOT_ALIGNED_TO_4(zb_nvram_dataset_diagnostics_v1_t);
 
 typedef ZB_PACKED_PRE struct zb_aps_bind_dst_table_old_s
 {
-  ZB_PACKED_PRE union
-  {
-    zb_uint16_t group_addr;                /*!< group address */
-    zb_aps_bind_long_dst_addr_t long_addr; /*!< @see zb_asp_long_dst_addr_t */
-  } u;
+    ZB_PACKED_PRE union
+    {
+        zb_uint16_t group_addr;                /*!< group address */
+        zb_aps_bind_long_dst_addr_t long_addr; /*!< @see zb_asp_long_dst_addr_t */
+    } u;
 #ifndef ZB_CONFIGURABLE_MEM
-  zb_uint8_t            trans_index[ZB_SINGLE_TRANS_INDEX_SIZE_OLD];
+    zb_uint8_t            trans_index[ZB_SINGLE_TRANS_INDEX_SIZE_OLD];
 #else
-  zb_uint8_t            *trans_index;
+    zb_uint8_t            *trans_index;
 #endif
 
-  zb_bitfield_t         dst_addr_mode:3;   /*!< destination address mode flag, 0
+    zb_bitfield_t         dst_addr_mode: 3;   /*!< destination address mode flag, 0
                                             * - group address, otherwise long
                                             * address plus dest endpoint */
-  zb_bitfield_t         src_table_index:5; /*!< index from zb_asp_src_table_t */
+    zb_bitfield_t         src_table_index: 5; /*!< index from zb_asp_src_table_t */
 } ZB_PACKED_STRUCT zb_aps_bind_dst_table_old_t;
 
 typedef ZB_PACKED_PRE struct zb_aps_binding_table_old_s
 {
 #ifndef ZB_CONFIGURABLE_MEM
-  zb_aps_bind_src_table_t src_table[ZB_APS_SRC_BINDING_TABLE_SIZE_OLD]; /*!< Source table */
-  zb_aps_bind_dst_table_old_t dst_table[ZB_APS_DST_BINDING_TABLE_SIZE_OLD]; /*!< Destination table */
+    zb_aps_bind_src_table_t src_table[ZB_APS_SRC_BINDING_TABLE_SIZE_OLD]; /*!< Source table */
+    zb_aps_bind_dst_table_old_t dst_table[ZB_APS_DST_BINDING_TABLE_SIZE_OLD]; /*!< Destination table */
 #endif
-  zb_uint8_t              src_n_elements;                               /*!< Count elements in source table */
-  zb_uint8_t              dst_n_elements;                               /*!< Count elements in destination table */
+    zb_uint8_t              src_n_elements;                               /*!< Count elements in source table */
+    zb_uint8_t              dst_n_elements;                               /*!< Count elements in destination table */
 #ifdef SNCP_MODE
-  zb_uint8_t              remote_bind_offset;                           /*!< Offset to attribute id's to remote binding requests */
-  zb_uint8_t              align;
+    zb_uint8_t              remote_bind_offset;                           /*!< Offset to attribute id's to remote binding requests */
+    zb_uint8_t              align;
 #else
-  /* FIXME: why align here? */
-  zb_uint8_t              align[2];
+    /* FIXME: why align here? */
+    zb_uint8_t              align[2];
 #endif
 #ifndef ZB_CONFIGURABLE_MEM
-  zb_uint8_t              trans_table[ZB_APS_BIND_TRANS_TABLE_SIZE];    /*!< Buffers for simultaneous sendings */
+    zb_uint8_t              trans_table[ZB_APS_BIND_TRANS_TABLE_SIZE];    /*!< Buffers for simultaneous sendings */
 #else
-  zb_uint8_t              *trans_table;
-  zb_aps_bind_src_table_t *src_table;
-  zb_aps_bind_dst_table_old_t *dst_table;
+    zb_uint8_t              *trans_table;
+    zb_aps_bind_src_table_t *src_table;
+    zb_aps_bind_dst_table_old_t *dst_table;
 #endif
 } ZB_PACKED_STRUCT zb_aps_binding_table_old_t;
 
@@ -674,13 +674,13 @@ typedef zb_aps_binding_table_old_t zb_nvram_dataset_binding_v1_t;
  */
 typedef ZB_PACKED_PRE struct zb_nvram_dataset_binding_v2_s
 {
-  zb_uint8_t src_n_elements;  /*!< Count elements in source table */
-  zb_uint8_t dst_n_elements;  /*!< Count elements in destination table */
+    zb_uint8_t src_n_elements;  /*!< Count elements in source table */
+    zb_uint8_t dst_n_elements;  /*!< Count elements in destination table */
 #ifdef SNCP_MODE
-  zb_uint8_t remote_bind_offset;  /*!< Offset to attribute id's to remote binding requests */
-  zb_uint8_t align;
+    zb_uint8_t remote_bind_offset;  /*!< Offset to attribute id's to remote binding requests */
+    zb_uint8_t align;
 #else
-  zb_uint8_t align[2];
+    zb_uint8_t align[2];
 #endif
 } ZB_PACKED_STRUCT
 zb_nvram_dataset_binding_v2_t;
@@ -704,8 +704,8 @@ ZB_ASSERT_IF_NOT_ALIGNED_TO_4(zb_nvram_dataset_binding_v2_t);
 
 typedef ZB_PACKED_PRE struct zb_nvram_dataset_groups_hdr_s
 {
-  zb_uint8_t n_groups;                        /*!< # of entries in APS group table */
-  zb_uint8_t aligned[3];
+    zb_uint8_t n_groups;                        /*!< # of entries in APS group table */
+    zb_uint8_t aligned[3];
 } ZB_PACKED_STRUCT
 zb_nvram_dataset_groups_hdr_t;
 
@@ -732,14 +732,14 @@ ZB_ASSERT_IF_NOT_ALIGNED_TO_4(zb_aps_group_table_ent_t);
  */
 typedef ZB_PACKED_PRE struct zb_nvram_dataset_poll_control_s
 {
-  zb_uint32_t checkin_interval;
-  zb_uint32_t long_poll_interval;
-  zb_uint16_t short_poll_interval;
-  zb_uint16_t fast_poll_timeout;
-  zb_uint32_t checkin_interval_min;
-  zb_uint32_t long_poll_interval_min;
-  zb_uint16_t fast_poll_timeout_max;
-  zb_uint8_t  aligned[2];
+    zb_uint32_t checkin_interval;
+    zb_uint32_t long_poll_interval;
+    zb_uint16_t short_poll_interval;
+    zb_uint16_t fast_poll_timeout;
+    zb_uint32_t checkin_interval_min;
+    zb_uint32_t long_poll_interval_min;
+    zb_uint16_t fast_poll_timeout_max;
+    zb_uint8_t  aligned[2];
 } ZB_PACKED_STRUCT
 zb_nvram_dataset_poll_control_t;
 
@@ -748,7 +748,7 @@ ZB_ASSERT_IF_NOT_ALIGNED_TO_4(zb_nvram_dataset_poll_control_t);
 
 typedef enum zb_nvram_dataset_poll_control_versions_e
 {
-  ZB_NVRAM_HA_POLL_CONTROL_DATA_DS_VER_1 = 0,
+    ZB_NVRAM_HA_POLL_CONTROL_DATA_DS_VER_1 = 0,
 }
 zb_nvram_dataset_poll_control_versions_t;
 
@@ -762,45 +762,45 @@ zb_nvram_dataset_poll_control_versions_t;
  */
 typedef ZB_PACKED_PRE struct zb_nvram_dataset_wwah_s
 {
-  /* >>> WWAH CTX TODO: clarify what is needed to store */
-  zb_uint8_t wwah_behavior;
-  zb_uint16_t time_server_addr;
-  zb_uint8_t time_server_endpoint;
+    /* >>> WWAH CTX TODO: clarify what is needed to store */
+    zb_uint8_t wwah_behavior;
+    zb_uint16_t time_server_addr;
+    zb_uint8_t time_server_endpoint;
 
-  zb_uint8_t aps_ack_exempt_table_cnt;
-  zb_uint8_t aps_link_key_enabled_by_default;
+    zb_uint8_t aps_ack_exempt_table_cnt;
+    zb_uint8_t aps_link_key_enabled_by_default;
 
-  zb_uint8_t aps_link_key_authorization_table_cnt;
-  zb_uint8_t use_trust_center_for_cluster_table_cnt;
-  zb_uint8_t reserved;          /* there was classification mask */
-  zb_zcl_wwah_periodic_checkins_data_t periodic_checkins;
-  /* <<< WWAH CTX */
+    zb_uint8_t aps_link_key_authorization_table_cnt;
+    zb_uint8_t use_trust_center_for_cluster_table_cnt;
+    zb_uint8_t reserved;          /* there was classification mask */
+    zb_zcl_wwah_periodic_checkins_data_t periodic_checkins;
+    /* <<< WWAH CTX */
 
-  /* >>> WWAH attributes */
-  zb_uint16_t cluster_revision;
-  zb_uint8_t nwk_retry_count;
-  zb_uint8_t mac_retry_count;
-  zb_uint8_t wwah_app_event_retry_queue_size;
-  zb_uint8_t mac_poll_failure_wait_time;
-  zb_uint8_t current_debug_report_id;
-  zb_uint8_t pending_network_update_channel;
-  zb_uint16_t pending_network_update_panid;
-  zb_uint16_t ota_max_offline_duration; /* 79b */
+    /* >>> WWAH attributes */
+    zb_uint16_t cluster_revision;
+    zb_uint8_t nwk_retry_count;
+    zb_uint8_t mac_retry_count;
+    zb_uint8_t wwah_app_event_retry_queue_size;
+    zb_uint8_t mac_poll_failure_wait_time;
+    zb_uint8_t current_debug_report_id;
+    zb_uint8_t pending_network_update_channel;
+    zb_uint16_t pending_network_update_panid;
+    zb_uint16_t ota_max_offline_duration; /* 79b */
 
-  zb_bitfield_t disable_ota_downgrades:1;
-  zb_bitfield_t mgmt_leave_without_rejoin_enabled:1;
-  zb_bitfield_t router_check_in_enabled:1;
-  zb_bitfield_t touchlink_interpan_enabled:1;
-  zb_bitfield_t wwah_parent_classification_enabled:1;
-  zb_bitfield_t wwah_app_event_retry_enabled:1;
-  zb_bitfield_t wwah_rejoin_enabled:1;
-  zb_bitfield_t configuration_mode_enabled:1;
-  zb_bitfield_t tc_security_on_nwk_key_rotation_enabled:1;
-  zb_bitfield_t wwah_bad_parent_recovery_enabled:1;
-  zb_bitfield_t align_bitfield:6;
-  /* <<< WWAH attributes */
+    zb_bitfield_t disable_ota_downgrades: 1;
+    zb_bitfield_t mgmt_leave_without_rejoin_enabled: 1;
+    zb_bitfield_t router_check_in_enabled: 1;
+    zb_bitfield_t touchlink_interpan_enabled: 1;
+    zb_bitfield_t wwah_parent_classification_enabled: 1;
+    zb_bitfield_t wwah_app_event_retry_enabled: 1;
+    zb_bitfield_t wwah_rejoin_enabled: 1;
+    zb_bitfield_t configuration_mode_enabled: 1;
+    zb_bitfield_t tc_security_on_nwk_key_rotation_enabled: 1;
+    zb_bitfield_t wwah_bad_parent_recovery_enabled: 1;
+    zb_bitfield_t align_bitfield: 6;
+    /* <<< WWAH attributes */
 
-  zb_uint8_t align_struct[1];
+    zb_uint8_t align_struct[1];
 } ZB_PACKED_STRUCT
 zb_nvram_dataset_wwah_t;
 
@@ -808,7 +808,7 @@ ZB_ASSERT_IF_NOT_ALIGNED_TO_4(zb_nvram_dataset_wwah_t);
 
 typedef enum zb_nvram_dataset_wwah_versions_e
 {
-  ZB_NVRAM_ZCL_WWAH_DATA_DS_VER_1 = 0,
+    ZB_NVRAM_ZCL_WWAH_DATA_DS_VER_1 = 0,
 }
 zb_nvram_dataset_wwah_versions_t;
 
@@ -822,18 +822,18 @@ zb_nvram_dataset_wwah_versions_t;
 
 typedef ZB_PACKED_PRE struct zb_nvram_zgp_transl_tbl_entry_ver_1_0_s
 {
-  zb_ieee_addr_t         zgpd_id;
-  zb_uint16_t            Zigbee_profile_id;
-  zb_uint16_t            cluster_id;
+    zb_ieee_addr_t         zgpd_id;
+    zb_uint16_t            Zigbee_profile_id;
+    zb_uint16_t            cluster_id;
 
-  zb_uint8_t             Zigbee_cmd_id;
-  zb_uint8_t             options;
-  zb_uint8_t             zgpd_cmd_id;
-  zb_uint8_t             endpoint;
+    zb_uint8_t             Zigbee_cmd_id;
+    zb_uint8_t             options;
+    zb_uint8_t             zgpd_cmd_id;
+    zb_uint8_t             endpoint;
 
-  zb_uint8_t             payload_len;
-  zb_uint8_t             payload_data[ZB_ZGP_TRANSL_CMD_PLD_MAX_SIZE];
-  zb_uint8_t             aligned[2];
+    zb_uint8_t             payload_len;
+    zb_uint8_t             payload_data[ZB_ZGP_TRANSL_CMD_PLD_MAX_SIZE];
+    zb_uint8_t             aligned[2];
 }
 ZB_PACKED_STRUCT
 zb_nvram_zgp_transl_tbl_entry_ver_1_0_t;
@@ -842,17 +842,17 @@ typedef zb_nvram_zgp_transl_tbl_entry_ver_1_0_t zb_nvram_zgp_transl_tbl_t;
 
 typedef ZB_PACKED_PRE struct zb_nvram_zgp_sink_tbl_entry_ver_1_0_s
 {
-  zb_ieee_addr_t   zgpd_id;
+    zb_ieee_addr_t   zgpd_id;
 
-  zb_uint16_t      options;
-  zb_uint16_t      zgpd_assigned_alias;
-  zb_uint32_t      zgpd_sec_frame_counter;
+    zb_uint16_t      options;
+    zb_uint16_t      zgpd_assigned_alias;
+    zb_uint32_t      zgpd_sec_frame_counter;
 
-  zb_uint8_t       device_id;
-  zb_uint8_t       groupcast_radius;
-  zb_uint8_t       sec_options;
-  zb_uint8_t       zgpd_key[ZB_CCM_KEY_SIZE];
-  zb_uint8_t       dup_counter_expired;
+    zb_uint8_t       device_id;
+    zb_uint8_t       groupcast_radius;
+    zb_uint8_t       sec_options;
+    zb_uint8_t       zgpd_key[ZB_CCM_KEY_SIZE];
+    zb_uint8_t       dup_counter_expired;
 }
 ZB_PACKED_STRUCT
 zb_nvram_zgp_sink_tbl_entry_ver_1_0_t;
@@ -862,28 +862,28 @@ ZB_ASSERT_IF_NOT_ALIGNED_TO_4(zb_nvram_zgp_sink_tbl_entry_ver_1_0_t);
 
 typedef ZB_PACKED_PRE struct zb_nvram_zgp_sink_tbl_entry_ver_6_0_s
 {
-  zb_uint32_t      src_id;
-  zb_ieee_addr_t   ieee_addr;
+    zb_uint32_t      src_id;
+    zb_ieee_addr_t   ieee_addr;
 
-  zb_uint32_t      zgpd_sec_frame_counter;
+    zb_uint32_t      zgpd_sec_frame_counter;
 
-/**
- * Options field of sink table entry
- *
- * [0-2]        app_id          ZGPD Application ID
- * [3]          sn_cap          Sequence number capability
- * [4]          sn_expired      Sequence number expired
- * [5]          is_manuf_id     Is manufactured device id
- * [6]          is_used_entry   Is used entry
- * [7-8]        sec_lvl         Sequrity level
- * [9-11]       sec_key_type    Sequrity key type
- *
- */
-  zb_uint16_t      options;
+    /**
+     * Options field of sink table entry
+     *
+     * [0-2]        app_id          ZGPD Application ID
+     * [3]          sn_cap          Sequence number capability
+     * [4]          sn_expired      Sequence number expired
+     * [5]          is_manuf_id     Is manufactured device id
+     * [6]          is_used_entry   Is used entry
+     * [7-8]        sec_lvl         Sequrity level
+     * [9-11]       sec_key_type    Sequrity key type
+     *
+     */
+    zb_uint16_t      options;
 
-  zb_uint8_t       match_dev_tbl_idx;
-  zb_uint8_t       zgpd_key[ZB_CCM_KEY_SIZE];
-  zb_uint8_t       aligned[1];
+    zb_uint8_t       match_dev_tbl_idx;
+    zb_uint8_t       zgpd_key[ZB_CCM_KEY_SIZE];
+    zb_uint8_t       aligned[1];
 }
 ZB_PACKED_STRUCT
 zb_nvram_zgp_sink_tbl_entry_ver_6_0_t;
@@ -898,26 +898,26 @@ typedef zb_nvram_zgp_sink_tbl_entry_ver_6_0_t zb_nvram_zgp_sink_tbl_t;
 #define ZB_NVRAM_ZGP_SINK_TBL_SIZE_1_0    32U
 typedef ZB_PACKED_PRE struct zb_nvram_zgp_dataset_ver_1_0_s
 {
-  zb_nvram_zgp_transl_tbl_t zgp_translate_tbl[ZB_NVRAM_ZGP_TRANSL_TBL_SIZE_1_0];
-  zb_nvram_zgp_sink_tbl_t   zgp_sink_tbl[ZB_NVRAM_ZGP_SINK_TBL_SIZE_1_0];
-  zb_uint32_t               zgp_sink_tbl_used_entries;
+    zb_nvram_zgp_transl_tbl_t zgp_translate_tbl[ZB_NVRAM_ZGP_TRANSL_TBL_SIZE_1_0];
+    zb_nvram_zgp_sink_tbl_t   zgp_sink_tbl[ZB_NVRAM_ZGP_SINK_TBL_SIZE_1_0];
+    zb_uint32_t               zgp_sink_tbl_used_entries;
 }
 ZB_PACKED_STRUCT
 zb_nvram_zgp_dataset_ver_1_0_t;
 
 typedef ZB_PACKED_PRE struct zb_nvram_zgp_dataset_info_ver_2_0_s
 {
-  zb_uint16_t               zgp_sink_tbl_size;
-  zb_uint32_t               zgp_sink_tbl_used_entries;
-  zb_uint16_t               zgp_transl_tbl_size;
+    zb_uint16_t               zgp_sink_tbl_size;
+    zb_uint32_t               zgp_sink_tbl_used_entries;
+    zb_uint16_t               zgp_transl_tbl_size;
 }
 ZB_PACKED_STRUCT
 zb_nvram_zgp_dataset_info_ver_2_0_t;
 
 typedef ZB_PACKED_PRE struct zb_nvram_zgp_dataset_info_ver_6_0_s
 {
-  zb_uint16_t               zgp_sink_tbl_size;
-  zb_uint32_t               immed_tx_frame_counter;
+    zb_uint16_t               zgp_sink_tbl_size;
+    zb_uint32_t               immed_tx_frame_counter;
 }
 ZB_PACKED_STRUCT
 zb_nvram_zgp_dataset_info_ver_6_0_t;
@@ -925,8 +925,8 @@ zb_nvram_zgp_dataset_info_ver_6_0_t;
 #ifdef ZB_ENABLE_ZGP_PROXY
 typedef ZB_PACKED_PRE struct zb_nvram_zgp_dataset_ver_6_0_s
 {
-  zb_nvram_zgp_dataset_info_ver_6_0_t zgp_info;
-  zb_nvram_zgp_sink_tbl_t             zgp_sink_tbl[ZB_ZGP_SINK_TBL_SIZE];
+    zb_nvram_zgp_dataset_info_ver_6_0_t zgp_info;
+    zb_nvram_zgp_sink_tbl_t             zgp_sink_tbl[ZB_ZGP_SINK_TBL_SIZE];
 }
 ZB_PACKED_STRUCT
 zb_nvram_zgp_dataset_ver_6_0_t;
@@ -937,12 +937,12 @@ typedef zb_nvram_zgp_dataset_ver_6_0_t zb_nvram_zgp_dataset_t;
 
 typedef enum zb_nvram_dataset_grpw_data_versions_e
 {
-  ZB_NVRAM_DATASET_GRPW_DATA_DS_VER_1 = 0,
-  ZB_NVRAM_DATASET_GRPW_DATA_DS_VER_2 = 1,
-  ZB_NVRAM_DATASET_GRPW_DATA_DS_VER_3 = 2,
-  ZB_NVRAM_DATASET_GRPW_DATA_DS_VER_4 = 3,
-  ZB_NVRAM_DATASET_GRPW_DATA_DS_VER_5 = 4,
-  ZB_NVRAM_DATASET_GRPW_DATA_DS_VER_6 = 5,
+    ZB_NVRAM_DATASET_GRPW_DATA_DS_VER_1 = 0,
+    ZB_NVRAM_DATASET_GRPW_DATA_DS_VER_2 = 1,
+    ZB_NVRAM_DATASET_GRPW_DATA_DS_VER_3 = 2,
+    ZB_NVRAM_DATASET_GRPW_DATA_DS_VER_4 = 3,
+    ZB_NVRAM_DATASET_GRPW_DATA_DS_VER_5 = 4,
+    ZB_NVRAM_DATASET_GRPW_DATA_DS_VER_6 = 5,
 }
 zb_nvram_dataset_grpw_data_versions_t;
 
@@ -950,7 +950,7 @@ zb_nvram_dataset_grpw_data_versions_t;
 
 typedef enum zb_nvram_dataset_gr_sinkt_versions_e
 {
-  ZB_NVRAM_DATASET_GP_SINKT_DS_VER_1 = 0,
+    ZB_NVRAM_DATASET_GP_SINKT_DS_VER_1 = 0,
 }
 zb_nvram_dataset_gr_sinkt_versions_t;
 
@@ -958,7 +958,7 @@ zb_nvram_dataset_gr_sinkt_versions_t;
 
 typedef enum zb_nvram_dataset_gr_proxyt_versions_e
 {
-  ZB_NVRAM_DATASET_GP_PRPOXYT_DS_VER_1 = 0,
+    ZB_NVRAM_DATASET_GP_PRPOXYT_DS_VER_1 = 0,
 }
 zb_nvram_dataset_gr_proxyt_versions_t;
 
@@ -966,7 +966,7 @@ zb_nvram_dataset_gr_proxyt_versions_t;
 
 typedef enum zb_nvram_dataset_gp_cluster_versions_e
 {
-  ZB_NVRAM_DATASET_GP_CLUSTER_DS_VER_1 = 0,
+    ZB_NVRAM_DATASET_GP_CLUSTER_DS_VER_1 = 0,
 }
 zb_nvram_dataset_gp_cluster_versions_t;
 
@@ -974,7 +974,7 @@ zb_nvram_dataset_gp_cluster_versions_t;
 
 typedef enum zb_nvram_dataset_gp_app_tbl_versions_e
 {
-  ZB_NVRAM_DATASET_GP_APP_TBL_DS_VER_1 = 0,
+    ZB_NVRAM_DATASET_GP_APP_TBL_DS_VER_1 = 0,
 }
 zb_nvram_dataset_gp_app_tbl_versions_t;
 
@@ -1014,17 +1014,17 @@ zb_nvram_dataset_gp_app_tbl_versions_t;
 
 typedef ZB_PACKED_PRE struct zb_nvram_addr_map_hdr_v0_s
 {
-  zb_uint8_t addr_map_num;   /*!< Stores number of addr maps - see zb_address_map_t */
-  zb_uint8_t version;        /*!< Stores version of the dataset */
+    zb_uint8_t addr_map_num;   /*!< Stores number of addr maps - see zb_address_map_t */
+    zb_uint8_t version;        /*!< Stores version of the dataset */
 }
 ZB_PACKED_STRUCT
 zb_nvram_addr_map_hdr_v0_t;
 
 typedef ZB_PACKED_PRE struct zb_nvram_addr_map_hdr_s
 {
-  zb_uint8_t addr_map_num;   /*!< Stores number of addr maps - see zb_address_map_t */
-  zb_uint8_t version;        /*!< Stores version of the dataset */
-  zb_uint8_t aligned[2];
+    zb_uint8_t addr_map_num;   /*!< Stores number of addr maps - see zb_address_map_t */
+    zb_uint8_t version;        /*!< Stores version of the dataset */
+    zb_uint8_t aligned[2];
 }
 ZB_PACKED_STRUCT
 zb_nvram_addr_map_hdr_t;
@@ -1032,9 +1032,9 @@ zb_nvram_addr_map_hdr_t;
 /** Store a NVM record describing address map, see zb_address_map_t */
 typedef ZB_PACKED_PRE struct zb_nvram_addr_map_rec_v0_s
 {
-  zb_ieee_addr_t  ieee_addr; /*!< Uncompressed IEEE address */
-  zb_uint16_t     addr;      /*!< 16-bit device address */
-  zb_uint8_t      index;     /*!< Reference for neighbor table */
+    zb_ieee_addr_t  ieee_addr; /*!< Uncompressed IEEE address */
+    zb_uint16_t     addr;      /*!< 16-bit device address */
+    zb_uint8_t      index;     /*!< Reference for neighbor table */
 }
 ZB_PACKED_STRUCT
 zb_nvram_addr_map_rec_v0_t;
@@ -1042,11 +1042,11 @@ zb_nvram_addr_map_rec_v0_t;
 /** Store a NVM record describing address map, see zb_address_map_t */
 typedef ZB_PACKED_PRE struct zb_nvram_addr_map_rec_v1_s
 {
-  zb_ieee_addr_t  ieee_addr; /*!< Uncompressed IEEE address */
-  zb_uint16_t     addr;      /*!< 16-bit device address */
-  zb_uint8_t      index;     /*!< Reference for neighbor table */
-  zb_uint8_t      redirect_type; /*!< Redirect type */
-  zb_uint8_t      redirect_ref; /*!< reference to regular/redirect
+    zb_ieee_addr_t  ieee_addr; /*!< Uncompressed IEEE address */
+    zb_uint16_t     addr;      /*!< 16-bit device address */
+    zb_uint8_t      index;     /*!< Reference for neighbor table */
+    zb_uint8_t      redirect_type; /*!< Redirect type */
+    zb_uint8_t      redirect_ref; /*!< reference to regular/redirect
                                  * entry */
 }
 ZB_PACKED_STRUCT
@@ -1055,13 +1055,13 @@ zb_nvram_addr_map_rec_v1_t;
 /** Store a NVM record describing address map, see zb_address_map_t */
 typedef ZB_PACKED_PRE struct zb_nvram_addr_map_rec_v2_s
 {
-  zb_ieee_addr_t  ieee_addr; /*!< Uncompressed IEEE address */
-  zb_uint16_t     addr;      /*!< 16-bit device address */
-  zb_uint8_t      index;     /*!< Reference for neighbor table */
-  zb_uint8_t      redirect_type; /*!< Redirect type */
-  zb_uint8_t      redirect_ref; /*!< reference to regular/redirect
+    zb_ieee_addr_t  ieee_addr; /*!< Uncompressed IEEE address */
+    zb_uint16_t     addr;      /*!< 16-bit device address */
+    zb_uint8_t      index;     /*!< Reference for neighbor table */
+    zb_uint8_t      redirect_type; /*!< Redirect type */
+    zb_uint8_t      redirect_ref; /*!< reference to regular/redirect
                                  * entry */
-  zb_uint8_t aligned[3];
+    zb_uint8_t aligned[3];
 }
 ZB_PACKED_STRUCT
 zb_nvram_addr_map_rec_v2_t;
@@ -1098,17 +1098,17 @@ ZB_ASSERT_IF_NOT_ALIGNED_TO_4(zb_nvram_addr_map_rec_v2_t);
 
 typedef ZB_PACKED_PRE struct zb_nvram_neighbour_hdr_v0_s
 {
-  zb_uint8_t nbr_rec_num; /*!< Strores number of stored neigbour devices */
-  zb_uint8_t version;     /*!< Stores version of the dataset */
+    zb_uint8_t nbr_rec_num; /*!< Strores number of stored neigbour devices */
+    zb_uint8_t version;     /*!< Stores version of the dataset */
 }
 ZB_PACKED_STRUCT
 zb_nvram_neighbour_hdr_v0_t;
 
 typedef ZB_PACKED_PRE struct zb_nvram_neighbour_hdr_v1_s
 {
-  zb_uint8_t nbr_rec_num; /*!< Strores number of stored neigbour devices */
-  zb_uint8_t version;     /*!< Stores version of the dataset */
-  zb_uint8_t aligned[2];
+    zb_uint8_t nbr_rec_num; /*!< Strores number of stored neigbour devices */
+    zb_uint8_t version;     /*!< Stores version of the dataset */
+    zb_uint8_t aligned[2];
 }
 ZB_PACKED_STRUCT
 zb_nvram_neighbour_hdr_v1_t;
@@ -1120,13 +1120,13 @@ ZB_ASSERT_IF_NOT_ALIGNED_TO_4(zb_nvram_neighbour_hdr_t);
 
 typedef ZB_PACKED_PRE struct zb_nvram_neighbour_rec_v0_s
 {
-  zb_address_ieee_ref_t     addr_ref;          /*!< Neighbor address */
-  zb_bitfield_t             depth:4;           /*!< Device depth  */
-  zb_bitfield_t             rx_on_when_idle:1; /*!< Store device rx On when idle state */
-  zb_bitfield_t             relationship:3;    /*!< The relationship with nbr device, see @ref nwk_relationship */
-  zb_bitfield_t             device_type:2;     /*!< Neighbor device type - @see @ref nwk_device_type */
-  zb_bitfield_t             reserved:6;
-  zb_uint8_t                key_seq_number;    /*!< key number */
+    zb_address_ieee_ref_t     addr_ref;          /*!< Neighbor address */
+    zb_bitfield_t             depth: 4;          /*!< Device depth  */
+    zb_bitfield_t             rx_on_when_idle: 1; /*!< Store device rx On when idle state */
+    zb_bitfield_t             relationship: 3;   /*!< The relationship with nbr device, see @ref nwk_relationship */
+    zb_bitfield_t             device_type: 2;    /*!< Neighbor device type - @see @ref nwk_device_type */
+    zb_bitfield_t             reserved: 6;
+    zb_uint8_t                key_seq_number;    /*!< key number */
 }
 ZB_PACKED_STRUCT
 zb_nvram_neighbour_rec_v0_t;
@@ -1134,14 +1134,14 @@ zb_nvram_neighbour_rec_v0_t;
 
 typedef ZB_PACKED_PRE struct zb_nvram_neighbour_rec_v1_s
 {
-  zb_address_ieee_ref_t     addr_ref;          /*!< Neighbor address */
-  zb_bitfield_t             depth:4;           /*!< Device depth  */
-  zb_bitfield_t             rx_on_when_idle:1; /*!< Store device rx On when idle state */
-  zb_bitfield_t             relationship:3;    /*!< The relationship with nbr device, see @ref nwk_relationship */
-  zb_bitfield_t             device_type:2;     /*!< Neighbor device type - @see @ref nwk_device_type */
-  zb_bitfield_t             nwk_ed_timeout:4;  /*!< ED timeout value (for Child Aging) */
-  zb_bitfield_t             reserved:2;
-  zb_uint8_t                key_seq_number;    /*!< key number */
+    zb_address_ieee_ref_t     addr_ref;          /*!< Neighbor address */
+    zb_bitfield_t             depth: 4;          /*!< Device depth  */
+    zb_bitfield_t             rx_on_when_idle: 1; /*!< Store device rx On when idle state */
+    zb_bitfield_t             relationship: 3;   /*!< The relationship with nbr device, see @ref nwk_relationship */
+    zb_bitfield_t             device_type: 2;    /*!< Neighbor device type - @see @ref nwk_device_type */
+    zb_bitfield_t             nwk_ed_timeout: 4; /*!< ED timeout value (for Child Aging) */
+    zb_bitfield_t             reserved: 2;
+    zb_uint8_t                key_seq_number;    /*!< key number */
 }
 ZB_PACKED_STRUCT
 zb_nvram_neighbour_rec_v1_t;
@@ -1150,16 +1150,16 @@ ZB_ASSERT_IF_NOT_ALIGNED_TO_4(zb_nvram_neighbour_rec_v1_t);
 
 typedef ZB_PACKED_PRE struct zb_nvram_neighbour_rec_v2_s
 {
-  zb_address_ieee_ref_t     addr_ref;          /*!< Neighbor address */
-  zb_bitfield_t             depth:4;           /*!< Device depth  */
-  zb_bitfield_t             rx_on_when_idle:1; /*!< Store device rx On when idle state */
-  zb_bitfield_t             relationship:3;    /*!< The relationship with nbr device, see @ref nwk_relationship */
-  zb_bitfield_t             device_type:2;     /*!< Neighbor device type - @see @ref nwk_device_types */
-  zb_bitfield_t             nwk_ed_timeout:4;  /*!< ED timeout value (for Child Aging) */
-  zb_bitfield_t             reserved:2;
-  zb_uint8_t                key_seq_number;    /*!< key number */
-  zb_uint8_t                mac_iface_idx;     /*!< Mac Interface Table index */
-  zb_uint8_t                align[3];          /*!< Reserved for future use */
+    zb_address_ieee_ref_t     addr_ref;          /*!< Neighbor address */
+    zb_bitfield_t             depth: 4;          /*!< Device depth  */
+    zb_bitfield_t             rx_on_when_idle: 1; /*!< Store device rx On when idle state */
+    zb_bitfield_t             relationship: 3;   /*!< The relationship with nbr device, see @ref nwk_relationship */
+    zb_bitfield_t             device_type: 2;    /*!< Neighbor device type - @see @ref nwk_device_types */
+    zb_bitfield_t             nwk_ed_timeout: 4; /*!< ED timeout value (for Child Aging) */
+    zb_bitfield_t             reserved: 2;
+    zb_uint8_t                key_seq_number;    /*!< key number */
+    zb_uint8_t                mac_iface_idx;     /*!< Mac Interface Table index */
+    zb_uint8_t                align[3];          /*!< Reserved for future use */
 }
 ZB_PACKED_STRUCT
 zb_nvram_neighbour_rec_v2_t;
@@ -1168,10 +1168,10 @@ ZB_ASSERT_IF_NOT_ALIGNED_TO_4(zb_nvram_neighbour_rec_v2_t);
 
 typedef ZB_PACKED_PRE struct zb_nvram_page_hdr_dataset_s
 {
-   /*!< Version of dataset structures stored in NVRAM (simple counter)
-   * One version for all datasets. */
-  zb_nvram_ver_t version;
-  zb_uint8_t  aligned[4-sizeof(zb_nvram_ver_t)];
+    /*!< Version of dataset structures stored in NVRAM (simple counter)
+    * One version for all datasets. */
+    zb_nvram_ver_t version;
+    zb_uint8_t  aligned[4 - sizeof(zb_nvram_ver_t)];
 }
 zb_nvram_page_hdr_dataset_t;
 
@@ -1179,7 +1179,7 @@ ZB_ASSERT_IF_NOT_ALIGNED_TO_4(zb_nvram_page_hdr_dataset_t);
 
 typedef enum zb_nvram_zcl_reporting_data_ds_versions_e
 {
-  ZB_NVRAM_ZCL_REPORTING_DATA_DS_VER_1 = 0,
+    ZB_NVRAM_ZCL_REPORTING_DATA_DS_VER_1 = 0,
 }
 zb_nvram_zcl_reporting_data_ds_versions_t;
 
@@ -1200,7 +1200,7 @@ zb_nvram_zcl_reporting_data_ds_versions_t;
 
 typedef enum zb_nvram_installcodes_ds_versions_e
 {
-  ZB_NVRAM_INSTALLCODES_DS_VER_1 = 0,
+    ZB_NVRAM_INSTALLCODES_DS_VER_1 = 0,
 }
 zb_nvram_installcodes_ds_versions_t;
 
@@ -1210,24 +1210,24 @@ zb_nvram_installcodes_ds_versions_t;
 
 extern zb_ret_t    zb_nvram_write_zgp_proxy_table_dataset(zb_uint8_t page, zb_uint32_t pos);
 extern void        zb_nvram_read_zgp_proxy_table_dataset(zb_uint8_t page, zb_uint32_t pos, zb_uint16_t length,
-                                                          zb_nvram_ver_t nvram_ver, zb_uint16_t ds_ver);
+        zb_nvram_ver_t nvram_ver, zb_uint16_t ds_ver);
 extern zb_uint16_t zb_nvram_zgp_proxy_table_length(void);
 extern void        zb_nvram_update_zgp_proxy_tbl_offset(zb_uint8_t page, zb_uint32_t dataset_pos, zb_uint32_t pos);
 
 extern zb_ret_t    zb_nvram_write_zgp_sink_table_dataset(zb_uint8_t page, zb_uint32_t pos);
 extern void        zb_nvram_read_zgp_sink_table_dataset(zb_uint8_t page, zb_uint32_t pos, zb_uint16_t length,
-                                                          zb_nvram_ver_t nvram_ver, zb_uint16_t ds_ver);
+        zb_nvram_ver_t nvram_ver, zb_uint16_t ds_ver);
 extern zb_uint16_t zb_nvram_zgp_sink_table_length(void);
 extern void        zb_nvram_update_zgp_sink_tbl_offset(zb_uint8_t page, zb_uint32_t dataset_pos, zb_uint32_t pos);
 
 extern zb_ret_t    zb_zgp_nvram_write_app_tbl_dataset(zb_uint8_t page, zb_uint32_t pos);
 extern void        zb_zgp_nvram_read_app_tbl_dataset(zb_uint8_t page, zb_uint32_t pos, zb_uint16_t length,
-                                                      zb_nvram_ver_t nvram_ver, zb_uint16_t ds_ver);
+        zb_nvram_ver_t nvram_ver, zb_uint16_t ds_ver);
 extern zb_uint16_t zb_zgp_nvram_app_tbl_length(void);
 
 extern zb_ret_t    zb_nvram_write_zgp_cluster_dataset(zb_uint8_t page, zb_uint32_t pos);
 extern void        zb_nvram_read_zgp_cluster_dataset(
-                    zb_uint8_t page, zb_uint32_t pos, zb_uint16_t length, zb_nvram_ver_t nvram_ver, zb_uint16_t ds_ver);
+    zb_uint8_t page, zb_uint32_t pos, zb_uint16_t length, zb_nvram_ver_t nvram_ver, zb_uint16_t ds_ver);
 extern zb_uint16_t zb_nvram_zgp_cluster_length(void);
 
 #endif
@@ -1292,7 +1292,7 @@ zb_ret_t zb_nvram_read_dataset_direct(zb_nvram_dataset_types_t dataset_type,
 #if defined(ZB_ENABLE_ZCL) && !(defined ZB_ZCL_DISABLE_REPORTING)
 
 void zb_nvram_read_zcl_reporting_dataset(
-  zb_uint8_t page, zb_uint32_t pos, zb_uint16_t length, zb_nvram_ver_t nvram_ver, zb_uint16_t ds_ver);
+    zb_uint8_t page, zb_uint32_t pos, zb_uint16_t length, zb_nvram_ver_t nvram_ver, zb_uint16_t ds_ver);
 
 zb_ret_t zb_nvram_write_zcl_reporting_dataset(zb_uint8_t page, zb_uint32_t pos);
 
@@ -1304,7 +1304,7 @@ zb_uint16_t zb_nvram_zcl_reporting_dataset_length(void);
 #if defined ZB_ENABLE_HA
 
 void zb_nvram_read_ha_dataset(
-zb_uint8_t page, zb_uint32_t pos, zb_uint16_t len, zb_nvram_ver_t nvram_ver, zb_uint16_t ds_ver);
+    zb_uint8_t page, zb_uint32_t pos, zb_uint16_t len, zb_nvram_ver_t nvram_ver, zb_uint16_t ds_ver);
 
 zb_ret_t zb_nvram_write_ha_dataset(zb_uint8_t page, zb_uint32_t pos);
 
@@ -1314,7 +1314,7 @@ zb_ret_t zb_nvram_write_ha_dataset(zb_uint8_t page, zb_uint32_t pos);
 #if defined ZB_HA_ENABLE_POLL_CONTROL_SERVER || defined DOXYGEN
 
 void zb_nvram_read_poll_control_dataset(
-  zb_uint8_t page, zb_uint32_t pos, zb_uint16_t len, zb_nvram_ver_t nvram_ver, zb_uint16_t ds_ver);
+    zb_uint8_t page, zb_uint32_t pos, zb_uint16_t len, zb_nvram_ver_t nvram_ver, zb_uint16_t ds_ver);
 
 zb_ret_t zb_nvram_write_poll_control_dataset(zb_uint8_t page, zb_uint32_t pos);
 
@@ -1327,7 +1327,7 @@ zb_ret_t zb_nvram_write_poll_control_dataset(zb_uint8_t page, zb_uint32_t pos);
 zb_uint16_t zb_nvram_diagnostics_dataset_length(void);
 
 void zb_nvram_read_diagnostics_dataset(
-  zb_uint8_t page, zb_uint32_t pos, zb_uint16_t len, zb_nvram_ver_t nvram_ver, zb_uint16_t ds_ver);
+    zb_uint8_t page, zb_uint32_t pos, zb_uint16_t len, zb_nvram_ver_t nvram_ver, zb_uint16_t ds_ver);
 
 zb_ret_t zb_nvram_write_diagnostics_dataset(zb_uint8_t page, zb_uint32_t pos);
 
@@ -1343,8 +1343,8 @@ typedef void (*zb_nvram_ds_read_cb_t)(zb_uint16_t ds_type,
                                       zb_nvram_ver_t nvram_ver,
                                       zb_uint16_t ds_ver);
 typedef zb_ret_t (*zb_nvram_ds_write_cb_t)(zb_uint16_t ds_type,
-                                           zb_uint8_t page,
-                                           zb_uint32_t pos);
+        zb_uint8_t page,
+        zb_uint32_t pos);
 
 zb_ret_t zb_nvram_custom_ds_try_read(zb_uint16_t ds_type,
                                      zb_uint8_t page,
@@ -1358,7 +1358,7 @@ zb_ret_t zb_nvram_custom_ds_try_write(zb_uint16_t ds_type,
                                       zb_uint32_t pos);
 
 zb_ret_t zb_nvram_custom_ds_try_get_length(zb_uint16_t ds_type,
-                                           zb_size_t *len);
+        zb_size_t *len);
 
 zb_bool_t zb_nvram_custom_ds_is_supported(zb_uint16_t ds_type);
 

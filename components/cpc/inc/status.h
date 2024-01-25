@@ -1,15 +1,15 @@
 /**
  * @file status.h
  * @author Rex Huang (rex.huang@rafaelmicro.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2023-08-03
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 #ifndef CPC_STATUS_H
-#define CPC_STATUS_H 
+#define CPC_STATUS_H
 
 #define CPC_STATUS_OK    ((status_t)0x0000)  ///< No error.
 #define CPC_STATUS_FAIL  ((status_t)0x0001)  ///< Generic error.

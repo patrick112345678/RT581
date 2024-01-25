@@ -20,70 +20,71 @@
    License along with GCC; see the file COPYING3.  If not see
    <http://www.gnu.org/licenses/>.  */
 
-enum isa_feature {
-  isa_nobit = 0,
-  isa_bit_fp16fml,
-  isa_bit_mve,
-  isa_bit_cmse,
-  isa_bit_quirk_armv6kz,
-  isa_bit_dotprod,
-  isa_bit_crc32,
-  isa_bit_xscale,
-  isa_bit_vfpv2,
-  isa_bit_vfpv3,
-  isa_bit_vfpv4,
-  isa_bit_lpae,
-  isa_bit_armv7em,
-  isa_bit_fp16,
-  isa_bit_adiv,
-  isa_bit_fp_d32,
-  isa_bit_be8,
-  isa_bit_fp16conv,
-  isa_bit_thumb2,
-  isa_bit_crypto,
-  isa_bit_mp,
-  isa_bit_sec,
-  isa_bit_sb,
-  isa_bit_bf16,
-  isa_bit_predres,
-  isa_bit_armv4,
-  isa_bit_quirk_cm3_ldrd,
-  isa_bit_smallmul,
-  isa_bit_armv5t,
-  isa_bit_armv8_1m_main,
-  isa_bit_armv6,
-  isa_bit_thumb,
-  isa_bit_quirk_no_asmcpu,
-  isa_bit_armv7,
-  isa_bit_armv8,
-  isa_bit_i8mm,
-  isa_bit_fp_dbl,
-  isa_bit_armv5te,
-  isa_bit_fpv5,
-  isa_bit_iwmmxt2,
-  isa_bit_notm,
-  isa_bit_cdecp0,
-  isa_bit_cdecp1,
-  isa_bit_cdecp2,
-  isa_bit_cdecp3,
-  isa_bit_iwmmxt,
-  isa_bit_cdecp4,
-  isa_bit_cdecp5,
-  isa_bit_cdecp6,
-  isa_bit_cdecp7,
-  isa_bit_mve_float,
-  isa_bit_armv8_1,
-  isa_bit_armv8_2,
-  isa_bit_armv8_3,
-  isa_bit_tdiv,
-  isa_bit_armv8_4,
-  isa_bit_armv8_5,
-  isa_bit_armv8_6,
-  isa_bit_neon,
-  isa_bit_quirk_no_volatile_ce,
-  isa_bit_armv6k,
-  isa_bit_vfp_base,
-  isa_num_bits
+enum isa_feature
+{
+    isa_nobit = 0,
+    isa_bit_fp16fml,
+    isa_bit_mve,
+    isa_bit_cmse,
+    isa_bit_quirk_armv6kz,
+    isa_bit_dotprod,
+    isa_bit_crc32,
+    isa_bit_xscale,
+    isa_bit_vfpv2,
+    isa_bit_vfpv3,
+    isa_bit_vfpv4,
+    isa_bit_lpae,
+    isa_bit_armv7em,
+    isa_bit_fp16,
+    isa_bit_adiv,
+    isa_bit_fp_d32,
+    isa_bit_be8,
+    isa_bit_fp16conv,
+    isa_bit_thumb2,
+    isa_bit_crypto,
+    isa_bit_mp,
+    isa_bit_sec,
+    isa_bit_sb,
+    isa_bit_bf16,
+    isa_bit_predres,
+    isa_bit_armv4,
+    isa_bit_quirk_cm3_ldrd,
+    isa_bit_smallmul,
+    isa_bit_armv5t,
+    isa_bit_armv8_1m_main,
+    isa_bit_armv6,
+    isa_bit_thumb,
+    isa_bit_quirk_no_asmcpu,
+    isa_bit_armv7,
+    isa_bit_armv8,
+    isa_bit_i8mm,
+    isa_bit_fp_dbl,
+    isa_bit_armv5te,
+    isa_bit_fpv5,
+    isa_bit_iwmmxt2,
+    isa_bit_notm,
+    isa_bit_cdecp0,
+    isa_bit_cdecp1,
+    isa_bit_cdecp2,
+    isa_bit_cdecp3,
+    isa_bit_iwmmxt,
+    isa_bit_cdecp4,
+    isa_bit_cdecp5,
+    isa_bit_cdecp6,
+    isa_bit_cdecp7,
+    isa_bit_mve_float,
+    isa_bit_armv8_1,
+    isa_bit_armv8_2,
+    isa_bit_armv8_3,
+    isa_bit_tdiv,
+    isa_bit_armv8_4,
+    isa_bit_armv8_5,
+    isa_bit_armv8_6,
+    isa_bit_neon,
+    isa_bit_quirk_no_volatile_ce,
+    isa_bit_armv6k,
+    isa_bit_vfp_base,
+    isa_num_bits
 };
 
 #define ISA_ARMv8_6a \
@@ -606,34 +607,35 @@ enum isa_feature {
   isa_bit_mp, \
   isa_bit_armv5te
 
-struct fbit_implication {
-  /* Represents a feature implication, where:
-     ante IMPLIES cons
-     meaning that if ante is enabled then we should
-     also implicitly enable cons.  */
-  enum isa_feature ante;
-  enum isa_feature cons;
+struct fbit_implication
+{
+    /* Represents a feature implication, where:
+       ante IMPLIES cons
+       meaning that if ante is enabled then we should
+       also implicitly enable cons.  */
+    enum isa_feature ante;
+    enum isa_feature cons;
 };
 
 static const struct fbit_implication all_implied_fbits[] =
 {
-  { isa_bit_neon, isa_bit_vfp_base },
-  { isa_bit_vfpv4, isa_bit_vfp_base },
-  { isa_bit_fp_d32, isa_bit_vfp_base },
-  { isa_bit_fp_dbl, isa_bit_vfp_base },
-  { isa_bit_mve_float, isa_bit_vfp_base },
-  { isa_bit_mve, isa_bit_vfp_base },
-  { isa_bit_dotprod, isa_bit_vfp_base },
-  { isa_bit_crypto, isa_bit_vfp_base },
-  { isa_bit_fp16, isa_bit_vfp_base },
-  { isa_bit_armv7em, isa_bit_vfp_base },
-  { isa_bit_i8mm, isa_bit_vfp_base },
-  { isa_bit_fp16conv, isa_bit_vfp_base },
-  { isa_bit_fpv5, isa_bit_vfp_base },
-  { isa_bit_fp16fml, isa_bit_vfp_base },
-  { isa_bit_bf16, isa_bit_vfp_base },
-  { isa_bit_vfpv2, isa_bit_vfp_base },
-  { isa_bit_vfpv3, isa_bit_vfp_base },
-  { isa_nobit, isa_nobit }
+    { isa_bit_neon, isa_bit_vfp_base },
+    { isa_bit_vfpv4, isa_bit_vfp_base },
+    { isa_bit_fp_d32, isa_bit_vfp_base },
+    { isa_bit_fp_dbl, isa_bit_vfp_base },
+    { isa_bit_mve_float, isa_bit_vfp_base },
+    { isa_bit_mve, isa_bit_vfp_base },
+    { isa_bit_dotprod, isa_bit_vfp_base },
+    { isa_bit_crypto, isa_bit_vfp_base },
+    { isa_bit_fp16, isa_bit_vfp_base },
+    { isa_bit_armv7em, isa_bit_vfp_base },
+    { isa_bit_i8mm, isa_bit_vfp_base },
+    { isa_bit_fp16conv, isa_bit_vfp_base },
+    { isa_bit_fpv5, isa_bit_vfp_base },
+    { isa_bit_fp16fml, isa_bit_vfp_base },
+    { isa_bit_bf16, isa_bit_vfp_base },
+    { isa_bit_vfpv2, isa_bit_vfp_base },
+    { isa_bit_vfpv3, isa_bit_vfp_base },
+    { isa_nobit, isa_nobit }
 };
 

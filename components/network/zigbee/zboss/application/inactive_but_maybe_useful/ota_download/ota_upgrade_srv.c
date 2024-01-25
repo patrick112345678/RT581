@@ -56,7 +56,7 @@ ZB_ZCL_DECLARE_OTA_UPGRADE_ATTRIB_LIST_SERVER(ota_upgrade_attr_list, &query_jitt
 /********************* Declare device **************************/
 
 ZB_HA_DECLARE_OTA_UPGRADE_SERVER_CLUSTER_LIST(ota_upgrade_server_clusters,
-          basic_attr_list, ota_upgrade_attr_list);
+        basic_attr_list, ota_upgrade_attr_list);
 
 ZB_HA_DECLARE_OTA_UPGRADE_SERVER_EP(ota_upgrade_server_ep, ENDPOINT, ota_upgrade_server_clusters);
 
@@ -76,114 +76,114 @@ void insert_ota_file(zb_uint8_t param);
 */
 zb_uint8_t *next_data_ota_data_ask_cb(zb_uint8_t index, zb_uint32_t offset, zb_uint8_t size)
 {
-  TRACE_MSG(TRACE_ZCL1, "next_data_ota_data_ask_cb %hd %d %hd",
-            (FMT__H_D_H, index, offset, size));
-  ZVUNUSED(index);
+    TRACE_MSG(TRACE_ZCL1, "next_data_ota_data_ask_cb %hd %d %hd",
+              (FMT__H_D_H, index, offset, size));
+    ZVUNUSED(index);
 
-  return zb_osif_ota_srv_get_image(flashdev, offset, size);
+    return zb_osif_ota_srv_get_image(flashdev, offset, size);
 }
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  ZB_SET_TRACE_ON();
-  ZB_SET_TRAF_DUMP_ON();
+    ZB_SET_TRACE_ON();
+    ZB_SET_TRAF_DUMP_ON();
 
-  ZB_INIT("zc");
+    ZB_INIT("zc");
 
-  zb_set_long_address(g_zc_addr);
-  zb_set_network_coordinator_role(ZB_DEFAULT_APS_CHANNEL_MASK);
-  zb_set_nvram_erase_at_start(ZB_FALSE);
-  zb_secur_setup_nwk_key(g_key, 0);
+    zb_set_long_address(g_zc_addr);
+    zb_set_network_coordinator_role(ZB_DEFAULT_APS_CHANNEL_MASK);
+    zb_set_nvram_erase_at_start(ZB_FALSE);
+    zb_secur_setup_nwk_key(g_key, 0);
 
-  /****************** Register Device ********************************/
-  ZB_AF_REGISTER_DEVICE_CTX(&ota_upgrade_server_ctx);
-  ZB_ZCL_CLUSTER_ID_OTA_UPGRADE_SERVER_ROLE_INIT();
-  zb_zcl_ota_upgrade_init_server(ENDPOINT, next_data_ota_data_ask_cb);
-  /* switch ON Flash B */
-  flashdev = zb_osif_ota_open_storage();
+    /****************** Register Device ********************************/
+    ZB_AF_REGISTER_DEVICE_CTX(&ota_upgrade_server_ctx);
+    ZB_ZCL_CLUSTER_ID_OTA_UPGRADE_SERVER_ROLE_INIT();
+    zb_zcl_ota_upgrade_init_server(ENDPOINT, next_data_ota_data_ask_cb);
+    /* switch ON Flash B */
+    flashdev = zb_osif_ota_open_storage();
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zboss_main_loop();
-  }
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zboss_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 void zboss_signal_handler(zb_uint8_t param)
 {
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_ZCL1, "> zboss_signal_handler %h", (FMT__H, param));
+    TRACE_MSG(TRACE_ZCL1, "> zboss_signal_handler %h", (FMT__H, param));
 
-  if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
-  {
-    switch(sig)
+    if (ZB_GET_APP_SIGNAL_STATUS(param) == 0)
     {
-      case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-        TRACE_MSG(TRACE_APP1, "Device STARTED OK", (FMT__0));
-        bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
-        ZB_SCHEDULE_APP_ALARM(insert_ota_file, param, ZB_MILLISECONDS_TO_BEACON_INTERVAL(20*1000));
-        param = 0;
-        break;
+        switch (sig)
+        {
+        case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
+            TRACE_MSG(TRACE_APP1, "Device STARTED OK", (FMT__0));
+            bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
+            ZB_SCHEDULE_APP_ALARM(insert_ota_file, param, ZB_MILLISECONDS_TO_BEACON_INTERVAL(20 * 1000));
+            param = 0;
+            break;
 
-      default:
-        TRACE_MSG(TRACE_APP1, "Unknown signal", (FMT__0));
+        default:
+            TRACE_MSG(TRACE_APP1, "Unknown signal", (FMT__0));
+        }
     }
-  }
-  else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
-  {
-    TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
-  }
+    else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
+    {
+        TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, ZB_GET_APP_SIGNAL_STATUS(param)));
+    }
 
-  if (param)
-  {
-    zb_free_buf(ZB_BUF_FROM_REF(param));
-  }
+    if (param)
+    {
+        zb_free_buf(ZB_BUF_FROM_REF(param));
+    }
 
-  TRACE_MSG(TRACE_ZCL1, "< zboss_signal_handler", (FMT__0));
+    TRACE_MSG(TRACE_ZCL1, "< zboss_signal_handler", (FMT__0));
 }
 
 
 void insert_ota_file(zb_uint8_t param)
 {
-  zb_buf_t *buf = (zb_buf_t *)ZB_BUF_FROM_REF(param);
-  /* zb_uint8_t *ota_file = zb_osif_ota_srv_get_image(0); */
+    zb_buf_t *buf = (zb_buf_t *)ZB_BUF_FROM_REF(param);
+    /* zb_uint8_t *ota_file = zb_osif_ota_srv_get_image(0); */
 
-  TRACE_MSG(TRACE_ZCL1, "> insert_ota_file %hd", (FMT__H, param));
-  /*
-    According to 6.3.2.7 File Version in OTA Cluster specification
+    TRACE_MSG(TRACE_ZCL1, "> insert_ota_file %hd", (FMT__H, param));
+    /*
+      According to 6.3.2.7 File Version in OTA Cluster specification
 
-     file version consists of (high to low):
-     - Application release 1b
-     - Application build 1b
-     - stack release 1b - (ZBOSS_MAJOR << 4) | ZBOSS_MINOR
-     - stack build 1b - ZBOSS_SDK_REVISION
+       file version consists of (high to low):
+       - Application release 1b
+       - Application build 1b
+       - stack release 1b - (ZBOSS_MAJOR << 4) | ZBOSS_MINOR
+       - stack build 1b - ZBOSS_SDK_REVISION
 
-     File version is set in OTA image header (on image generation).
-     Note that a binary-coded decimal convention (BCD) concept is used here for version number.
+       File version is set in OTA image header (on image generation).
+       Note that a binary-coded decimal convention (BCD) concept is used here for version number.
 
-     Note: Wireshark uses wrong bytes order there.
+       Note: Wireshark uses wrong bytes order there.
 
- */
-  /* We have single file, #0 only. */
-  {
-    zb_ret_t ret;
+    */
+    /* We have single file, #0 only. */
+    {
+        zb_ret_t ret;
 
-    ZB_ZCL_OTA_UPGRADE_INSERT_FILE(buf, ENDPOINT, 0, zb_osif_ota_srv_get_image_header(flashdev), OTA_UPGRADE_TEST_UPGRADE_TIME, ZB_TRUE, ret);
-    ZB_ASSERT(ret == RET_OK);
-  }
-  TRACE_MSG(TRACE_ZCL1, "< insert_ota_file", (FMT__0));
+        ZB_ZCL_OTA_UPGRADE_INSERT_FILE(buf, ENDPOINT, 0, zb_osif_ota_srv_get_image_header(flashdev), OTA_UPGRADE_TEST_UPGRADE_TIME, ZB_TRUE, ret);
+        ZB_ASSERT(ret == RET_OK);
+    }
+    TRACE_MSG(TRACE_ZCL1, "< insert_ota_file", (FMT__0));
 }

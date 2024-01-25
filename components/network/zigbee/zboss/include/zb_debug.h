@@ -95,7 +95,7 @@ void lwip_zb_assert(zb_uint16_t file_id, zb_int_t line_number);
 #else  /* release */
 
 #ifndef KEIL
-extern void vAssertCalled(const char * const pcFileName, unsigned long ulLine);
+extern void vAssertCalled(const char *const pcFileName, unsigned long ulLine);
 #define ZB_ASSERT(expr)  { if((expr) == 0) vAssertCalled(__FILE__, __LINE__); }
 #else
 #define ZB_ASSERT(expr) ((void)(expr))
@@ -215,7 +215,7 @@ while (0)
 #else
 #define ZB_P3_ON()
 #define ZB_P3_OFF()
-#define ZB_P4_ON() 
+#define ZB_P4_ON()
 #define ZB_P4_OFF()
 #endif
 

@@ -26,20 +26,21 @@ along with GCC; see the file COPYING3.  If not see
 
 /*  Flags for an OpenACC loop.  */
 
-enum oacc_loop_flags {
-  OLF_SEQ	= 1u << 0,  /* Explicitly sequential  */
-  OLF_AUTO	= 1u << 1,	/* Compiler chooses axes.  */
-  OLF_INDEPENDENT = 1u << 2,	/* Iterations are known independent.  */
-  OLF_GANG_STATIC = 1u << 3,	/* Gang partitioning is static (has op). */
-  OLF_TILE	= 1u << 4,	/* Tiled loop. */
-  
-  /* Explicitly specified loop axes.  */
-  OLF_DIM_BASE = 5,
-  OLF_DIM_GANG   = 1u << (OLF_DIM_BASE + GOMP_DIM_GANG),
-  OLF_DIM_WORKER = 1u << (OLF_DIM_BASE + GOMP_DIM_WORKER),
-  OLF_DIM_VECTOR = 1u << (OLF_DIM_BASE + GOMP_DIM_VECTOR),
+enum oacc_loop_flags
+{
+    OLF_SEQ   = 1u << 0,  /* Explicitly sequential  */
+    OLF_AUTO  = 1u << 1,  /* Compiler chooses axes.  */
+    OLF_INDEPENDENT = 1u << 2,    /* Iterations are known independent.  */
+    OLF_GANG_STATIC = 1u << 3,    /* Gang partitioning is static (has op). */
+    OLF_TILE  = 1u << 4,  /* Tiled loop. */
 
-  OLF_MAX = OLF_DIM_BASE + GOMP_DIM_MAX
+    /* Explicitly specified loop axes.  */
+    OLF_DIM_BASE = 5,
+    OLF_DIM_GANG   = 1u << (OLF_DIM_BASE + GOMP_DIM_GANG),
+    OLF_DIM_WORKER = 1u << (OLF_DIM_BASE + GOMP_DIM_WORKER),
+    OLF_DIM_VECTOR = 1u << (OLF_DIM_BASE + GOMP_DIM_VECTOR),
+
+    OLF_MAX = OLF_DIM_BASE + GOMP_DIM_MAX
 };
 
 /* A structure holding the elements of:
@@ -47,27 +48,27 @@ enum oacc_loop_flags {
 
 struct omp_for_data_loop
 {
-  tree v, n1, n2, step;
-  enum tree_code cond_code;
+    tree v, n1, n2, step;
+    enum tree_code cond_code;
 };
 
 /* A structure describing the main elements of a parallel loop.  */
 
 struct omp_for_data
 {
-  struct omp_for_data_loop loop;
-  tree chunk_size;
-  gomp_for *for_stmt;
-  tree pre, iter_type;
-  tree tiling;  /* Tiling values (if non null).  */
-  int collapse;  /* Collapsed loops, 1 for a non-collapsed loop.  */
-  int ordered;
-  bool have_nowait, have_ordered, simd_schedule, have_reductemp;
-  bool have_pointer_condtemp, have_scantemp, have_nonctrl_scantemp;
-  int lastprivate_conditional;
-  unsigned char sched_modifiers;
-  enum omp_clause_schedule_kind sched_kind;
-  struct omp_for_data_loop *loops;
+    struct omp_for_data_loop loop;
+    tree chunk_size;
+    gomp_for *for_stmt;
+    tree pre, iter_type;
+    tree tiling;  /* Tiling values (if non null).  */
+    int collapse;  /* Collapsed loops, 1 for a non-collapsed loop.  */
+    int ordered;
+    bool have_nowait, have_ordered, simd_schedule, have_reductemp;
+    bool have_pointer_condtemp, have_scantemp, have_nonctrl_scantemp;
+    int lastprivate_conditional;
+    unsigned char sched_modifiers;
+    enum omp_clause_schedule_kind sched_kind;
+    struct omp_for_data_loop *loops;
 };
 
 #define OACC_FN_ATTRIB "oacc function"
@@ -77,10 +78,10 @@ extern bool omp_is_allocatable_or_ptr (tree decl);
 extern tree omp_check_optional_argument (tree decl, bool for_present_check);
 extern bool omp_is_reference (tree decl);
 extern void omp_adjust_for_condition (location_t loc, enum tree_code *cond_code,
-				      tree *n2, tree v, tree step);
+                                      tree *n2, tree v, tree step);
 extern tree omp_get_for_step_from_incr (location_t loc, tree incr);
 extern void omp_extract_for_data (gomp_for *for_stmt, struct omp_for_data *fd,
-				  struct omp_for_data_loop *loops);
+                                  struct omp_for_data_loop *loops);
 extern gimple *omp_build_barrier (tree lhs);
 extern tree find_combined_omp_for (tree *, int *, void *);
 extern poly_uint64 omp_max_vf (void);
@@ -95,21 +96,22 @@ extern tree oacc_replace_fn_attrib_attr (tree attribs, tree dims);
 extern void oacc_replace_fn_attrib (tree fn, tree dims);
 extern void oacc_set_fn_attrib (tree fn, tree clauses, vec<tree> *args);
 extern int oacc_verify_routine_clauses (tree, tree *, location_t,
-					const char *);
+                                        const char *);
 extern tree oacc_build_routine_dims (tree clauses);
 extern tree oacc_get_fn_attrib (tree fn);
 extern bool offloading_function_p (tree fn);
 extern int oacc_get_fn_dim_size (tree fn, int axis);
 extern int oacc_get_ifn_dim_arg (const gimple *stmt);
 
-enum omp_requires {
-  OMP_REQUIRES_ATOMIC_DEFAULT_MEM_ORDER = 0xf,
-  OMP_REQUIRES_UNIFIED_ADDRESS = 0x10,
-  OMP_REQUIRES_UNIFIED_SHARED_MEMORY = 0x20,
-  OMP_REQUIRES_DYNAMIC_ALLOCATORS = 0x40,
-  OMP_REQUIRES_REVERSE_OFFLOAD = 0x80,
-  OMP_REQUIRES_ATOMIC_DEFAULT_MEM_ORDER_USED = 0x100,
-  OMP_REQUIRES_TARGET_USED = 0x200
+enum omp_requires
+{
+    OMP_REQUIRES_ATOMIC_DEFAULT_MEM_ORDER = 0xf,
+    OMP_REQUIRES_UNIFIED_ADDRESS = 0x10,
+    OMP_REQUIRES_UNIFIED_SHARED_MEMORY = 0x20,
+    OMP_REQUIRES_DYNAMIC_ALLOCATORS = 0x40,
+    OMP_REQUIRES_REVERSE_OFFLOAD = 0x80,
+    OMP_REQUIRES_ATOMIC_DEFAULT_MEM_ORDER_USED = 0x100,
+    OMP_REQUIRES_TARGET_USED = 0x200
 };
 
 extern GTY(()) enum omp_requires omp_requires_mask;

@@ -30,7 +30,7 @@
 #ifdef ZB_ENABLE_ZGP_SINK
 #include "zboss_api_zgp.h"
 
-/** 
+/**
  * @ingroup zgp_sink
  * @file zb_zgp_default_match_info.h
  * Provides example of matching table declaration for ZGPS sink
@@ -43,12 +43,12 @@
 zgps_dev_match_rec_t g_zgps_match_tbl[] =
 {
 #ifdef ZGPS_MATCH_TBL_TEMPERATURE_SENSOR_ENTRY
-  {
-    ZB_ZCL_CLUSTER_ID_TEMP_MEASUREMENT,
-    ZB_ZCL_CLUSTER_CLIENT_ROLE,
-    {ZB_GPDF_CMD_ATTR_REPORT, ZB_GPDF_CMD_MULTI_CLUSTER_ATTR_REPORT, 0},
-    ZB_ZGP_TEMPERATURE_SENSOR_DEV_ID,
-  },
+    {
+        ZB_ZCL_CLUSTER_ID_TEMP_MEASUREMENT,
+        ZB_ZCL_CLUSTER_CLIENT_ROLE,
+        {ZB_GPDF_CMD_ATTR_REPORT, ZB_GPDF_CMD_MULTI_CLUSTER_ATTR_REPORT, 0},
+        ZB_ZGP_TEMPERATURE_SENSOR_DEV_ID,
+    },
 #endif
 
 };
@@ -70,12 +70,12 @@ zgp_to_zb_cmd_mapping_t g_cmd_mapping[] =
  */
 zb_zgps_match_info_t  g_default_zgps_match_info =
 {
-  ZB_ARRAY_SIZE(g_zgps_match_tbl),
-  g_zgps_match_tbl,
-  ZB_ARRAY_SIZE(g_cmd_mapping),
-  g_cmd_mapping,
-  0,
-  NULL
+    ZB_ARRAY_SIZE(g_zgps_match_tbl),
+    g_zgps_match_tbl,
+    ZB_ARRAY_SIZE(g_cmd_mapping),
+    g_cmd_mapping,
+    0,
+    NULL
 };
 #endif  /* ZB_ENABLE_ZGP_SINK */
 #endif //ZB_ZGP_DEFAULT_MATCH_INFO_H

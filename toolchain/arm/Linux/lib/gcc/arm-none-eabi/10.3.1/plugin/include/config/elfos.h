@@ -24,11 +24,11 @@ a copy of the GCC Runtime Library Exception along with this program;
 see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 <http://www.gnu.org/licenses/>.  */
 
-#define TARGET_OBJFMT_CPP_BUILTINS()		\
-  do						\
-    {						\
-	builtin_define ("__ELF__");		\
-    }						\
+#define TARGET_OBJFMT_CPP_BUILTINS()        \
+  do                        \
+    {                       \
+    builtin_define ("__ELF__");     \
+    }                       \
   while (0)
 
 /* Define a symbol indicating that we are using elfos.h.
@@ -43,10 +43,10 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 #undef  USER_LABEL_PREFIX
 #define USER_LABEL_PREFIX ""
 
-/* The biggest alignment supported by ELF in bits. 32-bit ELF 
-   supports section alignment up to (0x80000000 * 8), while 
-   64-bit ELF supports (0x8000000000000000 * 8). If this macro 
-   is not defined, the default is the largest alignment supported 
+/* The biggest alignment supported by ELF in bits. 32-bit ELF
+   supports section alignment up to (0x80000000 * 8), while
+   64-bit ELF supports (0x8000000000000000 * 8). If this macro
+   is not defined, the default is the largest alignment supported
    by 32-bit ELF and representable on a 32-bit host. Use this
    macro to limit the alignment which can be specified using
    the `__attribute__ ((aligned (N)))' construct.  */
@@ -86,7 +86,7 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 #define TARGET_ASM_OUTPUT_IDENT default_asm_output_ident_directive
 
 #undef  SET_ASM_OP
-#define SET_ASM_OP	"\t.set\t"
+#define SET_ASM_OP  "\t.set\t"
 
 /* Most svr4 assemblers want a .file directive at the beginning of
    their input file.  */
@@ -95,12 +95,12 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 /* This is how to allocate empty space in some section.  The .zero
    pseudo-op is used for this on most svr4 assemblers.  */
 
-#define SKIP_ASM_OP	"\t.zero\t"
+#define SKIP_ASM_OP "\t.zero\t"
 
 #undef  ASM_OUTPUT_SKIP
 #define ASM_OUTPUT_SKIP(FILE, SIZE) \
    fprintf ((FILE), "%s" HOST_WIDE_INT_PRINT_UNSIGNED "\n",\
-	    SKIP_ASM_OP, (SIZE))
+        SKIP_ASM_OP, (SIZE))
 
 /* This is how to store into the string LABEL
    the symbol_ref name of an internal numbered label where
@@ -111,15 +111,15 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
    with a period is not put into the linker symbol table by the assembler.  */
 
 #undef  ASM_GENERATE_INTERNAL_LABEL
-#define ASM_GENERATE_INTERNAL_LABEL(LABEL, PREFIX, NUM)		\
-  do								\
-    {								\
-      char *__p;						\
-      (LABEL)[0] = '*';						\
-      (LABEL)[1] = '.';						\
-      __p = stpcpy (&(LABEL)[2], PREFIX);			\
-      sprint_ul (__p, (unsigned long) (NUM));			\
-    }								\
+#define ASM_GENERATE_INTERNAL_LABEL(LABEL, PREFIX, NUM)     \
+  do                                \
+    {                               \
+      char *__p;                        \
+      (LABEL)[0] = '*';                     \
+      (LABEL)[1] = '.';                     \
+      __p = stpcpy (&(LABEL)[2], PREFIX);           \
+      sprint_ul (__p, (unsigned long) (NUM));           \
+    }                               \
   while (0)
 
 /* Output the label which precedes a jumptable.  Note that for all svr4
@@ -139,19 +139,19 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 #endif
 
 #undef  ASM_OUTPUT_CASE_LABEL
-#define ASM_OUTPUT_CASE_LABEL(FILE, PREFIX, NUM, JUMPTABLE)		\
-  do									\
-    {									\
-      ASM_OUTPUT_BEFORE_CASE_LABEL (FILE, PREFIX, NUM, JUMPTABLE);	\
-      (*targetm.asm_out.internal_label) (FILE, PREFIX, NUM);		\
-    }									\
+#define ASM_OUTPUT_CASE_LABEL(FILE, PREFIX, NUM, JUMPTABLE)     \
+  do                                    \
+    {                                   \
+      ASM_OUTPUT_BEFORE_CASE_LABEL (FILE, PREFIX, NUM, JUMPTABLE);  \
+      (*targetm.asm_out.internal_label) (FILE, PREFIX, NUM);        \
+    }                                   \
   while (0)
 
 /* The standard SVR4 assembler seems to require that certain builtin
    library routines (e.g. .udiv) be explicitly declared as .globl
    in each assembly file where they are referenced.  */
 
-#define ASM_OUTPUT_EXTERNAL_LIBCALL(FILE, FUN)	\
+#define ASM_OUTPUT_EXTERNAL_LIBCALL(FILE, FUN)  \
   (*targetm.asm_out.globalize_label) (FILE, XSTR (FUN, 0))
 
 /* This says how to output assembler code to declare an
@@ -159,17 +159,17 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
    the linker seems to want the alignment of data objects
    to depend on their types.  We do exactly that here.  */
 
-#define COMMON_ASM_OP	"\t.comm\t"
+#define COMMON_ASM_OP   "\t.comm\t"
 
 #undef  ASM_OUTPUT_ALIGNED_COMMON
-#define ASM_OUTPUT_ALIGNED_COMMON(FILE, NAME, SIZE, ALIGN)		\
-  do									\
-    {									\
-      fprintf ((FILE), "%s", COMMON_ASM_OP);				\
-      assemble_name ((FILE), (NAME));					\
-      fprintf ((FILE), "," HOST_WIDE_INT_PRINT_UNSIGNED ",%u\n",		\
-	       (SIZE), (ALIGN) / BITS_PER_UNIT);			\
-    }									\
+#define ASM_OUTPUT_ALIGNED_COMMON(FILE, NAME, SIZE, ALIGN)      \
+  do                                    \
+    {                                   \
+      fprintf ((FILE), "%s", COMMON_ASM_OP);                \
+      assemble_name ((FILE), (NAME));                   \
+      fprintf ((FILE), "," HOST_WIDE_INT_PRINT_UNSIGNED ",%u\n",        \
+           (SIZE), (ALIGN) / BITS_PER_UNIT);            \
+    }                                   \
   while (0)
 
 /* This says how to output assembler code to declare an
@@ -177,17 +177,17 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
    the linker seems to want the alignment of data objects
    to depend on their types.  We do exactly that here.  */
 
-#define LOCAL_ASM_OP	"\t.local\t"
+#define LOCAL_ASM_OP    "\t.local\t"
 
 #undef  ASM_OUTPUT_ALIGNED_LOCAL
-#define ASM_OUTPUT_ALIGNED_LOCAL(FILE, NAME, SIZE, ALIGN)	\
-  do								\
-    {								\
-      fprintf ((FILE), "%s", LOCAL_ASM_OP);			\
-      assemble_name ((FILE), (NAME));				\
-      fprintf ((FILE), "\n");					\
-      ASM_OUTPUT_ALIGNED_COMMON (FILE, NAME, SIZE, ALIGN);	\
-    }								\
+#define ASM_OUTPUT_ALIGNED_LOCAL(FILE, NAME, SIZE, ALIGN)   \
+  do                                \
+    {                               \
+      fprintf ((FILE), "%s", LOCAL_ASM_OP);         \
+      assemble_name ((FILE), (NAME));               \
+      fprintf ((FILE), "\n");                   \
+      ASM_OUTPUT_ALIGNED_COMMON (FILE, NAME, SIZE, ALIGN);  \
+    }                               \
   while (0)
 
 /* This is the pseudo-op used to generate a contiguous sequence of byte
@@ -195,10 +195,10 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
    AUTOMATICALLY APPENDED.  This is the same for most svr4 assemblers.  */
 
 #undef  ASCII_DATA_ASM_OP
-#define ASCII_DATA_ASM_OP	"\t.ascii\t"
+#define ASCII_DATA_ASM_OP   "\t.ascii\t"
 
 /* Support a read-only data section.  */
-#define READONLY_DATA_SECTION_ASM_OP	"\t.section\t.rodata"
+#define READONLY_DATA_SECTION_ASM_OP    "\t.section\t.rodata"
 
 /* On svr4, we *do* have support for the .init and .fini sections, and we
    can put stuff in there to be executed before and after `main'.  We let
@@ -206,13 +206,13 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
    The definitions say how to change sections to the .init and .fini
    sections.  This is the same for all known svr4 assemblers.  */
 
-#define INIT_SECTION_ASM_OP	"\t.section\t.init"
-#define FINI_SECTION_ASM_OP	"\t.section\t.fini"
+#define INIT_SECTION_ASM_OP "\t.section\t.init"
+#define FINI_SECTION_ASM_OP "\t.section\t.fini"
 
 /* Output assembly directive to move to the beginning of current section.  */
 #ifdef HAVE_GAS_SUBSECTION_ORDERING
-# define ASM_SECTION_START_OP	"\t.subsection\t-1"
-# define ASM_OUTPUT_SECTION_START(FILE)	\
+# define ASM_SECTION_START_OP   "\t.subsection\t-1"
+# define ASM_OUTPUT_SECTION_START(FILE) \
   fprintf ((FILE), "%s\n", ASM_SECTION_START_OP)
 #endif
 
@@ -223,7 +223,7 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 
 #undef  TARGET_ASM_SELECT_RTX_SECTION
 #define TARGET_ASM_SELECT_RTX_SECTION default_elf_select_rtx_section
-#undef	TARGET_ASM_SELECT_SECTION
+#undef  TARGET_ASM_SELECT_SECTION
 #define TARGET_ASM_SELECT_SECTION default_elf_select_section
 #undef  TARGET_HAVE_SWITCHABLE_BSS_SECTIONS
 #define TARGET_HAVE_SWITCHABLE_BSS_SECTIONS true
@@ -234,29 +234,29 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
    different pseudo-op names for these, they may be overridden in the
    file which includes this one.  */
 
-#define TYPE_ASM_OP	"\t.type\t"
-#define SIZE_ASM_OP	"\t.size\t"
+#define TYPE_ASM_OP "\t.type\t"
+#define SIZE_ASM_OP "\t.size\t"
 
 /* This is how we tell the assembler that a symbol is weak.  */
 
-#define ASM_WEAKEN_LABEL(FILE, NAME)	\
-  do					\
-    {					\
-      fputs ("\t.weak\t", (FILE));	\
-      assemble_name ((FILE), (NAME));	\
-      fputc ('\n', (FILE));		\
-    }					\
+#define ASM_WEAKEN_LABEL(FILE, NAME)    \
+  do                    \
+    {                   \
+      fputs ("\t.weak\t", (FILE));  \
+      assemble_name ((FILE), (NAME));   \
+      fputc ('\n', (FILE));     \
+    }                   \
   while (0)
 
-#define ASM_OUTPUT_SYMVER_DIRECTIVE(FILE, NAME, NAME2)		\
-  do								\
-    {								\
-      fputs ("\t.symver\t", (FILE));				\
-      assemble_name ((FILE), (NAME));				\
-      fputs (", ", (FILE));					\
-      assemble_name ((FILE), (NAME2));				\
-      fputc ('\n', (FILE));					\
-    }								\
+#define ASM_OUTPUT_SYMVER_DIRECTIVE(FILE, NAME, NAME2)      \
+  do                                \
+    {                               \
+      fputs ("\t.symver\t", (FILE));                \
+      assemble_name ((FILE), (NAME));               \
+      fputs (", ", (FILE));                 \
+      assemble_name ((FILE), (NAME2));              \
+      fputc ('\n', (FILE));                 \
+    }                               \
   while (0)
 
 /* The following macro defines the format used to output the second
@@ -265,7 +265,7 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
    is just a default.  You may need to override it in your machine-
    specific tm.h file (depending upon the particulars of your assembler).  */
 
-#define TYPE_OPERAND_FMT	"@%s"
+#define TYPE_OPERAND_FMT    "@%s"
 
 /* Write the extra assembler code needed to declare a function's result.
    Most svr4 assemblers don't require any special declaration of the
@@ -285,13 +285,13 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
    function's return value.  We allow for that here.  */
 
 #ifndef ASM_DECLARE_FUNCTION_NAME
-#define ASM_DECLARE_FUNCTION_NAME(FILE, NAME, DECL)		\
-  do								\
-    {								\
-      ASM_OUTPUT_TYPE_DIRECTIVE (FILE, NAME, "function");	\
-      ASM_DECLARE_RESULT (FILE, DECL_RESULT (DECL));		\
-      ASM_OUTPUT_FUNCTION_LABEL (FILE, NAME, DECL);		\
-    }								\
+#define ASM_DECLARE_FUNCTION_NAME(FILE, NAME, DECL)     \
+  do                                \
+    {                               \
+      ASM_OUTPUT_TYPE_DIRECTIVE (FILE, NAME, "function");   \
+      ASM_DECLARE_RESULT (FILE, DECL_RESULT (DECL));        \
+      ASM_OUTPUT_FUNCTION_LABEL (FILE, NAME, DECL);     \
+    }                               \
   while (0)
 #endif
 
@@ -301,13 +301,13 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
    allow for that here.  */
 
 #ifndef ASM_DECLARE_COLD_FUNCTION_NAME
-#define ASM_DECLARE_COLD_FUNCTION_NAME(FILE, NAME, DECL)	\
-  do								\
-    {								\
-      ASM_OUTPUT_TYPE_DIRECTIVE (FILE, NAME, "function");	\
-      ASM_DECLARE_RESULT (FILE, DECL_RESULT (DECL));		\
-      ASM_OUTPUT_FUNCTION_LABEL (FILE, NAME, DECL);		\
-    }								\
+#define ASM_DECLARE_COLD_FUNCTION_NAME(FILE, NAME, DECL)    \
+  do                                \
+    {                               \
+      ASM_OUTPUT_TYPE_DIRECTIVE (FILE, NAME, "function");   \
+      ASM_DECLARE_RESULT (FILE, DECL_RESULT (DECL));        \
+      ASM_OUTPUT_FUNCTION_LABEL (FILE, NAME, DECL);     \
+    }                               \
   while (0)
 #endif
 
@@ -319,33 +319,33 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 #define USE_GNU_UNIQUE_OBJECT 0
 #endif
 
-#define ASM_DECLARE_OBJECT_NAME(FILE, NAME, DECL)			\
-  do									\
-    {									\
-      HOST_WIDE_INT size;						\
-									\
-      /* For template static data member instantiations or		\
-	 inline fn local statics and their guard variables, use		\
-	 gnu_unique_object so that they will be combined even under	\
-	 RTLD_LOCAL.  Don't use gnu_unique_object for typeinfo,		\
-	 vtables and other read-only artificial decls.  */		\
-      if (USE_GNU_UNIQUE_OBJECT && DECL_ONE_ONLY (DECL)			\
-	  && (!DECL_ARTIFICIAL (DECL) || !TREE_READONLY (DECL)))	\
-	ASM_OUTPUT_TYPE_DIRECTIVE (FILE, NAME, "gnu_unique_object");	\
-      else								\
-	ASM_OUTPUT_TYPE_DIRECTIVE (FILE, NAME, "object");		\
-									\
-      size_directive_output = 0;					\
-      if (!flag_inhibit_size_directive					\
-	  && (DECL) && DECL_SIZE (DECL))				\
-	{								\
-	  size_directive_output = 1;					\
-	  size = tree_to_uhwi (DECL_SIZE_UNIT (DECL));			\
-	  ASM_OUTPUT_SIZE_DIRECTIVE (FILE, NAME, size);			\
-	}								\
-									\
-      ASM_OUTPUT_LABEL (FILE, NAME);					\
-    }									\
+#define ASM_DECLARE_OBJECT_NAME(FILE, NAME, DECL)           \
+  do                                    \
+    {                                   \
+      HOST_WIDE_INT size;                       \
+                                    \
+      /* For template static data member instantiations or      \
+     inline fn local statics and their guard variables, use     \
+     gnu_unique_object so that they will be combined even under \
+     RTLD_LOCAL.  Don't use gnu_unique_object for typeinfo,     \
+     vtables and other read-only artificial decls.  */      \
+      if (USE_GNU_UNIQUE_OBJECT && DECL_ONE_ONLY (DECL)         \
+      && (!DECL_ARTIFICIAL (DECL) || !TREE_READONLY (DECL)))    \
+    ASM_OUTPUT_TYPE_DIRECTIVE (FILE, NAME, "gnu_unique_object");    \
+      else                              \
+    ASM_OUTPUT_TYPE_DIRECTIVE (FILE, NAME, "object");       \
+                                    \
+      size_directive_output = 0;                    \
+      if (!flag_inhibit_size_directive                  \
+      && (DECL) && DECL_SIZE (DECL))                \
+    {                               \
+      size_directive_output = 1;                    \
+      size = tree_to_uhwi (DECL_SIZE_UNIT (DECL));          \
+      ASM_OUTPUT_SIZE_DIRECTIVE (FILE, NAME, size);         \
+    }                               \
+                                    \
+      ASM_OUTPUT_LABEL (FILE, NAME);                    \
+    }                                   \
   while (0)
 
 /* Output the size directive for a decl in rest_of_decl_compilation
@@ -356,43 +356,43 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 
 #undef ASM_FINISH_DECLARE_OBJECT
 #define ASM_FINISH_DECLARE_OBJECT(FILE, DECL, TOP_LEVEL, AT_END)\
-  do								\
-    {								\
-      const char *name = XSTR (XEXP (DECL_RTL (DECL), 0), 0);	\
-      HOST_WIDE_INT size;					\
-								\
-      if (!flag_inhibit_size_directive				\
-	  && DECL_SIZE (DECL)					\
-	  && ! AT_END && TOP_LEVEL				\
-	  && DECL_INITIAL (DECL) == error_mark_node		\
-	  && !size_directive_output)				\
-	{							\
-	  size_directive_output = 1;				\
-	  size = tree_to_uhwi (DECL_SIZE_UNIT (DECL));		\
-	  ASM_OUTPUT_SIZE_DIRECTIVE (FILE, name, size);		\
-	}							\
-    }								\
+  do                                \
+    {                               \
+      const char *name = XSTR (XEXP (DECL_RTL (DECL), 0), 0);   \
+      HOST_WIDE_INT size;                   \
+                                \
+      if (!flag_inhibit_size_directive              \
+      && DECL_SIZE (DECL)                   \
+      && ! AT_END && TOP_LEVEL              \
+      && DECL_INITIAL (DECL) == error_mark_node     \
+      && !size_directive_output)                \
+    {                           \
+      size_directive_output = 1;                \
+      size = tree_to_uhwi (DECL_SIZE_UNIT (DECL));      \
+      ASM_OUTPUT_SIZE_DIRECTIVE (FILE, name, size);     \
+    }                           \
+    }                               \
   while (0)
 
 /* This is how to declare the size of a function.  */
 #ifndef ASM_DECLARE_FUNCTION_SIZE
-#define ASM_DECLARE_FUNCTION_SIZE(FILE, FNAME, DECL)		\
-  do								\
-    {								\
-      if (!flag_inhibit_size_directive)				\
-	ASM_OUTPUT_MEASURED_SIZE (FILE, FNAME);			\
-    }								\
+#define ASM_DECLARE_FUNCTION_SIZE(FILE, FNAME, DECL)        \
+  do                                \
+    {                               \
+      if (!flag_inhibit_size_directive)             \
+    ASM_OUTPUT_MEASURED_SIZE (FILE, FNAME);         \
+    }                               \
   while (0)
 #endif
 
 /* This is how to declare the size of a cold function partition.  */
 #ifndef ASM_DECLARE_COLD_FUNCTION_SIZE
-#define ASM_DECLARE_COLD_FUNCTION_SIZE(FILE, FNAME, DECL)	\
-  do								\
-    {								\
-      if (!flag_inhibit_size_directive)				\
-	ASM_OUTPUT_MEASURED_SIZE (FILE, FNAME);			\
-    }								\
+#define ASM_DECLARE_COLD_FUNCTION_SIZE(FILE, FNAME, DECL)   \
+  do                                \
+    {                               \
+      if (!flag_inhibit_size_directive)             \
+    ASM_OUTPUT_MEASURED_SIZE (FILE, FNAME);         \
+    }                               \
   while (0)
 #endif
 
@@ -432,9 +432,9 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
    should define this to zero.
 */
 
-#define ELF_STRING_LIMIT	((unsigned) 256)
+#define ELF_STRING_LIMIT    ((unsigned) 256)
 
-#define STRING_ASM_OP	"\t.string\t"
+#define STRING_ASM_OP   "\t.string\t"
 
 /* The routine used to output NUL terminated strings.  We use a special
    version of this for most svr4 targets because doing so makes the
@@ -443,7 +443,7 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
    (where the only alternative is to output character sequences as
    comma separated lists of numbers).  */
 
-#define ASM_OUTPUT_LIMITED_STRING(FILE, STR)		\
+#define ASM_OUTPUT_LIMITED_STRING(FILE, STR)        \
   default_elf_asm_output_limited_string ((FILE), (STR))
 
 /* The routine used to output sequences of byte values.  We use a special
@@ -454,7 +454,7 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
    STRING_LIMIT) we output those using ASM_OUTPUT_LIMITED_STRING.  */
 
 #undef  ASM_OUTPUT_ASCII
-#define ASM_OUTPUT_ASCII(FILE, STR, LENGTH)			\
+#define ASM_OUTPUT_ASCII(FILE, STR, LENGTH)         \
   default_elf_asm_output_ascii ((FILE), (STR), (LENGTH))
 
 /* Allow the use of the -frecord-gcc-switches switch via the

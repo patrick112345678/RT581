@@ -38,8 +38,8 @@ typedef void zbncp_ll_callback(zbncp_ll_cb_arg_t arg);
 /** @brief NCP low-level protocol user callback structure. */
 typedef struct zbncp_ll_proto_cb_s
 {
-  zbncp_ll_callback *callme;    /**< User notification callback requesting for time quantum */
-  zbncp_ll_cb_arg_t arg;        /**< Argument for the notification callback */
+    zbncp_ll_callback *callme;    /**< User notification callback requesting for time quantum */
+    zbncp_ll_cb_arg_t arg;        /**< Argument for the notification callback */
 }
 zbncp_ll_proto_cb_t;
 
@@ -65,8 +65,8 @@ void zbncp_ll_init(zbncp_ll_proto_t *ll, const zbncp_ll_proto_cb_t *cb, zbncp_ll
  */
 typedef struct zbncp_ll_tx_pkt_s
 {
-  zbncp_uint8_t flags;      /**< Flags are showing start and end of a transmitted packet */
-  zbncp_cmemref_t mem;    /**< Constant memory reference to a buffer with a data to be transmitted */
+    zbncp_uint8_t flags;      /**< Flags are showing start and end of a transmitted packet */
+    zbncp_cmemref_t mem;    /**< Constant memory reference to a buffer with a data to be transmitted */
 }
 zbncp_ll_tx_pkt_t;
 
@@ -75,8 +75,8 @@ zbncp_ll_tx_pkt_t;
  */
 typedef struct zbncp_ll_rx_info_s
 {
-  zbncp_uint8_t flags;     /**< Flags are showing start and end of a received packet */
-  zbncp_size_t rxbytes;    /**< Count of bytes received during the time quantum */
+    zbncp_uint8_t flags;     /**< Flags are showing start and end of a received packet */
+    zbncp_size_t rxbytes;    /**< Count of bytes received during the time quantum */
 }
 zbncp_ll_rx_info_t;
 
@@ -85,9 +85,9 @@ zbncp_ll_rx_info_t;
  */
 typedef struct zbncp_ll_quant_req_s
 {
-  zbncp_ll_time_t time;            /**< Current time to be used for timeout calculation */
-  zbncp_memref_t rxmem;            /**< Memory reference to a buffer for a data to be received */
-  zbncp_ll_tx_pkt_t tx_pkt;        /**< Input parameters for a transmitted packet */
+    zbncp_ll_time_t time;            /**< Current time to be used for timeout calculation */
+    zbncp_memref_t rxmem;            /**< Memory reference to a buffer for a data to be received */
+    zbncp_ll_tx_pkt_t tx_pkt;        /**< Input parameters for a transmitted packet */
 }
 zbncp_ll_quant_req_t;
 
@@ -96,11 +96,11 @@ zbncp_ll_quant_req_t;
  */
 typedef struct zbncp_ll_quant_res_s
 {
-  zbncp_ll_rx_info_t rx_info;   /**< Information about a received packet */
-  zbncp_size_t txbytes;         /**< Count of bytes transmitted during the time quantum */
-  zbncp_ll_time_t timeout;      /**< Timeout till the next time quantum, 0 means "call the
+    zbncp_ll_rx_info_t rx_info;   /**< Information about a received packet */
+    zbncp_size_t txbytes;         /**< Count of bytes transmitted during the time quantum */
+    zbncp_ll_time_t timeout;      /**< Timeout till the next time quantum, 0 means "call the
                                  polling routine again as soon as possible" */
-  zbncp_int32_t status;         /**< Status of LL state machines for RX/TX */
+    zbncp_int32_t status;         /**< Status of LL state machines for RX/TX */
 }
 zbncp_ll_quant_res_t;
 
@@ -109,8 +109,8 @@ zbncp_ll_quant_res_t;
  */
 typedef struct zbncp_ll_quant_s
 {
-  zbncp_ll_quant_req_t req; /**< Request - input parameters */
-  zbncp_ll_quant_res_t res; /**< Result - output parameters */
+    zbncp_ll_quant_req_t req; /**< Request - input parameters */
+    zbncp_ll_quant_res_t res; /**< Result - output parameters */
 }
 zbncp_ll_quant_t;
 

@@ -77,8 +77,8 @@ static zb_uint16_t g_attr_keep_alive_jitter = 15;
 
 /* Keep-Alive cluster attributes */
 ZB_ZCL_DECLARE_KEEP_ALIVE_ATTR_LIST_FULL(rtp_zcl_21_th_zc_keep_alive_attr_list,
-  &g_attr_keep_alive_base,
-  &g_attr_keep_alive_jitter);
+        &g_attr_keep_alive_base,
+        &g_attr_keep_alive_jitter);
 
 /* Identify cluster attributes */
 ZB_ZCL_DECLARE_IDENTIFY_ATTRIB_LIST(rtp_zcl_21_th_zc_identify_attr_list, &g_attr_identify_identify_time);
@@ -96,12 +96,12 @@ ZB_ZCL_DECLARE_WWAH_CLIENT_ATTRIB_LIST(rtp_zcl_21_th_zc_wwah_client_attr_list);
 
 /********************* Declare device **************************/
 ZB_HA_DECLARE_WWAH_CLUSTER_LIST_ZC(rtp_zcl_21_th_zc_wwah_ha_clusters,
-  rtp_zcl_21_th_zc_identify_attr_list,
-  rtp_zcl_21_th_zc_time_attr_list,
-  rtp_zcl_21_th_zc_keep_alive_attr_list,
-  rtp_zcl_21_th_zc_poll_control_attr_list,
-  rtp_zcl_21_th_zc_ota_upgrade_attr_list,
-  rtp_zcl_21_th_zc_wwah_client_attr_list);
+                                   rtp_zcl_21_th_zc_identify_attr_list,
+                                   rtp_zcl_21_th_zc_time_attr_list,
+                                   rtp_zcl_21_th_zc_keep_alive_attr_list,
+                                   rtp_zcl_21_th_zc_poll_control_attr_list,
+                                   rtp_zcl_21_th_zc_ota_upgrade_attr_list,
+                                   rtp_zcl_21_th_zc_wwah_client_attr_list);
 ZB_HA_DECLARE_WWAH_EP_ZC(rtp_zcl_21_th_zc_wwah_ha_ep, ZC_HA_EP, rtp_zcl_21_th_zc_wwah_ha_clusters);
 ZBOSS_DECLARE_DEVICE_CTX_1_EP(rtp_zcl_21_th_zc_device_ctx, rtp_zcl_21_th_zc_wwah_ha_ep);
 
@@ -116,13 +116,13 @@ static zb_uint16_t g_dut_ep = ZB_APS_BROADCAST_ENDPOINT_NUMBER;
 
 typedef enum reg_test_step_e
 {
-  REG_TEST_STEP_READ_BAD_PARENT_DISCOVERY_ENABLED,
-  REG_TEST_STEP_ENABLE_BAD_PARENT_DISCOVERY,
-  REG_TEST_STEP_READ_BAD_PARENT_DISCOVERY_ENABLED_2,
-  REG_TEST_STEP_READ_CHECKIN_INTERVAL,
-  REG_TEST_STEP_WRITE_CHECKIN_INTERVAL,
-  REG_TEST_STEP_PERFORM_POLL_CONTROL_BINDING,
-  REG_TEST_STEPS_COUNT
+    REG_TEST_STEP_READ_BAD_PARENT_DISCOVERY_ENABLED,
+    REG_TEST_STEP_ENABLE_BAD_PARENT_DISCOVERY,
+    REG_TEST_STEP_READ_BAD_PARENT_DISCOVERY_ENABLED_2,
+    REG_TEST_STEP_READ_CHECKIN_INTERVAL,
+    REG_TEST_STEP_WRITE_CHECKIN_INTERVAL,
+    REG_TEST_STEP_PERFORM_POLL_CONTROL_BINDING,
+    REG_TEST_STEPS_COUNT
 } reg_test_step_t;
 
 static void test_send_wwah_match_desc_cb(zb_uint8_t param);
@@ -132,73 +132,73 @@ static void test_step_dispatch(zb_uint8_t param);
 
 static void send_read_attr(zb_bufid_t buffer, zb_uint16_t clusterID, zb_uint16_t attributeID);
 static void send_write_attr(zb_bufid_t buffer, zb_uint16_t clusterID,
-  zb_uint16_t attributeID, zb_uint8_t attrType, zb_uint8_t *attrVal);
+                            zb_uint16_t attributeID, zb_uint8_t attrType, zb_uint8_t *attrVal);
 
 static reg_test_step_t g_test_step = REG_TEST_STEP_READ_BAD_PARENT_DISCOVERY_ENABLED;
 
 MAIN()
 {
-  ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
-  ZB_SET_TRACE_LEVEL(4);
-  ARGV_UNUSED;
+    ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
+    ZB_SET_TRACE_LEVEL(4);
+    ARGV_UNUSED;
 
-  ZB_INIT("zdo_th_zc");
+    ZB_INIT("zdo_th_zc");
 
-  zb_set_long_address(g_ieee_addr_zc);
+    zb_set_long_address(g_ieee_addr_zc);
 
-  zb_reg_test_set_common_channel_settings();
-  zb_set_network_coordinator_role((1l << TEST_CHANNEL));
-  zb_secur_setup_nwk_key(g_nwk_key, 0);
+    zb_reg_test_set_common_channel_settings();
+    zb_set_network_coordinator_role((1l << TEST_CHANNEL));
+    zb_secur_setup_nwk_key(g_nwk_key, 0);
 
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  ZB_AF_REGISTER_DEVICE_CTX(&rtp_zcl_21_th_zc_device_ctx);
+    ZB_AF_REGISTER_DEVICE_CTX(&rtp_zcl_21_th_zc_device_ctx);
 
-  zb_zcl_wwah_set_wwah_behavior(ZB_ZCL_WWAH_BEHAVIOR_CLIENT);
+    zb_zcl_wwah_set_wwah_behavior(ZB_ZCL_WWAH_BEHAVIOR_CLIENT);
 
-  if (zboss_start_no_autostart() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start_no_autostart() failed", (FMT__0));
-  }
-  else
-  {
-    zboss_main_loop();
-  }
+    if (zboss_start_no_autostart() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start_no_autostart() failed", (FMT__0));
+    }
+    else
+    {
+        zboss_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_zdo_app_signal_hdr_t *sg_p = NULL;
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, &sg_p);
-  zb_ret_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_hdr_t *sg_p = NULL;
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, &sg_p);
+    zb_ret_t status = ZB_GET_APP_SIGNAL_STATUS(param);
 
-  TRACE_MSG(TRACE_APP1, ">> zboss_signal_handler %hd sig %hd status %hd",
-            (FMT__H_H_H, param, sig, ZB_GET_APP_SIGNAL_STATUS(param)));
+    TRACE_MSG(TRACE_APP1, ">> zboss_signal_handler %hd sig %hd status %hd",
+              (FMT__H_H_H, param, sig, ZB_GET_APP_SIGNAL_STATUS(param)));
 
-  switch (sig)
-  {
-      case ZB_ZDO_SIGNAL_SKIP_STARTUP:
+    switch (sig)
+    {
+    case ZB_ZDO_SIGNAL_SKIP_STARTUP:
         zboss_start_continue();
         break;
 
     case ZB_SIGNAL_DEVICE_FIRST_START:
     case ZB_SIGNAL_DEVICE_REBOOT:
-      TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
+        TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
 
-      if (status == 0)
-      {
-        bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
-        ZB_SCHEDULE_APP_ALARM(test_send_wwah_match_desc, 0, 5 * ZB_TIME_ONE_SECOND);
-      }
-      break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
+        if (status == 0)
+        {
+            bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
+            ZB_SCHEDULE_APP_ALARM(test_send_wwah_match_desc, 0, 5 * ZB_TIME_ONE_SECOND);
+        }
+        break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
 
     case ZB_ZDO_SIGNAL_DEVICE_ANNCE:
-      {
+    {
         zb_zdo_signal_device_annce_params_t *dev_annce_params = ZB_ZDO_SIGNAL_GET_PARAMS(sg_p, zb_zdo_signal_device_annce_params_t);
         g_dut_short_addr = dev_annce_params->device_short_addr;
         ZB_IEEE_ADDR_COPY(g_dut_ieee_addr, dev_annce_params->ieee_addr);
@@ -217,220 +217,220 @@ ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
         test_step_register(test_step_dispatch, 0, RTP_ZCL_21_STEP_6_TIME_ZC);
 
         test_control_start(TEST_MODE, RTP_ZCL_21_STEP_1_DELAY_ZC);
-      }
-      break;
+    }
+    break;
 
     case ZB_BDB_SIGNAL_STEERING:
-      TRACE_MSG(TRACE_APP1, "signal: ZB_BDB_SIGNAL_STEERING, status %d", (FMT__D, status));
-      break; /* ZB_BDB_SIGNAL_STEERING */
+        TRACE_MSG(TRACE_APP1, "signal: ZB_BDB_SIGNAL_STEERING, status %d", (FMT__D, status));
+        break; /* ZB_BDB_SIGNAL_STEERING */
 
     default:
-      TRACE_MSG(TRACE_APS1, "Unknown signal %d, status %d", (FMT__D_D, sig, status));
-      break;
+        TRACE_MSG(TRACE_APS1, "Unknown signal %d, status %d", (FMT__D_D, sig, status));
+        break;
     }
 
-  if (param != ZB_BUF_INVALID)
-  {
-    zb_buf_free(param);
-  }
+    if (param != ZB_BUF_INVALID)
+    {
+        zb_buf_free(param);
+    }
 }
 
 
 static void test_send_wwah_match_desc_cb(zb_uint8_t param)
 {
-  zb_uint8_t *zdp_cmd = zb_buf_begin(param);
-  zb_zdo_match_desc_resp_t *resp = (zb_zdo_match_desc_resp_t*)zdp_cmd;
+    zb_uint8_t *zdp_cmd = zb_buf_begin(param);
+    zb_zdo_match_desc_resp_t *resp = (zb_zdo_match_desc_resp_t *)zdp_cmd;
 
-  TRACE_MSG(TRACE_APP1, ">> test_send_wwah_match_desc_cb, param %hd, status %d", (FMT__H_D, param, resp->status));
+    TRACE_MSG(TRACE_APP1, ">> test_send_wwah_match_desc_cb, param %hd, status %d", (FMT__H_D, param, resp->status));
 
-  ZB_ASSERT(resp->status == ZB_ZDP_STATUS_SUCCESS && resp->match_len == 1);
-  ZB_ASSERT(g_dut_short_addr == resp->nwk_addr);
+    ZB_ASSERT(resp->status == ZB_ZDP_STATUS_SUCCESS && resp->match_len == 1);
+    ZB_ASSERT(g_dut_short_addr == resp->nwk_addr);
 
-  g_dut_ep = *((zb_uint8_t*)(resp + 1));
+    g_dut_ep = *((zb_uint8_t *)(resp + 1));
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 
-  ZB_SCHEDULE_APP_CALLBACK(test_step_dispatch, 0);
+    ZB_SCHEDULE_APP_CALLBACK(test_step_dispatch, 0);
 
-  TRACE_MSG(TRACE_APP1, "<< test_send_wwah_match_desc_cb", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "<< test_send_wwah_match_desc_cb", (FMT__0));
 }
 
 
 static void test_send_wwah_match_desc(zb_uint8_t param)
 {
-  zb_zdo_match_desc_param_t *req;
+    zb_zdo_match_desc_param_t *req;
 
-  if (param == ZB_BUF_INVALID)
-  {
-    zb_buf_get_out_delayed(test_send_wwah_match_desc);
-    return;
-  }
+    if (param == ZB_BUF_INVALID)
+    {
+        zb_buf_get_out_delayed(test_send_wwah_match_desc);
+        return;
+    }
 
-  TRACE_MSG(TRACE_APP1, ">> test_send_wwah_match_desc, param %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_APP1, ">> test_send_wwah_match_desc, param %hd", (FMT__H, param));
 
-  req = zb_buf_initial_alloc(param, sizeof(zb_zdo_match_desc_param_t) + 1 * sizeof(zb_uint16_t));
+    req = zb_buf_initial_alloc(param, sizeof(zb_zdo_match_desc_param_t) + 1 * sizeof(zb_uint16_t));
 
-  req->nwk_addr = g_dut_short_addr;
-  req->addr_of_interest = req->nwk_addr;
-  req->profile_id = ZB_AF_HA_PROFILE_ID;
-  req->num_in_clusters = 1;
-  req->num_out_clusters = 0;
-  req->cluster_list[0] = ZB_ZCL_CLUSTER_ID_WWAH;
+    req->nwk_addr = g_dut_short_addr;
+    req->addr_of_interest = req->nwk_addr;
+    req->profile_id = ZB_AF_HA_PROFILE_ID;
+    req->num_in_clusters = 1;
+    req->num_out_clusters = 0;
+    req->cluster_list[0] = ZB_ZCL_CLUSTER_ID_WWAH;
 
-  zb_zdo_match_desc_req(param, test_send_wwah_match_desc_cb);
+    zb_zdo_match_desc_req(param, test_send_wwah_match_desc_cb);
 
-  TRACE_MSG(TRACE_APP1, "<< test_send_wwah_match_desc", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "<< test_send_wwah_match_desc", (FMT__0));
 }
 
 
 static void test_step_read_bad_parent_discovery_enabled(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_APP1, ">> test_step_read_bad_parent_discovery_enabled, param %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_APP1, ">> test_step_read_bad_parent_discovery_enabled, param %hd", (FMT__H, param));
 
-  ZB_ASSERT(param != ZB_BUF_INVALID);
-  send_read_attr(param, ZB_ZCL_CLUSTER_ID_WWAH, ZB_ZCL_ATTR_WWAH_WWAH_BAD_PARENT_RECOVERY_ENABLED_ID);
+    ZB_ASSERT(param != ZB_BUF_INVALID);
+    send_read_attr(param, ZB_ZCL_CLUSTER_ID_WWAH, ZB_ZCL_ATTR_WWAH_WWAH_BAD_PARENT_RECOVERY_ENABLED_ID);
 
-  g_test_step++;
+    g_test_step++;
 
-  TRACE_MSG(TRACE_APP1, "<< test_step_read_bad_parent_discovery_enabled", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "<< test_step_read_bad_parent_discovery_enabled", (FMT__0));
 }
 
 
 static void test_step_read_checkin_interval(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_APP1, ">> test_step_read_checkin_interval, param %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_APP1, ">> test_step_read_checkin_interval, param %hd", (FMT__H, param));
 
-  ZB_ASSERT(param != ZB_BUF_INVALID);
-  send_read_attr(param, ZB_ZCL_CLUSTER_ID_POLL_CONTROL, ZB_ZCL_ATTR_POLL_CONTROL_CHECKIN_INTERVAL_ID);
+    ZB_ASSERT(param != ZB_BUF_INVALID);
+    send_read_attr(param, ZB_ZCL_CLUSTER_ID_POLL_CONTROL, ZB_ZCL_ATTR_POLL_CONTROL_CHECKIN_INTERVAL_ID);
 
-  g_test_step++;
+    g_test_step++;
 
-  TRACE_MSG(TRACE_APP1, "<< test_step_read_checkin_interval", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "<< test_step_read_checkin_interval", (FMT__0));
 }
 
 
 static void test_step_write_checkin_interval(zb_uint8_t param)
 {
-  zb_uint32_t check_in_interval = 0x80;
+    zb_uint32_t check_in_interval = 0x80;
 
-  TRACE_MSG(TRACE_APP1, ">> test_step_write_checkin_interval, param %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_APP1, ">> test_step_write_checkin_interval, param %hd", (FMT__H, param));
 
-  ZB_ASSERT(param != ZB_BUF_INVALID);
+    ZB_ASSERT(param != ZB_BUF_INVALID);
 
-  send_write_attr(param, ZB_ZCL_CLUSTER_ID_POLL_CONTROL, ZB_ZCL_ATTR_POLL_CONTROL_CHECKIN_INTERVAL_ID,
-    ZB_ZCL_ATTR_TYPE_U32, (zb_uint8_t*)&check_in_interval);
+    send_write_attr(param, ZB_ZCL_CLUSTER_ID_POLL_CONTROL, ZB_ZCL_ATTR_POLL_CONTROL_CHECKIN_INTERVAL_ID,
+                    ZB_ZCL_ATTR_TYPE_U32, (zb_uint8_t *)&check_in_interval);
 
-  g_test_step++;
+    g_test_step++;
 
-  TRACE_MSG(TRACE_APP1, "<< test_step_write_checkin_interval", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "<< test_step_write_checkin_interval", (FMT__0));
 }
 
 
 static void test_step_enable_bad_parent_discovery(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_APP1, ">> test_step_enable_bad_parent_discovery, param %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_APP1, ">> test_step_enable_bad_parent_discovery, param %hd", (FMT__H, param));
 
-  ZB_ASSERT(param != ZB_BUF_INVALID);
-  ZB_ZCL_WWAH_SEND_ENABLE_WWAH_BAD_PARENT_RECOVERY(param, g_dut_short_addr, ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
-    g_dut_ep, ZC_HA_EP, ZB_AF_HA_PROFILE_ID, ZB_FALSE, NULL);
+    ZB_ASSERT(param != ZB_BUF_INVALID);
+    ZB_ZCL_WWAH_SEND_ENABLE_WWAH_BAD_PARENT_RECOVERY(param, g_dut_short_addr, ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
+            g_dut_ep, ZC_HA_EP, ZB_AF_HA_PROFILE_ID, ZB_FALSE, NULL);
 
-  g_test_step++;
+    g_test_step++;
 
-  TRACE_MSG(TRACE_APP1, "<< test_step_enable_bad_parent_discovery", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "<< test_step_enable_bad_parent_discovery", (FMT__0));
 }
 
 
 static void test_step_perform_poll_control_binding(zb_uint8_t param)
 {
-  zb_zdo_bind_req_param_t *req;
+    zb_zdo_bind_req_param_t *req;
 
-  TRACE_MSG(TRACE_APP2, ">> test_step_perform_poll_control_binding, param %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_APP2, ">> test_step_perform_poll_control_binding, param %hd", (FMT__H, param));
 
-  ZB_ASSERT(param != ZB_BUF_INVALID);
+    ZB_ASSERT(param != ZB_BUF_INVALID);
 
-  req = ZB_BUF_GET_PARAM(param, zb_zdo_bind_req_param_t);
-  ZB_IEEE_ADDR_COPY(req->src_address, g_dut_ieee_addr);
+    req = ZB_BUF_GET_PARAM(param, zb_zdo_bind_req_param_t);
+    ZB_IEEE_ADDR_COPY(req->src_address, g_dut_ieee_addr);
 
-  req->src_endp = 1;
-  req->cluster_id = ZB_ZCL_CLUSTER_ID_POLL_CONTROL;
-  req->dst_addr_mode = ZB_APS_ADDR_MODE_64_ENDP_PRESENT;
-  zb_get_long_address(req->dst_address.addr_long);
+    req->src_endp = 1;
+    req->cluster_id = ZB_ZCL_CLUSTER_ID_POLL_CONTROL;
+    req->dst_addr_mode = ZB_APS_ADDR_MODE_64_ENDP_PRESENT;
+    zb_get_long_address(req->dst_address.addr_long);
 
-  req->dst_endp = ZC_HA_EP;
-  req->req_dst_addr = g_dut_short_addr;
+    req->dst_endp = ZC_HA_EP;
+    req->req_dst_addr = g_dut_short_addr;
 
-  zb_zdo_bind_req(param, NULL);
+    zb_zdo_bind_req(param, NULL);
 
-  g_test_step++;
+    g_test_step++;
 
-  TRACE_MSG(TRACE_APP2, "<< test_step_perform_poll_control_bindings", (FMT__0));
+    TRACE_MSG(TRACE_APP2, "<< test_step_perform_poll_control_bindings", (FMT__0));
 }
 
 
 static void test_step_dispatch(zb_uint8_t param)
 {
-  if (param == ZB_BUF_INVALID)
-  {
-    zb_buf_get_out_delayed(test_step_dispatch);
-    return;
-  }
+    if (param == ZB_BUF_INVALID)
+    {
+        zb_buf_get_out_delayed(test_step_dispatch);
+        return;
+    }
 
-  TRACE_MSG(TRACE_APP1, ">> test_step_dispatch, param %hd, current_step %d", (FMT__H_D, param, g_test_step));
+    TRACE_MSG(TRACE_APP1, ">> test_step_dispatch, param %hd, current_step %d", (FMT__H_D, param, g_test_step));
 
-  switch (g_test_step)
-  {
+    switch (g_test_step)
+    {
     case REG_TEST_STEP_READ_BAD_PARENT_DISCOVERY_ENABLED:
-      ZB_SCHEDULE_APP_CALLBACK(test_step_read_bad_parent_discovery_enabled, param);
-      break;
+        ZB_SCHEDULE_APP_CALLBACK(test_step_read_bad_parent_discovery_enabled, param);
+        break;
 
     case REG_TEST_STEP_ENABLE_BAD_PARENT_DISCOVERY:
-      ZB_SCHEDULE_APP_CALLBACK(test_step_enable_bad_parent_discovery, param);
-      break;
+        ZB_SCHEDULE_APP_CALLBACK(test_step_enable_bad_parent_discovery, param);
+        break;
 
     case REG_TEST_STEP_READ_BAD_PARENT_DISCOVERY_ENABLED_2:
-      ZB_SCHEDULE_APP_CALLBACK(test_step_read_bad_parent_discovery_enabled, param);
-      break;
+        ZB_SCHEDULE_APP_CALLBACK(test_step_read_bad_parent_discovery_enabled, param);
+        break;
 
     case REG_TEST_STEP_READ_CHECKIN_INTERVAL:
-      ZB_SCHEDULE_APP_CALLBACK(test_step_read_checkin_interval, param);
-      break;
+        ZB_SCHEDULE_APP_CALLBACK(test_step_read_checkin_interval, param);
+        break;
 
     case REG_TEST_STEP_WRITE_CHECKIN_INTERVAL:
-      ZB_SCHEDULE_APP_CALLBACK(test_step_write_checkin_interval, param);
-      break;
+        ZB_SCHEDULE_APP_CALLBACK(test_step_write_checkin_interval, param);
+        break;
 
     case REG_TEST_STEP_PERFORM_POLL_CONTROL_BINDING:
-      ZB_SCHEDULE_APP_CALLBACK(test_step_perform_poll_control_binding, param);
-      break;
+        ZB_SCHEDULE_APP_CALLBACK(test_step_perform_poll_control_binding, param);
+        break;
 
     default:
-      TRACE_MSG(TRACE_APP1, "test procedure is completed", (FMT__0));
-      break;
-  }
+        TRACE_MSG(TRACE_APP1, "test procedure is completed", (FMT__0));
+        break;
+    }
 
-  TRACE_MSG(TRACE_APP1, "<< test_step_dispatch", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "<< test_step_dispatch", (FMT__0));
 }
 
 
 static void send_read_attr(zb_bufid_t buffer, zb_uint16_t clusterID, zb_uint16_t attributeID)
 {
-  zb_uint8_t *cmd_ptr;
-  ZB_ZCL_GENERAL_INIT_READ_ATTR_REQ((buffer), cmd_ptr, ZB_ZCL_ENABLE_DEFAULT_RESPONSE);
-  ZB_ZCL_GENERAL_ADD_ID_READ_ATTR_REQ(cmd_ptr, (attributeID));
-  ZB_ZCL_GENERAL_SEND_READ_ATTR_REQ(
-    (buffer), cmd_ptr, g_dut_short_addr, ZB_APS_ADDR_MODE_16_ENDP_PRESENT, g_dut_ep, ZC_HA_EP,
-    ZB_AF_HA_PROFILE_ID, (clusterID), NULL);
+    zb_uint8_t *cmd_ptr;
+    ZB_ZCL_GENERAL_INIT_READ_ATTR_REQ((buffer), cmd_ptr, ZB_ZCL_ENABLE_DEFAULT_RESPONSE);
+    ZB_ZCL_GENERAL_ADD_ID_READ_ATTR_REQ(cmd_ptr, (attributeID));
+    ZB_ZCL_GENERAL_SEND_READ_ATTR_REQ(
+        (buffer), cmd_ptr, g_dut_short_addr, ZB_APS_ADDR_MODE_16_ENDP_PRESENT, g_dut_ep, ZC_HA_EP,
+        ZB_AF_HA_PROFILE_ID, (clusterID), NULL);
 }
 
 
 static void send_write_attr(zb_bufid_t buffer, zb_uint16_t clusterID,
-  zb_uint16_t attributeID, zb_uint8_t attrType, zb_uint8_t *attrVal)
+                            zb_uint16_t attributeID, zb_uint8_t attrType, zb_uint8_t *attrVal)
 {
-  zb_uint8_t *cmd_ptr;
-  ZB_ZCL_GENERAL_INIT_WRITE_ATTR_REQ((buffer), cmd_ptr, ZB_ZCL_ENABLE_DEFAULT_RESPONSE);
-  ZB_ZCL_GENERAL_ADD_VALUE_WRITE_ATTR_REQ(cmd_ptr, (attributeID), (attrType), (attrVal));
-  ZB_ZCL_GENERAL_SEND_WRITE_ATTR_REQ((buffer), cmd_ptr, g_dut_short_addr, ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
-    g_dut_ep, ZC_HA_EP, ZB_AF_HA_PROFILE_ID, (clusterID), NULL);
+    zb_uint8_t *cmd_ptr;
+    ZB_ZCL_GENERAL_INIT_WRITE_ATTR_REQ((buffer), cmd_ptr, ZB_ZCL_ENABLE_DEFAULT_RESPONSE);
+    ZB_ZCL_GENERAL_ADD_VALUE_WRITE_ATTR_REQ(cmd_ptr, (attributeID), (attrType), (attrVal));
+    ZB_ZCL_GENERAL_SEND_WRITE_ATTR_REQ((buffer), cmd_ptr, g_dut_short_addr, ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
+                                       g_dut_ep, ZC_HA_EP, ZB_AF_HA_PROFILE_ID, (clusterID), NULL);
 }
 
 #endif /* NCP_MODE_HOST */

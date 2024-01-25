@@ -31,23 +31,23 @@
 /* Private functions */
 void light_zc_hal_device_started()
 {
-  zb_osif_led_on(BULB_LED_POVER);
+    zb_osif_led_on(BULB_LED_POVER);
 }
 
 void light_zc_hal_gpio_init()
 {
-  zb_osif_led_button_init();
+    zb_osif_led_button_init();
 }
 
 /* Public interface */
 void light_zc_hal_init()
 {
-  volatile  zb_uint16_t i = 0;
-  for (i = 16000; i>0; i--)
-  {
-   light_zc_hal_gpio_init();
-  }
-  light_zc_hal_gpio_init();
+    volatile  zb_uint16_t i = 0;
+    for (i = 16000; i > 0; i--)
+    {
+        light_zc_hal_gpio_init();
+    }
+    light_zc_hal_gpio_init();
 
-  light_zc_hal_device_started();
+    light_zc_hal_device_started();
 }

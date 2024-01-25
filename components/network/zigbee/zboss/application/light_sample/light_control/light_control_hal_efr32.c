@@ -34,87 +34,87 @@
 /* Private functions */
 static void GPIO_Button_IRQHandler_0(uint8_t pin)
 {
-  ZVUNUSED(pin);
+    ZVUNUSED(pin);
 #ifdef ZB_USE_BUTTONS
-  light_control_button_pressed(LIGHT_CONTROL_BUTTON_OFF);
+    light_control_button_pressed(LIGHT_CONTROL_BUTTON_OFF);
 #endif
 }
 
 static void GPIO_Button_IRQHandler_1(uint8_t pin)
 {
-  ZVUNUSED(pin);
+    ZVUNUSED(pin);
 #ifdef ZB_USE_BUTTONS
-  light_control_button_pressed(LIGHT_CONTROL_BUTTON_ON);
+    light_control_button_pressed(LIGHT_CONTROL_BUTTON_ON);
 #endif
 }
 
 void light_control_hal_device_started()
 {
-  return;
+    return;
 }
 
 void light_control_hal_gpio_init()
 {
-  // Enable GPIO clock.
-  CMU_ClockEnable(cmuClock_GPIO, true);
-  // Initialize GPIO interrupt.
-  GPIOINT_Init();
-  // Configure PB0 as input and enable interrupt.
-  GPIO_PinModeSet(BSP_BUTTON0_PORT, BSP_BUTTON0_PIN, gpioModeInput, 1);
-  GPIO_IntConfig(BSP_BUTTON0_PORT, BSP_BUTTON0_PIN, true, true, true);
-  GPIOINT_CallbackRegister(BSP_BUTTON0_PIN, GPIO_Button_IRQHandler_0);
+    // Enable GPIO clock.
+    CMU_ClockEnable(cmuClock_GPIO, true);
+    // Initialize GPIO interrupt.
+    GPIOINT_Init();
+    // Configure PB0 as input and enable interrupt.
+    GPIO_PinModeSet(BSP_BUTTON0_PORT, BSP_BUTTON0_PIN, gpioModeInput, 1);
+    GPIO_IntConfig(BSP_BUTTON0_PORT, BSP_BUTTON0_PIN, true, true, true);
+    GPIOINT_CallbackRegister(BSP_BUTTON0_PIN, GPIO_Button_IRQHandler_0);
 
-  GPIO_PinModeSet(BSP_BUTTON1_PORT, BSP_BUTTON1_PIN, gpioModeInput, 1);
-  GPIO_IntConfig(BSP_BUTTON1_PORT, BSP_BUTTON1_PIN, true, true, true);
-  GPIOINT_CallbackRegister(BSP_BUTTON1_PIN, GPIO_Button_IRQHandler_1);
+    GPIO_PinModeSet(BSP_BUTTON1_PORT, BSP_BUTTON1_PIN, gpioModeInput, 1);
+    GPIO_IntConfig(BSP_BUTTON1_PORT, BSP_BUTTON1_PIN, true, true, true);
+    GPIOINT_CallbackRegister(BSP_BUTTON1_PIN, GPIO_Button_IRQHandler_1);
 
-  /* Configure pin as output */
-  GPIO_PinModeSet(BSP_LED0_PORT, BSP_LED0_PIN, gpioModePushPull, 1);
-  GPIO_PinModeSet(BSP_LED1_PORT, BSP_LED1_PIN, gpioModePushPull, 1);
+    /* Configure pin as output */
+    GPIO_PinModeSet(BSP_LED0_PORT, BSP_LED0_PIN, gpioModePushPull, 1);
+    GPIO_PinModeSet(BSP_LED1_PORT, BSP_LED1_PIN, gpioModePushPull, 1);
 
-  /* Configure pin as input */
-  GPIO_PinOutClear(BSP_LED0_PORT, BSP_LED0_PIN);
-  GPIO_PinOutClear(BSP_LED1_PORT, BSP_LED1_PIN);
+    /* Configure pin as input */
+    GPIO_PinOutClear(BSP_LED0_PORT, BSP_LED0_PIN);
+    GPIO_PinOutClear(BSP_LED1_PORT, BSP_LED1_PIN);
 }
 
 /* Public interface */
 void light_control_hal_init()
 {
-  light_control_hal_gpio_init();
-  light_control_hal_device_started();
+    light_control_hal_gpio_init();
+    light_control_hal_device_started();
 }
 
 void light_control_irq_handler()
 {
-  return;
+    return;
 }
 
 zb_bool_t light_control_hal_is_button_pressed(zb_uint8_t button_no)
 {
-  zb_uint32_t pin_read;
-  if (button_no == 0)
-  {
-    pin_read = GPIO_PinInGet(BSP_BUTTON0_PORT, BSP_BUTTON0_PIN);
-  }
-  else if (button_no == 1)
-  {
-    pin_read = GPIO_PinInGet(BSP_BUTTON1_PORT, BSP_BUTTON1_PIN);
-  }
-  else
-  {
-    pin_read = 1;
-  }
-  return pin_read ? ZB_FALSE : ZB_TRUE;
+    zb_uint32_t pin_read;
+    if (button_no == 0)
+    {
+        pin_read = GPIO_PinInGet(BSP_BUTTON0_PORT, BSP_BUTTON0_PIN);
+    }
+    else if (button_no == 1)
+    {
+        pin_read = GPIO_PinInGet(BSP_BUTTON1_PORT, BSP_BUTTON1_PIN);
+    }
+    else
+    {
+        pin_read = 1;
+    }
+    return pin_read ? ZB_FALSE : ZB_TRUE;
 }
 
 void light_control_hal_set_connect(zb_bool_t on)
 {
-   if (on)
-  {
-    GPIO_PinOutSet(BSP_LED0_PORT, BSP_LED0_PIN);
-  }
-  else
-  {
-    GPIO_PinOutClear(BSP_LED0_PORT, BSP_LED0_PIN);
-  }
+    if (on)
+    {
+        GPIO_PinOutSet(BSP_LED0_PORT, BSP_LED0_PIN);
+    }
+    else
+    {
+        GPIO_PinOutClear(BSP_LED0_PORT, BSP_LED0_PIN);
+    }
 }

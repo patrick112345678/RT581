@@ -51,7 +51,7 @@ static const zb_uint16_t    g_short_addr_r4 = 0x4444;
 
 /* Set ZR4 timeouts */
 #define TIME_ZR4_CHANGE_SHORT_ADDR  (1  * ZB_TIME_ONE_SECOND)
-#define TIME_ZR4_SEND_ROURE_REC     (3  * ZB_TIME_ONE_SECOND) 
+#define TIME_ZR4_SEND_ROURE_REC     (3  * ZB_TIME_ONE_SECOND)
 
 /* Set test profile transmission settings */
 #define TEST_BUFFER_LEN              0x0A

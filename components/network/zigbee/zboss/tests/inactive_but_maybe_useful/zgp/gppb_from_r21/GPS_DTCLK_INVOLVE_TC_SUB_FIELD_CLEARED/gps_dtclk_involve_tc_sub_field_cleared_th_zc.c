@@ -47,7 +47,7 @@
 static zb_ieee_addr_t g_th_zc_addr = TH_ZC_IEEE_ADDR;
 static zb_ieee_addr_t g_dut_gps_ieee_addr = DUT_GPS_IEEE_ADDR;
 static zb_uint8_t g_key_nwk[] = NWK_KEY;
-static zb_uint8_t g_ic[16+2] = SETUP_IC;
+static zb_uint8_t g_ic[16 + 2] = SETUP_IC;
 /* Derived key is 66 b6 90 09 81 e1 ee 3c a4 20 6b 6b 86 1c 02 bb (normal). Add
  * it to Wireshark. */
 
@@ -63,68 +63,68 @@ static zb_uint8_t g_ic[16+2] = SETUP_IC;
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  ZB_INIT("th_zc");
+    ZB_INIT("th_zc");
 
-  zb_set_long_address(g_th_zc_addr);
-  zb_set_network_coordinator_role(1l << TEST_CHANNEL);
-  //zb_set_max_children(5);
+    zb_set_long_address(g_th_zc_addr);
+    zb_set_network_coordinator_role(1l << TEST_CHANNEL);
+    //zb_set_max_children(5);
 
-  /* Setup predefined nwk key - to easily decrypt ZB sniffer logs which does not
-   * contain keys exchange. By default nwk key is randomly generated. */
-  zb_secur_setup_nwk_key((zb_uint8_t*) g_key_nwk, 0);
+    /* Setup predefined nwk key - to easily decrypt ZB sniffer logs which does not
+     * contain keys exchange. By default nwk key is randomly generated. */
+    zb_secur_setup_nwk_key((zb_uint8_t *) g_key_nwk, 0);
 
-  /* Start ZBOSS main loop. */
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zboss_main_loop();
-  }
+    /* Start ZBOSS main loop. */
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zboss_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_zdo_app_event_t *ev_p = NULL;
-  zb_zdo_app_signal_t sig = zb_get_app_event(param, &ev_p);
+    zb_zdo_app_event_t *ev_p = NULL;
+    zb_zdo_app_signal_t sig = zb_get_app_event(param, &ev_p);
 
-  if (ZB_GET_APP_EVENT_STATUS(param) == 0)
-  {
-    switch(sig)
+    if (ZB_GET_APP_EVENT_STATUS(param) == 0)
     {
-      case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      case ZB_BDB_SIGNAL_DEVICE_REBOOT:
-        TRACE_MSG(TRACE_APP1, "Device STARTED OK", (FMT__0));
-        /* Turn off link key exchange if legacy device support (<ZB3.0) is neeeded */
-        zb_bdb_set_legacy_device_support(1);
-        bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
-        zb_secur_ic_add(g_dut_gps_ieee_addr, g_ic);
-        break;
+        switch (sig)
+        {
+        case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
+        case ZB_BDB_SIGNAL_DEVICE_REBOOT:
+            TRACE_MSG(TRACE_APP1, "Device STARTED OK", (FMT__0));
+            /* Turn off link key exchange if legacy device support (<ZB3.0) is neeeded */
+            zb_bdb_set_legacy_device_support(1);
+            bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
+            zb_secur_ic_add(g_dut_gps_ieee_addr, g_ic);
+            break;
 
-      case ZB_BDB_SIGNAL_STEERING:
-        TRACE_MSG(TRACE_APP1, "Successfull steering", (FMT__0));
-        break;
+        case ZB_BDB_SIGNAL_STEERING:
+            TRACE_MSG(TRACE_APP1, "Successfull steering", (FMT__0));
+            break;
 
-      default:
-        TRACE_MSG(TRACE_APP1, "Unknown signal", (FMT__0));
+        default:
+            TRACE_MSG(TRACE_APP1, "Unknown signal", (FMT__0));
+        }
     }
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, ZB_GET_APP_EVENT_STATUS(param)));
-  }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, ZB_GET_APP_EVENT_STATUS(param)));
+    }
 
-  if (param)
-  {
-    zb_free_buf(ZB_BUF_FROM_REF(param));
-  }
+    if (param)
+    {
+        zb_free_buf(ZB_BUF_FROM_REF(param));
+    }
 }
 
 #else // defined ZB_ENABLE_HA
@@ -132,11 +132,11 @@ ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 #include <stdio.h>
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  printf("HA profile should be enabled in zb_config.h\n");
+    printf("HA profile should be enabled in zb_config.h\n");
 
-  MAIN_RETURN(1);
+    MAIN_RETURN(1);
 }
 
 #endif

@@ -281,8 +281,8 @@ void otHistoryTrackerInitIterator(otHistoryTrackerIterator *aIterator);
  *
  */
 const otHistoryTrackerNetworkInfo *otHistoryTrackerIterateNetInfoHistory(otInstance               *aInstance,
-                                                                         otHistoryTrackerIterator *aIterator,
-                                                                         uint32_t                 *aEntryAge);
+        otHistoryTrackerIterator *aIterator,
+        uint32_t                 *aEntryAge);
 
 /**
  * This function iterates over the entries in the unicast address history list.
@@ -334,8 +334,8 @@ const otHistoryTrackerMulticastAddressInfo *otHistoryTrackerIterateMulticastAddr
  *
  */
 const otHistoryTrackerMessageInfo *otHistoryTrackerIterateRxHistory(otInstance               *aInstance,
-                                                                    otHistoryTrackerIterator *aIterator,
-                                                                    uint32_t                 *aEntryAge);
+        otHistoryTrackerIterator *aIterator,
+        uint32_t                 *aEntryAge);
 
 /**
  * This function iterates over the entries in the TX message history list.
@@ -351,8 +351,8 @@ const otHistoryTrackerMessageInfo *otHistoryTrackerIterateRxHistory(otInstance  
  *
  */
 const otHistoryTrackerMessageInfo *otHistoryTrackerIterateTxHistory(otInstance               *aInstance,
-                                                                    otHistoryTrackerIterator *aIterator,
-                                                                    uint32_t                 *aEntryAge);
+        otHistoryTrackerIterator *aIterator,
+        uint32_t                 *aEntryAge);
 
 /**
  * This function iterates over the entries in the neighbor history list.
@@ -368,8 +368,8 @@ const otHistoryTrackerMessageInfo *otHistoryTrackerIterateTxHistory(otInstance  
  *
  */
 const otHistoryTrackerNeighborInfo *otHistoryTrackerIterateNeighborHistory(otInstance               *aInstance,
-                                                                           otHistoryTrackerIterator *aIterator,
-                                                                           uint32_t                 *aEntryAge);
+        otHistoryTrackerIterator *aIterator,
+        uint32_t                 *aEntryAge);
 
 /**
  * This function iterates over the entries in the router history list.
@@ -385,8 +385,8 @@ const otHistoryTrackerNeighborInfo *otHistoryTrackerIterateNeighborHistory(otIns
  *
  */
 const otHistoryTrackerRouterInfo *otHistoryTrackerIterateRouterHistory(otInstance               *aInstance,
-                                                                       otHistoryTrackerIterator *aIterator,
-                                                                       uint32_t                 *aEntryAge);
+        otHistoryTrackerIterator *aIterator,
+        uint32_t                 *aEntryAge);
 
 /**
  * This function iterates over the entries in the Network Data on mesh prefix entry history list.
@@ -402,8 +402,8 @@ const otHistoryTrackerRouterInfo *otHistoryTrackerIterateRouterHistory(otInstanc
  *
  */
 const otHistoryTrackerOnMeshPrefixInfo *otHistoryTrackerIterateOnMeshPrefixHistory(otInstance               *aInstance,
-                                                                                   otHistoryTrackerIterator *aIterator,
-                                                                                   uint32_t                 *aEntryAge);
+        otHistoryTrackerIterator *aIterator,
+        uint32_t                 *aEntryAge);
 
 /**
  * This function iterates over the entries in the Network Data external route entry history list.

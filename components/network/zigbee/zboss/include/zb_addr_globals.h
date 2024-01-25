@@ -61,7 +61,7 @@
 */
 typedef ZB_PACKED_PRE struct zb_dev_manufacturer_s
 {
-  zb_uint8_t device_manufacturer[3]; /*!< Manufactureer identifier - 3 octets */
+    zb_uint8_t device_manufacturer[3]; /*!< Manufactureer identifier - 3 octets */
 }
 ZB_PACKED_STRUCT
 zb_dev_manufacturer_t;
@@ -92,8 +92,8 @@ zb_dev_manufacturer_t;
  */
 typedef ZB_PACKED_PRE struct zb_pan_id_map_s
 {
-  zb_ext_pan_id_t long_panid;   /*!< 64-bit Pan ID */
-  zb_uint16_t     short_panid;  /*!< 16-bit Pan ID */
+    zb_ext_pan_id_t long_panid;   /*!< 64-bit Pan ID */
+    zb_uint16_t     short_panid;  /*!< 16-bit Pan ID */
 } ZB_PACKED_STRUCT zb_pan_id_map_t;
 
 
@@ -104,28 +104,28 @@ typedef ZB_PACKED_PRE struct zb_pan_id_map_s
 */
 typedef struct zb_addr_globals_s
 {
-  zb_uint8_t used_manufacturer[ZB_DEV_MANUFACTURER_TABLE_SIZE / 8U + 1U];   /*!<
+    zb_uint8_t used_manufacturer[ZB_DEV_MANUFACTURER_TABLE_SIZE / 8U + 1U];   /*!<
                                                                            * dev_manufacturer
                                                                            * usage mask  */
-  zb_dev_manufacturer_t dev_manufacturer[ZB_DEV_MANUFACTURER_TABLE_SIZE]; /*!<
+    zb_dev_manufacturer_t dev_manufacturer[ZB_DEV_MANUFACTURER_TABLE_SIZE]; /*!<
                                                                            * Manufacturers
                                                                            * array */
 
-  zb_pan_id_map_t pan_map[ZB_PANID_TABLE_SIZE]; /*!< Pan ID's hash */
-  zb_uint8_t used_pan_addr[ZB_PANID_TABLE_SIZE / 8U + 1U]; /*!< pan_addr usage mask  */
+    zb_pan_id_map_t pan_map[ZB_PANID_TABLE_SIZE]; /*!< Pan ID's hash */
+    zb_uint8_t used_pan_addr[ZB_PANID_TABLE_SIZE / 8U + 1U]; /*!< pan_addr usage mask  */
 
 #ifndef ZB_CONFIGURABLE_MEM
-  zb_address_map_t addr_map[ZB_IEEE_ADDR_TABLE_SIZE]; /*!< Address map - open
+    zb_address_map_t addr_map[ZB_IEEE_ADDR_TABLE_SIZE]; /*!< Address map - open
                                                        * hash by 64-bit address */
-  zb_uint8_t short_sorted[ZB_IEEE_ADDR_TABLE_SIZE]; /*!< 16-bits address sort array */
+    zb_uint8_t short_sorted[ZB_IEEE_ADDR_TABLE_SIZE]; /*!< 16-bits address sort array */
 #else
-  zb_address_map_t *addr_map;
-  zb_uint8_t *short_sorted;
+    zb_address_map_t *addr_map;
+    zb_uint8_t *short_sorted;
 #endif
-  zb_ushort_t n_elements;                            /*!< # of elements in the
+    zb_ushort_t n_elements;                            /*!< # of elements in the
                                                      * address translation table  */
-  zb_ushort_t n_sorted_elements; /*!< # of elements in the short_sorted[] */
-  zb_ushort_t clock_i;           /*!< # of elements in the addr_map[] */
+    zb_ushort_t n_sorted_elements; /*!< # of elements in the short_sorted[] */
+    zb_ushort_t clock_i;           /*!< # of elements in the addr_map[] */
 } zb_addr_globals_t;
 
 

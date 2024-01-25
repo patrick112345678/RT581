@@ -64,96 +64,96 @@ static void test_trigger_rejoin(zb_uint8_t unused);
 /************************Main*************************************/
 MAIN()
 {
-  ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
-  ZB_SET_TRACE_LEVEL(4);
-  ARGV_UNUSED;
+    ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
+    ZB_SET_TRACE_LEVEL(4);
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("zdo_th_zr1");
+    ZB_INIT("zdo_th_zr1");
 
 
-  zb_set_long_address(g_ieee_addr_th_zr1);
+    zb_set_long_address(g_ieee_addr_th_zr1);
 
-  zb_reg_test_set_zr_role();
-  zb_reg_test_set_common_channel_settings();
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    zb_reg_test_set_zr_role();
+    zb_reg_test_set_common_channel_settings();
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  zb_set_max_children(0);
+    zb_set_max_children(0);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 /********************ZDO Startup*****************************/
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
-  zb_bool_t rejoin_backoff_running = zb_zdo_rejoin_backoff_is_running();
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_bool_t rejoin_backoff_running = zb_zdo_rejoin_backoff_is_running();
 
-  TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  switch (sig)
-  {
+    switch (sig)
+    {
     case ZB_ZDO_SIGNAL_DEFAULT_START:
     case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
     case ZB_BDB_SIGNAL_DEVICE_REBOOT:
-      TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        if (rejoin_backoff_running)
+        TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
+        if (status == 0)
         {
-          zb_zdo_rejoin_backoff_cancel();
+            if (rejoin_backoff_running)
+            {
+                zb_zdo_rejoin_backoff_cancel();
+            }
+            else
+            {
+                /* Start rejoin and reset to defaults */
+                ZB_SCHEDULE_ALARM(test_trigger_rejoin, 0, TEST_TH_ZR1_REJOIN_TIMEOUT);
+            }
         }
-        else
-        {
-          /* Start rejoin and reset to defaults */
-          ZB_SCHEDULE_ALARM(test_trigger_rejoin, 0, TEST_TH_ZR1_REJOIN_TIMEOUT);
-        }
-      }
 
-      break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
+        break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
 
     case ZB_BDB_SIGNAL_STEERING:
-      TRACE_MSG(TRACE_APP1, "signal: ZB_BDB_SIGNAL_STEERING, status %d, rejoin backoff %hd", (FMT__D_D, status, rejoin_backoff_running));
-      break;
+        TRACE_MSG(TRACE_APP1, "signal: ZB_BDB_SIGNAL_STEERING, status %d, rejoin backoff %hd", (FMT__D_D, status, rejoin_backoff_running));
+        break;
 
     default:
-      TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
-      break;
-  }
+        TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 static void test_trigger_rejoin(zb_uint8_t unused)
 {
-  zb_address_ieee_ref_t zero_addr_ref;
-  ZVUNUSED(unused);
+    zb_address_ieee_ref_t zero_addr_ref;
+    ZVUNUSED(unused);
 
-  TRACE_MSG(TRACE_APP1, "test_trigger_rejoin()", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "test_trigger_rejoin()", (FMT__0));
 
-  zb_set_long_address(g_zero_addr);
+    zb_set_long_address(g_zero_addr);
 
-  /* ZC will send Network Status command about address conflict after receiving association request,
-   * so ZR will try to resolve it and change address.
-   * So, addresses table should contain entry with zero address. ZR should be able to find
-   * valid reference to this zero address */
-  (void)zb_address_by_ieee(g_zero_addr, ZB_TRUE, ZB_FALSE, &zero_addr_ref);
+    /* ZC will send Network Status command about address conflict after receiving association request,
+     * so ZR will try to resolve it and change address.
+     * So, addresses table should contain entry with zero address. ZR should be able to find
+     * valid reference to this zero address */
+    (void)zb_address_by_ieee(g_zero_addr, ZB_TRUE, ZB_FALSE, &zero_addr_ref);
 
-  /* Trigger rejoin */
-  zb_zdo_rejoin_backoff_start(ZB_FALSE);
+    /* Trigger rejoin */
+    zb_zdo_rejoin_backoff_start(ZB_FALSE);
 }
 
 /*! @} */

@@ -1,12 +1,12 @@
 /**
  * @file util_list.h
  * @author Rex Huang (rex.huang@rafaelmicro.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2023-07-27
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 
 #ifndef _UTIL_LIST_H_
@@ -62,7 +62,7 @@ void utils_list_pool_init(struct utils_list *list, void *pool, size_t elmt_size,
  ****************************************************************************************
  */
 void utils_list_push_back(struct utils_list *list,
-                       struct utils_list_hdr *list_hdr);
+                          struct utils_list_hdr *list_hdr);
 
 /**
  ****************************************************************************************
@@ -124,9 +124,9 @@ int utils_list_find(struct utils_list *list, struct utils_list_hdr *list_hdr);
  * @return              Pointer to the element found and removed (NULL otherwise).
  ****************************************************************************************
  */
-void utils_list_insert(struct utils_list * const list, struct utils_list_hdr * const element,
-        int (*cmp)(struct utils_list_hdr const *elementA,
-        struct utils_list_hdr const *elementB));
+void utils_list_insert(struct utils_list *const list, struct utils_list_hdr *const element,
+                       int (*cmp)(struct utils_list_hdr const *elementA,
+                                  struct utils_list_hdr const *elementB));
 
 /**
  ****************************************************************************************
@@ -142,7 +142,7 @@ void utils_list_insert(struct utils_list * const list, struct utils_list_hdr * c
  * If prev_element is not found, the provided element is not inserted
  ****************************************************************************************
  */
-void utils_list_insert_after(struct utils_list * const list, struct utils_list_hdr * const prev_element, struct utils_list_hdr * const element);
+void utils_list_insert_after(struct utils_list *const list, struct utils_list_hdr *const prev_element, struct utils_list_hdr *const element);
 
 /**
  ****************************************************************************************
@@ -158,7 +158,7 @@ void utils_list_insert_after(struct utils_list * const list, struct utils_list_h
  * If next_element is not found, the provided element is not inserted
  ****************************************************************************************
  */
-void utils_list_insert_before(struct utils_list * const list, struct utils_list_hdr * const next_element, struct utils_list_hdr * const element);
+void utils_list_insert_before(struct utils_list *const list, struct utils_list_hdr *const next_element, struct utils_list_hdr *const element);
 
 /**
  ****************************************************************************************
@@ -256,7 +256,8 @@ static inline struct utils_list_hdr *utils_list_next(const struct utils_list_hdr
     ((type *) ((char *) (ptr) - utils_offsetof(type, member)))
 
 /* for double link list */
-typedef struct utils_dlist_s {
+typedef struct utils_dlist_s
+{
     struct utils_dlist_s *prev;
     struct utils_dlist_s *next;
 } utils_dlist_t;
@@ -412,12 +413,12 @@ static inline int utils_dlist_empty(const utils_dlist_t *head)
  */
 static inline int utils_dlist_entry_number(utils_dlist_t *queue)
 {
-	int num;
-	utils_dlist_t *cur = queue;  
-	for (num=0;cur->next != queue;cur=cur->next, num++)
-		;
-	
-	return num; 
+    int num;
+    utils_dlist_t *cur = queue;
+    for (num = 0; cur->next != queue; cur = cur->next, num++)
+        ;
+
+    return num;
 }
 
 
@@ -438,7 +439,8 @@ static inline int utils_dlist_entry_number(utils_dlist_t *queue)
         utils_dlist_t name = UTILS_DLIST_HEAD_INIT(name)
 
 /* for single link list */
-typedef struct utils_slist_s {
+typedef struct utils_slist_s
+{
     struct utils_slist_s *next;
 } utils_slist_t;
 
@@ -450,7 +452,8 @@ static inline void utils_slist_add(utils_slist_t *node, utils_slist_t *head)
 
 static inline void utils_slist_add_tail(utils_slist_t *node, utils_slist_t *head)
 {
-    while (head->next) {
+    while (head->next)
+    {
         head = head->next;
     }
 
@@ -462,7 +465,10 @@ static inline void utils_slist_append(utils_slist_t *l, utils_slist_t *n)
     utils_slist_t *node;
 
     node = l;
-    while (node->next) node = node->next;
+    while (node->next)
+    {
+        node = node->next;
+    }
 
     /* append the node to the tail */
     node->next = n;
@@ -471,8 +477,10 @@ static inline void utils_slist_append(utils_slist_t *l, utils_slist_t *n)
 
 static inline void utils_slist_del(utils_slist_t *node, utils_slist_t *head)
 {
-    while (head->next) {
-        if (head->next == node) {
+    while (head->next)
+    {
+        if (head->next == node)
+        {
             head->next = node->next;
             break;
         }
@@ -491,19 +499,22 @@ static inline void utils_slist_init(utils_slist_t *head)
     head->next = 0;
 }
 
-static inline utils_slist_t* utils_slist_first(utils_slist_t *l)
+static inline utils_slist_t *utils_slist_first(utils_slist_t *l)
 {
     return l->next;
 }
 
-static inline utils_slist_t* utils_slist_tail(utils_slist_t *l)
+static inline utils_slist_t *utils_slist_tail(utils_slist_t *l)
 {
-    while (l->next) l = l->next;
+    while (l->next)
+    {
+        l = l->next;
+    }
 
     return l;
 }
 
-static inline utils_slist_t* utils_slist_next(utils_slist_t *l)
+static inline utils_slist_t *utils_slist_next(utils_slist_t *l)
 {
     return l->next;
 }
@@ -590,11 +601,11 @@ static inline utils_slist_t* utils_slist_next(utils_slist_t *l)
  */
 static inline int utils_slist_entry_number(utils_slist_t *queue)
 {
-	int num;
-    utils_slist_t *cur = queue;  
-    for (num=0;cur->next;cur=cur->next, num++)
-		;
-	
-    return num; 
+    int num;
+    utils_slist_t *cur = queue;
+    for (num = 0; cur->next; cur = cur->next, num++)
+        ;
+
+    return num;
 }
 #endif

@@ -341,8 +341,8 @@ typedef enum otCoapBlockSzx
  * @retval  OT_ERROR_RESPONSE_TIMEOUT  No response or acknowledgment received during timeout period.
  *
  */
-typedef void (*otCoapResponseHandler)(void *               aContext,
-                                      otMessage *          aMessage,
+typedef void (*otCoapResponseHandler)(void                *aContext,
+                                      otMessage           *aMessage,
                                       const otMessageInfo *aMessageInfo,
                                       otError              aResult);
 
@@ -375,12 +375,12 @@ typedef void (*otCoapRequestHandler)(void *aContext, otMessage *aMessage, const 
  * @retval  OT_ERROR_NO_FRAME_RECEIVED  Block segment missing.
  *
  */
-typedef otError (*otCoapBlockwiseReceiveHook)(void *         aContext,
-                                              const uint8_t *aBlock,
-                                              uint32_t       aPosition,
-                                              uint16_t       aBlockLength,
-                                              bool           aMore,
-                                              uint32_t       aTotalLength);
+typedef otError (*otCoapBlockwiseReceiveHook)(void          *aContext,
+        const uint8_t *aBlock,
+        uint32_t       aPosition,
+        uint16_t       aBlockLength,
+        bool           aMore,
+        uint32_t       aTotalLength);
 
 /**
  * This function pointer is called before the next block in a block-wise transfer is sent.
@@ -402,11 +402,11 @@ typedef otError (*otCoapBlockwiseReceiveHook)(void *         aContext,
  * @retval  OT_ERROR_INVALID_ARGS   Block at @p aPosition does not exist.
  *
  */
-typedef otError (*otCoapBlockwiseTransmitHook)(void *    aContext,
-                                               uint8_t * aBlock,
-                                               uint32_t  aPosition,
-                                               uint16_t *aBlockLength,
-                                               bool *    aMore);
+typedef otError (*otCoapBlockwiseTransmitHook)(void     *aContext,
+        uint8_t *aBlock,
+        uint32_t  aPosition,
+        uint16_t *aBlockLength,
+        bool     *aMore);
 
 /**
  * This structure represents a CoAP resource.
@@ -414,9 +414,9 @@ typedef otError (*otCoapBlockwiseTransmitHook)(void *    aContext,
  */
 typedef struct otCoapResource
 {
-    const char *           mUriPath; ///< The URI Path string
+    const char            *mUriPath; ///< The URI Path string
     otCoapRequestHandler   mHandler; ///< The callback for handling a received request
-    void *                 mContext; ///< Application-specific context
+    void                  *mContext; ///< Application-specific context
     struct otCoapResource *mNext;    ///< The next CoAP resource in the list
 } otCoapResource;
 
@@ -426,7 +426,7 @@ typedef struct otCoapResource
  */
 typedef struct otCoapBlockwiseResource
 {
-    const char *         mUriPath; ///< The URI Path string
+    const char          *mUriPath; ///< The URI Path string
     otCoapRequestHandler mHandler; ///< The callback for handling a received request
 
     /** The callback for handling incoming block-wise transfer.
@@ -440,7 +440,7 @@ typedef struct otCoapBlockwiseResource
      *  configuration is enabled.
      */
     otCoapBlockwiseTransmitHook     mTransmitHook;
-    void *                          mContext; ///< Application-specific context
+    void                           *mContext; ///< Application-specific context
     struct otCoapBlockwiseResource *mNext;    ///< The next CoAP resource in the list
 } otCoapBlockwiseResource;
 
@@ -883,11 +883,11 @@ otMessage *otCoapNewMessage(otInstance *aInstance, const otMessageSettings *aSet
  * @retval OT_ERROR_NO_BUFS         Failed to allocate retransmission data.
  *
  */
-otError otCoapSendRequestWithParameters(otInstance *              aInstance,
-                                        otMessage *               aMessage,
-                                        const otMessageInfo *     aMessageInfo,
+otError otCoapSendRequestWithParameters(otInstance               *aInstance,
+                                        otMessage                *aMessage,
+                                        const otMessageInfo      *aMessageInfo,
                                         otCoapResponseHandler     aHandler,
-                                        void *                    aContext,
+                                        void                     *aContext,
                                         const otCoapTxParameters *aTxParameters);
 
 /**
@@ -913,14 +913,14 @@ otError otCoapSendRequestWithParameters(otInstance *              aInstance,
  * @retval OT_ERROR_NO_BUFS Failed to allocate retransmission data.
  *
  */
-otError otCoapSendRequestBlockWiseWithParameters(otInstance *                aInstance,
-                                                 otMessage *                 aMessage,
-                                                 const otMessageInfo *       aMessageInfo,
-                                                 otCoapResponseHandler       aHandler,
-                                                 void *                      aContext,
-                                                 const otCoapTxParameters *  aTxParameters,
-                                                 otCoapBlockwiseTransmitHook aTransmitHook,
-                                                 otCoapBlockwiseReceiveHook  aReceiveHook);
+otError otCoapSendRequestBlockWiseWithParameters(otInstance                 *aInstance,
+        otMessage                  *aMessage,
+        const otMessageInfo        *aMessageInfo,
+        otCoapResponseHandler       aHandler,
+        void                       *aContext,
+        const otCoapTxParameters   *aTxParameters,
+        otCoapBlockwiseTransmitHook aTransmitHook,
+        otCoapBlockwiseReceiveHook  aReceiveHook);
 
 /**
  * This function sends a CoAP request block-wise.
@@ -944,17 +944,17 @@ otError otCoapSendRequestBlockWiseWithParameters(otInstance *                aIn
  * @retval OT_ERROR_NO_BUFS Failed to allocate retransmission data.
  *
  */
-static inline otError otCoapSendRequestBlockWise(otInstance *                aInstance,
-                                                 otMessage *                 aMessage,
-                                                 const otMessageInfo *       aMessageInfo,
-                                                 otCoapResponseHandler       aHandler,
-                                                 void *                      aContext,
-                                                 otCoapBlockwiseTransmitHook aTransmitHook,
-                                                 otCoapBlockwiseReceiveHook  aReceiveHook)
+static inline otError otCoapSendRequestBlockWise(otInstance                 *aInstance,
+        otMessage                  *aMessage,
+        const otMessageInfo        *aMessageInfo,
+        otCoapResponseHandler       aHandler,
+        void                       *aContext,
+        otCoapBlockwiseTransmitHook aTransmitHook,
+        otCoapBlockwiseReceiveHook  aReceiveHook)
 {
     // NOLINTNEXTLINE(modernize-use-nullptr)
     return otCoapSendRequestBlockWiseWithParameters(aInstance, aMessage, aMessageInfo, aHandler, aContext, NULL,
-                                                    aTransmitHook, aReceiveHook);
+            aTransmitHook, aReceiveHook);
 }
 
 /**
@@ -973,11 +973,11 @@ static inline otError otCoapSendRequestBlockWise(otInstance *                aIn
  * @retval OT_ERROR_NO_BUFS Failed to allocate retransmission data.
  *
  */
-static inline otError otCoapSendRequest(otInstance *          aInstance,
-                                        otMessage *           aMessage,
-                                        const otMessageInfo * aMessageInfo,
+static inline otError otCoapSendRequest(otInstance           *aInstance,
+                                        otMessage            *aMessage,
+                                        const otMessageInfo *aMessageInfo,
                                         otCoapResponseHandler aHandler,
-                                        void *                aContext)
+                                        void                 *aContext)
 {
     // NOLINTNEXTLINE(modernize-use-nullptr)
     return otCoapSendRequestWithParameters(aInstance, aMessage, aMessageInfo, aHandler, aContext, NULL);
@@ -1063,10 +1063,10 @@ void otCoapSetDefaultHandler(otInstance *aInstance, otCoapRequestHandler aHandle
  * @retval OT_ERROR_NO_BUFS  Insufficient buffers available to send the CoAP response.
  *
  */
-otError otCoapSendResponseWithParameters(otInstance *              aInstance,
-                                         otMessage *               aMessage,
-                                         const otMessageInfo *     aMessageInfo,
-                                         const otCoapTxParameters *aTxParameters);
+otError otCoapSendResponseWithParameters(otInstance               *aInstance,
+        otMessage                *aMessage,
+        const otMessageInfo      *aMessageInfo,
+        const otCoapTxParameters *aTxParameters);
 
 /**
  * This function sends a CoAP response block-wise from the server with custom transmission parameters.
@@ -1085,12 +1085,12 @@ otError otCoapSendResponseWithParameters(otInstance *              aInstance,
  * @retval OT_ERROR_NO_BUFS  Insufficient buffers available to send the CoAP response.
  *
  */
-otError otCoapSendResponseBlockWiseWithParameters(otInstance *                aInstance,
-                                                  otMessage *                 aMessage,
-                                                  const otMessageInfo *       aMessageInfo,
-                                                  const otCoapTxParameters *  aTxParameters,
-                                                  void *                      aContext,
-                                                  otCoapBlockwiseTransmitHook aTransmitHook);
+otError otCoapSendResponseBlockWiseWithParameters(otInstance                 *aInstance,
+        otMessage                  *aMessage,
+        const otMessageInfo        *aMessageInfo,
+        const otCoapTxParameters   *aTxParameters,
+        void                       *aContext,
+        otCoapBlockwiseTransmitHook aTransmitHook);
 
 /**
  * This function sends a CoAP response block-wise from the server.
@@ -1108,11 +1108,11 @@ otError otCoapSendResponseBlockWiseWithParameters(otInstance *                aI
  * @retval OT_ERROR_NO_BUFS  Insufficient buffers available to send the CoAP response.
  *
  */
-static inline otError otCoapSendResponseBlockWise(otInstance *                aInstance,
-                                                  otMessage *                 aMessage,
-                                                  const otMessageInfo *       aMessageInfo,
-                                                  void *                      aContext,
-                                                  otCoapBlockwiseTransmitHook aTransmitHook)
+static inline otError otCoapSendResponseBlockWise(otInstance                 *aInstance,
+        otMessage                  *aMessage,
+        const otMessageInfo        *aMessageInfo,
+        void                       *aContext,
+        otCoapBlockwiseTransmitHook aTransmitHook)
 {
     // NOLINTNEXTLINE(modernize-use-nullptr)
     return otCoapSendResponseBlockWiseWithParameters(aInstance, aMessage, aMessageInfo, NULL, aContext, aTransmitHook);

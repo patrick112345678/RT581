@@ -29,165 +29,165 @@
 
 const zb_char_t *se_hrf_metering_device_type(zb_uint8_t val)
 {
-  switch (val)
-  {
+    switch (val)
+    {
     case ZB_ZCL_METERING_ELECTRIC_METERING:
-      return "Electric meter";
+        return "Electric meter";
 
     case ZB_ZCL_METERING_GAS_METERING:
-      return "Gas meter";
+        return "Gas meter";
 
     case ZB_ZCL_METERING_WATER_METERING:
-      return "Water meter";
+        return "Water meter";
 
     case ZB_ZCL_METERING_PRESSURE_METERING:
-      return "Pressure meter";
+        return "Pressure meter";
 
     case ZB_ZCL_METERING_HEAT_METERING:
-      return "Heat meter";
+        return "Heat meter";
 
     case ZB_ZCL_METERING_COOLING_METERING:
-      return "Cooling meter";
+        return "Cooling meter";
 
     case ZB_ZCL_METERING_MIRRORED_GAS_METERING:
-      return "Gas meter (mirrored)";
+        return "Gas meter (mirrored)";
 
     case ZB_ZCL_METERING_MIRRORED_WATER_METERING:
-      return "Water meter (mirrored)";
+        return "Water meter (mirrored)";
 
     case ZB_ZCL_METERING_MIRRORED_PRESSURE_METERING:
-      return "Pressure meter (mirrored)";
+        return "Pressure meter (mirrored)";
 
     case ZB_ZCL_METERING_MIRRORED_HEAT_METERING:
-      return "Heat meter (mirrored)";
+        return "Heat meter (mirrored)";
 
     case ZB_ZCL_METERING_MIRRORED_COOLING_METERING:
-      return "Cooling meter (mirrored)";
+        return "Cooling meter (mirrored)";
 
     case ZB_ZCL_METERING_RESERVED:
     default:
-      return "??";
-  }
+        return "??";
+    }
 }
 
 
 const zb_char_t *se_hrf_metering_unit_of_measure(zb_uint8_t val)
 {
 
-  switch (val)
-  {
+    switch (val)
+    {
     case ZB_ZCL_METERING_UNIT_KW_KWH_BINARY:
     case ZB_ZCL_METERING_UNIT_KW_KWH_BCD:
-      return "kWh";
+        return "kWh";
 
     case ZB_ZCL_METERING_UNIT_M3_M3H_BINARY:
     case ZB_ZCL_METERING_UNIT_M3_M3H_BCD:
-      return "m3";
+        return "m3";
 
     case ZB_ZCL_METERING_UNIT_FT3_FT3H_BINARY:
     case ZB_ZCL_METERING_UNIT_FT3_FT3H_BCD:
-      return "ft3";
+        return "ft3";
 
     case ZB_ZCL_METERING_UNIT_CCF_CCFH_BINARY:
     case ZB_ZCL_METERING_UNIT_CCF_CCFH_BCD:
-      return "ccf";
+        return "ccf";
 
     case ZB_ZCL_METERING_UNIT_USGL_USGLH_BINARY:
     case ZB_ZCL_METERING_UNIT_USGL_USGLH_BCD:
-      return "gl (US)";
+        return "gl (US)";
 
     case ZB_ZCL_METERING_UNIT_IMPGL_IMPGLH_BINARY:
     case ZB_ZCL_METERING_UNIT_IMPGL_IMPGLH_BCD:
-      return "gl (IMP)";
+        return "gl (IMP)";
 
     case ZB_ZCL_METERING_UNIT_BTU_BTUH_BINARY:
     case ZB_ZCL_METERING_UNIT_BTU_BTUH_BCD:
-      return "BTU";
+        return "BTU";
 
     case ZB_ZCL_METERING_UNIT_L_LH_BINARY:
     case ZB_ZCL_METERING_UNIT_L_LH_BCD:
-      return "l";
+        return "l";
 
     case ZB_ZCL_METERING_UNIT_KPAG_BINARY:
     case ZB_ZCL_METERING_UNIT_KPAG_BCD:
-      return "kPA (gauge)";
+        return "kPA (gauge)";
 
     case ZB_ZCL_METERING_UNIT_KPAA_BINARY:
     case ZB_ZCL_METERING_UNIT_KPAA_BCD:
-      return "kPA";
+        return "kPA";
 
     case ZB_ZCL_METERING_UNIT_MCF_MCFH_BINARY:
     case ZB_ZCL_METERING_UNIT_MCF_MCFH_BCD:
-      return "mcf";
+        return "mcf";
 
     case ZB_ZCL_METERING_UNIT_UNITLESS_BINARY:
     case ZB_ZCL_METERING_UNIT_UNITLESS_BCD:
-      return "units";
+        return "units";
 
     case ZB_ZCL_METERING_UNIT_MJ_MJS_BINARY:
     case ZB_ZCL_METERING_UNIT_MJ_MJS_BCD:
-      return "MJ";
+        return "MJ";
 
     case ZB_ZCL_METERING_UNIT_BINARY_RESERVED:
     case ZB_ZCL_METERING_UNIT_BCD_RESERVED:
     default:
-      return "??";
-  }
+        return "??";
+    }
 }
 
 zb_char_t *se_hrf_metering_format_uint48_value(zb_uint48_t value,
-                                               zb_uint8_t fmt_left,
-                                               zb_uint8_t fmt_right,
-                                               zb_uint8_t fmt_suppr,
-                                               zb_char_t *buf,
-                                               zb_uint8_t buflen)
+        zb_uint8_t fmt_left,
+        zb_uint8_t fmt_right,
+        zb_uint8_t fmt_suppr,
+        zb_char_t *buf,
+        zb_uint8_t buflen)
 {
-  zb_uint64_t val;
-  zb_char_t *p;
-  zb_uint8_t n, total;
+    zb_uint64_t val;
+    zb_char_t *p;
+    zb_uint8_t n, total;
 
-  if (buflen < SE_HRF_UINT48_BUF_LEN)
-  {
-    return NULL;
-  }
-
-  val = (zb_uint64_t)value.low | (zb_uint64_t)value.high << 32;
-
-  p = buf + SE_HRF_MAX_UINT48_DIGITS + 1;
-  total = fmt_left + fmt_right;
-  n = 0;
-  *p-- = '\0';
-
-  while (n != total)
-  {
-    /* print immediate digit (or leading zero) */
-    *p-- = (val % 10) + '0';
-    val /= 10;
-    n++;
-
-    /* put decimal point */
-    if (n == fmt_right)
+    if (buflen < SE_HRF_UINT48_BUF_LEN)
     {
-      *p-- = '.';
+        return NULL;
     }
 
-    /* stop printing if val is exhausted and no leading zeroes desired */
-    if (val == 0 && fmt_suppr)
-    {
-      break;
-    }
-  }
+    val = (zb_uint64_t)value.low | (zb_uint64_t)value.high << 32;
 
-  return ++p;
+    p = buf + SE_HRF_MAX_UINT48_DIGITS + 1;
+    total = fmt_left + fmt_right;
+    n = 0;
+    *p-- = '\0';
+
+    while (n != total)
+    {
+        /* print immediate digit (or leading zero) */
+        *p-- = (val % 10) + '0';
+        val /= 10;
+        n++;
+
+        /* put decimal point */
+        if (n == fmt_right)
+        {
+            *p-- = '.';
+        }
+
+        /* stop printing if val is exhausted and no leading zeroes desired */
+        if (val == 0 && fmt_suppr)
+        {
+            break;
+        }
+    }
+
+    return ++p;
 }
 
 const char *se_hrf_format_currency(zb_uint16_t currency)
 {
-  if (currency == 840)
-  {
-    return "USD";
-  }
-  return "XST";
+    if (currency == 840)
+    {
+        return "USD";
+    }
+    return "XST";
 }
 
 zb_char_t *se_hrf_format_price(zb_uint32_t raw_price,
@@ -197,30 +197,30 @@ zb_char_t *se_hrf_format_price(zb_uint32_t raw_price,
                                zb_char_t  *buf,
                                zb_uint8_t  buflen)
 {
-  const zb_char_t *unit_str;
-  const zb_char_t *value_str;
-  const zb_char_t *currency_str;
+    const zb_char_t *unit_str;
+    const zb_char_t *value_str;
+    const zb_char_t *currency_str;
 
-  zb_uint8_t  max_uint32_len = 10;
-  zb_uint8_t  total = max_uint32_len + trailing_digit + 1;
+    zb_uint8_t  max_uint32_len = 10;
+    zb_uint8_t  total = max_uint32_len + trailing_digit + 1;
 
-  zb_uint48_t u48_value = { .low = raw_price };
-  zb_char_t   u48_buf[SE_HRF_PRICE_BUF_LEN] = {0};
+    zb_uint48_t u48_value = { .low = raw_price };
+    zb_char_t   u48_buf[SE_HRF_PRICE_BUF_LEN] = {0};
 
-  ZB_ASSERT(trailing_digit < max_uint32_len);
+    ZB_ASSERT(trailing_digit < max_uint32_len);
 
-  unit_str = se_hrf_metering_unit_of_measure(unit);
-  value_str = se_hrf_metering_format_uint48_value(u48_value, max_uint32_len, trailing_digit, 0, u48_buf, sizeof(u48_buf));
-  currency_str = se_hrf_format_currency(currency);
+    unit_str = se_hrf_metering_unit_of_measure(unit);
+    value_str = se_hrf_metering_format_uint48_value(u48_value, max_uint32_len, trailing_digit, 0, u48_buf, sizeof(u48_buf));
+    currency_str = se_hrf_format_currency(currency);
 
-  ZB_ASSERT(strlen(value_str) == (total));
+    ZB_ASSERT(strlen(value_str) == (total));
 
-  ZB_BZERO(buf, buflen);
-  strcat(buf, value_str); /* 10 + 1 + trailing_digit */
-  strcat(buf, " "); /* 1 */
-  strcat(buf, currency_str); /* 3 */
-  strcat(buf, "/"); /* 1 */
-  strcat(buf, unit_str); /* 20 */
+    ZB_BZERO(buf, buflen);
+    strcat(buf, value_str); /* 10 + 1 + trailing_digit */
+    strcat(buf, " "); /* 1 */
+    strcat(buf, currency_str); /* 3 */
+    strcat(buf, "/"); /* 1 */
+    strcat(buf, unit_str); /* 20 */
 
-  return buf;
+    return buf;
 }

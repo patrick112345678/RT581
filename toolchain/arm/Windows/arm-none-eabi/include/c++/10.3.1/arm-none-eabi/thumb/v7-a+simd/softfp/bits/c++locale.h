@@ -46,26 +46,26 @@ namespace std _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
-  typedef int*			__c_locale;
+typedef int          *__c_locale;
 
-  // Convert numeric value of type double and long double to string and
-  // return length of string.  If vsnprintf is available use it, otherwise
-  // fall back to the unsafe vsprintf which, in general, can be dangerous
-  // and should be avoided.
-  inline int
-  __convert_from_v(const __c_locale&, char* __out,
-		   const int __size __attribute__((__unused__)),
-		   const char* __fmt, ...)
-  {
-    char* __old = std::setlocale(LC_NUMERIC, 0);
-    char* __sav = 0;
+// Convert numeric value of type double and long double to string and
+// return length of string.  If vsnprintf is available use it, otherwise
+// fall back to the unsafe vsprintf which, in general, can be dangerous
+// and should be avoided.
+inline int
+__convert_from_v(const __c_locale &, char *__out,
+                 const int __size __attribute__((__unused__)),
+                 const char *__fmt, ...)
+{
+    char *__old = std::setlocale(LC_NUMERIC, 0);
+    char *__sav = 0;
     if (__builtin_strcmp(__old, "C"))
-      {
-	const size_t __len = __builtin_strlen(__old) + 1;
-	__sav = new char[__len];
-	__builtin_memcpy(__sav, __old, __len);
-	std::setlocale(LC_NUMERIC, "C");
-      }
+    {
+        const size_t __len = __builtin_strlen(__old) + 1;
+        __sav = new char[__len];
+        __builtin_memcpy(__sav, __old, __len);
+        std::setlocale(LC_NUMERIC, "C");
+    }
 
     __builtin_va_list __args;
     __builtin_va_start(__args, __fmt);
@@ -79,12 +79,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __builtin_va_end(__args);
 
     if (__sav)
-      {
-	std::setlocale(LC_NUMERIC, __sav);
-	delete [] __sav;
-      }
+    {
+        std::setlocale(LC_NUMERIC, __sav);
+        delete [] __sav;
+    }
     return __ret;
-  }
+}
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace

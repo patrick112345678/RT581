@@ -12,7 +12,8 @@
 /*should we allocate the space for every pin??
   since most pins are not used...
   To save space, maybe we need to remember gpio number */
-typedef struct {
+typedef struct
+{
     gpio_isr_handler_t   gpio_handler;           /**< user application ISR handler. */
     void                 *p_context;             /**< . */
 } gpio_config_t;
@@ -29,9 +30,9 @@ void gpio_cfg(
     assert_param(pin_number < MAX_NUMBER_OF_PINS);
     assert_param(dir < GPIO_PIN_DIR_INVALID);
 
-    MASK = (1<<pin_number);
+    MASK = (1 << pin_number);
 
-    if(dir==GPIO_PIN_DIR_INPUT)
+    if (dir == GPIO_PIN_DIR_INPUT)
     {
         GPIO->INPUT_EN = MASK;
         GPIO->ENABLE_INPUT = MASK;
@@ -39,13 +40,14 @@ void gpio_cfg(
     else
     {
         GPIO->DISABLE_INPUT = MASK;
-        GPIO->OUTPUT_EN = MASK;        
+        GPIO->OUTPUT_EN = MASK;
     }
 
     /*should we set interrupt mode to default first?*/
     user_isr[pin_number].gpio_handler = NULL;
 
-    switch(int_mode) {
+    switch (int_mode)
+    {
     case GPIO_PIN_INT_LEVEL_LOW:
         GPIO->NEGATIVE   = MASK;
         GPIO->LEVEL_TRIG = MASK;
@@ -100,7 +102,7 @@ void gpio_register_isr(
 void GPIO_Handler(void)
 {
     uint32_t  irq_state;
-    uint32_t  i=0, Mask=1;
+    uint32_t  i = 0, Mask = 1;
 
     gpio_isr_handler_t   app_isr;
 
@@ -108,9 +110,11 @@ void GPIO_Handler(void)
     //dprintf("get irq_state %08x, pin state %8x \n", irq_state, GPIO->STATE);
 
     //printf("irq_state %x \n", irq_state);
-    
-    for(i=0; i<MAX_NUMBER_OF_PINS; i++, Mask <<= 1) {
-        if (irq_state & Mask) {
+
+    for (i = 0; i < MAX_NUMBER_OF_PINS; i++, Mask <<= 1)
+    {
+        if (irq_state & Mask)
+        {
             app_isr = user_isr[i].gpio_handler;
 
             assert_param(app_isr);      /*it should not be NULL!*/
@@ -121,8 +125,10 @@ void GPIO_Handler(void)
              */
             //GPIO->EDGE_INT_CLR = Mask;
 
-            if(app_isr!=NULL)
+            if (app_isr != NULL)
+            {
                 app_isr(i, user_isr[i].p_context);
+            }
         }
     }
 

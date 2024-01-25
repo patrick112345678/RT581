@@ -109,12 +109,12 @@ ZBNCP_LL_TIMEOUT_NOW (0) - please, call ncp_host_ll_quant() again immediately
 
  */
 int ncp_host_ll_quant(
-  void *tx_buf,
-  zb_uint_t tx_size,
-  void *rx_buf,
-  zb_uint_t rx_buf_size,
-  zb_uint_t *received_bytes,
-  zb_uint_t *alarm_timeout_ms);
+    void *tx_buf,
+    zb_uint_t tx_size,
+    void *rx_buf,
+    zb_uint_t rx_buf_size,
+    zb_uint_t *received_bytes,
+    zb_uint_t *alarm_timeout_ms);
 
 /**
    @}

@@ -39,23 +39,23 @@
 
 enum simple_dev_type_e
 {
-  SIMPLE_DEV_TYPE_UNUSED,
-  SIMPLE_DEV_TYPE_UNDEFINED,
-  SIMPLE_DEV_TYPE_LIGHT,
-  SIMPLE_DEV_TYPE_LIGHT_CONTROL,
+    SIMPLE_DEV_TYPE_UNUSED,
+    SIMPLE_DEV_TYPE_UNDEFINED,
+    SIMPLE_DEV_TYPE_LIGHT,
+    SIMPLE_DEV_TYPE_LIGHT_CONTROL,
 };
 
 enum simple_dev_match_step_e
 {
-  MATCH_STEP_ON_OFF_LVL_CTRL_SERVER,
-  MATCH_STEP_ON_OFF_LVL_CTRL_CLIENT,
+    MATCH_STEP_ON_OFF_LVL_CTRL_SERVER,
+    MATCH_STEP_ON_OFF_LVL_CTRL_CLIENT,
 };
 
 enum simple_dev_bind_step_e
 {
-  BIND_STEP_ON_OFF_CLST,
+    BIND_STEP_ON_OFF_CLST,
 #ifdef ZC_AUTO_SEARCH_AND_BIND_LVL_CTRL_CLST
-  BIND_STEP_LVL_CTRL_CLST,
+    BIND_STEP_LVL_CTRL_CLST,
 #endif
 };
 
@@ -63,21 +63,21 @@ enum simple_dev_bind_step_e
 
 typedef struct simple_device_s
 {
-  zb_uint8_t     dev_type;
-  zb_uint8_t     match_step;
-  zb_uint8_t     bind_step;
-  zb_uint8_t     assign_idx;
-  zb_uint8_t     last_zdo_tsn;
-  zb_uint8_t     match_ep;
-  zb_uint8_t     assign_table[LIGHT_ZC_MAX_DEVICES - 1];
-  zb_ieee_addr_t ieee_addr;
+    zb_uint8_t     dev_type;
+    zb_uint8_t     match_step;
+    zb_uint8_t     bind_step;
+    zb_uint8_t     assign_idx;
+    zb_uint8_t     last_zdo_tsn;
+    zb_uint8_t     match_ep;
+    zb_uint8_t     assign_table[LIGHT_ZC_MAX_DEVICES - 1];
+    zb_ieee_addr_t ieee_addr;
 } simple_device_t;
 
 #define LIGHT_ZC_MAX_DEVICES 2
 
 typedef struct light_zc_ctx_s
 {
-  simple_device_t devices[LIGHT_ZC_MAX_DEVICES];
+    simple_device_t devices[LIGHT_ZC_MAX_DEVICES];
 } light_zc_ctx_t;
 
 #endif  /* ZC_AUTO_SEARCH_AND_BIND */

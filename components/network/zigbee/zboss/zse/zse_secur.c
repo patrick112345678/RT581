@@ -28,30 +28,30 @@
 #ifdef ZB_ENABLE_SE
 void zb_se_delete_cbke_link_key(zb_ieee_addr_t ieee_address)
 {
-  zb_uindex_t idx;
+    zb_uindex_t idx;
 
-  TRACE_MSG(TRACE_SECUR1, "zb_se_delete_cbke_link_key addr " TRACE_FORMAT_64,
-            (FMT__A, TRACE_ARG_64(ieee_address)));
+    TRACE_MSG(TRACE_SECUR1, "zb_se_delete_cbke_link_key addr " TRACE_FORMAT_64,
+              (FMT__A, TRACE_ARG_64(ieee_address)));
 
-  for (idx = 0; idx < ZB_N_APS_KEY_PAIR_ARR_MAX_SIZE; ++idx)
-  {
-    TRACE_MSG(TRACE_SECUR1, "idx %hd", (FMT__H, idx));
-    if (zb_aps_keypair_load_by_idx(idx) == RET_OK &&
-        ZB_IEEE_ADDR_CMP(ZB_AIB().aps_device_key_pair_storage.cached.device_address, ieee_address) &&
-        ZB_AIB().aps_device_key_pair_storage.cached.key_attributes == ZB_SECUR_VERIFIED_KEY &&
-        ZB_AIB().aps_device_key_pair_storage.cached.key_source == ZB_SECUR_KEY_SRC_CBKE)
+    for (idx = 0; idx < ZB_N_APS_KEY_PAIR_ARR_MAX_SIZE; ++idx)
     {
-      TRACE_MSG(
-        TRACE_SECUR2, "Delete CBKE key for idx %d attr %hd source %hd",
-        (FMT__D_H_H,
-         idx,
-         ZB_AIB().aps_device_key_pair_storage.cached.key_attributes,
-         ZB_AIB().aps_device_key_pair_storage.cached.key_source));
-      TRACE_MSG(TRACE_SECUR2, "key " TRACE_FORMAT_128,
-                (FMT__B, TRACE_ARG_128(ZB_AIB().aps_device_key_pair_storage.cached.link_key)));
-      zb_secur_delete_link_key_by_idx(idx);
-      break;
+        TRACE_MSG(TRACE_SECUR1, "idx %hd", (FMT__H, idx));
+        if (zb_aps_keypair_load_by_idx(idx) == RET_OK &&
+                ZB_IEEE_ADDR_CMP(ZB_AIB().aps_device_key_pair_storage.cached.device_address, ieee_address) &&
+                ZB_AIB().aps_device_key_pair_storage.cached.key_attributes == ZB_SECUR_VERIFIED_KEY &&
+                ZB_AIB().aps_device_key_pair_storage.cached.key_source == ZB_SECUR_KEY_SRC_CBKE)
+        {
+            TRACE_MSG(
+                TRACE_SECUR2, "Delete CBKE key for idx %d attr %hd source %hd",
+                (FMT__D_H_H,
+                 idx,
+                 ZB_AIB().aps_device_key_pair_storage.cached.key_attributes,
+                 ZB_AIB().aps_device_key_pair_storage.cached.key_source));
+            TRACE_MSG(TRACE_SECUR2, "key " TRACE_FORMAT_128,
+                      (FMT__B, TRACE_ARG_128(ZB_AIB().aps_device_key_pair_storage.cached.link_key)));
+            zb_secur_delete_link_key_by_idx(idx);
+            break;
+        }
     }
-  }
 }
 #endif

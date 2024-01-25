@@ -78,9 +78,9 @@ void otCliAppendResult(otError aError);
  * @retval \ref OT_ERROR_NONE if a matching command was found and the handler was called
  *
  */
-otError otCRPCHandleCommand(void *             aContext,
+otError otCRPCHandleCommand(void              *aContext,
                             uint8_t            aArgsLength,
-                            char *             aArgs[],
+                            char              *aArgs[],
                             uint8_t            aCommandsLength,
                             const otCliCommand aCommands[]);
 
@@ -176,7 +176,7 @@ otError otCRPCProcessHelp(void *aContext, uint8_t aArgsLength, char *aArgs[]);
  */
 void otCRPCSetUserCommands(const otCliCommand *aUserCommands, uint8_t aLength, void *aContext);
 
-char * otCRPCGetStaticOutputBuffer(void);
+char *otCRPCGetStaticOutputBuffer(void);
 size_t otCRPCGetStaticOutputBufferSize(void);
 /**
  * @}

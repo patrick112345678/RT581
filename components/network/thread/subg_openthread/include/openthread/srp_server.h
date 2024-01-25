@@ -429,9 +429,9 @@ otError otSrpServerSetLeaseConfig(otInstance *aInstance, const otSrpServerLeaseC
  *
  */
 typedef void (*otSrpServerServiceUpdateHandler)(otSrpServerServiceUpdateId aId,
-                                                const otSrpServerHost     *aHost,
-                                                uint32_t                   aTimeout,
-                                                void                      *aContext);
+        const otSrpServerHost     *aHost,
+        uint32_t                   aTimeout,
+        void                      *aContext);
 
 /**
  * This function sets the SRP service updates handler on SRP server.
@@ -538,7 +538,7 @@ void otSrpServerHostGetLeaseInfo(const otSrpServerHost *aHost, otSrpServerLeaseI
  *
  */
 const otSrpServerService *otSrpServerHostGetNextService(const otSrpServerHost    *aHost,
-                                                        const otSrpServerService *aService);
+        const otSrpServerService *aService);
 
 /**
  * This function finds the next matching service on the host.
@@ -573,10 +573,10 @@ const otSrpServerService *otSrpServerHostGetNextService(const otSrpServerHost   
  *
  */
 const otSrpServerService *otSrpServerHostFindNextService(const otSrpServerHost    *aHost,
-                                                         const otSrpServerService *aPrevService,
-                                                         otSrpServerServiceFlags   aFlags,
-                                                         const char               *aServiceName,
-                                                         const char               *aInstanceName);
+        const otSrpServerService *aPrevService,
+        otSrpServerServiceFlags   aFlags,
+        const char               *aServiceName,
+        const char               *aInstanceName);
 
 /**
  * This function indicates whether or not the SRP service has been deleted.

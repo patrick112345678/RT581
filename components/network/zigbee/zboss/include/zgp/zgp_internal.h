@@ -69,19 +69,20 @@
 
 typedef ZB_PACKED_PRE struct zb_zgp_gp_proxy_info_s
 {
-  zb_uint16_t short_addr;
-  zb_uint8_t  link;
-}ZB_PACKED_STRUCT zb_zgp_gp_proxy_info_t;
+    zb_uint16_t short_addr;
+    zb_uint8_t  link;
+} ZB_PACKED_STRUCT zb_zgp_gp_proxy_info_t;
 
 /** @brief possible types of GP device */
-typedef enum zgp_gp_device_e {
-  ZGP_DEVICE_PROXY       = 0x0060,
-  ZGP_DEVICE_PROXY_BASIC = 0x0061,
-  ZGP_DEVICE_TARGET_PLUS = 0x0062,
-  ZGP_DEVICE_TARGET      = 0x0063,
-  ZGP_DEVICE_COMMISSIONING_TOOL  = 0x0064,
-  ZGP_DEVICE_COMBO       = 0x0065,
-  ZGP_DEVICE_COMBO_BASIC = 0x0066
+typedef enum zgp_gp_device_e
+{
+    ZGP_DEVICE_PROXY       = 0x0060,
+    ZGP_DEVICE_PROXY_BASIC = 0x0061,
+    ZGP_DEVICE_TARGET_PLUS = 0x0062,
+    ZGP_DEVICE_TARGET      = 0x0063,
+    ZGP_DEVICE_COMMISSIONING_TOOL  = 0x0064,
+    ZGP_DEVICE_COMBO       = 0x0065,
+    ZGP_DEVICE_COMBO_BASIC = 0x0066
 } zgp_gp_device_t;
 
 /*! @} */
@@ -89,33 +90,33 @@ typedef enum zgp_gp_device_e {
 /* Structure stores GreenPower security and commissioning parameters */
 typedef ZB_PACKED_PRE struct zb_zgp_cluster_s
 {
-  /* FIXME: Decrease memory consumed by: a) move this field after arrays; b) use bitfields where possible. */
-  zb_uint8_t  gp_shared_security_key_type; /**< @see zb_zgp_shared_security_key_type_t */
-  zb_uint8_t  gp_shared_security_key[ZB_CCM_KEY_SIZE];
-  zb_uint8_t  gp_link_key[ZB_CCM_KEY_SIZE];
-  zb_uint8_t  gps_communication_mode; /**< @see zgp_communication_mode_t  */
-  zb_uint8_t  gps_commissioning_exit_mode; /**< @see zgp_commissioning_exit_mode_t  */
-  zb_uint8_t  gps_security_level;
-  zb_uint16_t gps_commissioning_window;
-  /* let's align it to 4 bytes (38 + 2) */
-  zb_uint16_t align_dummy;
+    /* FIXME: Decrease memory consumed by: a) move this field after arrays; b) use bitfields where possible. */
+    zb_uint8_t  gp_shared_security_key_type; /**< @see zb_zgp_shared_security_key_type_t */
+    zb_uint8_t  gp_shared_security_key[ZB_CCM_KEY_SIZE];
+    zb_uint8_t  gp_link_key[ZB_CCM_KEY_SIZE];
+    zb_uint8_t  gps_communication_mode; /**< @see zgp_communication_mode_t  */
+    zb_uint8_t  gps_commissioning_exit_mode; /**< @see zgp_commissioning_exit_mode_t  */
+    zb_uint8_t  gps_security_level;
+    zb_uint16_t gps_commissioning_window;
+    /* let's align it to 4 bytes (38 + 2) */
+    zb_uint16_t align_dummy;
 } ZB_PACKED_STRUCT zb_zgp_cluster_t;
 
 typedef struct zb_zgp_tbl_array_s
 {
-  zb_uint32_t back_sec_counter;
-  zb_uint32_t security_counter;
-  zb_uint32_t nvram_offset;
-  zb_uint8_t  lqi;
-  zb_int8_t   rssi;
+    zb_uint32_t back_sec_counter;
+    zb_uint32_t security_counter;
+    zb_uint32_t nvram_offset;
+    zb_uint8_t  lqi;
+    zb_int8_t   rssi;
 
-  /* bit 0 - EntryValid flag
-   * bit 1 - FirstToForward flag
-   * bit 2 - HasAllUnicastRoutes flag
-   * bits 3-7 reserved
- */
-  zb_uint8_t runtime_options;
-  zb_uint8_t search_counter;
+    /* bit 0 - EntryValid flag
+     * bit 1 - FirstToForward flag
+     * bit 2 - HasAllUnicastRoutes flag
+     * bits 3-7 reserved
+    */
+    zb_uint8_t runtime_options;
+    zb_uint8_t search_counter;
 } zb_zgp_tbl_array_t;
 
 #if defined ZB_ENABLE_ZGP_SINK && defined ZB_ENABLE_ZGP_PROXY
@@ -131,33 +132,33 @@ typedef struct zb_zgp_tbl_array_s
 
 typedef struct zb_zgp_tbl_s
 {
-  zgp_tbl_ent_t cached;
-  /* pack 8 4-bit entries to every array element */
-  zb_uint32_t security_counter_timeouts[ZB_ZGP_SEC_CNT_TIMEOUT_TBL_SIZE];
-  zb_uint_t cached_i;
-  zb_uint_t entry_size;
-  zb_uint_t tbl_size;
-  zb_uint8_t nvram_dataset;     /*<! @see zb_nvram_dataset_types_t  */
-  zb_uint8_t nvram_page;
+    zgp_tbl_ent_t cached;
+    /* pack 8 4-bit entries to every array element */
+    zb_uint32_t security_counter_timeouts[ZB_ZGP_SEC_CNT_TIMEOUT_TBL_SIZE];
+    zb_uint_t cached_i;
+    zb_uint_t entry_size;
+    zb_uint_t tbl_size;
+    zb_uint8_t nvram_dataset;     /*<! @see zb_nvram_dataset_types_t  */
+    zb_uint8_t nvram_page;
 
-  zb_zgp_tbl_array_t array[1];
+    zb_zgp_tbl_array_t array[1];
 } zb_zgp_tbl_t;
 
 #ifdef ZB_ENABLE_ZGP_PROXY
 typedef struct zb_zgp_proxy_table_s
 {
-  zb_zgp_tbl_t base;
+    zb_zgp_tbl_t base;
 
-  zb_zgp_tbl_array_t array[ZB_ZGP_PROXY_TBL_SIZE - 1];
+    zb_zgp_tbl_array_t array[ZB_ZGP_PROXY_TBL_SIZE - 1];
 } zb_zgp_proxy_table_t;
 #endif  /* ZB_ENABLE_ZGP_PROXY */
 
 #ifdef ZB_ENABLE_ZGP_SINK
 typedef struct zb_zgp_sink_table_s
 {
-  zb_zgp_tbl_t base;
+    zb_zgp_tbl_t base;
 
-  zb_zgp_tbl_array_t array[ZB_ZGP_SINK_TBL_SIZE - 1];
+    zb_zgp_tbl_array_t array[ZB_ZGP_SINK_TBL_SIZE - 1];
 } zb_zgp_sink_table_t;
 #endif  /* ZB_ENABLE_ZGP_SINK */
 #endif  /* !ZB_ZGPD_ROLE */
@@ -181,31 +182,31 @@ typedef struct zb_zgp_sink_table_s
  */
 typedef ZB_PACKED_PRE union zb_gpdf_mac_addr_flds_u
 {
-  ZB_PACKED_PRE struct zgp_mac_addr_flds_short_s
-  {
-    zb_uint16_t  dst_addr;
-    zb_uint16_t  dst_pan_id;
-  }
-  ZB_PACKED_STRUCT s;
+    ZB_PACKED_PRE struct zgp_mac_addr_flds_short_s
+    {
+        zb_uint16_t  dst_addr;
+        zb_uint16_t  dst_pan_id;
+    }
+    ZB_PACKED_STRUCT s;
 
-  ZB_PACKED_PRE struct zgp_mac_addr_flds_long_s
-  {
-    zb_ieee_addr_t  addr;
-  }
-  ZB_PACKED_STRUCT l;
+    ZB_PACKED_PRE struct zgp_mac_addr_flds_long_s
+    {
+        zb_ieee_addr_t  addr;
+    }
+    ZB_PACKED_STRUCT l;
 
-  ZB_PACKED_PRE struct zgp_mac_addr_flds_combined_s
-  {
-    zb_uint16_t     dst_addr;
-    zb_uint16_t     dst_pan_id;
-    zb_ieee_addr_t  src_addr;
-  }
-  ZB_PACKED_STRUCT comb;
+    ZB_PACKED_PRE struct zgp_mac_addr_flds_combined_s
+    {
+        zb_uint16_t     dst_addr;
+        zb_uint16_t     dst_pan_id;
+        zb_ieee_addr_t  src_addr;
+    }
+    ZB_PACKED_STRUCT comb;
 #ifndef ZB_ZGPD_ROLE
-  zb_zgp_gp_proxy_info_t proxy_info;
+    zb_zgp_gp_proxy_info_t proxy_info;
 #endif  /* !ZB_ZGPD_ROLE */
 
-  zb_uint8_t in[12];         /**< MAC addressing fields of incoming frame */
+    zb_uint8_t in[12];         /**< MAC addressing fields of incoming frame */
 }
 zb_gpdf_mac_addr_flds_t;
 
@@ -217,66 +218,66 @@ zb_gpdf_mac_addr_flds_t;
  */
 typedef ZB_PACKED_PRE struct zb_gpdf_info_s
 {
-  zb_time_t                 recv_timestamp;    /**< Packet reception time */
-  zb_gpdf_mac_addr_flds_t   mac_addr_flds;     /**< MAC addressing fields */
-  zb_uint8_t                mac_addr_flds_len; /**< Length of data in MAC addressing fields */
-  zb_uint8_t                mac_seq_num;       /**< MAC sequence number */
-  zb_uint8_t                nwk_frame_ctl;     /**< NWK frame control */
-  zb_uint8_t                nwk_ext_frame_ctl; /**< Extended NWK frame control */
-  zb_zgpd_id_t              zgpd_id;           /**< ZGPD ID */
-  zb_uint32_t               sec_frame_counter; /**< Security frame counter */
-  zb_uint8_t                zgpd_cmd_id;       /**< ZGPD command ID */
-  zb_uint8_t                nwk_hdr_len;       /**< Length of the GPDF NWK header */
-  zb_uint8_t                lqi;               /**< LQI value from alien MAC */
-  zb_int8_t                 rssi;              /**< RSSI value from alien MAC */
-  zb_uint8_t                status;            /**< 'status' for GP-DATA.indication @see  */
-  zb_uint8_t                key[ZB_CCM_KEY_SIZE];/**< Key to decrypt the frame */
-  zb_uint8_t                key_type;       /**< type of key to be used for
+    zb_time_t                 recv_timestamp;    /**< Packet reception time */
+    zb_gpdf_mac_addr_flds_t   mac_addr_flds;     /**< MAC addressing fields */
+    zb_uint8_t                mac_addr_flds_len; /**< Length of data in MAC addressing fields */
+    zb_uint8_t                mac_seq_num;       /**< MAC sequence number */
+    zb_uint8_t                nwk_frame_ctl;     /**< NWK frame control */
+    zb_uint8_t                nwk_ext_frame_ctl; /**< Extended NWK frame control */
+    zb_zgpd_id_t              zgpd_id;           /**< ZGPD ID */
+    zb_uint32_t               sec_frame_counter; /**< Security frame counter */
+    zb_uint8_t                zgpd_cmd_id;       /**< ZGPD command ID */
+    zb_uint8_t                nwk_hdr_len;       /**< Length of the GPDF NWK header */
+    zb_uint8_t                lqi;               /**< LQI value from alien MAC */
+    zb_int8_t                 rssi;              /**< RSSI value from alien MAC */
+    zb_uint8_t                status;            /**< 'status' for GP-DATA.indication @see  */
+    zb_uint8_t                key[ZB_CCM_KEY_SIZE];/**< Key to decrypt the frame */
+    zb_uint8_t                key_type;       /**< type of key to be used for
                                                  that frame @see zb_zgp_security_key_type_e */
-  zb_uint8_t                mic[ZB_CCM_M];
-  zb_bitfield_t             rx_directly:1;       /**< If 1, received directly by
+    zb_uint8_t                mic[ZB_CCM_M];
+    zb_bitfield_t             rx_directly: 1;       /**< If 1, received directly by
                                                    * GP stub, else got from GPP */
-  zb_bitfield_t             recv_as_unicast:1; /**< Unicast mode of
+    zb_bitfield_t             recv_as_unicast: 1; /**< Unicast mode of
                                                    * packet received via GP Notification. */
-  /* WARNING: Aligned to 62 bytes here - struct is not stored in NVRAM so it is ok.
-     Aligning to 64 bytes (closest multiple of 4) brings strange errors and overlapping of data!
-     TODO: Debug overlapping. Possibly it is better to divide this struct to some parts and do not
-     play with such big structure in the packet tail. Here we have timestamps, lqi/rssi, mac, nwk
-     and security payloads at the same structure!
-     EE: maybe, can win 1 byte by using bitfield for key type so we can remove 1 byte of align?
-     Also, recheck twice: do we need all that info in GPPB? Som can came from Target- and can be not used now.
-     TC: If unaligned, the following allocation may lead to memory corruption:
-        zgp_gp_notif_iterator_t *it = zb_buf_get_tail(param, sizeof(zgp_gp_notif_iterator_t) + sizeof(zb_gpdf_info_t));
-        zb_gpdf_info_t *gpdf_info = ZB_BUF_GET_PARAM(param, zb_gpdf_info_t);
-      The zb_buf_get_tail always returns aligned pointer, so if the zb_gpdf_info_t is unaligned, the gpdf_info pointer
-      will point to some bytes inside the zgp_gp_notif_iterator_t.
-      There are around 8 allocations of this type inside zgp_sink.c and zgp_cluster_gp.c files.
-  */
-  zb_uint8_t aligned[1];
+    /* WARNING: Aligned to 62 bytes here - struct is not stored in NVRAM so it is ok.
+       Aligning to 64 bytes (closest multiple of 4) brings strange errors and overlapping of data!
+       TODO: Debug overlapping. Possibly it is better to divide this struct to some parts and do not
+       play with such big structure in the packet tail. Here we have timestamps, lqi/rssi, mac, nwk
+       and security payloads at the same structure!
+       EE: maybe, can win 1 byte by using bitfield for key type so we can remove 1 byte of align?
+       Also, recheck twice: do we need all that info in GPPB? Som can came from Target- and can be not used now.
+       TC: If unaligned, the following allocation may lead to memory corruption:
+          zgp_gp_notif_iterator_t *it = zb_buf_get_tail(param, sizeof(zgp_gp_notif_iterator_t) + sizeof(zb_gpdf_info_t));
+          zb_gpdf_info_t *gpdf_info = ZB_BUF_GET_PARAM(param, zb_gpdf_info_t);
+        The zb_buf_get_tail always returns aligned pointer, so if the zb_gpdf_info_t is unaligned, the gpdf_info pointer
+        will point to some bytes inside the zgp_gp_notif_iterator_t.
+        There are around 8 allocations of this type inside zgp_sink.c and zgp_cluster_gp.c files.
+    */
+    zb_uint8_t aligned[1];
 }
 ZB_PACKED_STRUCT zb_gpdf_info_t;
 
 typedef struct zgp_runtime_app_description_ctx_s
 {
-  zb_gpdf_info_t gpdf_info;
-  zb_uint8_t     report_idx;
-  zb_uint8_t     point_desc_offset;
-}zgp_runtime_app_description_ctx_t;
+    zb_gpdf_info_t gpdf_info;
+    zb_uint8_t     report_idx;
+    zb_uint8_t     point_desc_offset;
+} zgp_runtime_app_description_ctx_t;
 
 #ifndef ZB_ZGPD_ROLE
 #ifdef ZB_ENABLE_ZGP_DIRECT
 typedef ZB_PACKED_PRE struct zb_cgp_data_req_s
 {
-  zb_uint8_t      tx_options;
-  zb_uint8_t      src_addr_mode;
-  zb_uint16_t     src_pan_id;
-  zb_addr_u src_addr;
-  zb_uint8_t      dst_addr_mode;
-  zb_uint16_t     dst_pan_id;
-  zb_addr_u dst_addr;
-  zb_uint8_t      buf_ref;
-  zb_uint8_t      handle;
-  zb_time_t       recv_timestamp;
+    zb_uint8_t      tx_options;
+    zb_uint8_t      src_addr_mode;
+    zb_uint16_t     src_pan_id;
+    zb_addr_u src_addr;
+    zb_uint8_t      dst_addr_mode;
+    zb_uint16_t     dst_pan_id;
+    zb_addr_u dst_addr;
+    zb_uint8_t      buf_ref;
+    zb_uint8_t      handle;
+    zb_time_t       recv_timestamp;
 }
 ZB_PACKED_STRUCT
 zb_cgp_data_req_t;
@@ -284,21 +285,21 @@ zb_cgp_data_req_t;
 
 typedef enum gp_sec_resp_e
 {
-  GP_SEC_RESPONSE_DROP_FRAME,
-  GP_SEC_RESPONSE_PASS_UNPROCESSED,
-  GP_SEC_RESPONSE_TX_THEN_DROP,
-  GP_SEC_RESPONSE_MATCH,
-  GP_SEC_RESPONSE_TX_THEN_PASS_COMMISSIONING_UNPROCESSED,
-  GP_SEC_RESPONSE_ILLEGAL = 0xff
+    GP_SEC_RESPONSE_DROP_FRAME,
+    GP_SEC_RESPONSE_PASS_UNPROCESSED,
+    GP_SEC_RESPONSE_TX_THEN_DROP,
+    GP_SEC_RESPONSE_MATCH,
+    GP_SEC_RESPONSE_TX_THEN_PASS_COMMISSIONING_UNPROCESSED,
+    GP_SEC_RESPONSE_ILLEGAL = 0xff
 } gp_sec_resp_t;
 
 typedef enum gp_data_ind_status_e
 {
-  GP_DATA_IND_STATUS_SECURITY_SUCCESS,
-  GP_DATA_IND_STATUS_NO_SECURITY,
-  GP_DATA_IND_STATUS_AUTH_FAILURE,
-  GP_DATA_IND_STATUS_UNPROCESSED,
-  GP_DATA_IND_STATUS_COMMISSIONING_UNPROCESSED
+    GP_DATA_IND_STATUS_SECURITY_SUCCESS,
+    GP_DATA_IND_STATUS_NO_SECURITY,
+    GP_DATA_IND_STATUS_AUTH_FAILURE,
+    GP_DATA_IND_STATUS_UNPROCESSED,
+    GP_DATA_IND_STATUS_COMMISSIONING_UNPROCESSED
 } gp_data_ind_status_t;
 
 #define ZGP_PROXY_LWADDR_INVALID_IDX 0xff
@@ -481,39 +482,39 @@ ZB_ASSERT_COMPILE_DECL(ZB_ZGP_TX_QUEUE_SIZE <= ZB_ZGP_TX_PACKET_INFO_COUNT);
 
 typedef struct zb_zgp_tx_pinfo_s
 {
-  zb_uint8_t                    handle;
-  zb_zgpd_id_t                  zgpd_id;
-  zb_uint8_t                    buf_ref;   /* Reference to buffer, which is used for GPDF */
+    zb_uint8_t                    handle;
+    zb_zgpd_id_t                  zgpd_id;
+    zb_uint8_t                    buf_ref;   /* Reference to buffer, which is used for GPDF */
 } zb_zgp_tx_pinfo_t;
 
 typedef struct zb_zgp_tx_q_ent_s
 {
-  zb_uint8_t    tx_options;
-  zb_uint8_t    cmd_id;
-  zb_uint8_t    payload_len;
-  zb_uint8_t    pld[ZB_ZGP_TX_CMD_PLD_MAX_SIZE]; /**< Payload */
-  zb_bitfield_t is_expired:1;
-  zb_bitfield_t sent:1;
-  zb_bitfield_t reserved:6;
+    zb_uint8_t    tx_options;
+    zb_uint8_t    cmd_id;
+    zb_uint8_t    payload_len;
+    zb_uint8_t    pld[ZB_ZGP_TX_CMD_PLD_MAX_SIZE]; /**< Payload */
+    zb_bitfield_t is_expired: 1;
+    zb_bitfield_t sent: 1;
+    zb_bitfield_t reserved: 6;
 } zb_zgp_tx_q_ent_t;
 
 typedef struct zb_zgp_tx_q_s
 {
-  zb_zgp_tx_q_ent_t queue[ZB_ZGP_TX_QUEUE_SIZE];
+    zb_zgp_tx_q_ent_t queue[ZB_ZGP_TX_QUEUE_SIZE];
 } zb_zgp_tx_q_t;
 
 typedef struct zb_zgp_tx_packet_info_q_s
 {
-  zb_zgp_tx_pinfo_t queue[ZB_ZGP_TX_PACKET_INFO_COUNT];
-  zb_uint8_t        used_mask[TX_PACKET_INFO_QUEUE_USED_MASK];
+    zb_zgp_tx_pinfo_t queue[ZB_ZGP_TX_PACKET_INFO_COUNT];
+    zb_uint8_t        used_mask[TX_PACKET_INFO_QUEUE_USED_MASK];
 } zb_zgp_tx_packet_info_q_t;
 
 enum zb_zgp_tx_packet_info_search_mode_e
 {
-  ZB_ZGP_TX_PACKET_INFO_ALL_PACKETS,
-  ZB_ZGP_TX_PACKET_INFO_PENDING_PACKETS,
+    ZB_ZGP_TX_PACKET_INFO_ALL_PACKETS,
+    ZB_ZGP_TX_PACKET_INFO_PENDING_PACKETS,
 #ifdef ZB_ZGP_IMMED_TX
-  ZB_ZGP_TX_PACKET_INFO_IMMED_PACKETS,
+    ZB_ZGP_TX_PACKET_INFO_IMMED_PACKETS,
 #endif  /* ZB_ZGP_IMMED_TX */
 };
 
@@ -524,21 +525,21 @@ zb_uint8_t zb_zgp_tx_packet_info_q_find_pos(
 );
 
 zb_uint8_t zb_zgp_tx_q_find_ent_pos_for_send(zb_zgp_tx_packet_info_q_t *tx_p_i_q,
-    zb_zgp_tx_q_t *tx_q, zb_zgpd_id_t *id);
+        zb_zgp_tx_q_t *tx_q, zb_zgpd_id_t *id);
 
 zb_uint8_t zb_zgp_tx_q_find_ent_pos_for_cfm(zb_zgp_tx_packet_info_q_t *tx_p_i_q,
-                                            zb_uint8_t                 buf_ref);
+        zb_uint8_t                 buf_ref);
 
 zb_uint8_t zb_zgp_tx_q_find_expired_ent_pos(zb_zgp_tx_packet_info_q_t *tx_p_i_q,
-    zb_zgp_tx_q_t *tx_q);
+        zb_zgp_tx_q_t *tx_q);
 
 zb_uint8_t zb_zgp_tx_packet_info_q_grab_free_ent_pos(zb_zgp_tx_packet_info_q_t *tx_p_i_q,
-    zb_uint8_t search_mode);
+        zb_uint8_t search_mode);
 
 void zb_zgp_tx_packet_info_q_delete_ent(zb_zgp_tx_packet_info_q_t *tx_p_i_q, zb_uint8_t pos);
 
 zb_bool_t zb_has_zgp_tx_packet_info_q_capacity_to_store(zb_zgp_tx_packet_info_q_t *tx_p_i_q,
-    zb_uint8_t search_mode);
+        zb_uint8_t search_mode);
 
 #define ZB_ZGP_TX_Q_FILLED_CNT(q, ret_cnt) \
   ret_cnt = zb_calc_non_zero_bits_in_bit_vector((q)->used_mask, USED_MASK_SIZE)
@@ -562,37 +563,37 @@ void zgp_clean_zgpd_info_from_queue(zb_uint8_t    buf_ref,
 
 enum zb_outgoing_gpdf_state_e
 {
-  ZB_OUTGOING_GPDF_STATE_GET_OPER_CHANNEL,
-  ZB_OUTGOING_GPDF_STATE_SET_TEMP_CHANNEL,
-  ZB_OUTGOING_GPDF_STATE_SET_OPER_CHANNEL
+    ZB_OUTGOING_GPDF_STATE_GET_OPER_CHANNEL,
+    ZB_OUTGOING_GPDF_STATE_SET_TEMP_CHANNEL,
+    ZB_OUTGOING_GPDF_STATE_SET_OPER_CHANNEL
 };
 
 enum zb_outgoing_gpdf_status_e
 {
-  ZB_OUTGOING_GPDF_STATUS_SUCCESS,
-  ZB_OUTGOING_GPDF_STATUS_PIB_ERROR,
-  ZB_OUTGOING_GPDF_STATUS_ENC_ERROR,
+    ZB_OUTGOING_GPDF_STATUS_SUCCESS,
+    ZB_OUTGOING_GPDF_STATUS_PIB_ERROR,
+    ZB_OUTGOING_GPDF_STATUS_ENC_ERROR,
 };
 
 typedef void (*zb_outgoing_gpdf_cb_t)(zb_uint8_t param, zb_uint8_t status);
 
 typedef struct zb_outgoing_gpdf_info_s
 {
-//internal
-  zb_uint8_t     state;
-  zb_uint8_t     tx_options;
-  zb_uint8_t     channel_info;
-  zb_uint8_t     channel;
-  zb_uint8_t     buf_ref;
-//gpdf
-  zb_uint8_t     nwk_frame_ctl;
-  zb_uint8_t     nwk_ext_frame_ctl;
-  zb_zgpd_addr_t addr;
-  zb_uint8_t     endpoint;
-  zb_uint32_t    sec_frame_counter;
-  zb_uint8_t     payload_len;
-  zb_uint8_t     payload[ZB_ZGP_MAX_GPDF_CMD_PAYLOAD_APP_ID_0000];
-  zb_outgoing_gpdf_cb_t cb;
+    //internal
+    zb_uint8_t     state;
+    zb_uint8_t     tx_options;
+    zb_uint8_t     channel_info;
+    zb_uint8_t     channel;
+    zb_uint8_t     buf_ref;
+    //gpdf
+    zb_uint8_t     nwk_frame_ctl;
+    zb_uint8_t     nwk_ext_frame_ctl;
+    zb_zgpd_addr_t addr;
+    zb_uint8_t     endpoint;
+    zb_uint32_t    sec_frame_counter;
+    zb_uint8_t     payload_len;
+    zb_uint8_t     payload[ZB_ZGP_MAX_GPDF_CMD_PAYLOAD_APP_ID_0000];
+    zb_outgoing_gpdf_cb_t cb;
 } zb_outgoing_gpdf_info_t;
 
 #define ZGP_GPDF_NWK_PUT_FCTL(ptr_, fctl_) \
@@ -627,100 +628,100 @@ zb_ret_t zgp_send_gpdf(zb_uint8_t buf_ref, zb_outgoing_gpdf_info_t *gpdf_info);
  */
 typedef struct zb_zgps_dev_comm_data_s
 {
-  zb_uint8_t     state;         /**< Current commissioning state \ref zb_zgp_comm_state_t */
-  zb_zgpd_id_t   zgpd_id;       /**< ZGPD ID */
-  zb_uint8_t     oper_channel;  /**< ZGP physical operational channel */
-  zb_uint8_t     temp_master_tx_chnl;  /**< Temp channel during commissioning */
+    zb_uint8_t     state;         /**< Current commissioning state \ref zb_zgp_comm_state_t */
+    zb_zgpd_id_t   zgpd_id;       /**< ZGPD ID */
+    zb_uint8_t     oper_channel;  /**< ZGP physical operational channel */
+    zb_uint8_t     temp_master_tx_chnl;  /**< Temp channel during commissioning */
 #ifdef ZB_ENABLE_ZGP_DIRECT
-  /* check if we are working on temp channel */
-  zb_bool_t      is_work_on_temp_channel;
+    /* check if we are working on temp channel */
+    zb_bool_t      is_work_on_temp_channel;
 #endif  /* ZB_ENABLE_ZGP_DIRECT */
-  zb_uint8_t     channel_conf_payload;
-  zb_uint8_t     result;        /**< Commissioning result @ref zb_zgp_comm_status_t */
-  zb_uint8_t     comm_req_buf;  /**< Reference to buffer with Commissioning GPDF from ZGPD */
-  /** Used for duplicate filtering during early stages of commissioning, when device is not
-   * added to the sink table yet. Two frame types are filtered this way:
-   * - Channel request frames (filtered by MAC sequence number). Also it is impossible to filter
-   *   duplicates using sink table if Channel request is sent as Maintenance frame without concrete
-   *   ZGPD ID.
-   * - Commissioning frames (both secured and unsecured).
-   */
-  zb_uint32_t    comm_dup_counter;
-  /* indicate for dup_counter check function that comm_dup_counter field have legal and valid value */
-  zb_uint8_t     any_packet_received;
+    zb_uint8_t     channel_conf_payload;
+    zb_uint8_t     result;        /**< Commissioning result @ref zb_zgp_comm_status_t */
+    zb_uint8_t     comm_req_buf;  /**< Reference to buffer with Commissioning GPDF from ZGPD */
+    /** Used for duplicate filtering during early stages of commissioning, when device is not
+     * added to the sink table yet. Two frame types are filtered this way:
+     * - Channel request frames (filtered by MAC sequence number). Also it is impossible to filter
+     *   duplicates using sink table if Channel request is sent as Maintenance frame without concrete
+     *   ZGPD ID.
+     * - Commissioning frames (both secured and unsecured).
+     */
+    zb_uint32_t    comm_dup_counter;
+    /* indicate for dup_counter check function that comm_dup_counter field have legal and valid value */
+    zb_uint8_t     any_packet_received;
 
-  /* A.3.3.5.3 The Options as shown in Figure 53 without action field */
-  /*
-    0-2:  exit mode
-      3:  channel present
-      4:  unicast communication
-  */
-  zb_uint8_t     proxy_comm_mode_options;
-  zb_uint16_t    sink_addr;
+    /* A.3.3.5.3 The Options as shown in Figure 53 without action field */
+    /*
+      0-2:  exit mode
+        3:  channel present
+        4:  unicast communication
+    */
+    zb_uint8_t     proxy_comm_mode_options;
+    zb_uint16_t    sink_addr;
 
-  zb_uint8_t     gpdf_options;
-  zb_uint8_t     gpdf_ext_options;
-  zb_uint32_t    gpdf_security_frame_counter;
+    zb_uint8_t     gpdf_options;
+    zb_uint8_t     gpdf_ext_options;
+    zb_uint32_t    gpdf_security_frame_counter;
 
 #ifdef ZB_ENABLE_ZGP_SINK
-  zb_uint8_t     selected_temp_master_idx;
-  zb_zgp_gp_proxy_info_t temp_master_list[ZB_ZGP_MAX_TEMP_MASTER_COUNT];
-  zb_uint8_t     need_send_dev_annce;
+    zb_uint8_t     selected_temp_master_idx;
+    zb_zgp_gp_proxy_info_t temp_master_list[ZB_ZGP_MAX_TEMP_MASTER_COUNT];
+    zb_uint8_t     need_send_dev_annce;
 #endif  /* ZB_ENABLE_ZGP_SINK */
 } zb_zgps_dev_comm_data_t;
 
 /** @brief global ZGP context */
 typedef struct zb_zgp_ctx_s
 {
-  zb_zgp_cluster_t          cluster;
-  zb_zgps_dev_comm_data_t   comm_data;  /**< Info about currently ongoing commissioning process */
+    zb_zgp_cluster_t          cluster;
+    zb_zgps_dev_comm_data_t   comm_data;  /**< Info about currently ongoing commissioning process */
 
-  /* b0 - if 1 - start comm/stop comm by gp_sink_commissioning_mode request
-   * b1 - if 1 - unicast proxy commissioning mode, otherwise - broadcast mode
-   * b7-b15 - gp_sink_commissioning_mode options */
-  zb_uint16_t               sink_comm_mode_opt;
+    /* b0 - if 1 - start comm/stop comm by gp_sink_commissioning_mode request
+     * b1 - if 1 - unicast proxy commissioning mode, otherwise - broadcast mode
+     * b7-b15 - gp_sink_commissioning_mode options */
+    zb_uint16_t               sink_comm_mode_opt;
 
 #ifdef ZB_ENABLE_ZGP_SINK
-  zb_uint8_t                sink_mode; /**< Current mode of Sink side. One of the @ref zb_zgp_mode_t */
-  /** Functionality matching information. Should be set by user application.
-    * It is used during commissioning to fill translation table entries based
-    * on ZGPD Device ID received in Commissioning command. */
-  const zb_zgps_match_info_t *match_info;
-  zb_zgp_comm_completed_cb_t comm_cb;   /**< Commissioning callback on commissioning complete event */
-  zb_zgp_comm_req_cb_t      comm_req_cb;   /**< Commissioning callback when ZGPD sent commissioning frame */
-  zb_zgp_app_cfm_cb_t       app_cfm_cb;    /**< Application callback
+    zb_uint8_t                sink_mode; /**< Current mode of Sink side. One of the @ref zb_zgp_mode_t */
+    /** Functionality matching information. Should be set by user application.
+      * It is used during commissioning to fill translation table entries based
+      * on ZGPD Device ID received in Commissioning command. */
+    const zb_zgps_match_info_t *match_info;
+    zb_zgp_comm_completed_cb_t comm_cb;   /**< Commissioning callback on commissioning complete event */
+    zb_zgp_comm_req_cb_t      comm_req_cb;   /**< Commissioning callback when ZGPD sent commissioning frame */
+    zb_zgp_app_cfm_cb_t       app_cfm_cb;    /**< Application callback
                                              * when ZGPD sent application data */
-  zb_zgp_app_comm_ind_cb_t  app_comm_op_cb;    /**< Application callback when receive commisioning in operational mode */
+    zb_zgp_app_comm_ind_cb_t  app_comm_op_cb;    /**< Application callback when receive commisioning in operational mode */
 
-  /* new Sink table, unified with Proxy table */
-  zb_zgp_sink_table_t       sink_table;
+    /* new Sink table, unified with Proxy table */
+    zb_zgp_sink_table_t       sink_table;
 
-  #define ZB_ZGP_APP_TBL_SIZE ZB_ZGP_SINK_TBL_SIZE
-  zgp_runtime_app_tbl_ent_t app_table[ZB_ZGP_APP_TBL_SIZE];
+#define ZB_ZGP_APP_TBL_SIZE ZB_ZGP_SINK_TBL_SIZE
+    zgp_runtime_app_tbl_ent_t app_table[ZB_ZGP_APP_TBL_SIZE];
 #endif  /* ZB_ENABLE_ZGP_SINK */
 #ifdef ZB_ENABLE_ZGP_PROXY
-  zb_uint8_t                proxy_mode; /**< Current mode of Proxy side. One of the @ref
+    zb_uint8_t                proxy_mode; /**< Current mode of Proxy side. One of the @ref
                                          * zb_zgp_mode_t */
-  zb_zgp_proxy_table_t      proxy_table;
+    zb_zgp_proxy_table_t      proxy_table;
 #endif  /* ZB_ENABLE_ZGP_PROXY */
 
 #ifdef ZB_ENABLE_ZGP_DIRECT
-  zb_zgp_tx_q_t             tx_queue;     /**< ZGP Tx queue */
-  zb_zgp_tx_packet_info_q_t tx_packet_info_queue;
+    zb_zgp_tx_q_t             tx_queue;     /**< ZGP Tx queue */
+    zb_zgp_tx_packet_info_q_t tx_packet_info_queue;
 #ifdef ZB_ZGP_IMMED_TX
-  zb_uint32_t               immed_tx_frame_counter;
+    zb_uint32_t               immed_tx_frame_counter;
 #endif  /* ZB_ZGP_IMMED_TX */
 #ifdef ZB_ENABLE_ZGP_TEST_HARNESS
-  zb_outgoing_gpdf_info_t   out_gpdf_info;
+    zb_outgoing_gpdf_info_t   out_gpdf_info;
 #endif
 #endif  /* ZB_ENABLE_ZGP_DIRECT */
 
-  zgp_runtime_app_description_ctx_t app_descr_ctx;
+    zgp_runtime_app_description_ctx_t app_descr_ctx;
 
-  zb_bitfield_t skip_gpdf:1;
-  zb_bitfield_t init_by_scheduler:1;
-  zb_bitfield_t gp_disabled:1;
-  zb_bitfield_t aligned:5;
+    zb_bitfield_t skip_gpdf: 1;
+    zb_bitfield_t init_by_scheduler: 1;
+    zb_bitfield_t gp_disabled: 1;
+    zb_bitfield_t aligned: 5;
 
 } zb_zgp_ctx_t;
 
@@ -728,42 +729,42 @@ typedef struct zb_zgp_ctx_s
 typedef struct zgp_cert_hacks_s
 {
 #ifdef ZB_ENABLE_ZGP_PROXY
-  zb_bitfield_t gp_proxy_ignore_duplicate_gp_frames:1; /*!< If set to 1, disable proxy drop duplicate gp frames */
-  zb_bitfield_t gp_proxy_replace_gp_notif_sec_level:1; /*!< If set to 1, proxy replaces security level
+    zb_bitfield_t gp_proxy_ignore_duplicate_gp_frames: 1; /*!< If set to 1, disable proxy drop duplicate gp frames */
+    zb_bitfield_t gp_proxy_replace_gp_notif_sec_level: 1; /*!< If set to 1, proxy replaces security level
                                                         *   ONLY in options of the GP Notification packet */
-  zb_uint8_t    gp_proxy_replace_sec_level;            /*!< data to set in replace mode*/
-  zb_bitfield_t gp_proxy_replace_gp_notif_sec_key_type:1; /*!< If set to 1, proxy replaces security key type
+    zb_uint8_t    gp_proxy_replace_sec_level;            /*!< data to set in replace mode*/
+    zb_bitfield_t gp_proxy_replace_gp_notif_sec_key_type: 1; /*!< If set to 1, proxy replaces security key type
                                                         *   ONLY in options of the GP Notification packet */
-  zb_uint8_t    gp_proxy_replace_sec_key_type;         /*!< data to set in replace mode*/
-  zb_bitfield_t gp_proxy_replace_gp_notif_sec_frame_counter:1; /*!< If set to 1, proxy replaces security frame counter */
-  zb_uint32_t   gp_proxy_replace_sec_frame_counter;    /*!< data to set in replace mode*/
-  zb_callback_t gp_proxy_gp_notif_req_cb;              /*!< Called before proxy send gp notification */
-  zb_callback_t gp_proxy_gp_comm_notif_req_cb;         /*!< Called before proxy send gp commissioning notification */
-  zb_bitfield_t gp_proxy_replace_comm_app_id:1;        /*!< If set to 1, proxy replaces app_id in commissioning frame */
-  zb_bitfield_t gp_proxy_replace_comm_app_id_format:1; /*!< If set to 1, proxy replaces app_id in commissioning frame and its format */
-  zb_uint8_t    gp_proxy_replace_comm_app_id_value;    /*!< data to set in replace mode*/
-  zb_bitfield_t gp_proxy_replace_comm_options:1;       /*!< If set to 1, proxy replaces app_id in commissioning frame */
-  zb_uint16_t   gp_proxy_replace_comm_options_value;   /*!< data to set in replace mode*/
-  zb_uint16_t   gp_proxy_replace_comm_options_mask;    /*!< mask to set in replace mode*/
+    zb_uint8_t    gp_proxy_replace_sec_key_type;         /*!< data to set in replace mode*/
+    zb_bitfield_t gp_proxy_replace_gp_notif_sec_frame_counter: 1; /*!< If set to 1, proxy replaces security frame counter */
+    zb_uint32_t   gp_proxy_replace_sec_frame_counter;    /*!< data to set in replace mode*/
+    zb_callback_t gp_proxy_gp_notif_req_cb;              /*!< Called before proxy send gp notification */
+    zb_callback_t gp_proxy_gp_comm_notif_req_cb;         /*!< Called before proxy send gp commissioning notification */
+    zb_bitfield_t gp_proxy_replace_comm_app_id: 1;       /*!< If set to 1, proxy replaces app_id in commissioning frame */
+    zb_bitfield_t gp_proxy_replace_comm_app_id_format: 1; /*!< If set to 1, proxy replaces app_id in commissioning frame and its format */
+    zb_uint8_t    gp_proxy_replace_comm_app_id_value;    /*!< data to set in replace mode*/
+    zb_bitfield_t gp_proxy_replace_comm_options: 1;      /*!< If set to 1, proxy replaces app_id in commissioning frame */
+    zb_uint16_t   gp_proxy_replace_comm_options_value;   /*!< data to set in replace mode*/
+    zb_uint16_t   gp_proxy_replace_comm_options_mask;    /*!< mask to set in replace mode*/
 
-  zb_bitfield_t gp_proxy_replace_comm_gpd_id:1;        /*!< If set to 1, proxy replaces gpd_id in commissioning frame */
-  zb_uint32_t   gp_proxy_replace_comm_gpd_id_value;    /*!< data to set in replace mode*/
-  zb_ieee_addr_t gp_proxy_replace_comm_gpd_ieee_value;    /*!< data to set in replace mode*/
-  zb_uint8_t    gp_proxy_replace_comm_gpd_ep_value;    /*!< data to set in replace mode*/
+    zb_bitfield_t gp_proxy_replace_comm_gpd_id: 1;       /*!< If set to 1, proxy replaces gpd_id in commissioning frame */
+    zb_uint32_t   gp_proxy_replace_comm_gpd_id_value;    /*!< data to set in replace mode*/
+    zb_ieee_addr_t gp_proxy_replace_comm_gpd_ieee_value;    /*!< data to set in replace mode*/
+    zb_uint8_t    gp_proxy_replace_comm_gpd_ep_value;    /*!< data to set in replace mode*/
 #endif  /* ZB_ENABLE_ZGP_PROXY */
 #if defined ZB_ENABLE_ZGP_SINK || defined ZGP_COMMISSIONING_TOOL
-  zb_bitfield_t gp_sink_use_assigned_alias_for_dgroup_commissioning:1; /*!< If set to 1, Sink will use assignead alias
+    zb_bitfield_t gp_sink_use_assigned_alias_for_dgroup_commissioning: 1; /*!< If set to 1, Sink will use assignead alias
                                                                         *  insead derived alias for
                                                                         *  next commissioning process */
-  zb_bitfield_t gp_sink_replace_sec_lvl_on_pairing:1;  //replace sec_lvl on pairing
-  zb_bitfield_t gp_sink_sec_lvl_on_pairing:2;
-  zb_uint16_t   gp_sink_assigned_alias;
-  zb_uint16_t   gp_sink_pairing_dest;                  /*!< destination of GP pairing, by default is
+    zb_bitfield_t gp_sink_replace_sec_lvl_on_pairing: 1; //replace sec_lvl on pairing
+    zb_bitfield_t gp_sink_sec_lvl_on_pairing: 2;
+    zb_uint16_t   gp_sink_assigned_alias;
+    zb_uint16_t   gp_sink_pairing_dest;                  /*!< destination of GP pairing, by default is
                                                         * 0xFFFD */
 #endif  /* defined ZB_ENABLE_ZGP_SINK || defined ZGP_COMMISSIONING_TOOL */
 } zgp_cert_hacks_t;
 
-zgp_cert_hacks_t* zb_zgp_cert_hacks_get(void);
+zgp_cert_hacks_t *zb_zgp_cert_hacks_get(void);
 extern zgp_cert_hacks_t zb_zgp_cert_hacks;
 #define ZGP_CERT_HACKS() zb_zgp_cert_hacks
 
@@ -855,7 +856,7 @@ zb_ret_t zb_zgp_decrypt_n_auth_gpd_key(
 
 #ifndef ZB_ZGPD_ROLE
 void zgp_channel_config_transceiver_channel_change(zb_uint8_t param,
-                                                   zb_bool_t  back);
+        zb_bool_t  back);
 void zb_zgp_channel_config_get_current_channel(zb_uint8_t param);
 /**
  * @brief Prepare channel configuration packet and add it into TX queue
@@ -990,53 +991,55 @@ void zb_gp_data_indication(zb_uint8_t param);
 
 #define ZB_GP_VER 0
 
-enum zgp_server_commands_e {
-  ZGP_SERVER_CMD_GP_NOTIFICATION                        = 0x00,
-  ZGP_SERVER_CMD_GP_PAIRING_SEARCH                      = 0x01,
-  ZGP_SERVER_CMD_GP_TUNNELING_STOP                      = 0x03,
-  ZGP_SERVER_CMD_GP_COMMISSIONING_NOTIFICATION          = 0x04,
-  ZGP_SERVER_CMD_GP_SINK_COMMISSIONING_MODE             = 0x05,
-  ZGP_SERVER_CMD_GP_TRANSLATION_TABLE_UPDATE_COMMAND    = 0x07,
-  ZGP_SERVER_CMD_GP_TRANSLATION_TABLE_REQUEST           = 0x08,
-  ZGP_SERVER_CMD_GP_PAIRING_CONFIGURATION               = 0x09,
-  ZGP_SERVER_CMD_GP_SINK_TABLE_REQUEST                  = 0x0a,
-  ZGP_SERVER_CMD_GP_PROXY_TABLE_RESPONSE                = 0x0b
+enum zgp_server_commands_e
+{
+    ZGP_SERVER_CMD_GP_NOTIFICATION                        = 0x00,
+    ZGP_SERVER_CMD_GP_PAIRING_SEARCH                      = 0x01,
+    ZGP_SERVER_CMD_GP_TUNNELING_STOP                      = 0x03,
+    ZGP_SERVER_CMD_GP_COMMISSIONING_NOTIFICATION          = 0x04,
+    ZGP_SERVER_CMD_GP_SINK_COMMISSIONING_MODE             = 0x05,
+    ZGP_SERVER_CMD_GP_TRANSLATION_TABLE_UPDATE_COMMAND    = 0x07,
+    ZGP_SERVER_CMD_GP_TRANSLATION_TABLE_REQUEST           = 0x08,
+    ZGP_SERVER_CMD_GP_PAIRING_CONFIGURATION               = 0x09,
+    ZGP_SERVER_CMD_GP_SINK_TABLE_REQUEST                  = 0x0a,
+    ZGP_SERVER_CMD_GP_PROXY_TABLE_RESPONSE                = 0x0b
 };
 
 
-enum zgp_client_commands_e {
-  ZGP_CLIENT_CMD_GP_NOTIFICATION_RESPONSE     = 0x00, /* not for basic */
-  ZGP_CLIENT_CMD_GP_PAIRING                   = 0x01,
-  ZGP_CLIENT_CMD_GP_PROXY_COMMISSIONING_MODE  = 0x02,
-  ZGP_CLIENT_CMD_GP_RESPONSE                  = 0x06,
-  ZGP_CLIENT_CMD_GP_SINK_TABLE_RESPONSE       = 0x0a,
-  ZGP_CLIENT_CMD_GP_PROXY_TABLE_REQUEST       = 0x0b
+enum zgp_client_commands_e
+{
+    ZGP_CLIENT_CMD_GP_NOTIFICATION_RESPONSE     = 0x00, /* not for basic */
+    ZGP_CLIENT_CMD_GP_PAIRING                   = 0x01,
+    ZGP_CLIENT_CMD_GP_PROXY_COMMISSIONING_MODE  = 0x02,
+    ZGP_CLIENT_CMD_GP_RESPONSE                  = 0x06,
+    ZGP_CLIENT_CMD_GP_SINK_TABLE_RESPONSE       = 0x0a,
+    ZGP_CLIENT_CMD_GP_PROXY_TABLE_REQUEST       = 0x0b
 };
 
 
 /*
 gppFunctionality
 
-b0	GP feature	0b1
-b1	Direct communication (reception of GPDF via GP stub) 	0b1
-b2	Derived groupcast communication 	0b1
-b3	Pre-commissioned groupcast communication 	0b1
-b4	Full unicast communication	0b0
-b5	Lightweight unicast communication	0b1
-b6	Reserved	0b0
-b7	Bidirectional operation	0b0
-b8	Proxy Table maintenance (active and passive, for GPD mobility and GPP robustness)	0b0
-b9	Reserved	0b0
-b10	GP commissioning	0b1
-b11	CT-based commissioning	0b1
-b12	Maintenance of GPD (deliver channel/key during operation)	0b0
-b13	gpdSecurityLevel = 0b00	0b1
-b14	Deprecated: gpdSecurityLevel = 0b01 	0b0
-b15	gpdSecurityLevel = 0b10	0b1
-b16	gpdSecurityLevel = 0b11	0b1
-b17	Reserved	0b0
-b18	Reserved	0b0
-b19	GPD IEEE address	0b1
+b0  GP feature  0b1
+b1  Direct communication (reception of GPDF via GP stub)    0b1
+b2  Derived groupcast communication     0b1
+b3  Pre-commissioned groupcast communication    0b1
+b4  Full unicast communication  0b0
+b5  Lightweight unicast communication   0b1
+b6  Reserved    0b0
+b7  Bidirectional operation 0b0
+b8  Proxy Table maintenance (active and passive, for GPD mobility and GPP robustness)   0b0
+b9  Reserved    0b0
+b10 GP commissioning    0b1
+b11 CT-based commissioning  0b1
+b12 Maintenance of GPD (deliver channel/key during operation)   0b0
+b13 gpdSecurityLevel = 0b00 0b1
+b14 Deprecated: gpdSecurityLevel = 0b01     0b0
+b15 gpdSecurityLevel = 0b10 0b1
+b16 gpdSecurityLevel = 0b11 0b1
+b17 Reserved    0b0
+b18 Reserved    0b0
+b19 GPD IEEE address    0b1
 
 So, for GPPB we have 10011010110000101111
  */
@@ -1045,52 +1048,53 @@ So, for GPPB we have 10011010110000101111
 
 /* ZGP spec, A.3.4.2.7 */
 
-typedef enum zgp_gpp_functionality_e {
-  ZGP_GPP_GP_FEATURE                               = (1 <<  0),
-  ZGP_GPP_DIRECT_COMMUNICATION                     = (1 <<  1),
-  ZGP_GPP_DERIVED_GROUPCAST_COMMUNICATION          = (1 <<  2),
-  ZGP_GPP_PRECOMMISSIONED_GROUPCAST_COMMUNICATION  = (1 <<  3),
-  ZGP_GPP_FULL_UNICAST_COMMUNICATION               = (1 <<  4),
-  ZGP_GPP_LIGHTWEIGHT_UNICAST_COMMUNICATION        = (1 <<  5),
-  ZGP_GPP_RESERVED_B6                              = (1 <<  6),
-  ZGP_GPP_BIDIRECTIONAL_OPERATION                  = (1 <<  7),
-  ZGP_GPP_PROXY_TABLE_MAINTENANCE                  = (1 <<  8),
-  ZGP_GPP_RESERVED_B9                              = (1 <<  9),
-  ZGP_GPP_GP_COMMISSIONING                         = (1 << 10),
-  ZGP_GPP_CT_BASED_COMMISSIONING                   = (1 << 11),
-  ZGP_GPP_MAINTENANCE_OF_GPD                       = (1 << 12),
-  ZGP_GPP_SEC_LEVEL_NO_SECURITY                    = (1 << 13),
-  ZGP_GPP_SEC_LEVEL_REDUCED                        = (1 << 14),
-  ZGP_GPP_SEC_LEVEL_FULL_NO_ENC                    = (1 << 15),
-  ZGP_GPP_SEC_LEVEL_FULL_WITH_ENC                  = (1 << 16),
-  ZGP_GPP_RESERVED_B17                             = (1 << 17),
-  ZGP_GPP_RESERVED_B18                             = (1 << 18),
-  ZGP_GPP_GPD_IEEE_ADDRESS                         = (1 << 19)
+typedef enum zgp_gpp_functionality_e
+{
+    ZGP_GPP_GP_FEATURE                               = (1 <<  0),
+    ZGP_GPP_DIRECT_COMMUNICATION                     = (1 <<  1),
+    ZGP_GPP_DERIVED_GROUPCAST_COMMUNICATION          = (1 <<  2),
+    ZGP_GPP_PRECOMMISSIONED_GROUPCAST_COMMUNICATION  = (1 <<  3),
+    ZGP_GPP_FULL_UNICAST_COMMUNICATION               = (1 <<  4),
+    ZGP_GPP_LIGHTWEIGHT_UNICAST_COMMUNICATION        = (1 <<  5),
+    ZGP_GPP_RESERVED_B6                              = (1 <<  6),
+    ZGP_GPP_BIDIRECTIONAL_OPERATION                  = (1 <<  7),
+    ZGP_GPP_PROXY_TABLE_MAINTENANCE                  = (1 <<  8),
+    ZGP_GPP_RESERVED_B9                              = (1 <<  9),
+    ZGP_GPP_GP_COMMISSIONING                         = (1 << 10),
+    ZGP_GPP_CT_BASED_COMMISSIONING                   = (1 << 11),
+    ZGP_GPP_MAINTENANCE_OF_GPD                       = (1 << 12),
+    ZGP_GPP_SEC_LEVEL_NO_SECURITY                    = (1 << 13),
+    ZGP_GPP_SEC_LEVEL_REDUCED                        = (1 << 14),
+    ZGP_GPP_SEC_LEVEL_FULL_NO_ENC                    = (1 << 15),
+    ZGP_GPP_SEC_LEVEL_FULL_WITH_ENC                  = (1 << 16),
+    ZGP_GPP_RESERVED_B17                             = (1 << 17),
+    ZGP_GPP_RESERVED_B18                             = (1 << 18),
+    ZGP_GPP_GPD_IEEE_ADDRESS                         = (1 << 19)
 } zgp_gpp_functionality_t;
 
 /*
 gpsFunctionality
 
-b0	GP feature	0b1
-b1	Direct communication (reception of GPDF via GP stub) 	device-specific
-b2	Derived groupcast communication 	device-specific
-b3	Pre-commissioned groupcast communication 	device-specific
-b4	Full unicast communication	0b0
-b5	Lightweight unicast communication	device-specific
-b6	Proximity bidirectional operation	0b0
-b7	Multi-hop bidirectional operation	0b0
-b8	Proxy Table maintenance (active and passive, for GPD mobility and proxy robustness)	0b0
-b9	Proximity commissioning (unidirectional and bidirectional)	device-specific
-b10	Multi-hop commissioning (unidirectional and bidirectional)	0b1
-b11	CT-based commissioning	0b1
-b12	Maintenance of GPD (deliver channel/key during operation)	0b0
-b13	gpdSecurityLevel = 0b00  in operation	device-specific
-b14	Deprecated: gpdSecurityLevel = 0b01 	0b0
-b15	gpdSecurityLevel = 0b10	0b1
-b16	gpdSecurityLevel = 0b11	0b1
-b17	Sink Table-based groupcast forwarding	0b0
-b18	Translation Table	device-specific
-b19	GPD IEEE address	0b1
+b0  GP feature  0b1
+b1  Direct communication (reception of GPDF via GP stub)    device-specific
+b2  Derived groupcast communication     device-specific
+b3  Pre-commissioned groupcast communication    device-specific
+b4  Full unicast communication  0b0
+b5  Lightweight unicast communication   device-specific
+b6  Proximity bidirectional operation   0b0
+b7  Multi-hop bidirectional operation   0b0
+b8  Proxy Table maintenance (active and passive, for GPD mobility and proxy robustness) 0b0
+b9  Proximity commissioning (unidirectional and bidirectional)  device-specific
+b10 Multi-hop commissioning (unidirectional and bidirectional)  0b1
+b11 CT-based commissioning  0b1
+b12 Maintenance of GPD (deliver channel/key during operation)   0b0
+b13 gpdSecurityLevel = 0b00  in operation   device-specific
+b14 Deprecated: gpdSecurityLevel = 0b01     0b0
+b15 gpdSecurityLevel = 0b10 0b1
+b16 gpdSecurityLevel = 0b11 0b1
+b17 Sink Table-based groupcast forwarding   0b0
+b18 Translation Table   device-specific
+b19 GPD IEEE address    0b1
 
 For Basic Sink in our case:
 - no Translation table (0)
@@ -1109,49 +1113,51 @@ For Basic Sink in our case:
 
 /* ZGP spec, A.3.3.2.7 */
 
-typedef enum zgp_gps_functionality_e {
-  ZGP_GPS_GP_FEATURE                               = (1 <<  0),
-  ZGP_GPS_DIRECT_COMMUNICATION                     = (1 <<  1),
-  ZGP_GPS_DERIVED_GROUPCAST_COMMUNICATION          = (1 <<  2),
-  ZGP_GPS_PRECOMMISSIONED_GROUPCAST_COMMUNICATION  = (1 <<  3),
-  ZGP_GPS_FULL_UNICAST_COMMUNICATION               = (1 <<  4),
-  ZGP_GPS_LIGHTWEIGHT_UNICAST_COMMUNICATION        = (1 <<  5),
-  ZGP_GPS_PROXIMITY_BIDIRECTIONAL_OPERATION        = (1 <<  6),
-  ZGP_GPS_MULTIHOP_BIDIRECTIONAL_OPERATION         = (1 <<  7),
-  ZGP_GPS_PROXY_TABLE_MAINTENANCE                  = (1 <<  8),
-  ZGP_GPS_PROXIMITY_COMMISSIONING                  = (1 <<  9),
-  ZGP_GPS_MULTIHOP_COMMISSIONING                   = (1 << 10),
-  ZGP_GPS_CT_BASED_COMMISSIONING                   = (1 << 11),
-  ZGP_GPS_MAINTENANCE_OF_GPD                       = (1 << 12),
-  ZGP_GPS_SEC_LEVEL_NO_SECURITY                    = (1 << 13),
-  ZGP_GPS_SEC_LEVEL_REDUCED                        = (1 << 14),
-  ZGP_GPS_SEC_LEVEL_FULL_NO_ENC                    = (1 << 15),
-  ZGP_GPS_SEC_LEVEL_FULL_WITH_ENC                  = (1 << 16),
-  ZGP_GPS_SINK_TABLE_BASED_GROUPCAST_FORWARDING    = (1 << 17),
-  ZGP_GPS_TRANSLATION_TABLE                        = (1 << 18),
-  ZGP_GPS_GPD_IEEE_ADDRESS                         = (1 << 19)
+typedef enum zgp_gps_functionality_e
+{
+    ZGP_GPS_GP_FEATURE                               = (1 <<  0),
+    ZGP_GPS_DIRECT_COMMUNICATION                     = (1 <<  1),
+    ZGP_GPS_DERIVED_GROUPCAST_COMMUNICATION          = (1 <<  2),
+    ZGP_GPS_PRECOMMISSIONED_GROUPCAST_COMMUNICATION  = (1 <<  3),
+    ZGP_GPS_FULL_UNICAST_COMMUNICATION               = (1 <<  4),
+    ZGP_GPS_LIGHTWEIGHT_UNICAST_COMMUNICATION        = (1 <<  5),
+    ZGP_GPS_PROXIMITY_BIDIRECTIONAL_OPERATION        = (1 <<  6),
+    ZGP_GPS_MULTIHOP_BIDIRECTIONAL_OPERATION         = (1 <<  7),
+    ZGP_GPS_PROXY_TABLE_MAINTENANCE                  = (1 <<  8),
+    ZGP_GPS_PROXIMITY_COMMISSIONING                  = (1 <<  9),
+    ZGP_GPS_MULTIHOP_COMMISSIONING                   = (1 << 10),
+    ZGP_GPS_CT_BASED_COMMISSIONING                   = (1 << 11),
+    ZGP_GPS_MAINTENANCE_OF_GPD                       = (1 << 12),
+    ZGP_GPS_SEC_LEVEL_NO_SECURITY                    = (1 << 13),
+    ZGP_GPS_SEC_LEVEL_REDUCED                        = (1 << 14),
+    ZGP_GPS_SEC_LEVEL_FULL_NO_ENC                    = (1 << 15),
+    ZGP_GPS_SEC_LEVEL_FULL_WITH_ENC                  = (1 << 16),
+    ZGP_GPS_SINK_TABLE_BASED_GROUPCAST_FORWARDING    = (1 << 17),
+    ZGP_GPS_TRANSLATION_TABLE                        = (1 << 18),
+    ZGP_GPS_GPD_IEEE_ADDRESS                         = (1 << 19)
 } zgp_gps_functionality_t;
 
-enum zgp_gp_attr_e {
-  ZB_ZCL_ATTR_GPS_MAX_SINK_TABLE_ENTRIES_ID     = 0x0000,
-  ZB_ZCL_ATTR_GPS_SINK_TABLE_ID                 = 0x0001,
-  ZB_ZCL_ATTR_GPS_COMMUNICATION_MODE_ID         = 0x0002,
-  ZB_ZCL_ATTR_GPS_COMMISSIONING_EXIT_MODE_ID    = 0x0003,
-  ZB_ZCL_ATTR_GPS_COMMISSIONING_WINDOW_ID       = 0x0004,
-  ZB_ZCL_ATTR_GPS_SECURITY_LEVEL_ID             = 0x0005,
-  ZB_ZCL_ATTR_GPS_FUNCTIONALITY_ID              = 0x0006,
-  ZB_ZCL_ATTR_GPS_ACTIVE_FUNCTIONALITY_ID       = 0x0007,
-  ZB_ZCL_ATTR_GPP_MAX_PROXY_TABLE_ENTRIES_ID    = 0x0010,
-  ZB_ZCL_ATTR_GPP_PROXY_TABLE_ID                = 0x0011,
-  ZB_ZCL_ATTR_GPP_NOTIFICATION_RETRY_NUMBER_ID  = 0x0012,
-  ZB_ZCL_ATTR_GPP_NOTIFICATION_RETRY_TIMER_ID   = 0x0013,
-  ZB_ZCL_ATTR_GPP_MAX_SEARCH_COUNTER_ID         = 0x0014,
-  ZB_ZCL_ATTR_GPP_BLOCKED_GPDID_ID              = 0x0015,
-  ZB_ZCL_ATTR_GPP_FUNCTIONALITY_ID              = 0x0016,
-  ZB_ZCL_ATTR_GPP_ACTIVE_FUNCTIONALITY_ID       = 0x0017,
-  ZB_ZCL_ATTR_GP_SHARED_SECURITY_KEY_TYPE_ID    = 0x0020,
-  ZB_ZCL_ATTR_GP_SHARED_SECURITY_KEY_ID         = 0x0021,
-  ZB_ZCL_ATTR_GP_LINK_KEY_ID                    = 0x0022
+enum zgp_gp_attr_e
+{
+    ZB_ZCL_ATTR_GPS_MAX_SINK_TABLE_ENTRIES_ID     = 0x0000,
+    ZB_ZCL_ATTR_GPS_SINK_TABLE_ID                 = 0x0001,
+    ZB_ZCL_ATTR_GPS_COMMUNICATION_MODE_ID         = 0x0002,
+    ZB_ZCL_ATTR_GPS_COMMISSIONING_EXIT_MODE_ID    = 0x0003,
+    ZB_ZCL_ATTR_GPS_COMMISSIONING_WINDOW_ID       = 0x0004,
+    ZB_ZCL_ATTR_GPS_SECURITY_LEVEL_ID             = 0x0005,
+    ZB_ZCL_ATTR_GPS_FUNCTIONALITY_ID              = 0x0006,
+    ZB_ZCL_ATTR_GPS_ACTIVE_FUNCTIONALITY_ID       = 0x0007,
+    ZB_ZCL_ATTR_GPP_MAX_PROXY_TABLE_ENTRIES_ID    = 0x0010,
+    ZB_ZCL_ATTR_GPP_PROXY_TABLE_ID                = 0x0011,
+    ZB_ZCL_ATTR_GPP_NOTIFICATION_RETRY_NUMBER_ID  = 0x0012,
+    ZB_ZCL_ATTR_GPP_NOTIFICATION_RETRY_TIMER_ID   = 0x0013,
+    ZB_ZCL_ATTR_GPP_MAX_SEARCH_COUNTER_ID         = 0x0014,
+    ZB_ZCL_ATTR_GPP_BLOCKED_GPDID_ID              = 0x0015,
+    ZB_ZCL_ATTR_GPP_FUNCTIONALITY_ID              = 0x0016,
+    ZB_ZCL_ATTR_GPP_ACTIVE_FUNCTIONALITY_ID       = 0x0017,
+    ZB_ZCL_ATTR_GP_SHARED_SECURITY_KEY_TYPE_ID    = 0x0020,
+    ZB_ZCL_ATTR_GP_SHARED_SECURITY_KEY_ID         = 0x0021,
+    ZB_ZCL_ATTR_GP_LINK_KEY_ID                    = 0x0022
 };
 
 
@@ -1735,8 +1741,8 @@ ApplicationID   RxAfterTx       SecurityLevel   SecurityKeyType Security process
 
 typedef enum zgp_table_request_entries_type_e
 {
-  ZGP_REQUEST_TABLE_ENTRIES_BY_GPD_ID,
-  ZGP_REQUEST_TABLE_ENTRIES_BY_INDEX
+    ZGP_REQUEST_TABLE_ENTRIES_BY_GPD_ID,
+    ZGP_REQUEST_TABLE_ENTRIES_BY_INDEX
 } zgp_table_request_entries_type_t;
 
 #define ZB_ZGP_GP_PROXY_TBL_REQ_GET_APP_ID(opt)\
@@ -1810,13 +1816,13 @@ zb_uint8_t zb_zgp_cluster_encode_link_quality(zb_int8_t rssi, zb_uint8_t lqi);
  *
  */
 void zgp_cluster_read_attrs(zb_uint8_t     buf_ref,
-                                 zb_uint16_t    dst_addr,
-                                 zb_uint8_t     dst_addr_mode,
-                                 zb_uint16_t   *attr_ids,
-                                 zb_uint8_t     attr_cnt,
-                                 zb_uint8_t     dir,
-                                 zb_uint8_t     def_resp,
-                                 zb_callback_t  cb);
+                            zb_uint16_t    dst_addr,
+                            zb_uint8_t     dst_addr_mode,
+                            zb_uint16_t   *attr_ids,
+                            zb_uint8_t     attr_cnt,
+                            zb_uint8_t     dir,
+                            zb_uint8_t     def_resp,
+                            zb_callback_t  cb);
 
 /**
  * @brief Perform send general zcl read attribute command for ZGP clister
@@ -1830,12 +1836,12 @@ void zgp_cluster_read_attrs(zb_uint8_t     buf_ref,
  *
  */
 void zgp_cluster_read_attr(zb_uint8_t     buf_ref,
-                                zb_uint16_t    dst_addr,
-                                zb_uint8_t     dst_addr_mode,
-                                zb_uint16_t    attr_id,
-                                zb_uint8_t     dir,
-                                zb_uint8_t     def_resp,
-                                zb_callback_t  cb);
+                           zb_uint16_t    dst_addr,
+                           zb_uint8_t     dst_addr_mode,
+                           zb_uint16_t    attr_id,
+                           zb_uint8_t     dir,
+                           zb_uint8_t     def_resp,
+                           zb_callback_t  cb);
 
 /**
  * @brief Perform send general zcl write attribute command for ZGP clister
@@ -1851,14 +1857,14 @@ void zgp_cluster_read_attr(zb_uint8_t     buf_ref,
  *
  */
 void zgp_cluster_write_attr(zb_uint8_t     buf_ref,
-                                 zb_uint16_t    dst_addr,
-                                 zb_uint8_t     dst_addr_mode,
-                                 zb_uint16_t    attr_id,
-                                 zb_uint8_t     attr_type,
-                                 zb_uint8_t    *attr_val,
-                                 zb_uint8_t     dir,
-                                 zb_uint8_t     def_resp,
-                                 zb_callback_t  cb);
+                            zb_uint16_t    dst_addr,
+                            zb_uint8_t     dst_addr_mode,
+                            zb_uint16_t    attr_id,
+                            zb_uint8_t     attr_type,
+                            zb_uint8_t    *attr_val,
+                            zb_uint8_t     dir,
+                            zb_uint8_t     def_resp,
+                            zb_callback_t  cb);
 
 // ******************************************************************
 
@@ -1875,11 +1881,11 @@ void zgp_cluster_write_attr(zb_uint8_t     buf_ref,
  */
 typedef enum zb_zgp_status_e
 {
-  ZB_ZGP_STATUS_ENTRY_REPLACED = 0x80,
-  ZB_ZGP_STATUS_ENTRY_ADDED    = 0x81,
-  ZB_ZGP_STATUS_ENTRY_EXPIRED  = 0x82,
-  ZB_ZGP_STATUS_ENTRY_REMOVED  = 0x83,
-  ZB_ZGP_STATUS_TX_QUEUE_FULL  = 0x84,
+    ZB_ZGP_STATUS_ENTRY_REPLACED = 0x80,
+    ZB_ZGP_STATUS_ENTRY_ADDED    = 0x81,
+    ZB_ZGP_STATUS_ENTRY_EXPIRED  = 0x82,
+    ZB_ZGP_STATUS_ENTRY_REMOVED  = 0x83,
+    ZB_ZGP_STATUS_TX_QUEUE_FULL  = 0x84,
 }
 zb_zgp_status_t;
 #endif  /* ZB_ENABLE_ZGP_DIRECT */
@@ -1887,8 +1893,8 @@ zb_zgp_status_t;
 /** @brief Current mode of ZGP endpoint */
 typedef enum zb_zgp_mode_e
 {
-  ZB_ZGP_OPERATIONAL_MODE,   /**< Operational mode */
-  ZB_ZGP_COMMISSIONING_MODE  /**< Commissioning mode */
+    ZB_ZGP_OPERATIONAL_MODE,   /**< Operational mode */
+    ZB_ZGP_COMMISSIONING_MODE  /**< Commissioning mode */
 }
 zb_zgp_mode_t;
 
@@ -1897,42 +1903,42 @@ zb_zgp_mode_t;
  */
 typedef enum zb_zgp_comm_state_e
 {
-  ZGP_COMM_STATE_IDLE,  /* 0 */
-  ZGP_COMM_STATE_CHANNEL_REQ_RECEIVED,
-  ZGP_COMM_STATE_CHANNEL_CONFIG_GET_CUR_CHANNEL,
+    ZGP_COMM_STATE_IDLE,  /* 0 */
+    ZGP_COMM_STATE_CHANNEL_REQ_RECEIVED,
+    ZGP_COMM_STATE_CHANNEL_CONFIG_GET_CUR_CHANNEL,
 #ifdef ZB_ENABLE_ZGP_DIRECT
-  ZGP_COMM_STATE_CHANNEL_CONFIG_SET_TEMP_CHANNEL,
-  ZGP_COMM_STATE_CHANNEL_CONFIG_ADDED_TO_Q,
+    ZGP_COMM_STATE_CHANNEL_CONFIG_SET_TEMP_CHANNEL,
+    ZGP_COMM_STATE_CHANNEL_CONFIG_ADDED_TO_Q,
 #endif  /* ZB_ENABLE_ZGP_DIRECT */
-  ZGP_COMM_STATE_CHAN_CFG_SENT_RET_CHANNEL,
-  ZGP_COMM_STATE_CHAN_CFG_FAILED_RET_CHANNEL,
-  ZGP_COMM_STATE_CHANNEL_CONFIG_SENT,
-  ZGP_COMM_STATE_COMM_REQ_RECEIVED_WAIT_FOR_APP,
-  ZGP_COMM_STATE_COMM_REQ_RECEIVED_AND_APPROVED,
+    ZGP_COMM_STATE_CHAN_CFG_SENT_RET_CHANNEL,
+    ZGP_COMM_STATE_CHAN_CFG_FAILED_RET_CHANNEL,
+    ZGP_COMM_STATE_CHANNEL_CONFIG_SENT,
+    ZGP_COMM_STATE_COMM_REQ_RECEIVED_WAIT_FOR_APP,
+    ZGP_COMM_STATE_COMM_REQ_RECEIVED_AND_APPROVED,
 #ifdef ZB_ENABLE_ZGP_DIRECT
-  ZGP_COMM_STATE_COMMISSIONING_REPLY_ADDED_TO_Q,
+    ZGP_COMM_STATE_COMMISSIONING_REPLY_ADDED_TO_Q,
 #endif  /* ZB_ENABLE_ZGP_DIRECT */
-  ZGP_COMM_STATE_COMMISSIONING_REPLY_SENT,
-  ZGP_COMM_STATE_CHANNEL_REQ_COLLECT,
-  ZGP_COMM_STATE_COMISSIONING_REQ_COLLECT,
-  ZGP_COMM_STATE_COMMISSIONING_FINALIZING,
-  ZGP_COMM_STATE_COMMISSIONING_TIMED_OUT,
-  ZGP_COMM_STATE_COMMISSIONING_CANCELLED,
-  ZGP_COMM_STATE_COMMISSIONING_WAIT_APP_DESCR
+    ZGP_COMM_STATE_COMMISSIONING_REPLY_SENT,
+    ZGP_COMM_STATE_CHANNEL_REQ_COLLECT,
+    ZGP_COMM_STATE_COMISSIONING_REQ_COLLECT,
+    ZGP_COMM_STATE_COMMISSIONING_FINALIZING,
+    ZGP_COMM_STATE_COMMISSIONING_TIMED_OUT,
+    ZGP_COMM_STATE_COMMISSIONING_CANCELLED,
+    ZGP_COMM_STATE_COMMISSIONING_WAIT_APP_DESCR
 }
 zb_zgp_comm_state_t;
 
 typedef ZB_PACKED_PRE struct zb_gp_data_req_s
 {
-  zb_uint8_t      handle;
-  zb_uint8_t      action;
-  zb_uint8_t      tx_options;
-  zb_zgpd_id_t    zgpd_id;
-  zb_ieee_addr_t  ieee_addr;
-  zb_uint8_t      cmd_id;
-  zb_uint8_t      payload_len;
-  zb_time_t       tx_q_ent_lifetime;
-  zb_uint8_t      pld[ZB_ZGP_TX_CMD_PLD_MAX_SIZE]; /**< Payload */
+    zb_uint8_t      handle;
+    zb_uint8_t      action;
+    zb_uint8_t      tx_options;
+    zb_zgpd_id_t    zgpd_id;
+    zb_ieee_addr_t  ieee_addr;
+    zb_uint8_t      cmd_id;
+    zb_uint8_t      payload_len;
+    zb_time_t       tx_q_ent_lifetime;
+    zb_uint8_t      pld[ZB_ZGP_TX_CMD_PLD_MAX_SIZE]; /**< Payload */
 }
 ZB_PACKED_STRUCT
 zb_gp_data_req_t;
@@ -1940,65 +1946,65 @@ zb_gp_data_req_t;
 #ifdef ZB_ENABLE_ZGP_DIRECT
 typedef struct zb_gp_data_cfm_s
 {
-  zb_uint8_t        handle;
-  /* Extension of the spec */
-  zb_zgpd_id_t      *zgpd_id;
-  zb_uint8_t         cmd_id;
+    zb_uint8_t        handle;
+    /* Extension of the spec */
+    zb_zgpd_id_t      *zgpd_id;
+    zb_uint8_t         cmd_id;
 }
 zb_gp_data_cfm_t;
 #endif  /* ZB_ENABLE_ZGP_DIRECT */
 
 typedef ZB_PACKED_PRE struct zb_zgp_gp_comm_notification_req_s
 {
-  /* optimization: use reserved 15 bit of options as indicate that command recieved in unicast mode */
-  zb_uint16_t            options;
-  zb_zgpd_addr_t         zgpd_addr;
-  zb_uint8_t             endpoint;
-  zb_uint32_t            gpd_sec_frame_counter;
-  zb_uint8_t             gpd_cmd_id;
-  /* +1 bytes for payload size placed at begining buffer */
-  zb_uint8_t             payload[MAX_ZGP_CLUSTER_GPDF_PAYLOAD_SIZE+1];
-  zb_zgp_gp_proxy_info_t proxy_info;
-  zb_uint32_t            mic;
+    /* optimization: use reserved 15 bit of options as indicate that command recieved in unicast mode */
+    zb_uint16_t            options;
+    zb_zgpd_addr_t         zgpd_addr;
+    zb_uint8_t             endpoint;
+    zb_uint32_t            gpd_sec_frame_counter;
+    zb_uint8_t             gpd_cmd_id;
+    /* +1 bytes for payload size placed at begining buffer */
+    zb_uint8_t             payload[MAX_ZGP_CLUSTER_GPDF_PAYLOAD_SIZE + 1];
+    zb_zgp_gp_proxy_info_t proxy_info;
+    zb_uint32_t            mic;
 }
 ZB_PACKED_STRUCT zb_zgp_gp_comm_notification_req_t;
 
 typedef ZB_PACKED_PRE struct zb_zgp_gp_pairing_req_s
 {
-  zb_uint32_t    options;
-  zb_zgpd_addr_t zgpd_addr;
-  zb_uint8_t     endpoint;
-  zb_ieee_addr_t sink_ieee_addr;
-  zb_uint16_t    sink_nwk_addr;
-  zb_uint16_t    sink_group_id;
-  zb_uint8_t     dev_id;
-  zb_uint32_t    sec_frame_counter;
-  zb_uint8_t     key[ZB_CCM_KEY_SIZE];
-  zb_uint16_t    assigned_alias;
-  zb_uint8_t     frwd_radius;
+    zb_uint32_t    options;
+    zb_zgpd_addr_t zgpd_addr;
+    zb_uint8_t     endpoint;
+    zb_ieee_addr_t sink_ieee_addr;
+    zb_uint16_t    sink_nwk_addr;
+    zb_uint16_t    sink_group_id;
+    zb_uint8_t     dev_id;
+    zb_uint32_t    sec_frame_counter;
+    zb_uint8_t     key[ZB_CCM_KEY_SIZE];
+    zb_uint16_t    assigned_alias;
+    zb_uint8_t     frwd_radius;
 }
 ZB_PACKED_STRUCT zb_zgp_gp_pairing_req_t;
 
 typedef ZB_PACKED_PRE struct zb_zgp_gp_pairing_send_req_s
 {
-  /* 0 bit - add_sink
-   * 1 bit - remove gpd
-   * 2 bit - send dev annce
-   * 3 bit - indicate that dup for groupcast precommissioned is complete
-   * 4 bit - need send incorrect LW unicast remove pairing, see A.3.5.2.4
-   */
-  zb_uint8_t       send_options;
-  zb_zgpd_addr_t   zgpd_id;
-  zb_uint8_t       endpoint;
-  zb_uint16_t      options;
-  zb_uint8_t       sec_options;
-  zb_uint32_t      security_counter;
-  zb_uint8_t       zgpd_key[ZB_CCM_KEY_SIZE];
-  zb_uint16_t      zgpd_assigned_alias;
-  zb_uint8_t       groupcast_radius;
-  zb_uint8_t       device_id;
-  zgp_pair_group_list_t sgrp[ZB_ZGP_MAX_SINK_GROUP_PER_GPD];
-  zb_callback_t    callback;
+    /* 0 bit - add_sink
+     * 1 bit - remove gpd
+     * 2 bit - send dev annce
+     * 3 bit - indicate that dup for groupcast precommissioned is complete
+     * 4 bit - need send incorrect LW unicast remove pairing, see A.3.5.2.4
+     */
+    zb_uint8_t       send_options;
+    zb_zgpd_addr_t   zgpd_id;
+    zb_uint8_t       endpoint;
+    zb_uint16_t      options;
+    zb_uint8_t       sec_options;
+    zb_uint32_t      security_counter;
+    zb_uint8_t       zgpd_key[ZB_CCM_KEY_SIZE];
+    zb_uint16_t      zgpd_assigned_alias;
+    zb_uint8_t       groupcast_radius;
+    zb_uint8_t       device_id;
+    zgp_pair_group_list_t sgrp[ZB_ZGP_MAX_SINK_GROUP_PER_GPD];
+    zb_callback_t    callback;
 }
 ZB_PACKED_STRUCT zb_zgp_gp_pairing_send_req_t;
 
@@ -2062,92 +2068,92 @@ ZB_PACKED_STRUCT zb_zgp_gp_pairing_send_req_t;
 
 typedef ZB_PACKED_PRE struct zb_zgp_gp_notification_req_s
 {
-  zb_uint16_t            options;
-  zb_zgpd_addr_t         zgpd_addr;
-  zb_uint8_t             endpoint;
-  zb_uint32_t            gpd_sec_frame_counter;
-  zb_uint8_t             gpd_cmd_id;
-  /* +1 bytes for payload size placed at begining buffer */
-  zb_uint8_t             payload[MAX_ZGP_CLUSTER_GPDF_PAYLOAD_SIZE+1];
-  zb_zgp_gp_proxy_info_t proxy_info;
+    zb_uint16_t            options;
+    zb_zgpd_addr_t         zgpd_addr;
+    zb_uint8_t             endpoint;
+    zb_uint32_t            gpd_sec_frame_counter;
+    zb_uint8_t             gpd_cmd_id;
+    /* +1 bytes for payload size placed at begining buffer */
+    zb_uint8_t             payload[MAX_ZGP_CLUSTER_GPDF_PAYLOAD_SIZE + 1];
+    zb_zgp_gp_proxy_info_t proxy_info;
 }
 ZB_PACKED_STRUCT zb_zgp_gp_notification_req_t;
 
 typedef ZB_PACKED_PRE struct zb_zgp_gp_response_s
 {
-  zb_uint8_t     options;
-  zb_uint16_t    temp_master_addr;
-  zb_uint8_t     temp_master_tx_chnl;
-  zb_zgpd_addr_t zgpd_addr;
-  zb_uint8_t     endpoint;
-  zb_uint8_t     gpd_cmd_id;
-  /* +1 bytes for payload size placed at begining buffer */
-  zb_uint8_t     payload[MAX_ZGP_CLUSTER_GPDF_PAYLOAD_SIZE+1];
+    zb_uint8_t     options;
+    zb_uint16_t    temp_master_addr;
+    zb_uint8_t     temp_master_tx_chnl;
+    zb_zgpd_addr_t zgpd_addr;
+    zb_uint8_t     endpoint;
+    zb_uint8_t     gpd_cmd_id;
+    /* +1 bytes for payload size placed at begining buffer */
+    zb_uint8_t     payload[MAX_ZGP_CLUSTER_GPDF_PAYLOAD_SIZE + 1];
 }
 ZB_PACKED_STRUCT zb_zgp_gp_response_t;
 
 enum zb_zgp_pairing_conf_actions_e
 {
-  ZGP_PAIRING_CONF_NO_ACTION        = 0,
-  ZGP_PAIRING_CONF_EXTEND           = 1,
-  ZGP_PAIRING_CONF_REPLACE          = 2,
-  ZGP_PAIRING_CONF_REMOVE_PAIRING   = 3,
-  ZGP_PAIRING_CONF_REMOVE_GPD       = 4,
-  ZGP_PAIRING_CONF_REMOVE_RESERVED5 = 5,
-  ZGP_PAIRING_CONF_REMOVE_RESERVED6 = 6,
-  ZGP_PAIRING_CONF_REMOVE_RESERVED7 = 7
+    ZGP_PAIRING_CONF_NO_ACTION        = 0,
+    ZGP_PAIRING_CONF_EXTEND           = 1,
+    ZGP_PAIRING_CONF_REPLACE          = 2,
+    ZGP_PAIRING_CONF_REMOVE_PAIRING   = 3,
+    ZGP_PAIRING_CONF_REMOVE_GPD       = 4,
+    ZGP_PAIRING_CONF_REMOVE_RESERVED5 = 5,
+    ZGP_PAIRING_CONF_REMOVE_RESERVED6 = 6,
+    ZGP_PAIRING_CONF_REMOVE_RESERVED7 = 7
 };
 
 enum zb_zgp_pairing_conf_actions_send_pairing_e
 {
-  ZGP_PAIRING_CONF_NO_SEND_PAIRING,
-  ZGP_PAIRING_CONF_SEND_PAIRING
+    ZGP_PAIRING_CONF_NO_SEND_PAIRING,
+    ZGP_PAIRING_CONF_SEND_PAIRING
 };
 
 typedef ZB_PACKED_PRE struct zb_zgp_gp_pairing_conf_s
 {
-  zb_uint8_t     actions;
-  zb_uint16_t    options;
-  zb_zgpd_addr_t zgpd_addr;
-  zb_uint8_t     endpoint;
-  zb_uint8_t     device_id;
-  zgp_pair_group_list_t sgrp[ZB_ZGP_MAX_SINK_GROUP_PER_GPD];
-  zb_uint16_t    assigned_alias;
-  zb_uint8_t     frwd_radius;
-  zb_uint8_t     sec_options;
-  zb_uint32_t    sec_frame_counter;
-  zb_uint8_t     key[ZB_CCM_KEY_SIZE];
-  zb_uint8_t     num_paired_endpoints;
-  zb_uint8_t     paired_endpoints[ZB_ZGP_MAX_PAIRED_ENDPOINTS];
-  zb_uint8_t     app_info;
-  zb_uint16_t    manuf_id;
-  zb_uint16_t    model_id;
-  zb_uint8_t     num_gpd_cmds;
-  zb_uint8_t     gpd_cmds[ZB_ZGP_MAX_PAIRED_CONF_GPD_COMMANDS];
-  zb_zgp_cluster_list_t cl;
+    zb_uint8_t     actions;
+    zb_uint16_t    options;
+    zb_zgpd_addr_t zgpd_addr;
+    zb_uint8_t     endpoint;
+    zb_uint8_t     device_id;
+    zgp_pair_group_list_t sgrp[ZB_ZGP_MAX_SINK_GROUP_PER_GPD];
+    zb_uint16_t    assigned_alias;
+    zb_uint8_t     frwd_radius;
+    zb_uint8_t     sec_options;
+    zb_uint32_t    sec_frame_counter;
+    zb_uint8_t     key[ZB_CCM_KEY_SIZE];
+    zb_uint8_t     num_paired_endpoints;
+    zb_uint8_t     paired_endpoints[ZB_ZGP_MAX_PAIRED_ENDPOINTS];
+    zb_uint8_t     app_info;
+    zb_uint16_t    manuf_id;
+    zb_uint16_t    model_id;
+    zb_uint8_t     num_gpd_cmds;
+    zb_uint8_t     gpd_cmds[ZB_ZGP_MAX_PAIRED_CONF_GPD_COMMANDS];
+    zb_zgp_cluster_list_t cl;
 }
 ZB_PACKED_STRUCT zb_zgp_gp_pairing_conf_t;
 
 typedef ZB_PACKED_PRE struct zb_zgp_gp_sink_comm_mode_s
 {
-  zb_uint8_t     options;
-  zb_uint16_t    gpm_addr_for_sec;
-  zb_uint16_t    gpm_addr_for_pair;
-  zb_uint8_t     sink_endpoint;
+    zb_uint8_t     options;
+    zb_uint16_t    gpm_addr_for_sec;
+    zb_uint16_t    gpm_addr_for_pair;
+    zb_uint8_t     sink_endpoint;
 }
 ZB_PACKED_STRUCT zb_zgp_gp_sink_comm_mode_t;
 #endif  /* !ZB_ZGPD_ROLE */
 
 typedef ZB_PACKED_PRE struct zb_zgp_aes_nonce_s
 {
-  ZB_PACKED_PRE union zb_zgp_nonce_source_addr_u
-  {
-    zb_64bit_addr_t  ieee_addr;
-    zb_uint32_t      splitted_addr[2];
-  } src_addr;
+    ZB_PACKED_PRE union zb_zgp_nonce_source_addr_u
+    {
+        zb_64bit_addr_t  ieee_addr;
+        zb_uint32_t      splitted_addr[2];
+    } src_addr;
 
-  zb_uint32_t       frame_counter;
-  zb_uint8_t        security_control;
+    zb_uint32_t       frame_counter;
+    zb_uint8_t        security_control;
 }
 ZB_PACKED_STRUCT zb_zgp_aes_nonce_t;
 
@@ -2204,10 +2210,10 @@ void zb_zgp_dump_zgpd_id(zb_zgpd_id_t *id);
  */
 enum zb_gpdf_frame_type_e
 {
-  ZGP_FRAME_TYPE_DATA         = 0x00, /**< Data frame */
-  ZGP_FRAME_TYPE_MAINTENANCE  = 0x01, /**< Maintenance frame */
-  ZGP_FRAME_TYPE_RESERVED1    = 0x02, /**< Reserved */
-  ZGP_FRAME_TYPE_RESERVED2    = 0x03  /**< Reserved */
+    ZGP_FRAME_TYPE_DATA         = 0x00, /**< Data frame */
+    ZGP_FRAME_TYPE_MAINTENANCE  = 0x01, /**< Maintenance frame */
+    ZGP_FRAME_TYPE_RESERVED1    = 0x02, /**< Reserved */
+    ZGP_FRAME_TYPE_RESERVED2    = 0x03  /**< Reserved */
 };
 
 
@@ -2218,8 +2224,8 @@ enum zb_gpdf_frame_type_e
  */
 enum zb_gpdf_frame_dir_e
 {
-  ZGP_FRAME_DIR_FROM_ZGPD  = 0x00,  /**< GPDF is transmitted by ZGPD */
-  ZGP_FRAME_DIR_TO_ZGPD    = 0x01   /**< GPDF is transmitted to ZGPD */
+    ZGP_FRAME_DIR_FROM_ZGPD  = 0x00,  /**< GPDF is transmitted by ZGPD */
+    ZGP_FRAME_DIR_TO_ZGPD    = 0x01   /**< GPDF is transmitted to ZGPD */
 };
 
 /********************************************************************/
@@ -2344,9 +2350,9 @@ enum zb_gpdf_frame_dir_e
  * @see ZGP spec, A.3.3.5.3
  */
 void zgp_proxy_handle_commissioning_mode(zb_uint8_t  param,
-                                         zb_uint8_t  options,
-                                         zb_uint16_t comm_wind,
-                                         zb_uint8_t  channel);
+        zb_uint8_t  options,
+        zb_uint16_t comm_wind,
+        zb_uint8_t  channel);
 
 void zb_dgp_data_ind(zb_uint8_t param);
 
@@ -2421,13 +2427,13 @@ void zgp_proxy_handle_gp_response(zb_uint8_t param);
  * @see ZGP spec, A.3.3.4.3
  */
 void zb_zgp_cluster_gp_comm_notification_req(zb_uint8_t    param,
-                                             zb_uint8_t    use_alias,
-                                             zb_uint16_t   alias_addr,
-                                             zb_uint8_t    alias_seq,
-                                             zb_uint16_t   dst_addr,
-                                             zb_uint8_t    dst_addr_mode,
-                                             zb_uint16_t   options,
-                                             zb_callback_t cb);
+        zb_uint8_t    use_alias,
+        zb_uint16_t   alias_addr,
+        zb_uint8_t    alias_seq,
+        zb_uint16_t   dst_addr,
+        zb_uint8_t    dst_addr_mode,
+        zb_uint16_t   options,
+        zb_callback_t cb);
 
 /**
  * @brief Perform GP Notificatin request
@@ -2477,9 +2483,9 @@ zb_uint8_t zgp_proxy_get_lwsink_addr_list_size(zgp_tbl_ent_t *ent);
  * @see ZGP spec, A.3.3.5.4
  */
 void zb_zgp_cluster_gp_response_send(zb_uint8_t    param,
-                                            zb_uint16_t            dst_addr,
-                                            zb_uint8_t             dst_addr_mode,
-                                            zb_callback_t          cb);
+                                     zb_uint16_t            dst_addr,
+                                     zb_uint8_t             dst_addr_mode,
+                                     zb_callback_t          cb);
 
 #ifdef ZB_ENABLE_ZGP_SINK
 zb_bool_t zgp_sink_is_support_functionality(zgp_gps_functionality_t gps_f);
@@ -2547,8 +2553,8 @@ void zb_zgp_write_dataset(zb_uint8_t param);
 
 typedef struct zb_zgp_ent_enumerate_ctx_s
 {
-  zb_uint8_t idx;
-  zb_uint8_t entries_count;
+    zb_uint8_t idx;
+    zb_uint8_t entries_count;
 } zb_zgp_ent_enumerate_ctx_t;
 
 zb_ret_t zgp_any_table_read(zb_zgpd_id_t *zgpd_id, zgp_tbl_ent_t *ent);

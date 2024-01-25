@@ -48,90 +48,90 @@
 
 typedef struct ncp_ll_sch_sem_s
 {
-  volatile long int signal_count;
-  long int wait_count;
-  zb_callback_t cb;
-  zb_uint8_t arg;
+    volatile long int signal_count;
+    long int wait_count;
+    zb_callback_t cb;
+    zb_uint8_t arg;
 }
 ncp_ll_sch_sem_t;
 
 static void ncp_ll_sch_sem_init(ncp_ll_sch_sem_t *sem, zb_callback_t cb, zb_uint8_t arg)
 {
-  sem->signal_count = 0L;
-  sem->wait_count = 0L;
-  sem->cb = cb;
-  sem->arg = arg;
+    sem->signal_count = 0L;
+    sem->wait_count = 0L;
+    sem->cb = cb;
+    sem->arg = arg;
 }
 
 static void ncp_ll_sch_sem_signal(ncp_ll_sch_sem_t *sem)
 {
-  (void)ZB_SCHEDULE_APP_CALLBACK(sem->cb, sem->arg);
+    (void)ZB_SCHEDULE_APP_CALLBACK(sem->cb, sem->arg);
 
-  ZB_OSIF_GLOBAL_LOCK();
+    ZB_OSIF_GLOBAL_LOCK();
 
-  /* Modify signal count under global lock because the signal routine
-     can be called either from interrupt context or from the main
-     task scheduling context in the packet sending routine. */
-  ++sem->signal_count;
+    /* Modify signal count under global lock because the signal routine
+       can be called either from interrupt context or from the main
+       task scheduling context in the packet sending routine. */
+    ++sem->signal_count;
 
-  ZB_OSIF_GLOBAL_UNLOCK();
+    ZB_OSIF_GLOBAL_UNLOCK();
 }
 
 static void ncp_ll_sch_sem_wait(ncp_ll_sch_sem_t *sem, zb_time_t timeout)
 {
-  zb_bool_t need_alarm = ZB_FALSE;
-  long int pending_count;
+    zb_bool_t need_alarm = ZB_FALSE;
+    long int pending_count;
 
-  (void)ZB_SCHEDULE_APP_ALARM_CANCEL(sem->cb, sem->arg);
+    (void)ZB_SCHEDULE_APP_ALARM_CANCEL(sem->cb, sem->arg);
 
-  ZB_OSIF_GLOBAL_LOCK();
+    ZB_OSIF_GLOBAL_LOCK();
 
-  /* Read signal count under global lock to avoid race conditions. */
-  pending_count = sem->signal_count - sem->wait_count;
+    /* Read signal count under global lock to avoid race conditions. */
+    pending_count = sem->signal_count - sem->wait_count;
 
-  ZB_OSIF_GLOBAL_UNLOCK();
+    ZB_OSIF_GLOBAL_UNLOCK();
 
-  /* Do not compare signal_count and wait_count directly
-     as they can overflow. Subtracting will properly handle
-     overflow if the difference is not too large. */
-  if (pending_count > 0)
-  {
-    /* We have been woken up by the callback scheduled in 'call_me' */
-
-    /* Acknowledge callback */
-    ++sem->wait_count;
-
-    /* If we are in the context of the last scheduled callback then we
-       need to schedule next alarm ourselves */
-    if (pending_count == 1)
+    /* Do not compare signal_count and wait_count directly
+       as they can overflow. Subtracting will properly handle
+       overflow if the difference is not too large. */
+    if (pending_count > 0)
     {
-      need_alarm = ZB_TRUE;
-    }
-  }
-  else
-  {
-    /* We have been woken up by timed-out alarm */
-    need_alarm = ZB_TRUE;
-  }
+        /* We have been woken up by the callback scheduled in 'call_me' */
 
-  if (need_alarm)
-  {
-    /* Note: if timeout == 0, ZB_SCHEDULE_APP_ALARM optimizes to cb */
-    (void)ZB_SCHEDULE_APP_ALARM(sem->cb, sem->arg, timeout);
-  }
-  else
-  {
-    /* Callback has been already scheduled */
-  }
+        /* Acknowledge callback */
+        ++sem->wait_count;
+
+        /* If we are in the context of the last scheduled callback then we
+           need to schedule next alarm ourselves */
+        if (pending_count == 1)
+        {
+            need_alarm = ZB_TRUE;
+        }
+    }
+    else
+    {
+        /* We have been woken up by timed-out alarm */
+        need_alarm = ZB_TRUE;
+    }
+
+    if (need_alarm)
+    {
+        /* Note: if timeout == 0, ZB_SCHEDULE_APP_ALARM optimizes to cb */
+        (void)ZB_SCHEDULE_APP_ALARM(sem->cb, sem->arg, timeout);
+    }
+    else
+    {
+        /* Callback has been already scheduled */
+    }
 }
 
 typedef struct ncp_ll_ctx_s
 {
-  ncp_ll_packet_received_cb_t rx_packet_cb;
-  ncp_ll_tx_ready_cb_t tx_ready_cb;
-  zbncp_ll_proto_t *ll;
-  ncp_ll_sch_sem_t sch_sem;
-  zb_uint8_t rxbuf[ZBNCP_BIG_BUF_SIZE];
+    ncp_ll_packet_received_cb_t rx_packet_cb;
+    ncp_ll_tx_ready_cb_t tx_ready_cb;
+    zbncp_ll_proto_t *ll;
+    ncp_ll_sch_sem_t sch_sem;
+    zb_uint8_t rxbuf[ZBNCP_BIG_BUF_SIZE];
 }
 ncp_ll_ctx_t;
 
@@ -141,43 +141,43 @@ static zbncp_frag_ctx_t frag_ctx;
 
 static void ncp_ll_call_me_cb(zbncp_ll_cb_arg_t arg)
 {
-  ncp_ll_sch_sem_signal(&ncp_ll_ctx.sch_sem);
-  ZVUNUSED(arg);
+    ncp_ll_sch_sem_signal(&ncp_ll_ctx.sch_sem);
+    ZVUNUSED(arg);
 }
 
 /* Note: all the following routines run in the main ZBOSS loop. */
 
 static inline zbncp_ll_time_t ncp_ll_get_time_msec(void)
 {
-  return (osif_transceiver_time_get() / 1000UL); /* Convert to milliseconds */
+    return (osif_transceiver_time_get() / 1000UL); /* Convert to milliseconds */
 }
 
 void ncp_ll_proto_init(ncp_ll_packet_received_cb_t packet_received_cb, ncp_ll_tx_ready_cb_t tx_ready_cb)
 {
-  const zbncp_transport_ops_t *tr_ops = ncp_dev_transport_create();
-  zbncp_ll_proto_cb_t llcb;
+    const zbncp_transport_ops_t *tr_ops = ncp_dev_transport_create();
+    zbncp_ll_proto_cb_t llcb;
 
-  TRACE_MSG(TRACE_USB3, ">ncp_ll_proto_init packet_received_cb %p tx_ready_cb %p", (FMT__P_P, packet_received_cb, tx_ready_cb));
+    TRACE_MSG(TRACE_USB3, ">ncp_ll_proto_init packet_received_cb %p tx_ready_cb %p", (FMT__P_P, packet_received_cb, tx_ready_cb));
 
-  ncp_ll_ctx.rx_packet_cb = packet_received_cb;
-  ncp_ll_ctx.tx_ready_cb = tx_ready_cb;
-  ncp_ll_ctx.ll = zbncp_ll_create(tr_ops);
-  ncp_ll_sch_sem_init(&ncp_ll_ctx.sch_sem, ncp_ll_quant, ZB_ALARM_ANY_PARAM);
+    ncp_ll_ctx.rx_packet_cb = packet_received_cb;
+    ncp_ll_ctx.tx_ready_cb = tx_ready_cb;
+    ncp_ll_ctx.ll = zbncp_ll_create(tr_ops);
+    ncp_ll_sch_sem_init(&ncp_ll_ctx.sch_sem, ncp_ll_quant, ZB_ALARM_ANY_PARAM);
 
-  llcb.callme = ncp_ll_call_me_cb;
-  llcb.arg = ZBNCP_NULL;
-  zbncp_ll_init(ncp_ll_ctx.ll, &llcb, ncp_ll_get_time_msec());
+    llcb.callme = ncp_ll_call_me_cb;
+    llcb.arg = ZBNCP_NULL;
+    zbncp_ll_init(ncp_ll_ctx.ll, &llcb, ncp_ll_get_time_msec());
 
-  zbncp_frag_initialize(&frag_ctx);
+    zbncp_frag_initialize(&frag_ctx);
 
-  TRACE_MSG(TRACE_USB3, "<ncp_ll_proto_init", (FMT__0));
+    TRACE_MSG(TRACE_USB3, "<ncp_ll_proto_init", (FMT__0));
 }
 
 
 #ifdef TEST_SLOW_TX
 static void cont_tx(zb_uint8_t unused)
 {
-  ncp_ll_sch_sem_signal(&ncp_ll_ctx.sch_sem);
+    ncp_ll_sch_sem_signal(&ncp_ll_ctx.sch_sem);
 }
 #endif
 
@@ -190,77 +190,77 @@ static void cont_tx(zb_uint8_t unused)
  */
 zb_int_t ncp_ll_send_packet(void *data, zb_uint32_t len)
 {
-  zb_int_t ret;
+    zb_int_t ret;
 
-  TRACE_MSG(TRACE_USB3, ">ncp_ll_send_packet data %p len %ld", (FMT__P_L_D, data, (zb_uint_t) len));
-  ret = zbncp_frag_store_tx_pkt(&frag_ctx, data, len);
-  if (ZBNCP_RET_OK == ret)
-  {
+    TRACE_MSG(TRACE_USB3, ">ncp_ll_send_packet data %p len %ld", (FMT__P_L_D, data, (zb_uint_t) len));
+    ret = zbncp_frag_store_tx_pkt(&frag_ctx, data, len);
+    if (ZBNCP_RET_OK == ret)
+    {
 #ifdef TEST_SLOW_TX
-    ZB_SCHEDULE_ALARM(cont_tx, 0, ZB_MILLISECONDS_TO_BEACON_INTERVAL(1000));
+        ZB_SCHEDULE_ALARM(cont_tx, 0, ZB_MILLISECONDS_TO_BEACON_INTERVAL(1000));
 #else
-    /* Do not call ncp_ll_quant() directly to prevent a recursion. */
-    ncp_ll_sch_sem_signal(&ncp_ll_ctx.sch_sem);
+        /* Do not call ncp_ll_quant() directly to prevent a recursion. */
+        ncp_ll_sch_sem_signal(&ncp_ll_ctx.sch_sem);
 #endif
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Oops, TX mem ptr is still valid from previous call", (FMT__0));
-  }
-  TRACE_MSG(TRACE_USB3, "<ncp_ll_send_packet", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Oops, TX mem ptr is still valid from previous call", (FMT__0));
+    }
+    TRACE_MSG(TRACE_USB3, "<ncp_ll_send_packet", (FMT__0));
 
-  /* For the external caller we should keep using the same definitions from zb_erros.h */
-  ret = (ret == ZBNCP_RET_OK) ? RET_OK : RET_BUSY;
-  return ret;
+    /* For the external caller we should keep using the same definitions from zb_erros.h */
+    ret = (ret == ZBNCP_RET_OK) ? RET_OK : RET_BUSY;
+    return ret;
 }
 
 
 void ncp_ll_quant(zb_uint8_t unused)
 {
-  zb_time_t timeout;
-  zbncp_ll_quant_t llq;
-  zbncp_size_t rx_size;
-  zbncp_bool_t tx_ready;
+    zb_time_t timeout;
+    zbncp_ll_quant_t llq;
+    zbncp_size_t rx_size;
+    zbncp_bool_t tx_ready;
 
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  TRACE_MSG(TRACE_USB3, ">ncp_ll_quant big buf size %ld", (FMT__D, (zb_uint_t) ZBNCP_BIG_BUF_SIZE));
+    TRACE_MSG(TRACE_USB3, ">ncp_ll_quant big buf size %ld", (FMT__D, (zb_uint_t) ZBNCP_BIG_BUF_SIZE));
 
-  zbncp_frag_set_place_for_rx_pkt(&frag_ctx, ncp_ll_ctx.rxbuf, sizeof(ncp_ll_ctx.rxbuf));
+    zbncp_frag_set_place_for_rx_pkt(&frag_ctx, ncp_ll_ctx.rxbuf, sizeof(ncp_ll_ctx.rxbuf));
 
-  llq.req.time = ncp_ll_get_time_msec();
-  zbncp_frag_fill_request(&frag_ctx, &llq.req);
+    llq.req.time = ncp_ll_get_time_msec();
+    zbncp_frag_fill_request(&frag_ctx, &llq.req);
 
-  zbncp_ll_poll(ncp_ll_ctx.ll, &llq);
+    zbncp_ll_poll(ncp_ll_ctx.ll, &llq);
 
-  rx_size = zbncp_frag_process_rx_response(&frag_ctx, &llq.res);
-  if (rx_size > 0UL)
-  {
-    /* Pass packet to HL */
-    if (ncp_ll_ctx.rx_packet_cb != NULL)
+    rx_size = zbncp_frag_process_rx_response(&frag_ctx, &llq.res);
+    if (rx_size > 0UL)
     {
-      ncp_ll_ctx.rx_packet_cb(ncp_ll_ctx.rxbuf, (zb_uint16_t)rx_size);
+        /* Pass packet to HL */
+        if (ncp_ll_ctx.rx_packet_cb != NULL)
+        {
+            ncp_ll_ctx.rx_packet_cb(ncp_ll_ctx.rxbuf, (zb_uint16_t)rx_size);
+        }
     }
-  }
 
-  tx_ready = zbncp_frag_process_tx_response(&frag_ctx, &llq.res);
-  if (tx_ready)
-  {
-    /* Notify HL */
-    if (ncp_ll_ctx.tx_ready_cb != NULL)
+    tx_ready = zbncp_frag_process_tx_response(&frag_ctx, &llq.res);
+    if (tx_ready)
     {
-      ncp_ll_ctx.tx_ready_cb();
+        /* Notify HL */
+        if (ncp_ll_ctx.tx_ready_cb != NULL)
+        {
+            ncp_ll_ctx.tx_ready_cb();
+        }
     }
-  }
 
-  TRACE_MSG(TRACE_USB3, "<ncp_ll_quant rx %ld tx %ld timeout %ld", (FMT__D_D_D, (zb_uint_t) llq.res.rx_info.rxbytes, (zb_uint_t) llq.res.txbytes, (zb_uint_t) llq.res.timeout));
+    TRACE_MSG(TRACE_USB3, "<ncp_ll_quant rx %ld tx %ld timeout %ld", (FMT__D_D_D, (zb_uint_t) llq.res.rx_info.rxbytes, (zb_uint_t) llq.res.txbytes, (zb_uint_t) llq.res.timeout));
 #ifdef ZB_NSNG
-  if ((zb_uint32_t)llq.res.timeout == (zb_uint32_t)~0u)
-  {
-    /* At nsng infinite sleep blocks serial communication */
-    llq.res.timeout = 1000u;
-  }
+    if ((zb_uint32_t)llq.res.timeout == (zb_uint32_t)~0u)
+    {
+        /* At nsng infinite sleep blocks serial communication */
+        llq.res.timeout = 1000u;
+    }
 #endif
-  timeout = ZB_MILLISECONDS_TO_BEACON_INTERVAL(llq.res.timeout);
-  ncp_ll_sch_sem_wait(&ncp_ll_ctx.sch_sem, timeout);
+    timeout = ZB_MILLISECONDS_TO_BEACON_INTERVAL(llq.res.timeout);
+    ncp_ll_sch_sem_wait(&ncp_ll_ctx.sch_sem, timeout);
 }

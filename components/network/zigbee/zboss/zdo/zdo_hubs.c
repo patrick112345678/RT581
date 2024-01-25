@@ -34,26 +34,26 @@
  */
 zb_bool_t zb_wwah_check_nwk_key_commands_broadcast_allowed(void)
 {
-  /* Quick simpoe check fpor ZC role - here and below. It will also cut extra code for ZC-only build. */
-  return ZB_IS_DEVICE_ZC() || !HUBS_CTX().key_commands_broadcast_disallowed;
+    /* Quick simpoe check fpor ZC role - here and below. It will also cut extra code for ZC-only build. */
+    return ZB_IS_DEVICE_ZC() || !HUBS_CTX().key_commands_broadcast_disallowed;
 }
 
 
 void zb_wwah_set_nwk_key_commands_broadcast_allowed(zb_bool_t allowed)
 {
-  HUBS_CTX().key_commands_broadcast_disallowed = !allowed;
+    HUBS_CTX().key_commands_broadcast_disallowed = !allowed;
 }
 
 
 zb_bool_t zb_wwah_in_configuration_mode(void)
 {
-  return ZB_IS_DEVICE_ZC() || !HUBS_CTX().configuration_mode_disabled;
+    return ZB_IS_DEVICE_ZC() || !HUBS_CTX().configuration_mode_disabled;
 }
 
 
 void zb_wwah_set_configuration_mode(zb_bool_t allowed)
 {
-  HUBS_CTX().configuration_mode_disabled = !allowed;
+    HUBS_CTX().configuration_mode_disabled = !allowed;
 }
 
 
@@ -64,43 +64,43 @@ void zb_wwah_set_configuration_mode(zb_bool_t allowed)
  */
 zb_bool_t zb_wwah_check_zdo_command(zb_apsde_data_indication_t *di)
 {
-  zb_bool_t ret = ZB_TRUE;
+    zb_bool_t ret = ZB_TRUE;
 
-  if (!ZB_IS_DEVICE_ZC() && zb_is_wwah_server())
-  {
-    /* if ConfigurationMode is disabled */
-    if (!zb_wwah_in_configuration_mode())
+    if (!ZB_IS_DEVICE_ZC() && zb_is_wwah_server())
     {
-      /* if ZDO command have not been encrypted using the Trust Center Link key */
-      if (!di->aps_key_from_tc)
-      {
-        /* if ZDO command not in exemption list*/
-        if (di->clusterid != ZDO_NWK_ADDR_REQ_CLID && di->clusterid != ZDO_IEEE_ADDR_REQ_CLID &&
-            di->clusterid != ZDO_NODE_DESC_REQ_CLID && di->clusterid != ZDO_POWER_DESC_REQ_CLID &&
-            di->clusterid != ZDO_SIMPLE_DESC_REQ_CLID && di->clusterid != ZDO_ACTIVE_EP_REQ_CLID &&
-            di->clusterid != ZDO_MATCH_DESC_REQ_CLID && di->clusterid != ZDO_COMPLEX_DESC_REQ_CLID &&
-            di->clusterid != ZDO_USER_DESC_REQ_CLID && di->clusterid != ZDO_DEVICE_ANNCE_CLID &&
-#ifndef R23_DISABLE_DEPRECATED_ZDO_CMDS
-            di->clusterid != ZDO_SYSTEM_SERVER_DISCOVERY_REQ_CLID &&
-            di->clusterid != ZDO_EXTENDED_SIMPLE_DESC_REQ_CLID &&
-            di->clusterid != ZDO_EXTENDED_ACTIVE_EP_REQ_CLID &&
-            di->clusterid != ZDO_MGMT_RTG_REQ_CLID &&
-#endif
-            di->clusterid != ZDO_PARENT_ANNCE_CLID &&
-            di->clusterid != ZDO_MGMT_LQI_REQ_CLID &&
-            di->clusterid != ZDO_MGMT_NWK_UPDATE_REQ_CLID && di->clusterid != ZDO_MGMT_NWK_ENHANCED_UPDATE_REQ_CLID &&
-            di->clusterid != ZDO_MGMT_NWK_IEEE_JOINING_LIST_REQ_CLID && di->clusterid != ZDO_NWK_ADDR_RESP_CLID &&
-            di->clusterid != ZDO_IEEE_ADDR_RESP_CLID && di->clusterid != ZDO_NODE_DESC_RESP_CLID &&
-            di->clusterid != ZDO_POWER_DESC_RESP_CLID && di->clusterid != ZDO_SIMPLE_DESC_RESP_CLID &&
-            di->clusterid != ZDO_ACTIVE_EP_RESP_CLID && di->clusterid != ZDO_MATCH_DESC_RESP_CLID &&
-            di->clusterid != ZDO_COMPLEX_DESC_RESP_CLID && di->clusterid != ZDO_USER_DESC_RESP_CLID)
+        /* if ConfigurationMode is disabled */
+        if (!zb_wwah_in_configuration_mode())
         {
-          ret = ZB_FALSE;
+            /* if ZDO command have not been encrypted using the Trust Center Link key */
+            if (!di->aps_key_from_tc)
+            {
+                /* if ZDO command not in exemption list*/
+                if (di->clusterid != ZDO_NWK_ADDR_REQ_CLID && di->clusterid != ZDO_IEEE_ADDR_REQ_CLID &&
+                        di->clusterid != ZDO_NODE_DESC_REQ_CLID && di->clusterid != ZDO_POWER_DESC_REQ_CLID &&
+                        di->clusterid != ZDO_SIMPLE_DESC_REQ_CLID && di->clusterid != ZDO_ACTIVE_EP_REQ_CLID &&
+                        di->clusterid != ZDO_MATCH_DESC_REQ_CLID && di->clusterid != ZDO_COMPLEX_DESC_REQ_CLID &&
+                        di->clusterid != ZDO_USER_DESC_REQ_CLID && di->clusterid != ZDO_DEVICE_ANNCE_CLID &&
+#ifndef R23_DISABLE_DEPRECATED_ZDO_CMDS
+                        di->clusterid != ZDO_SYSTEM_SERVER_DISCOVERY_REQ_CLID &&
+                        di->clusterid != ZDO_EXTENDED_SIMPLE_DESC_REQ_CLID &&
+                        di->clusterid != ZDO_EXTENDED_ACTIVE_EP_REQ_CLID &&
+                        di->clusterid != ZDO_MGMT_RTG_REQ_CLID &&
+#endif
+                        di->clusterid != ZDO_PARENT_ANNCE_CLID &&
+                        di->clusterid != ZDO_MGMT_LQI_REQ_CLID &&
+                        di->clusterid != ZDO_MGMT_NWK_UPDATE_REQ_CLID && di->clusterid != ZDO_MGMT_NWK_ENHANCED_UPDATE_REQ_CLID &&
+                        di->clusterid != ZDO_MGMT_NWK_IEEE_JOINING_LIST_REQ_CLID && di->clusterid != ZDO_NWK_ADDR_RESP_CLID &&
+                        di->clusterid != ZDO_IEEE_ADDR_RESP_CLID && di->clusterid != ZDO_NODE_DESC_RESP_CLID &&
+                        di->clusterid != ZDO_POWER_DESC_RESP_CLID && di->clusterid != ZDO_SIMPLE_DESC_RESP_CLID &&
+                        di->clusterid != ZDO_ACTIVE_EP_RESP_CLID && di->clusterid != ZDO_MATCH_DESC_RESP_CLID &&
+                        di->clusterid != ZDO_COMPLEX_DESC_RESP_CLID && di->clusterid != ZDO_USER_DESC_RESP_CLID)
+                {
+                    ret = ZB_FALSE;
+                }
+            }
         }
-      }
     }
-  }
-  return ret;
+    return ret;
 }
 
 
@@ -110,25 +110,25 @@ zb_bool_t zb_wwah_check_zdo_command(zb_apsde_data_indication_t *di)
  */
 zb_bool_t zb_wwah_check_if_leave_without_rejoin_allowed(void)
 {
-  return ZB_IS_DEVICE_ZC() || !HUBS_CTX().leave_without_rejoin_disallowed;
+    return ZB_IS_DEVICE_ZC() || !HUBS_CTX().leave_without_rejoin_disallowed;
 }
 
 
 void zb_wwah_set_leave_without_rejoin_allowed(zb_bool_t allowed)
 {
-  HUBS_CTX().leave_without_rejoin_disallowed = !allowed;
+    HUBS_CTX().leave_without_rejoin_disallowed = !allowed;
 }
 
 
 zb_bool_t zb_wwah_check_if_interpan_supported(void)
 {
-  return ZB_IS_DEVICE_ZC() || !HUBS_CTX().interpan_disabled;
+    return ZB_IS_DEVICE_ZC() || !HUBS_CTX().interpan_disabled;
 }
 
 
 void zb_wwah_set_interpan_supported(zb_bool_t enabled)
 {
-  HUBS_CTX().interpan_disabled = !enabled;
+    HUBS_CTX().interpan_disabled = !enabled;
 }
 #endif  /* #ifdef ZB_ZCL_ENABLE_WWAH_SERVER */
 

@@ -27,20 +27,20 @@
 
 void zbncp_transport_construct(zbncp_transport_t *tr, const zbncp_transport_ops_t *ops)
 {
-  tr->ops = *ops;
+    tr->ops = *ops;
 }
 
 void zbncp_transport_init(zbncp_transport_t *tr, const zbncp_transport_cb_t *cb)
 {
-  tr->ops.init(tr->ops.impl, cb);
+    tr->ops.init(tr->ops.impl, cb);
 }
 
 void zbncp_transport_send(zbncp_transport_t *tr, zbncp_cmemref_t mem)
 {
-  tr->ops.send(tr->ops.impl, mem);
+    tr->ops.send(tr->ops.impl, mem);
 }
 
 void zbncp_transport_recv(zbncp_transport_t *tr, zbncp_memref_t mem)
 {
-  tr->ops.recv(tr->ops.impl, mem);
+    tr->ops.recv(tr->ops.impl, mem);
 }

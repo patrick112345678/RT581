@@ -24,7 +24,8 @@
     Memory Mapped Structure for I2C Master Controller
 @{ */
 
-typedef struct {
+typedef struct
+{
     __IO  uint32_t  CONTROL;
     __IO  uint32_t  TAR;
     __IO  uint32_t  BUF;

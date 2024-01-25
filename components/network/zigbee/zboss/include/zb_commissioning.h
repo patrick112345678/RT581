@@ -61,47 +61,47 @@ typedef zb_bool_t (*zb_commissioning_is_in_tc_rejoin_func_t)(void);
 
 typedef struct zb_formation_func_selector_s
 {
-  zb_callback_t start_formation;
-  zb_commissioning_formation_channels_mask_t get_formation_channels_mask;
+    zb_callback_t start_formation;
+    zb_commissioning_formation_channels_mask_t get_formation_channels_mask;
 } zb_formation_func_selector_t;
 
 
 typedef struct zb_commissioning_func_selector_s
 {
-  zb_commissioning_signal_func_t signal;
+    zb_commissioning_signal_func_t signal;
 
 #ifdef ZB_ROUTER_ROLE
-  zb_commissioning_get_permit_join_duration_func_t get_permit_join_duration;
+    zb_commissioning_get_permit_join_duration_func_t get_permit_join_duration;
 #endif /* ZB_ROUTER_ROLE */
 
 #ifndef NCP_MODE_HOST
-  zb_commissioning_must_use_installcode_func_t must_use_install_code;
+    zb_commissioning_must_use_installcode_func_t must_use_install_code;
 #endif /* !NCP_MODE_HOST */
 
 #ifdef ZB_JOIN_CLIENT
-  zb_commissioning_get_scan_duration_func_t get_scan_duration;
-  zb_commissioning_get_scan_channel_mask_func_t get_scan_channel_mask;
+    zb_commissioning_get_scan_duration_func_t get_scan_duration;
+    zb_commissioning_get_scan_channel_mask_func_t get_scan_channel_mask;
 #endif /* ZB_JOIN_CLIENT */
 
-  zb_commissioning_is_in_tc_rejoin_func_t is_in_tc_rejoin;
+    zb_commissioning_is_in_tc_rejoin_func_t is_in_tc_rejoin;
 } zb_commissioning_func_selector_t;
 
 typedef struct zb_commissioning_ctx_s
 {
-  zb_commissioning_type_t commissioning_type;
-  struct zb_discovery_ctx_s
-  {
-    zb_uint8_t scanlist_ref;                  /* Buffer with scanlist */
-    zb_ushort_t scanlist_idx;                 /* nwk descriptor index in scanlist */
-    zb_uint8_t scanlist_join_attempt_n;       /* Indicates the current joining
+    zb_commissioning_type_t commissioning_type;
+    struct zb_discovery_ctx_s
+    {
+        zb_uint8_t scanlist_ref;                  /* Buffer with scanlist */
+        zb_ushort_t scanlist_idx;                 /* nwk descriptor index in scanlist */
+        zb_uint8_t scanlist_join_attempt_n;       /* Indicates the current joining
                                                * attempt number */
-    zb_uint8_t disc_count;                /*!< */
-    zb_uint16_t nwk_time_btwn_scans; /* Integer value representing the
+        zb_uint8_t disc_count;                /*!< */
+        zb_uint16_t nwk_time_btwn_scans; /* Integer value representing the
                                       * time duration (in milliseconds)
                                       * between each NWK discovery
                                       * attempt. This attribute has a
                                       * default value of 100 (milliseconds) */
-    zb_uint8_t nwk_scan_attempts; /* Integer value representing the
+        zb_uint8_t nwk_scan_attempts; /* Integer value representing the
                                    * number of scan attempts to make
                                    * before the NWK layer decides which
                                    * Zigbee coordinator or router to
@@ -109,13 +109,13 @@ typedef struct zb_commissioning_ctx_s
                                    * 2.5.5.5). This attribute has
                                    * default value of 5 */
 
-  } discovery_ctx;
+    } discovery_ctx;
 
 #ifdef ZB_FORMATION
-  zb_formation_func_selector_t formation_selector;
+    zb_formation_func_selector_t formation_selector;
 #endif /* ZB_FORMATION */
 
-  zb_commissioning_func_selector_t commissioning_selector;
+    zb_commissioning_func_selector_t commissioning_selector;
 } zb_commissioning_ctx_t;
 
 #define COMM_CTX() ZG->commissioning_ctx

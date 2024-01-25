@@ -27,14 +27,15 @@ along with GCC; see the file COPYING3.  If not see
 
 class rtx_reuse_manager;
 
-namespace selftest {
+namespace selftest
+{
 
 /* Verify that X is dumped as EXPECTED_DUMP, using compact mode.
    Use LOC as the effective location when reporting errors.  */
 
 extern void
 assert_rtl_dump_eq (const location &loc, const char *expected_dump, rtx x,
-		    rtx_reuse_manager *reuse_manager);
+                    rtx_reuse_manager *reuse_manager);
 
 /* Verify that RTX is dumped as EXPECTED_DUMP, using compact mode.  */
 
@@ -45,13 +46,13 @@ assert_rtl_dump_eq (const location &loc, const char *expected_dump, rtx x,
 
 #define ASSERT_RTL_DUMP_EQ_WITH_REUSE(EXPECTED_DUMP, RTX, REUSE_MANAGER) \
   assert_rtl_dump_eq (SELFTEST_LOCATION, (EXPECTED_DUMP), (RTX), \
-		      (REUSE_MANAGER))
+              (REUSE_MANAGER))
 
-#define ASSERT_RTX_EQ(EXPECTED, ACTUAL) 				\
-  SELFTEST_BEGIN_STMT							\
-  const char *desc_ = "ASSERT_RTX_EQ (" #EXPECTED ", " #ACTUAL ")";	\
-  ::selftest::assert_rtx_eq_at (SELFTEST_LOCATION, desc_, (EXPECTED),	\
-				(ACTUAL));				\
+#define ASSERT_RTX_EQ(EXPECTED, ACTUAL)                 \
+  SELFTEST_BEGIN_STMT                           \
+  const char *desc_ = "ASSERT_RTX_EQ (" #EXPECTED ", " #ACTUAL ")"; \
+  ::selftest::assert_rtx_eq_at (SELFTEST_LOCATION, desc_, (EXPECTED),   \
+                (ACTUAL));              \
   SELFTEST_END_STMT
 
 extern void assert_rtx_eq_at (const location &, const char *, rtx, rtx);
@@ -61,10 +62,10 @@ extern void assert_rtx_eq_at (const location &, const char *, rtx, rtx);
    equal, aborting if they are non-equal.  */
 
 #define ASSERT_RTX_PTR_EQ(EXPECTED, ACTUAL) \
-  SELFTEST_BEGIN_STMT							\
+  SELFTEST_BEGIN_STMT                           \
   const char *desc_ = "ASSERT_RTX_PTR_EQ (" #EXPECTED ", " #ACTUAL ")";  \
   ::selftest::assert_rtx_ptr_eq_at (SELFTEST_LOCATION, desc_, (EXPECTED), \
-				    (ACTUAL));				\
+                    (ACTUAL));              \
   SELFTEST_END_STMT
 
 /* Compare rtx EXPECTED and ACTUAL by pointer equality, calling
@@ -72,19 +73,19 @@ extern void assert_rtx_eq_at (const location &, const char *, rtx, rtx);
    LOC is the effective location of the assertion, MSG describes it.  */
 
 extern void assert_rtx_ptr_eq_at (const location &loc, const char *msg,
-				  rtx expected, rtx actual);
+                                  rtx expected, rtx actual);
 
 /* A class for testing RTL function dumps.  */
 
 class rtl_dump_test
 {
- public:
-  /* Takes ownership of PATH.  */
-  rtl_dump_test (const location &loc, char *path);
-  ~rtl_dump_test ();
+public:
+    /* Takes ownership of PATH.  */
+    rtl_dump_test (const location &loc, char *path);
+    ~rtl_dump_test ();
 
- private:
-  char *m_path;
+private:
+    char *m_path;
 };
 
 /* Get the insn with the given uid, or NULL if not found.  */

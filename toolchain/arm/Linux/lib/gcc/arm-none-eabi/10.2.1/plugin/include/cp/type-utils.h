@@ -33,23 +33,27 @@ along with GCC; see the file COPYING3.  If not see
 inline tree *
 find_type_usage (tree *tp, bool (*pred) (const_tree))
 {
-  tree t = *tp;
-  if (pred (t))
-    return tp;
+    tree t = *tp;
+    if (pred (t))
+    {
+        return tp;
+    }
 
-  enum tree_code code = TREE_CODE (t);
+    enum tree_code code = TREE_CODE (t);
 
-  if (code == POINTER_TYPE || code == REFERENCE_TYPE
-      || code == PARM_DECL || code == OFFSET_TYPE
-      || code == FUNCTION_TYPE || code == METHOD_TYPE
-      || code == ARRAY_TYPE)
-    return find_type_usage (&TREE_TYPE (t), pred);
+    if (code == POINTER_TYPE || code == REFERENCE_TYPE
+            || code == PARM_DECL || code == OFFSET_TYPE
+            || code == FUNCTION_TYPE || code == METHOD_TYPE
+            || code == ARRAY_TYPE)
+    {
+        return find_type_usage (&TREE_TYPE (t), pred);
+    }
 
-  if (TYPE_PTRMEMFUNC_P (t))
-    return find_type_usage
-      (&TREE_TYPE (TYPE_PTRMEMFUNC_FN_TYPE (t)), pred);
+    if (TYPE_PTRMEMFUNC_P (t))
+        return find_type_usage
+               (&TREE_TYPE (TYPE_PTRMEMFUNC_FN_TYPE (t)), pred);
 
-  return NULL;
+    return NULL;
 }
 
 #endif // GCC_CP_TYPE_UTILS_H

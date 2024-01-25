@@ -62,134 +62,134 @@ static zb_ieee_addr_t g_TESTER_addr = {0x02, 0x00, 0x00, 0x00, 0x00, 0x48, 0xde,
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  ZB_INIT(LOG_FILE);
+    ZB_INIT(LOG_FILE);
 
-  ZB_IEEE_ADDR_COPY(ZB_PIB_EXTENDED_ADDRESS(), &g_DUT_addr);
-  MAC_PIB().mac_pan_id   = TEST_PAN_ID;
-  ZB_PIB_SHORT_ADDRESS() = ZB_DUT_ADDR;
+    ZB_IEEE_ADDR_COPY(ZB_PIB_EXTENDED_ADDRESS(), &g_DUT_addr);
+    MAC_PIB().mac_pan_id   = TEST_PAN_ID;
+    ZB_PIB_SHORT_ADDRESS() = ZB_DUT_ADDR;
 
-  {
-    zb_bufid_t buf = zb_get_out_buf();
-    zb_mlme_set_request_t *set_req;
-
-    /* set rx_on_when_idle to true */
-    req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + sizeof(zb_uint8_t), set_req);
-    set_req -> pib_attr   = ZB_PIB_ATTRIBUTE_RX_ON_WHEN_IDLE;
-    set_req -> pib_length = sizeof(zb_uint8_t);
-    *((zb_uint8_t *)(set_req + 1)) = ZB_TRUE;
-
-    ZB_SCHEDULE_CALLBACK(zb_mlme_set_request, param);
-  }
-
-  while (1)
-  {
-    zb_sched_loop_iteration();
-
-    /* check for sec interrupt */
-    if ( TRANS_CTX().int_status & 0x10 )
     {
-      TRACE_MSG(TRACE_NWK2, "got sec interrupt", (FMT__0));
-
-      /* drop sec packet, clear rxfifo */
-      ZB_RXFLUSH();
-
-      /* clear context*/
-      TRANS_CTX().int_status &= (~0x10);
-
-      /* send mlme status indication */
-      {
         zb_bufid_t buf = zb_get_out_buf();
-        zb_mlme_comm_status_indication_t *ind = ZB_BUF_GET_PARAM(param, zb_mlme_comm_status_indication_t);
+        zb_mlme_set_request_t *set_req;
 
-        ind -> src_addr_mode        = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
-        ind -> src_addr.addr_short  = 0x0100;
-        ind -> dst_addr_mode        = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
-        ind -> dst_addr.addr_short  = ZB_DUT_ADDR;
-        ind -> status               = MAC_UNSUPPORTED_LEGACY;
+        /* set rx_on_when_idle to true */
+        req = zb_buf_initial_alloc(param, sizeof(zb_mlme_set_request_t) + sizeof(zb_uint8_t), set_req);
+        set_req -> pib_attr   = ZB_PIB_ATTRIBUTE_RX_ON_WHEN_IDLE;
+        set_req -> pib_length = sizeof(zb_uint8_t);
+        *((zb_uint8_t *)(set_req + 1)) = ZB_TRUE;
 
-        /* call comm status */
-        ZB_SCHEDULE_CALLBACK(zb_mlme_comm_status_indication, param);
-      }
+        ZB_SCHEDULE_CALLBACK(zb_mlme_set_request, param);
     }
-  }
 
-  TRACE_DEINIT();
+    while (1)
+    {
+        zb_sched_loop_iteration();
 
-  MAIN_RETURN(0);
+        /* check for sec interrupt */
+        if ( TRANS_CTX().int_status & 0x10 )
+        {
+            TRACE_MSG(TRACE_NWK2, "got sec interrupt", (FMT__0));
+
+            /* drop sec packet, clear rxfifo */
+            ZB_RXFLUSH();
+
+            /* clear context*/
+            TRANS_CTX().int_status &= (~0x10);
+
+            /* send mlme status indication */
+            {
+                zb_bufid_t buf = zb_get_out_buf();
+                zb_mlme_comm_status_indication_t *ind = ZB_BUF_GET_PARAM(param, zb_mlme_comm_status_indication_t);
+
+                ind -> src_addr_mode        = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
+                ind -> src_addr.addr_short  = 0x0100;
+                ind -> dst_addr_mode        = ZB_ADDR_16BIT_DEV_OR_BROADCAST;
+                ind -> dst_addr.addr_short  = ZB_DUT_ADDR;
+                ind -> status               = MAC_UNSUPPORTED_LEGACY;
+
+                /* call comm status */
+                ZB_SCHEDULE_CALLBACK(zb_mlme_comm_status_indication, param);
+            }
+        }
+    }
+
+    TRACE_DEINIT();
+
+    MAIN_RETURN(0);
 }
 
 
 void zb_mlme_set_confirm(zb_uint8_t param)
 {
-  static zb_short_t state = 0;
+    static zb_short_t state = 0;
 
-  TRACE_MSG(TRACE_NWK2, "zb_mlme_set_confirm", (FMT__0));
+    TRACE_MSG(TRACE_NWK2, "zb_mlme_set_confirm", (FMT__0));
 
-  /* start PAN */
-  if (state == 0)
-  {
-    zb_mlme_start_req_t *req = ZB_BUF_GET_PARAM(param, zb_mlme_start_req_t);
+    /* start PAN */
+    if (state == 0)
+    {
+        zb_mlme_start_req_t *req = ZB_BUF_GET_PARAM(param, zb_mlme_start_req_t);
 
-    ZB_BZERO(req, sizeof(*req));
-    req -> pan_id = MAC_PIB().mac_pan_id;
-    req -> logical_channel  = ZB_TEST_CHANNEL;
-    req -> pan_coordinator  = ZB_TRUE;      /* will be coordinator */
-    req -> beacon_order     = ZB_TURN_OFF_ORDER;
-    req -> superframe_order = ZB_TURN_OFF_ORDER;
+        ZB_BZERO(req, sizeof(*req));
+        req -> pan_id = MAC_PIB().mac_pan_id;
+        req -> logical_channel  = ZB_TEST_CHANNEL;
+        req -> pan_coordinator  = ZB_TRUE;      /* will be coordinator */
+        req -> beacon_order     = ZB_TURN_OFF_ORDER;
+        req -> superframe_order = ZB_TURN_OFF_ORDER;
 
-    ZB_SCHEDULE_CALLBACK(zb_mlme_start_request, param);
-  }
-  else
-  {
-    zb_buf_free(param);
-  }
+        ZB_SCHEDULE_CALLBACK(zb_mlme_start_request, param);
+    }
+    else
+    {
+        zb_buf_free(param);
+    }
 
-  state++;
+    state++;
 }
 
 
 void zb_mlme_start_confirm(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_NWK2, "zb_mlme_start_confirm", (FMT__0));
-  zb_buf_free(param);
+    TRACE_MSG(TRACE_NWK2, "zb_mlme_start_confirm", (FMT__0));
+    zb_buf_free(param);
 }
 
 
 void zb_mlme_associate_indication(zb_uint8_t param)
 {
-  zb_ieee_addr_t device_address;
-  zb_mlme_associate_indication_t *request = ZB_BUF_GET_PARAM((zb_bufid_t )param, zb_mlme_associate_indication_t);
-  TRACE_MSG(TRACE_NWK1, ">>mlme_associate_ind %hd", (FMT__H, param));
-  /*
-    Very simple implementation: accept anybody, assign address 0x3344
-   */
-  ZB_IEEE_ADDR_COPY(device_address, request -> device_address);
-  ZB_MLME_BUILD_ASSOCIATE_RESPONSE(param, device_address, ZB_TESTER_ADDR, 0);
-  ZB_SCHEDULE_CALLBACK(zb_mlme_associate_response, param);
-  TRACE_MSG(TRACE_NWK1, "<<mlme_associate_ind", (FMT__0));
+    zb_ieee_addr_t device_address;
+    zb_mlme_associate_indication_t *request = ZB_BUF_GET_PARAM((zb_bufid_t )param, zb_mlme_associate_indication_t);
+    TRACE_MSG(TRACE_NWK1, ">>mlme_associate_ind %hd", (FMT__H, param));
+    /*
+      Very simple implementation: accept anybody, assign address 0x3344
+     */
+    ZB_IEEE_ADDR_COPY(device_address, request -> device_address);
+    ZB_MLME_BUILD_ASSOCIATE_RESPONSE(param, device_address, ZB_TESTER_ADDR, 0);
+    ZB_SCHEDULE_CALLBACK(zb_mlme_associate_response, param);
+    TRACE_MSG(TRACE_NWK1, "<<mlme_associate_ind", (FMT__0));
 }
 
 
 void zb_mcps_data_indication(zb_uint8_t param)
 {
 
-  TRACE_MSG(TRACE_MAC1, ">> zb_mcps_data_indication param %hd", (FMT__H, param));
-  zb_buf_free(param);
+    TRACE_MSG(TRACE_MAC1, ">> zb_mcps_data_indication param %hd", (FMT__H, param));
+    zb_buf_free(param);
 }
 
 
 void zb_mlme_comm_status_indication(zb_uint8_t param)
 {
-  zb_mlme_comm_status_indication_t *ind_params = ZB_BUF_GET_PARAM(param, zb_mlme_comm_status_indication_t);
+    zb_mlme_comm_status_indication_t *ind_params = ZB_BUF_GET_PARAM(param, zb_mlme_comm_status_indication_t);
 
-  TRACE_MSG(TRACE_MAC1,
-            "zb_mlme_comm_status_indication param %hd status %hd src_addr 0x%x dst_addr 0x%x",
-            (FMT__D_H_H_D, param, ind_params->status,
-             ind_params->src_addr.addr_short, ind_params->dst_addr.addr_short));
+    TRACE_MSG(TRACE_MAC1,
+              "zb_mlme_comm_status_indication param %hd status %hd src_addr 0x%x dst_addr 0x%x",
+              (FMT__D_H_H_D, param, ind_params->status,
+               ind_params->src_addr.addr_short, ind_params->dst_addr.addr_short));
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 /*! @} */

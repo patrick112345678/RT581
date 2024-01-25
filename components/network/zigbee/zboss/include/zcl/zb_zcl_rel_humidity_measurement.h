@@ -45,18 +45,18 @@
 */
 enum zb_zcl_rel_humidity_measurement_attr_e
 {
-  /** @brief MeasuredValue, ZCL specification revision 7 subsection 4.7.2.1.1 MeasuredValue Attribute */
-  ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_VALUE_ID     = 0x0000,
-  /** @brief MinMeasuredValue, ZCL specification revision 7 subsection 4.7.2.1.2 MinMeasuredValue Attribute*/
-  ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_MIN_VALUE_ID = 0x0001,
-  /** @brief MaxMeasuredValue, ZCL specification revision 7 subsection 4.7.2.1.3 MaxMeasuredValue Attribute*/
-  ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_MAX_VALUE_ID = 0x0002,
-  /** The Tolerance attribute SHALL indicate the magnitude of the
-   *  possible error that is associated with MeasuredValue, using
-   *  the same units and resolution.
-   *  @brief Tolerance, ZCL specification revision 7 subsection 4.7.2.1.4 Tolerance Attribute
-   */
-  ZB_ZCL_ATTR_REL_HUMIDITY_TOLERANCE_ID             = 0x0003,
+    /** @brief MeasuredValue, ZCL specification revision 7 subsection 4.7.2.1.1 MeasuredValue Attribute */
+    ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_VALUE_ID     = 0x0000,
+    /** @brief MinMeasuredValue, ZCL specification revision 7 subsection 4.7.2.1.2 MinMeasuredValue Attribute*/
+    ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_MIN_VALUE_ID = 0x0001,
+    /** @brief MaxMeasuredValue, ZCL specification revision 7 subsection 4.7.2.1.3 MaxMeasuredValue Attribute*/
+    ZB_ZCL_ATTR_REL_HUMIDITY_MEASUREMENT_MAX_VALUE_ID = 0x0002,
+    /** The Tolerance attribute SHALL indicate the magnitude of the
+     *  possible error that is associated with MeasuredValue, using
+     *  the same units and resolution.
+     *  @brief Tolerance, ZCL specification revision 7 subsection 4.7.2.1.4 Tolerance Attribute
+     */
+    ZB_ZCL_ATTR_REL_HUMIDITY_TOLERANCE_ID             = 0x0003,
 };
 
 /** @brief MeasuredValue attribute unknown value */

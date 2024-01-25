@@ -17,8 +17,10 @@
    @{
 */
 
-typedef union wdt_ctrl_s {
-    struct wdt_ctrl_b {
+typedef union wdt_ctrl_s
+{
+    struct wdt_ctrl_b
+    {
         uint32_t LOCKOUT   : 1;
         uint32_t RESERVED1 : 1;
         uint32_t PRESCALE  : 3;
@@ -35,8 +37,10 @@ typedef union wdt_ctrl_s {
    @{
 */
 
-typedef union wdt_reset_occur_s {
-    struct wdt_reset_occur_b {
+typedef union wdt_reset_occur_s
+{
+    struct wdt_reset_occur_b
+    {
         uint32_t RESET_OCCUR    : 8;
         uint32_t RESERVED       : 24;
     } bit;
@@ -48,7 +52,8 @@ typedef union wdt_reset_occur_s {
     Memory Mapped Structure for WDT TIMER Controller
 @{ */
 
-typedef struct {
+typedef struct
+{
     __IO uint32_t WIN_MAX;                  /*0x00*/
     __I  uint32_t VALUE;                    /*0x04*/
     __IO wdt_ctrl_t CONTROL;                /*0x08*/
@@ -58,7 +63,7 @@ typedef struct {
     __IO uint32_t INT_VALUE;                /*0x18*/
     __IO uint32_t WIN_MIN;                  /*0x1C*/
     __IO uint32_t PRESCALE;                 /*0x20*/
-    
+
 } WDT_T;
 
 /**

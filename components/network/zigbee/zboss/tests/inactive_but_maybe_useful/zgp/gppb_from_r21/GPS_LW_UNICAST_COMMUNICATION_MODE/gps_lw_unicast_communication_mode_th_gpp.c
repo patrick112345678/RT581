@@ -52,50 +52,50 @@ static zb_ieee_addr_t g_th_gpp_addr = TH_GPP_IEEE_ADDR;
 /*! Program states according to test scenario */
 enum test_states_e
 {
-  TEST_STATE_INITIAL,
-  /* FINISH */
-  TEST_STATE_FINISHED
+    TEST_STATE_INITIAL,
+    /* FINISH */
+    TEST_STATE_FINISHED
 };
 
 ZB_ZGPC_DECLARE_SIMPLE_TEST_TEMPLATE(TEST_DEVICE_CTX, 1000)
 
 static void send_zcl(zb_uint8_t buf_ref, zb_callback_t cb)
 {
-  ZVUNUSED(cb);
-  ZVUNUSED(buf_ref);
+    ZVUNUSED(cb);
+    ZVUNUSED(buf_ref);
 }
 
 static void perform_next_state(zb_uint8_t param)
 {
-  if (TEST_DEVICE_CTX.pause)
-  {
-    ZB_SCHEDULE_ALARM(perform_next_state, 0,
-                      ZB_TIME_ONE_SECOND*TEST_DEVICE_CTX.pause);
-    TEST_DEVICE_CTX.pause = 0;
-    return;
-  }
+    if (TEST_DEVICE_CTX.pause)
+    {
+        ZB_SCHEDULE_ALARM(perform_next_state, 0,
+                          ZB_TIME_ONE_SECOND * TEST_DEVICE_CTX.pause);
+        TEST_DEVICE_CTX.pause = 0;
+        return;
+    }
 
-  TEST_DEVICE_CTX.test_state++;
+    TEST_DEVICE_CTX.test_state++;
 
-  TRACE_MSG(TRACE_APP1, ">perform_next_state: test_state = %d",
-            (FMT__D, TEST_DEVICE_CTX.test_state));
+    TRACE_MSG(TRACE_APP1, ">perform_next_state: test_state = %d",
+              (FMT__D, TEST_DEVICE_CTX.test_state));
 
-  switch (TEST_DEVICE_CTX.test_state)
-  {
+    switch (TEST_DEVICE_CTX.test_state)
+    {
     case TEST_STATE_FINISHED:
-      TRACE_MSG(TRACE_APP1, "Test finished. Status: OK", (FMT__0));
-      break;
+        TRACE_MSG(TRACE_APP1, "Test finished. Status: OK", (FMT__0));
+        break;
     default:
     {
-      if (param)
-      {
-        zb_free_buf(ZB_BUF_FROM_REF(param));
-      }
-      ZB_SCHEDULE_ALARM(test_send_command, 0, ZB_TIME_ONE_SECOND);
+        if (param)
+        {
+            zb_free_buf(ZB_BUF_FROM_REF(param));
+        }
+        ZB_SCHEDULE_ALARM(test_send_command, 0, ZB_TIME_ONE_SECOND);
     }
-  }
+    }
 
-  TRACE_MSG(TRACE_APP1, "<perform_next_state", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "<perform_next_state", (FMT__0));
 }
 
 /*============================================================================*/
@@ -108,28 +108,28 @@ static void perform_next_state(zb_uint8_t param)
 
 static void zgpc_custom_startup()
 {
-  /* Init device, load IB values from nvram or set it to default */
-  ZB_INIT("th_gpp");
+    /* Init device, load IB values from nvram or set it to default */
+    ZB_INIT("th_gpp");
 
-  ZB_AIB().aps_channel_mask = (1<<TEST_CHANNEL);
-  zb_set_default_ffd_descriptor_values(ZB_ROUTER);
-  ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_th_gpp_addr);
-  ZB_NIB_SET_USE_MULTICAST(ZB_FALSE);
-  /* Must use NVRAM for ZGP */
+    ZB_AIB().aps_channel_mask = (1 << TEST_CHANNEL);
+    zb_set_default_ffd_descriptor_values(ZB_ROUTER);
+    ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_th_gpp_addr);
+    ZB_NIB_SET_USE_MULTICAST(ZB_FALSE);
+    /* Must use NVRAM for ZGP */
 
-  /* Need to block GPDF recv directly */
+    /* Need to block GPDF recv directly */
 #ifdef ZB_ZGP_SKIP_GPDF_ON_NWK_LAYER
-  ZG->nwk.skip_gpdf = 0;
+    ZG->nwk.skip_gpdf = 0;
 #endif
 #ifdef ZB_ZGP_RUNTIME_WORK_MODE_WITH_PROXIES
-  ZGP_CTX().enable_work_with_proxies = 1;
+    ZGP_CTX().enable_work_with_proxies = 1;
 #endif
 #ifdef ZB_CERTIFICATION_HACKS
-  ZB_CERT_HACKS().ccm_check_cb = NULL;
+    ZB_CERT_HACKS().ccm_check_cb = NULL;
 #endif
 
-  ZGP_GP_SET_SHARED_SECURITY_KEY_TYPE(ZB_ZGP_SEC_KEY_TYPE_NWK);
-  ZGP_CTX().device_role = ZGP_DEVICE_PROXY;
+    ZGP_GP_SET_SHARED_SECURITY_KEY_TYPE(ZB_ZGP_SEC_KEY_TYPE_NWK);
+    ZGP_CTX().device_role = ZGP_DEVICE_PROXY;
 }
 
 ZB_ZGPC_DECLARE_STARTUP_PROCESS()
@@ -139,11 +139,11 @@ ZB_ZGPC_DECLARE_STARTUP_PROCESS()
 #include <stdio.h>
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  printf("HA profile should be enabled in zb_config.h\n");
+    printf("HA profile should be enabled in zb_config.h\n");
 
-  MAIN_RETURN(1);
+    MAIN_RETURN(1);
 }
 
 #endif

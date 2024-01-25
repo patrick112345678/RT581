@@ -41,61 +41,61 @@ along with GCC; see the file COPYING3.  If not see
 
   innermost_loop_behavior
       base_address     &a                             p
-      offset           i * D_i			      x
+      offset           i * D_i                x
       init             3 * D_j + offsetof (b)         28
       step             D_j                            4
 
   */
 struct innermost_loop_behavior
 {
-  tree base_address;
-  tree offset;
-  tree init;
-  tree step;
+    tree base_address;
+    tree offset;
+    tree init;
+    tree step;
 
-  /* BASE_ADDRESS is known to be misaligned by BASE_MISALIGNMENT bytes
-     from an alignment boundary of BASE_ALIGNMENT bytes.  For example,
-     if we had:
+    /* BASE_ADDRESS is known to be misaligned by BASE_MISALIGNMENT bytes
+       from an alignment boundary of BASE_ALIGNMENT bytes.  For example,
+       if we had:
 
-       struct S __attribute__((aligned(16))) { ... };
+         struct S __attribute__((aligned(16))) { ... };
 
-       char *ptr;
-       ... *(struct S *) (ptr - 4) ...;
+         char *ptr;
+         ... *(struct S *) (ptr - 4) ...;
 
-     the information would be:
+       the information would be:
 
-       base_address:      ptr
-       base_aligment:      16
-       base_misalignment:   4
-       init:               -4
+         base_address:      ptr
+         base_aligment:      16
+         base_misalignment:   4
+         init:               -4
 
-     where init cancels the base misalignment.  If instead we had a
-     reference to a particular field:
+       where init cancels the base misalignment.  If instead we had a
+       reference to a particular field:
 
-       struct S __attribute__((aligned(16))) { ... int f; ... };
+         struct S __attribute__((aligned(16))) { ... int f; ... };
 
-       char *ptr;
-       ... ((struct S *) (ptr - 4))->f ...;
+         char *ptr;
+         ... ((struct S *) (ptr - 4))->f ...;
 
-     the information would be:
+       the information would be:
 
-       base_address:      ptr
-       base_aligment:      16
-       base_misalignment:   4
-       init:               -4 + offsetof (S, f)
+         base_address:      ptr
+         base_aligment:      16
+         base_misalignment:   4
+         init:               -4 + offsetof (S, f)
 
-     where base_address + init might also be misaligned, and by a different
-     amount from base_address.  */
-  unsigned int base_alignment;
-  unsigned int base_misalignment;
+       where base_address + init might also be misaligned, and by a different
+       amount from base_address.  */
+    unsigned int base_alignment;
+    unsigned int base_misalignment;
 
-  /* The largest power of two that divides OFFSET, capped to a suitably
-     high value if the offset is zero.  This is a byte rather than a bit
-     quantity.  */
-  unsigned int offset_alignment;
+    /* The largest power of two that divides OFFSET, capped to a suitably
+       high value if the offset is zero.  This is a byte rather than a bit
+       quantity.  */
+    unsigned int offset_alignment;
 
-  /* Likewise for STEP.  */
-  unsigned int step_alignment;
+    /* Likewise for STEP.  */
+    unsigned int step_alignment;
 };
 
 /* Describes the evolutions of indices of the memory reference.  The indices
@@ -109,29 +109,29 @@ struct innermost_loop_behavior
 
    base_object:        a                              *(p + x + 4B * j_0)
    indices:            {j_0, +, 1}_2                  {16, +, 4}_2
-		       4
-		       {i_0, +, 1}_1
-		       {j_0, +, 1}_2
+               4
+               {i_0, +, 1}_1
+               {j_0, +, 1}_2
 */
 
 struct indices
 {
-  /* The object.  */
-  tree base_object;
+    /* The object.  */
+    tree base_object;
 
-  /* A list of chrecs.  Access functions of the indices.  */
-  vec<tree> access_fns;
+    /* A list of chrecs.  Access functions of the indices.  */
+    vec<tree> access_fns;
 
-  /* Whether BASE_OBJECT is an access representing the whole object
-     or whether the access could not be constrained.  */
-  bool unconstrained_base;
+    /* Whether BASE_OBJECT is an access representing the whole object
+       or whether the access could not be constrained.  */
+    bool unconstrained_base;
 };
 
 struct dr_alias
 {
-  /* The alias information that should be used for new pointers to this
-     location.  */
-  struct ptr_info_def *ptr_info;
+    /* The alias information that should be used for new pointers to this
+       location.  */
+    struct ptr_info_def *ptr_info;
 };
 
 /* An integer vector.  A vector formally consists of an element of a vector
@@ -149,38 +149,38 @@ typedef lambda_vector *lambda_matrix;
 
 struct data_reference
 {
-  /* A pointer to the statement that contains this DR.  */
-  gimple *stmt;
+    /* A pointer to the statement that contains this DR.  */
+    gimple *stmt;
 
-  /* A pointer to the memory reference.  */
-  tree ref;
+    /* A pointer to the memory reference.  */
+    tree ref;
 
-  /* Auxiliary info specific to a pass.  */
-  void *aux;
+    /* Auxiliary info specific to a pass.  */
+    void *aux;
 
-  /* True when the data reference is in RHS of a stmt.  */
-  bool is_read;
+    /* True when the data reference is in RHS of a stmt.  */
+    bool is_read;
 
-  /* True when the data reference is conditional within STMT,
-     i.e. if it might not occur even when the statement is executed
-     and runs to completion.  */
-  bool is_conditional_in_stmt;
+    /* True when the data reference is conditional within STMT,
+       i.e. if it might not occur even when the statement is executed
+       and runs to completion.  */
+    bool is_conditional_in_stmt;
 
-  /* Behavior of the memory reference in the innermost loop.  */
-  struct innermost_loop_behavior innermost;
+    /* Behavior of the memory reference in the innermost loop.  */
+    struct innermost_loop_behavior innermost;
 
-  /* Subscripts of this data reference.  */
-  struct indices indices;
+    /* Subscripts of this data reference.  */
+    struct indices indices;
 
-  /* Alias information for the data reference.  */
-  struct dr_alias alias;
+    /* Alias information for the data reference.  */
+    struct dr_alias alias;
 };
 
 #define DR_STMT(DR)                (DR)->stmt
 #define DR_REF(DR)                 (DR)->ref
 #define DR_BASE_OBJECT(DR)         (DR)->indices.base_object
 #define DR_UNCONSTRAINED_BASE(DR)  (DR)->indices.unconstrained_base
-#define DR_ACCESS_FNS(DR)	   (DR)->indices.access_fns
+#define DR_ACCESS_FNS(DR)      (DR)->indices.access_fns
 #define DR_ACCESS_FN(DR, I)        DR_ACCESS_FNS (DR)[I]
 #define DR_NUM_DIMENSIONS(DR)      DR_ACCESS_FNS (DR).length ()
 #define DR_IS_READ(DR)             (DR)->is_read
@@ -206,20 +206,20 @@ typedef struct data_reference *data_reference_p;
 class dr_with_seg_len
 {
 public:
-  dr_with_seg_len (data_reference_p d, tree len, unsigned HOST_WIDE_INT size,
-		   unsigned int a)
-    : dr (d), seg_len (len), access_size (size), align (a) {}
+    dr_with_seg_len (data_reference_p d, tree len, unsigned HOST_WIDE_INT size,
+                     unsigned int a)
+        : dr (d), seg_len (len), access_size (size), align (a) {}
 
-  data_reference_p dr;
-  /* The offset of the last access that needs to be checked minus
-     the offset of the first.  */
-  tree seg_len;
-  /* A value that, when added to abs (SEG_LEN), gives the total number of
-     bytes in the segment.  */
-  poly_uint64 access_size;
-  /* The minimum common alignment of DR's start address, SEG_LEN and
-     ACCESS_SIZE.  */
-  unsigned int align;
+    data_reference_p dr;
+    /* The offset of the last access that needs to be checked minus
+       the offset of the first.  */
+    tree seg_len;
+    /* A value that, when added to abs (SEG_LEN), gives the total number of
+       bytes in the segment.  */
+    poly_uint64 access_size;
+    /* The minimum common alignment of DR's start address, SEG_LEN and
+       ACCESS_SIZE.  */
+    unsigned int align;
 };
 
 /* Flags that describe a potential alias between two dr_with_seg_lens.
@@ -228,33 +228,33 @@ public:
    does not give meaningful information.
 
    DR_ALIAS_RAW:
-	There is a pair in P for which the second reference is a read
-	and the first is a write.
+    There is a pair in P for which the second reference is a read
+    and the first is a write.
 
    DR_ALIAS_WAR:
-	There is a pair in P for which the second reference is a write
-	and the first is a read.
+    There is a pair in P for which the second reference is a write
+    and the first is a read.
 
    DR_ALIAS_WAW:
-	There is a pair in P for which both references are writes.
+    There is a pair in P for which both references are writes.
 
    DR_ALIAS_ARBITRARY:
-	Either
-	(a) it isn't possible to classify one pair in P as RAW, WAW or WAR; or
-	(b) there is a pair in P that breaks the ordering assumption below.
+    Either
+    (a) it isn't possible to classify one pair in P as RAW, WAW or WAR; or
+    (b) there is a pair in P that breaks the ordering assumption below.
 
-	This flag overrides the RAW, WAR and WAW flags above.
+    This flag overrides the RAW, WAR and WAW flags above.
 
    DR_ALIAS_UNSWAPPED:
    DR_ALIAS_SWAPPED:
-	Temporary flags that indicate whether there is a pair P whose
-	DRs have or haven't been swapped around.
+    Temporary flags that indicate whether there is a pair P whose
+    DRs have or haven't been swapped around.
 
    DR_ALIAS_MIXED_STEPS:
-	The DR_STEP for one of the data references in the pair does not
-	accurately describe that reference for all members of P.  (Note
-	that the flag does not say anything about whether the DR_STEPs
-	of the two references in the pair are the same.)
+    The DR_STEP for one of the data references in the pair does not
+    accurately describe that reference for all members of P.  (Note
+    that the flag does not say anything about whether the DR_STEPs
+    of the two references in the pair are the same.)
 
    The ordering assumption mentioned above is that for every pair
    (DR_A, DR_B) in P:
@@ -262,18 +262,18 @@ public:
    (1) The original code accesses n elements for DR_A and n elements for DR_B,
        interleaved as follows:
 
-	 one access of size DR_A.access_size at DR_A.dr
-	 one access of size DR_B.access_size at DR_B.dr
-	 one access of size DR_A.access_size at DR_A.dr + STEP_A
-	 one access of size DR_B.access_size at DR_B.dr + STEP_B
-	 one access of size DR_A.access_size at DR_A.dr + STEP_A * 2
-	 one access of size DR_B.access_size at DR_B.dr + STEP_B * 2
-	 ...
+     one access of size DR_A.access_size at DR_A.dr
+     one access of size DR_B.access_size at DR_B.dr
+     one access of size DR_A.access_size at DR_A.dr + STEP_A
+     one access of size DR_B.access_size at DR_B.dr + STEP_B
+     one access of size DR_A.access_size at DR_A.dr + STEP_A * 2
+     one access of size DR_B.access_size at DR_B.dr + STEP_B * 2
+     ...
 
    (2) The new code accesses the same data in exactly two chunks:
 
-	 one group of accesses spanning |DR_A.seg_len| + DR_A.access_size
-	 one group of accesses spanning |DR_B.seg_len| + DR_B.access_size
+     one group of accesses spanning |DR_A.seg_len| + DR_A.access_size
+     one group of accesses spanning |DR_B.seg_len| + DR_B.access_size
 
    A pair might break this assumption if the DR_A and DR_B accesses
    in the original or the new code are mingled in some way.  For example,
@@ -301,44 +301,55 @@ const unsigned int DR_ALIAS_MIXED_STEPS = 1U << 6;
 class dr_with_seg_len_pair_t
 {
 public:
-  /* WELL_ORDERED indicates that the ordering assumption described above
-     DR_ALIAS_ARBITRARY holds.  REORDERED indicates that it doesn't.  */
-  enum sequencing { WELL_ORDERED, REORDERED };
+    /* WELL_ORDERED indicates that the ordering assumption described above
+       DR_ALIAS_ARBITRARY holds.  REORDERED indicates that it doesn't.  */
+    enum sequencing { WELL_ORDERED, REORDERED };
 
-  dr_with_seg_len_pair_t (const dr_with_seg_len &,
-			  const dr_with_seg_len &, sequencing);
+    dr_with_seg_len_pair_t (const dr_with_seg_len &,
+                            const dr_with_seg_len &, sequencing);
 
-  dr_with_seg_len first;
-  dr_with_seg_len second;
-  unsigned int flags;
+    dr_with_seg_len first;
+    dr_with_seg_len second;
+    unsigned int flags;
 };
 
 inline dr_with_seg_len_pair_t::
 dr_with_seg_len_pair_t (const dr_with_seg_len &d1, const dr_with_seg_len &d2,
-			sequencing seq)
-  : first (d1), second (d2), flags (0)
+                        sequencing seq)
+    : first (d1), second (d2), flags (0)
 {
-  if (DR_IS_READ (d1.dr) && DR_IS_WRITE (d2.dr))
-    flags |= DR_ALIAS_WAR;
-  else if (DR_IS_WRITE (d1.dr) && DR_IS_READ (d2.dr))
-    flags |= DR_ALIAS_RAW;
-  else if (DR_IS_WRITE (d1.dr) && DR_IS_WRITE (d2.dr))
-    flags |= DR_ALIAS_WAW;
-  else
-    gcc_unreachable ();
-  if (seq == REORDERED)
-    flags |= DR_ALIAS_ARBITRARY;
+    if (DR_IS_READ (d1.dr) && DR_IS_WRITE (d2.dr))
+    {
+        flags |= DR_ALIAS_WAR;
+    }
+    else if (DR_IS_WRITE (d1.dr) && DR_IS_READ (d2.dr))
+    {
+        flags |= DR_ALIAS_RAW;
+    }
+    else if (DR_IS_WRITE (d1.dr) && DR_IS_WRITE (d2.dr))
+    {
+        flags |= DR_ALIAS_WAW;
+    }
+    else
+    {
+        gcc_unreachable ();
+    }
+    if (seq == REORDERED)
+    {
+        flags |= DR_ALIAS_ARBITRARY;
+    }
 }
 
-enum data_dependence_direction {
-  dir_positive,
-  dir_negative,
-  dir_equal,
-  dir_positive_or_negative,
-  dir_positive_or_equal,
-  dir_negative_or_equal,
-  dir_star,
-  dir_independent
+enum data_dependence_direction
+{
+    dir_positive,
+    dir_negative,
+    dir_equal,
+    dir_positive_or_negative,
+    dir_positive_or_equal,
+    dir_negative_or_equal,
+    dir_star,
+    dir_independent
 };
 
 /* The description of the grid of iterations that overlap.  At most
@@ -360,8 +371,8 @@ typedef vec<tree> affine_fn;
 
 struct conflict_function
 {
-  unsigned n;
-  affine_fn fns[MAX_DIM];
+    unsigned n;
+    affine_fn fns[MAX_DIM];
 };
 
 /* What is a subscript?  Given two array accesses a subscript is the
@@ -373,23 +384,23 @@ struct conflict_function
 
 struct subscript
 {
-  /* The access functions of the two references.  */
-  tree access_fn[2];
+    /* The access functions of the two references.  */
+    tree access_fn[2];
 
-  /* A description of the iterations for which the elements are
-     accessed twice.  */
-  conflict_function *conflicting_iterations_in_a;
-  conflict_function *conflicting_iterations_in_b;
+    /* A description of the iterations for which the elements are
+       accessed twice.  */
+    conflict_function *conflicting_iterations_in_a;
+    conflict_function *conflicting_iterations_in_b;
 
-  /* This field stores the information about the iteration domain
-     validity of the dependence relation.  */
-  tree last_conflict;
+    /* This field stores the information about the iteration domain
+       validity of the dependence relation.  */
+    tree last_conflict;
 
-  /* Distance from the iteration that access a conflicting element in
-     A to the iteration that access this same conflicting element in
-     B.  The distance is a tree scalar expression, i.e. a constant or a
-     symbolic expression, but certainly not a chrec function.  */
-  tree distance;
+    /* Distance from the iteration that access a conflicting element in
+       A to the iteration that access this same conflicting element in
+       B.  The distance is a tree scalar expression, i.e. a constant or a
+       symbolic expression, but certainly not a chrec function.  */
+    tree distance;
 };
 
 typedef struct subscript *subscript_p;
@@ -406,80 +417,80 @@ typedef struct subscript *subscript_p;
 struct data_dependence_relation
 {
 
-  struct data_reference *a;
-  struct data_reference *b;
+    struct data_reference *a;
+    struct data_reference *b;
 
-  /* A "yes/no/maybe" field for the dependence relation:
+    /* A "yes/no/maybe" field for the dependence relation:
 
-     - when "ARE_DEPENDENT == NULL_TREE", there exist a dependence
-       relation between A and B, and the description of this relation
-       is given in the SUBSCRIPTS array,
+       - when "ARE_DEPENDENT == NULL_TREE", there exist a dependence
+         relation between A and B, and the description of this relation
+         is given in the SUBSCRIPTS array,
 
-     - when "ARE_DEPENDENT == chrec_known", there is no dependence and
-       SUBSCRIPTS is empty,
+       - when "ARE_DEPENDENT == chrec_known", there is no dependence and
+         SUBSCRIPTS is empty,
 
-     - when "ARE_DEPENDENT == chrec_dont_know", there may be a dependence,
-       but the analyzer cannot be more specific.  */
-  tree are_dependent;
+       - when "ARE_DEPENDENT == chrec_dont_know", there may be a dependence,
+         but the analyzer cannot be more specific.  */
+    tree are_dependent;
 
-  /* If nonnull, COULD_BE_INDEPENDENT_P is true and the accesses are
-     independent when the runtime addresses of OBJECT_A and OBJECT_B
-     are different.  The addresses of both objects are invariant in the
-     loop nest.  */
-  tree object_a;
-  tree object_b;
+    /* If nonnull, COULD_BE_INDEPENDENT_P is true and the accesses are
+       independent when the runtime addresses of OBJECT_A and OBJECT_B
+       are different.  The addresses of both objects are invariant in the
+       loop nest.  */
+    tree object_a;
+    tree object_b;
 
-  /* For each subscript in the dependence test, there is an element in
-     this array.  This is the attribute that labels the edge A->B of
-     the data_dependence_relation.  */
-  vec<subscript_p> subscripts;
+    /* For each subscript in the dependence test, there is an element in
+       this array.  This is the attribute that labels the edge A->B of
+       the data_dependence_relation.  */
+    vec<subscript_p> subscripts;
 
-  /* The analyzed loop nest.  */
-  vec<loop_p> loop_nest;
+    /* The analyzed loop nest.  */
+    vec<loop_p> loop_nest;
 
-  /* The classic direction vector.  */
-  vec<lambda_vector> dir_vects;
+    /* The classic direction vector.  */
+    vec<lambda_vector> dir_vects;
 
-  /* The classic distance vector.  */
-  vec<lambda_vector> dist_vects;
+    /* The classic distance vector.  */
+    vec<lambda_vector> dist_vects;
 
-  /* Is the dependence reversed with respect to the lexicographic order?  */
-  bool reversed_p;
+    /* Is the dependence reversed with respect to the lexicographic order?  */
+    bool reversed_p;
 
-  /* When the dependence relation is affine, it can be represented by
-     a distance vector.  */
-  bool affine_p;
+    /* When the dependence relation is affine, it can be represented by
+       a distance vector.  */
+    bool affine_p;
 
-  /* Set to true when the dependence relation is on the same data
-     access.  */
-  bool self_reference_p;
+    /* Set to true when the dependence relation is on the same data
+       access.  */
+    bool self_reference_p;
 
-  /* True if the dependence described is conservatively correct rather
-     than exact, and if it is still possible for the accesses to be
-     conditionally independent.  For example, the a and b references in:
+    /* True if the dependence described is conservatively correct rather
+       than exact, and if it is still possible for the accesses to be
+       conditionally independent.  For example, the a and b references in:
 
-       struct s *a, *b;
-       for (int i = 0; i < n; ++i)
-         a->f[i] += b->f[i];
+         struct s *a, *b;
+         for (int i = 0; i < n; ++i)
+           a->f[i] += b->f[i];
 
-     conservatively have a distance vector of (0), for the case in which
-     a == b, but the accesses are independent if a != b.  Similarly,
-     the a and b references in:
+       conservatively have a distance vector of (0), for the case in which
+       a == b, but the accesses are independent if a != b.  Similarly,
+       the a and b references in:
 
-       struct s *a, *b;
-       for (int i = 0; i < n; ++i)
-         a[0].f[i] += b[i].f[i];
+         struct s *a, *b;
+         for (int i = 0; i < n; ++i)
+           a[0].f[i] += b[i].f[i];
 
-     conservatively have a distance vector of (0), but they are indepenent
-     when a != b + i.  In contrast, the references in:
+       conservatively have a distance vector of (0), but they are indepenent
+       when a != b + i.  In contrast, the references in:
 
-       struct s *a;
-       for (int i = 0; i < n; ++i)
-         a->f[i] += a->f[i];
+         struct s *a;
+         for (int i = 0; i < n; ++i)
+           a->f[i] += a->f[i];
 
-     have the same distance vector of (0), but the accesses can never be
-     independent.  */
-  bool could_be_independent_p;
+       have the same distance vector of (0), but the accesses can never be
+       independent.  */
+    bool could_be_independent_p;
 };
 
 typedef struct data_dependence_relation *ddr_p;
@@ -515,11 +526,11 @@ typedef struct data_dependence_relation *ddr_p;
 
 
 opt_result dr_analyze_innermost (innermost_loop_behavior *, tree,
-				 class loop *, const gimple *);
+                                 class loop *, const gimple *);
 extern bool compute_data_dependences_for_loop (class loop *, bool,
-					       vec<loop_p> *,
-					       vec<data_reference_p> *,
-					       vec<ddr_p> *);
+        vec<loop_p> *,
+        vec<data_reference_p> *,
+        vec<ddr_p> *);
 extern void debug_ddrs (vec<ddr_p> );
 extern void dump_data_reference (FILE *, struct data_reference *);
 extern void debug (data_reference &ref);
@@ -538,22 +549,22 @@ extern void free_dependence_relations (vec<ddr_p> );
 extern void free_data_ref (data_reference_p);
 extern void free_data_refs (vec<data_reference_p> );
 extern opt_result find_data_references_in_stmt (class loop *, gimple *,
-						vec<data_reference_p> *);
+        vec<data_reference_p> *);
 extern bool graphite_find_data_references_in_stmt (edge, loop_p, gimple *,
-						   vec<data_reference_p> *);
+        vec<data_reference_p> *);
 tree find_data_references_in_loop (class loop *, vec<data_reference_p> *);
 bool loop_nest_has_data_refs (loop_p loop);
 struct data_reference *create_data_ref (edge, loop_p, tree, gimple *, bool,
-					bool);
+                                        bool);
 extern bool find_loop_nest (class loop *, vec<loop_p> *);
 extern struct data_dependence_relation *initialize_data_dependence_relation
-     (struct data_reference *, struct data_reference *, vec<loop_p>);
+(struct data_reference *, struct data_reference *, vec<loop_p>);
 extern void compute_affine_dependence (struct data_dependence_relation *,
-				       loop_p);
+                                       loop_p);
 extern void compute_self_dependence (struct data_dependence_relation *);
-extern bool compute_all_dependences (vec<data_reference_p> ,
-				     vec<ddr_p> *,
-				     vec<loop_p>, bool);
+extern bool compute_all_dependences (vec<data_reference_p>,
+                                     vec<ddr_p> *,
+                                     vec<loop_p>, bool);
 extern tree find_data_references_in_bb (class loop *, basic_block,
                                         vec<data_reference_p> *);
 extern unsigned int dr_alignment (innermost_loop_behavior *);
@@ -565,20 +576,20 @@ extern tree get_base_for_alignment (tree, unsigned int *);
 inline unsigned int
 dr_alignment (data_reference *dr)
 {
-  return dr_alignment (&DR_INNERMOST (dr));
+    return dr_alignment (&DR_INNERMOST (dr));
 }
 
 extern bool dr_may_alias_p (const struct data_reference *,
-			    const struct data_reference *, class loop *);
+                            const struct data_reference *, class loop *);
 extern bool dr_equal_offsets_p (struct data_reference *,
                                 struct data_reference *);
 
 extern opt_result runtime_alias_check_p (ddr_p, class loop *, bool);
 extern int data_ref_compare_tree (tree, tree);
 extern void prune_runtime_alias_test_list (vec<dr_with_seg_len_pair_t> *,
-					   poly_uint64);
+        poly_uint64);
 extern void create_runtime_alias_checks (class loop *,
-					 vec<dr_with_seg_len_pair_t> *, tree*);
+        vec<dr_with_seg_len_pair_t> *, tree *);
 extern tree dr_direction_indicator (struct data_reference *);
 extern tree dr_zero_step_indicator (struct data_reference *);
 extern bool dr_known_forward_stride_p (struct data_reference *);
@@ -589,8 +600,8 @@ extern bool dr_known_forward_stride_p (struct data_reference *);
 static inline bool
 same_data_refs_base_objects (data_reference_p a, data_reference_p b)
 {
-  return DR_NUM_DIMENSIONS (a) == DR_NUM_DIMENSIONS (b)
-    && operand_equal_p (DR_BASE_OBJECT (a), DR_BASE_OBJECT (b), 0);
+    return DR_NUM_DIMENSIONS (a) == DR_NUM_DIMENSIONS (b)
+           && operand_equal_p (DR_BASE_OBJECT (a), DR_BASE_OBJECT (b), 0);
 }
 
 /* Return true when the data references A and B are accessing the same
@@ -599,20 +610,26 @@ same_data_refs_base_objects (data_reference_p a, data_reference_p b)
 static inline bool
 same_data_refs (data_reference_p a, data_reference_p b)
 {
-  unsigned int i;
+    unsigned int i;
 
-  /* The references are exactly the same.  */
-  if (operand_equal_p (DR_REF (a), DR_REF (b), 0))
+    /* The references are exactly the same.  */
+    if (operand_equal_p (DR_REF (a), DR_REF (b), 0))
+    {
+        return true;
+    }
+
+    if (!same_data_refs_base_objects (a, b))
+    {
+        return false;
+    }
+
+    for (i = 0; i < DR_NUM_DIMENSIONS (a); i++)
+        if (!eq_evolutions_p (DR_ACCESS_FN (a, i), DR_ACCESS_FN (b, i)))
+        {
+            return false;
+        }
+
     return true;
-
-  if (!same_data_refs_base_objects (a, b))
-    return false;
-
-  for (i = 0; i < DR_NUM_DIMENSIONS (a); i++)
-    if (!eq_evolutions_p (DR_ACCESS_FN (a, i), DR_ACCESS_FN (b, i)))
-      return false;
-
-  return true;
 }
 
 /* Returns true when all the dependences are computable.  */
@@ -620,14 +637,16 @@ same_data_refs (data_reference_p a, data_reference_p b)
 inline bool
 known_dependences_p (vec<ddr_p> dependence_relations)
 {
-  ddr_p ddr;
-  unsigned int i;
+    ddr_p ddr;
+    unsigned int i;
 
-  FOR_EACH_VEC_ELT (dependence_relations, i, ddr)
+    FOR_EACH_VEC_ELT (dependence_relations, i, ddr)
     if (DDR_ARE_DEPENDENT (ddr) == chrec_dont_know)
-      return false;
+    {
+        return false;
+    }
 
-  return true;
+    return true;
 }
 
 /* Returns the dependence level for a vector DIST of size LENGTH.
@@ -637,13 +656,15 @@ known_dependences_p (vec<ddr_p> dependence_relations)
 static inline unsigned
 dependence_level (lambda_vector dist_vect, int length)
 {
-  int i;
+    int i;
 
-  for (i = 0; i < length; i++)
-    if (dist_vect[i] != 0)
-      return i + 1;
+    for (i = 0; i < length; i++)
+        if (dist_vect[i] != 0)
+        {
+            return i + 1;
+        }
 
-  return 0;
+    return 0;
 }
 
 /* Return the dependence level for the DDR relation.  */
@@ -651,16 +672,18 @@ dependence_level (lambda_vector dist_vect, int length)
 static inline unsigned
 ddr_dependence_level (ddr_p ddr)
 {
-  unsigned vector;
-  unsigned level = 0;
+    unsigned vector;
+    unsigned level = 0;
 
-  if (DDR_DIST_VECTS (ddr).exists ())
-    level = dependence_level (DDR_DIST_VECT (ddr, 0), DDR_NB_LOOPS (ddr));
+    if (DDR_DIST_VECTS (ddr).exists ())
+    {
+        level = dependence_level (DDR_DIST_VECT (ddr, 0), DDR_NB_LOOPS (ddr));
+    }
 
-  for (vector = 1; vector < DDR_NUM_DIST_VECTS (ddr); vector++)
-    level = MIN (level, dependence_level (DDR_DIST_VECT (ddr, vector),
-					  DDR_NB_LOOPS (ddr)));
-  return level;
+    for (vector = 1; vector < DDR_NUM_DIST_VECTS (ddr); vector++)
+        level = MIN (level, dependence_level (DDR_DIST_VECT (ddr, vector),
+                                              DDR_NB_LOOPS (ddr)));
+    return level;
 }
 
 /* Return the index of the variable VAR in the LOOP_NEST array.  */
@@ -668,14 +691,16 @@ ddr_dependence_level (ddr_p ddr)
 static inline int
 index_in_loop_nest (int var, vec<loop_p> loop_nest)
 {
-  class loop *loopi;
-  int var_index;
+    class loop *loopi;
+    int var_index;
 
-  for (var_index = 0; loop_nest.iterate (var_index, &loopi); var_index++)
-    if (loopi->num == var)
-      return var_index;
+    for (var_index = 0; loop_nest.iterate (var_index, &loopi); var_index++)
+        if (loopi->num == var)
+        {
+            return var_index;
+        }
 
-  gcc_unreachable ();
+    gcc_unreachable ();
 }
 
 /* Returns true when the data reference DR the form "A[i] = ..."
@@ -684,37 +709,43 @@ index_in_loop_nest (int var, vec<loop_p> loop_nest)
 static inline bool
 adjacent_dr_p (struct data_reference *dr)
 {
-  /* If this is a bitfield store bail out.  */
-  if (TREE_CODE (DR_REF (dr)) == COMPONENT_REF
-      && DECL_BIT_FIELD (TREE_OPERAND (DR_REF (dr), 1)))
-    return false;
+    /* If this is a bitfield store bail out.  */
+    if (TREE_CODE (DR_REF (dr)) == COMPONENT_REF
+            && DECL_BIT_FIELD (TREE_OPERAND (DR_REF (dr), 1)))
+    {
+        return false;
+    }
 
-  if (!DR_STEP (dr)
-      || TREE_CODE (DR_STEP (dr)) != INTEGER_CST)
-    return false;
+    if (!DR_STEP (dr)
+            || TREE_CODE (DR_STEP (dr)) != INTEGER_CST)
+    {
+        return false;
+    }
 
-  return tree_int_cst_equal (fold_unary (ABS_EXPR, TREE_TYPE (DR_STEP (dr)),
-					 DR_STEP (dr)),
-			     TYPE_SIZE_UNIT (TREE_TYPE (DR_REF (dr))));
+    return tree_int_cst_equal (fold_unary (ABS_EXPR, TREE_TYPE (DR_STEP (dr)),
+                                           DR_STEP (dr)),
+                               TYPE_SIZE_UNIT (TREE_TYPE (DR_REF (dr))));
 }
 
-void split_constant_offset (tree , tree *, tree *);
+void split_constant_offset (tree, tree *, tree *);
 
 /* Compute the greatest common divisor of a VECTOR of SIZE numbers.  */
 
 static inline lambda_int
 lambda_vector_gcd (lambda_vector vector, int size)
 {
-  int i;
-  lambda_int gcd1 = 0;
+    int i;
+    lambda_int gcd1 = 0;
 
-  if (size > 0)
+    if (size > 0)
     {
-      gcd1 = vector[0];
-      for (i = 1; i < size; i++)
-	gcd1 = gcd (gcd1, vector[i]);
+        gcd1 = vector[0];
+        for (i = 1; i < size; i++)
+        {
+            gcd1 = gcd (gcd1, vector[i]);
+        }
     }
-  return gcd1;
+    return gcd1;
 }
 
 /* Allocate a new vector of given SIZE.  */
@@ -722,8 +753,8 @@ lambda_vector_gcd (lambda_vector vector, int size)
 static inline lambda_vector
 lambda_vector_new (int size)
 {
-  /* ???  We shouldn't abuse the GC allocator here.  */
-  return ggc_cleared_vec_alloc<lambda_int> (size);
+    /* ???  We shouldn't abuse the GC allocator here.  */
+    return ggc_cleared_vec_alloc<lambda_int> (size);
 }
 
 /* Clear out vector VEC1 of length SIZE.  */
@@ -731,7 +762,7 @@ lambda_vector_new (int size)
 static inline void
 lambda_vector_clear (lambda_vector vec1, int size)
 {
-  memset (vec1, 0, size * sizeof (*vec1));
+    memset (vec1, 0, size * sizeof (*vec1));
 }
 
 /* Returns true when the vector V is lexicographically positive, in
@@ -739,19 +770,25 @@ lambda_vector_clear (lambda_vector vec1, int size)
 
 static inline bool
 lambda_vector_lexico_pos (lambda_vector v,
-			  unsigned n)
+                          unsigned n)
 {
-  unsigned i;
-  for (i = 0; i < n; i++)
+    unsigned i;
+    for (i = 0; i < n; i++)
     {
-      if (v[i] == 0)
-	continue;
-      if (v[i] < 0)
-	return false;
-      if (v[i] > 0)
-	return true;
+        if (v[i] == 0)
+        {
+            continue;
+        }
+        if (v[i] < 0)
+        {
+            return false;
+        }
+        if (v[i] > 0)
+        {
+            return true;
+        }
     }
-  return true;
+    return true;
 }
 
 /* Return true if vector VEC1 of length SIZE is the zero vector.  */
@@ -759,11 +796,13 @@ lambda_vector_lexico_pos (lambda_vector v,
 static inline bool
 lambda_vector_zerop (lambda_vector vec1, int size)
 {
-  int i;
-  for (i = 0; i < size; i++)
-    if (vec1[i] != 0)
-      return false;
-  return true;
+    int i;
+    for (i = 0; i < size; i++)
+        if (vec1[i] != 0)
+        {
+            return false;
+        }
+    return true;
 }
 
 /* Allocate a matrix of M rows x  N cols.  */
@@ -771,15 +810,17 @@ lambda_vector_zerop (lambda_vector vec1, int size)
 static inline lambda_matrix
 lambda_matrix_new (int m, int n, struct obstack *lambda_obstack)
 {
-  lambda_matrix mat;
-  int i;
+    lambda_matrix mat;
+    int i;
 
-  mat = XOBNEWVEC (lambda_obstack, lambda_vector, m);
+    mat = XOBNEWVEC (lambda_obstack, lambda_vector, m);
 
-  for (i = 0; i < m; i++)
-    mat[i] = XOBNEWVEC (lambda_obstack, lambda_int, n);
+    for (i = 0; i < m; i++)
+    {
+        mat[i] = XOBNEWVEC (lambda_obstack, lambda_int, n);
+    }
 
-  return mat;
+    return mat;
 }
 
 #endif  /* GCC_TREE_DATA_REF_H  */

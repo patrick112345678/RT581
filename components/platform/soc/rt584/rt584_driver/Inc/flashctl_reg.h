@@ -19,7 +19,8 @@
     Memory Mapped Structure for FLASH Controller
 @{ */
 
-typedef struct {
+typedef struct
+{
     __IO uint32_t COMMAND;        /*0x00*/
     __IO uint32_t FLASH_ADDR;     /*0x04*/
     __IO uint32_t START;          /*0x08*/

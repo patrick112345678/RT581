@@ -76,82 +76,82 @@ static void trace_production_config_tx_power(zb_uint8_t unused);
 
 MAIN()
 {
-  ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
-  ZB_SET_TRACE_LEVEL(4);
-  ARGV_UNUSED;
-  ZB_INIT("zdo_dut_zc");
+    ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
+    ZB_SET_TRACE_LEVEL(4);
+    ARGV_UNUSED;
+    ZB_INIT("zdo_dut_zc");
 
-  zb_set_long_address(g_ieee_addr_dut_zc);
+    zb_set_long_address(g_ieee_addr_dut_zc);
 
-  zb_secur_setup_nwk_key((zb_uint8_t*) g_nwk_key, 0);
+    zb_secur_setup_nwk_key((zb_uint8_t *) g_nwk_key, 0);
 
-  zb_reg_test_set_common_channel_settings();
-  zb_set_network_coordinator_role((1l << TEST_CHANNEL));
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    zb_reg_test_set_common_channel_settings();
+    zb_set_network_coordinator_role((1l << TEST_CHANNEL));
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  switch (sig)
-  {
-      case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      case ZB_BDB_SIGNAL_DEVICE_REBOOT:
-      TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
-      break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
+    switch (sig)
+    {
+    case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
+    case ZB_BDB_SIGNAL_DEVICE_REBOOT:
+        TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
+        break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
 
     case ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY:
-      TRACE_MSG(TRACE_APP1, "signal: ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        test_step_register(trace_production_config_tx_power, 0, RTP_PRODCONF_03_STEP_1_TIME_ZC);
+        TRACE_MSG(TRACE_APP1, "signal: ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            test_step_register(trace_production_config_tx_power, 0, RTP_PRODCONF_03_STEP_1_TIME_ZC);
 
-        test_control_start(TEST_MODE, RTP_PRODCONF_03_STEP_1_DELAY_ZC);
-      }
-      break; /* ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY */
+            test_control_start(TEST_MODE, RTP_PRODCONF_03_STEP_1_DELAY_ZC);
+        }
+        break; /* ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY */
 
     default:
-      TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
-      break;
-  }
+        TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 static void trace_production_config_tx_power(zb_uint8_t unused)
 {
-  zb_int8_t current_nrf_tx_power = 0;
+    zb_int8_t current_nrf_tx_power = 0;
 
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
 #ifndef ZB_NSNG
-  current_nrf_tx_power = nrf_802154_tx_power_get();
+    current_nrf_tx_power = nrf_802154_tx_power_get();
 #endif /* ZB_NSNG */
 
 #ifndef NCP_MODE_HOST
-  TRACE_MSG(TRACE_APP1, "tx_power[default]: %hd", (FMT__H, MAC_CTX().default_tx_power));
-  TRACE_MSG(TRACE_APP1, "tx_power[current]: %hd", (FMT__H, MAC_CTX().current_tx_power));
-  TRACE_MSG(TRACE_APP1, "tx_power[current_nrf]: %hd", (FMT__H, current_nrf_tx_power));
+    TRACE_MSG(TRACE_APP1, "tx_power[default]: %hd", (FMT__H, MAC_CTX().default_tx_power));
+    TRACE_MSG(TRACE_APP1, "tx_power[current]: %hd", (FMT__H, MAC_CTX().current_tx_power));
+    TRACE_MSG(TRACE_APP1, "tx_power[current_nrf]: %hd", (FMT__H, current_nrf_tx_power));
 #else
-  ZVUNUSED(current_nrf_tx_power);
-  ZB_ASSERT(ZB_FALSE && "TODO: use NCP API to validate this settings");
+    ZVUNUSED(current_nrf_tx_power);
+    ZB_ASSERT(ZB_FALSE && "TODO: use NCP API to validate this settings");
 #endif
 }
 

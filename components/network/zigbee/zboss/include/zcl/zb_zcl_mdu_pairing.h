@@ -59,11 +59,11 @@
  */
 enum zb_zcl_mdu_pairing_cmd_client_e
 {
-  /** The @e PairingRequest command allows a device joining a MDU network to
-   * determine the devices that will constitute the 'virtual HAN' for the
-   * household in which it is to operate.
-   */
-  ZB_ZCL_MDU_PAIRING_CLI_CMD_PAIRING_REQUEST = 0x00,  /**< Pairing Request */
+    /** The @e PairingRequest command allows a device joining a MDU network to
+     * determine the devices that will constitute the 'virtual HAN' for the
+     * household in which it is to operate.
+     */
+    ZB_ZCL_MDU_PAIRING_CLI_CMD_PAIRING_REQUEST = 0x00,  /**< Pairing Request */
 };
 
 /** @brief MDU Pairing cluster server commands
@@ -71,11 +71,11 @@ enum zb_zcl_mdu_pairing_cmd_client_e
  */
 enum zb_zcl_mdu_pairing_cmd_server_e
 {
-  /** The @e PairingResponse command provides a device joining a MDU network with
-   *  a list of the devices that will constitute the 'virtual HAN' for the
-   *  household in which the joining device is to operate.
-   */
-  ZB_ZCL_MDU_PAIRING_SRV_CMD_PAIRING_RESPONSE = 0x00,  /**< Pairing Request response */
+    /** The @e PairingResponse command provides a device joining a MDU network with
+     *  a list of the devices that will constitute the 'virtual HAN' for the
+     *  household in which the joining device is to operate.
+     */
+    ZB_ZCL_MDU_PAIRING_SRV_CMD_PAIRING_RESPONSE = 0x00,  /**< Pairing Request response */
 };
 
 
@@ -95,8 +95,8 @@ enum zb_zcl_mdu_pairing_cmd_server_e
  */
 typedef ZB_PACKED_PRE struct zb_zcl_mdu_pairing_request_s
 {
-  zb_uint32_t    lpi_version;   /**< Identifies the version of pairing information currently held on the requesting device. */
-  zb_ieee_addr_t eui64;         /**< Identifies the MAC address of the requesting device. */
+    zb_uint32_t    lpi_version;   /**< Identifies the version of pairing information currently held on the requesting device. */
+    zb_ieee_addr_t eui64;         /**< Identifies the MAC address of the requesting device. */
 }
 ZB_PACKED_STRUCT zb_zcl_mdu_pairing_request_t;
 
@@ -105,20 +105,20 @@ ZB_PACKED_STRUCT zb_zcl_mdu_pairing_request_t;
  */
 typedef ZB_PACKED_PRE struct zb_zcl_mdu_pairing_response_s
 {
-  zb_uint32_t    lpi_version;                 /**< Identifies the version of pairing information included in this command. */
-  zb_uint8_t     total_number_of_devices;     /**< The total number of devices expected to form the 'virtual HAN'
+    zb_uint32_t    lpi_version;                 /**< Identifies the version of pairing information included in this command. */
+    zb_uint8_t     total_number_of_devices;     /**< The total number of devices expected to form the 'virtual HAN'
                                                *   (including the device to which this command is being sent) */
-  zb_uint8_t     command_index;               /**< The CommandIndex is uses to count the payload fragments in the
+    zb_uint8_t     command_index;               /**< The CommandIndex is uses to count the payload fragments in the
                                                *   case where the entire payload does not fit into one message. */
-  zb_uint8_t     total_number_of_commands;    /**< In the case where the entire payload does not fit into one
+    zb_uint8_t     total_number_of_commands;    /**< In the case where the entire payload does not fit into one
                                                *   message, the Total Number of Commands field indicates the
                                                *   total number of sub-commands in the message. */
-  zb_ieee_addr_t *eui64;                      /**< EUI64 of Device 1 to EUI64 of Device N represent the MAC address
+    zb_ieee_addr_t *eui64;                      /**< EUI64 of Device 1 to EUI64 of Device N represent the MAC address
                                                *   of devices that belong to the 'virtual HAN' of the requesting
                                                *   device; these include the requesting device itself and all other
                                                *   devices the requesting device shall perform service discovery
                                                *   and binding with. */
-  zb_uint8_t     num_dev_cmd;                 /**< Number of devices in current command */
+    zb_uint8_t     num_dev_cmd;                 /**< Number of devices in current command */
 }
 ZB_PACKED_STRUCT zb_zcl_mdu_pairing_response_t;
 
@@ -249,15 +249,15 @@ ZB_PACKED_STRUCT zb_zcl_mdu_pairing_response_t;
 }
 */
 zb_ret_t zb_zcl_mdu_pairing_send_cmd_pairing_request(
-  zb_uint8_t param,
-  const zb_addr_u *dst_addr,
-  zb_aps_addr_mode_t dst_addr_mode,
-  zb_uint8_t dst_ep,
-  zb_uint8_t src_ep,
-  const zb_zcl_mdu_pairing_request_t *payload,
-  zb_ieee_addr_t *buf,
-  zb_uint8_t buf_len_in_elements,
-  zb_callback_t cb
+    zb_uint8_t param,
+    const zb_addr_u *dst_addr,
+    zb_aps_addr_mode_t dst_addr_mode,
+    zb_uint8_t dst_ep,
+    zb_uint8_t src_ep,
+    const zb_zcl_mdu_pairing_request_t *payload,
+    zb_ieee_addr_t *buf,
+    zb_uint8_t buf_len_in_elements,
+    zb_callback_t cb
 );
 /************************* MDU Pairing internal *******************************/
 zb_uint8_t zb_zcl_process_mdu_pairing_specific_commands(zb_uint8_t param);

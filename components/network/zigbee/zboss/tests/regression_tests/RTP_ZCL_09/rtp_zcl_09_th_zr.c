@@ -87,123 +87,123 @@ static void test_send_write_attr_cb(zb_uint8_t param);
 /************************Main*************************************/
 MAIN()
 {
-  ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP | TRACE_SUBSYSTEM_ZCL | TRACE_SUBSYSTEM_APS | TRACE_SUBSYSTEM_TRANSPORT);
-  ZB_SET_TRACE_LEVEL(4);
-  ARGV_UNUSED;
+    ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP | TRACE_SUBSYSTEM_ZCL | TRACE_SUBSYSTEM_APS | TRACE_SUBSYSTEM_TRANSPORT);
+    ZB_SET_TRACE_LEVEL(4);
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("zdo_th_zr");
-
-
-  zb_set_long_address(g_ieee_addr_th_zr);
-
-  zb_reg_test_set_common_channel_settings();
-  zb_set_network_router_role((1l << TEST_CHANNEL));
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    ZB_INIT("zdo_th_zr");
 
 
-  zb_secur_setup_nwk_key(g_nwk_key, 0);
+    zb_set_long_address(g_ieee_addr_th_zr);
 
-  ZB_AF_REGISTER_DEVICE_CTX(&rtp_zcl_09_th_zr_device_ctx);
+    zb_reg_test_set_common_channel_settings();
+    zb_set_network_router_role((1l << TEST_CHANNEL));
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
 
-  TRACE_DEINIT();
+    zb_secur_setup_nwk_key(g_nwk_key, 0);
 
-  MAIN_RETURN(0);
+    ZB_AF_REGISTER_DEVICE_CTX(&rtp_zcl_09_th_zr_device_ctx);
+
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
+
+    TRACE_DEINIT();
+
+    MAIN_RETURN(0);
 }
 
 /********************ZDO Startup*****************************/
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  switch (sig)
-  {
+    switch (sig)
+    {
     case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
-      }
-      break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
+        TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
+        }
+        break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
 
     case ZB_BDB_SIGNAL_STEERING:
-      TRACE_MSG(TRACE_APS1, "signal: ZB_BDB_SIGNAL_STEERING, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        test_step_register(test_send_write_attr, 0, RTP_ZCL_09_STEP_1_TIME_ZR);
+        TRACE_MSG(TRACE_APS1, "signal: ZB_BDB_SIGNAL_STEERING, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            test_step_register(test_send_write_attr, 0, RTP_ZCL_09_STEP_1_TIME_ZR);
 
-        test_control_start(TEST_MODE, RTP_ZCL_09_STEP_1_DELAY_ZR);
-      }
-      break; /* ZB_BDB_SIGNAL_STEERING */
+            test_control_start(TEST_MODE, RTP_ZCL_09_STEP_1_DELAY_ZR);
+        }
+        break; /* ZB_BDB_SIGNAL_STEERING */
 
     default:
-      TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
-      break;
-  }
+        TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 
 static void test_send_write_attr(zb_uint8_t param)
 {
-  zb_bufid_t buffer = param;
-  zb_uint8_t *cmd_ptr;
-  zb_char_t payload_string[] = "Conference Room";
-  zb_char_t basic_location_description_def[TEST_TH_ZR_LOCATION_PAYLOAD_LEN];
-  zb_uint8_t i;
+    zb_bufid_t buffer = param;
+    zb_uint8_t *cmd_ptr;
+    zb_char_t payload_string[] = "Conference Room";
+    zb_char_t basic_location_description_def[TEST_TH_ZR_LOCATION_PAYLOAD_LEN];
+    zb_uint8_t i;
 
-  if (param == 0)
-  {
-    zb_buf_get_out_delayed(test_send_write_attr);
-    return;
-  }
+    if (param == 0)
+    {
+        zb_buf_get_out_delayed(test_send_write_attr);
+        return;
+    }
 
-  TRACE_MSG(TRACE_APP1, ">>test_send_write_attr", (FMT__0));
+    TRACE_MSG(TRACE_APP1, ">>test_send_write_attr", (FMT__0));
 
-  basic_location_description_def[0] = TEST_TH_ZR_LOCATION_PAYLOAD_LEN - 1; /* first element stores only
+    basic_location_description_def[0] = TEST_TH_ZR_LOCATION_PAYLOAD_LEN - 1; /* first element stores only
                                                                               message length */
-  for (i = 0; i < TEST_TH_ZR_LOCATION_PAYLOAD_LEN - 1; i++)
-  {
-    basic_location_description_def[i + 1] = payload_string[i];
-  }
+    for (i = 0; i < TEST_TH_ZR_LOCATION_PAYLOAD_LEN - 1; i++)
+    {
+        basic_location_description_def[i + 1] = payload_string[i];
+    }
 
-  ZB_ZCL_GENERAL_INIT_WRITE_ATTR_REQ((buffer), cmd_ptr, ZB_ZCL_ENABLE_DEFAULT_RESPONSE);
-  ZB_ZCL_GENERAL_ADD_VALUE_WRITE_ATTR_REQ(cmd_ptr,
-                                          ZB_ZCL_ATTR_BASIC_LOCATION_DESCRIPTION_ID,
-                                          ZB_ZCL_ATTR_TYPE_CHAR_STRING,
-                                          (zb_uint8_t *)&basic_location_description_def);
-  ZB_ZCL_GENERAL_SEND_WRITE_ATTR_REQ((buffer), cmd_ptr, g_ieee_addr_dut_zr,
-                                     ZB_APS_ADDR_MODE_64_ENDP_PRESENT,
-                                     DUT_ZR_ENDPOINT,
-                                     TH_ZR_ENDPOINT,
-                                     ZB_AF_HA_PROFILE_ID,
-                                     ZB_ZCL_CLUSTER_ID_BASIC,
-                                     test_send_write_attr_cb);
+    ZB_ZCL_GENERAL_INIT_WRITE_ATTR_REQ((buffer), cmd_ptr, ZB_ZCL_ENABLE_DEFAULT_RESPONSE);
+    ZB_ZCL_GENERAL_ADD_VALUE_WRITE_ATTR_REQ(cmd_ptr,
+                                            ZB_ZCL_ATTR_BASIC_LOCATION_DESCRIPTION_ID,
+                                            ZB_ZCL_ATTR_TYPE_CHAR_STRING,
+                                            (zb_uint8_t *)&basic_location_description_def);
+    ZB_ZCL_GENERAL_SEND_WRITE_ATTR_REQ((buffer), cmd_ptr, g_ieee_addr_dut_zr,
+                                       ZB_APS_ADDR_MODE_64_ENDP_PRESENT,
+                                       DUT_ZR_ENDPOINT,
+                                       TH_ZR_ENDPOINT,
+                                       ZB_AF_HA_PROFILE_ID,
+                                       ZB_ZCL_CLUSTER_ID_BASIC,
+                                       test_send_write_attr_cb);
 }
 
 static void test_send_write_attr_cb(zb_uint8_t param)
 {
-  TRACE_MSG(TRACE_APP1, ">>test_send_write_attr_cb", (FMT__0));
+    TRACE_MSG(TRACE_APP1, ">>test_send_write_attr_cb", (FMT__0));
 
-  if (g_write_attr_count < TEST_TH_ZR_WRITE_ATTR_NUM)
-  {
-    test_send_write_attr(param);
-    g_write_attr_count++;
-  }
+    if (g_write_attr_count < TEST_TH_ZR_WRITE_ATTR_NUM)
+    {
+        test_send_write_attr(param);
+        g_write_attr_count++;
+    }
 }
 
 /*! @} */

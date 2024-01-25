@@ -1,12 +1,12 @@
 /**
  * @file syscalls.c
  * @author Rex Huang (rex.huang@rafaelmicro.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2023-07-24
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 
 
@@ -28,21 +28,21 @@ typedef struct
     void *ptr;
     size_t size;
     void *caller;  // actually the return address of malloc/free, used to trace where malloc/free is called
-}malloc_entry_t;
+} malloc_entry_t;
 
 typedef struct
 {
     int table_full;
     uint32_t entry_num;
     uint32_t entry_num_max;
-}malloc_table_info_t;
+} malloc_table_info_t;
 
-typedef struct 
+typedef struct
 {
-    void* caller;
+    void *caller;
     uint32_t totalSize;
     uint32_t mallocTimes;
-}mem_stats_t;
+} mem_stats_t;
 
 malloc_entry_t malloc_entry[SYS_TRACE_MEM_ENTRY_NUM];
 malloc_table_info_t malloc_table_info;
@@ -58,17 +58,21 @@ void trace_malloc(void *ptr, size_t size, void *caller)
 {
     int i;
 
-    if(ptr == NULL){
+    if (ptr == NULL)
+    {
         return;
     }
 
-    if(!malloc_table_info.table_full){
-        for(i = 0; i < SYS_TRACE_MEM_ENTRY_NUM; i++){
-            if(malloc_entry[i].ptr == NULL){
+    if (!malloc_table_info.table_full)
+    {
+        for (i = 0; i < SYS_TRACE_MEM_ENTRY_NUM; i++)
+        {
+            if (malloc_entry[i].ptr == NULL)
+            {
                 malloc_entry[i].ptr = ptr;
                 malloc_entry[i].size = size;
                 malloc_entry[i].caller = caller;
-                if(set_monitor && callerAddr == (uint32_t)caller)
+                if (set_monitor && callerAddr == (uint32_t)caller)
                 {
                     mallocCnt++;
                     printf("trace_malloc, caller=%08lx, ptr=%08lx, mallocCnt=%lu\r\n", callerAddr, (uint32_t)malloc_entry[i].ptr, mallocCnt);
@@ -76,13 +80,15 @@ void trace_malloc(void *ptr, size_t size, void *caller)
                 break;
             }
         }
-        if(i == SYS_TRACE_MEM_ENTRY_NUM){
+        if (i == SYS_TRACE_MEM_ENTRY_NUM)
+        {
             malloc_table_info.table_full = 1;
         }
     }
 
     malloc_table_info.entry_num++;
-    if(malloc_table_info.entry_num > malloc_table_info.entry_num_max){
+    if (malloc_table_info.entry_num > malloc_table_info.entry_num_max)
+    {
         malloc_table_info.entry_num_max = malloc_table_info.entry_num;
     }
 }
@@ -91,14 +97,18 @@ void trace_free(void *ptr, void *caller)
 {
     int i;
 
-    if(ptr == NULL){
+    if (ptr == NULL)
+    {
         return;
     }
 
-    if(!malloc_table_info.table_full){
-        for(i = 0; i < SYS_TRACE_MEM_ENTRY_NUM; i++){
-            if(malloc_entry[i].ptr == ptr){
-                if(set_monitor && callerAddr == (uint32_t)malloc_entry[i].caller)
+    if (!malloc_table_info.table_full)
+    {
+        for (i = 0; i < SYS_TRACE_MEM_ENTRY_NUM; i++)
+        {
+            if (malloc_entry[i].ptr == ptr)
+            {
+                if (set_monitor && callerAddr == (uint32_t)malloc_entry[i].caller)
                 {
                     freeCnt++;
                     printf("trace_free, caller=%08lx, ptr=%08lx, freeCnt=%lu\r\n", callerAddr, (uint32_t)malloc_entry[i].ptr, freeCnt);
@@ -116,25 +126,34 @@ void trace_realloc(void *ptr_new, void *ptr_old, size_t size, void *caller)
 {
     int i;
 
-    if(ptr_old == NULL){
+    if (ptr_old == NULL)
+    {
         trace_malloc(ptr_new, size, caller);
-    }else if(ptr_new == NULL){
+    }
+    else if (ptr_new == NULL)
+    {
         trace_free(ptr_old, caller);
-    }else{
-        if(!malloc_table_info.table_full){
-            for(i = 0; i < SYS_TRACE_MEM_ENTRY_NUM; i++){
-                if(malloc_entry[i].ptr == ptr_old){
+    }
+    else
+    {
+        if (!malloc_table_info.table_full)
+        {
+            for (i = 0; i < SYS_TRACE_MEM_ENTRY_NUM; i++)
+            {
+                if (malloc_entry[i].ptr == ptr_old)
+                {
                     malloc_entry[i].ptr = ptr_new;
                     malloc_entry[i].size = size;
                     malloc_entry[i].caller = caller;
-                    if(set_monitor && callerAddr == (uint32_t)malloc_entry[i].caller)
+                    if (set_monitor && callerAddr == (uint32_t)malloc_entry[i].caller)
                     {
                         printf("trace_realloc, caller=%08lx, ptr=%08lx\r\n", callerAddr, (uint32_t)malloc_entry[i].ptr);
                     }
                     break;
                 }
             }
-            if(i == SYS_TRACE_MEM_ENTRY_NUM){
+            if (i == SYS_TRACE_MEM_ENTRY_NUM)
+            {
                 trace_malloc(ptr_new, size, caller);
             }
         }
@@ -143,25 +162,25 @@ void trace_realloc(void *ptr_new, void *ptr_old, size_t size, void *caller)
 
 void mem_trace_stats()
 {
-    for(int i=0;i<SYS_TRACE_MEM_STATS_ENTRY_NUM;i++)
+    for (int i = 0; i < SYS_TRACE_MEM_STATS_ENTRY_NUM; i++)
     {
         mem_stats[i].caller = NULL;
         mem_stats[i].totalSize = 0;
         mem_stats[i].mallocTimes = 0;
     }
-    
-    for(int i=0; i<SYS_TRACE_MEM_ENTRY_NUM; i++)
+
+    for (int i = 0; i < SYS_TRACE_MEM_ENTRY_NUM; i++)
     {
-        if(malloc_entry[i].ptr == NULL)
+        if (malloc_entry[i].ptr == NULL)
         {
             continue;
         }
 
         uint8_t fExist = 0;
         uint16_t firstEmpty = 0xFFFF;
-        for(int j=0; j<SYS_TRACE_MEM_STATS_ENTRY_NUM;j++)
+        for (int j = 0; j < SYS_TRACE_MEM_STATS_ENTRY_NUM; j++)
         {
-            if(malloc_entry[i].caller == mem_stats[j].caller)
+            if (malloc_entry[i].caller == mem_stats[j].caller)
             {
                 fExist = 1;
                 mem_stats[j].mallocTimes++;
@@ -169,23 +188,23 @@ void mem_trace_stats()
                 break;
             }
 
-            if(firstEmpty==0xFFFF && mem_stats[j].caller == NULL)
+            if (firstEmpty == 0xFFFF && mem_stats[j].caller == NULL)
             {
                 firstEmpty = j;
             }
         }
 
-        if(!fExist && firstEmpty != 0xFFFF)
+        if (!fExist && firstEmpty != 0xFFFF)
         {
             mem_stats[firstEmpty].caller = malloc_entry[i].caller;
             mem_stats[firstEmpty].totalSize = malloc_entry[i].size;
             mem_stats[firstEmpty].mallocTimes = 1;
         }
     }
-    
-    for(int i=0;i<SYS_TRACE_MEM_STATS_ENTRY_NUM;i++)
+
+    for (int i = 0; i < SYS_TRACE_MEM_STATS_ENTRY_NUM; i++)
     {
-        if(mem_stats[i].caller)
+        if (mem_stats[i].caller)
         {
             printf("%d, caller:0x%08lx, totalSize:%lu, mallocTimes:%lu\r\n", i, (uint32_t)mem_stats[i].caller, mem_stats[i].totalSize, mem_stats[i].mallocTimes);
         }
@@ -204,20 +223,20 @@ static volatile int _sys_errno = 0;
 #ifndef _REENT_ONLY
 int *__errno ()
 {
-    #if( configUSE_POSIX_ERRNO == 1 )
-	{
+#if( configUSE_POSIX_ERRNO == 1 )
+    {
         extern int FreeRTOS_errno;
 
         return &FreeRTOS_errno;
-	}
-	#endif
+    }
+#endif
     return &_REENT->_errno;;
 }
 #endif
 
 struct _reent *__getreent(void)
 {
-  return _impure_ptr;
+    return _impure_ptr;
 }
 
 int _getpid_r(struct _reent *ptr)
@@ -225,7 +244,7 @@ int _getpid_r(struct _reent *ptr)
     return 0;
 }
 
-int _execve_r(struct _reent *ptr, const char * name, char *const *argv, char *const *env)
+int _execve_r(struct _reent *ptr, const char *name, char *const *argv, char *const *env)
 {
     /* return "not supported" */
     ptr->_errno = ENOSYS;
@@ -288,7 +307,7 @@ _off_t _lseek_r(struct _reent *ptr, int fd, _off_t pos, int whence)
 #endif
 }
 
-int	mkdir (const char *_path, mode_t __mode )
+int mkdir (const char *_path, mode_t __mode )
 {
 #ifndef SYS_VFS_ENABLE
     return -1;
@@ -420,7 +439,7 @@ int fsync(int fd)
 
 void *_malloc_r(struct _reent *ptr, size_t size)
 {
-    void* result;
+    void *result;
     puts("m");
     if (size == 0)
     {
@@ -428,14 +447,16 @@ void *_malloc_r(struct _reent *ptr, size_t size)
     }
 
 #if defined(CFG_USE_PSRAM)
-    if (xPortGetFreeHeapSizePsram() > size) {
-        result = (void*)pvPortMallocPsram(size);
+    if (xPortGetFreeHeapSizePsram() > size)
+    {
+        result = (void *)pvPortMallocPsram(size);
     }
-    else {
-        result = (void*)pvPortMalloc(size);
+    else
+    {
+        result = (void *)pvPortMalloc(size);
     }
 #else
-	result = (void*)pvPortMalloc(size);
+    result = (void *)pvPortMalloc(size);
 #endif
 
     if (result == NULL)
@@ -452,17 +473,19 @@ void *_malloc_r(struct _reent *ptr, size_t size)
 
 void *_realloc_r(struct _reent *ptr, void *old, size_t newlen)
 {
-    void* result;
+    void *result;
 
 #if defined(CFG_USE_PSRAM)
-    if (IS_PSARAM((uint32_t)old)) {
-        result = (void*)pvPortReallocPsram(old, newlen);
+    if (IS_PSARAM((uint32_t)old))
+    {
+        result = (void *)pvPortReallocPsram(old, newlen);
     }
-    else {
-        result = (void*)pvPortRealloc(old, newlen);
+    else
+    {
+        result = (void *)pvPortRealloc(old, newlen);
     }
 #else
-	result = (void*)pvPortRealloc(old, newlen);
+    result = (void *)pvPortRealloc(old, newlen);
 #endif
 
     if (result == NULL)
@@ -479,7 +502,7 @@ void *_realloc_r(struct _reent *ptr, void *old, size_t newlen)
 
 void *_calloc_r(struct _reent *ptr, size_t size, size_t len)
 {
-    void* result;
+    void *result;
     puts("t");
     if (size == 0)
     {
@@ -487,14 +510,16 @@ void *_calloc_r(struct _reent *ptr, size_t size, size_t len)
     }
 
 #if defined(CFG_USE_PSRAM)
-    if (xPortGetFreeHeapSizePsram()) {
-        result = (void*)pvPortCallocPsram(size, len);
+    if (xPortGetFreeHeapSizePsram())
+    {
+        result = (void *)pvPortCallocPsram(size, len);
     }
-    else {
-        result = (void*)pvPortCalloc(size, len);
+    else
+    {
+        result = (void *)pvPortCalloc(size, len);
     }
 #else
-	result = (void*)pvPortCalloc(size, len);
+    result = (void *)pvPortCalloc(size, len);
 #endif
 
     if (result == NULL)
@@ -512,15 +537,17 @@ void *_calloc_r(struct _reent *ptr, size_t size, size_t len)
 void _free_r(struct _reent *ptr, void *addr)
 {
     puts("F");
-#if defined(CFG_USE_PSRAM)	
-    if (IS_PSARAM((uint32_t)addr)) {
+#if defined(CFG_USE_PSRAM)
+    if (IS_PSARAM((uint32_t)addr))
+    {
         vPortFreePsram(addr);
     }
-    else {
+    else
+    {
         vPortFree(addr);
     }
 #else
-	vPortFree(addr);
+    vPortFree(addr);
 #endif
 
 #ifdef SYS_TRACE_MEM_ENABLE
@@ -528,9 +555,9 @@ void _free_r(struct _reent *ptr, void *addr)
 #endif
 }
 
-void* _valloc_r(struct _reent *ptr, size_t size) __attribute__((alias("_malloc_r")));
+void *_valloc_r(struct _reent *ptr, size_t size) __attribute__((alias("_malloc_r")));
 
-void* _pvalloc_r(struct _reent *ptr, size_t size) __attribute__((alias("_malloc_r")));
+void *_pvalloc_r(struct _reent *ptr, size_t size) __attribute__((alias("_malloc_r")));
 
 void _cfree_r(struct _reent *ptr, void *addr) __attribute__((alias("_free_r")));
 
@@ -538,7 +565,7 @@ void *_sbrk_r(struct _reent *ptr, ptrdiff_t incr)
 {
     void *ret;
     ptr->_errno = ENOMEM;
-    ret = (void *)-1;
+    ret = (void *) -1;
     return ret;
 }
 
@@ -547,7 +574,7 @@ void __attribute__ ((noreturn))
 _exit (int status)
 {
     configASSERT(0);
-    while(1);
+    while (1);
 }
 
 void _system(const char *s)

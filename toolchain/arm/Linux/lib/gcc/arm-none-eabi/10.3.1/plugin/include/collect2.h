@@ -21,7 +21,7 @@ along with GCC; see the file COPYING3.  If not see
 #define GCC_COLLECT2_H
 
 extern struct pex_obj *collect_execute (const char *, char **, const char *,
-					const char *, int flags);
+                                        const char *, int flags);
 
 extern int collect_wait (const char *, struct pex_obj *);
 

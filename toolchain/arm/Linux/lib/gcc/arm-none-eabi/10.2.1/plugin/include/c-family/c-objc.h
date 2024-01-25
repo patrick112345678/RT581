@@ -21,11 +21,12 @@ along with GCC; see the file COPYING3.  If not see
 #define GCC_C_COMMON_OBJC_H
 
 /* ObjC ivar visibility types.  */
-enum GTY(()) objc_ivar_visibility_kind {
-  OBJC_IVAR_VIS_PROTECTED = 0,
-  OBJC_IVAR_VIS_PUBLIC    = 1,
-  OBJC_IVAR_VIS_PRIVATE   = 2,
-  OBJC_IVAR_VIS_PACKAGE   = 3
+enum GTY(()) objc_ivar_visibility_kind
+{
+    OBJC_IVAR_VIS_PROTECTED = 0,
+    OBJC_IVAR_VIS_PUBLIC    = 1,
+    OBJC_IVAR_VIS_PRIVATE   = 2,
+    OBJC_IVAR_VIS_PACKAGE   = 3
 };
 
 /* Objective-C / Objective-C++ entry points.  */
@@ -52,7 +53,7 @@ extern void objc_declare_alias (tree, tree);
 extern void objc_declare_class (tree);
 extern void objc_declare_protocol (tree, tree);
 extern tree objc_build_message_expr (tree, tree);
-extern tree objc_finish_message_expr (tree, tree, tree, tree*);
+extern tree objc_finish_message_expr (tree, tree, tree, tree *);
 extern tree objc_build_selector_expr (location_t, tree);
 extern tree objc_build_protocol_expr (tree);
 extern tree objc_build_encode_expr (tree);
@@ -90,16 +91,16 @@ extern tree objc_generate_write_barrier (tree, enum tree_code, tree);
 extern void objc_set_method_opt (bool);
 extern void objc_finish_foreach_loop (location_t, tree, tree, tree, tree, tree);
 extern bool  objc_method_decl (enum tree_code);
-extern void objc_add_property_declaration (location_t, tree, bool, bool, bool, 
-					   bool, bool, bool, tree, tree);
+extern void objc_add_property_declaration (location_t, tree, bool, bool, bool,
+        bool, bool, bool, tree, tree);
 extern tree objc_maybe_build_component_ref (tree, tree);
 extern tree objc_build_class_component_ref (tree, tree);
 extern tree objc_maybe_build_modify_expr (tree, tree);
-extern tree objc_build_incr_expr_for_property_ref (location_t, enum tree_code, 
-						   tree, tree);
+extern tree objc_build_incr_expr_for_property_ref (location_t, enum tree_code,
+        tree, tree);
 extern void objc_add_synthesize_declaration (location_t, tree);
 extern void objc_add_dynamic_declaration (location_t, tree);
-extern const char * objc_maybe_printable_name (tree, int);
+extern const char *objc_maybe_printable_name (tree, int);
 extern bool objc_is_property_ref (tree);
 extern bool objc_string_ref_type_p (tree);
 extern void objc_check_format_arg (tree, tree);

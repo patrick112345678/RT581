@@ -24,7 +24,7 @@ extern void delete_insn (rtx_insn *);
 extern bool delete_insn_and_edges (rtx_insn *);
 extern void delete_insn_chain (rtx, rtx_insn *, bool);
 extern basic_block create_basic_block_structure (rtx_insn *, rtx_insn *,
-						 rtx_note *, basic_block);
+        rtx_note *, basic_block);
 extern void compute_bb_for_insn (void);
 extern unsigned int free_bb_for_insn (void);
 extern rtx_insn *entry_of_function (void);

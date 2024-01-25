@@ -27,7 +27,7 @@
 /* SPI bitrate */
 //#define TEST_BITRATE
 #ifdef TEST_BITRATE
-  #define TEST_BITRATE_VALUE    (976000u)
+#define TEST_BITRATE_VALUE    (976000u)
 #endif
 
 
@@ -37,19 +37,19 @@
  */
 //#define TEST_CORRUPTED_PACKET
 #ifdef TEST_CORRUPTED_PACKET
-  #define TEST_CORRUPTED_PACKET_PERIOD    5
-  #define TEST_CORRUPTED_PACKET_ODD_BYTE  0xAF
-  #define TEST_CORRUPTED_PACKET_EVEN_BYTE 0xBE
+#define TEST_CORRUPTED_PACKET_PERIOD    5
+#define TEST_CORRUPTED_PACKET_ODD_BYTE  0xAF
+#define TEST_CORRUPTED_PACKET_EVEN_BYTE 0xBE
 #endif
 
 /* length of every TEST_WRONG_LEN_PERIOD received packet
  * is changed to TEST_WRONG_LEN_VALUE, and then SPI reads
- * new count of bytes instead of the old length 
+ * new count of bytes instead of the old length
  */
 //#define TEST_WRONG_LEN
 #ifdef TEST_WRONG_LEN
-  #define TEST_WRONG_LEN_PERIOD   7
-  #define TEST_WRONG_LEN_VALUE    150
+#define TEST_WRONG_LEN_PERIOD   7
+#define TEST_WRONG_LEN_VALUE    150
 #endif
 
 /* every TEST_MISS_HOST_INT_PERIOD host interrup
@@ -57,22 +57,22 @@
  */
 /* or */
 /* during every TEST_WRITE_WHEN_HOST_INT_PERIOD
- * receiving packet, host will send packet with 
+ * receiving packet, host will send packet with
  * TEST_WRITE_WHEN_HOST_INT_SIZE lenght simultaneously
  */
 //#define TEST_MISS_HOST_INT
 //#define TEST_WRITE_WHEN_HOST_INT
 #ifdef TEST_MISS_HOST_INT
-  #define TEST_MISS_HOST_INT_PERIOD         5
+#define TEST_MISS_HOST_INT_PERIOD         5
 #elif defined(TEST_WRITE_WHEN_HOST_INT)
-  #define TEST_WRITE_WHEN_HOST_INT_PERIOD   3
-  #define TEST_WRITE_WHEN_HOST_INT_SIZE     110
+#define TEST_WRITE_WHEN_HOST_INT_PERIOD   3
+#define TEST_WRITE_WHEN_HOST_INT_SIZE     110
 #endif
 
 /* enabling statistic module,
- * TEST_STATS_PERIOD_US - period of result printing, us  
+ * TEST_STATS_PERIOD_US - period of result printing, us
  * TEST_STATS_CORRUPTED - check for corrupted packets
- * TEST_STATS_ODD_BYTE and TEST_STATS_EVEN_BYTE - 
+ * TEST_STATS_ODD_BYTE and TEST_STATS_EVEN_BYTE -
  * expected data for checking
 */
 //#define TEST_STATS
@@ -87,13 +87,13 @@
  * TEST_SEND_SIZE - packet size
  * TEST_SEND_INCREMENTAL_SIZE - if enabled, packet size
  * will grow from 0 to TEST_SEND_SIZE
- */  
+ */
 #define TEST_SIMPLE_SEND
 #ifdef TEST_SIMPLE_SEND
-  #define TEST_SIMPLE_SEND_PACKS_NUM   (20000u)
-  #define TEST_SIMPLE_SEND_PERIOD_US   (1000u)
-  #define TEST_SEND_SIZE                3
-  //#define TEST_SEND_INCREMENTAL_SIZE
+#define TEST_SIMPLE_SEND_PACKS_NUM   (20000u)
+#define TEST_SIMPLE_SEND_PERIOD_US   (1000u)
+#define TEST_SEND_SIZE                3
+//#define TEST_SEND_INCREMENTAL_SIZE
 #endif
 
 #endif /* TEST_CFG_H */

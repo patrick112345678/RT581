@@ -28,7 +28,7 @@ extern "C" {
  * ---------- Interrupt Number Definition -----------------------------------
  * ==========================================================================
  */
- 
+
 typedef enum IRQn_Type
 {
     /******  Cortex-CM33 Processor Exceptions Numbers *************************************************/
@@ -45,7 +45,7 @@ typedef enum IRQn_Type
 
     /******  RT584_CM33 Specific Interrupt Numbers *************************************************/
     Gpio_IRQn                     = 0,       /*!< GPIO combined Interrupt                          */
-    
+
     Timer0_IRQn                   = 1,       /*!< TIMER 0 Interrupt                                */
     Timer1_IRQn                   = 2,       /*!< TIMER 1 Interrupt                                */
     Timer2_IRQn                   = 3,       /*!< TIMER 2 Interrupt                                */
@@ -53,47 +53,47 @@ typedef enum IRQn_Type
     Timer32K1_IRQn                = 5,       /*!< TIMER 32K1 Interrupt                                */
     Wdt_IRQn                      = 6,       /*!< WatchDog Interrupt                               */
     Rtc_IRQn                      = 7,       /*!< RTC Interrupt                                    */
-                            
+
     Soft0_IRQn                    = 9,       /*!< SOFTWARE0  Interrupt                             */
     Soft1_IRQn                    = 10,      /*!< SOFTWARE1  Interrupt                             */
-                                   
+
     Dma_Ch0_IRQn                  = 12,      /*!< DMA Channel 0 Interrupt                          */
     Dma_Ch1_IRQn                  = 13,      /*!< DMA Channel 1 Interrupt                          */
-                                  
+
     Uart0_IRQn                    = 16,      /*!< UART 0 Interrupt                                 */
     Uart1_IRQn                    = 17,      /*!< UART 1 Interrupt                                 */
     Uart2_IRQn                    = 18,      /*!< UART 2 Interrupt                                 */
-    
+
     Irm_IRQn                      = 20,      /*!< IRM Interrupt                                    */
-          
+
     I2C_Master0_IRQn              = 21,      /*!< I2C Master0 Interrupt                            */
     I2C_Master1_IRQn              = 22,      /*!< I2C Master1 Interrupt                            */
     I2C_Slave_IRQn                = 23,      /*!< I2C Slave Interrupt                              */
-        
+
     Qspi0_IRQn                    = 25,      /*!< QSPI0 Interrupt                                  */
     Qspi1_IRQn                    = 26,      /*!< QSPI1 Interrupt                                  */
-        
+
     I2s0_IRQn                     = 29,      /*!< I2S0  Interrupt                                  */
-    
+
     Pwm0_IRQn                     = 32,      /*!< PWM0 Interrupt                                   */
     Pwm1_IRQn                     = 33,      /*!< PWM1 Interrupt                                   */
     Pwm2_IRQn                     = 34,      /*!< PWM2 Interrupt                                   */
     Pwm3_IRQn                     = 35,      /*!< PWM3 Interrupt                                   */
     Pwm4_IRQn                     = 36,      /*!< PWM4 Interrupt                                   */
-    
+
     FlashCtl_IRQn                 = 39,      /*!< FlashCtl Interrupt                               */
     OTP_IRQn                      = 40,      /*!< OTP Interrupt                                    */
     Crypto_IRQn                   = 41,      /*!< Crypto  Interrupt                                */
     BOD_Comp_IRQn                 = 42,      /*!< BOD COMPARATOR  Interrupt                        */
-    
+
     CCM_AES_IQRn                  = 43,      /*!< AES CCM Interrupt                                */
     Sec_Ctrl_IQRn                 = 44,      /*!< SECURE CTRL Interrupt                            */
-        
+
     CommSubsystem_IRQn            = 45,      /*!< COMM_SUBSYSTEM_COMM Interrupt                    */
-     
+
     Sadc_IRQn                     = 46,      /*!< SADC Interrupt                                   */
     Aux_Comp_IRQn                 = 47,      /*!< AUX COMPARATOR Interrupt                         */
-        
+
 } IRQn_Type;
 
 /*
@@ -104,27 +104,27 @@ typedef enum IRQn_Type
 
 /* -------  Start of section using anonymous unions and disabling warnings  ------- */
 #if   defined (__CC_ARM)
-  #pragma push
-  #pragma anon_unions
+#pragma push
+#pragma anon_unions
 #elif defined (__ICCARM__)
-  #pragma language=extended
+#pragma language=extended
 #elif defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050)
-  #pragma clang diagnostic push
-  #pragma clang diagnostic ignored "-Wc11-extensions"
-  #pragma clang diagnostic ignored "-Wreserved-id-macro"
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wc11-extensions"
+#pragma clang diagnostic ignored "-Wreserved-id-macro"
 #elif defined (__GNUC__)
-  /* anonymous unions are enabled by default */
+/* anonymous unions are enabled by default */
 #elif defined (__TMS470__)
-  /* anonymous unions are enabled by default */
+/* anonymous unions are enabled by default */
 #elif defined (__TASKING__)
-  #pragma warning 586
+#pragma warning 586
 #elif defined (__CSMC__)
-  /* anonymous unions are enabled by default */
+/* anonymous unions are enabled by default */
 #else
-  #warning Not supported compiler type
+#warning Not supported compiler type
 #endif
 
- 
+
 #define __CM33_REV                0x0001U        /**< Core revision r0p1 */
 #define __MPU_PRESENT                  1U        /**< Defines if an MPU is present or not */
 #define __NVIC_PRIO_BITS               3U        /**< Number of priority bits implemented in the NVIC */
@@ -180,21 +180,21 @@ typedef enum IRQn_Type
 
 /* --------------------  End of section using anonymous unions  ------------------- */
 #if   defined (__CC_ARM)
-  #pragma pop
+#pragma pop
 #elif defined (__ICCARM__)
-  /* leave anonymous unions enabled */
+/* leave anonymous unions enabled */
 #elif (__ARMCC_VERSION >= 6010050)
-  #pragma clang diagnostic pop
+#pragma clang diagnostic pop
 #elif defined (__GNUC__)
-  /* anonymous unions are enabled by default */
+/* anonymous unions are enabled by default */
 #elif defined (__TMS470__)
-  /* anonymous unions are enabled by default */
+/* anonymous unions are enabled by default */
 #elif defined (__TASKING__)
-  #pragma warning restore
+#pragma warning restore
 #elif defined (__CSMC__)
-  /* anonymous unions are enabled by default */
+/* anonymous unions are enabled by default */
 #else
-  #warning Not supported compiler type
+#warning Not supported compiler type
 #endif
 
 /******************************************************************************/
@@ -374,7 +374,7 @@ typedef enum IRQn_Type
 #if (TRNG_SECURE_EN == 1)
 #define TRNG_CTRL           ((TRNG_T *) (TRNG_BASE | PERIPH_SECURE_OFFSET))
 #else
-#define TRNG_CTRL           ((TRNG_T *) TRNG_BASE) 
+#define TRNG_CTRL           ((TRNG_T *) TRNG_BASE)
 #endif
 
 #if (IRM_SECURE_EN == 1)
@@ -456,7 +456,7 @@ typedef enum IRQn_Type
 #define  UART2_INT_NONSEC             (1UL << 18)
 
 #define  I2C_MASTER0_INT_NONSEC       (1UL << 21)
-#define  I2C_MASTER1_INT_NONSEC       (1UL << 22) 
+#define  I2C_MASTER1_INT_NONSEC       (1UL << 22)
 
 #define  I2C_SLAVE_INT_NONSEC         (1UL << 23)
 
@@ -467,7 +467,7 @@ typedef enum IRQn_Type
 
 /*ITNS[1]*/
 #define  PWM0_INT_NONSEC              (1UL << 0)
-#define  PWM1_INT_NONSEC              (1UL << 1)  
+#define  PWM1_INT_NONSEC              (1UL << 1)
 #define  PWM2_INT_NONSEC              (1UL << 2)
 #define  PWM3_INT_NONSEC              (1UL << 3)
 #define  PWM4_INT_NONSEC              (1UL << 4)

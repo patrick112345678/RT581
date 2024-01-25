@@ -1,4 +1,4 @@
-/*	$NetBSD: string.h,v 1.13 2014/11/29 13:23:48 pooka Exp $	*/
+/*  $NetBSD: string.h,v 1.13 2014/11/29 13:23:48 pooka Exp $    */
 
 /*-
  * Copyright (c) 2006 The NetBSD Foundation, Inc.
@@ -62,21 +62,21 @@ __END_DECLS
 __ssp_inline type1 __ ## fun ## _ichk(type1 __restrict, type2 __restrict, size_t); \
 __ssp_inline type1 \
 __ ## fun ## _ichk(type1 __restrict dst, type2 __restrict src, size_t len) { \
-	return __builtin___ ## fun ## _chk(dst, src, len, __ssp_bos0(dst)); \
+    return __builtin___ ## fun ## _chk(dst, src, len, __ssp_bos0(dst)); \
 }
 
 #define __ssp_bos_icheck3(fun, type1, type2) \
 __ssp_inline type1 __ ## fun ## _ichk(type1, type2, size_t); \
 __ssp_inline type1 \
 __ ## fun ## _ichk(type1 dst, type2 src, size_t len) { \
-	return __builtin___ ## fun ## _chk(dst, src, len, __ssp_bos0(dst)); \
+    return __builtin___ ## fun ## _chk(dst, src, len, __ssp_bos0(dst)); \
 }
 
 #define __ssp_bos_icheck2_restrict(fun, type1, type2) \
 __ssp_inline type1 __ ## fun ## _ichk(type1, type2); \
 __ssp_inline type1 \
 __ ## fun ## _ichk(type1 __restrict dst, type2 __restrict src) { \
-	return __builtin___ ## fun ## _chk(dst, src, __ssp_bos0(dst)); \
+    return __builtin___ ## fun ## _chk(dst, src, __ssp_bos0(dst)); \
 }
 
 __BEGIN_DECLS

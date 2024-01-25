@@ -15,8 +15,8 @@ FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
 for more details.
 
 You should have received a copy of the GNU General Public License
-along with GCC; see the file COPYING3.	If not see
-<http://www.gnu.org/licenses/>.	 */
+along with GCC; see the file COPYING3.  If not see
+<http://www.gnu.org/licenses/>.  */
 
 #ifndef GCC_LRA_INT_H
 #define GCC_LRA_INT_H
@@ -25,7 +25,7 @@ along with GCC; see the file COPYING3.	If not see
 
 /* The parameter used to prevent infinite reloading for an insn.  Each
    insn operands might require a reload and, if it is a memory, its
-   base and index registers might require a reload too.	 */
+   base and index registers might require a reload too.  */
 #define LRA_MAX_INSN_RELOADS (MAX_RECOG_OPERANDS * 3)
 
 typedef struct lra_live_range *lra_live_range_t;
@@ -33,83 +33,83 @@ typedef struct lra_live_range *lra_live_range_t;
 /* The structure describes program points where a given pseudo lives.
    The live ranges can be used to find conflicts with other pseudos.
    If the live ranges of two pseudos are intersected, the pseudos are
-   in conflict.	 */
+   in conflict.  */
 struct lra_live_range
 {
-  /* Pseudo regno whose live range is described by given
-     structure.	 */
-  int regno;
-  /* Program point range.  */
-  int start, finish;
-  /* Next structure describing program points where the pseudo
-     lives.  */
-  lra_live_range_t next;
-  /* Pointer to structures with the same start.	 */
-  lra_live_range_t start_next;
+    /* Pseudo regno whose live range is described by given
+       structure.  */
+    int regno;
+    /* Program point range.  */
+    int start, finish;
+    /* Next structure describing program points where the pseudo
+       lives.  */
+    lra_live_range_t next;
+    /* Pointer to structures with the same start.  */
+    lra_live_range_t start_next;
 };
 
 typedef struct lra_copy *lra_copy_t;
 
-/* Copy between pseudos which affects assigning hard registers.	 */
+/* Copy between pseudos which affects assigning hard registers.  */
 struct lra_copy
 {
-  /* True if regno1 is the destination of the copy.  */
-  bool regno1_dest_p;
-  /* Execution frequency of the copy.  */
-  int freq;
-  /* Pseudos connected by the copy.  REGNO1 < REGNO2.  */
-  int regno1, regno2;
-  /* Next copy with correspondingly REGNO1 and REGNO2.	*/
-  lra_copy_t regno1_next, regno2_next;
+    /* True if regno1 is the destination of the copy.  */
+    bool regno1_dest_p;
+    /* Execution frequency of the copy.  */
+    int freq;
+    /* Pseudos connected by the copy.  REGNO1 < REGNO2.  */
+    int regno1, regno2;
+    /* Next copy with correspondingly REGNO1 and REGNO2.  */
+    lra_copy_t regno1_next, regno2_next;
 };
 
 /* Common info about a register (pseudo or hard register).  */
 class lra_reg
 {
 public:
-  /* Bitmap of UIDs of insns (including debug insns) referring the
-     reg.  */
-  bitmap_head insn_bitmap;
-  /* The following fields are defined only for pseudos.	 */
-  /* Hard registers with which the pseudo conflicts.  */
-  HARD_REG_SET conflict_hard_regs;
-  /* We assign hard registers to reload pseudos which can occur in few
-     places.  So two hard register preferences are enough for them.
-     The following fields define the preferred hard registers.	If
-     there are no such hard registers the first field value is
-     negative.	If there is only one preferred hard register, the 2nd
-     field is negative.	 */
-  int preferred_hard_regno1, preferred_hard_regno2;
-  /* Profits to use the corresponding preferred hard registers.	 If
-     the both hard registers defined, the first hard register has not
-     less profit than the second one.  */
-  int preferred_hard_regno_profit1, preferred_hard_regno_profit2;
+    /* Bitmap of UIDs of insns (including debug insns) referring the
+       reg.  */
+    bitmap_head insn_bitmap;
+    /* The following fields are defined only for pseudos.  */
+    /* Hard registers with which the pseudo conflicts.  */
+    HARD_REG_SET conflict_hard_regs;
+    /* We assign hard registers to reload pseudos which can occur in few
+       places.  So two hard register preferences are enough for them.
+       The following fields define the preferred hard registers.  If
+       there are no such hard registers the first field value is
+       negative.  If there is only one preferred hard register, the 2nd
+       field is negative.  */
+    int preferred_hard_regno1, preferred_hard_regno2;
+    /* Profits to use the corresponding preferred hard registers.  If
+       the both hard registers defined, the first hard register has not
+       less profit than the second one.  */
+    int preferred_hard_regno_profit1, preferred_hard_regno_profit2;
 #ifdef STACK_REGS
-  /* True if the pseudo should not be assigned to a stack register.  */
-  bool no_stack_p;
+    /* True if the pseudo should not be assigned to a stack register.  */
+    bool no_stack_p;
 #endif
-  /* Number of references and execution frequencies of the register in
-     *non-debug* insns.	 */
-  int nrefs, freq;
-  int last_reload;
-  /* rtx used to undo the inheritance.  It can be non-null only
-     between subsequent inheritance and undo inheritance passes.  */
-  rtx restore_rtx;
-  /* Value holding by register.	 If the pseudos have the same value
-     they do not conflict.  */
-  int val;
-  /* Offset from relative eliminate register to pesudo reg.  */
-  poly_int64 offset;
-  /* These members are set up in lra-lives.c and updated in
-     lra-coalesce.c.  */
-  /* The biggest size mode in which each pseudo reg is referred in
-     whole function (possibly via subreg).  */
-  machine_mode biggest_mode;
-  /* Live ranges of the pseudo.	 */
-  lra_live_range_t live_ranges;
-  /* This member is set up in lra-lives.c for subsequent
-     assignments.  */
-  lra_copy_t copies;
+    /* Number of references and execution frequencies of the register in
+       *non-debug* insns.  */
+    int nrefs, freq;
+    int last_reload;
+    /* rtx used to undo the inheritance.  It can be non-null only
+       between subsequent inheritance and undo inheritance passes.  */
+    rtx restore_rtx;
+    /* Value holding by register.  If the pseudos have the same value
+       they do not conflict.  */
+    int val;
+    /* Offset from relative eliminate register to pesudo reg.  */
+    poly_int64 offset;
+    /* These members are set up in lra-lives.c and updated in
+       lra-coalesce.c.  */
+    /* The biggest size mode in which each pseudo reg is referred in
+       whole function (possibly via subreg).  */
+    machine_mode biggest_mode;
+    /* Live ranges of the pseudo.  */
+    lra_live_range_t live_ranges;
+    /* This member is set up in lra-lives.c for subsequent
+       assignments.  */
+    lra_copy_t copies;
 };
 
 /* References to the common info about each register.  */
@@ -118,46 +118,46 @@ extern class lra_reg *lra_reg_info;
 extern HARD_REG_SET hard_regs_spilled_into;
 
 /* Static info about each insn operand (common for all insns with the
-   same ICODE).	 Warning: if the structure definition is changed, the
+   same ICODE).  Warning: if the structure definition is changed, the
    initializer for debug_operand_data in lra.c should be changed
-   too.	 */
+   too.  */
 struct lra_operand_data
 {
-  /* The machine description constraint string of the operand.	*/
-  const char *constraint;
-  /* Alternatives for which early_clobber can be true.  */
-  alternative_mask early_clobber_alts;
-  /* It is taken only from machine description (which is different
-     from recog_data.operand_mode) and can be of VOIDmode.  */
-  ENUM_BITFIELD(machine_mode) mode : 16;
-  /* The type of the operand (in/out/inout).  */
-  ENUM_BITFIELD (op_type) type : 8;
-  /* Through if accessed through STRICT_LOW.  */
-  unsigned int strict_low : 1;
-  /* True if the operand is an operator.  */
-  unsigned int is_operator : 1;
-  /* True if the operand is an address.  */
-  unsigned int is_address : 1;
+    /* The machine description constraint string of the operand.  */
+    const char *constraint;
+    /* Alternatives for which early_clobber can be true.  */
+    alternative_mask early_clobber_alts;
+    /* It is taken only from machine description (which is different
+       from recog_data.operand_mode) and can be of VOIDmode.  */
+    ENUM_BITFIELD(machine_mode) mode : 16;
+    /* The type of the operand (in/out/inout).  */
+    ENUM_BITFIELD (op_type) type : 8;
+    /* Through if accessed through STRICT_LOW.  */
+    unsigned int strict_low : 1;
+    /* True if the operand is an operator.  */
+    unsigned int is_operator : 1;
+    /* True if the operand is an address.  */
+    unsigned int is_address : 1;
 };
 
 /* Info about register occurrence in an insn.  */
 struct lra_insn_reg
 {
-  /* Alternatives for which early_clobber can be true.  */
-  alternative_mask early_clobber_alts;
-  /* The biggest mode through which the insn refers to the register
-     occurrence (remember the register can be accessed through a
-     subreg in the insn).  */
-  ENUM_BITFIELD(machine_mode) biggest_mode : 16;
-  /* The type of the corresponding operand which is the register.  */
-  ENUM_BITFIELD (op_type) type : 8;
-  /* True if the reg is accessed through a subreg and the subreg is
-     just a part of the register.  */
-  unsigned int subreg_p : 1;
-  /* The corresponding regno of the register.  */
-  int regno;
-  /* Next reg info of the same insn.  */
-  struct lra_insn_reg *next;
+    /* Alternatives for which early_clobber can be true.  */
+    alternative_mask early_clobber_alts;
+    /* The biggest mode through which the insn refers to the register
+       occurrence (remember the register can be accessed through a
+       subreg in the insn).  */
+    ENUM_BITFIELD(machine_mode) biggest_mode : 16;
+    /* The type of the corresponding operand which is the register.  */
+    ENUM_BITFIELD (op_type) type : 8;
+    /* True if the reg is accessed through a subreg and the subreg is
+       just a part of the register.  */
+    unsigned int subreg_p : 1;
+    /* The corresponding regno of the register.  */
+    int regno;
+    /* Next reg info of the same insn.  */
+    struct lra_insn_reg *next;
 };
 
 /* Static part (common info for insns with the same ICODE) of LRA
@@ -168,26 +168,26 @@ struct lra_insn_reg
    changed too.  */
 struct lra_static_insn_data
 {
-  /* Static info about each insn operand.  */
-  struct lra_operand_data *operand;
-  /* Each duplication refers to the number of the corresponding
-     operand which is duplicated.  */
-  int *dup_num;
-  /* The number of an operand marked as commutative, -1 otherwise.  */
-  int commutative;
-  /* Number of operands, duplications, and alternatives of the
-     insn.  */
-  char n_operands;
-  char n_dups;
-  char n_alternatives;
-  /* Insns in machine description (or clobbers in asm) may contain
-     explicit hard regs which are not operands.	 The following list
-     describes such hard registers.  */
-  struct lra_insn_reg *hard_regs;
-  /* Array [n_alternatives][n_operand] of static constraint info for
-     given operand in given alternative.  This info can be changed if
-     the target reg info is changed.  */
-  const struct operand_alternative *operand_alternative;
+    /* Static info about each insn operand.  */
+    struct lra_operand_data *operand;
+    /* Each duplication refers to the number of the corresponding
+       operand which is duplicated.  */
+    int *dup_num;
+    /* The number of an operand marked as commutative, -1 otherwise.  */
+    int commutative;
+    /* Number of operands, duplications, and alternatives of the
+       insn.  */
+    char n_operands;
+    char n_dups;
+    char n_alternatives;
+    /* Insns in machine description (or clobbers in asm) may contain
+       explicit hard regs which are not operands.  The following list
+       describes such hard registers.  */
+    struct lra_insn_reg *hard_regs;
+    /* Array [n_alternatives][n_operand] of static constraint info for
+       given operand in given alternative.  This info can be changed if
+       the target reg info is changed.  */
+    const struct operand_alternative *operand_alternative;
 };
 
 /* Negative insn alternative numbers used for special cases.  */
@@ -199,34 +199,34 @@ struct lra_static_insn_data
 class lra_insn_recog_data
 {
 public:
-  /* The insn code.  */
-  int icode;
-  /* The alternative should be used for the insn, LRA_UNKNOWN_ALT if
-     unknown, or we should assume any alternative, or the insn is a
-     debug insn.  LRA_NON_CLOBBERED_ALT means ignoring any earlier
-     clobbers for the insn.  */
-  int used_insn_alternative;
-  /* SP offset before the insn relative to one at the func start.  */
-  poly_int64 sp_offset;
-  /* The insn itself.  */
-  rtx_insn *insn;
-  /* Common data for insns with the same ICODE.  Asm insns (their
-     ICODE is negative) do not share such structures.  */
-  struct lra_static_insn_data *insn_static_data;
-  /* Two arrays of size correspondingly equal to the operand and the
-     duplication numbers: */
-  rtx **operand_loc; /* The operand locations, NULL if no operands.  */
-  rtx **dup_loc; /* The dup locations, NULL if no dups.	 */
-  /* Number of hard registers implicitly used/clobbered in given call
-     insn.  The value can be NULL or points to array of the hard
-     register numbers ending with a negative value.  To differ
-     clobbered and used hard regs, clobbered hard regs are incremented
-     by FIRST_PSEUDO_REGISTER.  */
-  int *arg_hard_regs;
-  /* Cached value of get_preferred_alternatives.  */
-  alternative_mask preferred_alternatives;
-  /* The following member value is always NULL for a debug insn.  */
-  struct lra_insn_reg *regs;
+    /* The insn code.  */
+    int icode;
+    /* The alternative should be used for the insn, LRA_UNKNOWN_ALT if
+       unknown, or we should assume any alternative, or the insn is a
+       debug insn.  LRA_NON_CLOBBERED_ALT means ignoring any earlier
+       clobbers for the insn.  */
+    int used_insn_alternative;
+    /* SP offset before the insn relative to one at the func start.  */
+    poly_int64 sp_offset;
+    /* The insn itself.  */
+    rtx_insn *insn;
+    /* Common data for insns with the same ICODE.  Asm insns (their
+       ICODE is negative) do not share such structures.  */
+    struct lra_static_insn_data *insn_static_data;
+    /* Two arrays of size correspondingly equal to the operand and the
+       duplication numbers: */
+    rtx **operand_loc; /* The operand locations, NULL if no operands.  */
+    rtx **dup_loc; /* The dup locations, NULL if no dups.  */
+    /* Number of hard registers implicitly used/clobbered in given call
+       insn.  The value can be NULL or points to array of the hard
+       register numbers ending with a negative value.  To differ
+       clobbered and used hard regs, clobbered hard regs are incremented
+       by FIRST_PSEUDO_REGISTER.  */
+    int *arg_hard_regs;
+    /* Cached value of get_preferred_alternatives.  */
+    alternative_mask preferred_alternatives;
+    /* The following member value is always NULL for a debug insn.  */
+    struct lra_insn_reg *regs;
 };
 
 typedef class lra_insn_recog_data *lra_insn_recog_data_t;
@@ -292,7 +292,7 @@ extern rtx_insn *lra_pop_insn (void);
 extern unsigned int lra_insn_stack_length (void);
 
 extern rtx lra_create_new_reg_with_unique_value (machine_mode, rtx,
-						 enum reg_class, const char *);
+        enum reg_class, const char *);
 extern void lra_set_regno_unique_value (int);
 extern void lra_invalidate_insn_data (rtx_insn *);
 extern void lra_set_insn_deleted (rtx_insn *);
@@ -302,7 +302,7 @@ extern void lra_emit_move (rtx, rtx);
 extern void lra_update_dups (lra_insn_recog_data_t, signed char *);
 
 extern void lra_process_new_insns (rtx_insn *, rtx_insn *, rtx_insn *,
-				   const char *);
+                                   const char *);
 
 extern bool lra_substitute_pseudo (rtx *, int, rtx, bool, bool);
 extern bool lra_substitute_pseudo_within_insn (rtx_insn *, int, rtx, bool);
@@ -359,9 +359,9 @@ extern int lra_live_range_iter;
 extern void lra_create_live_ranges (bool, bool);
 extern lra_live_range_t lra_copy_live_range_list (lra_live_range_t);
 extern lra_live_range_t lra_merge_live_ranges (lra_live_range_t,
-					       lra_live_range_t);
+        lra_live_range_t);
 extern bool lra_intersected_live_ranges_p (lra_live_range_t,
-					   lra_live_range_t);
+        lra_live_range_t);
 extern void lra_print_live_range_list (FILE *, lra_live_range_t);
 extern void debug (lra_live_range &ref);
 extern void debug (lra_live_range *ptr);
@@ -403,7 +403,7 @@ extern bool lra_remat (void);
 extern void lra_debug_elim_table (void);
 extern int lra_get_elimination_hard_regno (int);
 extern rtx lra_eliminate_regs_1 (rtx_insn *, rtx, machine_mode,
-				 bool, bool, poly_int64, bool);
+                                 bool, bool, poly_int64, bool);
 extern void eliminate_regs_in_insn (rtx_insn *insn, bool, bool, poly_int64);
 extern void lra_eliminate (bool, bool);
 
@@ -417,23 +417,25 @@ extern void lra_eliminate_reg_if_possible (rtx *);
 static inline int
 lra_get_regno_hard_regno (int regno)
 {
-  resize_reg_info ();
-  return reg_renumber[regno];
+    resize_reg_info ();
+    return reg_renumber[regno];
 }
 
 /* Change class of pseudo REGNO to NEW_CLASS.  Print info about it
    using TITLE.  Output a new line if NL_P.  */
 static void inline
 lra_change_class (int regno, enum reg_class new_class,
-		  const char *title, bool nl_p)
+                  const char *title, bool nl_p)
 {
-  lra_assert (regno >= FIRST_PSEUDO_REGISTER);
-  if (lra_dump_file != NULL)
-    fprintf (lra_dump_file, "%s class %s for r%d",
-	     title, reg_class_names[new_class], regno);
-  setup_reg_classes (regno, new_class, NO_REGS, new_class);
-  if (lra_dump_file != NULL && nl_p)
-    fprintf (lra_dump_file, "\n");
+    lra_assert (regno >= FIRST_PSEUDO_REGISTER);
+    if (lra_dump_file != NULL)
+        fprintf (lra_dump_file, "%s class %s for r%d",
+                 title, reg_class_names[new_class], regno);
+    setup_reg_classes (regno, new_class, NO_REGS, new_class);
+    if (lra_dump_file != NULL && nl_p)
+    {
+        fprintf (lra_dump_file, "\n");
+    }
 }
 
 /* Update insn operands which are duplication of NOP operand.  The
@@ -441,30 +443,34 @@ lra_change_class (int regno, enum reg_class new_class,
 static inline void
 lra_update_dup (lra_insn_recog_data_t id, int nop)
 {
-  int i;
-  struct lra_static_insn_data *static_id = id->insn_static_data;
+    int i;
+    struct lra_static_insn_data *static_id = id->insn_static_data;
 
-  for (i = 0; i < static_id->n_dups; i++)
-    if (static_id->dup_num[i] == nop)
-      *id->dup_loc[i] = *id->operand_loc[nop];
+    for (i = 0; i < static_id->n_dups; i++)
+        if (static_id->dup_num[i] == nop)
+        {
+            *id->dup_loc[i] = *id->operand_loc[nop];
+        }
 }
 
 /* Process operator duplications in insn with ID.  We do it after the
-   operands processing.	 Generally speaking, we could do this probably
+   operands processing.  Generally speaking, we could do this probably
    simultaneously with operands processing because a common practice
-   is to enumerate the operators after their operands.	*/
+   is to enumerate the operators after their operands.  */
 static inline void
 lra_update_operator_dups (lra_insn_recog_data_t id)
 {
-  int i;
-  struct lra_static_insn_data *static_id = id->insn_static_data;
+    int i;
+    struct lra_static_insn_data *static_id = id->insn_static_data;
 
-  for (i = 0; i < static_id->n_dups; i++)
+    for (i = 0; i < static_id->n_dups; i++)
     {
-      int ndup = static_id->dup_num[i];
+        int ndup = static_id->dup_num[i];
 
-      if (static_id->operand[ndup].is_operator)
-	*id->dup_loc[i] = *id->operand_loc[ndup];
+        if (static_id->operand[ndup].is_operator)
+        {
+            *id->dup_loc[i] = *id->operand_loc[ndup];
+        }
     }
 }
 
@@ -472,32 +478,34 @@ lra_update_operator_dups (lra_insn_recog_data_t id)
 static inline lra_insn_recog_data_t
 lra_get_insn_recog_data (rtx_insn *insn)
 {
-  lra_insn_recog_data_t data;
-  unsigned int uid = INSN_UID (insn);
+    lra_insn_recog_data_t data;
+    unsigned int uid = INSN_UID (insn);
 
-  if (lra_insn_recog_data_len > (int) uid
-      && (data = lra_insn_recog_data[uid]) != NULL)
+    if (lra_insn_recog_data_len > (int) uid
+            && (data = lra_insn_recog_data[uid]) != NULL)
     {
-      /* Check that we did not change insn without updating the insn
-	 info.	*/
-      lra_assert (data->insn == insn
-		  && (INSN_CODE (insn) < 0
-		      || data->icode == INSN_CODE (insn)));
-      return data;
+        /* Check that we did not change insn without updating the insn
+        info. */
+        lra_assert (data->insn == insn
+                    && (INSN_CODE (insn) < 0
+                        || data->icode == INSN_CODE (insn)));
+        return data;
     }
-  return lra_set_insn_recog_data (insn);
+    return lra_set_insn_recog_data (insn);
 }
 
 /* Update offset from pseudos with VAL by INCR.  */
 static inline void
 lra_update_reg_val_offset (int val, poly_int64 incr)
 {
-  int i;
+    int i;
 
-  for (i = FIRST_PSEUDO_REGISTER; i < max_reg_num (); i++)
+    for (i = FIRST_PSEUDO_REGISTER; i < max_reg_num (); i++)
     {
-      if (lra_reg_info[i].val == val)
-        lra_reg_info[i].offset += incr;
+        if (lra_reg_info[i].val == val)
+        {
+            lra_reg_info[i].offset += incr;
+        }
     }
 }
 
@@ -505,19 +513,21 @@ lra_update_reg_val_offset (int val, poly_int64 incr)
 static inline bool
 lra_reg_val_equal_p (int regno, int val, poly_int64 offset)
 {
-  if (lra_reg_info[regno].val == val
-      && known_eq (lra_reg_info[regno].offset, offset))
-    return true;
+    if (lra_reg_info[regno].val == val
+            && known_eq (lra_reg_info[regno].offset, offset))
+    {
+        return true;
+    }
 
-  return false;
+    return false;
 }
 
 /* Assign value of register FROM to TO.  */
 static inline void
 lra_assign_reg_val (int from, int to)
 {
-  lra_reg_info[to].val = lra_reg_info[from].val;
-  lra_reg_info[to].offset = lra_reg_info[from].offset;
+    lra_reg_info[to].val = lra_reg_info[from].val;
+    lra_reg_info[to].offset = lra_reg_info[from].offset;
 }
 
 #endif /* GCC_LRA_INT_H */

@@ -49,28 +49,28 @@ typedef struct zb_io_ctx_s
 {
 
 #if defined ZB_MAC_TRANSPORT_DUMP
-  FILE* host_dump;  /*!< dump file for data sent to MCU */
-  FILE* mcu_dump; /*!< dump file for data got from MCU */
+    FILE *host_dump;  /*!< dump file for data sent to MCU */
+    FILE *mcu_dump; /*!< dump file for data got from MCU */
 #endif
 
-  HANDLE uart_handle;
+    HANDLE uart_handle;
 
-  zb_bool_t is_running;
-  zb_transport_buffer_t  in_buffer;
-  zb_transport_buffer_t  out_buffer;
+    zb_bool_t is_running;
+    zb_transport_buffer_t  in_buffer;
+    zb_transport_buffer_t  out_buffer;
 
-  zb_uint32_t prev_time_ms;
-  zb_uint8_t write_flag;
-  zb_uint32_t next_ping_time;
+    zb_uint32_t prev_time_ms;
+    zb_uint8_t write_flag;
+    zb_uint32_t next_ping_time;
 
-  DWORD io_sleep_ms;
+    DWORD io_sleep_ms;
 
 } zb_io_ctx_t;
 
 typedef struct zb_io_uart_settings_s
 {
-  zb_uint8_t port_num;
-  DWORD baud_rate;
+    zb_uint8_t port_num;
+    DWORD baud_rate;
 } zb_io_uart_settings_t;
 
 #define ZB_MAC_GET_TRANS_INT_FLAG() 0

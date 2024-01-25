@@ -64,150 +64,150 @@ static zb_bool_t   g_test_delayed_reset = ZB_FALSE;
 static zb_uint8_t  g_test_step = 0;
 static zb_uint16_t g_test_reset_timeout_ms[TEST_RESET_COUNT] =
 {
-  TEST_RESET_TIMEOUT_1_MS,
-  TEST_RESET_TIMEOUT_2_MS,
-  TEST_RESET_TIMEOUT_3_MS,
-  TEST_RESET_TIMEOUT_4_MS,
-  TEST_RESET_TIMEOUT_5_MS,
-  TEST_RESET_TIMEOUT_6_MS,
-  TEST_RESET_TIMEOUT_7_MS,
-  TEST_RESET_TIMEOUT_8_MS
+    TEST_RESET_TIMEOUT_1_MS,
+    TEST_RESET_TIMEOUT_2_MS,
+    TEST_RESET_TIMEOUT_3_MS,
+    TEST_RESET_TIMEOUT_4_MS,
+    TEST_RESET_TIMEOUT_5_MS,
+    TEST_RESET_TIMEOUT_6_MS,
+    TEST_RESET_TIMEOUT_7_MS,
+    TEST_RESET_TIMEOUT_8_MS
 };
 
 MAIN()
 {
 
-  ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
-  ZB_SET_TRACE_LEVEL(4);
+    ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
+    ZB_SET_TRACE_LEVEL(4);
 
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  ZB_INIT("zdo_dut_zr");
+    ZB_INIT("zdo_dut_zr");
 
-  zb_set_long_address(g_ieee_addr_dut_zr);
+    zb_set_long_address(g_ieee_addr_dut_zr);
 
-  zb_reg_test_set_common_channel_settings();
-  zb_set_network_router_role(1l << TEST_CHANNEL);
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    zb_reg_test_set_common_channel_settings();
+    zb_set_network_router_role(1l << TEST_CHANNEL);
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  if (zboss_start_no_autostart() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    if (zboss_start_no_autostart() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
-  zb_bool_t rejoin_backoff_running = zb_zdo_rejoin_backoff_is_running();
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_bool_t rejoin_backoff_running = zb_zdo_rejoin_backoff_is_running();
 
-  TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  switch (sig)
-  {
+    switch (sig)
+    {
     case ZB_ZDO_SIGNAL_SKIP_STARTUP:
-      TRACE_MSG(TRACE_APP1, "signal: ZB_ZDO_SIGNAL_SKIP_STARTUP, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        ZB_SCHEDULE_CALLBACK(trigger_steering, 0);
-      }
-      break; /* ZB_ZDO_SIGNAL_SKIP_STARTUP */
+        TRACE_MSG(TRACE_APP1, "signal: ZB_ZDO_SIGNAL_SKIP_STARTUP, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            ZB_SCHEDULE_CALLBACK(trigger_steering, 0);
+        }
+        break; /* ZB_ZDO_SIGNAL_SKIP_STARTUP */
 
     case ZB_BDB_SIGNAL_STEERING:
-      TRACE_MSG(TRACE_APP1, "signal: ZB_BDB_SIGNAL_STEERING, status %d, rejoin backoff %hd", (FMT__D_D, status, rejoin_backoff_running));
+        TRACE_MSG(TRACE_APP1, "signal: ZB_BDB_SIGNAL_STEERING, status %d, rejoin backoff %hd", (FMT__D_D, status, rejoin_backoff_running));
 
-      if (status == 0)
-      {
-        if (rejoin_backoff_running)
+        if (status == 0)
         {
-          /* If backoff is running stop it and wait for reset to defaults.
-           * It may be called now or by the alarm later. */
-          zb_zdo_rejoin_backoff_cancel();
+            if (rejoin_backoff_running)
+            {
+                /* If backoff is running stop it and wait for reset to defaults.
+                 * It may be called now or by the alarm later. */
+                zb_zdo_rejoin_backoff_cancel();
+            }
+            else
+            {
+                /* Start rejoin and reset to defaults */
+                ZB_SCHEDULE_ALARM(test_trigger_rejoin, 0, TEST_NEXT_STEP_TIMEOUT_BI);
+            }
         }
         else
         {
-          /* Start rejoin and reset to defaults */
-          ZB_SCHEDULE_ALARM(test_trigger_rejoin, 0, TEST_NEXT_STEP_TIMEOUT_BI);
+            /* If status is not success, try to associate once more. */
+            ZB_SCHEDULE_CALLBACK(trigger_steering, 0);
         }
-      }
-      else
-      {
-        /* If status is not success, try to associate once more. */
-        ZB_SCHEDULE_CALLBACK(trigger_steering, 0);
-      }
 
-      break; /* ZB_BDB_SIGNAL_STEERING */
+        break; /* ZB_BDB_SIGNAL_STEERING */
 
     case ZB_BDB_SIGNAL_DEVICE_REBOOT:
-      TRACE_MSG(TRACE_APP1, "signal: ZB_BDB_SIGNAL_DEVICE_REBOOT, status %d, rejoin backoff %hd", (FMT__D_D, status, rejoin_backoff_running));
+        TRACE_MSG(TRACE_APP1, "signal: ZB_BDB_SIGNAL_DEVICE_REBOOT, status %d, rejoin backoff %hd", (FMT__D_D, status, rejoin_backoff_running));
 
-      if (status == 0)
-      {
-        if (rejoin_backoff_running)
+        if (status == 0)
         {
-          /* If backoff is running stop it and wait for reset to defaults.
-           * It may be called now or by the alarm later. */
-          zb_zdo_rejoin_backoff_cancel();
+            if (rejoin_backoff_running)
+            {
+                /* If backoff is running stop it and wait for reset to defaults.
+                 * It may be called now or by the alarm later. */
+                zb_zdo_rejoin_backoff_cancel();
+            }
+            else
+            {
+                /* Start rejoin and reset to defaults */
+                ZB_SCHEDULE_ALARM(test_trigger_rejoin, 0, TEST_NEXT_STEP_TIMEOUT_BI);
+            }
         }
         else
         {
-          /* Start rejoin and reset to defaults */
-          ZB_SCHEDULE_ALARM(test_trigger_rejoin, 0, TEST_NEXT_STEP_TIMEOUT_BI);
-        }
-      }
-      else
-      {
-        if (rejoin_backoff_running && g_test_delayed_reset)
-        {
-          zb_zdo_rejoin_backoff_cancel();
-        }
-        else if (rejoin_backoff_running && !g_test_delayed_reset)
-        {
-          /* Continue while not rejoined or reset to defaults is called. */
+            if (rejoin_backoff_running && g_test_delayed_reset)
+            {
+                zb_zdo_rejoin_backoff_cancel();
+            }
+            else if (rejoin_backoff_running && !g_test_delayed_reset)
+            {
+                /* Continue while not rejoined or reset to defaults is called. */
 #ifndef NCP_MODE_HOST
-          ZB_SCHEDULE_APP_CALLBACK(zb_zdo_rejoin_backoff_continue, 0);
+                ZB_SCHEDULE_APP_CALLBACK(zb_zdo_rejoin_backoff_continue, 0);
 #else
-          ZB_ASSERT(ZB_FALSE && "Rejoin back-off is not available on NCP devices");
+                ZB_ASSERT(ZB_FALSE && "Rejoin back-off is not available on NCP devices");
 #endif
+            }
+            else if (!rejoin_backoff_running && !g_test_delayed_reset)
+            {
+                zb_zdo_rejoin_backoff_start(ZB_FALSE);
+            }
         }
-        else if (!rejoin_backoff_running && !g_test_delayed_reset)
-        {
-          zb_zdo_rejoin_backoff_start(ZB_FALSE);
-        }
-      }
 
-      if (g_test_delayed_reset)
-      {
-        TRACE_MSG(TRACE_APP1, "reset to factory is required", (FMT__0));
-        g_test_delayed_reset = !g_test_delayed_reset;
-        ZB_SCHEDULE_CALLBACK(test_bdb_reset, 0);
-      }
-      break; /* ZB_BDB_SIGNAL_DEVICE_REBOOT */
+        if (g_test_delayed_reset)
+        {
+            TRACE_MSG(TRACE_APP1, "reset to factory is required", (FMT__0));
+            g_test_delayed_reset = !g_test_delayed_reset;
+            ZB_SCHEDULE_CALLBACK(test_bdb_reset, 0);
+        }
+        break; /* ZB_BDB_SIGNAL_DEVICE_REBOOT */
 
     case ZB_ZDO_SIGNAL_LEAVE:
-      TRACE_MSG(TRACE_APP1, "signal: ZB_ZDO_SIGNAL_LEAVE, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        /* Call the new test step when parent is present in the test. */
-        ZB_SCHEDULE_ALARM(trigger_steering, 0, TEST_NEXT_STEP_TIMEOUT_BI);
-      }
-      break; /* ZB_ZDO_SIGNAL_LEAVE */
+        TRACE_MSG(TRACE_APP1, "signal: ZB_ZDO_SIGNAL_LEAVE, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            /* Call the new test step when parent is present in the test. */
+            ZB_SCHEDULE_ALARM(trigger_steering, 0, TEST_NEXT_STEP_TIMEOUT_BI);
+        }
+        break; /* ZB_ZDO_SIGNAL_LEAVE */
 
     default:
-      TRACE_MSG(TRACE_APP1, "Unknown signal %d, status %d", (FMT__D_D, sig, status));
-      break;
-  }
+        TRACE_MSG(TRACE_APP1, "Unknown signal %d, status %d", (FMT__D_D, sig, status));
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 /*
@@ -216,57 +216,57 @@ ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
  */
 static void test_trigger_rejoin(zb_uint8_t unused)
 {
-  zb_time_t reset_tmo;
+    zb_time_t reset_tmo;
 
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  TRACE_MSG(TRACE_APP1, "test_trigger_rejoin(), step %hd",
-            (FMT__H, g_test_step));
+    TRACE_MSG(TRACE_APP1, "test_trigger_rejoin(), step %hd",
+              (FMT__H, g_test_step));
 
-  if (g_test_step < TEST_RESET_COUNT)
-  {
-    TRACE_MSG(TRACE_APP1, "test_trigger_rejoin(), timeout %hd",
-              (FMT__D, g_test_reset_timeout_ms[g_test_step]));
+    if (g_test_step < TEST_RESET_COUNT)
+    {
+        TRACE_MSG(TRACE_APP1, "test_trigger_rejoin(), timeout %hd",
+                  (FMT__D, g_test_reset_timeout_ms[g_test_step]));
 
-    reset_tmo = ZB_MILLISECONDS_TO_BEACON_INTERVAL(g_test_reset_timeout_ms[g_test_step]);
+        reset_tmo = ZB_MILLISECONDS_TO_BEACON_INTERVAL(g_test_reset_timeout_ms[g_test_step]);
 
-    /* Trigger rejoin */
-    zb_zdo_rejoin_backoff_start(ZB_FALSE);
+        /* Trigger rejoin */
+        zb_zdo_rejoin_backoff_start(ZB_FALSE);
 
-    /* Perform reset after rejoin with a timeout */
-    ZB_SCHEDULE_ALARM(test_bdb_reset, 0, reset_tmo);
-    g_test_step++;
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "test_trigger_rejoin(): test finished", (FMT__0));
-  }
+        /* Perform reset after rejoin with a timeout */
+        ZB_SCHEDULE_ALARM(test_bdb_reset, 0, reset_tmo);
+        g_test_step++;
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "test_trigger_rejoin(): test finished", (FMT__0));
+    }
 }
 
 static void trigger_steering(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  TRACE_MSG(TRACE_APP1, "trigger_steering()", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "trigger_steering()", (FMT__0));
 
-  bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
+    bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
 }
 
 static void test_bdb_reset(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  TRACE_MSG(TRACE_APP1, "test_bdb_reset()", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "test_bdb_reset()", (FMT__0));
 
-  if (!zb_zdo_rejoin_backoff_is_running())
-  {
-    zb_bdb_reset_via_local_action(0);
-  }
-  else
-  {
-    TRACE_MSG(TRACE_APP1, "test_bdb_reset(), reset is not allowed", (FMT__0));
-    g_test_delayed_reset = ZB_TRUE;
-  }
+    if (!zb_zdo_rejoin_backoff_is_running())
+    {
+        zb_bdb_reset_via_local_action(0);
+    }
+    else
+    {
+        TRACE_MSG(TRACE_APP1, "test_bdb_reset(), reset is not allowed", (FMT__0));
+        g_test_delayed_reset = ZB_TRUE;
+    }
 }
 
 /*! @} */

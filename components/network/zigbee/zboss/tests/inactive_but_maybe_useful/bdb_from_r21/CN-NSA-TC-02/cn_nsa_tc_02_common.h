@@ -28,7 +28,7 @@
 // ![nvram_app_dataset_usage1]
 struct ZB_PACKED_PRE thcx_nvram_app_dataset_s
 {
-  zb_uint32_t current_test_step;
+    zb_uint32_t current_test_step;
 } ZB_PACKED_STRUCT;
 
 typedef struct thcx_nvram_app_dataset_s thcx_nvram_app_dataset_t;
@@ -41,7 +41,8 @@ static zb_ieee_addr_t g_ieee_addr_thc2 = {0x02, 0x02, 0x02, 0x02, 0xbb, 0xbb, 0x
 static zb_ieee_addr_t g_ieee_addr_thc3 = {0x03, 0x03, 0x03, 0x03, 0xbb, 0xbb, 0xbb, 0xbb};
 
 static zb_uint8_t g_nwk_key[16] = {0xab, 0xcd, 0xef, 0x01, 0x23, 0x45, 0x67, 0x89,
-                            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+                                   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+                                  };
 
 #define TEST_BDB_DUT_PRIMARY_CHANNEL_SET (1 << 11)
 #define TEST_BDB_DUT_SECONDARY_CHANNEL_SET (1l<<13)

@@ -72,136 +72,136 @@ static void trace_production_config_tx_power(zb_uint8_t unused);
 
 MAIN()
 {
-  ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
-  ZB_SET_TRACE_LEVEL(4);
-  ARGV_UNUSED;
-  ZB_INIT("zdo_dut_zc");
+    ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
+    ZB_SET_TRACE_LEVEL(4);
+    ARGV_UNUSED;
+    ZB_INIT("zdo_dut_zc");
 
-  zb_set_long_address(g_ieee_addr_dut_zc);
+    zb_set_long_address(g_ieee_addr_dut_zc);
 
-  zb_secur_setup_nwk_key((zb_uint8_t*) g_nwk_key, 0);
+    zb_secur_setup_nwk_key((zb_uint8_t *) g_nwk_key, 0);
 
-  zb_reg_test_set_common_channel_settings();
-  zb_set_network_coordinator_role((1l << TEST_CHANNEL));
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    zb_reg_test_set_common_channel_settings();
+    zb_set_network_coordinator_role((1l << TEST_CHANNEL));
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  switch (sig)
-  {
-      case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      case ZB_BDB_SIGNAL_DEVICE_REBOOT:
-      TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
-      break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
+    switch (sig)
+    {
+    case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
+    case ZB_BDB_SIGNAL_DEVICE_REBOOT:
+        TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
+        break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
 
     case ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY:
-      TRACE_MSG(TRACE_APP1, "signal: ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        test_step_register(trace_production_config_tx_power, 0, RTP_PRODCONF_02_STEP_1_TIME_ZC);
+        TRACE_MSG(TRACE_APP1, "signal: ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            test_step_register(trace_production_config_tx_power, 0, RTP_PRODCONF_02_STEP_1_TIME_ZC);
 
-        test_control_start(TEST_MODE, RTP_PRODCONF_02_STEP_1_DELAY_ZC);
-      }
-      break; /* ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY */
+            test_control_start(TEST_MODE, RTP_PRODCONF_02_STEP_1_DELAY_ZC);
+        }
+        break; /* ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY */
 
     default:
-      TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
-      break;
-  }
+        TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 #if !defined ZB_NSNG
 
 static void trace_production_config_tx_power(zb_uint8_t unused)
 {
-  zb_uint8_t i;
-  zb_uint8_t j;
-  zb_uint8_t first_channel;
-  zb_uint8_t last_channel;
-  zb_int8_t out_dbm;
-  zb_ret_t ret;
+    zb_uint8_t i;
+    zb_uint8_t j;
+    zb_uint8_t first_channel;
+    zb_uint8_t last_channel;
+    zb_int8_t out_dbm;
+    zb_ret_t ret;
 
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  TRACE_MSG(TRACE_APP1, "tx_power[default]: %hd", (FMT__H, MAC_CTX().default_tx_power));
-  TRACE_MSG(TRACE_APP1, "tx_power[current]: %hd", (FMT__H, MAC_CTX().current_tx_power));
+    TRACE_MSG(TRACE_APP1, "tx_power[default]: %hd", (FMT__H, MAC_CTX().default_tx_power));
+    TRACE_MSG(TRACE_APP1, "tx_power[current]: %hd", (FMT__H, MAC_CTX().current_tx_power));
 
-  for (i = ZB_CHANNEL_LIST_PAGE0_IDX; i <= ZB_CHANNEL_LIST_PAGE31_IDX; ++i)
-  {
-    switch (i)
+    for (i = ZB_CHANNEL_LIST_PAGE0_IDX; i <= ZB_CHANNEL_LIST_PAGE31_IDX; ++i)
     {
-      case ZB_CHANNEL_LIST_PAGE0_IDX:
-        first_channel = ZB_PAGE0_2_4_GHZ_CHANNEL_FROM;
-        last_channel = ZB_PAGE0_2_4_GHZ_CHANNEL_TO;
-        break;
-      case ZB_CHANNEL_LIST_PAGE28_IDX:
-        first_channel = ZB_PAGE28_SUB_GHZ_CHANNEL_FROM;
-        last_channel = ZB_PAGE28_SUB_GHZ_CHANNEL_TO;
-        break;
-      case ZB_CHANNEL_LIST_PAGE29_IDX:
-        first_channel = ZB_PAGE29_SUB_GHZ_CHANNEL_FROM;
-        last_channel = ZB_PAGE29_SUB_GHZ_CHANNEL_TO + 1;
-        break;
-      case ZB_CHANNEL_LIST_PAGE30_IDX:
-        first_channel = ZB_PAGE30_SUB_GHZ_CHANNEL_FROM;
-        last_channel = ZB_PAGE30_SUB_GHZ_CHANNEL_TO;
-        break;
-      case ZB_CHANNEL_LIST_PAGE31_IDX:
-        first_channel = ZB_PAGE31_SUB_GHZ_CHANNEL_FROM;
-        last_channel = ZB_PAGE31_SUB_GHZ_CHANNEL_TO;
-        break;
-      default:
-        break;
+        switch (i)
+        {
+        case ZB_CHANNEL_LIST_PAGE0_IDX:
+            first_channel = ZB_PAGE0_2_4_GHZ_CHANNEL_FROM;
+            last_channel = ZB_PAGE0_2_4_GHZ_CHANNEL_TO;
+            break;
+        case ZB_CHANNEL_LIST_PAGE28_IDX:
+            first_channel = ZB_PAGE28_SUB_GHZ_CHANNEL_FROM;
+            last_channel = ZB_PAGE28_SUB_GHZ_CHANNEL_TO;
+            break;
+        case ZB_CHANNEL_LIST_PAGE29_IDX:
+            first_channel = ZB_PAGE29_SUB_GHZ_CHANNEL_FROM;
+            last_channel = ZB_PAGE29_SUB_GHZ_CHANNEL_TO + 1;
+            break;
+        case ZB_CHANNEL_LIST_PAGE30_IDX:
+            first_channel = ZB_PAGE30_SUB_GHZ_CHANNEL_FROM;
+            last_channel = ZB_PAGE30_SUB_GHZ_CHANNEL_TO;
+            break;
+        case ZB_CHANNEL_LIST_PAGE31_IDX:
+            first_channel = ZB_PAGE31_SUB_GHZ_CHANNEL_FROM;
+            last_channel = ZB_PAGE31_SUB_GHZ_CHANNEL_TO;
+            break;
+        default:
+            break;
+        }
+
+        for (j = first_channel; j <= last_channel; ++j)
+        {
+            if (i == ZB_CHANNEL_LIST_PAGE29_IDX && j == last_channel)
+            {
+                /* special case for 62 channel from 29 page */
+                j = 62;
+            }
+
+            ret = MAC_CTX().tx_power_provider(ZB_CHANNEL_PAGE_FROM_IDX(i), j, &out_dbm);
+
+            if (ret != RET_OK)
+            {
+                TRACE_MSG(TRACE_ERROR, "Can not get TX power for page %hd, channel %hd", (FMT__H_H, ZB_CHANNEL_PAGE_FROM_IDX(i), j));
+            }
+            else
+            {
+                TRACE_MSG(TRACE_APP1, "tx_power[pg=%hd,ch=%hd]: %hd", (FMT__H_H_H, i, j, out_dbm));
+            }
+        }
     }
-
-    for (j = first_channel; j <= last_channel; ++j)
-    {
-      if (i == ZB_CHANNEL_LIST_PAGE29_IDX && j == last_channel)
-      {
-        /* special case for 62 channel from 29 page */
-        j = 62;
-      }
-
-      ret = MAC_CTX().tx_power_provider(ZB_CHANNEL_PAGE_FROM_IDX(i), j, &out_dbm);
-
-      if (ret != RET_OK)
-      {
-        TRACE_MSG(TRACE_ERROR, "Can not get TX power for page %hd, channel %hd", (FMT__H_H, ZB_CHANNEL_PAGE_FROM_IDX(i), j));
-      }
-      else
-      {
-        TRACE_MSG(TRACE_APP1, "tx_power[pg=%hd,ch=%hd]: %hd", (FMT__H_H_H, i, j, out_dbm));
-      }
-    }
-  }
 }
 
 #else
 
 static void trace_production_config_tx_power(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 }
 
 #endif  /* !ZB_NSNG */

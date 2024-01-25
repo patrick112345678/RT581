@@ -104,17 +104,17 @@
   }
 
 #define DECLARE_ON_OFF_CLIENT_EP(ep_name, ep_id, cluster_list)                                 \
-  ZB_AF_DECLARE_ENDPOINT_DESC(ep_name,							\
-                              ep_id, ZB_AF_HA_PROFILE_ID,				\
-                              0,							\
-                              NULL,							\
+  ZB_AF_DECLARE_ENDPOINT_DESC(ep_name,                          \
+                              ep_id, ZB_AF_HA_PROFILE_ID,               \
+                              0,                            \
+                              NULL,                         \
                               ZB_ZCL_ARRAY_SIZE(cluster_list, zb_zcl_cluster_desc_t),   \
-                              cluster_list,						\
-                              (zb_af_simple_desc_1_1_t*)&simple_desc_##ep_name,		\
-                              0, NULL,							\
+                              cluster_list,                     \
+                              (zb_af_simple_desc_1_1_t*)&simple_desc_##ep_name,     \
+                              0, NULL,                          \
                               0, NULL)
 
-#define DECLARE_ON_OFF_CLIENT_CTX(device_ctx_name, ep_name)	\
+#define DECLARE_ON_OFF_CLIENT_CTX(device_ctx_name, ep_name) \
   ZBOSS_DECLARE_DEVICE_CTX_1_EP(device_ctx_name, ep_name);
 
 #endif /* ON_OFF_CLIENT_H */

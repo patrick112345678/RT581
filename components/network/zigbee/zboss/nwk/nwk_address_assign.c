@@ -39,32 +39,32 @@
 
 zb_bool_t zb_nwk_check_assigned_short_addr(zb_uint16_t short_addr)
 {
-  zb_address_ieee_ref_t ref;
+    zb_address_ieee_ref_t ref;
 
-  /* not broadcast address */
-  if (ZB_NWK_IS_ADDRESS_BROADCAST(short_addr) != 0U)
-  {
-    return ZB_FALSE;
-  }
-  /* not coordinator */
-  else if (short_addr == 0x0000U)
-  {
-    return ZB_FALSE;
-  }
-  /* unknown address */
-  else if (zb_address_by_short((short_addr), ZB_FALSE, ZB_FALSE, &ref) == RET_OK)
-  {
-    return ZB_FALSE;
-  }
-  /* not equal my address */
-  else if (ZB_PIBCACHE_NETWORK_ADDRESS() == short_addr)
-  {
-    return ZB_FALSE;
-  }
-  else
-  {
-    return ZB_TRUE;
-  }
+    /* not broadcast address */
+    if (ZB_NWK_IS_ADDRESS_BROADCAST(short_addr) != 0U)
+    {
+        return ZB_FALSE;
+    }
+    /* not coordinator */
+    else if (short_addr == 0x0000U)
+    {
+        return ZB_FALSE;
+    }
+    /* unknown address */
+    else if (zb_address_by_short((short_addr), ZB_FALSE, ZB_FALSE, &ref) == RET_OK)
+    {
+        return ZB_FALSE;
+    }
+    /* not equal my address */
+    else if (ZB_PIBCACHE_NETWORK_ADDRESS() == short_addr)
+    {
+        return ZB_FALSE;
+    }
+    else
+    {
+        return ZB_TRUE;
+    }
 }
 
 
@@ -74,35 +74,35 @@ zb_bool_t zb_nwk_check_assigned_short_addr(zb_uint16_t short_addr)
 /* and doc/html/nwk/Zigbee-Tree-Routing-How-It-Works-and-Why-It-Sucks.html */
 zb_uint16_t zb_nwk_daa_calc_cskip(zb_uint8_t depth )
 {
-  zb_uint16_t ret = 0;
+    zb_uint16_t ret = 0;
 
-  TRACE_MSG(TRACE_NWK1, ">>zb_nwk_daa_calc_cskip depth %d", (FMT__D, depth));
+    TRACE_MSG(TRACE_NWK1, ">>zb_nwk_daa_calc_cskip depth %d", (FMT__D, depth));
 
-  TRACE_MSG(TRACE_NWK1, "max_routers %hd max_children %hd, max_depth %hd depth %hd",
-            (FMT__H_H_H_H, ZB_NIB().max_routers, ZB_NIB().max_children,
-             ZB_NIB().max_depth, depth));
+    TRACE_MSG(TRACE_NWK1, "max_routers %hd max_children %hd, max_depth %hd depth %hd",
+              (FMT__H_H_H_H, ZB_NIB().max_routers, ZB_NIB().max_children,
+               ZB_NIB().max_depth, depth));
 
-  if ( ZB_NIB().max_routers == 1 )
-  {
-    ret = 1 + ZB_NIB().max_children*(ZB_NIB().max_depth - depth - 1);
-  }
-  else
-  {
-    zb_uint16_t tmp = 1, i = 0;
-
-    for (i = 0; i < ZB_NIB().max_depth - depth - 1; i++)
+    if ( ZB_NIB().max_routers == 1 )
     {
-      tmp *= ZB_NIB().max_routers;
+        ret = 1 + ZB_NIB().max_children * (ZB_NIB().max_depth - depth - 1);
+    }
+    else
+    {
+        zb_uint16_t tmp = 1, i = 0;
+
+        for (i = 0; i < ZB_NIB().max_depth - depth - 1; i++)
+        {
+            tmp *= ZB_NIB().max_routers;
+        }
+
+        ret = (zb_uint16_t)((1 + ZB_NIB().max_children - ZB_NIB().max_routers - ZB_NIB().max_children * (int)tmp)
+                            / (1 - (int)ZB_NIB().max_routers));
     }
 
-    ret = (zb_uint16_t)((1 + ZB_NIB().max_children - ZB_NIB().max_routers - ZB_NIB().max_children*(int)tmp)
-                        /(1 - (int)ZB_NIB().max_routers));
-  }
+    ZB_ASSERT(ZB_NIB().max_children == 0 || ret != 0);
 
-  ZB_ASSERT(ZB_NIB().max_children == 0 || ret != 0);
-
-  TRACE_MSG(TRACE_NWK1, "<<zb_nwk_daa_calc_cskip %d", (FMT__D, ret));
-  return ret;
+    TRACE_MSG(TRACE_NWK1, "<<zb_nwk_daa_calc_cskip %d", (FMT__D, ret));
+    return ret;
 }
 
 /* ZLL ED maybe address assignment capable. ZLL uses ZB PRO stack -
@@ -117,13 +117,14 @@ zb_uint16_t zb_nwk_daa_calc_cskip(zb_uint8_t depth )
  */
 zb_uint16_t zb_nwk_get_stoch_addr(void)
 {
-  zb_uint16_t res_addr;
-  do {
-    res_addr = ZB_RANDOM_U16();
+    zb_uint16_t res_addr;
+    do
+    {
+        res_addr = ZB_RANDOM_U16();
 
-  } while ( !zb_nwk_check_assigned_short_addr(res_addr) );
+    } while ( !zb_nwk_check_assigned_short_addr(res_addr) );
 
-  return(res_addr);
+    return (res_addr);
 }
 
 #endif

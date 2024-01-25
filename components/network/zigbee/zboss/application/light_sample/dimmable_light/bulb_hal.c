@@ -35,46 +35,46 @@
 /* Public interface */
 void bulb_hal_init(void)
 {
-  zb_osif_led_button_init();
+    zb_osif_led_button_init();
 
-  zb_osif_led_level_init(LED_2);
+    zb_osif_led_level_init(LED_2);
 
-  zb_osif_led_on(BULB_LED_POVER);
+    zb_osif_led_on(BULB_LED_POVER);
 }
 
 void bulb_hal_set_level(zb_uint8_t level)
 {
-  zb_osif_led_on_set_level(level);
+    zb_osif_led_on_set_level(level);
 }
 
 void bulb_hal_set_on_off(zb_bool_t on)
 {
-  if (on)
-  {
-    zb_osif_led_on(BULB_LED_LIGHT);
-  }
-  else
-  {
-    zb_osif_led_on_set_level(0);
-    zb_osif_led_off(BULB_LED_LIGHT);
-  }
+    if (on)
+    {
+        zb_osif_led_on(BULB_LED_LIGHT);
+    }
+    else
+    {
+        zb_osif_led_on_set_level(0);
+        zb_osif_led_off(BULB_LED_LIGHT);
+    }
 }
 
 void bulb_hal_set_connect(zb_bool_t on)
 {
-  if (on)
-  {
-    zb_osif_led_on(BULB_LED_CONNECT);
-  }
-  else
-  {
-    zb_osif_led_off(BULB_LED_CONNECT);
-  }
+    if (on)
+    {
+        zb_osif_led_on(BULB_LED_CONNECT);
+    }
+    else
+    {
+        zb_osif_led_off(BULB_LED_CONNECT);
+    }
 }
 
 zb_bool_t bulb_hal_is_button_pressed(zb_uint8_t button_no)
 {
-  zb_bool_t ret = ZB_FALSE;
-  ret = zb_osif_button_state(button_no);
-  return ret;
+    zb_bool_t ret = ZB_FALSE;
+    ret = zb_osif_button_state(button_no);
+    return ret;
 }

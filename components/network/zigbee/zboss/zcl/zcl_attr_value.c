@@ -45,93 +45,93 @@
 #if 0
 zb_bool_t zb_zcl_check_attr_value(zb_uint16_t cluster_id, zb_uint8_t cluster_role, zb_uint8_t endpoint, zb_uint16_t attr_id, zb_uint8_t *value)
 {
-  zb_bool_t ret = ZB_TRUE;
-  zb_ret_t cb_ret = RET_IGNORE;
+    zb_bool_t ret = ZB_TRUE;
+    zb_ret_t cb_ret = RET_IGNORE;
 
-  zb_zcl_cluster_check_value_t cluster_check_value;
+    zb_zcl_cluster_check_value_t cluster_check_value;
 
-  TRACE_MSG(TRACE_ZCL1, ">> zb_zcl_check_attr_value cluster_id %d, endpoint %hd, attr_id %d, value %p",
-            (FMT__D_H_D_P, cluster_id, endpoint, attr_id, value));
+    TRACE_MSG(TRACE_ZCL1, ">> zb_zcl_check_attr_value cluster_id %d, endpoint %hd, attr_id %d, value %p",
+              (FMT__D_H_D_P, cluster_id, endpoint, attr_id, value));
 
-  ZB_ASSERT(value);
+    ZB_ASSERT(value);
 
 
-  if (ZCL_CTX().app_check_attr_value_cb)
-  {
-    cb_ret = ZCL_CTX().app_check_attr_value_cb(cluster_id, cluster_role, endpoint, attr_id, value);
-  }
-
-  cluster_check_value = zb_zcl_get_cluster_check_value(cluster_id,
-                                                       cluster_role);
-
-  if (cb_ret != RET_IGNORE)
-  {
-    ret = (cb_ret == RET_OK) ? ZB_TRUE : ZB_FALSE;
-  }
-  else if (cluster_check_value)
-  { 
-    ret = (cluster_check_value(attr_id, endpoint, value) == RET_ERROR) ?
-          ZB_FALSE : ZB_TRUE;
-    /*ret = cluster_check_value(attr_id, endpoint, value);*/
-  }
-  else
-  {
-    if (zb_zcl_get_cluster_handler(cluster_id, ZB_ZCL_CLUSTER_SERVER_ROLE))
+    if (ZCL_CTX().app_check_attr_value_cb)
     {
-      TRACE_MSG(TRACE_ZCL3, "Cluster presents (0x%x), all attribute values allowed", (FMT__D, cluster_id));
-      ret = ZB_TRUE;
+        cb_ret = ZCL_CTX().app_check_attr_value_cb(cluster_id, cluster_role, endpoint, attr_id, value);
+    }
+
+    cluster_check_value = zb_zcl_get_cluster_check_value(cluster_id,
+                          cluster_role);
+
+    if (cb_ret != RET_IGNORE)
+    {
+        ret = (cb_ret == RET_OK) ? ZB_TRUE : ZB_FALSE;
+    }
+    else if (cluster_check_value)
+    {
+        ret = (cluster_check_value(attr_id, endpoint, value) == RET_ERROR) ?
+              ZB_FALSE : ZB_TRUE;
+        /*ret = cluster_check_value(attr_id, endpoint, value);*/
     }
     else
     {
-      TRACE_MSG(TRACE_ZCL1, "Error, cluster is not supported %x", (FMT__D, cluster_id));
-      return ZB_FALSE;
+        if (zb_zcl_get_cluster_handler(cluster_id, ZB_ZCL_CLUSTER_SERVER_ROLE))
+        {
+            TRACE_MSG(TRACE_ZCL3, "Cluster presents (0x%x), all attribute values allowed", (FMT__D, cluster_id));
+            ret = ZB_TRUE;
+        }
+        else
+        {
+            TRACE_MSG(TRACE_ZCL1, "Error, cluster is not supported %x", (FMT__D, cluster_id));
+            return ZB_FALSE;
+        }
     }
-  }
-/* CR: AEV: Where is call to ZCL_CTX().zb_zcl_check_attr_value_cb? Why it is removed? */
-/* Code Fix:DD: This callback was renamed to app_check_attr_value_cb. This callback is invoked
-before cluster's check attribute value callback. */
-  return ret;
+    /* CR: AEV: Where is call to ZCL_CTX().zb_zcl_check_attr_value_cb? Why it is removed? */
+    /* Code Fix:DD: This callback was renamed to app_check_attr_value_cb. This callback is invoked
+    before cluster's check attribute value callback. */
+    return ret;
 }
 #endif
 
 zb_ret_t zb_zcl_check_attr_value(zb_uint16_t cluster_id, zb_uint8_t cluster_role, zb_uint8_t endpoint, zb_uint16_t attr_id, zb_uint8_t *value)
 {
-  zb_ret_t ret;
-  zb_ret_t cb_ret = RET_IGNORE;
+    zb_ret_t ret;
+    zb_ret_t cb_ret = RET_IGNORE;
 
-  zb_zcl_cluster_check_value_t cluster_check_value;
+    zb_zcl_cluster_check_value_t cluster_check_value;
 
-  TRACE_MSG(TRACE_ZCL1, ">> zb_zcl_check_attr_value cluster_id %d, endpoint %hd, attr_id %d, value %p",
-            (FMT__D_H_D_P, cluster_id, endpoint, attr_id, value));
+    TRACE_MSG(TRACE_ZCL1, ">> zb_zcl_check_attr_value cluster_id %d, endpoint %hd, attr_id %d, value %p",
+              (FMT__D_H_D_P, cluster_id, endpoint, attr_id, value));
 
-  ZB_ASSERT(value);
+    ZB_ASSERT(value);
 
 
-  if (ZCL_CTX().app_check_attr_value_cb != NULL)
-  {
-    cb_ret = ZCL_CTX().app_check_attr_value_cb(cluster_id, cluster_role, endpoint, attr_id, value);
-  }
+    if (ZCL_CTX().app_check_attr_value_cb != NULL)
+    {
+        cb_ret = ZCL_CTX().app_check_attr_value_cb(cluster_id, cluster_role, endpoint, attr_id, value);
+    }
 
-  cluster_check_value = zb_zcl_internal_get_cluster_check_value(endpoint,
-                                                                cluster_id,
-                                                                cluster_role);
+    cluster_check_value = zb_zcl_internal_get_cluster_check_value(endpoint,
+                          cluster_id,
+                          cluster_role);
 
-  if (cb_ret != RET_IGNORE)
-  {
-    ret = cb_ret;
-  }
-  else if (cluster_check_value != NULL)
-  {
-    ret = cluster_check_value(attr_id, endpoint, value);
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ZCL3, "Cluster (0x%x) has not check_value function, all attribute values allowed", (FMT__D, cluster_id));
-    ret = RET_OK;
-  }
-/* DD: Callback ZCL_CTX().zb_zcl_check_attr_value_cb was renamed to app_check_attr_value_cb. 
-       This callback is invoked before cluster's check attribute value callback. */
-  return ret;
+    if (cb_ret != RET_IGNORE)
+    {
+        ret = cb_ret;
+    }
+    else if (cluster_check_value != NULL)
+    {
+        ret = cluster_check_value(attr_id, endpoint, value);
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ZCL3, "Cluster (0x%x) has not check_value function, all attribute values allowed", (FMT__D, cluster_id));
+        ret = RET_OK;
+    }
+    /* DD: Callback ZCL_CTX().zb_zcl_check_attr_value_cb was renamed to app_check_attr_value_cb.
+           This callback is invoked before cluster's check attribute value callback. */
+    return ret;
 }
 /*!
   Hook on Write Attribute command
@@ -142,27 +142,27 @@ zb_ret_t zb_zcl_check_attr_value(zb_uint16_t cluster_id, zb_uint8_t cluster_role
   @param new_value - new value of attribute
 */
 void zb_zcl_write_attr_hook(
-  zb_uint8_t endpoint, zb_uint16_t cluster_id, zb_uint8_t cluster_role,
-  zb_uint16_t attr_id, zb_uint8_t *new_value)
+    zb_uint8_t endpoint, zb_uint16_t cluster_id, zb_uint8_t cluster_role,
+    zb_uint16_t attr_id, zb_uint8_t *new_value)
 {
-  zb_zcl_cluster_write_attr_hook_t cluster_write_attr_hook;
-  ZVUNUSED(endpoint);
-  ZVUNUSED(cluster_id);
-  ZVUNUSED(attr_id);
-  ZVUNUSED(new_value);
+    zb_zcl_cluster_write_attr_hook_t cluster_write_attr_hook;
+    ZVUNUSED(endpoint);
+    ZVUNUSED(cluster_id);
+    ZVUNUSED(attr_id);
+    ZVUNUSED(new_value);
 
-  TRACE_MSG(TRACE_ZCL1, ">> zb_zcl_write_attr_hook cluster_id %d, endpoint %hd, attr_id %d",
-            (FMT__D_H_D, cluster_id, endpoint, attr_id));
+    TRACE_MSG(TRACE_ZCL1, ">> zb_zcl_write_attr_hook cluster_id %d, endpoint %hd, attr_id %d",
+              (FMT__D_H_D, cluster_id, endpoint, attr_id));
 
-  cluster_write_attr_hook = zb_zcl_internal_get_cluster_write_attr_hook(endpoint,
-                                                                        cluster_id,
-                                                                        cluster_role);
-  if (cluster_write_attr_hook != NULL)
-  {
-    cluster_write_attr_hook(endpoint, attr_id, new_value);
-  }
+    cluster_write_attr_hook = zb_zcl_internal_get_cluster_write_attr_hook(endpoint,
+                              cluster_id,
+                              cluster_role);
+    if (cluster_write_attr_hook != NULL)
+    {
+        cluster_write_attr_hook(endpoint, attr_id, new_value);
+    }
 
-  TRACE_MSG(TRACE_ZCL1, "<< zb_zcl_write_attr_hook", (FMT__0));
+    TRACE_MSG(TRACE_ZCL1, "<< zb_zcl_write_attr_hook", (FMT__0));
 }
 
 #endif /* ZB_ENBLE_ZCL */

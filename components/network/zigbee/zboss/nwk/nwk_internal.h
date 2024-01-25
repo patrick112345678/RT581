@@ -159,11 +159,11 @@ void nwk_route_discovery_confirm(zb_bufid_t buf, zb_uint8_t cfm_status);
            RET_NOT_FOUND if no non-zero resulting channel mask found
  */
 zb_ret_t nwk_scan_find_next_channel_mask(zb_uint8_t iface_start_idx,
-                                         zb_uint8_t channel_page_start_idx,
-                                         zb_channel_list_t scan_channels_list,
-                                         zb_uint8_t *iface_idx,
-                                         zb_uint8_t *channel_page,
-                                         zb_uint32_t *channel_mask);
+        zb_uint8_t channel_page_start_idx,
+        zb_channel_list_t scan_channels_list,
+        zb_uint8_t *iface_idx,
+        zb_uint8_t *channel_page,
+        zb_uint32_t *channel_mask);
 
 /**
    Builds and initiates MLME scan request.
@@ -554,7 +554,7 @@ zb_bool_t zb_nwk_check_assigned_short_addr(zb_uint16_t short_addr);
   Fill packet parameters (that will be passed to apsde) with default values and assign handle;
   params here is pointer
  */
-zb_apsde_data_ind_params_t * zb_nwk_init_apsde_data_ind_params(zb_bufid_t buf, zb_uint8_t handle);
+zb_apsde_data_ind_params_t *zb_nwk_init_apsde_data_ind_params(zb_bufid_t buf, zb_uint8_t handle);
 
 /* Load NWK settings into PIB */
 void zb_nwk_load_pib_stm(zb_uint8_t param);
@@ -576,8 +576,8 @@ void zb_nwk_link_power_delta_alarm(zb_uint8_t param);
 
 /* Handle received Link Power Delta command */
 void zb_nwk_handle_link_power_delta_command(zb_bufid_t buf,
-                                            zb_nwk_hdr_t *nwk_hdr,
-                                            zb_uint8_t hdr_size);
+        zb_nwk_hdr_t *nwk_hdr,
+        zb_uint8_t hdr_size);
 #endif /* ZB_MAC_POWER_CONTROL */
 
 void zb_nwk_ed_timeout_req_frame_confirm(zb_uint8_t param);

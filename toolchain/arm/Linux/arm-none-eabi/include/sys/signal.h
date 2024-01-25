@@ -14,8 +14,8 @@ extern "C" {
 #include <sys/_timespec.h>
 
 #if !defined(_SIGSET_T_DECLARED)
-#define	_SIGSET_T_DECLARED
-typedef	__sigset_t	sigset_t;
+#define _SIGSET_T_DECLARED
+typedef __sigset_t  sigset_t;
 #endif
 
 #if defined(__CYGWIN__)
@@ -28,31 +28,33 @@ typedef	__sigset_t	sigset_t;
    NOTE: P1003.1c/D10, p. 34 adds SIGEV_THREAD.  */
 
 #define SIGEV_NONE   1  /* No asynchronous notification shall be delivered */
-                        /*   when the event of interest occurs. */
+/*   when the event of interest occurs. */
 #define SIGEV_SIGNAL 2  /* A queued signal, with an application defined */
-                        /*  value, shall be delivered when the event of */
-                        /*  interest occurs. */
+/*  value, shall be delivered when the event of */
+/*  interest occurs. */
 #define SIGEV_THREAD 3  /* A notification function shall be called to */
-                        /*   perform notification. */
+/*   perform notification. */
 
 /*  Signal Generation and Delivery, P1003.1b-1993, p. 63
     NOTE: P1003.1c/D10, p. 34 adds sigev_notify_function and
           sigev_notify_attributes to the sigevent structure.  */
 
-union sigval {
-  int    sival_int;    /* Integer signal value */
-  void  *sival_ptr;    /* Pointer signal value */
+union sigval
+{
+    int    sival_int;    /* Integer signal value */
+    void  *sival_ptr;    /* Pointer signal value */
 };
 
-struct sigevent {
-  int              sigev_notify;               /* Notification type */
-  int              sigev_signo;                /* Signal number */
-  union sigval     sigev_value;                /* Signal value */
+struct sigevent
+{
+    int              sigev_notify;               /* Notification type */
+    int              sigev_signo;                /* Signal number */
+    union sigval     sigev_value;                /* Signal value */
 
 #if defined(_POSIX_THREADS)
-  void           (*sigev_notify_function)( union sigval );
-                                               /* Notification function */
-  pthread_attr_t  *sigev_notify_attributes;    /* Notification Attributes */
+    void           (*sigev_notify_function)( union sigval );
+    /* Notification function */
+    pthread_attr_t  *sigev_notify_attributes;    /* Notification Attributes */
 #endif
 };
 
@@ -65,10 +67,11 @@ struct sigevent {
 #define SI_ASYNCIO 4    /* Indicates completion of asycnhronous IO */
 #define SI_MESGQ   5    /* Indicates arrival of a message at an empty queue */
 
-typedef struct {
-  int          si_signo;    /* Signal number */
-  int          si_code;     /* Cause of the signal */
-  union sigval si_value;    /* Signal value */
+typedef struct
+{
+    int          si_signo;    /* Signal number */
+    int          si_code;     /* Cause of the signal */
+    union sigval si_value;    /* Signal value */
 } siginfo_t;
 #endif /* defined(_POSIX_REALTIME_SIGNALS) || __POSIX_VISIBLE >= 199309 */
 
@@ -78,7 +81,7 @@ typedef struct {
 
 #define SA_NOCLDSTOP 0x1   /* Do not generate SIGCHLD when children stop */
 #define SA_SIGINFO   0x2   /* Invoke the signal catching function with */
-                           /*   three arguments instead of one. */
+/*   three arguments instead of one. */
 #if __BSD_VISIBLE || __XSI_VISIBLE >= 4 || __POSIX_VISIBLE >= 200809
 #define SA_ONSTACK   0x4   /* Signal delivery will be on a separate stack. */
 #endif
@@ -94,17 +97,19 @@ typedef struct {
 
 typedef void (*_sig_func_ptr)(int);
 
-struct sigaction {
-  int         sa_flags;       /* Special flags to affect behavior of signal */
-  sigset_t    sa_mask;        /* Additional set of signals to be blocked */
-                              /*   during execution of signal-catching */
-                              /*   function. */
-  union {
-    _sig_func_ptr _handler;  /* SIG_DFL, SIG_IGN, or pointer to a function */
+struct sigaction
+{
+    int         sa_flags;       /* Special flags to affect behavior of signal */
+    sigset_t    sa_mask;        /* Additional set of signals to be blocked */
+    /*   during execution of signal-catching */
+    /*   function. */
+    union
+    {
+        _sig_func_ptr _handler;  /* SIG_DFL, SIG_IGN, or pointer to a function */
 #if defined(_POSIX_REALTIME_SIGNALS)
-    void      (*_sigaction)( int, siginfo_t *, void * );
+        void      (*_sigaction)( int, siginfo_t *, void * );
 #endif
-  } _signal_handlers;
+    } _signal_handlers;
 };
 
 #define sa_handler    _signal_handlers._handler
@@ -118,11 +123,11 @@ struct sigaction {
 
 typedef void (*_sig_func_ptr)(int);
 
-struct sigaction 
+struct sigaction
 {
-	_sig_func_ptr sa_handler;
-	sigset_t sa_mask;
-	int sa_flags;
+    _sig_func_ptr sa_handler;
+    sigset_t sa_mask;
+    int sa_flags;
 };
 #endif /* defined(__rtems__) */
 #endif /* defined(__CYGWIN__) */
@@ -132,34 +137,35 @@ struct sigaction
  * Minimum and default signal stack constants. Allow for target overrides
  * from <sys/features.h>.
  */
-#ifndef	MINSIGSTKSZ
-#define	MINSIGSTKSZ	2048
+#ifndef MINSIGSTKSZ
+#define MINSIGSTKSZ 2048
 #endif
-#ifndef	SIGSTKSZ
-#define	SIGSTKSZ	8192
+#ifndef SIGSTKSZ
+#define SIGSTKSZ    8192
 #endif
 
 /*
  * Possible values for ss_flags in stack_t below.
  */
-#define	SS_ONSTACK	0x1
-#define	SS_DISABLE	0x2
+#define SS_ONSTACK  0x1
+#define SS_DISABLE  0x2
 
 #endif
 
 /*
  * Structure used in sigaltstack call.
  */
-typedef struct sigaltstack {
-  void     *ss_sp;    /* Stack base or pointer.  */
-  int       ss_flags; /* Flags.  */
-  size_t    ss_size;  /* Stack size.  */
+typedef struct sigaltstack
+{
+    void     *ss_sp;    /* Stack base or pointer.  */
+    int       ss_flags; /* Flags.  */
+    size_t    ss_size;  /* Stack size.  */
 } stack_t;
 
 #if __POSIX_VISIBLE
-#define SIG_SETMASK 0	/* set mask with sigprocmask() */
-#define SIG_BLOCK 1	/* set of signals to block */
-#define SIG_UNBLOCK 2	/* set of signals to, well, unblock */
+#define SIG_SETMASK 0   /* set mask with sigprocmask() */
+#define SIG_BLOCK 1 /* set of signals to block */
+#define SIG_UNBLOCK 2   /* set of signals to, well, unblock */
 
 int sigprocmask (int, const sigset_t *, sigset_t *);
 #endif
@@ -191,7 +197,7 @@ int sigsuspend (const sigset_t *);
 int sigwait (const sigset_t *, int *);
 
 #if !defined(__CYGWIN__) && !defined(__rtems__)
-/* These depend upon the type of sigset_t, which right now 
+/* These depend upon the type of sigset_t, which right now
    is always a long.. They're in the POSIX namespace, but
    are not ANSI. */
 #define sigaddset(what,sig) (*(what) |= (1<<(sig)), 0)
@@ -269,41 +275,41 @@ int sigqueue (pid_t, int, const union sigval);
 #define SIGLOST 15
 #define SIGSTOP 16
 #define SIGABRT 17
-#define SIGUSR1	18
-#define SIGUSR2	19
+#define SIGUSR1 18
+#define SIGUSR2 19
 #define NSIG    20
 #elif !defined(SIGTRAP)
-#define	SIGHUP	1	/* hangup */
-#define	SIGINT	2	/* interrupt */
-#define	SIGQUIT	3	/* quit */
-#define	SIGILL	4	/* illegal instruction (not reset when caught) */
-#define	SIGTRAP	5	/* trace trap (not reset when caught) */
-#define	SIGIOT	6	/* IOT instruction */
-#define	SIGABRT 6	/* used by abort, replace SIGIOT in the future */
-#define	SIGEMT	7	/* EMT instruction */
-#define	SIGFPE	8	/* floating point exception */
-#define	SIGKILL	9	/* kill (cannot be caught or ignored) */
-#define	SIGBUS	10	/* bus error */
-#define	SIGSEGV	11	/* segmentation violation */
-#define	SIGSYS	12	/* bad argument to system call */
-#define	SIGPIPE	13	/* write on a pipe with no one to read it */
-#define	SIGALRM	14	/* alarm clock */
-#define	SIGTERM	15	/* software termination signal from kill */
+#define SIGHUP  1   /* hangup */
+#define SIGINT  2   /* interrupt */
+#define SIGQUIT 3   /* quit */
+#define SIGILL  4   /* illegal instruction (not reset when caught) */
+#define SIGTRAP 5   /* trace trap (not reset when caught) */
+#define SIGIOT  6   /* IOT instruction */
+#define SIGABRT 6   /* used by abort, replace SIGIOT in the future */
+#define SIGEMT  7   /* EMT instruction */
+#define SIGFPE  8   /* floating point exception */
+#define SIGKILL 9   /* kill (cannot be caught or ignored) */
+#define SIGBUS  10  /* bus error */
+#define SIGSEGV 11  /* segmentation violation */
+#define SIGSYS  12  /* bad argument to system call */
+#define SIGPIPE 13  /* write on a pipe with no one to read it */
+#define SIGALRM 14  /* alarm clock */
+#define SIGTERM 15  /* software termination signal from kill */
 
 #if defined(__rtems__)
-#define	SIGURG	16	/* urgent condition on IO channel */
-#define	SIGSTOP	17	/* sendable stop signal not from tty */
-#define	SIGTSTP	18	/* stop signal from tty */
-#define	SIGCONT	19	/* continue a stopped process */
-#define	SIGCHLD	20	/* to parent on child stop or exit */
-#define	SIGCLD	20	/* System V name for SIGCHLD */
-#define	SIGTTIN	21	/* to readers pgrp upon background tty read */
-#define	SIGTTOU	22	/* like TTIN for output if (tp->t_local&LTOSTOP) */
-#define	SIGIO	23	/* input/output possible signal */
-#define	SIGPOLL	SIGIO	/* System V name for SIGIO */
-#define	SIGWINCH 24	/* window changed */
-#define	SIGUSR1 25	/* user defined signal 1 */
-#define	SIGUSR2 26	/* user defined signal 2 */
+#define SIGURG  16  /* urgent condition on IO channel */
+#define SIGSTOP 17  /* sendable stop signal not from tty */
+#define SIGTSTP 18  /* stop signal from tty */
+#define SIGCONT 19  /* continue a stopped process */
+#define SIGCHLD 20  /* to parent on child stop or exit */
+#define SIGCLD  20  /* System V name for SIGCHLD */
+#define SIGTTIN 21  /* to readers pgrp upon background tty read */
+#define SIGTTOU 22  /* like TTIN for output if (tp->t_local&LTOSTOP) */
+#define SIGIO   23  /* input/output possible signal */
+#define SIGPOLL SIGIO   /* System V name for SIGIO */
+#define SIGWINCH 24 /* window changed */
+#define SIGUSR1 25  /* user defined signal 1 */
+#define SIGUSR2 26  /* user defined signal 2 */
 
 /* Real-Time Signals Range, P1003.1b-1993, p. 61
    NOTE: By P1003.1b-1993, this should be at least RTSIG_MAX
@@ -314,42 +320,42 @@ int sigqueue (pid_t, int, const union sigval);
 #define __SIGFIRSTNOTRT SIGHUP
 #define __SIGLASTNOTRT  SIGUSR2
 
-#define NSIG	32      /* signal 0 implied */
+#define NSIG    32      /* signal 0 implied */
 
 #elif defined(__svr4__)
 /* svr4 specifics. different signals above 15, and sigaction. */
-#define	SIGUSR1	16
-#define SIGUSR2	17
-#define SIGCLD	18
-#define	SIGPWR	19
+#define SIGUSR1 16
+#define SIGUSR2 17
+#define SIGCLD  18
+#define SIGPWR  19
 #define SIGWINCH 20
-#define	SIGPOLL	22	/* 20 for x.out binaries!!!! */
-#define	SIGSTOP	23	/* sendable stop signal not from tty */
-#define	SIGTSTP	24	/* stop signal from tty */
-#define	SIGCONT	25	/* continue a stopped process */
-#define	SIGTTIN	26	/* to readers pgrp upon background tty read */
-#define	SIGTTOU	27	/* like TTIN for output if (tp->t_local&LTOSTOP) */
-#define NSIG	28	
+#define SIGPOLL 22  /* 20 for x.out binaries!!!! */
+#define SIGSTOP 23  /* sendable stop signal not from tty */
+#define SIGTSTP 24  /* stop signal from tty */
+#define SIGCONT 25  /* continue a stopped process */
+#define SIGTTIN 26  /* to readers pgrp upon background tty read */
+#define SIGTTOU 27  /* like TTIN for output if (tp->t_local&LTOSTOP) */
+#define NSIG    28
 #else
-#define	SIGURG	16	/* urgent condition on IO channel */
-#define	SIGSTOP	17	/* sendable stop signal not from tty */
-#define	SIGTSTP	18	/* stop signal from tty */
-#define	SIGCONT	19	/* continue a stopped process */
-#define	SIGCHLD	20	/* to parent on child stop or exit */
-#define	SIGCLD	20	/* System V name for SIGCHLD */
-#define	SIGTTIN	21	/* to readers pgrp upon background tty read */
-#define	SIGTTOU	22	/* like TTIN for output if (tp->t_local&LTOSTOP) */
-#define	SIGIO	23	/* input/output possible signal */
-#define	SIGPOLL	SIGIO	/* System V name for SIGIO */
-#define	SIGXCPU	24	/* exceeded CPU time limit */
-#define	SIGXFSZ	25	/* exceeded file size limit */
-#define	SIGVTALRM 26	/* virtual time alarm */
-#define	SIGPROF	27	/* profiling time alarm */
-#define	SIGWINCH 28	/* window changed */
-#define	SIGLOST 29	/* resource lost (eg, record-lock lost) */
-#define	SIGUSR1 30	/* user defined signal 1 */
-#define	SIGUSR2 31	/* user defined signal 2 */
-#define NSIG	32      /* signal 0 implied */
+#define SIGURG  16  /* urgent condition on IO channel */
+#define SIGSTOP 17  /* sendable stop signal not from tty */
+#define SIGTSTP 18  /* stop signal from tty */
+#define SIGCONT 19  /* continue a stopped process */
+#define SIGCHLD 20  /* to parent on child stop or exit */
+#define SIGCLD  20  /* System V name for SIGCHLD */
+#define SIGTTIN 21  /* to readers pgrp upon background tty read */
+#define SIGTTOU 22  /* like TTIN for output if (tp->t_local&LTOSTOP) */
+#define SIGIO   23  /* input/output possible signal */
+#define SIGPOLL SIGIO   /* System V name for SIGIO */
+#define SIGXCPU 24  /* exceeded CPU time limit */
+#define SIGXFSZ 25  /* exceeded file size limit */
+#define SIGVTALRM 26    /* virtual time alarm */
+#define SIGPROF 27  /* profiling time alarm */
+#define SIGWINCH 28 /* window changed */
+#define SIGLOST 29  /* resource lost (eg, record-lock lost) */
+#define SIGUSR1 30  /* user defined signal 1 */
+#define SIGUSR2 31  /* user defined signal 2 */
+#define NSIG    32      /* signal 0 implied */
 #endif
 #endif
 

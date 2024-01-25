@@ -38,8 +38,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
-  // Compile time constants for builtin types.
-  // In C++98 std::numeric_limits member functions cannot be used for this.
+// Compile time constants for builtin types.
+// In C++98 std::numeric_limits member functions cannot be used for this.
 #define __glibcxx_signed(_Tp) ((_Tp)(-1) < 0)
 #define __glibcxx_digits(_Tp) \
   (sizeof(_Tp) * __CHAR_BIT__ - __glibcxx_signed(_Tp))
@@ -51,39 +51,39 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   (__glibcxx_signed(_Tp) ? \
    (((((_Tp)1 << (__glibcxx_digits(_Tp) - 1)) - 1) << 1) + 1) : ~(_Tp)0)
 
-  template<typename _Value>
-    struct __numeric_traits_integer
-    {
+template<typename _Value>
+struct __numeric_traits_integer
+{
 #if __cplusplus >= 201103L
-      static_assert(std::__is_integer<_Value>::__value,
-		    "invalid specialization");
+    static_assert(std::__is_integer<_Value>::__value,
+                  "invalid specialization");
 #endif
 
-      // Only integers for initialization of member constant.
-      static const _Value __min = __glibcxx_min(_Value);
-      static const _Value __max = __glibcxx_max(_Value);
+    // Only integers for initialization of member constant.
+    static const _Value __min = __glibcxx_min(_Value);
+    static const _Value __max = __glibcxx_max(_Value);
 
-      // NB: these two also available in std::numeric_limits as compile
-      // time constants, but <limits> is big and we avoid including it.
-      static const bool __is_signed = __glibcxx_signed(_Value);
-      static const int __digits = __glibcxx_digits(_Value);      
-    };
+    // NB: these two also available in std::numeric_limits as compile
+    // time constants, but <limits> is big and we avoid including it.
+    static const bool __is_signed = __glibcxx_signed(_Value);
+    static const int __digits = __glibcxx_digits(_Value);
+};
 
-  template<typename _Value>
-    const _Value __numeric_traits_integer<_Value>::__min;
+template<typename _Value>
+const _Value __numeric_traits_integer<_Value>::__min;
 
-  template<typename _Value>
-    const _Value __numeric_traits_integer<_Value>::__max;
+template<typename _Value>
+const _Value __numeric_traits_integer<_Value>::__max;
 
-  template<typename _Value>
-    const bool __numeric_traits_integer<_Value>::__is_signed;
+template<typename _Value>
+const bool __numeric_traits_integer<_Value>::__is_signed;
 
-  template<typename _Value>
-    const int __numeric_traits_integer<_Value>::__digits;
+template<typename _Value>
+const int __numeric_traits_integer<_Value>::__digits;
 
 #if __cplusplus >= 201103L
-  template<typename _Tp>
-    using __int_traits = __numeric_traits_integer<_Tp>;
+template<typename _Tp>
+using __int_traits = __numeric_traits_integer<_Tp>;
 #endif
 
 #undef __glibcxx_signed
@@ -97,45 +97,45 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 #define __glibcxx_max_digits10(_Tp) \
   (2 + __glibcxx_floating(_Tp, __FLT_MANT_DIG__, __DBL_MANT_DIG__, \
-			  __LDBL_MANT_DIG__) * 643L / 2136)
+              __LDBL_MANT_DIG__) * 643L / 2136)
 
 #define __glibcxx_digits10(_Tp) \
   __glibcxx_floating(_Tp, __FLT_DIG__, __DBL_DIG__, __LDBL_DIG__)
 
 #define __glibcxx_max_exponent10(_Tp) \
   __glibcxx_floating(_Tp, __FLT_MAX_10_EXP__, __DBL_MAX_10_EXP__, \
-		     __LDBL_MAX_10_EXP__)
+             __LDBL_MAX_10_EXP__)
 
-  template<typename _Value>
-    struct __numeric_traits_floating
-    {
-      // Only floating point types. See N1822. 
-      static const int __max_digits10 = __glibcxx_max_digits10(_Value);
+template<typename _Value>
+struct __numeric_traits_floating
+{
+    // Only floating point types. See N1822.
+    static const int __max_digits10 = __glibcxx_max_digits10(_Value);
 
-      // See above comment...
-      static const bool __is_signed = true;
-      static const int __digits10 = __glibcxx_digits10(_Value);
-      static const int __max_exponent10 = __glibcxx_max_exponent10(_Value);
-    };
+    // See above comment...
+    static const bool __is_signed = true;
+    static const int __digits10 = __glibcxx_digits10(_Value);
+    static const int __max_exponent10 = __glibcxx_max_exponent10(_Value);
+};
 
-  template<typename _Value>
-    const int __numeric_traits_floating<_Value>::__max_digits10;
+template<typename _Value>
+const int __numeric_traits_floating<_Value>::__max_digits10;
 
-  template<typename _Value>
-    const bool __numeric_traits_floating<_Value>::__is_signed;
+template<typename _Value>
+const bool __numeric_traits_floating<_Value>::__is_signed;
 
-  template<typename _Value>
-    const int __numeric_traits_floating<_Value>::__digits10;
+template<typename _Value>
+const int __numeric_traits_floating<_Value>::__digits10;
 
-  template<typename _Value>
-    const int __numeric_traits_floating<_Value>::__max_exponent10;
+template<typename _Value>
+const int __numeric_traits_floating<_Value>::__max_exponent10;
 
-  template<typename _Value>
-    struct __numeric_traits
+template<typename _Value>
+struct __numeric_traits
     : public __conditional_type<std::__is_integer<_Value>::__value,
-				__numeric_traits_integer<_Value>,
-				__numeric_traits_floating<_Value> >::__type
-    { };
+      __numeric_traits_integer<_Value>,
+      __numeric_traits_floating<_Value> >::__type
+{ };
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace
@@ -145,4 +145,4 @@ _GLIBCXX_END_NAMESPACE_VERSION
 #undef __glibcxx_digits10
 #undef __glibcxx_max_exponent10
 
-#endif 
+#endif

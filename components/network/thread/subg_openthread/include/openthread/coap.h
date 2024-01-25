@@ -376,11 +376,11 @@ typedef void (*otCoapRequestHandler)(void *aContext, otMessage *aMessage, const 
  *
  */
 typedef otError (*otCoapBlockwiseReceiveHook)(void          *aContext,
-                                              const uint8_t *aBlock,
-                                              uint32_t       aPosition,
-                                              uint16_t       aBlockLength,
-                                              bool           aMore,
-                                              uint32_t       aTotalLength);
+        const uint8_t *aBlock,
+        uint32_t       aPosition,
+        uint16_t       aBlockLength,
+        bool           aMore,
+        uint32_t       aTotalLength);
 
 /**
  * This function pointer is called before the next block in a block-wise transfer is sent.
@@ -403,10 +403,10 @@ typedef otError (*otCoapBlockwiseReceiveHook)(void          *aContext,
  *
  */
 typedef otError (*otCoapBlockwiseTransmitHook)(void     *aContext,
-                                               uint8_t  *aBlock,
-                                               uint32_t  aPosition,
-                                               uint16_t *aBlockLength,
-                                               bool     *aMore);
+        uint8_t  *aBlock,
+        uint32_t  aPosition,
+        uint16_t *aBlockLength,
+        bool     *aMore);
 
 /**
  * This structure represents a CoAP resource.
@@ -914,13 +914,13 @@ otError otCoapSendRequestWithParameters(otInstance               *aInstance,
  *
  */
 otError otCoapSendRequestBlockWiseWithParameters(otInstance                 *aInstance,
-                                                 otMessage                  *aMessage,
-                                                 const otMessageInfo        *aMessageInfo,
-                                                 otCoapResponseHandler       aHandler,
-                                                 void                       *aContext,
-                                                 const otCoapTxParameters   *aTxParameters,
-                                                 otCoapBlockwiseTransmitHook aTransmitHook,
-                                                 otCoapBlockwiseReceiveHook  aReceiveHook);
+        otMessage                  *aMessage,
+        const otMessageInfo        *aMessageInfo,
+        otCoapResponseHandler       aHandler,
+        void                       *aContext,
+        const otCoapTxParameters   *aTxParameters,
+        otCoapBlockwiseTransmitHook aTransmitHook,
+        otCoapBlockwiseReceiveHook  aReceiveHook);
 
 /**
  * This function sends a CoAP request block-wise.
@@ -945,16 +945,16 @@ otError otCoapSendRequestBlockWiseWithParameters(otInstance                 *aIn
  *
  */
 static inline otError otCoapSendRequestBlockWise(otInstance                 *aInstance,
-                                                 otMessage                  *aMessage,
-                                                 const otMessageInfo        *aMessageInfo,
-                                                 otCoapResponseHandler       aHandler,
-                                                 void                       *aContext,
-                                                 otCoapBlockwiseTransmitHook aTransmitHook,
-                                                 otCoapBlockwiseReceiveHook  aReceiveHook)
+        otMessage                  *aMessage,
+        const otMessageInfo        *aMessageInfo,
+        otCoapResponseHandler       aHandler,
+        void                       *aContext,
+        otCoapBlockwiseTransmitHook aTransmitHook,
+        otCoapBlockwiseReceiveHook  aReceiveHook)
 {
     // NOLINTNEXTLINE(modernize-use-nullptr)
     return otCoapSendRequestBlockWiseWithParameters(aInstance, aMessage, aMessageInfo, aHandler, aContext, NULL,
-                                                    aTransmitHook, aReceiveHook);
+            aTransmitHook, aReceiveHook);
 }
 
 /**
@@ -1064,9 +1064,9 @@ void otCoapSetDefaultHandler(otInstance *aInstance, otCoapRequestHandler aHandle
  *
  */
 otError otCoapSendResponseWithParameters(otInstance               *aInstance,
-                                         otMessage                *aMessage,
-                                         const otMessageInfo      *aMessageInfo,
-                                         const otCoapTxParameters *aTxParameters);
+        otMessage                *aMessage,
+        const otMessageInfo      *aMessageInfo,
+        const otCoapTxParameters *aTxParameters);
 
 /**
  * This function sends a CoAP response block-wise from the server with custom transmission parameters.
@@ -1086,11 +1086,11 @@ otError otCoapSendResponseWithParameters(otInstance               *aInstance,
  *
  */
 otError otCoapSendResponseBlockWiseWithParameters(otInstance                 *aInstance,
-                                                  otMessage                  *aMessage,
-                                                  const otMessageInfo        *aMessageInfo,
-                                                  const otCoapTxParameters   *aTxParameters,
-                                                  void                       *aContext,
-                                                  otCoapBlockwiseTransmitHook aTransmitHook);
+        otMessage                  *aMessage,
+        const otMessageInfo        *aMessageInfo,
+        const otCoapTxParameters   *aTxParameters,
+        void                       *aContext,
+        otCoapBlockwiseTransmitHook aTransmitHook);
 
 /**
  * This function sends a CoAP response block-wise from the server.
@@ -1109,10 +1109,10 @@ otError otCoapSendResponseBlockWiseWithParameters(otInstance                 *aI
  *
  */
 static inline otError otCoapSendResponseBlockWise(otInstance                 *aInstance,
-                                                  otMessage                  *aMessage,
-                                                  const otMessageInfo        *aMessageInfo,
-                                                  void                       *aContext,
-                                                  otCoapBlockwiseTransmitHook aTransmitHook)
+        otMessage                  *aMessage,
+        const otMessageInfo        *aMessageInfo,
+        void                       *aContext,
+        otCoapBlockwiseTransmitHook aTransmitHook)
 {
     // NOLINTNEXTLINE(modernize-use-nullptr)
     return otCoapSendResponseBlockWiseWithParameters(aInstance, aMessage, aMessageInfo, NULL, aContext, aTransmitHook);

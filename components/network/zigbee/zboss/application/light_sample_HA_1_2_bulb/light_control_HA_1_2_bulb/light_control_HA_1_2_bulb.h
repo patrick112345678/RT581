@@ -54,22 +54,22 @@
 
 typedef struct light_control_bulb_params_s
 {
-  zb_uint8_t endpoint;
-  zb_uint16_t short_addr;
-  zb_ieee_addr_t ieee_addr;
+    zb_uint8_t endpoint;
+    zb_uint16_t short_addr;
+    zb_ieee_addr_t ieee_addr;
 } light_control_bulb_params_t;
 
 typedef enum light_control_button_state_s
 {
-  LIGHT_CONTROL_BUTTON_STATE_IDLE,
-  LIGHT_CONTROL_BUTTON_STATE_PRESSED,
-  LIGHT_CONTROL_BUTTON_STATE_UNPRESSED
+    LIGHT_CONTROL_BUTTON_STATE_IDLE,
+    LIGHT_CONTROL_BUTTON_STATE_PRESSED,
+    LIGHT_CONTROL_BUTTON_STATE_UNPRESSED
 } light_control_button_state_t;
 
 typedef struct light_control_button_s
 {
-  light_control_button_state_t button_state;
-  zb_time_t timestamp;
+    light_control_button_state_t button_state;
+    zb_time_t timestamp;
 } light_control_button_t;
 
 #ifndef ZB_USE_BUTTONS
@@ -82,20 +82,20 @@ void light_control_send_on_off_alarm_delayed(zb_uint8_t param);
 
 typedef struct light_control_ctx_s
 {
-  light_control_bulb_params_t bulb_params;
-  light_control_button_t button;
+    light_control_bulb_params_t bulb_params;
+    light_control_button_t button;
 #ifndef ZB_USE_BUTTONS
-  zb_uint8_t bulb_on_off_state;
-  zb_uint8_t bulb_on_off_failure_cnt;
+    zb_uint8_t bulb_on_off_state;
+    zb_uint8_t bulb_on_off_failure_cnt;
 #endif
 } light_control_ctx_t;
 
 typedef ZB_PACKED_PRE struct light_control_device_nvram_dataset_s
 {
-  zb_ieee_addr_t bulb_ieee_addr;
-  zb_uint16_t bulb_short_addr;
-  zb_uint8_t bulb_endpoint;
-  zb_uint8_t aligned;
+    zb_ieee_addr_t bulb_ieee_addr;
+    zb_uint16_t bulb_short_addr;
+    zb_uint8_t bulb_endpoint;
+    zb_uint8_t aligned;
 } ZB_PACKED_STRUCT
 light_control_device_nvram_dataset_t;
 

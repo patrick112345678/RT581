@@ -54,28 +54,28 @@ void zb_zcl_ias_zone_write_attr_hook(zb_uint8_t endpoint, zb_uint16_t attr_id, z
 */
 enum zb_zcl_ias_zone_attr_e
 {
-  /*! @brief ZoneState attribute, ZCL spec 8.2.2.2.1.1 */
-  ZB_ZCL_ATTR_IAS_ZONE_ZONESTATE_ID = 0x0000,
-  /*! @brief ZoneType attribute, ZCL spec 8.2.2.2.1.2 */
-  ZB_ZCL_ATTR_IAS_ZONE_ZONETYPE_ID = 0x0001,
-  /*! @brief ZoneStatus attribute, ZCL spec 8.2.2.2.1.3 */
-  ZB_ZCL_ATTR_IAS_ZONE_ZONESTATUS_ID = 0x0002,
-  /*! @brief IAS_CIE_Address  attribute, ZCL spec 8.2.2.2.2.1. */
-  ZB_ZCL_ATTR_IAS_ZONE_IAS_CIE_ADDRESS_ID = 0x0010,
-  /*! @brief ZoneID attribute, ZCL spec 8.2.2.1.2.2 */
-  ZB_ZCL_ATTR_IAS_ZONE_ZONEID_ID = 0x0011,
-  /*! @brief NumberOfZoneSensitivityLevelsSupported attribute, ZCL spec 8.2.2.1.2.3 */
-  ZB_ZCL_ATTR_IAS_ZONE_NUMBER_OF_ZONE_SENSITIVITY_LEVELS_SUPPORTED_ID = 0x0012,
-  /*! @brief CurrentZoneSensitivityLevel attribute, ZCL spec 8.2.2.1.2.4 */
-  ZB_ZCL_ATTR_IAS_ZONE_CURRENT_ZONE_SENSITIVITY_LEVEL_ID = 0x0013,
-  /* custom attribute */
-  ZB_ZCL_ATTR_CUSTOM_ZGP_CALIBRATION = 0x8000,
-  ZB_ZCL_ATTR_CUSTOM_ZGP_CLOUD_ACK = 0x8003,
-  ZB_ZCL_ATTR_CUSTOM_CIE_EP = 0xE001,
-  ZB_ZCL_ATTR_CUSTOM_CIE_SHORT_ADDR = 0xE002,
-  /* TODO: move this attribute to IAS Zone ZCL implementation */
-  /*! @brief Struct with pointers on User App callbacks */
-  ZB_ZCL_ATTR_IAS_ZONE_INT_CTX_ID = 0xeffe,
+    /*! @brief ZoneState attribute, ZCL spec 8.2.2.2.1.1 */
+    ZB_ZCL_ATTR_IAS_ZONE_ZONESTATE_ID = 0x0000,
+    /*! @brief ZoneType attribute, ZCL spec 8.2.2.2.1.2 */
+    ZB_ZCL_ATTR_IAS_ZONE_ZONETYPE_ID = 0x0001,
+    /*! @brief ZoneStatus attribute, ZCL spec 8.2.2.2.1.3 */
+    ZB_ZCL_ATTR_IAS_ZONE_ZONESTATUS_ID = 0x0002,
+    /*! @brief IAS_CIE_Address  attribute, ZCL spec 8.2.2.2.2.1. */
+    ZB_ZCL_ATTR_IAS_ZONE_IAS_CIE_ADDRESS_ID = 0x0010,
+    /*! @brief ZoneID attribute, ZCL spec 8.2.2.1.2.2 */
+    ZB_ZCL_ATTR_IAS_ZONE_ZONEID_ID = 0x0011,
+    /*! @brief NumberOfZoneSensitivityLevelsSupported attribute, ZCL spec 8.2.2.1.2.3 */
+    ZB_ZCL_ATTR_IAS_ZONE_NUMBER_OF_ZONE_SENSITIVITY_LEVELS_SUPPORTED_ID = 0x0012,
+    /*! @brief CurrentZoneSensitivityLevel attribute, ZCL spec 8.2.2.1.2.4 */
+    ZB_ZCL_ATTR_IAS_ZONE_CURRENT_ZONE_SENSITIVITY_LEVEL_ID = 0x0013,
+    /* custom attribute */
+    ZB_ZCL_ATTR_CUSTOM_ZGP_CALIBRATION = 0x8000,
+    ZB_ZCL_ATTR_CUSTOM_ZGP_CLOUD_ACK = 0x8003,
+    ZB_ZCL_ATTR_CUSTOM_CIE_EP = 0xE001,
+    ZB_ZCL_ATTR_CUSTOM_CIE_SHORT_ADDR = 0xE002,
+    /* TODO: move this attribute to IAS Zone ZCL implementation */
+    /*! @brief Struct with pointers on User App callbacks */
+    ZB_ZCL_ATTR_IAS_ZONE_INT_CTX_ID = 0xeffe,
 };
 
 /**
@@ -83,10 +83,10 @@ enum zb_zcl_ias_zone_attr_e
  */
 enum zb_zcl_ias_zone_zonestate_e
 {
-  /** @brief ZoneState not enrolled value */
+    /** @brief ZoneState not enrolled value */
     ZB_ZCL_IAS_ZONE_ZONESTATE_NOT_ENROLLED  = 0,
 
-  /** @brief ZoneState enrolled value */
+    /** @brief ZoneState enrolled value */
     ZB_ZCL_IAS_ZONE_ZONESTATE_ENROLLED  = 1,
 };
 
@@ -98,46 +98,46 @@ enum zb_zcl_ias_zone_zonestate_e
  */
 enum zb_zcl_ias_zone_zonetype_e
 {
-  /** @brief ZoneType Standard CIE System Alarm value */
+    /** @brief ZoneType Standard CIE System Alarm value */
     ZB_ZCL_IAS_ZONE_ZONETYPE_STANDARD_CIE  = 0x0000,
 
-  /** @brief ZoneType Motion value */
+    /** @brief ZoneType Motion value */
     ZB_ZCL_IAS_ZONE_ZONETYPE_MOTION  = 0x000d,
 
-  /** @brief ZoneType Contact switch value */
+    /** @brief ZoneType Contact switch value */
     ZB_ZCL_IAS_ZONE_ZONETYPE_CONTACT_SWITCH  = 0x0015,
 
-  /** @brief ZoneType Fire sensor value */
+    /** @brief ZoneType Fire sensor value */
     ZB_ZCL_IAS_ZONE_ZONETYPE_FIRE_SENSOR  = 0x0028,
 
-  /** @brief ZoneType Water sensor value */
+    /** @brief ZoneType Water sensor value */
     ZB_ZCL_IAS_ZONE_ZONETYPE_WATER_SENSOR  = 0x002a,
 
-  /** @brief ZoneType Gas sensor value */
+    /** @brief ZoneType Gas sensor value */
     ZB_ZCL_IAS_ZONE_ZONETYPE_GAS_SENSOR  = 0x002b,
 
-  /** @brief ZoneType Personal emergency value */
+    /** @brief ZoneType Personal emergency value */
     ZB_ZCL_IAS_ZONE_ZONETYPE_PERSONAL_EMERGENCY  = 0x002c,
 
-  /** @brief ZoneType Vibration / Movement sensor value */
+    /** @brief ZoneType Vibration / Movement sensor value */
     ZB_ZCL_IAS_ZONE_ZONETYPE_VIBRATION_MOVEMENT  = 0x002d,
 
-  /** @brief ZoneType Remote Control value */
+    /** @brief ZoneType Remote Control value */
     ZB_ZCL_IAS_ZONE_ZONETYPE_REMOTE_CONTROL  = 0x010f,
 
-  /** @brief ZoneType Key fob value */
+    /** @brief ZoneType Key fob value */
     ZB_ZCL_IAS_ZONE_ZONETYPE_KEY_FOB  = 0x0115,
 
-  /** @brief ZoneType Keypad value */
+    /** @brief ZoneType Keypad value */
     ZB_ZCL_IAS_ZONE_ZONETYPE_KEYPAD  = 0x021d,
 
-  /** @brief ZoneType Standard Warning Device  value */
+    /** @brief ZoneType Standard Warning Device  value */
     ZB_ZCL_IAS_ZONE_ZONETYPE_STANDARD_WARNING  = 0x0225,
 
-  /** @brief Manufacturer specific ZoneType value */
+    /** @brief Manufacturer specific ZoneType value */
     ZB_ZCL_IAS_ZONE_ZONETYPE_MANUF_SPEC  = 0x8000,
 
-  /** @brief ZoneType Invalid Zone Type value */
+    /** @brief ZoneType Invalid Zone Type value */
     ZB_ZCL_IAS_ZONE_ZONETYPE_INVALID  = 0xffff,
 
 };
@@ -147,26 +147,26 @@ enum zb_zcl_ias_zone_zonetype_e
 */
 enum zb_zcl_ias_zone_zonestatus_e
 {
-  /** Alarm 1 */
-  ZB_ZCL_IAS_ZONE_ZONE_STATUS_ALARM1      = 1 << 0,
-  /** Alarm 2 */
-  ZB_ZCL_IAS_ZONE_ZONE_STATUS_ALARM2      = 1 << 1,
-  /** Tamper */
-  ZB_ZCL_IAS_ZONE_ZONE_STATUS_TAMPER      = 1 << 2,
-  /** Battery */
-  ZB_ZCL_IAS_ZONE_ZONE_STATUS_BATTERY     = 1 << 3,
-  /** Supervision reports */
-  ZB_ZCL_IAS_ZONE_ZONE_STATUS_SUPERVISION = 1 << 4,
-  /** Restore reports */
-  ZB_ZCL_IAS_ZONE_ZONE_STATUS_RESTORE     = 1 << 5,
-  /** Trouble */
-  ZB_ZCL_IAS_ZONE_ZONE_STATUS_TROUBLE     = 1 << 6,
-  /** AC (mains) */
-  ZB_ZCL_IAS_ZONE_ZONE_STATUS_AC_MAINS    = 1 << 7,
-  /** Test */
-  ZB_ZCL_IAS_ZONE_ZONE_STATUS_TEST            = 1 << 8,
-  /** Battery Defect */
-  ZB_ZCL_IAS_ZONE_ZONE_STATUS_BATTERY_DEFECT  = 1 << 9,
+    /** Alarm 1 */
+    ZB_ZCL_IAS_ZONE_ZONE_STATUS_ALARM1      = 1 << 0,
+    /** Alarm 2 */
+    ZB_ZCL_IAS_ZONE_ZONE_STATUS_ALARM2      = 1 << 1,
+    /** Tamper */
+    ZB_ZCL_IAS_ZONE_ZONE_STATUS_TAMPER      = 1 << 2,
+    /** Battery */
+    ZB_ZCL_IAS_ZONE_ZONE_STATUS_BATTERY     = 1 << 3,
+    /** Supervision reports */
+    ZB_ZCL_IAS_ZONE_ZONE_STATUS_SUPERVISION = 1 << 4,
+    /** Restore reports */
+    ZB_ZCL_IAS_ZONE_ZONE_STATUS_RESTORE     = 1 << 5,
+    /** Trouble */
+    ZB_ZCL_IAS_ZONE_ZONE_STATUS_TROUBLE     = 1 << 6,
+    /** AC (mains) */
+    ZB_ZCL_IAS_ZONE_ZONE_STATUS_AC_MAINS    = 1 << 7,
+    /** Test */
+    ZB_ZCL_IAS_ZONE_ZONE_STATUS_TEST            = 1 << 8,
+    /** Battery Defect */
+    ZB_ZCL_IAS_ZONE_ZONE_STATUS_BATTERY_DEFECT  = 1 << 9,
 };
 
 /** @brief IAS Zone ZoneStatus attribute default value */
@@ -346,12 +346,12 @@ enum zb_zcl_ias_zone_zonestatus_e
 */
 enum zb_zcl_ias_zone_cmd_e
 {
-  ZB_ZCL_CMD_IAS_ZONE_ZONE_ENROLL_RESPONSE_ID        = 0x00, /**< "Zone Enroll Response" command,
+    ZB_ZCL_CMD_IAS_ZONE_ZONE_ENROLL_RESPONSE_ID        = 0x00, /**< "Zone Enroll Response" command,
                                                               * ZCL spec 8.2.2.3.1 */
-  /**< "Initiate Normal Operation Mode" command, ZCL spec 8.2.2.2.1 */
-  ZB_ZCL_CMD_IAS_ZONE_INITIATE_NORMAL_OPERATION_MODE_ID        = 0x01,
-  /**< "Initiate Test Mode" command, ZCL spec 8.2.2.2.2.3 */
-  ZB_ZCL_CMD_IAS_ZONE_INITIATE_TEST_MODE_ID        = 0x02,
+    /**< "Initiate Normal Operation Mode" command, ZCL spec 8.2.2.2.1 */
+    ZB_ZCL_CMD_IAS_ZONE_INITIATE_NORMAL_OPERATION_MODE_ID        = 0x01,
+    /**< "Initiate Test Mode" command, ZCL spec 8.2.2.2.2.3 */
+    ZB_ZCL_CMD_IAS_ZONE_INITIATE_TEST_MODE_ID        = 0x02,
 };
 
 
@@ -360,9 +360,9 @@ enum zb_zcl_ias_zone_cmd_e
 */
 enum zb_zcl_ias_zone_resp_cmd_e
 {
-  ZB_ZCL_CMD_IAS_ZONE_ZONE_STATUS_CHANGE_NOT_ID = 0x00,  /**< "Zone Status Change Notification" command.
+    ZB_ZCL_CMD_IAS_ZONE_ZONE_STATUS_CHANGE_NOT_ID = 0x00,  /**< "Zone Status Change Notification" command.
                                                           ZCL spec 8.2.2.4.1 */
-  ZB_ZCL_CMD_IAS_ZONE_ZONE_ENROLL_REQUEST_ID    = 0x01   /**< "Zone Enroll Request" command.
+    ZB_ZCL_CMD_IAS_ZONE_ZONE_ENROLL_REQUEST_ID    = 0x01   /**< "Zone Enroll Request" command.
                                                           ZCL spec 8.2.2.4.2 */
 };
 
@@ -386,10 +386,10 @@ enum zb_zcl_ias_zone_resp_cmd_e
 /*! @brief Structure representsation of Initiate Test Mode - Errata to 05-3520-29 Spec, 1.1.23.2.2.1 */
 typedef ZB_PACKED_PRE struct zb_zcl_ias_zone_init_test_mode_ha_s
 {
-  /** Test mode duration */
-  zb_uint8_t test_mode_duration;
-  /** Current Zone Sensitivity Level */
-  zb_uint8_t current_zone_sens_level;
+    /** Test mode duration */
+    zb_uint8_t test_mode_duration;
+    /** Current Zone Sensitivity Level */
+    zb_uint8_t current_zone_sens_level;
 } ZB_PACKED_STRUCT zb_zcl_ias_zone_init_test_mode_t;
 
 /** @brief Macro for getting "Initiate Test Mode" command
@@ -470,14 +470,14 @@ typedef ZB_PACKED_PRE struct zb_zcl_ias_zone_init_test_mode_ha_s
  * see ZCL spec 8.2.2.4.1.1 */
 typedef ZB_PACKED_PRE struct zb_zcl_ias_zone_status_change_not_s
 {
-  /** Zone Status, see @ref zb_zcl_ias_zone_zonestatus_e*/
-  zb_uint16_t zone_status;
-  /** Extended Status */
-  zb_uint8_t extended_status;
-  /** Zone ID*/
-  zb_uint8_t zone_id;
-  /** Delay */
-  zb_uint16_t delay;
+    /** Zone Status, see @ref zb_zcl_ias_zone_zonestatus_e*/
+    zb_uint16_t zone_status;
+    /** Extended Status */
+    zb_uint8_t extended_status;
+    /** Zone ID*/
+    zb_uint8_t zone_id;
+    /** Delay */
+    zb_uint16_t delay;
 } ZB_PACKED_STRUCT zb_zcl_ias_zone_status_change_not_t;
 
 
@@ -543,10 +543,10 @@ typedef ZB_PACKED_PRE struct zb_zcl_ias_zone_status_change_not_s
  * see ZCL spec 8.2.2.4.1.2 */
 typedef ZB_PACKED_PRE struct zb_zcl_ias_zone_enroll_request_s
 {
-  /** Zone Type, see @ref zb_zcl_ias_zone_zonetype_e*/
-  zb_uint16_t zone_type;
-  /** Manufacturer code */
-  zb_uint16_t manufacturer_code;
+    /** Zone Type, see @ref zb_zcl_ias_zone_zonetype_e*/
+    zb_uint16_t zone_type;
+    /** Manufacturer code */
+    zb_uint16_t manufacturer_code;
 } ZB_PACKED_STRUCT zb_zcl_ias_zone_enroll_request_t;
 
 
@@ -606,24 +606,24 @@ typedef ZB_PACKED_PRE struct zb_zcl_ias_zone_enroll_request_s
  * see ZCL spec 8.2.2.3.1.1 */
 enum zb_zcl_ias_zone_enroll_responce_code_e
 {
-  /** Success */
-  ZB_ZCL_IAS_ZONE_ENROLL_RESPONCE_CODE_SUCCESS          = 0x00,
-  /** Not supported */
-  ZB_ZCL_IAS_ZONE_ENROLL_RESPONCE_CODE_NOT_SUPPORTED    = 0x01,
-  /** No enroll permit */
-  ZB_ZCL_IAS_ZONE_ENROLL_RESPONCE_CODE_NO_ENROLL        = 0x02,
-  /** Too many zones  */
-  ZB_ZCL_IAS_ZONE_ENROLL_RESPONCE_CODE_TOO_MANY_ZONES   = 0x03,
+    /** Success */
+    ZB_ZCL_IAS_ZONE_ENROLL_RESPONCE_CODE_SUCCESS          = 0x00,
+    /** Not supported */
+    ZB_ZCL_IAS_ZONE_ENROLL_RESPONCE_CODE_NOT_SUPPORTED    = 0x01,
+    /** No enroll permit */
+    ZB_ZCL_IAS_ZONE_ENROLL_RESPONCE_CODE_NO_ENROLL        = 0x02,
+    /** Too many zones  */
+    ZB_ZCL_IAS_ZONE_ENROLL_RESPONCE_CODE_TOO_MANY_ZONES   = 0x03,
 };
 
 /*! @brief Structure representsation of Enroll response command payload
  * see ZCL spec 8.2.2.3.1.1 */
 typedef ZB_PACKED_PRE struct zb_zcl_ias_zone_enroll_res_s
 {
-  /** Enroll response code */
-  zb_uint8_t code;
-  /** Zone ID */
-  zb_uint8_t zone_id;
+    /** Enroll response code */
+    zb_uint8_t code;
+    /** Zone ID */
+    zb_uint8_t zone_id;
 } ZB_PACKED_STRUCT zb_zcl_ias_zone_enroll_res_t;
 
 /*! @brief Send "Zone Enroll response" command, see ZCL spec 8.2.2.3.1
@@ -718,9 +718,9 @@ void zb_zcl_ias_zone_change_status(zb_uint8_t param);
 */
 typedef struct zb_zcl_ias_zone_status_param_s
 {
-  zb_uint16_t bits;           /*!< Bits map, see @ref zb_zcl_ias_zone_zonestatus_e */
-  zb_bool_t is_set;           /*!< true - set, fasle - clean */
-  zb_uint8_t endpoint;        /*!< endpoint */
+    zb_uint16_t bits;           /*!< Bits map, see @ref zb_zcl_ias_zone_zonestatus_e */
+    zb_bool_t is_set;           /*!< true - set, fasle - clean */
+    zb_uint8_t endpoint;        /*!< endpoint */
 
 } zb_zcl_ias_zone_status_param_t;
 
@@ -760,9 +760,9 @@ typedef struct zb_zcl_ias_zone_status_param_s
  */
 typedef struct zb_zcl_ias_zone_notification_param_s
 {
-  zb_uint8_t  ep;             /*!< endpoint number */
-  zb_uint16_t status_val;     /*!< new value of zone_zone_status, see @ref zb_zcl_ias_zone_zonestatus_e */
-  zb_uint16_t delay;          /*!< Delay */
+    zb_uint8_t  ep;             /*!< endpoint number */
+    zb_uint16_t status_val;     /*!< new value of zone_zone_status, see @ref zb_zcl_ias_zone_zonestatus_e */
+    zb_uint16_t delay;          /*!< Delay */
 }
 zb_zcl_ias_zone_notification_param_t;
 
@@ -787,27 +787,27 @@ zb_zcl_ias_zone_notification_param_t;
    callback that is registered with zb_zcl_ias_zone_registrer_cb()
 */
 zb_bool_t zb_zcl_ias_zone_set_status(
-  zb_uint8_t ep,
-  zb_uint16_t new_val,
-  zb_uint16_t delay,
-  zb_uint8_t buf_param);
+    zb_uint8_t ep,
+    zb_uint16_t new_val,
+    zb_uint16_t delay,
+    zb_uint8_t buf_param);
 
 enum zb_zcl_general_cb_params_e
 {
-  ZB_ZCL_VALID_CIE_ADDR_SET = 1,
-  ZB_ZCL_CURR_ZONE_SENSITIVITY_LEVEL_SET = 2,
-  ZB_ZCL_INIT_TEST_MODE = 3,
-  ZB_ZCL_INIT_NORMAL_MODE = 4,
+    ZB_ZCL_VALID_CIE_ADDR_SET = 1,
+    ZB_ZCL_CURR_ZONE_SENSITIVITY_LEVEL_SET = 2,
+    ZB_ZCL_INIT_TEST_MODE = 3,
+    ZB_ZCL_INIT_NORMAL_MODE = 4,
 };
 
-typedef zb_ret_t (ZB_CODE * zb_ias_zone_app_callback_t)(zb_uint8_t param, zb_uint16_t general_val);
+typedef zb_ret_t (ZB_CODE *zb_ias_zone_app_callback_t)(zb_uint8_t param, zb_uint16_t general_val);
 
 typedef struct zb_zcl_ias_zone_int_ctx_s
 {
-  zb_callback_t process_result_cb;
-  zb_ias_zone_app_callback_t general_cb;
-  zb_uint8_t restore_current_zone_sens_level;
-  zb_uint8_t new_current_zone_sens_level;
+    zb_callback_t process_result_cb;
+    zb_ias_zone_app_callback_t general_cb;
+    zb_uint8_t restore_current_zone_sens_level;
+    zb_uint8_t new_current_zone_sens_level;
 }
 zb_zcl_ias_zone_int_ctx_t;
 
@@ -815,17 +815,17 @@ zb_zcl_ias_zone_int_ctx_t;
 */
 typedef struct zb_zcl_ias_zone_enroll_response_value_param_s
 {
-  zb_uint8_t enroll_response;  /*!< Enroll response code */
-  zb_uint8_t zone_id;          /*!< Zone ID */
+    zb_uint8_t enroll_response;  /*!< Enroll response code */
+    zb_uint8_t zone_id;          /*!< Zone ID */
 } zb_zcl_ias_zone_enroll_response_value_param_t;
 
 /*! Struct for invoke User App & continue after */
 typedef struct zb_zcl_ias_zone_enroll_response_user_app_schedule_e
 {
-  /**< Parameters for continue command, see @ref zb_zcl_parsed_hdr_s */
-  zb_zcl_parsed_hdr_t cmd_info;
-  /**< User App command parameters, see @ref zb_zcl_ias_zone_enroll_response_value_param_s */
-  zb_zcl_ias_zone_enroll_response_value_param_t param;
+    /**< Parameters for continue command, see @ref zb_zcl_parsed_hdr_s */
+    zb_zcl_parsed_hdr_t cmd_info;
+    /**< User App command parameters, see @ref zb_zcl_ias_zone_enroll_response_value_param_s */
+    zb_zcl_ias_zone_enroll_response_value_param_t param;
 } zb_zcl_ias_zone_enroll_response_user_app_schedule_t;
 
 #define ZB_ZCL_IAS_ZONE_ENROLL_RESPONSE_SCHEDULE_USER_APP(buffer, pcmd_info, enroll_response_, zone_id_) \
@@ -854,7 +854,7 @@ void zb_zcl_ias_zone_register_cb(
    @return ZB_TRUE if command is sent
 */
 zb_bool_t zb_zcl_ias_zone_check_attr_notify(
-  zb_uint8_t buf_param);
+    zb_uint8_t buf_param);
 
 /**
    @brief fills in notification command and sends it

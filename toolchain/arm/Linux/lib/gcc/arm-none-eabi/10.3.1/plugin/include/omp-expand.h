@@ -27,6 +27,6 @@ struct omp_region;
 extern void omp_expand_local (basic_block head);
 extern void omp_free_regions (void);
 extern bool omp_make_gimple_edges (basic_block bb, struct omp_region **region,
-				   int *region_idx);
+                                   int *region_idx);
 
 #endif /* GCC_OMP_EXPAND_H */

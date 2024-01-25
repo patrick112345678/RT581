@@ -331,12 +331,12 @@ void cpc_set_state(cpc_endpoint_handle_t *endpoint_handle, cpc_endpoint_state_t 
 
     MCU_ATOMIC_LOAD(ep, (cpc_endpoint_t *)endpoint_handle->ep);
 
-    if(ep)
+    if (ep)
     {
         ep->state = state;
         ep->seq = 0;
         ep->ack = 0;
-        ep->frames_count_re_transmit_queue = 0;        
+        ep->frames_count_re_transmit_queue = 0;
     }
     leave_critical_section();
 }
@@ -459,7 +459,7 @@ status_t cpc_close_endpoint(cpc_endpoint_handle_t *endpoint_handle)
 
     // Set endpoint to null, so we cannot read and send data anymore or
     // closing the endpoint again
-     endpoint_handle->ep = NULL;
+    endpoint_handle->ep = NULL;
 
     // ep->state = CPC_STATE_OPEN;
     return CPC_STATUS_OK;
@@ -777,7 +777,7 @@ void cpc_drv_notify_tx_complete(cpc_buffer_handle_t *buffer_handle)
     endpoint = buffer_handle->endpoint;
 
     if ((endpoint == NULL) // Endpoint already closed
-        || ((frame_type != CPC_HDLC_FRAME_TYPE_DATA) && (frame_type != CPC_HDLC_FRAME_TYPE_UNNUMBERED)))
+            || ((frame_type != CPC_HDLC_FRAME_TYPE_DATA) && (frame_type != CPC_HDLC_FRAME_TYPE_UNNUMBERED)))
     {
         if ((frame_type == CPC_HDLC_FRAME_TYPE_DATA) || (frame_type == CPC_HDLC_FRAME_TYPE_UNNUMBERED))
         {
@@ -1268,8 +1268,8 @@ static void decode_packet(void)
         LOCK_ENDPOINT(endpoint);
 
         if ((data_length == 0) && (type == CPC_HDLC_FRAME_TYPE_DATA ||
-             type == CPC_HDLC_FRAME_TYPE_SUPERVISORY) &&
-            rx_handle->reason == CPC_REJECT_NO_ERROR)
+                                   type == CPC_HDLC_FRAME_TYPE_SUPERVISORY) &&
+                rx_handle->reason == CPC_REJECT_NO_ERROR)
         {
             // Clean Tx queue
             receive_ack(endpoint, ack);
@@ -1436,7 +1436,7 @@ static void receive_ack(cpc_endpoint_t *endpoint,
         {
             frame->on_write_complete_pending = true;
         }
-        
+
         cpc_free_transmit_queue_item(item);
 
         // Update transmit window
@@ -1449,13 +1449,13 @@ static void receive_ack(cpc_endpoint_t *endpoint,
 
     // Put data frames hold in the endpoint in the tx queue if space in transmit window
     while (endpoint->holding_list != NULL && endpoint->current_tx_window_space > 0)
-    {     
+    {
         item_node = CPC_POP_BUFFER_HANDLE_LIST(&endpoint->holding_list, cpc_transmit_queue_item_t);
         item = SLIST_ENTRY(item_node, cpc_transmit_queue_item_t, node);
         frame = item->handle;
         cpc_push_back_buffer_handle(&transmit_queue, item_node, frame);
         endpoint->current_tx_window_space--;
-        
+
     }
     leave_critical_section();
 }
@@ -1565,8 +1565,10 @@ static void receive_iframe(cpc_endpoint_t *endpoint,
         if (reply_data != NULL && reply_data_length > 0)
         {
             status = write(endpoint, reply_data, reply_data_length, CPC_FLAG_INFORMATION_FINAL, on_write_completed_arg);
-            if(status != CPC_STATUS_OK)
+            if (status != CPC_STATUS_OK)
+            {
                 log_error("w status 0x%04X", status);
+            }
             configASSERT(status == CPC_STATUS_OK);
         }
         else
@@ -2050,7 +2052,7 @@ static status_t process_tx_queue(void)
         }
         else
         {
-            
+
             cpc_free_transmit_queue_item(item);
         }
     }
@@ -2189,7 +2191,7 @@ static void clean_single_queue_item(cpc_endpoint_t *endpoint,
     }
     else
     {
-        
+
         cpc_free_transmit_queue_item(queue_item);
     }
 }
@@ -2251,7 +2253,7 @@ static void clean_tx_queues(cpc_endpoint_t *endpoint)
             queue_item->handle->endpoint = NULL;
             queue_item->handle->arg = arg;
         }
-        
+
         cpc_free_transmit_queue_item(queue_item);
         endpoint->frames_count_re_transmit_queue--;
     }
@@ -2317,7 +2319,7 @@ static void re_transmit_timeout_callback(cpc_timer_handle_t *handle, void *data)
     else
     {
         buffer_handle->endpoint->re_transmit_timeout *= 2; // RTO(new) = RTO(before retransmission) *2 )
-                                                           // this is explained in Karn’s Algorithm
+        // this is explained in Karn’s Algorithm
         if (buffer_handle->endpoint->re_transmit_timeout > cpc_timer_ms_to_tick(CPC_MAX_RE_TRANSMIT_TIMEOUT_MS))
         {
             buffer_handle->endpoint->re_transmit_timeout = cpc_timer_ms_to_tick(CPC_MAX_RE_TRANSMIT_TIMEOUT_MS);

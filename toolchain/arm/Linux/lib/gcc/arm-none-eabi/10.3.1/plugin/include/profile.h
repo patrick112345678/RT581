@@ -25,14 +25,14 @@ along with GCC; see the file COPYING3.  If not see
 /* Additional information about edges. */
 struct edge_profile_info
 {
-  unsigned int count_valid:1;
+    unsigned int count_valid: 1;
 
-  /* Is on the spanning tree.  */
-  unsigned int on_tree:1;
+    /* Is on the spanning tree.  */
+    unsigned int on_tree: 1;
 
-  /* Pretend this edge does not exist (it is abnormal and we've
-     inserted a fake to compensate).  */
-  unsigned int ignore:1;
+    /* Pretend this edge does not exist (it is abnormal and we've
+       inserted a fake to compensate).  */
+    unsigned int ignore: 1;
 };
 
 #define EDGE_INFO(e)  ((struct edge_profile_info *) (e)->aux)
@@ -40,22 +40,24 @@ struct edge_profile_info
 /* Helpers annotating edges/basic blocks to GCOV counts.  */
 
 extern vec<gcov_type> bb_gcov_counts;
-extern hash_map<edge,gcov_type> *edge_gcov_counts;
+extern hash_map<edge, gcov_type> *edge_gcov_counts;
 
 inline gcov_type &
 edge_gcov_count (edge e)
 {
-  bool existed;
-  gcov_type &c = edge_gcov_counts->get_or_insert (e, &existed);
-  if (!existed)
-    c = 0;
-  return c;
+    bool existed;
+    gcov_type &c = edge_gcov_counts->get_or_insert (e, &existed);
+    if (!existed)
+    {
+        c = 0;
+    }
+    return c;
 }
 
 inline gcov_type &
 bb_gcov_count (basic_block bb)
 {
-  return bb_gcov_counts[bb->index];
+    return bb_gcov_counts[bb->index];
 }
 
 typedef struct gcov_working_set_info gcov_working_set_t;

@@ -33,24 +33,24 @@
 
 enum zb_zdo_rejoin_backoff_state_e
 {
-  ZB_ZDO_REJOIN_BACKOFF_IDLE = 0,
-  ZB_ZDO_REJOIN_BACKOFF_TIMER_RUNNING,
-  ZB_ZDO_REJOIN_BACKOFF_COMMAND_SCHEDULED,
-  ZB_ZDO_REJOIN_BACKOFF_COMMAND_SENT,
-  ZB_ZDO_REJOIN_BACKOFF_COMMAND_DONE
+    ZB_ZDO_REJOIN_BACKOFF_IDLE = 0,
+    ZB_ZDO_REJOIN_BACKOFF_TIMER_RUNNING,
+    ZB_ZDO_REJOIN_BACKOFF_COMMAND_SCHEDULED,
+    ZB_ZDO_REJOIN_BACKOFF_COMMAND_SENT,
+    ZB_ZDO_REJOIN_BACKOFF_COMMAND_DONE
 };
 
 /** Rejoin backoff context */
 typedef struct zb_zdo_rejoin_backoff_s
 {
-  enum zb_zdo_rejoin_backoff_state_e rjb_state;
-  zb_uint8_t                         rjb_cnt;
-  /* Determines whether device goes secure rejoin. */
-  zb_bool_t                          rjb_do_secure;
-  /* If set to ZB_FALSE device will search on current channel only */
-  zb_bool_t                          rjb_scan_all_chan_mask;
-  zb_bool_t                          rjb_insecure;
-  zb_channel_page_t                  rjb_chan_mask_list[ZB_CHANNEL_PAGES_NUM];
+    enum zb_zdo_rejoin_backoff_state_e rjb_state;
+    zb_uint8_t                         rjb_cnt;
+    /* Determines whether device goes secure rejoin. */
+    zb_bool_t                          rjb_do_secure;
+    /* If set to ZB_FALSE device will search on current channel only */
+    zb_bool_t                          rjb_scan_all_chan_mask;
+    zb_bool_t                          rjb_insecure;
+    zb_channel_page_t                  rjb_chan_mask_list[ZB_CHANNEL_PAGES_NUM];
 }
 zb_zdo_rejoin_backoff_t;
 

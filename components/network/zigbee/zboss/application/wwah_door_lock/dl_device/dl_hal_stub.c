@@ -28,14 +28,14 @@
 
 zb_ret_t dl_hal_init(void)
 {
-  return RET_OK;
+    return RET_OK;
 }
 
 zb_bool_t dl_get_button_state(zb_uint16_t button)
 {
-  ZVUNUSED(button);
+    ZVUNUSED(button);
 
-  /*BUTTON is always off*/
-  return ZB_FALSE;
+    /*BUTTON is always off*/
+    return ZB_FALSE;
 }
 

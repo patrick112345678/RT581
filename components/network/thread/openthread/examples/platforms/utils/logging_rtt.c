@@ -136,7 +136,10 @@ exit:
     return;
 }
 
-void utilsLogRttDeinit(void) { sLogInitialized = false; }
+void utilsLogRttDeinit(void)
+{
+    sLogInitialized = false;
+}
 
 void utilsLogRttOutput(otLogLevel aLogLevel, otLogRegion aLogRegion, const char *aFormat, va_list ap)
 {

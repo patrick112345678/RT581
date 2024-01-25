@@ -60,30 +60,30 @@
 
 enum simple_gw_device_state_e
 {
-  NO_DEVICE,
-  MATCH_DESC_DISCOVERY,
-  IEEE_ADDR_DISCOVERY,
-  CONFIGURE_BINDING,
-  CONFIGURE_REPORTING,
-  COMPLETED,
-  COMPLETED_NO_TOGGLE,
+    NO_DEVICE,
+    MATCH_DESC_DISCOVERY,
+    IEEE_ADDR_DISCOVERY,
+    CONFIGURE_BINDING,
+    CONFIGURE_REPORTING,
+    COMPLETED,
+    COMPLETED_NO_TOGGLE,
 #if defined IAS_CIE_ENABLED
-  WRITE_CIE_ADDR,
+    WRITE_CIE_ADDR,
 #endif
 };
 
 typedef ZB_PACKED_PRE struct simple_gw_device_params_s
 {
-  zb_uint8_t dev_state;
-  zb_uint8_t endpoint;
-  zb_uint16_t short_addr;
-  zb_ieee_addr_t ieee_addr;
-  zb_uint8_t pending_toggle;
+    zb_uint8_t dev_state;
+    zb_uint8_t endpoint;
+    zb_uint16_t short_addr;
+    zb_ieee_addr_t ieee_addr;
+    zb_uint8_t pending_toggle;
 } simple_gw_device_params_t;
 
 typedef ZB_PACKED_PRE struct simple_gw_device_ctx_s
 {
-  simple_gw_device_params_t devices[SIMPLE_GW_DEV_NUMBER];
+    simple_gw_device_params_t devices[SIMPLE_GW_DEV_NUMBER];
 } ZB_PACKED_STRUCT simple_gw_device_ctx_t;
 
 typedef simple_gw_device_ctx_t simple_gw_device_nvram_dataset_t;
@@ -124,9 +124,9 @@ void find_onoff_device_tmo(zb_uint8_t param);
 /* Control4 Network Cluster attributes */
 typedef struct simple_control4_gw_attr_s
 {
-  zb_uint16_t access_point_node_ID;
-  zb_ieee_addr_t access_point_long_ID;
-  zb_uint8_t  access_point_cost;
+    zb_uint16_t access_point_node_ID;
+    zb_ieee_addr_t access_point_long_ID;
+    zb_uint8_t  access_point_cost;
 }
 simple_control4_gw_attr_t;
 

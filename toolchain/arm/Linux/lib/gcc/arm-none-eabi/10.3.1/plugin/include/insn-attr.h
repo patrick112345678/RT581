@@ -361,7 +361,7 @@ extern int hook_int_rtx_1 (rtx);
 #endif
 
 
-#define ATTR_FLAG_forward	0x1
-#define ATTR_FLAG_backward	0x2
+#define ATTR_FLAG_forward   0x1
+#define ATTR_FLAG_backward  0x2
 
 #endif /* GCC_INSN_ATTR_H */

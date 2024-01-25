@@ -50,17 +50,17 @@ zb_zgpd_test_callbacks_t *g_test_cbs = NULL;
 
 void zgpd_channel_config_ind_test(zb_uint8_t param)
 {
-  TEST_OR_REAL_CALL_1(zgpd_channel_config_ind, param);
+    TEST_OR_REAL_CALL_1(zgpd_channel_config_ind, param);
 }
 
 void zgpd_commiss_reply_ind_test(zb_uint8_t param)
 {
-  TEST_OR_REAL_CALL_1(zgpd_commiss_reply_ind, param);
+    TEST_OR_REAL_CALL_1(zgpd_commiss_reply_ind, param);
 }
 
 void zgpd_register_test_callbacks(zb_zgpd_test_callbacks_t *cbs)
 {
-  g_test_cbs = cbs;
+    g_test_cbs = cbs;
 }
 
 #endif /* ZB_ZGPD_TEST_MODE */

@@ -40,191 +40,191 @@ static zb_uint32_t g_fc_start;
 /*! Program states according to test scenario */
 enum test_states_e
 {
-  TEST_STATE_INITIAL,
+    TEST_STATE_INITIAL,
 #ifdef ZB_NSNG
-  TEST_STATE_WAIT_PAIRING,
+    TEST_STATE_WAIT_PAIRING,
 #endif
-  TEST_STATE_READ_GPS_SINK_TABLE,
-  TEST_STATE_SEND_NT_1,
-  TEST_STATE_READ_GPS_SINK_TABLE1,
-  TEST_STATE_SEND_NT_2,
-  TEST_STATE_READ_GPS_SINK_TABLE2,
-  TEST_STATE_SEND_NT_3,
-  TEST_STATE_READ_GPS_SINK_TABLE3,
-  TEST_STATE_SEND_NT_4,
-  TEST_STATE_READ_GPS_SINK_TABLE4,
-  TEST_STATE_FINISHED
+    TEST_STATE_READ_GPS_SINK_TABLE,
+    TEST_STATE_SEND_NT_1,
+    TEST_STATE_READ_GPS_SINK_TABLE1,
+    TEST_STATE_SEND_NT_2,
+    TEST_STATE_READ_GPS_SINK_TABLE2,
+    TEST_STATE_SEND_NT_3,
+    TEST_STATE_READ_GPS_SINK_TABLE3,
+    TEST_STATE_SEND_NT_4,
+    TEST_STATE_READ_GPS_SINK_TABLE4,
+    TEST_STATE_FINISHED
 };
 
 ZB_ZGPC_DECLARE_SIMPLE_TEST_TEMPLATE(TEST_DEVICE_CTX, 1000)
 
 static void send_zcl(zb_uint8_t buf_ref, zb_callback_t cb)
 {
-  switch (TEST_DEVICE_CTX.test_state)
-  {
+    switch (TEST_DEVICE_CTX.test_state)
+    {
     case TEST_STATE_READ_GPS_SINK_TABLE:
     case TEST_STATE_READ_GPS_SINK_TABLE1:
     case TEST_STATE_READ_GPS_SINK_TABLE2:
     case TEST_STATE_READ_GPS_SINK_TABLE3:
     case TEST_STATE_READ_GPS_SINK_TABLE4:
-      zgp_cluster_read_attr(buf_ref, TH_GPS_ADDR, TH_GPS_ADDR_MODE,
-                            ZB_ZCL_ATTR_GPS_SINK_TABLE_ID,
-                            ZB_ZCL_ENABLE_DEFAULT_RESPONSE, cb);
-      TEST_DEVICE_CTX.skip_next_state = NEXT_STATE_PASSED;
-      break;
-  };
+        zgp_cluster_read_attr(buf_ref, TH_GPS_ADDR, TH_GPS_ADDR_MODE,
+                              ZB_ZCL_ATTR_GPS_SINK_TABLE_ID,
+                              ZB_ZCL_ENABLE_DEFAULT_RESPONSE, cb);
+        TEST_DEVICE_CTX.skip_next_state = NEXT_STATE_PASSED;
+        break;
+    };
 }
 
 static void handle_gp_sink_table_response(zb_uint8_t buf_ref)
 {
-  zb_bool_t   test_error = ZB_FALSE;
-  zb_buf_t   *buf = ZB_BUF_FROM_REF(buf_ref);
-  zb_uint8_t *ptr = ZB_BUF_BEGIN(buf);
+    zb_bool_t   test_error = ZB_FALSE;
+    zb_buf_t   *buf = ZB_BUF_FROM_REF(buf_ref);
+    zb_uint8_t *ptr = ZB_BUF_BEGIN(buf);
 
-  switch (TEST_DEVICE_CTX.test_state)
-  {
+    switch (TEST_DEVICE_CTX.test_state)
+    {
     case TEST_STATE_READ_GPS_SINK_TABLE:
     case TEST_STATE_READ_GPS_SINK_TABLE1:
     case TEST_STATE_READ_GPS_SINK_TABLE2:
     case TEST_STATE_READ_GPS_SINK_TABLE3:
     case TEST_STATE_READ_GPS_SINK_TABLE4:
     {
-      zb_uint8_t status;
+        zb_uint8_t status;
 
-      ZB_ZCL_PACKET_GET_DATA8(&status, ptr);
+        ZB_ZCL_PACKET_GET_DATA8(&status, ptr);
 
-      if (status != ZB_ZCL_STATUS_SUCCESS)
-      {
-        test_error = ZB_TRUE;
-      }
+        if (status != ZB_ZCL_STATUS_SUCCESS)
+        {
+            test_error = ZB_TRUE;
+        }
     }
     break;
-  }
+    }
 
-  if (test_error)
-  {
-    TEST_DEVICE_CTX.err_cnt++;
-    TRACE_MSG(TRACE_APP1, "Error at state: %hd", (FMT__H, TEST_DEVICE_CTX.test_state));
-  }
+    if (test_error)
+    {
+        TEST_DEVICE_CTX.err_cnt++;
+        TRACE_MSG(TRACE_APP1, "Error at state: %hd", (FMT__H, TEST_DEVICE_CTX.test_state));
+    }
 }
 
 #ifdef ZB_NSNG
 static void handle_gp_pairing(zb_uint8_t buf_ref)
 {
-  ZVUNUSED(buf_ref);
+    ZVUNUSED(buf_ref);
 
-  if (TEST_DEVICE_CTX.test_state == TEST_STATE_WAIT_PAIRING)
-  {
-    ZB_SCHEDULE_ALARM(PERFORM_NEXT_STATE, 0, ZB_TIME_ONE_SECOND);
-  }
+    if (TEST_DEVICE_CTX.test_state == TEST_STATE_WAIT_PAIRING)
+    {
+        ZB_SCHEDULE_ALARM(PERFORM_NEXT_STATE, 0, ZB_TIME_ONE_SECOND);
+    }
 }
 #endif
 
 static void perform_next_state(zb_uint8_t param)
 {
-  if (TEST_DEVICE_CTX.pause)
-  {
-    ZB_SCHEDULE_ALARM(perform_next_state, 0,
-                      ZB_TIME_ONE_SECOND*TEST_DEVICE_CTX.pause);
-    TEST_DEVICE_CTX.pause = 0;
-    return;
-  }
+    if (TEST_DEVICE_CTX.pause)
+    {
+        ZB_SCHEDULE_ALARM(perform_next_state, 0,
+                          ZB_TIME_ONE_SECOND * TEST_DEVICE_CTX.pause);
+        TEST_DEVICE_CTX.pause = 0;
+        return;
+    }
 
-  TEST_DEVICE_CTX.test_state++;
+    TEST_DEVICE_CTX.test_state++;
 
-  switch (TEST_DEVICE_CTX.test_state)
-  {
+    switch (TEST_DEVICE_CTX.test_state)
+    {
 #ifdef ZB_NSNG
     case TEST_STATE_WAIT_PAIRING:
-      break;
+        break;
 #endif
     case TEST_STATE_READ_GPS_SINK_TABLE:
     case TEST_STATE_READ_GPS_SINK_TABLE1:
     case TEST_STATE_READ_GPS_SINK_TABLE2:
     case TEST_STATE_READ_GPS_SINK_TABLE3:
     case TEST_STATE_READ_GPS_SINK_TABLE4:
-      if (param)
-      {
-        zb_free_buf(ZB_BUF_FROM_REF(param));
-      }
-      ZB_SCHEDULE_ALARM(test_send_command, 0, (zb_time_t)(0.1f * ZB_TIME_ONE_SECOND));
-      break;
+        if (param)
+        {
+            zb_free_buf(ZB_BUF_FROM_REF(param));
+        }
+        ZB_SCHEDULE_ALARM(test_send_command, 0, (zb_time_t)(0.1f * ZB_TIME_ONE_SECOND));
+        break;
     case TEST_STATE_FINISHED:
-      if (TEST_DEVICE_CTX.err_cnt)
-      {
-        TRACE_MSG(TRACE_APP1, "Test finished. Status: ERROR[%hd]", (FMT__H, TEST_DEVICE_CTX.err_cnt));
-      }
-      else
-      {
-        TRACE_MSG(TRACE_APP1, "Test finished. Status: OK", (FMT__0));
-      }
-      break;
-  };
+        if (TEST_DEVICE_CTX.err_cnt)
+        {
+            TRACE_MSG(TRACE_APP1, "Test finished. Status: ERROR[%hd]", (FMT__H, TEST_DEVICE_CTX.err_cnt));
+        }
+        else
+        {
+            TRACE_MSG(TRACE_APP1, "Test finished. Status: OK", (FMT__0));
+        }
+        break;
+    };
 }
 
 static void gpp_send_gp_notify_cb(zb_uint8_t param)
 {
-  ZVUNUSED(param);
-  switch(TEST_DEVICE_CTX.test_state)
-  {
+    ZVUNUSED(param);
+    switch (TEST_DEVICE_CTX.test_state)
+    {
     case TEST_STATE_SEND_NT_1:
-      g_fc_start = 0x11223344;
-      ZB_CERT_HACKS().gp_proxy_replace_gp_notif_sec_frame_counter = ZB_TRUE;
-      ZB_CERT_HACKS().gp_proxy_replace_gp_notif_sec_key_type = ZB_FALSE;
-      ZB_CERT_HACKS().gp_proxy_replace_gp_notif_sec_level = ZB_FALSE;
-      ZB_CERT_HACKS().gp_proxy_replace_sec_frame_counter = g_fc_start;
-      ZB_SCHEDULE_ALARM(perform_next_state, 0, (zb_time_t)(0.1f * ZB_TIME_ONE_SECOND));
-    break;
+        g_fc_start = 0x11223344;
+        ZB_CERT_HACKS().gp_proxy_replace_gp_notif_sec_frame_counter = ZB_TRUE;
+        ZB_CERT_HACKS().gp_proxy_replace_gp_notif_sec_key_type = ZB_FALSE;
+        ZB_CERT_HACKS().gp_proxy_replace_gp_notif_sec_level = ZB_FALSE;
+        ZB_CERT_HACKS().gp_proxy_replace_sec_frame_counter = g_fc_start;
+        ZB_SCHEDULE_ALARM(perform_next_state, 0, (zb_time_t)(0.1f * ZB_TIME_ONE_SECOND));
+        break;
     case TEST_STATE_SEND_NT_2:
-      ZB_CERT_HACKS().gp_proxy_replace_sec_frame_counter = g_fc_start & 0xffffff00;
-      ZB_SCHEDULE_ALARM(perform_next_state, 0, (zb_time_t)(0.1f * ZB_TIME_ONE_SECOND));
-    break;
+        ZB_CERT_HACKS().gp_proxy_replace_sec_frame_counter = g_fc_start & 0xffffff00;
+        ZB_SCHEDULE_ALARM(perform_next_state, 0, (zb_time_t)(0.1f * ZB_TIME_ONE_SECOND));
+        break;
     case TEST_STATE_SEND_NT_3:
-      ZB_CERT_HACKS().gp_proxy_replace_sec_frame_counter = g_fc_start + 1;
-      ZB_CERT_HACKS().gp_proxy_replace_gp_notif_sec_level = ZB_TRUE;
-      ZB_CERT_HACKS().gp_proxy_replace_sec_level = ZB_ZGP_SEC_LEVEL_NO_SECURITY;
-      ZB_SCHEDULE_ALARM(perform_next_state, 0, (zb_time_t)(0.1f * ZB_TIME_ONE_SECOND));
-    break;
+        ZB_CERT_HACKS().gp_proxy_replace_sec_frame_counter = g_fc_start + 1;
+        ZB_CERT_HACKS().gp_proxy_replace_gp_notif_sec_level = ZB_TRUE;
+        ZB_CERT_HACKS().gp_proxy_replace_sec_level = ZB_ZGP_SEC_LEVEL_NO_SECURITY;
+        ZB_SCHEDULE_ALARM(perform_next_state, 0, (zb_time_t)(0.1f * ZB_TIME_ONE_SECOND));
+        break;
     case TEST_STATE_SEND_NT_4:
-      ZB_CERT_HACKS().gp_proxy_replace_sec_frame_counter = g_fc_start + 2;
-      ZB_CERT_HACKS().gp_proxy_replace_gp_notif_sec_level = ZB_FALSE;
-      ZB_CERT_HACKS().gp_proxy_replace_gp_notif_sec_key_type = ZB_TRUE;
-      ZB_CERT_HACKS().gp_proxy_replace_sec_key_type = ZB_ZGP_SEC_KEY_TYPE_ZGPD_INDIVIDUAL;
-      ZB_SCHEDULE_ALARM(perform_next_state, 0, (zb_time_t)(0.1f * ZB_TIME_ONE_SECOND));
-    break;
+        ZB_CERT_HACKS().gp_proxy_replace_sec_frame_counter = g_fc_start + 2;
+        ZB_CERT_HACKS().gp_proxy_replace_gp_notif_sec_level = ZB_FALSE;
+        ZB_CERT_HACKS().gp_proxy_replace_gp_notif_sec_key_type = ZB_TRUE;
+        ZB_CERT_HACKS().gp_proxy_replace_sec_key_type = ZB_ZGP_SEC_KEY_TYPE_ZGPD_INDIVIDUAL;
+        ZB_SCHEDULE_ALARM(perform_next_state, 0, (zb_time_t)(0.1f * ZB_TIME_ONE_SECOND));
+        break;
     case TEST_STATE_FINISHED:
-      TEST_DEVICE_CTX.test_state = TEST_STATE_INITIAL;
-    break;
-  }
+        TEST_DEVICE_CTX.test_state = TEST_STATE_INITIAL;
+        break;
+    }
 }
 
 static void zgpc_custom_startup()
 {
-/* Init device, load IB values from nvram or set it to default */
-  ZB_INIT("th_gpp");
+    /* Init device, load IB values from nvram or set it to default */
+    ZB_INIT("th_gpp");
 
-  ZB_AIB().aps_channel_mask = (1<<TEST_CHANNEL);
-  ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_th_gpp_addr);
-  ZB_PIBCACHE_RX_ON_WHEN_IDLE() = ZB_B2U(ZB_TRUE);
+    ZB_AIB().aps_channel_mask = (1 << TEST_CHANNEL);
+    ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_th_gpp_addr);
+    ZB_PIBCACHE_RX_ON_WHEN_IDLE() = ZB_B2U(ZB_TRUE);
 
-  zb_set_default_ed_descriptor_values();
+    zb_set_default_ed_descriptor_values();
 
-  zb_secur_setup_nwk_key(g_key_nwk, 0);
+    zb_secur_setup_nwk_key(g_key_nwk, 0);
 
-  ZB_NIB_SET_USE_MULTICAST(ZB_FALSE);
+    ZB_NIB_SET_USE_MULTICAST(ZB_FALSE);
 
-  ZB_AIB().aps_use_nvram = 1;
+    ZB_AIB().aps_use_nvram = 1;
 
-  ZGP_GP_SET_SHARED_SECURITY_KEY_TYPE(TEST_KEY_TYPE);
-  ZB_MEMCPY(ZGP_GP_SHARED_SECURITY_KEY, g_shared_key, ZB_CCM_KEY_SIZE);
+    ZGP_GP_SET_SHARED_SECURITY_KEY_TYPE(TEST_KEY_TYPE);
+    ZB_MEMCPY(ZGP_GP_SHARED_SECURITY_KEY, g_shared_key, ZB_CCM_KEY_SIZE);
 
-  ZGP_CTX().device_role = ZGP_DEVICE_PROXY_BASIC;
+    ZGP_CTX().device_role = ZGP_DEVICE_PROXY_BASIC;
 
-  ZB_CERT_HACKS().gp_proxy_gp_notif_req_cb = gpp_send_gp_notify_cb;
+    ZB_CERT_HACKS().gp_proxy_gp_notif_req_cb = gpp_send_gp_notify_cb;
 #ifdef ZB_NSNG
-  TEST_DEVICE_CTX.gp_pairing_hndlr_cb = handle_gp_pairing;
+    TEST_DEVICE_CTX.gp_pairing_hndlr_cb = handle_gp_pairing;
 #endif
-  TEST_DEVICE_CTX.gp_sink_tbl_req_cb = handle_gp_sink_table_response;
+    TEST_DEVICE_CTX.gp_sink_tbl_req_cb = handle_gp_sink_table_response;
 }
 
 #endif /* ZB_CERTIFICATION_HACKS */

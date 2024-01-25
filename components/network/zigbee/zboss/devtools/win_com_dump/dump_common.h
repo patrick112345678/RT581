@@ -36,24 +36,24 @@ traffic dump to files.
 */
 typedef enum dump_mode_s
 {
-  MODE_KEIL             = 1,
-  MODE_IAR51            = (1 << 1),
-  MODE_IARARM           = (1 << 2),
-  MODE_SDKLOGS          = (1 << 3),
-  MODE_JTAGLOGS         = (1 << 4),
-  MODE_JTAGLOGSBIN      = (1 << 5),
-  MODE_RAWSERIAL        = (1 << 6),
-  MODE_USARTLOGSBIN     = (1 << 7),
-  MODE_USARTLOGSBIN_XAP = (1 << 8),
-  MODE_USARTLOGSBIN_SDK = (1 << 9),
-  MODE_ARM_BINFILE      = (1 << 10),
-  MODE_SIFLOGSBIN_XAP   = (1 << 11),
-  MODE_CONSOLE_SCRIPT   = (1 << 12),
-  MODE_NORDIC_LOG       = (1 << 13),
-  MODE_NORDIC_LOG_115200= (1 << 14),
-  MODE_STANDARD_INPUT   = (1 << 15),
-  MODE_HEX              = (1 << 16),
-  MODE_ITM              = (1 << 17)
+    MODE_KEIL             = 1,
+    MODE_IAR51            = (1 << 1),
+    MODE_IARARM           = (1 << 2),
+    MODE_SDKLOGS          = (1 << 3),
+    MODE_JTAGLOGS         = (1 << 4),
+    MODE_JTAGLOGSBIN      = (1 << 5),
+    MODE_RAWSERIAL        = (1 << 6),
+    MODE_USARTLOGSBIN     = (1 << 7),
+    MODE_USARTLOGSBIN_XAP = (1 << 8),
+    MODE_USARTLOGSBIN_SDK = (1 << 9),
+    MODE_ARM_BINFILE      = (1 << 10),
+    MODE_SIFLOGSBIN_XAP   = (1 << 11),
+    MODE_CONSOLE_SCRIPT   = (1 << 12),
+    MODE_NORDIC_LOG       = (1 << 13),
+    MODE_NORDIC_LOG_115200 = (1 << 14),
+    MODE_STANDARD_INPUT   = (1 << 15),
+    MODE_HEX              = (1 << 16),
+    MODE_ITM              = (1 << 17)
 } dump_mode_t;
 
 #define IS_USING_SERIAL(mode) (mode & (MODE_RAWSERIAL | MODE_USARTLOGSBIN_XAP | MODE_USARTLOGSBIN | MODE_CONSOLE_SCRIPT | MODE_ITM))

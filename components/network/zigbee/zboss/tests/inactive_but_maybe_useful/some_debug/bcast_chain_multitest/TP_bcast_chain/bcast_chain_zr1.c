@@ -36,77 +36,77 @@
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
-  ZB_INIT("zdo_2_zr1");
+    /* Init device, load IB values from nvram or set it to default */
+    ZB_INIT("zdo_2_zr1");
 
-  ZB_PIBCACHE_PAN_ID() = 0x1AAA;
+    ZB_PIBCACHE_PAN_ID() = 0x1AAA;
 
-  {
-    zb_channel_list_t channel_list;
-    zb_channel_list_init(channel_list);
-    zb_channel_list_add(channel_list, TEST_PAGE, (1L << TEST_CHANNEL));
-    zb_channel_page_list_copy(ZB_AIB().aps_channel_mask_list, channel_list);
-  }
+    {
+        zb_channel_list_t channel_list;
+        zb_channel_list_init(channel_list);
+        zb_channel_list_add(channel_list, TEST_PAGE, (1L << TEST_CHANNEL));
+        zb_channel_page_list_copy(ZB_AIB().aps_channel_mask_list, channel_list);
+    }
 
-  ZB_NIB().device_type = ZB_NWK_DEVICE_TYPE_ROUTER;
+    ZB_NIB().device_type = ZB_NWK_DEVICE_TYPE_ROUTER;
 
-  /* set ieee addr */
-  zb_set_long_address(g_ieee_addr_r1);
+    /* set ieee addr */
+    zb_set_long_address(g_ieee_addr_r1);
 
-  MAC_ADD_VISIBLE_LONG(g_ieee_addr_zc);
-  MAC_ADD_VISIBLE_LONG(g_ieee_addr_r2);
+    MAC_ADD_VISIBLE_LONG(g_ieee_addr_zc);
+    MAC_ADD_VISIBLE_LONG(g_ieee_addr_r2);
 
-  zb_set_max_children(1);
+    zb_set_max_children(1);
 
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
-  }
-  else
-  {
-    zboss_main_loop();
-  }
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zdo_dev_start failed", (FMT__0));
+    }
+    else
+    {
+        zboss_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_ERROR, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_ERROR, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  if (0 == status)
-  {
-    switch(sig)
+    if (0 == status)
     {
-      case ZB_ZDO_SIGNAL_DEFAULT_START:
-      case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      case ZB_BDB_SIGNAL_DEVICE_REBOOT:
-        TRACE_MSG(TRACE_ERROR, "Device STARTED OK", (FMT__0));
-        break;
+        switch (sig)
+        {
+        case ZB_ZDO_SIGNAL_DEFAULT_START:
+        case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
+        case ZB_BDB_SIGNAL_DEVICE_REBOOT:
+            TRACE_MSG(TRACE_ERROR, "Device STARTED OK", (FMT__0));
+            break;
 
-      default:
-        TRACE_MSG(TRACE_ERROR, "Unknown signal %hd", (FMT__H, sig));
+        default:
+            TRACE_MSG(TRACE_ERROR, "Unknown signal %hd", (FMT__H, sig));
+        }
     }
-  }
-  else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
-  {
-    TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device START FAILED", (FMT__0));
-  }
+    else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
+    {
+        TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device START FAILED", (FMT__0));
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 

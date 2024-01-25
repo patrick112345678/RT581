@@ -50,61 +50,61 @@ static void dev_annce_cb(zb_zdo_device_annce_t *da);
 /*! Program states according to test scenario */
 enum test_states_e
 {
-  TEST_STATE_INITIAL,                /* 0 */
-  TEST_STATE_WAIT_PROXY_JOINING,     /* 1 */
-  TEST_STATE_ENTER_COMM_MODE,        /* 2 */
-  TEST_STATE_WAIT_COMMISSIONING,     /* 3 */
-  /* FINISH */
-  TEST_STATE_FINISHED                /* 4 */
+    TEST_STATE_INITIAL,                /* 0 */
+    TEST_STATE_WAIT_PROXY_JOINING,     /* 1 */
+    TEST_STATE_ENTER_COMM_MODE,        /* 2 */
+    TEST_STATE_WAIT_COMMISSIONING,     /* 3 */
+    /* FINISH */
+    TEST_STATE_FINISHED                /* 4 */
 };
 
 ZB_ZGPC_DECLARE_ZCL_ON_OFF_TOGGLE_TEST_TEMPLATE(TEST_DEVICE_CTX, ENDPOINT, 1000)
 
 static void send_zcl(zb_uint8_t buf_ref, zb_callback_t cb)
 {
-  ZVUNUSED(buf_ref);
-  ZVUNUSED(cb);
+    ZVUNUSED(buf_ref);
+    ZVUNUSED(cb);
 }
 
 static void perform_next_state(zb_uint8_t param)
 {
-  if (TEST_DEVICE_CTX.pause)
-  {
-    ZB_SCHEDULE_ALARM(perform_next_state, 0,
-                      ZB_TIME_ONE_SECOND*TEST_DEVICE_CTX.pause);
-    TEST_DEVICE_CTX.pause = 0;
-    return;
-  }
+    if (TEST_DEVICE_CTX.pause)
+    {
+        ZB_SCHEDULE_ALARM(perform_next_state, 0,
+                          ZB_TIME_ONE_SECOND * TEST_DEVICE_CTX.pause);
+        TEST_DEVICE_CTX.pause = 0;
+        return;
+    }
 
-  TEST_DEVICE_CTX.test_state++;
+    TEST_DEVICE_CTX.test_state++;
 
-  TRACE_MSG(TRACE_APP1, ">perform_next_state: state = %d",
-            (FMT__D, TEST_DEVICE_CTX.test_state));
+    TRACE_MSG(TRACE_APP1, ">perform_next_state: state = %d",
+              (FMT__D, TEST_DEVICE_CTX.test_state));
 
-  switch (TEST_DEVICE_CTX.test_state)
-  {
+    switch (TEST_DEVICE_CTX.test_state)
+    {
     case TEST_STATE_ENTER_COMM_MODE:
-      start_comm(30);
-      break;
+        start_comm(30);
+        break;
 
     case TEST_STATE_WAIT_PROXY_JOINING:
     case TEST_STATE_WAIT_COMMISSIONING:
-      break;
+        break;
 
     case TEST_STATE_FINISHED:
-      TRACE_MSG(TRACE_APP1, "Test finished. Status: OK", (FMT__0));
-      break;
+        TRACE_MSG(TRACE_APP1, "Test finished. Status: OK", (FMT__0));
+        break;
     default:
     {
-      if (param)
-      {
-        zb_free_buf(ZB_BUF_FROM_REF(param));
-      }
-      ZB_SCHEDULE_ALARM(test_send_command, 0, ZB_TIME_ONE_SECOND);
+        if (param)
+        {
+            zb_free_buf(ZB_BUF_FROM_REF(param));
+        }
+        ZB_SCHEDULE_ALARM(test_send_command, 0, ZB_TIME_ONE_SECOND);
     }
-  }
+    }
 
-  TRACE_MSG(TRACE_APP1, "<perform_next_state", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "<perform_next_state", (FMT__0));
 }
 
 /*============================================================================*/
@@ -113,51 +113,51 @@ static void perform_next_state(zb_uint8_t param)
 
 static zb_bool_t custom_comm_cb(zb_zgpd_id_t *zgpd_id, zb_zgp_comm_status_t result)
 {
-  zb_bool_t ret = ZB_FALSE;
+    zb_bool_t ret = ZB_FALSE;
 
-  ZVUNUSED(zgpd_id);
+    ZVUNUSED(zgpd_id);
 
-  TRACE_MSG(TRACE_APP1, "<custom_comm_cb: state = %d, result = %d",
-            (FMT__D, TEST_DEVICE_CTX.test_state, result));
+    TRACE_MSG(TRACE_APP1, "<custom_comm_cb: state = %d, result = %d",
+              (FMT__D, TEST_DEVICE_CTX.test_state, result));
 
-  if (result == ZB_ZGP_COMMISSIONING_COMPLETED)
-  {
-    if (TEST_DEVICE_CTX.test_state == TEST_STATE_WAIT_COMMISSIONING)
+    if (result == ZB_ZGP_COMMISSIONING_COMPLETED)
     {
-      ret = ZB_TRUE;
+        if (TEST_DEVICE_CTX.test_state == TEST_STATE_WAIT_COMMISSIONING)
+        {
+            ret = ZB_TRUE;
 #ifdef ZB_USE_BUTTONS
-      zb_led_blink_off(ZB_LED_ARG_CREATE(3, ZB_LED_BLINK_HALF_SEC));
+            zb_led_blink_off(ZB_LED_ARG_CREATE(3, ZB_LED_BLINK_HALF_SEC));
 #endif
+        }
     }
-  }
 
-  TRACE_MSG(TRACE_APP1, ">custom_comm_cb", (FMT__0));
+    TRACE_MSG(TRACE_APP1, ">custom_comm_cb", (FMT__0));
 
-  return ret;
+    return ret;
 }
 
 static void start_comm(zb_uint32_t timeout)
 {
-  zb_zgps_start_commissioning(timeout * ZB_TIME_ONE_SECOND);
+    zb_zgps_start_commissioning(timeout * ZB_TIME_ONE_SECOND);
 #ifdef ZB_USE_BUTTONS
-  zb_led_blink_on(ZB_LED_ARG_CREATE(3, ZB_LED_BLINK_HALF_SEC));
+    zb_led_blink_on(ZB_LED_ARG_CREATE(3, ZB_LED_BLINK_HALF_SEC));
 #endif
-  ZB_SCHEDULE_CALLBACK(PERFORM_NEXT_STATE, 0);
+    ZB_SCHEDULE_CALLBACK(PERFORM_NEXT_STATE, 0);
 }
 
 static void dev_annce_cb(zb_zdo_device_annce_t *da)
 {
-  zb_ieee_addr_t th_ieee = TH_GPP_IEEE_ADDR;
-  TRACE_MSG(TRACE_APP1, "dev_annce_cb: ieee = " TRACE_FORMAT_64 " NWK = 0x%x",
-            (FMT__A_H, TRACE_ARG_64(da->ieee_addr), da->nwk_addr));
+    zb_ieee_addr_t th_ieee = TH_GPP_IEEE_ADDR;
+    TRACE_MSG(TRACE_APP1, "dev_annce_cb: ieee = " TRACE_FORMAT_64 " NWK = 0x%x",
+              (FMT__A_H, TRACE_ARG_64(da->ieee_addr), da->nwk_addr));
 
-  if (ZB_IEEE_ADDR_CMP(th_ieee, da->ieee_addr) == ZB_TRUE)
-  {
-    if (TEST_DEVICE_CTX.test_state == TEST_STATE_WAIT_PROXY_JOINING)
+    if (ZB_IEEE_ADDR_CMP(th_ieee, da->ieee_addr) == ZB_TRUE)
     {
-      PERFORM_NEXT_STATE(0);
+        if (TEST_DEVICE_CTX.test_state == TEST_STATE_WAIT_PROXY_JOINING)
+        {
+            PERFORM_NEXT_STATE(0);
+        }
     }
-  }
 }
 
 /*============================================================================*/
@@ -166,39 +166,39 @@ static void dev_annce_cb(zb_zdo_device_annce_t *da)
 
 static void zgpc_custom_startup()
 {
-  /* Init device, load IB values from nvram or set it to default */
-  ZB_INIT("dut_gps");
+    /* Init device, load IB values from nvram or set it to default */
+    ZB_INIT("dut_gps");
 
-  ZB_AIB().aps_designated_coordinator = 1;
-  ZB_AIB().aps_channel_mask = (1<<TEST_CHANNEL);
-  ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_dut_gps_addr);
-  zb_set_default_ffd_descriptor_values(ZB_COORDINATOR);
-  ZB_PIBCACHE_PAN_ID() = TEST_PAN_ID;
-  zb_secur_setup_nwk_key(g_key_nwk, 0);
+    ZB_AIB().aps_designated_coordinator = 1;
+    ZB_AIB().aps_channel_mask = (1 << TEST_CHANNEL);
+    ZB_IEEE_ADDR_COPY(ZB_PIBCACHE_EXTENDED_ADDRESS(), &g_dut_gps_addr);
+    zb_set_default_ffd_descriptor_values(ZB_COORDINATOR);
+    ZB_PIBCACHE_PAN_ID() = TEST_PAN_ID;
+    zb_secur_setup_nwk_key(g_key_nwk, 0);
 
-  /* Need to block GPDF recv directly */
+    /* Need to block GPDF recv directly */
 #ifdef ZB_ZGP_SKIP_GPDF_ON_NWK_LAYER
-  ZG->nwk.skip_gpdf = 1;
+    ZG->nwk.skip_gpdf = 1;
 #endif
 #ifdef ZB_ZGP_RUNTIME_WORK_MODE_WITH_PROXIES
-  ZGP_CTX().enable_work_with_proxies = 1;
+    ZGP_CTX().enable_work_with_proxies = 1;
 #endif
 #ifdef ZB_CERTIFICATION_HACKS
-  ZB_CERT_HACKS().ccm_check_cb = NULL;
+    ZB_CERT_HACKS().ccm_check_cb = NULL;
 #endif
 
-  ZGP_GPS_COMMUNICATION_MODE = ZGP_COMMUNICATION_MODE_LIGHTWEIGHT_UNICAST;
-  ZGP_GPS_COMMISSIONING_EXIT_MODE = ZGP_COMMISSIONING_EXIT_MODE_ON_PAIRING_SUCCESS;
+    ZGP_GPS_COMMUNICATION_MODE = ZGP_COMMUNICATION_MODE_LIGHTWEIGHT_UNICAST;
+    ZGP_GPS_COMMISSIONING_EXIT_MODE = ZGP_COMMISSIONING_EXIT_MODE_ON_PAIRING_SUCCESS;
 
-  ZGP_GPS_SECURITY_LEVEL = ZB_ZGP_FILL_GPS_SECURITY_LEVEL(
-                             ZB_ZGP_SEC_LEVEL_FULL_NO_ENC,
-                             ZB_ZGP_DEFAULT_SEC_LEVEL_PROTECTION_WITH_GP_LINK_KEY,
-                             ZB_ZGP_DEFAULT_SEC_LEVEL_INVOLVE_TC);
+    ZGP_GPS_SECURITY_LEVEL = ZB_ZGP_FILL_GPS_SECURITY_LEVEL(
+                                 ZB_ZGP_SEC_LEVEL_FULL_NO_ENC,
+                                 ZB_ZGP_DEFAULT_SEC_LEVEL_PROTECTION_WITH_GP_LINK_KEY,
+                                 ZB_ZGP_DEFAULT_SEC_LEVEL_INVOLVE_TC);
 
-  ZGP_GP_SHARED_SECURITY_KEY_TYPE = ZB_ZGP_SEC_KEY_TYPE_NWK;
-  ZGP_CTX().device_role = ZGP_DEVICE_COMBO_BASIC;
-  TEST_DEVICE_CTX.custom_comm_cb = custom_comm_cb;
-  zb_zdo_register_device_annce_cb(dev_annce_cb);
+    ZGP_GP_SHARED_SECURITY_KEY_TYPE = ZB_ZGP_SEC_KEY_TYPE_NWK;
+    ZGP_CTX().device_role = ZGP_DEVICE_COMBO_BASIC;
+    TEST_DEVICE_CTX.custom_comm_cb = custom_comm_cb;
+    zb_zdo_register_device_annce_cb(dev_annce_cb);
 }
 
 ZB_ZGPC_DECLARE_STARTUP_PROCESS()

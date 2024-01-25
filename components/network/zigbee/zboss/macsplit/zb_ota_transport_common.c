@@ -29,11 +29,11 @@
 
 void zb_ota_protocol_init()
 {
-  TRACE_MSG(TRACE_MAC2, ">zb_ota_protocol_init", (FMT__0));
+    TRACE_MSG(TRACE_MAC2, ">zb_ota_protocol_init", (FMT__0));
 
-  ZB_BZERO(&OTA_CTX(), sizeof(zb_ota_protocol_context_t));
+    ZB_BZERO(&OTA_CTX(), sizeof(zb_ota_protocol_context_t));
 
-  TRACE_MSG(TRACE_MAC2, "<zb_ota_protocol_init", (FMT__0));
+    TRACE_MSG(TRACE_MAC2, "<zb_ota_protocol_init", (FMT__0));
 }
 
 #endif  /* ZB_MACSPLIT_FW_UPGRADE */

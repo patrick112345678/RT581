@@ -72,10 +72,10 @@ void zb_led_blink_on(zb_uint8_t led_arg);
  */
 typedef enum zb_led_blink_frequency_e
 {
-  ZB_LED_BLINK_QUATER_SEC = 1, /*!< Blink four times per second */
-  ZB_LED_BLINK_HALF_SEC = 2,   /*!< Blink twice per second */
-  ZB_LED_BLINK_PER_SEC = 4,    /*!< Blink every second */
-  ZB_LED_BLINK_PER_2SEC = 8,   /*!< Blink every two seconds */
+    ZB_LED_BLINK_QUATER_SEC = 1, /*!< Blink four times per second */
+    ZB_LED_BLINK_HALF_SEC = 2,   /*!< Blink twice per second */
+    ZB_LED_BLINK_PER_SEC = 4,    /*!< Blink every second */
+    ZB_LED_BLINK_PER_2SEC = 8,   /*!< Blink every two seconds */
 } zb_led_blink_frequency_t;
 
 /** @cond internals_doc */
@@ -197,15 +197,15 @@ zb_bool_t zb_osif_button_state(zb_uint8_t arg);
 /** @cond internals_doc */
 typedef struct zb_button_ctl_s
 {
-  zb_bool_t is_on;
-  zb_time_t on_time;
-  zb_callback_t handlers[ZB_BUTT_N_CBS];
+    zb_bool_t is_on;
+    zb_time_t on_time;
+    zb_callback_t handlers[ZB_BUTT_N_CBS];
 } zb_button_ctl_t;
 
 
 typedef struct zb_buttons_global_s
 {
-  zb_button_ctl_t buttons[ZB_N_BUTTONS];
+    zb_button_ctl_t buttons[ZB_N_BUTTONS];
 } zb_buttons_global_t;
 
 /** @endcond */

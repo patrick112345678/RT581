@@ -103,10 +103,12 @@ void init_default_pin_mux(void)
 
     /*set all pin to gpio, except GPIO16, GPIO17 */
 #if 0
-    for(i=0; i< 32; i++)
+    for (i = 0; i < 32; i++)
     {
-        if((i!=16) && (i!=17))
+        if ((i != 16) && (i != 17))
+        {
             pin_set_mode(i, MODE_GPIO);
+        }
     }
 #endif
     /*uart0 pinmux*/
@@ -119,40 +121,40 @@ void init_default_pin_mux(void)
 #if (!MODULE_ENABLE(SUPPORT_FREERTOS_PORT))
 void zb_rt570_init(void)
 {
-  /*we should set pinmux here or in SystemInit */
-  init_default_pin_mux();
+    /*we should set pinmux here or in SystemInit */
+    init_default_pin_mux();
 
 #if 0
-  gpio_cfg_output(11);
-  gpio_pin_clear(11);
-  gpio_pin_set(11);
-  gpio_pin_clear(11);
+    gpio_cfg_output(11);
+    gpio_pin_clear(11);
+    gpio_pin_set(11);
+    gpio_pin_clear(11);
 
-  gpio_cfg_output(12);
-  gpio_pin_clear(12);
-  gpio_pin_set(12);
-  gpio_pin_clear(12);
+    gpio_cfg_output(12);
+    gpio_pin_clear(12);
+    gpio_pin_set(12);
+    gpio_pin_clear(12);
 #endif
-  //gpio_cfg_output(13);
-  //gpio_pin_clear(13);
+    //gpio_cfg_output(13);
+    //gpio_pin_clear(13);
 
-  //gpio_cfg_output(14);
-  //gpio_pin_clear(14);
+    //gpio_cfg_output(14);
+    //gpio_pin_clear(14);
 
-  dma_init();
-  RfMcu_DmaInit();
-  zb_osif_led_button_init();
-  mac_rt570_hw_init();
-  timer_set();
-  zb_osif_timer_init();
+    dma_init();
+    RfMcu_DmaInit();
+    zb_osif_led_button_init();
+    mac_rt570_hw_init();
+    timer_set();
+    zb_osif_timer_init();
 #if 0 //JJ
-  SysCtrlClockSet(false, false, SYS_CTRL_SYSDIV_32MHZ);
+    SysCtrlClockSet(false, false, SYS_CTRL_SYSDIV_32MHZ);
 
-  zb_osif_timer_init();
-  ZB_RANDOM_INIT();
-  #if !defined ZB_SOFT_SECURITY || defined ZB_HW_ZB_AES128
-  zb_osif_hw_aes_init();
-  #endif
+    zb_osif_timer_init();
+    ZB_RANDOM_INIT();
+#if !defined ZB_SOFT_SECURITY || defined ZB_HW_ZB_AES128
+    zb_osif_hw_aes_init();
+#endif
 #endif
 }
 
@@ -169,9 +171,9 @@ void zb_enable_int(void)
 #else
 void zb_rt570_init(void)
 {
-  //init_default_pin_mux();
+    //init_default_pin_mux();
 
-  zb_osif_led_button_init();
+    zb_osif_led_button_init();
 
 }
 
@@ -189,17 +191,17 @@ void zb_enable_int(void)
 
 void zb_stop_timer(void)
 {
-//#if (MODULE_ENABLE(SUPPORT_FREERTOS_PORT))
-//#else
-//#endif
+    //#if (MODULE_ENABLE(SUPPORT_FREERTOS_PORT))
+    //#else
+    //#endif
     Timer_Stop(UsedTimer);
 }
 
 void zb_start_timer(void)
 {
-//#if (MODULE_ENABLE(SUPPORT_FREERTOS_PORT))
-//#else
-//#endif
+    //#if (MODULE_ENABLE(SUPPORT_FREERTOS_PORT))
+    //#else
+    //#endif
     Timer_Start(UsedTimer, rt570_systic);
 }
 
@@ -210,16 +212,16 @@ zb_uint32_t zb_timer_status(void)
 void zb_reset(zb_uint8_t param)
 {
 #if 0 //JJ
-  ZVUNUSED(param);
-  zb_cc2538_abort();
+    ZVUNUSED(param);
+    zb_cc2538_abort();
 #endif
 }
 
 void zb_cc2538_abort(void)
 {
-  while(1)
-  {
-  }
+    while (1)
+    {
+    }
 }
 
 
@@ -233,18 +235,18 @@ zb_uint32_t zb_random_seed(void)
 
 zb_uint32_t zb_get_utc_time()
 {
-//JJ  return ZB_TIME_BEACON_INTERVAL_TO_MSEC(ZB_TIMER_GET()) / 1000;
-   return 0;
+    //JJ  return ZB_TIME_BEACON_INTERVAL_TO_MSEC(ZB_TIMER_GET()) / 1000;
+    return 0;
 }
 
 
 #if defined ZB_TRACE_LEVEL && defined ZB_TRACE_OVER_JTAG
-size_t __write(int handle, const unsigned char * buffer, size_t size);
+size_t __write(int handle, const unsigned char *buffer, size_t size);
 
 /* trace over jtag */
 void zb_osif_serial_put_bytes(zb_uint8_t *buf, zb_short_t len)
 {
-  __write(1, buf, len);
+    __write(1, buf, len);
 }
 
 void zb_osif_serial_init()
@@ -260,28 +262,28 @@ void zb_osif_serial_init()
  */
 static void timer_inter_handler(uint32_t timer_id)
 {
-  zb_time_t timer, stop_timer;
+    zb_time_t timer, stop_timer;
 
-  ZB_TIMER_CTX().timer++;
+    ZB_TIMER_CTX().timer++;
 
-  /* assign to prevent warnings in IAR */
-  timer = ZB_TIMER_CTX().timer;
-  stop_timer = ZB_TIMER_CTX().timer_stop;
+    /* assign to prevent warnings in IAR */
+    timer = ZB_TIMER_CTX().timer;
+    stop_timer = ZB_TIMER_CTX().timer_stop;
 
-  /* Stop timer if it expired or not running. */
-	/*
-  if (!ZB_TIMER_CTX().started ||
+    /* Stop timer if it expired or not running. */
+    /*
+    if (!ZB_TIMER_CTX().started ||
        ZB_TIME_GE(timer, stop_timer))
-  {
+    {
     ZB_STOP_HW_TIMER();
     ZB_TIMER_CTX().timer_stop = ZB_TIMER_CTX().timer;
     ZB_TIMER_CTX().started = 0;
-  }
-  else
-	*/
-  {
-    ZB_START_HW_TIMER();
-  }
+    }
+    else
+    */
+    {
+        ZB_START_HW_TIMER();
+    }
 
 }
 
@@ -303,37 +305,45 @@ uint32_t timer_status(uint32_t timer_id)
 
     timer = base[timer_id];
 
-    if(timer->CONTROL.bit.EN == 1)
+    if (timer->CONTROL.bit.EN == 1)
+    {
         return 1;
+    }
     else
+    {
         return 0;
+    }
 }
 
 void timer_set(void)
 {
-  timer_config_mode_t cfg;
-  uint8_t timerID = 0;
+    timer_config_mode_t cfg;
+    uint8_t timerID = 0;
 
-if( UsedTimer == Timer0)  //use timer0 32Mhz clock
-  /*the input clock is 32M/s, so it will become 1M ticks per second */
-  cfg.prescale = TIMER_PRESCALE_32;
-else if (UsedTimer == Timer3) //use timer3 32Khz clock to suport power saving mode
-  /*the input clock is 32K/s, so it will become 4K ticks per second */
-  cfg.prescale = TIMER_PRESCALE_8;
+    if ( UsedTimer == Timer0) //use timer0 32Mhz clock
+        /*the input clock is 32M/s, so it will become 1M ticks per second */
+    {
+        cfg.prescale = TIMER_PRESCALE_32;
+    }
+    else if (UsedTimer == Timer3) //use timer3 32Khz clock to suport power saving mode
+        /*the input clock is 32K/s, so it will become 4K ticks per second */
+    {
+        cfg.prescale = TIMER_PRESCALE_8;
+    }
 
 
-  cfg.mode =TIMER_PERIODIC_MODE;
-  cfg.int_en = TRUE;
+    cfg.mode = TIMER_PERIODIC_MODE;
+    cfg.int_en = TRUE;
 
-  Timer_Open(UsedTimer, cfg, timer_inter_handler);
+    Timer_Open(UsedTimer, cfg, timer_inter_handler);
 
 }
 
 void timer_set_for_sleep(uint32_t tick)
 {
-  //the unit of tick(sleep time) is mS, RT58x used timer3 as the sleep timer
-  //the currently timer3 is 4K ticks per second, 1ms as 4 timer tick
-  Timer_Start(Timer3, tick*4);
+    //the unit of tick(sleep time) is mS, RT58x used timer3 as the sleep timer
+    //the currently timer3 is 4K ticks per second, 1ms as 4 timer tick
+    Timer_Start(Timer3, tick * 4);
 }
 
 //JJ----
@@ -341,13 +351,13 @@ void timer_set_for_sleep(uint32_t tick)
 static void zb_osif_timer_init(void)
 {
 
-  ZB_START_HW_TIMER();
+    ZB_START_HW_TIMER();
 
-  /* Need systick precision around 1ms */
+    /* Need systick precision around 1ms */
 #if 0 //JJ
-  SysTickPeriodSet((SysCtrlClockGet()/1000000) * ZB_BEACON_INTERVAL_USEC);
-  SysTickIntRegister(timer_inter_handler);
-  SysTickIntEnable();
+    SysTickPeriodSet((SysCtrlClockGet() / 1000000) * ZB_BEACON_INTERVAL_USEC);
+    SysTickIntRegister(timer_inter_handler);
+    SysTickIntEnable();
 #endif
 }
 
@@ -356,14 +366,14 @@ static void zb_osif_timer_init(void)
 /* Now implemented in mac_cc2538.c */
 zb_time_t osif_transceiver_time_get()
 {
-  return ZB_BEACON_INTERVAL_USEC * ZB_TIMER_CTX().timer + SysTickValueGet() / (SysCtrlClockGet()/1000000);
+    return ZB_BEACON_INTERVAL_USEC * ZB_TIMER_CTX().timer + SysTickValueGet() / (SysCtrlClockGet() / 1000000);
 }
 #endif
 
 
 zb_time_t osif_sub_trans_timer(zb_time_t t2, zb_time_t t1)
 {
-//JJ  return ZB_TIME_SUBTRACT(t2, t1);
+    //JJ  return ZB_TIME_SUBTRACT(t2, t1);
     return 0;
 }
 
@@ -374,24 +384,24 @@ void mac_2538_disable_mactimer_int(void);
 void osif_sleep_using_transc_timer(zb_time_t timeout)
 {
 #if 0 //JJ
-  zb_time_t tend = osif_transceiver_time_get() + timeout;
+    zb_time_t tend = osif_transceiver_time_get() + timeout;
 
-  while (tend < osif_transceiver_time_get())
-  {
-    SysCtrlDelay(10);
-  }
-  while (osif_transceiver_time_get() < tend)
-  {
-    SysCtrlDelay(10);
-  }
+    while (tend < osif_transceiver_time_get())
+    {
+        SysCtrlDelay(10);
+    }
+    while (osif_transceiver_time_get() < tend)
+    {
+        SysCtrlDelay(10);
+    }
 #endif
 }
 
 
 int SysTickIsEnabled(void)
 {
-//JJ  return (HWREG(NVIC_ST_CTRL) & NVIC_ST_CTRL_ENABLE);
-  return 0;
+    //JJ  return (HWREG(NVIC_ST_CTRL) & NVIC_ST_CTRL_ENABLE);
+    return 0;
 }
 
 #if defined ZB_TRACE_LEVEL && defined ZB_SERIAL_FOR_TRACE
@@ -418,30 +428,33 @@ static void uart0_callback(uint32_t event, void *p_context)
         UART_EVENT_TX_DONE  is for asynchronous mode send
         UART_EVENT_RX_DONE  is for synchronous  mode receive
      */
-    if (event & UART_EVENT_TX_DONE) {
+    if (event & UART_EVENT_TX_DONE)
+    {
         /*if you use multi-tasking, signal the waiting task here.*/
         SER_CTX().tx_in_progress = 0;
     }
 
-    if (event & UART_EVENT_RX_DONE) {
+    if (event & UART_EVENT_RX_DONE)
+    {
         /*if you use multi-tasking, signal the waiting task here.*/
     }
 
     if (event & (UART_EVENT_RX_OVERFLOW | UART_EVENT_RX_BREAK |
-            UART_EVENT_RX_FRAMING_ERROR | UART_EVENT_RX_PARITY_ERROR )) {
+                 UART_EVENT_RX_FRAMING_ERROR | UART_EVENT_RX_PARITY_ERROR ))
+    {
 
         //it's almost impossible for those error case.
         //do something ...
 
     }
-gpio_pin_clear(LED2);
+    gpio_pin_clear(LED2);
 }
 
 void  init_debug_console(void)
 {
     uint32_t status = STATUS_SUCCESS;
     uart_config_t  uart0_drv_config;
-		uint32_t  handle;
+    uint32_t  handle;
     static uint8_t            tempbuffer[4];
 
     /*init uart0, 115200, 8bits 1 stopbit, none parity, no flow control.*/
@@ -450,12 +463,12 @@ void  init_debug_console(void)
     uart0_drv_config.hwfc     = UART_HWFC_DISABLED;
     uart0_drv_config.parity   = UART_PARITY_NONE;
 
-		/* Important: p_contex will be the second parameter in uart callback.
-     * In this example, we do NOT use p_context, (So we just use handle for sample)
-     * but you can use it for whaterever you want.
-     */
+    /* Important: p_contex will be the second parameter in uart callback.
+    * In this example, we do NOT use p_context, (So we just use handle for sample)
+    * but you can use it for whaterever you want.
+    */
     handle = 0;
-	  uart0_drv_config.p_context = (void *) handle;
+    uart0_drv_config.p_context = (void *) handle;
 
     uart0_drv_config.stopbit  = UART_STOPBIT_ONE;
     uart0_drv_config.interrupt_priority = IRQ_PRIORITY_NORMAL;
@@ -463,13 +476,13 @@ void  init_debug_console(void)
     uart_init(0, &uart0_drv_config, uart0_callback);
 
 
-    if(status!=STATUS_SUCCESS)
+    if (status != STATUS_SUCCESS)
     {
-         while(1);
+        while (1);
     }
 
     /*uart device is auto power on in uart_init function */
-    uart_rx(0, tempbuffer , 1);
+    uart_rx(0, tempbuffer, 1);
 
 }
 #else
@@ -483,7 +496,7 @@ static void rt58x_bsp_init(void)
     bsp_init(BSP_INIT_DEBUG_CONSOLE, (bsp_event_callback_t)uart_isr_cb);
     //retarget uart
     utility_register_stdout(bsp_console_stdout_char,
-                       bsp_console_stdout_string);
+                            bsp_console_stdout_string);
 
     util_log_init();
 }
@@ -493,15 +506,15 @@ static void rt58x_bsp_init(void)
 void zb_osif_serial_init()
 {
 
-  /*init debug uart port for printf*/
+    /*init debug uart port for printf*/
 #ifdef PRINTF_USE_RT58X_LIB
-  //console_drv_init(UART_BAUDRATE_115200);
+    //console_drv_init(UART_BAUDRATE_115200);
 #else
-  //rt58x_bsp_init();
+    //rt58x_bsp_init();
 #endif
-  //init_debug_console();
+    //init_debug_console();
 
-  //printf("UART init done!\n", temp);
+    //printf("UART init done!\n", temp);
 }
 
 /* trace over uart */
@@ -509,7 +522,7 @@ extern void transmit_chars(uint32_t id);
 int ZBOSS_Trace(char *ptr, int len);
 void zb_osif_serial_put_bytes(const zb_uint8_t *buf, zb_short_t len)
 {
-  info("%s", buf);
+    info("%s", buf);
 }
 
 void rt_uart_transmit_chars(uint32_t id)
@@ -523,15 +536,15 @@ void rt_uart_transmit_chars(uint32_t id)
 
     /* Fill fifo with bytes from buffer */
     zb_uint8_t volatile *p = ZB_RING_BUFFER_PEEK(&SER_CTX().tx_buf);
-    if( p )
+    if ( p )
     {
-      //uart->THR = *p;
-      SER_CTX().tx_in_progress = 1;
-      ZB_RING_BUFFER_FLUSH_GET(&SER_CTX().tx_buf);
+        //uart->THR = *p;
+        SER_CTX().tx_in_progress = 1;
+        ZB_RING_BUFFER_FLUSH_GET(&SER_CTX().tx_buf);
     }
     else
     {
-      SER_CTX().tx_in_progress = 0;
+        SER_CTX().tx_in_progress = 0;
     }
 }
 
@@ -553,15 +566,15 @@ void rt_uart_receive_chars(uint32_t id)
     //
     if (SER_CTX().byte_received_cb)
     {
-        while(uart->LSR&UART_LSR_DR)
+        while (uart->LSR & UART_LSR_DR)
         {
             SER_CTX().byte_received_cb(uart->RBR);
         }
     }
     else
     {
-      uint8_t temp=0;
-      temp += uart->RBR;
+        uint8_t temp = 0;
+        temp += uart->RBR;
     }
 
 }
@@ -575,56 +588,56 @@ void rt_uart_receive_chars(uint32_t id)
 void zb_app_uart_isr(void)
 {
 #if 0 //JJ
-  uint32_t ulIntBm = UARTIntStatus(BSP_UART_BASE, 0);
+    uint32_t ulIntBm = UARTIntStatus(BSP_UART_BASE, 0);
 
-  /* Serve interrupts handled by BSP UART interrupt handler */
-  if(ulIntBm & (BSP_UART_INT_BM))
-  {
-    /* Clear flags handled by this handler */
-    UARTIntClear(BSP_UART_BASE, (ulIntBm & BSP_UART_INT_BM));
-    /* TX */
-    if(ulIntBm & UART_INT_TX)
+    /* Serve interrupts handled by BSP UART interrupt handler */
+    if (ulIntBm & (BSP_UART_INT_BM))
     {
-      if (UARTSpaceAvail(BSP_UART_BASE))
-      {
-        /* Fill fifo with bytes from buffer */
-        zb_uint8_t volatile *p = ZB_RING_BUFFER_PEEK(&SER_CTX().tx_buf);
-        if( p )
+        /* Clear flags handled by this handler */
+        UARTIntClear(BSP_UART_BASE, (ulIntBm & BSP_UART_INT_BM));
+        /* TX */
+        if (ulIntBm & UART_INT_TX)
         {
-          UARTCharPut(BSP_UART_BASE, *p);
-          SER_CTX().tx_in_progress = 1;
-          ZB_RING_BUFFER_FLUSH_GET(&SER_CTX().tx_buf);
-        }
-        else
-        {
-          SER_CTX().tx_in_progress = 0;
-        }
-      }
-    }
-    //
-    // RX or RX timeout
-    //
-    if(ulIntBm & (UART_INT_RX | UART_INT_RT))
-    {
-        //
-        // Put received bytes into callback
-        //
-        if (SER_CTX().byte_received_cb)
-        {
-            while(UARTCharsAvail(BSP_UART_BASE))
+            if (UARTSpaceAvail(BSP_UART_BASE))
             {
-                SER_CTX().byte_received_cb(UARTCharGetNonBlocking(BSP_UART_BASE));
+                /* Fill fifo with bytes from buffer */
+                zb_uint8_t volatile *p = ZB_RING_BUFFER_PEEK(&SER_CTX().tx_buf);
+                if ( p )
+                {
+                    UARTCharPut(BSP_UART_BASE, *p);
+                    SER_CTX().tx_in_progress = 1;
+                    ZB_RING_BUFFER_FLUSH_GET(&SER_CTX().tx_buf);
+                }
+                else
+                {
+                    SER_CTX().tx_in_progress = 0;
+                }
             }
         }
-    }
+        //
+        // RX or RX timeout
+        //
+        if (ulIntBm & (UART_INT_RX | UART_INT_RT))
+        {
+            //
+            // Put received bytes into callback
+            //
+            if (SER_CTX().byte_received_cb)
+            {
+                while (UARTCharsAvail(BSP_UART_BASE))
+                {
+                    SER_CTX().byte_received_cb(UARTCharGetNonBlocking(BSP_UART_BASE));
+                }
+            }
+        }
 
-  }
+    }
 #endif
 }
 
 void zb_osif_set_uart_byte_received_cb(zb_callback_t cb)
 {
-//JJ  SER_CTX().byte_received_cb = cb;
+    //JJ  SER_CTX().byte_received_cb = cb;
 }
 
 #endif /* ZB_TRACE_OVER_USART */
@@ -650,111 +663,121 @@ void ZB_sleep_callback(TimerHandle_t timer_ptr)
 void zb_sleep_timer_set(zb_uint32_t sleep_tmo)
 {
 
-  if (zigbee_sleep_timer == NULL)
-  {
-    zigbee_sleep_timer = xTimerCreate
-                     ( /* Just a text name, not used by the RTOS kernel. */
-                         "Timer1",
-                         /* The timer period in ticks, must be greater than 0. */
-                         pdMS_TO_TICKS(sleep_tmo),
-                         /* The timers will auto-reload themselves when they expire. */
-                         pdFALSE,
-                         /* The ID is used to store a count of the number of times the timer has expired, which is initialised to 0. */
-                         (void *) 0,
-                         /* Each timer calls the same callback when it expires. */
-                         ZB_sleep_callback
-                     );
+    if (zigbee_sleep_timer == NULL)
+    {
+        zigbee_sleep_timer = xTimerCreate
+                             ( /* Just a text name, not used by the RTOS kernel. */
+                                 "Timer1",
+                                 /* The timer period in ticks, must be greater than 0. */
+                                 pdMS_TO_TICKS(sleep_tmo),
+                                 /* The timers will auto-reload themselves when they expire. */
+                                 pdFALSE,
+                                 /* The ID is used to store a count of the number of times the timer has expired, which is initialised to 0. */
+                                 (void *) 0,
+                                 /* Each timer calls the same callback when it expires. */
+                                 ZB_sleep_callback
+                             );
 
-  }
+    }
 
-  if (zigbee_sleep_timer != NULL)
-  {
-      /* Start the timer.  No block time is specified, and
-      even if one was it would be ignored because the RTOS
-      scheduler has not yet been started. */
-      xTimerChangePeriod(zigbee_sleep_timer, pdMS_TO_TICKS(sleep_tmo), 0);
-      if (xTimerStart(zigbee_sleep_timer, 0) != pdPASS) {
-          /* The timer could not be set into the Active state. */
-      }
-  }
+    if (zigbee_sleep_timer != NULL)
+    {
+        /* Start the timer.  No block time is specified, and
+        even if one was it would be ignored because the RTOS
+        scheduler has not yet been started. */
+        xTimerChangePeriod(zigbee_sleep_timer, pdMS_TO_TICKS(sleep_tmo), 0);
+        if (xTimerStart(zigbee_sleep_timer, 0) != pdPASS)
+        {
+            /* The timer could not be set into the Active state. */
+        }
+    }
 
 }
 
 void zb_stop_hw_timer(void)
 {
-  if (ZB_TIMER_CTX().canstop)
-  {
-    ZB_TIMER_CTX().started = ZB_FALSE;
-    ZB_STOP_HW_TIMER();
-  }
+    if (ZB_TIMER_CTX().canstop)
+    {
+        ZB_TIMER_CTX().started = ZB_FALSE;
+        ZB_STOP_HW_TIMER();
+    }
 
 }
 
 zb_uint32_t zb_osif_sleep(zb_uint32_t sleep_tmo)
 {
-  TickType_t current_time, resume_time, slept_time;
+    TickType_t current_time, resume_time, slept_time;
 
-  zb_stop_hw_timer();
-  current_time = xTaskGetTickCount();
+    zb_stop_hw_timer();
+    current_time = xTaskGetTickCount();
 
-  //TRACE_MSG(TRACE_APP1, "JJ:S(%d)", (FMT__0, sleep_tmo));
+    //TRACE_MSG(TRACE_APP1, "JJ:S(%d)", (FMT__0, sleep_tmo));
 
-  RT570_sleep_set();
-  //console_sleep();
-  //gpio_pin_clear(LED1);
+    RT570_sleep_set();
+    //console_sleep();
+    //gpio_pin_clear(LED1);
 
-  zb_sleep_timer_set(sleep_tmo);
+    zb_sleep_timer_set(sleep_tmo);
 
-  zboss_suspend();
+    zboss_suspend();
 
-  //system wakeup
-  xTimerStop(zigbee_sleep_timer, 0);
-  resume_time = xTaskGetTickCount();
-  if(resume_time > current_time)
-    slept_time = resume_time - current_time;
-  else
-    slept_time = (0xffffffff - current_time) + resume_time;
+    //system wakeup
+    xTimerStop(zigbee_sleep_timer, 0);
+    resume_time = xTaskGetTickCount();
+    if (resume_time > current_time)
+    {
+        slept_time = resume_time - current_time;
+    }
+    else
+    {
+        slept_time = (0xffffffff - current_time) + resume_time;
+    }
 
-  TRACE_MSG(TRACE_APP1, "JJ:W(%d %d)", (FMT__0, slept_time, sleep_tmo));
+    TRACE_MSG(TRACE_APP1, "JJ:W(%d %d)", (FMT__0, slept_time, sleep_tmo));
 
-  RT570_idle_set();
-  //gpio_pin_set(LED1);
-  ZB_START_HW_TIMER();
+    RT570_idle_set();
+    //gpio_pin_set(LED1);
+    ZB_START_HW_TIMER();
 
-  return slept_time;
+    return slept_time;
 }
 #else
 zb_uint32_t zb_osif_sleep(zb_uint32_t sleep_tmo)
 {
-  zb_uint32_t slept_time;
-  extern void RT570_sleep_set(void);
-  extern void RT570_idle_set(void);
+    zb_uint32_t slept_time;
+    extern void RT570_sleep_set(void);
+    extern void RT570_idle_set(void);
 
-  RT570_sleep_set();
-  //console_sleep();
-  gpio_pin_clear(LED1);
+    RT570_sleep_set();
+    //console_sleep();
+    gpio_pin_clear(LED1);
 
-  if(sleep_tmo > 0x3FFFFFFF) {
-    sleep_tmo = 0x3FFFFFFF;
-  }
-  timer_set_for_sleep(sleep_tmo);
+    if (sleep_tmo > 0x3FFFFFFF)
+    {
+        sleep_tmo = 0x3FFFFFFF;
+    }
+    timer_set_for_sleep(sleep_tmo);
 
-  timer_dlyint_cfg(Timer3, 0);
+    timer_dlyint_cfg(Timer3, 0);
 
-  //going to sleep
-  outp32(0x40800000, 0x1);
-  __WFI();
+    //going to sleep
+    outp32(0x40800000, 0x1);
+    __WFI();
 
-  //system wakeup
-  slept_time = Timer_Current_Get(Timer3);
-  RT570_idle_set();
-  gpio_pin_set(LED1);
-  ZB_START_HW_TIMER();
+    //system wakeup
+    slept_time = Timer_Current_Get(Timer3);
+    RT570_idle_set();
+    gpio_pin_set(LED1);
+    ZB_START_HW_TIMER();
 
-  if(slept_time == 0)
-    return sleep_tmo;
-  else
-    return slept_time/4; //transfer timer ticks to ms
+    if (slept_time == 0)
+    {
+        return sleep_tmo;
+    }
+    else
+    {
+        return slept_time / 4;    //transfer timer ticks to ms
+    }
 }
 #endif
 
@@ -775,25 +798,25 @@ void hw_aes128(zb_uint8_t *key, zb_uint8_t *msg, zb_uint8_t *c)
 {
     struct aes_ctx ctx;
 
-    #if defined ZB_USE_SLEEP
-		aes_fw_init();
-    #endif
+#if defined ZB_USE_SLEEP
+    aes_fw_init();
+#endif
 
     aes_key_init(&ctx, key, AES_KEY128);
 
     /*load key to secure engine*/
     aes_load_round_key(&ctx);
 
-    aes_ecb_encrypt( &ctx, msg, c);  
+    aes_ecb_encrypt( &ctx, msg, c);
 }
 
 void hw_aes128_dec(zb_uint8_t *key, zb_uint8_t *msg, zb_uint8_t *c)
 {
     struct aes_ctx ctx;
 
-    #if defined ZB_USE_SLEEP
-		aes_fw_init();
-    #endif
+#if defined ZB_USE_SLEEP
+    aes_fw_init();
+#endif
 
     aes_key_init(&ctx, key, AES_KEY128);
 

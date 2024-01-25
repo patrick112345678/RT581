@@ -42,7 +42,7 @@
  *
  *   See any sample
  */
-typedef void (ZB_CODE * zb_callback_t)(zb_uint8_t param);
+typedef void (ZB_CODE *zb_callback_t)(zb_uint8_t param);
 
 /**
  *   Callback function with 2 parameters typedef.
@@ -53,7 +53,7 @@ typedef void (ZB_CODE * zb_callback_t)(zb_uint8_t param);
  *
  *   See any sample
  */
-typedef void (ZB_CODE * zb_callback2_t)(zb_uint8_t param, zb_uint16_t cb_param);
+typedef void (ZB_CODE *zb_callback2_t)(zb_uint8_t param, zb_uint16_t cb_param);
 /*! @} */
 
 
@@ -83,26 +83,26 @@ typedef void (ZB_CODE * zb_callback2_t)(zb_uint8_t param, zb_uint16_t cb_param);
  */
 
 #ifdef ZB_TIMER_32
-  typedef zb_uint32_t zb_time_t;
+typedef zb_uint32_t zb_time_t;
 /**
  * Maximum timer value, if 32-bit timer is used.
  */
-  #define ZB_MAX_TIME_VAL ZB_UINT32_MAX
+#define ZB_MAX_TIME_VAL ZB_UINT32_MAX
 /**
  * Minimum timer value, if 32-bit timer is used.
  */
-  #define ZB_MIN_TIME_VAL ZB_UINT32_MIN
+#define ZB_MIN_TIME_VAL ZB_UINT32_MIN
 #else
 /* 16 bits for 8051 - it will be hw timer value. */
-  typedef zb_uint16_t zb_time_t;
+typedef zb_uint16_t zb_time_t;
 /**
  * Maximum timer value, if 16-bit timer is used.
  */
-  #define ZB_MAX_TIME_VAL ZB_UINT16_MAX
+#define ZB_MAX_TIME_VAL ZB_UINT16_MAX
 /**
  * Minimum timer value, if 16-bit timer is used.
  */
- #define ZB_MIN_TIME_VAL ZB_UINT16_MIN
+#define ZB_MIN_TIME_VAL ZB_UINT16_MIN
 #endif
 
 /**

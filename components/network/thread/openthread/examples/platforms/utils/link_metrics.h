@@ -75,8 +75,8 @@ void otLinkMetricsInit(int8_t aNoiseFloor);
  *
  */
 otError otLinkMetricsConfigureEnhAckProbing(otShortAddress      aShortAddress,
-                                            const otExtAddress *aExtAddress,
-                                            otLinkMetrics       aLinkMetrics);
+        const otExtAddress *aExtAddress,
+        otLinkMetrics       aLinkMetrics);
 
 /**
  * This method generates the Link Metrics data (assessed for the acknowledged frame) bytes that would be included in

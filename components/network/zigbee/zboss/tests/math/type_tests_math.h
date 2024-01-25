@@ -5,18 +5,18 @@
 
 typedef struct
 {
-  zb_int64_t param1;
-  zb_int64_t param2;
-  zb_int64_t param3;
+    zb_int64_t param1;
+    zb_int64_t param2;
+    zb_int64_t param3;
 } test_param_t;
 
 typedef int (*test_func)(test_param_t);
 
 typedef struct
 {
-  test_func func;
-  int expected_ret;
-  test_param_t params;
+    test_func func;
+    int expected_ret;
+    test_param_t params;
 } test_t;
 
 #define TEST_ZB_MATH(TYPETEST, FUNC_TO_TYPETEST, FUNC_TO_INT, MATH_FUNC, RET_VAL) \

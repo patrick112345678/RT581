@@ -31,29 +31,28 @@
 */
 void write_attr_resp_handler_sample(zb_buf_t *cmd_buf)
 {
-  zb_zcl_write_attr_res_t *write_attr_resp;
+    zb_zcl_write_attr_res_t *write_attr_resp;
 
-  TRACE_MSG(TRACE_ZCL1, ">> example write attr resp %p", (FMT__P, cmd_buf));
+    TRACE_MSG(TRACE_ZCL1, ">> example write attr resp %p", (FMT__P, cmd_buf));
 
-  do
-  {
-    ZB_ZCL_GET_NEXT_WRITE_ATTR_RES(cmd_buf, write_attr_resp);
-    TRACE_MSG(TRACE_ZCL3, "write_attr_resp %p", (FMT__P, write_attr_resp));
-    if (write_attr_resp)
+    do
     {
-      if (write_attr_resp->status == ZB_ZCL_STATUS_SUCCESS)
-      {
-        TRACE_MSG(TRACE_ZCL2, "all attributes were written OK", (FMT__0));
-        break;
-      }
-      else
-      {
-        TRACE_MSG(TRACE_ZCL2, "Error while writing attr: status %hd, attr id %d",
-                  (FMT__H_D, write_attr_resp->status, write_attr_resp->attr_id));
-      }
-    }
-  }
-  while (write_attr_resp);
+        ZB_ZCL_GET_NEXT_WRITE_ATTR_RES(cmd_buf, write_attr_resp);
+        TRACE_MSG(TRACE_ZCL3, "write_attr_resp %p", (FMT__P, write_attr_resp));
+        if (write_attr_resp)
+        {
+            if (write_attr_resp->status == ZB_ZCL_STATUS_SUCCESS)
+            {
+                TRACE_MSG(TRACE_ZCL2, "all attributes were written OK", (FMT__0));
+                break;
+            }
+            else
+            {
+                TRACE_MSG(TRACE_ZCL2, "Error while writing attr: status %hd, attr id %d",
+                          (FMT__H_D, write_attr_resp->status, write_attr_resp->attr_id));
+            }
+        }
+    } while (write_attr_resp);
 
-  TRACE_MSG(TRACE_ZCL1, "<< example write attr resp", (FMT__0));
+    TRACE_MSG(TRACE_ZCL1, "<< example write attr resp", (FMT__0));
 }

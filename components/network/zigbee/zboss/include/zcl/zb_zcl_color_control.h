@@ -49,144 +49,144 @@
  */
 enum zb_zcl_color_control_attr_e
 {
-  /** @internal Current_HUE attribute */
-  ZB_ZCL_ATTR_COLOR_CONTROL_CURRENT_HUE_ID                           = 0x0000,
-  /** @internal Current Saturation attribute */
-  ZB_ZCL_ATTR_COLOR_CONTROL_CURRENT_SATURATION_ID                    = 0x0001,
-  /** @internal Remaining Time attribute */
-  ZB_ZCL_ATTR_COLOR_CONTROL_REMAINING_TIME_ID                        = 0x0002,
-  /** @internal CurrentX attribute */
-  ZB_ZCL_ATTR_COLOR_CONTROL_CURRENT_X_ID                             = 0x0003,
-  /** @internal CurrentY attribute */
-  ZB_ZCL_ATTR_COLOR_CONTROL_CURRENT_Y_ID                             = 0x0004,
-  /** The DriftCompensation attribute indicates what mechanism, if any, is in use for
-   *  compensation for color/intensity drift over time. */
-  ZB_ZCL_ATTR_COLOR_CONTROL_DRIFT_COMPENSATION_ID                    = 0x0005,
-  /** The CompensationText attribute holds a textual indication of what mechanism,
-   *  if any, is in use to compensate for color/intensity drift over time. */
-  ZB_ZCL_ATTR_COLOR_CONTROL_COMPENSATION_TEXT_ID                     = 0x0006,
-  /** @internal Color Temperature Mireds attribute */
-  ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_TEMPERATURE_ID                     = 0x0007,
-  /** @internal Color Mode attribute */
-  ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_MODE_ID                            = 0x0008,
-  /** The Options attribute is a bitmap that determines the default behavior of some
-   *  cluster commands. */
-  ZB_ZCL_ATTR_COLOR_CONTROL_OPTIONS_ID                               = 0x000f,
-  /** The EnhancedCurrentHue attribute represents non-equidistant steps along the
-   *  CIE 1931 color triangle, and it provides 16-bits precision. */
-  ZB_ZCL_ATTR_COLOR_CONTROL_ENHANCED_CURRENT_HUE_ID                  = 0x4000,
-  /** The EnhancedColorMode attribute specifies which attributes are currently
-   *  determining the color of the device. */
-  ZB_ZCL_ATTR_COLOR_CONTROL_ENHANCED_COLOR_MODE_ID                   = 0x4001,
-  /** The ColorLoopActive attribute specifies the current active status of the color
-   *  loop. */
-  ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_LOOP_ACTIVE_ID                     = 0x4002,
-  /** The ColorLoopDirection attribute specifies the current direction of the color
-   *  loop. */
-  ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_LOOP_DIRECTION_ID                  = 0x4003,
-  /** The ColorLoopTime attribute specifies the number of seconds it SHALL take to
-   *  perform a full color loop, i.e., to cycle all values of the EnhancedCurrentHue
-   *  attribute (between 0x0000 and 0xffff). */
-  ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_LOOP_TIME_ID                       = 0x4004,
-  /** The ColorLoopStartEnhancedHue attribute specifies the value of the
-   *  EnhancedCurrentHue attribute from which the color loop SHALL be started. */
-  ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_LOOP_START_ENHANCED_HUE_ID         = 0x4005,
-  /** The ColorLoopStoredEnhancedHue attribute specifies the value of the
-   *  EnhancedCurrentHue attribute before the color loop was started. */
-  ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_LOOP_STORED_ENHANCED_HUE_ID        = 0x4006,
-  /** The ColorCapabilities attribute specifies the color capabilities of the device
-   *  supporting the color control cluster. */
-  ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_CAPABILITIES_ID                    = 0x400a,
-  /** The ColorTempPhysicalMinMireds attribute indicates the minimum mired value
-   *  supported by the hardware. */
-  ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_TEMP_PHYSICAL_MIN_MIREDS_ID        = 0x400b,
-  /** The ColorTempPhysicalMaxMireds attribute indicates the maximum mired value
-   *  supported by the hardware. */
-  ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_TEMP_PHYSICAL_MAX_MIREDS_ID        = 0x400c,
-  /** The CoupleColorTempToLevelMinMireds attribute specifies a lower bound on the
-   *  value of the ColorTemperatureMireds attribute for the purposes of coupling
-   *  the ColorTemperatureMireds attribute to the CurrentLevel attribute when the
-   *  CoupleColorTempToLevel bit of the Options attribute of the Level Control cluster
-   *  is equal to 1. */
-  ZB_ZCL_ATTR_COLOR_CONTROL_COUPLE_COLOR_TEMP_TO_LEVEL_MIN_MIREDS_ID = 0x400d,
-  /** The StartUpColorTemperatureMireds attribute SHALL define the desired startup color
-   *  temperature value a lamp SHALL use when it is supplied with power and this value
-   *  SHALL be reflected in the ColorTemperatureMireds attribute. */
-  ZB_ZCL_ATTR_COLOR_CONTROL_START_UP_COLOR_TEMPERATURE_MIREDS_ID     = 0x4010,
-   /** @internal Number Of Primaries attribute */
-  ZB_ZCL_ATTR_COLOR_CONTROL_NUMBER_OF_PRIMARIES_ID                   = 0x0010,
-  /** @internal Primary 1 X attribute */
-  ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_1_X_ID                           = 0x0011,
-  /** @internal Primary 1 Y attribute */
-  ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_1_Y_ID                           = 0x0012,
-  /** @internal Primary 1 Intensity attribute */
-  ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_1_INTENSITY_ID                   = 0x0013,
-  /** @internal Primary 2 X attribute */
-  ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_2_X_ID                           = 0x0015,
-  /** @internal Primary 2 Y attribute */
-  ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_2_Y_ID                           = 0x0016,
-  /** @internal Primary 2 Intensity attribute */
-  ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_2_INTENSITY_ID                   = 0x0017,
-  /** @internal Primary 3 X attribute */
-  ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_3_X_ID                           = 0x0019,
-  /** @internal Primary 3 Y attribute */
-  ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_3_Y_ID                           = 0x001a,
-  /** @internal Primary 3 Intensity attribute */
-  ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_3_INTENSITY_ID                   = 0x001b,
-  /** @internal Primary 4 X attribute */
-  ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_4_X_ID                           = 0x0020,
-  /** @internal Primary 4 Y attribute */
-  ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_4_Y_ID                           = 0x0021,
-  /** @internal Primary 4 Intensity attribute */
-  ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_4_INTENSITY_ID                   = 0x0022,
-  /** @internal Primary 5 X attribute */
-  ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_5_X_ID                           = 0x0024,
-  /** @internal Primary 5 Y attribute */
-  ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_5_Y_ID                           = 0x0025,
-  /** @internal Primary 5 Intensity attribute */
-  ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_5_INTENSITY_ID                   = 0x0026,
-  /** @internal Primary 6 X attribute */
-  ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_6_X_ID                           = 0x0028,
-  /** @internal Primary 6 Y attribute */
-  ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_6_Y_ID                           = 0x0029,
-  /** @internal Primary 6 Intensity attribute */
-  ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_6_INTENSITY_ID                   = 0x002a,
-  /** The WhitePointX attribute contains the normalized chromaticity value x, as defined
-   *  in the CIE xyY Color Space, of the current white point of the device. */
-  ZB_ZCL_ATTR_COLOR_CONTROL_WHITE_POINT_X_ID                         = 0x0030,
-  /** The WhitePointY attribute contains the normalized chromaticity value y, as defined
-   *  in the CIE xyY Color Space, of the current white point of the device. */
-  ZB_ZCL_ATTR_COLOR_CONTROL_WHITE_POINT_Y_ID                         = 0x0031,
-  /** The ColorPointRX attribute contains the normalized chromaticity value x, as defined
-   *  in the CIE xyY Color Space, of the red color point of the device. */
-  ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_POINT_RX_ID                        = 0x0032,
-  /** The ColorPointRY attribute contains the normalized chromaticity value y, as defined
-   *  in the CIE xyY Color Space, of the red color point of the device. */
-  ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_POINT_RY_ID                        = 0x0033,
-  /** The ColorPointRIntensity attribute contains a representation of the relative
-   *  intensity of the red color point as defined in the Dimming Light Curve in the
-   *  Ballast Configuration cluster. */
-  ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_POINT_R_INTENSITY_ID               = 0x0034,
-  /** The ColorPointGX attribute contains the normalized chromaticity value x, as defined
-   *  in the CIE xyY Color Space, of the green color point of the device. */
-  ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_POINT_GX_ID                        = 0x0036,
-  /** The ColorPointGY attribute contains the normalized chromaticity value y, as defined
-   *  in the CIE xyY Color Space, of the green color point of the device. */
-  ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_POINT_GY_ID                        = 0x0037,
-  /** The ColorPointGIntensity attribute contains a representation of the relative
-   *  intensity of the green color point as defined in the Dimming Light Curve in the
-   *  Ballast Configuration cluster. */
-  ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_POINT_G_INTENSITY_ID               = 0x0038,
-  /** The ColorPointBX attribute contains the normalized chromaticity value x, as defined
-   *  in the CIE xyY Color Space, of the blue color point of the device. */
-  ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_POINT_BX_ID                        = 0x003a,
-  /** The ColorPointBY attribute contains the normalized chromaticity value y, as defined
-   *  in the CIE xyY Color Space, of the blue color point of the device. */
-  ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_POINT_BY_ID                        = 0x003b,
-  /** The ColorPointBIntensity attribute contains a representation of the relative
-   *  intensity of the blue color point as defined in the Dimming Light Curve in the
-   *  Ballast Configuration cluster. */
-  ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_POINT_B_INTENSITY_ID               = 0x003c,
+    /** @internal Current_HUE attribute */
+    ZB_ZCL_ATTR_COLOR_CONTROL_CURRENT_HUE_ID                           = 0x0000,
+    /** @internal Current Saturation attribute */
+    ZB_ZCL_ATTR_COLOR_CONTROL_CURRENT_SATURATION_ID                    = 0x0001,
+    /** @internal Remaining Time attribute */
+    ZB_ZCL_ATTR_COLOR_CONTROL_REMAINING_TIME_ID                        = 0x0002,
+    /** @internal CurrentX attribute */
+    ZB_ZCL_ATTR_COLOR_CONTROL_CURRENT_X_ID                             = 0x0003,
+    /** @internal CurrentY attribute */
+    ZB_ZCL_ATTR_COLOR_CONTROL_CURRENT_Y_ID                             = 0x0004,
+    /** The DriftCompensation attribute indicates what mechanism, if any, is in use for
+     *  compensation for color/intensity drift over time. */
+    ZB_ZCL_ATTR_COLOR_CONTROL_DRIFT_COMPENSATION_ID                    = 0x0005,
+    /** The CompensationText attribute holds a textual indication of what mechanism,
+     *  if any, is in use to compensate for color/intensity drift over time. */
+    ZB_ZCL_ATTR_COLOR_CONTROL_COMPENSATION_TEXT_ID                     = 0x0006,
+    /** @internal Color Temperature Mireds attribute */
+    ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_TEMPERATURE_ID                     = 0x0007,
+    /** @internal Color Mode attribute */
+    ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_MODE_ID                            = 0x0008,
+    /** The Options attribute is a bitmap that determines the default behavior of some
+     *  cluster commands. */
+    ZB_ZCL_ATTR_COLOR_CONTROL_OPTIONS_ID                               = 0x000f,
+    /** The EnhancedCurrentHue attribute represents non-equidistant steps along the
+     *  CIE 1931 color triangle, and it provides 16-bits precision. */
+    ZB_ZCL_ATTR_COLOR_CONTROL_ENHANCED_CURRENT_HUE_ID                  = 0x4000,
+    /** The EnhancedColorMode attribute specifies which attributes are currently
+     *  determining the color of the device. */
+    ZB_ZCL_ATTR_COLOR_CONTROL_ENHANCED_COLOR_MODE_ID                   = 0x4001,
+    /** The ColorLoopActive attribute specifies the current active status of the color
+     *  loop. */
+    ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_LOOP_ACTIVE_ID                     = 0x4002,
+    /** The ColorLoopDirection attribute specifies the current direction of the color
+     *  loop. */
+    ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_LOOP_DIRECTION_ID                  = 0x4003,
+    /** The ColorLoopTime attribute specifies the number of seconds it SHALL take to
+     *  perform a full color loop, i.e., to cycle all values of the EnhancedCurrentHue
+     *  attribute (between 0x0000 and 0xffff). */
+    ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_LOOP_TIME_ID                       = 0x4004,
+    /** The ColorLoopStartEnhancedHue attribute specifies the value of the
+     *  EnhancedCurrentHue attribute from which the color loop SHALL be started. */
+    ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_LOOP_START_ENHANCED_HUE_ID         = 0x4005,
+    /** The ColorLoopStoredEnhancedHue attribute specifies the value of the
+     *  EnhancedCurrentHue attribute before the color loop was started. */
+    ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_LOOP_STORED_ENHANCED_HUE_ID        = 0x4006,
+    /** The ColorCapabilities attribute specifies the color capabilities of the device
+     *  supporting the color control cluster. */
+    ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_CAPABILITIES_ID                    = 0x400a,
+    /** The ColorTempPhysicalMinMireds attribute indicates the minimum mired value
+     *  supported by the hardware. */
+    ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_TEMP_PHYSICAL_MIN_MIREDS_ID        = 0x400b,
+    /** The ColorTempPhysicalMaxMireds attribute indicates the maximum mired value
+     *  supported by the hardware. */
+    ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_TEMP_PHYSICAL_MAX_MIREDS_ID        = 0x400c,
+    /** The CoupleColorTempToLevelMinMireds attribute specifies a lower bound on the
+     *  value of the ColorTemperatureMireds attribute for the purposes of coupling
+     *  the ColorTemperatureMireds attribute to the CurrentLevel attribute when the
+     *  CoupleColorTempToLevel bit of the Options attribute of the Level Control cluster
+     *  is equal to 1. */
+    ZB_ZCL_ATTR_COLOR_CONTROL_COUPLE_COLOR_TEMP_TO_LEVEL_MIN_MIREDS_ID = 0x400d,
+    /** The StartUpColorTemperatureMireds attribute SHALL define the desired startup color
+     *  temperature value a lamp SHALL use when it is supplied with power and this value
+     *  SHALL be reflected in the ColorTemperatureMireds attribute. */
+    ZB_ZCL_ATTR_COLOR_CONTROL_START_UP_COLOR_TEMPERATURE_MIREDS_ID     = 0x4010,
+    /** @internal Number Of Primaries attribute */
+    ZB_ZCL_ATTR_COLOR_CONTROL_NUMBER_OF_PRIMARIES_ID                   = 0x0010,
+    /** @internal Primary 1 X attribute */
+    ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_1_X_ID                           = 0x0011,
+    /** @internal Primary 1 Y attribute */
+    ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_1_Y_ID                           = 0x0012,
+    /** @internal Primary 1 Intensity attribute */
+    ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_1_INTENSITY_ID                   = 0x0013,
+    /** @internal Primary 2 X attribute */
+    ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_2_X_ID                           = 0x0015,
+    /** @internal Primary 2 Y attribute */
+    ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_2_Y_ID                           = 0x0016,
+    /** @internal Primary 2 Intensity attribute */
+    ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_2_INTENSITY_ID                   = 0x0017,
+    /** @internal Primary 3 X attribute */
+    ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_3_X_ID                           = 0x0019,
+    /** @internal Primary 3 Y attribute */
+    ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_3_Y_ID                           = 0x001a,
+    /** @internal Primary 3 Intensity attribute */
+    ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_3_INTENSITY_ID                   = 0x001b,
+    /** @internal Primary 4 X attribute */
+    ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_4_X_ID                           = 0x0020,
+    /** @internal Primary 4 Y attribute */
+    ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_4_Y_ID                           = 0x0021,
+    /** @internal Primary 4 Intensity attribute */
+    ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_4_INTENSITY_ID                   = 0x0022,
+    /** @internal Primary 5 X attribute */
+    ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_5_X_ID                           = 0x0024,
+    /** @internal Primary 5 Y attribute */
+    ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_5_Y_ID                           = 0x0025,
+    /** @internal Primary 5 Intensity attribute */
+    ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_5_INTENSITY_ID                   = 0x0026,
+    /** @internal Primary 6 X attribute */
+    ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_6_X_ID                           = 0x0028,
+    /** @internal Primary 6 Y attribute */
+    ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_6_Y_ID                           = 0x0029,
+    /** @internal Primary 6 Intensity attribute */
+    ZB_ZCL_ATTR_COLOR_CONTROL_PRIMARY_6_INTENSITY_ID                   = 0x002a,
+    /** The WhitePointX attribute contains the normalized chromaticity value x, as defined
+     *  in the CIE xyY Color Space, of the current white point of the device. */
+    ZB_ZCL_ATTR_COLOR_CONTROL_WHITE_POINT_X_ID                         = 0x0030,
+    /** The WhitePointY attribute contains the normalized chromaticity value y, as defined
+     *  in the CIE xyY Color Space, of the current white point of the device. */
+    ZB_ZCL_ATTR_COLOR_CONTROL_WHITE_POINT_Y_ID                         = 0x0031,
+    /** The ColorPointRX attribute contains the normalized chromaticity value x, as defined
+     *  in the CIE xyY Color Space, of the red color point of the device. */
+    ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_POINT_RX_ID                        = 0x0032,
+    /** The ColorPointRY attribute contains the normalized chromaticity value y, as defined
+     *  in the CIE xyY Color Space, of the red color point of the device. */
+    ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_POINT_RY_ID                        = 0x0033,
+    /** The ColorPointRIntensity attribute contains a representation of the relative
+     *  intensity of the red color point as defined in the Dimming Light Curve in the
+     *  Ballast Configuration cluster. */
+    ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_POINT_R_INTENSITY_ID               = 0x0034,
+    /** The ColorPointGX attribute contains the normalized chromaticity value x, as defined
+     *  in the CIE xyY Color Space, of the green color point of the device. */
+    ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_POINT_GX_ID                        = 0x0036,
+    /** The ColorPointGY attribute contains the normalized chromaticity value y, as defined
+     *  in the CIE xyY Color Space, of the green color point of the device. */
+    ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_POINT_GY_ID                        = 0x0037,
+    /** The ColorPointGIntensity attribute contains a representation of the relative
+     *  intensity of the green color point as defined in the Dimming Light Curve in the
+     *  Ballast Configuration cluster. */
+    ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_POINT_G_INTENSITY_ID               = 0x0038,
+    /** The ColorPointBX attribute contains the normalized chromaticity value x, as defined
+     *  in the CIE xyY Color Space, of the blue color point of the device. */
+    ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_POINT_BX_ID                        = 0x003a,
+    /** The ColorPointBY attribute contains the normalized chromaticity value y, as defined
+     *  in the CIE xyY Color Space, of the blue color point of the device. */
+    ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_POINT_BY_ID                        = 0x003b,
+    /** The ColorPointBIntensity attribute contains a representation of the relative
+     *  intensity of the blue color point as defined in the Dimming Light Curve in the
+     *  Ballast Configuration cluster. */
+    ZB_ZCL_ATTR_COLOR_CONTROL_COLOR_POINT_B_INTENSITY_ID               = 0x003c,
 };
 
 /** @brief Current Hue attribute minimum value */
@@ -200,14 +200,14 @@ enum zb_zcl_color_control_attr_e
  */
 enum zb_zcl_color_control_hue_e
 {
-/** @brief Current Hue attribute red value */
-  ZB_ZCL_COLOR_CONTROL_HUE_RED  = 0,
+    /** @brief Current Hue attribute red value */
+    ZB_ZCL_COLOR_CONTROL_HUE_RED  = 0,
 
-/** @brief Current Hue attribute green value */
-  ZB_ZCL_COLOR_CONTROL_HUE_GREEN = 85 /*254 / 3*/,
+    /** @brief Current Hue attribute green value */
+    ZB_ZCL_COLOR_CONTROL_HUE_GREEN = 85 /*254 / 3*/,
 
-/** @brief Current Hue attribute blue value */
-  ZB_ZCL_COLOR_CONTROL_HUE_BLUE =  169/*2*254 / 3*/
+    /** @brief Current Hue attribute blue value */
+    ZB_ZCL_COLOR_CONTROL_HUE_BLUE =  169/*2*254 / 3*/
 };
 
 /** @brief Current Saturation attribute minimum value */
@@ -305,12 +305,12 @@ enum zb_zcl_color_control_hue_e
 */
 enum zb_zcl_color_control_color_mode_e
 {
-  /** CurrentHue and CurrentSaturation */
-  ZB_ZCL_COLOR_CONTROL_COLOR_MODE_HUE_SATURATION    = 0x00,
-  /** CurrentX and CurrentY */
-  ZB_ZCL_COLOR_CONTROL_COLOR_MODE_CURRENT_X_Y       = 0x01,
-  /** ColorTemperature */
-  ZB_ZCL_COLOR_CONTROL_COLOR_MODE_TEMPERATURE       = 0x02,
+    /** CurrentHue and CurrentSaturation */
+    ZB_ZCL_COLOR_CONTROL_COLOR_MODE_HUE_SATURATION    = 0x00,
+    /** CurrentX and CurrentY */
+    ZB_ZCL_COLOR_CONTROL_COLOR_MODE_CURRENT_X_Y       = 0x01,
+    /** ColorTemperature */
+    ZB_ZCL_COLOR_CONTROL_COLOR_MODE_TEMPERATURE       = 0x02,
 };
 
 
@@ -373,8 +373,8 @@ enum zb_zcl_color_control_color_mode_e
 */
 enum zb_zcl_color_control_options_e
 {
-  /** Execute command if the On/Off cluster, OnOff attribute is 0x00 (FALSE) */
-  ZB_ZCL_COLOR_CONTROL_OPTIONS_EXECUTE_IF_OFF  = 0,
+    /** Execute command if the On/Off cluster, OnOff attribute is 0x00 (FALSE) */
+    ZB_ZCL_COLOR_CONTROL_OPTIONS_EXECUTE_IF_OFF  = 0,
 };
 
 /*! @brief Enhanced Color Mode attribute enumeration
@@ -382,14 +382,14 @@ enum zb_zcl_color_control_options_e
 */
 enum zb_zcl_color_control_enhanced_color_mode_e
 {
-  /** CurrentHue and CurrentSaturation */
-  ZB_ZCL_COLOR_CONTROL_COLOR_EX_MODE_HUE_SATURATION    = 0x00,
-  /** CurrentX and CurrentY */
-  ZB_ZCL_COLOR_CONTROL_COLOR_EX_MODE_CURRENT_X_Y       = 0x01,
-  /** ColorTemperature */
-  ZB_ZCL_COLOR_CONTROL_COLOR_EX_MODE_TEMPERATURE       = 0x02,
-  /** EnhancedCurrentHue and EnhancedCurrentSaturation */
-  ZB_ZCL_COLOR_CONTROL_COLOR_EX_MODE_HUE_SATURATION_EX = 0x03,
+    /** CurrentHue and CurrentSaturation */
+    ZB_ZCL_COLOR_CONTROL_COLOR_EX_MODE_HUE_SATURATION    = 0x00,
+    /** CurrentX and CurrentY */
+    ZB_ZCL_COLOR_CONTROL_COLOR_EX_MODE_CURRENT_X_Y       = 0x01,
+    /** ColorTemperature */
+    ZB_ZCL_COLOR_CONTROL_COLOR_EX_MODE_TEMPERATURE       = 0x02,
+    /** EnhancedCurrentHue and EnhancedCurrentSaturation */
+    ZB_ZCL_COLOR_CONTROL_COLOR_EX_MODE_HUE_SATURATION_EX = 0x03,
 };
 
 /*! @brief Enhanced Color Capabilities attribute flags
@@ -397,16 +397,16 @@ enum zb_zcl_color_control_enhanced_color_mode_e
 */
 enum zb_zcl_color_control_color_capabilities_e
 {
-  /** Hue/saturation supported*/
-  ZB_ZCL_COLOR_CONTROL_CAPABILITIES_HUE_SATURATION  = 1 << 0,
-  /** Enhanced hue supported*/
-  ZB_ZCL_COLOR_CONTROL_CAPABILITIES_EX_HUE          = 1 << 1,
-  /** Color loop supported*/
-  ZB_ZCL_COLOR_CONTROL_CAPABILITIES_COLOR_LOOP      = 1 << 2,
-  /** XY supported*/
-  ZB_ZCL_COLOR_CONTROL_CAPABILITIES_X_Y             = 1 << 3,
-  /** Color temperature supported*/
-  ZB_ZCL_COLOR_CONTROL_CAPABILITIES_COLOR_TEMP      = 1 << 4,
+    /** Hue/saturation supported*/
+    ZB_ZCL_COLOR_CONTROL_CAPABILITIES_HUE_SATURATION  = 1 << 0,
+    /** Enhanced hue supported*/
+    ZB_ZCL_COLOR_CONTROL_CAPABILITIES_EX_HUE          = 1 << 1,
+    /** Color loop supported*/
+    ZB_ZCL_COLOR_CONTROL_CAPABILITIES_COLOR_LOOP      = 1 << 2,
+    /** XY supported*/
+    ZB_ZCL_COLOR_CONTROL_CAPABILITIES_X_Y             = 1 << 3,
+    /** Color temperature supported*/
+    ZB_ZCL_COLOR_CONTROL_CAPABILITIES_COLOR_TEMP      = 1 << 4,
 };
 
 /*!
@@ -857,29 +857,29 @@ enum zb_zcl_color_control_color_capabilities_e
  */
 typedef struct zb_zcl_color_control_move_loop_s
 {
-  /** Command header */
-  zb_zcl_parsed_hdr_t cmd_info;
+    /** Command header */
+    zb_zcl_parsed_hdr_t cmd_info;
 
-  /** @brief Time for last process move loop command */
-  zb_time_t time_last;
+    /** @brief Time for last process move loop command */
+    zb_time_t time_last;
 
-  /** @brief attribute id */
-  zb_uint16_t attr_id;
-  /** @brief rate */
-  zb_int16_t rate;
-  /** @brief limit */
-  zb_uint16_t limit;
-  /** @brief time mod - different last time - process time*/
-  zb_uint16_t time_mod;
+    /** @brief attribute id */
+    zb_uint16_t attr_id;
+    /** @brief rate */
+    zb_int16_t rate;
+    /** @brief limit */
+    zb_uint16_t limit;
+    /** @brief time mod - different last time - process time*/
+    zb_uint16_t time_mod;
 
-  /** @brief attribute id2 */
-  zb_uint16_t attr_id2;
-  /** @brief rate2 */
-  zb_int16_t rate2;
-  /** @brief limit2 */
-  zb_uint16_t limit2;
-  /** @brief time mod - different last time - process time*/
-  zb_uint16_t time_mod2;
+    /** @brief attribute id2 */
+    zb_uint16_t attr_id2;
+    /** @brief rate2 */
+    zb_int16_t rate2;
+    /** @brief limit2 */
+    zb_uint16_t limit2;
+    /** @brief time mod - different last time - process time*/
+    zb_uint16_t time_mod2;
 
 } zb_zcl_color_control_move_loop_t;
 
@@ -902,29 +902,29 @@ typedef struct zb_zcl_color_control_move_loop_s
  *  @brief Structure for loop of move to command */
 typedef struct zb_zcl_color_control_move_to_loop_s
 {
-  /** Command header */
-  zb_zcl_parsed_hdr_t cmd_info;
+    /** Command header */
+    zb_zcl_parsed_hdr_t cmd_info;
 
-  /** Attribute_ID */
-  zb_uint16_t attr_id;
-  /** Start value */
-  zb_uint16_t start_value;
-  /** Finish value */
-  zb_uint16_t finish_value;
-  /** Is increment direction */
-  zb_bool_t incr_direction;
+    /** Attribute_ID */
+    zb_uint16_t attr_id;
+    /** Start value */
+    zb_uint16_t start_value;
+    /** Finish value */
+    zb_uint16_t finish_value;
+    /** Is increment direction */
+    zb_bool_t incr_direction;
 
-  /** Attribute_ID */
-  zb_uint16_t attr_id2;
-  /** Start value */
-  zb_uint16_t start_value2;
-  /** Finish value */
-  zb_uint16_t finish_value2;
+    /** Attribute_ID */
+    zb_uint16_t attr_id2;
+    /** Start value */
+    zb_uint16_t start_value2;
+    /** Finish value */
+    zb_uint16_t finish_value2;
 
-  /** Start time - beacon interval */
-  zb_time_t start_time;
-  /** transition time - time unit = 1/10sec */
-  zb_time_t transition_time;
+    /** Start time - beacon interval */
+    zb_time_t start_time;
+    /** transition time - time unit = 1/10sec */
+    zb_time_t transition_time;
 } zb_zcl_color_control_move_to_loop_t;
 
 #define ZB_ZCL_COLOR_CONTROL_FILL_MOVE_TO_DATA(buf, cmd_info_,                              \
@@ -946,27 +946,27 @@ typedef struct zb_zcl_color_control_move_to_loop_s
  *  @brief Structure for loop of step command */
 typedef struct zb_zcl_color_control_step_loop_s
 {
-  /** Command header */
-  zb_zcl_parsed_hdr_t cmd_info;
+    /** Command header */
+    zb_zcl_parsed_hdr_t cmd_info;
 
-  /** Attribute_ID */
-  zb_uint16_t attr_id;
-  /** Rate value */
-  zb_uint16_t rate;
-  /** @brief limit */
-  zb_uint16_t limit;
+    /** Attribute_ID */
+    zb_uint16_t attr_id;
+    /** Rate value */
+    zb_uint16_t rate;
+    /** @brief limit */
+    zb_uint16_t limit;
 
-  /** last time - beacon interval */
-  zb_time_t last_time;
-  /** time bitween two steps - beacon interval */
-  zb_time_t step_time;
+    /** last time - beacon interval */
+    zb_time_t last_time;
+    /** time bitween two steps - beacon interval */
+    zb_time_t step_time;
 
-  /** Attribute_ID second */
-  zb_uint16_t attr_id2;
-  /** Rate value second */
-  zb_uint16_t rate2;
-  /** @brief limit2 */
-  zb_uint16_t limit2;
+    /** Attribute_ID second */
+    zb_uint16_t attr_id2;
+    /** Rate value second */
+    zb_uint16_t rate2;
+    /** @brief limit2 */
+    zb_uint16_t limit2;
 
 } zb_zcl_color_control_step_loop_t;
 
@@ -1004,44 +1004,44 @@ typedef struct zb_zcl_color_control_step_loop_s
 */
 enum zb_zcl_color_control_cmd_e
 {
-  /** Move To Hue command */
-  ZB_ZCL_CMD_COLOR_CONTROL_MOVE_TO_HUE                      = 0x00,
-  /** Move Hue command */
-  ZB_ZCL_CMD_COLOR_CONTROL_MOVE_HUE                         = 0x01,
-  /** Step Hue command */
-  ZB_ZCL_CMD_COLOR_CONTROL_STEP_HUE                         = 0x02,
-  /** Move To Saturation command */
-  ZB_ZCL_CMD_COLOR_CONTROL_MOVE_TO_SATURATION               = 0x03,
-  /** Move Saturation command */
-  ZB_ZCL_CMD_COLOR_CONTROL_MOVE_SATURATION                  = 0x04,
-  /** Step Saturation command */
-  ZB_ZCL_CMD_COLOR_CONTROL_STEP_SATURATION                  = 0x05,
-  /** Move To Hue and Saturation command */
-  ZB_ZCL_CMD_COLOR_CONTROL_MOVE_TO_HUE_SATURATION           = 0x06,
-  /** Move To Color command */
-  ZB_ZCL_CMD_COLOR_CONTROL_MOVE_TO_COLOR                    = 0x07,
-  /** Move Color command */
-  ZB_ZCL_CMD_COLOR_CONTROL_MOVE_COLOR                       = 0x08,
-  /** Step Color command */
-  ZB_ZCL_CMD_COLOR_CONTROL_STEP_COLOR                       = 0x09,
-  /** Move to color temperature command */
-  ZB_ZCL_CMD_COLOR_CONTROL_MOVE_TO_COLOR_TEMPERATURE        = 0x0a,
-  /** Enhanced move to hue command */
-  ZB_ZCL_CMD_COLOR_CONTROL_ENHANCED_MOVE_TO_HUE             = 0x40,
-  /** Enhanced move hue command */
-  ZB_ZCL_CMD_COLOR_CONTROL_ENHANCED_MOVE_HUE                = 0x41,
-  /** Enhanced step hue command */
-  ZB_ZCL_CMD_COLOR_CONTROL_ENHANCED_STEP_HUE                = 0x42,
-  /** Enhanced move to hue and saturation command */
-  ZB_ZCL_CMD_COLOR_CONTROL_ENHANCED_MOVE_TO_HUE_SATURATION  = 0x43,
-  /** Color loop set command */
-  ZB_ZCL_CMD_COLOR_CONTROL_COLOR_LOOP_SET                   = 0x44,
-  /** Stop move step command */
-  ZB_ZCL_CMD_COLOR_CONTROL_STOP_MOVE_STEP                   = 0x47,
-  /** Move color temperature command */
-  ZB_ZCL_CMD_COLOR_CONTROL_MOVE_COLOR_TEMPERATURE           = 0x4b,
-  /** Step color temperature command */
-  ZB_ZCL_CMD_COLOR_CONTROL_STEP_COLOR_TEMPERATURE           = 0x4c,
+    /** Move To Hue command */
+    ZB_ZCL_CMD_COLOR_CONTROL_MOVE_TO_HUE                      = 0x00,
+    /** Move Hue command */
+    ZB_ZCL_CMD_COLOR_CONTROL_MOVE_HUE                         = 0x01,
+    /** Step Hue command */
+    ZB_ZCL_CMD_COLOR_CONTROL_STEP_HUE                         = 0x02,
+    /** Move To Saturation command */
+    ZB_ZCL_CMD_COLOR_CONTROL_MOVE_TO_SATURATION               = 0x03,
+    /** Move Saturation command */
+    ZB_ZCL_CMD_COLOR_CONTROL_MOVE_SATURATION                  = 0x04,
+    /** Step Saturation command */
+    ZB_ZCL_CMD_COLOR_CONTROL_STEP_SATURATION                  = 0x05,
+    /** Move To Hue and Saturation command */
+    ZB_ZCL_CMD_COLOR_CONTROL_MOVE_TO_HUE_SATURATION           = 0x06,
+    /** Move To Color command */
+    ZB_ZCL_CMD_COLOR_CONTROL_MOVE_TO_COLOR                    = 0x07,
+    /** Move Color command */
+    ZB_ZCL_CMD_COLOR_CONTROL_MOVE_COLOR                       = 0x08,
+    /** Step Color command */
+    ZB_ZCL_CMD_COLOR_CONTROL_STEP_COLOR                       = 0x09,
+    /** Move to color temperature command */
+    ZB_ZCL_CMD_COLOR_CONTROL_MOVE_TO_COLOR_TEMPERATURE        = 0x0a,
+    /** Enhanced move to hue command */
+    ZB_ZCL_CMD_COLOR_CONTROL_ENHANCED_MOVE_TO_HUE             = 0x40,
+    /** Enhanced move hue command */
+    ZB_ZCL_CMD_COLOR_CONTROL_ENHANCED_MOVE_HUE                = 0x41,
+    /** Enhanced step hue command */
+    ZB_ZCL_CMD_COLOR_CONTROL_ENHANCED_STEP_HUE                = 0x42,
+    /** Enhanced move to hue and saturation command */
+    ZB_ZCL_CMD_COLOR_CONTROL_ENHANCED_MOVE_TO_HUE_SATURATION  = 0x43,
+    /** Color loop set command */
+    ZB_ZCL_CMD_COLOR_CONTROL_COLOR_LOOP_SET                   = 0x44,
+    /** Stop move step command */
+    ZB_ZCL_CMD_COLOR_CONTROL_STOP_MOVE_STEP                   = 0x47,
+    /** Move color temperature command */
+    ZB_ZCL_CMD_COLOR_CONTROL_MOVE_COLOR_TEMPERATURE           = 0x4b,
+    /** Step color temperature command */
+    ZB_ZCL_CMD_COLOR_CONTROL_STEP_COLOR_TEMPERATURE           = 0x4c,
 };
 
 /** @cond internals_doc */
@@ -1082,22 +1082,22 @@ enum zb_zcl_color_control_cmd_e
  *  See specs 5.2.2.3.3.2, 5.2.2.3.6.2 */
 enum zb_zcl_color_control_move_direction_e
 {
-  /** Stop */
-  ZB_ZCL_CMD_COLOR_CONTROL_MOVE_STOP    = 0x00,
-  /** Up */
-  ZB_ZCL_CMD_COLOR_CONTROL_MOVE_UP      = 0x01,
-  /** Down */
-  ZB_ZCL_CMD_COLOR_CONTROL_MOVE_DOWN     = 0x03
+    /** Stop */
+    ZB_ZCL_CMD_COLOR_CONTROL_MOVE_STOP    = 0x00,
+    /** Up */
+    ZB_ZCL_CMD_COLOR_CONTROL_MOVE_UP      = 0x01,
+    /** Down */
+    ZB_ZCL_CMD_COLOR_CONTROL_MOVE_DOWN     = 0x03
 };
 
 /** @brief Direction of Step command.
  *  See specs 5.2.2.3.4.2, 5.2.2.3.7.2 */
 enum zb_zcl_color_control_step_mode_e
 {
-  /** Up */
-  ZB_ZCL_CMD_COLOR_CONTROL_STEP_UP       = 0x01,
-  /** Down */
-  ZB_ZCL_CMD_COLOR_CONTROL_STEP_DOWN     = 0x03
+    /** Up */
+    ZB_ZCL_CMD_COLOR_CONTROL_STEP_UP       = 0x01,
+    /** Down */
+    ZB_ZCL_CMD_COLOR_CONTROL_STEP_DOWN     = 0x03
 };
 
 
@@ -1107,10 +1107,10 @@ enum zb_zcl_color_control_step_mode_e
     @see ZCL spec, subclause 3.10.2.3.1.1*/
 typedef ZB_PACKED_PRE struct zb_zcl_color_control_req_options_s
 {
-  /** OptionsMask field */
-  zb_uint8_t options_mask;
-  /** OptionsOverride field */
-  zb_uint8_t options_override;
+    /** OptionsMask field */
+    zb_uint8_t options_mask;
+    /** OptionsOverride field */
+    zb_uint8_t options_override;
 } ZB_PACKED_STRUCT zb_zcl_color_control_req_options_t;
 
 /** @brief Move to Level payload length macro */
@@ -1143,26 +1143,26 @@ typedef ZB_PACKED_PRE struct zb_zcl_color_control_req_options_s
  *  See spec 5.2.2.3.2.3 */
 enum zb_zcl_color_control_move_to_hue_direction_e
 {
-  /** Shortest distance */
-  ZB_ZCL_CMD_COLOR_CONTROL_MOVE_TO_HUE_SHORTEST = 0x00,
-  /** Longest distance */
-  ZB_ZCL_CMD_COLOR_CONTROL_MOVE_TO_HUE_LONGEST  = 0x01,
-  /** Up */
-  ZB_ZCL_CMD_COLOR_CONTROL_MOVE_TO_HUE_UP       = 0x02,
-  /** Down */
-  ZB_ZCL_CMD_COLOR_CONTROL_MOVE_TO_HUE_DOWN     = 0x03
+    /** Shortest distance */
+    ZB_ZCL_CMD_COLOR_CONTROL_MOVE_TO_HUE_SHORTEST = 0x00,
+    /** Longest distance */
+    ZB_ZCL_CMD_COLOR_CONTROL_MOVE_TO_HUE_LONGEST  = 0x01,
+    /** Up */
+    ZB_ZCL_CMD_COLOR_CONTROL_MOVE_TO_HUE_UP       = 0x02,
+    /** Down */
+    ZB_ZCL_CMD_COLOR_CONTROL_MOVE_TO_HUE_DOWN     = 0x03
 };
 
 /*! @brief Structure representation of Move To Hue command payload
     @see ZCL spec, subclause 5.2.2.3.2 */
 typedef ZB_PACKED_PRE struct zb_zcl_color_control_move_to_hue_req_s
 {
-  /** Hue */
-  zb_uint8_t hue;
-  /** Direction, see @ref zb_zcl_color_control_move_to_hue_direction_e */
-  zb_uint8_t direction;
-  /** Transition time field */
-  zb_uint16_t transition_time;
+    /** Hue */
+    zb_uint8_t hue;
+    /** Direction, see @ref zb_zcl_color_control_move_to_hue_direction_e */
+    zb_uint8_t direction;
+    /** Transition time field */
+    zb_uint16_t transition_time;
 } ZB_PACKED_STRUCT zb_zcl_color_control_move_to_hue_req_t;
 
 /** @brief Move Hue payload length macro */
@@ -1228,10 +1228,10 @@ typedef ZB_PACKED_PRE struct zb_zcl_color_control_move_to_hue_req_s
     @see ZCL spec, subclause 5.2.2.3.3 */
 typedef ZB_PACKED_PRE struct zb_zcl_color_control_move_hue_req_s
 {
-  /** Move mode, see @ref zb_zcl_color_control_move_direction_e */
-  zb_uint8_t move_mode;
-  /** Rate */
-  zb_uint8_t rate;
+    /** Move mode, see @ref zb_zcl_color_control_move_direction_e */
+    zb_uint8_t move_mode;
+    /** Rate */
+    zb_uint8_t rate;
 } ZB_PACKED_STRUCT zb_zcl_color_control_move_hue_req_t;
 
 /** @brief Move Hue payload length macro */
@@ -1295,12 +1295,12 @@ typedef ZB_PACKED_PRE struct zb_zcl_color_control_move_hue_req_s
     @see ZCL spec, subclause 5.2.2.3.4 */
 typedef ZB_PACKED_PRE struct zb_zcl_color_control_step_hue_req_s
 {
-  /** Step mode, see @ref zb_zcl_color_control_step_mode_e */
-  zb_uint8_t step_mode;
-  /** Step size */
-  zb_uint8_t step_size;
-  /** Transition time field */
-  zb_uint8_t transition_time;
+    /** Step mode, see @ref zb_zcl_color_control_step_mode_e */
+    zb_uint8_t step_mode;
+    /** Step size */
+    zb_uint8_t step_size;
+    /** Transition time field */
+    zb_uint8_t transition_time;
 } ZB_PACKED_STRUCT zb_zcl_color_control_step_hue_req_t;
 
 /** @brief Step Hue payload length macro */
@@ -1367,10 +1367,10 @@ typedef ZB_PACKED_PRE struct zb_zcl_color_control_step_hue_req_s
     @see ZCL spec, subclause 5.2.2.3.5 */
 typedef ZB_PACKED_PRE struct zb_zcl_color_control_move_to_saturation_req_s
 {
-  /** Saturation */
-  zb_uint8_t saturation;
-  /** Transition time field */
-  zb_uint16_t transition_time;
+    /** Saturation */
+    zb_uint8_t saturation;
+    /** Transition time field */
+    zb_uint16_t transition_time;
 } ZB_PACKED_STRUCT zb_zcl_color_control_move_to_saturation_req_t;
 
 /** @brief Move To Saturation payload length macro */
@@ -1433,10 +1433,10 @@ typedef ZB_PACKED_PRE struct zb_zcl_color_control_move_to_saturation_req_s
     @see ZCL spec, subclause 5.2.2.3.6 */
 typedef ZB_PACKED_PRE struct zb_zcl_color_control_move_saturation_req_s
 {
-  /** Move mode, see @ref zb_zcl_color_control_move_direction_e */
-  zb_uint8_t move_mode;
-  /** Rate */
-  zb_uint8_t rate;
+    /** Move mode, see @ref zb_zcl_color_control_move_direction_e */
+    zb_uint8_t move_mode;
+    /** Rate */
+    zb_uint8_t rate;
 } ZB_PACKED_STRUCT zb_zcl_color_control_move_saturation_req_t;
 
 /** @brief Move Saturation payload length macro */
@@ -1500,12 +1500,12 @@ typedef ZB_PACKED_PRE struct zb_zcl_color_control_move_saturation_req_s
     @see ZCL spec, subclause 5.2.2.3.7 */
 typedef ZB_PACKED_PRE struct zb_zcl_color_control_step_saturation_req_s
 {
-  /** Step mode, see @ref zb_zcl_color_control_step_mode_e */
-  zb_uint8_t step_mode;
-  /** Step size */
-  zb_uint8_t step_size;
-  /** Transition time field */
-  zb_uint8_t transition_time;
+    /** Step mode, see @ref zb_zcl_color_control_step_mode_e */
+    zb_uint8_t step_mode;
+    /** Step size */
+    zb_uint8_t step_size;
+    /** Transition time field */
+    zb_uint8_t transition_time;
 } ZB_PACKED_STRUCT zb_zcl_color_control_step_saturation_req_t;
 
 /** @brief Move Saturation payload length macro */
@@ -1572,12 +1572,12 @@ typedef ZB_PACKED_PRE struct zb_zcl_color_control_step_saturation_req_s
     @see ZCL spec, subclause 5.2.2.3.8 */
 typedef ZB_PACKED_PRE struct zb_zcl_color_control_move_to_hue_saturation_req_s
 {
-  /** Hue */
-  zb_uint8_t hue;
-  /** Saturation */
-  zb_uint8_t saturation;
-  /** Transition time field */
-  zb_uint16_t transition_time;
+    /** Hue */
+    zb_uint8_t hue;
+    /** Saturation */
+    zb_uint8_t saturation;
+    /** Transition time field */
+    zb_uint16_t transition_time;
 } ZB_PACKED_STRUCT zb_zcl_color_control_move_to_hue_saturation_req_t;
 
 /** @brief Move to Hue and Saturation payload length macro */
@@ -1644,12 +1644,12 @@ typedef ZB_PACKED_PRE struct zb_zcl_color_control_move_to_hue_saturation_req_s
     @see ZCL spec, subclause 5.2.2.3.9 */
 typedef ZB_PACKED_PRE struct zb_zcl_color_control_move_to_color_req_s
 {
-  /** ColorX */
-  zb_uint16_t color_x;
-  /** ColorY */
-  zb_uint16_t color_y;
-  /** Transition time field */
-  zb_uint16_t transition_time;
+    /** ColorX */
+    zb_uint16_t color_x;
+    /** ColorY */
+    zb_uint16_t color_y;
+    /** Transition time field */
+    zb_uint16_t transition_time;
 } ZB_PACKED_STRUCT zb_zcl_color_control_move_to_color_req_t;
 
 /** @brief Move to Color payload length macro */
@@ -1717,10 +1717,10 @@ typedef ZB_PACKED_PRE struct zb_zcl_color_control_move_to_color_req_s
     @see ZCL spec, subclause 5.2.2.3.10 */
 typedef ZB_PACKED_PRE struct zb_zcl_color_control_move_color_req_s
 {
-  /** RateX */
-  zb_int16_t rate_x;
-  /** RateY */
-  zb_int16_t rate_y;
+    /** RateX */
+    zb_int16_t rate_x;
+    /** RateY */
+    zb_int16_t rate_y;
 } ZB_PACKED_STRUCT zb_zcl_color_control_move_color_req_t;
 
 /** @brief Move Color payload length macro */
@@ -1784,12 +1784,12 @@ typedef ZB_PACKED_PRE struct zb_zcl_color_control_move_color_req_s
     @see ZCL spec, subclause 5.2.2.3.11 */
 typedef ZB_PACKED_PRE struct zb_zcl_color_control_step_color_req_s
 {
-  /** StepX */
-  zb_uint16_t step_x;
-  /** StepY */
-  zb_uint16_t step_y;
-  /** Transition time field */
-  zb_uint16_t transition_time;
+    /** StepX */
+    zb_uint16_t step_x;
+    /** StepY */
+    zb_uint16_t step_y;
+    /** Transition time field */
+    zb_uint16_t transition_time;
 } ZB_PACKED_STRUCT zb_zcl_color_control_step_color_req_t;
 
 /** @brief Step Color payload length macro */
@@ -1855,10 +1855,10 @@ typedef ZB_PACKED_PRE struct zb_zcl_color_control_step_color_req_s
     @see ZCL spec, subclause 5.2.2.3.12 */
 typedef ZB_PACKED_PRE struct zb_zcl_color_control_move_to_color_temperature_req_s
 {
-  /** Color Temperature */
-  zb_uint16_t color_temperature;
-  /** Transition time field */
-  zb_uint16_t transition_time;
+    /** Color Temperature */
+    zb_uint16_t color_temperature;
+    /** Transition time field */
+    zb_uint16_t transition_time;
 } ZB_PACKED_STRUCT zb_zcl_color_control_move_to_color_temperature_req_t;
 
 /** @brief Move to Color Temperature payload length macro */
@@ -1923,12 +1923,12 @@ typedef ZB_PACKED_PRE struct zb_zcl_color_control_move_to_color_temperature_req_
     @see ZCL spec, subclause 5.2.2.3.14 */
 typedef ZB_PACKED_PRE struct zb_zcl_color_control_enhanced_move_to_hue_req_s
 {
-  /** Enhanced Hue */
-  zb_uint16_t enhanced_hue;
-  /** Direction, see @ref zb_zcl_color_control_move_to_hue_direction_e */
-  zb_uint8_t direction;
-  /** Transition time field */
-  zb_uint16_t transition_time;
+    /** Enhanced Hue */
+    zb_uint16_t enhanced_hue;
+    /** Direction, see @ref zb_zcl_color_control_move_to_hue_direction_e */
+    zb_uint8_t direction;
+    /** Transition time field */
+    zb_uint16_t transition_time;
 } ZB_PACKED_STRUCT zb_zcl_color_control_enhanced_move_to_hue_req_t;
 
 /** @brief Enhanced Move to Hue payload length macro */
@@ -1995,10 +1995,10 @@ typedef ZB_PACKED_PRE struct zb_zcl_color_control_enhanced_move_to_hue_req_s
     @see ZCL spec, subclause 5.2.2.3.15 */
 typedef ZB_PACKED_PRE struct zb_zcl_color_control_enhanced_move_hue_req_s
 {
-  /** Move mode, see @ref zb_zcl_color_control_move_direction_e */
-  zb_uint8_t move_mode;
-  /** Rate */
-  zb_uint16_t rate;
+    /** Move mode, see @ref zb_zcl_color_control_move_direction_e */
+    zb_uint8_t move_mode;
+    /** Rate */
+    zb_uint16_t rate;
 } ZB_PACKED_STRUCT zb_zcl_color_control_enhanced_move_hue_req_t;
 
 /** @brief Enhanced Move to Hue payload length macro */
@@ -2062,12 +2062,12 @@ typedef ZB_PACKED_PRE struct zb_zcl_color_control_enhanced_move_hue_req_s
     @see ZCL spec, subclause 5.2.2.3.16 */
 typedef ZB_PACKED_PRE struct zb_zcl_color_control_enhanced_step_hue_req_s
 {
-  /** Step mode, see @ref zb_zcl_color_control_step_mode_e */
-  zb_uint8_t step_mode;
-  /** Step size */
-  zb_uint16_t step_size;
-  /** Transition time field */
-  zb_uint16_t transition_time;
+    /** Step mode, see @ref zb_zcl_color_control_step_mode_e */
+    zb_uint8_t step_mode;
+    /** Step size */
+    zb_uint16_t step_size;
+    /** Transition time field */
+    zb_uint16_t transition_time;
 } ZB_PACKED_STRUCT zb_zcl_color_control_enhanced_step_hue_req_t;
 
 /** @brief Enhanced Move to Hue payload length macro */
@@ -2134,12 +2134,12 @@ typedef ZB_PACKED_PRE struct zb_zcl_color_control_enhanced_step_hue_req_s
     @see ZCL spec, subclause 5.2.2.3.17 */
 typedef ZB_PACKED_PRE struct zb_zcl_color_control_enhanced_move_to_hue_saturation_req_s
 {
-  /** Enhanced Hue */
-  zb_uint16_t enhanced_hue;
-  /** Saturation */
-  zb_uint8_t saturation;
-  /** Transition time field */
-  zb_uint16_t transition_time;
+    /** Enhanced Hue */
+    zb_uint16_t enhanced_hue;
+    /** Saturation */
+    zb_uint8_t saturation;
+    /** Transition time field */
+    zb_uint16_t transition_time;
 } ZB_PACKED_STRUCT zb_zcl_color_control_enhanced_move_to_hue_saturation_req_t;
 
 /** @brief Enhanced Move to Hue payload length macro */
@@ -2206,16 +2206,16 @@ typedef ZB_PACKED_PRE struct zb_zcl_color_control_enhanced_move_to_hue_saturatio
     @see ZCL spec, subclause 5.2.2.3.18 */
 typedef ZB_PACKED_PRE struct zb_zcl_color_control_color_loop_set_req_s
 {
-  /** Update flags, see @ref zb_zcl_color_control_color_loop_update_e */
-  zb_uint8_t update_flags;
-  /** Action, see @ref zb_zcl_color_control_color_loop_action_e */
-  zb_uint8_t action;
-  /** Direction, see @ref zb_zcl_color_control_color_loop_direction_e */
-  zb_uint8_t direction;
-  /** Time */
-  zb_uint16_t time;
-  /** Start hue */
-  zb_uint16_t start_hue;
+    /** Update flags, see @ref zb_zcl_color_control_color_loop_update_e */
+    zb_uint8_t update_flags;
+    /** Action, see @ref zb_zcl_color_control_color_loop_action_e */
+    zb_uint8_t action;
+    /** Direction, see @ref zb_zcl_color_control_color_loop_direction_e */
+    zb_uint8_t direction;
+    /** Time */
+    zb_uint16_t time;
+    /** Start hue */
+    zb_uint16_t start_hue;
 } ZB_PACKED_STRUCT zb_zcl_color_control_color_loop_set_req_t;
 
 /** @brief Enhanced Color Loop Set payload length macro */
@@ -2226,47 +2226,47 @@ typedef ZB_PACKED_PRE struct zb_zcl_color_control_color_loop_set_req_s
  *  See ZCL specs 5.2.2.3.18.1 */
 enum zb_zcl_color_control_color_loop_update_e
 {
-  /** Update action */
-  ZB_ZCL_CMD_COLOR_CONTROL_LOOP_UPDATE_ACTION       = 1 << 0,
-  /** Update direction */
-  ZB_ZCL_CMD_COLOR_CONTROL_LOOP_UPDATE_DIRECTION    = 1 << 1,
-  /** Update time */
-  ZB_ZCL_CMD_COLOR_CONTROL_LOOP_UPDATE_TIME         = 1 << 2,
-  /** Update start hue */
-  ZB_ZCL_CMD_COLOR_CONTROL_LOOP_UPDATE_START_HUE    = 1 << 3,
+    /** Update action */
+    ZB_ZCL_CMD_COLOR_CONTROL_LOOP_UPDATE_ACTION       = 1 << 0,
+    /** Update direction */
+    ZB_ZCL_CMD_COLOR_CONTROL_LOOP_UPDATE_DIRECTION    = 1 << 1,
+    /** Update time */
+    ZB_ZCL_CMD_COLOR_CONTROL_LOOP_UPDATE_TIME         = 1 << 2,
+    /** Update start hue */
+    ZB_ZCL_CMD_COLOR_CONTROL_LOOP_UPDATE_START_HUE    = 1 << 3,
 };
 
 /** @brief Action enumerate for Color Loop Set command
  *  See ZCL specs 5.2.2.3.18.2 */
 enum zb_zcl_color_control_color_loop_action_e
 {
-  /** De-activate the color loop */
-  ZB_ZCL_CMD_COLOR_CONTROL_LOOP_ACTION_DEACTIVATE   = 0,
-  /** Activate the color loop from the value in the Color Loop Start Enhanced Hue field*/
-  ZB_ZCL_CMD_COLOR_CONTROL_LOOP_ACTION_START_HUE    = 1,
-  /** Activate the color loop from the value of the Enhanced Current Hue attribute*/
-  ZB_ZCL_CMD_COLOR_CONTROL_LOOP_ACTION_CURRENT_HUE  = 2,
+    /** De-activate the color loop */
+    ZB_ZCL_CMD_COLOR_CONTROL_LOOP_ACTION_DEACTIVATE   = 0,
+    /** Activate the color loop from the value in the Color Loop Start Enhanced Hue field*/
+    ZB_ZCL_CMD_COLOR_CONTROL_LOOP_ACTION_START_HUE    = 1,
+    /** Activate the color loop from the value of the Enhanced Current Hue attribute*/
+    ZB_ZCL_CMD_COLOR_CONTROL_LOOP_ACTION_CURRENT_HUE  = 2,
 };
 
 /** @brief Direction enumerate for Color Loop Set command
  *  See ZCL specs 5.2.2.3.18.3 */
 enum zb_zcl_color_control_color_loop_direction_e
 {
-  /** Decrement the hue in the color loop */
-  ZB_ZCL_CMD_COLOR_CONTROL_LOOP_DIRECTION_DECREMENT     = 0,
-  /** Increment the hue in the color loop */
-  ZB_ZCL_CMD_COLOR_CONTROL_LOOP_DIRECTION_INCREMENT     = 1,
+    /** Decrement the hue in the color loop */
+    ZB_ZCL_CMD_COLOR_CONTROL_LOOP_DIRECTION_DECREMENT     = 0,
+    /** Increment the hue in the color loop */
+    ZB_ZCL_CMD_COLOR_CONTROL_LOOP_DIRECTION_INCREMENT     = 1,
 };
 
 /*! @internal
  *  @brief Structure for loop of Color Loop Set command */
 typedef struct zb_zcl_color_control_color_loop_set_s
 {
-  /** Command header */
-  zb_zcl_parsed_hdr_t cmd_info;
+    /** Command header */
+    zb_zcl_parsed_hdr_t cmd_info;
 
-  /** Last time - beacon interval */
-  zb_time_t last_time;
+    /** Last time - beacon interval */
+    zb_time_t last_time;
 
 } zb_zcl_color_control_color_loop_set_t;
 
@@ -2367,14 +2367,14 @@ typedef struct zb_zcl_color_control_color_loop_set_s
     @see ZCL spec, subclause 5.2.2.3.20 */
 typedef ZB_PACKED_PRE struct zb_zcl_color_control_move_color_temp_req_s
 {
-  /** Move mode, see @ref zb_zcl_color_control_move_direction_e */
-  zb_uint8_t move_mode;
-  /** Rate */
-  zb_uint16_t rate;
-  /** Color temperature minimum */
-  zb_uint16_t color_temp_min;
-  /** Color temperature maximum */
-  zb_uint16_t color_temp_max;
+    /** Move mode, see @ref zb_zcl_color_control_move_direction_e */
+    zb_uint8_t move_mode;
+    /** Rate */
+    zb_uint16_t rate;
+    /** Color temperature minimum */
+    zb_uint16_t color_temp_min;
+    /** Color temperature maximum */
+    zb_uint16_t color_temp_max;
 } ZB_PACKED_STRUCT zb_zcl_color_control_move_color_temp_req_t;
 
 /** @brief Enhanced Move Color Temperature payload length macro */
@@ -2444,16 +2444,16 @@ typedef ZB_PACKED_PRE struct zb_zcl_color_control_move_color_temp_req_s
     @see ZCL spec, subclause 5.2.2.3.21 */
 typedef ZB_PACKED_PRE struct zb_zcl_color_control_step_color_temp_req_s
 {
-  /** Step mode, see @ref zb_zcl_color_control_step_mode_e */
-  zb_uint8_t step_mode;
-  /** Step size */
-  zb_uint16_t step_size;
-  /** Transition time field */
-  zb_uint16_t transition_time;
-  /** Color temperature minimum */
-  zb_uint16_t color_temp_min;
-  /** Color temperature maximum */
-  zb_uint16_t color_temp_max;
+    /** Step mode, see @ref zb_zcl_color_control_step_mode_e */
+    zb_uint8_t step_mode;
+    /** Step size */
+    zb_uint16_t step_size;
+    /** Transition time field */
+    zb_uint16_t transition_time;
+    /** Color temperature minimum */
+    zb_uint16_t color_temp_min;
+    /** Color temperature maximum */
+    zb_uint16_t color_temp_max;
 } ZB_PACKED_STRUCT zb_zcl_color_control_step_color_temp_req_t;
 
 /** @brief Enhanced Move Color Temperature payload length macro */
@@ -2570,15 +2570,15 @@ typedef ZB_PACKED_PRE struct zb_zcl_color_control_step_color_temp_req_s
  */
 typedef struct zb_zcl_color_control_loop_element_s
 {
-  zb_uint8_t endpoint;      /** Device endpoint */
-  zb_uint8_t buffer_id;     /** buffer for invoke User App */
+    zb_uint8_t endpoint;      /** Device endpoint */
+    zb_uint8_t buffer_id;     /** buffer for invoke User App */
 
-  zb_uint16_t attr_id;      /** Attribute ID */
-  zb_int16_t value;         /** delta value */
-  zb_bool_t is_continue;   /** If ZB_TRUE attribute when is already limit value, command
+    zb_uint16_t attr_id;      /** Attribute ID */
+    zb_int16_t value;         /** delta value */
+    zb_bool_t is_continue;   /** If ZB_TRUE attribute when is already limit value, command
                                 contentious from another limit. If ZB_FALSE attribute when
                                 is already limit value, command stop */
-  zb_uint16_t limit;        /** limit of attribute value */
+    zb_uint16_t limit;        /** limit of attribute value */
 
 } zb_zcl_color_control_loop_element_t;
 
@@ -2630,9 +2630,9 @@ typedef struct zb_zcl_color_control_loop_element_s
  */
 typedef struct zb_zcl_color_control_invoke_user_s
 {
-  zb_uint8_t endpoint;
-  zb_uint16_t attr_id;
-  zb_uint16_t new_value;        /** New value attribute */
+    zb_uint8_t endpoint;
+    zb_uint16_t attr_id;
+    zb_uint16_t new_value;        /** New value attribute */
 } zb_zcl_color_control_invoke_user_t;
 
 /** @}

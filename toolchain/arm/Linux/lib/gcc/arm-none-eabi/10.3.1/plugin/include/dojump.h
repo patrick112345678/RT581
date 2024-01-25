@@ -40,11 +40,11 @@ extern void do_pending_stack_adjust (void);
 class saved_pending_stack_adjust
 {
 public:
-  /* Saved value of pending_stack_adjust.  */
-  poly_int64 x_pending_stack_adjust;
+    /* Saved value of pending_stack_adjust.  */
+    poly_int64 x_pending_stack_adjust;
 
-  /* Saved value of stack_pointer_delta.  */
-  poly_int64 x_stack_pointer_delta;
+    /* Saved value of stack_pointer_delta.  */
+    poly_int64 x_stack_pointer_delta;
 };
 
 /* Remember pending_stack_adjust/stack_pointer_delta.
@@ -58,21 +58,21 @@ extern void save_pending_stack_adjust (saved_pending_stack_adjust *);
 extern void restore_pending_stack_adjust (saved_pending_stack_adjust *);
 
 extern bool split_comparison (enum rtx_code, machine_mode,
-			      enum rtx_code *, enum rtx_code *);
+                              enum rtx_code *, enum rtx_code *);
 
 /* Generate code to evaluate EXP and jump to LABEL if the value is nonzero.  */
 extern void jumpif (tree exp, rtx_code_label *label, profile_probability prob);
 extern void jumpif_1 (enum tree_code, tree, tree, rtx_code_label *,
-		      profile_probability);
+                      profile_probability);
 
 /* Generate code to evaluate EXP and jump to LABEL if the value is zero.  */
 extern void jumpifnot (tree exp, rtx_code_label *label,
-		       profile_probability prob);
+                       profile_probability prob);
 extern void jumpifnot_1 (enum tree_code, tree, tree, rtx_code_label *,
-			 profile_probability);
+                         profile_probability);
 
 extern void do_compare_rtx_and_jump (rtx, rtx, enum rtx_code, int,
-				     machine_mode, rtx, rtx_code_label *,
-				     rtx_code_label *, profile_probability);
+                                     machine_mode, rtx, rtx_code_label *,
+                                     rtx_code_label *, profile_probability);
 
 #endif /* GCC_DOJUMP_H */

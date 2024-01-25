@@ -40,14 +40,14 @@
  */
 typedef ZB_PACKED_PRE struct zb_af_node_desc_s
 {
-  zb_uint16_t          node_desc_flags;            /*!< node description */
-  zb_uint8_t           mac_capability_flags;       /*!< mac capability */
-  zb_uint16_t          manufacturer_code;          /*!< Manufacturer code */
-  zb_uint8_t           max_buf_size;               /*!< Maximum buffer size */
-  zb_uint16_t          max_incoming_transfer_size; /*!< Maximum incoming transfer size */
-  zb_uint16_t          server_mask;                /*!< Server mask */
-  zb_uint16_t          max_outgoing_transfer_size; /*!< Maximum outgoing transfer size */
-  zb_uint8_t           desc_capability_field;      /*!< Descriptor capability field */
+    zb_uint16_t          node_desc_flags;            /*!< node description */
+    zb_uint8_t           mac_capability_flags;       /*!< mac capability */
+    zb_uint16_t          manufacturer_code;          /*!< Manufacturer code */
+    zb_uint8_t           max_buf_size;               /*!< Maximum buffer size */
+    zb_uint16_t          max_incoming_transfer_size; /*!< Maximum incoming transfer size */
+    zb_uint16_t          server_mask;                /*!< Server mask */
+    zb_uint16_t          max_outgoing_transfer_size; /*!< Maximum outgoing transfer size */
+    zb_uint8_t           desc_capability_field;      /*!< Descriptor capability field */
 }
 ZB_PACKED_STRUCT
 zb_af_node_desc_t;
@@ -186,13 +186,13 @@ typedef zb_uint8_t zb_power_source_level_t;
  */
 typedef ZB_PACKED_PRE struct zb_af_node_power_desc_s
 {
-/**   Field name               Bits
- * Current power mode:         4@n
- * Available power sources:    4@n
- * Current power source:       4@n
- * Current power source level: 4
- */
-  zb_uint16_t power_desc_flags;
+    /**   Field name               Bits
+     * Current power mode:         4@n
+     * Available power sources:    4@n
+     * Current power source:       4@n
+     * Current power source level: 4
+     */
+    zb_uint16_t power_desc_flags;
 } ZB_PACKED_STRUCT zb_af_node_power_desc_t;
 
 
@@ -257,9 +257,9 @@ typedef ZB_PACKED_PRE struct zb_af_node_power_desc_s
  * @{
  */
 /** General descriptor type */
-ZB_DECLARE_SIMPLE_DESC(1,1);
+ZB_DECLARE_SIMPLE_DESC(1, 1);
 /** ZDO descriptor type */
-ZB_DECLARE_SIMPLE_DESC(8,9);
+ZB_DECLARE_SIMPLE_DESC(8, 9);
 /** @} */ /* af_management_service */
 
 /**
@@ -338,34 +338,34 @@ typedef zb_uint8_t (*zb_device_handler_t)(zb_uint8_t param);
 /*! @brief Endpoint descriptor. */
 typedef ZB_PACKED_PRE struct zb_af_endpoint_desc_s
 {
-  zb_uint8_t ep_id;               /*!< Endpoint ID */
-  zb_uint16_t profile_id;         /*!< Application profile, which implemented on endpoint */
-  zb_device_handler_t device_handler;   /*!< Device specific callback, handles all commands */
-  /*! @brief Identify notification callback
+    zb_uint8_t ep_id;               /*!< Endpoint ID */
+    zb_uint16_t profile_id;         /*!< Application profile, which implemented on endpoint */
+    zb_device_handler_t device_handler;   /*!< Device specific callback, handles all commands */
+    /*! @brief Identify notification callback
 
-      If set, will be called on identification start and stop indicating start
-      event with a non-zero argument
-  */
-  zb_callback_t identify_handler;
-  zb_uint8_t reserved_size; /*!< Unused parameter (reserved for future use) */
-  void* reserved_ptr; /*!< Unused parameter (reserved for future use) */
-  zb_uint8_t cluster_count;       /*!< Number of supported clusters */
-  struct zb_zcl_cluster_desc_s *cluster_desc_list;  /*!< Supported clusters list */
-  zb_af_simple_desc_1_1_t *simple_desc; /*!< Simple descriptor */
+        If set, will be called on identification start and stop indicating start
+        event with a non-zero argument
+    */
+    zb_callback_t identify_handler;
+    zb_uint8_t reserved_size; /*!< Unused parameter (reserved for future use) */
+    void *reserved_ptr; /*!< Unused parameter (reserved for future use) */
+    zb_uint8_t cluster_count;       /*!< Number of supported clusters */
+    struct zb_zcl_cluster_desc_s *cluster_desc_list;  /*!< Supported clusters list */
+    zb_af_simple_desc_1_1_t *simple_desc; /*!< Simple descriptor */
 #if defined ZB_ENABLE_ZLL || defined DOXYGEN
-  zb_uint8_t group_id_count;
+    zb_uint8_t group_id_count;
 #endif /* defined ZB_ENABLE_ZLL || defined DOXYGEN */
 
-  /* Moved here from device descriptor */
-  zb_uint8_t rep_info_count;           /*!< Number of reporting info slots */
-  /* Reporting info structure should be better stored in ZCL main,
-   * moved here to allow compile-time memory allocating for
-   * reporting_info array, see ZB_AF_DECLARE_DEVICE_CTX() */
-  struct zb_zcl_reporting_info_s *reporting_info; /*!< Attributes reporting information */
+    /* Moved here from device descriptor */
+    zb_uint8_t rep_info_count;           /*!< Number of reporting info slots */
+    /* Reporting info structure should be better stored in ZCL main,
+     * moved here to allow compile-time memory allocating for
+     * reporting_info array, see ZB_AF_DECLARE_DEVICE_CTX() */
+    struct zb_zcl_reporting_info_s *reporting_info; /*!< Attributes reporting information */
 
-  zb_uint8_t cvc_alarm_count;          /*!< Number of continuous value change alarm slots */
-  struct zb_zcl_cvc_alarm_variables_s *cvc_alarm_info;
-}ZB_PACKED_STRUCT
+    zb_uint8_t cvc_alarm_count;          /*!< Number of continuous value change alarm slots */
+    struct zb_zcl_cvc_alarm_variables_s *cvc_alarm_info;
+} ZB_PACKED_STRUCT
 zb_af_endpoint_desc_t;
 /** @} */ /* af_data_service */
 
@@ -379,7 +379,7 @@ zb_af_endpoint_desc_t;
  *  @param ep_id - identifier of the endpoint.
  *  @returns NULL if no endpoint found, or pointer to the endpoint descriptor.
  */
-zb_af_endpoint_desc_t* zb_af_get_endpoint_desc(zb_uint8_t ep_id);
+zb_af_endpoint_desc_t *zb_af_get_endpoint_desc(zb_uint8_t ep_id);
 
 /**
  *  @brief Check endpoint registration in ZCL.
@@ -395,9 +395,9 @@ zb_af_endpoint_desc_t* zb_af_get_endpoint_desc(zb_uint8_t ep_id);
 */
 typedef ZB_PACKED_PRE struct zb_af_device_ctx_s
 {
-  zb_uint8_t ep_count;                 /*!< Number of endpoints on device */
-  zb_af_endpoint_desc_t **ep_desc_list; /*!< Endpoint list */
-}ZB_PACKED_STRUCT
+    zb_uint8_t ep_count;                 /*!< Number of endpoints on device */
+    zb_af_endpoint_desc_t **ep_desc_list; /*!< Endpoint list */
+} ZB_PACKED_STRUCT
 zb_af_device_ctx_t;
 
 /** @endcond */ /* internals_doc */

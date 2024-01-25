@@ -55,131 +55,131 @@ static void send_mgmt_lqi_req(zb_uint8_t unused);
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  ZB_INIT("zdo_2_gzed1");
-#if UART_CONTROL	
-	test_control_init();
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    ZB_INIT("zdo_2_gzed1");
+#if UART_CONTROL
+    test_control_init();
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 #endif
 
-  /* simulate legacy zed */
-  ZB_CERT_HACKS().disable_end_device_timeout_request_at_join = 1;
+    /* simulate legacy zed */
+    ZB_CERT_HACKS().disable_end_device_timeout_request_at_join = 1;
 
-  /* set ieee addr */
-  zb_set_long_address(g_ieee_addr_gzed1);
+    /* set ieee addr */
+    zb_set_long_address(g_ieee_addr_gzed1);
 
-  /* become an ED */
-  zb_cert_test_set_common_channel_settings();
-  zb_cert_test_set_zed_role();
-  zb_zdo_set_aps_unsecure_join(ZB_TRUE);
-  zb_set_rx_on_when_idle(ZB_FALSE);
+    /* become an ED */
+    zb_cert_test_set_common_channel_settings();
+    zb_cert_test_set_zed_role();
+    zb_zdo_set_aps_unsecure_join(ZB_TRUE);
+    zb_set_rx_on_when_idle(ZB_FALSE);
 
 #ifdef SECURITY_LEVEL
-  zb_cert_test_set_security_level(SECURITY_LEVEL);
+    zb_cert_test_set_security_level(SECURITY_LEVEL);
 #endif
 
-  zb_set_nvram_erase_at_start(ZB_TRUE);
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zboss_main_loop();
-  }
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zboss_main_loop();
+    }
 
-  TRACE_DEINIT();
+    TRACE_DEINIT();
 
-  MAIN_RETURN(0);
+    MAIN_RETURN(0);
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  if (status == 0)
-  {
-    switch (sig)
+    if (status == 0)
     {
-      case ZB_ZDO_SIGNAL_DEFAULT_START:
-      case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      case ZB_BDB_SIGNAL_DEVICE_REBOOT:
-	TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
+        switch (sig)
+        {
+        case ZB_ZDO_SIGNAL_DEFAULT_START:
+        case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
+        case ZB_BDB_SIGNAL_DEVICE_REBOOT:
+            TRACE_MSG(TRACE_APS1, "Device STARTED OK", (FMT__0));
 
-	start_fixed_poll(5000);
+            start_fixed_poll(5000);
 
-	/* send a mgnt_lqi_req */
-	ZB_SCHEDULE_ALARM(send_mgmt_lqi_req, 0, TIME_ZC_LQI_REQ1);
+            /* send a mgnt_lqi_req */
+            ZB_SCHEDULE_ALARM(send_mgmt_lqi_req, 0, TIME_ZC_LQI_REQ1);
 
-	/* send a mgnt_lqi_req */
-	ZB_SCHEDULE_ALARM(send_mgmt_lqi_req, 0, TIME_ZC_LQI_REQ2);
+            /* send a mgnt_lqi_req */
+            ZB_SCHEDULE_ALARM(send_mgmt_lqi_req, 0, TIME_ZC_LQI_REQ2);
 
-	/* send a mgnt_lqi_req */
-	ZB_SCHEDULE_ALARM(send_mgmt_lqi_req, 0, TIME_ZC_LQI_REQ3);
-	break; /* ZB_ZDO_SIGNAL_DEFAULT_START */
+            /* send a mgnt_lqi_req */
+            ZB_SCHEDULE_ALARM(send_mgmt_lqi_req, 0, TIME_ZC_LQI_REQ3);
+            break; /* ZB_ZDO_SIGNAL_DEFAULT_START */
 
-      case ZB_COMMON_SIGNAL_CAN_SLEEP:
+        case ZB_COMMON_SIGNAL_CAN_SLEEP:
 #ifdef ZB_USE_SLEEP
-    	  zb_sleep_now();
+            zb_sleep_now();
 #endif /* ZB_USE_SLEEP */
-        break;
+            break;
 
-      default:
-	break;
+        default:
+            break;
+        }
     }
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, status));
-  }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, status));
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 static void start_fixed_poll(zb_time_t ms)
 {
-  TRACE_MSG(TRACE_ZDO1, ">>start_fixed_poll: new_poll = %ld ms", (FMT__P, ms));
+    TRACE_MSG(TRACE_ZDO1, ">>start_fixed_poll: new_poll = %ld ms", (FMT__P, ms));
 
-  zb_cert_test_set_keepalive_mode(MAC_DATA_POLL_KEEPALIVE);
+    zb_cert_test_set_keepalive_mode(MAC_DATA_POLL_KEEPALIVE);
 
 #ifndef NCP_MODE_HOST
-  ZDO_CTX().pim.poll_in_progress = ZB_FALSE;
+    ZDO_CTX().pim.poll_in_progress = ZB_FALSE;
 
-  zb_zdo_pim_stop_poll(0);
-  zb_zdo_pim_set_long_poll_interval(ms);
-  zb_zdo_pim_permit_turbo_poll(ZB_TRUE); /* permit adaptive poll */
-  zb_zdo_pim_start_poll(0);
+    zb_zdo_pim_stop_poll(0);
+    zb_zdo_pim_set_long_poll_interval(ms);
+    zb_zdo_pim_permit_turbo_poll(ZB_TRUE); /* permit adaptive poll */
+    zb_zdo_pim_start_poll(0);
 #else
-  ZB_ASSERT(ZB_FALSE && "TODO: use NCP API here");
+    ZB_ASSERT(ZB_FALSE && "TODO: use NCP API here");
 #endif
 
-  TRACE_MSG(TRACE_ZDO1, "<<start_fixed_poll", (FMT__0));
+    TRACE_MSG(TRACE_ZDO1, "<<start_fixed_poll", (FMT__0));
 }
 
 static void send_mgmt_lqi_req(zb_uint8_t unused)
 {
-  zb_bufid_t buf = zb_buf_get_out();
+    zb_bufid_t buf = zb_buf_get_out();
 
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  TRACE_MSG(TRACE_ZDO1, ">>mgmt_lqi_req", (FMT__0));
+    TRACE_MSG(TRACE_ZDO1, ">>mgmt_lqi_req", (FMT__0));
 
-  if (buf)
-  {
-    zb_zdo_mgmt_lqi_param_t *req_param = ZB_BUF_GET_PARAM(buf, zb_zdo_mgmt_lqi_param_t);
+    if (buf)
+    {
+        zb_zdo_mgmt_lqi_param_t *req_param = ZB_BUF_GET_PARAM(buf, zb_zdo_mgmt_lqi_param_t);
 
-    req_param->dst_addr = zb_address_short_by_ieee((zb_uint8_t*) g_ieee_addr_dutzc);
-    req_param->start_index = 0;
+        req_param->dst_addr = zb_address_short_by_ieee((zb_uint8_t *) g_ieee_addr_dutzc);
+        req_param->start_index = 0;
 
-    zb_zdo_mgmt_lqi_req(buf, NULL);
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ZDO1, "TEST FAILED: Could not get out buf!", (FMT__0));
-  }
+        zb_zdo_mgmt_lqi_req(buf, NULL);
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ZDO1, "TEST FAILED: Could not get out buf!", (FMT__0));
+    }
 
-  TRACE_MSG(TRACE_ZDO1, "<<mgmt_lqi_req", (FMT__0));
+    TRACE_MSG(TRACE_ZDO1, "<<mgmt_lqi_req", (FMT__0));
 }

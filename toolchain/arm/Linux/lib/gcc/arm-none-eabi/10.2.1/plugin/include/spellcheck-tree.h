@@ -35,17 +35,17 @@ find_closest_identifier (tree target, const auto_vec<tree> *candidates);
 template <>
 struct edit_distance_traits<tree>
 {
-  static size_t get_length (tree id)
-  {
-    gcc_assert (TREE_CODE (id) == IDENTIFIER_NODE);
-    return IDENTIFIER_LENGTH (id);
-  }
+    static size_t get_length (tree id)
+    {
+        gcc_assert (TREE_CODE (id) == IDENTIFIER_NODE);
+        return IDENTIFIER_LENGTH (id);
+    }
 
-  static const char *get_string (tree id)
-  {
-    gcc_assert (TREE_CODE (id) == IDENTIFIER_NODE);
-    return IDENTIFIER_POINTER (id);
-  }
+    static const char *get_string (tree id)
+    {
+        gcc_assert (TREE_CODE (id) == IDENTIFIER_NODE);
+        return IDENTIFIER_POINTER (id);
+    }
 };
 
 #endif  /* GCC_SPELLCHECK_TREE_H  */

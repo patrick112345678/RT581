@@ -24,7 +24,7 @@ along with GCC; see the file COPYING3.  If not see
 enum
 {
 #include "stab.def"
-LAST_UNUSED_STAB_CODE
+    LAST_UNUSED_STAB_CODE
 };
 
 /* stabs debug codes really are integers with expressive names.  */

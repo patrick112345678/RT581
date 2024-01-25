@@ -63,11 +63,11 @@ extern "C" {
  *   + posix_devctl() is prototyped in <devctl.h>
  */
 int posix_devctl(
-  int              fd,
-  int              dcmd,
-  void *__restrict dev_data_ptr,
-  size_t           nbyte,
-  int *__restrict  dev_info_ptr
+    int              fd,
+    int              dcmd,
+    void *__restrict dev_data_ptr,
+    size_t           nbyte,
+    int *__restrict  dev_info_ptr
 );
 
 #ifdef __cplusplus

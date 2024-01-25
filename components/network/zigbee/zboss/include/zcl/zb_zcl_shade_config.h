@@ -52,14 +52,14 @@
 */
 enum zb_zcl_shade_config_info_attr_e
 {
-  /** The PhysicalClosedLimit attribute indicates the most closed (numerically lowest)
-   *  position that the shade can physically move to. */
-  ZB_ZCL_ATTR_SHADE_CONFIG_PHYSICAL_CLOSED_LIMIT_ID = 0x0000,
-  /** The MotorStepSize attribute indicates the angle the shade motor moves for one step,
-   *  measured in 1/10ths of a degree. */
-  ZB_ZCL_ATTR_SHADE_CONFIG_MOTOR_STEP_SIZE_ID       = 0x0001,
-  /** @brief Status attribute */
-  ZB_ZCL_ATTR_SHADE_CONFIG_STATUS_ID                = 0x0002
+    /** The PhysicalClosedLimit attribute indicates the most closed (numerically lowest)
+     *  position that the shade can physically move to. */
+    ZB_ZCL_ATTR_SHADE_CONFIG_PHYSICAL_CLOSED_LIMIT_ID = 0x0000,
+    /** The MotorStepSize attribute indicates the angle the shade motor moves for one step,
+     *  measured in 1/10ths of a degree. */
+    ZB_ZCL_ATTR_SHADE_CONFIG_MOTOR_STEP_SIZE_ID       = 0x0001,
+    /** @brief Status attribute */
+    ZB_ZCL_ATTR_SHADE_CONFIG_STATUS_ID                = 0x0002
 };
 
 /** @brief Bit values for Status attribute
@@ -67,16 +67,16 @@ enum zb_zcl_shade_config_info_attr_e
   */
 enum zb_zcl_shade_config_status_type_e
 {
-  /** Shade operational value */
-  ZB_ZCL_ATTR_SHADE_CONFIG_STATUS_SHADE_OPERATIONAL          = 0x00,
-  /** Shade Adjusting value */
-  ZB_ZCL_ATTR_SHADE_CONFIG_STATUS_SHADE_ADJUSTING            = 0x01,
-  /** Shade Direction value */
-  ZB_ZCL_ATTR_SHADE_CONFIG_STATUS_SHADE_DIRECTION            = 0x02,
-  /** Forward Direction of Motor value */
-  ZB_ZCL_ATTR_SHADE_CONFIG_STATUS_FORWARD_DIRECTION_OF_MOTOR = 0x03,
-  /** Reserved values */
-  ZB_ZCL_ATTR_SHADE_CONFIG_STATUS_RESERVED                   = 0x04
+    /** Shade operational value */
+    ZB_ZCL_ATTR_SHADE_CONFIG_STATUS_SHADE_OPERATIONAL          = 0x00,
+    /** Shade Adjusting value */
+    ZB_ZCL_ATTR_SHADE_CONFIG_STATUS_SHADE_ADJUSTING            = 0x01,
+    /** Shade Direction value */
+    ZB_ZCL_ATTR_SHADE_CONFIG_STATUS_SHADE_DIRECTION            = 0x02,
+    /** Forward Direction of Motor value */
+    ZB_ZCL_ATTR_SHADE_CONFIG_STATUS_FORWARD_DIRECTION_OF_MOTOR = 0x03,
+    /** Reserved values */
+    ZB_ZCL_ATTR_SHADE_CONFIG_STATUS_RESERVED                   = 0x04
 };
 
 /** @cond internals_doc */
@@ -125,34 +125,34 @@ enum zb_zcl_shade_config_status_type_e
 */
 enum zb_zcl_shade_config_settings_attr_e
 {
-  /** @brief ClosedLimit attribute */
-  ZB_ZCL_ATTR_SHADE_CONFIG_CLOSED_LIMIT_ID = 0x0010,
-  /** @brief Mode attribute */
-  ZB_ZCL_ATTR_SHADE_CONFIG_MODE_ID         = 0x0011
+    /** @brief ClosedLimit attribute */
+    ZB_ZCL_ATTR_SHADE_CONFIG_CLOSED_LIMIT_ID = 0x0010,
+    /** @brief Mode attribute */
+    ZB_ZCL_ATTR_SHADE_CONFIG_MODE_ID         = 0x0011
 };
 
 /** @brief Permissible values for Mode attribute
     @see ZCL spec, subclause 7.2.2.2.2.2 */
 enum zb_zcl_shade_config_mode_e
 {
-  /** Normal value */
-  ZB_ZCL_ATTR_SHADE_CONFIG_MODE_NORMAL    = 0x00,
-  /** Configure value */
-  ZB_ZCL_ATTR_SHADE_CONFIG_MODE_CONFIGURE = 0x01,
-  /** Reserved values */
-  ZB_ZCL_ATTR_SHADE_CONFIG_MODE_RESERVED  = 0x02
+    /** Normal value */
+    ZB_ZCL_ATTR_SHADE_CONFIG_MODE_NORMAL    = 0x00,
+    /** Configure value */
+    ZB_ZCL_ATTR_SHADE_CONFIG_MODE_CONFIGURE = 0x01,
+    /** Reserved values */
+    ZB_ZCL_ATTR_SHADE_CONFIG_MODE_RESERVED  = 0x02
 };
 
 /** @cond internals_doc */
 typedef struct zb_zcl_shade_set_value_param_s
 {
-  zb_uint16_t new_value;
-  zb_bool_t is_config;
+    zb_uint16_t new_value;
+    zb_bool_t is_config;
 } zb_zcl_shade_set_value_param_t;
 
 typedef struct zb_zcl_shade_get_value_param_s
 {
-  zb_uint16_t ret_value;
+    zb_uint16_t ret_value;
 } zb_zcl_shade_get_value_param_t;
 /*! @}
  *  @endcond */ /* internals_doc */

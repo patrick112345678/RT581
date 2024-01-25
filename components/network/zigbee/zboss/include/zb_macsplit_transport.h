@@ -61,7 +61,7 @@ void zb_macsplit_transport_reinit(void);
  *
  * Weak default implementation provided. Re-implement for custom logic.
  */
-void zb_macsplit_trace_dump_file_path_get(char* file_name);
+void zb_macsplit_trace_dump_file_path_get(char *file_name);
 #endif /* defined ZB_MACSPLIT_TRACE_DUMP_TO_FILE */
 
 /**
@@ -134,9 +134,9 @@ void zb_macsplit_transport_handle_set_get_confirm_call(zb_bufid_t param);
  */
 typedef enum
 {
-  ZB_MACSPLIT_TRANSPORT_TYPE_SPI = 0,
-  ZB_MACSPLIT_TRANSPORT_TYPE_SERIAL,
-  ZB_MACSPLIT_TRANSPORT_TYPES_N
+    ZB_MACSPLIT_TRANSPORT_TYPE_SPI = 0,
+    ZB_MACSPLIT_TRANSPORT_TYPE_SERIAL,
+    ZB_MACSPLIT_TRANSPORT_TYPES_N
 }
 zb_macsplit_transport_type_e;
 
@@ -248,20 +248,20 @@ ZB_RING_BUFFER_DECLARE(zb_transport_buffer, zb_uint8_t, TRANSPORT_BUFFER_SIZE);
 
 typedef ZB_PACKED_PRE struct zb_transport_flags_s
 {
-  zb_bitfield_t               is_ack            : 1;
-  zb_bitfield_t               should_retransmit : 1;
-  zb_bitfield_t               packet_number     : 2;
-  zb_bitfield_t               call_type         : 4; /* actual for sgw, else reserved */
+    zb_bitfield_t               is_ack            : 1;
+    zb_bitfield_t               should_retransmit : 1;
+    zb_bitfield_t               packet_number     : 2;
+    zb_bitfield_t               call_type         : 4; /* actual for sgw, else reserved */
 } ZB_PACKED_STRUCT
 zb_transport_flags_t;
 
 
 typedef ZB_PACKED_PRE struct zb_macsplit_transport_hdr_s
 {
-  zb_uint8_t           len;
-  zb_uint8_t           type;
-  zb_transport_flags_t flags;
-  zb_uint8_t           crc;
+    zb_uint8_t           len;
+    zb_uint8_t           type;
+    zb_transport_flags_t flags;
+    zb_uint8_t           crc;
 } ZB_PACKED_STRUCT
 zb_macsplit_transport_hdr_t;
 
@@ -270,44 +270,44 @@ ZB_ASSERT_COMPILE_DECL((sizeof(zb_macsplit_transport_hdr_t) == sizeof(zb_mac_tra
 
 typedef ZB_PACKED_PRE struct zb_macsplit_transport_body_s
 {
-  zb_uint8_t msdu_handle;
-  zb_uint16_t call_type;
-  zb_uint8_t data[ZB_TRANSPORT_DATA_SIZE];
-  zb_uint16_t crc;
+    zb_uint8_t msdu_handle;
+    zb_uint16_t call_type;
+    zb_uint8_t data[ZB_TRANSPORT_DATA_SIZE];
+    zb_uint16_t crc;
 } ZB_PACKED_STRUCT
-  zb_macsplit_transport_body_t;
+zb_macsplit_transport_body_t;
 
 typedef struct zb_macsplit_packet_s
 {
-  zb_macsplit_transport_hdr_t hdr;
-  zb_macsplit_transport_body_t body;
+    zb_macsplit_transport_hdr_t hdr;
+    zb_macsplit_transport_body_t body;
 }
-  zb_macsplit_packet_t;
+zb_macsplit_packet_t;
 
 typedef enum zb_transport_state_e
 {
-  /* signature */
-  RECEIVING_SIGNATURE,
+    /* signature */
+    RECEIVING_SIGNATURE,
 
-  /* header/common */
-  RECEIVING_LENGTH,
-  RECEIVING_TYPE,
+    /* header/common */
+    RECEIVING_LENGTH,
+    RECEIVING_TYPE,
 
-  /* header/mac_data */
-  RECEIVING_FLAGS,
-  RECEIVING_HDR_CRC,
+    /* header/mac_data */
+    RECEIVING_FLAGS,
+    RECEIVING_HDR_CRC,
 
-  /* header/trace */
-  RECEIVING_TIME,
+    /* header/trace */
+    RECEIVING_TIME,
 
-  /* body/mac_data */
-  RECEIVING_MSDU_HANDLE,
-  RECEIVING_CALL_TYPE,
+    /* body/mac_data */
+    RECEIVING_MSDU_HANDLE,
+    RECEIVING_CALL_TYPE,
 
 
-  /* body/common */
-  RECEIVING_BODY_DATA,
-  RECEIVING_BODY_CRC
+    /* body/common */
+    RECEIVING_BODY_DATA,
+    RECEIVING_BODY_CRC
 
 } zb_transport_state_t;
 
@@ -316,10 +316,10 @@ typedef enum zb_transport_state_e
 typedef struct zb_macsplit_transport_specific_s
 {
 #if defined ZB_MACSPLIT_DEVICE
-  zb_uint8_t msdu_handles[ZB_N_BUF_IDS];  /*!< store msdu_handle from host */
+    zb_uint8_t msdu_handles[ZB_N_BUF_IDS];  /*!< store msdu_handle from host */
 #else
-  zb_callback_t confirm_cb[ZB_N_BUF_IDS]; /*!< store callbacks by host */
-  zb_uint8_t    recv_cfm[ZB_RECV_CFM_NBYTES]; /*!< store received confirm packets buf id */
+    zb_callback_t confirm_cb[ZB_N_BUF_IDS]; /*!< store callbacks by host */
+    zb_uint8_t    recv_cfm[ZB_RECV_CFM_NBYTES]; /*!< store received confirm packets buf id */
 #endif /* ZB_MACSPLIT_DEVICE */
 } zb_macsplit_transport_specific_t;
 
@@ -335,58 +335,58 @@ typedef void (*zb_macsplit_handle_data_by_app)(zb_uint8_t byte);
 typedef struct zb_macsplit_transport_context_s
 {
 #if defined ZB_MACSPLIT_USE_IO_BUFFERS
-  ZB_VOLATILE zb_macsplit_transport_buffer_t   rx_buffer; /*!< buffer for incoming data used by osif layer */
-  ZB_VOLATILE zb_macsplit_transport_buffer_t   tx_buffer; /*!< buffer for outcoming data used by osif layer */
+    ZB_VOLATILE zb_macsplit_transport_buffer_t   rx_buffer; /*!< buffer for incoming data used by osif layer */
+    ZB_VOLATILE zb_macsplit_transport_buffer_t   tx_buffer; /*!< buffer for outcoming data used by osif layer */
 #endif
 #if defined ZB_MACSPLIT_DEVICE && (defined ZB_SERIAL_FOR_TRACE || defined ZB_TRACE_OVER_USART)
-  zb_uint8_t                       trace_buffer[ZB_MACSPLIT_TRACE_BUF_SIZE]; /*!< inner buffer for sending trace to HW */
-  zb_short_t                       trace_buffer_data;
+    zb_uint8_t                       trace_buffer[ZB_MACSPLIT_TRACE_BUF_SIZE]; /*!< inner buffer for sending trace to HW */
+    zb_short_t                       trace_buffer_data;
 #endif
-  zb_uint8_t                       tx_inner_buffer[ZB_TRANSPORT_PKT_MAX_SIZE]; /*!< inner buffer for sending data to HW driver */
-  zb_uint8_t                       tx_calls_table[ZB_N_BUF_IDS];         /*!< translation table buffer to call-type */
-  zb_macsplit_transport_tx_queue_t tx_queue;            /*!< queue for outcoming calls */
-  recv_data_cb_t                   recv_data_cb;        /*!< callback for non-call packet handler */
-  zb_callback_t                    ethernet_cb;         /*!< just to compile, used in zb_scheduler.c */
-  zb_uint16_t                      received_bytes;      /*!< number of bytes received in current FSM state */
-  zb_transport_state_t             transport_state;     /*!< current FSM state */
-  zb_macsplit_packet_t             rx_pkt;              /*!< last (or is currently being) received packet */
-  zb_macsplit_packet_t             tx_pkt;              /*!< last (or is currently being) sent packet */
-  zb_macsplit_transport_hdr_t      ack_pkt;             /*!< ack packet */
-  zb_bool_t                        is_waiting_for_ack;  /*!< if an ack to sent packet was received  */
-  zb_uint8_t                       curr_pkt_number;     /*!< number of next outcoming packet */
-  zb_uint8_t                       last_rx_pkt_number;  /*!< number of last received packet */
-  zb_macsplit_transport_type_e     transport_type;      /*!< transport type: serial or spi, should be set before init */
-  zb_uint8_t                       retransmit_count;    /*!< number of packet retransmit */
-  zb_macsplit_transport_specific_t specific_ctx;        /*!< specific context for Host or Device */
+    zb_uint8_t                       tx_inner_buffer[ZB_TRANSPORT_PKT_MAX_SIZE]; /*!< inner buffer for sending data to HW driver */
+    zb_uint8_t                       tx_calls_table[ZB_N_BUF_IDS];         /*!< translation table buffer to call-type */
+    zb_macsplit_transport_tx_queue_t tx_queue;            /*!< queue for outcoming calls */
+    recv_data_cb_t                   recv_data_cb;        /*!< callback for non-call packet handler */
+    zb_callback_t                    ethernet_cb;         /*!< just to compile, used in zb_scheduler.c */
+    zb_uint16_t                      received_bytes;      /*!< number of bytes received in current FSM state */
+    zb_transport_state_t             transport_state;     /*!< current FSM state */
+    zb_macsplit_packet_t             rx_pkt;              /*!< last (or is currently being) received packet */
+    zb_macsplit_packet_t             tx_pkt;              /*!< last (or is currently being) sent packet */
+    zb_macsplit_transport_hdr_t      ack_pkt;             /*!< ack packet */
+    zb_bool_t                        is_waiting_for_ack;  /*!< if an ack to sent packet was received  */
+    zb_uint8_t                       curr_pkt_number;     /*!< number of next outcoming packet */
+    zb_uint8_t                       last_rx_pkt_number;  /*!< number of last received packet */
+    zb_macsplit_transport_type_e     transport_type;      /*!< transport type: serial or spi, should be set before init */
+    zb_uint8_t                       retransmit_count;    /*!< number of packet retransmit */
+    zb_macsplit_transport_specific_t specific_ctx;        /*!< specific context for Host or Device */
 
-  zb_ota_protocol_context_t ota_context;
+    zb_ota_protocol_context_t ota_context;
 #if defined ZB_MACSPLIT_TRACE_DUMP_TO_FILE
-  zb_osif_file_t                   *trace_file;          /*!< dump file for trace packets */
+    zb_osif_file_t                   *trace_file;          /*!< dump file for trace packets */
 #endif
 #if defined ZB_MACSPLIT_HOST
-  zb_uint8_t forced_device_reset;
+    zb_uint8_t forced_device_reset;
 #ifdef ZB_MACSPLIT_HANDLE_DATA_BY_APP
-  zb_uint8_t                       handle_data_by_app;
-  zb_uint8_t                       handle_data_by_app_after_last_ack;
-  zb_macsplit_handle_data_by_app   handle_data_by_app_cb;
+    zb_uint8_t                       handle_data_by_app;
+    zb_uint8_t                       handle_data_by_app_after_last_ack;
+    zb_macsplit_handle_data_by_app   handle_data_by_app_cb;
 #endif
 #endif
 
-  zb_bufid_t                         operation_buf;       /*!< Buffer for future use (some internal data etc) */
+    zb_bufid_t                         operation_buf;       /*!< Buffer for future use (some internal data etc) */
 #ifdef ZB_MAC_CONFIGURABLE_TX_POWER
-  zb_int8_t                        mac_tx_power[ZB_PROD_CFG_APS_CHANNEL_LIST_SIZE][ZB_PROD_CFG_MAC_TX_POWER_CHANNEL_N];
-  zb_bool_t                        tx_power_exist;
+    zb_int8_t                        mac_tx_power[ZB_PROD_CFG_APS_CHANNEL_LIST_SIZE][ZB_PROD_CFG_MAC_TX_POWER_CHANNEL_N];
+    zb_bool_t                        tx_power_exist;
 #endif /* ZB_MAC_CONFIGURABLE_TX_POWER */
 #if defined ZB_MACSPLIT_HOST
-  zb_macsplit_device_trace_cb_t    device_trace_cb;
+    zb_macsplit_device_trace_cb_t    device_trace_cb;
 #endif
 } zb_macsplit_transport_context_t;
 
 typedef ZB_PACKED_PRE struct macsplit_device_ver_s
 {
-  zb_uint32_t    val;
+    zb_uint32_t    val;
 #ifdef USE_HW_LONG_ADDR
-  zb_ieee_addr_t extended_address;          /*!< The 64-bit (IEEE) address assigned to the device. */
+    zb_ieee_addr_t extended_address;          /*!< The 64-bit (IEEE) address assigned to the device. */
 #endif
 } ZB_PACKED_STRUCT macsplit_device_ver_t;
 

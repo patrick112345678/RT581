@@ -78,6 +78,6 @@
 #include <ext/pb_ds/trie_policy.hpp>
 
 #ifdef _GLIBCXX_HAVE_ICONV
- #include <ext/codecvt_specializations.h>
- #include <ext/enc_filebuf.h>
+#include <ext/codecvt_specializations.h>
+#include <ext/enc_filebuf.h>
 #endif

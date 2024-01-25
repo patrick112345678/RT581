@@ -47,80 +47,100 @@ MEM_POOL_DECLARE_BUFFER_WITH_TYPE(mempool_buffer_handle,
                                   CPC_BUFFER_HANDLE_MAX_COUNT);
 
 static cpc_mem_pool_handle_t cpc_mempool_buffer_handle =
-    {.pool_handle = &mempool_buffer_handle,
-     .used_block_cnt = 0};
+{
+    .pool_handle = &mempool_buffer_handle,
+    .used_block_cnt = 0
+};
 
 static mem_pool_handle_t mempool_hdlc_header;
 MEM_POOL_DECLARE_BUFFER(mempool_hdlc_header,
                         CPC_HDLC_HEADER_RAW_SIZE,
                         CPC_HDLC_HEADER_MAX_COUNT);
 static cpc_mem_pool_handle_t cpc_mempool_hdlc_header =
-    {.pool_handle = &mempool_hdlc_header,
-     .used_block_cnt = 0};
+{
+    .pool_handle = &mempool_hdlc_header,
+    .used_block_cnt = 0
+};
 
 static mem_pool_handle_t mempool_hdlc_reject;
 MEM_POOL_DECLARE_BUFFER(mempool_hdlc_reject,
                         CPC_HDLC_REJECT_PAYLOAD_SIZE,
                         CPC_HDLC_REJECT_MAX_COUNT);
 static cpc_mem_pool_handle_t cpc_mempool_hdlc_reject =
-    {.pool_handle = &mempool_hdlc_reject,
-     .used_block_cnt = 0};
+{
+    .pool_handle = &mempool_hdlc_reject,
+    .used_block_cnt = 0
+};
 
 static mem_pool_handle_t mempool_rx_buffer;
 MEM_POOL_DECLARE_BUFFER(mempool_rx_buffer,
                         CPC_RX_DATA_MAX_LENGTH,
                         CPC_RX_BUFFER_MAX_COUNT);
 static cpc_mem_pool_handle_t cpc_mempool_rx_buffer =
-    {.pool_handle = &mempool_rx_buffer,
-     .used_block_cnt = 0};
+{
+    .pool_handle = &mempool_rx_buffer,
+    .used_block_cnt = 0
+};
 
 static mem_pool_handle_t mempool_endpoint;
 MEM_POOL_DECLARE_BUFFER_WITH_TYPE(mempool_endpoint,
                                   cpc_endpoint_t,
                                   CPC_ENDPOINT_COUNT);
 static cpc_mem_pool_handle_t cpc_mempool_endpoint =
-    {.pool_handle = &mempool_endpoint,
-     .used_block_cnt = 0};
+{
+    .pool_handle = &mempool_endpoint,
+    .used_block_cnt = 0
+};
 
 static mem_pool_handle_t mempool_rx_queue_item;
 MEM_POOL_DECLARE_BUFFER_WITH_TYPE(mempool_rx_queue_item,
                                   cpc_receive_queue_item_t,
                                   CPC_RX_QUEUE_ITEM_MAX_COUNT);
 static cpc_mem_pool_handle_t cpc_mempool_rx_queue_item =
-    {.pool_handle = &mempool_rx_queue_item,
-     .used_block_cnt = 0};
+{
+    .pool_handle = &mempool_rx_queue_item,
+    .used_block_cnt = 0
+};
 
 static mem_pool_handle_t mempool_tx_queue_item;
 MEM_POOL_DECLARE_BUFFER_WITH_TYPE(mempool_tx_queue_item,
                                   cpc_transmit_queue_item_t,
                                   CPC_TX_QUEUE_ITEM_MAX_COUNT);
 static cpc_mem_pool_handle_t cpc_mempool_tx_queue_item =
-    {.pool_handle = &mempool_tx_queue_item,
-     .used_block_cnt = 0};
+{
+    .pool_handle = &mempool_tx_queue_item,
+    .used_block_cnt = 0
+};
 
 static mem_pool_handle_t mempool_tx_queue_item_sframe;
 MEM_POOL_DECLARE_BUFFER_WITH_TYPE(mempool_tx_queue_item_sframe,
                                   cpc_transmit_queue_item_t,
                                   CPC_TX_QUEUE_ITEM_SFRAME_MAX_COUNT);
 static cpc_mem_pool_handle_t cpc_mempool_tx_queue_item_sframe =
-    {.pool_handle = &mempool_tx_queue_item_sframe,
-     .used_block_cnt = 0};
+{
+    .pool_handle = &mempool_tx_queue_item_sframe,
+    .used_block_cnt = 0
+};
 
 static mem_pool_handle_t mempool_endpoint_closed_arg_item;
 MEM_POOL_DECLARE_BUFFER_WITH_TYPE(mempool_endpoint_closed_arg_item,
                                   cpc_endpoint_closed_arg_t,
                                   CPC_TX_QUEUE_ITEM_MAX_COUNT);
 static cpc_mem_pool_handle_t cpc_mempool_endpoint_closed_arg_item =
-    {.pool_handle = &mempool_endpoint_closed_arg_item,
-     .used_block_cnt = 0};
+{
+    .pool_handle = &mempool_endpoint_closed_arg_item,
+    .used_block_cnt = 0
+};
 
 static mem_pool_handle_t mempool_system_command;
 MEM_POOL_DECLARE_BUFFER(mempool_system_command,
                         CPC_SYSTEM_COMMAND_BUFFER_SIZE,
                         CPC_SYSTEM_COMMAND_BUFFER_COUNT);
 static cpc_mem_pool_handle_t cpc_mempool_system_command =
-    {.pool_handle = &mempool_system_command,
-     .used_block_cnt = 0};
+{
+    .pool_handle = &mempool_system_command,
+    .used_block_cnt = 0
+};
 
 extern cpc_drv_capabilities_t cpc_driver_capabilities;
 
@@ -441,8 +461,8 @@ status_t cpc_drop_buffer_handle(cpc_buffer_handle_t *handle)
                                                                                *  Alloc queue item and set fields
                                                                                ******************************************************************************/
 status_t cpc_push_back_rx_data_in_receive_queue(cpc_buffer_handle_t *handle,
-                                                slist_node_t **head,
-                                                uint16_t data_length)
+        slist_node_t **head,
+        uint16_t data_length)
 {
     cpc_receive_queue_item_t *item;
     status_t status;

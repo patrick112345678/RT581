@@ -29,8 +29,8 @@
 
 typedef struct dl_door_lock_event_s
 {
-  zb_uint16_t operation_event_code;
-  zb_uint16_t timestamp;        // qsec
+    zb_uint16_t operation_event_code;
+    zb_uint16_t timestamp;        // qsec
 } dl_door_lock_event_t;
 
 ZB_RING_BUFFER_DECLARE(dl_door_lock_queue, dl_door_lock_event_t, DL_DOOR_LOCK_QUEUE_SIZE);
@@ -38,10 +38,10 @@ ZB_RING_BUFFER_DECLARE(dl_door_lock_queue, dl_door_lock_event_t, DL_DOOR_LOCK_QU
 /* Door lock cluster attributes data */
 typedef struct door_lock_attr_s
 {
-  zb_uint8_t lock_state;
-  zb_uint8_t lock_type;
-  zb_uint8_t actuator_enabled;
-  zb_uint16_t rf_operation_event_mask;
+    zb_uint8_t lock_state;
+    zb_uint8_t lock_type;
+    zb_uint8_t actuator_enabled;
+    zb_uint16_t rf_operation_event_mask;
 } door_lock_attr_t;
 
 void dl_enable_event_retry(const zb_zcl_wwah_enable_wwah_app_event_retry_algorithm_t *params);

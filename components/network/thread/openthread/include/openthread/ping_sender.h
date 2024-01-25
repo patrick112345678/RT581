@@ -111,13 +111,13 @@ typedef struct otPingSenderConfig
     otIp6Address              mDestination;   ///< Destination address to ping.
     otPingSenderReplyCallback mReplyCallback; ///< Callback function to report replies (can be NULL if not needed).
     otPingSenderStatisticsCallback
-             mStatisticsCallback; ///< Callback function to report statistics (can be NULL if not needed).
-    void *   mCallbackContext;    ///< A pointer to the callback application-specific context.
+    mStatisticsCallback; ///< Callback function to report statistics (can be NULL if not needed).
+    void    *mCallbackContext;    ///< A pointer to the callback application-specific context.
     uint16_t mSize;               ///< Data size (# of bytes) excludes IPv6/ICMPv6 header. Zero for default.
     uint16_t mCount;              ///< Number of ping messages to send. Zero to use default.
     uint32_t mInterval;           ///< Ping tx interval in milliseconds. Zero to use default.
     uint16_t mTimeout;            ///< Time in milliseconds to wait for final reply after sending final request.
-                                  ///< Zero to use default.
+    ///< Zero to use default.
     uint8_t mHopLimit;            ///< Hop limit (used if `mAllowZeroHopLimit` is false). Zero for default.
     bool    mAllowZeroHopLimit;   ///< Indicates whether hop limit is zero.
 } otPingSenderConfig;

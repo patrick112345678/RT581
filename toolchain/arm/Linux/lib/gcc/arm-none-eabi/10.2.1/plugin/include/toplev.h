@@ -30,22 +30,22 @@ class timer;
 class toplev
 {
 public:
-  toplev (timer *external_timer,
-	  bool init_signals);
-  ~toplev ();
+    toplev (timer *external_timer,
+            bool init_signals);
+    ~toplev ();
 
-  int main (int argc, char **argv);
+    int main (int argc, char **argv);
 
-  void finalize ();
+    void finalize ();
 
 private:
 
-  void start_timevars ();
+    void start_timevars ();
 
-  void run_self_tests ();
+    void run_self_tests ();
 
-  bool m_use_TV_TOTAL;
-  bool m_init_signals;
+    bool m_use_TV_TOTAL;
+    bool m_init_signals;
 };
 
 extern void rest_of_decl_compilation (tree, int, int);
@@ -86,8 +86,8 @@ extern struct ht *ident_hash;
 /* Functions used to get and set GCC's notion of in what directory
    compilation was started.  */
 
-extern const char *get_src_pwd	       (void);
-extern bool set_src_pwd		       (const char *);
+extern const char *get_src_pwd         (void);
+extern bool set_src_pwd            (const char *);
 
 /* Functions used to manipulate the random seed.  */
 

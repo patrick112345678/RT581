@@ -34,12 +34,12 @@
 #define MAP_16BITVERSION_TO_8BITVERSION(a) ((zb_uint8_t) ( ((a & 0x0F00) >> 4) | (a & 0x000F)) )
 #define IZS_DEVICE_MANUFACTURER_CODE       0xDEAD   /* DSR custom manufacture code*/
 
-#define IZS_INIT_BASIC_MANUF_NAME	       "DSR"
+#define IZS_INIT_BASIC_MANUF_NAME          "DSR"
 
 #define IZS_INIT_BASIC_DEFAULT_MODEL_ID    "DSR_IZS"
 #define IZS_INIT_BASIC_DATE_CODE           "2017-02-01"
 #define IZS_INIT_BASIC_LOCATION_ID         "Unknown"
-#define IZS_INIT_BASIC_PH_ENV			   0
+#define IZS_INIT_BASIC_PH_ENV              0
 
 /* OTA data */
 #define IZS_INIT_OTA_HW_VERSION            IZS_INIT_BASIC_HW_VERSION

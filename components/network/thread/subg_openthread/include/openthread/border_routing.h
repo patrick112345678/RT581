@@ -292,8 +292,8 @@ otError otBorderRoutingGetNat64Prefix(otInstance *aInstance, otIp6Prefix *aPrefi
  *
  */
 otError otBorderRoutingGetFavoredNat64Prefix(otInstance        *aInstance,
-                                             otIp6Prefix       *aPrefix,
-                                             otRoutePreference *aPreference);
+        otIp6Prefix       *aPrefix,
+        otRoutePreference *aPreference);
 
 /**
  * This function initializes an `otBorderRoutingPrefixTableIterator`.
@@ -323,8 +323,8 @@ void otBorderRoutingPrefixTableInitIterator(otInstance *aInstance, otBorderRouti
  *
  */
 otError otBorderRoutingGetNextPrefixTableEntry(otInstance                         *aInstance,
-                                               otBorderRoutingPrefixTableIterator *aIterator,
-                                               otBorderRoutingPrefixTableEntry    *aEntry);
+        otBorderRoutingPrefixTableIterator *aIterator,
+        otBorderRoutingPrefixTableEntry    *aEntry);
 
 /**
  * @}

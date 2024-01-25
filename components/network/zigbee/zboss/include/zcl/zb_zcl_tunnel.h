@@ -34,8 +34,8 @@
  *    Usually a device has MIXED role
  */
 
-  /*! @name Tunnel cluster commands
-    @{
+/*! @name Tunnel cluster commands
+  @{
 */
 
 /**
@@ -43,8 +43,8 @@
  */
 enum zb_zcl_tunnel_cmd_e
 {
-  ZB_ZCL_CMD_TUNNEL_TRANSFER_DATA_REQ        = 0x00,  /**< Request to transfer data. */
-  ZB_ZCL_CMD_TUNNEL_TRANSFER_DATA_RESP       = 0x01,  /**< Response on received data */
+    ZB_ZCL_CMD_TUNNEL_TRANSFER_DATA_REQ        = 0x00,  /**< Request to transfer data. */
+    ZB_ZCL_CMD_TUNNEL_TRANSFER_DATA_RESP       = 0x01,  /**< Response on received data */
 };
 
 
@@ -61,18 +61,18 @@ enum zb_zcl_tunnel_cmd_e
 /** Tunnel status; range: 0x00 - 0x3F (6-bit value) */
 typedef enum zb_zcl_tunnel_status_e
 {
-  ZB_ZCL_TUNNEL_STATUS_OK = 0,                  /**< Data is sent or received. Use for inform User App about success current command */
-  ZB_ZCL_TUNNEL_STATUS_ERROR = 1,               /**< General Error. Current operation has error: unexpected message etc. */
-  ZB_ZCL_TUNNEL_STATUS_ERROR_NO_MEMORY = 2,     /**< No memory */
-  ZB_ZCL_TUNNEL_STATUS_ERROR_TIMEOUT = 3,       /**< Timeout. Use for inform User App about when wait answer */
+    ZB_ZCL_TUNNEL_STATUS_OK = 0,                  /**< Data is sent or received. Use for inform User App about success current command */
+    ZB_ZCL_TUNNEL_STATUS_ERROR = 1,               /**< General Error. Current operation has error: unexpected message etc. */
+    ZB_ZCL_TUNNEL_STATUS_ERROR_NO_MEMORY = 2,     /**< No memory */
+    ZB_ZCL_TUNNEL_STATUS_ERROR_TIMEOUT = 3,       /**< Timeout. Use for inform User App about when wait answer */
 }
 zb_zcl_tunnel_status_t;
 
 /** Tunnel i/o operation type, range: 0x00 - 0x03 (2-bit value) */
 enum zb_zcl_tunnel_operation_code_e
 {
-  ZB_ZCL_TUNNEL_OPERATION_TX = 1 << 0,  /**< Current command - send data */
-  ZB_ZCL_TUNNEL_OPERATION_RX = 1 << 1   /**< Current command - receive data */
+    ZB_ZCL_TUNNEL_OPERATION_TX = 1 << 0,  /**< Current command - send data */
+    ZB_ZCL_TUNNEL_OPERATION_RX = 1 << 1   /**< Current command - receive data */
 };
 
 /************* Tunnel cluster command structures **************/
@@ -82,15 +82,15 @@ enum zb_zcl_tunnel_operation_code_e
  */
 typedef ZB_PACKED_PRE struct zb_zcl_tunnel_transfer_data_req_s
 {
-  zb_uint8_t tx_flag;   /**< see @ref zb_zcl_tunnel_tx_flags_e */
-  /**< byte_num value:
-     - if ZB_ZCL_TUNNEL_TX_START is on => total data size to be sent is specified
-     - if ZB_ZCL_TUNNEL_TX_CONTINUE is on => current data offset is specified
-  */
-  zb_uint16_t byte_num;
-  /**< length data - size of data */
-  zb_uint8_t data_size;
-  /**< data - part of transfer data */
+    zb_uint8_t tx_flag;   /**< see @ref zb_zcl_tunnel_tx_flags_e */
+    /**< byte_num value:
+       - if ZB_ZCL_TUNNEL_TX_START is on => total data size to be sent is specified
+       - if ZB_ZCL_TUNNEL_TX_CONTINUE is on => current data offset is specified
+    */
+    zb_uint16_t byte_num;
+    /**< length data - size of data */
+    zb_uint8_t data_size;
+    /**< data - part of transfer data */
 }
 ZB_PACKED_STRUCT
 zb_zcl_tunnel_transfer_data_req_t;
@@ -100,8 +100,8 @@ zb_zcl_tunnel_transfer_data_req_t;
  */
 typedef ZB_PACKED_PRE struct zb_zcl_tunnel_transfer_data_req_internal_s
 {
-  zb_zcl_tunnel_transfer_data_req_t req_header;
-  zb_uint8_t *tun_data;
+    zb_zcl_tunnel_transfer_data_req_t req_header;
+    zb_uint8_t *tun_data;
 }
 ZB_PACKED_STRUCT
 zb_zcl_tunnel_transfer_data_req_data_internal_t;
@@ -111,7 +111,7 @@ zb_zcl_tunnel_transfer_data_req_data_internal_t;
  */
 enum zb_zcl_tunnel_tx_flags_e
 {
-  ZB_ZCL_TUNNEL_TX_START = 1 << 0,      /**< first block - if set then contains total length of transferring data
+    ZB_ZCL_TUNNEL_TX_START = 1 << 0,      /**< first block - if set then contains total length of transferring data
                                                            else - contains current offset of transferring data */
 };
 
@@ -187,7 +187,7 @@ enum zb_zcl_tunnel_tx_flags_e
  */
 typedef ZB_PACKED_PRE struct zb_zcl_tunnel_transfer_data_resp_s
 {
-  zb_uint8_t tun_status;        /**< enum @ref zb_zcl_tunnel_status_e */
+    zb_uint8_t tun_status;        /**< enum @ref zb_zcl_tunnel_status_e */
 }
 ZB_PACKED_STRUCT
 zb_zcl_tunnel_transfer_data_resp_t;
@@ -255,14 +255,14 @@ zb_zcl_tunnel_transfer_data_resp_t;
 /** Callback to inform user about tx operation status or rx data;
  * @param - param is reference to a buffer;
  * zb_zcl_tunnel_io_param_t is stored as buffer parameter */
-typedef void (ZB_CODE * zb_zcl_tunnel_cb_t)(zb_uint8_t param);
+typedef void (ZB_CODE *zb_zcl_tunnel_cb_t)(zb_uint8_t param);
 
 /** Tunnel operation status
  */
 typedef ZB_PACKED_PRE struct zb_zcl_tunnel_op_status_s
 {
-  zb_bitfield_t status  :6; /**< zb_zcl_tunnel_status_e value */
-  zb_bitfield_t op_code :2; /**< zb_zcl_tunnel_operation_code_e value */
+    zb_bitfield_t status  : 6; /**< zb_zcl_tunnel_status_e value */
+    zb_bitfield_t op_code : 2; /**< zb_zcl_tunnel_operation_code_e value */
 }
 ZB_PACKED_STRUCT
 zb_zcl_tunnel_op_status_t;
@@ -272,13 +272,13 @@ zb_zcl_tunnel_op_status_t;
  * */
 typedef ZB_PACKED_PRE struct zb_zcl_tunnel_io_param_s
 {
-  zb_uint16_t length; /* total data size*/
-  zb_uint16_t peer_addr;
-  zb_uint8_t  peer_ep;
-  zb_uint8_t  src_ep;
-  zb_uint8_t  next_buf; /* pointer to the next buf for fragmented data */
-  zb_zcl_tunnel_op_status_t op_status;
-  zb_uint8_t seq;
+    zb_uint16_t length; /* total data size*/
+    zb_uint16_t peer_addr;
+    zb_uint8_t  peer_ep;
+    zb_uint8_t  src_ep;
+    zb_uint8_t  next_buf; /* pointer to the next buf for fragmented data */
+    zb_zcl_tunnel_op_status_t op_status;
+    zb_uint8_t seq;
 }
 ZB_PACKED_STRUCT
 zb_zcl_tunnel_io_param_t;
@@ -313,9 +313,9 @@ void zb_zcl_tunnel_default_user_app(zb_uint8_t param);
 
 typedef ZB_PACKED_PRE struct zb_zcl_tunnel_io_slot_s
 {
-  zb_zcl_tunnel_io_param_t io_param;
-  zb_uint16_t offset; /* length of current sent/received data */
-  zb_uint8_t seq;
+    zb_zcl_tunnel_io_param_t io_param;
+    zb_uint16_t offset; /* length of current sent/received data */
+    zb_uint8_t seq;
 }
 ZB_PACKED_STRUCT
 zb_zcl_tunnel_io_slot_t;
@@ -323,7 +323,7 @@ zb_zcl_tunnel_io_slot_t;
 /** struct for next buffer in multi-buffer chain*/
 typedef ZB_PACKED_PRE struct zb_zcl_tunnel_io_slot_continue_s
 {
-  zb_uint8_t next_buf;
+    zb_uint8_t next_buf;
 }
 ZB_PACKED_STRUCT
 zb_zcl_tunnel_io_slot_continue_t;
@@ -332,11 +332,11 @@ zb_zcl_tunnel_io_slot_continue_t;
 /* internal cluster data - context info */
 typedef struct zb_zcl_tunnel_context_s
 {
-  zb_uint16_t manufacturer_id; /* manufacturer ID - should be initialized */
-  zb_zcl_tunnel_cb_t tunnel_cb; /* user callback - should be registered */
-  /* store reference to i/o buffer: tx or rx;
-   * zb_zcl_tunnel_io_param_t is stored as buffer parameter to keep status info */
-  zb_uint8_t tunnel_io_slot[ZB_ZCL_TUNNEL_MAX_IO_SLOT_NUMBER];
+    zb_uint16_t manufacturer_id; /* manufacturer ID - should be initialized */
+    zb_zcl_tunnel_cb_t tunnel_cb; /* user callback - should be registered */
+    /* store reference to i/o buffer: tx or rx;
+     * zb_zcl_tunnel_io_param_t is stored as buffer parameter to keep status info */
+    zb_uint8_t tunnel_io_slot[ZB_ZCL_TUNNEL_MAX_IO_SLOT_NUMBER];
 }
 zb_zcl_tunnel_context_t;
 

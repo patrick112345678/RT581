@@ -31,36 +31,36 @@ zb_r22_cert_test_ctx_t g_cert_test_ctx;
 
 void zb_cert_test_set_init_globals()
 {
-  g_cert_test_ctx.page = ZB_CERT_TEST_DEAULT_PAGE;
-  g_cert_test_ctx.channel = ZB_CERT_TEST_DEAULT_CHANNEL;
+    g_cert_test_ctx.page = ZB_CERT_TEST_DEAULT_PAGE;
+    g_cert_test_ctx.channel = ZB_CERT_TEST_DEAULT_CHANNEL;
 }
 
 
 void zb_cert_test_set_common_channel_settings()
 {
-  zb_channel_list_t channel_list;
-  zb_channel_list_init(channel_list);
-  zb_channel_list_add(channel_list, TEST_PAGE, (1L << TEST_CHANNEL));
-  zb_channel_page_list_copy(ZB_AIB().aps_channel_mask_list, channel_list);
+    zb_channel_list_t channel_list;
+    zb_channel_list_init(channel_list);
+    zb_channel_list_add(channel_list, TEST_PAGE, (1L << TEST_CHANNEL));
+    zb_channel_page_list_copy(ZB_AIB().aps_channel_mask_list, channel_list);
 }
 
 
 void zb_cert_test_set_zc_role()
 {
-  ZB_AIB().aps_designated_coordinator = ZB_TRUE;
-  ZB_NIB().device_type = ZB_NWK_DEVICE_TYPE_COORDINATOR;
+    ZB_AIB().aps_designated_coordinator = ZB_TRUE;
+    ZB_NIB().device_type = ZB_NWK_DEVICE_TYPE_COORDINATOR;
 }
 
 
 void zb_cert_test_set_zr_role()
 {
-  ZB_AIB().aps_designated_coordinator = ZB_FALSE;
-  ZB_NIB().device_type = ZB_NWK_DEVICE_TYPE_ROUTER;
+    ZB_AIB().aps_designated_coordinator = ZB_FALSE;
+    ZB_NIB().device_type = ZB_NWK_DEVICE_TYPE_ROUTER;
 }
 
 
 void zb_cert_test_set_zed_role()
 {
-  ZB_AIB().aps_designated_coordinator = ZB_FALSE;
-  ZB_NIB().device_type = ZB_NWK_DEVICE_TYPE_ED;
+    ZB_AIB().aps_designated_coordinator = ZB_FALSE;
+    ZB_NIB().device_type = ZB_NWK_DEVICE_TYPE_ED;
 }

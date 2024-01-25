@@ -46,7 +46,7 @@
  */
 typedef enum zb_zcl_subghz_srv_attr_e
 {
-  ZB_ZCL_ATTR_SUBGHZ_CHANNEL_CHANGE      = 0x0000,     /**< This is a 32-bit channel mask that defines
+    ZB_ZCL_ATTR_SUBGHZ_CHANNEL_CHANGE      = 0x0000,     /**< This is a 32-bit channel mask that defines
                                                         * the sub-GHz channel that the Coordinator’s
                                                         * Network Manager intends to move to.
                                                         * @par Value format
@@ -54,7 +54,7 @@ typedef enum zb_zcl_subghz_srv_attr_e
                                                         * bits 27..31 - channel page number
                                                         */
 
-  ZB_ZCL_ATTR_SUBGHZ_PAGE28_CHANNEL_MASK = 0x0001,     /**< This is a 32-bit channel mask that defines
+    ZB_ZCL_ATTR_SUBGHZ_PAGE28_CHANNEL_MASK = 0x0001,     /**< This is a 32-bit channel mask that defines
                                                         * the channels that are to be scanned when
                                                         * forming, joining or re-joining a network.
                                                         * Page 28 defines the first 27 channels within
@@ -64,7 +64,7 @@ typedef enum zb_zcl_subghz_srv_attr_e
                                                         * bits 27..31 - page number (28 == 0b11100)
                                                         */
 
-  ZB_ZCL_ATTR_SUBGHZ_PAGE29_CHANNEL_MASK = 0x0002,     /**< This is a 32-bit channel mask that defines
+    ZB_ZCL_ATTR_SUBGHZ_PAGE29_CHANNEL_MASK = 0x0002,     /**< This is a 32-bit channel mask that defines
                                                         * the channels that are to be scanned when
                                                         * forming, joining or re-joining a network.
                                                         * Page 29 defines channels 27 to 34 and channel
@@ -75,7 +75,7 @@ typedef enum zb_zcl_subghz_srv_attr_e
                                                         * bits 27..31 - page number (29 == 0b11101)
                                                         */
 
-  ZB_ZCL_ATTR_SUBGHZ_PAGE30_CHANNEL_MASK = 0x0003,     /**< This is a 32-bit channel mask that defines
+    ZB_ZCL_ATTR_SUBGHZ_PAGE30_CHANNEL_MASK = 0x0003,     /**< This is a 32-bit channel mask that defines
                                                         * the channels that are to be scanned when
                                                         * forming, joining or re-joining a network.
                                                         * Page 30 defines channels 35 to 61 of the
@@ -85,7 +85,7 @@ typedef enum zb_zcl_subghz_srv_attr_e
                                                         * bits 27..31 - page number (30 == 0b11110)
                                                         */
 
-  ZB_ZCL_ATTR_SUBGHZ_PAGE31_CHANNEL_MASK = 0x0004      /**< This is a 32-bit channel mask that defines
+    ZB_ZCL_ATTR_SUBGHZ_PAGE31_CHANNEL_MASK = 0x0004      /**< This is a 32-bit channel mask that defines
                                                         * the channels that are to be scanned when
                                                         * forming, joining or re-joining a network.
                                                         * Page 31 defines the 27 channels within the
@@ -184,25 +184,25 @@ typedef enum zb_zcl_subghz_srv_attr_e
 typedef struct zb_zcl_sub_ghz_attrs_s
 {
 
-  /** @see ZB_ZCL_ATTR_SUBGHZ_CHANNEL_CHANGE
-   */
-  zb_uint32_t channel_change;
+    /** @see ZB_ZCL_ATTR_SUBGHZ_CHANNEL_CHANGE
+     */
+    zb_uint32_t channel_change;
 
-  /** @see ZB_ZCL_ATTR_SUBGHZ_PAGE28_CHANNEL_MASK
-   */
-  zb_uint32_t page28_channel_mask;
+    /** @see ZB_ZCL_ATTR_SUBGHZ_PAGE28_CHANNEL_MASK
+     */
+    zb_uint32_t page28_channel_mask;
 
-  /** @see ZB_ZCL_ATTR_SUBGHZ_PAGE29_CHANNEL_MASK
-   */
-  zb_uint32_t page29_channel_mask;
+    /** @see ZB_ZCL_ATTR_SUBGHZ_PAGE29_CHANNEL_MASK
+     */
+    zb_uint32_t page29_channel_mask;
 
-  /** @see ZB_ZCL_ATTR_SUBGHZ_PAGE30_CHANNEL_MASK
-   */
-  zb_uint32_t page30_channel_mask;
+    /** @see ZB_ZCL_ATTR_SUBGHZ_PAGE30_CHANNEL_MASK
+     */
+    zb_uint32_t page30_channel_mask;
 
-  /** @see ZB_ZCL_ATTR_SUBGHZ_PAGE31_CHANNEL_MASK
-   */
-  zb_uint32_t page31_channel_mask;
+    /** @see ZB_ZCL_ATTR_SUBGHZ_PAGE31_CHANNEL_MASK
+     */
+    zb_uint32_t page31_channel_mask;
 }
 zb_zcl_sub_ghz_attrs_t;
 
@@ -228,7 +228,7 @@ zb_zcl_sub_ghz_attrs_t;
  */
 typedef enum zb_zcl_subghz_srv_cmd_e
 {
-  ZB_ZCL_SUBGHZ_SRV_CMD_SUSPEND_ZCL_MESSAGES = 0x00   /**< The @b SuspendZCLMessages command is sent to
+    ZB_ZCL_SUBGHZ_SRV_CMD_SUSPEND_ZCL_MESSAGES = 0x00   /**< The @b SuspendZCLMessages command is sent to
                                                        * client device(s) by the server device when the
                                                        * server device has determined that the client
                                                        * device(s) shall suspend their ZCL communications
@@ -255,7 +255,7 @@ typedef zb_uint8_t zb_zcl_subghz_suspend_zcl_msg_payload_t;
  */
 typedef enum zb_zcl_subghz_cli_cmd_e
 {
-  ZB_ZCL_SUBGHZ_CLI_CMD_GET_SUSPEND_ZCL_MESSAGES_STATUS = 0x00  /**< The @b GetSuspendZCLMessagesStatus
+    ZB_ZCL_SUBGHZ_CLI_CMD_GET_SUSPEND_ZCL_MESSAGES_STATUS = 0x00  /**< The @b GetSuspendZCLMessagesStatus
                                                                  * command allows a client device to
                                                                  * request the current status of its
                                                                  * ZCL communications with the server.
@@ -278,17 +278,17 @@ typedef enum zb_zcl_subghz_cli_cmd_e
  */
 typedef struct zb_zcl_subghz_srv_ctx_s
 {
-  /* FIXME: rewrite to exclude additional memory usage. */
-  zb_address_ieee_ref_t dev_list[ZB_NEIGHBOR_TABLE_SIZE];   /**< ref list to Sub-GHz devices in neighbor table */
-  zb_uint8_t mode;                               /**< MAC Duty Cycle Mode */
+    /* FIXME: rewrite to exclude additional memory usage. */
+    zb_address_ieee_ref_t dev_list[ZB_NEIGHBOR_TABLE_SIZE];   /**< ref list to Sub-GHz devices in neighbor table */
+    zb_uint8_t mode;                               /**< MAC Duty Cycle Mode */
 } zb_zcl_subghz_srv_ctx_t;
 
 /** @brief Client-side Sub-GHz cluster context
  */
 typedef struct zb_zcl_subghz_cli_ctx_s
 {
-  zb_uint8_t zc_ep;                   /**< endpoint with Sub-GHz cluster on Coordinator */
-  zb_bool_t suspend_zcl_messages;     /**< if TRUE, device is suspended by Coordinator */
+    zb_uint8_t zc_ep;                   /**< endpoint with Sub-GHz cluster on Coordinator */
+    zb_bool_t suspend_zcl_messages;     /**< if TRUE, device is suspended by Coordinator */
 } zb_zcl_subghz_cli_ctx_t;
 
 /** @brief Sub-GHz cluster context
@@ -296,12 +296,12 @@ typedef struct zb_zcl_subghz_cli_ctx_s
 typedef struct zb_zcl_subghz_ctx_s
 {
 #ifndef ZB_ED_ROLE
-  zb_zcl_subghz_srv_ctx_t srv;      /**< server context */
+    zb_zcl_subghz_srv_ctx_t srv;      /**< server context */
 #endif
-  zb_zcl_subghz_cli_ctx_t cli;      /**< client context */
+    zb_zcl_subghz_cli_ctx_t cli;      /**< client context */
 
-  /* common fields */
-  zb_uint8_t ep;                    /**< endpoint of Sub-GHz cluster on this device */
+    /* common fields */
+    zb_uint8_t ep;                    /**< endpoint of Sub-GHz cluster on this device */
 } zb_zcl_subghz_ctx_t;
 
 /** @fn void zb_subghz_cli_get_suspend_zcl_messages_status(zb_uint8_t param, zb_addr_u *dst_addr, zb_uint8_t dst_addr_mode, zb_uint8_t dst_ep, zb_uint8_t src_ep)
@@ -313,20 +313,20 @@ typedef struct zb_zcl_subghz_ctx_s
  *  @param[in]  src_ep - endpoint address of Sub-GHz cluster on this device
  */
 void zb_subghz_cli_get_suspend_zcl_messages_status(zb_uint8_t param,
-                                                        zb_addr_u *dst_addr,
-                                                        zb_uint8_t dst_addr_mode,
-                                                        zb_uint8_t dst_ep,
-                                                        zb_uint8_t src_ep);
+        zb_addr_u *dst_addr,
+        zb_uint8_t dst_addr_mode,
+        zb_uint8_t dst_ep,
+        zb_uint8_t src_ep);
 
 /** @fn void zb_subghz_srv_suspend_zcl_messages(zb_uint8_t param, zb_addr_u *dst_addr, zb_uint8_t dst_addr_mode, zb_uint8_t dst_ep, zb_uint8_t src_ep, zb_zcl_subghz_suspend_zcl_msg_payload_t *payload)
  *  @brief Sends @b SuspendZCLMessages server command
  */
 void zb_subghz_srv_suspend_zcl_messages(zb_uint8_t param,
-                                             zb_addr_u *dst_addr,
-                                             zb_uint8_t dst_addr_mode,
-                                             zb_uint8_t dst_ep,
-                                             zb_uint8_t src_ep,
-                                             zb_zcl_subghz_suspend_zcl_msg_payload_t *payload);
+                                        zb_addr_u *dst_addr,
+                                        zb_uint8_t dst_addr_mode,
+                                        zb_uint8_t dst_ep,
+                                        zb_uint8_t src_ep,
+                                        zb_zcl_subghz_suspend_zcl_msg_payload_t *payload);
 
 
 zb_bool_t zb_subghz_srv_device_suspended(zb_uint16_t addr);

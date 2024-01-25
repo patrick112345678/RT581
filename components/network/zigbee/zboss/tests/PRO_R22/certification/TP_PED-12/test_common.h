@@ -41,12 +41,13 @@ static const zb_uint16_t g_pan_id = 0x1aaa;
 static const zb_uint8_t g_nwk_key0[16] = { 0xab, 0xcd, 0xef, 0x01, 0x23, 0x45, 0x67, 0x89, 0, 0, 0, 0, 0, 0, 0, 0};
 /* Key 1 */
 static const zb_uint8_t g_nwk_key1[16] = { 0xab, 0xcd, 0xef, 0x01, 0x23, 0x45, 0x67, 0x89,
-                                           0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01};
+                                           0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01
+                                         };
 
-#define TEST_CHECK_DUTZC_NBT_DELAY 	(25 * ZB_TIME_ONE_SECOND)
-#define TEST_SEND_BUFFER_TEST_REQ_DELAY	(40 * ZB_TIME_ONE_SECOND)
-#define TEST_ZED_POLL_TIMEOUT_MS	(7500)
+#define TEST_CHECK_DUTZC_NBT_DELAY  (25 * ZB_TIME_ONE_SECOND)
+#define TEST_SEND_BUFFER_TEST_REQ_DELAY (40 * ZB_TIME_ONE_SECOND)
+#define TEST_ZED_POLL_TIMEOUT_MS    (7500)
 
-#define DUTZR_CLOSE_PERMIT_JOIN_DELAY 	(15 * ZB_TIME_ONE_SECOND)
+#define DUTZR_CLOSE_PERMIT_JOIN_DELAY   (15 * ZB_TIME_ONE_SECOND)
 
 #endif  /* __TP_PED_12_TEST_COMMON */

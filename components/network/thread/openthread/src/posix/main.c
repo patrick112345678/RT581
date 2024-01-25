@@ -151,7 +151,8 @@ enum
     OT_POSIX_OPT_REAL_TIME_SIGNAL,
 };
 
-static const struct option kOptions[] = {
+static const struct option kOptions[] =
+{
     {"backbone-interface-name", required_argument, NULL, OT_POSIX_OPT_BACKBONE_INTERFACE_NAME},
     {"debug-level", required_argument, NULL, OT_POSIX_OPT_DEBUG_LEVEL},
     {"dry-run", no_argument, NULL, OT_POSIX_OPT_DRY_RUN},
@@ -162,7 +163,8 @@ static const struct option kOptions[] = {
     {"real-time-signal", required_argument, NULL, OT_POSIX_OPT_REAL_TIME_SIGNAL},
     {"time-speed", required_argument, NULL, OT_POSIX_OPT_TIME_SPEED},
     {"verbose", no_argument, NULL, OT_POSIX_OPT_VERBOSE},
-    {0, 0, 0, 0}};
+    {0, 0, 0, 0}
+};
 
 static void PrintUsage(const char *aProgramName, FILE *aStream, int aExitCode)
 {
@@ -354,7 +356,8 @@ static otError ProcessExit(void *aContext, uint8_t aArgsLength, char *aArgs[])
 }
 #endif
 
-static const otCliCommand kCommands[] = {
+static const otCliCommand kCommands[] =
+{
 #if !OPENTHREAD_POSIX_CONFIG_DAEMON_ENABLE
     {"exit", ProcessExit},
 #endif

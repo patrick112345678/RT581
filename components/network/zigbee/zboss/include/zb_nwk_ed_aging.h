@@ -74,15 +74,15 @@ typedef zb_uint8_t nwk_requested_timeout_status_t;
 */
 typedef ZB_PACKED_PRE struct zb_nwk_ed_timeout_request_s
 {
-  zb_uint8_t request_timeout;         /**< Request timeout enumeration @see @ref nwk_requested_timeout */
-  zb_uint8_t ed_config;               /**< End Device Configuration */
-/*NOTE: This is a bitmask indicating the end device's requested
- * configuration. At this time there are no enumerated bits in the configuration
- * field. Devices adhering to this standard shall set the field to 0. To allow
- * for future compatibility this field is left in place. Devices that receive
- * the End Device Timeout Request message with an End Device Configuration field
- * set to anything other than 0 shall reject the message. The receiving device
- * shall send an End Device Timeout Response command with a status of 0x01 (INCORRECT_VALUE).*/
+    zb_uint8_t request_timeout;         /**< Request timeout enumeration @see @ref nwk_requested_timeout */
+    zb_uint8_t ed_config;               /**< End Device Configuration */
+    /*NOTE: This is a bitmask indicating the end device's requested
+     * configuration. At this time there are no enumerated bits in the configuration
+     * field. Devices adhering to this standard shall set the field to 0. To allow
+     * for future compatibility this field is left in place. Devices that receive
+     * the End Device Timeout Request message with an End Device Configuration field
+     * set to anything other than 0 shall reject the message. The receiving device
+     * shall send an End Device Timeout Response command with a status of 0x01 (INCORRECT_VALUE).*/
 
 } ZB_PACKED_STRUCT zb_nwk_ed_timeout_request_t;
 
@@ -91,10 +91,10 @@ typedef ZB_PACKED_PRE struct zb_nwk_ed_timeout_request_s
 */
 typedef ZB_PACKED_PRE struct zb_nwk_ed_timeout_response_s
 {
-  zb_uint8_t status;                    /**< The success or failure result of
+    zb_uint8_t status;                    /**< The success or failure result of
                                          * the  previously received End Device
                                          * Timeout Request command. */
-  zb_uint8_t parent_info;               /**< Parent routers support information
+    zb_uint8_t parent_info;               /**< Parent routers support information
                                          * to the child device. */
 } ZB_PACKED_STRUCT
 zb_nwk_ed_timeout_response_t;
@@ -114,12 +114,12 @@ zb_nwk_ed_timeout_response_t;
 
 typedef struct zb_nwk_ed_timeout_response_param_s
 {
-  zb_uint8_t status;                    /**< General internal status of the
+    zb_uint8_t status;                    /**< General internal status of the
                                          * Keepalive procedure */
-  zb_uint8_t resp_status;               /**< The success or failure result of
+    zb_uint8_t resp_status;               /**< The success or failure result of
                                          * the  previously received End Device
                                          * Timeout Request command. */
-  zb_uint8_t parent_info;               /**< Parent routers support information
+    zb_uint8_t parent_info;               /**< Parent routers support information
                                          * to the child device. */
 
 } zb_nwk_ed_timeout_response_param_t;

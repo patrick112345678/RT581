@@ -40,15 +40,15 @@
 void zb_nlme_route_discovery_confirm(zb_uint8_t param)
 {
 
-  TRACE_MSG(TRACE_NWK1, ">>zb_nlme_route_discovery_confirm %hd", (FMT__H, param));
+    TRACE_MSG(TRACE_NWK1, ">>zb_nlme_route_discovery_confirm %hd", (FMT__H, param));
 
-  if (param != 0U)
-  {
-    zb_nlme_route_discovery_confirm_t *confirm = (zb_nlme_route_discovery_confirm_t *)zb_buf_begin(param);
-    ZVUNUSED(confirm);
-  }
+    if (param != 0U)
+    {
+        zb_nlme_route_discovery_confirm_t *confirm = (zb_nlme_route_discovery_confirm_t *)zb_buf_begin(param);
+        ZVUNUSED(confirm);
+    }
 
-  TRACE_MSG(TRACE_NWK1, "<<zb_nlme_route_discovery_confirm", (FMT__0));
+    TRACE_MSG(TRACE_NWK1, "<<zb_nlme_route_discovery_confirm", (FMT__0));
 }
 #endif
 

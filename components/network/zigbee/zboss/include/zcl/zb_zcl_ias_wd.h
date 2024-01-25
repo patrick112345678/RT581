@@ -49,8 +49,8 @@
 */
 enum zb_zcl_ias_wd_attr_e
 {
-  /*! @brief Max Duration attribute, ZCL spec 8.4.2.2.1 */
-  ZB_ZCL_ATTR_IAS_WD_MAX_DURATION_ID = 0x0000,
+    /*! @brief Max Duration attribute, ZCL spec 8.4.2.2.1 */
+    ZB_ZCL_ATTR_IAS_WD_MAX_DURATION_ID = 0x0000,
 
 };
 
@@ -105,8 +105,8 @@ enum zb_zcl_ias_wd_attr_e
 */
 enum zb_zcl_ias_wd_cmd_e
 {
-  ZB_ZCL_CMD_IAS_WD_START_WARNING_ID  = 0x00,  /**< Start warning command. ZCL spec 8.4.2.3.1 */
-  ZB_ZCL_CMD_IAS_WD_SQUAWK_ID         = 0x01   /**< Squawk command. ZCL spec 8.4.2.3.2 */
+    ZB_ZCL_CMD_IAS_WD_START_WARNING_ID  = 0x00,  /**< Start warning command. ZCL spec 8.4.2.3.1 */
+    ZB_ZCL_CMD_IAS_WD_SQUAWK_ID         = 0x01   /**< Squawk command. ZCL spec 8.4.2.3.2 */
 };
 
 /** @cond internals_doc */
@@ -128,42 +128,42 @@ enum zb_zcl_ias_wd_cmd_e
 /** @brief Warning Mode Field, see ZCL spec 8.4.2.3.1.2 */
 enum zb_zcl_ias_wd_warning_mode_e
 {
-  /** Stop */
-  ZB_ZCL_IAS_WD_WARNING_MODE_STOP            = 0x00,
-  /** Burglar */
-  ZB_ZCL_IAS_WD_WARNING_MODE_BURGLAR         = 0x01,
-  /** Fire */
-  ZB_ZCL_IAS_WD_WARNING_MODE_FIRE            = 0x02,
-  /** Emergency */
-  ZB_ZCL_IAS_WD_WARNING_MODE_EMERGENCY       = 0x03,
-  /* Police panic */
-  ZB_ZCL_IAS_WD_WARNING_MODE_POLICE_PANIC    = 0x04,
-  /* Fire panic */
-  ZB_ZCL_IAS_WD_WARNING_MODE_FIRE_PANIC      = 0x05,
-  /* Emergency panic (i.e., medical issue) */
-  ZB_ZCL_IAS_WD_WARNING_MODE_EMERGENCY_PANIC = 0x06,
+    /** Stop */
+    ZB_ZCL_IAS_WD_WARNING_MODE_STOP            = 0x00,
+    /** Burglar */
+    ZB_ZCL_IAS_WD_WARNING_MODE_BURGLAR         = 0x01,
+    /** Fire */
+    ZB_ZCL_IAS_WD_WARNING_MODE_FIRE            = 0x02,
+    /** Emergency */
+    ZB_ZCL_IAS_WD_WARNING_MODE_EMERGENCY       = 0x03,
+    /* Police panic */
+    ZB_ZCL_IAS_WD_WARNING_MODE_POLICE_PANIC    = 0x04,
+    /* Fire panic */
+    ZB_ZCL_IAS_WD_WARNING_MODE_FIRE_PANIC      = 0x05,
+    /* Emergency panic (i.e., medical issue) */
+    ZB_ZCL_IAS_WD_WARNING_MODE_EMERGENCY_PANIC = 0x06,
 };
 
 /** @brief Strobe Field, see ZCL spec 8.4.2.3.1.3 */
 enum zb_zcl_ias_wd_strobe_e
 {
-  /** No strobe */
-  ZB_ZCL_IAS_WD_STROBE_NO_STROBE  = 0x00,
-  /** Use strobe in parallel to warning */
-  ZB_ZCL_IAS_WD_STROBE_USE_STROBE = 0x01,
+    /** No strobe */
+    ZB_ZCL_IAS_WD_STROBE_NO_STROBE  = 0x00,
+    /** Use strobe in parallel to warning */
+    ZB_ZCL_IAS_WD_STROBE_USE_STROBE = 0x01,
 };
 
 /** @brief Siren Level Field, see ZCL spec 8.4.2.3.1.4 */
 enum zb_zcl_ias_wd_siren_level_e
 {
-  /** Low level sound */
-  ZB_ZCL_IAS_WD_SIREN_LEVEL_LOW  = 0x00,
-  /** Medium level sound */
-  ZB_ZCL_IAS_WD_SIREN_LEVEL_MEDIUM  = 0x01,
-  /** High level sound */
-  ZB_ZCL_IAS_WD_SIREN_LEVEL_HIGH  = 0x02,
-  /** Very high level sound */
-  ZB_ZCL_IAS_WD_SIREN_LEVEL_VERY_HIGH  = 0x03,
+    /** Low level sound */
+    ZB_ZCL_IAS_WD_SIREN_LEVEL_LOW  = 0x00,
+    /** Medium level sound */
+    ZB_ZCL_IAS_WD_SIREN_LEVEL_MEDIUM  = 0x01,
+    /** High level sound */
+    ZB_ZCL_IAS_WD_SIREN_LEVEL_HIGH  = 0x02,
+    /** Very high level sound */
+    ZB_ZCL_IAS_WD_SIREN_LEVEL_VERY_HIGH  = 0x03,
 };
 
 /**
@@ -171,27 +171,27 @@ enum zb_zcl_ias_wd_siren_level_e
  */
 enum zb_zcl_ias_wd_strobe_level_e
 {
-  /** Low level strobe */
-  ZB_ZCL_IAS_WD_STROBE_LEVEL_LOW  = 0x00,
-  /** Medium level strobe */
-  ZB_ZCL_IAS_WD_STROBE_LEVEL_MEDIUM  = 0x01,
-  /** High level strobe */
-  ZB_ZCL_IAS_WD_STROBE_LEVEL_HIGH  = 0x02,
-  /** Very high level strobe */
-  ZB_ZCL_IAS_WD_STROBE_LEVEL_VERY_HIGH  = 0x03,
+    /** Low level strobe */
+    ZB_ZCL_IAS_WD_STROBE_LEVEL_LOW  = 0x00,
+    /** Medium level strobe */
+    ZB_ZCL_IAS_WD_STROBE_LEVEL_MEDIUM  = 0x01,
+    /** High level strobe */
+    ZB_ZCL_IAS_WD_STROBE_LEVEL_HIGH  = 0x02,
+    /** Very high level strobe */
+    ZB_ZCL_IAS_WD_STROBE_LEVEL_VERY_HIGH  = 0x03,
 };
 
 /*! @brief Structure representsation Start warning command. ZCL spec 8.4.2.3.1 */
 typedef ZB_PACKED_PRE struct zb_zcl_ias_wd_start_warning_s
 {
-  /** Status - enum flags Warning mode, Strobe and Siren Level, see ZCL spec 8.4.2.3.1 */
-  zb_uint8_t status;
-  /** Warning duration*/
-  zb_uint16_t duration;
-  /** Strobe Duty Cycle */
-  zb_uint8_t strobe_duty_cycle;
-  /** Strobe Level (enum zb_zcl_ias_wd_strobe_level_e) */
-  zb_uint8_t strobe_level;
+    /** Status - enum flags Warning mode, Strobe and Siren Level, see ZCL spec 8.4.2.3.1 */
+    zb_uint8_t status;
+    /** Warning duration*/
+    zb_uint16_t duration;
+    /** Strobe Duty Cycle */
+    zb_uint8_t strobe_duty_cycle;
+    /** Strobe Level (enum zb_zcl_ias_wd_strobe_level_e) */
+    zb_uint8_t strobe_level;
 } ZB_PACKED_STRUCT zb_zcl_ias_wd_start_warning_t;
 
 /*! @brief Get Warning Mode from payload Start warning command */
@@ -274,39 +274,39 @@ typedef ZB_PACKED_PRE struct zb_zcl_ias_wd_start_warning_s
 /** @brief Squawk Mode Field, see ZCL spec 8.4.2.3.2.2 */
 enum zb_zcl_ias_wd_squawk_mode_e
 {
-  /** Notification sound for "System is armed" */
-  ZB_ZCL_IAS_WD_SQUAWK_MODE_ARMED      = 0x00,
-  /** Notification sound for "System is disarmed"  */
-  ZB_ZCL_IAS_WD_SQUAWK_MODE_DISARMED   = 0x01,
+    /** Notification sound for "System is armed" */
+    ZB_ZCL_IAS_WD_SQUAWK_MODE_ARMED      = 0x00,
+    /** Notification sound for "System is disarmed"  */
+    ZB_ZCL_IAS_WD_SQUAWK_MODE_DISARMED   = 0x01,
 };
 
 /** @brief Strobe Field, see ZCL spec 8.4.2.3.2.3 */
 enum zb_zcl_ias_wd_squawk_strobe_e
 {
-  /** No strobe*/
-  ZB_ZCL_IAS_WD_SQUAWK_STROBE_NO_STROBE  = 0x00,
-  /** Use strobe blink in parallel to squawk */
-  ZB_ZCL_IAS_WD_SQUAWK_STROBE_USE_STROBE = 0x01,
+    /** No strobe*/
+    ZB_ZCL_IAS_WD_SQUAWK_STROBE_NO_STROBE  = 0x00,
+    /** Use strobe blink in parallel to squawk */
+    ZB_ZCL_IAS_WD_SQUAWK_STROBE_USE_STROBE = 0x01,
 };
 
 /** @brief Squawk level Field, see ZCL spec 8.4.2.3.2.4 */
 enum zb_zcl_ias_wd_squawk_level_e
 {
-  /** Low level sound */
-  ZB_ZCL_IAS_WD_SQUAWK_LEVEL_LOW        = 0x00,
-  /** Medium level sound */
-  ZB_ZCL_IAS_WD_SQUAWK_LEVEL_MEDIUM     = 0x01,
-  /** High level sound */
-  ZB_ZCL_IAS_WD_SQUAWK_LEVEL_HIGH       = 0x02,
-  /** Very High level sound */
-  ZB_ZCL_IAS_WD_SQUAWK_LEVEL_VERY_HIGH  = 0x03,
+    /** Low level sound */
+    ZB_ZCL_IAS_WD_SQUAWK_LEVEL_LOW        = 0x00,
+    /** Medium level sound */
+    ZB_ZCL_IAS_WD_SQUAWK_LEVEL_MEDIUM     = 0x01,
+    /** High level sound */
+    ZB_ZCL_IAS_WD_SQUAWK_LEVEL_HIGH       = 0x02,
+    /** Very High level sound */
+    ZB_ZCL_IAS_WD_SQUAWK_LEVEL_VERY_HIGH  = 0x03,
 };
 
 /*! @brief Structure representsation Squawk command. ZCL spec 8.4.2.3.2 */
 typedef ZB_PACKED_PRE struct zb_zcl_ias_wd_squawk_s
 {
-  /** Status - enum flags Squawk mode, Strobe and Squawk level, see ZCL spec 8.4.2.3.2 */
-  zb_uint8_t status;
+    /** Status - enum flags Squawk mode, Strobe and Squawk level, see ZCL spec 8.4.2.3.2 */
+    zb_uint8_t status;
 } ZB_PACKED_STRUCT zb_zcl_ias_wd_squawk_t;
 
 /*! @brief Get Squawk Mode from payload Squawk command */
@@ -379,20 +379,20 @@ typedef ZB_PACKED_PRE struct zb_zcl_ias_wd_squawk_s
 */
 typedef struct zb_zcl_ias_wd_start_warning_value_param_s
 {
-  zb_uint8_t  warning_mode;        /*!< Warning Mode */
-  zb_uint8_t  strobe;              /*!< Strobe */
-  zb_uint8_t  siren_level;         /*!< Siren level */
-  zb_uint16_t duration;           /*!< Duration */
-  zb_uint8_t  strobe_duty_cycle;   /*!< Strobe duty cycle */
-  zb_uint8_t  strobe_level;        /*!< Strobe level */
+    zb_uint8_t  warning_mode;        /*!< Warning Mode */
+    zb_uint8_t  strobe;              /*!< Strobe */
+    zb_uint8_t  siren_level;         /*!< Siren level */
+    zb_uint16_t duration;           /*!< Duration */
+    zb_uint8_t  strobe_duty_cycle;   /*!< Strobe duty cycle */
+    zb_uint8_t  strobe_level;        /*!< Strobe level */
 } zb_zcl_ias_wd_start_warning_value_param_t;
 
 /*! Struct for invoke User App & continue after */
 typedef struct zb_zcl_ias_wd_start_warning_user_app_schedule_e
 {
-  zb_zcl_parsed_hdr_t cmd_info;         /**< Parameters for continue command,
+    zb_zcl_parsed_hdr_t cmd_info;         /**< Parameters for continue command,
                                               see @ref zb_zcl_parsed_hdr_s */
-  zb_zcl_ias_wd_start_warning_value_param_t param; /**< User App command parameters,
+    zb_zcl_ias_wd_start_warning_value_param_t param; /**< User App command parameters,
                                         see @ref zb_zcl_ias_wd_start_warning_value_param_s */
 } zb_zcl_ias_wd_start_warning_user_app_schedule_t;
 
@@ -415,17 +415,17 @@ typedef struct zb_zcl_ias_wd_start_warning_user_app_schedule_e
 */
 typedef struct zb_zcl_ias_wd_squawk_value_param_s
 {
-  zb_uint8_t squawk_mode;         /*!< Squawk Mode */
-  zb_uint8_t strobe;              /*!< Strobe */
-  zb_uint8_t squawk_level;        /*!< Squawk level */
+    zb_uint8_t squawk_mode;         /*!< Squawk Mode */
+    zb_uint8_t strobe;              /*!< Strobe */
+    zb_uint8_t squawk_level;        /*!< Squawk level */
 } zb_zcl_ias_wd_squawk_value_param_t;
 
 /*! Struct for invoke User App & continue after */
 typedef struct zb_zcl_ias_wd_squawk_user_app_schedule_e
 {
-  zb_zcl_parsed_hdr_t cmd_info;         /**< Parameters for continue command,
+    zb_zcl_parsed_hdr_t cmd_info;         /**< Parameters for continue command,
                                               see @ref zb_zcl_parsed_hdr_s */
-  zb_zcl_ias_wd_squawk_value_param_t param; /**< User App command parameters,
+    zb_zcl_ias_wd_squawk_value_param_t param; /**< User App command parameters,
                                         see @ref zb_zcl_ias_wd_squawk_value_param_s */
 } zb_zcl_ias_wd_squawk_user_app_schedule_t;
 

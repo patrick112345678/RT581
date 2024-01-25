@@ -44,14 +44,14 @@
  */
 typedef ZB_PACKED_PRE struct zb_aps_bind_dst_record_s
 {
-  zb_uint8_t            dst_addr_mode;   /*!< destination address mode flag, 0
+    zb_uint8_t            dst_addr_mode;   /*!< destination address mode flag, 0
                                           * - group address, otherwise long
                                           * address plus dest endpoint */
-  ZB_PACKED_PRE union
-  {
-    zb_uint16_t group_addr;                /*!< group address */
-    zb_aps_bind_long_dst_addr_t long_addr; /*!< @see zb_asp_long_dst_addr_t */
-  } u;
+    ZB_PACKED_PRE union
+    {
+        zb_uint16_t group_addr;                /*!< group address */
+        zb_aps_bind_long_dst_addr_t long_addr; /*!< @see zb_asp_long_dst_addr_t */
+    } u;
 
 } ZB_PACKED_STRUCT zb_aps_bind_dst_record_t;
 
@@ -63,23 +63,23 @@ typedef ZB_PACKED_PRE struct zb_aps_bind_dst_record_s
 */
 typedef ZB_PACKED_PRE struct zb_aps_binding_table_s
 {
-  zb_uint8_t              src_n_elements;                               /*!< Count elements in source table */
-  zb_uint8_t              dst_n_elements;                               /*!< Count elements in destination table */
+    zb_uint8_t              src_n_elements;                               /*!< Count elements in source table */
+    zb_uint8_t              dst_n_elements;                               /*!< Count elements in destination table */
 #ifdef SNCP_MODE
-  zb_uint8_t              remote_bind_offset;                           /*!< Offset to attribute id's to remote binding requests */
-  zb_uint8_t              align;
+    zb_uint8_t              remote_bind_offset;                           /*!< Offset to attribute id's to remote binding requests */
+    zb_uint8_t              align;
 #else
-  /* FIXME: why align here? */
-  zb_uint8_t              align[2];
+    /* FIXME: why align here? */
+    zb_uint8_t              align[2];
 #endif
 #ifndef ZB_CONFIGURABLE_MEM
-  zb_uint8_t              trans_table[ZB_APS_BIND_TRANS_TABLE_SIZE];    /*!< Buffers for simultaneous sendings */
-  zb_aps_bind_src_table_t src_table[ZB_APS_SRC_BINDING_TABLE_SIZE];     /*!< Source table */
-  zb_aps_bind_dst_table_t dst_table[ZB_APS_DST_BINDING_TABLE_SIZE];     /*!< Destination table */
+    zb_uint8_t              trans_table[ZB_APS_BIND_TRANS_TABLE_SIZE];    /*!< Buffers for simultaneous sendings */
+    zb_aps_bind_src_table_t src_table[ZB_APS_SRC_BINDING_TABLE_SIZE];     /*!< Source table */
+    zb_aps_bind_dst_table_t dst_table[ZB_APS_DST_BINDING_TABLE_SIZE];     /*!< Destination table */
 #else
-  zb_uint8_t              *trans_table;
-  zb_aps_bind_src_table_t *src_table;
-  zb_aps_bind_dst_table_t *dst_table;
+    zb_uint8_t              *trans_table;
+    zb_aps_bind_src_table_t *src_table;
+    zb_aps_bind_dst_table_t *dst_table;
 #endif
 } ZB_PACKED_STRUCT zb_aps_binding_table_t;
 
@@ -90,11 +90,11 @@ ZB_ASSERT_IF_NOT_ALIGNED_TO_4(zb_aps_binding_table_t);
  */
 typedef ZB_PACKED_PRE struct zb_aps_group_table_ent_s
 {
-  zb_uint16_t    group_addr;                                    /*!< Group address */
-  zb_uint8_t     endpoints[ZB_APS_ENDPOINTS_IN_GROUP_TABLE];    /*!< Endpoints table */
-  zb_uint8_t     n_endpoints;                                   /*!< Count elements in endpoints
+    zb_uint16_t    group_addr;                                    /*!< Group address */
+    zb_uint8_t     endpoints[ZB_APS_ENDPOINTS_IN_GROUP_TABLE];    /*!< Endpoints table */
+    zb_uint8_t     n_endpoints;                                   /*!< Count elements in endpoints
                                                                  * table */
-  zb_uint8_t aligned[1];
+    zb_uint8_t aligned[1];
 } ZB_PACKED_STRUCT zb_aps_group_table_ent_t;
 
 
@@ -105,10 +105,10 @@ ZB_RING_BUFFER_DECLARE(zb_aps_grp_up_q, zb_uint8_t, ZB_APS_GROUP_UP_Q_SIZE);
  */
 typedef struct zb_aps_group_table_s
 {
-  zb_aps_group_table_ent_t groups[ZB_APS_GROUP_TABLE_SIZE]; /*!< APS group table */
-  zb_uint8_t              n_groups;                         /*!< # of entries in APS group table */
+    zb_aps_group_table_ent_t groups[ZB_APS_GROUP_TABLE_SIZE]; /*!< APS group table */
+    zb_uint8_t              n_groups;                         /*!< # of entries in APS group table */
 #ifndef ZB_LITE_APS_DONT_TX_PACKET_TO_MYSELF
-  zb_aps_grp_up_q_t        local_dup_q; /*!< queue to be used to pass sending
+    zb_aps_grp_up_q_t        local_dup_q; /*!< queue to be used to pass sending
                                           group addresses packets to myself */
 #endif
 } zb_aps_group_table_t;
@@ -119,11 +119,11 @@ typedef struct zb_aps_group_table_s
  */
 typedef struct zb_tc_policy_s
 {
-  /* TC policy attributes */
-  zb_bitbool_t allow_joins:1;
-  zb_bitbool_t use_white_list:1;
+    /* TC policy attributes */
+    zb_bitbool_t allow_joins: 1;
+    zb_bitbool_t use_white_list: 1;
 #ifdef ZB_SECURITY_INSTALLCODES
-  zb_bitbool_t require_installcodes:1;                      /*!< bdbJoinUsesInstallCodeKey
+    zb_bitbool_t require_installcodes: 1;                      /*!< bdbJoinUsesInstallCodeKey
                                                              * is equal to TRUE, the Trust
                                                              * Center only permits a node
                                                              * to join its network if
@@ -134,50 +134,50 @@ typedef struct zb_tc_policy_s
                                                              * preinstalled   */
 #endif
 #ifndef ZB_LITE_NO_TRUST_CENTER_REQUIRE_KEY_EXCHANGE
-  zb_bitbool_t update_trust_center_link_keys_required:1;
+    zb_bitbool_t update_trust_center_link_keys_required: 1;
 #endif
-  zb_bitbool_t ignore_unsecure_tc_rejoins:1;   /*<! some devices require ignoring unsecure rejoin from their part to initialize secure rejoin*/
-  zb_bitbool_t allow_tc_rejoins:1;   /*<! whether Trust Center Rejoin is allowed */
-  zb_bitbool_t allow_remote_policy_change:1;
-  zb_bitfield_t allow_tc_link_key_requests:2;
-  zb_bitfield_t allow_application_link_key_requests:2;
-  zb_bitfield_t network_key_update_method:2;
-  zb_uint32_t   network_key_update_period;
-  /* bdbJoiningNodeEui64 not really used: BDB spec supposes it ig global
-   * variable and only single note can join at a time */
-  /* bdbJoiningNodeNewTCLinkKey not really used: BDB spec supposes it ig global
-   * variable and only single note can join at a time */
+    zb_bitbool_t ignore_unsecure_tc_rejoins: 1;  /*<! some devices require ignoring unsecure rejoin from their part to initialize secure rejoin*/
+    zb_bitbool_t allow_tc_rejoins: 1;  /*<! whether Trust Center Rejoin is allowed */
+    zb_bitbool_t allow_remote_policy_change: 1;
+    zb_bitfield_t allow_tc_link_key_requests: 2;
+    zb_bitfield_t allow_application_link_key_requests: 2;
+    zb_bitfield_t network_key_update_method: 2;
+    zb_uint32_t   network_key_update_period;
+    /* bdbJoiningNodeEui64 not really used: BDB spec supposes it ig global
+     * variable and only single note can join at a time */
+    /* bdbJoiningNodeNewTCLinkKey not really used: BDB spec supposes it ig global
+     * variable and only single note can join at a time */
 
-  zb_bitbool_t node_is_on_a_network:1; /* was ZG->nwk.handle.joined. */
+    zb_bitbool_t node_is_on_a_network: 1; /* was ZG->nwk.handle.joined. */
 
-  /*not used zb_bitfield_t bdb_node_join_link_key_type:2;*/ /*!< the type of link key (see
-                                                * sub-clause 6.3) with which
-                                                * the node was able to decrypt
-                                                * the network key. @see bdb_node_join_link_key_type  */
+    /*not used zb_bitfield_t bdb_node_join_link_key_type:2;*/ /*!< the type of link key (see
+                                                  * sub-clause 6.3) with which
+                                                  * the node was able to decrypt
+                                                  * the network key. @see bdb_node_join_link_key_type  */
 
-  zb_time_t     trust_center_node_join_timeout;
-  zb_bitfield_t tclk_exchange_attempts:4; /*!< the number of key establishment attempts that have been made to establish a new link key after joining.  */
-  zb_bitfield_t tclk_exchange_attempts_max:4; /*!< the maximum number of key establishment attempts that will be made before giving up on the key establishment.  */
+    zb_time_t     trust_center_node_join_timeout;
+    zb_bitfield_t tclk_exchange_attempts: 4; /*!< the number of key establishment attempts that have been made to establish a new link key after joining.  */
+    zb_bitfield_t tclk_exchange_attempts_max: 4; /*!< the maximum number of key establishment attempts that will be made before giving up on the key establishment.  */
 
-  /* node-side security policy */
-  zb_bitbool_t accept_new_unsolicited_trust_center_link_key:1;
-  zb_bitbool_t accept_new_unsolicited_application_link_key:1;
-  zb_bitbool_t waiting_for_tclk_exchange:1;       /*!< Set to 1 when node start Link Key exchange
+    /* node-side security policy */
+    zb_bitbool_t accept_new_unsolicited_trust_center_link_key: 1;
+    zb_bitbool_t accept_new_unsolicited_application_link_key: 1;
+    zb_bitbool_t waiting_for_tclk_exchange: 1;       /*!< Set to 1 when node start Link Key exchange
                                                    * procedure. Reset to zero when TC LK exchange
                                                    * successfully copmletes or failed */
-  zb_bitbool_t is_distributed:1;
+    zb_bitbool_t is_distributed: 1;
 
 #ifdef ZB_CONTROL4_NETWORK_SUPPORT
 #ifdef ZB_ED_FUNC
-  zb_bitbool_t permit_control4_network:1; /*!< if 1, Joining Control4 Network is permitted */
+    zb_bitbool_t permit_control4_network: 1; /*!< if 1, Joining Control4 Network is permitted */
 #endif
-  zb_bitbool_t control4_network_emulator:1; /*!< if 1, Emulates Control4 Network behaviour: Transport Key ext src= 0xff,0xff(...) */
+    zb_bitbool_t control4_network_emulator: 1; /*!< if 1, Emulates Control4 Network behaviour: Transport Key ext src= 0xff,0xff(...) */
 #endif /* defined ZB_ED_FUNC && defined ZB_CONTROL4_NETWORK_SUPPORT */
-  zb_bitbool_t aps_unencrypted_transport_key_join:1;         /*for joining the devices requiring APS unencrypted Transport key*/
-  zb_bitbool_t tc_swapped:1;                                 /*!< 1 if TC is just swapped.  */
-  zb_bitfield_t authenticate_always:1;                        /*!< If 1, then zb_authenticate_dev()
+    zb_bitbool_t aps_unencrypted_transport_key_join: 1;        /*for joining the devices requiring APS unencrypted Transport key*/
+    zb_bitbool_t tc_swapped: 1;                                /*!< 1 if TC is just swapped.  */
+    zb_bitfield_t authenticate_always: 1;                        /*!< If 1, then zb_authenticate_dev()
                                                                * ignore permit_join value */
-  zb_bitbool_t allow_unsecure_tc_rejoins:1;   /*<! allow joiner devices perform TC rejoin, when there is
+    zb_bitbool_t allow_unsecure_tc_rejoins: 1;   /*<! allow joiner devices perform TC rejoin, when there is
                                                    no unique TCLK */
 }
 zb_tc_policy_t;
@@ -196,73 +196,73 @@ zb_bool_t zdo_secur_must_use_installcode(zb_bool_t is_client);
  */
 typedef struct zb_apsib_s
 {
-  zb_uint8_t  aps_counter;
+    zb_uint8_t  aps_counter;
 
-/**
-   Start (field name) of the APSIB section to be saved in NVRAM
- */
+    /**
+       Start (field name) of the APSIB section to be saved in NVRAM
+     */
 #define APSIB_SAVE_START aps_designated_coordinator
 
-  /* table 2.138 - Startup parameters */
-  zb_bitfield_t    aps_designated_coordinator : 1; /*!< This boolean flag indicates whether the
+    /* table 2.138 - Startup parameters */
+    zb_bitfield_t    aps_designated_coordinator : 1; /*!< This boolean flag indicates whether the
                                             device should assume on startup that it must
                                             become a Zigbee coordinator.  */
-  zb_bitfield_t   aps_insecure_join : 1; /*!< A boolean flag, which defaults to TRUE and
+    zb_bitfield_t   aps_insecure_join : 1; /*!< A boolean flag, which defaults to TRUE and
                                    indicates whether it is OK to use insecure
                                    join on startup.  */
 
-  zb_bitfield_t   aps_use_nvram:1; /*!< if 1, use nvram (load/save)   */
-  zb_bitfield_t   aps_nvram_erase_at_start:1; /*!< if 1, erase nvram at start  */
-  zb_bitfield_t   always_rejoin:1; /*!< if 1, forbidden Assotiation if Rewjoin fail */
-  zb_bitfield_t   is_tc:1;             /*!< true if this is a trusted center */
-  zb_bitfield_t   tc_address_locked:1; /*!< true if TC address was locked */
-  zb_bitfield_t   reserve : 1;
+    zb_bitfield_t   aps_use_nvram: 1; /*!< if 1, use nvram (load/save)   */
+    zb_bitfield_t   aps_nvram_erase_at_start: 1; /*!< if 1, erase nvram at start  */
+    zb_bitfield_t   always_rejoin: 1; /*!< if 1, forbidden Assotiation if Rewjoin fail */
+    zb_bitfield_t   is_tc: 1;            /*!< true if this is a trusted center */
+    zb_bitfield_t   tc_address_locked: 1; /*!< true if TC address was locked */
+    zb_bitfield_t   reserve : 1;
 
-  zb_channel_list_t aps_channel_mask_list; /*!< This is the masks list containing allowable
+    zb_channel_list_t aps_channel_mask_list; /*!< This is the masks list containing allowable
                                                                     * channels on which the device may attempt
                                                                     * to form or join a network at startup time. */
-  zb_ext_pan_id_t aps_use_extended_pan_id; /*!< The 64-bit identifier of the network to join
+    zb_ext_pan_id_t aps_use_extended_pan_id; /*!< The 64-bit identifier of the network to join
                                              or form.  */
-//#ifndef ZB_COORDINATOR_ONLY
-  zb_ieee_addr_t  trust_center_address;    /*!< Trust Center IEEE address */
-//#endif
+    //#ifndef ZB_COORDINATOR_ONLY
+    zb_ieee_addr_t  trust_center_address;    /*!< Trust Center IEEE address */
+    //#endif
 
 #ifndef ZB_NO_NWK_MULTICAST
-  zb_uint8_t      aps_nonmember_radius;     /*!< Non-member radius for NWK multicast, a value of 0x07 is treated as infinity see 3.3.1.8.2 sub-clause */
+    zb_uint8_t      aps_nonmember_radius;     /*!< Non-member radius for NWK multicast, a value of 0x07 is treated as infinity see 3.3.1.8.2 sub-clause */
 
-  /* TODO: What value is required for mcf.max_nonmember_radius, where it should be set? */
-  zb_uint8_t      aps_max_nonmember_radius; /*!< Maximum non-member radius value for multicast transmission */
+    /* TODO: What value is required for mcf.max_nonmember_radius, where it should be set? */
+    zb_uint8_t      aps_max_nonmember_radius; /*!< Maximum non-member radius value for multicast transmission */
 #endif                                      /* ZB_NO_NWK_MULTICAST */
-  zb_uint32_t outgoing_frame_counter; /*!< OutgoingFrameCounter for APS security
+    zb_uint32_t outgoing_frame_counter; /*!< OutgoingFrameCounter for APS security
                                        * Aux header when using standard key */
 
-  zb_uint8_t tc_standard_key[ZB_CCM_KEY_SIZE];      /*!< Trust Center Standard Key */
+    zb_uint8_t tc_standard_key[ZB_CCM_KEY_SIZE];      /*!< Trust Center Standard Key */
 #ifdef ZB_DISTRIBUTED_SECURITY_ON
-  zb_uint8_t tc_standard_distributed_key[ZB_CCM_KEY_SIZE];      /*!< Distributed Standard Key */
+    zb_uint8_t tc_standard_distributed_key[ZB_CCM_KEY_SIZE];      /*!< Distributed Standard Key */
 #endif
-  zb_uint8_t coordinator_version; /* Value from the node descriptor */
-  zb_aps_device_key_pair_storage_t aps_device_key_pair_storage; /*!< APS Application Key pair table */
+    zb_uint8_t coordinator_version; /* Value from the node descriptor */
+    zb_aps_device_key_pair_storage_t aps_device_key_pair_storage; /*!< APS Application Key pair table */
 
 #if defined ZB_COORDINATOR_ROLE && defined ZB_SECURITY_INSTALLCODES
 #ifndef ZB_CONFIGURABLE_MEM
-  zb_aps_installcode_storage_t installcodes_table[ZB_N_APS_KEY_PAIR_ARR_MAX_SIZE];
+    zb_aps_installcode_storage_t installcodes_table[ZB_N_APS_KEY_PAIR_ARR_MAX_SIZE];
 #else
-  zb_aps_installcode_storage_t *installcodes_table;
+    zb_aps_installcode_storage_t *installcodes_table;
 #endif
-  zb_secur_ic_add_t *installcode_to_add;
+    zb_secur_ic_add_t *installcode_to_add;
 #endif
 #ifdef ZB_SECURITY_INSTALLCODES
-  zb_uint8_t installcode[ZB_CCM_KEY_SIZE+ZB_CCM_KEY_CRC_SIZE];
-  zb_uint8_t installcode_type;
+    zb_uint8_t installcode[ZB_CCM_KEY_SIZE + ZB_CCM_KEY_CRC_SIZE];
+    zb_uint8_t installcode_type;
 #endif
 
 #ifdef APS_FRAGMENTATION
-  zb_uint8_t aps_interframe_delay;
-  /* TODO: Should be array of endpoints */
-  zb_uint8_t aps_max_window_size;
+    zb_uint8_t aps_interframe_delay;
+    /* TODO: Should be array of endpoints */
+    zb_uint8_t aps_max_window_size;
 #endif
-  zb_tc_policy_t tcpolicy;
-  zb_uint8_t    bdb_remove_device_param; /*!< Used to store buffer param with Remove zb. */
+    zb_tc_policy_t tcpolicy;
+    zb_uint8_t    bdb_remove_device_param; /*!< Used to store buffer param with Remove zb. */
 
 } zb_apsib_t;
 
@@ -299,17 +299,17 @@ typedef struct zb_apsib_s
 typedef struct zb_aps_retrans_s
 {
 #ifndef ZB_CONFIGURABLE_MEM
-  zb_aps_retrans_ent_t hash[ZB_N_APS_RETRANS_ENTRIES];      /*!< */
+    zb_aps_retrans_ent_t hash[ZB_N_APS_RETRANS_ENTRIES];      /*!< */
 #else
-  zb_aps_retrans_ent_t *hash;
+    zb_aps_retrans_ent_t *hash;
 #endif
-  zb_uint8_t           n_packets;
+    zb_uint8_t           n_packets;
 } zb_aps_retrans_t;
 
 
 typedef struct zb_aps_tmp_s
 {
-  zb_uint8_t            neighbor_table_iterator;   /*!< */
+    zb_uint8_t            neighbor_table_iterator;   /*!< */
 } zb_aps_tmp_t;
 
 #define ZB_APS_SET_ZDO_ED_SCAN_FLAG()   ZG->aps.zdo_ed_scan = 1;
@@ -325,9 +325,9 @@ typedef struct zb_aps_tmp_s
 typedef struct zb_aps_duplicate_s
 {
 #ifndef ZB_CONFIGURABLE_MEM
-  zb_aps_dup_tbl_ent_t   dups_table[ZB_APS_DUPS_TABLE_SIZE]; /*!< Duplicates table */
+    zb_aps_dup_tbl_ent_t   dups_table[ZB_APS_DUPS_TABLE_SIZE]; /*!< Duplicates table */
 #else
-  zb_aps_dup_tbl_ent_t   *dups_table;
+    zb_aps_dup_tbl_ent_t   *dups_table;
 #endif
 } zb_aps_duplicate_t;
 
@@ -350,20 +350,20 @@ typedef struct zb_aps_duplicate_s
 typedef ZB_PACKED_PRE struct zb_aps_in_fragmented_frame_s
 {
 #define ZB_APS_IN_FRAGMENTED_FRAME_EMPTY 0xFFFFu
-/* 07/31/2019 EE CR:MINOR Why not addr ref? */
-  zb_uint16_t src_addr;   /* 0xFFFF for empty entries */
-  zb_uint8_t aps_counter;
-  zb_uint8_t total_blocks_num;
-  zb_uint8_t current_window;
-  zb_bufid_t window_buffers[ZB_APS_MAX_FRAGMENT_NUM_IN_WINDOW];
-  zb_bufid_t buffer;
-  ZB_PACKED_PRE struct
-  {
-    zb_bitbool_t  assemble_in_progress:1; /* probably, we don't need that */
-    zb_bitbool_t  ack_timer_scheduled:1;
-    zb_bitfield_t state:3;
-    zb_bitfield_t aps_ack_retry_cnt:3;
-  } ZB_PACKED_STRUCT flags;
+    /* 07/31/2019 EE CR:MINOR Why not addr ref? */
+    zb_uint16_t src_addr;   /* 0xFFFF for empty entries */
+    zb_uint8_t aps_counter;
+    zb_uint8_t total_blocks_num;
+    zb_uint8_t current_window;
+    zb_bufid_t window_buffers[ZB_APS_MAX_FRAGMENT_NUM_IN_WINDOW];
+    zb_bufid_t buffer;
+    ZB_PACKED_PRE struct
+    {
+        zb_bitbool_t  assemble_in_progress: 1; /* probably, we don't need that */
+        zb_bitbool_t  ack_timer_scheduled: 1;
+        zb_bitfield_t state: 3;
+        zb_bitfield_t aps_ack_retry_cnt: 3;
+    } ZB_PACKED_STRUCT flags;
 } ZB_PACKED_STRUCT zb_aps_in_fragment_frame_t;
 
 /**
@@ -387,25 +387,25 @@ typedef ZB_PACKED_PRE struct zb_aps_in_fragmented_frame_s
 #define ZB_APS_BLOCK_MASK_SIZE (ZB_APS_BLOCK_REF_SIZE/8U)
 typedef struct zb_aps_out_fragmented_frame_s
 {
-  zb_uint8_t aps_counter;
-  zb_uint8_t total_blocks_num;
-  zb_uint8_t blocks_sent_mask[ZB_APS_BLOCK_MASK_SIZE];
-  zb_uint8_t blocks_retry_mask[ZB_APS_BLOCK_MASK_SIZE];
-  zb_uint8_t current_window;
-  zb_uint8_t block_ref[ZB_APS_BLOCK_REF_SIZE];
+    zb_uint8_t aps_counter;
+    zb_uint8_t total_blocks_num;
+    zb_uint8_t blocks_sent_mask[ZB_APS_BLOCK_MASK_SIZE];
+    zb_uint8_t blocks_retry_mask[ZB_APS_BLOCK_MASK_SIZE];
+    zb_uint8_t current_window;
+    zb_uint8_t block_ref[ZB_APS_BLOCK_REF_SIZE];
 
-  zb_uint8_t retry_count;
-  /* ZB_APS_RETRANS_ENT_SENT_MAC_NOT_CONFIRMED_ALRM_RUNNING case: block_num and block_ack of
-   * received ack */
-  zb_uint8_t wait_block_ack;
-  zb_uint8_t wait_block_num;
-  zb_uint8_t state;
-  /* 2019-03-06 CR:MAJOR What is the reason of this field? It is not used anywhere in
-   * the code. */
-  zb_uint8_t dst_max_in;
-  zb_uint8_t data_param;
-  zb_bool_t transmission_is_scheduled;
-  zb_uint8_t addr_mode;
+    zb_uint8_t retry_count;
+    /* ZB_APS_RETRANS_ENT_SENT_MAC_NOT_CONFIRMED_ALRM_RUNNING case: block_num and block_ack of
+     * received ack */
+    zb_uint8_t wait_block_ack;
+    zb_uint8_t wait_block_num;
+    zb_uint8_t state;
+    /* 2019-03-06 CR:MAJOR What is the reason of this field? It is not used anywhere in
+     * the code. */
+    zb_uint8_t dst_max_in;
+    zb_uint8_t data_param;
+    zb_bool_t transmission_is_scheduled;
+    zb_uint8_t addr_mode;
 } zb_aps_out_fragment_frame_t;
 
 #ifdef APS_FRAGMENTATION
@@ -420,10 +420,10 @@ typedef struct zb_aps_out_fragmented_frame_s
 
 typedef struct zb_aps_max_trans_size_s
 {
-  zb_uint8_t addr_ref;
-  zb_uint16_t max_in_trans_size;
-  zb_uint8_t max_buffer_size;
-  zb_uint8_t clock;
+    zb_uint8_t addr_ref;
+    zb_uint16_t max_in_trans_size;
+    zb_uint8_t max_buffer_size;
+    zb_uint8_t clock;
 } zb_aps_max_trans_size_t;
 #endif
 
@@ -431,8 +431,8 @@ typedef void (*zb_aps_binding_added_handler_t)(zb_uint16_t bind_tbl_idx);
 
 typedef struct zb_aps_func_selector_s
 {
-  zb_callback_t authhenticate_child_directly;
-  zb_aps_binding_added_handler_t new_binding_handler;
+    zb_callback_t authhenticate_child_directly;
+    zb_aps_binding_added_handler_t new_binding_handler;
 } zb_aps_func_selector_t;
 
 #define APS_OUT_FRAG_QUEUE_SIZE 2U
@@ -444,38 +444,38 @@ ZB_RING_BUFFER_DECLARE(zb_aps_out_frag_q, zb_bufid_t, APS_OUT_FRAG_QUEUE_SIZE);
  */
 typedef struct zb_aps_globals_s
 {
-  zb_apsib_t             aib;           /*!< AIB parameters */
-  zb_aps_binding_table_t binding;       /*!< Binding table */
-  zb_aps_retrans_t       retrans;       /*!< Retrans table */
+    zb_apsib_t             aib;           /*!< AIB parameters */
+    zb_aps_binding_table_t binding;       /*!< Binding table */
+    zb_aps_retrans_t       retrans;       /*!< Retrans table */
 
-  zb_aps_group_table_t   group;         /*!< Group table */
-  zb_aps_tmp_t           tmp;           /*!< */
-  zb_aps_duplicate_t     dups;
-  zb_aps_func_selector_t selector;
+    zb_aps_group_table_t   group;         /*!< Group table */
+    zb_aps_tmp_t           tmp;           /*!< */
+    zb_aps_duplicate_t     dups;
+    zb_aps_func_selector_t selector;
 
-  /* Lets use 1 simultaneous fragment rx and 1 simultaneous fragment tx (does not affect
-     non-fragment frames). Specification allows that:
+    /* Lets use 1 simultaneous fragment rx and 1 simultaneous fragment tx (does not affect
+       non-fragment frames). Specification allows that:
 
-     2.2.8.4.5  Fragmented Transmissions - Reception and Rejection, and Acknowledgements
-     If an incoming fragmented transaction is already in progress but the addressing and APS
-     counter fields do not match those of the received frame, then the received frame may
-     optionally be rejected or handled independently as a further transaction.
+       2.2.8.4.5  Fragmented Transmissions - Reception and Rejection, and Acknowledgements
+       If an incoming fragmented transaction is already in progress but the addressing and APS
+       counter fields do not match those of the received frame, then the received frame may
+       optionally be rejected or handled independently as a further transaction.
 
-     TODO: May extend to 1 fragmented transaction from 1 neighbor (if needed).
- */
+       TODO: May extend to 1 fragmented transaction from 1 neighbor (if needed).
+    */
 #ifdef APS_FRAGMENTATION
-  zb_aps_in_fragment_frame_t in_frag[ZB_APS_MAX_IN_FRAGMENT_TRANSMISSIONS];
-  zb_aps_out_fragment_frame_t out_frag;
-  zb_aps_max_trans_size_t max_trans_size[ZB_APS_MAX_TRANS_SIZE_TABLE_SIZE];
-  zb_aps_out_frag_q_t    out_frag_q;
+    zb_aps_in_fragment_frame_t in_frag[ZB_APS_MAX_IN_FRAGMENT_TRANSMISSIONS];
+    zb_aps_out_fragment_frame_t out_frag;
+    zb_aps_max_trans_size_t max_trans_size[ZB_APS_MAX_TRANS_SIZE_TABLE_SIZE];
+    zb_aps_out_frag_q_t    out_frag_q;
 #endif
 
-  zb_bitbool_t              authenticated:1;                   /*!< if ZB_TRUE, the device is authenticated */
-  zb_bitbool_t              dups_alarm_running:1;              /*!< if ZB_TRUE, the dups packet is processed */
-  zb_bitbool_t              max_trans_size_alarm_running:1;    /*!< if ZB_TRUE, we are process dups packet */
-  zb_time_t                 dups_alarm_start;
+    zb_bitbool_t              authenticated: 1;                  /*!< if ZB_TRUE, the device is authenticated */
+    zb_bitbool_t              dups_alarm_running: 1;             /*!< if ZB_TRUE, the dups packet is processed */
+    zb_bitbool_t              max_trans_size_alarm_running: 1;   /*!< if ZB_TRUE, we are process dups packet */
+    zb_time_t                 dups_alarm_start;
 #ifdef ZB_APS_USER_PAYLOAD
-  zb_aps_user_payload_callback_t aps_user_payload_cb;
+    zb_aps_user_payload_callback_t aps_user_payload_cb;
 #endif
 } zb_aps_globals_t;
 

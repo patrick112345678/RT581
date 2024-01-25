@@ -40,10 +40,10 @@ void light_control_send_on_off(zb_uint8_t param, zb_uint16_t on_off);
 
 void button1_handler(zb_uint8_t param)
 {
-  ZVUNUSED(param);
+    ZVUNUSED(param);
 
 #ifdef ZB_USE_BUTTONS
-  light_control_button_pressed(LIGHT_CONTROL_BUTTON_ON);
+    light_control_button_pressed(LIGHT_CONTROL_BUTTON_ON);
 #endif
 }
 
@@ -51,8 +51,8 @@ void button2_handler(zb_uint8_t param)
 {
     ZVUNUSED(param);
 
-  #ifdef ZB_USE_BUTTONS
-  light_control_button_pressed(LIGHT_CONTROL_BUTTON_OFF);
+#ifdef ZB_USE_BUTTONS
+    light_control_button_pressed(LIGHT_CONTROL_BUTTON_OFF);
 #endif
 }
 
@@ -60,50 +60,50 @@ void button2_handler(zb_uint8_t param)
 /* Private functions */
 void light_control_hal_device_started()
 {
-  zb_osif_led_on(BULB_LED_POVER);
+    zb_osif_led_on(BULB_LED_POVER);
 }
 
 void light_control_hal_gpio_init()
 {
-  zb_osif_led_button_init();
+    zb_osif_led_button_init();
 
-  if (zb_osif_button_state(BUTTON_0))
-  {
-    if (zb_osif_button_state(BUTTON_1))
+    if (zb_osif_button_state(BUTTON_0))
     {
-      zb_osif_led_off(BULB_LED_POVER);
+        if (zb_osif_button_state(BUTTON_1))
+        {
+            zb_osif_led_off(BULB_LED_POVER);
+        }
     }
-  }
 #ifdef ZB_USE_BUTTONS
-  zb_button_register_handler(BUTTON_0, 0, button1_handler);
-  zb_button_register_handler(BUTTON_1, 0, button2_handler);
+    zb_button_register_handler(BUTTON_0, 0, button1_handler);
+    zb_button_register_handler(BUTTON_1, 0, button2_handler);
 #endif
 }
 
 /* Public interface */
 void light_control_hal_init()
 {
-  light_control_hal_gpio_init();
-  light_control_hal_device_started();
+    light_control_hal_gpio_init();
+    light_control_hal_device_started();
 }
 
 zb_bool_t light_control_hal_is_button_pressed(zb_uint8_t button_no)
 {
-  zb_bool_t ret;
+    zb_bool_t ret;
 
-  ret = (zb_bool_t) zb_osif_button_state(button_no);
+    ret = (zb_bool_t) zb_osif_button_state(button_no);
 
-  return ret;
+    return ret;
 }
 
 void bulb_hal_set_connect(zb_bool_t on)
 {
-  if (on)
-  {
-    zb_osif_led_on(BULB_LED_CONNECT);
-  }
-  else
-  {
-    zb_osif_led_off(BULB_LED_CONNECT);
-  }
+    if (on)
+    {
+        zb_osif_led_on(BULB_LED_CONNECT);
+    }
+    else
+    {
+        zb_osif_led_off(BULB_LED_CONNECT);
+    }
 }

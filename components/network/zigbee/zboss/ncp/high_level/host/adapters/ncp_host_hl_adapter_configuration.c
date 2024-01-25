@@ -30,46 +30,46 @@
 
 void zb_secur_set_tc_rejoin_enabled(zb_bool_t enable)
 {
-  zb_ret_t ret;
-  TRACE_MSG(TRACE_ZDO2, "zb_secur_set_tc_rejoin_enabled, enable %d",
-            (FMT__D, enable));
+    zb_ret_t ret;
+    TRACE_MSG(TRACE_ZDO2, "zb_secur_set_tc_rejoin_enabled, enable %d",
+              (FMT__D, enable));
 
-  ret = ncp_host_set_tc_policy(NCP_HL_TC_POLICY_TC_REJOIN_ENABLED, enable);
-  ZB_ASSERT(ret == RET_OK);
+    ret = ncp_host_set_tc_policy(NCP_HL_TC_POLICY_TC_REJOIN_ENABLED, enable);
+    ZB_ASSERT(ret == RET_OK);
 }
 
 
 void zb_secur_set_ignore_tc_rejoin(zb_bool_t enable)
 {
-  zb_ret_t ret;
+    zb_ret_t ret;
 
-  TRACE_MSG(TRACE_ZDO2, "zb_secur_set_ignore_tc_rejoin, enable %d",
-            (FMT__D, enable));
+    TRACE_MSG(TRACE_ZDO2, "zb_secur_set_ignore_tc_rejoin, enable %d",
+              (FMT__D, enable));
 
-  ret = ncp_host_set_tc_policy(NCP_HL_TC_POLICY_IGNORE_TC_REJOIN, enable);
-  ZB_ASSERT(ret == RET_OK);
+    ret = ncp_host_set_tc_policy(NCP_HL_TC_POLICY_IGNORE_TC_REJOIN, enable);
+    ZB_ASSERT(ret == RET_OK);
 }
 
 
 void zb_zdo_set_aps_unsecure_join(zb_bool_t insecure_join)
 {
-  zb_ret_t ret;
+    zb_ret_t ret;
 
-  TRACE_MSG(TRACE_ZDO2, "zb_zdo_set_aps_unsecure_join, insecure_join %d",
-            (FMT__D, insecure_join));
+    TRACE_MSG(TRACE_ZDO2, "zb_zdo_set_aps_unsecure_join, insecure_join %d",
+              (FMT__D, insecure_join));
 
-  ret = ncp_host_set_tc_policy(NCP_HL_TC_POLICY_APS_INSECURE_JOIN, insecure_join);
-  ZB_ASSERT(ret == RET_OK);
+    ret = ncp_host_set_tc_policy(NCP_HL_TC_POLICY_APS_INSECURE_JOIN, insecure_join);
+    ZB_ASSERT(ret == RET_OK);
 }
 
 
 void zb_zdo_disable_network_mgmt_channel_update(zb_bool_t disable)
 {
-  zb_ret_t ret;
+    zb_ret_t ret;
 
-  TRACE_MSG(TRACE_ZDO2, "zb_zdo_disable_network_mgmt_channel_update, disable %d",
-            (FMT__D, disable));
+    TRACE_MSG(TRACE_ZDO2, "zb_zdo_disable_network_mgmt_channel_update, disable %d",
+              (FMT__D, disable));
 
-  ret = ncp_host_set_tc_policy(NCP_HL_TC_POLICY_DISABLE_NWK_MGMT_CHANNEL_UPDATE, disable);
-  ZB_ASSERT(ret == RET_OK);
+    ret = ncp_host_set_tc_policy(NCP_HL_TC_POLICY_DISABLE_NWK_MGMT_CHANNEL_UPDATE, disable);
+    ZB_ASSERT(ret == RET_OK);
 }

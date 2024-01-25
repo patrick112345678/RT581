@@ -42,65 +42,67 @@ ZBNCP_DBG_STATIC_ASSERT(sizeof(zbncp_uintptr_t) == ZBNCP_PTR_SIZE)
 
 typedef struct zbncp_dbg_log_s
 {
-  const char *name;
-  FILE *fp;
+    const char *name;
+    FILE *fp;
 }
 zbncp_dbg_log_t;
 
 static void zbncp_dbg_log_open(zbncp_dbg_log_t *log)
 {
-  if (log->name != NULL)
-  {
-    log->fp = fopen(log->name, "w");
-  }
+    if (log->name != NULL)
+    {
+        log->fp = fopen(log->name, "w");
+    }
 
-  if (log->fp == NULL) {
-    log->fp = stdout;
-  }
+    if (log->fp == NULL)
+    {
+        log->fp = stdout;
+    }
 }
 
 static void zbncp_dbg_log_close(zbncp_dbg_log_t *log)
 {
-  if (log->fp != NULL && log->fp != stdout) {
-    fclose(log->fp);
-    log->fp = NULL;
-  }
+    if (log->fp != NULL && log->fp != stdout)
+    {
+        fclose(log->fp);
+        log->fp = NULL;
+    }
 }
 
 static zbncp_dbg_log_t zbncp_dbg_log; /* = { "LL.log" }; */
 
 static void zbncp_dbg_log_atexit(void)
 {
-  zbncp_dbg_log_close(&zbncp_dbg_log);
+    zbncp_dbg_log_close(&zbncp_dbg_log);
 }
 
 static void zbncp_dbg_init_once(zbncp_dbg_log_t *log)
 {
-  static zbncp_bool_t initialized = ZBNCP_FALSE;
-  if (!initialized)
-  {
-    atexit(zbncp_dbg_log_atexit);
-    initialized = ZBNCP_TRUE;
-  }
+    static zbncp_bool_t initialized = ZBNCP_FALSE;
+    if (!initialized)
+    {
+        atexit(zbncp_dbg_log_atexit);
+        initialized = ZBNCP_TRUE;
+    }
 
-  if (log->fp == NULL)
-  {
-    zbncp_dbg_log_open(log);
-  }
+    if (log->fp == NULL)
+    {
+        zbncp_dbg_log_open(log);
+    }
 }
 
 static void zbncp_dbg_logv(zbncp_dbg_log_t *log, const char *fmt, va_list ap)
 {
-  zbncp_dbg_init_once(log);
-  vfprintf(log->fp, fmt, ap);
+    zbncp_dbg_init_once(log);
+    vfprintf(log->fp, fmt, ap);
 }
 
 void zbncp_dbg_trace(const char *fmt, ...)
 {
-  va_list ap;
-  va_start(ap, fmt);
-  zbncp_dbg_logv(&zbncp_dbg_log, fmt, ap);
-  va_end(ap);
+    va_list ap;
+    va_start(ap, fmt);
+    zbncp_dbg_logv(&zbncp_dbg_log, fmt, ap);
+    va_end(ap);
 }
 
 #else /* ZBNCP_USE_ZBOSS_TRACE */
@@ -120,18 +122,18 @@ void zb_file_trace_vprintf(const char *format, va_list arglist);
 
 void zbncp_dbg_trace(const char *fmt, ...)
 {
-  va_list ap;
-  va_start(ap, fmt);
-  zb_file_trace_vprintf(fmt, ap);
-  va_end(ap);
+    va_list ap;
+    va_start(ap, fmt);
+    zb_file_trace_vprintf(fmt, ap);
+    va_end(ap);
 }
 
 #else /* ZB_TRACE_TO_FILE */
 
 void zbncp_dbg_trace(const char *fmt, ...)
 {
-  TRACE_MSG(TRACE_COMMON3, "zbncp_dbg_trace: ZBOSS trace supported only to files", (FMT__0));
-  ZBNCP_UNUSED(fmt);
+    TRACE_MSG(TRACE_COMMON3, "zbncp_dbg_trace: ZBOSS trace supported only to files", (FMT__0));
+    ZBNCP_UNUSED(fmt);
 }
 
 #endif /* ZB_TRACE_TO_FILE */
@@ -140,23 +142,23 @@ void zbncp_dbg_trace(const char *fmt, ...)
 
 zbncp_dbg_res_t zbncp_dbg_assert(const char *file, unsigned int line, const char *cond)
 {
-  zbncp_dbg_trace(
-    "ZBNCP ASSERTION FAILED!\n"
-    "  FILE: %s\n"
-    "  LINE: %u\n"
-    "  COND: '%s' does not hold!\n",
-    file, line, cond);
+    zbncp_dbg_trace(
+        "ZBNCP ASSERTION FAILED!\n"
+        "  FILE: %s\n"
+        "  LINE: %u\n"
+        "  COND: '%s' does not hold!\n",
+        file, line, cond);
 
-  return ZBNCP_DBG_BREAK; /* for now - always break to the debugger */
+    return ZBNCP_DBG_BREAK; /* for now - always break to the debugger */
 }
 
 void zbncp_dbg_break(void)
 {
-  /* Not implemnted yet */
-  for (;;)
-  {
-    /* Infinite loop */
-  }
+    /* Not implemnted yet */
+    for (;;)
+    {
+        /* Infinite loop */
+    }
 }
 
 #endif /* ZBNCP_DEBUG */

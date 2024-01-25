@@ -399,8 +399,8 @@ otError otDnsClientBrowse(otInstance             *aInstance,
  *
  */
 otError otDnsBrowseResponseGetServiceName(const otDnsBrowseResponse *aResponse,
-                                          char                      *aNameBuffer,
-                                          uint16_t                   aNameBufferSize);
+        char                      *aNameBuffer,
+        uint16_t                   aNameBufferSize);
 
 /**
  * This function gets a service instance associated with a DNS browse (service instance enumeration) response.
@@ -425,9 +425,9 @@ otError otDnsBrowseResponseGetServiceName(const otDnsBrowseResponse *aResponse,
  *
  */
 otError otDnsBrowseResponseGetServiceInstance(const otDnsBrowseResponse *aResponse,
-                                              uint16_t                   aIndex,
-                                              char                      *aLabelBuffer,
-                                              uint8_t                    aLabelBufferSize);
+        uint16_t                   aIndex,
+        char                      *aLabelBuffer,
+        uint8_t                    aLabelBufferSize);
 
 /**
  * This function gets info for a service instance from a DNS browse (service instance enumeration) response.
@@ -458,8 +458,8 @@ otError otDnsBrowseResponseGetServiceInstance(const otDnsBrowseResponse *aRespon
  *
  */
 otError otDnsBrowseResponseGetServiceInfo(const otDnsBrowseResponse *aResponse,
-                                          const char                *aInstanceLabel,
-                                          otDnsServiceInfo          *aServiceInfo);
+        const char                *aInstanceLabel,
+        otDnsServiceInfo          *aServiceInfo);
 
 /**
  * This function gets the host IPv6 address from a DNS browse (service instance enumeration) response.
@@ -483,10 +483,10 @@ otError otDnsBrowseResponseGetServiceInfo(const otDnsBrowseResponse *aResponse,
  *
  */
 otError otDnsBrowseResponseGetHostAddress(const otDnsBrowseResponse *aResponse,
-                                          const char                *aHostName,
-                                          uint16_t                   aIndex,
-                                          otIp6Address              *aAddress,
-                                          uint32_t                  *aTtl);
+        const char                *aHostName,
+        uint16_t                   aIndex,
+        otIp6Address              *aAddress,
+        uint32_t                  *aTtl);
 
 /**
  * This type is an opaque representation of a response to a service instance resolution DNS query.
@@ -571,10 +571,10 @@ otError otDnsClientResolveService(otInstance             *aInstance,
  *
  */
 otError otDnsServiceResponseGetServiceName(const otDnsServiceResponse *aResponse,
-                                           char                       *aLabelBuffer,
-                                           uint8_t                     aLabelBufferSize,
-                                           char                       *aNameBuffer,
-                                           uint16_t                    aNameBufferSize);
+        char                       *aLabelBuffer,
+        uint8_t                     aLabelBufferSize,
+        char                       *aNameBuffer,
+        uint16_t                    aNameBufferSize);
 
 /**
  * This function gets info for a service instance from a DNS service instance resolution response.
@@ -630,10 +630,10 @@ otError otDnsServiceResponseGetServiceInfo(const otDnsServiceResponse *aResponse
  *
  */
 otError otDnsServiceResponseGetHostAddress(const otDnsServiceResponse *aResponse,
-                                           const char                 *aHostName,
-                                           uint16_t                    aIndex,
-                                           otIp6Address               *aAddress,
-                                           uint32_t                   *aTtl);
+        const char                 *aHostName,
+        uint16_t                    aIndex,
+        otIp6Address               *aAddress,
+        uint32_t                   *aTtl);
 
 /**
  * @}

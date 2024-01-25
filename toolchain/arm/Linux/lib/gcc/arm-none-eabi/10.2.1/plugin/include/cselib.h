@@ -23,59 +23,60 @@ along with GCC; see the file COPYING3.  If not see
 /* Describe a value.  */
 struct cselib_val
 {
-  /* The hash value.  */
-  unsigned int hash;
+    /* The hash value.  */
+    unsigned int hash;
 
-  /* A unique id assigned to values.  */
-  int uid;
+    /* A unique id assigned to values.  */
+    int uid;
 
-  /* A VALUE rtx that points back to this structure.  */
-  rtx val_rtx;
+    /* A VALUE rtx that points back to this structure.  */
+    rtx val_rtx;
 
-  /* All rtl expressions that hold this value at the current time during a
-     scan.  */
-  struct elt_loc_list *locs;
+    /* All rtl expressions that hold this value at the current time during a
+       scan.  */
+    struct elt_loc_list *locs;
 
-  /* If this value is used as an address, points to a list of values that
-     use it as an address in a MEM.  */
-  struct elt_list *addr_list;
+    /* If this value is used as an address, points to a list of values that
+       use it as an address in a MEM.  */
+    struct elt_list *addr_list;
 
-  struct cselib_val *next_containing_mem;
+    struct cselib_val *next_containing_mem;
 };
 
 /* A list of rtl expressions that hold the same value.  */
-struct elt_loc_list {
-  /* Next element in the list.  */
-  struct elt_loc_list *next;
-  /* An rtl expression that holds the value.  */
-  rtx loc;
-  /* The insn that made the equivalence.  */
-  rtx_insn *setting_insn;
+struct elt_loc_list
+{
+    /* Next element in the list.  */
+    struct elt_loc_list *next;
+    /* An rtl expression that holds the value.  */
+    rtx loc;
+    /* The insn that made the equivalence.  */
+    rtx_insn *setting_insn;
 };
 
 /* Describe a single set that is part of an insn.  */
 struct cselib_set
 {
-  rtx src;
-  rtx dest;
-  cselib_val *src_elt;
-  cselib_val *dest_addr_elt;
+    rtx src;
+    rtx dest;
+    cselib_val *src_elt;
+    cselib_val *dest_addr_elt;
 };
 
 enum cselib_record_what
 {
-  CSELIB_RECORD_MEMORY = 1,
-  CSELIB_PRESERVE_CONSTANTS = 2
+    CSELIB_RECORD_MEMORY = 1,
+    CSELIB_PRESERVE_CONSTANTS = 2
 };
 
 extern void (*cselib_discard_hook) (cselib_val *);
 extern void (*cselib_record_sets_hook) (rtx_insn *insn, struct cselib_set *sets,
-					int n_sets);
+                                        int n_sets);
 
 extern cselib_val *cselib_lookup (rtx, machine_mode,
-				  int, machine_mode);
+                                  int, machine_mode);
 extern cselib_val *cselib_lookup_from_insn (rtx, machine_mode,
-					    int, machine_mode, rtx_insn *);
+        int, machine_mode, rtx_insn *);
 extern void cselib_init (int);
 extern void cselib_clear_table (void);
 extern void cselib_finish (void);
@@ -87,9 +88,9 @@ extern int references_value_p (const_rtx, int);
 extern rtx cselib_expand_value_rtx (rtx, bitmap, int);
 typedef rtx (*cselib_expand_callback)(rtx, bitmap, int, void *);
 extern rtx cselib_expand_value_rtx_cb (rtx, bitmap, int,
-				       cselib_expand_callback, void *);
+                                       cselib_expand_callback, void *);
 extern bool cselib_dummy_expand_value_rtx_cb (rtx, bitmap, int,
-					      cselib_expand_callback, void *);
+        cselib_expand_callback, void *);
 extern rtx cselib_subst_to_values (rtx, machine_mode);
 extern rtx cselib_subst_to_values_from_insn (rtx, machine_mode, rtx_insn *);
 extern void cselib_invalidate_rtx (rtx);
@@ -115,16 +116,18 @@ extern void dump_cselib_table (FILE *);
 static inline cselib_val *
 canonical_cselib_val (cselib_val *val)
 {
-  cselib_val *canon;
+    cselib_val *canon;
 
-  if (!val->locs || val->locs->next
-      || !val->locs->loc || GET_CODE (val->locs->loc) != VALUE
-      || val->uid < CSELIB_VAL_PTR (val->locs->loc)->uid)
-    return val;
+    if (!val->locs || val->locs->next
+            || !val->locs->loc || GET_CODE (val->locs->loc) != VALUE
+            || val->uid < CSELIB_VAL_PTR (val->locs->loc)->uid)
+    {
+        return val;
+    }
 
-  canon = CSELIB_VAL_PTR (val->locs->loc);
-  gcc_checking_assert (canonical_cselib_val (canon) == canon);
-  return canon;
+    canon = CSELIB_VAL_PTR (val->locs->loc);
+    gcc_checking_assert (canonical_cselib_val (canon) == canon);
+    return canon;
 }
 
 /* Return nonzero if we can prove that X and Y contain the same value, taking
@@ -133,10 +136,12 @@ canonical_cselib_val (cselib_val *val)
 static inline int
 rtx_equal_for_cselib_p (rtx x, rtx y)
 {
-  if (x == y)
-    return 1;
+    if (x == y)
+    {
+        return 1;
+    }
 
-  return rtx_equal_for_cselib_1 (x, y, VOIDmode, 0);
+    return rtx_equal_for_cselib_1 (x, y, VOIDmode, 0);
 }
 
 #endif /* GCC_CSELIB_H */

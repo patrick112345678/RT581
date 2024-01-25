@@ -29,28 +29,28 @@
 
 void zb_schedule_callback_from_alien(zb_callback_t func, zb_uint8_t param)
 {
-  /* call directly */
-  (*func)(param);
+    /* call directly */
+    (*func)(param);
 }
 
 
 zb_ret_t zb_schedule_callback(zb_callback_t func, zb_uint8_t param)
 {
-  /* call directly */
-  (*func)(param);
-  return RET_OK;
+    /* call directly */
+    (*func)(param);
+    return RET_OK;
 }
 
 zb_ret_t zb_schedule_callback2(zb_callback2_t func, zb_uint8_t param, zb_uint16_t user_param)
 {
-  /* call directly */
-  (*func)(param, user_param);
-  return RET_OK;
+    /* call directly */
+    (*func)(param, user_param);
+    return RET_OK;
 }
 
 zb_ret_t zb_schedule_callback_prior(zb_callback_t func, zb_uint8_t param)
 {
-  /* call directly */
-  (*func)(param);
-  return RET_OK;
+    /* call directly */
+    (*func)(param);
+    return RET_OK;
 }

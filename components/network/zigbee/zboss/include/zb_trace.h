@@ -380,11 +380,11 @@ ZB_ASSERT_COMPILE_DECL(ZB_TRACE_FILE_ID < ZB_UINT16_MAX);
 #endif
 
 void zb_trace_msg_port(
-  zb_uint_t mask,
-  zb_uint_t level,
-  zb_uint16_t file_id,
-  zb_uint16_t line_number,
-  zb_uint_t args_size, ...);
+    zb_uint_t mask,
+    zb_uint_t level,
+    zb_uint16_t file_id,
+    zb_uint16_t line_number,
+    zb_uint_t args_size, ...);
 
 #endif
 
@@ -398,18 +398,18 @@ void zb_trace_msg_port(
 #endif
 
 #ifndef TRACE_PRINT
-  #define TRACE_MSG(lm, fmt, args) \
+#define TRACE_MSG(lm, fmt, args) \
     do { \
       _T1(lm, args); \
     } while (0)
 #else
-  #define _T0(...) __VA_ARGS__
-  #define file_information "ID:%08d_Line:%04d(%02d) "
-  #define uart_return "\n"
-  #define __T2(fmt) file_information fmt uart_return
-  #define _T2(fmt) __T2(fmt)
-  #define _T3(s, l, fmt, args) if ((zb_int_t)ZB_TRACE_LEVEL>=(zb_int_t)l && ((s) == (zb_uint_t)-1 || (s) & ZB_TRACE_MASK) && !ZB_TRACE_INSIDE_INTR_BLOCK()) {printf("[%08x] ",ZB_TIMER_CTX().timer); printf(_T2(fmt),  _T0 args);}
-  #define TRACE_MSG(lm, fmt, args) \
+#define _T0(...) __VA_ARGS__
+#define file_information "ID:%08d_Line:%04d(%02d) "
+#define uart_return "\n"
+#define __T2(fmt) file_information fmt uart_return
+#define _T2(fmt) __T2(fmt)
+#define _T3(s, l, fmt, args) if ((zb_int_t)ZB_TRACE_LEVEL>=(zb_int_t)l && ((s) == (zb_uint_t)-1 || (s) & ZB_TRACE_MASK) && !ZB_TRACE_INSIDE_INTR_BLOCK()) {printf("[%08x] ",ZB_TIMER_CTX().timer); printf(_T2(fmt),  _T0 args);}
+#define TRACE_MSG(lm, fmt, args) \
     do { \
       _T3(lm, fmt, args); \
     } while (0)
@@ -492,12 +492,12 @@ void zb_trace_msg_port(
 /** @cond internals_doc */
 typedef struct zb_addr64_struct_s
 {
-  zb_64bit_addr_t addr;
+    zb_64bit_addr_t addr;
 } ZB_PACKED_STRUCT zb_addr64_struct_t;
 
 typedef struct zb_byte128_struct_s
 {
-  zb_uint8_t d[16];
+    zb_uint8_t d[16];
 } ZB_PACKED_STRUCT zb_byte128_struct_t;
 
 /* Pass 8-bytes address as structure by value */
@@ -614,7 +614,7 @@ typedef struct zb_byte128_struct_s
 
 #if defined ZB_BINARY_TRACE && !defined ZB_TRACE_TO_SYSLOG
 #if defined ZB_BINARY_AND_TEXT_TRACE_MODE
-  #define TRACE_ARG_SIZE(n_h, n_d, n_l, n_p, n_a) __FILE__,ZB_TRACE_FILE_ID,__LINE__, (n_h*4 + n_d*4 + n_l*4 + n_p*4 + n_a*8)
+#define TRACE_ARG_SIZE(n_h, n_d, n_l, n_p, n_a) __FILE__,ZB_TRACE_FILE_ID,__LINE__, (n_h*4 + n_d*4 + n_l*4 + n_p*4 + n_a*8)
 #else
 #define TRACE_ARG_SIZE(n_h, n_d, n_l, n_p, n_a) ZB_TRACE_FILE_ID,__LINE__, (n_h*4 + n_d*4 + n_l*4 + n_p*4 + n_a*8)
 #endif
@@ -1222,7 +1222,7 @@ extern zb_uint8_t g_traf_dump;
 
 static ZB_INLINE zb_uint8_t zb_get_traf_dump_state(void)
 {
-  return g_traf_dump;
+    return g_traf_dump;
 }
 
 /**

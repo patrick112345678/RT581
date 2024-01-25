@@ -48,17 +48,17 @@
 */
 enum zb_zcl_temp_measurement_attr_e
 {
-  /*! @brief MeasuredValue, ZCL spec 4.4.2.2.1.1 */
-  ZB_ZCL_ATTR_TEMP_MEASUREMENT_VALUE_ID = 0x0000,
-  /*! @brief MinMeasuredValue, ZCL spec 4.4.2.2.1.2 */
-  ZB_ZCL_ATTR_TEMP_MEASUREMENT_MIN_VALUE_ID = 0x0001,
-  /*! @brief MaxMeasuredValue, ZCL spec 4.4.2.2.1.3 */
-  ZB_ZCL_ATTR_TEMP_MEASUREMENT_MAX_VALUE_ID = 0x0002,
-  /*! @brief Tolerance, ZCL spec 4.4.2.2.1.4 */
+    /*! @brief MeasuredValue, ZCL spec 4.4.2.2.1.1 */
+    ZB_ZCL_ATTR_TEMP_MEASUREMENT_VALUE_ID = 0x0000,
+    /*! @brief MinMeasuredValue, ZCL spec 4.4.2.2.1.2 */
+    ZB_ZCL_ATTR_TEMP_MEASUREMENT_MIN_VALUE_ID = 0x0001,
+    /*! @brief MaxMeasuredValue, ZCL spec 4.4.2.2.1.3 */
+    ZB_ZCL_ATTR_TEMP_MEASUREMENT_MAX_VALUE_ID = 0x0002,
+    /*! @brief Tolerance, ZCL spec 4.4.2.2.1.4 */
 #ifndef ZB_DISABLE_TEMP_MEASUREMENT_TOLERANCE_ID
-  ZB_ZCL_ATTR_TEMP_MEASUREMENT_TOLERANCE_ID = 0x0003,
+    ZB_ZCL_ATTR_TEMP_MEASUREMENT_TOLERANCE_ID = 0x0003,
 #else
-  ZB_ZCL_ATTR_TEMP_MEASUREMENT_TOLERANCE_ID = 0xF003,
+    ZB_ZCL_ATTR_TEMP_MEASUREMENT_TOLERANCE_ID = 0xF003,
 #endif
 };
 
@@ -84,7 +84,7 @@ enum zb_zcl_temp_measurement_attr_e
 #define ZB_ZCL_ATTR_TEMP_MEASUREMENT_MAX_VALUE_INVALID              ((zb_int16_t)0x8000)
 
 
- /* (See: Table 4.13 Temperature Measurement Information Attribute Set) */
+/* (See: Table 4.13 Temperature Measurement Information Attribute Set) */
 
 /** @brief Tolerance attribute minimum value */
 #define ZB_ZCL_ATTR_TEMP_MEASUREMENT_TOLERANCE_MIN_VALUE            0x0000
@@ -144,7 +144,7 @@ enum zb_zcl_temp_measurement_attr_e
 
 /*! Write attribute hook is used to set min/max temperature values */
 void zb_zcl_temp_measurement_write_attr_hook(
-  zb_uint8_t endpoint, zb_uint16_t attr_id, zb_uint8_t *new_value);
+    zb_uint8_t endpoint, zb_uint16_t attr_id, zb_uint8_t *new_value);
 
 /*! @} */ /* Temperature Measurement cluster internals */
 /*! @}

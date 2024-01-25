@@ -27,31 +27,31 @@
 
 int
 main(
-  int argc,
-  char **argv)
+    int argc,
+    char **argv)
 {
-  uint32_t osize, size;
-  int16_t crc;
-  int16_t rcrc;
-  int c;
-  int ret;
-  FILE *f = fopen(argv[1], "r");
-  ret = fread(&size, 1, sizeof(size), f);
-  osize = size;
-  crc = 0;
-  while (size && (c = getc(f)) != EOF)
-  {
-    size--;
-    crc -= c;
-  }
-  ret = fread(&rcrc, 1, sizeof(rcrc), f);
-  if(rcrc != crc)
-  {
-    printf("crc mismatch: %x %x\n", crc, rcrc);
-  }
-  else
-  {
-    printf("size %d crc %x ok\n", osize, crc & 0xffff);
-  }
-  return 0;
+    uint32_t osize, size;
+    int16_t crc;
+    int16_t rcrc;
+    int c;
+    int ret;
+    FILE *f = fopen(argv[1], "r");
+    ret = fread(&size, 1, sizeof(size), f);
+    osize = size;
+    crc = 0;
+    while (size && (c = getc(f)) != EOF)
+    {
+        size--;
+        crc -= c;
+    }
+    ret = fread(&rcrc, 1, sizeof(rcrc), f);
+    if (rcrc != crc)
+    {
+        printf("crc mismatch: %x %x\n", crc, rcrc);
+    }
+    else
+    {
+        printf("size %d crc %x ok\n", osize, crc & 0xffff);
+    }
+    return 0;
 }

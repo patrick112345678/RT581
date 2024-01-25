@@ -24,11 +24,17 @@ along with GCC; see the file COPYING3.  If not see
 template<typename T, T zero = T (0)>
 struct scalar_array_traits
 {
-  typedef T element_type;
-  static const bool has_constant_size = true;
-  static const size_t constant_size = 1;
-  static const T *base (const T &x) { return &x; }
-  static size_t size (const T &) { return 1; }
+    typedef T element_type;
+    static const bool has_constant_size = true;
+    static const size_t constant_size = 1;
+    static const T *base (const T &x)
+    {
+        return &x;
+    }
+    static size_t size (const T &)
+    {
+        return 1;
+    }
 };
 
 template<typename T>
@@ -38,11 +44,17 @@ struct array_traits : scalar_array_traits<T> {};
 template<typename T, size_t N>
 struct array_traits<T[N]>
 {
-  typedef T element_type;
-  static const bool has_constant_size = true;
-  static const size_t constant_size = N;
-  static const T *base (const T (&x)[N]) { return x; }
-  static size_t size (const T (&)[N]) { return N; }
+    typedef T element_type;
+    static const bool has_constant_size = true;
+    static const size_t constant_size = N;
+    static const T *base (const T (&x)[N])
+    {
+        return x;
+    }
+    static size_t size (const T (&)[N])
+    {
+        return N;
+    }
 };
 
 #endif

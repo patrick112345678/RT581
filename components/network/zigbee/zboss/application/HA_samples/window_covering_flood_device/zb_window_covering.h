@@ -155,9 +155,9 @@
 
 typedef ZB_PACKED_PRE struct bulb_device_nvram_dataset_s
 {
-  zb_uint8_t onoff_state;
-  zb_uint8_t current_level;
-  zb_uint8_t reserved[2]; /* Alignment. Reserved for future use */
+    zb_uint8_t onoff_state;
+    zb_uint8_t current_level;
+    zb_uint8_t reserved[2]; /* Alignment. Reserved for future use */
 } ZB_PACKED_STRUCT
 bulb_device_nvram_dataset_t;
 

@@ -39,98 +39,98 @@ static const zb_ieee_addr_t g_ieee_addr_r2 = IEEE_ADDR_R2;
 
 MAIN()
 {
-  ARGV_UNUSED;
+    ARGV_UNUSED;
 
-  ZB_INIT("zdo_zr2");
-#if UART_CONTROL	
-	test_control_init();
-  zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
+    ZB_INIT("zdo_zr2");
+#if UART_CONTROL
+    test_control_init();
+    zb_osif_set_uart_byte_received_cb(zb_console_monitor_rx_next_step);
 #endif
-	
-  zb_set_long_address(g_ieee_addr_r2);
-  zb_cert_test_set_common_channel_settings();
-  zb_cert_test_set_zr_role();
-  zb_set_max_children(0);
-  zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  /* zb_cert_test_set_security_level(0); */
-  ZB_CERT_HACKS().allow_entry_for_unregistered_ep = 1;
+    zb_set_long_address(g_ieee_addr_r2);
+    zb_cert_test_set_common_channel_settings();
+    zb_cert_test_set_zr_role();
+    zb_set_max_children(0);
+    zb_set_nvram_erase_at_start(ZB_TRUE);
 
-  ZB_NIB_SET_USE_MULTICAST(USE_NWK_MULTICAST);
+    /* zb_cert_test_set_security_level(0); */
+    ZB_CERT_HACKS().allow_entry_for_unregistered_ep = 1;
 
-  zb_set_nvram_erase_at_start(ZB_TRUE);
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zboss_main_loop();
-  }
+    ZB_NIB_SET_USE_MULTICAST(USE_NWK_MULTICAST);
 
-  TRACE_DEINIT();
+    zb_set_nvram_erase_at_start(ZB_TRUE);
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zboss_main_loop();
+    }
 
-  MAIN_RETURN(0);
+    TRACE_DEINIT();
+
+    MAIN_RETURN(0);
 }
 
 static void bind_req(zb_uint8_t param)
 {
-  zb_bufid_t buf = zb_buf_get_out();
-  zb_apsme_add_group_req_t *req = NULL;
-  zb_uint16_t addr = 0;
+    zb_bufid_t buf = zb_buf_get_out();
+    zb_apsme_add_group_req_t *req = NULL;
+    zb_uint16_t addr = 0;
 
-  TRACE_MSG(TRACE_APP1, ">>bind_req with addr = 0x%x", (FMT__H, param));
-  if (!buf)
-  {
-    TRACE_MSG(TRACE_ERROR, "bind_req: error - unable to get data buffer", (FMT__0));
-    ZB_EXIT(1);
-  }
+    TRACE_MSG(TRACE_APP1, ">>bind_req with addr = 0x%x", (FMT__H, param));
+    if (!buf)
+    {
+        TRACE_MSG(TRACE_ERROR, "bind_req: error - unable to get data buffer", (FMT__0));
+        ZB_EXIT(1);
+    }
 
-  addr = param;
-  req = ZB_BUF_GET_PARAM(buf, zb_apsme_add_group_req_t);
-  ZB_BZERO(req, sizeof(*req));
-  req->group_address = addr;
-  req->endpoint = ZR2_BIND_EP;
-  zb_apsme_add_group_request(buf);
+    addr = param;
+    req = ZB_BUF_GET_PARAM(buf, zb_apsme_add_group_req_t);
+    ZB_BZERO(req, sizeof(*req));
+    req->group_address = addr;
+    req->endpoint = ZR2_BIND_EP;
+    zb_apsme_add_group_request(buf);
 
-  TRACE_MSG(TRACE_APP1, "<<bind_req", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "<<bind_req", (FMT__0));
 }
 
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, NULL);
 
-  TRACE_MSG(TRACE_ERROR, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_ERROR, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  if (0 == status)
-  {
-    switch(sig)
+    if (0 == status)
     {
-      case ZB_ZDO_SIGNAL_DEFAULT_START:
-      case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      case ZB_BDB_SIGNAL_DEVICE_REBOOT:
-        TRACE_MSG(TRACE_ERROR, "Device STARTED OK", (FMT__0));
+        switch (sig)
+        {
+        case ZB_ZDO_SIGNAL_DEFAULT_START:
+        case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
+        case ZB_BDB_SIGNAL_DEVICE_REBOOT:
+            TRACE_MSG(TRACE_ERROR, "Device STARTED OK", (FMT__0));
 
-        /* Add record to the binding table */
-        ZB_SCHEDULE_CALLBACK(bind_req, ZR2_BIND_ADDR);
-        break;
+            /* Add record to the binding table */
+            ZB_SCHEDULE_CALLBACK(bind_req, ZR2_BIND_ADDR);
+            break;
 
-      default:
-        TRACE_MSG(TRACE_ERROR, "Unknown signal %hd", (FMT__H, sig));
+        default:
+            TRACE_MSG(TRACE_ERROR, "Unknown signal %hd", (FMT__H, sig));
+        }
     }
-  }
-  else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
-  {
-    TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
-  }
-  else
-  {
-    TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, status));
-  }
+    else if (sig == ZB_ZDO_SIGNAL_PRODUCTION_CONFIG_READY)
+    {
+        TRACE_MSG(TRACE_APP1, "Production config is not present or invalid", (FMT__0));
+    }
+    else
+    {
+        TRACE_MSG(TRACE_ERROR, "Device started FAILED status %d", (FMT__D, status));
+    }
 
-  if (param)
-  {
-    zb_buf_free(param);
-  }
+    if (param)
+    {
+        zb_buf_free(param);
+    }
 }

@@ -15,7 +15,8 @@ extern "C"
 
 /**@brief I2S-XDMA type, RDMA or WDMA.
  */
-typedef enum {
+typedef enum
+{
     I2S_XDMA_RDMA = 0,
     I2S_XDMA_WDMA,
     I2S_XDMA_MAX,
@@ -23,7 +24,8 @@ typedef enum {
 
 /**@brief I2S SR mapping table
  */
-typedef enum {
+typedef enum
+{
     I2S_SR_48K,
     I2S_SR_32K,
     I2S_SR_16K,
@@ -31,7 +33,8 @@ typedef enum {
     I2S_SR_MAX,
 } i2s_sample_rate_t;
 
-typedef enum {
+typedef enum
+{
     I2S_IMCLK_12P288M,
     I2S_IMCLK_8P192M,
     I2S_IMCLK_24P576M,
@@ -41,7 +44,8 @@ typedef enum {
 
 /**@brief I2S channel mode, Stereo / Left channel only / Right channel only
  */
-typedef enum {
+typedef enum
+{
     I2S_CH_STEREO,
     I2S_CH_MONO_L,
     I2S_CH_MONO_R,
@@ -50,16 +54,18 @@ typedef enum {
 
 /**@brief I2S format table, standard I2S mode / Left Justified mode / Right Justified mode
  */
-typedef enum {
+typedef enum
+{
     I2S_FMT_LJ = 0,
     I2S_FMT_RJ,
     I2S_FMT_I2S,
     I2S_FMT_MAX,
-} i2s_cfg_i2s_fmt_t,i2s_fmt_t;
+} i2s_cfg_i2s_fmt_t, i2s_fmt_t;
 
 /**@brief MCLK selection index table
  */
-typedef enum {
+typedef enum
+{
     I2S_MCLK_ISEL_0 = 0,
     I2S_MCLK_ISEL_1,
     I2S_MCLK_ISEL_2,
@@ -71,7 +77,8 @@ typedef enum {
 
 /**@brief I2S MCLK division table
  */
-typedef enum {
+typedef enum
+{
     I2S_MCLK_DIV_1 = 0,
     I2S_MCLK_DIV_2,
     I2S_MCLK_DIV_4,
@@ -83,7 +90,8 @@ typedef enum {
 
 /**@brief I2S BCLK OSR setting table
  */
-typedef enum {
+typedef enum
+{
     I2S_CFG_BCK_OSR_2 = 0,
     I2S_CFG_BCK_OSR_4,
     I2S_CFG_BCK_OSR_8,
@@ -92,7 +100,8 @@ typedef enum {
 
 /**@brief I2S TRX mode setting table
  */
-typedef enum {
+typedef enum
+{
     I2S_TRX_MODE_TXRX = 0,
     I2S_TRX_MODE_TX,
     I2S_TRX_MODE_RX,
@@ -101,16 +110,18 @@ typedef enum {
 
 /**@brief I2S date depth
  */
-typedef enum {
+typedef enum
+{
     I2S_CFG_WID_16 = 0,
     I2S_CFG_WID_24,
     I2S_CFG_WID_32,
     I2S_CFG_WID_MAX,
-} i2s_cfg_txd_wid_t,i2s_cfg_rxd_wid_t,i2s_bck_width_t;
+} i2s_cfg_txd_wid_t, i2s_cfg_rxd_wid_t, i2s_bck_width_t;
 
 /**@brief I2S BLCK / WRCK ratio
  */
-typedef enum {
+typedef enum
+{
     I2S_BCK_RATIO_32 = 0,
     I2S_BCK_RATIO_48,
     I2S_BCK_RATIO_64,
@@ -143,19 +154,21 @@ typedef enum {
 
 /**@brief Structure for I2S-xDMA configurarions
  */
-typedef struct {
+typedef struct
+{
     uint32_t    i2s_xdma_start_addr;
     uint32_t    i2s_fw_access_addr;
     uint16_t    i2s_xdma_seg_size;
     uint16_t    i2s_xdma_blk_size;
     uint8_t     i2s_xdma_seg_blk_ratio;
-} i2s_xdma_ctrl_ptr_t,i2s_rdma_ctrl_ptr_t, i2s_wdma_ctrl_ptr_t;
+} i2s_xdma_ctrl_ptr_t, i2s_rdma_ctrl_ptr_t, i2s_wdma_ctrl_ptr_t;
 
 /**@brief Structure for I2S configurarions
  */
-typedef struct {
-    i2s_rdma_ctrl_ptr_t* rdma_config;
-    i2s_wdma_ctrl_ptr_t* wdma_config;
+typedef struct
+{
+    i2s_rdma_ctrl_ptr_t *rdma_config;
+    i2s_wdma_ctrl_ptr_t *wdma_config;
     i2s_sample_rate_t    sr;
     i2s_ch_format_t      ch;
     i2s_trx_mode_t       trx_mode;

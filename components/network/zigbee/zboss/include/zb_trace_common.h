@@ -39,8 +39,8 @@ extern zb_osif_file_t *s_trace_file;
 
 struct trace_hdr_s
 {
-  zb_uint8_t sig[2];
-  zb_mac_transport_hdr_t h;
+    zb_uint8_t sig[2];
+    zb_mac_transport_hdr_t h;
 } ZB_PACKED_STRUCT;
 
 void zb_trace_inc_counter(void);

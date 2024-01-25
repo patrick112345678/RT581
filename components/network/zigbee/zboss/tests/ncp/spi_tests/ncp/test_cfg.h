@@ -28,7 +28,7 @@
 /* SPI bitrate */
 #define TEST_BITRATE
 #ifdef TEST_BITRATE
-  #define TEST_BITRATE_VALUE    (976000u)
+#define TEST_BITRATE_VALUE    (976000u)
 #endif
 
 /* every TEST_CORRUPTED_PACKET_PERIOD transmitted packet
@@ -37,15 +37,15 @@
  */
 //#define TEST_CORRUPTED_PACKET
 #ifdef TEST_CORRUPTED_PACKET
-  #define TEST_CORRUPTED_PACKET_PERIOD    5
-  #define TEST_CORRUPTED_PACKET_ODD_BYTE  0xAF
-  #define TEST_CORRUPTED_PACKET_EVEN_BYTE 0xBE
+#define TEST_CORRUPTED_PACKET_PERIOD    5
+#define TEST_CORRUPTED_PACKET_ODD_BYTE  0xAF
+#define TEST_CORRUPTED_PACKET_EVEN_BYTE 0xBE
 #endif
 
 /* enabling statistic module,
- * TEST_STATS_PERIOD_MS - period of result printing, ms   
+ * TEST_STATS_PERIOD_MS - period of result printing, ms
  * TEST_STATS_CORRUPTED - check for corrupted packets
- * TEST_STATS_ODD_BYTE and TEST_STATS_EVEN_BYTE - 
+ * TEST_STATS_ODD_BYTE and TEST_STATS_EVEN_BYTE -
  * expected data for checking
 */
 #define TEST_STATS
@@ -63,10 +63,10 @@
  */
 #define TEST_SIMPLE_SEND
 #ifdef TEST_SIMPLE_SEND
-  #define TEST_SIMPLE_SEND_PACKS_NUM   (10000u)
-  #define TEST_SIMPLE_SEND_PERIOD_MS   (10)
-  #define TEST_SEND_SIZE                126
-  #define TEST_SEND_INCREMENTAL_SIZE
+#define TEST_SIMPLE_SEND_PACKS_NUM   (10000u)
+#define TEST_SIMPLE_SEND_PERIOD_MS   (10)
+#define TEST_SEND_SIZE                126
+#define TEST_SEND_INCREMENTAL_SIZE
 #endif
 
 #endif /* TEST_CFG_H */

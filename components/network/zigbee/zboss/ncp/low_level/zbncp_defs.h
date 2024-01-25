@@ -80,15 +80,15 @@
 #if ZBNCP_USE_STRUCT_PACKING
 
 #if (defined __IAR_SYSTEMS_ICC__ || defined __ARMCC_VERSION) && !defined ZB8051
-  /* IAR or Keil ARM CPU */
-  #define ZBNCP_PACKED_PRE
-  #define ZBNCP_PACKED_POST
+/* IAR or Keil ARM CPU */
+#define ZBNCP_PACKED_PRE
+#define ZBNCP_PACKED_POST
 #endif
 
 #if defined __GNUC__ || defined __TI_COMPILER_VERSION__
-  #define ZBNCP_PACKED_STRUCT __attribute__((packed))
+#define ZBNCP_PACKED_STRUCT __attribute__((packed))
 #else
-  #define ZBNCP_PACKED_STRUCT
+#define ZBNCP_PACKED_STRUCT
 #endif
 
 #else

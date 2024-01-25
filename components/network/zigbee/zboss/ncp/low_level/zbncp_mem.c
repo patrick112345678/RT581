@@ -26,68 +26,68 @@
 #include "zbncp_mem.h"
 #include "zbncp_debug.h"
 
-ZBNCP_DBG_STATIC_ASSERT(sizeof(void*) <= sizeof(zbncp_uintptr_t))
+ZBNCP_DBG_STATIC_ASSERT(sizeof(void *) <= sizeof(zbncp_uintptr_t))
 
 #if !ZBNCP_USE_STDMEM
 
 static void zbncp_mem_copy_forward(void *dest, const void *src, zbncp_size_t size)
 {
-  zbncp_size_t i;
-  char *pd = (char *)dest;
-  const char *ps = (const char *)src;
-  for (i = 0u; i < size; ++i)
-  {
-    pd[i] = ps[i];
-  }
+    zbncp_size_t i;
+    char *pd = (char *)dest;
+    const char *ps = (const char *)src;
+    for (i = 0u; i < size; ++i)
+    {
+        pd[i] = ps[i];
+    }
 }
 
 static void zbncp_mem_copy_backward(void *dest, const void *src, zbncp_size_t size)
 {
-  zbncp_size_t i;
-  char *pd = (char *)dest;
-  const char *ps = (const char *)src;
-  if (size != 0u)
-  {
-    for (i = 0u; i < size; ++i)
+    zbncp_size_t i;
+    char *pd = (char *)dest;
+    const char *ps = (const char *)src;
+    if (size != 0u)
     {
-      zbncp_size_t ri = size - i - 1u;
-      pd[ri] = ps[ri];
+        for (i = 0u; i < size; ++i)
+        {
+            zbncp_size_t ri = size - i - 1u;
+            pd[ri] = ps[ri];
+        }
     }
-  }
 }
 
 void zbncp_mem_copy(void *dest, const void *src, zbncp_size_t size)
 {
-  zbncp_mem_copy_forward(dest, src, size);
+    zbncp_mem_copy_forward(dest, src, size);
 }
 
 void zbncp_mem_move(void *dest, const void *src, zbncp_size_t size)
 {
-  /* MISRA-C 2012 Rule 18.3 prohibits to use relational operators
-   * (>, >=, <, <=) to objects of pointer type. We need to detect
-   * memory copying direction so we cast pointers to appropriate-
-   * sized integers and compare them. */
-  zbncp_uintptr_t pd = (zbncp_uintptr_t)(char *)dest;
-  zbncp_uintptr_t ps = (zbncp_uintptr_t)(const char *)src;
+    /* MISRA-C 2012 Rule 18.3 prohibits to use relational operators
+     * (>, >=, <, <=) to objects of pointer type. We need to detect
+     * memory copying direction so we cast pointers to appropriate-
+     * sized integers and compare them. */
+    zbncp_uintptr_t pd = (zbncp_uintptr_t)(char *)dest;
+    zbncp_uintptr_t ps = (zbncp_uintptr_t)(const char *)src;
 
-  if (pd < ps)
-  {
-    zbncp_mem_copy_forward(dest, src, size);
-  }
-  else
-  {
-    zbncp_mem_copy_backward(dest, src, size);
-  }
+    if (pd < ps)
+    {
+        zbncp_mem_copy_forward(dest, src, size);
+    }
+    else
+    {
+        zbncp_mem_copy_backward(dest, src, size);
+    }
 }
 
 void zbncp_mem_fill(void *mem, zbncp_size_t size, zbncp_uint8_t val)
 {
-  zbncp_size_t i;
-  char *p = (char *)mem;
-  for (i = 0u; i < size; ++i)
-  {
-    p[i] = (char)val;
-  }
+    zbncp_size_t i;
+    char *p = (char *)mem;
+    for (i = 0u; i < size; ++i)
+    {
+        p[i] = (char)val;
+    }
 }
 
 #endif /* !ZBNCP_USE_STDMEM */

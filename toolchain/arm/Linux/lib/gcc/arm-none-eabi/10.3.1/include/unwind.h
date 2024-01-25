@@ -48,67 +48,71 @@ static inline _Unwind_Ptr _Unwind_gnu_Find_got (_Unwind_Ptr ptr)
     _Unwind_Ptr res;
 
     if (__gnu_Unwind_Find_got)
-	res = __gnu_Unwind_Find_got (ptr);
+    {
+        res = __gnu_Unwind_Find_got (ptr);
+    }
     else
-	__asm volatile ("mov %[result], r" XSTR(FDPIC_REGNUM)
-			: [result] "=r" (res));
+        __asm volatile ("mov %[result], r" XSTR(FDPIC_REGNUM)
+                        : [result] "=r" (res));
 
     return res;
 }
 
-  /* Decode an R_ARM_TARGET2 relocation.  */
-  static inline _Unwind_Word
-  _Unwind_decode_typeinfo_ptr (_Unwind_Word base __attribute__ ((unused)),
-                               _Unwind_Word ptr)
-    {
-      _Unwind_Word tmp;
+/* Decode an R_ARM_TARGET2 relocation.  */
+static inline _Unwind_Word
+_Unwind_decode_typeinfo_ptr (_Unwind_Word base __attribute__ ((unused)),
+                             _Unwind_Word ptr)
+{
+    _Unwind_Word tmp;
 
-      tmp = *(_Unwind_Word *) ptr;
-      /* Zero values are always NULL.  */
-      if (!tmp)
-	return 0;
+    tmp = *(_Unwind_Word *) ptr;
+    /* Zero values are always NULL.  */
+    if (!tmp)
+    {
+        return 0;
+    }
 
 #if __FDPIC__
-      /* For FDPIC, we store the offset of the GOT entry.  */
-      /* So, first get GOT from dynamic linker and then use indirect access.  */
-      tmp += _Unwind_gnu_Find_got (ptr);
-      tmp = *(_Unwind_Word *) tmp;
+    /* For FDPIC, we store the offset of the GOT entry.  */
+    /* So, first get GOT from dynamic linker and then use indirect access.  */
+    tmp += _Unwind_gnu_Find_got (ptr);
+    tmp = *(_Unwind_Word *) tmp;
 #elif (defined(linux) && !defined(__uClinux__)) || defined(__NetBSD__) \
     || defined(__FreeBSD__) || defined(__fuchsia__)
-      /* Pc-relative indirect.  */
+    /* Pc-relative indirect.  */
 #define _GLIBCXX_OVERRIDE_TTYPE_ENCODING (DW_EH_PE_pcrel | DW_EH_PE_indirect)
-      tmp += ptr;
-      tmp = *(_Unwind_Word *) tmp;
+    tmp += ptr;
+    tmp = *(_Unwind_Word *) tmp;
 #elif defined(__symbian__) || defined(__uClinux__)
 #define _GLIBCXX_OVERRIDE_TTYPE_ENCODING (DW_EH_PE_absptr)
-      /* Absolute pointer.  Nothing more to do.  */
+    /* Absolute pointer.  Nothing more to do.  */
 #else
 #define _GLIBCXX_OVERRIDE_TTYPE_ENCODING (DW_EH_PE_pcrel)
-      /* Pc-relative pointer.  */
-      tmp += ptr;
+    /* Pc-relative pointer.  */
+    tmp += ptr;
 #endif
-      return tmp;
-    }
+    return tmp;
+}
 
-  static inline _Unwind_Reason_Code
-  __gnu_unwind_24bit (_Unwind_Context * context __attribute__ ((unused)),
-                      _uw data __attribute__ ((unused)),
-                      int compact __attribute__ ((unused)))
-    {
-      return _URC_FAILURE;
-    }
+static inline _Unwind_Reason_Code
+__gnu_unwind_24bit (_Unwind_Context *context __attribute__ ((unused)),
+                    _uw data __attribute__ ((unused)),
+                    int compact __attribute__ ((unused)))
+{
+    return _URC_FAILURE;
+}
 #ifndef __FreeBSD__
-  /* Return the address of the instruction, not the actual IP value.  */
+/* Return the address of the instruction, not the actual IP value.  */
 #define _Unwind_GetIP(context) \
   (_Unwind_GetGR (context, 15) & ~(_Unwind_Word)1)
 
 #define _Unwind_SetIP(context, val) \
   _Unwind_SetGR (context, 15, val | (_Unwind_GetGR (context, 15) & 1))
 #else
-  #undef _Unwind_GetIPInfo
-  _Unwind_Ptr _Unwind_GetIP (struct _Unwind_Context *);
-  _Unwind_Ptr _Unwind_GetIPInfo (struct _Unwind_Context *, int *);
-  void _Unwind_SetIP (struct _Unwind_Context *, _Unwind_Ptr);
+#undef _Unwind_GetIPInfo
+_Unwind_Ptr _Unwind_GetIP (struct _Unwind_Context *);
+_Unwind_Ptr _Unwind_GetIPInfo (struct _Unwind_Context *, int *);
+void _Unwind_SetIP (struct _Unwind_Context *, _Unwind_Ptr);
 #endif
 
 #ifdef __cplusplus

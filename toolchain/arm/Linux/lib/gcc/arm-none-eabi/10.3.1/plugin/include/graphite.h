@@ -54,144 +54,144 @@ static inline graphite_dim_t scop_nb_params (scop_p);
    just know it may write some memory.  */
 enum poly_dr_type
 {
-  PDR_READ,
-  /* PDR_MAY_READs are represented using PDR_READS.  This does not
-     limit the expressiveness.  */
-  PDR_WRITE,
-  PDR_MAY_WRITE
+    PDR_READ,
+    /* PDR_MAY_READs are represented using PDR_READS.  This does not
+       limit the expressiveness.  */
+    PDR_WRITE,
+    PDR_MAY_WRITE
 };
 
 struct poly_dr
 {
-  /* An identifier for this PDR.  */
-  int id;
+    /* An identifier for this PDR.  */
+    int id;
 
-  /* The number of data refs identical to this one in the PBB.  */
-  int nb_refs;
+    /* The number of data refs identical to this one in the PBB.  */
+    int nb_refs;
 
-  /* A pointer to the gimple stmt containing this reference.  */
-  gimple *stmt;
+    /* A pointer to the gimple stmt containing this reference.  */
+    gimple *stmt;
 
-  /* A pointer to the PBB that contains this data reference.  */
-  poly_bb_p pbb;
+    /* A pointer to the PBB that contains this data reference.  */
+    poly_bb_p pbb;
 
-  enum poly_dr_type type;
+    enum poly_dr_type type;
 
-  /* The access polyhedron contains the polyhedral space this data
-     reference will access.
+    /* The access polyhedron contains the polyhedral space this data
+       reference will access.
 
-     The polyhedron contains these dimensions:
+       The polyhedron contains these dimensions:
 
-     - The alias set (a):
-     Every memory access is classified in at least one alias set.
+       - The alias set (a):
+       Every memory access is classified in at least one alias set.
 
-     - The subscripts (s_0, ..., s_n):
-     The memory is accessed using zero or more subscript dimensions.
+       - The subscripts (s_0, ..., s_n):
+       The memory is accessed using zero or more subscript dimensions.
 
-     - The iteration domain (variables and parameters)
+       - The iteration domain (variables and parameters)
 
-     Do not hardcode the dimensions.  Use the following accessor functions:
-     - pdr_alias_set_dim
-     - pdr_subscript_dim
-     - pdr_iterator_dim
-     - pdr_parameter_dim
+       Do not hardcode the dimensions.  Use the following accessor functions:
+       - pdr_alias_set_dim
+       - pdr_subscript_dim
+       - pdr_iterator_dim
+       - pdr_parameter_dim
 
-     Example:
+       Example:
 
-     | int A[1335][123];
-     | int *p = malloc ();
-     |
-     | k = ...
-     | for i
-     |   {
-     |     if (unknown_function ())
-     |       p = A;
-     |       ... = p[?][?];
-     | 	   for j
-     |       A[i][j+k] = m;
-     |   }
+       | int A[1335][123];
+       | int *p = malloc ();
+       |
+       | k = ...
+       | for i
+       |   {
+       |     if (unknown_function ())
+       |       p = A;
+       |       ... = p[?][?];
+       |     for j
+       |       A[i][j+k] = m;
+       |   }
 
-     The data access A[i][j+k] in alias set "5" is described like this:
+       The data access A[i][j+k] in alias set "5" is described like this:
 
-     | i   j   k   a  s0  s1   1
-     | 0   0   0   1   0   0  -5     =  0
-     |-1   0   0   0   1   0   0     =  0
-     | 0  -1  -1   0   0   1   0     =  0
-     | 0   0   0   0   1   0   0     >= 0  # The last four lines describe the
-     | 0   0   0   0   0   1   0     >= 0  # array size.
-     | 0   0   0   0  -1   0 1335    >= 0
-     | 0   0   0   0   0  -1 123     >= 0
+       | i   j   k   a  s0  s1   1
+       | 0   0   0   1   0   0  -5     =  0
+       |-1   0   0   0   1   0   0     =  0
+       | 0  -1  -1   0   0   1   0     =  0
+       | 0   0   0   0   1   0   0     >= 0  # The last four lines describe the
+       | 0   0   0   0   0   1   0     >= 0  # array size.
+       | 0   0   0   0  -1   0 1335    >= 0
+       | 0   0   0   0   0  -1 123     >= 0
 
-     The pointer "*p" in alias set "5" and "7" is described as a union of
-     polyhedron:
+       The pointer "*p" in alias set "5" and "7" is described as a union of
+       polyhedron:
 
 
-     | i   k   a  s0   1
-     | 0   0   1   0  -5   =  0
-     | 0   0   0   1   0   >= 0
+       | i   k   a  s0   1
+       | 0   0   1   0  -5   =  0
+       | 0   0   0   1   0   >= 0
 
-     "or"
+       "or"
 
-     | i   k   a  s0   1
-     | 0   0   1   0  -7   =  0
-     | 0   0   0   1   0   >= 0
+       | i   k   a  s0   1
+       | 0   0   1   0  -7   =  0
+       | 0   0   0   1   0   >= 0
 
-     "*p" accesses all of the object allocated with 'malloc'.
+       "*p" accesses all of the object allocated with 'malloc'.
 
-     The scalar data access "m" is represented as an array with zero subscript
-     dimensions.
+       The scalar data access "m" is represented as an array with zero subscript
+       dimensions.
 
-     | i   j   k   a   1
-     | 0   0   0  -1   15  = 0
+       | i   j   k   a   1
+       | 0   0   0  -1   15  = 0
 
-     The difference between the graphite internal format for access data and
-     the OpenSop format is in the order of columns.
-     Instead of having:
+       The difference between the graphite internal format for access data and
+       the OpenSop format is in the order of columns.
+       Instead of having:
 
-     | i   j   k   a  s0  s1   1
-     | 0   0   0   1   0   0  -5     =  0
-     |-1   0   0   0   1   0   0     =  0
-     | 0  -1  -1   0   0   1   0     =  0
-     | 0   0   0   0   1   0   0     >= 0  # The last four lines describe the
-     | 0   0   0   0   0   1   0     >= 0  # array size.
-     | 0   0   0   0  -1   0 1335    >= 0
-     | 0   0   0   0   0  -1 123     >= 0
+       | i   j   k   a  s0  s1   1
+       | 0   0   0   1   0   0  -5     =  0
+       |-1   0   0   0   1   0   0     =  0
+       | 0  -1  -1   0   0   1   0     =  0
+       | 0   0   0   0   1   0   0     >= 0  # The last four lines describe the
+       | 0   0   0   0   0   1   0     >= 0  # array size.
+       | 0   0   0   0  -1   0 1335    >= 0
+       | 0   0   0   0   0  -1 123     >= 0
 
-     In OpenScop we have:
+       In OpenScop we have:
 
-     | a  s0  s1   i   j   k   1
-     | 1   0   0   0   0   0  -5     =  0
-     | 0   1   0  -1   0   0   0     =  0
-     | 0   0   1   0  -1  -1   0     =  0
-     | 0   1   0   0   0   0   0     >= 0  # The last four lines describe the
-     | 0   0   1   0   0   0   0     >= 0  # array size.
-     | 0  -1   0   0   0   0 1335    >= 0
-     | 0   0  -1   0   0   0 123     >= 0
+       | a  s0  s1   i   j   k   1
+       | 1   0   0   0   0   0  -5     =  0
+       | 0   1   0  -1   0   0   0     =  0
+       | 0   0   1   0  -1  -1   0     =  0
+       | 0   1   0   0   0   0   0     >= 0  # The last four lines describe the
+       | 0   0   1   0   0   0   0     >= 0  # array size.
+       | 0  -1   0   0   0   0 1335    >= 0
+       | 0   0  -1   0   0   0 123     >= 0
 
-     The OpenScop access function is printed as follows:
+       The OpenScop access function is printed as follows:
 
-     | 1  # The number of disjunct components in a union of access functions.
-     | R C O I L P  # Described bellow.
-     | a  s0  s1   i   j   k   1
-     | 1   0   0   0   0   0  -5     =  0
-     | 0   1   0  -1   0   0   0     =  0
-     | 0   0   1   0  -1  -1   0     =  0
-     | 0   1   0   0   0   0   0     >= 0  # The last four lines describe the
-     | 0   0   1   0   0   0   0     >= 0  # array size.
-     | 0  -1   0   0   0   0 1335    >= 0
-     | 0   0  -1   0   0   0 123     >= 0
+       | 1  # The number of disjunct components in a union of access functions.
+       | R C O I L P  # Described bellow.
+       | a  s0  s1   i   j   k   1
+       | 1   0   0   0   0   0  -5     =  0
+       | 0   1   0  -1   0   0   0     =  0
+       | 0   0   1   0  -1  -1   0     =  0
+       | 0   1   0   0   0   0   0     >= 0  # The last four lines describe the
+       | 0   0   1   0   0   0   0     >= 0  # array size.
+       | 0  -1   0   0   0   0 1335    >= 0
+       | 0   0  -1   0   0   0 123     >= 0
 
-     Where:
-     - R: Number of rows.
-     - C: Number of columns.
-     - O: Number of output dimensions = alias set + number of subscripts.
-     - I: Number of input dimensions (iterators).
-     - L: Number of local (existentially quantified) dimensions.
-     - P: Number of parameters.
+       Where:
+       - R: Number of rows.
+       - C: Number of columns.
+       - O: Number of output dimensions = alias set + number of subscripts.
+       - I: Number of input dimensions (iterators).
+       - L: Number of local (existentially quantified) dimensions.
+       - P: Number of parameters.
 
-     In the example, the vector "R C O I L P" is "7 7 3 2 0 1".  */
-  isl_map *accesses;
-  isl_set *subscript_sizes;
+       In the example, the vector "R C O I L P" is "7 7 3 2 0 1".  */
+    isl_map *accesses;
+    isl_set *subscript_sizes;
 };
 
 #define PDR_ID(PDR) (PDR->id)
@@ -201,14 +201,14 @@ struct poly_dr
 #define PDR_ACCESSES(PDR) (NULL)
 
 void new_poly_dr (poly_bb_p, gimple *, enum poly_dr_type,
-		  isl_map *, isl_set *);
+                  isl_map *, isl_set *);
 void debug_pdr (poly_dr_p);
 void print_pdr (FILE *, poly_dr_p);
 
 static inline bool
 pdr_read_p (poly_dr_p pdr)
 {
-  return PDR_TYPE (pdr) == PDR_READ;
+    return PDR_TYPE (pdr) == PDR_READ;
 }
 
 /* Returns true when PDR is a "write".  */
@@ -216,7 +216,7 @@ pdr_read_p (poly_dr_p pdr)
 static inline bool
 pdr_write_p (poly_dr_p pdr)
 {
-  return PDR_TYPE (pdr) == PDR_WRITE;
+    return PDR_TYPE (pdr) == PDR_WRITE;
 }
 
 /* Returns true when PDR is a "may write".  */
@@ -224,49 +224,49 @@ pdr_write_p (poly_dr_p pdr)
 static inline bool
 pdr_may_write_p (poly_dr_p pdr)
 {
-  return PDR_TYPE (pdr) == PDR_MAY_WRITE;
+    return PDR_TYPE (pdr) == PDR_MAY_WRITE;
 }
 
 /* POLY_BB represents a blackbox in the polyhedral model.  */
 
 struct poly_bb
 {
-  /* Pointer to a basic block or a statement in the compiler.  */
-  gimple_poly_bb_p black_box;
+    /* Pointer to a basic block or a statement in the compiler.  */
+    gimple_poly_bb_p black_box;
 
-  /* Pointer to the SCOP containing this PBB.  */
-  scop_p scop;
+    /* Pointer to the SCOP containing this PBB.  */
+    scop_p scop;
 
-  /* The iteration domain of this bb.  The layout of this polyhedron
-     is I|G with I the iteration domain, G the context parameters.
+    /* The iteration domain of this bb.  The layout of this polyhedron
+       is I|G with I the iteration domain, G the context parameters.
 
-     Example:
+       Example:
 
-     for (i = a - 7*b + 8; i <= 3*a + 13*b + 20; i++)
-       for (j = 2; j <= 2*i + 5; j++)
-         for (k = 0; k <= 5; k++)
-           S (i,j,k)
+       for (i = a - 7*b + 8; i <= 3*a + 13*b + 20; i++)
+         for (j = 2; j <= 2*i + 5; j++)
+           for (k = 0; k <= 5; k++)
+             S (i,j,k)
 
-     Loop iterators: i, j, k
-     Parameters: a, b
+       Loop iterators: i, j, k
+       Parameters: a, b
 
-     | i >=  a -  7b +  8
-     | i <= 3a + 13b + 20
-     | j >= 2
-     | j <= 2i + 5
-     | k >= 0
-     | k <= 5
+       | i >=  a -  7b +  8
+       | i <= 3a + 13b + 20
+       | j >= 2
+       | j <= 2i + 5
+       | k >= 0
+       | k <= 5
 
-     The number of variables in the DOMAIN may change and is not
-     related to the number of loops in the original code.  */
-  isl_set *domain;
-  isl_set *iterators;
+       The number of variables in the DOMAIN may change and is not
+       related to the number of loops in the original code.  */
+    isl_set *domain;
+    isl_set *iterators;
 
-  /* The data references we access.  */
-  vec<poly_dr_p> drs;
+    /* The data references we access.  */
+    vec<poly_dr_p> drs;
 
-  /* The last basic block generated for this pbb.  */
-  basic_block new_bb;
+    /* The last basic block generated for this pbb.  */
+    basic_block new_bb;
 };
 
 #define PBB_BLACK_BOX(PBB) ((gimple_poly_bb_p) PBB->black_box)
@@ -314,13 +314,13 @@ extern void debug_schedule_ast (__isl_keep isl_schedule *, scop_p);
 static inline basic_block
 pbb_bb (poly_bb_p pbb)
 {
-  return GBB_BB (PBB_BLACK_BOX (pbb));
+    return GBB_BB (PBB_BLACK_BOX (pbb));
 }
 
 static inline int
 pbb_index (poly_bb_p pbb)
 {
-  return pbb_bb (pbb)->index;
+    return pbb_bb (pbb)->index;
 }
 
 /* The loop of the PBB.  */
@@ -328,7 +328,7 @@ pbb_index (poly_bb_p pbb)
 static inline loop_p
 pbb_loop (poly_bb_p pbb)
 {
-  return gbb_loop (PBB_BLACK_BOX (pbb));
+    return gbb_loop (PBB_BLACK_BOX (pbb));
 }
 
 /* The scop that contains the PDR.  */
@@ -336,7 +336,7 @@ pbb_loop (poly_bb_p pbb)
 static inline scop_p
 pdr_scop (poly_dr_p pdr)
 {
-  return PBB_SCOP (PDR_PBB (pdr));
+    return PBB_SCOP (PDR_PBB (pdr));
 }
 
 /* Set black box of PBB to BLACKBOX.  */
@@ -344,7 +344,7 @@ pdr_scop (poly_dr_p pdr)
 static inline void
 pbb_set_black_box (poly_bb_p pbb, gimple_poly_bb_p black_box)
 {
-  pbb->black_box = black_box;
+    pbb->black_box = black_box;
 }
 
 /* A helper structure to keep track of data references, polyhedral BBs, and
@@ -352,78 +352,79 @@ pbb_set_black_box (poly_bb_p pbb, gimple_poly_bb_p black_box)
 
 struct dr_info
 {
-  enum {
-    invalid_alias_set = -1
-  };
-  /* The data reference.  */
-  data_reference_p dr;
+    enum
+    {
+        invalid_alias_set = -1
+    };
+    /* The data reference.  */
+    data_reference_p dr;
 
-  /* The polyhedral BB containing this DR.  */
-  poly_bb_p pbb;
+    /* The polyhedral BB containing this DR.  */
+    poly_bb_p pbb;
 
-  /* ALIAS_SET is the SCC number assigned by a graph_dfs of the alias graph.
-     -1 is an invalid alias set.  */
-  int alias_set;
+    /* ALIAS_SET is the SCC number assigned by a graph_dfs of the alias graph.
+       -1 is an invalid alias set.  */
+    int alias_set;
 
-  /* Construct a DR_INFO from a data reference DR, an ALIAS_SET, and a PBB.  */
-  dr_info (data_reference_p dr, poly_bb_p pbb,
-	   int alias_set = invalid_alias_set)
-    : dr (dr), pbb (pbb), alias_set (alias_set) {}
+    /* Construct a DR_INFO from a data reference DR, an ALIAS_SET, and a PBB.  */
+    dr_info (data_reference_p dr, poly_bb_p pbb,
+             int alias_set = invalid_alias_set)
+        : dr (dr), pbb (pbb), alias_set (alias_set) {}
 };
 
 /* A SCOP is a Static Control Part of the program, simple enough to be
    represented in polyhedral form.  */
 struct scop
 {
-  /* A SCOP is defined as a SESE region.  */
-  sese_info_p scop_info;
+    /* A SCOP is defined as a SESE region.  */
+    sese_info_p scop_info;
 
-  /* Number of parameters in SCoP.  */
-  graphite_dim_t nb_params;
+    /* Number of parameters in SCoP.  */
+    graphite_dim_t nb_params;
 
-  /* The maximum alias set as assigned to drs by build_alias_sets.  */
-  unsigned max_alias_set;
+    /* The maximum alias set as assigned to drs by build_alias_sets.  */
+    unsigned max_alias_set;
 
-  /* All the basic blocks in this scop that contain memory references
-     and that will be represented as statements in the polyhedral
-     representation.  */
-  vec<poly_bb_p> pbbs;
+    /* All the basic blocks in this scop that contain memory references
+       and that will be represented as statements in the polyhedral
+       representation.  */
+    vec<poly_bb_p> pbbs;
 
-  /* All the data references in this scop.  */
-  vec<dr_info> drs;
+    /* All the data references in this scop.  */
+    vec<dr_info> drs;
 
-  /* The context describes known restrictions concerning the parameters
-     and relations in between the parameters.
+    /* The context describes known restrictions concerning the parameters
+       and relations in between the parameters.
 
-  void f (int8_t a, uint_16_t b) {
-    c = 2 a + b;
-    ...
-  }
+    void f (int8_t a, uint_16_t b) {
+      c = 2 a + b;
+      ...
+    }
 
-  Here we can add these restrictions to the context:
+    Here we can add these restrictions to the context:
 
-  -128 >= a >= 127
-     0 >= b >= 65,535
-     c = 2a + b  */
-  isl_set *param_context;
+    -128 >= a >= 127
+       0 >= b >= 65,535
+       c = 2a + b  */
+    isl_set *param_context;
 
-  /* The context used internally by isl.  */
-  isl_ctx *isl_context;
+    /* The context used internally by isl.  */
+    isl_ctx *isl_context;
 
-  /* SCoP original schedule.  */
-  isl_schedule *original_schedule;
+    /* SCoP original schedule.  */
+    isl_schedule *original_schedule;
 
-  /* SCoP transformed schedule.  */
-  isl_schedule *transformed_schedule;
+    /* SCoP transformed schedule.  */
+    isl_schedule *transformed_schedule;
 
-  /* The data dependence relation among the data references in this scop.  */
-  isl_union_map *dependence;
+    /* The data dependence relation among the data references in this scop.  */
+    isl_union_map *dependence;
 };
 
 extern scop_p new_scop (edge, edge);
 extern void free_scop (scop_p);
 extern gimple_poly_bb_p new_gimple_poly_bb (basic_block, vec<data_reference_p>,
-					    vec<scalar_use>, vec<tree>);
+        vec<scalar_use>, vec<tree>);
 extern bool apply_poly_transforms (scop_p);
 
 /* Set the region of SCOP to REGION.  */
@@ -431,7 +432,7 @@ extern bool apply_poly_transforms (scop_p);
 static inline void
 scop_set_region (scop_p scop, sese_info_p region)
 {
-  scop->scop_info = region;
+    scop->scop_info = region;
 }
 
 /* Returns the number of parameters for SCOP.  */
@@ -439,7 +440,7 @@ scop_set_region (scop_p scop, sese_info_p region)
 static inline graphite_dim_t
 scop_nb_params (scop_p scop)
 {
-  return scop->nb_params;
+    return scop->nb_params;
 }
 
 /* Set the number of params of SCOP to NB_PARAMS.  */
@@ -447,15 +448,15 @@ scop_nb_params (scop_p scop)
 static inline void
 scop_set_nb_params (scop_p scop, graphite_dim_t nb_params)
 {
-  scop->nb_params = nb_params;
+    scop->nb_params = nb_params;
 }
 
 extern void scop_get_dependences (scop_p scop);
 
 bool
 carries_deps (__isl_keep isl_union_map *schedule,
-	      __isl_keep isl_union_map *deps,
-	      int depth);
+              __isl_keep isl_union_map *deps,
+              int depth);
 
 extern bool build_poly_scop (scop_p);
 extern bool graphite_regenerate_ast_isl (scop_p);

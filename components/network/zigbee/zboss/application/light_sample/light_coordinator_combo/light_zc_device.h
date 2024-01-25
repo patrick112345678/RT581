@@ -157,7 +157,7 @@
 */
 #define ZB_HA_DECLARE_LIGHT_ZC_CTX(device_ctx, ep_name)    \
   ZBOSS_DECLARE_DEVICE_CTX_1_EP(device_ctx, ep_name)
- /* No CVC ctx */
+/* No CVC ctx */
 
 /*! @} */
 

@@ -112,8 +112,8 @@
 typedef void (*zb_apsme_update_device_ind_cb)(zb_apsme_update_device_ind_t *ind, zb_bool_t auth_allowed);
 typedef void (*zb_assert_indication_cb_t)(zb_uint16_t file_id, zb_int_t line_number);
 struct zb_zdo_device_annce_s;
-typedef void (ZB_CODE * zb_device_annce_cb_t)(struct zb_zdo_device_annce_s *da);
-typedef zb_ret_t (ZB_CODE * zb_zdo_responce_cb_t)(zb_uint8_t param, zb_uint16_t clusterid);
+typedef void (ZB_CODE *zb_device_annce_cb_t)(struct zb_zdo_device_annce_s *da);
+typedef zb_ret_t (ZB_CODE *zb_zdo_responce_cb_t)(zb_uint8_t param, zb_uint16_t clusterid);
 typedef void (*zb_zdo_set_channel_confirm_cb_t) (zb_uint8_t status);
 typedef void (*zb_zdo_duty_cycle_mode_ind_cb_t) (zb_uint8_t mode);
 
@@ -272,9 +272,9 @@ void zb_zdo_device_zed_start_rejoin(zb_uint8_t param, zb_uint16_t user_param);
 void zdo_send_device_annce_ex(zb_uint8_t             param,
                               zb_zdo_device_annce_t *dev_annce
 #ifdef ZB_USEALIAS
-                             ,zb_bool_t use_alias
+                              , zb_bool_t use_alias
 #endif
-  );
+                             );
 
 /**
    Actually send Device annonce command
@@ -352,7 +352,7 @@ void zb_copy_power_desc(zb_af_node_power_desc_t *dst_desc, zb_af_node_power_desc
    @param dst_desc - destinition descriptor
    @param src_desc - source descriptor
 */
-void zb_copy_simple_desc(zb_af_simple_desc_1_1_t* dst_desc, zb_af_simple_desc_1_1_t*src_desc);
+void zb_copy_simple_desc(zb_af_simple_desc_1_1_t *dst_desc, zb_af_simple_desc_1_1_t *src_desc);
 
 /**
    NWK_addr_req  primitive.
@@ -375,8 +375,8 @@ void zdo_device_ieee_addr_res(zb_uint8_t param, zb_uint8_t fc);
 
 typedef struct zb_zdo_ed_scan_param_s
 {
-  zb_callback_t cb;
-  zb_nlme_ed_scan_request_t nwk_param;
+    zb_callback_t cb;
+    zb_nlme_ed_scan_request_t nwk_param;
 }
 zb_zdo_ed_scan_param_t;
 
@@ -682,9 +682,9 @@ void zdo_clear_after_leave(zb_uint8_t param);
 
 /** @brief Callback registration function. */
 zb_bool_t register_zdo_cb(
-  zb_uint8_t tsn, zb_callback_t cb,
-  zb_uint8_t resp_counter, zb_uint8_t cb_type,
-  zb_bool_t rx_on_when_idle);
+    zb_uint8_t tsn, zb_callback_t cb,
+    zb_uint8_t resp_counter, zb_uint8_t cb_type,
+    zb_bool_t rx_on_when_idle);
 
 /** @brief Call confirm callback by index from buffer list.
   *
@@ -780,8 +780,8 @@ void zb_send_device_authorized_signal(zb_uint8_t param,
  * @param authorization_status - authorization status (depends on authorization_type)
  */
 void zb_prepare_and_send_device_authorized_signal(zb_ieee_addr_t long_addr,
-                                                  zb_uint8_t authorization_type,
-                                                  zb_uint8_t authorization_status);
+        zb_uint8_t authorization_type,
+        zb_uint8_t authorization_status);
 
 /**
  * @brief Alarm to send @ZB_ZDO_SIGNAL_DEVICE_AUTHORIZED signal
@@ -826,13 +826,13 @@ void zdo_aps_decryption_failed(zb_uint8_t param);
 
 typedef struct zb_zdo_get_channel_req_s
 {
-  zb_callback_t cb;
+    zb_callback_t cb;
 } zb_zdo_get_channel_req_t;
 
 typedef struct zb_zdo_get_channel_resp_t
 {
-  zb_uint8_t status;
-  zb_uint8_t channel;
+    zb_uint8_t status;
+    zb_uint8_t channel;
 } zb_zdo_get_channel_resp_t;
 
 void zb_zdo_get_channel(zb_uint8_t param);
@@ -844,12 +844,12 @@ void zb_zdo_get_channel(zb_uint8_t param);
  */
 typedef enum zb_poll_mode_e
 {
-  ZB_ZDO_PIM_FAST,              /*!< Fast poll  */
-  ZB_ZDO_PIM_LONG,              /*!< Long poll  */
-  ZB_ZDO_PIM_TURBO              /*!< Turbo poll  */
+    ZB_ZDO_PIM_FAST,              /*!< Fast poll  */
+    ZB_ZDO_PIM_LONG,              /*!< Long poll  */
+    ZB_ZDO_PIM_TURBO              /*!< Turbo poll  */
 #ifdef SNCP_MODE
-  ,
-  ZB_ZDO_PIM_STOP               /*!< Poll stoppped */
+    ,
+    ZB_ZDO_PIM_STOP               /*!< Poll stoppped */
 #endif
 } zb_poll_mode_t;
 
@@ -858,7 +858,7 @@ typedef enum zb_poll_mode_e
 */
 typedef ZB_PACKED_PRE struct zb_zdo_pim_get_in_fast_poll_flag_resp_s
 {
-  zb_bool_t in_fast_poll; /**< in fast poll status flag */
+    zb_bool_t in_fast_poll; /**< in fast poll status flag */
 } ZB_PACKED_STRUCT
 zb_zdo_pim_get_in_fast_poll_flag_resp_t;
 
@@ -887,7 +887,7 @@ typedef zb_uint8_t zb_stop_fast_poll_result_t;
 */
 typedef ZB_PACKED_PRE struct zb_zdo_pim_stop_fast_poll_extended_resp_s
 {
-  zb_stop_fast_poll_result_t stop_result; /**< fast poll stopping result */
+    zb_stop_fast_poll_result_t stop_result; /**< fast poll stopping result */
 } ZB_PACKED_STRUCT
 zb_zdo_pim_stop_fast_poll_extended_resp_t;
 
@@ -1024,12 +1024,12 @@ void zdo_rejoin_clear_prev_join(void);
  */
 typedef enum  zb_commissioning_type_e
 {
-  /* Note: classic must 1 for backward compatibility with apps used ZBOSS r21 API */
-  ZB_COMMISSIONING_CLASSIC = 0, /*!< Classic == core certification tests == HA. Nearly obsolete now.  */
-  /* Note: BDB mode must 1 for backward compatibility with apps used ZBOSS r21 API */
-  ZB_COMMISSIONING_BDB = 1,     /*!< BDB mode. */
-  ZB_COMMISSIONING_SE,
-/*  ZB_COMMISSIONING_ZLL,         / !< ZLL not via BDB (is it ever usable?)  */
+    /* Note: classic must 1 for backward compatibility with apps used ZBOSS r21 API */
+    ZB_COMMISSIONING_CLASSIC = 0, /*!< Classic == core certification tests == HA. Nearly obsolete now.  */
+    /* Note: BDB mode must 1 for backward compatibility with apps used ZBOSS r21 API */
+    ZB_COMMISSIONING_BDB = 1,     /*!< BDB mode. */
+    ZB_COMMISSIONING_SE,
+    /*  ZB_COMMISSIONING_ZLL,         / !< ZLL not via BDB (is it ever usable?)  */
 } zb_commissioning_type_t;
 
 
@@ -1086,8 +1086,8 @@ void zdo_classic_initiate_commissioning(zb_uint8_t param);
 
 typedef ZB_PACKED_PRE struct zb_jl_q_ent_s
 {
-  zb_callback_t func;           /*!< function to call  */
-  zb_uint8_t param;             /*!< parameter to pass to 'func'  */
+    zb_callback_t func;           /*!< function to call  */
+    zb_uint8_t param;             /*!< parameter to pass to 'func'  */
 }
 ZB_PACKED_STRUCT
 zb_jl_q_ent_t;
@@ -1417,12 +1417,12 @@ void zb_get_use_extended_pan_id(zb_ext_pan_id_t ext_pan_id);
 void zb_set_use_extended_pan_id(const zb_ext_pan_id_t ext_pan_id);
 
 void zb_set_nwk_role_mode_common(zb_nwk_device_type_t device_type,
-                                          zb_uint32_t channel_mask,
-                                          zb_commissioning_type_t mode);
+                                 zb_uint32_t channel_mask,
+                                 zb_commissioning_type_t mode);
 
 void zb_set_nwk_role_mode_common_ext(zb_nwk_device_type_t device_type,
-                                              zb_channel_list_t channel_list,
-                                              zb_commissioning_type_t mode);
+                                     zb_channel_list_t channel_list,
+                                     zb_commissioning_type_t mode);
 
 zb_commissioning_type_t zb_zdo_get_commissioning_type(void);
 

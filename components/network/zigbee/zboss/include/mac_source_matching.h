@@ -34,9 +34,9 @@
 #if (defined ZB_MAC_SOFTWARE_PB_MATCHING)
 typedef enum source_matching_search_action_e
 {
-  SEARCH_ACTION_NO_ACTION,
-  SEARCH_ACTION_ALLOW_CREATE,
-  SEARCH_ACTION_DELETE_IF_EXIST
+    SEARCH_ACTION_NO_ACTION,
+    SEARCH_ACTION_ALLOW_CREATE,
+    SEARCH_ACTION_DELETE_IF_EXIST
 } source_matching_search_action_t;
 
 zb_bool_t mac_child_hash_table_search(zb_uint16_t short_addr,

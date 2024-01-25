@@ -25,39 +25,50 @@ along with GCC; see the file COPYING3.  If not see
 /* This class is used to build VECTOR_CSTs from a sequence of elements.
    See vector_builder for more details.  */
 class tree_vector_builder : public vector_builder<tree, tree,
-						  tree_vector_builder>
+    tree_vector_builder>
 {
-  typedef vector_builder<tree, tree, tree_vector_builder> parent;
-  friend class vector_builder<tree, tree, tree_vector_builder>;
+    typedef vector_builder<tree, tree, tree_vector_builder> parent;
+    friend class vector_builder<tree, tree, tree_vector_builder>;
 
 public:
-  tree_vector_builder () : m_type (0) {}
-  tree_vector_builder (tree, unsigned int, unsigned int);
-  tree build ();
+    tree_vector_builder () : m_type (0) {}
+    tree_vector_builder (tree, unsigned int, unsigned int);
+    tree build ();
 
-  tree type () const { return m_type; }
+    tree type () const
+    {
+        return m_type;
+    }
 
-  void new_vector (tree, unsigned int, unsigned int);
+    void new_vector (tree, unsigned int, unsigned int);
 
 private:
-  bool equal_p (const_tree, const_tree) const;
-  bool allow_steps_p () const;
-  bool integral_p (const_tree) const;
-  wide_int step (const_tree, const_tree) const;
-  tree apply_step (tree, unsigned int, const wide_int &) const;
-  bool can_elide_p (const_tree) const;
-  void note_representative (tree *, tree);
+    bool equal_p (const_tree, const_tree) const;
+    bool allow_steps_p () const;
+    bool integral_p (const_tree) const;
+    wide_int step (const_tree, const_tree) const;
+    tree apply_step (tree, unsigned int, const wide_int &) const;
+    bool can_elide_p (const_tree) const;
+    void note_representative (tree *, tree);
 
-  static poly_uint64 shape_nelts (const_tree t)
-    { return TYPE_VECTOR_SUBPARTS (t); }
-  static poly_uint64 nelts_of (const_tree t)
-    { return VECTOR_CST_NELTS (t); }
-  static unsigned int npatterns_of (const_tree t)
-    { return VECTOR_CST_NPATTERNS (t); }
-  static unsigned int nelts_per_pattern_of (const_tree t)
-    { return VECTOR_CST_NELTS_PER_PATTERN (t); }
+    static poly_uint64 shape_nelts (const_tree t)
+    {
+        return TYPE_VECTOR_SUBPARTS (t);
+    }
+    static poly_uint64 nelts_of (const_tree t)
+    {
+        return VECTOR_CST_NELTS (t);
+    }
+    static unsigned int npatterns_of (const_tree t)
+    {
+        return VECTOR_CST_NPATTERNS (t);
+    }
+    static unsigned int nelts_per_pattern_of (const_tree t)
+    {
+        return VECTOR_CST_NELTS_PER_PATTERN (t);
+    }
 
-  tree m_type;
+    tree m_type;
 };
 
 /* Create a new builder for a vector of type TYPE.  Initially encode the
@@ -66,9 +77,9 @@ private:
 
 inline
 tree_vector_builder::tree_vector_builder (tree type, unsigned int npatterns,
-					  unsigned int nelts_per_pattern)
+        unsigned int nelts_per_pattern)
 {
-  new_vector (type, npatterns, nelts_per_pattern);
+    new_vector (type, npatterns, nelts_per_pattern);
 }
 
 /* Start building a new vector of type TYPE.  Initially encode the value
@@ -76,11 +87,11 @@ tree_vector_builder::tree_vector_builder (tree type, unsigned int npatterns,
 
 inline void
 tree_vector_builder::new_vector (tree type, unsigned int npatterns,
-				 unsigned int nelts_per_pattern)
+                                 unsigned int nelts_per_pattern)
 {
-  m_type = type;
-  parent::new_vector (TYPE_VECTOR_SUBPARTS (type), npatterns,
-		      nelts_per_pattern);
+    m_type = type;
+    parent::new_vector (TYPE_VECTOR_SUBPARTS (type), npatterns,
+                        nelts_per_pattern);
 }
 
 /* Return true if elements I1 and I2 are equal.  */
@@ -88,7 +99,7 @@ tree_vector_builder::new_vector (tree type, unsigned int npatterns,
 inline bool
 tree_vector_builder::equal_p (const_tree elt1, const_tree elt2) const
 {
-  return operand_equal_p (elt1, elt2, OEP_BITWISE);
+    return operand_equal_p (elt1, elt2, OEP_BITWISE);
 }
 
 /* Return true if a stepped representation is OK.  We don't allow
@@ -98,7 +109,7 @@ tree_vector_builder::equal_p (const_tree elt1, const_tree elt2) const
 inline bool
 tree_vector_builder::allow_steps_p () const
 {
-  return INTEGRAL_TYPE_P (TREE_TYPE (m_type));
+    return INTEGRAL_TYPE_P (TREE_TYPE (m_type));
 }
 
 /* Return true if ELT can be interpreted as an integer.  */
@@ -106,7 +117,7 @@ tree_vector_builder::allow_steps_p () const
 inline bool
 tree_vector_builder::integral_p (const_tree elt) const
 {
-  return TREE_CODE (elt) == INTEGER_CST;
+    return TREE_CODE (elt) == INTEGER_CST;
 }
 
 /* Return the value of element ELT2 minus the value of element ELT1.
@@ -115,7 +126,7 @@ tree_vector_builder::integral_p (const_tree elt) const
 inline wide_int
 tree_vector_builder::step (const_tree elt1, const_tree elt2) const
 {
-  return wi::to_wide (elt2) - wi::to_wide (elt1);
+    return wi::to_wide (elt2) - wi::to_wide (elt1);
 }
 
 /* Return true if we can drop element ELT, even if the retained elements
@@ -125,7 +136,7 @@ tree_vector_builder::step (const_tree elt1, const_tree elt2) const
 inline bool
 tree_vector_builder::can_elide_p (const_tree elt) const
 {
-  return !CONSTANT_CLASS_P (elt) || !TREE_OVERFLOW (elt);
+    return !CONSTANT_CLASS_P (elt) || !TREE_OVERFLOW (elt);
 }
 
 /* Record that ELT2 is being elided, given that ELT1_PTR points to the last
@@ -134,11 +145,13 @@ tree_vector_builder::can_elide_p (const_tree elt) const
 inline void
 tree_vector_builder::note_representative (tree *elt1_ptr, tree elt2)
 {
-  if (CONSTANT_CLASS_P (elt2) && TREE_OVERFLOW (elt2))
+    if (CONSTANT_CLASS_P (elt2) && TREE_OVERFLOW (elt2))
     {
-      gcc_assert (operand_equal_p (*elt1_ptr, elt2, 0));
-      if (!TREE_OVERFLOW (elt2))
-	*elt1_ptr = elt2;
+        gcc_assert (operand_equal_p (*elt1_ptr, elt2, 0));
+        if (!TREE_OVERFLOW (elt2))
+        {
+            *elt1_ptr = elt2;
+        }
     }
 }
 

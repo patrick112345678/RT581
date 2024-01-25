@@ -35,14 +35,14 @@ _Tp __brick_transform_reduce(_ForwardIterator1, _ForwardIterator1, _ForwardItera
 template <class _ExecutionPolicy, class _ForwardIterator1, class _ForwardIterator2, class _Tp, class _BinaryOperation1,
           class _BinaryOperation2, class _IsVector>
 _Tp
-__pattern_transform_reduce(_ExecutionPolicy&&, _ForwardIterator1, _ForwardIterator1, _ForwardIterator2, _Tp,
+__pattern_transform_reduce(_ExecutionPolicy &&, _ForwardIterator1, _ForwardIterator1, _ForwardIterator2, _Tp,
                            _BinaryOperation1, _BinaryOperation2, _IsVector,
                            /*is_parallel=*/std::false_type) noexcept;
 
 template <class _ExecutionPolicy, class _RandomAccessIterator1, class _RandomAccessIterator2, class _Tp,
           class _BinaryOperation1, class _BinaryOperation2, class _IsVector>
 _Tp
-__pattern_transform_reduce(_ExecutionPolicy&&, _RandomAccessIterator1, _RandomAccessIterator1, _RandomAccessIterator2,
+__pattern_transform_reduce(_ExecutionPolicy &&, _RandomAccessIterator1, _RandomAccessIterator1, _RandomAccessIterator2,
                            _Tp, _BinaryOperation1, _BinaryOperation2, _IsVector __is_vector,
                            /*is_parallel=*/std::true_type);
 
@@ -61,14 +61,14 @@ _Tp __brick_transform_reduce(_ForwardIterator, _ForwardIterator, _Tp, _BinaryOpe
 template <class _ExecutionPolicy, class _ForwardIterator, class _Tp, class _BinaryOperation, class _UnaryOperation,
           class _IsVector>
 _Tp
-__pattern_transform_reduce(_ExecutionPolicy&&, _ForwardIterator, _ForwardIterator, _Tp, _BinaryOperation,
+__pattern_transform_reduce(_ExecutionPolicy &&, _ForwardIterator, _ForwardIterator, _Tp, _BinaryOperation,
                            _UnaryOperation, _IsVector,
                            /*is_parallel=*/std::false_type) noexcept;
 
 template <class _ExecutionPolicy, class _ForwardIterator, class _Tp, class _BinaryOperation, class _UnaryOperation,
           class _IsVector>
 _Tp
-__pattern_transform_reduce(_ExecutionPolicy&&, _ForwardIterator, _ForwardIterator, _Tp, _BinaryOperation,
+__pattern_transform_reduce(_ExecutionPolicy &&, _ForwardIterator, _ForwardIterator, _Tp, _BinaryOperation,
                            _UnaryOperation, _IsVector,
                            /*is_parallel=*/std::true_type);
 
@@ -80,31 +80,31 @@ __pattern_transform_reduce(_ExecutionPolicy&&, _ForwardIterator, _ForwardIterato
 
 template <class _ForwardIterator, class _OutputIterator, class _UnaryOperation, class _Tp, class _BinaryOperation>
 std::pair<_OutputIterator, _Tp> __brick_transform_scan(_ForwardIterator, _ForwardIterator, _OutputIterator,
-                                                       _UnaryOperation, _Tp, _BinaryOperation,
-                                                       /*Inclusive*/ std::false_type) noexcept;
+        _UnaryOperation, _Tp, _BinaryOperation,
+        /*Inclusive*/ std::false_type) noexcept;
 
 template <class _ForwardIterator, class _OutputIterator, class _UnaryOperation, class _Tp, class _BinaryOperation>
 std::pair<_OutputIterator, _Tp> __brick_transform_scan(_ForwardIterator, _ForwardIterator, _OutputIterator,
-                                                       _UnaryOperation, _Tp, _BinaryOperation,
-                                                       /*Inclusive*/ std::true_type) noexcept;
+        _UnaryOperation, _Tp, _BinaryOperation,
+        /*Inclusive*/ std::true_type) noexcept;
 
 template <class _ExecutionPolicy, class _ForwardIterator, class _OutputIterator, class _UnaryOperation, class _Tp,
           class _BinaryOperation, class _Inclusive, class _IsVector>
 _OutputIterator
-__pattern_transform_scan(_ExecutionPolicy&&, _ForwardIterator, _ForwardIterator, _OutputIterator, _UnaryOperation, _Tp,
+__pattern_transform_scan(_ExecutionPolicy &&, _ForwardIterator, _ForwardIterator, _OutputIterator, _UnaryOperation, _Tp,
                          _BinaryOperation, _Inclusive, _IsVector,
                          /*is_parallel=*/std::false_type) noexcept;
 
 template <class _ExecutionPolicy, class _RandomAccessIterator, class _OutputIterator, class _UnaryOperation, class _Tp,
           class _BinaryOperation, class _Inclusive, class _IsVector>
-typename std::enable_if<!std::is_floating_point<_Tp>::value, _OutputIterator>::type
-__pattern_transform_scan(_ExecutionPolicy&&, _RandomAccessIterator, _RandomAccessIterator, _OutputIterator,
+typename std::enable_if < !std::is_floating_point<_Tp>::value, _OutputIterator >::type
+__pattern_transform_scan(_ExecutionPolicy &&, _RandomAccessIterator, _RandomAccessIterator, _OutputIterator,
                          _UnaryOperation, _Tp, _BinaryOperation, _Inclusive, _IsVector, /*is_parallel=*/std::true_type);
 
 template <class _ExecutionPolicy, class _RandomAccessIterator, class _OutputIterator, class _UnaryOperation, class _Tp,
           class _BinaryOperation, class _Inclusive, class _IsVector>
 typename std::enable_if<std::is_floating_point<_Tp>::value, _OutputIterator>::type
-__pattern_transform_scan(_ExecutionPolicy&&, _RandomAccessIterator, _RandomAccessIterator, _OutputIterator,
+__pattern_transform_scan(_ExecutionPolicy &&, _RandomAccessIterator, _RandomAccessIterator, _OutputIterator,
                          _UnaryOperation, _Tp, _BinaryOperation, _Inclusive, _IsVector, /*is_parallel=*/std::true_type);
 
 //------------------------------------------------------------------------
@@ -113,22 +113,22 @@ __pattern_transform_scan(_ExecutionPolicy&&, _RandomAccessIterator, _RandomAcces
 
 template <class _ForwardIterator, class _OutputIterator, class _BinaryOperation>
 _OutputIterator __brick_adjacent_difference(_ForwardIterator, _ForwardIterator, _OutputIterator, _BinaryOperation,
-                                            /*is_vector*/ std::false_type) noexcept;
+        /*is_vector*/ std::false_type) noexcept;
 
 template <class _ForwardIterator, class _OutputIterator, class _BinaryOperation>
 _OutputIterator __brick_adjacent_difference(_ForwardIterator, _ForwardIterator, _OutputIterator, _BinaryOperation,
-                                            /*is_vector*/ std::true_type) noexcept;
+        /*is_vector*/ std::true_type) noexcept;
 
 template <class _ExecutionPolicy, class _ForwardIterator, class _OutputIterator, class _BinaryOperation,
           class _IsVector>
 _OutputIterator
-__pattern_adjacent_difference(_ExecutionPolicy&&, _ForwardIterator, _ForwardIterator, _OutputIterator, _BinaryOperation,
+__pattern_adjacent_difference(_ExecutionPolicy &&, _ForwardIterator, _ForwardIterator, _OutputIterator, _BinaryOperation,
                               _IsVector, /*is_parallel*/ std::false_type) noexcept;
 
 template <class _ExecutionPolicy, class _ForwardIterator, class _OutputIterator, class _BinaryOperation,
           class _IsVector>
 _OutputIterator
-__pattern_adjacent_difference(_ExecutionPolicy&&, _ForwardIterator, _ForwardIterator, _OutputIterator, _BinaryOperation,
+__pattern_adjacent_difference(_ExecutionPolicy &&, _ForwardIterator, _ForwardIterator, _OutputIterator, _BinaryOperation,
                               _IsVector, /*is_parallel*/ std::true_type);
 
 } // namespace __internal

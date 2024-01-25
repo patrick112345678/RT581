@@ -208,8 +208,8 @@ otError otBackboneRouterGetDomainPrefix(otInstance *aInstance, otBorderRouterCon
  *
  */
 void otBackboneRouterConfigNextDuaRegistrationResponse(otInstance                     *aInstance,
-                                                       const otIp6InterfaceIdentifier *aMlIid,
-                                                       uint8_t                         aStatus);
+        const otIp6InterfaceIdentifier *aMlIid,
+        uint8_t                         aStatus);
 
 /**
  * Configures the response status for the next Multicast Listener Registration.
@@ -243,8 +243,8 @@ typedef enum
  *
  */
 typedef void (*otBackboneRouterMulticastListenerCallback)(void                                  *aContext,
-                                                          otBackboneRouterMulticastListenerEvent aEvent,
-                                                          const otIp6Address                    *aAddress);
+        otBackboneRouterMulticastListenerEvent aEvent,
+        const otIp6Address                    *aAddress);
 
 /**
  * This method sets the Backbone Router Multicast Listener callback.
@@ -255,8 +255,8 @@ typedef void (*otBackboneRouterMulticastListenerCallback)(void                  
  *
  */
 void otBackboneRouterSetMulticastListenerCallback(otInstance                               *aInstance,
-                                                  otBackboneRouterMulticastListenerCallback aCallback,
-                                                  void                                     *aContext);
+        otBackboneRouterMulticastListenerCallback aCallback,
+        void                                     *aContext);
 
 /**
  * Clears the Multicast Listeners.
@@ -330,8 +330,8 @@ typedef struct otBackboneRouterMulticastListenerInfo
  *
  */
 otError otBackboneRouterMulticastListenerGetNext(otInstance                                *aInstance,
-                                                 otBackboneRouterMulticastListenerIterator *aIterator,
-                                                 otBackboneRouterMulticastListenerInfo     *aListenerInfo);
+        otBackboneRouterMulticastListenerIterator *aIterator,
+        otBackboneRouterMulticastListenerInfo     *aListenerInfo);
 
 /**
  * Represents the ND Proxy events.
@@ -355,8 +355,8 @@ typedef enum
  *
  */
 typedef void (*otBackboneRouterNdProxyCallback)(void                        *aContext,
-                                                otBackboneRouterNdProxyEvent aEvent,
-                                                const otIp6Address          *aDua);
+        otBackboneRouterNdProxyEvent aEvent,
+        const otIp6Address          *aDua);
 
 /**
  * This method sets the Backbone Router ND Proxy callback.
@@ -416,8 +416,8 @@ typedef enum
  *
  */
 typedef void (*otBackboneRouterDomainPrefixCallback)(void                             *aContext,
-                                                     otBackboneRouterDomainPrefixEvent aEvent,
-                                                     const otIp6Prefix                *aDomainPrefix);
+        otBackboneRouterDomainPrefixEvent aEvent,
+        const otIp6Prefix                *aDomainPrefix);
 /**
  * This method sets the Backbone Router Domain Prefix callback.
  *
@@ -427,8 +427,8 @@ typedef void (*otBackboneRouterDomainPrefixCallback)(void                       
  *
  */
 void otBackboneRouterSetDomainPrefixCallback(otInstance                          *aInstance,
-                                             otBackboneRouterDomainPrefixCallback aCallback,
-                                             void                                *aContext);
+        otBackboneRouterDomainPrefixCallback aCallback,
+        void                                *aContext);
 
 /**
  * @}

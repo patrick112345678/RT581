@@ -2,7 +2,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  *
  * Copyright (c) 1982, 1986, 1993
- *	The Regents of the University of California.  All rights reserved.
+ *  The Regents of the University of California.  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -28,25 +28,26 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  *
- *	@(#)time.h	8.5 (Berkeley) 5/4/95
+ *  @(#)time.h  8.5 (Berkeley) 5/4/95
  * from: FreeBSD: src/sys/sys/time.h,v 1.43 2000/03/20 14:09:05 phk Exp
- *	$FreeBSD: head/sys/sys/_timespec.h 326023 2017-11-20 19:43:44Z pfg $
+ *  $FreeBSD: head/sys/sys/_timespec.h 326023 2017-11-20 19:43:44Z pfg $
  */
 
 #ifndef _SYS__TIMESPEC_H_
-#define	_SYS__TIMESPEC_H_
+#define _SYS__TIMESPEC_H_
 
 #include <sys/_types.h>
 
 #if !defined(__time_t_defined) && !defined(_TIME_T_DECLARED)
-typedef	_TIME_T_	time_t;
-#define	__time_t_defined
-#define	_TIME_T_DECLARED
+typedef _TIME_T_    time_t;
+#define __time_t_defined
+#define _TIME_T_DECLARED
 #endif
 
-struct timespec {
-	time_t	tv_sec;		/* seconds */
-	long	tv_nsec;	/* and nanoseconds */
+struct timespec
+{
+    time_t  tv_sec;     /* seconds */
+    long    tv_nsec;    /* and nanoseconds */
 };
 
 #endif /* !_SYS__TIMESPEC_H_ */

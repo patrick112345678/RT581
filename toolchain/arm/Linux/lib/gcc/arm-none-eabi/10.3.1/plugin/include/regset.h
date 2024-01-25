@@ -86,17 +86,17 @@ typedef bitmap regset;
 
 /* Copy the hard registers in a register set to the hard register set.  */
 extern void reg_set_to_hard_reg_set (HARD_REG_SET *, const_bitmap);
-#define REG_SET_TO_HARD_REG_SET(TO, FROM)				\
-do {									\
-  CLEAR_HARD_REG_SET (TO);						\
-  reg_set_to_hard_reg_set (&TO, FROM);					\
+#define REG_SET_TO_HARD_REG_SET(TO, FROM)               \
+do {                                    \
+  CLEAR_HARD_REG_SET (TO);                      \
+  reg_set_to_hard_reg_set (&TO, FROM);                  \
 } while (0)
 
 typedef bitmap_iterator reg_set_iterator;
 
 /* Loop over all registers in REGSET, starting with MIN, setting REGNUM to the
    register number and executing CODE for all registers that are set.  */
-#define EXECUTE_IF_SET_IN_REG_SET(REGSET, MIN, REGNUM, RSI)	\
+#define EXECUTE_IF_SET_IN_REG_SET(REGSET, MIN, REGNUM, RSI) \
   EXECUTE_IF_SET_IN_BITMAP (REGSET, MIN, REGNUM, RSI)
 
 /* Loop over all registers in REGSET1 and REGSET2, starting with MIN, setting
@@ -109,7 +109,7 @@ typedef bitmap_iterator reg_set_iterator;
    REGNUM to the register number and executing CODE for all registers that are
    set in both regsets.  */
 #define EXECUTE_IF_AND_IN_REG_SET(REGSET1, REGSET2, MIN, REGNUM, RSI) \
-  EXECUTE_IF_AND_IN_BITMAP (REGSET1, REGSET2, MIN, REGNUM, RSI)	\
+  EXECUTE_IF_AND_IN_BITMAP (REGSET1, REGSET2, MIN, REGNUM, RSI) \
 
 /* An obstack for regsets.  */
 extern bitmap_obstack reg_obstack;

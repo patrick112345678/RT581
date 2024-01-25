@@ -1,12 +1,12 @@
 /**
  * @file stdatomic.c
  * @author Rex Huang (rex.huang@rafaelmicro.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2023-07-24
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 
 #include <stdbool.h>
@@ -204,13 +204,13 @@ SYNC_FETCH_OP(sub, 1, uint8_t)
 SYNC_FETCH_OP(sub, 2, uint16_t)
 SYNC_FETCH_OP(sub, 4, uint32_t)
 
-SYNC_FETCH_OP(and, 1, uint8_t)
-SYNC_FETCH_OP(and, 2, uint16_t)
-SYNC_FETCH_OP(and, 4, uint32_t)
+SYNC_FETCH_OP( and, 1, uint8_t)
+SYNC_FETCH_OP( and, 2, uint16_t)
+SYNC_FETCH_OP( and, 4, uint32_t)
 
-SYNC_FETCH_OP(or, 1, uint8_t)
-SYNC_FETCH_OP(or, 2, uint16_t)
-SYNC_FETCH_OP(or, 4, uint32_t)
+SYNC_FETCH_OP( or, 1, uint8_t)
+SYNC_FETCH_OP( or, 2, uint16_t)
+SYNC_FETCH_OP( or, 4, uint32_t)
 
 SYNC_FETCH_OP(xor, 1, uint8_t)
 SYNC_FETCH_OP(xor, 2, uint16_t)
@@ -250,9 +250,9 @@ SYNC_FETCH_OP(add, 8, uint64_t)
 
 SYNC_FETCH_OP(sub, 8, uint64_t)
 
-SYNC_FETCH_OP(and, 8, uint64_t)
+SYNC_FETCH_OP( and, 8, uint64_t)
 
-SYNC_FETCH_OP(or, 8, uint64_t)
+SYNC_FETCH_OP( or, 8, uint64_t)
 
 SYNC_FETCH_OP(xor, 8, uint64_t)
 

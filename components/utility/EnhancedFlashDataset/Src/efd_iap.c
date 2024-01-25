@@ -42,11 +42,13 @@ EfErrCode efd_erase_bak_app(size_t app_size)
     result = efd_port_erase(efd_get_bak_app_start_addr(), app_size);
     switch (result)
     {
-    case EFD_NO_ERR: {
+    case EFD_NO_ERR:
+    {
         EFD_INFO("Erased backup area application OK.\n");
         break;
     }
-    case EFD_ERASE_ERR: {
+    case EFD_ERASE_ERR:
+    {
         EFD_INFO("Warning: Erase backup area application fault!\n");
         /* will return when erase fault */
         return result;
@@ -72,11 +74,13 @@ EfErrCode efd_erase_spec_user_app(uint32_t user_app_addr, size_t app_size, EfErr
     result = app_erase(user_app_addr, app_size);
     switch (result)
     {
-    case EFD_NO_ERR: {
+    case EFD_NO_ERR:
+    {
         EFD_INFO("Erased user application OK.\n");
         break;
     }
-    case EFD_ERASE_ERR: {
+    case EFD_ERASE_ERR:
+    {
         EFD_INFO("Warning: Erase user application fault!\n");
         /* will return when erase fault */
         return result;
@@ -114,11 +118,13 @@ EfErrCode efd_erase_bl(uint32_t bl_addr, size_t bl_size)
     result = efd_port_erase(bl_addr, bl_size);
     switch (result)
     {
-    case EFD_NO_ERR: {
+    case EFD_NO_ERR:
+    {
         EFD_INFO("Erased bootloader OK.\n");
         break;
     }
-    case EFD_ERASE_ERR: {
+    case EFD_ERASE_ERR:
+    {
         EFD_INFO("Warning: Erase bootloader fault!\n");
         /* will return when erase fault */
         return result;
@@ -138,7 +144,7 @@ EfErrCode efd_erase_bl(uint32_t bl_addr, size_t bl_size)
  *
  * @return result
  */
-EfErrCode efd_write_data_to_bak(uint8_t * data, size_t size, size_t * cur_size, size_t total_size)
+EfErrCode efd_write_data_to_bak(uint8_t *data, size_t size, size_t *cur_size, size_t total_size)
 {
     EfErrCode result = EFD_NO_ERR;
 
@@ -151,12 +157,14 @@ EfErrCode efd_write_data_to_bak(uint8_t * data, size_t size, size_t * cur_size, 
     result = efd_port_write(efd_get_bak_app_start_addr() + *cur_size, (uint32_t *) data, size);
     switch (result)
     {
-    case EFD_NO_ERR: {
+    case EFD_NO_ERR:
+    {
         *cur_size += size;
         EFD_DEBUG("Write data to backup area OK.\n");
         break;
     }
-    case EFD_WRITE_ERR: {
+    case EFD_WRITE_ERR:
+    {
         EFD_INFO("Warning: Write data to backup area fault!\n");
         break;
     }
@@ -175,7 +183,7 @@ EfErrCode efd_write_data_to_bak(uint8_t * data, size_t size, size_t * cur_size, 
  * @return result
  */
 EfErrCode efd_copy_spec_app_from_bak(uint32_t user_app_addr, size_t app_size,
-                                     EfErrCode (*app_write)(uint32_t addr, const uint32_t * buf, size_t size))
+                                     EfErrCode (*app_write)(uint32_t addr, const uint32_t *buf, size_t size))
 {
     size_t cur_size;
     uint32_t app_cur_addr, bak_cur_addr;
@@ -198,11 +206,13 @@ EfErrCode efd_copy_spec_app_from_bak(uint32_t user_app_addr, size_t app_size,
 
     switch (result)
     {
-    case EFD_NO_ERR: {
+    case EFD_NO_ERR:
+    {
         EFD_INFO("Write data to application entry OK.\n");
         break;
     }
-    case EFD_WRITE_ERR: {
+    case EFD_WRITE_ERR:
+    {
         EFD_INFO("Warning: Write data to application entry fault!\n");
         break;
     }
@@ -255,11 +265,13 @@ EfErrCode efd_copy_bl_from_bak(uint32_t bl_addr, size_t bl_size)
 
     switch (result)
     {
-    case EFD_NO_ERR: {
+    case EFD_NO_ERR:
+    {
         EFD_INFO("Write data to bootloader entry OK.\n");
         break;
     }
-    case EFD_WRITE_ERR: {
+    case EFD_WRITE_ERR:
+    {
         EFD_INFO("Warning: Write data to bootloader entry fault!\n");
         break;
     }

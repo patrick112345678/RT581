@@ -56,9 +56,9 @@ static const zb_uint8_t g_key1[16] = { 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA,
 
 #define TIME_ZC_DATA2                      ((2 * ZB_TIME_ONE_SECOND) + TIME_ZC_KEY_SWITCH1)
 
-#define TIME_ZED_REJOIN			   (60 * ZB_TIME_ONE_SECOND)
+#define TIME_ZED_REJOIN            (60 * ZB_TIME_ONE_SECOND)
 
-#define TIME_ZED_POLL_TIMEOUT_MS	   350000
+#define TIME_ZED_POLL_TIMEOUT_MS       350000
 
 /* insecure join configuration */
 #define INSECURE_JOIN_ZC                ZB_FALSE

@@ -110,100 +110,100 @@ static void send_mgmt_lqi_request(zb_uint8_t param, zb_uint16_t start_index);
 
 MAIN()
 {
-  ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
-  ZB_SET_TRACE_LEVEL(4);
-  ARGV_UNUSED;
+    ZB_SET_TRACE_MASK(TRACE_SUBSYSTEM_APP);
+    ZB_SET_TRACE_LEVEL(4);
+    ARGV_UNUSED;
 
-  /* Init device, load IB values from nvram or set it to default */
+    /* Init device, load IB values from nvram or set it to default */
 
-  ZB_INIT("zdo_dut_zc");
-
-
-  zb_set_long_address(g_ieee_addr_dut);
-
-  zb_reg_test_set_common_channel_settings();
-  zb_set_network_coordinator_role((1l << TEST_CHANNEL));
-  zb_secur_setup_nwk_key(g_nwk_key, 0);
-
-  zb_set_nvram_erase_at_start(ZB_TRUE);
-
-  ZB_AF_REGISTER_DEVICE_CTX(&rtp_zcl_02_dut_zc_device_ctx);
-
-  zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_ON_OFF,
-                              ZB_ZCL_CLUSTER_CLIENT_ROLE,
-                              (zb_zcl_cluster_check_value_t) test_check_value_on_off_cli,
-                              (zb_zcl_cluster_write_attr_hook_t) test_attr_hook_on_off_cli,
-                              NULL);
-
-  zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_ON_OFF,
-                              ZB_ZCL_CLUSTER_SERVER_ROLE,
-                              (zb_zcl_cluster_check_value_t) test_check_value_on_off_srv,
-                              (zb_zcl_cluster_write_attr_hook_t) test_attr_hook_on_off_srv,
-                              NULL);
+    ZB_INIT("zdo_dut_zc");
 
 
-  if (zboss_start() != RET_OK)
-  {
-    TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
-  }
-  else
-  {
-    zdo_main_loop();
-  }
+    zb_set_long_address(g_ieee_addr_dut);
 
-  TRACE_DEINIT();
+    zb_reg_test_set_common_channel_settings();
+    zb_set_network_coordinator_role((1l << TEST_CHANNEL));
+    zb_secur_setup_nwk_key(g_nwk_key, 0);
 
-  MAIN_RETURN(0);
+    zb_set_nvram_erase_at_start(ZB_TRUE);
+
+    ZB_AF_REGISTER_DEVICE_CTX(&rtp_zcl_02_dut_zc_device_ctx);
+
+    zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_ON_OFF,
+                                ZB_ZCL_CLUSTER_CLIENT_ROLE,
+                                (zb_zcl_cluster_check_value_t) test_check_value_on_off_cli,
+                                (zb_zcl_cluster_write_attr_hook_t) test_attr_hook_on_off_cli,
+                                NULL);
+
+    zb_zcl_add_cluster_handlers(ZB_ZCL_CLUSTER_ID_ON_OFF,
+                                ZB_ZCL_CLUSTER_SERVER_ROLE,
+                                (zb_zcl_cluster_check_value_t) test_check_value_on_off_srv,
+                                (zb_zcl_cluster_write_attr_hook_t) test_attr_hook_on_off_srv,
+                                NULL);
+
+
+    if (zboss_start() != RET_OK)
+    {
+        TRACE_MSG(TRACE_ERROR, "zboss_start failed", (FMT__0));
+    }
+    else
+    {
+        zdo_main_loop();
+    }
+
+    TRACE_DEINIT();
+
+    MAIN_RETURN(0);
 }
 
 
 /***********************************Implementation**********************************/
 ZB_ZDO_STARTUP_COMPLETE(zb_uint8_t param)
 {
-  zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
-  zb_zdo_app_signal_hdr_t *sg_p;
-  zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, &sg_p);
+    zb_uint8_t status = ZB_GET_APP_SIGNAL_STATUS(param);
+    zb_zdo_app_signal_hdr_t *sg_p;
+    zb_zdo_app_signal_type_t sig = zb_get_app_signal(param, &sg_p);
 
-  TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
+    TRACE_MSG(TRACE_APP1, ">>zb_zdo_startup_complete status %d", (FMT__D, status));
 
-  switch (sig)
-  {
+    switch (sig)
+    {
     case ZB_BDB_SIGNAL_DEVICE_FIRST_START:
-      TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
-      }
-      break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
+        TRACE_MSG(TRACE_APP1, "Device started, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            bdb_start_top_level_commissioning(ZB_BDB_NETWORK_STEERING);
+        }
+        break; /* ZB_BDB_SIGNAL_DEVICE_FIRST_START */
 
     case ZB_BDB_SIGNAL_STEERING:
-      TRACE_MSG(TRACE_APS1, "signal: ZB_BDB_SIGNAL_STEERING, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        ZB_SCHEDULE_ALARM(trigger_fb_initiator, 0, DUT_FB_INITIATOR_DELAY);
-      }
-      break; /* ZB_BDB_SIGNAL_STEERING */
+        TRACE_MSG(TRACE_APS1, "signal: ZB_BDB_SIGNAL_STEERING, status %d", (FMT__D, status));
+        if (status == 0)
+        {
+            ZB_SCHEDULE_ALARM(trigger_fb_initiator, 0, DUT_FB_INITIATOR_DELAY);
+        }
+        break; /* ZB_BDB_SIGNAL_STEERING */
 
     case ZB_ZDO_SIGNAL_DEVICE_ANNCE:
-      TRACE_MSG(TRACE_APP1, "signal: ZB_ZDO_SIGNAL_DEVICE_ANNCE, status %d", (FMT__D, status));
-      if (status == 0)
-      {
-        zb_zdo_signal_device_annce_params_t *params =
-          ZB_ZDO_SIGNAL_GET_PARAMS(sg_p, zb_zdo_signal_device_annce_params_t);
-
-        if (ZB_IEEE_ADDR_CMP(params->ieee_addr, g_ieee_addr_th_zr1))
+        TRACE_MSG(TRACE_APP1, "signal: ZB_ZDO_SIGNAL_DEVICE_ANNCE, status %d", (FMT__D, status));
+        if (status == 0)
         {
-          g_short_addr_th_zr1 = params->device_short_addr;
+            zb_zdo_signal_device_annce_params_t *params =
+                ZB_ZDO_SIGNAL_GET_PARAMS(sg_p, zb_zdo_signal_device_annce_params_t);
+
+            if (ZB_IEEE_ADDR_CMP(params->ieee_addr, g_ieee_addr_th_zr1))
+            {
+                g_short_addr_th_zr1 = params->device_short_addr;
+            }
         }
-      }
-      break; /* ZB_ZDO_SIGNAL_DEVICE_ANNCE */
+        break; /* ZB_ZDO_SIGNAL_DEVICE_ANNCE */
 
     default:
-      TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
-      break;
-  }
+        TRACE_MSG(TRACE_APS1, "Unknown signal, status %d", (FMT__D, status));
+        break;
+    }
 
-  zb_buf_free(param);
+    zb_buf_free(param);
 }
 
 
@@ -212,86 +212,86 @@ static zb_bool_t finding_binding_cb(zb_int16_t status,
                                     zb_uint8_t ep,
                                     zb_uint16_t cluster)
 {
-  TRACE_MSG(TRACE_ZCL1, "finding_binding_cb status %d addr " TRACE_FORMAT_64 " ep %hd cluster %d",
-            (FMT__D_A_H_D, status, TRACE_ARG_64(addr), ep, cluster));
-  return ZB_TRUE;
+    TRACE_MSG(TRACE_ZCL1, "finding_binding_cb status %d addr " TRACE_FORMAT_64 " ep %hd cluster %d",
+              (FMT__D_A_H_D, status, TRACE_ARG_64(addr), ep, cluster));
+    return ZB_TRUE;
 }
 
 static void trigger_fb_initiator(zb_uint8_t unused)
 {
-  ZVUNUSED(unused);
+    ZVUNUSED(unused);
 
-  zb_bdb_finding_binding_initiator(DUT_ENDPOINT, finding_binding_cb);
+    zb_bdb_finding_binding_initiator(DUT_ENDPOINT, finding_binding_cb);
 }
 
 static zb_ret_t test_check_value_on_off_srv(zb_uint16_t attr_id,
-                                            zb_uint8_t endpoint,
-                                            zb_uint8_t *value)
+        zb_uint8_t endpoint,
+        zb_uint8_t *value)
 {
-  ZVUNUSED(attr_id);
-  ZVUNUSED(endpoint);
-  ZVUNUSED(value);
+    ZVUNUSED(attr_id);
+    ZVUNUSED(endpoint);
+    ZVUNUSED(value);
 
-  TRACE_MSG(TRACE_APP1, "test_check_value_on_off_srv(): test OK", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "test_check_value_on_off_srv(): test OK", (FMT__0));
 
-  ZB_SCHEDULE_APP_ALARM(send_mgmt_lqi_request_delayed, TEST_DUT_LQI_REQ_START_INDEX_1, TEST_DUT_LQI_REQ_DELAY_1);
+    ZB_SCHEDULE_APP_ALARM(send_mgmt_lqi_request_delayed, TEST_DUT_LQI_REQ_START_INDEX_1, TEST_DUT_LQI_REQ_DELAY_1);
 
-  return RET_OK;
+    return RET_OK;
 }
 
 static void test_attr_hook_on_off_srv(zb_uint8_t endpoint, zb_uint16_t attr_id, zb_uint8_t *new_value)
 {
-  ZVUNUSED(attr_id);
-  ZVUNUSED(endpoint);
-  ZVUNUSED(new_value);
+    ZVUNUSED(attr_id);
+    ZVUNUSED(endpoint);
+    ZVUNUSED(new_value);
 
-  TRACE_MSG(TRACE_APP1, "test_attr_hook_on_off_srv(): test OK", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "test_attr_hook_on_off_srv(): test OK", (FMT__0));
 
-  ZB_SCHEDULE_APP_ALARM(send_mgmt_lqi_request_delayed, TEST_DUT_LQI_REQ_START_INDEX_2, TEST_DUT_LQI_REQ_DELAY_2);
+    ZB_SCHEDULE_APP_ALARM(send_mgmt_lqi_request_delayed, TEST_DUT_LQI_REQ_START_INDEX_2, TEST_DUT_LQI_REQ_DELAY_2);
 }
 
 
 static zb_ret_t test_check_value_on_off_cli(zb_uint16_t attr_id,
-                                            zb_uint8_t endpoint,
-                                            zb_uint8_t *value)
+        zb_uint8_t endpoint,
+        zb_uint8_t *value)
 {
-  ZVUNUSED(attr_id);
-  ZVUNUSED(endpoint);
-  ZVUNUSED(value);
+    ZVUNUSED(attr_id);
+    ZVUNUSED(endpoint);
+    ZVUNUSED(value);
 
-  TRACE_MSG(TRACE_ERROR, "test_check_value_on_off_cli(): test FAILED", (FMT__0));
+    TRACE_MSG(TRACE_ERROR, "test_check_value_on_off_cli(): test FAILED", (FMT__0));
 
-  return RET_OK;
+    return RET_OK;
 }
 
 static void test_attr_hook_on_off_cli(zb_uint8_t endpoint, zb_uint16_t attr_id, zb_uint8_t *new_value)
 {
-  ZVUNUSED(attr_id);
-  ZVUNUSED(endpoint);
-  ZVUNUSED(new_value);
+    ZVUNUSED(attr_id);
+    ZVUNUSED(endpoint);
+    ZVUNUSED(new_value);
 
-  TRACE_MSG(TRACE_ERROR, "test_attr_hook_on_off_cli(): test FAILED", (FMT__0));
+    TRACE_MSG(TRACE_ERROR, "test_attr_hook_on_off_cli(): test FAILED", (FMT__0));
 }
 
 static void send_mgmt_lqi_request_delayed(zb_uint8_t param)
 {
-  zb_uint16_t start_index = param;
+    zb_uint16_t start_index = param;
 
-  zb_buf_get_out_delayed_ext(send_mgmt_lqi_request, start_index, 0);
+    zb_buf_get_out_delayed_ext(send_mgmt_lqi_request, start_index, 0);
 }
 
 static void send_mgmt_lqi_request(zb_uint8_t param, zb_uint16_t start_index)
 {
-  zb_zdo_mgmt_lqi_param_t *req_param = ZB_BUF_GET_PARAM(param, zb_zdo_mgmt_lqi_param_t);
+    zb_zdo_mgmt_lqi_param_t *req_param = ZB_BUF_GET_PARAM(param, zb_zdo_mgmt_lqi_param_t);
 
-  TRACE_MSG(TRACE_APP1, ">> mgmt_lqi_resp buf = %d", (FMT__D, param));
+    TRACE_MSG(TRACE_APP1, ">> mgmt_lqi_resp buf = %d", (FMT__D, param));
 
-  req_param->dst_addr = g_short_addr_th_zr1;
-  req_param->start_index = start_index;
+    req_param->dst_addr = g_short_addr_th_zr1;
+    req_param->start_index = start_index;
 
-  zb_zdo_mgmt_lqi_req(param, NULL);
+    zb_zdo_mgmt_lqi_req(param, NULL);
 
-  TRACE_MSG(TRACE_APP1, "<< mgmt_lqi_resp buf", (FMT__0));
+    TRACE_MSG(TRACE_APP1, "<< mgmt_lqi_resp buf", (FMT__0));
 }
 
 

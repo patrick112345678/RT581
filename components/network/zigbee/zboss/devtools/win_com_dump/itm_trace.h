@@ -50,10 +50,10 @@
 #endif
 
 #ifndef ZB_PLATFORM_LINUX_PC32
-  #define PACKED_STRUCT
-  #define PACKET_STRUCT_PRE 1
+#define PACKED_STRUCT
+#define PACKET_STRUCT_PRE 1
 #else
-  #define PACKED_STRUCT __attribute__ ((packed))
+#define PACKED_STRUCT __attribute__ ((packed))
 #endif
 
 /* signature is dump and NCP has different endianness */
@@ -68,48 +68,48 @@
 
 typedef enum pkt_state_e
 {
-  WAIT_PREAMBLE_1ST = 0,
-  WAIT_PREAMBLE_2ND,
-  WAIT_LEN_1ST,
-  WAIT_LEN_2ND,
-  WAIT_TYPE,
-  WAIT_CRC,
-  WAIT_BODY
+    WAIT_PREAMBLE_1ST = 0,
+    WAIT_PREAMBLE_2ND,
+    WAIT_LEN_1ST,
+    WAIT_LEN_2ND,
+    WAIT_TYPE,
+    WAIT_CRC,
+    WAIT_BODY
 }
 pkt_state_t;
 
 typedef struct ring_buf_s
 {
-  size_t rd;
-  size_t wr;
-  size_t cnt;
-  size_t max;
-  unsigned char * buf;
+    size_t rd;
+    size_t wr;
+    size_t cnt;
+    size_t max;
+    unsigned char *buf;
 }
 ring_buf_t;
 
 typedef struct trace_pkt_s
 {
-  size_t size;
-  size_t offset;
-  unsigned char * buf;
+    size_t size;
+    size_t offset;
+    unsigned char *buf;
 }
 trace_pkt_t;
 
 typedef struct itm_ctx_s
 {
-  size_t body_size;
-  size_t body_pos;
-  size_t max;
-  pkt_state_t state;
+    size_t body_size;
+    size_t body_pos;
+    size_t max;
+    pkt_state_t state;
 }
 itm_ctx_t;
 
 typedef struct trace_s
 {
-  ring_buf_t rb;
-  trace_pkt_t trace_pkt;
-  itm_ctx_t itm;
+    ring_buf_t rb;
+    trace_pkt_t trace_pkt;
+    itm_ctx_t itm;
 }
 trace_t;
 

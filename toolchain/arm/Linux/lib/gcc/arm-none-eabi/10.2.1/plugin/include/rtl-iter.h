@@ -30,9 +30,10 @@ along with GCC; see the file COPYING3.  If not see
    rtx_all_subrtx_bounds applies to all codes.  rtx_nonconst_subrtx_bounds
    is like rtx_all_subrtx_bounds except that all constant rtxes are treated
    as having no subrtxes.  */
-struct rtx_subrtx_bound_info {
-  unsigned char start;
-  unsigned char count;
+struct rtx_subrtx_bound_info
+{
+    unsigned char start;
+    unsigned char count;
 };
 extern rtx_subrtx_bound_info rtx_all_subrtx_bounds[];
 extern rtx_subrtx_bound_info rtx_nonconst_subrtx_bounds[];
@@ -42,7 +43,7 @@ extern rtx_subrtx_bound_info rtx_nonconst_subrtx_bounds[];
 static inline bool
 leaf_code_p (enum rtx_code code)
 {
-  return rtx_all_subrtx_bounds[code].count == 0;
+    return rtx_all_subrtx_bounds[code].count == 0;
 }
 
 /* Used to iterate over subrtxes of an rtx.  T abstracts the type of
@@ -50,62 +51,62 @@ leaf_code_p (enum rtx_code code)
 template <typename T>
 class generic_subrtx_iterator
 {
-  static const size_t LOCAL_ELEMS = 16;
-  typedef typename T::value_type value_type;
-  typedef typename T::rtx_type rtx_type;
-  typedef typename T::rtunion_type rtunion_type;
+    static const size_t LOCAL_ELEMS = 16;
+    typedef typename T::value_type value_type;
+    typedef typename T::rtx_type rtx_type;
+    typedef typename T::rtunion_type rtunion_type;
 
 public:
-  class array_type
-  {
-  public:
-    array_type ();
-    ~array_type ();
-    value_type stack[LOCAL_ELEMS];
-    vec <value_type, va_heap, vl_embed> *heap;
-  };
-  generic_subrtx_iterator (array_type &, value_type,
-			   const rtx_subrtx_bound_info *);
+    class array_type
+    {
+    public:
+        array_type ();
+        ~array_type ();
+        value_type stack[LOCAL_ELEMS];
+        vec <value_type, va_heap, vl_embed> *heap;
+    };
+    generic_subrtx_iterator (array_type &, value_type,
+                             const rtx_subrtx_bound_info *);
 
-  value_type operator * () const;
-  bool at_end () const;
-  void next ();
-  void skip_subrtxes ();
-  void substitute (value_type);
+    value_type operator * () const;
+    bool at_end () const;
+    void next ();
+    void skip_subrtxes ();
+    void substitute (value_type);
 
 private:
-  /* The bounds to use for iterating over subrtxes.  */
-  const rtx_subrtx_bound_info *m_bounds;
+    /* The bounds to use for iterating over subrtxes.  */
+    const rtx_subrtx_bound_info *m_bounds;
 
-  /* The storage used for the worklist.  */
-  array_type &m_array;
+    /* The storage used for the worklist.  */
+    array_type &m_array;
 
-  /* The current rtx.  */
-  value_type m_current;
+    /* The current rtx.  */
+    value_type m_current;
 
-  /* The base of the current worklist.  */
-  value_type *m_base;
+    /* The base of the current worklist.  */
+    value_type *m_base;
 
-  /* The number of subrtxes in M_BASE.  */
-  size_t m_end;
+    /* The number of subrtxes in M_BASE.  */
+    size_t m_end;
 
-  /* The following booleans shouldn't end up in registers or memory
-     but just direct control flow.  */
+    /* The following booleans shouldn't end up in registers or memory
+       but just direct control flow.  */
 
-  /* True if the iteration is over.  */
-  bool m_done;
+    /* True if the iteration is over.  */
+    bool m_done;
 
-  /* True if we should skip the subrtxes of M_CURRENT.  */
-  bool m_skip;
+    /* True if we should skip the subrtxes of M_CURRENT.  */
+    bool m_skip;
 
-  /* True if M_CURRENT has been replaced with a different rtx.  */
-  bool m_substitute;
+    /* True if M_CURRENT has been replaced with a different rtx.  */
+    bool m_substitute;
 
-  static void free_array (array_type &);
-  static size_t add_subrtxes_to_queue (array_type &, value_type *, size_t,
-				       rtx_type);
-  static value_type *add_single_to_queue (array_type &, value_type *, size_t,
-					  value_type);
+    static void free_array (array_type &);
+    static size_t add_subrtxes_to_queue (array_type &, value_type *, size_t,
+                                         rtx_type);
+    static value_type *add_single_to_queue (array_type &, value_type *, size_t,
+                                            value_type);
 };
 
 template <typename T>
@@ -114,8 +115,10 @@ inline generic_subrtx_iterator <T>::array_type::array_type () : heap (0) {}
 template <typename T>
 inline generic_subrtx_iterator <T>::array_type::~array_type ()
 {
-  if (__builtin_expect (heap != 0, false))
-    free_array (*this);
+    if (__builtin_expect (heap != 0, false))
+    {
+        free_array (*this);
+    }
 }
 
 /* Iterate over X and its subrtxes, in arbitrary order.  Use ARRAY to
@@ -126,15 +129,15 @@ inline generic_subrtx_iterator <T>::array_type::~array_type ()
 template <typename T>
 inline generic_subrtx_iterator <T>::
 generic_subrtx_iterator (array_type &array, value_type x,
-			 const rtx_subrtx_bound_info *bounds)
-  : m_bounds (bounds),
-    m_array (array),
-    m_current (x),
-    m_base (m_array.stack),
-    m_end (0),
-    m_done (false),
-    m_skip (false),
-    m_substitute (false)
+                         const rtx_subrtx_bound_info *bounds)
+    : m_bounds (bounds),
+      m_array (array),
+      m_current (x),
+      m_base (m_array.stack),
+      m_end (0),
+      m_done (false),
+      m_skip (false),
+      m_substitute (false)
 {
 }
 
@@ -144,7 +147,7 @@ template <typename T>
 inline typename T::value_type
 generic_subrtx_iterator <T>::operator * () const
 {
-  return m_current;
+    return m_current;
 }
 
 /* Return true if the iteration has finished.  */
@@ -153,7 +156,7 @@ template <typename T>
 inline bool
 generic_subrtx_iterator <T>::at_end () const
 {
-  return m_done;
+    return m_done;
 }
 
 /* Move on to the next subrtx.  */
@@ -162,56 +165,68 @@ template <typename T>
 inline void
 generic_subrtx_iterator <T>::next ()
 {
-  if (m_substitute)
+    if (m_substitute)
     {
-      m_substitute = false;
-      m_skip = false;
-      return;
+        m_substitute = false;
+        m_skip = false;
+        return;
     }
-  if (!m_skip)
+    if (!m_skip)
     {
-      /* Add the subrtxes of M_CURRENT.  */
-      rtx_type x = T::get_rtx (m_current);
-      if (__builtin_expect (x != 0, true))
-	{
-	  enum rtx_code code = GET_CODE (x);
-	  ssize_t count = m_bounds[code].count;
-	  if (count > 0)
-	    {
-	      /* Handle the simple case of a single "e" block that is known
-		 to fit into the current array.  */
-	      if (__builtin_expect (m_end + count <= LOCAL_ELEMS + 1, true))
-		{
-		  /* Set M_CURRENT to the first subrtx and queue the rest.  */
-		  ssize_t start = m_bounds[code].start;
-		  rtunion_type *src = &x->u.fld[start];
-		  if (__builtin_expect (count > 2, false))
-		    m_base[m_end++] = T::get_value (src[2].rt_rtx);
-		  if (count > 1)
-		    m_base[m_end++] = T::get_value (src[1].rt_rtx);
-		  m_current = T::get_value (src[0].rt_rtx);
-		  return;
-		}
-	      /* Handle cases which aren't simple "e" sequences or where
-		 the sequence might overrun M_BASE.  */
-	      count = add_subrtxes_to_queue (m_array, m_base, m_end, x);
-	      if (count > 0)
-		{
-		  m_end += count;
-		  if (m_end > LOCAL_ELEMS)
-		    m_base = m_array.heap->address ();
-		  m_current = m_base[--m_end];
-		  return;
-		}
-	    }
-	}
+        /* Add the subrtxes of M_CURRENT.  */
+        rtx_type x = T::get_rtx (m_current);
+        if (__builtin_expect (x != 0, true))
+        {
+            enum rtx_code code = GET_CODE (x);
+            ssize_t count = m_bounds[code].count;
+            if (count > 0)
+            {
+                /* Handle the simple case of a single "e" block that is known
+                to fit into the current array.  */
+                if (__builtin_expect (m_end + count <= LOCAL_ELEMS + 1, true))
+                {
+                    /* Set M_CURRENT to the first subrtx and queue the rest.  */
+                    ssize_t start = m_bounds[code].start;
+                    rtunion_type *src = &x->u.fld[start];
+                    if (__builtin_expect (count > 2, false))
+                    {
+                        m_base[m_end++] = T::get_value (src[2].rt_rtx);
+                    }
+                    if (count > 1)
+                    {
+                        m_base[m_end++] = T::get_value (src[1].rt_rtx);
+                    }
+                    m_current = T::get_value (src[0].rt_rtx);
+                    return;
+                }
+                /* Handle cases which aren't simple "e" sequences or where
+                the sequence might overrun M_BASE.  */
+                count = add_subrtxes_to_queue (m_array, m_base, m_end, x);
+                if (count > 0)
+                {
+                    m_end += count;
+                    if (m_end > LOCAL_ELEMS)
+                    {
+                        m_base = m_array.heap->address ();
+                    }
+                    m_current = m_base[--m_end];
+                    return;
+                }
+            }
+        }
     }
-  else
-    m_skip = false;
-  if (m_end == 0)
-    m_done = true;
-  else
-    m_current = m_base[--m_end];
+    else
+    {
+        m_skip = false;
+    }
+    if (m_end == 0)
+    {
+        m_done = true;
+    }
+    else
+    {
+        m_current = m_base[--m_end];
+    }
 }
 
 /* Skip the subrtxes of the current rtx.  */
@@ -220,7 +235,7 @@ template <typename T>
 inline void
 generic_subrtx_iterator <T>::skip_subrtxes ()
 {
-  m_skip = true;
+    m_skip = true;
 }
 
 /* Ignore the subrtxes of the current rtx and look at X instead.  */
@@ -229,40 +244,58 @@ template <typename T>
 inline void
 generic_subrtx_iterator <T>::substitute (value_type x)
 {
-  m_substitute = true;
-  m_current = x;
+    m_substitute = true;
+    m_current = x;
 }
 
 /* Iterators for const_rtx.  */
 struct const_rtx_accessor
 {
-  typedef const_rtx value_type;
-  typedef const_rtx rtx_type;
-  typedef const rtunion rtunion_type;
-  static rtx_type get_rtx (value_type x) { return x; }
-  static value_type get_value (rtx_type x) { return x; }
+    typedef const_rtx value_type;
+    typedef const_rtx rtx_type;
+    typedef const rtunion rtunion_type;
+    static rtx_type get_rtx (value_type x)
+    {
+        return x;
+    }
+    static value_type get_value (rtx_type x)
+    {
+        return x;
+    }
 };
 typedef generic_subrtx_iterator <const_rtx_accessor> subrtx_iterator;
 
 /* Iterators for non-constant rtx.  */
 struct rtx_var_accessor
 {
-  typedef rtx value_type;
-  typedef rtx rtx_type;
-  typedef rtunion rtunion_type;
-  static rtx_type get_rtx (value_type x) { return x; }
-  static value_type get_value (rtx_type x) { return x; }
+    typedef rtx value_type;
+    typedef rtx rtx_type;
+    typedef rtunion rtunion_type;
+    static rtx_type get_rtx (value_type x)
+    {
+        return x;
+    }
+    static value_type get_value (rtx_type x)
+    {
+        return x;
+    }
 };
 typedef generic_subrtx_iterator <rtx_var_accessor> subrtx_var_iterator;
 
 /* Iterators for rtx *.  */
 struct rtx_ptr_accessor
 {
-  typedef rtx *value_type;
-  typedef rtx rtx_type;
-  typedef rtunion rtunion_type;
-  static rtx_type get_rtx (value_type ptr) { return *ptr; }
-  static value_type get_value (rtx_type &x) { return &x; }
+    typedef rtx *value_type;
+    typedef rtx rtx_type;
+    typedef rtunion rtunion_type;
+    static rtx_type get_rtx (value_type ptr)
+    {
+        return *ptr;
+    }
+    static value_type get_value (rtx_type &x)
+    {
+        return &x;
+    }
 };
 typedef generic_subrtx_iterator <rtx_ptr_accessor> subrtx_ptr_iterator;
 

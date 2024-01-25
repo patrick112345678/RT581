@@ -17,7 +17,8 @@
     Memory Mapped Structure for I2C Master Controller
 @{ */
 
-typedef struct {
+typedef struct
+{
     __IO  uint32_t  RX_DATA;             /*0x00*/
     __IO  uint32_t  I2C_SLAVE_ADDR;      /*0x04*/
     __IO  uint32_t  I2C_INT_ENABLE;      /*0x08*/
@@ -27,7 +28,7 @@ typedef struct {
     __I   uint32_t  I2C_SLAVE_STATUS;    /*0x18*/
 } I2C_SLAVE_T;
 
-#define  WR_DATA     RX_DATA    
+#define  WR_DATA     RX_DATA
 
 #define  I2C_SLAVE_MATCH_ADDR             (0x01)
 #define  I2C_SLAVE_DATA_READY             (0x02)

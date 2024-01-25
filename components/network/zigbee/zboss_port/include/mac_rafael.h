@@ -37,7 +37,7 @@ extern "C" {
 #define ZB_MAC_CLEAR_TRANS_INT()
 #define ZB_MAC_GET_TRANS_INT_FLAG() 0
 #define ZB_MAC_READ_INT_STATUS_REG()
-#define ZB_MAC_GET_RX_INT_STATUS_BIT() TRANS_CTX().int_status_0  
+#define ZB_MAC_GET_RX_INT_STATUS_BIT() TRANS_CTX().int_status_0
 #define ZB_MAC_GET_TX_INT_STATUS_BIT() TRANS_CTX().int_status_1
 #define ZB_MAC_CLEAR_RX_INT_STATUS_BIT()                        \
 {                                                               \
@@ -55,7 +55,7 @@ extern "C" {
 #define ZB_MAC_TRANS_SET_PENDING_BIT() zb_radioSetPendingBit()
 #define ZB_MAC_TRANS_PENDING_BIT()  zb_radioPendBit()
 
-#define ZB_TRANSCEIVER_INIT_RADIO() 
+#define ZB_TRANSCEIVER_INIT_RADIO()
 #define ZB_TRANS_CHECK_CHANNEL_BUSY_ERROR() TRANS_CTX().tx_status
 #define ZB_TRANS_CHECK_TX_RETRY_COUNT_EXCEEDED_ERROR() 0
 #define ZB_TRANS_CHECK_NO_ACK() 0
@@ -84,11 +84,11 @@ extern "C" {
 #define ZB_TRANS_GET_TX_TIMESTAMP()
 #define ZB_TRANSCEIVER_GET_RX_ON_OFF()
 
-#define ZB_TRANSCEIVER_START_GET_RSSI(_scan_duration_bi) 
+#define ZB_TRANSCEIVER_START_GET_RSSI(_scan_duration_bi)
 
 #define ZB_TRANS_SEND_FRAME(header_length, buf, wait_type) \
     zb_radioSendPacket(buf, wait_type);
-#define ZB_TRANS_REPEAT_SEND_FRAME(header_length, buf, wait_type)       
+#define ZB_TRANS_REPEAT_SEND_FRAME(header_length, buf, wait_type)
 
 #define ZB_TRANSCEIVER_ENABLE_AUTO_ACK()
 
@@ -101,32 +101,32 @@ extern "C" {
 
 typedef struct zb_transceiver_ctx_s
 {
-  zb_time_t  timer_ov_period;
-  zb_time_t  rx_timestamp;
-  zb_uint16_t int_status_0;
-  zb_uint16_t int_status_1;
-  zb_uint16_t tx_status;
-  zb_uint8_t err;
-  zb_uint8_t interrupt_flag;
-  zb_uint8_t recv_buf_full;
-  zb_uint8_t csma_backoffs;
-  zb_uint8_t csma_be;
-  zb_uint8_t csma_enable;
-  zb_uint8_t len;
+    zb_time_t  timer_ov_period;
+    zb_time_t  rx_timestamp;
+    zb_uint16_t int_status_0;
+    zb_uint16_t int_status_1;
+    zb_uint16_t tx_status;
+    zb_uint8_t err;
+    zb_uint8_t interrupt_flag;
+    zb_uint8_t recv_buf_full;
+    zb_uint8_t csma_backoffs;
+    zb_uint8_t csma_be;
+    zb_uint8_t csma_enable;
+    zb_uint8_t len;
 
-  zb_uint_t  in_recv;
-  zb_uint_t  rx_fifo_total;
-  zb_uint_t  rx_error;
-  zb_uint_t  tx_autoack_inprogress;
-  zb_uint_t  auto_ack_enabled;
+    zb_uint_t  in_recv;
+    zb_uint_t  rx_fifo_total;
+    zb_uint_t  rx_error;
+    zb_uint_t  tx_autoack_inprogress;
+    zb_uint_t  auto_ack_enabled;
 
-  zb_uint32_t t1, t2;
+    zb_uint32_t t1, t2;
 
-  zb_time_t high_precision_timer;
+    zb_time_t high_precision_timer;
 
-  zb_uint16_t total_tx_retries;
-  zb_uint16_t failed_tx;
-  zb_time_t rx_flush_wd_timer;
+    zb_uint16_t total_tx_retries;
+    zb_uint16_t failed_tx;
+    zb_time_t rx_flush_wd_timer;
 
 
 }
