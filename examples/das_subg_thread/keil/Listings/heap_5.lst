@@ -19,7 +19,7 @@
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"heap_5.c"
 	.file	1 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdlib.h"
-	.file	2 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c"
+	.file	2 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c"
 	.file	3 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
 	.section	.text.pvPortMalloc,"ax",%progbits
 	.hidden	pvPortMalloc                    @ -- Begin function pvPortMalloc
@@ -50,28 +50,28 @@ pvPortMalloc:
 	sub	sp, #4
 	.cfi_def_cfa_offset 32
 .Ltmp0:
-	.loc	2 140 2 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:140:2
+	.loc	2 140 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:140:5
 	movw	r7, :lower16:pxEnd
 	movt	r7, :upper16:pxEnd
 	ldr	r1, [r7]
 .Ltmp1:
 	@DEBUG_VALUE: pvPortMalloc:pvReturn <- 0
 	@DEBUG_VALUE: pvPortMalloc:xWantedSize <- $r0
-	.loc	2 140 2 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:140:2
+	.loc	2 140 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:140:5
 	cbz	r1, .LBB0_9
 .Ltmp2:
 @ %bb.1:
 	@DEBUG_VALUE: pvPortMalloc:xWantedSize <- $r0
 	@DEBUG_VALUE: pvPortMalloc:pvReturn <- 0
-	.loc	2 0 2                           @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:2
+	.loc	2 0 5                           @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:5
 	mov	r4, r0
 .Ltmp3:
 	@DEBUG_VALUE: pvPortMalloc:xWantedSize <- $r4
 	@DEBUG_VALUE: pvPortMalloc:xWantedSize <- $r4
-	.loc	2 142 2 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:142:2
+	.loc	2 142 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:142:5
 	bl	vTaskSuspendAll
 .Ltmp4:
-	.loc	2 148 23                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:148:23
+	.loc	2 148 30                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:148:30
 	movw	r9, :lower16:xBlockAllocatedBit
 	movt	r9, :upper16:xBlockAllocatedBit
 	ldrb.w	r0, [r9]
@@ -79,7 +79,7 @@ pvPortMalloc:
 	it	ne
 	movne.w	r0, #-2147483648
 .Ltmp5:
-	.loc	2 148 7 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:148:7
+	.loc	2 148 14 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:148:14
 	cmp	r4, #0
 	beq	.LBB0_16
 .Ltmp6:
@@ -88,13 +88,13 @@ pvPortMalloc:
 	@DEBUG_VALUE: pvPortMalloc:pvReturn <- 0
 	.loc	2 0 0                           @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:0
 	ands	r0, r4
-	.loc	2 148 7                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:148:7
+	.loc	2 148 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:148:14
 	bne	.LBB0_16
 .Ltmp7:
 @ %bb.3:
 	@DEBUG_VALUE: pvPortMalloc:xWantedSize <- $r4
 	@DEBUG_VALUE: pvPortMalloc:pvReturn <- 0
-	.loc	2 154 17 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:154:17
+	.loc	2 154 29 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:154:29
 	lsls	r0, r4, #29
 	movw	r8, :lower16:xFreeBytesRemaining
 	bic	r0, r4, #7
@@ -104,17 +104,17 @@ pvPortMalloc:
 .Ltmp8:
 	@DEBUG_VALUE: pvPortMalloc:xWantedSize <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: pvPortMalloc:xWantedSize <- undef
-	.loc	2 0 17 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:17
+	.loc	2 0 29 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:29
 	ldr.w	r0, [r8]
 .Ltmp9:
-	.loc	2 173 28 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:173:28
+	.loc	2 173 38 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:173:38
 	adds	r1, r4, #7
 	cmp	r1, r0
 	bhs	.LBB0_16
 .Ltmp10:
 @ %bb.4:
 	@DEBUG_VALUE: pvPortMalloc:pvReturn <- 0
-	.loc	2 178 22                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:178:22
+	.loc	2 178 34                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:178:34
 	movw	r2, :lower16:xStart
 	movt	r2, :upper16:xStart
 .Ltmp11:
@@ -126,10 +126,10 @@ pvPortMalloc:
 	add.w	r1, r4, #8
 .Ltmp13:
 	@DEBUG_VALUE: pvPortMalloc:xWantedSize <- $r1
-	.loc	2 179 23 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:179:23
+	.loc	2 179 36 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:179:36
 	mov	r5, r6
 	ldr	r0, [r5, #4]!
-	.loc	2 179 50 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:179:50
+	.loc	2 179 63 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:179:63
 	cmp	r0, r1
 	bhs	.LBB0_12
 .Ltmp14:
@@ -139,11 +139,11 @@ pvPortMalloc:
 	@DEBUG_VALUE: pvPortMalloc:xWantedSize <- $r1
 	@DEBUG_VALUE: pvPortMalloc:pvReturn <- 0
 	@DEBUG_VALUE: pvPortMalloc:pxBlock <- $r6
-	.loc	2 179 64                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:179:64
+	.loc	2 179 77                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:179:77
 	ldr	r3, [r6]
 .Ltmp15:
 	@DEBUG_VALUE: pvPortMalloc:pxPreviousBlock <- undef
-	.loc	2 179 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:179:5
+	.loc	2 179 17                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:179:17
 	cbz	r3, .LBB0_11
 .Ltmp16:
 	.p2align	2
@@ -151,14 +151,14 @@ pvPortMalloc:
 	@DEBUG_VALUE: pvPortMalloc:pxBlock <- $r6
 	@DEBUG_VALUE: pvPortMalloc:xWantedSize <- $r1
 	@DEBUG_VALUE: pvPortMalloc:pvReturn <- 0
-	.loc	2 179 23                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:179:23
+	.loc	2 179 36                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:179:36
 	ldr	r0, [r3, #4]
 	mov	r2, r6
 	mov	r6, r3
 .Ltmp17:
 	@DEBUG_VALUE: pvPortMalloc:pxBlock <- $r6
 	@DEBUG_VALUE: pvPortMalloc:pxPreviousBlock <- $r2
-	.loc	2 179 50                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:179:50
+	.loc	2 179 63                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:179:63
 	cmp	r0, r1
 	bhs	.LBB0_8
 .Ltmp18:
@@ -169,9 +169,9 @@ pvPortMalloc:
 	@DEBUG_VALUE: pvPortMalloc:pvReturn <- 0
 	@DEBUG_VALUE: pvPortMalloc:pxPreviousBlock <- $r2
 	@DEBUG_VALUE: pvPortMalloc:pxBlock <- $r6
-	.loc	2 179 64                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:179:64
+	.loc	2 179 77                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:179:77
 	ldr	r3, [r6]
-	.loc	2 179 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:179:5
+	.loc	2 179 17                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:179:17
 	cmp	r3, #0
 	bne	.LBB0_6
 .Ltmp19:
@@ -180,14 +180,14 @@ pvPortMalloc:
 	@DEBUG_VALUE: pvPortMalloc:pxPreviousBlock <- $r2
 	@DEBUG_VALUE: pvPortMalloc:xWantedSize <- $r1
 	@DEBUG_VALUE: pvPortMalloc:pvReturn <- 0
-	.loc	2 179 23                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:179:23
+	.loc	2 179 36                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:179:36
 	adds	r5, r6, #4
 	b	.LBB0_12
 .Ltmp20:
 .LBB0_9:
 	@DEBUG_VALUE: pvPortMalloc:xWantedSize <- $r0
 	@DEBUG_VALUE: pvPortMalloc:pvReturn <- 0
-	.loc	2 140 2 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:140:2
+	.loc	2 140 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:140:5
 	movw	r0, :lower16:.L.str
 .Ltmp21:
 	@DEBUG_VALUE: pvPortMalloc:xWantedSize <- [DW_OP_LLVM_entry_value 1] $r0
@@ -210,14 +210,14 @@ pvPortMalloc:
 .LBB0_10:                               @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: pvPortMalloc:xWantedSize <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: pvPortMalloc:pvReturn <- 0
-	.loc	2 140 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:140:2
+	.loc	2 140 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:140:5
 	b	.LBB0_10
 .Ltmp24:
 .LBB0_11:
 	@DEBUG_VALUE: pvPortMalloc:pxBlock <- $r6
 	@DEBUG_VALUE: pvPortMalloc:xWantedSize <- $r1
 	@DEBUG_VALUE: pvPortMalloc:pvReturn <- 0
-	.loc	2 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:2
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:5
 	movw	r2, :lower16:xStart
 	movt	r2, :upper16:xStart
 .Ltmp25:
@@ -227,10 +227,10 @@ pvPortMalloc:
 	@DEBUG_VALUE: pvPortMalloc:pxPreviousBlock <- $r2
 	@DEBUG_VALUE: pvPortMalloc:xWantedSize <- $r1
 	@DEBUG_VALUE: pvPortMalloc:pvReturn <- 0
-	.loc	2 187 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:187:20
+	.loc	2 187 33 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:187:33
 	ldr	r3, [r7]
 .Ltmp26:
-	.loc	2 187 9 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:187:9
+	.loc	2 187 22 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:187:22
 	cmp	r6, r3
 	beq	.LBB0_16
 .Ltmp27:
@@ -239,67 +239,67 @@ pvPortMalloc:
 	@DEBUG_VALUE: pvPortMalloc:pxPreviousBlock <- $r2
 	@DEBUG_VALUE: pvPortMalloc:xWantedSize <- $r1
 	@DEBUG_VALUE: pvPortMalloc:pvReturn <- 0
-	.loc	2 191 63 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:191:63
+	.loc	2 191 78 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:191:78
 	ldr	r4, [r2]
 .Ltmp28:
 	@DEBUG_VALUE: pvPortMalloc:pvReturn <- undef
-	.loc	2 195 50                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:195:50
+	.loc	2 195 65                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:195:65
 	ldr	r7, [r6]
 .Ltmp29:
-	.loc	2 199 32                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:199:32
+	.loc	2 199 48                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:199:48
 	subs	r3, r0, r1
 .Ltmp30:
-	.loc	2 199 10 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:199:10
+	.loc	2 199 26 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:199:26
 	cmp	r3, #17
-	.loc	2 195 39 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:195:39
+	.loc	2 195 54 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:195:54
 	str	r7, [r2]
-	.loc	2 199 10                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:199:10
+	.loc	2 199 26                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:199:26
 	blo	.LBB0_15
 .Ltmp31:
 @ %bb.14:
 	@DEBUG_VALUE: pvPortMalloc:pxBlock <- $r6
 	@DEBUG_VALUE: pvPortMalloc:pxPreviousBlock <- $r2
 	@DEBUG_VALUE: pvPortMalloc:xWantedSize <- $r1
-	.loc	2 205 63                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:205:63
+	.loc	2 205 81                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:205:81
 	adds	r0, r6, r1
 .Ltmp32:
 	@DEBUG_VALUE: pvPortMalloc:pxNewBlockLink <- $r0
-	.loc	2 209 34                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:209:34
+	.loc	2 209 52                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:209:52
 	str	r3, [r0, #4]
-	.loc	2 210 27                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:210:27
+	.loc	2 210 45                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:210:45
 	str	r1, [r5]
-	.loc	2 213 7                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:213:7
+	.loc	2 213 25                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:213:25
 	bl	prvInsertBlockIntoFreeList
 .Ltmp33:
-	.loc	2 220 38                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:220:38
+	.loc	2 220 53                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:220:53
 	ldr	r0, [r5]
 .Ltmp34:
 .LBB0_15:
 	@DEBUG_VALUE: pvPortMalloc:pxBlock <- $r6
-	.loc	2 222 32                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:222:32
+	.loc	2 222 48                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:222:48
 	movw	r1, :lower16:xMinimumEverFreeBytesRemaining
 .Ltmp35:
-	.loc	2 220 26                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:220:26
+	.loc	2 220 41                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:220:41
 	ldr.w	r2, [r8]
 .Ltmp36:
-	.loc	2 222 32                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:222:32
+	.loc	2 222 48                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:222:48
 	movt	r1, :upper16:xMinimumEverFreeBytesRemaining
 	ldr	r3, [r1]
 .Ltmp37:
-	.loc	2 220 26                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:220:26
+	.loc	2 220 41                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:220:41
 	subs	r0, r2, r0
-	.loc	2 222 10                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:222:10
+	.loc	2 222 26                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:222:26
 	cmp	r0, r3
-	.loc	2 220 26                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:220:26
+	.loc	2 220 41                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:220:41
 	str.w	r0, [r8]
 .Ltmp38:
-	.loc	2 224 38                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:224:38
+	.loc	2 224 56                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:224:56
 	it	lo
 	strlo	r0, [r1]
 .Ltmp39:
-	.loc	2 233 29                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:233:29
+	.loc	2 233 44                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:233:44
 	ldrb.w	r0, [r9]
-	.loc	2 233 26 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:233:26
+	.loc	2 233 41 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:233:41
 	ldr	r1, [r5]
 	cmp	r0, #0
 	mov.w	r0, #0
@@ -307,40 +307,40 @@ pvPortMalloc:
 	add.w	r4, r4, #8
 .Ltmp40:
 	@DEBUG_VALUE: pvPortMalloc:pvReturn <- $r4
-	.loc	2 233 26                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:233:26
+	.loc	2 233 41                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:233:41
 	it	ne
 	orrne	r1, r1, #-2147483648
 	str	r1, [r5]
-	.loc	2 234 31 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:234:31
+	.loc	2 234 46 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:234:46
 	str	r0, [r6]
 .Ltmp41:
 	@DEBUG_VALUE: pvPortMalloc:pvReturn <- $r4
-	.loc	2 253 11                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:253:11
+	.loc	2 253 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:253:14
 	bl	xTaskResumeAll
 .Ltmp42:
-	.loc	2 0 11 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:11
+	.loc	2 0 14 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:14
 	b	.LBB0_17
 .Ltmp43:
 .LBB0_16:
 	@DEBUG_VALUE: pvPortMalloc:pvReturn <- 0
-	.loc	2 253 11                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:253:11
+	.loc	2 253 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:253:14
 	bl	xTaskResumeAll
 .Ltmp44:
-	.loc	2 260 4 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:260:4
+	.loc	2 260 13 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:260:13
 	bl	vApplicationMallocFailedHook
 .Ltmp45:
-	.loc	2 0 4 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:4
+	.loc	2 0 13 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:13
 	movs	r4, #0
 .Ltmp46:
 .LBB0_17:
-	.loc	2 269 2 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:269:2
+	.loc	2 269 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:269:5
 	mov	r0, r4
 	add	sp, #4
 	pop.w	{r4, r5, r6, r7, r8, r9, pc}
 .Ltmp47:
 	.p2align	2
 @ %bb.18:
-	.loc	2 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:2
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:5
 .LCPI0_0:
 .L.str.1:
 	.asciz	"pxEnd\000\000"
@@ -360,7 +360,7 @@ pvPortMalloc:
 	.thumb_func
 prvInsertBlockIntoFreeList:
 .Lfunc_begin1:
-	.loc	2 410 0 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:410:0
+	.loc	2 411 0 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:411:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -382,10 +382,10 @@ prvInsertBlockIntoFreeList:
 	mov	r1, r2
 .Ltmp49:
 	@DEBUG_VALUE: prvInsertBlockIntoFreeList:pxIterator <- $r1
-	.loc	2 416 41                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:416:41
+	.loc	2 417 45                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:417:45
 	ldr	r2, [r2]
 .Ltmp50:
-	.loc	2 416 2 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:416:2
+	.loc	2 417 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:417:5
 	cmp	r2, r0
 	blo	.LBB1_1
 .Ltmp51:
@@ -393,16 +393,16 @@ prvInsertBlockIntoFreeList:
 	@DEBUG_VALUE: prvInsertBlockIntoFreeList:pxIterator <- $r1
 	@DEBUG_VALUE: prvInsertBlockIntoFreeList:pxBlockToInsert <- $r0
 	@DEBUG_VALUE: prvInsertBlockIntoFreeList:puc <- $r1
-	.loc	2 424 26 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:424:26
+	.loc	2 425 30 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:425:30
 	ldr.w	lr, [r1, #4]
 .Ltmp52:
 	.loc	2 0 0 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:0
 	ldr.w	r12, [r0, #4]
 .Ltmp53:
-	.loc	2 424 12                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:424:12
+	.loc	2 425 16                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:425:16
 	add.w	r3, r1, lr
 .Ltmp54:
-	.loc	2 424 6                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:424:6
+	.loc	2 425 10                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:425:10
 	cmp	r3, r0
 	bne	.LBB1_4
 .Ltmp55:
@@ -410,14 +410,14 @@ prvInsertBlockIntoFreeList:
 	@DEBUG_VALUE: prvInsertBlockIntoFreeList:puc <- $r1
 	@DEBUG_VALUE: prvInsertBlockIntoFreeList:pxIterator <- $r1
 	@DEBUG_VALUE: prvInsertBlockIntoFreeList:pxBlockToInsert <- $r0
-	.loc	2 426 26 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:426:26
+	.loc	2 427 32 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:427:32
 	add	r12, lr
 .Ltmp56:
-	.loc	2 436 8                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:436:8
+	.loc	2 437 11                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:437:11
 	mov	r0, r1
 .Ltmp57:
 	@DEBUG_VALUE: prvInsertBlockIntoFreeList:pxBlockToInsert <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 426 26                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:426:26
+	.loc	2 427 32                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:427:32
 	str.w	r12, [r1, #4]
 .Ltmp58:
 	@DEBUG_VALUE: prvInsertBlockIntoFreeList:pxBlockToInsert <- $r1
@@ -426,10 +426,10 @@ prvInsertBlockIntoFreeList:
 	@DEBUG_VALUE: prvInsertBlockIntoFreeList:pxIterator <- $r1
 	@DEBUG_VALUE: prvInsertBlockIntoFreeList:pxBlockToInsert <- $r0
 	@DEBUG_VALUE: prvInsertBlockIntoFreeList:puc <- $r0
-	.loc	2 437 12                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:437:12
+	.loc	2 438 16                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:438:16
 	add.w	r3, r0, r12
 .Ltmp59:
-	.loc	2 437 6 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:437:6
+	.loc	2 438 10 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:438:10
 	cmp	r3, r2
 	bne	.LBB1_7
 .Ltmp60:
@@ -437,11 +437,11 @@ prvInsertBlockIntoFreeList:
 	@DEBUG_VALUE: prvInsertBlockIntoFreeList:pxIterator <- $r1
 	@DEBUG_VALUE: prvInsertBlockIntoFreeList:puc <- $r0
 	@DEBUG_VALUE: prvInsertBlockIntoFreeList:pxBlockToInsert <- $r0
-	.loc	2 0 6                           @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:6
+	.loc	2 0 10                          @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:10
 	movw	r3, :lower16:pxEnd
 	movt	r3, :upper16:pxEnd
 	ldr	r3, [r3]
-	.loc	2 437 6                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:437:6
+	.loc	2 438 10                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:438:10
 	cmp	r2, r3
 	beq	.LBB1_7
 .Ltmp61:
@@ -449,9 +449,9 @@ prvInsertBlockIntoFreeList:
 	@DEBUG_VALUE: prvInsertBlockIntoFreeList:pxIterator <- $r1
 	@DEBUG_VALUE: prvInsertBlockIntoFreeList:puc <- $r0
 	@DEBUG_VALUE: prvInsertBlockIntoFreeList:pxBlockToInsert <- $r0
-	.loc	2 443 68 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:443:68
+	.loc	2 444 77 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:444:77
 	ldm	r2, {r2, r3}
-	.loc	2 442 32                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:442:32
+	.loc	2 443 41                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:443:41
 	add	r3, r12
 	str	r3, [r0, #4]
 .Ltmp62:
@@ -459,17 +459,17 @@ prvInsertBlockIntoFreeList:
 	@DEBUG_VALUE: prvInsertBlockIntoFreeList:pxIterator <- $r1
 	@DEBUG_VALUE: prvInsertBlockIntoFreeList:puc <- $r0
 	@DEBUG_VALUE: prvInsertBlockIntoFreeList:pxBlockToInsert <- $r0
-	.loc	2 459 6                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:459:6
+	.loc	2 460 10                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:460:10
 	cmp	r1, r0
 .Ltmp63:
 	.loc	2 0 0 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:0
 	str	r2, [r0]
 .Ltmp64:
-	.loc	2 461 31 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:461:31
+	.loc	2 462 37 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:462:37
 	it	ne
 	strne	r0, [r1]
 .Ltmp65:
-	.loc	2 467 1                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:467:1
+	.loc	2 468 1                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:468:1
 	pop	{r7, pc}
 .Ltmp66:
 .Lfunc_end1:
@@ -504,9 +504,9 @@ pvPortCalloc:
 	.cfi_offset r4, -16
 .Ltmp67:
 	@DEBUG_VALUE: pvPortCalloc:pv <- 0
-	.loc	2 277 32 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:277:32
+	.loc	2 277 35 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:277:35
 	mul	r4, r1, r0
-	.loc	2 277 8 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:277:8
+	.loc	2 277 10 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:277:10
 	mov	r0, r4
 .Ltmp68:
 	@DEBUG_VALUE: pvPortCalloc:numElements <- [DW_OP_LLVM_entry_value 1] $r0
@@ -516,14 +516,14 @@ pvPortCalloc:
 	mov	r5, r0
 .Ltmp70:
 	@DEBUG_VALUE: pvPortCalloc:pv <- $r5
-	.loc	2 278 8 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:278:8
+	.loc	2 278 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:278:9
 	cbz	r0, .LBB2_2
 .Ltmp71:
 @ %bb.1:
 	@DEBUG_VALUE: pvPortCalloc:pv <- $r5
 	@DEBUG_VALUE: pvPortCalloc:sizeOfElement <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: pvPortCalloc:numElements <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 279 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:279:9
+	.loc	2 280 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:280:9
 	mov	r0, r5
 	mov	r1, r4
 	bl	__aeabi_memclr
@@ -532,7 +532,7 @@ pvPortCalloc:
 	@DEBUG_VALUE: pvPortCalloc:pv <- $r5
 	@DEBUG_VALUE: pvPortCalloc:sizeOfElement <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: pvPortCalloc:numElements <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 281 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:281:5
+	.loc	2 282 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:282:5
 	mov	r0, r5
 	pop	{r4, r5, r7, pc}
 .Ltmp73:
@@ -551,7 +551,7 @@ pvPortCalloc:
 	.thumb_func
 pvPortRealloc:
 .Lfunc_begin3:
-	.loc	2 285 0                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:285:0
+	.loc	2 286 0                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:286:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -582,10 +582,10 @@ pvPortRealloc:
 	@DEBUG_VALUE: pvPortRealloc:puc <- $r4
 	@DEBUG_VALUE: pvPortRealloc:xWantedSize <- $r6
 	@DEBUG_VALUE: pvPortRealloc:pv <- $r4
-	.loc	2 291 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:291:5
+	.loc	2 292 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:292:5
 	bl	vTaskSuspendAll
 .Ltmp77:
-	.loc	2 293 13                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:293:13
+	.loc	2 294 13                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:294:13
 	cbz	r6, .LBB3_5
 .Ltmp78:
 @ %bb.1:
@@ -593,7 +593,7 @@ pvPortRealloc:
 	@DEBUG_VALUE: pvPortRealloc:puc <- $r4
 	@DEBUG_VALUE: pvPortRealloc:pv <- $r4
 	@DEBUG_VALUE: pvPortRealloc:pvReturn <- 0
-	.loc	2 295 17                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:295:17
+	.loc	2 296 17                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:296:17
 	cbz	r4, .LBB3_4
 .Ltmp79:
 @ %bb.2:
@@ -603,18 +603,18 @@ pvPortRealloc:
 	@DEBUG_VALUE: pvPortRealloc:pvReturn <- 0
 	@DEBUG_VALUE: pvPortRealloc:puc <- [DW_OP_constu 8, DW_OP_minus, DW_OP_stack_value] $r4
 	@DEBUG_VALUE: pvPortRealloc:pxLink <- [DW_OP_constu 8, DW_OP_minus, DW_OP_stack_value] $r4
-	.loc	2 300 43                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:300:43
+	.loc	2 301 43                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:301:43
 	movw	r9, :lower16:xBlockAllocatedBit
 	movt	r9, :upper16:xBlockAllocatedBit
 	ldrb.w	r7, [r9]
-	.loc	2 300 30 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:300:30
+	.loc	2 301 30 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:301:30
 	ldr	r8, [r4, #-4]
-	.loc	2 300 43                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:300:43
+	.loc	2 301 43                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:301:43
 	cmp	r7, #0
 	it	ne
 	movne.w	r7, #-2147483648
 .Ltmp80:
-	.loc	2 300 21                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:300:21
+	.loc	2 301 21                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:301:21
 	tst.w	r7, r8
 	beq	.LBB3_4
 .Ltmp81:
@@ -626,10 +626,10 @@ pvPortRealloc:
 	@DEBUG_VALUE: pvPortRealloc:pvReturn <- 0
 	@DEBUG_VALUE: pvPortRealloc:puc <- [DW_OP_plus_uconst 4294967288, DW_OP_stack_value] $r4
 	@DEBUG_VALUE: pvPortRealloc:pxLink <- [DW_OP_plus_uconst 4294967288, DW_OP_stack_value] $r4
-	.loc	2 302 33 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:302:33
+	.loc	2 303 33 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:303:33
 	ldr	r0, [r4, #-8]
 .Ltmp82:
-	.loc	2 302 25 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:302:25
+	.loc	2 303 25 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:303:25
 	cbz	r0, .LBB3_8
 .Ltmp83:
 .LBB3_4:
@@ -650,7 +650,7 @@ pvPortRealloc:
 	@DEBUG_VALUE: pvPortRealloc:puc <- $r4
 	@DEBUG_VALUE: pvPortRealloc:pv <- $r4
 	@DEBUG_VALUE: pvPortRealloc:pvReturn <- 0
-	.loc	2 341 13 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:341:13
+	.loc	2 342 13 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:342:13
 	mov	r0, r4
 	bl	vPortFree
 .Ltmp87:
@@ -666,10 +666,10 @@ pvPortRealloc:
 	@DEBUG_VALUE: pvPortRealloc:xWantedSize <- $r6
 	@DEBUG_VALUE: pvPortRealloc:pv <- $r4
 	@DEBUG_VALUE: pvPortRealloc:pvReturn <- $r5
-	.loc	2 345 11 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:345:11
+	.loc	2 346 14 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:346:14
 	bl	xTaskResumeAll
 .Ltmp89:
-	.loc	2 346 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:346:5
+	.loc	2 347 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:347:5
 	mov	r0, r5
 	add	sp, #4
 	pop.w	{r4, r5, r6, r7, r8, r9, pc}
@@ -684,12 +684,12 @@ pvPortRealloc:
 	@DEBUG_VALUE: pvPortCalloc:numElements <- 1
 	@DEBUG_VALUE: pvPortCalloc:sizeOfElement <- $r6
 	@DEBUG_VALUE: pvPortCalloc:pv <- 0
-	.loc	2 277 8                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:277:8
+	.loc	2 277 10                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:277:10
 	mov	r0, r6
 	bl	pvPortMalloc
 .Ltmp91:
 	@DEBUG_VALUE: pvPortCalloc:pv <- $r0
-	.loc	2 278 8                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:278:8
+	.loc	2 278 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:278:9
 	cmp	r0, #0
 	beq	.LBB3_6
 .Ltmp92:
@@ -711,13 +711,13 @@ pvPortRealloc:
 	sub.w	r8, r0, #8
 .Ltmp94:
 	@DEBUG_VALUE: pvPortRealloc:block_size <- $r8
-	.loc	2 279 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:279:9
+	.loc	2 280 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:280:9
 	mov	r0, r5
 	mov	r1, r6
 	bl	__aeabi_memclr
 .Ltmp95:
 	@DEBUG_VALUE: pvPortRealloc:pvReturn <- $r5
-	.loc	2 310 33                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:310:33
+	.loc	2 311 33                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:311:33
 	cmp	r8, r6
 	blo	.LBB3_11
 .Ltmp96:
@@ -730,15 +730,15 @@ pvPortRealloc:
 	@DEBUG_VALUE: pvPortRealloc:pv <- $r4
 	@DEBUG_VALUE: pvPortRealloc:puc <- [DW_OP_constu 8, DW_OP_minus, DW_OP_stack_value] $r5
 	@DEBUG_VALUE: pvPortRealloc:pxLink <- [DW_OP_constu 8, DW_OP_minus, DW_OP_stack_value] $r5
-	.loc	2 318 45                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:318:45
+	.loc	2 319 69                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:319:69
 	ldrb.w	r0, [r9]
-	.loc	2 318 31 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:318:31
+	.loc	2 319 55 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:319:55
 	ldr	r1, [r5, #-4]
-	.loc	2 318 42                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:318:42
+	.loc	2 319 66                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:319:66
 	cmp	r0, #0
 	it	ne
 	bicne	r1, r1, #-2147483648
-	.loc	2 318 65                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:318:65
+	.loc	2 319 89                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:319:89
 	sub.w	r8, r1, #8
 .Ltmp97:
 	@DEBUG_VALUE: pvPortRealloc:block_size <- $r8
@@ -753,7 +753,7 @@ pvPortRealloc:
 	mov	r2, r8
 	bl	__aeabi_memcpy
 .Ltmp98:
-	.loc	2 321 29 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:321:29
+	.loc	2 322 29 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:322:29
 	mov	r0, r4
 	bl	vPortFree
 .Ltmp99:
@@ -775,7 +775,7 @@ pvPortRealloc:
 	.thumb_func
 vPortFree:
 .Lfunc_begin4:
-	.loc	2 350 0 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:350:0
+	.loc	2 351 0 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:351:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -794,13 +794,13 @@ vPortFree:
 .Ltmp101:
 	@DEBUG_VALUE: vPortFree:puc <- $r0
 	@DEBUG_VALUE: vPortFree:puc <- $r0
-	.loc	2 354 6 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:354:6
+	.loc	2 355 10 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:355:10
 	cbz	r0, .LBB4_5
 .Ltmp102:
 @ %bb.1:
 	@DEBUG_VALUE: vPortFree:puc <- $r0
 	@DEBUG_VALUE: vPortFree:pv <- $r0
-	.loc	2 0 6 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:6
+	.loc	2 0 10 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:10
 	mov	r4, r0
 .Ltmp103:
 	@DEBUG_VALUE: vPortFree:pv <- $r4
@@ -808,7 +808,7 @@ vPortFree:
 	@DEBUG_VALUE: vPortFree:puc <- $r4
 	@DEBUG_VALUE: vPortFree:puc <- undef
 	@DEBUG_VALUE: vPortFree:pxLink <- undef
-	.loc	2 364 3 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:364:3
+	.loc	2 365 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:365:9
 	movw	r0, :lower16:xBlockAllocatedBit
 	movt	r0, :upper16:xBlockAllocatedBit
 	ldrb	r0, [r0]
@@ -817,7 +817,7 @@ vPortFree:
 	it	ne
 	movne.w	r0, #-2147483648
 .Ltmp104:
-	.loc	2 364 3 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:364:3
+	.loc	2 365 9 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:365:9
 	tst	r0, r1
 	beq	.LBB4_6
 .Ltmp105:
@@ -828,21 +828,21 @@ vPortFree:
 .Ltmp106:
 	@DEBUG_VALUE: vPortFree:pxLink <- $r5
 	@DEBUG_VALUE: vPortFree:puc <- $r5
-	.loc	2 365 3 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:365:3
+	.loc	2 366 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:366:9
 	ldr	r2, [r5]
 .Ltmp107:
-	.loc	2 365 3 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:365:3
+	.loc	2 366 9 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:366:9
 	cbz	r2, .LBB4_8
 .Ltmp108:
 @ %bb.3:
 	@DEBUG_VALUE: vPortFree:puc <- $r5
 	@DEBUG_VALUE: vPortFree:pxLink <- $r5
 	@DEBUG_VALUE: vPortFree:pv <- $r4
-	.loc	2 365 3                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:365:3
+	.loc	2 366 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:366:9
 	movw	r0, :lower16:.L.str
 	movw	r2, :lower16:.L.str.2
 	movw	r3, :lower16:.L__func__.vPortFree
-	movw	r5, #365
+	mov.w	r5, #366
 .Ltmp109:
 	movt	r0, :upper16:.L.str
 	adr	r1, .LCPI4_0
@@ -859,23 +859,23 @@ vPortFree:
 	.p2align	2
 .LBB4_4:                                @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: vPortFree:pv <- $r4
-	.loc	2 365 3                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:365:3
+	.loc	2 366 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:366:9
 	b	.LBB4_4
 .Ltmp112:
 .LBB4_5:
 	@DEBUG_VALUE: vPortFree:puc <- $r0
 	@DEBUG_VALUE: vPortFree:pv <- $r0
-	.loc	2 394 1                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:394:1
+	.loc	2 395 1                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:395:1
 	add	sp, #8
 	pop	{r4, r5, r7, pc}
 .Ltmp113:
 .LBB4_6:
 	@DEBUG_VALUE: vPortFree:pv <- $r4
-	.loc	2 364 3                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:364:3
+	.loc	2 365 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:365:9
 	movw	r0, :lower16:.L.str
 	movw	r2, :lower16:.L.str.2
 	movw	r3, :lower16:.L__func__.vPortFree
-	mov.w	r5, #364
+	movw	r5, #365
 	movt	r0, :upper16:.L.str
 	adr	r1, .LCPI4_1
 	movt	r2, :upper16:.L.str.2
@@ -891,33 +891,33 @@ vPortFree:
 	.p2align	2
 .LBB4_7:                                @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: vPortFree:pv <- $r4
-	.loc	2 364 3                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:364:3
+	.loc	2 365 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:365:9
 	b	.LBB4_7
 .Ltmp116:
 .LBB4_8:
 	@DEBUG_VALUE: vPortFree:puc <- $r5
 	@DEBUG_VALUE: vPortFree:pxLink <- $r5
 	@DEBUG_VALUE: vPortFree:pv <- $r4
-	.loc	2 373 24                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:373:24
+	.loc	2 374 36                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:374:36
 	bic.w	r0, r1, r0
 	str	r0, [r4, #-4]
-	.loc	2 375 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:375:5
+	.loc	2 376 17                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:376:17
 	bl	vTaskSuspendAll
 .Ltmp117:
-	.loc	2 378 26                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:378:26
+	.loc	2 379 41                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:379:41
 	movw	r1, :lower16:xFreeBytesRemaining
 	movt	r1, :upper16:xFreeBytesRemaining
-	.loc	2 378 37 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:378:37
+	.loc	2 379 52 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:379:52
 	ldr	r0, [r4, #-4]
-	.loc	2 378 26                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:378:26
+	.loc	2 379 41                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:379:41
 	ldr	r2, [r1]
 	add	r0, r2
 	str	r0, [r1]
-	.loc	2 380 6 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:380:6
+	.loc	2 381 21 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:381:21
 	mov	r0, r5
 	bl	prvInsertBlockIntoFreeList
 .Ltmp118:
-	.loc	2 382 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:382:14
+	.loc	2 383 26                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:383:26
 	add	sp, #8
 	pop.w	{r4, r5, r7, lr}
 .Ltmp119:
@@ -926,7 +926,7 @@ vPortFree:
 .Ltmp120:
 	.p2align	2
 @ %bb.9:
-	.loc	2 0 14 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:14
+	.loc	2 0 26 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:26
 .LCPI4_0:
 .L.str.4:
 	.asciz	"pxLink->pxNextFreeBlock == NULL"
@@ -936,7 +936,7 @@ vPortFree:
 .Lfunc_end4:
 	.size	vPortFree, .Lfunc_end4-vPortFree
 	.cfi_endproc
-	.file	5 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\task.h"
+	.file	5 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\task.h"
 	.cantunwind
 	.fnend
                                         @ -- End function
@@ -949,15 +949,15 @@ vPortFree:
 	.thumb_func
 xPortGetFreeHeapSize:
 .Lfunc_begin5:
-	.loc	2 398 0 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:398:0
+	.loc	2 399 0 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:399:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
-	.loc	2 399 9 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:399:9
+	.loc	2 400 12 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:400:12
 	movw	r0, :lower16:xFreeBytesRemaining
 	movt	r0, :upper16:xFreeBytesRemaining
 	ldr	r0, [r0]
-	.loc	2 399 2 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:399:2
+	.loc	2 400 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:400:5
 	bx	lr
 .Ltmp121:
 .Lfunc_end5:
@@ -975,15 +975,15 @@ xPortGetFreeHeapSize:
 	.thumb_func
 xPortGetMinimumEverFreeHeapSize:
 .Lfunc_begin6:
-	.loc	2 404 0 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:404:0
+	.loc	2 405 0 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:405:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
-	.loc	2 405 9 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:405:9
+	.loc	2 406 12 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:406:12
 	movw	r0, :lower16:xMinimumEverFreeBytesRemaining
 	movt	r0, :upper16:xMinimumEverFreeBytesRemaining
 	ldr	r0, [r0]
-	.loc	2 405 2 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:405:2
+	.loc	2 406 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:406:5
 	bx	lr
 .Ltmp122:
 .Lfunc_end6:
@@ -1001,7 +1001,7 @@ xPortGetMinimumEverFreeHeapSize:
 	.thumb_func
 vPortDefineHeapRegions:
 .Lfunc_begin7:
-	.loc	2 471 0 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:471:0
+	.loc	2 472 0 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:472:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -1018,7 +1018,7 @@ vPortDefineHeapRegions:
 	sub	sp, #4
 	.cfi_def_cfa_offset 24
 .Ltmp123:
-	.loc	2 480 2 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:480:2
+	.loc	2 481 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:481:5
 	movw	r1, :lower16:pxEnd
 	movt	r1, :upper16:pxEnd
 	ldr	r2, [r1]
@@ -1027,7 +1027,7 @@ vPortDefineHeapRegions:
 	@DEBUG_VALUE: vPortDefineHeapRegions:xTotalHeapSize <- 0
 	@DEBUG_VALUE: vPortDefineHeapRegions:pxFirstFreeBlockInRegion <- 0
 	@DEBUG_VALUE: vPortDefineHeapRegions:pxHeapRegions <- $r0
-	.loc	2 480 2 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:480:2
+	.loc	2 481 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:481:5
 	cbz	r2, .LBB7_3
 .Ltmp125:
 @ %bb.1:
@@ -1035,13 +1035,13 @@ vPortDefineHeapRegions:
 	@DEBUG_VALUE: vPortDefineHeapRegions:pxFirstFreeBlockInRegion <- 0
 	@DEBUG_VALUE: vPortDefineHeapRegions:xTotalHeapSize <- 0
 	@DEBUG_VALUE: vPortDefineHeapRegions:xDefinedRegions <- 0
-	.loc	2 480 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:480:2
+	.loc	2 481 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:481:5
 	movw	r0, :lower16:.L.str
 .Ltmp126:
 	@DEBUG_VALUE: vPortDefineHeapRegions:pxHeapRegions <- [DW_OP_LLVM_entry_value 1] $r0
 	movw	r2, :lower16:.L.str.2
 	movw	r3, :lower16:.L__func__.vPortDefineHeapRegions
-	mov.w	r7, #480
+	movw	r7, #481
 	movt	r0, :upper16:.L.str
 	adr	r1, .LCPI7_0
 	movt	r2, :upper16:.L.str.2
@@ -1060,7 +1060,7 @@ vPortDefineHeapRegions:
 	@DEBUG_VALUE: vPortDefineHeapRegions:pxFirstFreeBlockInRegion <- 0
 	@DEBUG_VALUE: vPortDefineHeapRegions:xTotalHeapSize <- 0
 	@DEBUG_VALUE: vPortDefineHeapRegions:xDefinedRegions <- 0
-	.loc	2 480 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:480:2
+	.loc	2 481 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:481:5
 	b	.LBB7_2
 .Ltmp129:
 .LBB7_3:
@@ -1071,9 +1071,9 @@ vPortDefineHeapRegions:
 	@DEBUG_VALUE: vPortDefineHeapRegions:xTotalHeapSize <- 0
 	@DEBUG_VALUE: vPortDefineHeapRegions:xDefinedRegions <- 0
 	@DEBUG_VALUE: vPortDefineHeapRegions:pxHeapRegion <- $r0
-	.loc	2 484 23                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:484:23
+	.loc	2 485 27                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:485:27
 	ldr	r4, [r0, #4]
-	.loc	2 484 2 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:484:2
+	.loc	2 485 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:485:5
 	cmp	r4, #0
 	beq	.LBB7_14
 .Ltmp130:
@@ -1083,7 +1083,7 @@ vPortDefineHeapRegions:
 	@DEBUG_VALUE: vPortDefineHeapRegions:pxFirstFreeBlockInRegion <- 0
 	@DEBUG_VALUE: vPortDefineHeapRegions:xTotalHeapSize <- 0
 	@DEBUG_VALUE: vPortDefineHeapRegions:xDefinedRegions <- 0
-	.loc	2 0 2                           @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:2
+	.loc	2 0 5                           @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:5
 	movw	r12, :lower16:xStart
 	mov.w	lr, #0
 	movt	r12, :upper16:xStart
@@ -1097,17 +1097,17 @@ vPortDefineHeapRegions:
 	@DEBUG_VALUE: vPortDefineHeapRegions:xDefinedRegions <- $r3
 	@DEBUG_VALUE: vPortDefineHeapRegions:pxHeapRegion <- undef
 	@DEBUG_VALUE: vPortDefineHeapRegions:xTotalRegionSize <- $r4
-	.loc	2 489 39 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:489:39
+	.loc	2 490 45 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:490:45
 	ldr.w	r7, [r0, r3, lsl #3]
 .Ltmp132:
 	@DEBUG_VALUE: vPortDefineHeapRegions:xAddress <- $r7
-	.loc	2 490 7                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:490:7
+	.loc	2 491 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:491:14
 	adds	r5, r7, #7
 .Ltmp133:
-	.loc	2 490 18 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:490:18
+	.loc	2 491 25 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:491:25
 	ands	r6, r7, #7
 .Ltmp134:
-	.loc	2 490 7                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:490:7
+	.loc	2 491 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:491:14
 	bic	r5, r5, #7
 	ite	ne
 	subne	r6, r7, r5
@@ -1118,7 +1118,7 @@ vPortDefineHeapRegions:
 	@DEBUG_VALUE: vPortDefineHeapRegions:xAlignedHeap <- $r5
 	@DEBUG_VALUE: vPortDefineHeapRegions:xAddress <- $r5
 	@DEBUG_VALUE: vPortDefineHeapRegions:xTotalRegionSize <- undef
-	.loc	2 0 7                           @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:7
+	.loc	2 0 14                          @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:14
 	cbz	r3, .LBB7_8
 .Ltmp136:
 @ %bb.6:                                @   in Loop: Header=BB7_5 Depth=1
@@ -1127,10 +1127,10 @@ vPortDefineHeapRegions:
 	@DEBUG_VALUE: vPortDefineHeapRegions:xDefinedRegions <- $r3
 	@DEBUG_VALUE: vPortDefineHeapRegions:xTotalHeapSize <- $r2
 	@DEBUG_VALUE: vPortDefineHeapRegions:pxHeapRegions <- $r0
-	.loc	2 513 4 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:513:4
+	.loc	2 514 13 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:514:13
 	ldr	r7, [r1]
 .Ltmp137:
-	.loc	2 513 4 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:513:4
+	.loc	2 514 13 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:514:13
 	cmp	r7, #0
 	beq	.LBB7_17
 .Ltmp138:
@@ -1140,7 +1140,7 @@ vPortDefineHeapRegions:
 	@DEBUG_VALUE: vPortDefineHeapRegions:xDefinedRegions <- $r3
 	@DEBUG_VALUE: vPortDefineHeapRegions:xTotalHeapSize <- $r2
 	@DEBUG_VALUE: vPortDefineHeapRegions:pxHeapRegions <- $r0
-	.loc	2 516 4 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:516:4
+	.loc	2 517 13 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:517:13
 	cmp	r5, r7
 	bhi	.LBB7_9
 	b	.LBB7_19
@@ -1152,12 +1152,12 @@ vPortDefineHeapRegions:
 	@DEBUG_VALUE: vPortDefineHeapRegions:xDefinedRegions <- $r3
 	@DEBUG_VALUE: vPortDefineHeapRegions:xTotalHeapSize <- $r2
 	@DEBUG_VALUE: vPortDefineHeapRegions:pxHeapRegions <- $r0
-	.loc	2 521 25                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:521:25
+	.loc	2 522 31                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:522:31
 	ldr	r7, [r1]
 .Ltmp140:
-	.loc	2 506 27                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:506:27
+	.loc	2 507 36                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:507:36
 	str.w	r5, [r12]
-	.loc	2 507 22                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:507:22
+	.loc	2 508 31                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:508:31
 	str.w	lr, [r12, #4]
 .Ltmp141:
 .LBB7_9:                                @   in Loop: Header=BB7_5 Depth=1
@@ -1168,32 +1168,32 @@ vPortDefineHeapRegions:
 	@DEBUG_VALUE: vPortDefineHeapRegions:pxHeapRegions <- $r0
 	@DEBUG_VALUE: vPortDefineHeapRegions:xAddress <- undef
 	@DEBUG_VALUE: vPortDefineHeapRegions:pxPreviousFreeBlock <- $r7
-	.loc	2 490 7                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:490:7
+	.loc	2 491 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:491:14
 	add	r4, r5
-	.loc	2 525 27                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:525:27
+	.loc	2 526 33                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:526:33
 	add	r4, r6
-	.loc	2 526 12                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:526:12
+	.loc	2 527 18                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:527:18
 	subs	r4, #8
 .Ltmp142:
 	@DEBUG_VALUE: vPortDefineHeapRegions:xAddress <- $r4
-	.loc	2 527 12                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:527:12
+	.loc	2 528 18                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:528:18
 	bic	r4, r4, #7
 .Ltmp143:
 	@DEBUG_VALUE: vPortDefineHeapRegions:xAddress <- $r4
-	.loc	2 528 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:528:9
+	.loc	2 529 15                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:529:15
 	str	r4, [r1]
 .Ltmp144:
 	@DEBUG_VALUE: vPortDefineHeapRegions:pxFirstFreeBlockInRegion <- $r5
-	.loc	2 530 26                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:530:26
+	.loc	2 531 32                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:531:32
 	strd	lr, lr, [r4]
-	.loc	2 536 51                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:536:51
+	.loc	2 537 57                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:537:57
 	subs	r6, r4, r5
-	.loc	2 537 47                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:537:47
+	.loc	2 538 53                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:538:53
 	ldr	r4, [r1]
 .Ltmp145:
-	.loc	2 536 40                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:536:40
+	.loc	2 537 46                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:537:46
 	str	r6, [r5, #4]
-	.loc	2 537 45                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:537:45
+	.loc	2 538 51                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:538:51
 	str	r4, [r5]
 	cbz	r7, .LBB7_11
 .Ltmp146:
@@ -1204,7 +1204,7 @@ vPortDefineHeapRegions:
 	@DEBUG_VALUE: vPortDefineHeapRegions:xDefinedRegions <- $r3
 	@DEBUG_VALUE: vPortDefineHeapRegions:xTotalHeapSize <- $r2
 	@DEBUG_VALUE: vPortDefineHeapRegions:pxHeapRegions <- $r0
-	.loc	2 543 41                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:543:41
+	.loc	2 544 50                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:544:50
 	str	r5, [r7]
 .Ltmp147:
 .LBB7_11:                               @   in Loop: Header=BB7_5 Depth=1
@@ -1216,22 +1216,22 @@ vPortDefineHeapRegions:
 	@DEBUG_VALUE: vPortDefineHeapRegions:pxHeapRegions <- $r0
 	.loc	2 0 0 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:0
 	add.w	r4, r0, r3, lsl #3
-	.loc	2 484 23 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:484:23
+	.loc	2 485 27 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:485:27
 	ldr	r4, [r4, #12]
 .Ltmp148:
-	.loc	2 546 18                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:546:18
+	.loc	2 547 24                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:547:24
 	add	r2, r6
 .Ltmp149:
 	@DEBUG_VALUE: vPortDefineHeapRegions:xTotalHeapSize <- $r2
-	.loc	2 484 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:484:2
+	.loc	2 485 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:485:5
 	cmp	r4, #0
 .Ltmp150:
-	.loc	2 549 18                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:549:18
+	.loc	2 550 24                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:550:24
 	add.w	r3, r3, #1
 .Ltmp151:
 	@DEBUG_VALUE: vPortDefineHeapRegions:pxHeapRegion <- undef
 	@DEBUG_VALUE: vPortDefineHeapRegions:xDefinedRegions <- $r3
-	.loc	2 0 18 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:18
+	.loc	2 0 24 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:24
 	bne	.LBB7_5
 .Ltmp152:
 @ %bb.12:
@@ -1241,13 +1241,13 @@ vPortDefineHeapRegions:
 	@DEBUG_VALUE: vPortDefineHeapRegions:xDefinedRegions <- $r3
 	@DEBUG_VALUE: vPortDefineHeapRegions:xTotalHeapSize <- $r2
 	@DEBUG_VALUE: vPortDefineHeapRegions:pxHeapRegions <- $r0
-	.loc	2 553 33 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:553:33
+	.loc	2 554 36 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:554:36
 	movw	r0, :lower16:xMinimumEverFreeBytesRemaining
 .Ltmp153:
 	@DEBUG_VALUE: vPortDefineHeapRegions:pxHeapRegions <- [DW_OP_LLVM_entry_value 1] $r0
 	movt	r0, :upper16:xMinimumEverFreeBytesRemaining
 	str	r2, [r0]
-	.loc	2 554 22                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:554:22
+	.loc	2 555 25                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:555:25
 	movw	r0, :lower16:xFreeBytesRemaining
 	movt	r0, :upper16:xFreeBytesRemaining
 	str	r2, [r0]
@@ -1260,12 +1260,12 @@ vPortDefineHeapRegions:
 	@DEBUG_VALUE: vPortDefineHeapRegions:xDefinedRegions <- $r3
 	@DEBUG_VALUE: vPortDefineHeapRegions:xTotalHeapSize <- $r2
 	@DEBUG_VALUE: vPortDefineHeapRegions:pxHeapRegions <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 559 21                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:559:21
+	.loc	2 560 24                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:560:24
 	movw	r0, :lower16:xBlockAllocatedBit
 	movt	r0, :upper16:xBlockAllocatedBit
 	movs	r1, #1
 	strb	r1, [r0]
-	.loc	2 560 1                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:560:1
+	.loc	2 561 1                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:561:1
 	add	sp, #4
 	pop	{r4, r5, r6, r7, pc}
 .Ltmp155:
@@ -1275,25 +1275,25 @@ vPortDefineHeapRegions:
 	@DEBUG_VALUE: vPortDefineHeapRegions:pxFirstFreeBlockInRegion <- 0
 	@DEBUG_VALUE: vPortDefineHeapRegions:xTotalHeapSize <- 0
 	@DEBUG_VALUE: vPortDefineHeapRegions:xDefinedRegions <- 0
-	.loc	2 553 33                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:553:33
+	.loc	2 554 36                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:554:36
 	movw	r0, :lower16:xMinimumEverFreeBytesRemaining
 .Ltmp156:
 	@DEBUG_VALUE: vPortDefineHeapRegions:pxHeapRegions <- [DW_OP_LLVM_entry_value 1] $r0
 	movt	r0, :upper16:xMinimumEverFreeBytesRemaining
 	movs	r1, #0
 	str	r1, [r0]
-	.loc	2 554 22                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:554:22
+	.loc	2 555 25                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:555:25
 	movw	r0, :lower16:xFreeBytesRemaining
 	movt	r0, :upper16:xFreeBytesRemaining
 	str	r1, [r0]
 .Ltmp157:
 .LBB7_15:
 	@DEBUG_VALUE: vPortDefineHeapRegions:pxHeapRegions <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 556 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:556:2
+	.loc	2 557 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:557:5
 	movw	r0, :lower16:.L.str
 	movw	r2, :lower16:.L.str.2
 	movw	r3, :lower16:.L__func__.vPortDefineHeapRegions
-	mov.w	r7, #556
+	movw	r7, #557
 	movt	r0, :upper16:.L.str
 	adr	r1, .LCPI7_3
 	movt	r2, :upper16:.L.str.2
@@ -1309,7 +1309,7 @@ vPortDefineHeapRegions:
 	.p2align	2
 .LBB7_16:                               @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: vPortDefineHeapRegions:pxHeapRegions <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 556 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:556:2
+	.loc	2 557 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:557:5
 	b	.LBB7_16
 .Ltmp160:
 .LBB7_17:
@@ -1318,7 +1318,7 @@ vPortDefineHeapRegions:
 	@DEBUG_VALUE: vPortDefineHeapRegions:xDefinedRegions <- $r3
 	@DEBUG_VALUE: vPortDefineHeapRegions:xTotalHeapSize <- $r2
 	@DEBUG_VALUE: vPortDefineHeapRegions:pxHeapRegions <- $r0
-	.loc	2 513 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:513:4
+	.loc	2 514 13                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:514:13
 	movw	r0, :lower16:.L.str
 .Ltmp161:
 	@DEBUG_VALUE: vPortDefineHeapRegions:pxHeapRegions <- [DW_OP_LLVM_entry_value 1] $r0
@@ -1327,9 +1327,9 @@ vPortDefineHeapRegions:
 .Ltmp162:
 	movw	r3, :lower16:.L__func__.vPortDefineHeapRegions
 .Ltmp163:
-	.loc	2 0 4 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:4
-	movw	r7, #513
-	.loc	2 513 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:513:4
+	.loc	2 0 13 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:13
+	movw	r7, #514
+	.loc	2 514 13                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:514:13
 	movt	r0, :upper16:.L.str
 	adr	r1, .LCPI7_2
 	movt	r2, :upper16:.L.str.2
@@ -1347,7 +1347,7 @@ vPortDefineHeapRegions:
 	@DEBUG_VALUE: vPortDefineHeapRegions:xAlignedHeap <- $r5
 	@DEBUG_VALUE: vPortDefineHeapRegions:xAddress <- $r5
 	@DEBUG_VALUE: vPortDefineHeapRegions:pxHeapRegions <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 513 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:513:4
+	.loc	2 514 13                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:514:13
 	b	.LBB7_18
 .Ltmp166:
 .LBB7_19:
@@ -1356,7 +1356,7 @@ vPortDefineHeapRegions:
 	@DEBUG_VALUE: vPortDefineHeapRegions:xDefinedRegions <- $r3
 	@DEBUG_VALUE: vPortDefineHeapRegions:xTotalHeapSize <- $r2
 	@DEBUG_VALUE: vPortDefineHeapRegions:pxHeapRegions <- $r0
-	.loc	2 516 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:516:4
+	.loc	2 517 13                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:517:13
 	movw	r0, :lower16:.L.str
 .Ltmp167:
 	@DEBUG_VALUE: vPortDefineHeapRegions:pxHeapRegions <- [DW_OP_LLVM_entry_value 1] $r0
@@ -1365,9 +1365,9 @@ vPortDefineHeapRegions:
 .Ltmp168:
 	movw	r3, :lower16:.L__func__.vPortDefineHeapRegions
 .Ltmp169:
-	.loc	2 0 4 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:4
-	mov.w	r7, #516
-	.loc	2 516 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:516:4
+	.loc	2 0 13 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:13
+	movw	r7, #517
+	.loc	2 517 13                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:517:13
 	movt	r0, :upper16:.L.str
 	adr	r1, .LCPI7_1
 	movt	r2, :upper16:.L.str.2
@@ -1385,12 +1385,12 @@ vPortDefineHeapRegions:
 	@DEBUG_VALUE: vPortDefineHeapRegions:xAlignedHeap <- $r5
 	@DEBUG_VALUE: vPortDefineHeapRegions:xAddress <- $r5
 	@DEBUG_VALUE: vPortDefineHeapRegions:pxHeapRegions <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 516 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:516:4
+	.loc	2 517 13                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:517:13
 	b	.LBB7_20
 .Ltmp172:
 	.p2align	2
 @ %bb.21:
-	.loc	2 0 4 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:4
+	.loc	2 0 13 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c:0:13
 .LCPI7_0:
 .L.str.5:
 	.asciz	"pxEnd == NULL\000\000"
@@ -1476,8 +1476,8 @@ xMinimumEverFreeBytesRemaining:
 	.hidden	_printf_d
 	.hidden	_printf_int_dec
 	.hidden	_printf_str
-	.file	6 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/portable.h"
-	.file	7 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\\portmacro.h"
+	.file	6 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/portable.h"
+	.file	7 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\\portmacro.h"
 	.section	.debug_loc,"",%progbits
 .Ldebug_loc0:
 	.long	-1
@@ -2766,7 +2766,7 @@ xMinimumEverFreeBytesRemaining:
 	.long	.Ltmp23-.Ltmp22                 @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.byte	140                             @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	16                              @ Abbrev [16] 0x172:0x41 DW_TAG_subprogram
 	.long	.Lfunc_begin1                   @ DW_AT_low_pc
@@ -2776,26 +2776,26 @@ xMinimumEverFreeBytesRemaining:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string25                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	409                             @ DW_AT_decl_line
+	.short	410                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.byte	17                              @ Abbrev [17] 0x184:0x10 DW_TAG_formal_parameter
 	.long	.Ldebug_loc5                    @ DW_AT_location
 	.long	.Linfo_string36                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	409                             @ DW_AT_decl_line
+	.short	410                             @ DW_AT_decl_line
 	.long	156                             @ DW_AT_type
 	.byte	18                              @ Abbrev [18] 0x194:0xe DW_TAG_variable
 	.byte	1                               @ DW_AT_location
 	.byte	81
 	.long	.Linfo_string37                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	411                             @ DW_AT_decl_line
+	.short	412                             @ DW_AT_decl_line
 	.long	156                             @ DW_AT_type
 	.byte	19                              @ Abbrev [19] 0x1a2:0x10 DW_TAG_variable
 	.long	.Ldebug_loc6                    @ DW_AT_location
 	.long	.Linfo_string38                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	412                             @ DW_AT_decl_line
+	.short	413                             @ DW_AT_decl_line
 	.long	225                             @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	20                              @ Abbrev [20] 0x1b3:0x2b DW_TAG_subprogram
@@ -2847,7 +2847,7 @@ xMinimumEverFreeBytesRemaining:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string26                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	284                             @ DW_AT_decl_line
+	.short	285                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	224                             @ DW_AT_type
                                         @ DW_AT_external
@@ -2855,44 +2855,44 @@ xMinimumEverFreeBytesRemaining:
 	.long	.Ldebug_loc10                   @ DW_AT_location
 	.long	.Linfo_string21                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	284                             @ DW_AT_decl_line
+	.short	285                             @ DW_AT_decl_line
 	.long	224                             @ DW_AT_type
 	.byte	17                              @ Abbrev [17] 0x236:0x10 DW_TAG_formal_parameter
 	.long	.Ldebug_loc11                   @ DW_AT_location
 	.long	.Linfo_string31                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	284                             @ DW_AT_decl_line
+	.short	285                             @ DW_AT_decl_line
 	.long	55                              @ DW_AT_type
 	.byte	19                              @ Abbrev [19] 0x246:0x10 DW_TAG_variable
 	.long	.Ldebug_loc12                   @ DW_AT_location
 	.long	.Linfo_string38                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	289                             @ DW_AT_decl_line
+	.short	290                             @ DW_AT_decl_line
 	.long	225                             @ DW_AT_type
 	.byte	19                              @ Abbrev [19] 0x256:0x10 DW_TAG_variable
 	.long	.Ldebug_loc13                   @ DW_AT_location
 	.long	.Linfo_string32                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	288                             @ DW_AT_decl_line
+	.short	289                             @ DW_AT_decl_line
 	.long	224                             @ DW_AT_type
 	.byte	19                              @ Abbrev [19] 0x266:0x10 DW_TAG_variable
 	.long	.Ldebug_loc14                   @ DW_AT_location
 	.long	.Linfo_string39                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	287                             @ DW_AT_decl_line
+	.short	288                             @ DW_AT_decl_line
 	.long	156                             @ DW_AT_type
 	.byte	19                              @ Abbrev [19] 0x276:0x10 DW_TAG_variable
 	.long	.Ldebug_loc15                   @ DW_AT_location
 	.long	.Linfo_string40                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	286                             @ DW_AT_decl_line
+	.short	287                             @ DW_AT_decl_line
 	.long	55                              @ DW_AT_type
 	.byte	27                              @ Abbrev [27] 0x286:0x24 DW_TAG_inlined_subroutine
 	.long	478                             @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges0                 @ DW_AT_ranges
 	.byte	2                               @ DW_AT_call_file
-	.short	306                             @ DW_AT_call_line
-	.byte	18                              @ DW_AT_call_column
+	.short	307                             @ DW_AT_call_line
+	.byte	36                              @ DW_AT_call_column
 	.byte	28                              @ Abbrev [28] 0x293:0x6 DW_TAG_formal_parameter
 	.byte	1                               @ DW_AT_const_value
 	.long	491                             @ DW_AT_abstract_origin
@@ -2913,41 +2913,41 @@ xMinimumEverFreeBytesRemaining:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string27                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	349                             @ DW_AT_decl_line
+	.short	350                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_external
 	.byte	17                              @ Abbrev [17] 0x2bd:0x10 DW_TAG_formal_parameter
 	.long	.Ldebug_loc17                   @ DW_AT_location
 	.long	.Linfo_string21                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	349                             @ DW_AT_decl_line
+	.short	350                             @ DW_AT_decl_line
 	.long	224                             @ DW_AT_type
 	.byte	19                              @ Abbrev [19] 0x2cd:0x10 DW_TAG_variable
 	.long	.Ldebug_loc18                   @ DW_AT_location
 	.long	.Linfo_string38                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	351                             @ DW_AT_decl_line
+	.short	352                             @ DW_AT_decl_line
 	.long	225                             @ DW_AT_type
 	.byte	19                              @ Abbrev [19] 0x2dd:0x10 DW_TAG_variable
 	.long	.Ldebug_loc19                   @ DW_AT_location
 	.long	.Linfo_string39                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	352                             @ DW_AT_decl_line
+	.short	353                             @ DW_AT_decl_line
 	.long	156                             @ DW_AT_type
 	.byte	31                              @ Abbrev [31] 0x2ed:0x11 DW_TAG_inlined_subroutine
 	.long	248                             @ DW_AT_abstract_origin
 	.long	.Ltmp114                        @ DW_AT_low_pc
 	.long	.Ltmp115-.Ltmp114               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
-	.short	364                             @ DW_AT_call_line
-	.byte	3                               @ DW_AT_call_column
+	.short	365                             @ DW_AT_call_line
+	.byte	9                               @ DW_AT_call_column
 	.byte	31                              @ Abbrev [31] 0x2fe:0x11 DW_TAG_inlined_subroutine
 	.long	248                             @ DW_AT_abstract_origin
 	.long	.Ltmp110                        @ DW_AT_low_pc
 	.long	.Ltmp111-.Ltmp110               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
-	.short	365                             @ DW_AT_call_line
-	.byte	3                               @ DW_AT_call_column
+	.short	366                             @ DW_AT_call_line
+	.byte	9                               @ DW_AT_call_column
 	.byte	32                              @ Abbrev [32] 0x30f:0x9 DW_TAG_GNU_call_site
 	.long	793                             @ DW_AT_abstract_origin
                                         @ DW_AT_GNU_tail_call
@@ -2973,7 +2973,7 @@ xMinimumEverFreeBytesRemaining:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string28                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	397                             @ DW_AT_decl_line
+	.short	398                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	55                              @ DW_AT_type
                                         @ DW_AT_external
@@ -2985,7 +2985,7 @@ xMinimumEverFreeBytesRemaining:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string29                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	403                             @ DW_AT_decl_line
+	.short	404                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	55                              @ DW_AT_type
                                         @ DW_AT_external
@@ -2997,91 +2997,91 @@ xMinimumEverFreeBytesRemaining:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string30                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	470                             @ DW_AT_decl_line
+	.short	471                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_external
 	.byte	17                              @ Abbrev [17] 0x36a:0x10 DW_TAG_formal_parameter
 	.long	.Ldebug_loc20                   @ DW_AT_location
 	.long	.Linfo_string41                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	470                             @ DW_AT_decl_line
+	.short	471                             @ DW_AT_decl_line
 	.long	1087                            @ DW_AT_type
 	.byte	19                              @ Abbrev [19] 0x37a:0x10 DW_TAG_variable
 	.long	.Ldebug_loc21                   @ DW_AT_location
 	.long	.Linfo_string46                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	475                             @ DW_AT_decl_line
+	.short	476                             @ DW_AT_decl_line
 	.long	1146                            @ DW_AT_type
 	.byte	19                              @ Abbrev [19] 0x38a:0x10 DW_TAG_variable
 	.long	.Ldebug_loc22                   @ DW_AT_location
 	.long	.Linfo_string48                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	474                             @ DW_AT_decl_line
+	.short	475                             @ DW_AT_decl_line
 	.long	55                              @ DW_AT_type
 	.byte	19                              @ Abbrev [19] 0x39a:0x10 DW_TAG_variable
 	.long	.Ldebug_loc23                   @ DW_AT_location
 	.long	.Linfo_string49                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	472                             @ DW_AT_decl_line
+	.short	473                             @ DW_AT_decl_line
 	.long	156                             @ DW_AT_type
 	.byte	19                              @ Abbrev [19] 0x3aa:0x10 DW_TAG_variable
 	.long	.Ldebug_loc24                   @ DW_AT_location
 	.long	.Linfo_string50                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	477                             @ DW_AT_decl_line
+	.short	478                             @ DW_AT_decl_line
 	.long	1092                            @ DW_AT_type
 	.byte	19                              @ Abbrev [19] 0x3ba:0x10 DW_TAG_variable
 	.long	.Ldebug_loc25                   @ DW_AT_location
 	.long	.Linfo_string51                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	474                             @ DW_AT_decl_line
+	.short	475                             @ DW_AT_decl_line
 	.long	55                              @ DW_AT_type
 	.byte	19                              @ Abbrev [19] 0x3ca:0x10 DW_TAG_variable
 	.long	.Ldebug_loc26                   @ DW_AT_location
 	.long	.Linfo_string52                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	476                             @ DW_AT_decl_line
+	.short	477                             @ DW_AT_decl_line
 	.long	55                              @ DW_AT_type
 	.byte	19                              @ Abbrev [19] 0x3da:0x10 DW_TAG_variable
 	.long	.Ldebug_loc27                   @ DW_AT_location
 	.long	.Linfo_string53                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	473                             @ DW_AT_decl_line
+	.short	474                             @ DW_AT_decl_line
 	.long	55                              @ DW_AT_type
 	.byte	19                              @ Abbrev [19] 0x3ea:0x10 DW_TAG_variable
 	.long	.Ldebug_loc28                   @ DW_AT_location
 	.long	.Linfo_string54                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	472                             @ DW_AT_decl_line
+	.short	473                             @ DW_AT_decl_line
 	.long	156                             @ DW_AT_type
 	.byte	31                              @ Abbrev [31] 0x3fa:0x11 DW_TAG_inlined_subroutine
 	.long	248                             @ DW_AT_abstract_origin
 	.long	.Ltmp127                        @ DW_AT_low_pc
 	.long	.Ltmp128-.Ltmp127               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
-	.short	480                             @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.short	481                             @ DW_AT_call_line
+	.byte	5                               @ DW_AT_call_column
 	.byte	31                              @ Abbrev [31] 0x40b:0x11 DW_TAG_inlined_subroutine
 	.long	248                             @ DW_AT_abstract_origin
 	.long	.Ltmp164                        @ DW_AT_low_pc
 	.long	.Ltmp165-.Ltmp164               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
-	.short	513                             @ DW_AT_call_line
-	.byte	4                               @ DW_AT_call_column
+	.short	514                             @ DW_AT_call_line
+	.byte	13                              @ DW_AT_call_column
 	.byte	31                              @ Abbrev [31] 0x41c:0x11 DW_TAG_inlined_subroutine
 	.long	248                             @ DW_AT_abstract_origin
 	.long	.Ltmp170                        @ DW_AT_low_pc
 	.long	.Ltmp171-.Ltmp170               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
-	.short	516                             @ DW_AT_call_line
-	.byte	4                               @ DW_AT_call_column
+	.short	517                             @ DW_AT_call_line
+	.byte	13                              @ DW_AT_call_column
 	.byte	31                              @ Abbrev [31] 0x42d:0x11 DW_TAG_inlined_subroutine
 	.long	248                             @ DW_AT_abstract_origin
 	.long	.Ltmp158                        @ DW_AT_low_pc
 	.long	.Ltmp159-.Ltmp158               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
-	.short	556                             @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.short	557                             @ DW_AT_call_line
+	.byte	5                               @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	3                               @ Abbrev [3] 0x43f:0x5 DW_TAG_const_type
 	.long	1092                            @ DW_AT_type
@@ -3152,111 +3152,111 @@ xMinimumEverFreeBytesRemaining:
 .Linfo_string1:
 	.asciz	"../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang\\heap_5.c" @ string offset=55
 .Linfo_string2:
-	.asciz	"D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" @ string offset=135
+	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=135
 .Linfo_string3:
-	.asciz	"xHeapStructSize"               @ string offset=197
+	.asciz	"xHeapStructSize"               @ string offset=196
 .Linfo_string4:
-	.asciz	"unsigned int"                  @ string offset=213
+	.asciz	"unsigned int"                  @ string offset=212
 .Linfo_string5:
-	.asciz	"size_t"                        @ string offset=226
+	.asciz	"size_t"                        @ string offset=225
 .Linfo_string6:
-	.asciz	"xStart"                        @ string offset=233
+	.asciz	"xStart"                        @ string offset=232
 .Linfo_string7:
-	.asciz	"pxNextFreeBlock"               @ string offset=240
+	.asciz	"pxNextFreeBlock"               @ string offset=239
 .Linfo_string8:
-	.asciz	"xBlockSize"                    @ string offset=256
+	.asciz	"xBlockSize"                    @ string offset=255
 .Linfo_string9:
-	.asciz	"A_BLOCK_LINK"                  @ string offset=267
+	.asciz	"A_BLOCK_LINK"                  @ string offset=266
 .Linfo_string10:
-	.asciz	"BlockLink_t"                   @ string offset=280
+	.asciz	"BlockLink_t"                   @ string offset=279
 .Linfo_string11:
-	.asciz	"pxEnd"                         @ string offset=292
+	.asciz	"pxEnd"                         @ string offset=291
 .Linfo_string12:
-	.asciz	"xBlockAllocatedBit"            @ string offset=298
+	.asciz	"xBlockAllocatedBit"            @ string offset=297
 .Linfo_string13:
-	.asciz	"xFreeBytesRemaining"           @ string offset=317
+	.asciz	"xFreeBytesRemaining"           @ string offset=316
 .Linfo_string14:
-	.asciz	"xMinimumEverFreeBytesRemaining" @ string offset=337
+	.asciz	"xMinimumEverFreeBytesRemaining" @ string offset=336
 .Linfo_string15:
-	.asciz	"unsigned char"                 @ string offset=368
+	.asciz	"unsigned char"                 @ string offset=367
 .Linfo_string16:
-	.asciz	"uint8_t"                       @ string offset=382
+	.asciz	"uint8_t"                       @ string offset=381
 .Linfo_string17:
-	.asciz	"__disable_irq"                 @ string offset=390
+	.asciz	"__disable_irq"                 @ string offset=389
 .Linfo_string18:
-	.asciz	"pvPortCalloc"                  @ string offset=404
+	.asciz	"pvPortCalloc"                  @ string offset=403
 .Linfo_string19:
-	.asciz	"numElements"                   @ string offset=417
+	.asciz	"numElements"                   @ string offset=416
 .Linfo_string20:
-	.asciz	"sizeOfElement"                 @ string offset=429
+	.asciz	"sizeOfElement"                 @ string offset=428
 .Linfo_string21:
-	.asciz	"pv"                            @ string offset=443
+	.asciz	"pv"                            @ string offset=442
 .Linfo_string22:
-	.asciz	"xTaskResumeAll"                @ string offset=446
+	.asciz	"xTaskResumeAll"                @ string offset=445
 .Linfo_string23:
-	.asciz	"long int"                      @ string offset=461
+	.asciz	"long int"                      @ string offset=460
 .Linfo_string24:
-	.asciz	"pvPortMalloc"                  @ string offset=470
+	.asciz	"pvPortMalloc"                  @ string offset=469
 .Linfo_string25:
-	.asciz	"prvInsertBlockIntoFreeList"    @ string offset=483
+	.asciz	"prvInsertBlockIntoFreeList"    @ string offset=482
 .Linfo_string26:
-	.asciz	"pvPortRealloc"                 @ string offset=510
+	.asciz	"pvPortRealloc"                 @ string offset=509
 .Linfo_string27:
-	.asciz	"vPortFree"                     @ string offset=524
+	.asciz	"vPortFree"                     @ string offset=523
 .Linfo_string28:
-	.asciz	"xPortGetFreeHeapSize"          @ string offset=534
+	.asciz	"xPortGetFreeHeapSize"          @ string offset=533
 .Linfo_string29:
-	.asciz	"xPortGetMinimumEverFreeHeapSize" @ string offset=555
+	.asciz	"xPortGetMinimumEverFreeHeapSize" @ string offset=554
 .Linfo_string30:
-	.asciz	"vPortDefineHeapRegions"        @ string offset=587
+	.asciz	"vPortDefineHeapRegions"        @ string offset=586
 .Linfo_string31:
-	.asciz	"xWantedSize"                   @ string offset=610
+	.asciz	"xWantedSize"                   @ string offset=609
 .Linfo_string32:
-	.asciz	"pvReturn"                      @ string offset=622
+	.asciz	"pvReturn"                      @ string offset=621
 .Linfo_string33:
-	.asciz	"pxPreviousBlock"               @ string offset=631
+	.asciz	"pxPreviousBlock"               @ string offset=630
 .Linfo_string34:
-	.asciz	"pxBlock"                       @ string offset=647
+	.asciz	"pxBlock"                       @ string offset=646
 .Linfo_string35:
-	.asciz	"pxNewBlockLink"                @ string offset=655
+	.asciz	"pxNewBlockLink"                @ string offset=654
 .Linfo_string36:
-	.asciz	"pxBlockToInsert"               @ string offset=670
+	.asciz	"pxBlockToInsert"               @ string offset=669
 .Linfo_string37:
-	.asciz	"pxIterator"                    @ string offset=686
+	.asciz	"pxIterator"                    @ string offset=685
 .Linfo_string38:
-	.asciz	"puc"                           @ string offset=697
+	.asciz	"puc"                           @ string offset=696
 .Linfo_string39:
-	.asciz	"pxLink"                        @ string offset=701
+	.asciz	"pxLink"                        @ string offset=700
 .Linfo_string40:
-	.asciz	"block_size"                    @ string offset=708
+	.asciz	"block_size"                    @ string offset=707
 .Linfo_string41:
-	.asciz	"pxHeapRegions"                 @ string offset=719
+	.asciz	"pxHeapRegions"                 @ string offset=718
 .Linfo_string42:
-	.asciz	"pucStartAddress"               @ string offset=733
+	.asciz	"pucStartAddress"               @ string offset=732
 .Linfo_string43:
-	.asciz	"xSizeInBytes"                  @ string offset=749
+	.asciz	"xSizeInBytes"                  @ string offset=748
 .Linfo_string44:
-	.asciz	"HeapRegion"                    @ string offset=762
+	.asciz	"HeapRegion"                    @ string offset=761
 .Linfo_string45:
-	.asciz	"HeapRegion_t"                  @ string offset=773
+	.asciz	"HeapRegion_t"                  @ string offset=772
 .Linfo_string46:
-	.asciz	"xDefinedRegions"               @ string offset=786
+	.asciz	"xDefinedRegions"               @ string offset=785
 .Linfo_string47:
-	.asciz	"BaseType_t"                    @ string offset=802
+	.asciz	"BaseType_t"                    @ string offset=801
 .Linfo_string48:
-	.asciz	"xTotalHeapSize"                @ string offset=813
+	.asciz	"xTotalHeapSize"                @ string offset=812
 .Linfo_string49:
-	.asciz	"pxFirstFreeBlockInRegion"      @ string offset=828
+	.asciz	"pxFirstFreeBlockInRegion"      @ string offset=827
 .Linfo_string50:
-	.asciz	"pxHeapRegion"                  @ string offset=853
+	.asciz	"pxHeapRegion"                  @ string offset=852
 .Linfo_string51:
-	.asciz	"xTotalRegionSize"              @ string offset=866
+	.asciz	"xTotalRegionSize"              @ string offset=865
 .Linfo_string52:
-	.asciz	"xAddress"                      @ string offset=883
+	.asciz	"xAddress"                      @ string offset=882
 .Linfo_string53:
-	.asciz	"xAlignedHeap"                  @ string offset=892
+	.asciz	"xAlignedHeap"                  @ string offset=891
 .Linfo_string54:
-	.asciz	"pxPreviousFreeBlock"           @ string offset=905
+	.asciz	"pxPreviousFreeBlock"           @ string offset=904
 	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals

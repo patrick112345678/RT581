@@ -18,7 +18,7 @@
 	.eabi_attribute	26, 2	@ Tag_ABI_enum_size
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"random_crypto_api.cpp"
-	.file	1 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/error.h"
+	.file	1 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/error.h"
 	.file	2 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
 	.file	3 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdio.h"
 	.file	4 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdlib.h"
@@ -27,7 +27,7 @@
 	.file	7 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include\\libcxx" "__nullptr"
 	.file	8 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include\\libcxx" "stddef.h"
 	.file	9 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "ctype.h"
-	.file	10 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/src/core/api/random_crypto_api.cpp"
+	.file	10 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/src/core/api/random_crypto_api.cpp"
 	.section	.text.otRandomCryptoFillBuffer,"ax",%progbits
 	.hidden	otRandomCryptoFillBuffer        @ -- Begin function otRandomCryptoFillBuffer
 	.globl	otRandomCryptoFillBuffer
@@ -60,16 +60,16 @@ otRandomCryptoFillBuffer:
 	@DEBUG_VALUE: CryptoFillBuffer:aSize <- $r1
 	@DEBUG_VALUE: CryptoFillBuffer:aSize <- $r1
 	@DEBUG_VALUE: CryptoFillBuffer:aSize <- $r1
-	.file	11 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/src/core\\common/random.hpp"
+	.file	11 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/src/core\\common/random.hpp"
 	.loc	11 87 78 prologue_end           @ ../../../components/network/thread/subg_openthread/src/core\common/random.hpp:87:78
 	b	otPlatCryptoRandomGet
 .Ltmp0:
 .Lfunc_end0:
 	.size	otRandomCryptoFillBuffer, .Lfunc_end0-otRandomCryptoFillBuffer
 	.cfi_endproc
-	.file	12 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/src/core\\common/non_copyable.hpp"
-	.file	13 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/src/core\\common/error.hpp"
-	.file	14 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/platform/crypto.h"
+	.file	12 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/src/core\\common/non_copyable.hpp"
+	.file	13 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/src/core\\common/error.hpp"
+	.file	14 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/platform/crypto.h"
 	.cantunwind
 	.fnend
                                         @ -- End function
@@ -3831,541 +3831,541 @@ otRandomCryptoFillBuffer:
 .Linfo_string1:
 	.asciz	"../../../components/network/thread/subg_openthread/src/core/api\\random_crypto_api.cpp" @ string offset=55
 .Linfo_string2:
-	.asciz	"D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" @ string offset=141
+	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=141
 .Linfo_string3:
-	.asciz	"unsigned int"                  @ string offset=203
+	.asciz	"unsigned int"                  @ string offset=202
 .Linfo_string4:
-	.asciz	"OT_ERROR_NONE"                 @ string offset=216
+	.asciz	"OT_ERROR_NONE"                 @ string offset=215
 .Linfo_string5:
-	.asciz	"OT_ERROR_FAILED"               @ string offset=230
+	.asciz	"OT_ERROR_FAILED"               @ string offset=229
 .Linfo_string6:
-	.asciz	"OT_ERROR_DROP"                 @ string offset=246
+	.asciz	"OT_ERROR_DROP"                 @ string offset=245
 .Linfo_string7:
-	.asciz	"OT_ERROR_NO_BUFS"              @ string offset=260
+	.asciz	"OT_ERROR_NO_BUFS"              @ string offset=259
 .Linfo_string8:
-	.asciz	"OT_ERROR_NO_ROUTE"             @ string offset=277
+	.asciz	"OT_ERROR_NO_ROUTE"             @ string offset=276
 .Linfo_string9:
-	.asciz	"OT_ERROR_BUSY"                 @ string offset=295
+	.asciz	"OT_ERROR_BUSY"                 @ string offset=294
 .Linfo_string10:
-	.asciz	"OT_ERROR_PARSE"                @ string offset=309
+	.asciz	"OT_ERROR_PARSE"                @ string offset=308
 .Linfo_string11:
-	.asciz	"OT_ERROR_INVALID_ARGS"         @ string offset=324
+	.asciz	"OT_ERROR_INVALID_ARGS"         @ string offset=323
 .Linfo_string12:
-	.asciz	"OT_ERROR_SECURITY"             @ string offset=346
+	.asciz	"OT_ERROR_SECURITY"             @ string offset=345
 .Linfo_string13:
-	.asciz	"OT_ERROR_ADDRESS_QUERY"        @ string offset=364
+	.asciz	"OT_ERROR_ADDRESS_QUERY"        @ string offset=363
 .Linfo_string14:
-	.asciz	"OT_ERROR_NO_ADDRESS"           @ string offset=387
+	.asciz	"OT_ERROR_NO_ADDRESS"           @ string offset=386
 .Linfo_string15:
-	.asciz	"OT_ERROR_ABORT"                @ string offset=407
+	.asciz	"OT_ERROR_ABORT"                @ string offset=406
 .Linfo_string16:
-	.asciz	"OT_ERROR_NOT_IMPLEMENTED"      @ string offset=422
+	.asciz	"OT_ERROR_NOT_IMPLEMENTED"      @ string offset=421
 .Linfo_string17:
-	.asciz	"OT_ERROR_INVALID_STATE"        @ string offset=447
+	.asciz	"OT_ERROR_INVALID_STATE"        @ string offset=446
 .Linfo_string18:
-	.asciz	"OT_ERROR_NO_ACK"               @ string offset=470
+	.asciz	"OT_ERROR_NO_ACK"               @ string offset=469
 .Linfo_string19:
-	.asciz	"OT_ERROR_CHANNEL_ACCESS_FAILURE" @ string offset=486
+	.asciz	"OT_ERROR_CHANNEL_ACCESS_FAILURE" @ string offset=485
 .Linfo_string20:
-	.asciz	"OT_ERROR_DETACHED"             @ string offset=518
+	.asciz	"OT_ERROR_DETACHED"             @ string offset=517
 .Linfo_string21:
-	.asciz	"OT_ERROR_FCS"                  @ string offset=536
+	.asciz	"OT_ERROR_FCS"                  @ string offset=535
 .Linfo_string22:
-	.asciz	"OT_ERROR_NO_FRAME_RECEIVED"    @ string offset=549
+	.asciz	"OT_ERROR_NO_FRAME_RECEIVED"    @ string offset=548
 .Linfo_string23:
-	.asciz	"OT_ERROR_UNKNOWN_NEIGHBOR"     @ string offset=576
+	.asciz	"OT_ERROR_UNKNOWN_NEIGHBOR"     @ string offset=575
 .Linfo_string24:
-	.asciz	"OT_ERROR_INVALID_SOURCE_ADDRESS" @ string offset=602
+	.asciz	"OT_ERROR_INVALID_SOURCE_ADDRESS" @ string offset=601
 .Linfo_string25:
-	.asciz	"OT_ERROR_ADDRESS_FILTERED"     @ string offset=634
+	.asciz	"OT_ERROR_ADDRESS_FILTERED"     @ string offset=633
 .Linfo_string26:
-	.asciz	"OT_ERROR_DESTINATION_ADDRESS_FILTERED" @ string offset=660
+	.asciz	"OT_ERROR_DESTINATION_ADDRESS_FILTERED" @ string offset=659
 .Linfo_string27:
-	.asciz	"OT_ERROR_NOT_FOUND"            @ string offset=698
+	.asciz	"OT_ERROR_NOT_FOUND"            @ string offset=697
 .Linfo_string28:
-	.asciz	"OT_ERROR_ALREADY"              @ string offset=717
+	.asciz	"OT_ERROR_ALREADY"              @ string offset=716
 .Linfo_string29:
-	.asciz	"OT_ERROR_IP6_ADDRESS_CREATION_FAILURE" @ string offset=734
+	.asciz	"OT_ERROR_IP6_ADDRESS_CREATION_FAILURE" @ string offset=733
 .Linfo_string30:
-	.asciz	"OT_ERROR_NOT_CAPABLE"          @ string offset=772
+	.asciz	"OT_ERROR_NOT_CAPABLE"          @ string offset=771
 .Linfo_string31:
-	.asciz	"OT_ERROR_RESPONSE_TIMEOUT"     @ string offset=793
+	.asciz	"OT_ERROR_RESPONSE_TIMEOUT"     @ string offset=792
 .Linfo_string32:
-	.asciz	"OT_ERROR_DUPLICATED"           @ string offset=819
+	.asciz	"OT_ERROR_DUPLICATED"           @ string offset=818
 .Linfo_string33:
-	.asciz	"OT_ERROR_REASSEMBLY_TIMEOUT"   @ string offset=839
+	.asciz	"OT_ERROR_REASSEMBLY_TIMEOUT"   @ string offset=838
 .Linfo_string34:
-	.asciz	"OT_ERROR_NOT_TMF"              @ string offset=867
+	.asciz	"OT_ERROR_NOT_TMF"              @ string offset=866
 .Linfo_string35:
-	.asciz	"OT_ERROR_NOT_LOWPAN_DATA_FRAME" @ string offset=884
+	.asciz	"OT_ERROR_NOT_LOWPAN_DATA_FRAME" @ string offset=883
 .Linfo_string36:
-	.asciz	"OT_ERROR_LINK_MARGIN_LOW"      @ string offset=915
+	.asciz	"OT_ERROR_LINK_MARGIN_LOW"      @ string offset=914
 .Linfo_string37:
-	.asciz	"OT_ERROR_INVALID_COMMAND"      @ string offset=940
+	.asciz	"OT_ERROR_INVALID_COMMAND"      @ string offset=939
 .Linfo_string38:
-	.asciz	"OT_ERROR_PENDING"              @ string offset=965
+	.asciz	"OT_ERROR_PENDING"              @ string offset=964
 .Linfo_string39:
-	.asciz	"OT_ERROR_REJECTED"             @ string offset=982
+	.asciz	"OT_ERROR_REJECTED"             @ string offset=981
 .Linfo_string40:
-	.asciz	"OT_NUM_ERRORS"                 @ string offset=1000
+	.asciz	"OT_NUM_ERRORS"                 @ string offset=999
 .Linfo_string41:
-	.asciz	"OT_ERROR_GENERIC"              @ string offset=1014
+	.asciz	"OT_ERROR_GENERIC"              @ string offset=1013
 .Linfo_string42:
-	.asciz	"otError"                       @ string offset=1031
+	.asciz	"otError"                       @ string offset=1030
 .Linfo_string43:
-	.asciz	"signed char"                   @ string offset=1039
+	.asciz	"signed char"                   @ string offset=1038
 .Linfo_string44:
-	.asciz	"int8_t"                        @ string offset=1051
+	.asciz	"int8_t"                        @ string offset=1050
 .Linfo_string45:
-	.asciz	"short"                         @ string offset=1058
+	.asciz	"short"                         @ string offset=1057
 .Linfo_string46:
-	.asciz	"int16_t"                       @ string offset=1064
+	.asciz	"int16_t"                       @ string offset=1063
 .Linfo_string47:
-	.asciz	"int"                           @ string offset=1072
+	.asciz	"int"                           @ string offset=1071
 .Linfo_string48:
-	.asciz	"int32_t"                       @ string offset=1076
+	.asciz	"int32_t"                       @ string offset=1075
 .Linfo_string49:
-	.asciz	"long long int"                 @ string offset=1084
+	.asciz	"long long int"                 @ string offset=1083
 .Linfo_string50:
-	.asciz	"int64_t"                       @ string offset=1098
+	.asciz	"int64_t"                       @ string offset=1097
 .Linfo_string51:
-	.asciz	"unsigned char"                 @ string offset=1106
+	.asciz	"unsigned char"                 @ string offset=1105
 .Linfo_string52:
-	.asciz	"uint8_t"                       @ string offset=1120
+	.asciz	"uint8_t"                       @ string offset=1119
 .Linfo_string53:
-	.asciz	"unsigned short"                @ string offset=1128
+	.asciz	"unsigned short"                @ string offset=1127
 .Linfo_string54:
-	.asciz	"uint16_t"                      @ string offset=1143
+	.asciz	"uint16_t"                      @ string offset=1142
 .Linfo_string55:
-	.asciz	"uint32_t"                      @ string offset=1152
+	.asciz	"uint32_t"                      @ string offset=1151
 .Linfo_string56:
-	.asciz	"long long unsigned int"        @ string offset=1161
+	.asciz	"long long unsigned int"        @ string offset=1160
 .Linfo_string57:
-	.asciz	"uint64_t"                      @ string offset=1184
+	.asciz	"uint64_t"                      @ string offset=1183
 .Linfo_string58:
-	.asciz	"int_least8_t"                  @ string offset=1193
+	.asciz	"int_least8_t"                  @ string offset=1192
 .Linfo_string59:
-	.asciz	"int_least16_t"                 @ string offset=1206
+	.asciz	"int_least16_t"                 @ string offset=1205
 .Linfo_string60:
-	.asciz	"int_least32_t"                 @ string offset=1220
+	.asciz	"int_least32_t"                 @ string offset=1219
 .Linfo_string61:
-	.asciz	"int_least64_t"                 @ string offset=1234
+	.asciz	"int_least64_t"                 @ string offset=1233
 .Linfo_string62:
-	.asciz	"uint_least8_t"                 @ string offset=1248
+	.asciz	"uint_least8_t"                 @ string offset=1247
 .Linfo_string63:
-	.asciz	"uint_least16_t"                @ string offset=1262
+	.asciz	"uint_least16_t"                @ string offset=1261
 .Linfo_string64:
-	.asciz	"uint_least32_t"                @ string offset=1277
+	.asciz	"uint_least32_t"                @ string offset=1276
 .Linfo_string65:
-	.asciz	"uint_least64_t"                @ string offset=1292
+	.asciz	"uint_least64_t"                @ string offset=1291
 .Linfo_string66:
-	.asciz	"int_fast8_t"                   @ string offset=1307
+	.asciz	"int_fast8_t"                   @ string offset=1306
 .Linfo_string67:
-	.asciz	"int_fast16_t"                  @ string offset=1319
+	.asciz	"int_fast16_t"                  @ string offset=1318
 .Linfo_string68:
-	.asciz	"int_fast32_t"                  @ string offset=1332
+	.asciz	"int_fast32_t"                  @ string offset=1331
 .Linfo_string69:
-	.asciz	"int_fast64_t"                  @ string offset=1345
+	.asciz	"int_fast64_t"                  @ string offset=1344
 .Linfo_string70:
-	.asciz	"uint_fast8_t"                  @ string offset=1358
+	.asciz	"uint_fast8_t"                  @ string offset=1357
 .Linfo_string71:
-	.asciz	"uint_fast16_t"                 @ string offset=1371
+	.asciz	"uint_fast16_t"                 @ string offset=1370
 .Linfo_string72:
-	.asciz	"uint_fast32_t"                 @ string offset=1385
+	.asciz	"uint_fast32_t"                 @ string offset=1384
 .Linfo_string73:
-	.asciz	"uint_fast64_t"                 @ string offset=1399
+	.asciz	"uint_fast64_t"                 @ string offset=1398
 .Linfo_string74:
-	.asciz	"intptr_t"                      @ string offset=1413
+	.asciz	"intptr_t"                      @ string offset=1412
 .Linfo_string75:
-	.asciz	"uintptr_t"                     @ string offset=1422
+	.asciz	"uintptr_t"                     @ string offset=1421
 .Linfo_string76:
-	.asciz	"intmax_t"                      @ string offset=1432
+	.asciz	"intmax_t"                      @ string offset=1431
 .Linfo_string77:
-	.asciz	"uintmax_t"                     @ string offset=1441
+	.asciz	"uintmax_t"                     @ string offset=1440
 .Linfo_string78:
-	.asciz	"size_t"                        @ string offset=1451
+	.asciz	"size_t"                        @ string offset=1450
 .Linfo_string79:
-	.asciz	"__fpos_t_struct"               @ string offset=1458
+	.asciz	"__fpos_t_struct"               @ string offset=1457
 .Linfo_string80:
-	.asciz	"fpos_t"                        @ string offset=1474
+	.asciz	"fpos_t"                        @ string offset=1473
 .Linfo_string81:
-	.asciz	"__FILE"                        @ string offset=1481
+	.asciz	"__FILE"                        @ string offset=1480
 .Linfo_string82:
-	.asciz	"FILE"                          @ string offset=1488
+	.asciz	"FILE"                          @ string offset=1487
 .Linfo_string83:
-	.asciz	"remove"                        @ string offset=1493
+	.asciz	"remove"                        @ string offset=1492
 .Linfo_string84:
-	.asciz	"char"                          @ string offset=1500
+	.asciz	"char"                          @ string offset=1499
 .Linfo_string85:
-	.asciz	"rename"                        @ string offset=1505
+	.asciz	"rename"                        @ string offset=1504
 .Linfo_string86:
-	.asciz	"tmpfile"                       @ string offset=1512
+	.asciz	"tmpfile"                       @ string offset=1511
 .Linfo_string87:
-	.asciz	"tmpnam"                        @ string offset=1520
+	.asciz	"tmpnam"                        @ string offset=1519
 .Linfo_string88:
-	.asciz	"fclose"                        @ string offset=1527
+	.asciz	"fclose"                        @ string offset=1526
 .Linfo_string89:
-	.asciz	"fflush"                        @ string offset=1534
+	.asciz	"fflush"                        @ string offset=1533
 .Linfo_string90:
-	.asciz	"fopen"                         @ string offset=1541
+	.asciz	"fopen"                         @ string offset=1540
 .Linfo_string91:
-	.asciz	"freopen"                       @ string offset=1547
+	.asciz	"freopen"                       @ string offset=1546
 .Linfo_string92:
-	.asciz	"setbuf"                        @ string offset=1555
+	.asciz	"setbuf"                        @ string offset=1554
 .Linfo_string93:
-	.asciz	"setvbuf"                       @ string offset=1562
+	.asciz	"setvbuf"                       @ string offset=1561
 .Linfo_string94:
-	.asciz	"fprintf"                       @ string offset=1570
+	.asciz	"fprintf"                       @ string offset=1569
 .Linfo_string95:
-	.asciz	"_fprintf"                      @ string offset=1578
+	.asciz	"_fprintf"                      @ string offset=1577
 .Linfo_string96:
-	.asciz	"printf"                        @ string offset=1587
+	.asciz	"printf"                        @ string offset=1586
 .Linfo_string97:
-	.asciz	"_printf"                       @ string offset=1594
+	.asciz	"_printf"                       @ string offset=1593
 .Linfo_string98:
-	.asciz	"sprintf"                       @ string offset=1602
+	.asciz	"sprintf"                       @ string offset=1601
 .Linfo_string99:
-	.asciz	"_sprintf"                      @ string offset=1610
+	.asciz	"_sprintf"                      @ string offset=1609
 .Linfo_string100:
-	.asciz	"snprintf"                      @ string offset=1619
+	.asciz	"snprintf"                      @ string offset=1618
 .Linfo_string101:
-	.asciz	"vsnprintf"                     @ string offset=1628
+	.asciz	"vsnprintf"                     @ string offset=1627
 .Linfo_string102:
-	.asciz	"std"                           @ string offset=1638
+	.asciz	"std"                           @ string offset=1637
 .Linfo_string103:
-	.asciz	"__va_list"                     @ string offset=1642
+	.asciz	"__va_list"                     @ string offset=1641
 .Linfo_string104:
-	.asciz	"__builtin_va_list"             @ string offset=1652
+	.asciz	"__builtin_va_list"             @ string offset=1651
 .Linfo_string105:
-	.asciz	"vfscanf"                       @ string offset=1670
+	.asciz	"vfscanf"                       @ string offset=1669
 .Linfo_string106:
-	.asciz	"vscanf"                        @ string offset=1678
+	.asciz	"vscanf"                        @ string offset=1677
 .Linfo_string107:
-	.asciz	"vsscanf"                       @ string offset=1685
+	.asciz	"vsscanf"                       @ string offset=1684
 .Linfo_string108:
-	.asciz	"_snprintf"                     @ string offset=1693
+	.asciz	"_snprintf"                     @ string offset=1692
 .Linfo_string109:
-	.asciz	"_vsnprintf"                    @ string offset=1703
+	.asciz	"_vsnprintf"                    @ string offset=1702
 .Linfo_string110:
-	.asciz	"__ARM_asprintf"                @ string offset=1714
+	.asciz	"__ARM_asprintf"                @ string offset=1713
 .Linfo_string111:
-	.asciz	"__ARM_vasprintf"               @ string offset=1729
+	.asciz	"__ARM_vasprintf"               @ string offset=1728
 .Linfo_string112:
-	.asciz	"__ARM_vsnprintf"               @ string offset=1745
+	.asciz	"__ARM_vsnprintf"               @ string offset=1744
 .Linfo_string113:
-	.asciz	"__ARM_snprintf"                @ string offset=1761
+	.asciz	"__ARM_snprintf"                @ string offset=1760
 .Linfo_string114:
-	.asciz	"__ARM_vsscanf"                 @ string offset=1776
+	.asciz	"__ARM_vsscanf"                 @ string offset=1775
 .Linfo_string115:
-	.asciz	"fscanf"                        @ string offset=1790
+	.asciz	"fscanf"                        @ string offset=1789
 .Linfo_string116:
-	.asciz	"_fscanf"                       @ string offset=1797
+	.asciz	"_fscanf"                       @ string offset=1796
 .Linfo_string117:
-	.asciz	"scanf"                         @ string offset=1805
+	.asciz	"scanf"                         @ string offset=1804
 .Linfo_string118:
-	.asciz	"_scanf"                        @ string offset=1811
+	.asciz	"_scanf"                        @ string offset=1810
 .Linfo_string119:
-	.asciz	"sscanf"                        @ string offset=1818
+	.asciz	"sscanf"                        @ string offset=1817
 .Linfo_string120:
-	.asciz	"_sscanf"                       @ string offset=1825
+	.asciz	"_sscanf"                       @ string offset=1824
 .Linfo_string121:
-	.asciz	"_vfscanf"                      @ string offset=1833
+	.asciz	"_vfscanf"                      @ string offset=1832
 .Linfo_string122:
-	.asciz	"_vscanf"                       @ string offset=1842
+	.asciz	"_vscanf"                       @ string offset=1841
 .Linfo_string123:
-	.asciz	"_vsscanf"                      @ string offset=1850
+	.asciz	"_vsscanf"                      @ string offset=1849
 .Linfo_string124:
-	.asciz	"vprintf"                       @ string offset=1859
+	.asciz	"vprintf"                       @ string offset=1858
 .Linfo_string125:
-	.asciz	"_vprintf"                      @ string offset=1867
+	.asciz	"_vprintf"                      @ string offset=1866
 .Linfo_string126:
-	.asciz	"vfprintf"                      @ string offset=1876
+	.asciz	"vfprintf"                      @ string offset=1875
 .Linfo_string127:
-	.asciz	"_vfprintf"                     @ string offset=1885
+	.asciz	"_vfprintf"                     @ string offset=1884
 .Linfo_string128:
-	.asciz	"vsprintf"                      @ string offset=1895
+	.asciz	"vsprintf"                      @ string offset=1894
 .Linfo_string129:
-	.asciz	"_vsprintf"                     @ string offset=1904
+	.asciz	"_vsprintf"                     @ string offset=1903
 .Linfo_string130:
-	.asciz	"fgetc"                         @ string offset=1914
+	.asciz	"fgetc"                         @ string offset=1913
 .Linfo_string131:
-	.asciz	"fgets"                         @ string offset=1920
+	.asciz	"fgets"                         @ string offset=1919
 .Linfo_string132:
-	.asciz	"fputc"                         @ string offset=1926
+	.asciz	"fputc"                         @ string offset=1925
 .Linfo_string133:
-	.asciz	"fputs"                         @ string offset=1932
+	.asciz	"fputs"                         @ string offset=1931
 .Linfo_string134:
-	.asciz	"getc"                          @ string offset=1938
+	.asciz	"getc"                          @ string offset=1937
 .Linfo_string135:
-	.asciz	"getchar"                       @ string offset=1943
+	.asciz	"getchar"                       @ string offset=1942
 .Linfo_string136:
-	.asciz	"gets"                          @ string offset=1951
+	.asciz	"gets"                          @ string offset=1950
 .Linfo_string137:
-	.asciz	"putc"                          @ string offset=1956
+	.asciz	"putc"                          @ string offset=1955
 .Linfo_string138:
-	.asciz	"putchar"                       @ string offset=1961
+	.asciz	"putchar"                       @ string offset=1960
 .Linfo_string139:
-	.asciz	"puts"                          @ string offset=1969
+	.asciz	"puts"                          @ string offset=1968
 .Linfo_string140:
-	.asciz	"ungetc"                        @ string offset=1974
+	.asciz	"ungetc"                        @ string offset=1973
 .Linfo_string141:
-	.asciz	"fread"                         @ string offset=1981
+	.asciz	"fread"                         @ string offset=1980
 .Linfo_string142:
-	.asciz	"__fread_bytes_avail"           @ string offset=1987
+	.asciz	"__fread_bytes_avail"           @ string offset=1986
 .Linfo_string143:
-	.asciz	"fwrite"                        @ string offset=2007
+	.asciz	"fwrite"                        @ string offset=2006
 .Linfo_string144:
-	.asciz	"fgetpos"                       @ string offset=2014
+	.asciz	"fgetpos"                       @ string offset=2013
 .Linfo_string145:
-	.asciz	"fseek"                         @ string offset=2022
+	.asciz	"fseek"                         @ string offset=2021
 .Linfo_string146:
-	.asciz	"long int"                      @ string offset=2028
+	.asciz	"long int"                      @ string offset=2027
 .Linfo_string147:
-	.asciz	"fsetpos"                       @ string offset=2037
+	.asciz	"fsetpos"                       @ string offset=2036
 .Linfo_string148:
-	.asciz	"ftell"                         @ string offset=2045
+	.asciz	"ftell"                         @ string offset=2044
 .Linfo_string149:
-	.asciz	"rewind"                        @ string offset=2051
+	.asciz	"rewind"                        @ string offset=2050
 .Linfo_string150:
-	.asciz	"clearerr"                      @ string offset=2058
+	.asciz	"clearerr"                      @ string offset=2057
 .Linfo_string151:
-	.asciz	"feof"                          @ string offset=2067
+	.asciz	"feof"                          @ string offset=2066
 .Linfo_string152:
-	.asciz	"ferror"                        @ string offset=2072
+	.asciz	"ferror"                        @ string offset=2071
 .Linfo_string153:
-	.asciz	"perror"                        @ string offset=2079
+	.asciz	"perror"                        @ string offset=2078
 .Linfo_string154:
-	.asciz	"_fisatty"                      @ string offset=2086
+	.asciz	"_fisatty"                      @ string offset=2085
 .Linfo_string155:
-	.asciz	"__use_no_semihosting_swi"      @ string offset=2095
+	.asciz	"__use_no_semihosting_swi"      @ string offset=2094
 .Linfo_string156:
-	.asciz	"__use_no_semihosting"          @ string offset=2120
+	.asciz	"__use_no_semihosting"          @ string offset=2119
 .Linfo_string157:
-	.asciz	"atoll"                         @ string offset=2141
+	.asciz	"atoll"                         @ string offset=2140
 .Linfo_string158:
-	.asciz	"quot"                          @ string offset=2147
+	.asciz	"quot"                          @ string offset=2146
 .Linfo_string159:
-	.asciz	"rem"                           @ string offset=2152
+	.asciz	"rem"                           @ string offset=2151
 .Linfo_string160:
-	.asciz	"lldiv_t"                       @ string offset=2156
+	.asciz	"lldiv_t"                       @ string offset=2155
 .Linfo_string161:
-	.asciz	"div_t"                         @ string offset=2164
+	.asciz	"div_t"                         @ string offset=2163
 .Linfo_string162:
-	.asciz	"ldiv_t"                        @ string offset=2170
+	.asciz	"ldiv_t"                        @ string offset=2169
 .Linfo_string163:
-	.asciz	"atof"                          @ string offset=2177
+	.asciz	"atof"                          @ string offset=2176
 .Linfo_string164:
-	.asciz	"double"                        @ string offset=2182
+	.asciz	"double"                        @ string offset=2181
 .Linfo_string165:
-	.asciz	"atoi"                          @ string offset=2189
+	.asciz	"atoi"                          @ string offset=2188
 .Linfo_string166:
-	.asciz	"atol"                          @ string offset=2194
+	.asciz	"atol"                          @ string offset=2193
 .Linfo_string167:
-	.asciz	"strtod"                        @ string offset=2199
+	.asciz	"strtod"                        @ string offset=2198
 .Linfo_string168:
-	.asciz	"strtof"                        @ string offset=2206
+	.asciz	"strtof"                        @ string offset=2205
 .Linfo_string169:
-	.asciz	"float"                         @ string offset=2213
+	.asciz	"float"                         @ string offset=2212
 .Linfo_string170:
-	.asciz	"strtold"                       @ string offset=2219
+	.asciz	"strtold"                       @ string offset=2218
 .Linfo_string171:
-	.asciz	"long double"                   @ string offset=2227
+	.asciz	"long double"                   @ string offset=2226
 .Linfo_string172:
-	.asciz	"strtol"                        @ string offset=2239
+	.asciz	"strtol"                        @ string offset=2238
 .Linfo_string173:
-	.asciz	"strtoul"                       @ string offset=2246
+	.asciz	"strtoul"                       @ string offset=2245
 .Linfo_string174:
-	.asciz	"long unsigned int"             @ string offset=2254
+	.asciz	"long unsigned int"             @ string offset=2253
 .Linfo_string175:
-	.asciz	"strtoll"                       @ string offset=2272
+	.asciz	"strtoll"                       @ string offset=2271
 .Linfo_string176:
-	.asciz	"strtoull"                      @ string offset=2280
+	.asciz	"strtoull"                      @ string offset=2279
 .Linfo_string177:
-	.asciz	"rand"                          @ string offset=2289
+	.asciz	"rand"                          @ string offset=2288
 .Linfo_string178:
-	.asciz	"srand"                         @ string offset=2294
+	.asciz	"srand"                         @ string offset=2293
 .Linfo_string179:
-	.asciz	"_rand_state"                   @ string offset=2300
+	.asciz	"_rand_state"                   @ string offset=2299
 .Linfo_string180:
-	.asciz	"_rand_r"                       @ string offset=2312
+	.asciz	"_rand_r"                       @ string offset=2311
 .Linfo_string181:
-	.asciz	"_srand_r"                      @ string offset=2320
+	.asciz	"_srand_r"                      @ string offset=2319
 .Linfo_string182:
-	.asciz	"_ANSI_rand_state"              @ string offset=2329
+	.asciz	"_ANSI_rand_state"              @ string offset=2328
 .Linfo_string183:
-	.asciz	"_ANSI_rand_r"                  @ string offset=2346
+	.asciz	"_ANSI_rand_r"                  @ string offset=2345
 .Linfo_string184:
-	.asciz	"_ANSI_srand_r"                 @ string offset=2359
+	.asciz	"_ANSI_srand_r"                 @ string offset=2358
 .Linfo_string185:
-	.asciz	"calloc"                        @ string offset=2373
+	.asciz	"calloc"                        @ string offset=2372
 .Linfo_string186:
-	.asciz	"free"                          @ string offset=2380
+	.asciz	"free"                          @ string offset=2379
 .Linfo_string187:
-	.asciz	"malloc"                        @ string offset=2385
+	.asciz	"malloc"                        @ string offset=2384
 .Linfo_string188:
-	.asciz	"realloc"                       @ string offset=2392
+	.asciz	"realloc"                       @ string offset=2391
 .Linfo_string189:
-	.asciz	"__heapprt"                     @ string offset=2400
+	.asciz	"__heapprt"                     @ string offset=2399
 .Linfo_string190:
-	.asciz	"__heapstats"                   @ string offset=2410
+	.asciz	"__heapstats"                   @ string offset=2409
 .Linfo_string191:
-	.asciz	"__heapvalid"                   @ string offset=2422
+	.asciz	"__heapvalid"                   @ string offset=2421
 .Linfo_string192:
-	.asciz	"abort"                         @ string offset=2434
+	.asciz	"abort"                         @ string offset=2433
 .Linfo_string193:
-	.asciz	"atexit"                        @ string offset=2440
+	.asciz	"atexit"                        @ string offset=2439
 .Linfo_string194:
-	.asciz	"exit"                          @ string offset=2447
+	.asciz	"exit"                          @ string offset=2446
 .Linfo_string195:
-	.asciz	"_Exit"                         @ string offset=2452
+	.asciz	"_Exit"                         @ string offset=2451
 .Linfo_string196:
-	.asciz	"getenv"                        @ string offset=2458
+	.asciz	"getenv"                        @ string offset=2457
 .Linfo_string197:
-	.asciz	"system"                        @ string offset=2465
+	.asciz	"system"                        @ string offset=2464
 .Linfo_string198:
-	.asciz	"bsearch"                       @ string offset=2472
+	.asciz	"bsearch"                       @ string offset=2471
 .Linfo_string199:
-	.asciz	"qsort"                         @ string offset=2480
+	.asciz	"qsort"                         @ string offset=2479
 .Linfo_string200:
-	.asciz	"_ZSt3absx"                     @ string offset=2486
+	.asciz	"_ZSt3absx"                     @ string offset=2485
 .Linfo_string201:
-	.asciz	"abs"                           @ string offset=2496
+	.asciz	"abs"                           @ string offset=2495
 .Linfo_string202:
-	.asciz	"_ZSt3divxx"                    @ string offset=2500
+	.asciz	"_ZSt3divxx"                    @ string offset=2499
 .Linfo_string203:
-	.asciz	"div"                           @ string offset=2511
+	.asciz	"div"                           @ string offset=2510
 .Linfo_string204:
-	.asciz	"labs"                          @ string offset=2515
+	.asciz	"labs"                          @ string offset=2514
 .Linfo_string205:
-	.asciz	"ldiv"                          @ string offset=2520
+	.asciz	"ldiv"                          @ string offset=2519
 .Linfo_string206:
-	.asciz	"llabs"                         @ string offset=2525
+	.asciz	"llabs"                         @ string offset=2524
 .Linfo_string207:
-	.asciz	"lldiv"                         @ string offset=2531
+	.asciz	"lldiv"                         @ string offset=2530
 .Linfo_string208:
-	.asciz	"__sdiv32by16"                  @ string offset=2537
+	.asciz	"__sdiv32by16"                  @ string offset=2536
 .Linfo_string209:
-	.asciz	"__udiv32by16"                  @ string offset=2550
+	.asciz	"__udiv32by16"                  @ string offset=2549
 .Linfo_string210:
-	.asciz	"__sdiv64by32"                  @ string offset=2563
+	.asciz	"__sdiv64by32"                  @ string offset=2562
 .Linfo_string211:
-	.asciz	"__rt_sdiv32by16"               @ string offset=2576
+	.asciz	"__rt_sdiv32by16"               @ string offset=2575
 .Linfo_string212:
-	.asciz	"__rt_udiv32by16"               @ string offset=2592
+	.asciz	"__rt_udiv32by16"               @ string offset=2591
 .Linfo_string213:
-	.asciz	"__rt_sdiv64by32"               @ string offset=2608
+	.asciz	"__rt_sdiv64by32"               @ string offset=2607
 .Linfo_string214:
-	.asciz	"__fp_status"                   @ string offset=2624
+	.asciz	"__fp_status"                   @ string offset=2623
 .Linfo_string215:
-	.asciz	"mblen"                         @ string offset=2636
+	.asciz	"mblen"                         @ string offset=2635
 .Linfo_string216:
-	.asciz	"mbtowc"                        @ string offset=2642
+	.asciz	"mbtowc"                        @ string offset=2641
 .Linfo_string217:
-	.asciz	"wchar_t"                       @ string offset=2649
+	.asciz	"wchar_t"                       @ string offset=2648
 .Linfo_string218:
-	.asciz	"wctomb"                        @ string offset=2657
+	.asciz	"wctomb"                        @ string offset=2656
 .Linfo_string219:
-	.asciz	"mbstowcs"                      @ string offset=2664
+	.asciz	"mbstowcs"                      @ string offset=2663
 .Linfo_string220:
-	.asciz	"wcstombs"                      @ string offset=2673
+	.asciz	"wcstombs"                      @ string offset=2672
 .Linfo_string221:
-	.asciz	"__use_realtime_heap"           @ string offset=2682
+	.asciz	"__use_realtime_heap"           @ string offset=2681
 .Linfo_string222:
-	.asciz	"__use_realtime_division"       @ string offset=2702
+	.asciz	"__use_realtime_division"       @ string offset=2701
 .Linfo_string223:
-	.asciz	"__use_two_region_memory"       @ string offset=2726
+	.asciz	"__use_two_region_memory"       @ string offset=2725
 .Linfo_string224:
-	.asciz	"__use_no_heap"                 @ string offset=2750
+	.asciz	"__use_no_heap"                 @ string offset=2749
 .Linfo_string225:
-	.asciz	"__use_no_heap_region"          @ string offset=2764
+	.asciz	"__use_no_heap_region"          @ string offset=2763
 .Linfo_string226:
-	.asciz	"__C_library_version_string"    @ string offset=2785
+	.asciz	"__C_library_version_string"    @ string offset=2784
 .Linfo_string227:
-	.asciz	"__C_library_version_number"    @ string offset=2812
+	.asciz	"__C_library_version_number"    @ string offset=2811
 .Linfo_string228:
-	.asciz	"__aeabi_MB_CUR_MAX"            @ string offset=2839
+	.asciz	"__aeabi_MB_CUR_MAX"            @ string offset=2838
 .Linfo_string229:
-	.asciz	"va_list"                       @ string offset=2858
+	.asciz	"va_list"                       @ string offset=2857
 .Linfo_string230:
-	.asciz	"ptrdiff_t"                     @ string offset=2866
+	.asciz	"ptrdiff_t"                     @ string offset=2865
 .Linfo_string231:
-	.asciz	"max_align_t"                   @ string offset=2876
+	.asciz	"max_align_t"                   @ string offset=2875
 .Linfo_string232:
-	.asciz	"decltype(nullptr)"             @ string offset=2888
+	.asciz	"decltype(nullptr)"             @ string offset=2887
 .Linfo_string233:
-	.asciz	"nullptr_t"                     @ string offset=2906
+	.asciz	"nullptr_t"                     @ string offset=2905
 .Linfo_string234:
-	.asciz	"isalnum"                       @ string offset=2916
+	.asciz	"isalnum"                       @ string offset=2915
 .Linfo_string235:
-	.asciz	"isalpha"                       @ string offset=2924
+	.asciz	"isalpha"                       @ string offset=2923
 .Linfo_string236:
-	.asciz	"iscntrl"                       @ string offset=2932
+	.asciz	"iscntrl"                       @ string offset=2931
 .Linfo_string237:
-	.asciz	"isdigit"                       @ string offset=2940
+	.asciz	"isdigit"                       @ string offset=2939
 .Linfo_string238:
-	.asciz	"isblank"                       @ string offset=2948
+	.asciz	"isblank"                       @ string offset=2947
 .Linfo_string239:
-	.asciz	"isgraph"                       @ string offset=2956
+	.asciz	"isgraph"                       @ string offset=2955
 .Linfo_string240:
-	.asciz	"islower"                       @ string offset=2964
+	.asciz	"islower"                       @ string offset=2963
 .Linfo_string241:
-	.asciz	"isprint"                       @ string offset=2972
+	.asciz	"isprint"                       @ string offset=2971
 .Linfo_string242:
-	.asciz	"ispunct"                       @ string offset=2980
+	.asciz	"ispunct"                       @ string offset=2979
 .Linfo_string243:
-	.asciz	"isspace"                       @ string offset=2988
+	.asciz	"isspace"                       @ string offset=2987
 .Linfo_string244:
-	.asciz	"isupper"                       @ string offset=2996
+	.asciz	"isupper"                       @ string offset=2995
 .Linfo_string245:
-	.asciz	"isxdigit"                      @ string offset=3004
+	.asciz	"isxdigit"                      @ string offset=3003
 .Linfo_string246:
-	.asciz	"tolower"                       @ string offset=3013
+	.asciz	"tolower"                       @ string offset=3012
 .Linfo_string247:
-	.asciz	"toupper"                       @ string offset=3021
+	.asciz	"toupper"                       @ string offset=3020
 .Linfo_string248:
-	.asciz	"ot"                            @ string offset=3029
+	.asciz	"ot"                            @ string offset=3028
 .Linfo_string249:
-	.asciz	"Random"                        @ string offset=3032
+	.asciz	"Random"                        @ string offset=3031
 .Linfo_string250:
-	.asciz	"NonCopyable"                   @ string offset=3039
+	.asciz	"NonCopyable"                   @ string offset=3038
 .Linfo_string251:
-	.asciz	"_ZN2ot11NonCopyableaSERKS0_"   @ string offset=3051
+	.asciz	"_ZN2ot11NonCopyableaSERKS0_"   @ string offset=3050
 .Linfo_string252:
-	.asciz	"operator="                     @ string offset=3079
+	.asciz	"operator="                     @ string offset=3078
 .Linfo_string253:
-	.asciz	"sInitCount"                    @ string offset=3089
+	.asciz	"sInitCount"                    @ string offset=3088
 .Linfo_string254:
-	.asciz	"sPrng"                         @ string offset=3100
+	.asciz	"sPrng"                         @ string offset=3099
 .Linfo_string255:
-	.asciz	"NonCryptoPrng"                 @ string offset=3106
+	.asciz	"NonCryptoPrng"                 @ string offset=3105
 .Linfo_string256:
-	.asciz	"Manager"                       @ string offset=3120
+	.asciz	"Manager"                       @ string offset=3119
 .Linfo_string257:
-	.asciz	"~Manager"                      @ string offset=3128
+	.asciz	"~Manager"                      @ string offset=3127
 .Linfo_string258:
-	.asciz	"_ZN2ot6Random7Manager18NonCryptoGetUint32Ev" @ string offset=3137
+	.asciz	"_ZN2ot6Random7Manager18NonCryptoGetUint32Ev" @ string offset=3136
 .Linfo_string259:
-	.asciz	"NonCryptoGetUint32"            @ string offset=3181
+	.asciz	"NonCryptoGetUint32"            @ string offset=3180
 .Linfo_string260:
-	.asciz	"_ZN2ot6Random7Manager16CryptoFillBufferEPht" @ string offset=3200
+	.asciz	"_ZN2ot6Random7Manager16CryptoFillBufferEPht" @ string offset=3199
 .Linfo_string261:
-	.asciz	"CryptoFillBuffer"              @ string offset=3244
+	.asciz	"CryptoFillBuffer"              @ string offset=3243
 .Linfo_string262:
-	.asciz	"Error"                         @ string offset=3261
+	.asciz	"Error"                         @ string offset=3260
 .Linfo_string263:
-	.asciz	"aBuffer"                       @ string offset=3267
+	.asciz	"aBuffer"                       @ string offset=3266
 .Linfo_string264:
-	.asciz	"aSize"                         @ string offset=3275
+	.asciz	"aSize"                         @ string offset=3274
 .Linfo_string265:
-	.asciz	"Crypto"                        @ string offset=3281
+	.asciz	"Crypto"                        @ string offset=3280
 .Linfo_string266:
-	.asciz	"_ZN2ot6Random6Crypto10FillBufferEPht" @ string offset=3288
+	.asciz	"_ZN2ot6Random6Crypto10FillBufferEPht" @ string offset=3287
 .Linfo_string267:
-	.asciz	"FillBuffer"                    @ string offset=3325
+	.asciz	"FillBuffer"                    @ string offset=3324
 .Linfo_string268:
-	.asciz	"otPlatCryptoRandomGet"         @ string offset=3336
+	.asciz	"otPlatCryptoRandomGet"         @ string offset=3335
 .Linfo_string269:
-	.asciz	"otRandomCryptoFillBuffer"      @ string offset=3358
+	.asciz	"otRandomCryptoFillBuffer"      @ string offset=3357
 	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals

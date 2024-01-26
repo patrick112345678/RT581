@@ -19,8 +19,8 @@
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"rt_aes.c"
 	.file	1 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
-	.file	2 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_crypto/rt_aes.c"
-	.file	3 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/crypto_reg.h"
+	.file	2 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_crypto/rt_aes.c"
+	.file	3 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/crypto_reg.h"
 	.section	.text.aes_fw_init,"ax",%progbits
 	.hidden	aes_fw_init                     @ -- Begin function aes_fw_init
 	.globl	aes_fw_init
@@ -1107,7 +1107,7 @@ aes_cbc_buffer_encrypt:
 .Lfunc_end10:
 	.size	aes_cbc_buffer_encrypt, .Lfunc_end10-aes_cbc_buffer_encrypt
 	.cfi_endproc
-	.file	4 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_crypto/Inc/rt_aes.h"
+	.file	4 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_crypto/Inc/rt_aes.h"
 	.cantunwind
 	.fnend
                                         @ -- End function
@@ -5109,187 +5109,187 @@ sbox:
 .Linfo_string1:
 	.asciz	"../../../components/platform/soc/rt582/rt582_crypto\\rt_aes.c" @ string offset=55
 .Linfo_string2:
-	.asciz	"D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" @ string offset=116
+	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=116
 .Linfo_string3:
-	.asciz	"rcon"                          @ string offset=178
+	.asciz	"rcon"                          @ string offset=177
 .Linfo_string4:
-	.asciz	"unsigned char"                 @ string offset=183
+	.asciz	"unsigned char"                 @ string offset=182
 .Linfo_string5:
-	.asciz	"uint8_t"                       @ string offset=197
+	.asciz	"uint8_t"                       @ string offset=196
 .Linfo_string6:
-	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=205
+	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=204
 .Linfo_string7:
-	.asciz	"sbox"                          @ string offset=225
+	.asciz	"sbox"                          @ string offset=224
 .Linfo_string8:
-	.asciz	"unsigned int"                  @ string offset=230
+	.asciz	"unsigned int"                  @ string offset=229
 .Linfo_string9:
-	.asciz	"uint32_t"                      @ string offset=243
+	.asciz	"uint32_t"                      @ string offset=242
 .Linfo_string10:
-	.asciz	"CRYPTO_CFG"                    @ string offset=252
+	.asciz	"CRYPTO_CFG"                    @ string offset=251
 .Linfo_string11:
-	.asciz	"bit"                           @ string offset=263
+	.asciz	"bit"                           @ string offset=262
 .Linfo_string12:
-	.asciz	"vlw_op_num"                    @ string offset=267
+	.asciz	"vlw_op_num"                    @ string offset=266
 .Linfo_string13:
-	.asciz	"vlw_sb_num"                    @ string offset=278
+	.asciz	"vlw_sb_num"                    @ string offset=277
 .Linfo_string14:
-	.asciz	"reserved1"                     @ string offset=289
+	.asciz	"reserved1"                     @ string offset=288
 .Linfo_string15:
-	.asciz	"en_crypto"                     @ string offset=299
+	.asciz	"en_crypto"                     @ string offset=298
 .Linfo_string16:
-	.asciz	"enable_sha"                    @ string offset=309
+	.asciz	"enable_sha"                    @ string offset=308
 .Linfo_string17:
-	.asciz	"reserved2"                     @ string offset=320
+	.asciz	"reserved2"                     @ string offset=319
 .Linfo_string18:
-	.asciz	"crypto_done"                   @ string offset=330
+	.asciz	"crypto_done"                   @ string offset=329
 .Linfo_string19:
-	.asciz	"sha_done"                      @ string offset=342
+	.asciz	"sha_done"                      @ string offset=341
 .Linfo_string20:
-	.asciz	"crypto_busy"                   @ string offset=351
+	.asciz	"crypto_busy"                   @ string offset=350
 .Linfo_string21:
-	.asciz	"sha_busy"                      @ string offset=363
+	.asciz	"sha_busy"                      @ string offset=362
 .Linfo_string22:
-	.asciz	"reserved3"                     @ string offset=372
+	.asciz	"reserved3"                     @ string offset=371
 .Linfo_string23:
-	.asciz	"clr_crypto_int"                @ string offset=382
+	.asciz	"clr_crypto_int"                @ string offset=381
 .Linfo_string24:
-	.asciz	"crypto_ctrl_b"                 @ string offset=397
+	.asciz	"crypto_ctrl_b"                 @ string offset=396
 .Linfo_string25:
-	.asciz	"reg"                           @ string offset=411
+	.asciz	"reg"                           @ string offset=410
 .Linfo_string26:
-	.asciz	"crypto_ctrl_struct"            @ string offset=415
+	.asciz	"crypto_ctrl_struct"            @ string offset=414
 .Linfo_string27:
-	.asciz	"crypto_ctrl_t"                 @ string offset=434
+	.asciz	"crypto_ctrl_t"                 @ string offset=433
 .Linfo_string28:
-	.asciz	"CRYPTO_T"                      @ string offset=448
+	.asciz	"CRYPTO_T"                      @ string offset=447
 .Linfo_string29:
-	.asciz	"aes_fw_load"                   @ string offset=457
+	.asciz	"aes_fw_load"                   @ string offset=456
 .Linfo_string30:
-	.asciz	"keyexpansion"                  @ string offset=469
+	.asciz	"keyexpansion"                  @ string offset=468
 .Linfo_string31:
-	.asciz	"round_key"                     @ string offset=482
+	.asciz	"round_key"                     @ string offset=481
 .Linfo_string32:
-	.asciz	"key"                           @ string offset=492
+	.asciz	"key"                           @ string offset=491
 .Linfo_string33:
-	.asciz	"round"                         @ string offset=496
+	.asciz	"round"                         @ string offset=495
 .Linfo_string34:
-	.asciz	"i"                             @ string offset=502
+	.asciz	"i"                             @ string offset=501
 .Linfo_string35:
-	.asciz	"rk"                            @ string offset=504
+	.asciz	"rk"                            @ string offset=503
 .Linfo_string36:
-	.asciz	"crypto_copy"                   @ string offset=507
+	.asciz	"crypto_copy"                   @ string offset=506
 .Linfo_string37:
-	.asciz	"aes_xorwith"                   @ string offset=519
+	.asciz	"aes_xorwith"                   @ string offset=518
 .Linfo_string38:
-	.asciz	"result"                        @ string offset=531
+	.asciz	"result"                        @ string offset=530
 .Linfo_string39:
-	.asciz	"buf1"                          @ string offset=538
+	.asciz	"buf1"                          @ string offset=537
 .Linfo_string40:
-	.asciz	"buf2"                          @ string offset=543
+	.asciz	"buf2"                          @ string offset=542
 .Linfo_string41:
-	.asciz	"aes_ecb_encrypt"               @ string offset=548
+	.asciz	"aes_ecb_encrypt"               @ string offset=547
 .Linfo_string42:
-	.asciz	"ctx"                           @ string offset=564
+	.asciz	"ctx"                           @ string offset=563
 .Linfo_string43:
-	.asciz	"RoundKey"                      @ string offset=568
+	.asciz	"RoundKey"                      @ string offset=567
 .Linfo_string44:
-	.asciz	"Iv"                            @ string offset=577
+	.asciz	"Iv"                            @ string offset=576
 .Linfo_string45:
-	.asciz	"aes_ctx"                       @ string offset=580
+	.asciz	"aes_ctx"                       @ string offset=579
 .Linfo_string46:
-	.asciz	"in_buf"                        @ string offset=588
+	.asciz	"in_buf"                        @ string offset=587
 .Linfo_string47:
-	.asciz	"out_buf"                       @ string offset=595
+	.asciz	"out_buf"                       @ string offset=594
 .Linfo_string48:
-	.asciz	"aes_ecb_decrypt"               @ string offset=603
+	.asciz	"aes_ecb_decrypt"               @ string offset=602
 .Linfo_string49:
-	.asciz	"aes_fw_init"                   @ string offset=619
+	.asciz	"aes_fw_init"                   @ string offset=618
 .Linfo_string50:
-	.asciz	"aes_key_init"                  @ string offset=631
+	.asciz	"aes_key_init"                  @ string offset=630
 .Linfo_string51:
-	.asciz	"aes_load_round_key"            @ string offset=644
+	.asciz	"aes_load_round_key"            @ string offset=643
 .Linfo_string52:
-	.asciz	"aes_release"                   @ string offset=663
+	.asciz	"aes_release"                   @ string offset=662
 .Linfo_string53:
-	.asciz	"aes_acquire"                   @ string offset=675
+	.asciz	"aes_acquire"                   @ string offset=674
 .Linfo_string54:
-	.asciz	"aes_iv_set"                    @ string offset=687
+	.asciz	"aes_iv_set"                    @ string offset=686
 .Linfo_string55:
-	.asciz	"aes_iv_get"                    @ string offset=698
+	.asciz	"aes_iv_get"                    @ string offset=697
 .Linfo_string56:
-	.asciz	"aes_cbc_buffer_encrypt"        @ string offset=709
+	.asciz	"aes_cbc_buffer_encrypt"        @ string offset=708
 .Linfo_string57:
-	.asciz	"aes_cbc_buffer_decrypt"        @ string offset=732
+	.asciz	"aes_cbc_buffer_decrypt"        @ string offset=731
 .Linfo_string58:
-	.asciz	"aes_ctr_buffer_crypt"          @ string offset=755
+	.asciz	"aes_ctr_buffer_crypt"          @ string offset=754
 .Linfo_string59:
-	.asciz	"aes_ccm_encryption"            @ string offset=776
+	.asciz	"aes_ccm_encryption"            @ string offset=775
 .Linfo_string60:
-	.asciz	"ccm_cbc_mac"                   @ string offset=795
+	.asciz	"ccm_cbc_mac"                   @ string offset=794
 .Linfo_string61:
-	.asciz	"aes_ccm_decryption_verification" @ string offset=807
+	.asciz	"aes_ccm_decryption_verification" @ string offset=806
 .Linfo_string62:
-	.asciz	"keybits"                       @ string offset=839
+	.asciz	"keybits"                       @ string offset=838
 .Linfo_string63:
-	.asciz	"iv"                            @ string offset=847
+	.asciz	"iv"                            @ string offset=846
 .Linfo_string64:
-	.asciz	"temp"                          @ string offset=850
+	.asciz	"temp"                          @ string offset=849
 .Linfo_string65:
-	.asciz	"length"                        @ string offset=855
+	.asciz	"length"                        @ string offset=854
 .Linfo_string66:
-	.asciz	"store_next_iv"                 @ string offset=862
+	.asciz	"store_next_iv"                 @ string offset=861
 .Linfo_string67:
-	.asciz	"stream_block"                  @ string offset=876
+	.asciz	"stream_block"                  @ string offset=875
 .Linfo_string68:
-	.asciz	"nc_offset"                     @ string offset=889
+	.asciz	"nc_offset"                     @ string offset=888
 .Linfo_string69:
-	.asciz	"n"                             @ string offset=899
+	.asciz	"n"                             @ string offset=898
 .Linfo_string70:
-	.asciz	"mac_buffer"                    @ string offset=901
+	.asciz	"mac_buffer"                    @ string offset=900
 .Linfo_string71:
-	.asciz	"ccm_packet"                    @ string offset=912
+	.asciz	"ccm_packet"                    @ string offset=911
 .Linfo_string72:
-	.asciz	"nonce"                         @ string offset=923
+	.asciz	"nonce"                         @ string offset=922
 .Linfo_string73:
-	.asciz	"hdr"                           @ string offset=929
+	.asciz	"hdr"                           @ string offset=928
 .Linfo_string74:
-	.asciz	"hdr_len"                       @ string offset=933
+	.asciz	"hdr_len"                       @ string offset=932
 .Linfo_string75:
-	.asciz	"data"                          @ string offset=941
+	.asciz	"data"                          @ string offset=940
 .Linfo_string76:
-	.asciz	"data_len"                      @ string offset=946
+	.asciz	"data_len"                      @ string offset=945
 .Linfo_string77:
-	.asciz	"mlen"                          @ string offset=955
+	.asciz	"mlen"                          @ string offset=954
 .Linfo_string78:
-	.asciz	"out_buf_len"                   @ string offset=960
+	.asciz	"out_buf_len"                   @ string offset=959
 .Linfo_string79:
-	.asciz	"aes_ccm_encryption_packet"     @ string offset=972
+	.asciz	"aes_ccm_encryption_packet"     @ string offset=971
 .Linfo_string80:
-	.asciz	"output_length"                 @ string offset=998
+	.asciz	"output_length"                 @ string offset=997
 .Linfo_string81:
-	.asciz	"aes_buffer_ptr"                @ string offset=1012
+	.asciz	"aes_buffer_ptr"                @ string offset=1011
 .Linfo_string82:
-	.asciz	"cbc_num"                       @ string offset=1027
+	.asciz	"cbc_num"                       @ string offset=1026
 .Linfo_string83:
-	.asciz	"out_buf_ptr"                   @ string offset=1035
+	.asciz	"out_buf_ptr"                   @ string offset=1034
 .Linfo_string84:
-	.asciz	"mac_buf"                       @ string offset=1047
+	.asciz	"mac_buf"                       @ string offset=1046
 .Linfo_string85:
-	.asciz	"B0_flags"                      @ string offset=1055
+	.asciz	"B0_flags"                      @ string offset=1054
 .Linfo_string86:
-	.asciz	"padding_bytes"                 @ string offset=1064
+	.asciz	"padding_bytes"                 @ string offset=1063
 .Linfo_string87:
-	.asciz	"payload_mac"                   @ string offset=1078
+	.asciz	"payload_mac"                   @ string offset=1077
 .Linfo_string88:
-	.asciz	"ccm_cbc"                       @ string offset=1090
+	.asciz	"ccm_cbc"                       @ string offset=1089
 .Linfo_string89:
-	.asciz	"payload_buf"                   @ string offset=1098
+	.asciz	"payload_buf"                   @ string offset=1097
 .Linfo_string90:
-	.asciz	"payload_length"                @ string offset=1110
+	.asciz	"payload_length"                @ string offset=1109
 .Linfo_string91:
-	.asciz	"aes_ccm_decryption_packet"     @ string offset=1125
+	.asciz	"aes_ccm_decryption_packet"     @ string offset=1124
 .Linfo_string92:
-	.asciz	"pay_mac_ptr"                   @ string offset=1151
+	.asciz	"pay_mac_ptr"                   @ string offset=1150
 	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals

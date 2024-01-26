@@ -19,10 +19,10 @@
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"hosal_uart.c"
 	.file	1 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
-	.file	2 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/uart_reg.h"
-	.file	3 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c"
-	.file	4 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/cm3_mcu.h"
-	.file	5 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/hosal/rt582_hosal/Inc\\hosal_uart.h"
+	.file	2 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/uart_reg.h"
+	.file	3 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c"
+	.file	4 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/cm3_mcu.h"
+	.file	5 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/hosal/rt582_hosal/Inc\\hosal_uart.h"
 	.file	6 "C:/Users\\P350\\AppData\\Local\\Arm\\Packs\\ARM\\CMSIS\\5.8.0\\CMSIS\\Core\\Include" "core_cm3.h"
 	.section	.text.hosal_uart_finalize,"ax",%progbits
 	.hidden	hosal_uart_finalize             @ -- Begin function hosal_uart_finalize
@@ -588,9 +588,9 @@ hosal_uart_receive:
 	@DEBUG_VALUE: hosal_uart_receive:data <- $r1
 	@DEBUG_VALUE: hosal_uart_receive:counter <- $r0
 	@DEBUG_VALUE: hosal_uart_receive:uart_dev <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	3 194 47                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:194:47
+	.loc	3 194 48                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:194:48
 	ldr.w	r3, [r12]
-	.loc	3 194 39 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:194:39
+	.loc	3 194 40 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:194:40
 	strb	r3, [r1, r0]
 .Ltmp63:
 	.loc	3 200 16 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:200:16
@@ -717,7 +717,7 @@ hosal_uart_ioctl:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- $r0
 	@DEBUG_VALUE: hosal_uart_ioctl:ctl <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: hosal_uart_ioctl:tmp <- 0
-	.loc	3 215 36 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:215:36
+	.loc	3 216 36 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:216:36
 	str	r2, [r0, #12]
 	b	.LBB4_34
 .Ltmp76:
@@ -727,19 +727,19 @@ hosal_uart_ioctl:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- $r0
 	@DEBUG_VALUE: hosal_uart_ioctl:ctl <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: hosal_uart_ioctl:tmp <- 0
-	.loc	3 311 21                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:311:21
+	.loc	3 320 21                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:320:21
 	ldr.w	r0, [r12, #4]
 .Ltmp77:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: hosal_uart_ioctl:tmp <- $r0
 	.loc	3 0 21 is_stmt 0                @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:0:21
 	movs	r1, #0
-	.loc	3 312 19 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:312:19
+	.loc	3 321 19 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:321:19
 	str.w	r1, [r12, #4]
-	.loc	3 313 19                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:313:19
+	.loc	3 322 19                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:322:19
 	str.w	r1, [r12, #8]
 	movs	r1, #6
-	.loc	3 314 19                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:314:19
+	.loc	3 323 19                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:323:19
 	str.w	r1, [r12, #8]
 .Ltmp78:
 .LBB4_5:
@@ -757,7 +757,7 @@ hosal_uart_ioctl:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- $r0
 	@DEBUG_VALUE: hosal_uart_ioctl:ctl <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: hosal_uart_ioctl:tmp <- 0
-	.loc	3 218 13 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:218:13
+	.loc	3 219 13 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:219:13
 	cmp	r2, #0
 	beq	.LBB4_34
 .Ltmp80:
@@ -767,7 +767,7 @@ hosal_uart_ioctl:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- $r0
 	@DEBUG_VALUE: hosal_uart_ioctl:ctl <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: hosal_uart_ioctl:tmp <- 0
-	.loc	3 219 51                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:219:51
+	.loc	3 221 51                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:221:51
 	ldr	r0, [r0, #12]
 .Ltmp81:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- [DW_OP_LLVM_entry_value 1] $r0
@@ -780,7 +780,7 @@ hosal_uart_ioctl:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- $r0
 	@DEBUG_VALUE: hosal_uart_ioctl:ctl <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: hosal_uart_ioctl:tmp <- 0
-	.loc	3 223 37 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:223:37
+	.loc	3 225 37 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:225:37
 	str	r2, [r0, #16]
 	b	.LBB4_34
 .Ltmp83:
@@ -790,7 +790,7 @@ hosal_uart_ioctl:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- $r0
 	@DEBUG_VALUE: hosal_uart_ioctl:ctl <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: hosal_uart_ioctl:tmp <- 0
-	.loc	3 226 13                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:226:13
+	.loc	3 228 13                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:228:13
 	cmp	r2, #0
 	beq	.LBB4_34
 .Ltmp84:
@@ -800,7 +800,7 @@ hosal_uart_ioctl:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- $r0
 	@DEBUG_VALUE: hosal_uart_ioctl:ctl <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: hosal_uart_ioctl:tmp <- 0
-	.loc	3 227 64                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:227:64
+	.loc	3 230 64                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:230:64
 	ldr	r0, [r0, #16]
 .Ltmp85:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- [DW_OP_LLVM_entry_value 1] $r0
@@ -813,7 +813,7 @@ hosal_uart_ioctl:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- $r0
 	@DEBUG_VALUE: hosal_uart_ioctl:ctl <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: hosal_uart_ioctl:tmp <- 0
-	.loc	3 231 36 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:231:36
+	.loc	3 234 36 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:234:36
 	str	r2, [r0, #24]
 	b	.LBB4_34
 .Ltmp87:
@@ -823,7 +823,7 @@ hosal_uart_ioctl:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- $r0
 	@DEBUG_VALUE: hosal_uart_ioctl:ctl <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: hosal_uart_ioctl:tmp <- 0
-	.loc	3 234 13                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:234:13
+	.loc	3 237 13                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:237:13
 	cmp	r2, #0
 	beq	.LBB4_34
 .Ltmp88:
@@ -833,7 +833,7 @@ hosal_uart_ioctl:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- $r0
 	@DEBUG_VALUE: hosal_uart_ioctl:ctl <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: hosal_uart_ioctl:tmp <- 0
-	.loc	3 235 63                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:235:63
+	.loc	3 239 63                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:239:63
 	ldr	r0, [r0, #24]
 .Ltmp89:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- [DW_OP_LLVM_entry_value 1] $r0
@@ -846,7 +846,7 @@ hosal_uart_ioctl:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- $r0
 	@DEBUG_VALUE: hosal_uart_ioctl:ctl <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: hosal_uart_ioctl:tmp <- 0
-	.loc	3 239 39 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:239:39
+	.loc	3 243 39 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:243:39
 	str	r2, [r0, #28]
 	b	.LBB4_34
 .Ltmp91:
@@ -856,7 +856,7 @@ hosal_uart_ioctl:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- $r0
 	@DEBUG_VALUE: hosal_uart_ioctl:ctl <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: hosal_uart_ioctl:tmp <- 0
-	.loc	3 242 13                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:242:13
+	.loc	3 246 13                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:246:13
 	cmp	r2, #0
 	beq	.LBB4_34
 .Ltmp92:
@@ -866,7 +866,7 @@ hosal_uart_ioctl:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- $r0
 	@DEBUG_VALUE: hosal_uart_ioctl:ctl <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: hosal_uart_ioctl:tmp <- 0
-	.loc	3 243 60                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:243:60
+	.loc	3 248 60                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:248:60
 	ldr	r0, [r0, #28]
 .Ltmp93:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- [DW_OP_LLVM_entry_value 1] $r0
@@ -879,7 +879,7 @@ hosal_uart_ioctl:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- $r0
 	@DEBUG_VALUE: hosal_uart_ioctl:ctl <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: hosal_uart_ioctl:tmp <- 0
-	.loc	3 247 33 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:247:33
+	.loc	3 252 33 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:252:33
 	str	r2, [r0, #20]
 	b	.LBB4_34
 .Ltmp95:
@@ -889,7 +889,7 @@ hosal_uart_ioctl:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- $r0
 	@DEBUG_VALUE: hosal_uart_ioctl:ctl <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: hosal_uart_ioctl:tmp <- 0
-	.loc	3 250 13                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:250:13
+	.loc	3 255 13                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:255:13
 	cmp	r2, #0
 	beq	.LBB4_34
 .Ltmp96:
@@ -899,7 +899,7 @@ hosal_uart_ioctl:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- $r0
 	@DEBUG_VALUE: hosal_uart_ioctl:ctl <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: hosal_uart_ioctl:tmp <- 0
-	.loc	3 251 62                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:251:62
+	.loc	3 257 62                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:257:62
 	ldr	r0, [r0, #20]
 .Ltmp97:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- [DW_OP_LLVM_entry_value 1] $r0
@@ -912,7 +912,7 @@ hosal_uart_ioctl:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- $r0
 	@DEBUG_VALUE: hosal_uart_ioctl:ctl <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: hosal_uart_ioctl:tmp <- 0
-	.loc	3 255 70 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:255:70
+	.loc	3 261 70 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:261:70
 	add.w	r1, r4, lr, lsl #3
 	ldr	r1, [r1, #4]
 .Ltmp99:
@@ -950,13 +950,13 @@ hosal_uart_ioctl:
 	@DEBUG_VALUE: hosal_uart_ioctl:tmp <- 0
 	.loc	6 0 43                          @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm3.h:0:43
 	movs	r3, #0
-	.loc	3 259 12 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:259:12
+	.loc	3 265 13 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:265:13
 	cmp	r2, #3
-	.loc	3 256 19                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:256:19
+	.loc	3 262 19                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:262:19
 	str.w	r3, [r12, #4]
-	.loc	3 257 31                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:257:31
+	.loc	3 263 31                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:263:31
 	str	r2, [r0, #32]
-	.loc	3 259 12                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:259:12
+	.loc	3 265 13                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:265:13
 	bhi	.LBB4_34
 .Ltmp102:
 @ %bb.23:
@@ -965,7 +965,7 @@ hosal_uart_ioctl:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- $r0
 	@DEBUG_VALUE: hosal_uart_ioctl:ctl <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: hosal_uart_ioctl:tmp <- 0
-	.loc	3 0 12 is_stmt 0                @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:0:12
+	.loc	3 0 13 is_stmt 0                @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:0:13
 	adr.w	r0, .LJTI4_1
 .Ltmp103:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- [DW_OP_LLVM_entry_value 1] $r0
@@ -995,7 +995,7 @@ hosal_uart_ioctl:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- $r0
 	@DEBUG_VALUE: hosal_uart_ioctl:ctl <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: hosal_uart_ioctl:tmp <- 0
-	.loc	3 279 13 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:279:13
+	.loc	3 287 13 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:287:13
 	cbz	r2, .LBB4_34
 .Ltmp107:
 @ %bb.27:
@@ -1004,7 +1004,7 @@ hosal_uart_ioctl:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- $r0
 	@DEBUG_VALUE: hosal_uart_ioctl:ctl <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: hosal_uart_ioctl:tmp <- 0
-	.loc	3 280 60                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:280:60
+	.loc	3 289 60                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:289:60
 	ldr	r0, [r0, #32]
 .Ltmp108:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- [DW_OP_LLVM_entry_value 1] $r0
@@ -1025,19 +1025,19 @@ hosal_uart_ioctl:
 	@DEBUG_VALUE: hosal_uart_ioctl:ctl <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: hosal_uart_ioctl:tmp <- 0
 	@DEBUG_VALUE: hosal_uart_ioctl:dma_cfg <- $r2
-	.loc	3 292 49 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:292:49
+	.loc	3 301 49 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:301:49
 	ldrd	r0, r1, [r2]
 .Ltmp110:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	3 292 28 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:292:28
+	.loc	3 301 28 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:301:28
 	str.w	r0, [r12, #40]
 	movs	r0, #2
-	.loc	3 293 27 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:293:27
+	.loc	3 302 27 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:302:27
 	str.w	r1, [r12, #44]
-	.loc	3 294 24                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:294:24
+	.loc	3 303 24                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:303:24
 	str.w	r0, [r12, #56]
 	movs	r0, #1
-	.loc	3 295 30                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:295:30
+	.loc	3 304 30                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:304:30
 	str.w	r0, [r12, #68]
 	b	.LBB4_34
 .Ltmp111:
@@ -1047,7 +1047,7 @@ hosal_uart_ioctl:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- $r0
 	@DEBUG_VALUE: hosal_uart_ioctl:ctl <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: hosal_uart_ioctl:tmp <- 0
-	.loc	3 307 65                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:307:65
+	.loc	3 316 64                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:316:64
 	add.w	r0, r4, lr, lsl #3
 .Ltmp112:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- [DW_OP_LLVM_entry_value 1] $r0
@@ -1094,7 +1094,7 @@ hosal_uart_ioctl:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- $r0
 	@DEBUG_VALUE: hosal_uart_ioctl:ctl <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: hosal_uart_ioctl:tmp <- 0
-	.loc	3 303 65                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:303:65
+	.loc	3 312 65                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:312:65
 	add.w	r0, r4, lr, lsl #3
 .Ltmp118:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- [DW_OP_LLVM_entry_value 1] $r0
@@ -1142,7 +1142,7 @@ hosal_uart_ioctl:
 .Ltmp124:
 .LBB4_35:
 	@DEBUG_VALUE: hosal_uart_ioctl:ctl <- [DW_OP_LLVM_entry_value 1] $r1
-	.loc	3 321 1 is_stmt 1               @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:321:1
+	.loc	3 330 1 is_stmt 1               @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:330:1
 	mov	r0, r1
 	pop	{r4, r5, r7, pc}
 .Ltmp125:
@@ -1152,13 +1152,13 @@ hosal_uart_ioctl:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: hosal_uart_ioctl:ctl <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: hosal_uart_ioctl:tmp <- 0
-	.loc	3 263 23                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:263:23
+	.loc	3 271 23                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:271:23
 	ldr.w	r0, [r12, #4]
 .Ltmp126:
 	.loc	6 1510 7                        @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm3.h:1510:7
 	cmp	r1, #0
 .Ltmp127:
-	.loc	3 263 23                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:263:23
+	.loc	3 271 23                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:271:23
 	orr	r0, r0, #2
 	str.w	r0, [r12, #4]
 .Ltmp128:
@@ -1202,13 +1202,13 @@ hosal_uart_ioctl:
 	@DEBUG_VALUE: hosal_uart_ioctl:uart_dev <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: hosal_uart_ioctl:ctl <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: hosal_uart_ioctl:tmp <- 0
-	.loc	3 268 23                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:268:23
+	.loc	3 276 23                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:276:23
 	ldr.w	r0, [r12, #4]
 .Ltmp133:
 	.loc	6 1510 7                        @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm3.h:1510:7
 	cmp	r1, #0
 .Ltmp134:
-	.loc	3 268 23                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:268:23
+	.loc	3 276 23                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:276:23
 	orr	r0, r0, #1
 	str.w	r0, [r12, #4]
 .Ltmp135:
@@ -1258,7 +1258,7 @@ hosal_uart_ioctl:
 	.loc	6 1510 7 is_stmt 1              @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm3.h:1510:7
 	cmp	r1, #0
 .Ltmp141:
-	.loc	3 273 23                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:273:23
+	.loc	3 281 23                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:281:23
 	str.w	r0, [r12, #4]
 .Ltmp142:
 	@DEBUG_VALUE: __NVIC_EnableIRQ:IRQn <- $r1
@@ -1310,7 +1310,7 @@ hosal_uart_ioctl:
 	.thumb_func
 hosal_uart_callback_set:
 .Lfunc_begin5:
-	.loc	3 327 0                         @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:327:0
+	.loc	3 336 0                         @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:336:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -1322,7 +1322,7 @@ hosal_uart_callback_set:
 	@DEBUG_VALUE: hosal_uart_callback_set:arg <- $r3
 	@DEBUG_VALUE: hosal_uart_callback_set:arg <- $r3
 	@DEBUG_VALUE: hosal_uart_callback_set:cfg <- [DW_OP_plus_uconst 4, DW_OP_stack_value] $r0
-	.loc	3 332 9 prologue_end            @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:332:9
+	.loc	3 341 9 prologue_end            @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:341:9
 	sub.w	r12, r1, #1
 	cmp.w	r12, #3
 	@DEBUG_VALUE: hosal_uart_callback_set:cfg <- [DW_OP_plus_uconst 4, DW_OP_stack_value] $r0
@@ -1356,22 +1356,22 @@ hosal_uart_callback_set:
 	@DEBUG_VALUE: hosal_uart_callback_set:cfg <- [DW_OP_plus_uconst 4, DW_OP_stack_value] $r0
 	@DEBUG_VALUE: hosal_uart_callback_set:uart_dev <- $r0
 	@DEBUG_VALUE: hosal_uart_callback_set:callback_type <- [DW_OP_LLVM_entry_value 1] $r1
-	.loc	3 335 28 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:335:28
+	.loc	3 345 28 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:345:28
 	ldrb	r1, [r0, #4]
-	.loc	3 333 25                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:333:25
+	.loc	3 343 25                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:343:25
 	str	r2, [r0, #36]
-	.loc	3 334 28                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:334:28
+	.loc	3 344 28                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:344:28
 	str	r3, [r0, #40]
-	.loc	3 335 37                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:335:37
+	.loc	3 345 37                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:345:37
 	add.w	r0, r1, r1, lsl #2
 .Ltmp151:
 	@DEBUG_VALUE: hosal_uart_callback_set:uart_dev <- [DW_OP_LLVM_entry_value 1] $r0
 	movw	r1, :lower16:g_uart_handle
 	movt	r1, :upper16:g_uart_handle
 	add.w	r0, r1, r0, lsl #3
-	.loc	3 335 43 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:335:43
+	.loc	3 345 43 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:345:43
 	str	r2, [r0, #16]
-	.loc	3 336 37 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:336:37
+	.loc	3 346 37 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:346:37
 	adds	r0, #20
 	b	.LBB5_7
 .Ltmp152:
@@ -1381,22 +1381,22 @@ hosal_uart_callback_set:
 	@DEBUG_VALUE: hosal_uart_callback_set:cfg <- [DW_OP_plus_uconst 4, DW_OP_stack_value] $r0
 	@DEBUG_VALUE: hosal_uart_callback_set:uart_dev <- $r0
 	@DEBUG_VALUE: hosal_uart_callback_set:callback_type <- [DW_OP_LLVM_entry_value 1] $r1
-	.loc	3 341 28                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:341:28
+	.loc	3 353 28                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:353:28
 	ldrb	r1, [r0, #4]
-	.loc	3 339 25                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:339:25
+	.loc	3 351 25                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:351:25
 	str	r2, [r0, #44]
-	.loc	3 340 28                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:340:28
+	.loc	3 352 28                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:352:28
 	str	r3, [r0, #48]
-	.loc	3 341 37                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:341:37
+	.loc	3 353 37                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:353:37
 	add.w	r0, r1, r1, lsl #2
 .Ltmp153:
 	@DEBUG_VALUE: hosal_uart_callback_set:uart_dev <- [DW_OP_LLVM_entry_value 1] $r0
 	movw	r1, :lower16:g_uart_handle
 	movt	r1, :upper16:g_uart_handle
 	add.w	r0, r1, r0, lsl #3
-	.loc	3 341 43 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:341:43
+	.loc	3 353 43 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:353:43
 	str	r2, [r0, #8]
-	.loc	3 342 37 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:342:37
+	.loc	3 354 37 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:354:37
 	adds	r0, #12
 	b	.LBB5_7
 .Ltmp154:
@@ -1406,22 +1406,22 @@ hosal_uart_callback_set:
 	@DEBUG_VALUE: hosal_uart_callback_set:cfg <- [DW_OP_plus_uconst 4, DW_OP_stack_value] $r0
 	@DEBUG_VALUE: hosal_uart_callback_set:uart_dev <- $r0
 	@DEBUG_VALUE: hosal_uart_callback_set:callback_type <- [DW_OP_LLVM_entry_value 1] $r1
-	.loc	3 347 28                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:347:28
+	.loc	3 361 28                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:361:28
 	ldrb	r1, [r0, #4]
-	.loc	3 345 28                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:345:28
+	.loc	3 359 28                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:359:28
 	str	r2, [r0, #52]
-	.loc	3 346 31                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:346:31
+	.loc	3 360 31                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:360:31
 	str	r3, [r0, #56]
-	.loc	3 347 37                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:347:37
+	.loc	3 361 37                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:361:37
 	add.w	r0, r1, r1, lsl #2
 .Ltmp155:
 	@DEBUG_VALUE: hosal_uart_callback_set:uart_dev <- [DW_OP_LLVM_entry_value 1] $r0
 	movw	r1, :lower16:g_uart_handle
 	movt	r1, :upper16:g_uart_handle
 	add.w	r0, r1, r0, lsl #3
-	.loc	3 347 46 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:347:46
+	.loc	3 361 46 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:361:46
 	str	r2, [r0, #32]
-	.loc	3 348 37 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:348:37
+	.loc	3 362 37 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:362:37
 	adds	r0, #36
 	b	.LBB5_7
 .Ltmp156:
@@ -1431,22 +1431,22 @@ hosal_uart_callback_set:
 	@DEBUG_VALUE: hosal_uart_callback_set:cfg <- [DW_OP_plus_uconst 4, DW_OP_stack_value] $r0
 	@DEBUG_VALUE: hosal_uart_callback_set:uart_dev <- $r0
 	@DEBUG_VALUE: hosal_uart_callback_set:callback_type <- [DW_OP_LLVM_entry_value 1] $r1
-	.loc	3 353 28                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:353:28
+	.loc	3 369 28                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:369:28
 	ldrb	r1, [r0, #4]
-	.loc	3 351 28                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:351:28
+	.loc	3 367 28                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:367:28
 	str	r2, [r0, #60]
-	.loc	3 352 31                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:352:31
+	.loc	3 368 31                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:368:31
 	str	r3, [r0, #64]
-	.loc	3 353 37                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:353:37
+	.loc	3 369 37                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:369:37
 	add.w	r0, r1, r1, lsl #2
 .Ltmp157:
 	@DEBUG_VALUE: hosal_uart_callback_set:uart_dev <- [DW_OP_LLVM_entry_value 1] $r0
 	movw	r1, :lower16:g_uart_handle
 	movt	r1, :upper16:g_uart_handle
 	add.w	r0, r1, r0, lsl #3
-	.loc	3 353 46 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:353:46
+	.loc	3 369 46 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:369:46
 	str	r2, [r0, #24]
-	.loc	3 354 37 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:354:37
+	.loc	3 370 37 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:370:37
 	adds	r0, #28
 .Ltmp158:
 .LBB5_7:
@@ -1460,7 +1460,7 @@ hosal_uart_callback_set:
 .LBB5_8:
 	@DEBUG_VALUE: hosal_uart_callback_set:arg <- $r3
 	@DEBUG_VALUE: hosal_uart_callback_set:pfn_callback <- $r2
-	.loc	3 357 5 is_stmt 1               @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:357:5
+	.loc	3 373 5 is_stmt 1               @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:373:5
 	movs	r0, #0
 	bx	lr
 .Ltmp160:
@@ -1479,7 +1479,7 @@ hosal_uart_callback_set:
 	.thumb_func
 uart0_handler:
 .Lfunc_begin6:
-	.loc	3 401 0                         @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:401:0
+	.loc	3 421 0                         @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:421:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -1489,7 +1489,7 @@ uart0_handler:
 	.cfi_offset lr, -4
 	.cfi_offset r7, -8
 .Ltmp161:
-	.loc	3 402 5 prologue_end            @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:402:5
+	.loc	3 422 5 prologue_end            @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:422:5
 	movs	r0, #0
 	bl	__uart_generic_notify_handler
 .Ltmp162:
@@ -1502,7 +1502,7 @@ uart0_handler:
 	.loc	6 1603 43 is_stmt 1             @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm3.h:1603:43
 	str	r1, [r0]
 .Ltmp164:
-	.loc	3 404 1                         @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:404:1
+	.loc	3 424 1                         @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:424:1
 	pop	{r7, pc}
 .Ltmp165:
 .Lfunc_end6:
@@ -1518,7 +1518,7 @@ uart0_handler:
 	.thumb_func
 __uart_generic_notify_handler:
 .Lfunc_begin7:
-	.loc	3 361 0                         @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:361:0
+	.loc	3 377 0                         @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:377:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -1532,19 +1532,19 @@ __uart_generic_notify_handler:
 	.cfi_offset r5, -12
 	.cfi_offset r4, -16
 .Ltmp166:
-	.loc	3 362 38 prologue_end           @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:362:38
+	.loc	3 378 38 prologue_end           @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:378:38
 	movw	r5, :lower16:g_uart_handle
 	add.w	r4, r0, r0, lsl #2
 	movt	r5, :upper16:g_uart_handle
 	ldr.w	r6, [r5, r4, lsl #3]
 .Ltmp167:
 	@DEBUG_VALUE: __uart_generic_notify_handler:uart <- $r6
-	.loc	3 365 19                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:365:19
+	.loc	3 381 19                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:381:19
 	ldr	r0, [r6, #8]
 .Ltmp168:
 	@DEBUG_VALUE: __uart_generic_notify_handler:id <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: __uart_generic_notify_handler:iir <- [DW_OP_constu 15, DW_OP_and, DW_OP_stack_value] $r0
-	.loc	3 366 9                         @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:366:9
+	.loc	3 382 9                         @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:382:9
 	lsls	r0, r0, #31
 .Ltmp169:
 	bne	.LBB7_7
@@ -1552,66 +1552,66 @@ __uart_generic_notify_handler:
 @ %bb.1:
 	@DEBUG_VALUE: __uart_generic_notify_handler:uart <- $r6
 	@DEBUG_VALUE: __uart_generic_notify_handler:id <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	3 368 19                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:368:19
+	.loc	3 384 19                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:384:19
 	ldr	r0, [r6, #20]
 .Ltmp171:
-	.loc	3 368 13 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:368:13
+	.loc	3 384 13 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:384:13
 	lsls	r0, r0, #31
 	beq	.LBB7_4
 .Ltmp172:
 @ %bb.2:
 	@DEBUG_VALUE: __uart_generic_notify_handler:uart <- $r6
 	@DEBUG_VALUE: __uart_generic_notify_handler:id <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	3 370 34 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:370:34
+	.loc	3 386 35 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:386:35
 	add.w	r0, r5, r4, lsl #3
 	ldr	r1, [r0, #8]
 .Ltmp173:
-	.loc	3 370 16 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:370:16
+	.loc	3 386 17 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:386:17
 	cbz	r1, .LBB7_4
 .Ltmp174:
 @ %bb.3:
 	@DEBUG_VALUE: __uart_generic_notify_handler:uart <- $r6
 	@DEBUG_VALUE: __uart_generic_notify_handler:id <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	3 371 59 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:371:59
+	.loc	3 388 59 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:388:59
 	ldr	r0, [r0, #12]
-	.loc	3 371 17 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:371:17
+	.loc	3 388 17 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:388:17
 	blx	r1
 .Ltmp175:
 .LBB7_4:
 	@DEBUG_VALUE: __uart_generic_notify_handler:uart <- $r6
 	@DEBUG_VALUE: __uart_generic_notify_handler:id <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	3 373 19 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:373:19
+	.loc	3 391 19 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:391:19
 	ldr	r0, [r6, #20]
 .Ltmp176:
-	.loc	3 373 13 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:373:13
+	.loc	3 391 13 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:391:13
 	lsls	r0, r0, #26
 	bpl	.LBB7_7
 .Ltmp177:
 @ %bb.5:
 	@DEBUG_VALUE: __uart_generic_notify_handler:uart <- $r6
 	@DEBUG_VALUE: __uart_generic_notify_handler:id <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	3 375 34 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:375:34
+	.loc	3 393 35 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:393:35
 	add.w	r0, r5, r4, lsl #3
 	ldr	r1, [r0, #16]
 .Ltmp178:
-	.loc	3 375 16 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:375:16
+	.loc	3 393 17 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:393:17
 	cbz	r1, .LBB7_7
 .Ltmp179:
 @ %bb.6:
 	@DEBUG_VALUE: __uart_generic_notify_handler:uart <- $r6
 	@DEBUG_VALUE: __uart_generic_notify_handler:id <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	3 376 59 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:376:59
+	.loc	3 395 59 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:395:59
 	ldr	r0, [r0, #20]
-	.loc	3 376 17 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:376:17
+	.loc	3 395 17 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:395:17
 	blx	r1
 .Ltmp180:
 .LBB7_7:
 	@DEBUG_VALUE: __uart_generic_notify_handler:uart <- $r6
 	@DEBUG_VALUE: __uart_generic_notify_handler:id <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	3 380 16 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:380:16
+	.loc	3 400 16 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:400:16
 	ldr	r0, [r6, #60]
 .Ltmp181:
-	.loc	3 380 9 is_stmt 0               @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:380:9
+	.loc	3 400 9 is_stmt 0               @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:400:9
 	lsls	r0, r0, #30
 	bpl	.LBB7_10
 .Ltmp182:
@@ -1621,36 +1621,36 @@ __uart_generic_notify_handler:
 	.loc	3 0 9                           @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:0:9
 	movs	r0, #2
 .Ltmp183:
-	.loc	3 382 31 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:382:31
+	.loc	3 402 31 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:402:31
 	str	r0, [r6, #60]
 	movs	r0, #0
-	.loc	3 383 30                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:383:30
+	.loc	3 403 30                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:403:30
 	str	r0, [r6, #68]
 .Ltmp184:
-	.loc	3 384 30                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:384:30
+	.loc	3 404 31                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:404:31
 	add.w	r0, r5, r4, lsl #3
 	ldr	r1, [r0, #32]
 .Ltmp185:
-	.loc	3 384 12 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:384:12
+	.loc	3 404 13 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:404:13
 	cbz	r1, .LBB7_10
 .Ltmp186:
 @ %bb.9:
 	@DEBUG_VALUE: __uart_generic_notify_handler:uart <- $r6
 	@DEBUG_VALUE: __uart_generic_notify_handler:id <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	3 386 58 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:386:58
+	.loc	3 406 58 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:406:58
 	ldr	r0, [r0, #36]
-	.loc	3 386 13 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:386:13
+	.loc	3 406 13 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:406:13
 	blx	r1
 .Ltmp187:
 .LBB7_10:
 	@DEBUG_VALUE: __uart_generic_notify_handler:uart <- $r6
 	@DEBUG_VALUE: __uart_generic_notify_handler:id <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	3 389 16 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:389:16
+	.loc	3 409 16 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:409:16
 	ldr	r0, [r6, #60]
 .Ltmp188:
-	.loc	3 389 9 is_stmt 0               @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:389:9
+	.loc	3 409 9 is_stmt 0               @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:409:9
 	lsls	r0, r0, #31
-	.loc	3 398 1 is_stmt 1               @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:398:1
+	.loc	3 418 1 is_stmt 1               @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:418:1
 	it	eq
 	popeq	{r4, r5, r6, pc}
 .Ltmp189:
@@ -1659,31 +1659,31 @@ __uart_generic_notify_handler:
 	.loc	3 0 1 is_stmt 0                 @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:0:1
 	movs	r0, #1
 .Ltmp190:
-	.loc	3 391 31 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:391:31
+	.loc	3 411 31 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:411:31
 	str	r0, [r6, #60]
 	movs	r0, #0
-	.loc	3 392 30                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:392:30
+	.loc	3 412 30                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:412:30
 	str	r0, [r6, #68]
 .Ltmp191:
-	.loc	3 393 30                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:393:30
+	.loc	3 413 31                        @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:413:31
 	add.w	r0, r5, r4, lsl #3
 	ldr	r1, [r0, #24]
 .Ltmp192:
-	.loc	3 393 12 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:393:12
+	.loc	3 413 13 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:413:13
 	cbz	r1, .LBB7_13
 .Ltmp193:
 @ %bb.12:
 	@DEBUG_VALUE: __uart_generic_notify_handler:id <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	3 395 58 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:395:58
+	.loc	3 415 58 is_stmt 1              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:415:58
 	ldr	r0, [r0, #28]
-	.loc	3 395 13 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:395:13
+	.loc	3 415 13 is_stmt 0              @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:415:13
 	pop.w	{r4, r5, r6, lr}
 .Ltmp194:
 	bx	r1
 .Ltmp195:
 .LBB7_13:
 	@DEBUG_VALUE: __uart_generic_notify_handler:id <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	3 398 1 is_stmt 1               @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:398:1
+	.loc	3 418 1 is_stmt 1               @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:418:1
 	pop	{r4, r5, r6, pc}
 .Ltmp196:
 .Lfunc_end7:
@@ -1701,7 +1701,7 @@ __uart_generic_notify_handler:
 	.thumb_func
 uart1_handler:
 .Lfunc_begin8:
-	.loc	3 407 0                         @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:407:0
+	.loc	3 427 0                         @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:427:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -1711,7 +1711,7 @@ uart1_handler:
 	.cfi_offset lr, -4
 	.cfi_offset r7, -8
 .Ltmp197:
-	.loc	3 408 5 prologue_end            @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:408:5
+	.loc	3 428 5 prologue_end            @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:428:5
 	movs	r0, #1
 	bl	__uart_generic_notify_handler
 .Ltmp198:
@@ -1724,7 +1724,7 @@ uart1_handler:
 	.loc	6 1603 43 is_stmt 1             @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm3.h:1603:43
 	str	r1, [r0]
 .Ltmp200:
-	.loc	3 410 1                         @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:410:1
+	.loc	3 430 1                         @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:430:1
 	pop	{r7, pc}
 .Ltmp201:
 .Lfunc_end8:
@@ -1742,7 +1742,7 @@ uart1_handler:
 	.thumb_func
 uart2_handler:
 .Lfunc_begin9:
-	.loc	3 412 0                         @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:412:0
+	.loc	3 432 0                         @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:432:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -1752,7 +1752,7 @@ uart2_handler:
 	.cfi_offset lr, -4
 	.cfi_offset r7, -8
 .Ltmp202:
-	.loc	3 413 5 prologue_end            @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:413:5
+	.loc	3 433 5 prologue_end            @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:433:5
 	movs	r0, #2
 	bl	__uart_generic_notify_handler
 .Ltmp203:
@@ -1765,7 +1765,7 @@ uart2_handler:
 	.loc	6 1603 43 is_stmt 1             @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm3.h:1603:43
 	str	r1, [r0]
 .Ltmp205:
-	.loc	3 415 1                         @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:415:1
+	.loc	3 435 1                         @ ../../../components/platform/hosal/rt582_hosal/Src/hosal_uart.c:435:1
 	pop	{r7, pc}
 .Ltmp206:
 .Lfunc_end9:
@@ -3042,15 +3042,6 @@ g_uart_handle:
 	.byte	0                               @ EOM(1)
 	.byte	0                               @ EOM(2)
 	.byte	35                              @ Abbreviation Code
-	.byte	5                               @ DW_TAG_formal_parameter
-	.byte	0                               @ DW_CHILDREN_no
-	.byte	2                               @ DW_AT_location
-	.byte	24                              @ DW_FORM_exprloc
-	.byte	49                              @ DW_AT_abstract_origin
-	.byte	19                              @ DW_FORM_ref4
-	.byte	0                               @ EOM(1)
-	.byte	0                               @ EOM(2)
-	.byte	36                              @ Abbreviation Code
 	.byte	29                              @ DW_TAG_inlined_subroutine
 	.byte	1                               @ DW_CHILDREN_yes
 	.byte	49                              @ DW_AT_abstract_origin
@@ -3065,6 +3056,15 @@ g_uart_handle:
 	.byte	5                               @ DW_FORM_data2
 	.byte	87                              @ DW_AT_call_column
 	.byte	11                              @ DW_FORM_data1
+	.byte	0                               @ EOM(1)
+	.byte	0                               @ EOM(2)
+	.byte	36                              @ Abbreviation Code
+	.byte	5                               @ DW_TAG_formal_parameter
+	.byte	0                               @ DW_CHILDREN_no
+	.byte	2                               @ DW_AT_location
+	.byte	24                              @ DW_FORM_exprloc
+	.byte	49                              @ DW_AT_abstract_origin
+	.byte	19                              @ DW_FORM_ref4
 	.byte	0                               @ EOM(1)
 	.byte	0                               @ EOM(2)
 	.byte	37                              @ Abbreviation Code
@@ -3214,7 +3214,7 @@ g_uart_handle:
 	.short	4                               @ DWARF version number
 	.long	.debug_abbrev                   @ Offset Into Abbrev. Section
 	.byte	4                               @ Address Size (in bytes)
-	.byte	1                               @ Abbrev [1] 0xb:0xcfd DW_TAG_compile_unit
+	.byte	1                               @ Abbrev [1] 0xb:0xcfe DW_TAG_compile_unit
 	.long	.Linfo_string0                  @ DW_AT_producer
 	.short	12                              @ DW_AT_language
 	.long	.Linfo_string1                  @ DW_AT_name
@@ -3770,7 +3770,7 @@ g_uart_handle:
 	.long	993                             @ DW_AT_type
 	.long	.Linfo_string118                @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.byte	104                             @ DW_AT_decl_line
+	.byte	105                             @ DW_AT_decl_line
 	.byte	8                               @ Abbrev [8] 0x469:0x5 DW_TAG_pointer_type
 	.long	1118                            @ DW_AT_type
 	.byte	8                               @ Abbrev [8] 0x46e:0x5 DW_TAG_pointer_type
@@ -3779,22 +3779,22 @@ g_uart_handle:
 	.long	1150                            @ DW_AT_type
 	.long	.Linfo_string121                @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.byte	190                             @ DW_AT_decl_line
+	.byte	194                             @ DW_AT_decl_line
 	.byte	6                               @ Abbrev [6] 0x47e:0x1d DW_TAG_structure_type
 	.byte	8                               @ DW_AT_byte_size
 	.byte	5                               @ DW_AT_decl_file
-	.byte	187                             @ DW_AT_decl_line
+	.byte	190                             @ DW_AT_decl_line
 	.byte	7                               @ Abbrev [7] 0x482:0xc DW_TAG_member
 	.long	.Linfo_string119                @ DW_AT_name
 	.long	1026                            @ DW_AT_type
 	.byte	5                               @ DW_AT_decl_file
-	.byte	188                             @ DW_AT_decl_line
+	.byte	192                             @ DW_AT_decl_line
 	.byte	0                               @ DW_AT_data_member_location
 	.byte	7                               @ Abbrev [7] 0x48e:0xc DW_TAG_member
 	.long	.Linfo_string120                @ DW_AT_name
 	.long	445                             @ DW_AT_type
 	.byte	5                               @ DW_AT_decl_file
-	.byte	189                             @ DW_AT_decl_line
+	.byte	193                             @ DW_AT_decl_line
 	.byte	4                               @ DW_AT_data_member_location
 	.byte	0                               @ End Of Children Mark
 	.byte	5                               @ Abbrev [5] 0x49b:0xb DW_TAG_typedef
@@ -4133,7 +4133,7 @@ g_uart_handle:
 	.long	.Linfo_string174                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
 	.byte	54                              @ DW_AT_decl_line
-	.long	3012                            @ DW_AT_type
+	.long	3013                            @ DW_AT_type
 	.byte	30                              @ Abbrev [30] 0x766:0xf DW_TAG_variable
 	.long	.Ldebug_loc1                    @ DW_AT_location
 	.long	.Linfo_string4                  @ DW_AT_name
@@ -4145,7 +4145,7 @@ g_uart_handle:
 	.long	.Linfo_string196                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
 	.byte	57                              @ DW_AT_decl_line
-	.long	3324                            @ DW_AT_type
+	.long	3325                            @ DW_AT_type
 	.byte	30                              @ Abbrev [30] 0x784:0xf DW_TAG_variable
 	.long	.Ldebug_loc4                    @ DW_AT_location
 	.long	.Linfo_string197                @ DW_AT_name
@@ -4209,7 +4209,7 @@ g_uart_handle:
 	.long	.Linfo_string174                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
 	.byte	84                              @ DW_AT_decl_line
-	.long	3012                            @ DW_AT_type
+	.long	3013                            @ DW_AT_type
 	.byte	30                              @ Abbrev [30] 0x80e:0xf DW_TAG_variable
 	.long	.Ldebug_loc7                    @ DW_AT_location
 	.long	.Linfo_string4                  @ DW_AT_name
@@ -4221,7 +4221,7 @@ g_uart_handle:
 	.long	.Linfo_string196                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
 	.byte	87                              @ DW_AT_decl_line
-	.long	3324                            @ DW_AT_type
+	.long	3325                            @ DW_AT_type
 	.byte	30                              @ Abbrev [30] 0x82c:0xf DW_TAG_variable
 	.long	.Ldebug_loc9                    @ DW_AT_location
 	.long	.Linfo_string197                @ DW_AT_name
@@ -4288,14 +4288,14 @@ g_uart_handle:
 	.long	.Linfo_string174                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
 	.byte	166                             @ DW_AT_decl_line
-	.long	3012                            @ DW_AT_type
+	.long	3013                            @ DW_AT_type
 	.byte	34                              @ Abbrev [34] 0x8c3:0xd DW_TAG_formal_parameter
 	.byte	1                               @ DW_AT_location
 	.byte	81
 	.long	.Linfo_string199                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
 	.byte	166                             @ DW_AT_decl_line
-	.long	3329                            @ DW_AT_type
+	.long	3330                            @ DW_AT_type
 	.byte	29                              @ Abbrev [29] 0x8d0:0xf DW_TAG_formal_parameter
 	.long	.Ldebug_loc15                   @ DW_AT_location
 	.long	.Linfo_string200                @ DW_AT_name
@@ -4307,7 +4307,7 @@ g_uart_handle:
 	.long	.Linfo_string196                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
 	.byte	169                             @ DW_AT_decl_line
-	.long	3324                            @ DW_AT_type
+	.long	3325                            @ DW_AT_type
 	.byte	30                              @ Abbrev [30] 0x8ee:0xf DW_TAG_variable
 	.long	.Ldebug_loc17                   @ DW_AT_location
 	.long	.Linfo_string4                  @ DW_AT_name
@@ -4338,7 +4338,7 @@ g_uart_handle:
 	.long	.Linfo_string174                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
 	.byte	182                             @ DW_AT_decl_line
-	.long	3012                            @ DW_AT_type
+	.long	3013                            @ DW_AT_type
 	.byte	34                              @ Abbrev [34] 0x931:0xd DW_TAG_formal_parameter
 	.byte	1                               @ DW_AT_location
 	.byte	81
@@ -4358,7 +4358,7 @@ g_uart_handle:
 	.long	.Linfo_string196                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
 	.byte	185                             @ DW_AT_decl_line
-	.long	3324                            @ DW_AT_type
+	.long	3325                            @ DW_AT_type
 	.byte	30                              @ Abbrev [30] 0x95a:0xf DW_TAG_variable
 	.long	.Ldebug_loc21                   @ DW_AT_location
 	.long	.Linfo_string4                  @ DW_AT_name
@@ -4384,7 +4384,7 @@ g_uart_handle:
 	.short	1508                            @ DW_AT_decl_line
 	.long	468                             @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
-	.byte	28                              @ Abbrev [28] 0x98f:0x103 DW_TAG_subprogram
+	.byte	28                              @ Abbrev [28] 0x98f:0x104 DW_TAG_subprogram
 	.long	.Lfunc_begin4                   @ DW_AT_low_pc
 	.long	.Lfunc_end4-.Lfunc_begin4       @ DW_AT_high_pc
 	.byte	1                               @ DW_AT_frame_base
@@ -4401,7 +4401,7 @@ g_uart_handle:
 	.long	.Linfo_string174                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
 	.byte	206                             @ DW_AT_decl_line
-	.long	3012                            @ DW_AT_type
+	.long	3013                            @ DW_AT_type
 	.byte	29                              @ Abbrev [29] 0x9b3:0xf DW_TAG_formal_parameter
 	.long	.Ldebug_loc24                   @ DW_AT_location
 	.long	.Linfo_string204                @ DW_AT_name
@@ -4432,72 +4432,72 @@ g_uart_handle:
 	.byte	3                               @ DW_AT_decl_file
 	.byte	208                             @ DW_AT_decl_line
 	.long	1134                            @ DW_AT_type
-	.byte	31                              @ Abbrev [31] 0x9fe:0x18 DW_TAG_inlined_subroutine
+	.byte	35                              @ Abbrev [35] 0x9fe:0x19 DW_TAG_inlined_subroutine
 	.long	1836                            @ DW_AT_abstract_origin
 	.long	.Ltmp99                         @ DW_AT_low_pc
 	.long	.Ltmp101-.Ltmp99                @ DW_AT_high_pc
 	.byte	3                               @ DW_AT_call_file
-	.byte	255                             @ DW_AT_call_line
+	.short	261                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
-	.byte	35                              @ Abbrev [35] 0xa0e:0x7 DW_TAG_formal_parameter
+	.byte	36                              @ Abbrev [36] 0xa0f:0x7 DW_TAG_formal_parameter
 	.byte	1                               @ DW_AT_location
 	.byte	81
 	.long	1845                            @ DW_AT_abstract_origin
 	.byte	0                               @ End Of Children Mark
-	.byte	36                              @ Abbrev [36] 0xa16:0x1b DW_TAG_inlined_subroutine
+	.byte	35                              @ Abbrev [35] 0xa17:0x1b DW_TAG_inlined_subroutine
 	.long	2425                            @ DW_AT_abstract_origin
 	.long	.Ltmp113                        @ DW_AT_low_pc
 	.long	.Ltmp117-.Ltmp113               @ DW_AT_high_pc
 	.byte	3                               @ DW_AT_call_file
-	.short	307                             @ DW_AT_call_line
-	.byte	10                              @ DW_AT_call_column
-	.byte	32                              @ Abbrev [32] 0xa27:0x9 DW_TAG_formal_parameter
+	.short	316                             @ DW_AT_call_line
+	.byte	9                               @ DW_AT_call_column
+	.byte	32                              @ Abbrev [32] 0xa28:0x9 DW_TAG_formal_parameter
 	.long	.Ldebug_loc29                   @ DW_AT_location
 	.long	2434                            @ DW_AT_abstract_origin
 	.byte	0                               @ End Of Children Mark
-	.byte	36                              @ Abbrev [36] 0xa31:0x1b DW_TAG_inlined_subroutine
+	.byte	35                              @ Abbrev [35] 0xa32:0x1b DW_TAG_inlined_subroutine
 	.long	1814                            @ DW_AT_abstract_origin
 	.long	.Ltmp119                        @ DW_AT_low_pc
 	.long	.Ltmp123-.Ltmp119               @ DW_AT_high_pc
 	.byte	3                               @ DW_AT_call_file
-	.short	303                             @ DW_AT_call_line
+	.short	312                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
-	.byte	32                              @ Abbrev [32] 0xa42:0x9 DW_TAG_formal_parameter
+	.byte	32                              @ Abbrev [32] 0xa43:0x9 DW_TAG_formal_parameter
 	.long	.Ldebug_loc30                   @ DW_AT_location
 	.long	1823                            @ DW_AT_abstract_origin
 	.byte	0                               @ End Of Children Mark
-	.byte	37                              @ Abbrev [37] 0xa4c:0x17 DW_TAG_inlined_subroutine
+	.byte	37                              @ Abbrev [37] 0xa4d:0x17 DW_TAG_inlined_subroutine
 	.long	2425                            @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges0                 @ DW_AT_ranges
 	.byte	3                               @ DW_AT_call_file
-	.short	264                             @ DW_AT_call_line
+	.short	272                             @ DW_AT_call_line
 	.byte	13                              @ DW_AT_call_column
-	.byte	32                              @ Abbrev [32] 0xa59:0x9 DW_TAG_formal_parameter
+	.byte	32                              @ Abbrev [32] 0xa5a:0x9 DW_TAG_formal_parameter
 	.long	.Ldebug_loc31                   @ DW_AT_location
 	.long	2434                            @ DW_AT_abstract_origin
 	.byte	0                               @ End Of Children Mark
-	.byte	37                              @ Abbrev [37] 0xa63:0x17 DW_TAG_inlined_subroutine
+	.byte	37                              @ Abbrev [37] 0xa64:0x17 DW_TAG_inlined_subroutine
 	.long	2425                            @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges1                 @ DW_AT_ranges
 	.byte	3                               @ DW_AT_call_file
-	.short	269                             @ DW_AT_call_line
+	.short	277                             @ DW_AT_call_line
 	.byte	13                              @ DW_AT_call_column
-	.byte	32                              @ Abbrev [32] 0xa70:0x9 DW_TAG_formal_parameter
+	.byte	32                              @ Abbrev [32] 0xa71:0x9 DW_TAG_formal_parameter
 	.long	.Ldebug_loc32                   @ DW_AT_location
 	.long	2434                            @ DW_AT_abstract_origin
 	.byte	0                               @ End Of Children Mark
-	.byte	37                              @ Abbrev [37] 0xa7a:0x17 DW_TAG_inlined_subroutine
+	.byte	37                              @ Abbrev [37] 0xa7b:0x17 DW_TAG_inlined_subroutine
 	.long	2425                            @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges2                 @ DW_AT_ranges
 	.byte	3                               @ DW_AT_call_file
-	.short	274                             @ DW_AT_call_line
+	.short	282                             @ DW_AT_call_line
 	.byte	13                              @ DW_AT_call_column
-	.byte	32                              @ Abbrev [32] 0xa87:0x9 DW_TAG_formal_parameter
+	.byte	32                              @ Abbrev [32] 0xa88:0x9 DW_TAG_formal_parameter
 	.long	.Ldebug_loc33                   @ DW_AT_location
 	.long	2434                            @ DW_AT_abstract_origin
 	.byte	0                               @ End Of Children Mark
 	.byte	0                               @ End Of Children Mark
-	.byte	38                              @ Abbrev [38] 0xa92:0x67 DW_TAG_subprogram
+	.byte	38                              @ Abbrev [38] 0xa93:0x67 DW_TAG_subprogram
 	.long	.Lfunc_begin5                   @ DW_AT_low_pc
 	.long	.Lfunc_end5-.Lfunc_begin5       @ DW_AT_high_pc
 	.byte	1                               @ DW_AT_frame_base
@@ -4505,42 +4505,42 @@ g_uart_handle:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string169                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.short	323                             @ DW_AT_decl_line
+	.short	332                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	744                             @ DW_AT_type
                                         @ DW_AT_external
-	.byte	39                              @ Abbrev [39] 0xaa8:0x10 DW_TAG_formal_parameter
+	.byte	39                              @ Abbrev [39] 0xaa9:0x10 DW_TAG_formal_parameter
 	.long	.Ldebug_loc34                   @ DW_AT_location
 	.long	.Linfo_string174                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.short	323                             @ DW_AT_decl_line
-	.long	3012                            @ DW_AT_type
-	.byte	39                              @ Abbrev [39] 0xab8:0x10 DW_TAG_formal_parameter
+	.short	332                             @ DW_AT_decl_line
+	.long	3013                            @ DW_AT_type
+	.byte	39                              @ Abbrev [39] 0xab9:0x10 DW_TAG_formal_parameter
 	.long	.Ldebug_loc35                   @ DW_AT_location
 	.long	.Linfo_string208                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.short	324                             @ DW_AT_decl_line
+	.short	333                             @ DW_AT_decl_line
 	.long	744                             @ DW_AT_type
-	.byte	39                              @ Abbrev [39] 0xac8:0x10 DW_TAG_formal_parameter
+	.byte	39                              @ Abbrev [39] 0xac9:0x10 DW_TAG_formal_parameter
 	.long	.Ldebug_loc36                   @ DW_AT_location
 	.long	.Linfo_string209                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.short	325                             @ DW_AT_decl_line
+	.short	334                             @ DW_AT_decl_line
 	.long	751                             @ DW_AT_type
-	.byte	39                              @ Abbrev [39] 0xad8:0x10 DW_TAG_formal_parameter
+	.byte	39                              @ Abbrev [39] 0xad9:0x10 DW_TAG_formal_parameter
 	.long	.Ldebug_loc37                   @ DW_AT_location
 	.long	.Linfo_string210                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.short	326                             @ DW_AT_decl_line
+	.short	335                             @ DW_AT_decl_line
 	.long	778                             @ DW_AT_type
-	.byte	40                              @ Abbrev [40] 0xae8:0x10 DW_TAG_variable
+	.byte	40                              @ Abbrev [40] 0xae9:0x10 DW_TAG_variable
 	.long	.Ldebug_loc38                   @ DW_AT_location
 	.long	.Linfo_string196                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.short	329                             @ DW_AT_decl_line
-	.long	3324                            @ DW_AT_type
+	.short	338                             @ DW_AT_decl_line
+	.long	3325                            @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
-	.byte	41                              @ Abbrev [41] 0xaf9:0x2b DW_TAG_subprogram
+	.byte	41                              @ Abbrev [41] 0xafa:0x2b DW_TAG_subprogram
 	.long	.Lfunc_begin6                   @ DW_AT_low_pc
 	.long	.Lfunc_end6-.Lfunc_begin6       @ DW_AT_high_pc
 	.byte	1                               @ DW_AT_frame_base
@@ -4548,22 +4548,22 @@ g_uart_handle:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string170                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.short	400                             @ DW_AT_decl_line
+	.short	420                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_external
-	.byte	36                              @ Abbrev [36] 0xb0b:0x18 DW_TAG_inlined_subroutine
+	.byte	35                              @ Abbrev [35] 0xb0c:0x18 DW_TAG_inlined_subroutine
 	.long	1836                            @ DW_AT_abstract_origin
 	.long	.Ltmp163                        @ DW_AT_low_pc
 	.long	.Ltmp164-.Ltmp163               @ DW_AT_high_pc
 	.byte	3                               @ DW_AT_call_file
-	.short	403                             @ DW_AT_call_line
+	.short	423                             @ DW_AT_call_line
 	.byte	5                               @ DW_AT_call_column
-	.byte	42                              @ Abbrev [42] 0xb1c:0x6 DW_TAG_formal_parameter
+	.byte	42                              @ Abbrev [42] 0xb1d:0x6 DW_TAG_formal_parameter
 	.byte	4                               @ DW_AT_const_value
 	.long	1845                            @ DW_AT_abstract_origin
 	.byte	0                               @ End Of Children Mark
 	.byte	0                               @ End Of Children Mark
-	.byte	43                              @ Abbrev [43] 0xb24:0x4a DW_TAG_subprogram
+	.byte	43                              @ Abbrev [43] 0xb25:0x4a DW_TAG_subprogram
 	.long	.Lfunc_begin7                   @ DW_AT_low_pc
 	.long	.Lfunc_end7-.Lfunc_begin7       @ DW_AT_high_pc
 	.byte	1                               @ DW_AT_frame_base
@@ -4571,33 +4571,33 @@ g_uart_handle:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string171                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.short	360                             @ DW_AT_decl_line
+	.short	376                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
-	.byte	39                              @ Abbrev [39] 0xb36:0x10 DW_TAG_formal_parameter
+	.byte	39                              @ Abbrev [39] 0xb37:0x10 DW_TAG_formal_parameter
 	.long	.Ldebug_loc39                   @ DW_AT_location
 	.long	.Linfo_string211                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.short	360                             @ DW_AT_decl_line
+	.short	376                             @ DW_AT_decl_line
 	.long	1031                            @ DW_AT_type
-	.byte	40                              @ Abbrev [40] 0xb46:0x10 DW_TAG_variable
+	.byte	40                              @ Abbrev [40] 0xb47:0x10 DW_TAG_variable
 	.long	.Ldebug_loc40                   @ DW_AT_location
 	.long	.Linfo_string4                  @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.short	362                             @ DW_AT_decl_line
+	.short	378                             @ DW_AT_decl_line
 	.long	203                             @ DW_AT_type
-	.byte	40                              @ Abbrev [40] 0xb56:0x10 DW_TAG_variable
+	.byte	40                              @ Abbrev [40] 0xb57:0x10 DW_TAG_variable
 	.long	.Ldebug_loc41                   @ DW_AT_location
 	.long	.Linfo_string212                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.short	363                             @ DW_AT_decl_line
+	.short	379                             @ DW_AT_decl_line
 	.long	445                             @ DW_AT_type
-	.byte	44                              @ Abbrev [44] 0xb66:0x7 DW_TAG_GNU_call_site
+	.byte	44                              @ Abbrev [44] 0xb67:0x7 DW_TAG_GNU_call_site
 	.byte	1                               @ DW_AT_GNU_call_site_target
 	.byte	81
                                         @ DW_AT_GNU_tail_call
 	.long	.Ltmp195                        @ DW_AT_low_pc
 	.byte	0                               @ End Of Children Mark
-	.byte	41                              @ Abbrev [41] 0xb6e:0x2b DW_TAG_subprogram
+	.byte	41                              @ Abbrev [41] 0xb6f:0x2b DW_TAG_subprogram
 	.long	.Lfunc_begin8                   @ DW_AT_low_pc
 	.long	.Lfunc_end8-.Lfunc_begin8       @ DW_AT_high_pc
 	.byte	1                               @ DW_AT_frame_base
@@ -4605,22 +4605,22 @@ g_uart_handle:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string172                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.short	406                             @ DW_AT_decl_line
+	.short	426                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_external
-	.byte	36                              @ Abbrev [36] 0xb80:0x18 DW_TAG_inlined_subroutine
+	.byte	35                              @ Abbrev [35] 0xb81:0x18 DW_TAG_inlined_subroutine
 	.long	1836                            @ DW_AT_abstract_origin
 	.long	.Ltmp199                        @ DW_AT_low_pc
 	.long	.Ltmp200-.Ltmp199               @ DW_AT_high_pc
 	.byte	3                               @ DW_AT_call_file
-	.short	409                             @ DW_AT_call_line
+	.short	429                             @ DW_AT_call_line
 	.byte	5                               @ DW_AT_call_column
-	.byte	42                              @ Abbrev [42] 0xb91:0x6 DW_TAG_formal_parameter
+	.byte	42                              @ Abbrev [42] 0xb92:0x6 DW_TAG_formal_parameter
 	.byte	7                               @ DW_AT_const_value
 	.long	1845                            @ DW_AT_abstract_origin
 	.byte	0                               @ End Of Children Mark
 	.byte	0                               @ End Of Children Mark
-	.byte	41                              @ Abbrev [41] 0xb99:0x2b DW_TAG_subprogram
+	.byte	41                              @ Abbrev [41] 0xb9a:0x2b DW_TAG_subprogram
 	.long	.Lfunc_begin9                   @ DW_AT_low_pc
 	.long	.Lfunc_end9-.Lfunc_begin9       @ DW_AT_high_pc
 	.byte	1                               @ DW_AT_frame_base
@@ -4628,185 +4628,185 @@ g_uart_handle:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string173                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.short	411                             @ DW_AT_decl_line
+	.short	431                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_external
-	.byte	36                              @ Abbrev [36] 0xbab:0x18 DW_TAG_inlined_subroutine
+	.byte	35                              @ Abbrev [35] 0xbac:0x18 DW_TAG_inlined_subroutine
 	.long	1836                            @ DW_AT_abstract_origin
 	.long	.Ltmp204                        @ DW_AT_low_pc
 	.long	.Ltmp205-.Ltmp204               @ DW_AT_high_pc
 	.byte	3                               @ DW_AT_call_file
-	.short	414                             @ DW_AT_call_line
+	.short	434                             @ DW_AT_call_line
 	.byte	5                               @ DW_AT_call_column
-	.byte	42                              @ Abbrev [42] 0xbbc:0x6 DW_TAG_formal_parameter
+	.byte	42                              @ Abbrev [42] 0xbbd:0x6 DW_TAG_formal_parameter
 	.byte	19                              @ DW_AT_const_value
 	.long	1845                            @ DW_AT_abstract_origin
 	.byte	0                               @ End Of Children Mark
 	.byte	0                               @ End Of Children Mark
-	.byte	8                               @ Abbrev [8] 0xbc4:0x5 DW_TAG_pointer_type
-	.long	3017                            @ DW_AT_type
-	.byte	5                               @ Abbrev [5] 0xbc9:0xb DW_TAG_typedef
-	.long	3028                            @ DW_AT_type
+	.byte	8                               @ Abbrev [8] 0xbc5:0x5 DW_TAG_pointer_type
+	.long	3018                            @ DW_AT_type
+	.byte	5                               @ Abbrev [5] 0xbca:0xb DW_TAG_typedef
+	.long	3029                            @ DW_AT_type
 	.long	.Linfo_string195                @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.byte	185                             @ DW_AT_decl_line
-	.byte	6                               @ Abbrev [6] 0xbd4:0x89 DW_TAG_structure_type
+	.byte	188                             @ DW_AT_decl_line
+	.byte	6                               @ Abbrev [6] 0xbd5:0x89 DW_TAG_structure_type
 	.byte	72                              @ DW_AT_byte_size
 	.byte	5                               @ DW_AT_decl_file
-	.byte	173                             @ DW_AT_decl_line
-	.byte	7                               @ Abbrev [7] 0xbd8:0xc DW_TAG_member
+	.byte	175                             @ DW_AT_decl_line
+	.byte	7                               @ Abbrev [7] 0xbd9:0xc DW_TAG_member
 	.long	.Linfo_string175                @ DW_AT_name
 	.long	1031                            @ DW_AT_type
 	.byte	5                               @ DW_AT_decl_file
-	.byte	174                             @ DW_AT_decl_line
+	.byte	177                             @ DW_AT_decl_line
 	.byte	0                               @ DW_AT_data_member_location
-	.byte	7                               @ Abbrev [7] 0xbe4:0xc DW_TAG_member
+	.byte	7                               @ Abbrev [7] 0xbe5:0xc DW_TAG_member
 	.long	.Linfo_string176                @ DW_AT_name
-	.long	3165                            @ DW_AT_type
+	.long	3166                            @ DW_AT_type
 	.byte	5                               @ DW_AT_decl_file
-	.byte	175                             @ DW_AT_decl_line
+	.byte	178                             @ DW_AT_decl_line
 	.byte	4                               @ DW_AT_data_member_location
-	.byte	7                               @ Abbrev [7] 0xbf0:0xc DW_TAG_member
+	.byte	7                               @ Abbrev [7] 0xbf1:0xc DW_TAG_member
 	.long	.Linfo_string74                 @ DW_AT_name
 	.long	751                             @ DW_AT_type
 	.byte	5                               @ DW_AT_decl_file
-	.byte	176                             @ DW_AT_decl_line
+	.byte	179                             @ DW_AT_decl_line
 	.byte	36                              @ DW_AT_data_member_location
-	.byte	7                               @ Abbrev [7] 0xbfc:0xc DW_TAG_member
+	.byte	7                               @ Abbrev [7] 0xbfd:0xc DW_TAG_member
 	.long	.Linfo_string190                @ DW_AT_name
 	.long	778                             @ DW_AT_type
 	.byte	5                               @ DW_AT_decl_file
-	.byte	177                             @ DW_AT_decl_line
+	.byte	180                             @ DW_AT_decl_line
 	.byte	40                              @ DW_AT_data_member_location
-	.byte	7                               @ Abbrev [7] 0xc08:0xc DW_TAG_member
+	.byte	7                               @ Abbrev [7] 0xc09:0xc DW_TAG_member
 	.long	.Linfo_string71                 @ DW_AT_name
 	.long	751                             @ DW_AT_type
 	.byte	5                               @ DW_AT_decl_file
-	.byte	178                             @ DW_AT_decl_line
+	.byte	181                             @ DW_AT_decl_line
 	.byte	44                              @ DW_AT_data_member_location
-	.byte	7                               @ Abbrev [7] 0xc14:0xc DW_TAG_member
+	.byte	7                               @ Abbrev [7] 0xc15:0xc DW_TAG_member
 	.long	.Linfo_string191                @ DW_AT_name
 	.long	778                             @ DW_AT_type
 	.byte	5                               @ DW_AT_decl_file
-	.byte	179                             @ DW_AT_decl_line
+	.byte	182                             @ DW_AT_decl_line
 	.byte	48                              @ DW_AT_data_member_location
-	.byte	7                               @ Abbrev [7] 0xc20:0xc DW_TAG_member
+	.byte	7                               @ Abbrev [7] 0xc21:0xc DW_TAG_member
 	.long	.Linfo_string78                 @ DW_AT_name
 	.long	751                             @ DW_AT_type
 	.byte	5                               @ DW_AT_decl_file
-	.byte	180                             @ DW_AT_decl_line
+	.byte	183                             @ DW_AT_decl_line
 	.byte	52                              @ DW_AT_data_member_location
-	.byte	7                               @ Abbrev [7] 0xc2c:0xc DW_TAG_member
+	.byte	7                               @ Abbrev [7] 0xc2d:0xc DW_TAG_member
 	.long	.Linfo_string192                @ DW_AT_name
 	.long	778                             @ DW_AT_type
 	.byte	5                               @ DW_AT_decl_file
-	.byte	181                             @ DW_AT_decl_line
+	.byte	184                             @ DW_AT_decl_line
 	.byte	56                              @ DW_AT_data_member_location
-	.byte	7                               @ Abbrev [7] 0xc38:0xc DW_TAG_member
+	.byte	7                               @ Abbrev [7] 0xc39:0xc DW_TAG_member
 	.long	.Linfo_string76                 @ DW_AT_name
 	.long	751                             @ DW_AT_type
 	.byte	5                               @ DW_AT_decl_file
-	.byte	182                             @ DW_AT_decl_line
+	.byte	185                             @ DW_AT_decl_line
 	.byte	60                              @ DW_AT_data_member_location
-	.byte	7                               @ Abbrev [7] 0xc44:0xc DW_TAG_member
+	.byte	7                               @ Abbrev [7] 0xc45:0xc DW_TAG_member
 	.long	.Linfo_string193                @ DW_AT_name
 	.long	778                             @ DW_AT_type
 	.byte	5                               @ DW_AT_decl_file
-	.byte	183                             @ DW_AT_decl_line
+	.byte	186                             @ DW_AT_decl_line
 	.byte	64                              @ DW_AT_data_member_location
-	.byte	7                               @ Abbrev [7] 0xc50:0xc DW_TAG_member
+	.byte	7                               @ Abbrev [7] 0xc51:0xc DW_TAG_member
 	.long	.Linfo_string194                @ DW_AT_name
 	.long	778                             @ DW_AT_type
 	.byte	5                               @ DW_AT_decl_file
-	.byte	184                             @ DW_AT_decl_line
+	.byte	187                             @ DW_AT_decl_line
 	.byte	68                              @ DW_AT_data_member_location
 	.byte	0                               @ End Of Children Mark
-	.byte	5                               @ Abbrev [5] 0xc5d:0xb DW_TAG_typedef
-	.long	3176                            @ DW_AT_type
+	.byte	5                               @ Abbrev [5] 0xc5e:0xb DW_TAG_typedef
+	.long	3177                            @ DW_AT_type
 	.long	.Linfo_string189                @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.byte	171                             @ DW_AT_decl_line
-	.byte	6                               @ Abbrev [6] 0xc68:0x89 DW_TAG_structure_type
+	.byte	173                             @ DW_AT_decl_line
+	.byte	6                               @ Abbrev [6] 0xc69:0x89 DW_TAG_structure_type
 	.byte	32                              @ DW_AT_byte_size
 	.byte	5                               @ DW_AT_decl_file
-	.byte	159                             @ DW_AT_decl_line
-	.byte	7                               @ Abbrev [7] 0xc6c:0xc DW_TAG_member
+	.byte	160                             @ DW_AT_decl_line
+	.byte	7                               @ Abbrev [7] 0xc6d:0xc DW_TAG_member
 	.long	.Linfo_string177                @ DW_AT_name
 	.long	1031                            @ DW_AT_type
 	.byte	5                               @ DW_AT_decl_file
-	.byte	160                             @ DW_AT_decl_line
+	.byte	162                             @ DW_AT_decl_line
 	.byte	0                               @ DW_AT_data_member_location
-	.byte	7                               @ Abbrev [7] 0xc78:0xc DW_TAG_member
+	.byte	7                               @ Abbrev [7] 0xc79:0xc DW_TAG_member
 	.long	.Linfo_string178                @ DW_AT_name
 	.long	1031                            @ DW_AT_type
 	.byte	5                               @ DW_AT_decl_file
-	.byte	161                             @ DW_AT_decl_line
+	.byte	163                             @ DW_AT_decl_line
 	.byte	1                               @ DW_AT_data_member_location
-	.byte	7                               @ Abbrev [7] 0xc84:0xc DW_TAG_member
+	.byte	7                               @ Abbrev [7] 0xc85:0xc DW_TAG_member
 	.long	.Linfo_string179                @ DW_AT_name
 	.long	1031                            @ DW_AT_type
 	.byte	5                               @ DW_AT_decl_file
-	.byte	162                             @ DW_AT_decl_line
+	.byte	164                             @ DW_AT_decl_line
 	.byte	2                               @ DW_AT_data_member_location
-	.byte	7                               @ Abbrev [7] 0xc90:0xc DW_TAG_member
+	.byte	7                               @ Abbrev [7] 0xc91:0xc DW_TAG_member
 	.long	.Linfo_string180                @ DW_AT_name
 	.long	1031                            @ DW_AT_type
 	.byte	5                               @ DW_AT_decl_file
-	.byte	163                             @ DW_AT_decl_line
+	.byte	165                             @ DW_AT_decl_line
 	.byte	3                               @ DW_AT_data_member_location
-	.byte	7                               @ Abbrev [7] 0xc9c:0xc DW_TAG_member
+	.byte	7                               @ Abbrev [7] 0xc9d:0xc DW_TAG_member
 	.long	.Linfo_string181                @ DW_AT_name
 	.long	1031                            @ DW_AT_type
 	.byte	5                               @ DW_AT_decl_file
-	.byte	164                             @ DW_AT_decl_line
+	.byte	166                             @ DW_AT_decl_line
 	.byte	4                               @ DW_AT_data_member_location
-	.byte	7                               @ Abbrev [7] 0xca8:0xc DW_TAG_member
+	.byte	7                               @ Abbrev [7] 0xca9:0xc DW_TAG_member
 	.long	.Linfo_string182                @ DW_AT_name
-	.long	3313                            @ DW_AT_type
+	.long	3314                            @ DW_AT_type
 	.byte	5                               @ DW_AT_decl_file
-	.byte	165                             @ DW_AT_decl_line
+	.byte	167                             @ DW_AT_decl_line
 	.byte	8                               @ DW_AT_data_member_location
-	.byte	7                               @ Abbrev [7] 0xcb4:0xc DW_TAG_member
+	.byte	7                               @ Abbrev [7] 0xcb5:0xc DW_TAG_member
 	.long	.Linfo_string184                @ DW_AT_name
 	.long	1054                            @ DW_AT_type
 	.byte	5                               @ DW_AT_decl_file
-	.byte	166                             @ DW_AT_decl_line
+	.byte	168                             @ DW_AT_decl_line
 	.byte	12                              @ DW_AT_data_member_location
-	.byte	7                               @ Abbrev [7] 0xcc0:0xc DW_TAG_member
+	.byte	7                               @ Abbrev [7] 0xcc1:0xc DW_TAG_member
 	.long	.Linfo_string185                @ DW_AT_name
 	.long	1102                            @ DW_AT_type
 	.byte	5                               @ DW_AT_decl_file
-	.byte	167                             @ DW_AT_decl_line
+	.byte	169                             @ DW_AT_decl_line
 	.byte	16                              @ DW_AT_data_member_location
-	.byte	7                               @ Abbrev [7] 0xccc:0xc DW_TAG_member
+	.byte	7                               @ Abbrev [7] 0xccd:0xc DW_TAG_member
 	.long	.Linfo_string186                @ DW_AT_name
 	.long	1070                            @ DW_AT_type
 	.byte	5                               @ DW_AT_decl_file
-	.byte	168                             @ DW_AT_decl_line
+	.byte	170                             @ DW_AT_decl_line
 	.byte	20                              @ DW_AT_data_member_location
-	.byte	7                               @ Abbrev [7] 0xcd8:0xc DW_TAG_member
+	.byte	7                               @ Abbrev [7] 0xcd9:0xc DW_TAG_member
 	.long	.Linfo_string187                @ DW_AT_name
 	.long	1086                            @ DW_AT_type
 	.byte	5                               @ DW_AT_decl_file
-	.byte	169                             @ DW_AT_decl_line
+	.byte	171                             @ DW_AT_decl_line
 	.byte	24                              @ DW_AT_data_member_location
-	.byte	7                               @ Abbrev [7] 0xce4:0xc DW_TAG_member
+	.byte	7                               @ Abbrev [7] 0xce5:0xc DW_TAG_member
 	.long	.Linfo_string188                @ DW_AT_name
 	.long	1118                            @ DW_AT_type
 	.byte	5                               @ DW_AT_decl_file
-	.byte	170                             @ DW_AT_decl_line
+	.byte	172                             @ DW_AT_decl_line
 	.byte	28                              @ DW_AT_data_member_location
 	.byte	0                               @ End Of Children Mark
-	.byte	5                               @ Abbrev [5] 0xcf1:0xb DW_TAG_typedef
+	.byte	5                               @ Abbrev [5] 0xcf2:0xb DW_TAG_typedef
 	.long	786                             @ DW_AT_type
 	.long	.Linfo_string183                @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
 	.byte	88                              @ DW_AT_decl_line
-	.byte	8                               @ Abbrev [8] 0xcfc:0x5 DW_TAG_pointer_type
-	.long	3165                            @ DW_AT_type
-	.byte	8                               @ Abbrev [8] 0xd01:0x5 DW_TAG_pointer_type
-	.long	3334                            @ DW_AT_type
-	.byte	45                              @ Abbrev [45] 0xd06:0x1 DW_TAG_const_type
+	.byte	8                               @ Abbrev [8] 0xcfd:0x5 DW_TAG_pointer_type
+	.long	3166                            @ DW_AT_type
+	.byte	8                               @ Abbrev [8] 0xd02:0x5 DW_TAG_pointer_type
+	.long	3335                            @ DW_AT_type
+	.byte	45                              @ Abbrev [45] 0xd07:0x1 DW_TAG_const_type
 	.byte	0                               @ End Of Children Mark
 .Ldebug_info_end0:
 	.section	.debug_ranges,"",%progbits
@@ -4860,427 +4860,427 @@ g_uart_handle:
 .Linfo_string1:
 	.asciz	"../../../components/platform/hosal/rt582_hosal/Src\\hosal_uart.c" @ string offset=55
 .Linfo_string2:
-	.asciz	"D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" @ string offset=119
+	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=119
 .Linfo_string3:
-	.asciz	"g_uart_handle"                 @ string offset=181
+	.asciz	"g_uart_handle"                 @ string offset=180
 .Linfo_string4:
-	.asciz	"uart"                          @ string offset=195
+	.asciz	"uart"                          @ string offset=194
 .Linfo_string5:
-	.asciz	"RBR"                           @ string offset=200
+	.asciz	"RBR"                           @ string offset=199
 .Linfo_string6:
-	.asciz	"unsigned int"                  @ string offset=204
+	.asciz	"unsigned int"                  @ string offset=203
 .Linfo_string7:
-	.asciz	"uint32_t"                      @ string offset=217
+	.asciz	"uint32_t"                      @ string offset=216
 .Linfo_string8:
-	.asciz	"IER"                           @ string offset=226
+	.asciz	"IER"                           @ string offset=225
 .Linfo_string9:
-	.asciz	"FCR"                           @ string offset=230
+	.asciz	"FCR"                           @ string offset=229
 .Linfo_string10:
-	.asciz	"LCR"                           @ string offset=234
+	.asciz	"LCR"                           @ string offset=233
 .Linfo_string11:
-	.asciz	"MCR"                           @ string offset=238
+	.asciz	"MCR"                           @ string offset=237
 .Linfo_string12:
-	.asciz	"LSR"                           @ string offset=242
+	.asciz	"LSR"                           @ string offset=241
 .Linfo_string13:
-	.asciz	"MSR"                           @ string offset=246
+	.asciz	"MSR"                           @ string offset=245
 .Linfo_string14:
-	.asciz	"SPR"                           @ string offset=250
+	.asciz	"SPR"                           @ string offset=249
 .Linfo_string15:
-	.asciz	"xDMA_RX_ADDR"                  @ string offset=254
+	.asciz	"xDMA_RX_ADDR"                  @ string offset=253
 .Linfo_string16:
-	.asciz	"xDMA_RX_LEN"                   @ string offset=267
+	.asciz	"xDMA_RX_LEN"                   @ string offset=266
 .Linfo_string17:
-	.asciz	"xDMA_TX_ADDR"                  @ string offset=279
+	.asciz	"xDMA_TX_ADDR"                  @ string offset=278
 .Linfo_string18:
-	.asciz	"xDMA_TX_LEN"                   @ string offset=292
+	.asciz	"xDMA_TX_LEN"                   @ string offset=291
 .Linfo_string19:
-	.asciz	"xDMA_RX_RLEN"                  @ string offset=304
+	.asciz	"xDMA_RX_RLEN"                  @ string offset=303
 .Linfo_string20:
-	.asciz	"xDMA_TX_RLEN"                  @ string offset=317
+	.asciz	"xDMA_TX_RLEN"                  @ string offset=316
 .Linfo_string21:
-	.asciz	"xDMA_IER"                      @ string offset=330
+	.asciz	"xDMA_IER"                      @ string offset=329
 .Linfo_string22:
-	.asciz	"xDMA_INT_STATUS"               @ string offset=339
+	.asciz	"xDMA_INT_STATUS"               @ string offset=338
 .Linfo_string23:
-	.asciz	"xDMA_RX_ENABLE"                @ string offset=355
+	.asciz	"xDMA_RX_ENABLE"                @ string offset=354
 .Linfo_string24:
-	.asciz	"xDMA_TX_ENABLE"                @ string offset=370
+	.asciz	"xDMA_TX_ENABLE"                @ string offset=369
 .Linfo_string25:
-	.asciz	"UART_T"                        @ string offset=385
+	.asciz	"UART_T"                        @ string offset=384
 .Linfo_string26:
-	.asciz	"irq_num"                       @ string offset=392
+	.asciz	"irq_num"                       @ string offset=391
 .Linfo_string27:
-	.asciz	"int"                           @ string offset=400
+	.asciz	"int"                           @ string offset=399
 .Linfo_string28:
-	.asciz	"NonMaskableInt_IRQn"           @ string offset=404
+	.asciz	"NonMaskableInt_IRQn"           @ string offset=403
 .Linfo_string29:
-	.asciz	"HardFault_IRQn"                @ string offset=424
+	.asciz	"HardFault_IRQn"                @ string offset=423
 .Linfo_string30:
-	.asciz	"MemoryManagement_IRQn"         @ string offset=439
+	.asciz	"MemoryManagement_IRQn"         @ string offset=438
 .Linfo_string31:
-	.asciz	"BusFault_IRQn"                 @ string offset=461
+	.asciz	"BusFault_IRQn"                 @ string offset=460
 .Linfo_string32:
-	.asciz	"UsageFault_IRQn"               @ string offset=475
+	.asciz	"UsageFault_IRQn"               @ string offset=474
 .Linfo_string33:
-	.asciz	"SVCall_IRQn"                   @ string offset=491
+	.asciz	"SVCall_IRQn"                   @ string offset=490
 .Linfo_string34:
-	.asciz	"DebugMonitor_IRQn"             @ string offset=503
+	.asciz	"DebugMonitor_IRQn"             @ string offset=502
 .Linfo_string35:
-	.asciz	"PendSV_IRQn"                   @ string offset=521
+	.asciz	"PendSV_IRQn"                   @ string offset=520
 .Linfo_string36:
-	.asciz	"SysTick_IRQn"                  @ string offset=533
+	.asciz	"SysTick_IRQn"                  @ string offset=532
 .Linfo_string37:
-	.asciz	"Gpio_IRQn"                     @ string offset=546
+	.asciz	"Gpio_IRQn"                     @ string offset=545
 .Linfo_string38:
-	.asciz	"Timer0_IRQn"                   @ string offset=556
+	.asciz	"Timer0_IRQn"                   @ string offset=555
 .Linfo_string39:
-	.asciz	"Timer1_IRQn"                   @ string offset=568
+	.asciz	"Timer1_IRQn"                   @ string offset=567
 .Linfo_string40:
-	.asciz	"Wdt_IRQn"                      @ string offset=580
+	.asciz	"Wdt_IRQn"                      @ string offset=579
 .Linfo_string41:
-	.asciz	"Uart0_IRQn"                    @ string offset=589
+	.asciz	"Uart0_IRQn"                    @ string offset=588
 .Linfo_string42:
-	.asciz	"I2cm_IRQn"                     @ string offset=600
+	.asciz	"I2cm_IRQn"                     @ string offset=599
 .Linfo_string43:
-	.asciz	"FlashCtl_IRQn"                 @ string offset=610
+	.asciz	"FlashCtl_IRQn"                 @ string offset=609
 .Linfo_string44:
-	.asciz	"Uart1_IRQn"                    @ string offset=624
+	.asciz	"Uart1_IRQn"                    @ string offset=623
 .Linfo_string45:
-	.asciz	"Rtc_IRQn"                      @ string offset=635
+	.asciz	"Rtc_IRQn"                      @ string offset=634
 .Linfo_string46:
-	.asciz	"Dma0_C0_IRQn"                  @ string offset=644
+	.asciz	"Dma0_C0_IRQn"                  @ string offset=643
 .Linfo_string47:
-	.asciz	"Dma0_C1_IRQn"                  @ string offset=657
+	.asciz	"Dma0_C1_IRQn"                  @ string offset=656
 .Linfo_string48:
-	.asciz	"Dma0_C2_IRQn"                  @ string offset=670
+	.asciz	"Dma0_C2_IRQn"                  @ string offset=669
 .Linfo_string49:
-	.asciz	"Dma0_C3_IRQn"                  @ string offset=683
+	.asciz	"Dma0_C3_IRQn"                  @ string offset=682
 .Linfo_string50:
-	.asciz	"Qspi0_IRQn"                    @ string offset=696
+	.asciz	"Qspi0_IRQn"                    @ string offset=695
 .Linfo_string51:
-	.asciz	"I2s0_IRQn"                     @ string offset=707
+	.asciz	"I2s0_IRQn"                     @ string offset=706
 .Linfo_string52:
-	.asciz	"Timer3_IRQn"                   @ string offset=717
+	.asciz	"Timer3_IRQn"                   @ string offset=716
 .Linfo_string53:
-	.asciz	"Timer4_IRQn"                   @ string offset=729
+	.asciz	"Timer4_IRQn"                   @ string offset=728
 .Linfo_string54:
-	.asciz	"Dma1_C2_IRQn"                  @ string offset=741
+	.asciz	"Dma1_C2_IRQn"                  @ string offset=740
 .Linfo_string55:
-	.asciz	"Bod_IRQn"                      @ string offset=754
+	.asciz	"Bod_IRQn"                      @ string offset=753
 .Linfo_string56:
-	.asciz	"Uart2_IRQn"                    @ string offset=763
+	.asciz	"Uart2_IRQn"                    @ string offset=762
 .Linfo_string57:
-	.asciz	"CommSubsystem_IRQn"            @ string offset=774
+	.asciz	"CommSubsystem_IRQn"            @ string offset=773
 .Linfo_string58:
-	.asciz	"Pwm0_IRQn"                     @ string offset=793
+	.asciz	"Pwm0_IRQn"                     @ string offset=792
 .Linfo_string59:
-	.asciz	"Pwm1_IRQn"                     @ string offset=803
+	.asciz	"Pwm1_IRQn"                     @ string offset=802
 .Linfo_string60:
-	.asciz	"Pwm2_IRQn"                     @ string offset=813
+	.asciz	"Pwm2_IRQn"                     @ string offset=812
 .Linfo_string61:
-	.asciz	"Pwm3_IRQn"                     @ string offset=823
+	.asciz	"Pwm3_IRQn"                     @ string offset=822
 .Linfo_string62:
-	.asciz	"Pwm4_IRQn"                     @ string offset=833
+	.asciz	"Pwm4_IRQn"                     @ string offset=832
 .Linfo_string63:
-	.asciz	"Sadc_IRQn"                     @ string offset=843
+	.asciz	"Sadc_IRQn"                     @ string offset=842
 .Linfo_string64:
-	.asciz	"Crypto_IRQn"                   @ string offset=853
+	.asciz	"Crypto_IRQn"                   @ string offset=852
 .Linfo_string65:
-	.asciz	"Timer2_IRQn"                   @ string offset=865
+	.asciz	"Timer2_IRQn"                   @ string offset=864
 .Linfo_string66:
-	.asciz	"Qspi1_IRQn"                    @ string offset=877
+	.asciz	"Qspi1_IRQn"                    @ string offset=876
 .Linfo_string67:
-	.asciz	"Soft_IRQn"                     @ string offset=888
+	.asciz	"Soft_IRQn"                     @ string offset=887
 .Linfo_string68:
-	.asciz	"Trng_IRQn"                     @ string offset=898
+	.asciz	"Trng_IRQn"                     @ string offset=897
 .Linfo_string69:
-	.asciz	"Comp_IRQn"                     @ string offset=908
+	.asciz	"Comp_IRQn"                     @ string offset=907
 .Linfo_string70:
-	.asciz	"IRQn_Type"                     @ string offset=918
+	.asciz	"IRQn_Type"                     @ string offset=917
 .Linfo_string71:
-	.asciz	"rx_cb"                         @ string offset=928
+	.asciz	"rx_cb"                         @ string offset=927
 .Linfo_string72:
-	.asciz	"hosal_uart_callback_t"         @ string offset=934
+	.asciz	"hosal_uart_callback_t"         @ string offset=933
 .Linfo_string73:
-	.asciz	"rx_cb_arg"                     @ string offset=956
+	.asciz	"rx_cb_arg"                     @ string offset=955
 .Linfo_string74:
-	.asciz	"tx_cb"                         @ string offset=966
+	.asciz	"tx_cb"                         @ string offset=965
 .Linfo_string75:
-	.asciz	"tx_cb_arg"                     @ string offset=972
+	.asciz	"tx_cb_arg"                     @ string offset=971
 .Linfo_string76:
-	.asciz	"rxdma_cb"                      @ string offset=982
+	.asciz	"rxdma_cb"                      @ string offset=981
 .Linfo_string77:
-	.asciz	"rxdma_cb_arg"                  @ string offset=991
+	.asciz	"rxdma_cb_arg"                  @ string offset=990
 .Linfo_string78:
-	.asciz	"txdma_cb"                      @ string offset=1004
+	.asciz	"txdma_cb"                      @ string offset=1003
 .Linfo_string79:
-	.asciz	"txdma_cb_arg"                  @ string offset=1013
+	.asciz	"txdma_cb_arg"                  @ string offset=1012
 .Linfo_string80:
-	.asciz	"uart_handle_t"                 @ string offset=1026
+	.asciz	"uart_handle_t"                 @ string offset=1025
 .Linfo_string81:
-	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=1040
+	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=1039
 .Linfo_string82:
-	.asciz	"UART_BAUDRATE_2400"            @ string offset=1060
+	.asciz	"UART_BAUDRATE_2400"            @ string offset=1059
 .Linfo_string83:
-	.asciz	"UART_BAUDRATE_4800"            @ string offset=1079
+	.asciz	"UART_BAUDRATE_4800"            @ string offset=1078
 .Linfo_string84:
-	.asciz	"UART_BAUDRATE_9600"            @ string offset=1098
+	.asciz	"UART_BAUDRATE_9600"            @ string offset=1097
 .Linfo_string85:
-	.asciz	"UART_BAUDRATE_14400"           @ string offset=1117
+	.asciz	"UART_BAUDRATE_14400"           @ string offset=1116
 .Linfo_string86:
-	.asciz	"UART_BAUDRATE_19200"           @ string offset=1137
+	.asciz	"UART_BAUDRATE_19200"           @ string offset=1136
 .Linfo_string87:
-	.asciz	"UART_BAUDRATE_28800"           @ string offset=1157
+	.asciz	"UART_BAUDRATE_28800"           @ string offset=1156
 .Linfo_string88:
-	.asciz	"UART_BAUDRATE_38400"           @ string offset=1177
+	.asciz	"UART_BAUDRATE_38400"           @ string offset=1176
 .Linfo_string89:
-	.asciz	"UART_BAUDRATE_57600"           @ string offset=1197
+	.asciz	"UART_BAUDRATE_57600"           @ string offset=1196
 .Linfo_string90:
-	.asciz	"UART_BAUDRATE_76800"           @ string offset=1217
+	.asciz	"UART_BAUDRATE_76800"           @ string offset=1216
 .Linfo_string91:
-	.asciz	"UART_BAUDRATE_115200"          @ string offset=1237
+	.asciz	"UART_BAUDRATE_115200"          @ string offset=1236
 .Linfo_string92:
-	.asciz	"UART_BAUDRATE_500000"          @ string offset=1258
+	.asciz	"UART_BAUDRATE_500000"          @ string offset=1257
 .Linfo_string93:
-	.asciz	"UART_BAUDRATE_1000000"         @ string offset=1279
+	.asciz	"UART_BAUDRATE_1000000"         @ string offset=1278
 .Linfo_string94:
-	.asciz	"UART_BAUDRATE_2000000"         @ string offset=1301
+	.asciz	"UART_BAUDRATE_2000000"         @ string offset=1300
 .Linfo_string95:
-	.asciz	"UART_DATA_BITS_5"              @ string offset=1323
+	.asciz	"UART_DATA_BITS_5"              @ string offset=1322
 .Linfo_string96:
-	.asciz	"UART_DATA_BITS_6"              @ string offset=1340
+	.asciz	"UART_DATA_BITS_6"              @ string offset=1339
 .Linfo_string97:
-	.asciz	"UART_DATA_BITS_7"              @ string offset=1357
+	.asciz	"UART_DATA_BITS_7"              @ string offset=1356
 .Linfo_string98:
-	.asciz	"UART_DATA_BITS_8"              @ string offset=1374
+	.asciz	"UART_DATA_BITS_8"              @ string offset=1373
 .Linfo_string99:
-	.asciz	"UART_PARITY_NONE"              @ string offset=1391
+	.asciz	"UART_PARITY_NONE"              @ string offset=1390
 .Linfo_string100:
-	.asciz	"UART_PARITY_EVEN"              @ string offset=1408
+	.asciz	"UART_PARITY_EVEN"              @ string offset=1407
 .Linfo_string101:
-	.asciz	"UART_PARITY_ODD"               @ string offset=1425
+	.asciz	"UART_PARITY_ODD"               @ string offset=1424
 .Linfo_string102:
-	.asciz	"UART_PARITY_SPACE"             @ string offset=1441
+	.asciz	"UART_PARITY_SPACE"             @ string offset=1440
 .Linfo_string103:
-	.asciz	"UART_PARITY_MARK"              @ string offset=1459
+	.asciz	"UART_PARITY_MARK"              @ string offset=1458
 .Linfo_string104:
-	.asciz	"UART_STOPBIT_ONE"              @ string offset=1476
+	.asciz	"UART_STOPBIT_ONE"              @ string offset=1475
 .Linfo_string105:
-	.asciz	"UART_STOPBIT_TWO"              @ string offset=1493
+	.asciz	"UART_STOPBIT_TWO"              @ string offset=1492
 .Linfo_string106:
-	.asciz	"UART_HWFC_DISABLED"            @ string offset=1510
+	.asciz	"UART_HWFC_DISABLED"            @ string offset=1509
 .Linfo_string107:
-	.asciz	"UART_HWFC_ENABLED"             @ string offset=1529
+	.asciz	"UART_HWFC_ENABLED"             @ string offset=1528
 .Linfo_string108:
-	.asciz	"HOSAL_UART_MODE_POLL"          @ string offset=1547
+	.asciz	"HOSAL_UART_MODE_POLL"          @ string offset=1546
 .Linfo_string109:
-	.asciz	"HOSAL_UART_MODE_INT_TX"        @ string offset=1568
+	.asciz	"HOSAL_UART_MODE_INT_TX"        @ string offset=1567
 .Linfo_string110:
-	.asciz	"HOSAL_UART_MODE_INT_RX"        @ string offset=1591
+	.asciz	"HOSAL_UART_MODE_INT_RX"        @ string offset=1590
 .Linfo_string111:
-	.asciz	"HOSAL_UART_MODE_INT"           @ string offset=1614
+	.asciz	"HOSAL_UART_MODE_INT"           @ string offset=1613
 .Linfo_string112:
-	.asciz	"unsigned char"                 @ string offset=1634
+	.asciz	"unsigned char"                 @ string offset=1633
 .Linfo_string113:
-	.asciz	"uint8_t"                       @ string offset=1648
+	.asciz	"uint8_t"                       @ string offset=1647
 .Linfo_string114:
-	.asciz	"hosal_uart_databits_t"         @ string offset=1656
+	.asciz	"hosal_uart_databits_t"         @ string offset=1655
 .Linfo_string115:
-	.asciz	"hosal_uart_stopbit_t"          @ string offset=1678
+	.asciz	"hosal_uart_stopbit_t"          @ string offset=1677
 .Linfo_string116:
-	.asciz	"hosal_uart_hwfc_t"             @ string offset=1699
+	.asciz	"hosal_uart_hwfc_t"             @ string offset=1698
 .Linfo_string117:
-	.asciz	"hosal_uart_parity_t"           @ string offset=1717
+	.asciz	"hosal_uart_parity_t"           @ string offset=1716
 .Linfo_string118:
-	.asciz	"hosal_uart_mode_t"             @ string offset=1737
+	.asciz	"hosal_uart_mode_t"             @ string offset=1736
 .Linfo_string119:
-	.asciz	"dma_buf"                       @ string offset=1755
+	.asciz	"dma_buf"                       @ string offset=1754
 .Linfo_string120:
-	.asciz	"dma_buf_size"                  @ string offset=1763
+	.asciz	"dma_buf_size"                  @ string offset=1762
 .Linfo_string121:
-	.asciz	"hosal_uart_dma_cfg_t"          @ string offset=1776
+	.asciz	"hosal_uart_dma_cfg_t"          @ string offset=1775
 .Linfo_string122:
-	.asciz	"int32_t"                       @ string offset=1797
+	.asciz	"int32_t"                       @ string offset=1796
 .Linfo_string123:
-	.asciz	"ISER"                          @ string offset=1805
+	.asciz	"ISER"                          @ string offset=1804
 .Linfo_string124:
-	.asciz	"RESERVED0"                     @ string offset=1810
+	.asciz	"RESERVED0"                     @ string offset=1809
 .Linfo_string125:
-	.asciz	"ICER"                          @ string offset=1820
+	.asciz	"ICER"                          @ string offset=1819
 .Linfo_string126:
-	.asciz	"RESERVED1"                     @ string offset=1825
+	.asciz	"RESERVED1"                     @ string offset=1824
 .Linfo_string127:
-	.asciz	"ISPR"                          @ string offset=1835
+	.asciz	"ISPR"                          @ string offset=1834
 .Linfo_string128:
-	.asciz	"RESERVED2"                     @ string offset=1840
+	.asciz	"RESERVED2"                     @ string offset=1839
 .Linfo_string129:
-	.asciz	"ICPR"                          @ string offset=1850
+	.asciz	"ICPR"                          @ string offset=1849
 .Linfo_string130:
-	.asciz	"RESERVED3"                     @ string offset=1855
+	.asciz	"RESERVED3"                     @ string offset=1854
 .Linfo_string131:
-	.asciz	"IABR"                          @ string offset=1865
+	.asciz	"IABR"                          @ string offset=1864
 .Linfo_string132:
-	.asciz	"RESERVED4"                     @ string offset=1870
+	.asciz	"RESERVED4"                     @ string offset=1869
 .Linfo_string133:
-	.asciz	"IP"                            @ string offset=1880
+	.asciz	"IP"                            @ string offset=1879
 .Linfo_string134:
-	.asciz	"RESERVED5"                     @ string offset=1883
+	.asciz	"RESERVED5"                     @ string offset=1882
 .Linfo_string135:
-	.asciz	"STIR"                          @ string offset=1893
+	.asciz	"STIR"                          @ string offset=1892
 .Linfo_string136:
-	.asciz	"NVIC_Type"                     @ string offset=1898
+	.asciz	"NVIC_Type"                     @ string offset=1897
 .Linfo_string137:
-	.asciz	"CPUID"                         @ string offset=1908
+	.asciz	"CPUID"                         @ string offset=1907
 .Linfo_string138:
-	.asciz	"ICSR"                          @ string offset=1914
+	.asciz	"ICSR"                          @ string offset=1913
 .Linfo_string139:
-	.asciz	"VTOR"                          @ string offset=1919
+	.asciz	"VTOR"                          @ string offset=1918
 .Linfo_string140:
-	.asciz	"AIRCR"                         @ string offset=1924
+	.asciz	"AIRCR"                         @ string offset=1923
 .Linfo_string141:
-	.asciz	"SCR"                           @ string offset=1930
+	.asciz	"SCR"                           @ string offset=1929
 .Linfo_string142:
-	.asciz	"CCR"                           @ string offset=1934
+	.asciz	"CCR"                           @ string offset=1933
 .Linfo_string143:
-	.asciz	"SHP"                           @ string offset=1938
+	.asciz	"SHP"                           @ string offset=1937
 .Linfo_string144:
-	.asciz	"SHCSR"                         @ string offset=1942
+	.asciz	"SHCSR"                         @ string offset=1941
 .Linfo_string145:
-	.asciz	"CFSR"                          @ string offset=1948
+	.asciz	"CFSR"                          @ string offset=1947
 .Linfo_string146:
-	.asciz	"HFSR"                          @ string offset=1953
+	.asciz	"HFSR"                          @ string offset=1952
 .Linfo_string147:
-	.asciz	"DFSR"                          @ string offset=1958
+	.asciz	"DFSR"                          @ string offset=1957
 .Linfo_string148:
-	.asciz	"MMFAR"                         @ string offset=1963
+	.asciz	"MMFAR"                         @ string offset=1962
 .Linfo_string149:
-	.asciz	"BFAR"                          @ string offset=1969
+	.asciz	"BFAR"                          @ string offset=1968
 .Linfo_string150:
-	.asciz	"AFSR"                          @ string offset=1974
+	.asciz	"AFSR"                          @ string offset=1973
 .Linfo_string151:
-	.asciz	"PFR"                           @ string offset=1979
+	.asciz	"PFR"                           @ string offset=1978
 .Linfo_string152:
-	.asciz	"DFR"                           @ string offset=1983
+	.asciz	"DFR"                           @ string offset=1982
 .Linfo_string153:
-	.asciz	"ADR"                           @ string offset=1987
+	.asciz	"ADR"                           @ string offset=1986
 .Linfo_string154:
-	.asciz	"MMFR"                          @ string offset=1991
+	.asciz	"MMFR"                          @ string offset=1990
 .Linfo_string155:
-	.asciz	"ISAR"                          @ string offset=1996
+	.asciz	"ISAR"                          @ string offset=1995
 .Linfo_string156:
-	.asciz	"CPACR"                         @ string offset=2001
+	.asciz	"CPACR"                         @ string offset=2000
 .Linfo_string157:
-	.asciz	"SCB_Type"                      @ string offset=2007
+	.asciz	"SCB_Type"                      @ string offset=2006
 .Linfo_string158:
-	.asciz	"__NVIC_DisableIRQ"             @ string offset=2016
+	.asciz	"__NVIC_DisableIRQ"             @ string offset=2015
 .Linfo_string159:
-	.asciz	"IRQn"                          @ string offset=2034
+	.asciz	"IRQn"                          @ string offset=2033
 .Linfo_string160:
-	.asciz	"__NVIC_ClearPendingIRQ"        @ string offset=2039
+	.asciz	"__NVIC_ClearPendingIRQ"        @ string offset=2038
 .Linfo_string161:
-	.asciz	"__NVIC_SetPriority"            @ string offset=2062
+	.asciz	"__NVIC_SetPriority"            @ string offset=2061
 .Linfo_string162:
-	.asciz	"priority"                      @ string offset=2081
+	.asciz	"priority"                      @ string offset=2080
 .Linfo_string163:
-	.asciz	"__NVIC_EnableIRQ"              @ string offset=2090
+	.asciz	"__NVIC_EnableIRQ"              @ string offset=2089
 .Linfo_string164:
-	.asciz	"hosal_uart_finalize"           @ string offset=2107
+	.asciz	"hosal_uart_finalize"           @ string offset=2106
 .Linfo_string165:
-	.asciz	"hosal_uart_init"               @ string offset=2127
+	.asciz	"hosal_uart_init"               @ string offset=2126
 .Linfo_string166:
-	.asciz	"hosal_uart_send"               @ string offset=2143
+	.asciz	"hosal_uart_send"               @ string offset=2142
 .Linfo_string167:
-	.asciz	"hosal_uart_receive"            @ string offset=2159
+	.asciz	"hosal_uart_receive"            @ string offset=2158
 .Linfo_string168:
-	.asciz	"hosal_uart_ioctl"              @ string offset=2178
+	.asciz	"hosal_uart_ioctl"              @ string offset=2177
 .Linfo_string169:
-	.asciz	"hosal_uart_callback_set"       @ string offset=2195
+	.asciz	"hosal_uart_callback_set"       @ string offset=2194
 .Linfo_string170:
-	.asciz	"uart0_handler"                 @ string offset=2219
+	.asciz	"uart0_handler"                 @ string offset=2218
 .Linfo_string171:
-	.asciz	"__uart_generic_notify_handler" @ string offset=2233
+	.asciz	"__uart_generic_notify_handler" @ string offset=2232
 .Linfo_string172:
-	.asciz	"uart1_handler"                 @ string offset=2263
+	.asciz	"uart1_handler"                 @ string offset=2262
 .Linfo_string173:
-	.asciz	"uart2_handler"                 @ string offset=2277
+	.asciz	"uart2_handler"                 @ string offset=2276
 .Linfo_string174:
-	.asciz	"uart_dev"                      @ string offset=2291
+	.asciz	"uart_dev"                      @ string offset=2290
 .Linfo_string175:
-	.asciz	"port"                          @ string offset=2300
+	.asciz	"port"                          @ string offset=2299
 .Linfo_string176:
-	.asciz	"config"                        @ string offset=2305
+	.asciz	"config"                        @ string offset=2304
 .Linfo_string177:
-	.asciz	"uart_id"                       @ string offset=2312
+	.asciz	"uart_id"                       @ string offset=2311
 .Linfo_string178:
-	.asciz	"tx_pin"                        @ string offset=2320
+	.asciz	"tx_pin"                        @ string offset=2319
 .Linfo_string179:
-	.asciz	"rx_pin"                        @ string offset=2327
+	.asciz	"rx_pin"                        @ string offset=2326
 .Linfo_string180:
-	.asciz	"cts_pin"                       @ string offset=2334
+	.asciz	"cts_pin"                       @ string offset=2333
 .Linfo_string181:
-	.asciz	"rts_pin"                       @ string offset=2342
+	.asciz	"rts_pin"                       @ string offset=2341
 .Linfo_string182:
-	.asciz	"baud_rate"                     @ string offset=2350
+	.asciz	"baud_rate"                     @ string offset=2349
 .Linfo_string183:
-	.asciz	"hosal_uart_baudrate_t"         @ string offset=2360
+	.asciz	"hosal_uart_baudrate_t"         @ string offset=2359
 .Linfo_string184:
-	.asciz	"data_width"                    @ string offset=2382
+	.asciz	"data_width"                    @ string offset=2381
 .Linfo_string185:
-	.asciz	"parity"                        @ string offset=2393
+	.asciz	"parity"                        @ string offset=2392
 .Linfo_string186:
-	.asciz	"stop_bits"                     @ string offset=2400
+	.asciz	"stop_bits"                     @ string offset=2399
 .Linfo_string187:
-	.asciz	"flow_control"                  @ string offset=2410
+	.asciz	"flow_control"                  @ string offset=2409
 .Linfo_string188:
-	.asciz	"mode"                          @ string offset=2423
+	.asciz	"mode"                          @ string offset=2422
 .Linfo_string189:
-	.asciz	"hosal_uart_config_t"           @ string offset=2428
+	.asciz	"hosal_uart_config_t"           @ string offset=2427
 .Linfo_string190:
-	.asciz	"p_tx_arg"                      @ string offset=2448
+	.asciz	"p_tx_arg"                      @ string offset=2447
 .Linfo_string191:
-	.asciz	"p_rx_arg"                      @ string offset=2457
+	.asciz	"p_rx_arg"                      @ string offset=2456
 .Linfo_string192:
-	.asciz	"p_txdma_arg"                   @ string offset=2466
+	.asciz	"p_txdma_arg"                   @ string offset=2465
 .Linfo_string193:
-	.asciz	"p_rxdma_arg"                   @ string offset=2478
+	.asciz	"p_rxdma_arg"                   @ string offset=2477
 .Linfo_string194:
-	.asciz	"priv"                          @ string offset=2490
+	.asciz	"priv"                          @ string offset=2489
 .Linfo_string195:
-	.asciz	"hosal_uart_dev_t"              @ string offset=2495
+	.asciz	"hosal_uart_dev_t"              @ string offset=2494
 .Linfo_string196:
-	.asciz	"cfg"                           @ string offset=2512
+	.asciz	"cfg"                           @ string offset=2511
 .Linfo_string197:
-	.asciz	"rval"                          @ string offset=2516
+	.asciz	"rval"                          @ string offset=2515
 .Linfo_string198:
-	.asciz	"cval"                          @ string offset=2521
+	.asciz	"cval"                          @ string offset=2520
 .Linfo_string199:
-	.asciz	"data"                          @ string offset=2526
+	.asciz	"data"                          @ string offset=2525
 .Linfo_string200:
-	.asciz	"size"                          @ string offset=2531
+	.asciz	"size"                          @ string offset=2530
 .Linfo_string201:
-	.asciz	"i"                             @ string offset=2536
+	.asciz	"i"                             @ string offset=2535
 .Linfo_string202:
-	.asciz	"expect_size"                   @ string offset=2538
+	.asciz	"expect_size"                   @ string offset=2537
 .Linfo_string203:
-	.asciz	"counter"                       @ string offset=2550
+	.asciz	"counter"                       @ string offset=2549
 .Linfo_string204:
-	.asciz	"ctl"                           @ string offset=2558
+	.asciz	"ctl"                           @ string offset=2557
 .Linfo_string205:
-	.asciz	"p_arg"                         @ string offset=2562
+	.asciz	"p_arg"                         @ string offset=2561
 .Linfo_string206:
-	.asciz	"tmp"                           @ string offset=2568
+	.asciz	"tmp"                           @ string offset=2567
 .Linfo_string207:
-	.asciz	"dma_cfg"                       @ string offset=2572
+	.asciz	"dma_cfg"                       @ string offset=2571
 .Linfo_string208:
-	.asciz	"callback_type"                 @ string offset=2580
+	.asciz	"callback_type"                 @ string offset=2579
 .Linfo_string209:
-	.asciz	"pfn_callback"                  @ string offset=2594
+	.asciz	"pfn_callback"                  @ string offset=2593
 .Linfo_string210:
-	.asciz	"arg"                           @ string offset=2607
+	.asciz	"arg"                           @ string offset=2606
 .Linfo_string211:
-	.asciz	"id"                            @ string offset=2611
+	.asciz	"id"                            @ string offset=2610
 .Linfo_string212:
-	.asciz	"iir"                           @ string offset=2614
+	.asciz	"iir"                           @ string offset=2613
 	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals

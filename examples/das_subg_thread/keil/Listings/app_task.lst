@@ -18,14 +18,14 @@
 	.eabi_attribute	26, 2	@ Tag_ABI_enum_size
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"app_task.c"
-	.file	1 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../das_subg_thread/app_task.c"
-	.file	2 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/queue.h"
-	.file	3 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\semphr.h"
-	.file	4 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/error.h"
-	.file	5 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/thread_ftd.h"
-	.file	6 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/instance.h"
-	.file	7 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/thread.h"
-	.file	8 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\\portmacro.h"
+	.file	1 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../das_subg_thread/app_task.c"
+	.file	2 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/queue.h"
+	.file	3 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\semphr.h"
+	.file	4 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/error.h"
+	.file	5 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/thread_ftd.h"
+	.file	6 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/instance.h"
+	.file	7 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/thread.h"
+	.file	8 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\\portmacro.h"
 	.file	9 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
 	.section	.text.otrInitUser,"ax",%progbits
 	.hidden	otrInitUser                     @ -- Begin function otrInitUser
@@ -36,7 +36,7 @@
 	.thumb_func
 otrInitUser:
 .Lfunc_begin0:
-	.loc	1 139 0                         @ ../das_subg_thread/app_task.c:139:0
+	.loc	1 146 0                         @ ../das_subg_thread/app_task.c:146:0
 	.fnstart
 	.cfi_sections .debug_frame
 	.cfi_startproc
@@ -57,97 +57,97 @@ otrInitUser:
 .Ltmp0:
 	@DEBUG_VALUE: otrInitUser:instance <- $r4
 	@DEBUG_VALUE: otrInitUser:instance <- $r4
-	.loc	1 140 5 prologue_end            @ ../das_subg_thread/app_task.c:140:5
+	.loc	1 147 5 prologue_end            @ ../das_subg_thread/app_task.c:147:5
 	bl	ota_bootloader_info_check
 .Ltmp1:
-	.loc	1 156 5                         @ ../das_subg_thread/app_task.c:156:5
+	.loc	1 163 5                         @ ../das_subg_thread/app_task.c:163:5
 	mov	r0, r4
 	bl	otAppCliInit
 .Ltmp2:
 	.loc	1 0 5 is_stmt 0                 @ ../das_subg_thread/app_task.c:0:5
 	mov	r5, sp
-	.loc	1 160 5 is_stmt 1               @ ../das_subg_thread/app_task.c:160:5
+	.loc	1 167 5 is_stmt 1               @ ../das_subg_thread/app_task.c:167:5
 	mov	r0, r5
 	movs	r1, #120
 	bl	__aeabi_memclr8
 .Ltmp3:
-	.loc	1 162 5                         @ ../das_subg_thread/app_task.c:162:5
+	.loc	1 169 5                         @ ../das_subg_thread/app_task.c:169:5
 	mov	r0, r4
 	mov	r1, r5
 	bl	otDatasetGetActive
 .Ltmp4:
-	.loc	1 169 47                        @ ../das_subg_thread/app_task.c:169:47
+	.loc	1 176 47                        @ ../das_subg_thread/app_task.c:176:47
 	ldrb.w	r0, [sp, #117]
-	.loc	1 180 5                         @ ../das_subg_thread/app_task.c:180:5
+	.loc	1 187 5                         @ ../das_subg_thread/app_task.c:187:5
 	ldr	r2, .LCPI0_0
-	.loc	1 169 47                        @ ../das_subg_thread/app_task.c:169:47
+	.loc	1 176 47                        @ ../das_subg_thread/app_task.c:176:47
 	orr	r0, r0, #1
 	strb.w	r0, [sp, #117]
 	movw	r0, #26471
 	movt	r0, #3
-	.loc	1 172 24                        @ ../das_subg_thread/app_task.c:172:24
+	.loc	1 179 24                        @ ../das_subg_thread/app_task.c:179:24
 	str	r0, [sp, #88]
 	movw	r0, #3328
 	movt	r0, #184
-	.loc	1 176 5                         @ ../das_subg_thread/app_task.c:176:5
+	.loc	1 183 5                         @ ../das_subg_thread/app_task.c:183:5
 	str.w	r0, [sp, #65]
-	.loc	1 180 5                         @ ../das_subg_thread/app_task.c:180:5
+	.loc	1 187 5                         @ ../das_subg_thread/app_task.c:187:5
 	adr	r0, .LCPI0_0
-	.loc	1 165 55                        @ ../das_subg_thread/app_task.c:165:55
+	.loc	1 172 55                        @ ../das_subg_thread/app_task.c:172:55
 	ldrb.w	r1, [sp, #116]
-	.loc	1 180 5                         @ ../das_subg_thread/app_task.c:180:5
+	.loc	1 187 5                         @ ../das_subg_thread/app_task.c:187:5
 	str	r2, [sp, #32]
 	ldrd	r2, r3, [r0, #4]
 	ldr	r0, [r0, #12]
-	.loc	1 184 21                        @ ../das_subg_thread/app_task.c:184:21
+	.loc	1 191 21                        @ ../das_subg_thread/app_task.c:191:21
 	movw	r6, :lower16:otrInitUser.aNetworkName
-	.loc	1 180 5                         @ ../das_subg_thread/app_task.c:180:5
+	.loc	1 187 5                         @ ../das_subg_thread/app_task.c:187:5
 	str	r0, [sp, #44]
-	.loc	1 181 50                        @ ../das_subg_thread/app_task.c:181:50
+	.loc	1 188 50                        @ ../das_subg_thread/app_task.c:188:50
 	orr	r0, r1, #149
-	.loc	1 184 21                        @ ../das_subg_thread/app_task.c:184:21
+	.loc	1 191 21                        @ ../das_subg_thread/app_task.c:191:21
 	movt	r6, :upper16:otrInitUser.aNetworkName
 	movs	r7, #0
-	.loc	1 181 50                        @ ../das_subg_thread/app_task.c:181:50
+	.loc	1 188 50                        @ ../das_subg_thread/app_task.c:188:50
 	strb.w	r0, [sp, #116]
-	.loc	1 184 21                        @ ../das_subg_thread/app_task.c:184:21
+	.loc	1 191 21                        @ ../das_subg_thread/app_task.c:191:21
 	mov	r0, r6
-	.loc	1 164 43                        @ ../das_subg_thread/app_task.c:164:43
+	.loc	1 171 43                        @ ../das_subg_thread/app_task.c:171:43
 	strd	r7, r7, [sp]
-	.loc	1 176 5                         @ ../das_subg_thread/app_task.c:176:5
+	.loc	1 183 5                         @ ../das_subg_thread/app_task.c:183:5
 	str.w	r7, [sp, #69]
-	.loc	1 180 5                         @ ../das_subg_thread/app_task.c:180:5
+	.loc	1 187 5                         @ ../das_subg_thread/app_task.c:187:5
 	strd	r2, r3, [sp, #36]
-	.loc	1 184 21                        @ ../das_subg_thread/app_task.c:184:21
+	.loc	1 191 21                        @ ../das_subg_thread/app_task.c:191:21
 	bl	strlen
 .Ltmp5:
 	mov	r2, r0
 .Ltmp6:
 	@DEBUG_VALUE: otrInitUser:length <- $r2
-	.loc	1 185 5                         @ ../das_subg_thread/app_task.c:185:5
+	.loc	1 192 5                         @ ../das_subg_thread/app_task.c:192:5
 	add.w	r0, r5, #48
 	mov	r1, r6
 	bl	__aeabi_memcpy4
 .Ltmp7:
-	.loc	1 186 51                        @ ../das_subg_thread/app_task.c:186:51
+	.loc	1 193 51                        @ ../das_subg_thread/app_task.c:193:51
 	ldrb.w	r0, [sp, #116]
 	movs	r1, #253
 	movt	r1, #47117
-	.loc	1 189 55                        @ ../das_subg_thread/app_task.c:189:55
+	.loc	1 196 55                        @ ../das_subg_thread/app_task.c:196:55
 	orr	r0, r0, #40
-	.loc	1 188 5                         @ ../das_subg_thread/app_task.c:188:5
+	.loc	1 195 5                         @ ../das_subg_thread/app_task.c:195:5
 	str.w	r1, [sp, #73]
-	.loc	1 189 55                        @ ../das_subg_thread/app_task.c:189:55
+	.loc	1 196 55                        @ ../das_subg_thread/app_task.c:196:55
 	strb.w	r0, [sp, #116]
-	.loc	1 192 5                         @ ../das_subg_thread/app_task.c:192:5
+	.loc	1 199 5                         @ ../das_subg_thread/app_task.c:199:5
 	mov	r0, r4
 	mov	r1, r5
-	.loc	1 188 5                         @ ../das_subg_thread/app_task.c:188:5
+	.loc	1 195 5                         @ ../das_subg_thread/app_task.c:195:5
 	str.w	r7, [sp, #77]
-	.loc	1 192 5                         @ ../das_subg_thread/app_task.c:192:5
+	.loc	1 199 5                         @ ../das_subg_thread/app_task.c:199:5
 	bl	otDatasetSetActive
 .Ltmp8:
-	.loc	1 194 5                         @ ../das_subg_thread/app_task.c:194:5
+	.loc	1 201 5                         @ ../das_subg_thread/app_task.c:201:5
 	bl	otGetVersionString
 .Ltmp9:
 	mov	r1, r0
@@ -155,7 +155,7 @@ otrInitUser:
 	movt	r0, :upper16:.L.str
 	bl	__2printf
 .Ltmp10:
-	.loc	1 196 5                         @ ../das_subg_thread/app_task.c:196:5
+	.loc	1 203 5                         @ ../das_subg_thread/app_task.c:203:5
 	mov	r0, r4
 	bl	otThreadGetLinkMode
 .Ltmp11:
@@ -173,7 +173,7 @@ otrInitUser:
 	mov	r2, r6
 	bl	__2printf
 .Ltmp14:
-	.loc	1 200 5                         @ ../das_subg_thread/app_task.c:200:5
+	.loc	1 207 5                         @ ../das_subg_thread/app_task.c:207:5
 	mov	r0, r4
 	bl	otThreadGetNetworkName
 .Ltmp15:
@@ -181,7 +181,7 @@ otrInitUser:
 	adr	r0, .LCPI0_2
 	bl	__2printf
 .Ltmp16:
-	.loc	1 201 5                         @ ../das_subg_thread/app_task.c:201:5
+	.loc	1 208 5                         @ ../das_subg_thread/app_task.c:208:5
 	mov	r0, r4
 	bl	otLinkGetPanId
 .Ltmp17:
@@ -189,7 +189,7 @@ otrInitUser:
 	adr	r0, .LCPI0_3
 	bl	__2printf
 .Ltmp18:
-	.loc	1 203 5                         @ ../das_subg_thread/app_task.c:203:5
+	.loc	1 210 5                         @ ../das_subg_thread/app_task.c:210:5
 	mov	r0, r4
 	bl	otLinkGetChannel
 .Ltmp19:
@@ -197,45 +197,45 @@ otrInitUser:
 	adr	r0, .LCPI0_4
 	bl	__2printf
 .Ltmp20:
-	.loc	1 205 5                         @ ../das_subg_thread/app_task.c:205:5
+	.loc	1 212 5                         @ ../das_subg_thread/app_task.c:212:5
 	movw	r1, :lower16:ot_stateChangeCallback
 	movt	r1, :upper16:ot_stateChangeCallback
 	mov	r0, r4
 	mov	r2, r4
 	bl	otSetStateChangedCallback
 .Ltmp21:
-	.loc	1 209 5                         @ ../das_subg_thread/app_task.c:209:5
+	.loc	1 216 5                         @ ../das_subg_thread/app_task.c:216:5
 	movw	r1, :lower16:app_udp_cb
 	movt	r1, :upper16:app_udp_cb
 	mov	r0, r4
 	movw	r2, #5678
 	bl	app_sockInit
 .Ltmp22:
-	.loc	1 212 5                         @ ../das_subg_thread/app_task.c:212:5
+	.loc	1 219 5                         @ ../das_subg_thread/app_task.c:219:5
 	mov	r0, r4
 	bl	nwk_mgm_init
 .Ltmp23:
-	.loc	1 213 5                         @ ../das_subg_thread/app_task.c:213:5
+	.loc	1 220 5                         @ ../das_subg_thread/app_task.c:220:5
 	movw	r1, :lower16:nwk_mgm_neighbor_Change_Callback
 	movt	r1, :upper16:nwk_mgm_neighbor_Change_Callback
 	mov	r0, r4
 	bl	otThreadRegisterNeighborTableCallback
 .Ltmp24:
-	.loc	1 215 5                         @ ../das_subg_thread/app_task.c:215:5
+	.loc	1 222 5                         @ ../das_subg_thread/app_task.c:222:5
 	mov	r0, r4
 	bl	ota_init
 .Ltmp25:
-	.loc	1 217 5                         @ ../das_subg_thread/app_task.c:217:5
+	.loc	1 224 5                         @ ../das_subg_thread/app_task.c:224:5
 	mov	r0, r4
 	movs	r1, #1
 	bl	otIp6SetEnabled
 .Ltmp26:
-	.loc	1 218 5                         @ ../das_subg_thread/app_task.c:218:5
+	.loc	1 225 5                         @ ../das_subg_thread/app_task.c:225:5
 	mov	r0, r4
 	movs	r1, #1
 	bl	otThreadSetEnabled
 .Ltmp27:
-	.loc	1 219 1                         @ ../das_subg_thread/app_task.c:219:1
+	.loc	1 226 1                         @ ../das_subg_thread/app_task.c:226:1
 	add	sp, #124
 	pop	{r4, r5, r6, r7, pc}
 .Ltmp28:
@@ -333,14 +333,14 @@ ot_stateChangeCallback:
 	@DEBUG_VALUE: ot_stateChangeCallback:p_context <- $r4
 	@DEBUG_VALUE: role <- $r0
 	@DEBUG_VALUE: ot_stateChangeCallback:flags <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	1 36 17                         @ ../das_subg_thread/app_task.c:36:17
+	.loc	1 36 13                         @ ../das_subg_thread/app_task.c:36:13
 	bl	nwk_mgm_child_register_post
 .Ltmp36:
 .LBB1_4:
 	@DEBUG_VALUE: ot_stateChangeCallback:instance <- $r4
 	@DEBUG_VALUE: ot_stateChangeCallback:p_context <- $r4
 	@DEBUG_VALUE: ot_stateChangeCallback:flags <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	1 49 13                         @ ../das_subg_thread/app_task.c:49:13
+	.loc	1 50 13                         @ ../das_subg_thread/app_task.c:50:13
 	mov	r0, r4
 	bl	otThreadGetDeviceRole
 .Ltmp37:
@@ -350,12 +350,12 @@ ot_stateChangeCallback:
 	adr	r0, .LCPI1_0
 	bl	__2printf
 .Ltmp39:
-	.loc	1 51 29                         @ ../das_subg_thread/app_task.c:51:29
+	.loc	1 52 29                         @ ../das_subg_thread/app_task.c:52:29
 	mov	r0, r4
 	bl	otLinkGetExtendedAddress
 .Ltmp40:
 	@DEBUG_VALUE: ot_stateChangeCallback:p <- $r0
-	.loc	1 52 13                         @ ../das_subg_thread/app_task.c:52:13
+	.loc	1 53 13                         @ ../das_subg_thread/app_task.c:53:13
 	ldrb	r1, [r0]
 	ldrb	r2, [r0, #1]
 	ldrb	r3, [r0, #2]
@@ -372,12 +372,12 @@ ot_stateChangeCallback:
 	str	r7, [sp, #16]
 	bl	__2printf
 .Ltmp42:
-	.loc	1 55 29                         @ ../das_subg_thread/app_task.c:55:29
+	.loc	1 56 29                         @ ../das_subg_thread/app_task.c:56:29
 	mov	r0, r4
 	bl	otThreadGetMeshLocalPrefix
 .Ltmp43:
 	@DEBUG_VALUE: ot_stateChangeCallback:p <- $r0
-	.loc	1 56 13                         @ ../das_subg_thread/app_task.c:56:13
+	.loc	1 57 13                         @ ../das_subg_thread/app_task.c:57:13
 	ldrb	r1, [r0]
 	ldrb	r2, [r0, #1]
 	ldrb	r3, [r0, #2]
@@ -393,12 +393,12 @@ ot_stateChangeCallback:
 	str.w	lr, [sp, #16]
 	bl	__2printf
 .Ltmp45:
-	.loc	1 59 29                         @ ../das_subg_thread/app_task.c:59:29
+	.loc	1 60 29                         @ ../das_subg_thread/app_task.c:60:29
 	mov	r0, r4
 	bl	otThreadGetLinkLocalIp6Address
 .Ltmp46:
 	@DEBUG_VALUE: ot_stateChangeCallback:p <- $r0
-	.loc	1 60 13                         @ ../das_subg_thread/app_task.c:60:13
+	.loc	1 61 13                         @ ../das_subg_thread/app_task.c:61:13
 	ldrb	r1, [r0]
 	ldrb	r7, [r0, #3]
 	str	r1, [sp, #64]                   @ 4-byte Spill
@@ -433,7 +433,7 @@ ot_stateChangeCallback:
 	str.w	r10, [sp, #28]
 	bl	__2printf
 .Ltmp48:
-	.loc	1 63 13                         @ ../das_subg_thread/app_task.c:63:13
+	.loc	1 64 13                         @ ../das_subg_thread/app_task.c:64:13
 	mov	r0, r4
 	bl	otThreadGetRloc16
 .Ltmp49:
@@ -441,12 +441,12 @@ ot_stateChangeCallback:
 	adr	r0, .LCPI1_2
 	bl	__2printf
 .Ltmp50:
-	.loc	1 65 29                         @ ../das_subg_thread/app_task.c:65:29
+	.loc	1 66 29                         @ ../das_subg_thread/app_task.c:66:29
 	mov	r0, r4
 	bl	otThreadGetRloc
 .Ltmp51:
 	@DEBUG_VALUE: ot_stateChangeCallback:p <- $r0
-	.loc	1 66 13                         @ ../das_subg_thread/app_task.c:66:13
+	.loc	1 67 13                         @ ../das_subg_thread/app_task.c:67:13
 	ldrb	r1, [r0]
 	ldrb	r3, [r0, #2]
 	str	r1, [sp, #64]                   @ 4-byte Spill
@@ -483,7 +483,7 @@ ot_stateChangeCallback:
 .Ltmp54:
 .LBB1_5:
 	@DEBUG_VALUE: ot_stateChangeCallback:flags <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	1 70 1                          @ ../das_subg_thread/app_task.c:70:1
+	.loc	1 71 1                          @ ../das_subg_thread/app_task.c:71:1
 	add	sp, #68
 	pop.w	{r4, r5, r6, r7, r8, r9, r10, r11, pc}
 .Ltmp55:
@@ -512,7 +512,7 @@ ot_stateChangeCallback:
 	.thumb_func
 app_udp_cb:
 .Lfunc_begin2:
-	.loc	1 73 0 is_stmt 1                @ ../das_subg_thread/app_task.c:73:0
+	.loc	1 74 0 is_stmt 1                @ ../das_subg_thread/app_task.c:74:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -540,44 +540,44 @@ app_udp_cb:
 	@DEBUG_VALUE: app_udp_cb:p <- 0
 	@DEBUG_VALUE: app_udp_cb:otInfo <- $r8
 	@DEBUG_VALUE: app_udp_cb:otMsg <- $r7
-	.loc	1 78 28 prologue_end            @ ../das_subg_thread/app_task.c:78:28
+	.loc	1 79 28 prologue_end            @ ../das_subg_thread/app_task.c:79:28
 	bl	otrGetInstance
 .Ltmp58:
 	@DEBUG_VALUE: app_udp_cb:instance <- undef
-	.loc	1 81 35                         @ ../das_subg_thread/app_task.c:81:35
+	.loc	1 82 35                         @ ../das_subg_thread/app_task.c:82:35
 	add.w	r0, r8, #16
 	add	r1, sp, #12
-	.loc	1 81 5 is_stmt 0                @ ../das_subg_thread/app_task.c:81:5
+	.loc	1 82 5 is_stmt 0                @ ../das_subg_thread/app_task.c:82:5
 	movs	r2, #40
 	bl	otIp6AddressToString
 .Ltmp59:
-	.loc	1 82 11 is_stmt 1               @ ../das_subg_thread/app_task.c:82:11
+	.loc	1 83 11 is_stmt 1               @ ../das_subg_thread/app_task.c:83:11
 	mov	r0, r7
 	bl	otMessageGetLength
 .Ltmp60:
 	mov	r4, r0
-	.loc	1 82 39 is_stmt 0               @ ../das_subg_thread/app_task.c:82:39
+	.loc	1 83 39 is_stmt 0               @ ../das_subg_thread/app_task.c:83:39
 	mov	r0, r7
 	bl	otMessageGetOffset
 .Ltmp61:
-	.loc	1 82 37                         @ ../das_subg_thread/app_task.c:82:37
+	.loc	1 83 37                         @ ../das_subg_thread/app_task.c:83:37
 	subs	r5, r4, r0
 .Ltmp62:
 	@DEBUG_VALUE: app_udp_cb:len <- $r5
-	.loc	1 84 22 is_stmt 1               @ ../das_subg_thread/app_task.c:84:22
+	.loc	1 85 22 is_stmt 1               @ ../das_subg_thread/app_task.c:85:22
 	uxth	r6, r5
-	.loc	1 84 9 is_stmt 0                @ ../das_subg_thread/app_task.c:84:9
+	.loc	1 85 9 is_stmt 0                @ ../das_subg_thread/app_task.c:85:9
 	mov	r0, r6
 	bl	pvPortMalloc
 .Ltmp63:
 	@DEBUG_VALUE: app_udp_cb:p <- $r0
-	.loc	1 88 12 is_stmt 1               @ ../das_subg_thread/app_task.c:88:12
+	.loc	1 89 13 is_stmt 1               @ ../das_subg_thread/app_task.c:89:13
 	cmp	r0, #0
 .Ltmp64:
-	.loc	1 84 7                          @ ../das_subg_thread/app_task.c:84:7
+	.loc	1 85 7                          @ ../das_subg_thread/app_task.c:85:7
 	str	r0, [sp, #52]
 .Ltmp65:
-	.loc	1 88 12                         @ ../das_subg_thread/app_task.c:88:12
+	.loc	1 89 13                         @ ../das_subg_thread/app_task.c:89:13
 	beq	.LBB2_12
 .Ltmp66:
 @ %bb.1:
@@ -586,32 +586,32 @@ app_udp_cb:
 	@DEBUG_VALUE: app_udp_cb:len <- $r5
 	@DEBUG_VALUE: app_udp_cb:p <- $r0
 	@DEBUG_VALUE: app_udp_cb:is_multicast <- 0
-	.loc	1 90 9                          @ ../das_subg_thread/app_task.c:90:9
+	.loc	1 94 9                          @ ../das_subg_thread/app_task.c:94:9
 	mov	r1, r6
 .Ltmp67:
 	.loc	1 0 0 is_stmt 0                 @ ../das_subg_thread/app_task.c:0:0
 	mov	r4, r0
 .Ltmp68:
 	@DEBUG_VALUE: app_udp_cb:p <- $r4
-	.loc	1 90 9                          @ ../das_subg_thread/app_task.c:90:9
+	.loc	1 94 9                          @ ../das_subg_thread/app_task.c:94:9
 	bl	__aeabi_memclr
 .Ltmp69:
-	.loc	1 91 30 is_stmt 1               @ ../das_subg_thread/app_task.c:91:30
+	.loc	1 95 30 is_stmt 1               @ ../das_subg_thread/app_task.c:95:30
 	mov	r0, r7
 	bl	otMessageGetOffset
 .Ltmp70:
 	mov	r1, r0
 	@DEBUG_VALUE: app_udp_cb:p <- $r4
-	.loc	1 91 9 is_stmt 0                @ ../das_subg_thread/app_task.c:91:9
+	.loc	1 95 9 is_stmt 0                @ ../das_subg_thread/app_task.c:95:9
 	mov	r0, r7
 	mov	r2, r4
 	mov	r3, r6
 	bl	otMessageRead
 .Ltmp71:
-	.loc	1 92 14 is_stmt 1               @ ../das_subg_thread/app_task.c:92:14
+	.loc	1 96 14 is_stmt 1               @ ../das_subg_thread/app_task.c:96:14
 	bl	das_hex_cmd_status_check
 .Ltmp72:
-	.loc	1 92 13 is_stmt 0               @ ../das_subg_thread/app_task.c:92:13
+	.loc	1 96 13 is_stmt 0               @ ../das_subg_thread/app_task.c:96:13
 	cbz	r0, .LBB2_6
 .Ltmp73:
 @ %bb.2:
@@ -621,14 +621,14 @@ app_udp_cb:
 	@DEBUG_VALUE: app_udp_cb:p <- $r4
 	@DEBUG_VALUE: app_udp_cb:is_multicast <- 0
 	@DEBUG_VALUE: app_udp_cb:p <- [DW_OP_plus_uconst 52, DW_OP_deref] $sp
-	.loc	1 103 17 is_stmt 1              @ ../das_subg_thread/app_task.c:103:17
+	.loc	1 107 17 is_stmt 1              @ ../das_subg_thread/app_task.c:107:17
 	movw	r1, :lower16:.L.str.18
 	movt	r1, :upper16:.L.str.18
 	add	r0, sp, #52
 	movs	r2, #3
 	bl	memcmp
 .Ltmp74:
-	.loc	1 103 17 is_stmt 0              @ ../das_subg_thread/app_task.c:103:17
+	.loc	1 107 17 is_stmt 0              @ ../das_subg_thread/app_task.c:107:17
 	cmp	r0, #0
 	beq	.LBB2_10
 .Ltmp75:
@@ -639,15 +639,15 @@ app_udp_cb:
 	@DEBUG_VALUE: app_udp_cb:p <- [DW_OP_plus_uconst 52, DW_OP_deref] $sp
 	@DEBUG_VALUE: app_udp_cb:is_multicast <- 0
 	@DEBUG_VALUE: app_udp_cb:p <- $r4
-	.loc	1 111 17 is_stmt 1              @ ../das_subg_thread/app_task.c:111:17
+	.loc	1 115 17 is_stmt 1              @ ../das_subg_thread/app_task.c:115:17
 	mov	r0, r4
 	mov	r1, r6
 	bl	das_hex_cmd_get_udp_received_data
 .Ltmp76:
-	.loc	1 113 21                        @ ../das_subg_thread/app_task.c:113:21
+	.loc	1 117 21                        @ ../das_subg_thread/app_task.c:117:21
 	ldrb.w	r0, [r8]
 .Ltmp77:
-	.loc	1 113 21 is_stmt 0              @ ../das_subg_thread/app_task.c:113:21
+	.loc	1 117 21 is_stmt 0              @ ../das_subg_thread/app_task.c:117:21
 	cmp	r0, #255
 	bne	.LBB2_5
 .Ltmp78:
@@ -657,9 +657,9 @@ app_udp_cb:
 	@DEBUG_VALUE: app_udp_cb:len <- $r5
 	@DEBUG_VALUE: app_udp_cb:p <- $r4
 	@DEBUG_VALUE: app_udp_cb:is_multicast <- 0
-	.loc	1 115 25 is_stmt 1              @ ../das_subg_thread/app_task.c:115:25
+	.loc	1 119 25 is_stmt 1              @ ../das_subg_thread/app_task.c:119:25
 	ldrb.w	r0, [r8, #1]
-	.loc	1 115 65 is_stmt 0              @ ../das_subg_thread/app_task.c:115:65
+	.loc	1 119 65 is_stmt 0              @ ../das_subg_thread/app_task.c:119:65
 	and	r0, r0, #254
 	cmp	r0, #2
 	beq	.LBB2_11
@@ -675,16 +675,16 @@ app_udp_cb:
 	.loc	1 0 65                          @ ../das_subg_thread/app_task.c:0:65
 	movs	r0, #75
 .Ltmp80:
-	.loc	1 123 21 is_stmt 1              @ ../das_subg_thread/app_task.c:123:21
+	.loc	1 127 21 is_stmt 1              @ ../das_subg_thread/app_task.c:127:21
 	strb	r0, [r4, #2]
 	movw	r0, #17217
 	strh	r0, [r4]
-	.loc	1 124 21                        @ ../das_subg_thread/app_task.c:124:21
+	.loc	1 128 21                        @ ../das_subg_thread/app_task.c:128:21
 	add.w	r7, r8, #16
 .Ltmp81:
-	.loc	1 124 41 is_stmt 0              @ ../das_subg_thread/app_task.c:124:41
+	.loc	1 128 41 is_stmt 0              @ ../das_subg_thread/app_task.c:128:41
 	ldrh.w	r0, [r8, #32]
-	.loc	1 124 21                        @ ../das_subg_thread/app_task.c:124:21
+	.loc	1 128 21                        @ ../das_subg_thread/app_task.c:128:21
 	ldm	r7, {r1, r2, r3, r7}
 	movs	r6, #3
 	str	r6, [sp, #8]
@@ -700,28 +700,28 @@ app_udp_cb:
 	@DEBUG_VALUE: app_udp_cb:len <- $r5
 	@DEBUG_VALUE: app_udp_cb:p <- $r4
 	@DEBUG_VALUE: app_udp_cb:is_multicast <- 0
-	.loc	1 94 13 is_stmt 1               @ ../das_subg_thread/app_task.c:94:13
+	.loc	1 98 13 is_stmt 1               @ ../das_subg_thread/app_task.c:98:13
 	adr	r0, .LCPI2_0
 	mov	r1, r6
 	bl	__2printf
 .Ltmp84:
-	.loc	1 95 13                         @ ../das_subg_thread/app_task.c:95:13
+	.loc	1 99 13                         @ ../das_subg_thread/app_task.c:99:13
 	adr	r0, .LCPI2_1
 	add	r1, sp, #12
 	bl	__2printf
 .Ltmp85:
-	.loc	1 96 13                         @ ../das_subg_thread/app_task.c:96:13
+	.loc	1 100 13                        @ ../das_subg_thread/app_task.c:100:13
 	ldrh.w	r1, [r8, #32]
 	adr	r0, .LCPI2_2
 	bl	__2printf
 .Ltmp86:
-	.loc	1 98 13                         @ ../das_subg_thread/app_task.c:98:13
+	.loc	1 102 13                        @ ../das_subg_thread/app_task.c:102:13
 	adr	r0, .LCPI2_3
 	adr	r1, .LCPI2_4
 	bl	__2printf
 .Ltmp87:
 	@DEBUG_VALUE: i <- 0
-	.loc	1 98 13 is_stmt 0               @ ../das_subg_thread/app_task.c:98:13
+	.loc	1 102 13 is_stmt 0              @ ../das_subg_thread/app_task.c:102:13
 	lsls	r0, r5, #16
 	beq	.LBB2_9
 .Ltmp88:
@@ -744,7 +744,7 @@ app_udp_cb:
 	@DEBUG_VALUE: app_udp_cb:is_multicast <- 0
 	@DEBUG_VALUE: app_udp_cb:p <- $r4
 	@DEBUG_VALUE: i <- undef
-	.loc	1 98 13                         @ ../das_subg_thread/app_task.c:98:13
+	.loc	1 102 13                        @ ../das_subg_thread/app_task.c:102:13
 	ldrb	r1, [r7], #1
 	mov	r0, r5
 	bl	__2printf
@@ -752,14 +752,14 @@ app_udp_cb:
 	@DEBUG_VALUE: i <- [DW_OP_plus_uconst 1, DW_OP_stack_value] undef
 	subs	r6, #1
 .Ltmp92:
-	.loc	1 98 13                         @ ../das_subg_thread/app_task.c:98:13
+	.loc	1 102 13                        @ ../das_subg_thread/app_task.c:102:13
 	bne	.LBB2_8
 .Ltmp93:
 .LBB2_9:
 	@DEBUG_VALUE: app_udp_cb:otInfo <- $r8
 	@DEBUG_VALUE: app_udp_cb:p <- $r4
 	@DEBUG_VALUE: app_udp_cb:is_multicast <- 0
-	.loc	1 98 13                         @ ../das_subg_thread/app_task.c:98:13
+	.loc	1 102 13                        @ ../das_subg_thread/app_task.c:102:13
 	adr	r0, .LCPI2_6
 	bl	puts
 .Ltmp94:
@@ -773,18 +773,18 @@ app_udp_cb:
 	@DEBUG_VALUE: app_udp_cb:len <- $r5
 	@DEBUG_VALUE: app_udp_cb:p <- [DW_OP_plus_uconst 52, DW_OP_deref] $sp
 	@DEBUG_VALUE: app_udp_cb:is_multicast <- 0
-	.loc	1 129 17 is_stmt 1              @ ../das_subg_thread/app_task.c:129:17
+	.loc	1 133 17 is_stmt 1              @ ../das_subg_thread/app_task.c:133:17
 	bl	das_hex_cmd_udp_ack
 .Ltmp96:
 .LBB2_11:
 	@DEBUG_VALUE: app_udp_cb:otInfo <- $r8
-	.loc	1 134 19                        @ ../das_subg_thread/app_task.c:134:19
+	.loc	1 140 9                         @ ../das_subg_thread/app_task.c:140:9
 	mov	r0, r4
 	bl	vPortFree
 .Ltmp97:
 .LBB2_12:
 	@DEBUG_VALUE: app_udp_cb:otInfo <- $r8
-	.loc	1 135 1                         @ ../das_subg_thread/app_task.c:135:1
+	.loc	1 142 1                         @ ../das_subg_thread/app_task.c:142:1
 	add	sp, #56
 	pop.w	{r4, r5, r6, r7, r8, pc}
 .Ltmp98:
@@ -827,30 +827,30 @@ app_udp_cb:
 	.thumb_func
 app_task:
 .Lfunc_begin3:
-	.loc	1 223 0 is_stmt 1               @ ../das_subg_thread/app_task.c:223:0
+	.loc	1 230 0 is_stmt 1               @ ../das_subg_thread/app_task.c:230:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
-	.loc	1 224 20 prologue_end           @ ../das_subg_thread/app_task.c:224:20
+	.loc	1 231 20 prologue_end           @ ../das_subg_thread/app_task.c:231:20
 	movs	r0, #1
 	movs	r1, #0
 	movs	r2, #3
 	bl	xQueueGenericCreate
 .Ltmp99:
-	.loc	1 224 18 is_stmt 0              @ ../das_subg_thread/app_task.c:224:18
+	.loc	1 231 18 is_stmt 0              @ ../das_subg_thread/app_task.c:231:18
 	movw	r4, :lower16:appSemHandle
 	movt	r4, :upper16:appSemHandle
 	str	r0, [r4]
 	.p2align	2
 .LBB3_1:                                @ =>This Inner Loop Header: Depth=1
 .Ltmp100:
-	.loc	1 228 13 is_stmt 1              @ ../das_subg_thread/app_task.c:228:13
+	.loc	1 235 13 is_stmt 1              @ ../das_subg_thread/app_task.c:235:13
 	movw	r1, #10000
 	bl	xQueueSemaphoreTake
 .Ltmp101:
 	ldr	r0, [r4]
 .Ltmp102:
-	.loc	1 226 5                         @ ../das_subg_thread/app_task.c:226:5
+	.loc	1 233 5                         @ ../das_subg_thread/app_task.c:233:5
 	b	.LBB3_1
 .Ltmp103:
 .Lfunc_end3:
@@ -920,11 +920,11 @@ appSemHandle:
 	.hidden	_printf_int_dec
 	.hidden	_printf_longlong_hex
 	.hidden	_printf_str
-	.file	10 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/dataset.h"
-	.file	11 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/ip6.h"
-	.file	12 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/platform/radio.h"
+	.file	10 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/dataset.h"
+	.file	11 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/ip6.h"
+	.file	12 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/platform/radio.h"
 	.file	13 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stddef.h"
-	.file	14 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/message.h"
+	.file	14 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/message.h"
 	.section	.debug_loc,"",%progbits
 .Ldebug_loc0:
 	.long	-1
@@ -1519,14 +1519,14 @@ appSemHandle:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string96                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	138                             @ DW_AT_decl_line
+	.byte	145                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_external
 	.byte	3                               @ Abbrev [3] 0x37:0x11 DW_TAG_variable
 	.long	.Linfo_string3                  @ DW_AT_name
 	.long	161                             @ DW_AT_type
 	.byte	1                               @ DW_AT_decl_file
-	.byte	144                             @ DW_AT_decl_line
+	.byte	151                             @ DW_AT_decl_line
 	.byte	5                               @ DW_AT_location
 	.byte	3
 	.long	otrInitUser.aNetworkName
@@ -1534,7 +1534,7 @@ appSemHandle:
 	.long	.Ldebug_loc0                    @ DW_AT_location
 	.long	.Linfo_string159                @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	138                             @ DW_AT_decl_line
+	.byte	145                             @ DW_AT_decl_line
 	.long	813                             @ DW_AT_type
 	.byte	5                               @ Abbrev [5] 0x57:0xe DW_TAG_variable
 	.byte	2                               @ DW_AT_location
@@ -1542,33 +1542,33 @@ appSemHandle:
 	.byte	0
 	.long	.Linfo_string100                @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	159                             @ DW_AT_decl_line
+	.byte	166                             @ DW_AT_decl_line
 	.long	1143                            @ DW_AT_type
 	.byte	6                               @ Abbrev [6] 0x65:0xf DW_TAG_variable
 	.long	.Ldebug_loc1                    @ DW_AT_location
 	.long	.Linfo_string160                @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	184                             @ DW_AT_decl_line
+	.byte	191                             @ DW_AT_decl_line
 	.long	2040                            @ DW_AT_type
 	.byte	7                               @ Abbrev [7] 0x74:0xb DW_TAG_variable
 	.long	.Linfo_string162                @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	145                             @ DW_AT_decl_line
+	.byte	152                             @ DW_AT_decl_line
 	.long	1538                            @ DW_AT_type
 	.byte	7                               @ Abbrev [7] 0x7f:0xb DW_TAG_variable
 	.long	.Linfo_string163                @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	146                             @ DW_AT_decl_line
+	.byte	153                             @ DW_AT_decl_line
 	.long	1450                            @ DW_AT_type
 	.byte	7                               @ Abbrev [7] 0x8a:0xb DW_TAG_variable
 	.long	.Linfo_string164                @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	149                             @ DW_AT_decl_line
+	.byte	156                             @ DW_AT_decl_line
 	.long	1538                            @ DW_AT_type
 	.byte	7                               @ Abbrev [7] 0x95:0xb DW_TAG_variable
 	.long	.Linfo_string165                @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	150                             @ DW_AT_decl_line
+	.byte	157                             @ DW_AT_decl_line
 	.long	1450                            @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	8                               @ Abbrev [8] 0xa1:0xc DW_TAG_array_type
@@ -1959,19 +1959,19 @@ appSemHandle:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string98                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	72                              @ DW_AT_decl_line
+	.byte	73                              @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.byte	4                               @ Abbrev [4] 0x3e8:0xf DW_TAG_formal_parameter
 	.long	.Ldebug_loc7                    @ DW_AT_location
 	.long	.Linfo_string173                @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	72                              @ DW_AT_decl_line
+	.byte	73                              @ DW_AT_decl_line
 	.long	2086                            @ DW_AT_type
 	.byte	4                               @ Abbrev [4] 0x3f7:0xf DW_TAG_formal_parameter
 	.long	.Ldebug_loc8                    @ DW_AT_location
 	.long	.Linfo_string175                @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	72                              @ DW_AT_decl_line
+	.byte	73                              @ DW_AT_decl_line
 	.long	2107                            @ DW_AT_type
 	.byte	5                               @ Abbrev [5] 0x406:0xe DW_TAG_variable
 	.byte	2                               @ DW_AT_location
@@ -1979,30 +1979,30 @@ appSemHandle:
 	.byte	12
 	.long	.Linfo_string172                @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	79                              @ DW_AT_decl_line
+	.byte	80                              @ DW_AT_decl_line
 	.long	2074                            @ DW_AT_type
 	.byte	6                               @ Abbrev [6] 0x414:0xf DW_TAG_variable
 	.long	.Ldebug_loc9                    @ DW_AT_location
 	.long	.Linfo_string195                @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	75                              @ DW_AT_decl_line
+	.byte	76                              @ DW_AT_decl_line
 	.long	1411                            @ DW_AT_type
 	.byte	6                               @ Abbrev [6] 0x423:0xf DW_TAG_variable
 	.long	.Ldebug_loc10                   @ DW_AT_location
 	.long	.Linfo_string171                @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	74                              @ DW_AT_decl_line
+	.byte	75                              @ DW_AT_decl_line
 	.long	870                             @ DW_AT_type
 	.byte	7                               @ Abbrev [7] 0x432:0xb DW_TAG_variable
 	.long	.Linfo_string159                @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	78                              @ DW_AT_decl_line
+	.byte	79                              @ DW_AT_decl_line
 	.long	813                             @ DW_AT_type
 	.byte	6                               @ Abbrev [6] 0x43d:0xf DW_TAG_variable
 	.long	.Ldebug_loc11                   @ DW_AT_location
 	.long	.Linfo_string196                @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	76                              @ DW_AT_decl_line
+	.byte	77                              @ DW_AT_decl_line
 	.long	1393                            @ DW_AT_type
 	.byte	20                              @ Abbrev [20] 0x44c:0x19 DW_TAG_lexical_block
 	.long	.Ltmp87                         @ DW_AT_low_pc
@@ -2011,7 +2011,7 @@ appSemHandle:
 	.long	.Ldebug_loc12                   @ DW_AT_location
 	.long	.Linfo_string197                @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	98                              @ DW_AT_decl_line
+	.byte	102                             @ DW_AT_decl_line
 	.long	2525                            @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	0                               @ End Of Children Mark
@@ -2023,7 +2023,7 @@ appSemHandle:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string99                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	222                             @ DW_AT_decl_line
+	.byte	229                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_external
 	.byte	12                              @ Abbrev [12] 0x477:0xb DW_TAG_typedef
@@ -2794,399 +2794,399 @@ appSemHandle:
 .Linfo_string1:
 	.asciz	"../das_subg_thread\\app_task.c" @ string offset=55
 .Linfo_string2:
-	.asciz	"D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" @ string offset=85
+	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=85
 .Linfo_string3:
-	.asciz	"aNetworkName"                  @ string offset=147
+	.asciz	"aNetworkName"                  @ string offset=146
 .Linfo_string4:
-	.asciz	"char"                          @ string offset=160
+	.asciz	"char"                          @ string offset=159
 .Linfo_string5:
-	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=165
+	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=164
 .Linfo_string6:
-	.asciz	"appSemHandle"                  @ string offset=185
+	.asciz	"appSemHandle"                  @ string offset=184
 .Linfo_string7:
-	.asciz	"QueueDefinition"               @ string offset=198
+	.asciz	"QueueDefinition"               @ string offset=197
 .Linfo_string8:
-	.asciz	"QueueHandle_t"                 @ string offset=214
+	.asciz	"QueueHandle_t"                 @ string offset=213
 .Linfo_string9:
-	.asciz	"SemaphoreHandle_t"             @ string offset=228
+	.asciz	"SemaphoreHandle_t"             @ string offset=227
 .Linfo_string10:
-	.asciz	"unsigned int"                  @ string offset=246
+	.asciz	"unsigned int"                  @ string offset=245
 .Linfo_string11:
-	.asciz	"OT_ERROR_NONE"                 @ string offset=259
+	.asciz	"OT_ERROR_NONE"                 @ string offset=258
 .Linfo_string12:
-	.asciz	"OT_ERROR_FAILED"               @ string offset=273
+	.asciz	"OT_ERROR_FAILED"               @ string offset=272
 .Linfo_string13:
-	.asciz	"OT_ERROR_DROP"                 @ string offset=289
+	.asciz	"OT_ERROR_DROP"                 @ string offset=288
 .Linfo_string14:
-	.asciz	"OT_ERROR_NO_BUFS"              @ string offset=303
+	.asciz	"OT_ERROR_NO_BUFS"              @ string offset=302
 .Linfo_string15:
-	.asciz	"OT_ERROR_NO_ROUTE"             @ string offset=320
+	.asciz	"OT_ERROR_NO_ROUTE"             @ string offset=319
 .Linfo_string16:
-	.asciz	"OT_ERROR_BUSY"                 @ string offset=338
+	.asciz	"OT_ERROR_BUSY"                 @ string offset=337
 .Linfo_string17:
-	.asciz	"OT_ERROR_PARSE"                @ string offset=352
+	.asciz	"OT_ERROR_PARSE"                @ string offset=351
 .Linfo_string18:
-	.asciz	"OT_ERROR_INVALID_ARGS"         @ string offset=367
+	.asciz	"OT_ERROR_INVALID_ARGS"         @ string offset=366
 .Linfo_string19:
-	.asciz	"OT_ERROR_SECURITY"             @ string offset=389
+	.asciz	"OT_ERROR_SECURITY"             @ string offset=388
 .Linfo_string20:
-	.asciz	"OT_ERROR_ADDRESS_QUERY"        @ string offset=407
+	.asciz	"OT_ERROR_ADDRESS_QUERY"        @ string offset=406
 .Linfo_string21:
-	.asciz	"OT_ERROR_NO_ADDRESS"           @ string offset=430
+	.asciz	"OT_ERROR_NO_ADDRESS"           @ string offset=429
 .Linfo_string22:
-	.asciz	"OT_ERROR_ABORT"                @ string offset=450
+	.asciz	"OT_ERROR_ABORT"                @ string offset=449
 .Linfo_string23:
-	.asciz	"OT_ERROR_NOT_IMPLEMENTED"      @ string offset=465
+	.asciz	"OT_ERROR_NOT_IMPLEMENTED"      @ string offset=464
 .Linfo_string24:
-	.asciz	"OT_ERROR_INVALID_STATE"        @ string offset=490
+	.asciz	"OT_ERROR_INVALID_STATE"        @ string offset=489
 .Linfo_string25:
-	.asciz	"OT_ERROR_NO_ACK"               @ string offset=513
+	.asciz	"OT_ERROR_NO_ACK"               @ string offset=512
 .Linfo_string26:
-	.asciz	"OT_ERROR_CHANNEL_ACCESS_FAILURE" @ string offset=529
+	.asciz	"OT_ERROR_CHANNEL_ACCESS_FAILURE" @ string offset=528
 .Linfo_string27:
-	.asciz	"OT_ERROR_DETACHED"             @ string offset=561
+	.asciz	"OT_ERROR_DETACHED"             @ string offset=560
 .Linfo_string28:
-	.asciz	"OT_ERROR_FCS"                  @ string offset=579
+	.asciz	"OT_ERROR_FCS"                  @ string offset=578
 .Linfo_string29:
-	.asciz	"OT_ERROR_NO_FRAME_RECEIVED"    @ string offset=592
+	.asciz	"OT_ERROR_NO_FRAME_RECEIVED"    @ string offset=591
 .Linfo_string30:
-	.asciz	"OT_ERROR_UNKNOWN_NEIGHBOR"     @ string offset=619
+	.asciz	"OT_ERROR_UNKNOWN_NEIGHBOR"     @ string offset=618
 .Linfo_string31:
-	.asciz	"OT_ERROR_INVALID_SOURCE_ADDRESS" @ string offset=645
+	.asciz	"OT_ERROR_INVALID_SOURCE_ADDRESS" @ string offset=644
 .Linfo_string32:
-	.asciz	"OT_ERROR_ADDRESS_FILTERED"     @ string offset=677
+	.asciz	"OT_ERROR_ADDRESS_FILTERED"     @ string offset=676
 .Linfo_string33:
-	.asciz	"OT_ERROR_DESTINATION_ADDRESS_FILTERED" @ string offset=703
+	.asciz	"OT_ERROR_DESTINATION_ADDRESS_FILTERED" @ string offset=702
 .Linfo_string34:
-	.asciz	"OT_ERROR_NOT_FOUND"            @ string offset=741
+	.asciz	"OT_ERROR_NOT_FOUND"            @ string offset=740
 .Linfo_string35:
-	.asciz	"OT_ERROR_ALREADY"              @ string offset=760
+	.asciz	"OT_ERROR_ALREADY"              @ string offset=759
 .Linfo_string36:
-	.asciz	"OT_ERROR_IP6_ADDRESS_CREATION_FAILURE" @ string offset=777
+	.asciz	"OT_ERROR_IP6_ADDRESS_CREATION_FAILURE" @ string offset=776
 .Linfo_string37:
-	.asciz	"OT_ERROR_NOT_CAPABLE"          @ string offset=815
+	.asciz	"OT_ERROR_NOT_CAPABLE"          @ string offset=814
 .Linfo_string38:
-	.asciz	"OT_ERROR_RESPONSE_TIMEOUT"     @ string offset=836
+	.asciz	"OT_ERROR_RESPONSE_TIMEOUT"     @ string offset=835
 .Linfo_string39:
-	.asciz	"OT_ERROR_DUPLICATED"           @ string offset=862
+	.asciz	"OT_ERROR_DUPLICATED"           @ string offset=861
 .Linfo_string40:
-	.asciz	"OT_ERROR_REASSEMBLY_TIMEOUT"   @ string offset=882
+	.asciz	"OT_ERROR_REASSEMBLY_TIMEOUT"   @ string offset=881
 .Linfo_string41:
-	.asciz	"OT_ERROR_NOT_TMF"              @ string offset=910
+	.asciz	"OT_ERROR_NOT_TMF"              @ string offset=909
 .Linfo_string42:
-	.asciz	"OT_ERROR_NOT_LOWPAN_DATA_FRAME" @ string offset=927
+	.asciz	"OT_ERROR_NOT_LOWPAN_DATA_FRAME" @ string offset=926
 .Linfo_string43:
-	.asciz	"OT_ERROR_LINK_MARGIN_LOW"      @ string offset=958
+	.asciz	"OT_ERROR_LINK_MARGIN_LOW"      @ string offset=957
 .Linfo_string44:
-	.asciz	"OT_ERROR_INVALID_COMMAND"      @ string offset=983
+	.asciz	"OT_ERROR_INVALID_COMMAND"      @ string offset=982
 .Linfo_string45:
-	.asciz	"OT_ERROR_PENDING"              @ string offset=1008
+	.asciz	"OT_ERROR_PENDING"              @ string offset=1007
 .Linfo_string46:
-	.asciz	"OT_ERROR_REJECTED"             @ string offset=1025
+	.asciz	"OT_ERROR_REJECTED"             @ string offset=1024
 .Linfo_string47:
-	.asciz	"OT_NUM_ERRORS"                 @ string offset=1043
+	.asciz	"OT_NUM_ERRORS"                 @ string offset=1042
 .Linfo_string48:
-	.asciz	"OT_ERROR_GENERIC"              @ string offset=1057
+	.asciz	"OT_ERROR_GENERIC"              @ string offset=1056
 .Linfo_string49:
-	.asciz	"otError"                       @ string offset=1074
+	.asciz	"otError"                       @ string offset=1073
 .Linfo_string50:
-	.asciz	"OT_NEIGHBOR_TABLE_EVENT_CHILD_ADDED" @ string offset=1082
+	.asciz	"OT_NEIGHBOR_TABLE_EVENT_CHILD_ADDED" @ string offset=1081
 .Linfo_string51:
-	.asciz	"OT_NEIGHBOR_TABLE_EVENT_CHILD_REMOVED" @ string offset=1118
+	.asciz	"OT_NEIGHBOR_TABLE_EVENT_CHILD_REMOVED" @ string offset=1117
 .Linfo_string52:
-	.asciz	"OT_NEIGHBOR_TABLE_EVENT_CHILD_MODE_CHANGED" @ string offset=1156
+	.asciz	"OT_NEIGHBOR_TABLE_EVENT_CHILD_MODE_CHANGED" @ string offset=1155
 .Linfo_string53:
-	.asciz	"OT_NEIGHBOR_TABLE_EVENT_ROUTER_ADDED" @ string offset=1199
+	.asciz	"OT_NEIGHBOR_TABLE_EVENT_ROUTER_ADDED" @ string offset=1198
 .Linfo_string54:
-	.asciz	"OT_NEIGHBOR_TABLE_EVENT_ROUTER_REMOVED" @ string offset=1236
+	.asciz	"OT_NEIGHBOR_TABLE_EVENT_ROUTER_REMOVED" @ string offset=1235
 .Linfo_string55:
-	.asciz	"OT_CHANGED_IP6_ADDRESS_ADDED"  @ string offset=1275
+	.asciz	"OT_CHANGED_IP6_ADDRESS_ADDED"  @ string offset=1274
 .Linfo_string56:
-	.asciz	"OT_CHANGED_IP6_ADDRESS_REMOVED" @ string offset=1304
+	.asciz	"OT_CHANGED_IP6_ADDRESS_REMOVED" @ string offset=1303
 .Linfo_string57:
-	.asciz	"OT_CHANGED_THREAD_ROLE"        @ string offset=1335
+	.asciz	"OT_CHANGED_THREAD_ROLE"        @ string offset=1334
 .Linfo_string58:
-	.asciz	"OT_CHANGED_THREAD_LL_ADDR"     @ string offset=1358
+	.asciz	"OT_CHANGED_THREAD_LL_ADDR"     @ string offset=1357
 .Linfo_string59:
-	.asciz	"OT_CHANGED_THREAD_ML_ADDR"     @ string offset=1384
+	.asciz	"OT_CHANGED_THREAD_ML_ADDR"     @ string offset=1383
 .Linfo_string60:
-	.asciz	"OT_CHANGED_THREAD_RLOC_ADDED"  @ string offset=1410
+	.asciz	"OT_CHANGED_THREAD_RLOC_ADDED"  @ string offset=1409
 .Linfo_string61:
-	.asciz	"OT_CHANGED_THREAD_RLOC_REMOVED" @ string offset=1439
+	.asciz	"OT_CHANGED_THREAD_RLOC_REMOVED" @ string offset=1438
 .Linfo_string62:
-	.asciz	"OT_CHANGED_THREAD_PARTITION_ID" @ string offset=1470
+	.asciz	"OT_CHANGED_THREAD_PARTITION_ID" @ string offset=1469
 .Linfo_string63:
-	.asciz	"OT_CHANGED_THREAD_KEY_SEQUENCE_COUNTER" @ string offset=1501
+	.asciz	"OT_CHANGED_THREAD_KEY_SEQUENCE_COUNTER" @ string offset=1500
 .Linfo_string64:
-	.asciz	"OT_CHANGED_THREAD_NETDATA"     @ string offset=1540
+	.asciz	"OT_CHANGED_THREAD_NETDATA"     @ string offset=1539
 .Linfo_string65:
-	.asciz	"OT_CHANGED_THREAD_CHILD_ADDED" @ string offset=1566
+	.asciz	"OT_CHANGED_THREAD_CHILD_ADDED" @ string offset=1565
 .Linfo_string66:
-	.asciz	"OT_CHANGED_THREAD_CHILD_REMOVED" @ string offset=1596
+	.asciz	"OT_CHANGED_THREAD_CHILD_REMOVED" @ string offset=1595
 .Linfo_string67:
-	.asciz	"OT_CHANGED_IP6_MULTICAST_SUBSCRIBED" @ string offset=1628
+	.asciz	"OT_CHANGED_IP6_MULTICAST_SUBSCRIBED" @ string offset=1627
 .Linfo_string68:
-	.asciz	"OT_CHANGED_IP6_MULTICAST_UNSUBSCRIBED" @ string offset=1664
+	.asciz	"OT_CHANGED_IP6_MULTICAST_UNSUBSCRIBED" @ string offset=1663
 .Linfo_string69:
-	.asciz	"OT_CHANGED_THREAD_CHANNEL"     @ string offset=1702
+	.asciz	"OT_CHANGED_THREAD_CHANNEL"     @ string offset=1701
 .Linfo_string70:
-	.asciz	"OT_CHANGED_THREAD_PANID"       @ string offset=1728
+	.asciz	"OT_CHANGED_THREAD_PANID"       @ string offset=1727
 .Linfo_string71:
-	.asciz	"OT_CHANGED_THREAD_NETWORK_NAME" @ string offset=1752
+	.asciz	"OT_CHANGED_THREAD_NETWORK_NAME" @ string offset=1751
 .Linfo_string72:
-	.asciz	"OT_CHANGED_THREAD_EXT_PANID"   @ string offset=1783
+	.asciz	"OT_CHANGED_THREAD_EXT_PANID"   @ string offset=1782
 .Linfo_string73:
-	.asciz	"OT_CHANGED_NETWORK_KEY"        @ string offset=1811
+	.asciz	"OT_CHANGED_NETWORK_KEY"        @ string offset=1810
 .Linfo_string74:
-	.asciz	"OT_CHANGED_PSKC"               @ string offset=1834
+	.asciz	"OT_CHANGED_PSKC"               @ string offset=1833
 .Linfo_string75:
-	.asciz	"OT_CHANGED_SECURITY_POLICY"    @ string offset=1850
+	.asciz	"OT_CHANGED_SECURITY_POLICY"    @ string offset=1849
 .Linfo_string76:
-	.asciz	"OT_CHANGED_CHANNEL_MANAGER_NEW_CHANNEL" @ string offset=1877
+	.asciz	"OT_CHANGED_CHANNEL_MANAGER_NEW_CHANNEL" @ string offset=1876
 .Linfo_string77:
-	.asciz	"OT_CHANGED_SUPPORTED_CHANNEL_MASK" @ string offset=1916
+	.asciz	"OT_CHANGED_SUPPORTED_CHANNEL_MASK" @ string offset=1915
 .Linfo_string78:
-	.asciz	"OT_CHANGED_COMMISSIONER_STATE" @ string offset=1950
+	.asciz	"OT_CHANGED_COMMISSIONER_STATE" @ string offset=1949
 .Linfo_string79:
-	.asciz	"OT_CHANGED_THREAD_NETIF_STATE" @ string offset=1980
+	.asciz	"OT_CHANGED_THREAD_NETIF_STATE" @ string offset=1979
 .Linfo_string80:
-	.asciz	"OT_CHANGED_THREAD_BACKBONE_ROUTER_STATE" @ string offset=2010
+	.asciz	"OT_CHANGED_THREAD_BACKBONE_ROUTER_STATE" @ string offset=2009
 .Linfo_string81:
-	.asciz	"OT_CHANGED_THREAD_BACKBONE_ROUTER_LOCAL" @ string offset=2050
+	.asciz	"OT_CHANGED_THREAD_BACKBONE_ROUTER_LOCAL" @ string offset=2049
 .Linfo_string82:
-	.asciz	"OT_CHANGED_JOINER_STATE"       @ string offset=2090
+	.asciz	"OT_CHANGED_JOINER_STATE"       @ string offset=2089
 .Linfo_string83:
-	.asciz	"OT_CHANGED_ACTIVE_DATASET"     @ string offset=2114
+	.asciz	"OT_CHANGED_ACTIVE_DATASET"     @ string offset=2113
 .Linfo_string84:
-	.asciz	"OT_CHANGED_PENDING_DATASET"    @ string offset=2140
+	.asciz	"OT_CHANGED_PENDING_DATASET"    @ string offset=2139
 .Linfo_string85:
-	.asciz	"OT_CHANGED_NAT64_TRANSLATOR_STATE" @ string offset=2167
+	.asciz	"OT_CHANGED_NAT64_TRANSLATOR_STATE" @ string offset=2166
 .Linfo_string86:
-	.asciz	"OT_DEVICE_ROLE_DISABLED"       @ string offset=2201
+	.asciz	"OT_DEVICE_ROLE_DISABLED"       @ string offset=2200
 .Linfo_string87:
-	.asciz	"OT_DEVICE_ROLE_DETACHED"       @ string offset=2225
+	.asciz	"OT_DEVICE_ROLE_DETACHED"       @ string offset=2224
 .Linfo_string88:
-	.asciz	"OT_DEVICE_ROLE_CHILD"          @ string offset=2249
+	.asciz	"OT_DEVICE_ROLE_CHILD"          @ string offset=2248
 .Linfo_string89:
-	.asciz	"OT_DEVICE_ROLE_ROUTER"         @ string offset=2270
+	.asciz	"OT_DEVICE_ROLE_ROUTER"         @ string offset=2269
 .Linfo_string90:
-	.asciz	"OT_DEVICE_ROLE_LEADER"         @ string offset=2292
+	.asciz	"OT_DEVICE_ROLE_LEADER"         @ string offset=2291
 .Linfo_string91:
-	.asciz	"otInstance"                    @ string offset=2314
+	.asciz	"otInstance"                    @ string offset=2313
 .Linfo_string92:
-	.asciz	"long unsigned int"             @ string offset=2325
+	.asciz	"long unsigned int"             @ string offset=2324
 .Linfo_string93:
-	.asciz	"UBaseType_t"                   @ string offset=2343
+	.asciz	"UBaseType_t"                   @ string offset=2342
 .Linfo_string94:
-	.asciz	"unsigned char"                 @ string offset=2355
+	.asciz	"unsigned char"                 @ string offset=2354
 .Linfo_string95:
-	.asciz	"uint8_t"                       @ string offset=2369
+	.asciz	"uint8_t"                       @ string offset=2368
 .Linfo_string96:
-	.asciz	"otrInitUser"                   @ string offset=2377
+	.asciz	"otrInitUser"                   @ string offset=2376
 .Linfo_string97:
-	.asciz	"ot_stateChangeCallback"        @ string offset=2389
+	.asciz	"ot_stateChangeCallback"        @ string offset=2388
 .Linfo_string98:
-	.asciz	"app_udp_cb"                    @ string offset=2412
+	.asciz	"app_udp_cb"                    @ string offset=2411
 .Linfo_string99:
-	.asciz	"app_task"                      @ string offset=2423
+	.asciz	"app_task"                      @ string offset=2422
 .Linfo_string100:
-	.asciz	"App_Dataset"                   @ string offset=2432
+	.asciz	"App_Dataset"                   @ string offset=2431
 .Linfo_string101:
-	.asciz	"mActiveTimestamp"              @ string offset=2444
+	.asciz	"mActiveTimestamp"              @ string offset=2443
 .Linfo_string102:
-	.asciz	"mSeconds"                      @ string offset=2461
+	.asciz	"mSeconds"                      @ string offset=2460
 .Linfo_string103:
-	.asciz	"long long unsigned int"        @ string offset=2470
+	.asciz	"long long unsigned int"        @ string offset=2469
 .Linfo_string104:
-	.asciz	"uint64_t"                      @ string offset=2493
+	.asciz	"uint64_t"                      @ string offset=2492
 .Linfo_string105:
-	.asciz	"mTicks"                        @ string offset=2502
+	.asciz	"mTicks"                        @ string offset=2501
 .Linfo_string106:
-	.asciz	"unsigned short"                @ string offset=2509
+	.asciz	"unsigned short"                @ string offset=2508
 .Linfo_string107:
-	.asciz	"uint16_t"                      @ string offset=2524
+	.asciz	"uint16_t"                      @ string offset=2523
 .Linfo_string108:
-	.asciz	"mAuthoritative"                @ string offset=2533
+	.asciz	"mAuthoritative"                @ string offset=2532
 .Linfo_string109:
-	.asciz	"_Bool"                         @ string offset=2548
+	.asciz	"_Bool"                         @ string offset=2547
 .Linfo_string110:
-	.asciz	"otTimestamp"                   @ string offset=2554
+	.asciz	"otTimestamp"                   @ string offset=2553
 .Linfo_string111:
-	.asciz	"mPendingTimestamp"             @ string offset=2566
+	.asciz	"mPendingTimestamp"             @ string offset=2565
 .Linfo_string112:
-	.asciz	"mNetworkKey"                   @ string offset=2584
+	.asciz	"mNetworkKey"                   @ string offset=2583
 .Linfo_string113:
-	.asciz	"m8"                            @ string offset=2596
+	.asciz	"m8"                            @ string offset=2595
 .Linfo_string114:
-	.asciz	"otNetworkKey"                  @ string offset=2599
+	.asciz	"otNetworkKey"                  @ string offset=2598
 .Linfo_string115:
-	.asciz	"mNetworkName"                  @ string offset=2612
+	.asciz	"mNetworkName"                  @ string offset=2611
 .Linfo_string116:
-	.asciz	"otNetworkName"                 @ string offset=2625
+	.asciz	"otNetworkName"                 @ string offset=2624
 .Linfo_string117:
-	.asciz	"mExtendedPanId"                @ string offset=2639
+	.asciz	"mExtendedPanId"                @ string offset=2638
 .Linfo_string118:
-	.asciz	"otExtendedPanId"               @ string offset=2654
+	.asciz	"otExtendedPanId"               @ string offset=2653
 .Linfo_string119:
-	.asciz	"mMeshLocalPrefix"              @ string offset=2670
+	.asciz	"mMeshLocalPrefix"              @ string offset=2669
 .Linfo_string120:
-	.asciz	"otIp6NetworkPrefix"            @ string offset=2687
+	.asciz	"otIp6NetworkPrefix"            @ string offset=2686
 .Linfo_string121:
-	.asciz	"otMeshLocalPrefix"             @ string offset=2706
+	.asciz	"otMeshLocalPrefix"             @ string offset=2705
 .Linfo_string122:
-	.asciz	"mDelay"                        @ string offset=2724
+	.asciz	"mDelay"                        @ string offset=2723
 .Linfo_string123:
-	.asciz	"uint32_t"                      @ string offset=2731
+	.asciz	"uint32_t"                      @ string offset=2730
 .Linfo_string124:
-	.asciz	"mPanId"                        @ string offset=2740
+	.asciz	"mPanId"                        @ string offset=2739
 .Linfo_string125:
-	.asciz	"otPanId"                       @ string offset=2747
+	.asciz	"otPanId"                       @ string offset=2746
 .Linfo_string126:
-	.asciz	"mChannel"                      @ string offset=2755
+	.asciz	"mChannel"                      @ string offset=2754
 .Linfo_string127:
-	.asciz	"mPskc"                         @ string offset=2764
+	.asciz	"mPskc"                         @ string offset=2763
 .Linfo_string128:
-	.asciz	"otPskc"                        @ string offset=2770
+	.asciz	"otPskc"                        @ string offset=2769
 .Linfo_string129:
-	.asciz	"mSecurityPolicy"               @ string offset=2777
+	.asciz	"mSecurityPolicy"               @ string offset=2776
 .Linfo_string130:
-	.asciz	"mRotationTime"                 @ string offset=2793
+	.asciz	"mRotationTime"                 @ string offset=2792
 .Linfo_string131:
-	.asciz	"mObtainNetworkKeyEnabled"      @ string offset=2807
+	.asciz	"mObtainNetworkKeyEnabled"      @ string offset=2806
 .Linfo_string132:
-	.asciz	"mNativeCommissioningEnabled"   @ string offset=2832
+	.asciz	"mNativeCommissioningEnabled"   @ string offset=2831
 .Linfo_string133:
-	.asciz	"mRoutersEnabled"               @ string offset=2860
+	.asciz	"mRoutersEnabled"               @ string offset=2859
 .Linfo_string134:
-	.asciz	"mExternalCommissioningEnabled" @ string offset=2876
+	.asciz	"mExternalCommissioningEnabled" @ string offset=2875
 .Linfo_string135:
-	.asciz	"mCommercialCommissioningEnabled" @ string offset=2906
+	.asciz	"mCommercialCommissioningEnabled" @ string offset=2905
 .Linfo_string136:
-	.asciz	"mAutonomousEnrollmentEnabled"  @ string offset=2938
+	.asciz	"mAutonomousEnrollmentEnabled"  @ string offset=2937
 .Linfo_string137:
-	.asciz	"mNetworkKeyProvisioningEnabled" @ string offset=2967
+	.asciz	"mNetworkKeyProvisioningEnabled" @ string offset=2966
 .Linfo_string138:
-	.asciz	"mTobleLinkEnabled"             @ string offset=2998
+	.asciz	"mTobleLinkEnabled"             @ string offset=2997
 .Linfo_string139:
-	.asciz	"mNonCcmRoutersEnabled"         @ string offset=3016
+	.asciz	"mNonCcmRoutersEnabled"         @ string offset=3015
 .Linfo_string140:
-	.asciz	"mVersionThresholdForRouting"   @ string offset=3038
+	.asciz	"mVersionThresholdForRouting"   @ string offset=3037
 .Linfo_string141:
-	.asciz	"otSecurityPolicy"              @ string offset=3066
+	.asciz	"otSecurityPolicy"              @ string offset=3065
 .Linfo_string142:
-	.asciz	"mChannelMask"                  @ string offset=3083
+	.asciz	"mChannelMask"                  @ string offset=3082
 .Linfo_string143:
-	.asciz	"otChannelMask"                 @ string offset=3096
+	.asciz	"otChannelMask"                 @ string offset=3095
 .Linfo_string144:
-	.asciz	"mComponents"                   @ string offset=3110
+	.asciz	"mComponents"                   @ string offset=3109
 .Linfo_string145:
-	.asciz	"mIsActiveTimestampPresent"     @ string offset=3122
+	.asciz	"mIsActiveTimestampPresent"     @ string offset=3121
 .Linfo_string146:
-	.asciz	"mIsPendingTimestampPresent"    @ string offset=3148
+	.asciz	"mIsPendingTimestampPresent"    @ string offset=3147
 .Linfo_string147:
-	.asciz	"mIsNetworkKeyPresent"          @ string offset=3175
+	.asciz	"mIsNetworkKeyPresent"          @ string offset=3174
 .Linfo_string148:
-	.asciz	"mIsNetworkNamePresent"         @ string offset=3196
+	.asciz	"mIsNetworkNamePresent"         @ string offset=3195
 .Linfo_string149:
-	.asciz	"mIsExtendedPanIdPresent"       @ string offset=3218
+	.asciz	"mIsExtendedPanIdPresent"       @ string offset=3217
 .Linfo_string150:
-	.asciz	"mIsMeshLocalPrefixPresent"     @ string offset=3242
+	.asciz	"mIsMeshLocalPrefixPresent"     @ string offset=3241
 .Linfo_string151:
-	.asciz	"mIsDelayPresent"               @ string offset=3268
+	.asciz	"mIsDelayPresent"               @ string offset=3267
 .Linfo_string152:
-	.asciz	"mIsPanIdPresent"               @ string offset=3284
+	.asciz	"mIsPanIdPresent"               @ string offset=3283
 .Linfo_string153:
-	.asciz	"mIsChannelPresent"             @ string offset=3300
+	.asciz	"mIsChannelPresent"             @ string offset=3299
 .Linfo_string154:
-	.asciz	"mIsPskcPresent"                @ string offset=3318
+	.asciz	"mIsPskcPresent"                @ string offset=3317
 .Linfo_string155:
-	.asciz	"mIsSecurityPolicyPresent"      @ string offset=3333
+	.asciz	"mIsSecurityPolicyPresent"      @ string offset=3332
 .Linfo_string156:
-	.asciz	"mIsChannelMaskPresent"         @ string offset=3358
+	.asciz	"mIsChannelMaskPresent"         @ string offset=3357
 .Linfo_string157:
-	.asciz	"otOperationalDatasetComponents" @ string offset=3380
+	.asciz	"otOperationalDatasetComponents" @ string offset=3379
 .Linfo_string158:
-	.asciz	"otOperationalDataset"          @ string offset=3411
+	.asciz	"otOperationalDataset"          @ string offset=3410
 .Linfo_string159:
-	.asciz	"instance"                      @ string offset=3432
+	.asciz	"instance"                      @ string offset=3431
 .Linfo_string160:
-	.asciz	"length"                        @ string offset=3441
+	.asciz	"length"                        @ string offset=3440
 .Linfo_string161:
-	.asciz	"size_t"                        @ string offset=3448
+	.asciz	"size_t"                        @ string offset=3447
 .Linfo_string162:
-	.asciz	"extPanId"                      @ string offset=3455
+	.asciz	"extPanId"                      @ string offset=3454
 .Linfo_string163:
-	.asciz	"nwkkey"                        @ string offset=3464
+	.asciz	"nwkkey"                        @ string offset=3463
 .Linfo_string164:
-	.asciz	"meshLocalPrefix"               @ string offset=3471
+	.asciz	"meshLocalPrefix"               @ string offset=3470
 .Linfo_string165:
-	.asciz	"aPSKc"                         @ string offset=3487
+	.asciz	"aPSKc"                         @ string offset=3486
 .Linfo_string166:
-	.asciz	"flags"                         @ string offset=3493
+	.asciz	"flags"                         @ string offset=3492
 .Linfo_string167:
-	.asciz	"otChangedFlags"                @ string offset=3499
+	.asciz	"otChangedFlags"                @ string offset=3498
 .Linfo_string168:
-	.asciz	"p_context"                     @ string offset=3514
+	.asciz	"p_context"                     @ string offset=3513
 .Linfo_string169:
-	.asciz	"role"                          @ string offset=3524
+	.asciz	"role"                          @ string offset=3523
 .Linfo_string170:
-	.asciz	"otDeviceRole"                  @ string offset=3529
+	.asciz	"otDeviceRole"                  @ string offset=3528
 .Linfo_string171:
-	.asciz	"p"                             @ string offset=3542
+	.asciz	"p"                             @ string offset=3541
 .Linfo_string172:
-	.asciz	"string"                        @ string offset=3544
+	.asciz	"string"                        @ string offset=3543
 .Linfo_string173:
-	.asciz	"otMsg"                         @ string offset=3551
+	.asciz	"otMsg"                         @ string offset=3550
 .Linfo_string174:
-	.asciz	"otMessage"                     @ string offset=3557
+	.asciz	"otMessage"                     @ string offset=3556
 .Linfo_string175:
-	.asciz	"otInfo"                        @ string offset=3567
+	.asciz	"otInfo"                        @ string offset=3566
 .Linfo_string176:
-	.asciz	"mSockAddr"                     @ string offset=3574
+	.asciz	"mSockAddr"                     @ string offset=3573
 .Linfo_string177:
-	.asciz	"mFields"                       @ string offset=3584
+	.asciz	"mFields"                       @ string offset=3583
 .Linfo_string178:
-	.asciz	"m16"                           @ string offset=3592
+	.asciz	"m16"                           @ string offset=3591
 .Linfo_string179:
-	.asciz	"m32"                           @ string offset=3596
+	.asciz	"m32"                           @ string offset=3595
 .Linfo_string180:
-	.asciz	"mNetworkPrefix"                @ string offset=3600
+	.asciz	"mNetworkPrefix"                @ string offset=3599
 .Linfo_string181:
-	.asciz	"mIid"                          @ string offset=3615
+	.asciz	"mIid"                          @ string offset=3614
 .Linfo_string182:
-	.asciz	"otIp6InterfaceIdentifier"      @ string offset=3620
+	.asciz	"otIp6InterfaceIdentifier"      @ string offset=3619
 .Linfo_string183:
-	.asciz	"otIp6AddressComponents"        @ string offset=3645
+	.asciz	"otIp6AddressComponents"        @ string offset=3644
 .Linfo_string184:
-	.asciz	"otIp6Address"                  @ string offset=3668
+	.asciz	"otIp6Address"                  @ string offset=3667
 .Linfo_string185:
-	.asciz	"mPeerAddr"                     @ string offset=3681
+	.asciz	"mPeerAddr"                     @ string offset=3680
 .Linfo_string186:
-	.asciz	"mSockPort"                     @ string offset=3691
+	.asciz	"mSockPort"                     @ string offset=3690
 .Linfo_string187:
-	.asciz	"mPeerPort"                     @ string offset=3701
+	.asciz	"mPeerPort"                     @ string offset=3700
 .Linfo_string188:
-	.asciz	"mLinkInfo"                     @ string offset=3711
+	.asciz	"mLinkInfo"                     @ string offset=3710
 .Linfo_string189:
-	.asciz	"mHopLimit"                     @ string offset=3721
+	.asciz	"mHopLimit"                     @ string offset=3720
 .Linfo_string190:
-	.asciz	"mEcn"                          @ string offset=3731
+	.asciz	"mEcn"                          @ string offset=3730
 .Linfo_string191:
-	.asciz	"mIsHostInterface"              @ string offset=3736
+	.asciz	"mIsHostInterface"              @ string offset=3735
 .Linfo_string192:
-	.asciz	"mAllowZeroHopLimit"            @ string offset=3753
+	.asciz	"mAllowZeroHopLimit"            @ string offset=3752
 .Linfo_string193:
-	.asciz	"mMulticastLoop"                @ string offset=3772
+	.asciz	"mMulticastLoop"                @ string offset=3771
 .Linfo_string194:
-	.asciz	"otMessageInfo"                 @ string offset=3787
+	.asciz	"otMessageInfo"                 @ string offset=3786
 .Linfo_string195:
-	.asciz	"is_multicast"                  @ string offset=3801
+	.asciz	"is_multicast"                  @ string offset=3800
 .Linfo_string196:
-	.asciz	"len"                           @ string offset=3814
+	.asciz	"len"                           @ string offset=3813
 .Linfo_string197:
-	.asciz	"i"                             @ string offset=3818
+	.asciz	"i"                             @ string offset=3817
 .Linfo_string198:
-	.asciz	"int"                           @ string offset=3820
+	.asciz	"int"                           @ string offset=3819
 	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals

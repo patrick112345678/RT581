@@ -507,7 +507,7 @@ static void udf_Send_AARQ(uint8_t type)
         }
 
         printf("\n\r");
-        app_uart_data_send(1, no_en_aarq, sizeof(no_en_aarq));
+        app_uart_data_send(2, no_en_aarq, sizeof(no_en_aarq));
     }
     else//if(type==2/*get_id_done==1*/)
     {
@@ -619,7 +619,7 @@ static void udf_Send_AARQ(uint8_t type)
         }
         printf("\n\r");
 
-        app_uart_data_send(1, cmdbuf, sizeof(cmdbuf));
+        app_uart_data_send(2, cmdbuf, sizeof(cmdbuf));
     }
 }
 
@@ -697,7 +697,7 @@ static void udf_Management_Client(uint8_t type)
     }
     printf("\n\r");
 
-    app_uart_data_send(1, cmdbuf, sizeof(cmdbuf));
+    app_uart_data_send(2, cmdbuf, sizeof(cmdbuf));
 }
 
 static void udf_Han_Client(void)
@@ -774,7 +774,7 @@ static void udf_Han_Client(void)
     }
     printf("\n\r");
 
-    app_uart_data_send(1, cmdbuf, sizeof(cmdbuf));
+    app_uart_data_send(2, cmdbuf, sizeof(cmdbuf));
 }
 
 static void Decide_Once(unsigned char *pt, unsigned char *meter_data)
@@ -990,7 +990,7 @@ static void udf_GetData_Request(uint8_t *obis_data, uint16_t ic_index, uint8_t s
         }
         printf("\n\r");
 
-        app_uart_data_send(1, cmdbuf, sizeof(cmdbuf));
+        app_uart_data_send(2, cmdbuf, sizeof(cmdbuf));
     }
     else
     {
@@ -1085,7 +1085,7 @@ static void udf_GetData_Request(uint8_t *obis_data, uint16_t ic_index, uint8_t s
         }
         printf("\n\r");
 
-        app_uart_data_send(1, cmdbuf, sizeof(cmdbuf));
+        app_uart_data_send(2, cmdbuf, sizeof(cmdbuf));
     }
 }
 
@@ -1185,7 +1185,7 @@ static void udf_Get_New_Number_of_pens(uint16_t ic_count, uint8_t *obis, uint8_t
     }
     printf("\n\r");
 
-    app_uart_data_send(1, cmdbuf, sizeof(cmdbuf));
+    app_uart_data_send(2, cmdbuf, sizeof(cmdbuf));
 }
 
 static void udf_SMIP_Res(uint8_t *meter_data)
@@ -1220,11 +1220,7 @@ static void udf_SMIP_Res(uint8_t *meter_data)
     {
         ucMeterPacket[i] = send_buff[i];
     }
-#if (CONFIG_UART_STDIO_PORT == 0)
-    app_uart_data_send(2, ucMeterPacket, 22);
-#else
-    app_uart_data_send(0, ucMeterPacket, 22);
-#endif
+    uart_stdio_write(ucMeterPacket, 22);
 }
 
 static void on_Demand_Task_Assembly(unsigned char *auto_data, uint16_t ct_len, unsigned char *pt_confirm)
@@ -1733,7 +1729,7 @@ static void udf_Set_Transmit(unsigned char obisTXT[], unsigned char plainTXT[], 
     }
     printf("\n\r");
 
-    app_uart_data_send(1, cmdTXT, (frameLen + 2));
+    app_uart_data_send(2, cmdTXT, (frameLen + 2));
 }
 
 static void Set_TOU_C2(uint8_t start)
@@ -1927,7 +1923,7 @@ void udf_Send_DISC(uint8_t type)
     }
     printf("\n\r");
 
-    app_uart_data_send(1, cmdbuf, sizeof(cmdbuf));
+    app_uart_data_send(2, cmdbuf, sizeof(cmdbuf));
 }
 
 void udf_Send_SNRM(uint8_t type)
@@ -1962,7 +1958,7 @@ void udf_Send_SNRM(uint8_t type)
     }
     printf("\n");
 
-    app_uart_data_send(1, cmdbuf, sizeof(cmdbuf));
+    app_uart_data_send(2, cmdbuf, sizeof(cmdbuf));
 }
 
 static void udf_Meter_Process(uint8_t *meter_data, uint16_t data_len)
@@ -1978,11 +1974,7 @@ static void udf_Meter_Process(uint8_t *meter_data, uint16_t data_len)
 
     if (meter_data[3] == 0x27)  //PASS HAN // frank,201810
     {
-#if (CONFIG_UART_STDIO_PORT == 0)
-        app_uart_data_send(2, meter_data, data_len);
-#else
-        app_uart_data_send(0, meter_data, data_len);
-#endif
+        uart_stdio_write(meter_data, data_len);
         return;
     }
 

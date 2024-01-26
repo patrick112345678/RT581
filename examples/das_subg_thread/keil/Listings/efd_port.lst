@@ -19,11 +19,11 @@
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"efd_port.c"
 	.file	1 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
-	.file	2 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/utility/EnhancedFlashDataset/Src/efd_port.c"
-	.file	3 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/utility/EnhancedFlashDataset/Inc\\efd_def.h"
+	.file	2 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/utility/EnhancedFlashDataset/Src/efd_port.c"
+	.file	3 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/utility/EnhancedFlashDataset/Inc\\efd_def.h"
 	.file	4 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stddef.h"
-	.file	5 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl.h"
-	.file	6 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl_reg.h"
+	.file	5 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl.h"
+	.file	6 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl_reg.h"
 	.section	.text.efd_port_init,"ax",%progbits
 	.hidden	efd_port_init                   @ -- Begin function efd_port_init
 	.globl	efd_port_init
@@ -625,7 +625,7 @@ efd_port_env_lock:
 .Lfunc_end4:
 	.size	efd_port_env_lock, .Lfunc_end4-efd_port_env_lock
 	.cfi_endproc
-	.file	7 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/task.h"
+	.file	7 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/task.h"
 	.cantunwind
 	.fnend
                                         @ -- End function
@@ -2180,161 +2180,161 @@ mpcache_buf:
 .Linfo_string1:
 	.asciz	"../../../components/utility/EnhancedFlashDataset/Src\\efd_port.c" @ string offset=55
 .Linfo_string2:
-	.asciz	"D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" @ string offset=119
+	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=119
 .Linfo_string3:
-	.asciz	"mpcache_buf"                   @ string offset=181
+	.asciz	"mpcache_buf"                   @ string offset=180
 .Linfo_string4:
-	.asciz	"unsigned char"                 @ string offset=193
+	.asciz	"unsigned char"                 @ string offset=192
 .Linfo_string5:
-	.asciz	"uint8_t"                       @ string offset=207
+	.asciz	"uint8_t"                       @ string offset=206
 .Linfo_string6:
-	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=215
+	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=214
 .Linfo_string7:
-	.asciz	"default_env_set"               @ string offset=235
+	.asciz	"default_env_set"               @ string offset=234
 .Linfo_string8:
-	.asciz	"key"                           @ string offset=251
+	.asciz	"key"                           @ string offset=250
 .Linfo_string9:
-	.asciz	"char"                          @ string offset=255
+	.asciz	"char"                          @ string offset=254
 .Linfo_string10:
-	.asciz	"value"                         @ string offset=260
+	.asciz	"value"                         @ string offset=259
 .Linfo_string11:
-	.asciz	"value_len"                     @ string offset=266
+	.asciz	"value_len"                     @ string offset=265
 .Linfo_string12:
-	.asciz	"unsigned int"                  @ string offset=276
+	.asciz	"unsigned int"                  @ string offset=275
 .Linfo_string13:
-	.asciz	"size_t"                        @ string offset=289
+	.asciz	"size_t"                        @ string offset=288
 .Linfo_string14:
-	.asciz	"_efd_env"                      @ string offset=296
+	.asciz	"_efd_env"                      @ string offset=295
 .Linfo_string15:
-	.asciz	"efd_env"                       @ string offset=305
+	.asciz	"efd_env"                       @ string offset=304
 .Linfo_string16:
-	.asciz	"EFD_NO_ERR"                    @ string offset=313
+	.asciz	"EFD_NO_ERR"                    @ string offset=312
 .Linfo_string17:
-	.asciz	"EFD_ERASE_ERR"                 @ string offset=324
+	.asciz	"EFD_ERASE_ERR"                 @ string offset=323
 .Linfo_string18:
-	.asciz	"EFD_READ_ERR"                  @ string offset=338
+	.asciz	"EFD_READ_ERR"                  @ string offset=337
 .Linfo_string19:
-	.asciz	"EFD_WRITE_ERR"                 @ string offset=351
+	.asciz	"EFD_WRITE_ERR"                 @ string offset=350
 .Linfo_string20:
-	.asciz	"EFD_ENV_NAME_ERR"              @ string offset=365
+	.asciz	"EFD_ENV_NAME_ERR"              @ string offset=364
 .Linfo_string21:
-	.asciz	"EFD_ENV_NAME_EXIST"            @ string offset=382
+	.asciz	"EFD_ENV_NAME_EXIST"            @ string offset=381
 .Linfo_string22:
-	.asciz	"EFD_ENV_FULL"                  @ string offset=401
+	.asciz	"EFD_ENV_FULL"                  @ string offset=400
 .Linfo_string23:
-	.asciz	"EFD_ENV_INIT_FAILED"           @ string offset=414
+	.asciz	"EFD_ENV_INIT_FAILED"           @ string offset=413
 .Linfo_string24:
-	.asciz	"EFD_ENV_ARG_ERR"               @ string offset=434
+	.asciz	"EFD_ENV_ARG_ERR"               @ string offset=433
 .Linfo_string25:
-	.asciz	"FLASH_ERASE_PAGE"              @ string offset=450
+	.asciz	"FLASH_ERASE_PAGE"              @ string offset=449
 .Linfo_string26:
-	.asciz	"FLASH_ERASE_SECTOR"            @ string offset=467
+	.asciz	"FLASH_ERASE_SECTOR"            @ string offset=466
 .Linfo_string27:
-	.asciz	"FLASH_ERASE_32K"               @ string offset=486
+	.asciz	"FLASH_ERASE_32K"               @ string offset=485
 .Linfo_string28:
-	.asciz	"FLASH_ERASE_64K"               @ string offset=502
+	.asciz	"FLASH_ERASE_64K"               @ string offset=501
 .Linfo_string29:
-	.asciz	"FLASH_ERASE_SECURE"            @ string offset=518
+	.asciz	"FLASH_ERASE_SECURE"            @ string offset=517
 .Linfo_string30:
-	.asciz	"uint32_t"                      @ string offset=537
+	.asciz	"uint32_t"                      @ string offset=536
 .Linfo_string31:
-	.asciz	"COMMAND"                       @ string offset=546
+	.asciz	"COMMAND"                       @ string offset=545
 .Linfo_string32:
-	.asciz	"FLASH_ADDR"                    @ string offset=554
+	.asciz	"FLASH_ADDR"                    @ string offset=553
 .Linfo_string33:
-	.asciz	"START"                         @ string offset=565
+	.asciz	"START"                         @ string offset=564
 .Linfo_string34:
-	.asciz	"STATUS"                        @ string offset=571
+	.asciz	"STATUS"                        @ string offset=570
 .Linfo_string35:
-	.asciz	"FLASH_DATA"                    @ string offset=578
+	.asciz	"FLASH_DATA"                    @ string offset=577
 .Linfo_string36:
-	.asciz	"MEM_ADDR"                      @ string offset=589
+	.asciz	"MEM_ADDR"                      @ string offset=588
 .Linfo_string37:
-	.asciz	"CONTROL_SET"                   @ string offset=598
+	.asciz	"CONTROL_SET"                   @ string offset=597
 .Linfo_string38:
-	.asciz	"CRC"                           @ string offset=610
+	.asciz	"CRC"                           @ string offset=609
 .Linfo_string39:
-	.asciz	"DPD"                           @ string offset=614
+	.asciz	"DPD"                           @ string offset=613
 .Linfo_string40:
-	.asciz	"RDPD"                          @ string offset=618
+	.asciz	"RDPD"                          @ string offset=617
 .Linfo_string41:
-	.asciz	"SUSPEND"                       @ string offset=623
+	.asciz	"SUSPEND"                       @ string offset=622
 .Linfo_string42:
-	.asciz	"RESUME"                        @ string offset=631
+	.asciz	"RESUME"                        @ string offset=630
 .Linfo_string43:
-	.asciz	"FLASH_INSTR"                   @ string offset=638
+	.asciz	"FLASH_INSTR"                   @ string offset=637
 .Linfo_string44:
-	.asciz	"PAGE_READ_WORD"                @ string offset=650
+	.asciz	"PAGE_READ_WORD"                @ string offset=649
 .Linfo_string45:
-	.asciz	"FLASH_INFO"                    @ string offset=665
+	.asciz	"FLASH_INFO"                    @ string offset=664
 .Linfo_string46:
-	.asciz	"RESV"                          @ string offset=676
+	.asciz	"RESV"                          @ string offset=675
 .Linfo_string47:
-	.asciz	"FLASH_INT"                     @ string offset=681
+	.asciz	"FLASH_INT"                     @ string offset=680
 .Linfo_string48:
-	.asciz	"PATTERN"                       @ string offset=691
+	.asciz	"PATTERN"                       @ string offset=690
 .Linfo_string49:
-	.asciz	"FLASHCTL_T"                    @ string offset=699
+	.asciz	"FLASHCTL_T"                    @ string offset=698
 .Linfo_string50:
-	.asciz	"flash_check_busy"              @ string offset=710
+	.asciz	"flash_check_busy"              @ string offset=709
 .Linfo_string51:
-	.asciz	"vTaskSuspendAll"               @ string offset=727
+	.asciz	"vTaskSuspendAll"               @ string offset=726
 .Linfo_string52:
-	.asciz	"xTaskResumeAll"                @ string offset=743
+	.asciz	"xTaskResumeAll"                @ string offset=742
 .Linfo_string53:
-	.asciz	"long int"                      @ string offset=758
+	.asciz	"long int"                      @ string offset=757
 .Linfo_string54:
-	.asciz	"efd_port_init"                 @ string offset=767
+	.asciz	"efd_port_init"                 @ string offset=766
 .Linfo_string55:
-	.asciz	"EfErrCode"                     @ string offset=781
+	.asciz	"EfErrCode"                     @ string offset=780
 .Linfo_string56:
-	.asciz	"efd_port_read"                 @ string offset=791
+	.asciz	"efd_port_read"                 @ string offset=790
 .Linfo_string57:
-	.asciz	"efd_port_erase"                @ string offset=805
+	.asciz	"efd_port_erase"                @ string offset=804
 .Linfo_string58:
-	.asciz	"efd_port_write"                @ string offset=820
+	.asciz	"efd_port_write"                @ string offset=819
 .Linfo_string59:
-	.asciz	"efd_port_env_lock"             @ string offset=835
+	.asciz	"efd_port_env_lock"             @ string offset=834
 .Linfo_string60:
-	.asciz	"efd_port_env_unlock"           @ string offset=853
+	.asciz	"efd_port_env_unlock"           @ string offset=852
 .Linfo_string61:
-	.asciz	"efd_log_debug"                 @ string offset=873
+	.asciz	"efd_log_debug"                 @ string offset=872
 .Linfo_string62:
-	.asciz	"efd_log_info"                  @ string offset=887
+	.asciz	"efd_log_info"                  @ string offset=886
 .Linfo_string63:
-	.asciz	"efd_print"                     @ string offset=900
+	.asciz	"efd_print"                     @ string offset=899
 .Linfo_string64:
-	.asciz	"default_env"                   @ string offset=910
+	.asciz	"default_env"                   @ string offset=909
 .Linfo_string65:
-	.asciz	"default_env_size"              @ string offset=922
+	.asciz	"default_env_size"              @ string offset=921
 .Linfo_string66:
-	.asciz	"result"                        @ string offset=939
+	.asciz	"result"                        @ string offset=938
 .Linfo_string67:
-	.asciz	"addr"                          @ string offset=946
+	.asciz	"addr"                          @ string offset=945
 .Linfo_string68:
-	.asciz	"buf"                           @ string offset=951
+	.asciz	"buf"                           @ string offset=950
 .Linfo_string69:
-	.asciz	"size"                          @ string offset=955
+	.asciz	"size"                          @ string offset=954
 .Linfo_string70:
-	.asciz	"tmp"                           @ string offset=960
+	.asciz	"tmp"                           @ string offset=959
 .Linfo_string71:
-	.asciz	"r_pos"                         @ string offset=964
+	.asciz	"r_pos"                         @ string offset=963
 .Linfo_string72:
-	.asciz	"r_size"                        @ string offset=970
+	.asciz	"r_size"                        @ string offset=969
 .Linfo_string73:
-	.asciz	"start_pos"                     @ string offset=977
+	.asciz	"start_pos"                     @ string offset=976
 .Linfo_string74:
-	.asciz	"ptr"                           @ string offset=987
+	.asciz	"ptr"                           @ string offset=986
 .Linfo_string75:
-	.asciz	"w_pos"                         @ string offset=991
+	.asciz	"w_pos"                         @ string offset=990
 .Linfo_string76:
-	.asciz	"w_size"                        @ string offset=997
+	.asciz	"w_size"                        @ string offset=996
 .Linfo_string77:
-	.asciz	"file"                          @ string offset=1004
+	.asciz	"file"                          @ string offset=1003
 .Linfo_string78:
-	.asciz	"line"                          @ string offset=1009
+	.asciz	"line"                          @ string offset=1008
 .Linfo_string79:
-	.asciz	"format"                        @ string offset=1014
+	.asciz	"format"                        @ string offset=1013
 	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals

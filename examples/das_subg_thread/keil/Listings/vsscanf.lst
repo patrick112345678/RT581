@@ -18,7 +18,7 @@
 	.eabi_attribute	26, 2	@ Tag_ABI_enum_size
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"vsscanf.c"
-	.file	1 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c"
+	.file	1 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c"
 	.file	2 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
 	.section	.text.vsscanf,"ax",%progbits
 	.hidden	vsscanf                         @ -- Begin function vsscanf
@@ -29,7 +29,7 @@
 	.thumb_func
 vsscanf:
 .Lfunc_begin0:
-	.loc	1 76 0                          @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:76:0
+	.loc	1 81 0                          @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:81:0
 	.fnstart
 	.cfi_sections .debug_frame
 	.cfi_startproc
@@ -53,11 +53,11 @@ vsscanf:
 	sub	sp, #68
 	.cfi_def_cfa_offset 104
 .Ltmp0:
-	.loc	1 104 15 prologue_end           @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:104:15
+	.loc	1 110 18 prologue_end           @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:110:18
 	ldrb	r6, [r1]
 .Ltmp1:
 	@DEBUG_VALUE: vsscanf:ch <- $r6
-	.loc	1 104 2 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:104:2
+	.loc	1 110 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:110:5
 	cmp	r6, #0
 .Ltmp2:
 	@DEBUG_VALUE: vsscanf:range_start <- 0
@@ -93,7 +93,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- 0
 	@DEBUG_VALUE: vsscanf:ap <- $r2
 	@DEBUG_VALUE: vsscanf:p <- [DW_OP_plus_uconst 1, DW_OP_stack_value] $r1
-	.loc	1 0 2                           @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:2
+	.loc	1 0 5                           @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:5
 	str	r2, [sp, #12]                   @ 4-byte Spill
 .Ltmp4:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
@@ -129,10 +129,10 @@ vsscanf:
                                         @     Child Loop BB0_71 Depth 2
                                         @     Child Loop BB0_79 Depth 2
                                         @     Child Loop BB0_43 Depth 2
-	.loc	1 105 3 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:105:3
+	.loc	1 112 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:112:9
 	cmp	r5, #6
 .Ltmp7:
-	.loc	1 104 17                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:104:17
+	.loc	1 110 20                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:110:20
 	add.w	r9, r1, #1
 .Ltmp8:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
@@ -147,7 +147,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:q <- $r10
 	@DEBUG_VALUE: vsscanf:p <- $r1
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
-	.loc	1 105 3                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:105:3
+	.loc	1 112 9                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:112:9
 	bhi	.LBB0_7
 .Ltmp9:
 @ %bb.3:                                @   in Loop: Header=BB0_2 Depth=1
@@ -163,7 +163,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 0 3 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:3
+	.loc	1 0 9 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:9
 .LCPI0_0:
 	tbb	[pc, r5]
 .Ltmp10:
@@ -191,7 +191,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 107 8 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:107:8
+	.loc	1 115 17 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:115:17
 	cmp	r6, #37
 	bne.w	.LBB0_30
 .Ltmp12:
@@ -208,7 +208,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 0 8 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:8
+	.loc	1 0 17 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:17
 	mov.w	r0, #-1
 	str	r0, [sp, #24]                   @ 4-byte Spill
 	movs	r0, #0
@@ -239,7 +239,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 123 4 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:123:4
+	.loc	1 140 13 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:140:13
 	sub.w	r3, r6, #48
 	cmp	r3, #10
 	bhs.w	.LBB0_46
@@ -259,11 +259,11 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:bail <- 0
 	@DEBUG_VALUE: vsscanf:width <- $r3
 	@DEBUG_VALUE: vsscanf:state <- 2
-	.loc	1 139 11                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:139:11
+	.loc	1 157 23                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:157:23
 	orr	r11, r11, #4
 .Ltmp17:
 	@DEBUG_VALUE: vsscanf:flags <- $r11
-	.loc	1 0 11 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:11
+	.loc	1 0 23 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:23
 	movs	r2, #0
 	movs	r5, #2
 .Ltmp18:
@@ -287,7 +287,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 149 18 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:149:18
+	.loc	1 167 27 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:167:27
 	sub.w	r0, r6, #48
 	cmp	r0, #9
 	bhi.w	.LBB0_48
@@ -305,17 +305,17 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 150 19                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:150:19
+	.loc	1 169 31                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:169:31
 	ldr	r0, [sp, #24]                   @ 4-byte Reload
 	movs	r2, #0
 	add.w	r0, r0, r0, lsl #2
-	.loc	1 150 30 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:150:30
+	.loc	1 169 42 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:169:42
 	add.w	r0, r6, r0, lsl #1
-	.loc	1 150 24                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:150:24
+	.loc	1 169 36                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:169:36
 	subs	r0, #48
 .Ltmp22:
 	@DEBUG_VALUE: vsscanf:width <- $r0
-	.loc	1 0 24                          @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:24
+	.loc	1 0 36                          @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:36
 	str	r0, [sp, #24]                   @ 4-byte Spill
 .Ltmp23:
 	@DEBUG_VALUE: vsscanf:width <- [DW_OP_plus_uconst 24] [$sp+0]
@@ -338,7 +338,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 158 4 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:158:4
+	.loc	1 179 13 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:179:13
 	cmp	r6, #115
 	bgt.w	.LBB0_39
 .Ltmp26:
@@ -355,7 +355,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 0 4 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:4
+	.loc	1 0 13 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:13
 	sub.w	r0, r6, #104
 	ldr	r3, [sp, #20]                   @ 4-byte Reload
 	cmp	r0, #9
@@ -406,11 +406,11 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 161 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:161:9
+	.loc	1 183 21 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:183:21
 	subs	r3, #1
 .Ltmp31:
 	@DEBUG_VALUE: vsscanf:rank <- $r3
-	.loc	1 0 9 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:9
+	.loc	1 0 21 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:21
 	b	.LBB0_58
 .Ltmp32:
 .LBB0_17:                               @   in Loop: Header=BB0_2 Depth=1
@@ -426,7 +426,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 357 18 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:357:18
+	.loc	1 411 27 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:411:27
 	lsls.w	r0, r11, #30
 	bmi	.LBB0_22
 .Ltmp33:
@@ -459,7 +459,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 0 18 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:18
+	.loc	1 0 27 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:27
 	movs	r0, #1
 	str	r0, [sp, #28]                   @ 4-byte Spill
 	movs	r2, #0
@@ -480,7 +480,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 366 8 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:366:8
+	.loc	1 423 17 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:423:17
 	cmp	r6, #45
 	beq	.LBB0_38
 .Ltmp37:
@@ -539,7 +539,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 377 8 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:377:8
+	.loc	1 439 17 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:439:17
 	cmp	r6, #93
 	bne	.LBB0_32
 .Ltmp41:
@@ -558,7 +558,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:bail <- 0
 	@DEBUG_VALUE: set_bit:bitmap <- [DW_OP_plus_uconst 32, DW_OP_stack_value] $sp
 	@DEBUG_VALUE: set_bit:bit <- 45
-	.loc	1 66 25                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:66:25
+	.loc	1 71 28                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:71:28
 	ldr	r1, [sp, #36]
 .Ltmp42:
 	@DEBUG_VALUE: vsscanf:format <- [DW_OP_LLVM_entry_value 1] $r1
@@ -579,15 +579,15 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:bail <- 0
 	@DEBUG_VALUE: vsscanf:qq <- $r10
 	@DEBUG_LABEL: match_run
-	.loc	1 393 17                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:393:17
+	.loc	1 460 26                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:460:26
 	ldr	r0, [sp, #24]                   @ 4-byte Reload
-	.loc	1 391 7                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:391:7
+	.loc	1 458 16                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:458:16
 	str.w	r10, [sp, #64]
 .Ltmp44:
 	@DEBUG_VALUE: vsscanf:uc <- undef
 	@DEBUG_VALUE: vsscanf:sarg <- $r8
 	@DEBUG_VALUE: vsscanf:q <- $r10
-	.loc	1 393 17                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:393:17
+	.loc	1 460 26                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:460:26
 	cmp	r0, #0
 	beq.w	.LBB0_128
 .Ltmp45:
@@ -606,7 +606,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:bail <- 0
 	@DEBUG_VALUE: vsscanf:q <- $r10
 	@DEBUG_VALUE: vsscanf:sarg <- $r8
-	.loc	1 393 26 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:393:26
+	.loc	1 460 35 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:460:35
 	ldrb.w	r1, [r10]
 .Ltmp46:
 	@DEBUG_VALUE: vsscanf:uc <- $r1
@@ -625,7 +625,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 394 11 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:394:11
+	.loc	1 461 21 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:461:21
 	cmp	r1, #0
 	beq.w	.LBB0_121
 .Ltmp47:
@@ -646,22 +646,22 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:sarg <- $r8
 	@DEBUG_VALUE: test_bit:bitmap <- [DW_OP_plus_uconst 32, DW_OP_stack_value] $sp
 	@DEBUG_VALUE: test_bit:bit <- undef
-	.loc	1 72 26                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:72:26
+	.loc	1 77 29                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:77:29
 	lsrs	r2, r1, #5
-	.loc	1 72 15 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:72:15
+	.loc	1 77 18 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:77:18
 	ldr.w	r2, [r7, r2, lsl #2]
-	.loc	1 72 46                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:72:46
+	.loc	1 77 49                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:77:49
 	and	r3, r1, #31
-	.loc	1 72 38                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:72:38
+	.loc	1 77 41                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:77:41
 	lsrs	r2, r3
 .Ltmp48:
-	.loc	1 393 4 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:393:4
+	.loc	1 460 13 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:460:13
 	ldr	r0, [sp, #28]                   @ 4-byte Reload
 .Ltmp49:
-	.loc	1 72 59                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:72:59
+	.loc	1 77 62                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:77:62
 	and	r2, r2, #1
 .Ltmp50:
-	.loc	1 393 4                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:393:4
+	.loc	1 460 13                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:460:13
 	cmp	r2, r0
 	beq	.LBB0_35
 .Ltmp51:
@@ -678,24 +678,24 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 395 9                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:395:9
+	.loc	1 463 21                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:463:21
 	cmp.w	r8, #0
 .Ltmp52:
-	.loc	1 396 14                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:396:14
+	.loc	1 465 29                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:465:29
 	ite	ne
 	strbne	r1, [r8], #1
 .Ltmp53:
-	.loc	1 0 14 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:14
+	.loc	1 0 29 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:29
 	moveq.w	r8, #0
 .Ltmp54:
 	@DEBUG_VALUE: vsscanf:sarg <- $r8
 	@DEBUG_VALUE: vsscanf:uc <- undef
-	.loc	1 393 26 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:393:26
+	.loc	1 460 35 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:460:35
 	ldrb	r1, [r10, #1]!
 .Ltmp55:
 	@DEBUG_VALUE: vsscanf:uc <- $r1
 	@DEBUG_VALUE: vsscanf:q <- $r10
-	.loc	1 0 26 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:26
+	.loc	1 0 35 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:35
 	b	.LBB0_27
 .Ltmp56:
 .LBB0_30:                               @   in Loop: Header=BB0_2 Depth=1
@@ -715,14 +715,14 @@ vsscanf:
 .Ltmp57:
 	@DEBUG_VALUE: vsscanf:converted <- $r4
 	@DEBUG_VALUE: vsscanf:converted <- $r4
-	.loc	1 112 15 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:112:15
+	.loc	1 122 22 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:122:22
 	bl	__rt_ctype_table
 .Ltmp58:
 	@DEBUG_VALUE: vsscanf:format <- [DW_OP_LLVM_entry_value 1] $r1
 	ldr	r0, [r0]
 	ldrb	r1, [r0, r6]
 .Ltmp59:
-	.loc	1 112 15 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:112:15
+	.loc	1 122 22 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:122:22
 	lsls	r1, r1, #31
 	bne	.LBB0_42
 .Ltmp60:
@@ -738,7 +738,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 115 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:115:9
+	.loc	1 128 21 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:128:21
 	mov	r0, r10
 	ldrb	r1, [r0], #1
 	movs	r5, #0
@@ -747,7 +747,7 @@ vsscanf:
 	it	ne
 	movne	r2, #1
 .Ltmp62:
-	.loc	1 115 9 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:115:9
+	.loc	1 128 21 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:128:21
 	lsls	r2, r2, #1
 	mov.w	lr, #1
 	mov	r12, r4
@@ -755,7 +755,7 @@ vsscanf:
 	it	eq
 	moveq	r10, r0
 .Ltmp63:
-	.loc	1 0 9                           @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:9
+	.loc	1 0 21                          @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:21
 	b	.LBB0_45
 .Ltmp64:
 .LBB0_32:                               @   in Loop: Header=BB0_2 Depth=1
@@ -776,7 +776,7 @@ vsscanf:
 	@DEBUG_VALUE: i <- [DW_OP_plus_uconst 16, DW_OP_deref_size 4, DW_OP_LLVM_convert 8 7, DW_OP_LLVM_convert 32 7, DW_OP_stack_value] $sp
 .Ltmp65:
 	@DEBUG_VALUE: i <- [DW_OP_LLVM_convert 8 7, DW_OP_LLVM_convert 32 7, DW_OP_stack_value] $r0
-	.loc	1 383 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:383:5
+	.loc	1 448 17 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:448:17
 	cmp	r0, r6
 	bhs	.LBB0_34
 .Ltmp66:
@@ -797,32 +797,32 @@ vsscanf:
 	@DEBUG_VALUE: i <- $r0
 	@DEBUG_VALUE: set_bit:bitmap <- [DW_OP_plus_uconst 32, DW_OP_stack_value] $sp
 	@DEBUG_VALUE: set_bit:bit <- $r0
-	.loc	1 66 13                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:66:13
+	.loc	1 71 16                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:71:16
 	lsrs	r2, r0, #5
-	.loc	1 66 40 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:66:40
+	.loc	1 71 43 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:71:43
 	and	r1, r0, #31
 .Ltmp67:
 	@DEBUG_VALUE: vsscanf:format <- [DW_OP_LLVM_entry_value 1] $r1
-	.loc	1 66 25                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:66:25
+	.loc	1 71 28                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:71:28
 	ldr.w	r3, [r7, r2, lsl #2]
-	.loc	1 66 32                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:66:32
+	.loc	1 71 35                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:71:35
 	lsl.w	r1, lr, r1
 .Ltmp68:
-	.loc	1 384 11 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:384:11
+	.loc	1 449 26 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:449:26
 	adds	r0, #1
 .Ltmp69:
 	@DEBUG_VALUE: i <- $r0
-	.loc	1 66 25                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:66:25
+	.loc	1 71 28                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:71:28
 	orrs	r1, r3
 .Ltmp70:
-	.loc	1 383 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:383:5
+	.loc	1 448 17                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:448:17
 	cmp	r6, r0
 .Ltmp71:
-	.loc	1 66 25                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:66:25
+	.loc	1 71 28                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:71:28
 	str.w	r1, [r7, r2, lsl #2]
 .Ltmp72:
 	@DEBUG_VALUE: set_bit:bitmap <- [DW_OP_plus_uconst 32, DW_OP_stack_value] $sp
-	.loc	1 383 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:383:5
+	.loc	1 448 17                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:448:17
 	bne	.LBB0_33
 .Ltmp73:
 .LBB0_34:                               @   in Loop: Header=BB0_2 Depth=1
@@ -837,7 +837,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:5
+	.loc	1 0 17 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:17
 	movs	r2, #0
 	movs	r5, #5
 .Ltmp74:
@@ -856,7 +856,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 399 16 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:399:16
+	.loc	1 469 25 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:469:25
 	cmp.w	r8, #0
 	mov.w	r2, #2
 .Ltmp76:
@@ -877,7 +877,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:bail <- 0
 	.loc	1 0 0 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:0
 	ldr	r1, [sp, #64]
-	.loc	1 399 16                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:399:16
+	.loc	1 469 25                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:469:25
 	cmp	r1, r10
 	beq.w	.LBB0_129
 .Ltmp78:
@@ -893,17 +893,17 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 0 16                          @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:16
+	.loc	1 0 25                          @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:25
 	movs	r2, #0
 .Ltmp79:
-	.loc	1 400 11 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:400:11
+	.loc	1 471 23 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:471:23
 	strb.w	r2, [r8]
-	.loc	1 401 14                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:401:14
+	.loc	1 472 26                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:472:26
 	add.w	r12, r12, #1
 .Ltmp80:
 	@DEBUG_VALUE: vsscanf:converted <- $r12
 	@DEBUG_VALUE: vsscanf:bail <- 2
-	.loc	1 0 14 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:14
+	.loc	1 0 26 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:26
 	b	.LBB0_59
 .Ltmp81:
 .LBB0_38:                               @   in Loop: Header=BB0_2 Depth=1
@@ -942,7 +942,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:bail <- 0
 	ldr	r3, [sp, #20]                   @ 4-byte Reload
 .Ltmp85:
-	.loc	1 158 4 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:158:4
+	.loc	1 179 13 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:179:13
 	cmp	r6, #116
 	beq	.LBB0_41
 .Ltmp86:
@@ -975,7 +975,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 0 4 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:4
+	.loc	1 0 13 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:13
 	movs	r0, #1
 .Ltmp88:
 	@DEBUG_VALUE: vsscanf:rank <- 1
@@ -993,10 +993,10 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 58 2 is_stmt 1                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:58:2
+	.loc	1 61 5 is_stmt 1                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:61:5
 	sub.w	r10, r10, #1
 .Ltmp90:
-	.loc	1 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:2
+	.loc	1 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:5
 	mov.w	lr, #1
 	mov	r12, r4
 .Ltmp91:
@@ -1014,13 +1014,13 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
 	@DEBUG_VALUE: skipspace:p <- [DW_OP_plus_uconst 1, DW_OP_stack_value] $r10
-	.loc	1 58 9                          @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:58:9
+	.loc	1 61 12                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:61:12
 	ldrb	r1, [r10, #1]!
 .Ltmp92:
 	ldrb	r1, [r0, r1]
 .Ltmp93:
 	@DEBUG_VALUE: skipspace:p <- [DW_OP_plus_uconst 2, DW_OP_stack_value] undef
-	.loc	1 58 2                          @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:58:2
+	.loc	1 61 5                          @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:61:5
 	lsls	r1, r1, #31
 	bne	.LBB0_43
 .Ltmp94:
@@ -1035,7 +1035,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 0 2                           @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:2
+	.loc	1 0 5                           @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:5
 	movs	r5, #0
 .Ltmp95:
 	movs	r2, #0
@@ -1066,7 +1066,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 123 4 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:123:4
+	.loc	1 140 13 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:140:13
 	cmp	r6, #42
 	bne	.LBB0_48
 .Ltmp98:
@@ -1083,11 +1083,11 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 125 11                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:125:11
+	.loc	1 143 23                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:143:23
 	orr	r11, r11, #1
 .Ltmp99:
 	@DEBUG_VALUE: vsscanf:flags <- $r11
-	.loc	1 0 11 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:11
+	.loc	1 0 23 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:23
 	movs	r2, #0
 	movs	r5, #1
 .Ltmp100:
@@ -1128,7 +1128,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 158 4 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:158:4
+	.loc	1 179 13 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:179:13
 	cmp	r6, #76
 	bne	.LBB0_52
 .Ltmp105:
@@ -1144,7 +1144,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 0 4 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:4
+	.loc	1 0 13 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:13
 	movs	r0, #2
 .Ltmp106:
 .LBB0_51:                               @   in Loop: Header=BB0_2 Depth=1
@@ -1177,7 +1177,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
 	@DEBUG_VALUE: vsscanf:state <- 0
-	.loc	1 186 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:186:9
+	.loc	1 208 21 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:208:21
 	cmp	r3, #2
 	mov.w	r2, #2
 	it	ge
@@ -1187,7 +1187,7 @@ vsscanf:
 	mvnle	r3, #1
 .Ltmp109:
 	@DEBUG_VALUE: vsscanf:rank <- $r3
-	.loc	1 191 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:191:5
+	.loc	1 217 17                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:217:17
 	cmp	r6, #90
 	mvn	r5, #-2147483648
 	str	r3, [sp, #20]                   @ 4-byte Spill
@@ -1208,7 +1208,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:5
+	.loc	1 0 17 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:17
 	sub.w	r0, r6, #99
 	cmp	r0, #21
 	bhi	.LBB0_66
@@ -1285,7 +1285,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 164 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:164:9
+	.loc	1 186 21 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:186:21
 	adds	r3, #1
 .Ltmp117:
 	@DEBUG_VALUE: vsscanf:rank <- $r3
@@ -1301,7 +1301,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 0 9 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:9
+	.loc	1 0 21 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:21
 	str	r3, [sp, #20]                   @ 4-byte Spill
 .Ltmp118:
 	@DEBUG_VALUE: vsscanf:rank <- [DW_OP_plus_uconst 20] [$sp+0]
@@ -1328,7 +1328,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:converted <- $r12
 	@DEBUG_VALUE: vsscanf:matchinv <- [DW_OP_plus_uconst 28] [$sp+0]
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
-	.loc	1 104 2 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:104:2
+	.loc	1 110 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:110:5
 	cmp	r2, #0
 	bne.w	.LBB0_129
 .Ltmp120:
@@ -1348,7 +1348,7 @@ vsscanf:
 	.loc	1 0 0 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:0
 	ldrb.w	r6, [r9]
 	mov	r1, r9
-	.loc	1 104 2                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:104:2
+	.loc	1 110 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:110:5
 	cmp	r6, #0
 	bne.w	.LBB0_2
 	b	.LBB0_129
@@ -1365,7 +1365,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 191 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:191:5
+	.loc	1 217 17 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:217:17
 	cmp	r6, #37
 	beq	.LBB0_65
 .Ltmp122:
@@ -1381,9 +1381,9 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:5
+	.loc	1 0 17 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:17
 	movs	r4, #0
-	.loc	1 191 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:191:5
+	.loc	1 217 17                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:217:17
 	cmp	r6, #80
 	beq	.LBB0_78
 .Ltmp123:
@@ -1414,7 +1414,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 0 5                           @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:5
+	.loc	1 0 17                          @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:17
 	movs	r4, #16
 .Ltmp125:
 	@DEBUG_VALUE: vsscanf:sign <- 0
@@ -1433,7 +1433,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 342 10 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:342:10
+	.loc	1 392 25 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:392:25
 	mov	r0, r10
 	ldrb	r1, [r0], #1
 	movs	r5, #0
@@ -1441,7 +1441,7 @@ vsscanf:
 	it	ne
 	movne	r2, #1
 .Ltmp127:
-	.loc	1 342 10 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:342:10
+	.loc	1 392 25 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:392:25
 	cmp	r1, #37
 	it	eq
 	moveq	r10, r0
@@ -1461,7 +1461,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 191 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:191:5
+	.loc	1 217 17 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:217:17
 	cmp	r6, #91
 	bne.w	.LBB0_129
 .Ltmp130:
@@ -1477,12 +1477,12 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:5
+	.loc	1 0 17 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:17
 	mov	r6, r12
 .Ltmp131:
 	@DEBUG_VALUE: vsscanf:converted <- $r6
 	@DEBUG_VALUE: vsscanf:converted <- $r6
-	.loc	1 334 13 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:334:13
+	.loc	1 384 28 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:384:28
 	lsls.w	r0, r11, #31
 	bne.w	.LBB0_115
 .Ltmp132:
@@ -1498,12 +1498,12 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 335 9                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:335:9
+	.loc	1 385 30                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:385:30
 	ldr	r0, [sp, #12]                   @ 4-byte Reload
 	ldr	r8, [r0], #4
 .Ltmp133:
 	@DEBUG_VALUE: vsscanf:ap <- $r0
-	.loc	1 0 9 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:9
+	.loc	1 0 30 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:30
 	str	r0, [sp, #12]                   @ 4-byte Spill
 .Ltmp134:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
@@ -1523,14 +1523,14 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 286 14 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:286:14
+	.loc	1 319 29 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:319:29
 	lsls.w	r0, r11, #29
 	ldr	r1, [sp, #24]                   @ 4-byte Reload
 	it	pl
 	movpl	r1, #1
 .Ltmp136:
 	@DEBUG_VALUE: vsscanf:width <- $r1
-	.loc	1 287 10                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:287:10
+	.loc	1 320 25                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:320:25
 	lsls.w	r0, r11, #31
 	bne.w	.LBB0_104
 .Ltmp137:
@@ -1546,7 +1546,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 295 14                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:295:14
+	.loc	1 333 32                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:333:32
 	ldr	r0, [sp, #12]                   @ 4-byte Reload
 	ldr	r8, [r0], #4
 .Ltmp138:
@@ -1554,7 +1554,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:width <- [DW_OP_constu 1, DW_OP_minus, DW_OP_stack_value] $r1
 	@DEBUG_VALUE: vsscanf:q <- $r10
 	@DEBUG_VALUE: vsscanf:ap <- $r0
-	.loc	1 296 7                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:296:7
+	.loc	1 334 25                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:334:25
 	str	r0, [sp, #12]                   @ 4-byte Spill
 .Ltmp139:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
@@ -1577,10 +1577,10 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:bail <- 0
 	@DEBUG_VALUE: vsscanf:q <- $r10
 	@DEBUG_VALUE: vsscanf:sarg <- $r8
-	.loc	1 297 13                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:297:13
+	.loc	1 336 34                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:336:34
 	ldrb.w	r0, [r10]
 .Ltmp141:
-	.loc	1 297 12 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:297:12
+	.loc	1 336 33 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:336:33
 	cmp	r0, #0
 	beq.w	.LBB0_125
 .Ltmp142:
@@ -1599,16 +1599,16 @@ vsscanf:
 	.loc	1 0 0                           @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:0
 	subs	r1, #1
 .Ltmp143:
-	.loc	1 301 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:301:20
+	.loc	1 341 41 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:341:41
 	add.w	r10, r10, #1
 .Ltmp144:
 	@DEBUG_VALUE: vsscanf:q <- $r10
-	.loc	1 301 16 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:301:16
+	.loc	1 341 37 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:341:37
 	strb	r0, [r8], #1
 .Ltmp145:
 	@DEBUG_VALUE: vsscanf:sarg <- $r8
 	@DEBUG_VALUE: vsscanf:width <- [DW_OP_constu 1, DW_OP_minus, DW_OP_stack_value] $r1
-	.loc	1 296 7 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:296:7
+	.loc	1 334 25 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:334:25
 	bne	.LBB0_71
 .Ltmp146:
 .LBB0_73:                               @   in Loop: Header=BB0_2 Depth=1
@@ -1624,10 +1624,10 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 303 11                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:303:11
+	.loc	1 343 29                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:343:29
 	add.w	r12, r12, #1
 .Ltmp147:
-	.loc	1 0 11 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:11
+	.loc	1 0 29 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:29
 	b	.LBB0_113
 .Ltmp148:
 .LBB0_74:                               @   in Loop: Header=BB0_2 Depth=1
@@ -1660,25 +1660,25 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 226 15 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:226:15
+	.loc	1 253 30 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:253:30
 	ldr	r0, [sp, #8]                    @ 4-byte Reload
 .Ltmp151:
 	@DEBUG_VALUE: vsscanf:buffer <- $r0
-	.loc	1 0 15 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:15
+	.loc	1 0 30 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:30
 	ldr	r5, [sp, #20]                   @ 4-byte Reload
 .Ltmp152:
 	@DEBUG_VALUE: vsscanf:rank <- $r5
 	@DEBUG_VALUE: vsscanf:rank <- $r5
-	.loc	1 226 15                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:226:15
+	.loc	1 253 30                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:253:30
 	sub.w	r0, r10, r0
 .Ltmp153:
 	@DEBUG_VALUE: vsscanf:buffer <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	1 226 12                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:226:12
+	.loc	1 253 27                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:253:27
 	asrs	r1, r0, #31
 .Ltmp154:
 	@DEBUG_VALUE: vsscanf:val <- [DW_OP_LLVM_fragment 0 32] undef
 	@DEBUG_VALUE: vsscanf:val <- [DW_OP_LLVM_fragment 32 32] $r1
-	.loc	1 248 18 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:248:18
+	.loc	1 279 33 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:279:33
 	and	r2, r11, #1
 	b	.LBB0_83
 .Ltmp155:
@@ -1694,7 +1694,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 0 18 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:18
+	.loc	1 0 33 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:33
 	movs	r4, #8
 .Ltmp156:
 	@DEBUG_VALUE: vsscanf:sign <- 0
@@ -1738,7 +1738,7 @@ vsscanf:
 	bl	__rt_ctype_table
 .Ltmp159:
 	ldr	r0, [r0]
-	.loc	1 58 2 is_stmt 1                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:58:2
+	.loc	1 61 5 is_stmt 1                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:61:5
 	sub.w	r6, r10, #1
 .Ltmp160:
 	.p2align	2
@@ -1757,13 +1757,13 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
 	@DEBUG_VALUE: skipspace:p <- [DW_OP_plus_uconst 1, DW_OP_stack_value] $r6
-	.loc	1 58 9 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:58:9
+	.loc	1 61 12 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:61:12
 	ldrb	r1, [r6, #1]!
 .Ltmp161:
 	ldrb	r2, [r0, r1]
 .Ltmp162:
 	@DEBUG_VALUE: skipspace:p <- [DW_OP_plus_uconst 2, DW_OP_stack_value] undef
-	.loc	1 58 2                          @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:58:2
+	.loc	1 61 5                          @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:61:5
 	lsls	r2, r2, #31
 	bne	.LBB0_79
 .Ltmp163:
@@ -1781,7 +1781,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
 	@DEBUG_VALUE: vsscanf:q <- undef
-	.loc	1 231 10 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:231:10
+	.loc	1 258 25 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:258:25
 	cmp	r1, #0
 	beq.w	.LBB0_126
 .Ltmp164:
@@ -1798,18 +1798,18 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
 	@DEBUG_VALUE: vsscanf:qq <- [DW_OP_plus_uconst 64, DW_OP_deref] $sp
-	.loc	1 236 10                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:236:10
+	.loc	1 264 25                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:264:25
 	ldr	r3, [sp, #24]                   @ 4-byte Reload
 	mov	r0, r6
 	add	r1, sp, #64
 	mov	r2, r4
 	bl	strntoumax
 .Ltmp165:
-	.loc	1 238 10                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:238:10
+	.loc	1 266 25                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:266:25
 	ldr.w	r10, [sp, #64]
 .Ltmp166:
 	@DEBUG_VALUE: vsscanf:qq <- $r10
-	.loc	1 238 10 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:238:10
+	.loc	1 266 25 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:266:25
 	cmp	r10, r6
 .Ltmp167:
 	@DEBUG_VALUE: vsscanf:val <- undef
@@ -1829,17 +1829,17 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
 	@DEBUG_VALUE: vsscanf:q <- $r10
-	.loc	1 243 18 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:243:18
+	.loc	1 272 33 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:272:33
 	and	r2, r11, #1
 	ldr.w	r12, [sp, #20]                  @ 4-byte Reload
 .Ltmp169:
 	@DEBUG_VALUE: vsscanf:converted <- $r12
 	@DEBUG_VALUE: vsscanf:converted <- $r12
-	.loc	1 243 10 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:243:10
+	.loc	1 272 25 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:272:25
 	eor	r3, r2, #1
 	add	r12, r3
 .Ltmp170:
-	.loc	1 0 10                          @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:10
+	.loc	1 0 25                          @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:25
 	mov.w	lr, #1
 .Ltmp171:
 .LBB0_83:                               @   in Loop: Header=BB0_2 Depth=1
@@ -1861,7 +1861,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:val <- [DW_OP_LLVM_fragment 32 32] $r1
 	@DEBUG_VALUE: vsscanf:val <- [DW_OP_LLVM_fragment 0 32] $r0
 	@DEBUG_LABEL: set_integer
-	.loc	1 248 10 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:248:10
+	.loc	1 279 25 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:279:25
 	str	r4, [sp, #16]                   @ 4-byte Spill
 	cbz	r2, .LBB0_86
 .Ltmp173:
@@ -1878,7 +1878,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 0 10 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:10
+	.loc	1 0 25 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:25
 	str	r5, [sp, #20]                   @ 4-byte Spill
 .Ltmp174:
 	@DEBUG_VALUE: vsscanf:rank <- [DW_OP_plus_uconst 20] [$sp+0]
@@ -1911,7 +1911,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 249 7 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:249:7
+	.loc	1 281 25 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:281:25
 	adds	r2, r5, #2
 	cmp	r2, #4
 	bhi	.LBB0_90
@@ -1930,7 +1930,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 0 7 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:7
+	.loc	1 0 25 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:25
 .LCPI0_3:
 	tbb	[pc, r2]
 .Ltmp177:
@@ -1957,14 +1957,14 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 251 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:251:9
+	.loc	1 284 30 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:284:30
 	ldr	r2, [sp, #12]                   @ 4-byte Reload
 	movs	r5, #0
 .Ltmp179:
 	ldr	r1, [r2], #4
 .Ltmp180:
 	@DEBUG_VALUE: vsscanf:ap <- $r2
-	.loc	1 253 9                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:253:9
+	.loc	1 286 33                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:286:33
 	strb	r0, [r1]
 	mvn	r0, #1
 .Ltmp181:
@@ -1973,7 +1973,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
-	.loc	1 0 9 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:9
+	.loc	1 0 33 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:33
 	b	.LBB0_103
 .Ltmp183:
 .LBB0_90:                               @   in Loop: Header=BB0_2 Depth=1
@@ -1990,7 +1990,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 249 7 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:249:7
+	.loc	1 281 25 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:281:25
 	mvn	r1, #-2147483648
 .Ltmp184:
 	cmp	r5, r1
@@ -2009,14 +2009,14 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 276 9                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:276:9
+	.loc	1 309 30                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:309:30
 	ldr	r2, [sp, #12]                   @ 4-byte Reload
 	movs	r5, #0
 .Ltmp186:
 	ldr	r1, [r2], #4
 .Ltmp187:
 	@DEBUG_VALUE: vsscanf:ap <- $r2
-	.loc	1 276 29 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:276:29
+	.loc	1 309 50 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:309:50
 	str	r2, [sp, #12]                   @ 4-byte Spill
 .Ltmp188:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
@@ -2025,7 +2025,7 @@ vsscanf:
 	str	r0, [r1]
 	mvn	r0, #-2147483648
 .Ltmp189:
-	.loc	1 0 29                          @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:29
+	.loc	1 0 50                          @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:50
 	b	.LBB0_103
 .Ltmp190:
 .LBB0_92:                               @   in Loop: Header=BB0_2 Depth=1
@@ -2041,7 +2041,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
 	@DEBUG_VALUE: vsscanf:uc <- 1
-	.loc	1 310 10 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:310:10
+	.loc	1 352 25 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:352:25
 	lsls.w	r0, r11, #31
 	bne	.LBB0_107
 .Ltmp191:
@@ -2058,7 +2058,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:uc <- 1
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 317 19                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:317:19
+	.loc	1 363 37                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:363:37
 	ldr	r0, [sp, #12]                   @ 4-byte Reload
 	ldr	r8, [r0], #4
 .Ltmp192:
@@ -2068,18 +2068,18 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:width <- [DW_OP_plus_uconst 24, DW_OP_deref_size 4, DW_OP_constu 1, DW_OP_minus, DW_OP_stack_value] $sp
 	@DEBUG_VALUE: vsscanf:q <- $r10
 	@DEBUG_VALUE: vsscanf:ap <- $r0
-	.loc	1 318 22                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:318:22
+	.loc	1 364 40                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:364:40
 	str	r0, [sp, #12]                   @ 4-byte Spill
 .Ltmp193:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
-	.loc	1 0 22 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:22
+	.loc	1 0 40 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:40
 	ldr	r0, [sp, #24]                   @ 4-byte Reload
 .Ltmp194:
 	@DEBUG_VALUE: vsscanf:width <- [DW_OP_constu 1, DW_OP_minus, DW_OP_stack_value] $r0
 	@DEBUG_VALUE: vsscanf:width <- [DW_OP_constu 1, DW_OP_minus, DW_OP_stack_value] $r0
-	.loc	1 318 22                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:318:22
+	.loc	1 364 40                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:364:40
 	cmp	r0, #0
 	beq	.LBB0_113
 .Ltmp195:
@@ -2096,15 +2096,15 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 0 22                          @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:22
+	.loc	1 0 40                          @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:40
 	mov	r5, r12
 .Ltmp196:
 	@DEBUG_VALUE: vsscanf:converted <- $r5
 	@DEBUG_VALUE: vsscanf:converted <- $r5
-	.loc	1 318 7                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:318:7
+	.loc	1 364 25                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:364:25
 	subs	r0, #1
 .Ltmp197:
-	.loc	1 0 7                           @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:7
+	.loc	1 0 25                          @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:25
 	movs	r4, #0
 	str	r0, [sp, #24]                   @ 4-byte Spill
 .Ltmp198:
@@ -2121,11 +2121,11 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:bail <- 0
 	@DEBUG_VALUE: vsscanf:q <- undef
 	@DEBUG_VALUE: sp <- undef
-	.loc	1 318 31                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:318:31
+	.loc	1 364 49                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:364:49
 	ldrb.w	r6, [r10, r4]
 .Ltmp199:
 	@DEBUG_VALUE: vsscanf:uc <- undef
-	.loc	1 318 35                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:318:35
+	.loc	1 364 53                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:364:53
 	cmp	r6, #0
 	beq.w	.LBB0_130
 .Ltmp200:
@@ -2139,12 +2139,12 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 319 15 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:319:15
+	.loc	1 365 34 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:365:34
 	bl	__rt_ctype_table
 .Ltmp201:
 	ldr	r0, [r0]
 	ldrb	r0, [r0, r6]
-	.loc	1 318 7                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:318:7
+	.loc	1 364 25                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:364:25
 	lsls	r0, r0, #31
 	bne	.LBB0_117
 .Ltmp202:
@@ -2159,25 +2159,25 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
 	@DEBUG_VALUE: sp <- [DW_OP_plus_uconst 1, DW_OP_stack_value] undef
-	.loc	1 0 7 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:7
+	.loc	1 0 25 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:25
 	ldr	r0, [sp, #24]                   @ 4-byte Reload
 .Ltmp203:
 	@DEBUG_VALUE: vsscanf:width <- [DW_OP_constu 1, DW_OP_minus, DW_OP_stack_value] $r0
-	.loc	1 320 14 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:320:14
+	.loc	1 367 35 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:367:35
 	strb.w	r6, [r8, r4]
 .Ltmp204:
 	@DEBUG_VALUE: vsscanf:uc <- undef
 	@DEBUG_VALUE: vsscanf:width <- [DW_OP_plus_uconst 24, DW_OP_deref_size 4, DW_OP_constu 1, DW_OP_minus, DW_OP_stack_value] $sp
 	@DEBUG_VALUE: vsscanf:q <- [DW_OP_plus_uconst 1, DW_OP_stack_value] undef
-	.loc	1 318 19                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:318:19
+	.loc	1 364 37                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:364:37
 	subs	r0, #1
 	str	r0, [sp, #24]                   @ 4-byte Spill
-	.loc	1 318 22 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:318:22
+	.loc	1 364 40 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:364:40
 	adds	r0, #1
-	.loc	1 318 19                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:318:19
+	.loc	1 364 37                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:364:37
 	add.w	r4, r4, #1
 	mov.w	lr, #1
-	.loc	1 318 22                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:318:22
+	.loc	1 364 40                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:364:40
 	bne	.LBB0_95
 .Ltmp205:
 @ %bb.98:                               @   in Loop: Header=BB0_2 Depth=1
@@ -2191,10 +2191,10 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 0 22                          @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:22
+	.loc	1 0 40                          @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:40
 	mov.w	r0, #-1
 .Ltmp206:
-	.loc	1 323 16 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:323:16
+	.loc	1 370 34 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:370:34
 	add.w	r1, r8, r4
 	add	r10, r4
 	str	r0, [sp, #24]                   @ 4-byte Spill
@@ -2214,14 +2214,14 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 256 9                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:256:9
+	.loc	1 289 30                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:289:30
 	ldr	r2, [sp, #12]                   @ 4-byte Reload
 	movs	r5, #0
 .Ltmp208:
 	ldr	r1, [r2], #4
 .Ltmp209:
 	@DEBUG_VALUE: vsscanf:ap <- $r2
-	.loc	1 258 12                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:258:12
+	.loc	1 291 40                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:291:40
 	str	r2, [sp, #12]                   @ 4-byte Spill
 .Ltmp210:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
@@ -2230,7 +2230,7 @@ vsscanf:
 	strh	r0, [r1]
 	mov.w	r0, #-1
 .Ltmp211:
-	.loc	1 0 12 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:12
+	.loc	1 0 40 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:40
 	b	.LBB0_103
 .Ltmp212:
 .LBB0_100:                              @   in Loop: Header=BB0_2 Depth=1
@@ -2247,12 +2247,12 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 261 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:261:9
+	.loc	1 294 30 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:294:30
 	ldr	r2, [sp, #12]                   @ 4-byte Reload
 	ldr	r1, [r2], #4
 .Ltmp213:
 	@DEBUG_VALUE: vsscanf:ap <- $r2
-	.loc	1 263 12                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:263:12
+	.loc	1 296 33                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:296:33
 	str	r0, [r1]
 	movs	r0, #0
 .Ltmp214:
@@ -2279,14 +2279,14 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 266 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:266:9
+	.loc	1 299 30 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:299:30
 	ldr	r2, [sp, #12]                   @ 4-byte Reload
 	movs	r5, #0
 .Ltmp217:
 	ldr	r1, [r2], #4
 .Ltmp218:
 	@DEBUG_VALUE: vsscanf:ap <- $r2
-	.loc	1 268 9                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:268:9
+	.loc	1 301 33                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:301:33
 	str	r2, [sp, #12]                   @ 4-byte Spill
 .Ltmp219:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
@@ -2295,7 +2295,7 @@ vsscanf:
 	str	r0, [r1]
 	movs	r0, #1
 .Ltmp220:
-	.loc	1 0 9 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:9
+	.loc	1 0 33 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:33
 	b	.LBB0_103
 .Ltmp221:
 .LBB0_102:                              @   in Loop: Header=BB0_2 Depth=1
@@ -2312,14 +2312,14 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 271 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:271:9
+	.loc	1 304 30 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:304:30
 	ldr	r3, [sp, #12]                   @ 4-byte Reload
 	movs	r5, #0
 .Ltmp222:
 	ldr	r2, [r3], #4
 .Ltmp223:
 	@DEBUG_VALUE: vsscanf:ap <- $r3
-	.loc	1 273 17                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:273:17
+	.loc	1 306 45                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:306:45
 	str	r3, [sp, #12]                   @ 4-byte Spill
 .Ltmp224:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
@@ -2355,7 +2355,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 288 7 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:288:7
+	.loc	1 322 25 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:322:25
 	adds	r0, r1, #1
 .Ltmp227:
 .LBB0_105:                              @   Parent Loop BB0_2 Depth=1
@@ -2387,11 +2387,11 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
 	@DEBUG_VALUE: vsscanf:width <- [DW_OP_constu 2, DW_OP_minus, DW_OP_stack_value] $r0
-	.loc	1 289 13                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:289:13
+	.loc	1 324 34                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:324:34
 	ldrb.w	r1, [r10]
 	movs	r2, #1
 .Ltmp230:
-	.loc	1 289 12 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:289:12
+	.loc	1 324 33 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:324:33
 	cmp	r1, #0
 	bne	.LBB0_105
 	b	.LBB0_129
@@ -2412,11 +2412,11 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:q <- $r10
 	@DEBUG_VALUE: vsscanf:width <- [DW_OP_plus_uconst 24, DW_OP_deref_size 4, DW_OP_constu 1, DW_OP_minus, DW_OP_stack_value] $sp
 	@DEBUG_VALUE: vsscanf:uc <- undef
-	.loc	1 0 12                          @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:12
+	.loc	1 0 33                          @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:33
 	ldr	r0, [sp, #24]                   @ 4-byte Reload
 .Ltmp232:
 	@DEBUG_VALUE: vsscanf:width <- [DW_OP_constu 1, DW_OP_minus, DW_OP_stack_value] $r0
-	.loc	1 311 22 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:311:22
+	.loc	1 354 40 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:354:40
 	cbz	r0, .LBB0_113
 .Ltmp233:
 @ %bb.108:                              @   in Loop: Header=BB0_2 Depth=1
@@ -2431,7 +2431,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 311 7 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:311:7
+	.loc	1 354 25 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:354:25
 	add.w	r1, r10, r0
 	subs	r0, #1
 .Ltmp234:
@@ -2452,11 +2452,11 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
 	@DEBUG_VALUE: vsscanf:q <- $r10
-	.loc	1 311 31                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:311:31
+	.loc	1 354 49                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:354:49
 	ldrb.w	r6, [r10]
 .Ltmp236:
 	@DEBUG_VALUE: vsscanf:uc <- undef
-	.loc	1 311 35                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:311:35
+	.loc	1 354 53                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:354:53
 	cmp	r6, #0
 	beq	.LBB0_125
 .Ltmp237:
@@ -2469,16 +2469,16 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 0 35                          @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:35
+	.loc	1 0 53                          @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:53
 	mov	r4, r12
 .Ltmp238:
 	@DEBUG_VALUE: vsscanf:converted <- $r4
-	.loc	1 312 15 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:312:15
+	.loc	1 355 34 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:355:34
 	bl	__rt_ctype_table
 .Ltmp239:
 	ldr	r0, [r0]
 	ldrb	r0, [r0, r6]
-	.loc	1 311 7                         @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:311:7
+	.loc	1 354 25                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:354:25
 	lsls	r0, r0, #31
 	bne	.LBB0_119
 .Ltmp240:
@@ -2491,26 +2491,26 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 0 7 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:7
+	.loc	1 0 25 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:25
 	ldr	r0, [sp, #24]                   @ 4-byte Reload
 .Ltmp241:
 	@DEBUG_VALUE: vsscanf:width <- [DW_OP_constu 1, DW_OP_minus, DW_OP_stack_value] $r0
 	ldr.w	r11, [sp, #4]                   @ 4-byte Reload
 .Ltmp242:
 	@DEBUG_VALUE: vsscanf:flags <- $r11
-	.loc	1 311 19                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:311:19
+	.loc	1 354 37                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:354:37
 	subs	r0, #1
 .Ltmp243:
-	.loc	1 313 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:313:9
+	.loc	1 357 30 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:357:30
 	add.w	r10, r10, #1
 .Ltmp244:
 	@DEBUG_VALUE: vsscanf:uc <- undef
 	@DEBUG_VALUE: vsscanf:width <- [DW_OP_plus_uconst 24, DW_OP_deref_size 4, DW_OP_constu 1, DW_OP_minus, DW_OP_stack_value] $sp
 	@DEBUG_VALUE: vsscanf:q <- $r10
-	.loc	1 0 9 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:9
+	.loc	1 0 30 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:30
 	str	r0, [sp, #24]                   @ 4-byte Spill
 .Ltmp245:
-	.loc	1 311 22 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:311:22
+	.loc	1 354 40 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:354:40
 	adds	r0, #1
 	mov.w	r5, #0
 	mov.w	lr, #1
@@ -2585,7 +2585,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:state <- 4
 	@DEBUG_VALUE: vsscanf:sarg <- $r8
 	@DEBUG_VALUE: vsscanf:matchinv <- 0
-	.loc	1 338 6 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:338:6
+	.loc	1 388 21 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:388:21
 	mov	r0, r7
 	movs	r1, #32
 	bl	__aeabi_memclr4
@@ -2609,7 +2609,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 318 7 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:318:7
+	.loc	1 364 25 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:364:25
 	add.w	r1, r8, r4
 	add	r10, r4
 	mov.w	lr, #1
@@ -2624,7 +2624,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 0 7 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:7
+	.loc	1 0 25 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:25
 	mov	r12, r5
 .Ltmp255:
 	@DEBUG_VALUE: vsscanf:q <- $r10
@@ -2632,13 +2632,13 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:uc <- undef
 	movs	r5, #0
 .Ltmp256:
-	.loc	1 323 11 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:323:11
+	.loc	1 370 29 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:370:29
 	cmp	r8, r1
 .Ltmp257:
-	.loc	1 325 12                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:325:12
+	.loc	1 373 33                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:373:33
 	itt	ne
 	strbne	r5, [r1]
-	.loc	1 326 17                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:326:17
+	.loc	1 374 38                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:374:38
 	addne.w	r12, r12, #1
 	@DEBUG_VALUE: vsscanf:uc <- undef
 .Ltmp258:
@@ -2647,7 +2647,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:width <- [DW_OP_plus_uconst 24] [$sp+0]
 	@DEBUG_VALUE: vsscanf:q <- $r10
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
-	.loc	1 0 17 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:17
+	.loc	1 0 38 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:38
 	b	.LBB0_7
 .Ltmp259:
 .LBB0_119:                              @   in Loop: Header=BB0_2 Depth=1
@@ -2684,7 +2684,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:matchinv <- 0
 	@DEBUG_VALUE: vsscanf:range_start <- 0
 	movs	r2, #0
-	.loc	1 99 6 is_stmt 1                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:99:6
+	.loc	1 105 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:105:9
 	mov.w	r12, #0
 	b	.LBB0_129
 .Ltmp262:
@@ -2701,13 +2701,13 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 0 6 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:6
+	.loc	1 0 9 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:9
 	clz	r0, r1
 	lsrs	r0, r0, #5
 .Ltmp263:
 	@DEBUG_VALUE: vsscanf:qq <- undef
 	@DEBUG_VALUE: vsscanf:uc <- undef
-	.loc	1 399 16 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:399:16
+	.loc	1 469 25 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:469:25
 	cmp.w	r8, #0
 	beq	.LBB0_124
 .Ltmp264:
@@ -2727,7 +2727,7 @@ vsscanf:
 	ldr	r1, [sp, #64]
 .Ltmp265:
 	@DEBUG_VALUE: vsscanf:qq <- $r1
-	.loc	1 399 16                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:399:16
+	.loc	1 469 25                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:469:25
 	cmp	r10, r1
 	beq	.LBB0_124
 .Ltmp266:
@@ -2744,17 +2744,17 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 0 16                          @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:16
+	.loc	1 0 25                          @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:25
 	movs	r0, #0
 .Ltmp267:
-	.loc	1 400 11 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:400:11
+	.loc	1 471 23 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:471:23
 	strb.w	r0, [r8]
-	.loc	1 401 14                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:401:14
+	.loc	1 472 26                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:472:26
 	add.w	r12, r12, #1
 .Ltmp268:
 	@DEBUG_VALUE: vsscanf:converted <- $r12
 	@DEBUG_VALUE: vsscanf:bail <- 2
-	.loc	1 0 14 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:14
+	.loc	1 0 26 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:26
 	b	.LBB0_125
 .Ltmp269:
 .LBB0_124:
@@ -2771,7 +2771,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:bail <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 2
 	@DEBUG_VALUE: vsscanf:converted <- $r12
-	.loc	1 405 8 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:405:8
+	.loc	1 478 17 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:478:17
 	cbz	r0, .LBB0_128
 .Ltmp270:
 .LBB0_125:
@@ -2779,7 +2779,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:matchinv <- [DW_OP_plus_uconst 28] [$sp+0]
 	@DEBUG_VALUE: vsscanf:range_start <- [DW_OP_plus_uconst 16] [$sp+0]
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
-	.loc	1 0 8 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:8
+	.loc	1 0 17 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:17
 	movs	r2, #1
 	b	.LBB0_129
 .Ltmp271:
@@ -2829,15 +2829,15 @@ vsscanf:
 	movs	r2, #2
 .Ltmp275:
 .LBB0_129:
-	.loc	1 411 11 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:411:11
+	.loc	1 486 14 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:486:14
 	eor	r0, r2, #1
-	.loc	1 411 23 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:411:23
+	.loc	1 486 26 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:486:26
 	orrs.w	r0, r0, r12
 	it	eq
 	moveq.w	r12, #-1
 .Ltmp276:
 	@DEBUG_VALUE: vsscanf:converted <- $r12
-	.loc	1 414 2 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:414:2
+	.loc	1 491 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:491:5
 	mov	r0, r12
 	add	sp, #68
 	pop.w	{r4, r5, r6, r7, r8, r9, r10, r11, pc}
@@ -2853,7 +2853,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
 	@DEBUG_VALUE: vsscanf:uc <- undef
-	.loc	1 323 11                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:323:11
+	.loc	1 370 29                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:370:29
 	cbz	r4, .LBB0_132
 .Ltmp278:
 @ %bb.131:
@@ -2866,13 +2866,13 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 0 11 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:11
+	.loc	1 0 29 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:29
 	movs	r0, #0
 	mov	r12, r5
 .Ltmp279:
-	.loc	1 325 12 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:325:12
+	.loc	1 373 33 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:373:33
 	strb.w	r0, [r8, r4]
-	.loc	1 326 17                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:326:17
+	.loc	1 374 38                        @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:374:38
 	add.w	r12, r5, #1
 	b	.LBB0_125
 .Ltmp280:
@@ -2886,7 +2886,7 @@ vsscanf:
 	@DEBUG_VALUE: vsscanf:ap <- [DW_OP_plus_uconst 12] [$sp+0]
 	@DEBUG_VALUE: vsscanf:state <- 0
 	@DEBUG_VALUE: vsscanf:bail <- 0
-	.loc	1 0 17 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:17
+	.loc	1 0 38 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_dongle/dongle/src/vsscanf.c:0:38
 	movs	r2, #1
 	mov	r12, r5
 	b	.LBB0_129
@@ -4552,19 +4552,6 @@ vsscanf:
 	.byte	0                               @ EOM(1)
 	.byte	0                               @ EOM(2)
 	.byte	12                              @ Abbreviation Code
-	.byte	10                              @ DW_TAG_label
-	.byte	0                               @ DW_CHILDREN_no
-	.byte	3                               @ DW_AT_name
-	.byte	14                              @ DW_FORM_strp
-	.byte	58                              @ DW_AT_decl_file
-	.byte	11                              @ DW_FORM_data1
-	.byte	59                              @ DW_AT_decl_line
-	.byte	11                              @ DW_FORM_data1
-	.byte	17                              @ DW_AT_low_pc
-	.byte	1                               @ DW_FORM_addr
-	.byte	0                               @ EOM(1)
-	.byte	0                               @ EOM(2)
-	.byte	13                              @ Abbreviation Code
 	.byte	29                              @ DW_TAG_inlined_subroutine
 	.byte	1                               @ DW_CHILDREN_yes
 	.byte	49                              @ DW_AT_abstract_origin
@@ -4576,12 +4563,12 @@ vsscanf:
 	.byte	88                              @ DW_AT_call_file
 	.byte	11                              @ DW_FORM_data1
 	.byte	89                              @ DW_AT_call_line
-	.byte	11                              @ DW_FORM_data1
+	.byte	5                               @ DW_FORM_data2
 	.byte	87                              @ DW_AT_call_column
 	.byte	11                              @ DW_FORM_data1
 	.byte	0                               @ EOM(1)
 	.byte	0                               @ EOM(2)
-	.byte	14                              @ Abbreviation Code
+	.byte	13                              @ Abbreviation Code
 	.byte	5                               @ DW_TAG_formal_parameter
 	.byte	0                               @ DW_CHILDREN_no
 	.byte	2                               @ DW_AT_location
@@ -4590,14 +4577,14 @@ vsscanf:
 	.byte	19                              @ DW_FORM_ref4
 	.byte	0                               @ EOM(1)
 	.byte	0                               @ EOM(2)
-	.byte	15                              @ Abbreviation Code
+	.byte	14                              @ Abbreviation Code
 	.byte	11                              @ DW_TAG_lexical_block
 	.byte	1                               @ DW_CHILDREN_yes
 	.byte	85                              @ DW_AT_ranges
 	.byte	23                              @ DW_FORM_sec_offset
 	.byte	0                               @ EOM(1)
 	.byte	0                               @ EOM(2)
-	.byte	16                              @ Abbreviation Code
+	.byte	15                              @ Abbreviation Code
 	.byte	52                              @ DW_TAG_variable
 	.byte	0                               @ DW_CHILDREN_no
 	.byte	2                               @ DW_AT_location
@@ -4612,24 +4599,7 @@ vsscanf:
 	.byte	19                              @ DW_FORM_ref4
 	.byte	0                               @ EOM(1)
 	.byte	0                               @ EOM(2)
-	.byte	17                              @ Abbreviation Code
-	.byte	29                              @ DW_TAG_inlined_subroutine
-	.byte	1                               @ DW_CHILDREN_yes
-	.byte	49                              @ DW_AT_abstract_origin
-	.byte	19                              @ DW_FORM_ref4
-	.byte	17                              @ DW_AT_low_pc
-	.byte	1                               @ DW_FORM_addr
-	.byte	18                              @ DW_AT_high_pc
-	.byte	6                               @ DW_FORM_data4
-	.byte	88                              @ DW_AT_call_file
-	.byte	11                              @ DW_FORM_data1
-	.byte	89                              @ DW_AT_call_line
-	.byte	5                               @ DW_FORM_data2
-	.byte	87                              @ DW_AT_call_column
-	.byte	11                              @ DW_FORM_data1
-	.byte	0                               @ EOM(1)
-	.byte	0                               @ EOM(2)
-	.byte	18                              @ Abbreviation Code
+	.byte	16                              @ Abbreviation Code
 	.byte	5                               @ DW_TAG_formal_parameter
 	.byte	0                               @ DW_CHILDREN_no
 	.byte	2                               @ DW_AT_location
@@ -4638,7 +4608,7 @@ vsscanf:
 	.byte	19                              @ DW_FORM_ref4
 	.byte	0                               @ EOM(1)
 	.byte	0                               @ EOM(2)
-	.byte	19                              @ Abbreviation Code
+	.byte	17                              @ Abbreviation Code
 	.byte	5                               @ DW_TAG_formal_parameter
 	.byte	0                               @ DW_CHILDREN_no
 	.byte	28                              @ DW_AT_const_value
@@ -4647,7 +4617,7 @@ vsscanf:
 	.byte	19                              @ DW_FORM_ref4
 	.byte	0                               @ EOM(1)
 	.byte	0                               @ EOM(2)
-	.byte	20                              @ Abbreviation Code
+	.byte	18                              @ Abbreviation Code
 	.byte	11                              @ DW_TAG_lexical_block
 	.byte	1                               @ DW_CHILDREN_yes
 	.byte	17                              @ DW_AT_low_pc
@@ -4656,7 +4626,7 @@ vsscanf:
 	.byte	6                               @ DW_FORM_data4
 	.byte	0                               @ EOM(1)
 	.byte	0                               @ EOM(2)
-	.byte	21                              @ Abbreviation Code
+	.byte	19                              @ Abbreviation Code
 	.byte	29                              @ DW_TAG_inlined_subroutine
 	.byte	1                               @ DW_CHILDREN_yes
 	.byte	49                              @ DW_AT_abstract_origin
@@ -4671,26 +4641,43 @@ vsscanf:
 	.byte	11                              @ DW_FORM_data1
 	.byte	0                               @ EOM(1)
 	.byte	0                               @ EOM(2)
-	.byte	22                              @ Abbreviation Code
+	.byte	20                              @ Abbreviation Code
 	.byte	5                               @ DW_TAG_formal_parameter
 	.byte	0                               @ DW_CHILDREN_no
 	.byte	49                              @ DW_AT_abstract_origin
 	.byte	19                              @ DW_FORM_ref4
 	.byte	0                               @ EOM(1)
 	.byte	0                               @ EOM(2)
-	.byte	23                              @ Abbreviation Code
+	.byte	21                              @ Abbreviation Code
+	.byte	29                              @ DW_TAG_inlined_subroutine
+	.byte	1                               @ DW_CHILDREN_yes
+	.byte	49                              @ DW_AT_abstract_origin
+	.byte	19                              @ DW_FORM_ref4
+	.byte	17                              @ DW_AT_low_pc
+	.byte	1                               @ DW_FORM_addr
+	.byte	18                              @ DW_AT_high_pc
+	.byte	6                               @ DW_FORM_data4
+	.byte	88                              @ DW_AT_call_file
+	.byte	11                              @ DW_FORM_data1
+	.byte	89                              @ DW_AT_call_line
+	.byte	11                              @ DW_FORM_data1
+	.byte	87                              @ DW_AT_call_column
+	.byte	11                              @ DW_FORM_data1
+	.byte	0                               @ EOM(1)
+	.byte	0                               @ EOM(2)
+	.byte	22                              @ Abbreviation Code
 	.byte	15                              @ DW_TAG_pointer_type
 	.byte	0                               @ DW_CHILDREN_no
 	.byte	73                              @ DW_AT_type
 	.byte	19                              @ DW_FORM_ref4
 	.byte	0                               @ EOM(1)
 	.byte	0                               @ EOM(2)
-	.byte	24                              @ Abbreviation Code
+	.byte	23                              @ Abbreviation Code
 	.byte	15                              @ DW_TAG_pointer_type
 	.byte	0                               @ DW_CHILDREN_no
 	.byte	0                               @ EOM(1)
 	.byte	0                               @ EOM(2)
-	.byte	25                              @ Abbreviation Code
+	.byte	24                              @ Abbreviation Code
 	.byte	22                              @ DW_TAG_typedef
 	.byte	0                               @ DW_CHILDREN_no
 	.byte	73                              @ DW_AT_type
@@ -4703,7 +4690,7 @@ vsscanf:
 	.byte	11                              @ DW_FORM_data1
 	.byte	0                               @ EOM(1)
 	.byte	0                               @ EOM(2)
-	.byte	26                              @ Abbreviation Code
+	.byte	25                              @ Abbreviation Code
 	.byte	46                              @ DW_TAG_subprogram
 	.byte	1                               @ DW_CHILDREN_yes
 	.byte	3                               @ DW_AT_name
@@ -4718,7 +4705,7 @@ vsscanf:
 	.byte	11                              @ DW_FORM_data1
 	.byte	0                               @ EOM(1)
 	.byte	0                               @ EOM(2)
-	.byte	27                              @ Abbreviation Code
+	.byte	26                              @ Abbreviation Code
 	.byte	5                               @ DW_TAG_formal_parameter
 	.byte	0                               @ DW_CHILDREN_no
 	.byte	3                               @ DW_AT_name
@@ -4731,7 +4718,7 @@ vsscanf:
 	.byte	19                              @ DW_FORM_ref4
 	.byte	0                               @ EOM(1)
 	.byte	0                               @ EOM(2)
-	.byte	28                              @ Abbreviation Code
+	.byte	27                              @ Abbreviation Code
 	.byte	46                              @ DW_TAG_subprogram
 	.byte	1                               @ DW_CHILDREN_yes
 	.byte	3                               @ DW_AT_name
@@ -4748,21 +4735,21 @@ vsscanf:
 	.byte	11                              @ DW_FORM_data1
 	.byte	0                               @ EOM(1)
 	.byte	0                               @ EOM(2)
-	.byte	29                              @ Abbreviation Code
+	.byte	28                              @ Abbreviation Code
 	.byte	38                              @ DW_TAG_const_type
 	.byte	0                               @ DW_CHILDREN_no
 	.byte	73                              @ DW_AT_type
 	.byte	19                              @ DW_FORM_ref4
 	.byte	0                               @ EOM(1)
 	.byte	0                               @ EOM(2)
-	.byte	30                              @ Abbreviation Code
+	.byte	29                              @ Abbreviation Code
 	.byte	1                               @ DW_TAG_array_type
 	.byte	1                               @ DW_CHILDREN_yes
 	.byte	73                              @ DW_AT_type
 	.byte	19                              @ DW_FORM_ref4
 	.byte	0                               @ EOM(1)
 	.byte	0                               @ EOM(2)
-	.byte	31                              @ Abbreviation Code
+	.byte	30                              @ Abbreviation Code
 	.byte	33                              @ DW_TAG_subrange_type
 	.byte	0                               @ DW_CHILDREN_no
 	.byte	73                              @ DW_AT_type
@@ -4771,7 +4758,7 @@ vsscanf:
 	.byte	11                              @ DW_FORM_data1
 	.byte	0                               @ EOM(1)
 	.byte	0                               @ EOM(2)
-	.byte	32                              @ Abbreviation Code
+	.byte	31                              @ Abbreviation Code
 	.byte	36                              @ DW_TAG_base_type
 	.byte	0                               @ DW_CHILDREN_no
 	.byte	3                               @ DW_AT_name
@@ -4782,7 +4769,7 @@ vsscanf:
 	.byte	11                              @ DW_FORM_data1
 	.byte	0                               @ EOM(1)
 	.byte	0                               @ EOM(2)
-	.byte	33                              @ Abbreviation Code
+	.byte	32                              @ Abbreviation Code
 	.byte	22                              @ DW_TAG_typedef
 	.byte	0                               @ DW_CHILDREN_no
 	.byte	73                              @ DW_AT_type
@@ -4791,7 +4778,7 @@ vsscanf:
 	.byte	14                              @ DW_FORM_strp
 	.byte	0                               @ EOM(1)
 	.byte	0                               @ EOM(2)
-	.byte	34                              @ Abbreviation Code
+	.byte	33                              @ Abbreviation Code
 	.byte	19                              @ DW_TAG_structure_type
 	.byte	1                               @ DW_CHILDREN_yes
 	.byte	3                               @ DW_AT_name
@@ -4800,7 +4787,7 @@ vsscanf:
 	.byte	11                              @ DW_FORM_data1
 	.byte	0                               @ EOM(1)
 	.byte	0                               @ EOM(2)
-	.byte	35                              @ Abbreviation Code
+	.byte	34                              @ Abbreviation Code
 	.byte	13                              @ DW_TAG_member
 	.byte	0                               @ DW_CHILDREN_no
 	.byte	3                               @ DW_AT_name
@@ -4819,7 +4806,7 @@ vsscanf:
 	.short	4                               @ DWARF version number
 	.long	.debug_abbrev                   @ Offset Into Abbrev. Section
 	.byte	4                               @ Address Size (in bytes)
-	.byte	1                               @ Abbrev [1] 0xb:0x3e7 DW_TAG_compile_unit
+	.byte	1                               @ Abbrev [1] 0xb:0x3ea DW_TAG_compile_unit
 	.long	.Linfo_string0                  @ DW_AT_producer
 	.short	12                              @ DW_AT_language
 	.long	.Linfo_string1                  @ DW_AT_name
@@ -4832,7 +4819,7 @@ vsscanf:
 	.long	.Linfo_string10                 @ DW_AT_name
 	.byte	4                               @ DW_AT_byte_size
 	.byte	1                               @ DW_AT_decl_file
-	.byte	34                              @ DW_AT_decl_line
+	.byte	35                              @ DW_AT_decl_line
 	.byte	3                               @ Abbrev [3] 0x32:0x6 DW_TAG_enumerator
 	.long	.Linfo_string4                  @ DW_AT_name
 	.byte	126                             @ DW_AT_const_value
@@ -4856,7 +4843,7 @@ vsscanf:
 	.long	.Linfo_string3                  @ DW_AT_name
 	.byte	5                               @ DW_AT_encoding
 	.byte	4                               @ DW_AT_byte_size
-	.byte	5                               @ Abbrev [5] 0x62:0x266 DW_TAG_subprogram
+	.byte	5                               @ Abbrev [5] 0x62:0x269 DW_TAG_subprogram
 	.long	.Lfunc_begin0                   @ DW_AT_low_pc
 	.long	.Lfunc_end0-.Lfunc_begin0       @ DW_AT_high_pc
 	.byte	1                               @ DW_AT_frame_base
@@ -4864,15 +4851,15 @@ vsscanf:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string38                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	75                              @ DW_AT_decl_line
+	.byte	80                              @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	91                              @ DW_AT_type
                                         @ DW_AT_external
 	.byte	6                               @ Abbrev [6] 0x77:0x33 DW_TAG_enumeration_type
-	.long	712                             @ DW_AT_type
+	.long	715                             @ DW_AT_type
 	.byte	4                               @ DW_AT_byte_size
 	.byte	1                               @ DW_AT_decl_file
-	.byte	87                              @ DW_AT_decl_line
+	.byte	92                              @ DW_AT_decl_line
 	.byte	7                               @ Abbrev [7] 0x7f:0x6 DW_TAG_enumerator
 	.long	.Linfo_string12                 @ DW_AT_name
 	.byte	0                               @ DW_AT_const_value
@@ -4899,383 +4886,383 @@ vsscanf:
 	.long	.Ldebug_loc0                    @ DW_AT_location
 	.long	.Linfo_string41                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	75                              @ DW_AT_decl_line
-	.long	925                             @ DW_AT_type
+	.byte	80                              @ DW_AT_decl_line
+	.long	928                             @ DW_AT_type
 	.byte	8                               @ Abbrev [8] 0xb9:0xf DW_TAG_formal_parameter
 	.long	.Ldebug_loc1                    @ DW_AT_location
 	.long	.Linfo_string42                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	75                              @ DW_AT_decl_line
-	.long	925                             @ DW_AT_type
+	.byte	80                              @ DW_AT_decl_line
+	.long	928                             @ DW_AT_type
 	.byte	8                               @ Abbrev [8] 0xc8:0xf DW_TAG_formal_parameter
 	.long	.Ldebug_loc15                   @ DW_AT_location
 	.long	.Linfo_string56                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	75                              @ DW_AT_decl_line
-	.long	972                             @ DW_AT_type
+	.byte	80                              @ DW_AT_decl_line
+	.long	975                             @ DW_AT_type
 	.byte	9                               @ Abbrev [9] 0xd7:0xe DW_TAG_variable
 	.byte	2                               @ DW_AT_location
 	.byte	145
 	.byte	32
 	.long	.Linfo_string39                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	100                             @ DW_AT_decl_line
-	.long	935                             @ DW_AT_type
+	.byte	106                             @ DW_AT_decl_line
+	.long	938                             @ DW_AT_type
 	.byte	10                              @ Abbrev [10] 0xe5:0xf DW_TAG_variable
 	.long	.Ldebug_loc2                    @ DW_AT_location
 	.long	.Linfo_string43                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	78                              @ DW_AT_decl_line
-	.long	804                             @ DW_AT_type
+	.byte	83                              @ DW_AT_decl_line
+	.long	807                             @ DW_AT_type
 	.byte	10                              @ Abbrev [10] 0xf4:0xf DW_TAG_variable
 	.long	.Ldebug_loc3                    @ DW_AT_location
 	.long	.Linfo_string44                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	102                             @ DW_AT_decl_line
-	.long	787                             @ DW_AT_type
+	.byte	108                             @ DW_AT_decl_line
+	.long	790                             @ DW_AT_type
 	.byte	10                              @ Abbrev [10] 0x103:0xf DW_TAG_variable
 	.long	.Ldebug_loc4                    @ DW_AT_location
 	.long	.Linfo_string45                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	101                             @ DW_AT_decl_line
+	.byte	107                             @ DW_AT_decl_line
 	.long	91                              @ DW_AT_type
 	.byte	10                              @ Abbrev [10] 0x112:0xf DW_TAG_variable
 	.long	.Ldebug_loc5                    @ DW_AT_location
 	.long	.Linfo_string46                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	99                              @ DW_AT_decl_line
+	.byte	105                             @ DW_AT_decl_line
 	.long	91                              @ DW_AT_type
 	.byte	10                              @ Abbrev [10] 0x121:0xf DW_TAG_variable
 	.long	.Ldebug_loc6                    @ DW_AT_location
 	.long	.Linfo_string22                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	97                              @ DW_AT_decl_line
-	.long	719                             @ DW_AT_type
+	.byte	103                             @ DW_AT_decl_line
+	.long	722                             @ DW_AT_type
 	.byte	10                              @ Abbrev [10] 0x130:0xf DW_TAG_variable
 	.long	.Ldebug_loc7                    @ DW_AT_location
 	.long	.Linfo_string47                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	96                              @ DW_AT_decl_line
-	.long	799                             @ DW_AT_type
+	.byte	102                             @ DW_AT_decl_line
+	.long	802                             @ DW_AT_type
 	.byte	10                              @ Abbrev [10] 0x13f:0xf DW_TAG_variable
 	.long	.Ldebug_loc8                    @ DW_AT_location
 	.long	.Linfo_string48                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	95                              @ DW_AT_decl_line
+	.byte	101                             @ DW_AT_decl_line
 	.long	119                             @ DW_AT_type
 	.byte	10                              @ Abbrev [10] 0x14e:0xf DW_TAG_variable
 	.long	.Ldebug_loc9                    @ DW_AT_location
 	.long	.Linfo_string49                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	86                              @ DW_AT_decl_line
-	.long	712                             @ DW_AT_type
+	.byte	91                              @ DW_AT_decl_line
+	.long	715                             @ DW_AT_type
 	.byte	10                              @ Abbrev [10] 0x15d:0xf DW_TAG_variable
 	.long	.Ldebug_loc10                   @ DW_AT_location
 	.long	.Linfo_string50                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	84                              @ DW_AT_decl_line
-	.long	712                             @ DW_AT_type
+	.byte	89                              @ DW_AT_decl_line
+	.long	715                             @ DW_AT_type
 	.byte	10                              @ Abbrev [10] 0x16c:0xf DW_TAG_variable
 	.long	.Ldebug_loc11                   @ DW_AT_location
 	.long	.Linfo_string51                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	83                              @ DW_AT_decl_line
+	.byte	88                              @ DW_AT_decl_line
 	.long	91                              @ DW_AT_type
 	.byte	10                              @ Abbrev [10] 0x17b:0xf DW_TAG_variable
 	.long	.Ldebug_loc12                   @ DW_AT_location
 	.long	.Linfo_string52                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	82                              @ DW_AT_decl_line
-	.long	954                             @ DW_AT_type
+	.byte	87                              @ DW_AT_decl_line
+	.long	957                             @ DW_AT_type
 	.byte	10                              @ Abbrev [10] 0x18a:0xf DW_TAG_variable
 	.long	.Ldebug_loc13                   @ DW_AT_location
 	.long	.Linfo_string55                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	80                              @ DW_AT_decl_line
-	.long	925                             @ DW_AT_type
+	.byte	85                              @ DW_AT_decl_line
+	.long	928                             @ DW_AT_type
 	.byte	10                              @ Abbrev [10] 0x199:0xf DW_TAG_variable
 	.long	.Ldebug_loc14                   @ DW_AT_location
 	.long	.Linfo_string37                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	77                              @ DW_AT_decl_line
-	.long	925                             @ DW_AT_type
+	.byte	82                              @ DW_AT_decl_line
+	.long	928                             @ DW_AT_type
 	.byte	10                              @ Abbrev [10] 0x1a8:0xf DW_TAG_variable
 	.long	.Ldebug_loc16                   @ DW_AT_location
 	.long	.Linfo_string61                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	81                              @ DW_AT_decl_line
-	.long	925                             @ DW_AT_type
+	.byte	86                              @ DW_AT_decl_line
+	.long	928                             @ DW_AT_type
 	.byte	10                              @ Abbrev [10] 0x1b7:0xf DW_TAG_variable
 	.long	.Ldebug_loc17                   @ DW_AT_location
 	.long	.Linfo_string62                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	79                              @ DW_AT_decl_line
-	.long	787                             @ DW_AT_type
+	.byte	84                              @ DW_AT_decl_line
+	.long	790                             @ DW_AT_type
 	.byte	10                              @ Abbrev [10] 0x1c6:0xf DW_TAG_variable
 	.long	.Ldebug_loc21                   @ DW_AT_location
 	.long	.Linfo_string64                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	98                              @ DW_AT_decl_line
+	.byte	104                             @ DW_AT_decl_line
 	.long	91                              @ DW_AT_type
 	.byte	10                              @ Abbrev [10] 0x1d5:0xf DW_TAG_variable
 	.long	.Ldebug_loc22                   @ DW_AT_location
 	.long	.Linfo_string65                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	85                              @ DW_AT_decl_line
+	.byte	90                              @ DW_AT_decl_line
 	.long	91                              @ DW_AT_type
 	.byte	11                              @ Abbrev [11] 0x1e4:0xc DW_TAG_label
 	.long	.Linfo_string67                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.short	390                             @ DW_AT_decl_line
+	.short	457                             @ DW_AT_decl_line
 	.long	.Ltmp43                         @ DW_AT_low_pc
-	.byte	12                              @ Abbrev [12] 0x1f0:0xb DW_TAG_label
+	.byte	11                              @ Abbrev [11] 0x1f0:0xc DW_TAG_label
 	.long	.Linfo_string68                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	229                             @ DW_AT_decl_line
+	.short	256                             @ DW_AT_decl_line
 	.long	.Ltmp157                        @ DW_AT_low_pc
-	.byte	12                              @ Abbrev [12] 0x1fb:0xb DW_TAG_label
+	.byte	11                              @ Abbrev [11] 0x1fc:0xc DW_TAG_label
 	.long	.Linfo_string69                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	247                             @ DW_AT_decl_line
+	.short	278                             @ DW_AT_decl_line
 	.long	.Ltmp172                        @ DW_AT_low_pc
-	.byte	13                              @ Abbrev [13] 0x206:0x1a DW_TAG_inlined_subroutine
-	.long	901                             @ DW_AT_abstract_origin
+	.byte	12                              @ Abbrev [12] 0x208:0x1b DW_TAG_inlined_subroutine
+	.long	904                             @ DW_AT_abstract_origin
 	.long	.Ltmp158                        @ DW_AT_low_pc
 	.long	.Ltmp163-.Ltmp158               @ DW_AT_high_pc
 	.byte	1                               @ DW_AT_call_file
-	.byte	230                             @ DW_AT_call_line
-	.byte	10                              @ DW_AT_call_column
-	.byte	14                              @ Abbrev [14] 0x216:0x9 DW_TAG_formal_parameter
+	.short	257                             @ DW_AT_call_line
+	.byte	25                              @ DW_AT_call_column
+	.byte	13                              @ Abbrev [13] 0x219:0x9 DW_TAG_formal_parameter
 	.long	.Ldebug_loc23                   @ DW_AT_location
-	.long	913                             @ DW_AT_abstract_origin
+	.long	916                             @ DW_AT_abstract_origin
 	.byte	0                               @ End Of Children Mark
-	.byte	15                              @ Abbrev [15] 0x220:0x16 DW_TAG_lexical_block
+	.byte	14                              @ Abbrev [14] 0x223:0x16 DW_TAG_lexical_block
 	.long	.Ldebug_ranges0                 @ DW_AT_ranges
-	.byte	16                              @ Abbrev [16] 0x225:0x10 DW_TAG_variable
+	.byte	15                              @ Abbrev [15] 0x228:0x10 DW_TAG_variable
 	.long	.Ldebug_loc24                   @ DW_AT_location
 	.long	.Linfo_string66                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.short	316                             @ DW_AT_decl_line
-	.long	799                             @ DW_AT_type
+	.short	362                             @ DW_AT_decl_line
+	.long	802                             @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
-	.byte	17                              @ Abbrev [17] 0x236:0x21 DW_TAG_inlined_subroutine
-	.long	823                             @ DW_AT_abstract_origin
+	.byte	12                              @ Abbrev [12] 0x239:0x21 DW_TAG_inlined_subroutine
+	.long	826                             @ DW_AT_abstract_origin
 	.long	.Ltmp41                         @ DW_AT_low_pc
 	.long	.Ltmp43-.Ltmp41                 @ DW_AT_high_pc
 	.byte	1                               @ DW_AT_call_file
-	.short	379                             @ DW_AT_call_line
-	.byte	5                               @ DW_AT_call_column
-	.byte	18                              @ Abbrev [18] 0x247:0x9 DW_TAG_formal_parameter
+	.short	442                             @ DW_AT_call_line
+	.byte	17                              @ DW_AT_call_column
+	.byte	16                              @ Abbrev [16] 0x24a:0x9 DW_TAG_formal_parameter
 	.byte	3                               @ DW_AT_location
 	.byte	145
 	.byte	32
 	.byte	159
-	.long	831                             @ DW_AT_abstract_origin
-	.byte	19                              @ Abbrev [19] 0x250:0x6 DW_TAG_formal_parameter
+	.long	834                             @ DW_AT_abstract_origin
+	.byte	17                              @ Abbrev [17] 0x253:0x6 DW_TAG_formal_parameter
 	.byte	45                              @ DW_AT_const_value
-	.long	842                             @ DW_AT_abstract_origin
+	.long	845                             @ DW_AT_abstract_origin
 	.byte	0                               @ End Of Children Mark
-	.byte	20                              @ Abbrev [20] 0x257:0x3a DW_TAG_lexical_block
+	.byte	18                              @ Abbrev [18] 0x25a:0x3a DW_TAG_lexical_block
 	.long	.Ltmp65                         @ DW_AT_low_pc
 	.long	.Ltmp73-.Ltmp65                 @ DW_AT_high_pc
-	.byte	16                              @ Abbrev [16] 0x260:0x10 DW_TAG_variable
+	.byte	15                              @ Abbrev [15] 0x263:0x10 DW_TAG_variable
 	.long	.Ldebug_loc18                   @ DW_AT_location
 	.long	.Linfo_string63                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.short	382                             @ DW_AT_decl_line
+	.short	447                             @ DW_AT_decl_line
 	.long	91                              @ DW_AT_type
-	.byte	21                              @ Abbrev [21] 0x270:0x20 DW_TAG_inlined_subroutine
-	.long	823                             @ DW_AT_abstract_origin
+	.byte	19                              @ Abbrev [19] 0x273:0x20 DW_TAG_inlined_subroutine
+	.long	826                             @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges1                 @ DW_AT_ranges
 	.byte	1                               @ DW_AT_call_file
-	.short	385                             @ DW_AT_call_line
-	.byte	6                               @ DW_AT_call_column
-	.byte	18                              @ Abbrev [18] 0x27d:0x9 DW_TAG_formal_parameter
+	.short	451                             @ DW_AT_call_line
+	.byte	21                              @ DW_AT_call_column
+	.byte	16                              @ Abbrev [16] 0x280:0x9 DW_TAG_formal_parameter
 	.byte	3                               @ DW_AT_location
 	.byte	145
 	.byte	32
 	.byte	159
-	.long	831                             @ DW_AT_abstract_origin
-	.byte	14                              @ Abbrev [14] 0x286:0x9 DW_TAG_formal_parameter
+	.long	834                             @ DW_AT_abstract_origin
+	.byte	13                              @ Abbrev [13] 0x289:0x9 DW_TAG_formal_parameter
 	.long	.Ldebug_loc19                   @ DW_AT_location
-	.long	842                             @ DW_AT_abstract_origin
+	.long	845                             @ DW_AT_abstract_origin
 	.byte	0                               @ End Of Children Mark
 	.byte	0                               @ End Of Children Mark
-	.byte	21                              @ Abbrev [21] 0x291:0x1c DW_TAG_inlined_subroutine
-	.long	866                             @ DW_AT_abstract_origin
+	.byte	19                              @ Abbrev [19] 0x294:0x1c DW_TAG_inlined_subroutine
+	.long	869                             @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges2                 @ DW_AT_ranges
 	.byte	1                               @ DW_AT_call_file
-	.short	394                             @ DW_AT_call_line
-	.byte	14                              @ DW_AT_call_column
-	.byte	18                              @ Abbrev [18] 0x29e:0x9 DW_TAG_formal_parameter
+	.short	461                             @ DW_AT_call_line
+	.byte	24                              @ DW_AT_call_column
+	.byte	16                              @ Abbrev [16] 0x2a1:0x9 DW_TAG_formal_parameter
 	.byte	3                               @ DW_AT_location
 	.byte	145
 	.byte	32
 	.byte	159
-	.long	878                             @ DW_AT_abstract_origin
-	.byte	22                              @ Abbrev [22] 0x2a7:0x5 DW_TAG_formal_parameter
-	.long	889                             @ DW_AT_abstract_origin
+	.long	881                             @ DW_AT_abstract_origin
+	.byte	20                              @ Abbrev [20] 0x2aa:0x5 DW_TAG_formal_parameter
+	.long	892                             @ DW_AT_abstract_origin
 	.byte	0                               @ End Of Children Mark
-	.byte	13                              @ Abbrev [13] 0x2ad:0x1a DW_TAG_inlined_subroutine
-	.long	901                             @ DW_AT_abstract_origin
+	.byte	21                              @ Abbrev [21] 0x2b0:0x1a DW_TAG_inlined_subroutine
+	.long	904                             @ DW_AT_abstract_origin
 	.long	.Ltmp89                         @ DW_AT_low_pc
 	.long	.Ltmp94-.Ltmp89                 @ DW_AT_high_pc
 	.byte	1                               @ DW_AT_call_file
-	.byte	113                             @ DW_AT_call_line
-	.byte	9                               @ DW_AT_call_column
-	.byte	14                              @ Abbrev [14] 0x2bd:0x9 DW_TAG_formal_parameter
+	.byte	124                             @ DW_AT_call_line
+	.byte	21                              @ DW_AT_call_column
+	.byte	13                              @ Abbrev [13] 0x2c0:0x9 DW_TAG_formal_parameter
 	.long	.Ldebug_loc20                   @ DW_AT_location
-	.long	913                             @ DW_AT_abstract_origin
+	.long	916                             @ DW_AT_abstract_origin
 	.byte	0                               @ End Of Children Mark
 	.byte	0                               @ End Of Children Mark
-	.byte	4                               @ Abbrev [4] 0x2c8:0x7 DW_TAG_base_type
+	.byte	4                               @ Abbrev [4] 0x2cb:0x7 DW_TAG_base_type
 	.long	.Linfo_string11                 @ DW_AT_name
 	.byte	7                               @ DW_AT_encoding
 	.byte	4                               @ DW_AT_byte_size
-	.byte	2                               @ Abbrev [2] 0x2cf:0x1f DW_TAG_enumeration_type
-	.long	712                             @ DW_AT_type
+	.byte	2                               @ Abbrev [2] 0x2d2:0x1f DW_TAG_enumeration_type
+	.long	715                             @ DW_AT_type
 	.long	.Linfo_string22                 @ DW_AT_name
 	.byte	4                               @ DW_AT_byte_size
 	.byte	1                               @ DW_AT_decl_file
-	.byte	50                              @ DW_AT_decl_line
-	.byte	7                               @ Abbrev [7] 0x2db:0x6 DW_TAG_enumerator
+	.byte	52                              @ DW_AT_decl_line
+	.byte	7                               @ Abbrev [7] 0x2de:0x6 DW_TAG_enumerator
 	.long	.Linfo_string19                 @ DW_AT_name
 	.byte	0                               @ DW_AT_const_value
-	.byte	7                               @ Abbrev [7] 0x2e1:0x6 DW_TAG_enumerator
+	.byte	7                               @ Abbrev [7] 0x2e4:0x6 DW_TAG_enumerator
 	.long	.Linfo_string20                 @ DW_AT_name
 	.byte	1                               @ DW_AT_const_value
-	.byte	7                               @ Abbrev [7] 0x2e7:0x6 DW_TAG_enumerator
+	.byte	7                               @ Abbrev [7] 0x2ea:0x6 DW_TAG_enumerator
 	.long	.Linfo_string21                 @ DW_AT_name
 	.byte	2                               @ DW_AT_const_value
 	.byte	0                               @ End Of Children Mark
-	.byte	2                               @ Abbrev [2] 0x2ee:0x25 DW_TAG_enumeration_type
-	.long	712                             @ DW_AT_type
+	.byte	2                               @ Abbrev [2] 0x2f1:0x25 DW_TAG_enumeration_type
+	.long	715                             @ DW_AT_type
 	.long	.Linfo_string27                 @ DW_AT_name
 	.byte	4                               @ DW_AT_byte_size
 	.byte	1                               @ DW_AT_decl_file
 	.byte	27                              @ DW_AT_decl_line
-	.byte	7                               @ Abbrev [7] 0x2fa:0x6 DW_TAG_enumerator
+	.byte	7                               @ Abbrev [7] 0x2fd:0x6 DW_TAG_enumerator
 	.long	.Linfo_string23                 @ DW_AT_name
 	.byte	1                               @ DW_AT_const_value
-	.byte	7                               @ Abbrev [7] 0x300:0x6 DW_TAG_enumerator
+	.byte	7                               @ Abbrev [7] 0x303:0x6 DW_TAG_enumerator
 	.long	.Linfo_string24                 @ DW_AT_name
 	.byte	2                               @ DW_AT_const_value
-	.byte	7                               @ Abbrev [7] 0x306:0x6 DW_TAG_enumerator
+	.byte	7                               @ Abbrev [7] 0x309:0x6 DW_TAG_enumerator
 	.long	.Linfo_string25                 @ DW_AT_name
 	.byte	4                               @ DW_AT_const_value
-	.byte	7                               @ Abbrev [7] 0x30c:0x6 DW_TAG_enumerator
+	.byte	7                               @ Abbrev [7] 0x30f:0x6 DW_TAG_enumerator
 	.long	.Linfo_string26                 @ DW_AT_name
 	.byte	8                               @ DW_AT_const_value
 	.byte	0                               @ End Of Children Mark
-	.byte	4                               @ Abbrev [4] 0x313:0x7 DW_TAG_base_type
+	.byte	4                               @ Abbrev [4] 0x316:0x7 DW_TAG_base_type
 	.long	.Linfo_string28                 @ DW_AT_name
 	.byte	8                               @ DW_AT_encoding
 	.byte	1                               @ DW_AT_byte_size
-	.byte	23                              @ Abbrev [23] 0x31a:0x5 DW_TAG_pointer_type
-	.long	799                             @ DW_AT_type
-	.byte	23                              @ Abbrev [23] 0x31f:0x5 DW_TAG_pointer_type
-	.long	804                             @ DW_AT_type
-	.byte	4                               @ Abbrev [4] 0x324:0x7 DW_TAG_base_type
+	.byte	22                              @ Abbrev [22] 0x31d:0x5 DW_TAG_pointer_type
+	.long	802                             @ DW_AT_type
+	.byte	22                              @ Abbrev [22] 0x322:0x5 DW_TAG_pointer_type
+	.long	807                             @ DW_AT_type
+	.byte	4                               @ Abbrev [4] 0x327:0x7 DW_TAG_base_type
 	.long	.Linfo_string29                 @ DW_AT_name
 	.byte	8                               @ DW_AT_encoding
 	.byte	1                               @ DW_AT_byte_size
-	.byte	24                              @ Abbrev [24] 0x32b:0x1 DW_TAG_pointer_type
-	.byte	25                              @ Abbrev [25] 0x32c:0xb DW_TAG_typedef
-	.long	712                             @ DW_AT_type
+	.byte	23                              @ Abbrev [23] 0x32e:0x1 DW_TAG_pointer_type
+	.byte	24                              @ Abbrev [24] 0x32f:0xb DW_TAG_typedef
+	.long	715                             @ DW_AT_type
 	.long	.Linfo_string30                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
 	.byte	102                             @ DW_AT_decl_line
-	.byte	26                              @ Abbrev [26] 0x337:0x1f DW_TAG_subprogram
+	.byte	25                              @ Abbrev [25] 0x33a:0x1f DW_TAG_subprogram
 	.long	.Linfo_string31                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	64                              @ DW_AT_decl_line
+	.byte	69                              @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.byte	1                               @ DW_AT_inline
-	.byte	27                              @ Abbrev [27] 0x33f:0xb DW_TAG_formal_parameter
+	.byte	26                              @ Abbrev [26] 0x342:0xb DW_TAG_formal_parameter
 	.long	.Linfo_string32                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	64                              @ DW_AT_decl_line
-	.long	854                             @ DW_AT_type
-	.byte	27                              @ Abbrev [27] 0x34a:0xb DW_TAG_formal_parameter
+	.byte	69                              @ DW_AT_decl_line
+	.long	857                             @ DW_AT_type
+	.byte	26                              @ Abbrev [26] 0x34d:0xb DW_TAG_formal_parameter
 	.long	.Linfo_string34                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	64                              @ DW_AT_decl_line
-	.long	712                             @ DW_AT_type
+	.byte	69                              @ DW_AT_decl_line
+	.long	715                             @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
-	.byte	23                              @ Abbrev [23] 0x356:0x5 DW_TAG_pointer_type
-	.long	859                             @ DW_AT_type
-	.byte	4                               @ Abbrev [4] 0x35b:0x7 DW_TAG_base_type
+	.byte	22                              @ Abbrev [22] 0x359:0x5 DW_TAG_pointer_type
+	.long	862                             @ DW_AT_type
+	.byte	4                               @ Abbrev [4] 0x35e:0x7 DW_TAG_base_type
 	.long	.Linfo_string33                 @ DW_AT_name
 	.byte	7                               @ DW_AT_encoding
 	.byte	4                               @ DW_AT_byte_size
-	.byte	28                              @ Abbrev [28] 0x362:0x23 DW_TAG_subprogram
+	.byte	27                              @ Abbrev [27] 0x365:0x23 DW_TAG_subprogram
 	.long	.Linfo_string35                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	70                              @ DW_AT_decl_line
+	.byte	75                              @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	91                              @ DW_AT_type
 	.byte	1                               @ DW_AT_inline
-	.byte	27                              @ Abbrev [27] 0x36e:0xb DW_TAG_formal_parameter
+	.byte	26                              @ Abbrev [26] 0x371:0xb DW_TAG_formal_parameter
 	.long	.Linfo_string32                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	70                              @ DW_AT_decl_line
-	.long	854                             @ DW_AT_type
-	.byte	27                              @ Abbrev [27] 0x379:0xb DW_TAG_formal_parameter
+	.byte	75                              @ DW_AT_decl_line
+	.long	857                             @ DW_AT_type
+	.byte	26                              @ Abbrev [26] 0x37c:0xb DW_TAG_formal_parameter
 	.long	.Linfo_string34                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	70                              @ DW_AT_decl_line
-	.long	712                             @ DW_AT_type
+	.byte	75                              @ DW_AT_decl_line
+	.long	715                             @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
-	.byte	28                              @ Abbrev [28] 0x385:0x18 DW_TAG_subprogram
+	.byte	27                              @ Abbrev [27] 0x388:0x18 DW_TAG_subprogram
 	.long	.Linfo_string36                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	56                              @ DW_AT_decl_line
+	.byte	59                              @ DW_AT_decl_line
                                         @ DW_AT_prototyped
-	.long	925                             @ DW_AT_type
+	.long	928                             @ DW_AT_type
 	.byte	1                               @ DW_AT_inline
-	.byte	27                              @ Abbrev [27] 0x391:0xb DW_TAG_formal_parameter
+	.byte	26                              @ Abbrev [26] 0x394:0xb DW_TAG_formal_parameter
 	.long	.Linfo_string37                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	56                              @ DW_AT_decl_line
-	.long	925                             @ DW_AT_type
+	.byte	59                              @ DW_AT_decl_line
+	.long	928                             @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
-	.byte	23                              @ Abbrev [23] 0x39d:0x5 DW_TAG_pointer_type
-	.long	930                             @ DW_AT_type
-	.byte	29                              @ Abbrev [29] 0x3a2:0x5 DW_TAG_const_type
-	.long	804                             @ DW_AT_type
-	.byte	30                              @ Abbrev [30] 0x3a7:0xc DW_TAG_array_type
-	.long	859                             @ DW_AT_type
-	.byte	31                              @ Abbrev [31] 0x3ac:0x6 DW_TAG_subrange_type
-	.long	947                             @ DW_AT_type
+	.byte	22                              @ Abbrev [22] 0x3a0:0x5 DW_TAG_pointer_type
+	.long	933                             @ DW_AT_type
+	.byte	28                              @ Abbrev [28] 0x3a5:0x5 DW_TAG_const_type
+	.long	807                             @ DW_AT_type
+	.byte	29                              @ Abbrev [29] 0x3aa:0xc DW_TAG_array_type
+	.long	862                             @ DW_AT_type
+	.byte	30                              @ Abbrev [30] 0x3af:0x6 DW_TAG_subrange_type
+	.long	950                             @ DW_AT_type
 	.byte	8                               @ DW_AT_count
 	.byte	0                               @ End Of Children Mark
-	.byte	32                              @ Abbrev [32] 0x3b3:0x7 DW_TAG_base_type
+	.byte	31                              @ Abbrev [31] 0x3b6:0x7 DW_TAG_base_type
 	.long	.Linfo_string40                 @ DW_AT_name
 	.byte	8                               @ DW_AT_byte_size
 	.byte	7                               @ DW_AT_encoding
-	.byte	25                              @ Abbrev [25] 0x3ba:0xb DW_TAG_typedef
-	.long	965                             @ DW_AT_type
+	.byte	24                              @ Abbrev [24] 0x3bd:0xb DW_TAG_typedef
+	.long	968                             @ DW_AT_type
 	.long	.Linfo_string54                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
 	.byte	107                             @ DW_AT_decl_line
-	.byte	4                               @ Abbrev [4] 0x3c5:0x7 DW_TAG_base_type
+	.byte	4                               @ Abbrev [4] 0x3c8:0x7 DW_TAG_base_type
 	.long	.Linfo_string53                 @ DW_AT_name
 	.byte	7                               @ DW_AT_encoding
 	.byte	8                               @ DW_AT_byte_size
-	.byte	25                              @ Abbrev [25] 0x3cc:0xb DW_TAG_typedef
-	.long	983                             @ DW_AT_type
+	.byte	24                              @ Abbrev [24] 0x3cf:0xb DW_TAG_typedef
+	.long	986                             @ DW_AT_type
 	.long	.Linfo_string60                 @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
 	.byte	40                              @ DW_AT_decl_line
-	.byte	33                              @ Abbrev [33] 0x3d7:0x9 DW_TAG_typedef
-	.long	992                             @ DW_AT_type
+	.byte	32                              @ Abbrev [32] 0x3da:0x9 DW_TAG_typedef
+	.long	995                             @ DW_AT_type
 	.long	.Linfo_string59                 @ DW_AT_name
-	.byte	34                              @ Abbrev [34] 0x3e0:0x11 DW_TAG_structure_type
+	.byte	33                              @ Abbrev [33] 0x3e3:0x11 DW_TAG_structure_type
 	.long	.Linfo_string58                 @ DW_AT_name
 	.byte	4                               @ DW_AT_byte_size
-	.byte	35                              @ Abbrev [35] 0x3e6:0xa DW_TAG_member
+	.byte	34                              @ Abbrev [34] 0x3e9:0xa DW_TAG_member
 	.long	.Linfo_string57                 @ DW_AT_name
-	.long	811                             @ DW_AT_type
+	.long	814                             @ DW_AT_type
 	.byte	0                               @ DW_AT_data_member_location
 	.byte	0                               @ End Of Children Mark
 	.byte	0                               @ End Of Children Mark
@@ -5312,141 +5299,141 @@ vsscanf:
 .Linfo_string1:
 	.asciz	"../../../components/platform/soc/rt582/rt582_dongle/dongle/src\\vsscanf.c" @ string offset=55
 .Linfo_string2:
-	.asciz	"D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" @ string offset=128
+	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=128
 .Linfo_string3:
-	.asciz	"int"                           @ string offset=190
+	.asciz	"int"                           @ string offset=189
 .Linfo_string4:
-	.asciz	"rank_char"                     @ string offset=194
+	.asciz	"rank_char"                     @ string offset=193
 .Linfo_string5:
-	.asciz	"rank_short"                    @ string offset=204
+	.asciz	"rank_short"                    @ string offset=203
 .Linfo_string6:
-	.asciz	"rank_int"                      @ string offset=215
+	.asciz	"rank_int"                      @ string offset=214
 .Linfo_string7:
-	.asciz	"rank_long"                     @ string offset=224
+	.asciz	"rank_long"                     @ string offset=223
 .Linfo_string8:
-	.asciz	"rank_longlong"                 @ string offset=234
+	.asciz	"rank_longlong"                 @ string offset=233
 .Linfo_string9:
-	.asciz	"rank_ptr"                      @ string offset=248
+	.asciz	"rank_ptr"                      @ string offset=247
 .Linfo_string10:
-	.asciz	"ranks"                         @ string offset=257
+	.asciz	"ranks"                         @ string offset=256
 .Linfo_string11:
-	.asciz	"unsigned int"                  @ string offset=263
+	.asciz	"unsigned int"                  @ string offset=262
 .Linfo_string12:
-	.asciz	"st_normal"                     @ string offset=276
+	.asciz	"st_normal"                     @ string offset=275
 .Linfo_string13:
-	.asciz	"st_flags"                      @ string offset=286
+	.asciz	"st_flags"                      @ string offset=285
 .Linfo_string14:
-	.asciz	"st_width"                      @ string offset=295
+	.asciz	"st_width"                      @ string offset=294
 .Linfo_string15:
-	.asciz	"st_modifiers"                  @ string offset=304
+	.asciz	"st_modifiers"                  @ string offset=303
 .Linfo_string16:
-	.asciz	"st_match_init"                 @ string offset=317
+	.asciz	"st_match_init"                 @ string offset=316
 .Linfo_string17:
-	.asciz	"st_match"                      @ string offset=331
+	.asciz	"st_match"                      @ string offset=330
 .Linfo_string18:
-	.asciz	"st_match_range"                @ string offset=340
+	.asciz	"st_match_range"                @ string offset=339
 .Linfo_string19:
-	.asciz	"bail_none"                     @ string offset=355
+	.asciz	"bail_none"                     @ string offset=354
 .Linfo_string20:
-	.asciz	"bail_eof"                      @ string offset=365
+	.asciz	"bail_eof"                      @ string offset=364
 .Linfo_string21:
-	.asciz	"bail_err"                      @ string offset=374
+	.asciz	"bail_err"                      @ string offset=373
 .Linfo_string22:
-	.asciz	"bail"                          @ string offset=383
+	.asciz	"bail"                          @ string offset=382
 .Linfo_string23:
-	.asciz	"FL_SPLAT"                      @ string offset=388
+	.asciz	"FL_SPLAT"                      @ string offset=387
 .Linfo_string24:
-	.asciz	"FL_INV"                        @ string offset=397
+	.asciz	"FL_INV"                        @ string offset=396
 .Linfo_string25:
-	.asciz	"FL_WIDTH"                      @ string offset=404
+	.asciz	"FL_WIDTH"                      @ string offset=403
 .Linfo_string26:
-	.asciz	"FL_MINUS"                      @ string offset=413
+	.asciz	"FL_MINUS"                      @ string offset=412
 .Linfo_string27:
-	.asciz	"flag"                          @ string offset=422
+	.asciz	"flag"                          @ string offset=421
 .Linfo_string28:
-	.asciz	"unsigned char"                 @ string offset=427
+	.asciz	"unsigned char"                 @ string offset=426
 .Linfo_string29:
-	.asciz	"char"                          @ string offset=441
+	.asciz	"char"                          @ string offset=440
 .Linfo_string30:
-	.asciz	"uintptr_t"                     @ string offset=446
+	.asciz	"uintptr_t"                     @ string offset=445
 .Linfo_string31:
-	.asciz	"set_bit"                       @ string offset=456
+	.asciz	"set_bit"                       @ string offset=455
 .Linfo_string32:
-	.asciz	"bitmap"                        @ string offset=464
+	.asciz	"bitmap"                        @ string offset=463
 .Linfo_string33:
-	.asciz	"long unsigned int"             @ string offset=471
+	.asciz	"long unsigned int"             @ string offset=470
 .Linfo_string34:
-	.asciz	"bit"                           @ string offset=489
+	.asciz	"bit"                           @ string offset=488
 .Linfo_string35:
-	.asciz	"test_bit"                      @ string offset=493
+	.asciz	"test_bit"                      @ string offset=492
 .Linfo_string36:
-	.asciz	"skipspace"                     @ string offset=502
+	.asciz	"skipspace"                     @ string offset=501
 .Linfo_string37:
-	.asciz	"p"                             @ string offset=512
+	.asciz	"p"                             @ string offset=511
 .Linfo_string38:
-	.asciz	"vsscanf"                       @ string offset=514
+	.asciz	"vsscanf"                       @ string offset=513
 .Linfo_string39:
-	.asciz	"matchmap"                      @ string offset=522
+	.asciz	"matchmap"                      @ string offset=521
 .Linfo_string40:
-	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=531
+	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=530
 .Linfo_string41:
-	.asciz	"buffer"                        @ string offset=551
+	.asciz	"buffer"                        @ string offset=550
 .Linfo_string42:
-	.asciz	"format"                        @ string offset=558
+	.asciz	"format"                        @ string offset=557
 .Linfo_string43:
-	.asciz	"ch"                            @ string offset=565
+	.asciz	"ch"                            @ string offset=564
 .Linfo_string44:
-	.asciz	"range_start"                   @ string offset=568
+	.asciz	"range_start"                   @ string offset=567
 .Linfo_string45:
-	.asciz	"matchinv"                      @ string offset=580
+	.asciz	"matchinv"                      @ string offset=579
 .Linfo_string46:
-	.asciz	"converted"                     @ string offset=589
+	.asciz	"converted"                     @ string offset=588
 .Linfo_string47:
-	.asciz	"sarg"                          @ string offset=599
+	.asciz	"sarg"                          @ string offset=598
 .Linfo_string48:
-	.asciz	"state"                         @ string offset=604
+	.asciz	"state"                         @ string offset=603
 .Linfo_string49:
-	.asciz	"flags"                         @ string offset=610
+	.asciz	"flags"                         @ string offset=609
 .Linfo_string50:
-	.asciz	"width"                         @ string offset=616
+	.asciz	"width"                         @ string offset=615
 .Linfo_string51:
-	.asciz	"rank"                          @ string offset=622
+	.asciz	"rank"                          @ string offset=621
 .Linfo_string52:
-	.asciz	"val"                           @ string offset=627
+	.asciz	"val"                           @ string offset=626
 .Linfo_string53:
-	.asciz	"long long unsigned int"        @ string offset=631
+	.asciz	"long long unsigned int"        @ string offset=630
 .Linfo_string54:
-	.asciz	"uintmax_t"                     @ string offset=654
+	.asciz	"uintmax_t"                     @ string offset=653
 .Linfo_string55:
-	.asciz	"q"                             @ string offset=664
+	.asciz	"q"                             @ string offset=663
 .Linfo_string56:
-	.asciz	"ap"                            @ string offset=666
+	.asciz	"ap"                            @ string offset=665
 .Linfo_string57:
-	.asciz	"__ap"                          @ string offset=669
+	.asciz	"__ap"                          @ string offset=668
 .Linfo_string58:
-	.asciz	"__va_list"                     @ string offset=674
+	.asciz	"__va_list"                     @ string offset=673
 .Linfo_string59:
-	.asciz	"__builtin_va_list"             @ string offset=684
+	.asciz	"__builtin_va_list"             @ string offset=683
 .Linfo_string60:
-	.asciz	"va_list"                       @ string offset=702
+	.asciz	"va_list"                       @ string offset=701
 .Linfo_string61:
-	.asciz	"qq"                            @ string offset=710
+	.asciz	"qq"                            @ string offset=709
 .Linfo_string62:
-	.asciz	"uc"                            @ string offset=713
+	.asciz	"uc"                            @ string offset=712
 .Linfo_string63:
-	.asciz	"i"                             @ string offset=716
+	.asciz	"i"                             @ string offset=715
 .Linfo_string64:
-	.asciz	"sign"                          @ string offset=718
+	.asciz	"sign"                          @ string offset=717
 .Linfo_string65:
-	.asciz	"base"                          @ string offset=723
+	.asciz	"base"                          @ string offset=722
 .Linfo_string66:
-	.asciz	"sp"                            @ string offset=728
+	.asciz	"sp"                            @ string offset=727
 .Linfo_string67:
-	.asciz	"match_run"                     @ string offset=731
+	.asciz	"match_run"                     @ string offset=730
 .Linfo_string68:
-	.asciz	"scan_int"                      @ string offset=741
+	.asciz	"scan_int"                      @ string offset=740
 .Linfo_string69:
-	.asciz	"set_integer"                   @ string offset=750
+	.asciz	"set_integer"                   @ string offset=749
 	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals

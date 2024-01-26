@@ -18,15 +18,15 @@
 	.eabi_attribute	26, 2	@ Tag_ABI_enum_size
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"rt_main.c"
-	.file	1 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\FreeRTOS.h"
+	.file	1 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\FreeRTOS.h"
 	.file	2 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
-	.file	3 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\\portmacro.h"
-	.file	4 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_dongle/rt_main.c"
-	.file	5 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/portable.h"
+	.file	3 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\\portmacro.h"
+	.file	4 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_dongle/rt_main.c"
+	.file	5 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/portable.h"
 	.file	6 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdio.h"
-	.file	7 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/cm3_mcu.h"
-	.file	8 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/utility/EnhancedFlashDataset/Inc\\efd_def.h"
-	.file	9 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/timer_reg.h"
+	.file	7 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/cm3_mcu.h"
+	.file	8 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/utility/EnhancedFlashDataset/Inc\\efd_def.h"
+	.file	9 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/timer_reg.h"
 	.file	10 "C:/Users\\P350\\AppData\\Local\\Arm\\Packs\\ARM\\CMSIS\\5.8.0\\CMSIS\\Core\\Include" "core_cm3.h"
 	.section	.text.vApplicationStackOverflowHook,"ax",%progbits
 	.hidden	vApplicationStackOverflowHook   @ -- Begin function vApplicationStackOverflowHook
@@ -62,13 +62,13 @@ vApplicationStackOverflowHook:
 	.loc	4 44 5                          @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:44:5
 	bl	puts
 .Ltmp3:
-	.loc	4 45 5 is_stmt 1                @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:45:5
+	.loc	4 45 9 is_stmt 1                @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:45:9
 	cbz	r4, .LBB0_2
 .Ltmp4:
 @ %bb.1:
 	@DEBUG_VALUE: vApplicationStackOverflowHook:pcTaskName <- $r4
 	@DEBUG_VALUE: vApplicationStackOverflowHook:xTask <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	4 46 3                          @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:46:3
+	.loc	4 47 9                          @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:47:9
 	adr	r0, .LCPI0_1
 	mov	r1, r4
 	bl	__2printf
@@ -76,7 +76,7 @@ vApplicationStackOverflowHook:
 .LBB0_2:
 	@DEBUG_VALUE: vApplicationStackOverflowHook:pcTaskName <- $r4
 	@DEBUG_VALUE: vApplicationStackOverflowHook:xTask <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	3 197 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\portmacro.h:197:2
+	.loc	3 197 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\portmacro.h:197:5
 	@APP
 	mov.w	r0, #64
 	msr	basepri, r0
@@ -86,7 +86,7 @@ vApplicationStackOverflowHook:
 	@NO_APP
 .Ltmp6:
 	@DEBUG_VALUE: vPortRaiseBASEPRI:ulNewBASEPRI <- $r0
-	.loc	3 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\portmacro.h:0:2
+	.loc	3 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\portmacro.h:0:5
 	movw	r0, #57728
 .Ltmp7:
 	movt	r0, #57344
@@ -104,7 +104,7 @@ vApplicationStackOverflowHook:
 .LBB0_3:                                @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: vApplicationStackOverflowHook:pcTaskName <- $r4
 	@DEBUG_VALUE: vApplicationStackOverflowHook:xTask <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	4 50 5                          @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:50:5
+	.loc	4 51 5                          @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:51:5
 	b	.LBB0_3
 .Ltmp10:
 	.p2align	2
@@ -131,7 +131,7 @@ vApplicationStackOverflowHook:
 	.thumb_func
 vApplicationMallocFailedHook:
 .Lfunc_begin1:
-	.loc	4 56 0 is_stmt 1                @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:56:0
+	.loc	4 58 0 is_stmt 1                @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:58:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -141,15 +141,15 @@ vApplicationMallocFailedHook:
 	.cfi_offset lr, -4
 	.cfi_offset r7, -8
 .Ltmp11:
-	.loc	4 58 9 prologue_end             @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:58:9
+	.loc	4 60 12 prologue_end            @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:60:12
 	bl	xPortGetFreeHeapSize
 .Ltmp12:
 	mov	r1, r0
-	.loc	4 57 5                          @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:57:5
+	.loc	4 59 5                          @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:59:5
 	adr	r0, .LCPI1_0
 	bl	__2printf
 .Ltmp13:
-	.loc	3 197 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\portmacro.h:197:2
+	.loc	3 197 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\portmacro.h:197:5
 	@APP
 	mov.w	r0, #64
 	msr	basepri, r0
@@ -159,7 +159,7 @@ vApplicationMallocFailedHook:
 	@NO_APP
 .Ltmp14:
 	@DEBUG_VALUE: vPortRaiseBASEPRI:ulNewBASEPRI <- $r0
-	.loc	3 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\portmacro.h:0:2
+	.loc	3 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\portmacro.h:0:5
 	movw	r0, #57728
 .Ltmp15:
 	movt	r0, #57344
@@ -175,7 +175,7 @@ vApplicationMallocFailedHook:
 .Ltmp17:
 	.p2align	2
 .LBB1_1:                                @ =>This Inner Loop Header: Depth=1
-	.loc	4 62 5                          @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:62:5
+	.loc	4 64 5                          @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:64:5
 	b	.LBB1_1
 .Ltmp18:
 	.p2align	2
@@ -199,13 +199,13 @@ vApplicationMallocFailedHook:
 	.thumb_func
 vApplicationIdleHook:
 .Lfunc_begin2:
-	.loc	4 68 0 is_stmt 1                @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:68:0
+	.loc	4 71 0 is_stmt 1                @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:71:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
-	.loc	4 69 5 prologue_end             @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:69:5
+	.loc	4 72 5 prologue_end             @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:72:5
 	wfi
-	.loc	4 71 1                          @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:71:1
+	.loc	4 74 1                          @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:74:1
 	bx	lr
 .Ltmp19:
 .Lfunc_end2:
@@ -223,12 +223,12 @@ vApplicationIdleHook:
 	.thumb_func
 vApplicationSleep:
 .Lfunc_begin3:
-	.loc	4 76 0                          @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:76:0
+	.loc	4 79 0                          @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:79:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
 	@DEBUG_VALUE: vApplicationSleep:xExpectedIdleTime <- $r0
-	.loc	4 78 1 prologue_end             @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:78:1
+	.loc	4 81 1 prologue_end             @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:81:1
 	bx	lr
 .Ltmp20:
 .Lfunc_end3:
@@ -246,11 +246,11 @@ vApplicationSleep:
 	.thumb_func
 vApplicationTickHook:
 .Lfunc_begin4:
-	.loc	4 83 0                          @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:83:0
+	.loc	4 86 0                          @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:86:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
-	.loc	4 85 1 prologue_end             @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:85:1
+	.loc	4 88 1 prologue_end             @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:88:1
 	bx	lr
 .Ltmp21:
 .Lfunc_end4:
@@ -268,7 +268,7 @@ vApplicationTickHook:
 	.thumb_func
 vApplicationGetIdleTaskMemory:
 .Lfunc_begin5:
-	.loc	4 89 0                          @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:89:0
+	.loc	4 92 0                          @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:92:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -278,20 +278,20 @@ vApplicationGetIdleTaskMemory:
 	@DEBUG_VALUE: vApplicationGetIdleTaskMemory:ppxIdleTaskStackBuffer <- $r1
 	@DEBUG_VALUE: vApplicationGetIdleTaskMemory:pulIdleTaskStackSize <- $r2
 	@DEBUG_VALUE: vApplicationGetIdleTaskMemory:pulIdleTaskStackSize <- $r2
-	.loc	4 98 27 prologue_end            @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:98:27
+	.loc	4 101 27 prologue_end           @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:101:27
 	movw	r3, :lower16:vApplicationGetIdleTaskMemory.xIdleTaskTCB
 	movt	r3, :upper16:vApplicationGetIdleTaskMemory.xIdleTaskTCB
 	str	r3, [r0]
-	.loc	4 101 29                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:101:29
+	.loc	4 104 29                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:104:29
 	movw	r0, :lower16:vApplicationGetIdleTaskMemory.uxIdleTaskStack
 .Ltmp22:
 	@DEBUG_VALUE: vApplicationGetIdleTaskMemory:ppxIdleTaskTCBBuffer <- [DW_OP_LLVM_entry_value 1] $r0
 	movt	r0, :upper16:vApplicationGetIdleTaskMemory.uxIdleTaskStack
 	str	r0, [r1]
 	mov.w	r0, #256
-	.loc	4 106 27                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:106:27
+	.loc	4 109 27                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:109:27
 	str	r0, [r2]
-	.loc	4 107 1                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:107:1
+	.loc	4 110 1                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:110:1
 	bx	lr
 .Ltmp23:
 .Lfunc_end5:
@@ -309,7 +309,7 @@ vApplicationGetIdleTaskMemory:
 	.thumb_func
 vApplicationGetTimerTaskMemory:
 .Lfunc_begin6:
-	.loc	4 113 0                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:113:0
+	.loc	4 116 0                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:116:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -319,20 +319,20 @@ vApplicationGetTimerTaskMemory:
 	@DEBUG_VALUE: vApplicationGetTimerTaskMemory:ppxTimerTaskStackBuffer <- $r1
 	@DEBUG_VALUE: vApplicationGetTimerTaskMemory:pulTimerTaskStackSize <- $r2
 	@DEBUG_VALUE: vApplicationGetTimerTaskMemory:pulTimerTaskStackSize <- $r2
-	.loc	4 122 28 prologue_end           @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:122:28
+	.loc	4 125 28 prologue_end           @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:125:28
 	movw	r3, :lower16:vApplicationGetTimerTaskMemory.xTimerTaskTCB
 	movt	r3, :upper16:vApplicationGetTimerTaskMemory.xTimerTaskTCB
 	str	r3, [r0]
-	.loc	4 125 30                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:125:30
+	.loc	4 128 30                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:128:30
 	movw	r0, :lower16:vApplicationGetTimerTaskMemory.uxTimerTaskStack
 .Ltmp24:
 	@DEBUG_VALUE: vApplicationGetTimerTaskMemory:ppxTimerTaskTCBBuffer <- [DW_OP_LLVM_entry_value 1] $r0
 	movt	r0, :upper16:vApplicationGetTimerTaskMemory.uxTimerTaskStack
 	str	r0, [r1]
 	mov.w	r0, #512
-	.loc	4 130 28                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:130:28
+	.loc	4 133 28                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:133:28
 	str	r0, [r2]
-	.loc	4 131 1                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:131:1
+	.loc	4 134 1                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:134:1
 	bx	lr
 .Ltmp25:
 .Lfunc_end6:
@@ -350,7 +350,7 @@ vApplicationGetTimerTaskMemory:
 	.thumb_func
 vAssertCalled:
 .Lfunc_begin7:
-	.loc	4 134 0                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:134:0
+	.loc	4 137 0                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:137:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -371,16 +371,16 @@ vAssertCalled:
 	@DEBUG_VALUE: vAssertCalled:pcFileName <- $r5
 	@DEBUG_VALUE: vAssertCalled:ulLine <- $r4
 	@DEBUG_VALUE: vAssertCalled:pcFileName <- $r5
-	.loc	4 135 57 prologue_end           @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:135:57
+	.loc	4 138 57 prologue_end           @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:138:57
 	bl	xTaskGetCurrentTaskHandle
 .Ltmp28:
-	.loc	4 135 39 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:135:39
+	.loc	4 138 39 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:138:39
 	bl	pcTaskGetName
 .Ltmp29:
 	mov	r1, r0
 .Ltmp30:
 	@DEBUG_VALUE: vAssertCalled:current_task_name <- $r1
-	.loc	4 136 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:136:5
+	.loc	4 139 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:139:5
 	adr	r0, .LCPI7_0
 	mov	r2, r5
 .Ltmp31:
@@ -390,7 +390,7 @@ vAssertCalled:
 	@DEBUG_VALUE: vAssertCalled:ulLine <- $r3
 	bl	__2printf
 .Ltmp33:
-	.loc	3 197 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\portmacro.h:197:2
+	.loc	3 197 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\portmacro.h:197:5
 	@APP
 	mov.w	r0, #64
 	msr	basepri, r0
@@ -402,7 +402,7 @@ vAssertCalled:
 	@DEBUG_VALUE: vPortRaiseBASEPRI:ulNewBASEPRI <- $r0
 	.p2align	2
 .LBB7_1:                                @ =>This Inner Loop Header: Depth=1
-	.loc	4 138 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:138:5
+	.loc	4 141 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:141:5
 	b	.LBB7_1
 .Ltmp35:
 	.p2align	2
@@ -426,7 +426,7 @@ vAssertCalled:
 	.thumb_func
 rt582_utick_set_clear:
 .Lfunc_begin8:
-	.loc	4 260 0 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:260:0
+	.loc	4 263 0 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:263:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -442,33 +442,33 @@ rt582_utick_set_clear:
 	movt	r0, #41204
 	mvn	r1, #1
 .Ltmp37:
-	.loc	4 266 17                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:266:17
+	.loc	4 269 17                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:269:17
 	str	r1, [r0, #-8]
 	movs	r1, #1
-	.loc	4 267 18                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:267:18
+	.loc	4 270 18                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:270:18
 	str	r1, [r0, #4]
 	movs	r1, #0
-	.loc	4 268 24                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:268:24
+	.loc	4 271 24                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:271:24
 	str	r1, [r0]
-	.loc	4 272 33                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:272:33
+	.loc	4 275 33                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:275:33
 	ldr	r1, [r0]
 	bic	r1, r1, #28
 	str	r1, [r0]
-	.loc	4 273 29                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:273:29
+	.loc	4 276 29                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:276:29
 	ldr	r1, [r0]
 	orr	r1, r1, #64
 	str	r1, [r0]
-	.loc	4 274 35                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:274:35
+	.loc	4 277 35                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:277:35
 	ldr	r1, [r0]
 	orr	r1, r1, #32
 	str	r1, [r0]
-	.loc	4 275 27                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:275:27
+	.loc	4 278 27                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:278:27
 	ldr	r1, [r0]
 	orr	r1, r1, #128
 	str	r1, [r0]
 .Ltmp38:
 	@DEBUG_VALUE: rt582_utick_set_clear:TIMER <- undef
-	.loc	4 277 1                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:277:1
+	.loc	4 280 1                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:280:1
 	bx	lr
 .Ltmp39:
 .Lfunc_end8:
@@ -486,7 +486,7 @@ rt582_utick_set_clear:
 	.thumb_func
 main:
 .Lfunc_begin9:
-	.loc	4 280 0                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:280:0
+	.loc	4 283 0                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:283:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -499,21 +499,21 @@ main:
 .LBB9_1:                                @ =>This Inner Loop Header: Depth=1
 .Ltmp40:
 	@DEBUG_VALUE: pin_mux_init:i <- $r4
-	.loc	4 147 9 prologue_end            @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:147:9
+	.loc	4 150 9 prologue_end            @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:150:9
 	mov	r0, r4
 	movs	r1, #0
 	bl	pin_set_mode
 .Ltmp41:
-	.loc	4 145 26                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:145:26
+	.loc	4 148 26                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:148:26
 	adds	r4, #1
 .Ltmp42:
 	@DEBUG_VALUE: pin_mux_init:i <- $r4
-	.loc	4 145 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:145:5
+	.loc	4 148 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:148:5
 	cmp	r4, #32
 	bne	.LBB9_1
 .Ltmp43:
 @ %bb.2:
-	.loc	4 283 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:283:5
+	.loc	4 286 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:286:5
 	movw	r0, :lower16:xHeapRegions
 	movt	r0, :upper16:xHeapRegions
 	bl	vPortDefineHeapRegions
@@ -531,108 +531,108 @@ main:
 	movt	r0, #41204
 	mvn	r1, #1
 .Ltmp46:
-	.loc	4 266 17                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:266:17
+	.loc	4 269 17                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:269:17
 	str	r1, [r0, #-8]
 	movs	r1, #1
 	movs	r6, #0
-	.loc	4 267 18                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:267:18
+	.loc	4 270 18                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:270:18
 	str	r1, [r0, #4]
-	.loc	4 268 24                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:268:24
+	.loc	4 271 24                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:271:24
 	str	r6, [r0]
-	.loc	4 272 33                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:272:33
+	.loc	4 275 33                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:275:33
 	ldr	r1, [r0]
 	bic	r1, r1, #28
 	str	r1, [r0]
-	.loc	4 273 29                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:273:29
+	.loc	4 276 29                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:276:29
 	ldr	r1, [r0]
 	orr	r1, r1, #64
 	str	r1, [r0]
-	.loc	4 274 35                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:274:35
+	.loc	4 277 35                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:277:35
 	ldr	r1, [r0]
 	orr	r1, r1, #32
 	str	r1, [r0]
-	.loc	4 275 27                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:275:27
+	.loc	4 278 27                        @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:278:27
 	ldr	r1, [r0]
 	orr	r1, r1, #128
 	str	r1, [r0]
 .Ltmp47:
-	.loc	4 287 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:287:5
+	.loc	4 290 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:290:5
 	bl	uart_stdio_init
 .Ltmp48:
-	.loc	4 154 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:154:5
+	.loc	4 157 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:157:5
 	movw	r5, :lower16:.L.str.8
 	movt	r5, :upper16:.L.str.8
 	mov	r0, r5
 	bl	puts
 .Ltmp49:
-	.loc	4 155 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:155:5
+	.loc	4 158 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:158:5
 	movw	r4, :lower16:.L.str.9
 	movt	r4, :upper16:.L.str.9
 	mov	r0, r4
 	bl	puts
 .Ltmp50:
-	.loc	4 156 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:156:5
+	.loc	4 159 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:159:5
 	movw	r0, :lower16:.L.str.10
 	movt	r0, :upper16:.L.str.10
 	bl	puts
 .Ltmp51:
-	.loc	4 157 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:157:5
+	.loc	4 160 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:160:5
 	adr	r0, .LCPI9_0
 	bl	puts
 .Ltmp52:
-	.loc	4 158 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:158:5
+	.loc	4 161 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:161:5
 	adr	r0, .LCPI9_1
 	bl	puts
 .Ltmp53:
-	.loc	4 159 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:159:5
+	.loc	4 162 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:162:5
 	adr	r0, .LCPI9_2
 	bl	puts
 .Ltmp54:
-	.loc	4 160 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:160:5
+	.loc	4 163 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:163:5
 	adr	r0, .LCPI9_3
 	bl	puts
 .Ltmp55:
-	.loc	4 161 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:161:5
+	.loc	4 164 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:164:5
 	mov	r0, r5
 	bl	puts
 .Ltmp56:
-	.loc	4 163 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:163:5
+	.loc	4 166 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:166:5
 	adr	r0, .LCPI9_4
 	bl	puts
 .Ltmp57:
-	.loc	4 164 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:164:5
+	.loc	4 167 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:167:5
 	adr	r0, .LCPI9_5
 	bl	puts
 .Ltmp58:
-	.loc	4 165 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:165:5
+	.loc	4 168 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:168:5
 	mov	r0, r5
 	bl	puts
 .Ltmp59:
-	.loc	4 167 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:167:5
+	.loc	4 170 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:170:5
 	adr	r0, .LCPI9_6
 	bl	puts
 .Ltmp60:
-	.loc	4 168 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:168:5
+	.loc	4 171 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:171:5
 	adr	r0, .LCPI9_7
 	bl	puts
 .Ltmp61:
-	.loc	4 169 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:169:5
-	mov	r0, r5
-	bl	puts
-.Ltmp62:
-	.loc	4 170 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:170:5
-	adr	r0, .LCPI9_8
-	bl	puts
-.Ltmp63:
-	.loc	4 171 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:171:5
-	adr	r0, .LCPI9_9
-	bl	puts
-.Ltmp64:
 	.loc	4 172 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:172:5
 	mov	r0, r5
 	bl	puts
-.Ltmp65:
+.Ltmp62:
+	.loc	4 173 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:173:5
+	adr	r0, .LCPI9_8
+	bl	puts
+.Ltmp63:
 	.loc	4 174 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:174:5
+	adr	r0, .LCPI9_9
+	bl	puts
+.Ltmp64:
+	.loc	4 175 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:175:5
+	mov	r0, r5
+	bl	puts
+.Ltmp65:
+	.loc	4 177 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:177:5
 	movw	r2, :lower16:Image$$RW_IRAM2_FREERTOS_HEAP_POOL_START$$RO$$Base
 	movw	r1, #19712
 	adr	r0, .LCPI9_10
@@ -640,24 +640,24 @@ main:
 	movt	r1, #1
 	bl	__2printf
 .Ltmp66:
-	.loc	4 178 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:178:5
+	.loc	4 181 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:181:5
 	mov	r0, r4
 	bl	puts
 .Ltmp67:
-	.loc	4 291 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:291:5
+	.loc	4 294 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:294:5
 	bl	dma_init
 .Ltmp68:
-	.loc	4 292 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:292:5
+	.loc	4 295 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:295:5
 	bl	enhanced_flash_dataset_init
 .Ltmp69:
-	.loc	4 305 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:305:5
+	.loc	4 308 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:308:5
 	adr	r0, .LCPI9_11
 	bl	puts
 .Ltmp70:
 	.loc	4 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:0:5
 	movs	r0, #5
 .Ltmp71:
-	.loc	4 307 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:307:9
+	.loc	4 310 10 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:310:10
 	str	r0, [sp]
 	movw	r0, :lower16:app_main_entry
 	movt	r0, :upper16:app_main_entry
@@ -667,29 +667,29 @@ main:
 	str	r6, [sp, #4]
 	bl	xTaskCreate
 .Ltmp72:
-	.loc	4 307 9 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:307:9
+	.loc	4 310 10 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:310:10
 	cmp	r0, #1
 	@DEBUG_VALUE: rt582_utick_set_clear:TIMER <- undef
 	beq	.LBB9_4
 .Ltmp73:
 @ %bb.3:
-	.loc	4 314 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:314:9
+	.loc	4 317 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:317:9
 	movw	r0, :lower16:.L.str.6
 	movt	r0, :upper16:.L.str.6
 	bl	puts
 .Ltmp74:
 .LBB9_4:
-	.loc	4 317 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:317:5
+	.loc	4 320 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:320:5
 	movw	r0, :lower16:.L.str.7
 	movt	r0, :upper16:.L.str.7
 	bl	puts
 .Ltmp75:
-	.loc	4 319 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:319:5
+	.loc	4 322 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:322:5
 	bl	vTaskStartScheduler
 .Ltmp76:
 	.p2align	2
 .LBB9_5:                                @ =>This Inner Loop Header: Depth=1
-	.loc	4 320 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:320:5
+	.loc	4 323 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:323:5
 	b	.LBB9_5
 .Ltmp77:
 	.p2align	2
@@ -712,19 +712,19 @@ main:
 	.asciz	"Build Version: "
 .LCPI9_5:
 .L.str.16:
-	.asciz	"0.0.1\000\000"
+	.asciz	"1.0.0\000\000"
 .LCPI9_6:
 .L.str.17:
 	.asciz	"Build Date: \000\000\000"
 .LCPI9_7:
 .L.str.18:
-	.asciz	"Jan 25 2024"
+	.asciz	"Jan 26 2024"
 .LCPI9_8:
 .L.str.19:
 	.asciz	"Build Time: \000\000\000"
 .LCPI9_9:
 .L.str.20:
-	.asciz	"14:05:28\000\000\000"
+	.asciz	"10:33:47\000\000\000"
 .LCPI9_10:
 .L.str.21:
 	.asciz	"Heap %u@%p\r\n\000\000\000"
@@ -747,7 +747,7 @@ main:
 	.thumb_func
 app_main_entry:
 .Lfunc_begin10:
-	.loc	4 182 0 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:182:0
+	.loc	4 185 0 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:185:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -758,11 +758,11 @@ app_main_entry:
 	.cfi_offset lr, -4
 	.cfi_offset r7, -8
 .Ltmp78:
-	.loc	4 184 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:184:5
+	.loc	4 187 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:187:5
 	bl	app_main
 .Ltmp79:
 	@DEBUG_VALUE: app_main_entry:pvParameters <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	4 185 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:185:5
+	.loc	4 188 5                         @ ../../../components/platform/soc/rt582/rt582_dongle/rt_main.c:188:5
 	movs	r0, #0
 	pop.w	{r7, lr}
 .Ltmp80:
@@ -771,7 +771,7 @@ app_main_entry:
 .Lfunc_end10:
 	.size	app_main_entry, .Lfunc_end10-app_main_entry
 	.cfi_endproc
-	.file	11 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/task.h"
+	.file	11 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/task.h"
 	.cantunwind
 	.fnend
                                         @ -- End function
@@ -1737,14 +1737,14 @@ __ARM_use_no_argv:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string171                @ DW_AT_name
 	.byte	4                               @ DW_AT_decl_file
-	.byte	88                              @ DW_AT_decl_line
+	.byte	91                              @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_external
 	.byte	3                               @ Abbrev [3] 0x37:0x11 DW_TAG_variable
 	.long	.Linfo_string3                  @ DW_AT_name
 	.long	131                             @ DW_AT_type
 	.byte	4                               @ DW_AT_decl_file
-	.byte	93                              @ DW_AT_decl_line
+	.byte	96                              @ DW_AT_decl_line
 	.byte	5                               @ DW_AT_location
 	.byte	3
 	.long	vApplicationGetIdleTaskMemory.xIdleTaskTCB
@@ -1752,7 +1752,7 @@ __ARM_use_no_argv:
 	.long	.Linfo_string29                 @ DW_AT_name
 	.long	465                             @ DW_AT_type
 	.byte	4                               @ DW_AT_decl_file
-	.byte	94                              @ DW_AT_decl_line
+	.byte	97                              @ DW_AT_decl_line
 	.byte	5                               @ DW_AT_location
 	.byte	3
 	.long	vApplicationGetIdleTaskMemory.uxIdleTaskStack
@@ -1760,21 +1760,21 @@ __ARM_use_no_argv:
 	.long	.Ldebug_loc4                    @ DW_AT_location
 	.long	.Linfo_string180                @ DW_AT_name
 	.byte	4                               @ DW_AT_decl_file
-	.byte	88                              @ DW_AT_decl_line
+	.byte	91                              @ DW_AT_decl_line
 	.long	2725                            @ DW_AT_type
 	.byte	5                               @ Abbrev [5] 0x68:0xd DW_TAG_formal_parameter
 	.byte	1                               @ DW_AT_location
 	.byte	81
 	.long	.Linfo_string181                @ DW_AT_name
 	.byte	4                               @ DW_AT_decl_file
-	.byte	88                              @ DW_AT_decl_line
+	.byte	91                              @ DW_AT_decl_line
 	.long	2735                            @ DW_AT_type
 	.byte	5                               @ Abbrev [5] 0x75:0xd DW_TAG_formal_parameter
 	.byte	1                               @ DW_AT_location
 	.byte	82
 	.long	.Linfo_string182                @ DW_AT_name
 	.byte	4                               @ DW_AT_decl_file
-	.byte	88                              @ DW_AT_decl_line
+	.byte	91                              @ DW_AT_decl_line
 	.long	2745                            @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	6                               @ Abbrev [6] 0x83:0xc DW_TAG_typedef
@@ -1957,14 +1957,14 @@ __ARM_use_no_argv:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string172                @ DW_AT_name
 	.byte	4                               @ DW_AT_decl_file
-	.byte	112                             @ DW_AT_decl_line
+	.byte	115                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_external
 	.byte	3                               @ Abbrev [3] 0x1fa:0x11 DW_TAG_variable
 	.long	.Linfo_string31                 @ DW_AT_name
 	.long	131                             @ DW_AT_type
 	.byte	4                               @ DW_AT_decl_file
-	.byte	117                             @ DW_AT_decl_line
+	.byte	120                             @ DW_AT_decl_line
 	.byte	5                               @ DW_AT_location
 	.byte	3
 	.long	vApplicationGetTimerTaskMemory.xTimerTaskTCB
@@ -1972,7 +1972,7 @@ __ARM_use_no_argv:
 	.long	.Linfo_string32                 @ DW_AT_name
 	.long	582                             @ DW_AT_type
 	.byte	4                               @ DW_AT_decl_file
-	.byte	118                             @ DW_AT_decl_line
+	.byte	121                             @ DW_AT_decl_line
 	.byte	5                               @ DW_AT_location
 	.byte	3
 	.long	vApplicationGetTimerTaskMemory.uxTimerTaskStack
@@ -1980,21 +1980,21 @@ __ARM_use_no_argv:
 	.long	.Ldebug_loc5                    @ DW_AT_location
 	.long	.Linfo_string183                @ DW_AT_name
 	.byte	4                               @ DW_AT_decl_file
-	.byte	112                             @ DW_AT_decl_line
+	.byte	115                             @ DW_AT_decl_line
 	.long	2725                            @ DW_AT_type
 	.byte	5                               @ Abbrev [5] 0x22b:0xd DW_TAG_formal_parameter
 	.byte	1                               @ DW_AT_location
 	.byte	81
 	.long	.Linfo_string184                @ DW_AT_name
 	.byte	4                               @ DW_AT_decl_file
-	.byte	112                             @ DW_AT_decl_line
+	.byte	115                             @ DW_AT_decl_line
 	.long	2735                            @ DW_AT_type
 	.byte	5                               @ Abbrev [5] 0x238:0xd DW_TAG_formal_parameter
 	.byte	1                               @ DW_AT_location
 	.byte	82
 	.long	.Linfo_string185                @ DW_AT_name
 	.byte	4                               @ DW_AT_decl_file
-	.byte	112                             @ DW_AT_decl_line
+	.byte	115                             @ DW_AT_decl_line
 	.long	2745                            @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	10                              @ Abbrev [10] 0x246:0xd DW_TAG_array_type
@@ -2777,7 +2777,7 @@ __ARM_use_no_argv:
 	.long	.Ltmp5                          @ DW_AT_low_pc
 	.long	.Ltmp8-.Ltmp5                   @ DW_AT_high_pc
 	.byte	4                               @ DW_AT_call_file
-	.byte	48                              @ DW_AT_call_line
+	.byte	49                              @ DW_AT_call_line
 	.byte	5                               @ DW_AT_call_column
 	.byte	36                              @ Abbrev [36] 0x865:0x9 DW_TAG_variable
 	.long	.Ldebug_loc2                    @ DW_AT_location
@@ -2788,7 +2788,7 @@ __ARM_use_no_argv:
 	.long	.Ltmp8                          @ DW_AT_low_pc
 	.long	.Ltmp9-.Ltmp8                   @ DW_AT_high_pc
 	.byte	4                               @ DW_AT_call_file
-	.byte	49                              @ DW_AT_call_line
+	.byte	50                              @ DW_AT_call_line
 	.byte	5                               @ DW_AT_call_column
 	.byte	37                              @ Abbrev [37] 0x87f:0x6 DW_TAG_formal_parameter
 	.byte	3                               @ DW_AT_const_value
@@ -2803,7 +2803,7 @@ __ARM_use_no_argv:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string167                @ DW_AT_name
 	.byte	4                               @ DW_AT_decl_file
-	.byte	55                              @ DW_AT_decl_line
+	.byte	57                              @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_external
 	.byte	35                              @ Abbrev [35] 0x898:0x1a DW_TAG_inlined_subroutine
@@ -2811,7 +2811,7 @@ __ARM_use_no_argv:
 	.long	.Ltmp13                         @ DW_AT_low_pc
 	.long	.Ltmp16-.Ltmp13                 @ DW_AT_high_pc
 	.byte	4                               @ DW_AT_call_file
-	.byte	60                              @ DW_AT_call_line
+	.byte	62                              @ DW_AT_call_line
 	.byte	5                               @ DW_AT_call_column
 	.byte	36                              @ Abbrev [36] 0x8a8:0x9 DW_TAG_variable
 	.long	.Ldebug_loc3                    @ DW_AT_location
@@ -2822,7 +2822,7 @@ __ARM_use_no_argv:
 	.long	.Ltmp16                         @ DW_AT_low_pc
 	.long	.Ltmp17-.Ltmp16                 @ DW_AT_high_pc
 	.byte	4                               @ DW_AT_call_file
-	.byte	61                              @ DW_AT_call_line
+	.byte	63                              @ DW_AT_call_line
 	.byte	5                               @ DW_AT_call_column
 	.byte	37                              @ Abbrev [37] 0x8c2:0x6 DW_TAG_formal_parameter
 	.byte	3                               @ DW_AT_const_value
@@ -2837,7 +2837,7 @@ __ARM_use_no_argv:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string168                @ DW_AT_name
 	.byte	4                               @ DW_AT_decl_file
-	.byte	67                              @ DW_AT_decl_line
+	.byte	70                              @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_external
 	.byte	2                               @ Abbrev [2] 0x8db:0x1f DW_TAG_subprogram
@@ -2848,7 +2848,7 @@ __ARM_use_no_argv:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string169                @ DW_AT_name
 	.byte	4                               @ DW_AT_decl_file
-	.byte	75                              @ DW_AT_decl_line
+	.byte	78                              @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_external
 	.byte	5                               @ Abbrev [5] 0x8ec:0xd DW_TAG_formal_parameter
@@ -2856,7 +2856,7 @@ __ARM_use_no_argv:
 	.byte	80
 	.long	.Linfo_string179                @ DW_AT_name
 	.byte	4                               @ DW_AT_decl_file
-	.byte	75                              @ DW_AT_decl_line
+	.byte	78                              @ DW_AT_decl_line
 	.long	357                             @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	38                              @ Abbrev [38] 0x8fa:0x11 DW_TAG_subprogram
@@ -2867,7 +2867,7 @@ __ARM_use_no_argv:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string170                @ DW_AT_name
 	.byte	4                               @ DW_AT_decl_file
-	.byte	82                              @ DW_AT_decl_line
+	.byte	85                              @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_external
 	.byte	2                               @ Abbrev [2] 0x90b:0x55 DW_TAG_subprogram
@@ -2878,33 +2878,33 @@ __ARM_use_no_argv:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string173                @ DW_AT_name
 	.byte	4                               @ DW_AT_decl_file
-	.byte	133                             @ DW_AT_decl_line
+	.byte	136                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_external
 	.byte	4                               @ Abbrev [4] 0x91c:0xf DW_TAG_formal_parameter
 	.long	.Ldebug_loc6                    @ DW_AT_location
 	.long	.Linfo_string186                @ DW_AT_name
 	.byte	4                               @ DW_AT_decl_file
-	.byte	133                             @ DW_AT_decl_line
+	.byte	136                             @ DW_AT_decl_line
 	.long	2750                            @ DW_AT_type
 	.byte	4                               @ Abbrev [4] 0x92b:0xf DW_TAG_formal_parameter
 	.long	.Ldebug_loc7                    @ DW_AT_location
 	.long	.Linfo_string187                @ DW_AT_name
 	.byte	4                               @ DW_AT_decl_file
-	.byte	133                             @ DW_AT_decl_line
+	.byte	136                             @ DW_AT_decl_line
 	.long	416                             @ DW_AT_type
 	.byte	39                              @ Abbrev [39] 0x93a:0xf DW_TAG_variable
 	.long	.Ldebug_loc8                    @ DW_AT_location
 	.long	.Linfo_string188                @ DW_AT_name
 	.byte	4                               @ DW_AT_decl_file
-	.byte	135                             @ DW_AT_decl_line
+	.byte	138                             @ DW_AT_decl_line
 	.long	1026                            @ DW_AT_type
 	.byte	35                              @ Abbrev [35] 0x949:0x16 DW_TAG_inlined_subroutine
 	.long	2044                            @ DW_AT_abstract_origin
 	.long	.Ltmp33                         @ DW_AT_low_pc
 	.long	.Ltmp34-.Ltmp33                 @ DW_AT_high_pc
 	.byte	4                               @ DW_AT_call_file
-	.byte	137                             @ DW_AT_call_line
+	.byte	140                             @ DW_AT_call_line
 	.byte	5                               @ DW_AT_call_column
 	.byte	40                              @ Abbrev [40] 0x959:0x5 DW_TAG_variable
 	.long	2052                            @ DW_AT_abstract_origin
@@ -2941,7 +2941,7 @@ __ARM_use_no_argv:
 	.long	.Ltmp36                         @ DW_AT_low_pc
 	.long	.Ltmp37-.Ltmp36                 @ DW_AT_high_pc
 	.byte	4                               @ DW_AT_call_file
-	.short	264                             @ DW_AT_call_line
+	.short	267                             @ DW_AT_call_line
 	.byte	5                               @ DW_AT_call_column
 	.byte	37                              @ Abbrev [37] 0x9a7:0x6 DW_TAG_formal_parameter
 	.byte	15                              @ DW_AT_const_value
@@ -2954,31 +2954,31 @@ __ARM_use_no_argv:
 	.byte	31                              @ Abbrev [31] 0x9b5:0x14 DW_TAG_subprogram
 	.long	.Linfo_string159                @ DW_AT_name
 	.byte	4                               @ DW_AT_decl_file
-	.byte	140                             @ DW_AT_decl_line
+	.byte	143                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.byte	1                               @ DW_AT_inline
 	.byte	32                              @ Abbrev [32] 0x9bd:0xb DW_TAG_variable
 	.long	.Linfo_string160                @ DW_AT_name
 	.byte	4                               @ DW_AT_decl_file
-	.byte	142                             @ DW_AT_decl_line
+	.byte	145                             @ DW_AT_decl_line
 	.long	949                             @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	44                              @ Abbrev [44] 0x9c9:0x16 DW_TAG_subprogram
 	.long	.Linfo_string161                @ DW_AT_name
 	.byte	4                               @ DW_AT_decl_file
-	.short	259                             @ DW_AT_decl_line
+	.short	262                             @ DW_AT_decl_line
                                         @ DW_AT_external
 	.byte	1                               @ DW_AT_inline
 	.byte	45                              @ Abbrev [45] 0x9d2:0xc DW_TAG_variable
 	.long	.Linfo_string162                @ DW_AT_name
 	.byte	4                               @ DW_AT_decl_file
-	.short	261                             @ DW_AT_decl_line
+	.short	264                             @ DW_AT_decl_line
 	.long	1038                            @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	46                              @ Abbrev [46] 0x9df:0x8 DW_TAG_subprogram
 	.long	.Linfo_string163                @ DW_AT_name
 	.byte	4                               @ DW_AT_decl_file
-	.byte	152                             @ DW_AT_decl_line
+	.byte	155                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.byte	1                               @ DW_AT_inline
 	.byte	47                              @ Abbrev [47] 0x9e7:0x71 DW_TAG_subprogram
@@ -2989,7 +2989,7 @@ __ARM_use_no_argv:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string174                @ DW_AT_name
 	.byte	4                               @ DW_AT_decl_file
-	.short	279                             @ DW_AT_decl_line
+	.short	282                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	949                             @ DW_AT_type
                                         @ DW_AT_external
@@ -2998,7 +2998,7 @@ __ARM_use_no_argv:
 	.long	.Ltmp40                         @ DW_AT_low_pc
 	.long	.Ltmp43-.Ltmp40                 @ DW_AT_high_pc
 	.byte	4                               @ DW_AT_call_file
-	.short	281                             @ DW_AT_call_line
+	.short	284                             @ DW_AT_call_line
 	.byte	5                               @ DW_AT_call_column
 	.byte	48                              @ Abbrev [48] 0xa0e:0x7 DW_TAG_variable
 	.byte	1                               @ DW_AT_location
@@ -3010,14 +3010,14 @@ __ARM_use_no_argv:
 	.long	.Ltmp45                         @ DW_AT_low_pc
 	.long	.Ltmp47-.Ltmp45                 @ DW_AT_high_pc
 	.byte	4                               @ DW_AT_call_file
-	.short	285                             @ DW_AT_call_line
+	.short	288                             @ DW_AT_call_line
 	.byte	5                               @ DW_AT_call_column
 	.byte	42                              @ Abbrev [42] 0xa27:0x1e DW_TAG_inlined_subroutine
 	.long	2400                            @ DW_AT_abstract_origin
 	.long	.Ltmp45                         @ DW_AT_low_pc
 	.long	.Ltmp46-.Ltmp45                 @ DW_AT_high_pc
 	.byte	4                               @ DW_AT_call_file
-	.short	264                             @ DW_AT_call_line
+	.short	267                             @ DW_AT_call_line
 	.byte	5                               @ DW_AT_call_column
 	.byte	37                              @ Abbrev [37] 0xa38:0x6 DW_TAG_formal_parameter
 	.byte	15                              @ DW_AT_const_value
@@ -3032,7 +3032,7 @@ __ARM_use_no_argv:
 	.long	.Ltmp48                         @ DW_AT_low_pc
 	.long	.Ltmp67-.Ltmp48                 @ DW_AT_high_pc
 	.byte	4                               @ DW_AT_call_file
-	.short	289                             @ DW_AT_call_line
+	.short	292                             @ DW_AT_call_line
 	.byte	5                               @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	50                              @ Abbrev [50] 0xa58:0x2a DW_TAG_subprogram
@@ -3043,13 +3043,13 @@ __ARM_use_no_argv:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string175                @ DW_AT_name
 	.byte	4                               @ DW_AT_decl_file
-	.byte	181                             @ DW_AT_decl_line
+	.byte	184                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.byte	4                               @ Abbrev [4] 0xa69:0xf DW_TAG_formal_parameter
 	.long	.Ldebug_loc9                    @ DW_AT_location
 	.long	.Linfo_string189                @ DW_AT_name
 	.byte	4                               @ DW_AT_decl_file
-	.byte	181                             @ DW_AT_decl_line
+	.byte	184                             @ DW_AT_decl_line
 	.long	296                             @ DW_AT_type
 	.byte	51                              @ Abbrev [51] 0xa78:0x9 DW_TAG_GNU_call_site
 	.long	2690                            @ DW_AT_abstract_origin
@@ -3126,381 +3126,381 @@ __ARM_use_no_argv:
 .Linfo_string1:
 	.asciz	"../../../components/platform/soc/rt582/rt582_dongle\\rt_main.c" @ string offset=55
 .Linfo_string2:
-	.asciz	"D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" @ string offset=117
+	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=117
 .Linfo_string3:
-	.asciz	"xIdleTaskTCB"                  @ string offset=179
+	.asciz	"xIdleTaskTCB"                  @ string offset=178
 .Linfo_string4:
-	.asciz	"pxDummy1"                      @ string offset=192
+	.asciz	"pxDummy1"                      @ string offset=191
 .Linfo_string5:
-	.asciz	"xDummy3"                       @ string offset=201
+	.asciz	"xDummy3"                       @ string offset=200
 .Linfo_string6:
-	.asciz	"xDummy2"                       @ string offset=209
+	.asciz	"xDummy2"                       @ string offset=208
 .Linfo_string7:
-	.asciz	"unsigned int"                  @ string offset=217
+	.asciz	"unsigned int"                  @ string offset=216
 .Linfo_string8:
-	.asciz	"uint32_t"                      @ string offset=230
+	.asciz	"uint32_t"                      @ string offset=229
 .Linfo_string9:
-	.asciz	"TickType_t"                    @ string offset=239
+	.asciz	"TickType_t"                    @ string offset=238
 .Linfo_string10:
-	.asciz	"pvDummy3"                      @ string offset=250
+	.asciz	"pvDummy3"                      @ string offset=249
 .Linfo_string11:
-	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=259
+	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=258
 .Linfo_string12:
-	.asciz	"xSTATIC_LIST_ITEM"             @ string offset=279
+	.asciz	"xSTATIC_LIST_ITEM"             @ string offset=278
 .Linfo_string13:
-	.asciz	"StaticListItem_t"              @ string offset=297
+	.asciz	"StaticListItem_t"              @ string offset=296
 .Linfo_string14:
-	.asciz	"uxDummy5"                      @ string offset=314
+	.asciz	"uxDummy5"                      @ string offset=313
 .Linfo_string15:
-	.asciz	"long unsigned int"             @ string offset=323
+	.asciz	"long unsigned int"             @ string offset=322
 .Linfo_string16:
-	.asciz	"UBaseType_t"                   @ string offset=341
+	.asciz	"UBaseType_t"                   @ string offset=340
 .Linfo_string17:
-	.asciz	"pxDummy6"                      @ string offset=353
+	.asciz	"pxDummy6"                      @ string offset=352
 .Linfo_string18:
-	.asciz	"ucDummy7"                      @ string offset=362
+	.asciz	"ucDummy7"                      @ string offset=361
 .Linfo_string19:
-	.asciz	"unsigned char"                 @ string offset=371
+	.asciz	"unsigned char"                 @ string offset=370
 .Linfo_string20:
-	.asciz	"uint8_t"                       @ string offset=385
+	.asciz	"uint8_t"                       @ string offset=384
 .Linfo_string21:
-	.asciz	"uxDummy10"                     @ string offset=393
+	.asciz	"uxDummy10"                     @ string offset=392
 .Linfo_string22:
-	.asciz	"uxDummy12"                     @ string offset=403
+	.asciz	"uxDummy12"                     @ string offset=402
 .Linfo_string23:
-	.asciz	"ulDummy16"                     @ string offset=413
+	.asciz	"ulDummy16"                     @ string offset=412
 .Linfo_string24:
-	.asciz	"ulDummy18"                     @ string offset=423
+	.asciz	"ulDummy18"                     @ string offset=422
 .Linfo_string25:
-	.asciz	"ucDummy19"                     @ string offset=433
+	.asciz	"ucDummy19"                     @ string offset=432
 .Linfo_string26:
-	.asciz	"uxDummy20"                     @ string offset=443
+	.asciz	"uxDummy20"                     @ string offset=442
 .Linfo_string27:
-	.asciz	"xSTATIC_TCB"                   @ string offset=453
+	.asciz	"xSTATIC_TCB"                   @ string offset=452
 .Linfo_string28:
-	.asciz	"StaticTask_t"                  @ string offset=465
+	.asciz	"StaticTask_t"                  @ string offset=464
 .Linfo_string29:
-	.asciz	"uxIdleTaskStack"               @ string offset=478
+	.asciz	"uxIdleTaskStack"               @ string offset=477
 .Linfo_string30:
-	.asciz	"StackType_t"                   @ string offset=494
+	.asciz	"StackType_t"                   @ string offset=493
 .Linfo_string31:
-	.asciz	"xTimerTaskTCB"                 @ string offset=506
+	.asciz	"xTimerTaskTCB"                 @ string offset=505
 .Linfo_string32:
-	.asciz	"uxTimerTaskStack"              @ string offset=520
+	.asciz	"uxTimerTaskStack"              @ string offset=519
 .Linfo_string33:
-	.asciz	"xHeapRegions"                  @ string offset=537
+	.asciz	"xHeapRegions"                  @ string offset=536
 .Linfo_string34:
-	.asciz	"pucStartAddress"               @ string offset=550
+	.asciz	"pucStartAddress"               @ string offset=549
 .Linfo_string35:
-	.asciz	"xSizeInBytes"                  @ string offset=566
+	.asciz	"xSizeInBytes"                  @ string offset=565
 .Linfo_string36:
-	.asciz	"size_t"                        @ string offset=579
+	.asciz	"size_t"                        @ string offset=578
 .Linfo_string37:
-	.asciz	"HeapRegion"                    @ string offset=586
+	.asciz	"HeapRegion"                    @ string offset=585
 .Linfo_string38:
-	.asciz	"HeapRegion_t"                  @ string offset=597
+	.asciz	"HeapRegion_t"                  @ string offset=596
 .Linfo_string39:
-	.asciz	"int"                           @ string offset=610
+	.asciz	"int"                           @ string offset=609
 .Linfo_string40:
-	.asciz	"NonMaskableInt_IRQn"           @ string offset=614
+	.asciz	"NonMaskableInt_IRQn"           @ string offset=613
 .Linfo_string41:
-	.asciz	"HardFault_IRQn"                @ string offset=634
+	.asciz	"HardFault_IRQn"                @ string offset=633
 .Linfo_string42:
-	.asciz	"MemoryManagement_IRQn"         @ string offset=649
+	.asciz	"MemoryManagement_IRQn"         @ string offset=648
 .Linfo_string43:
-	.asciz	"BusFault_IRQn"                 @ string offset=671
+	.asciz	"BusFault_IRQn"                 @ string offset=670
 .Linfo_string44:
-	.asciz	"UsageFault_IRQn"               @ string offset=685
+	.asciz	"UsageFault_IRQn"               @ string offset=684
 .Linfo_string45:
-	.asciz	"SVCall_IRQn"                   @ string offset=701
+	.asciz	"SVCall_IRQn"                   @ string offset=700
 .Linfo_string46:
-	.asciz	"DebugMonitor_IRQn"             @ string offset=713
+	.asciz	"DebugMonitor_IRQn"             @ string offset=712
 .Linfo_string47:
-	.asciz	"PendSV_IRQn"                   @ string offset=731
+	.asciz	"PendSV_IRQn"                   @ string offset=730
 .Linfo_string48:
-	.asciz	"SysTick_IRQn"                  @ string offset=743
+	.asciz	"SysTick_IRQn"                  @ string offset=742
 .Linfo_string49:
-	.asciz	"Gpio_IRQn"                     @ string offset=756
+	.asciz	"Gpio_IRQn"                     @ string offset=755
 .Linfo_string50:
-	.asciz	"Timer0_IRQn"                   @ string offset=766
+	.asciz	"Timer0_IRQn"                   @ string offset=765
 .Linfo_string51:
-	.asciz	"Timer1_IRQn"                   @ string offset=778
+	.asciz	"Timer1_IRQn"                   @ string offset=777
 .Linfo_string52:
-	.asciz	"Wdt_IRQn"                      @ string offset=790
+	.asciz	"Wdt_IRQn"                      @ string offset=789
 .Linfo_string53:
-	.asciz	"Uart0_IRQn"                    @ string offset=799
+	.asciz	"Uart0_IRQn"                    @ string offset=798
 .Linfo_string54:
-	.asciz	"I2cm_IRQn"                     @ string offset=810
+	.asciz	"I2cm_IRQn"                     @ string offset=809
 .Linfo_string55:
-	.asciz	"FlashCtl_IRQn"                 @ string offset=820
+	.asciz	"FlashCtl_IRQn"                 @ string offset=819
 .Linfo_string56:
-	.asciz	"Uart1_IRQn"                    @ string offset=834
+	.asciz	"Uart1_IRQn"                    @ string offset=833
 .Linfo_string57:
-	.asciz	"Rtc_IRQn"                      @ string offset=845
+	.asciz	"Rtc_IRQn"                      @ string offset=844
 .Linfo_string58:
-	.asciz	"Dma0_C0_IRQn"                  @ string offset=854
+	.asciz	"Dma0_C0_IRQn"                  @ string offset=853
 .Linfo_string59:
-	.asciz	"Dma0_C1_IRQn"                  @ string offset=867
+	.asciz	"Dma0_C1_IRQn"                  @ string offset=866
 .Linfo_string60:
-	.asciz	"Dma0_C2_IRQn"                  @ string offset=880
+	.asciz	"Dma0_C2_IRQn"                  @ string offset=879
 .Linfo_string61:
-	.asciz	"Dma0_C3_IRQn"                  @ string offset=893
+	.asciz	"Dma0_C3_IRQn"                  @ string offset=892
 .Linfo_string62:
-	.asciz	"Qspi0_IRQn"                    @ string offset=906
+	.asciz	"Qspi0_IRQn"                    @ string offset=905
 .Linfo_string63:
-	.asciz	"I2s0_IRQn"                     @ string offset=917
+	.asciz	"I2s0_IRQn"                     @ string offset=916
 .Linfo_string64:
-	.asciz	"Timer3_IRQn"                   @ string offset=927
+	.asciz	"Timer3_IRQn"                   @ string offset=926
 .Linfo_string65:
-	.asciz	"Timer4_IRQn"                   @ string offset=939
+	.asciz	"Timer4_IRQn"                   @ string offset=938
 .Linfo_string66:
-	.asciz	"Dma1_C2_IRQn"                  @ string offset=951
+	.asciz	"Dma1_C2_IRQn"                  @ string offset=950
 .Linfo_string67:
-	.asciz	"Bod_IRQn"                      @ string offset=964
+	.asciz	"Bod_IRQn"                      @ string offset=963
 .Linfo_string68:
-	.asciz	"Uart2_IRQn"                    @ string offset=973
+	.asciz	"Uart2_IRQn"                    @ string offset=972
 .Linfo_string69:
-	.asciz	"CommSubsystem_IRQn"            @ string offset=984
+	.asciz	"CommSubsystem_IRQn"            @ string offset=983
 .Linfo_string70:
-	.asciz	"Pwm0_IRQn"                     @ string offset=1003
+	.asciz	"Pwm0_IRQn"                     @ string offset=1002
 .Linfo_string71:
-	.asciz	"Pwm1_IRQn"                     @ string offset=1013
+	.asciz	"Pwm1_IRQn"                     @ string offset=1012
 .Linfo_string72:
-	.asciz	"Pwm2_IRQn"                     @ string offset=1023
+	.asciz	"Pwm2_IRQn"                     @ string offset=1022
 .Linfo_string73:
-	.asciz	"Pwm3_IRQn"                     @ string offset=1033
+	.asciz	"Pwm3_IRQn"                     @ string offset=1032
 .Linfo_string74:
-	.asciz	"Pwm4_IRQn"                     @ string offset=1043
+	.asciz	"Pwm4_IRQn"                     @ string offset=1042
 .Linfo_string75:
-	.asciz	"Sadc_IRQn"                     @ string offset=1053
+	.asciz	"Sadc_IRQn"                     @ string offset=1052
 .Linfo_string76:
-	.asciz	"Crypto_IRQn"                   @ string offset=1063
+	.asciz	"Crypto_IRQn"                   @ string offset=1062
 .Linfo_string77:
-	.asciz	"Timer2_IRQn"                   @ string offset=1075
+	.asciz	"Timer2_IRQn"                   @ string offset=1074
 .Linfo_string78:
-	.asciz	"Qspi1_IRQn"                    @ string offset=1087
+	.asciz	"Qspi1_IRQn"                    @ string offset=1086
 .Linfo_string79:
-	.asciz	"Soft_IRQn"                     @ string offset=1098
+	.asciz	"Soft_IRQn"                     @ string offset=1097
 .Linfo_string80:
-	.asciz	"Trng_IRQn"                     @ string offset=1108
+	.asciz	"Trng_IRQn"                     @ string offset=1107
 .Linfo_string81:
-	.asciz	"Comp_IRQn"                     @ string offset=1118
+	.asciz	"Comp_IRQn"                     @ string offset=1117
 .Linfo_string82:
-	.asciz	"IRQn_Type"                     @ string offset=1128
+	.asciz	"IRQn_Type"                     @ string offset=1127
 .Linfo_string83:
-	.asciz	"EFD_NO_ERR"                    @ string offset=1138
+	.asciz	"EFD_NO_ERR"                    @ string offset=1137
 .Linfo_string84:
-	.asciz	"EFD_ERASE_ERR"                 @ string offset=1149
+	.asciz	"EFD_ERASE_ERR"                 @ string offset=1148
 .Linfo_string85:
-	.asciz	"EFD_READ_ERR"                  @ string offset=1163
+	.asciz	"EFD_READ_ERR"                  @ string offset=1162
 .Linfo_string86:
-	.asciz	"EFD_WRITE_ERR"                 @ string offset=1176
+	.asciz	"EFD_WRITE_ERR"                 @ string offset=1175
 .Linfo_string87:
-	.asciz	"EFD_ENV_NAME_ERR"              @ string offset=1190
+	.asciz	"EFD_ENV_NAME_ERR"              @ string offset=1189
 .Linfo_string88:
-	.asciz	"EFD_ENV_NAME_EXIST"            @ string offset=1207
+	.asciz	"EFD_ENV_NAME_EXIST"            @ string offset=1206
 .Linfo_string89:
-	.asciz	"EFD_ENV_FULL"                  @ string offset=1226
+	.asciz	"EFD_ENV_FULL"                  @ string offset=1225
 .Linfo_string90:
-	.asciz	"EFD_ENV_INIT_FAILED"           @ string offset=1239
+	.asciz	"EFD_ENV_INIT_FAILED"           @ string offset=1238
 .Linfo_string91:
-	.asciz	"EFD_ENV_ARG_ERR"               @ string offset=1259
+	.asciz	"EFD_ENV_ARG_ERR"               @ string offset=1258
 .Linfo_string92:
-	.asciz	"unsigned short"                @ string offset=1275
+	.asciz	"unsigned short"                @ string offset=1274
 .Linfo_string93:
-	.asciz	"char"                          @ string offset=1290
+	.asciz	"char"                          @ string offset=1289
 .Linfo_string94:
-	.asciz	"LOAD"                          @ string offset=1295
+	.asciz	"LOAD"                          @ string offset=1294
 .Linfo_string95:
-	.asciz	"VALUE"                         @ string offset=1300
+	.asciz	"VALUE"                         @ string offset=1299
 .Linfo_string96:
-	.asciz	"CONTROL"                       @ string offset=1306
+	.asciz	"CONTROL"                       @ string offset=1305
 .Linfo_string97:
-	.asciz	"bit"                           @ string offset=1314
+	.asciz	"bit"                           @ string offset=1313
 .Linfo_string98:
-	.asciz	"RESERVED1"                     @ string offset=1318
+	.asciz	"RESERVED1"                     @ string offset=1317
 .Linfo_string99:
-	.asciz	"PRESCALE"                      @ string offset=1328
+	.asciz	"PRESCALE"                      @ string offset=1327
 .Linfo_string100:
-	.asciz	"INT_ENABLE"                    @ string offset=1337
+	.asciz	"INT_ENABLE"                    @ string offset=1336
 .Linfo_string101:
-	.asciz	"MODE"                          @ string offset=1348
+	.asciz	"MODE"                          @ string offset=1347
 .Linfo_string102:
-	.asciz	"EN"                            @ string offset=1353
+	.asciz	"EN"                            @ string offset=1352
 .Linfo_string103:
-	.asciz	"INT_STATUS"                    @ string offset=1356
+	.asciz	"INT_STATUS"                    @ string offset=1355
 .Linfo_string104:
-	.asciz	"RESERVED2"                     @ string offset=1367
+	.asciz	"RESERVED2"                     @ string offset=1366
 .Linfo_string105:
-	.asciz	"timern_ctrl_b"                 @ string offset=1377
+	.asciz	"timern_ctrl_b"                 @ string offset=1376
 .Linfo_string106:
-	.asciz	"reg"                           @ string offset=1391
+	.asciz	"reg"                           @ string offset=1390
 .Linfo_string107:
-	.asciz	"timern_ctrl_s"                 @ string offset=1395
+	.asciz	"timern_ctrl_s"                 @ string offset=1394
 .Linfo_string108:
-	.asciz	"timern_ctrl_t"                 @ string offset=1409
+	.asciz	"timern_ctrl_t"                 @ string offset=1408
 .Linfo_string109:
-	.asciz	"CLEAR"                         @ string offset=1423
+	.asciz	"CLEAR"                         @ string offset=1422
 .Linfo_string110:
-	.asciz	"REPEAT_DELAY"                  @ string offset=1429
+	.asciz	"REPEAT_DELAY"                  @ string offset=1428
 .Linfo_string111:
-	.asciz	"INT_REPEAT_DELAY"              @ string offset=1442
+	.asciz	"INT_REPEAT_DELAY"              @ string offset=1441
 .Linfo_string112:
-	.asciz	"RESERVED"                      @ string offset=1459
+	.asciz	"RESERVED"                      @ string offset=1458
 .Linfo_string113:
-	.asciz	"timern_repdly_b"               @ string offset=1468
+	.asciz	"timern_repdly_b"               @ string offset=1467
 .Linfo_string114:
-	.asciz	"timern_repdly_s"               @ string offset=1484
+	.asciz	"timern_repdly_s"               @ string offset=1483
 .Linfo_string115:
-	.asciz	"timern_repdly_t"               @ string offset=1500
+	.asciz	"timern_repdly_t"               @ string offset=1499
 .Linfo_string116:
-	.asciz	"timern_t"                      @ string offset=1516
+	.asciz	"timern_t"                      @ string offset=1515
 .Linfo_string117:
-	.asciz	"long int"                      @ string offset=1525
+	.asciz	"long int"                      @ string offset=1524
 .Linfo_string118:
-	.asciz	"BaseType_t"                    @ string offset=1534
+	.asciz	"BaseType_t"                    @ string offset=1533
 .Linfo_string119:
-	.asciz	"int32_t"                       @ string offset=1545
+	.asciz	"int32_t"                       @ string offset=1544
 .Linfo_string120:
-	.asciz	"ISER"                          @ string offset=1553
+	.asciz	"ISER"                          @ string offset=1552
 .Linfo_string121:
-	.asciz	"RESERVED0"                     @ string offset=1558
+	.asciz	"RESERVED0"                     @ string offset=1557
 .Linfo_string122:
-	.asciz	"ICER"                          @ string offset=1568
+	.asciz	"ICER"                          @ string offset=1567
 .Linfo_string123:
-	.asciz	"ISPR"                          @ string offset=1573
+	.asciz	"ISPR"                          @ string offset=1572
 .Linfo_string124:
-	.asciz	"ICPR"                          @ string offset=1578
+	.asciz	"ICPR"                          @ string offset=1577
 .Linfo_string125:
-	.asciz	"RESERVED3"                     @ string offset=1583
+	.asciz	"RESERVED3"                     @ string offset=1582
 .Linfo_string126:
-	.asciz	"IABR"                          @ string offset=1593
+	.asciz	"IABR"                          @ string offset=1592
 .Linfo_string127:
-	.asciz	"RESERVED4"                     @ string offset=1598
+	.asciz	"RESERVED4"                     @ string offset=1597
 .Linfo_string128:
-	.asciz	"IP"                            @ string offset=1608
+	.asciz	"IP"                            @ string offset=1607
 .Linfo_string129:
-	.asciz	"RESERVED5"                     @ string offset=1611
+	.asciz	"RESERVED5"                     @ string offset=1610
 .Linfo_string130:
-	.asciz	"STIR"                          @ string offset=1621
+	.asciz	"STIR"                          @ string offset=1620
 .Linfo_string131:
-	.asciz	"NVIC_Type"                     @ string offset=1626
+	.asciz	"NVIC_Type"                     @ string offset=1625
 .Linfo_string132:
-	.asciz	"CPUID"                         @ string offset=1636
+	.asciz	"CPUID"                         @ string offset=1635
 .Linfo_string133:
-	.asciz	"ICSR"                          @ string offset=1642
+	.asciz	"ICSR"                          @ string offset=1641
 .Linfo_string134:
-	.asciz	"VTOR"                          @ string offset=1647
+	.asciz	"VTOR"                          @ string offset=1646
 .Linfo_string135:
-	.asciz	"AIRCR"                         @ string offset=1652
+	.asciz	"AIRCR"                         @ string offset=1651
 .Linfo_string136:
-	.asciz	"SCR"                           @ string offset=1658
+	.asciz	"SCR"                           @ string offset=1657
 .Linfo_string137:
-	.asciz	"CCR"                           @ string offset=1662
+	.asciz	"CCR"                           @ string offset=1661
 .Linfo_string138:
-	.asciz	"SHP"                           @ string offset=1666
+	.asciz	"SHP"                           @ string offset=1665
 .Linfo_string139:
-	.asciz	"SHCSR"                         @ string offset=1670
+	.asciz	"SHCSR"                         @ string offset=1669
 .Linfo_string140:
-	.asciz	"CFSR"                          @ string offset=1676
+	.asciz	"CFSR"                          @ string offset=1675
 .Linfo_string141:
-	.asciz	"HFSR"                          @ string offset=1681
+	.asciz	"HFSR"                          @ string offset=1680
 .Linfo_string142:
-	.asciz	"DFSR"                          @ string offset=1686
+	.asciz	"DFSR"                          @ string offset=1685
 .Linfo_string143:
-	.asciz	"MMFAR"                         @ string offset=1691
+	.asciz	"MMFAR"                         @ string offset=1690
 .Linfo_string144:
-	.asciz	"BFAR"                          @ string offset=1697
+	.asciz	"BFAR"                          @ string offset=1696
 .Linfo_string145:
-	.asciz	"AFSR"                          @ string offset=1702
+	.asciz	"AFSR"                          @ string offset=1701
 .Linfo_string146:
-	.asciz	"PFR"                           @ string offset=1707
+	.asciz	"PFR"                           @ string offset=1706
 .Linfo_string147:
-	.asciz	"DFR"                           @ string offset=1711
+	.asciz	"DFR"                           @ string offset=1710
 .Linfo_string148:
-	.asciz	"ADR"                           @ string offset=1715
+	.asciz	"ADR"                           @ string offset=1714
 .Linfo_string149:
-	.asciz	"MMFR"                          @ string offset=1719
+	.asciz	"MMFR"                          @ string offset=1718
 .Linfo_string150:
-	.asciz	"ISAR"                          @ string offset=1724
+	.asciz	"ISAR"                          @ string offset=1723
 .Linfo_string151:
-	.asciz	"CPACR"                         @ string offset=1729
+	.asciz	"CPACR"                         @ string offset=1728
 .Linfo_string152:
-	.asciz	"SCB_Type"                      @ string offset=1735
+	.asciz	"SCB_Type"                      @ string offset=1734
 .Linfo_string153:
-	.asciz	"vPortRaiseBASEPRI"             @ string offset=1744
+	.asciz	"vPortRaiseBASEPRI"             @ string offset=1743
 .Linfo_string154:
-	.asciz	"ulNewBASEPRI"                  @ string offset=1762
+	.asciz	"ulNewBASEPRI"                  @ string offset=1761
 .Linfo_string155:
-	.asciz	"__NVIC_DisableIRQ"             @ string offset=1775
+	.asciz	"__NVIC_DisableIRQ"             @ string offset=1774
 .Linfo_string156:
-	.asciz	"IRQn"                          @ string offset=1793
+	.asciz	"IRQn"                          @ string offset=1792
 .Linfo_string157:
-	.asciz	"__NVIC_SetPriority"            @ string offset=1798
+	.asciz	"__NVIC_SetPriority"            @ string offset=1797
 .Linfo_string158:
-	.asciz	"priority"                      @ string offset=1817
+	.asciz	"priority"                      @ string offset=1816
 .Linfo_string159:
-	.asciz	"pin_mux_init"                  @ string offset=1826
+	.asciz	"pin_mux_init"                  @ string offset=1825
 .Linfo_string160:
-	.asciz	"i"                             @ string offset=1839
+	.asciz	"i"                             @ string offset=1838
 .Linfo_string161:
-	.asciz	"rt582_utick_set_clear"         @ string offset=1841
+	.asciz	"rt582_utick_set_clear"         @ string offset=1840
 .Linfo_string162:
-	.asciz	"TIMER"                         @ string offset=1863
+	.asciz	"TIMER"                         @ string offset=1862
 .Linfo_string163:
-	.asciz	"_dump_boot_info"               @ string offset=1869
+	.asciz	"_dump_boot_info"               @ string offset=1868
 .Linfo_string164:
-	.asciz	"vTaskDelete"                   @ string offset=1885
+	.asciz	"vTaskDelete"                   @ string offset=1884
 .Linfo_string165:
-	.asciz	"tskTaskControlBlock"           @ string offset=1897
+	.asciz	"tskTaskControlBlock"           @ string offset=1896
 .Linfo_string166:
-	.asciz	"vApplicationStackOverflowHook" @ string offset=1917
+	.asciz	"vApplicationStackOverflowHook" @ string offset=1916
 .Linfo_string167:
-	.asciz	"vApplicationMallocFailedHook"  @ string offset=1947
+	.asciz	"vApplicationMallocFailedHook"  @ string offset=1946
 .Linfo_string168:
-	.asciz	"vApplicationIdleHook"          @ string offset=1976
+	.asciz	"vApplicationIdleHook"          @ string offset=1975
 .Linfo_string169:
-	.asciz	"vApplicationSleep"             @ string offset=1997
+	.asciz	"vApplicationSleep"             @ string offset=1996
 .Linfo_string170:
-	.asciz	"vApplicationTickHook"          @ string offset=2015
+	.asciz	"vApplicationTickHook"          @ string offset=2014
 .Linfo_string171:
-	.asciz	"vApplicationGetIdleTaskMemory" @ string offset=2036
+	.asciz	"vApplicationGetIdleTaskMemory" @ string offset=2035
 .Linfo_string172:
-	.asciz	"vApplicationGetTimerTaskMemory" @ string offset=2066
+	.asciz	"vApplicationGetTimerTaskMemory" @ string offset=2065
 .Linfo_string173:
-	.asciz	"vAssertCalled"                 @ string offset=2097
+	.asciz	"vAssertCalled"                 @ string offset=2096
 .Linfo_string174:
-	.asciz	"main"                          @ string offset=2111
+	.asciz	"main"                          @ string offset=2110
 .Linfo_string175:
-	.asciz	"app_main_entry"                @ string offset=2116
+	.asciz	"app_main_entry"                @ string offset=2115
 .Linfo_string176:
-	.asciz	"xTask"                         @ string offset=2131
+	.asciz	"xTask"                         @ string offset=2130
 .Linfo_string177:
-	.asciz	"TaskHandle_t"                  @ string offset=2137
+	.asciz	"TaskHandle_t"                  @ string offset=2136
 .Linfo_string178:
-	.asciz	"pcTaskName"                    @ string offset=2150
+	.asciz	"pcTaskName"                    @ string offset=2149
 .Linfo_string179:
-	.asciz	"xExpectedIdleTime"             @ string offset=2161
+	.asciz	"xExpectedIdleTime"             @ string offset=2160
 .Linfo_string180:
-	.asciz	"ppxIdleTaskTCBBuffer"          @ string offset=2179
+	.asciz	"ppxIdleTaskTCBBuffer"          @ string offset=2178
 .Linfo_string181:
-	.asciz	"ppxIdleTaskStackBuffer"        @ string offset=2200
+	.asciz	"ppxIdleTaskStackBuffer"        @ string offset=2199
 .Linfo_string182:
-	.asciz	"pulIdleTaskStackSize"          @ string offset=2223
+	.asciz	"pulIdleTaskStackSize"          @ string offset=2222
 .Linfo_string183:
-	.asciz	"ppxTimerTaskTCBBuffer"         @ string offset=2244
+	.asciz	"ppxTimerTaskTCBBuffer"         @ string offset=2243
 .Linfo_string184:
-	.asciz	"ppxTimerTaskStackBuffer"       @ string offset=2266
+	.asciz	"ppxTimerTaskStackBuffer"       @ string offset=2265
 .Linfo_string185:
-	.asciz	"pulTimerTaskStackSize"         @ string offset=2290
+	.asciz	"pulTimerTaskStackSize"         @ string offset=2289
 .Linfo_string186:
-	.asciz	"pcFileName"                    @ string offset=2312
+	.asciz	"pcFileName"                    @ string offset=2311
 .Linfo_string187:
-	.asciz	"ulLine"                        @ string offset=2323
+	.asciz	"ulLine"                        @ string offset=2322
 .Linfo_string188:
-	.asciz	"current_task_name"             @ string offset=2330
+	.asciz	"current_task_name"             @ string offset=2329
 .Linfo_string189:
-	.asciz	"pvParameters"                  @ string offset=2348
+	.asciz	"pvParameters"                  @ string offset=2347
 	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals

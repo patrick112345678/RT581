@@ -18,8 +18,8 @@
 	.eabi_attribute	26, 2	@ Tag_ABI_enum_size
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"ecdh.c"
-	.file	1 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/include\\mbedtls/ecp.h"
-	.file	2 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/include\\mbedtls/ecdh.h"
+	.file	1 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/include\\mbedtls/ecp.h"
+	.file	2 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/include\\mbedtls/ecdh.h"
 	.file	3 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdio.h"
 	.section	.text.mbedtls_ecdh_can_do,"ax",%progbits
 	.hidden	mbedtls_ecdh_can_do             @ -- Begin function mbedtls_ecdh_can_do
@@ -30,7 +30,7 @@
 	.thumb_func
 mbedtls_ecdh_can_do:
 .Lfunc_begin0:
-	.file	4 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/ecdh.c"
+	.file	4 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/ecdh.c"
 	.loc	4 58 0                          @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/ecdh.c:58:0
 	.fnstart
 	.cfi_sections .debug_frame
@@ -158,7 +158,7 @@ mbedtls_ecdh_gen_public:
 .Lfunc_end1:
 	.size	mbedtls_ecdh_gen_public, .Lfunc_end1-mbedtls_ecdh_gen_public
 	.cfi_endproc
-	.file	5 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/include\\mbedtls/bignum.h"
+	.file	5 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/include\\mbedtls/bignum.h"
 	.file	6 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
 	.cantunwind
 	.fnend
@@ -5278,231 +5278,231 @@ mbedtls_ecdh_calc_secret:
 .Linfo_string1:
 	.asciz	"../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library\\ecdh.c" @ string offset=55
 .Linfo_string2:
-	.asciz	"D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" @ string offset=146
+	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=146
 .Linfo_string3:
-	.asciz	"unsigned int"                  @ string offset=208
+	.asciz	"unsigned int"                  @ string offset=207
 .Linfo_string4:
-	.asciz	"MBEDTLS_ECP_DP_NONE"           @ string offset=221
+	.asciz	"MBEDTLS_ECP_DP_NONE"           @ string offset=220
 .Linfo_string5:
-	.asciz	"MBEDTLS_ECP_DP_SECP192R1"      @ string offset=241
+	.asciz	"MBEDTLS_ECP_DP_SECP192R1"      @ string offset=240
 .Linfo_string6:
-	.asciz	"MBEDTLS_ECP_DP_SECP224R1"      @ string offset=266
+	.asciz	"MBEDTLS_ECP_DP_SECP224R1"      @ string offset=265
 .Linfo_string7:
-	.asciz	"MBEDTLS_ECP_DP_SECP256R1"      @ string offset=291
+	.asciz	"MBEDTLS_ECP_DP_SECP256R1"      @ string offset=290
 .Linfo_string8:
-	.asciz	"MBEDTLS_ECP_DP_SECP384R1"      @ string offset=316
+	.asciz	"MBEDTLS_ECP_DP_SECP384R1"      @ string offset=315
 .Linfo_string9:
-	.asciz	"MBEDTLS_ECP_DP_SECP521R1"      @ string offset=341
+	.asciz	"MBEDTLS_ECP_DP_SECP521R1"      @ string offset=340
 .Linfo_string10:
-	.asciz	"MBEDTLS_ECP_DP_BP256R1"        @ string offset=366
+	.asciz	"MBEDTLS_ECP_DP_BP256R1"        @ string offset=365
 .Linfo_string11:
-	.asciz	"MBEDTLS_ECP_DP_BP384R1"        @ string offset=389
+	.asciz	"MBEDTLS_ECP_DP_BP384R1"        @ string offset=388
 .Linfo_string12:
-	.asciz	"MBEDTLS_ECP_DP_BP512R1"        @ string offset=412
+	.asciz	"MBEDTLS_ECP_DP_BP512R1"        @ string offset=411
 .Linfo_string13:
-	.asciz	"MBEDTLS_ECP_DP_CURVE25519"     @ string offset=435
+	.asciz	"MBEDTLS_ECP_DP_CURVE25519"     @ string offset=434
 .Linfo_string14:
-	.asciz	"MBEDTLS_ECP_DP_SECP192K1"      @ string offset=461
+	.asciz	"MBEDTLS_ECP_DP_SECP192K1"      @ string offset=460
 .Linfo_string15:
-	.asciz	"MBEDTLS_ECP_DP_SECP224K1"      @ string offset=486
+	.asciz	"MBEDTLS_ECP_DP_SECP224K1"      @ string offset=485
 .Linfo_string16:
-	.asciz	"MBEDTLS_ECP_DP_SECP256K1"      @ string offset=511
+	.asciz	"MBEDTLS_ECP_DP_SECP256K1"      @ string offset=510
 .Linfo_string17:
-	.asciz	"MBEDTLS_ECP_DP_CURVE448"       @ string offset=536
+	.asciz	"MBEDTLS_ECP_DP_CURVE448"       @ string offset=535
 .Linfo_string18:
-	.asciz	"MBEDTLS_ECDH_VARIANT_NONE"     @ string offset=560
+	.asciz	"MBEDTLS_ECDH_VARIANT_NONE"     @ string offset=559
 .Linfo_string19:
-	.asciz	"MBEDTLS_ECDH_VARIANT_MBEDTLS_2_0" @ string offset=586
+	.asciz	"MBEDTLS_ECDH_VARIANT_MBEDTLS_2_0" @ string offset=585
 .Linfo_string20:
-	.asciz	"MBEDTLS_ECDH_OURS"             @ string offset=619
+	.asciz	"MBEDTLS_ECDH_OURS"             @ string offset=618
 .Linfo_string21:
-	.asciz	"MBEDTLS_ECDH_THEIRS"           @ string offset=637
+	.asciz	"MBEDTLS_ECDH_THEIRS"           @ string offset=636
 .Linfo_string22:
-	.asciz	"MBEDTLS_ECP_TYPE_NONE"         @ string offset=657
+	.asciz	"MBEDTLS_ECP_TYPE_NONE"         @ string offset=656
 .Linfo_string23:
-	.asciz	"MBEDTLS_ECP_TYPE_SHORT_WEIERSTRASS" @ string offset=679
+	.asciz	"MBEDTLS_ECP_TYPE_SHORT_WEIERSTRASS" @ string offset=678
 .Linfo_string24:
-	.asciz	"MBEDTLS_ECP_TYPE_MONTGOMERY"   @ string offset=714
+	.asciz	"MBEDTLS_ECP_TYPE_MONTGOMERY"   @ string offset=713
 .Linfo_string25:
-	.asciz	"size_t"                        @ string offset=742
+	.asciz	"size_t"                        @ string offset=741
 .Linfo_string26:
-	.asciz	"ecdh_gen_public_restartable"   @ string offset=749
+	.asciz	"ecdh_gen_public_restartable"   @ string offset=748
 .Linfo_string27:
-	.asciz	"int"                           @ string offset=777
+	.asciz	"int"                           @ string offset=776
 .Linfo_string28:
-	.asciz	"grp"                           @ string offset=781
+	.asciz	"grp"                           @ string offset=780
 .Linfo_string29:
-	.asciz	"id"                            @ string offset=785
+	.asciz	"id"                            @ string offset=784
 .Linfo_string30:
-	.asciz	"mbedtls_ecp_group_id"          @ string offset=788
+	.asciz	"mbedtls_ecp_group_id"          @ string offset=787
 .Linfo_string31:
-	.asciz	"P"                             @ string offset=809
+	.asciz	"P"                             @ string offset=808
 .Linfo_string32:
-	.asciz	"s"                             @ string offset=811
+	.asciz	"s"                             @ string offset=810
 .Linfo_string33:
-	.asciz	"n"                             @ string offset=813
+	.asciz	"n"                             @ string offset=812
 .Linfo_string34:
-	.asciz	"p"                             @ string offset=815
+	.asciz	"p"                             @ string offset=814
 .Linfo_string35:
-	.asciz	"uint32_t"                      @ string offset=817
+	.asciz	"uint32_t"                      @ string offset=816
 .Linfo_string36:
-	.asciz	"mbedtls_mpi_uint"              @ string offset=826
+	.asciz	"mbedtls_mpi_uint"              @ string offset=825
 .Linfo_string37:
-	.asciz	"mbedtls_mpi"                   @ string offset=843
+	.asciz	"mbedtls_mpi"                   @ string offset=842
 .Linfo_string38:
-	.asciz	"A"                             @ string offset=855
+	.asciz	"A"                             @ string offset=854
 .Linfo_string39:
-	.asciz	"B"                             @ string offset=857
+	.asciz	"B"                             @ string offset=856
 .Linfo_string40:
-	.asciz	"G"                             @ string offset=859
+	.asciz	"G"                             @ string offset=858
 .Linfo_string41:
-	.asciz	"X"                             @ string offset=861
+	.asciz	"X"                             @ string offset=860
 .Linfo_string42:
-	.asciz	"Y"                             @ string offset=863
+	.asciz	"Y"                             @ string offset=862
 .Linfo_string43:
-	.asciz	"Z"                             @ string offset=865
+	.asciz	"Z"                             @ string offset=864
 .Linfo_string44:
-	.asciz	"mbedtls_ecp_point"             @ string offset=867
+	.asciz	"mbedtls_ecp_point"             @ string offset=866
 .Linfo_string45:
-	.asciz	"N"                             @ string offset=885
+	.asciz	"N"                             @ string offset=884
 .Linfo_string46:
-	.asciz	"pbits"                         @ string offset=887
+	.asciz	"pbits"                         @ string offset=886
 .Linfo_string47:
-	.asciz	"nbits"                         @ string offset=893
+	.asciz	"nbits"                         @ string offset=892
 .Linfo_string48:
-	.asciz	"h"                             @ string offset=899
+	.asciz	"h"                             @ string offset=898
 .Linfo_string49:
-	.asciz	"modp"                          @ string offset=901
+	.asciz	"modp"                          @ string offset=900
 .Linfo_string50:
-	.asciz	"t_pre"                         @ string offset=906
+	.asciz	"t_pre"                         @ string offset=905
 .Linfo_string51:
-	.asciz	"t_post"                        @ string offset=912
+	.asciz	"t_post"                        @ string offset=911
 .Linfo_string52:
-	.asciz	"t_data"                        @ string offset=919
+	.asciz	"t_data"                        @ string offset=918
 .Linfo_string53:
-	.asciz	"T"                             @ string offset=926
+	.asciz	"T"                             @ string offset=925
 .Linfo_string54:
-	.asciz	"T_size"                        @ string offset=928
+	.asciz	"T_size"                        @ string offset=927
 .Linfo_string55:
-	.asciz	"mbedtls_ecp_group"             @ string offset=935
+	.asciz	"mbedtls_ecp_group"             @ string offset=934
 .Linfo_string56:
-	.asciz	"d"                             @ string offset=953
+	.asciz	"d"                             @ string offset=952
 .Linfo_string57:
-	.asciz	"Q"                             @ string offset=955
+	.asciz	"Q"                             @ string offset=954
 .Linfo_string58:
-	.asciz	"f_rng"                         @ string offset=957
+	.asciz	"f_rng"                         @ string offset=956
 .Linfo_string59:
-	.asciz	"unsigned char"                 @ string offset=963
+	.asciz	"unsigned char"                 @ string offset=962
 .Linfo_string60:
-	.asciz	"p_rng"                         @ string offset=977
+	.asciz	"p_rng"                         @ string offset=976
 .Linfo_string61:
-	.asciz	"rs_ctx"                        @ string offset=983
+	.asciz	"rs_ctx"                        @ string offset=982
 .Linfo_string62:
-	.asciz	"mbedtls_ecp_restart_ctx"       @ string offset=990
+	.asciz	"mbedtls_ecp_restart_ctx"       @ string offset=989
 .Linfo_string63:
-	.asciz	"ret"                           @ string offset=1014
+	.asciz	"ret"                           @ string offset=1013
 .Linfo_string64:
-	.asciz	"cleanup"                       @ string offset=1018
+	.asciz	"cleanup"                       @ string offset=1017
 .Linfo_string65:
-	.asciz	"ecdh_compute_shared_restartable" @ string offset=1026
+	.asciz	"ecdh_compute_shared_restartable" @ string offset=1025
 .Linfo_string66:
-	.asciz	"z"                             @ string offset=1058
+	.asciz	"z"                             @ string offset=1057
 .Linfo_string67:
-	.asciz	"ecdh_init_internal"            @ string offset=1060
+	.asciz	"ecdh_init_internal"            @ string offset=1059
 .Linfo_string68:
-	.asciz	"ctx"                           @ string offset=1079
+	.asciz	"ctx"                           @ string offset=1078
 .Linfo_string69:
-	.asciz	"Qp"                            @ string offset=1083
+	.asciz	"Qp"                            @ string offset=1082
 .Linfo_string70:
-	.asciz	"mbedtls_ecdh_context_mbed"     @ string offset=1086
+	.asciz	"mbedtls_ecdh_context_mbed"     @ string offset=1085
 .Linfo_string71:
-	.asciz	"ecdh_setup_internal"           @ string offset=1112
+	.asciz	"ecdh_setup_internal"           @ string offset=1111
 .Linfo_string72:
-	.asciz	"grp_id"                        @ string offset=1132
+	.asciz	"grp_id"                        @ string offset=1131
 .Linfo_string73:
-	.asciz	"ecdh_free_internal"            @ string offset=1139
+	.asciz	"ecdh_free_internal"            @ string offset=1138
 .Linfo_string74:
-	.asciz	"ecdh_make_params_internal"     @ string offset=1158
+	.asciz	"ecdh_make_params_internal"     @ string offset=1157
 .Linfo_string75:
-	.asciz	"olen"                          @ string offset=1184
+	.asciz	"olen"                          @ string offset=1183
 .Linfo_string76:
-	.asciz	"point_format"                  @ string offset=1189
+	.asciz	"point_format"                  @ string offset=1188
 .Linfo_string77:
-	.asciz	"buf"                           @ string offset=1202
+	.asciz	"buf"                           @ string offset=1201
 .Linfo_string78:
-	.asciz	"blen"                          @ string offset=1206
+	.asciz	"blen"                          @ string offset=1205
 .Linfo_string79:
-	.asciz	"restart_enabled"               @ string offset=1211
+	.asciz	"restart_enabled"               @ string offset=1210
 .Linfo_string80:
-	.asciz	"grp_len"                       @ string offset=1227
+	.asciz	"grp_len"                       @ string offset=1226
 .Linfo_string81:
-	.asciz	"pt_len"                        @ string offset=1235
+	.asciz	"pt_len"                        @ string offset=1234
 .Linfo_string82:
-	.asciz	"ecdh_read_params_internal"     @ string offset=1242
+	.asciz	"ecdh_read_params_internal"     @ string offset=1241
 .Linfo_string83:
-	.asciz	"end"                           @ string offset=1268
+	.asciz	"end"                           @ string offset=1267
 .Linfo_string84:
-	.asciz	"mbedtls_ecdh_grp_id"           @ string offset=1272
+	.asciz	"mbedtls_ecdh_grp_id"           @ string offset=1271
 .Linfo_string85:
-	.asciz	"uint8_t"                       @ string offset=1292
+	.asciz	"uint8_t"                       @ string offset=1291
 .Linfo_string86:
-	.asciz	"var"                           @ string offset=1300
+	.asciz	"var"                           @ string offset=1299
 .Linfo_string87:
-	.asciz	"mbedtls_ecdh_variant"          @ string offset=1304
+	.asciz	"mbedtls_ecdh_variant"          @ string offset=1303
 .Linfo_string88:
-	.asciz	"mbed_ecdh"                     @ string offset=1325
+	.asciz	"mbed_ecdh"                     @ string offset=1324
 .Linfo_string89:
-	.asciz	"mbedtls_ecdh_context"          @ string offset=1335
+	.asciz	"mbedtls_ecdh_context"          @ string offset=1334
 .Linfo_string90:
-	.asciz	"ecdh_get_params_internal"      @ string offset=1356
+	.asciz	"ecdh_get_params_internal"      @ string offset=1355
 .Linfo_string91:
-	.asciz	"key"                           @ string offset=1381
+	.asciz	"key"                           @ string offset=1380
 .Linfo_string92:
-	.asciz	"mbedtls_ecp_keypair"           @ string offset=1385
+	.asciz	"mbedtls_ecp_keypair"           @ string offset=1384
 .Linfo_string93:
-	.asciz	"side"                          @ string offset=1405
+	.asciz	"side"                          @ string offset=1404
 .Linfo_string94:
-	.asciz	"mbedtls_ecdh_side"             @ string offset=1410
+	.asciz	"mbedtls_ecdh_side"             @ string offset=1409
 .Linfo_string95:
-	.asciz	"mbedtls_ecp_copy"              @ string offset=1428
+	.asciz	"mbedtls_ecp_copy"              @ string offset=1427
 .Linfo_string96:
-	.asciz	"mbedtls_mpi_copy"              @ string offset=1445
+	.asciz	"mbedtls_mpi_copy"              @ string offset=1444
 .Linfo_string97:
-	.asciz	"ecdh_make_public_internal"     @ string offset=1462
+	.asciz	"ecdh_make_public_internal"     @ string offset=1461
 .Linfo_string98:
-	.asciz	"ecdh_read_public_internal"     @ string offset=1488
+	.asciz	"ecdh_read_public_internal"     @ string offset=1487
 .Linfo_string99:
-	.asciz	"ecdh_calc_secret_internal"     @ string offset=1514
+	.asciz	"ecdh_calc_secret_internal"     @ string offset=1513
 .Linfo_string100:
-	.asciz	"mbedtls_mpi_write_binary_le"   @ string offset=1540
+	.asciz	"mbedtls_mpi_write_binary_le"   @ string offset=1539
 .Linfo_string101:
-	.asciz	"mbedtls_mpi_write_binary"      @ string offset=1568
+	.asciz	"mbedtls_mpi_write_binary"      @ string offset=1567
 .Linfo_string102:
-	.asciz	"mbedtls_ecdh_can_do"           @ string offset=1593
+	.asciz	"mbedtls_ecdh_can_do"           @ string offset=1592
 .Linfo_string103:
-	.asciz	"mbedtls_ecdh_gen_public"       @ string offset=1613
+	.asciz	"mbedtls_ecdh_gen_public"       @ string offset=1612
 .Linfo_string104:
-	.asciz	"mbedtls_ecdh_compute_shared"   @ string offset=1637
+	.asciz	"mbedtls_ecdh_compute_shared"   @ string offset=1636
 .Linfo_string105:
-	.asciz	"mbedtls_ecdh_init"             @ string offset=1665
+	.asciz	"mbedtls_ecdh_init"             @ string offset=1664
 .Linfo_string106:
-	.asciz	"mbedtls_ecdh_setup"            @ string offset=1683
+	.asciz	"mbedtls_ecdh_setup"            @ string offset=1682
 .Linfo_string107:
-	.asciz	"mbedtls_ecdh_free"             @ string offset=1702
+	.asciz	"mbedtls_ecdh_free"             @ string offset=1701
 .Linfo_string108:
-	.asciz	"mbedtls_ecdh_make_params"      @ string offset=1720
+	.asciz	"mbedtls_ecdh_make_params"      @ string offset=1719
 .Linfo_string109:
-	.asciz	"mbedtls_ecdh_read_params"      @ string offset=1745
+	.asciz	"mbedtls_ecdh_read_params"      @ string offset=1744
 .Linfo_string110:
-	.asciz	"mbedtls_ecdh_get_params"       @ string offset=1770
+	.asciz	"mbedtls_ecdh_get_params"       @ string offset=1769
 .Linfo_string111:
-	.asciz	"mbedtls_ecdh_make_public"      @ string offset=1794
+	.asciz	"mbedtls_ecdh_make_public"      @ string offset=1793
 .Linfo_string112:
-	.asciz	"mbedtls_ecdh_read_public"      @ string offset=1819
+	.asciz	"mbedtls_ecdh_read_public"      @ string offset=1818
 .Linfo_string113:
-	.asciz	"mbedtls_ecdh_calc_secret"      @ string offset=1844
+	.asciz	"mbedtls_ecdh_calc_secret"      @ string offset=1843
 .Linfo_string114:
-	.asciz	"gid"                           @ string offset=1869
+	.asciz	"gid"                           @ string offset=1868
 	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals

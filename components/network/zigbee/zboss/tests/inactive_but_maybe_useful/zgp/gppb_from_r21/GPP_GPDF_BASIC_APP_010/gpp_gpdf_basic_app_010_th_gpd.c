@@ -84,7 +84,7 @@ static void make_gpdf(zb_buf_t *buf, zb_uint8_t **ptr)
         //      ZGPD->security_key_type = 1;
         ZGPD->ch_replace_key_type = 1;
         ZB_ZGPD_CHACK_SET(ZB_ZGPD_CH_REPLACE_KEY_TYPE);  /*TODO: This hack does
-                                                * not works, need debugging*/
+                                        * not works, need debugging*/
         ZB_GPDF_PUT_UINT8(*ptr, ZB_GPDF_CMD_TOGGLE);
         break;
     }

@@ -19,8 +19,8 @@
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"uart_stdio.c"
 	.file	1 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
-	.file	2 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/hosal/rt582_hosal/Inc\\hosal_uart.h"
-	.file	3 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/utility/uart_stdio/uart_stdio.c"
+	.file	2 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/hosal/rt582_hosal/Inc\\hosal_uart.h"
+	.file	3 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/utility/uart_stdio/uart_stdio.c"
 	.section	.text.uart_stdio_write,"ax",%progbits
 	.hidden	uart_stdio_write                @ -- Begin function uart_stdio_write
 	.globl	uart_stdio_write
@@ -106,20 +106,20 @@ uart_stdio_read:
 	.loc	3 0 0                           @ ../../../components/utility/uart_stdio/uart_stdio.c:0:0
 	adds	r1, r5, r0
 .Ltmp7:
-	.loc	3 98 13 is_stmt 1               @ ../../../components/utility/uart_stdio/uart_stdio.c:98:13
+	.loc	3 99 13 is_stmt 1               @ ../../../components/utility/uart_stdio/uart_stdio.c:99:13
 	cmp	r2, r0
 .Ltmp8:
 	.loc	3 0 0 is_stmt 0                 @ ../../../components/utility/uart_stdio/uart_stdio.c:0:0
 	add.w	r1, r1, #8
 .Ltmp9:
-	.loc	3 98 13                         @ ../../../components/utility/uart_stdio/uart_stdio.c:98:13
+	.loc	3 99 13                         @ ../../../components/utility/uart_stdio/uart_stdio.c:99:13
 	bls	.LBB1_3
 .Ltmp10:
 @ %bb.2:
 	@DEBUG_VALUE: uart_stdio_read:p_data <- $r4
 	@DEBUG_VALUE: uart_stdio_read:length <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: uart_stdio_read:byte_cnt <- 0
-	.loc	3 99 91 is_stmt 1               @ ../../../components/utility/uart_stdio/uart_stdio.c:99:91
+	.loc	3 101 91 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:101:91
 	subs	r2, r2, r0
 	b	.LBB1_5
 .Ltmp11:
@@ -127,23 +127,23 @@ uart_stdio_read:
 	@DEBUG_VALUE: uart_stdio_read:p_data <- $r4
 	@DEBUG_VALUE: uart_stdio_read:length <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: uart_stdio_read:byte_cnt <- 0
-	.loc	3 103 93                        @ ../../../components/utility/uart_stdio/uart_stdio.c:103:93
+	.loc	3 106 93                        @ ../../../components/utility/uart_stdio/uart_stdio.c:106:93
 	rsb.w	r2, r0, #128
-	.loc	3 103 13 is_stmt 0              @ ../../../components/utility/uart_stdio/uart_stdio.c:103:13
+	.loc	3 106 13 is_stmt 0              @ ../../../components/utility/uart_stdio/uart_stdio.c:106:13
 	mov	r0, r4
 	bl	__aeabi_memcpy
 .Ltmp12:
-	.loc	3 105 30 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:105:30
+	.loc	3 108 30 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:108:30
 	ldrh	r2, [r5]
 .Ltmp13:
-	.loc	3 105 17 is_stmt 0              @ ../../../components/utility/uart_stdio/uart_stdio.c:105:17
+	.loc	3 108 17 is_stmt 0              @ ../../../components/utility/uart_stdio/uart_stdio.c:108:17
 	cbz	r2, .LBB1_6
 .Ltmp14:
 @ %bb.4:
 	@DEBUG_VALUE: uart_stdio_read:p_data <- $r4
 	@DEBUG_VALUE: uart_stdio_read:length <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: uart_stdio_read:byte_cnt <- 0
-	.loc	3 106 17 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:106:17
+	.loc	3 110 17 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:110:17
 	add.w	r1, r5, #8
 .Ltmp15:
 .LBB1_5:
@@ -158,18 +158,18 @@ uart_stdio_read:
 	@DEBUG_VALUE: uart_stdio_read:p_data <- $r4
 	@DEBUG_VALUE: uart_stdio_read:length <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: uart_stdio_read:byte_cnt <- 0
-	.loc	3 112 29 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:112:29
+	.loc	3 116 29 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:116:29
 	ldr	r4, [r5, #4]
 .Ltmp17:
 	@DEBUG_VALUE: uart_stdio_read:byte_cnt <- $r4
 	.loc	3 0 29 is_stmt 0                @ ../../../components/utility/uart_stdio/uart_stdio.c:0:29
 	movs	r0, #0
-	.loc	3 114 24 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:114:24
+	.loc	3 118 24 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:118:24
 	strd	r0, r0, [r5]
-	.loc	3 116 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:116:5
+	.loc	3 120 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:120:5
 	bl	leave_critical_section
 .Ltmp18:
-	.loc	3 117 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:117:5
+	.loc	3 121 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:121:5
 	mov	r0, r4
 	pop	{r4, r5, r7, pc}
 .Ltmp19:
@@ -188,11 +188,11 @@ uart_stdio_read:
 	.thumb_func
 uart_stdio_en_int_mode:
 .Lfunc_begin2:
-	.loc	3 121 0                         @ ../../../components/utility/uart_stdio/uart_stdio.c:121:0
+	.loc	3 125 0                         @ ../../../components/utility/uart_stdio/uart_stdio.c:125:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
-	.loc	3 122 5 prologue_end            @ ../../../components/utility/uart_stdio/uart_stdio.c:122:5
+	.loc	3 126 5 prologue_end            @ ../../../components/utility/uart_stdio/uart_stdio.c:126:5
 	movw	r0, :lower16:uartstdio
 	movt	r0, :upper16:uartstdio
 	movs	r1, #11
@@ -215,7 +215,7 @@ uart_stdio_en_int_mode:
 	.thumb_func
 uart_stdio_init:
 .Lfunc_begin3:
-	.loc	3 126 0                         @ ../../../components/utility/uart_stdio/uart_stdio.c:126:0
+	.loc	3 130 0                         @ ../../../components/utility/uart_stdio/uart_stdio.c:130:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -225,13 +225,13 @@ uart_stdio_init:
 	.cfi_offset lr, -4
 	.cfi_offset r4, -8
 .Ltmp22:
-	.loc	3 128 5 prologue_end            @ ../../../components/utility/uart_stdio/uart_stdio.c:128:5
+	.loc	3 132 5 prologue_end            @ ../../../components/utility/uart_stdio/uart_stdio.c:132:5
 	movw	r4, :lower16:uartstdio
 	movt	r4, :upper16:uartstdio
 	mov	r0, r4
 	bl	hosal_uart_init
 .Ltmp23:
-	.loc	3 131 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:131:5
+	.loc	3 135 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:135:5
 	movw	r2, :lower16:__uartstdio_rx_callback
 	movt	r2, :upper16:__uartstdio_rx_callback
 	mov	r0, r4
@@ -239,13 +239,13 @@ uart_stdio_init:
 	mov	r3, r4
 	bl	hosal_uart_callback_set
 .Ltmp24:
-	.loc	3 134 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:134:5
+	.loc	3 138 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:138:5
 	mov	r0, r4
 	movs	r1, #11
 	movs	r2, #2
 	bl	hosal_uart_ioctl
 .Ltmp25:
-	.loc	3 136 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:136:5
+	.loc	3 140 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:140:5
 	movs	r0, #0
 	pop	{r4, pc}
 .Ltmp26:
@@ -275,18 +275,18 @@ __uartstdio_rx_callback:
 	.cfi_offset r5, -12
 	.cfi_offset r4, -16
 .Ltmp27:
-	.loc	3 59 21 prologue_end            @ ../../../components/utility/uart_stdio/uart_stdio.c:59:21
+	.loc	3 59 22 prologue_end            @ ../../../components/utility/uart_stdio/uart_stdio.c:59:22
 	movw	r5, :lower16:g_uart_rx_io
 	movt	r5, :upper16:g_uart_rx_io
 	ldrh	r2, [r5]
-	.loc	3 59 43 is_stmt 0               @ ../../../components/utility/uart_stdio/uart_stdio.c:59:43
+	.loc	3 59 44 is_stmt 0               @ ../../../components/utility/uart_stdio/uart_stdio.c:59:44
 	ldrh	r1, [r5, #2]
 	mov	r4, r0
 .Ltmp28:
 	@DEBUG_VALUE: __uartstdio_rx_callback:p_arg <- $r4
 	@DEBUG_VALUE: __uartstdio_rx_callback:len <- 0
 	@DEBUG_VALUE: __uartstdio_rx_callback:p_arg <- $r4
-	.loc	3 59 8                          @ ../../../components/utility/uart_stdio/uart_stdio.c:59:8
+	.loc	3 59 9                          @ ../../../components/utility/uart_stdio/uart_stdio.c:59:9
 	cmp	r1, r2
 	bls	.LBB4_3
 .Ltmp29:
@@ -305,7 +305,7 @@ __uartstdio_rx_callback:
 @ %bb.2:
 	@DEBUG_VALUE: __uartstdio_rx_callback:p_arg <- $r4
 	@DEBUG_VALUE: __uartstdio_rx_callback:len <- 0
-	.loc	3 72 51 is_stmt 1               @ ../../../components/utility/uart_stdio/uart_stdio.c:72:51
+	.loc	3 72 69 is_stmt 1               @ ../../../components/utility/uart_stdio/uart_stdio.c:72:69
 	mvns	r0, r2
 	adds	r2, r1, r0
 	.loc	3 71 31                         @ ../../../components/utility/uart_stdio/uart_stdio.c:71:31
@@ -325,7 +325,7 @@ __uartstdio_rx_callback:
 	.loc	3 61 81 is_stmt 1               @ ../../../components/utility/uart_stdio/uart_stdio.c:61:81
 	adds	r0, r5, r2
 	add.w	r1, r0, #8
-	.loc	3 62 75                         @ ../../../components/utility/uart_stdio/uart_stdio.c:62:75
+	.loc	3 62 73                         @ ../../../components/utility/uart_stdio/uart_stdio.c:62:73
 	rsb.w	r2, r2, #127
 	.loc	3 61 31                         @ ../../../components/utility/uart_stdio/uart_stdio.c:61:31
 	mov	r0, r4
@@ -335,21 +335,21 @@ __uartstdio_rx_callback:
 	ldrh	r1, [r5]
 	adds	r2, r1, r0
 	uxth	r0, r2
-	.loc	3 63 12 is_stmt 1               @ ../../../components/utility/uart_stdio/uart_stdio.c:63:12
+	.loc	3 63 13 is_stmt 1               @ ../../../components/utility/uart_stdio/uart_stdio.c:63:13
 	cmp	r0, #127
 	.loc	3 61 28                         @ ../../../components/utility/uart_stdio/uart_stdio.c:61:28
 	strh	r2, [r5]
-	.loc	3 63 12                         @ ../../../components/utility/uart_stdio/uart_stdio.c:63:12
+	.loc	3 63 13                         @ ../../../components/utility/uart_stdio/uart_stdio.c:63:13
 	bne	.LBB4_5
 .Ltmp35:
 @ %bb.4:
 	@DEBUG_VALUE: __uartstdio_rx_callback:p_arg <- $r4
 	@DEBUG_VALUE: __uartstdio_rx_callback:len <- 0
-	.loc	3 66 70                         @ ../../../components/utility/uart_stdio/uart_stdio.c:66:70
+	.loc	3 66 90                         @ ../../../components/utility/uart_stdio/uart_stdio.c:66:90
 	ldrh	r0, [r5, #2]
 	.loc	3 65 34                         @ ../../../components/utility/uart_stdio/uart_stdio.c:65:34
 	add.w	r1, r5, #8
-	.loc	3 66 78                         @ ../../../components/utility/uart_stdio/uart_stdio.c:66:78
+	.loc	3 66 99                         @ ../../../components/utility/uart_stdio/uart_stdio.c:66:99
 	subs	r0, #1
 	and	r2, r0, #127
 	.loc	3 65 34                         @ ../../../components/utility/uart_stdio/uart_stdio.c:65:34
@@ -417,7 +417,7 @@ __uartstdio_rx_callback:
 	.thumb_func
 my_fault_handler_c:
 .Lfunc_begin5:
-	.loc	3 261 0                         @ ../../../components/utility/uart_stdio/uart_stdio.c:261:0
+	.loc	3 265 0                         @ ../../../components/utility/uart_stdio/uart_stdio.c:265:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -426,56 +426,57 @@ my_fault_handler_c:
 	.pad	#8
 	sub	sp, #8
 	.cfi_def_cfa_offset 8
-	movs	r2, #0
-	movt	r2, #41056
+	movs	r2, #12
+	movt	r2, #40960
 .Ltmp46:
-	.loc	3 252 15 prologue_end           @ ../../../components/utility/uart_stdio/uart_stdio.c:252:15
-	ldr	r3, [r2, #12]
+	.loc	3 256 15 prologue_end           @ ../../../components/utility/uart_stdio/uart_stdio.c:256:15
+	ldr	r3, [r2]
 	mov	r6, r1
 .Ltmp47:
 	@DEBUG_VALUE: my_fault_handler_c:lr_value <- $r6
 	orr	r1, r3, #128
-	str	r1, [r2, #12]
-	movs	r1, #2
-	.loc	3 253 15                        @ ../../../components/utility/uart_stdio/uart_stdio.c:253:15
 	str	r1, [r2]
+	mov.w	r1, #-1610612736
+	movs	r3, #2
+	.loc	3 257 15                        @ ../../../components/utility/uart_stdio/uart_stdio.c:257:15
+	str	r3, [r1]
 	movs	r1, #0
-	.loc	3 254 15                        @ ../../../components/utility/uart_stdio/uart_stdio.c:254:15
-	str	r1, [r2, #4]
-	.loc	3 255 15                        @ ../../../components/utility/uart_stdio/uart_stdio.c:255:15
-	ldr	r1, [r2, #12]
+	.loc	3 258 15                        @ ../../../components/utility/uart_stdio/uart_stdio.c:258:15
+	str	r1, [r2, #-8]
+	.loc	3 259 15                        @ ../../../components/utility/uart_stdio/uart_stdio.c:259:15
+	ldr	r1, [r2]
 	mov	r5, r0
 .Ltmp48:
 	@DEBUG_VALUE: my_fault_handler_c:sp <- $r5
 	@DEBUG_VALUE: my_fault_handler_c:sp <- $r5
 	bic	r0, r1, #128
-	str	r0, [r2, #12]
+	str	r0, [r2]
 	movs	r0, #3
-	.loc	3 256 15                        @ ../../../components/utility/uart_stdio/uart_stdio.c:256:15
-	str	r0, [r2, #12]
+	.loc	3 260 15                        @ ../../../components/utility/uart_stdio/uart_stdio.c:260:15
+	str	r0, [r2]
 .Ltmp49:
-	.loc	3 263 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:263:5
+	.loc	3 267 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:267:5
 	adr	r0, .LCPI5_0
 	bl	_exp_log_out
 .Ltmp50:
-	.loc	3 265 18                        @ ../../../components/utility/uart_stdio/uart_stdio.c:265:18
+	.loc	3 269 18                        @ ../../../components/utility/uart_stdio/uart_stdio.c:269:18
 	ldm.w	r5, {r1, r2, r3, r4}
-	.loc	3 264 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:264:5
+	.loc	3 268 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:268:5
 	adr	r0, .LCPI5_1
 	str	r4, [sp]
 	bl	_exp_log_out
 .Ltmp51:
-	.loc	3 268 18                        @ ../../../components/utility/uart_stdio/uart_stdio.c:268:18
+	.loc	3 272 18                        @ ../../../components/utility/uart_stdio/uart_stdio.c:272:18
 	adds	r5, #16
 .Ltmp52:
 	@DEBUG_VALUE: my_fault_handler_c:sp <- [DW_OP_LLVM_entry_value 1] $r0
 	ldm	r5, {r1, r2, r3, r5}
-	.loc	3 267 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:267:5
+	.loc	3 271 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:271:5
 	adr	r0, .LCPI5_2
 	str	r5, [sp]
 	bl	_exp_log_out
 .Ltmp53:
-	.loc	3 270 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:270:5
+	.loc	3 274 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:274:5
 	adr	r0, .LCPI5_3
 	mov	r1, r6
 .Ltmp54:
@@ -483,11 +484,11 @@ my_fault_handler_c:
 	bl	_exp_log_out
 .Ltmp55:
 	@DEBUG_VALUE: _exp_dump_init:pCSR <- undef
-	@DEBUG_VALUE: _exp_dump_init:table <- [DW_OP_LLVM_fragment 64 32] undef
+	@DEBUG_VALUE: _exp_dump_init:table <- [DW_OP_LLVM_fragment 0 32] undef
 	.p2align	2
 .LBB5_1:                                @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: my_fault_handler_c:sp <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	3 272 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:272:5
+	.loc	3 276 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:276:5
 	b	.LBB5_1
 .Ltmp56:
 	.p2align	2
@@ -508,7 +509,7 @@ my_fault_handler_c:
 .Lfunc_end5:
 	.size	my_fault_handler_c, .Lfunc_end5-my_fault_handler_c
 	.cfi_endproc
-	.file	4 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/uart_reg.h"
+	.file	4 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/uart_reg.h"
 	.cantunwind
 	.fnend
                                         @ -- End function
@@ -519,7 +520,7 @@ my_fault_handler_c:
 	.thumb_func
 _exp_log_out:
 .Lfunc_begin6:
-	.loc	3 185 0 is_stmt 1               @ ../../../components/utility/uart_stdio/uart_stdio.c:185:0
+	.loc	3 189 0 is_stmt 1               @ ../../../components/utility/uart_stdio/uart_stdio.c:189:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -542,34 +543,34 @@ _exp_log_out:
 	.pad	#8
 	sub	sp, #8
 	.cfi_def_cfa_offset 56
-	mov	r10, r0
+	mov	r11, r0
 .Ltmp57:
-	@DEBUG_VALUE: _exp_log_out:format <- $r10
+	@DEBUG_VALUE: _exp_log_out:format <- $r11
 	add	r0, sp, #44
 	stm	r0!, {r1, r2, r3}
 	add	r0, sp, #44
 .Ltmp58:
-	@DEBUG_VALUE: _exp_log_out:pch <- $r10
-	@DEBUG_VALUE: _exp_log_out:format <- $r10
-	.loc	3 192 13 prologue_end           @ ../../../components/utility/uart_stdio/uart_stdio.c:192:13
-	cmp.w	r10, #0
+	@DEBUG_VALUE: _exp_log_out:pch <- $r11
+	@DEBUG_VALUE: _exp_log_out:format <- $r11
+	.loc	3 196 13 prologue_end           @ ../../../components/utility/uart_stdio/uart_stdio.c:196:13
+	cmp.w	r11, #0
 .Ltmp59:
-	.loc	3 188 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:188:5
+	.loc	3 192 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:192:5
 	str	r0, [sp, #4]
 .Ltmp60:
-	.loc	3 192 13                        @ ../../../components/utility/uart_stdio/uart_stdio.c:192:13
+	.loc	3 196 13                        @ ../../../components/utility/uart_stdio/uart_stdio.c:196:13
 	beq	.LBB6_18
 .Ltmp61:
 @ %bb.1:
-	@DEBUG_VALUE: _exp_log_out:pch <- $r10
-	@DEBUG_VALUE: _exp_log_out:format <- $r10
+	@DEBUG_VALUE: _exp_log_out:pch <- $r11
+	@DEBUG_VALUE: _exp_log_out:format <- $r11
 	.loc	3 0 13 is_stmt 0                @ ../../../components/utility/uart_stdio/uart_stdio.c:0:13
-	movs	r7, #0
-	movw	r11, :lower16:bsp_c_g_msg
-	movt	r7, #41056
-	movt	r11, :upper16:bsp_c_g_msg
-	movw	r8, #30768
-	mov.w	r9, #0
+	movs	r7, #20
+	movw	r5, :lower16:bsp_c_g_msg
+	movt	r7, #40960
+	mov.w	r8, #-1610612736
+	movt	r5, :upper16:bsp_c_g_msg
+	mov.w	r10, #0
 .Ltmp62:
 	.p2align	2
 .LBB6_2:                                @ =>This Loop Header: Depth=1
@@ -577,34 +578,34 @@ _exp_log_out:
                                         @     Child Loop BB6_9 Depth 2
                                         @     Child Loop BB6_12 Depth 2
                                         @     Child Loop BB6_15 Depth 2
-	@DEBUG_VALUE: _exp_log_out:pch <- $r10
-	@DEBUG_VALUE: _exp_log_out:pch <- $r10
-	.loc	3 197 16 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:197:16
-	ldrb.w	r0, [r10]
-	.loc	3 197 9 is_stmt 0               @ ../../../components/utility/uart_stdio/uart_stdio.c:197:9
+	@DEBUG_VALUE: _exp_log_out:pch <- $r11
+	@DEBUG_VALUE: _exp_log_out:pch <- $r11
+	.loc	3 201 16 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:201:16
+	ldrb.w	r0, [r11]
+	.loc	3 201 9 is_stmt 0               @ ../../../components/utility/uart_stdio/uart_stdio.c:201:9
 	cmp	r0, #37
 	beq	.LBB6_6
 .Ltmp63:
 @ %bb.3:                                @   in Loop: Header=BB6_2 Depth=1
-	@DEBUG_VALUE: _exp_log_out:pch <- $r10
+	@DEBUG_VALUE: _exp_log_out:pch <- $r11
 	cmp	r0, #0
 	beq	.LBB6_18
 .Ltmp64:
 	.p2align	2
 .LBB6_4:                                @   Parent Loop BB6_2 Depth=1
                                         @ =>  This Inner Loop Header: Depth=2
-	@DEBUG_VALUE: _exp_log_out:pch <- $r10
-	.loc	3 174 23 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:174:23
-	ldr	r1, [r7, #20]
-	.loc	3 174 9 is_stmt 0               @ ../../../components/utility/uart_stdio/uart_stdio.c:174:9
+	@DEBUG_VALUE: _exp_log_out:pch <- $r11
+	.loc	3 178 23 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:178:23
+	ldr	r1, [r7]
+	.loc	3 178 9 is_stmt 0               @ ../../../components/utility/uart_stdio/uart_stdio.c:178:9
 	lsls	r1, r1, #26
 	bpl	.LBB6_4
 .Ltmp65:
 @ %bb.5:                                @   in Loop: Header=BB6_2 Depth=1
-	@DEBUG_VALUE: _exp_log_out:pch <- $r10
-	@DEBUG_VALUE: _exp_dump_out:pMsg <- [DW_OP_plus_uconst 1, DW_OP_stack_value] $r10
-	.loc	3 178 19 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:178:19
-	str	r0, [r7]
+	@DEBUG_VALUE: _exp_log_out:pch <- $r11
+	@DEBUG_VALUE: _exp_dump_out:pMsg <- [DW_OP_plus_uconst 1, DW_OP_stack_value] $r11
+	.loc	3 182 19 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:182:19
+	str.w	r0, [r8]
 .Ltmp66:
 	@DEBUG_VALUE: _exp_dump_out:len <- [DW_OP_constu 1, DW_OP_minus, DW_OP_stack_value] undef
 	.loc	3 0 19 is_stmt 0                @ ../../../components/utility/uart_stdio/uart_stdio.c:0:19
@@ -612,23 +613,23 @@ _exp_log_out:
 .Ltmp67:
 	.p2align	2
 .LBB6_6:                                @   in Loop: Header=BB6_2 Depth=1
-	@DEBUG_VALUE: _exp_log_out:pch <- $r10
-	.loc	3 206 29 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:206:29
-	ldrb	r0, [r10, #1]!
+	@DEBUG_VALUE: _exp_log_out:pch <- $r11
+	.loc	3 210 29 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:210:29
+	ldrb	r0, [r11, #1]!
 .Ltmp68:
-	@DEBUG_VALUE: _exp_log_out:pch <- $r10
-	.loc	3 206 21 is_stmt 0              @ ../../../components/utility/uart_stdio/uart_stdio.c:206:21
+	@DEBUG_VALUE: _exp_log_out:pch <- $r11
+	.loc	3 210 21 is_stmt 0              @ ../../../components/utility/uart_stdio/uart_stdio.c:210:21
 	cmp	r0, #115
 	beq	.LBB6_14
 .Ltmp69:
 @ %bb.7:                                @   in Loop: Header=BB6_2 Depth=1
-	@DEBUG_VALUE: _exp_log_out:pch <- $r10
+	@DEBUG_VALUE: _exp_log_out:pch <- $r11
 	cmp	r0, #120
 	bne	.LBB6_17
 .Ltmp70:
 @ %bb.8:                                @   in Loop: Header=BB6_2 Depth=1
-	@DEBUG_VALUE: _exp_log_out:pch <- $r10
-	.loc	3 210 53 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:210:53
+	@DEBUG_VALUE: _exp_log_out:pch <- $r11
+	.loc	3 214 53 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:214:53
 	ldr	r0, [sp, #4]
 	adds	r1, r0, #4
 	str	r1, [sp, #4]
@@ -636,187 +637,188 @@ _exp_log_out:
 .Ltmp71:
 	@DEBUG_VALUE: j <- 0
 	@DEBUG_VALUE: number <- $r6
-	@DEBUG_VALUE: _uint2strhex:pStr <- $r11
-	.loc	3 214 58                        @ ../../../components/utility/uart_stdio/uart_stdio.c:214:58
-	mov	r0, r11
+	@DEBUG_VALUE: _uint2strhex:pStr <- $r5
+	.loc	3 218 58                        @ ../../../components/utility/uart_stdio/uart_stdio.c:218:58
+	mov	r0, r5
 	movs	r1, #64
 	bl	__aeabi_memclr4
 .Ltmp72:
 	@DEBUG_VALUE: j <- [DW_OP_plus_uconst 4, DW_OP_stack_value] undef
-	.loc	3 217 45                        @ ../../../components/utility/uart_stdio/uart_stdio.c:217:45
-	mov	r0, r11
+	.loc	3 221 45                        @ ../../../components/utility/uart_stdio/uart_stdio.c:221:45
+	mov	r0, r5
 	bl	strlen
 .Ltmp73:
-	.loc	3 217 33 is_stmt 0              @ ../../../components/utility/uart_stdio/uart_stdio.c:217:33
-	add.w	r1, r11, r0
+	.loc	3 221 33 is_stmt 0              @ ../../../components/utility/uart_stdio/uart_stdio.c:221:33
+	adds	r1, r5, r0
+	.loc	3 221 25                        @ ../../../components/utility/uart_stdio/uart_stdio.c:221:25
+	movw	r2, #30768
 	movs	r4, #28
 	@DEBUG_VALUE: _uint2strhex:nibbles <- 8
 	@DEBUG_VALUE: _uint2strhex:nibble <- 0
 	@DEBUG_VALUE: _uint2strhex:nibbles_to_print <- 8
 	@DEBUG_VALUE: _uint2strhex:number <- $r6
-	.loc	3 217 25                        @ ../../../components/utility/uart_stdio/uart_stdio.c:217:25
-	strh.w	r8, [r11, r0]
-	strb.w	r9, [r1, #2]
+	strh	r2, [r5, r0]
+	strb.w	r10, [r1, #2]
 .Ltmp74:
 	.p2align	2
 .LBB6_9:                                @   Parent Loop BB6_2 Depth=1
                                         @ =>  This Inner Loop Header: Depth=2
-	@DEBUG_VALUE: _uint2strhex:pStr <- $r11
-	@DEBUG_VALUE: _exp_log_out:pch <- $r10
+	@DEBUG_VALUE: _exp_log_out:pch <- $r11
 	@DEBUG_VALUE: _uint2strhex:number <- $r6
 	@DEBUG_VALUE: number <- $r6
+	@DEBUG_VALUE: _uint2strhex:pStr <- $r5
 	@DEBUG_VALUE: _uint2strhex:nibbles_to_print <- 8
 	@DEBUG_VALUE: _uint2strhex:nibbles <- [DW_OP_constu 1, DW_OP_minus, DW_OP_stack_value] undef
-	.loc	3 154 31 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:154:31
+	.loc	3 158 31 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:158:31
 	lsr.w	r0, r6, r4
-	.loc	3 154 49 is_stmt 0              @ ../../../components/utility/uart_stdio/uart_stdio.c:154:49
+	.loc	3 158 49 is_stmt 0              @ ../../../components/utility/uart_stdio/uart_stdio.c:158:49
 	and	r0, r0, #15
 .Ltmp75:
 	@DEBUG_VALUE: _uint2strhex:nibble <- $r0
-	.loc	3 155 13 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:155:13
-	add.w	r5, r0, #55
+	.loc	3 159 13 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:159:13
+	add.w	r9, r0, #55
 	cmp	r0, #10
 	it	lo
-	addlo.w	r5, r0, #48
+	addlo.w	r9, r0, #48
 .Ltmp76:
 	.loc	3 0 0 is_stmt 0                 @ ../../../components/utility/uart_stdio/uart_stdio.c:0:0
-	mov	r0, r11
+	mov	r0, r5
 .Ltmp77:
 	bl	strlen
 .Ltmp78:
-	.loc	3 151 20 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:151:20
+	.loc	3 155 20 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:155:20
 	subs	r4, #4
-	.loc	3 151 5 is_stmt 0               @ ../../../components/utility/uart_stdio/uart_stdio.c:151:5
+	.loc	3 155 5 is_stmt 0               @ ../../../components/utility/uart_stdio/uart_stdio.c:155:5
 	adds	r1, r4, #4
 .Ltmp79:
 	.loc	3 0 0                           @ ../../../components/utility/uart_stdio/uart_stdio.c:0:0
-	strb.w	r5, [r11, r0]
+	strb.w	r9, [r5, r0]
 .Ltmp80:
 	@DEBUG_VALUE: _uint2strhex:nibbles <- [DW_OP_constu 1, DW_OP_minus, DW_OP_stack_value] undef
-	.loc	3 151 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:151:5
+	.loc	3 155 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:155:5
 	bne	.LBB6_9
 .Ltmp81:
 @ %bb.10:                               @   in Loop: Header=BB6_2 Depth=1
-	@DEBUG_VALUE: _exp_log_out:pch <- $r10
+	@DEBUG_VALUE: _exp_log_out:pch <- $r11
 	@DEBUG_VALUE: number <- $r6
-	.loc	3 219 52 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:219:52
-	mov	r0, r11
+	.loc	3 223 52 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:223:52
+	mov	r0, r5
 	bl	strlen
 .Ltmp82:
 	@DEBUG_VALUE: _exp_dump_out:len <- $r0
-	@DEBUG_VALUE: _exp_dump_out:pMsg <- $r11
+	@DEBUG_VALUE: _exp_dump_out:pMsg <- $r5
 	@DEBUG_VALUE: _exp_dump_out:pCSR <- undef
-	@DEBUG_VALUE: _exp_dump_out:table <- [DW_OP_LLVM_fragment 64 32] undef
-	.loc	3 172 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:172:5
+	@DEBUG_VALUE: _exp_dump_out:table <- [DW_OP_LLVM_fragment 0 32] undef
+	.loc	3 176 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:176:5
 	cbz	r0, .LBB6_17
 .Ltmp83:
 @ %bb.11:                               @   in Loop: Header=BB6_2 Depth=1
-	@DEBUG_VALUE: _exp_dump_out:pMsg <- $r11
-	@DEBUG_VALUE: _exp_log_out:pch <- $r10
+	@DEBUG_VALUE: _exp_log_out:pch <- $r11
 	@DEBUG_VALUE: number <- $r6
+	@DEBUG_VALUE: _exp_dump_out:pMsg <- $r5
 	@DEBUG_VALUE: _exp_dump_out:len <- $r0
 	.loc	3 0 5 is_stmt 0                 @ ../../../components/utility/uart_stdio/uart_stdio.c:0:5
-	mov	r1, r11
+	mov	r1, r5
 .Ltmp84:
 	@DEBUG_VALUE: _exp_dump_out:pMsg <- $r1
 	@DEBUG_VALUE: _exp_dump_out:len <- $r0
 	.p2align	2
 .LBB6_12:                               @   Parent Loop BB6_2 Depth=1
                                         @ =>  This Inner Loop Header: Depth=2
-	@DEBUG_VALUE: _exp_log_out:pch <- $r10
+	@DEBUG_VALUE: _exp_log_out:pch <- $r11
 	@DEBUG_VALUE: number <- $r6
 	@DEBUG_VALUE: _exp_dump_out:pMsg <- $r1
 	@DEBUG_VALUE: _exp_dump_out:len <- $r0
-	.loc	3 174 23 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:174:23
-	ldr	r2, [r7, #20]
-	.loc	3 174 9 is_stmt 0               @ ../../../components/utility/uart_stdio/uart_stdio.c:174:9
+	.loc	3 178 23 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:178:23
+	ldr	r2, [r7]
+	.loc	3 178 9 is_stmt 0               @ ../../../components/utility/uart_stdio/uart_stdio.c:178:9
 	lsls	r2, r2, #26
 	bpl	.LBB6_12
 .Ltmp85:
 @ %bb.13:                               @   in Loop: Header=BB6_12 Depth=2
-	@DEBUG_VALUE: _exp_log_out:pch <- $r10
+	@DEBUG_VALUE: _exp_log_out:pch <- $r11
 	@DEBUG_VALUE: number <- $r6
 	@DEBUG_VALUE: _exp_dump_out:pMsg <- $r1
 	@DEBUG_VALUE: _exp_dump_out:len <- $r0
-	.loc	3 178 21 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:178:21
+	.loc	3 182 21 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:182:21
 	ldrb	r2, [r1], #1
 .Ltmp86:
 	@DEBUG_VALUE: _exp_dump_out:pMsg <- $r1
-	.loc	3 179 12                        @ ../../../components/utility/uart_stdio/uart_stdio.c:179:12
+	.loc	3 183 12                        @ ../../../components/utility/uart_stdio/uart_stdio.c:183:12
 	subs	r0, #1
 .Ltmp87:
 	@DEBUG_VALUE: _exp_dump_out:len <- $r0
-	.loc	3 178 19                        @ ../../../components/utility/uart_stdio/uart_stdio.c:178:19
-	str	r2, [r7]
+	.loc	3 182 19                        @ ../../../components/utility/uart_stdio/uart_stdio.c:182:19
+	str.w	r2, [r8]
 .Ltmp88:
-	.loc	3 172 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:172:5
+	.loc	3 176 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:176:5
 	bne	.LBB6_12
 	b	.LBB6_17
 .Ltmp89:
 .LBB6_14:                               @   in Loop: Header=BB6_2 Depth=1
-	@DEBUG_VALUE: _exp_log_out:pch <- $r10
-	.loc	3 224 40                        @ ../../../components/utility/uart_stdio/uart_stdio.c:224:40
+	@DEBUG_VALUE: _exp_log_out:pch <- $r11
+	.loc	3 228 40                        @ ../../../components/utility/uart_stdio/uart_stdio.c:228:40
 	ldr	r0, [sp, #4]
 	adds	r1, r0, #4
 	str	r1, [sp, #4]
 	ldr	r6, [r0]
 .Ltmp90:
 	@DEBUG_VALUE: string <- $r6
-	.loc	3 225 47                        @ ../../../components/utility/uart_stdio/uart_stdio.c:225:47
+	.loc	3 229 47                        @ ../../../components/utility/uart_stdio/uart_stdio.c:229:47
 	mov	r0, r6
 	bl	strlen
 .Ltmp91:
 	@DEBUG_VALUE: _exp_dump_out:pMsg <- $r6
 	@DEBUG_VALUE: _exp_dump_out:len <- $r0
 	@DEBUG_VALUE: _exp_dump_out:pCSR <- undef
-	@DEBUG_VALUE: _exp_dump_out:table <- [DW_OP_LLVM_fragment 64 32] undef
-	.loc	3 172 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:172:5
+	@DEBUG_VALUE: _exp_dump_out:table <- [DW_OP_LLVM_fragment 0 32] undef
+	.loc	3 176 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:176:5
 	cbz	r0, .LBB6_17
 .Ltmp92:
 	.p2align	2
 .LBB6_15:                               @   Parent Loop BB6_2 Depth=1
                                         @ =>  This Inner Loop Header: Depth=2
-	@DEBUG_VALUE: _exp_log_out:pch <- $r10
+	@DEBUG_VALUE: _exp_log_out:pch <- $r11
 	@DEBUG_VALUE: _exp_dump_out:pMsg <- $r6
 	@DEBUG_VALUE: _exp_dump_out:len <- $r0
-	.loc	3 174 23                        @ ../../../components/utility/uart_stdio/uart_stdio.c:174:23
-	ldr	r1, [r7, #20]
-	.loc	3 174 9 is_stmt 0               @ ../../../components/utility/uart_stdio/uart_stdio.c:174:9
+	.loc	3 178 23                        @ ../../../components/utility/uart_stdio/uart_stdio.c:178:23
+	ldr	r1, [r7]
+	.loc	3 178 9 is_stmt 0               @ ../../../components/utility/uart_stdio/uart_stdio.c:178:9
 	lsls	r1, r1, #26
 	bpl	.LBB6_15
 .Ltmp93:
 @ %bb.16:                               @   in Loop: Header=BB6_15 Depth=2
-	@DEBUG_VALUE: _exp_log_out:pch <- $r10
+	@DEBUG_VALUE: _exp_log_out:pch <- $r11
 	@DEBUG_VALUE: _exp_dump_out:pMsg <- $r6
 	@DEBUG_VALUE: _exp_dump_out:len <- $r0
-	.loc	3 178 21 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:178:21
+	.loc	3 182 21 is_stmt 1              @ ../../../components/utility/uart_stdio/uart_stdio.c:182:21
 	ldrb	r1, [r6], #1
 .Ltmp94:
 	@DEBUG_VALUE: _exp_dump_out:pMsg <- $r6
-	.loc	3 179 12                        @ ../../../components/utility/uart_stdio/uart_stdio.c:179:12
+	.loc	3 183 12                        @ ../../../components/utility/uart_stdio/uart_stdio.c:183:12
 	subs	r0, #1
 .Ltmp95:
 	@DEBUG_VALUE: _exp_dump_out:len <- $r0
-	.loc	3 178 19                        @ ../../../components/utility/uart_stdio/uart_stdio.c:178:19
-	str	r1, [r7]
+	.loc	3 182 19                        @ ../../../components/utility/uart_stdio/uart_stdio.c:182:19
+	str.w	r1, [r8]
 .Ltmp96:
-	.loc	3 172 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:172:5
+	.loc	3 176 5                         @ ../../../components/utility/uart_stdio/uart_stdio.c:176:5
 	bne	.LBB6_15
 .Ltmp97:
 	.p2align	2
 .LBB6_17:                               @   in Loop: Header=BB6_2 Depth=1
-	@DEBUG_VALUE: _exp_log_out:pch <- $r10
-	@DEBUG_VALUE: _exp_log_out:pch <- $r10
-	.loc	3 238 16                        @ ../../../components/utility/uart_stdio/uart_stdio.c:238:16
-	add.w	r10, r10, #1
+	@DEBUG_VALUE: _exp_log_out:pch <- $r11
+	@DEBUG_VALUE: _exp_log_out:pch <- $r11
+	.loc	3 242 16                        @ ../../../components/utility/uart_stdio/uart_stdio.c:242:16
+	add.w	r11, r11, #1
 .Ltmp98:
-	@DEBUG_VALUE: _exp_log_out:pch <- $r10
+	@DEBUG_VALUE: _exp_log_out:pch <- $r11
 	.loc	3 0 16 is_stmt 0                @ ../../../components/utility/uart_stdio/uart_stdio.c:0:16
 	b	.LBB6_2
 .Ltmp99:
 .LBB6_18:
-	@DEBUG_VALUE: _exp_log_out:pch <- $r10
-	.loc	3 244 1 is_stmt 1               @ ../../../components/utility/uart_stdio/uart_stdio.c:244:1
+	@DEBUG_VALUE: _exp_log_out:pch <- $r11
+	.loc	3 248 1 is_stmt 1               @ ../../../components/utility/uart_stdio/uart_stdio.c:248:1
 	add	sp, #8
 	pop.w	{r4, r5, r6, r7, r8, r9, r10, r11, lr}
 .Ltmp100:
@@ -838,11 +840,11 @@ _exp_log_out:
 	.thumb_func
 HardFault_Handler:
 .Lfunc_begin7:
-	.loc	3 278 0                         @ ../../../components/utility/uart_stdio/uart_stdio.c:278:0
+	.loc	3 282 0                         @ ../../../components/utility/uart_stdio/uart_stdio.c:282:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
-	.loc	3 279 5 prologue_end            @ ../../../components/utility/uart_stdio/uart_stdio.c:279:5
+	.loc	3 283 5 prologue_end            @ ../../../components/utility/uart_stdio/uart_stdio.c:283:5
 	@APP
 	movs	r0, #4
 	mov	r1, lr
@@ -853,7 +855,7 @@ HardFault_Handler:
 	b	my_fault_handler_c
 
 	@NO_APP
-	.loc	3 288 1                         @ ../../../components/utility/uart_stdio/uart_stdio.c:288:1
+	.loc	3 292 1                         @ ../../../components/utility/uart_stdio/uart_stdio.c:292:1
 	bx	lr
 .Ltmp102:
 .Lfunc_end7:
@@ -868,11 +870,11 @@ HardFault_Handler:
 	.globl	uartstdio
 	.p2align	2
 uartstdio:
-	.byte	2                               @ 0x2
+	.byte	0                               @ 0x0
 	.zero	3
-	.byte	2                               @ 0x2
-	.byte	6                               @ 0x6
-	.byte	7                               @ 0x7
+	.byte	0                               @ 0x0
+	.byte	17                              @ 0x11
+	.byte	16                              @ 0x10
 	.byte	255                             @ 0xff
 	.byte	255                             @ 0xff
 	.zero	3
@@ -922,7 +924,7 @@ bsp_c_g_msg:
 	.asciz	"0x"
 	.size	.L.str.4, 3
 
-	.file	5 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/utility/uart_stdio\\uart_stdio.c"
+	.file	5 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/utility/uart_stdio\\uart_stdio.c"
 	.file	6 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdarg.h"
 	.section	.debug_loc,"",%progbits
 .Ldebug_loc0:
@@ -1068,7 +1070,7 @@ bsp_c_g_msg:
 	.long	.Ltmp57-.Lfunc_begin6
 	.long	.Ltmp62-.Lfunc_begin6
 	.short	1                               @ Loc expr size
-	.byte	90                              @ DW_OP_reg10
+	.byte	91                              @ DW_OP_reg11
 	.long	0
 	.long	0
 .Ldebug_loc10:
@@ -1077,7 +1079,7 @@ bsp_c_g_msg:
 	.long	.Ltmp58-.Lfunc_begin6
 	.long	.Ltmp100-.Lfunc_begin6
 	.short	1                               @ Loc expr size
-	.byte	90                              @ DW_OP_reg10
+	.byte	91                              @ DW_OP_reg11
 	.long	0
 	.long	0
 .Ldebug_loc11:
@@ -1086,7 +1088,7 @@ bsp_c_g_msg:
 	.long	.Ltmp65-.Lfunc_begin6
 	.long	.Ltmp67-.Lfunc_begin6
 	.short	3                               @ Loc expr size
-	.byte	122                             @ DW_OP_breg10
+	.byte	123                             @ DW_OP_breg11
 	.byte	1                               @ 1
 	.byte	159                             @ DW_OP_stack_value
 	.long	0
@@ -1126,7 +1128,7 @@ bsp_c_g_msg:
 	.long	.Ltmp82-.Lfunc_begin6
 	.long	.Ltmp84-.Lfunc_begin6
 	.short	1                               @ Loc expr size
-	.byte	91                              @ DW_OP_reg11
+	.byte	85                              @ DW_OP_reg5
 	.long	.Ltmp84-.Lfunc_begin6
 	.long	.Ltmp89-.Lfunc_begin6
 	.short	1                               @ Loc expr size
@@ -1818,7 +1820,7 @@ bsp_c_g_msg:
 	.long	55                              @ DW_AT_type
                                         @ DW_AT_external
 	.byte	3                               @ DW_AT_decl_file
-	.byte	36                              @ DW_AT_decl_line
+	.byte	29                              @ DW_AT_decl_line
 	.byte	5                               @ DW_AT_location
 	.byte	3
 	.long	uartstdio
@@ -1826,76 +1828,76 @@ bsp_c_g_msg:
 	.long	66                              @ DW_AT_type
 	.long	.Linfo_string68                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	185                             @ DW_AT_decl_line
+	.byte	188                             @ DW_AT_decl_line
 	.byte	4                               @ Abbrev [4] 0x42:0x89 DW_TAG_structure_type
 	.byte	72                              @ DW_AT_byte_size
 	.byte	2                               @ DW_AT_decl_file
-	.byte	173                             @ DW_AT_decl_line
+	.byte	175                             @ DW_AT_decl_line
 	.byte	5                               @ Abbrev [5] 0x46:0xc DW_TAG_member
 	.long	.Linfo_string4                  @ DW_AT_name
 	.long	203                             @ DW_AT_type
 	.byte	2                               @ DW_AT_decl_file
-	.byte	174                             @ DW_AT_decl_line
+	.byte	177                             @ DW_AT_decl_line
 	.byte	0                               @ DW_AT_data_member_location
 	.byte	5                               @ Abbrev [5] 0x52:0xc DW_TAG_member
 	.long	.Linfo_string7                  @ DW_AT_name
 	.long	221                             @ DW_AT_type
 	.byte	2                               @ DW_AT_decl_file
-	.byte	175                             @ DW_AT_decl_line
+	.byte	178                             @ DW_AT_decl_line
 	.byte	4                               @ DW_AT_data_member_location
 	.byte	5                               @ Abbrev [5] 0x5e:0xc DW_TAG_member
 	.long	.Linfo_string57                 @ DW_AT_name
 	.long	682                             @ DW_AT_type
 	.byte	2                               @ DW_AT_decl_file
-	.byte	176                             @ DW_AT_decl_line
+	.byte	179                             @ DW_AT_decl_line
 	.byte	36                              @ DW_AT_data_member_location
 	.byte	5                               @ Abbrev [5] 0x6a:0xc DW_TAG_member
 	.long	.Linfo_string60                 @ DW_AT_name
 	.long	716                             @ DW_AT_type
 	.byte	2                               @ DW_AT_decl_file
-	.byte	177                             @ DW_AT_decl_line
+	.byte	180                             @ DW_AT_decl_line
 	.byte	40                              @ DW_AT_data_member_location
 	.byte	5                               @ Abbrev [5] 0x76:0xc DW_TAG_member
 	.long	.Linfo_string61                 @ DW_AT_name
 	.long	682                             @ DW_AT_type
 	.byte	2                               @ DW_AT_decl_file
-	.byte	178                             @ DW_AT_decl_line
+	.byte	181                             @ DW_AT_decl_line
 	.byte	44                              @ DW_AT_data_member_location
 	.byte	5                               @ Abbrev [5] 0x82:0xc DW_TAG_member
 	.long	.Linfo_string62                 @ DW_AT_name
 	.long	716                             @ DW_AT_type
 	.byte	2                               @ DW_AT_decl_file
-	.byte	179                             @ DW_AT_decl_line
+	.byte	182                             @ DW_AT_decl_line
 	.byte	48                              @ DW_AT_data_member_location
 	.byte	5                               @ Abbrev [5] 0x8e:0xc DW_TAG_member
 	.long	.Linfo_string63                 @ DW_AT_name
 	.long	682                             @ DW_AT_type
 	.byte	2                               @ DW_AT_decl_file
-	.byte	180                             @ DW_AT_decl_line
+	.byte	183                             @ DW_AT_decl_line
 	.byte	52                              @ DW_AT_data_member_location
 	.byte	5                               @ Abbrev [5] 0x9a:0xc DW_TAG_member
 	.long	.Linfo_string64                 @ DW_AT_name
 	.long	716                             @ DW_AT_type
 	.byte	2                               @ DW_AT_decl_file
-	.byte	181                             @ DW_AT_decl_line
+	.byte	184                             @ DW_AT_decl_line
 	.byte	56                              @ DW_AT_data_member_location
 	.byte	5                               @ Abbrev [5] 0xa6:0xc DW_TAG_member
 	.long	.Linfo_string65                 @ DW_AT_name
 	.long	682                             @ DW_AT_type
 	.byte	2                               @ DW_AT_decl_file
-	.byte	182                             @ DW_AT_decl_line
+	.byte	185                             @ DW_AT_decl_line
 	.byte	60                              @ DW_AT_data_member_location
 	.byte	5                               @ Abbrev [5] 0xb2:0xc DW_TAG_member
 	.long	.Linfo_string66                 @ DW_AT_name
 	.long	716                             @ DW_AT_type
 	.byte	2                               @ DW_AT_decl_file
-	.byte	183                             @ DW_AT_decl_line
+	.byte	186                             @ DW_AT_decl_line
 	.byte	64                              @ DW_AT_data_member_location
 	.byte	5                               @ Abbrev [5] 0xbe:0xc DW_TAG_member
 	.long	.Linfo_string67                 @ DW_AT_name
 	.long	716                             @ DW_AT_type
 	.byte	2                               @ DW_AT_decl_file
-	.byte	184                             @ DW_AT_decl_line
+	.byte	187                             @ DW_AT_decl_line
 	.byte	68                              @ DW_AT_data_member_location
 	.byte	0                               @ End Of Children Mark
 	.byte	3                               @ Abbrev [3] 0xcb:0xb DW_TAG_typedef
@@ -1911,76 +1913,76 @@ bsp_c_g_msg:
 	.long	232                             @ DW_AT_type
 	.long	.Linfo_string56                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	171                             @ DW_AT_decl_line
+	.byte	173                             @ DW_AT_decl_line
 	.byte	4                               @ Abbrev [4] 0xe8:0x89 DW_TAG_structure_type
 	.byte	32                              @ DW_AT_byte_size
 	.byte	2                               @ DW_AT_decl_file
-	.byte	159                             @ DW_AT_decl_line
+	.byte	160                             @ DW_AT_decl_line
 	.byte	5                               @ Abbrev [5] 0xec:0xc DW_TAG_member
 	.long	.Linfo_string8                  @ DW_AT_name
 	.long	203                             @ DW_AT_type
 	.byte	2                               @ DW_AT_decl_file
-	.byte	160                             @ DW_AT_decl_line
+	.byte	162                             @ DW_AT_decl_line
 	.byte	0                               @ DW_AT_data_member_location
 	.byte	5                               @ Abbrev [5] 0xf8:0xc DW_TAG_member
 	.long	.Linfo_string9                  @ DW_AT_name
 	.long	203                             @ DW_AT_type
 	.byte	2                               @ DW_AT_decl_file
-	.byte	161                             @ DW_AT_decl_line
+	.byte	163                             @ DW_AT_decl_line
 	.byte	1                               @ DW_AT_data_member_location
 	.byte	5                               @ Abbrev [5] 0x104:0xc DW_TAG_member
 	.long	.Linfo_string10                 @ DW_AT_name
 	.long	203                             @ DW_AT_type
 	.byte	2                               @ DW_AT_decl_file
-	.byte	162                             @ DW_AT_decl_line
+	.byte	164                             @ DW_AT_decl_line
 	.byte	2                               @ DW_AT_data_member_location
 	.byte	5                               @ Abbrev [5] 0x110:0xc DW_TAG_member
 	.long	.Linfo_string11                 @ DW_AT_name
 	.long	203                             @ DW_AT_type
 	.byte	2                               @ DW_AT_decl_file
-	.byte	163                             @ DW_AT_decl_line
+	.byte	165                             @ DW_AT_decl_line
 	.byte	3                               @ DW_AT_data_member_location
 	.byte	5                               @ Abbrev [5] 0x11c:0xc DW_TAG_member
 	.long	.Linfo_string12                 @ DW_AT_name
 	.long	203                             @ DW_AT_type
 	.byte	2                               @ DW_AT_decl_file
-	.byte	164                             @ DW_AT_decl_line
+	.byte	166                             @ DW_AT_decl_line
 	.byte	4                               @ DW_AT_data_member_location
 	.byte	5                               @ Abbrev [5] 0x128:0xc DW_TAG_member
 	.long	.Linfo_string13                 @ DW_AT_name
 	.long	369                             @ DW_AT_type
 	.byte	2                               @ DW_AT_decl_file
-	.byte	165                             @ DW_AT_decl_line
+	.byte	167                             @ DW_AT_decl_line
 	.byte	8                               @ DW_AT_data_member_location
 	.byte	5                               @ Abbrev [5] 0x134:0xc DW_TAG_member
 	.long	.Linfo_string29                 @ DW_AT_name
 	.long	480                             @ DW_AT_type
 	.byte	2                               @ DW_AT_decl_file
-	.byte	166                             @ DW_AT_decl_line
+	.byte	168                             @ DW_AT_decl_line
 	.byte	12                              @ DW_AT_data_member_location
 	.byte	5                               @ Abbrev [5] 0x140:0xc DW_TAG_member
 	.long	.Linfo_string35                 @ DW_AT_name
 	.long	524                             @ DW_AT_type
 	.byte	2                               @ DW_AT_decl_file
-	.byte	167                             @ DW_AT_decl_line
+	.byte	169                             @ DW_AT_decl_line
 	.byte	16                              @ DW_AT_data_member_location
 	.byte	5                               @ Abbrev [5] 0x14c:0xc DW_TAG_member
 	.long	.Linfo_string42                 @ DW_AT_name
 	.long	574                             @ DW_AT_type
 	.byte	2                               @ DW_AT_decl_file
-	.byte	168                             @ DW_AT_decl_line
+	.byte	170                             @ DW_AT_decl_line
 	.byte	20                              @ DW_AT_data_member_location
 	.byte	5                               @ Abbrev [5] 0x158:0xc DW_TAG_member
 	.long	.Linfo_string46                 @ DW_AT_name
 	.long	606                             @ DW_AT_type
 	.byte	2                               @ DW_AT_decl_file
-	.byte	169                             @ DW_AT_decl_line
+	.byte	171                             @ DW_AT_decl_line
 	.byte	24                              @ DW_AT_data_member_location
 	.byte	5                               @ Abbrev [5] 0x164:0xc DW_TAG_member
 	.long	.Linfo_string50                 @ DW_AT_name
 	.long	638                             @ DW_AT_type
 	.byte	2                               @ DW_AT_decl_file
-	.byte	170                             @ DW_AT_decl_line
+	.byte	172                             @ DW_AT_decl_line
 	.byte	28                              @ DW_AT_data_member_location
 	.byte	0                               @ End Of Children Mark
 	.byte	3                               @ Abbrev [3] 0x171:0xb DW_TAG_typedef
@@ -2124,7 +2126,7 @@ bsp_c_g_msg:
 	.long	649                             @ DW_AT_type
 	.long	.Linfo_string55                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	104                             @ DW_AT_decl_line
+	.byte	105                             @ DW_AT_decl_line
 	.byte	7                               @ Abbrev [7] 0x289:0x21 DW_TAG_enumeration_type
 	.long	473                             @ DW_AT_type
 	.byte	4                               @ DW_AT_byte_size
@@ -2339,7 +2341,7 @@ bsp_c_g_msg:
 	.byte	22                              @ Abbrev [22] 0x42b:0x1b DW_TAG_subprogram
 	.long	.Linfo_string90                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	220                             @ DW_AT_decl_line
+	.byte	224                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	709                             @ DW_AT_type
                                         @ DW_AT_declaration
@@ -2395,7 +2397,7 @@ bsp_c_g_msg:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string125                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.byte	120                             @ DW_AT_decl_line
+	.byte	124                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_external
 	.byte	21                              @ Abbrev [21] 0x4a5:0x9 DW_TAG_GNU_call_site
@@ -2406,7 +2408,7 @@ bsp_c_g_msg:
 	.byte	22                              @ Abbrev [22] 0x4af:0x1b DW_TAG_subprogram
 	.long	.Linfo_string91                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	222                             @ DW_AT_decl_line
+	.byte	226                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	709                             @ DW_AT_type
                                         @ DW_AT_declaration
@@ -2426,7 +2428,7 @@ bsp_c_g_msg:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string126                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.byte	125                             @ DW_AT_decl_line
+	.byte	129                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	709                             @ DW_AT_type
                                         @ DW_AT_external
@@ -2457,19 +2459,19 @@ bsp_c_g_msg:
 	.byte	28                              @ Abbrev [28] 0x513:0x23 DW_TAG_subprogram
 	.long	.Linfo_string92                 @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.byte	247                             @ DW_AT_decl_line
+	.byte	251                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	709                             @ DW_AT_type
 	.byte	1                               @ DW_AT_inline
 	.byte	29                              @ Abbrev [29] 0x51f:0xb DW_TAG_variable
 	.long	.Linfo_string93                 @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.byte	249                             @ DW_AT_decl_line
+	.byte	253                             @ DW_AT_decl_line
 	.long	1334                            @ DW_AT_type
 	.byte	29                              @ Abbrev [29] 0x52a:0xb DW_TAG_variable
 	.long	.Linfo_string113                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.byte	250                             @ DW_AT_decl_line
+	.byte	254                             @ DW_AT_decl_line
 	.long	1346                            @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	14                              @ Abbrev [14] 0x536:0xc DW_TAG_array_type
@@ -2610,87 +2612,87 @@ bsp_c_g_msg:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string128                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.short	260                             @ DW_AT_decl_line
+	.short	264                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_external
 	.byte	33                              @ Abbrev [33] 0x64b:0x10 DW_TAG_formal_parameter
 	.long	.Ldebug_loc7                    @ DW_AT_location
 	.long	.Linfo_string135                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.short	260                             @ DW_AT_decl_line
+	.short	264                             @ DW_AT_decl_line
 	.long	1001                            @ DW_AT_type
 	.byte	33                              @ Abbrev [33] 0x65b:0x10 DW_TAG_formal_parameter
 	.long	.Ldebug_loc8                    @ DW_AT_location
 	.long	.Linfo_string136                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.short	260                             @ DW_AT_decl_line
+	.short	264                             @ DW_AT_decl_line
 	.long	814                             @ DW_AT_type
 	.byte	34                              @ Abbrev [34] 0x66b:0x11 DW_TAG_inlined_subroutine
 	.long	1299                            @ DW_AT_abstract_origin
 	.long	.Ltmp46                         @ DW_AT_low_pc
 	.long	.Ltmp49-.Ltmp46                 @ DW_AT_high_pc
 	.byte	3                               @ DW_AT_call_file
-	.short	262                             @ DW_AT_call_line
+	.short	266                             @ DW_AT_call_line
 	.byte	5                               @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	28                              @ Abbrev [28] 0x67d:0x39 DW_TAG_subprogram
 	.long	.Linfo_string114                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.byte	167                             @ DW_AT_decl_line
+	.byte	171                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	709                             @ DW_AT_type
 	.byte	1                               @ DW_AT_inline
 	.byte	35                              @ Abbrev [35] 0x689:0xb DW_TAG_formal_parameter
 	.long	.Linfo_string115                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.byte	167                             @ DW_AT_decl_line
+	.byte	171                             @ DW_AT_decl_line
 	.long	996                             @ DW_AT_type
 	.byte	35                              @ Abbrev [35] 0x694:0xb DW_TAG_formal_parameter
 	.long	.Linfo_string116                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.byte	167                             @ DW_AT_decl_line
+	.byte	171                             @ DW_AT_decl_line
 	.long	709                             @ DW_AT_type
 	.byte	29                              @ Abbrev [29] 0x69f:0xb DW_TAG_variable
 	.long	.Linfo_string113                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.byte	170                             @ DW_AT_decl_line
+	.byte	174                             @ DW_AT_decl_line
 	.long	1346                            @ DW_AT_type
 	.byte	29                              @ Abbrev [29] 0x6aa:0xb DW_TAG_variable
 	.long	.Linfo_string93                 @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.byte	169                             @ DW_AT_decl_line
+	.byte	173                             @ DW_AT_decl_line
 	.long	1334                            @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	36                              @ Abbrev [36] 0x6b6:0x40 DW_TAG_subprogram
 	.long	.Linfo_string117                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.byte	140                             @ DW_AT_decl_line
+	.byte	144                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.byte	1                               @ DW_AT_inline
 	.byte	35                              @ Abbrev [35] 0x6be:0xb DW_TAG_formal_parameter
 	.long	.Linfo_string118                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.byte	140                             @ DW_AT_decl_line
+	.byte	144                             @ DW_AT_decl_line
 	.long	996                             @ DW_AT_type
 	.byte	35                              @ Abbrev [35] 0x6c9:0xb DW_TAG_formal_parameter
 	.long	.Linfo_string119                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.byte	140                             @ DW_AT_decl_line
+	.byte	144                             @ DW_AT_decl_line
 	.long	473                             @ DW_AT_type
 	.byte	35                              @ Abbrev [35] 0x6d4:0xb DW_TAG_formal_parameter
 	.long	.Linfo_string120                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.byte	140                             @ DW_AT_decl_line
+	.byte	144                             @ DW_AT_decl_line
 	.long	1782                            @ DW_AT_type
 	.byte	29                              @ Abbrev [29] 0x6df:0xb DW_TAG_variable
 	.long	.Linfo_string121                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.byte	144                             @ DW_AT_decl_line
+	.byte	148                             @ DW_AT_decl_line
 	.long	989                             @ DW_AT_type
 	.byte	29                              @ Abbrev [29] 0x6ea:0xb DW_TAG_variable
 	.long	.Linfo_string122                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.byte	143                             @ DW_AT_decl_line
+	.byte	147                             @ DW_AT_decl_line
 	.long	709                             @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	31                              @ Abbrev [31] 0x6f6:0x5 DW_TAG_const_type
@@ -2703,13 +2705,13 @@ bsp_c_g_msg:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string129                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.byte	184                             @ DW_AT_decl_line
+	.byte	188                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.byte	20                              @ Abbrev [20] 0x70c:0xf DW_TAG_formal_parameter
 	.long	.Ldebug_loc9                    @ DW_AT_location
 	.long	.Linfo_string142                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.byte	184                             @ DW_AT_decl_line
+	.byte	188                             @ DW_AT_decl_line
 	.long	2153                            @ DW_AT_type
 	.byte	38                              @ Abbrev [38] 0x71b:0xe DW_TAG_variable
 	.byte	2                               @ DW_AT_location
@@ -2717,20 +2719,20 @@ bsp_c_g_msg:
 	.byte	4
 	.long	.Linfo_string137                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.byte	187                             @ DW_AT_decl_line
+	.byte	191                             @ DW_AT_decl_line
 	.long	2114                            @ DW_AT_type
 	.byte	24                              @ Abbrev [24] 0x729:0xf DW_TAG_variable
 	.long	.Ldebug_loc10                   @ DW_AT_location
 	.long	.Linfo_string143                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.byte	186                             @ DW_AT_decl_line
+	.byte	190                             @ DW_AT_decl_line
 	.long	996                             @ DW_AT_type
 	.byte	39                              @ Abbrev [39] 0x738:0x1f DW_TAG_inlined_subroutine
 	.long	1661                            @ DW_AT_abstract_origin
 	.long	.Ltmp64                         @ DW_AT_low_pc
 	.long	.Ltmp67-.Ltmp64                 @ DW_AT_high_pc
 	.byte	3                               @ DW_AT_call_file
-	.byte	235                             @ DW_AT_call_line
+	.byte	239                             @ DW_AT_call_line
 	.byte	17                              @ DW_AT_call_column
 	.byte	40                              @ Abbrev [40] 0x748:0x9 DW_TAG_formal_parameter
 	.long	.Ldebug_loc11                   @ DW_AT_location
@@ -2745,7 +2747,7 @@ bsp_c_g_msg:
 	.long	.Ldebug_loc13                   @ DW_AT_location
 	.long	.Linfo_string119                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.byte	210                             @ DW_AT_decl_line
+	.byte	214                             @ DW_AT_decl_line
 	.long	2158                            @ DW_AT_type
 	.byte	42                              @ Abbrev [42] 0x76f:0x19 DW_TAG_lexical_block
 	.long	.Ltmp71                         @ DW_AT_low_pc
@@ -2754,7 +2756,7 @@ bsp_c_g_msg:
 	.long	.Ldebug_loc12                   @ DW_AT_location
 	.long	.Linfo_string144                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.byte	212                             @ DW_AT_decl_line
+	.byte	216                             @ DW_AT_decl_line
 	.long	709                             @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	39                              @ Abbrev [39] 0x788:0x33 DW_TAG_inlined_subroutine
@@ -2762,11 +2764,11 @@ bsp_c_g_msg:
 	.long	.Ltmp74                         @ DW_AT_low_pc
 	.long	.Ltmp81-.Ltmp74                 @ DW_AT_high_pc
 	.byte	3                               @ DW_AT_call_file
-	.byte	218                             @ DW_AT_call_line
+	.byte	222                             @ DW_AT_call_line
 	.byte	25                              @ DW_AT_call_column
 	.byte	43                              @ Abbrev [43] 0x798:0x7 DW_TAG_formal_parameter
 	.byte	1                               @ DW_AT_location
-	.byte	91
+	.byte	85
 	.long	1726                            @ DW_AT_abstract_origin
 	.byte	43                              @ Abbrev [43] 0x79f:0x7 DW_TAG_formal_parameter
 	.byte	1                               @ DW_AT_location
@@ -2786,7 +2788,7 @@ bsp_c_g_msg:
 	.long	.Ltmp82                         @ DW_AT_low_pc
 	.long	.Ltmp89-.Ltmp82                 @ DW_AT_high_pc
 	.byte	3                               @ DW_AT_call_file
-	.byte	219                             @ DW_AT_call_line
+	.byte	223                             @ DW_AT_call_line
 	.byte	25                              @ DW_AT_call_column
 	.byte	40                              @ Abbrev [40] 0x7cb:0x9 DW_TAG_formal_parameter
 	.long	.Ldebug_loc15                   @ DW_AT_location
@@ -2808,14 +2810,14 @@ bsp_c_g_msg:
 	.long	.Ldebug_loc16                   @ DW_AT_location
 	.long	.Linfo_string145                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.byte	224                             @ DW_AT_decl_line
+	.byte	228                             @ DW_AT_decl_line
 	.long	996                             @ DW_AT_type
 	.byte	39                              @ Abbrev [39] 0x7ff:0x29 DW_TAG_inlined_subroutine
 	.long	1661                            @ DW_AT_abstract_origin
 	.long	.Ltmp91                         @ DW_AT_low_pc
 	.long	.Ltmp97-.Ltmp91                 @ DW_AT_high_pc
 	.byte	3                               @ DW_AT_call_file
-	.byte	225                             @ DW_AT_call_line
+	.byte	229                             @ DW_AT_call_line
 	.byte	25                              @ DW_AT_call_column
 	.byte	43                              @ Abbrev [43] 0x80f:0x7 DW_TAG_formal_parameter
 	.byte	1                               @ DW_AT_location
@@ -2841,7 +2843,7 @@ bsp_c_g_msg:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string130                @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.short	277                             @ DW_AT_decl_line
+	.short	281                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_external
 	.byte	9                               @ Abbrev [9] 0x83d:0x5 DW_TAG_pointer_type
@@ -2861,7 +2863,7 @@ bsp_c_g_msg:
 	.long	.Linfo_string138                @ DW_AT_name
 	.long	716                             @ DW_AT_type
 	.byte	5                               @ DW_AT_decl_file
-	.byte	187                             @ DW_AT_decl_line
+	.byte	191                             @ DW_AT_decl_line
 	.byte	0                               @ DW_AT_data_member_location
 	.byte	0                               @ End Of Children Mark
 	.byte	9                               @ Abbrev [9] 0x869:0x5 DW_TAG_pointer_type
@@ -2896,293 +2898,293 @@ bsp_c_g_msg:
 .Linfo_string1:
 	.asciz	"../../../components/utility/uart_stdio\\uart_stdio.c" @ string offset=55
 .Linfo_string2:
-	.asciz	"D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" @ string offset=107
+	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=107
 .Linfo_string3:
-	.asciz	"uartstdio"                     @ string offset=169
+	.asciz	"uartstdio"                     @ string offset=168
 .Linfo_string4:
-	.asciz	"port"                          @ string offset=179
+	.asciz	"port"                          @ string offset=178
 .Linfo_string5:
-	.asciz	"unsigned char"                 @ string offset=184
+	.asciz	"unsigned char"                 @ string offset=183
 .Linfo_string6:
-	.asciz	"uint8_t"                       @ string offset=198
+	.asciz	"uint8_t"                       @ string offset=197
 .Linfo_string7:
-	.asciz	"config"                        @ string offset=206
+	.asciz	"config"                        @ string offset=205
 .Linfo_string8:
-	.asciz	"uart_id"                       @ string offset=213
+	.asciz	"uart_id"                       @ string offset=212
 .Linfo_string9:
-	.asciz	"tx_pin"                        @ string offset=221
+	.asciz	"tx_pin"                        @ string offset=220
 .Linfo_string10:
-	.asciz	"rx_pin"                        @ string offset=228
+	.asciz	"rx_pin"                        @ string offset=227
 .Linfo_string11:
-	.asciz	"cts_pin"                       @ string offset=235
+	.asciz	"cts_pin"                       @ string offset=234
 .Linfo_string12:
-	.asciz	"rts_pin"                       @ string offset=243
+	.asciz	"rts_pin"                       @ string offset=242
 .Linfo_string13:
-	.asciz	"baud_rate"                     @ string offset=251
+	.asciz	"baud_rate"                     @ string offset=250
 .Linfo_string14:
-	.asciz	"unsigned int"                  @ string offset=261
+	.asciz	"unsigned int"                  @ string offset=260
 .Linfo_string15:
-	.asciz	"UART_BAUDRATE_2400"            @ string offset=274
+	.asciz	"UART_BAUDRATE_2400"            @ string offset=273
 .Linfo_string16:
-	.asciz	"UART_BAUDRATE_4800"            @ string offset=293
+	.asciz	"UART_BAUDRATE_4800"            @ string offset=292
 .Linfo_string17:
-	.asciz	"UART_BAUDRATE_9600"            @ string offset=312
+	.asciz	"UART_BAUDRATE_9600"            @ string offset=311
 .Linfo_string18:
-	.asciz	"UART_BAUDRATE_14400"           @ string offset=331
+	.asciz	"UART_BAUDRATE_14400"           @ string offset=330
 .Linfo_string19:
-	.asciz	"UART_BAUDRATE_19200"           @ string offset=351
+	.asciz	"UART_BAUDRATE_19200"           @ string offset=350
 .Linfo_string20:
-	.asciz	"UART_BAUDRATE_28800"           @ string offset=371
+	.asciz	"UART_BAUDRATE_28800"           @ string offset=370
 .Linfo_string21:
-	.asciz	"UART_BAUDRATE_38400"           @ string offset=391
+	.asciz	"UART_BAUDRATE_38400"           @ string offset=390
 .Linfo_string22:
-	.asciz	"UART_BAUDRATE_57600"           @ string offset=411
+	.asciz	"UART_BAUDRATE_57600"           @ string offset=410
 .Linfo_string23:
-	.asciz	"UART_BAUDRATE_76800"           @ string offset=431
+	.asciz	"UART_BAUDRATE_76800"           @ string offset=430
 .Linfo_string24:
-	.asciz	"UART_BAUDRATE_115200"          @ string offset=451
+	.asciz	"UART_BAUDRATE_115200"          @ string offset=450
 .Linfo_string25:
-	.asciz	"UART_BAUDRATE_500000"          @ string offset=472
+	.asciz	"UART_BAUDRATE_500000"          @ string offset=471
 .Linfo_string26:
-	.asciz	"UART_BAUDRATE_1000000"         @ string offset=493
+	.asciz	"UART_BAUDRATE_1000000"         @ string offset=492
 .Linfo_string27:
-	.asciz	"UART_BAUDRATE_2000000"         @ string offset=515
+	.asciz	"UART_BAUDRATE_2000000"         @ string offset=514
 .Linfo_string28:
-	.asciz	"hosal_uart_baudrate_t"         @ string offset=537
+	.asciz	"hosal_uart_baudrate_t"         @ string offset=536
 .Linfo_string29:
-	.asciz	"data_width"                    @ string offset=559
+	.asciz	"data_width"                    @ string offset=558
 .Linfo_string30:
-	.asciz	"UART_DATA_BITS_5"              @ string offset=570
+	.asciz	"UART_DATA_BITS_5"              @ string offset=569
 .Linfo_string31:
-	.asciz	"UART_DATA_BITS_6"              @ string offset=587
+	.asciz	"UART_DATA_BITS_6"              @ string offset=586
 .Linfo_string32:
-	.asciz	"UART_DATA_BITS_7"              @ string offset=604
+	.asciz	"UART_DATA_BITS_7"              @ string offset=603
 .Linfo_string33:
-	.asciz	"UART_DATA_BITS_8"              @ string offset=621
+	.asciz	"UART_DATA_BITS_8"              @ string offset=620
 .Linfo_string34:
-	.asciz	"hosal_uart_databits_t"         @ string offset=638
+	.asciz	"hosal_uart_databits_t"         @ string offset=637
 .Linfo_string35:
-	.asciz	"parity"                        @ string offset=660
+	.asciz	"parity"                        @ string offset=659
 .Linfo_string36:
-	.asciz	"UART_PARITY_NONE"              @ string offset=667
+	.asciz	"UART_PARITY_NONE"              @ string offset=666
 .Linfo_string37:
-	.asciz	"UART_PARITY_EVEN"              @ string offset=684
+	.asciz	"UART_PARITY_EVEN"              @ string offset=683
 .Linfo_string38:
-	.asciz	"UART_PARITY_ODD"               @ string offset=701
+	.asciz	"UART_PARITY_ODD"               @ string offset=700
 .Linfo_string39:
-	.asciz	"UART_PARITY_SPACE"             @ string offset=717
+	.asciz	"UART_PARITY_SPACE"             @ string offset=716
 .Linfo_string40:
-	.asciz	"UART_PARITY_MARK"              @ string offset=735
+	.asciz	"UART_PARITY_MARK"              @ string offset=734
 .Linfo_string41:
-	.asciz	"hosal_uart_parity_t"           @ string offset=752
+	.asciz	"hosal_uart_parity_t"           @ string offset=751
 .Linfo_string42:
-	.asciz	"stop_bits"                     @ string offset=772
+	.asciz	"stop_bits"                     @ string offset=771
 .Linfo_string43:
-	.asciz	"UART_STOPBIT_ONE"              @ string offset=782
+	.asciz	"UART_STOPBIT_ONE"              @ string offset=781
 .Linfo_string44:
-	.asciz	"UART_STOPBIT_TWO"              @ string offset=799
+	.asciz	"UART_STOPBIT_TWO"              @ string offset=798
 .Linfo_string45:
-	.asciz	"hosal_uart_stopbit_t"          @ string offset=816
+	.asciz	"hosal_uart_stopbit_t"          @ string offset=815
 .Linfo_string46:
-	.asciz	"flow_control"                  @ string offset=837
+	.asciz	"flow_control"                  @ string offset=836
 .Linfo_string47:
-	.asciz	"UART_HWFC_DISABLED"            @ string offset=850
+	.asciz	"UART_HWFC_DISABLED"            @ string offset=849
 .Linfo_string48:
-	.asciz	"UART_HWFC_ENABLED"             @ string offset=869
+	.asciz	"UART_HWFC_ENABLED"             @ string offset=868
 .Linfo_string49:
-	.asciz	"hosal_uart_hwfc_t"             @ string offset=887
+	.asciz	"hosal_uart_hwfc_t"             @ string offset=886
 .Linfo_string50:
-	.asciz	"mode"                          @ string offset=905
+	.asciz	"mode"                          @ string offset=904
 .Linfo_string51:
-	.asciz	"HOSAL_UART_MODE_POLL"          @ string offset=910
+	.asciz	"HOSAL_UART_MODE_POLL"          @ string offset=909
 .Linfo_string52:
-	.asciz	"HOSAL_UART_MODE_INT_TX"        @ string offset=931
+	.asciz	"HOSAL_UART_MODE_INT_TX"        @ string offset=930
 .Linfo_string53:
-	.asciz	"HOSAL_UART_MODE_INT_RX"        @ string offset=954
+	.asciz	"HOSAL_UART_MODE_INT_RX"        @ string offset=953
 .Linfo_string54:
-	.asciz	"HOSAL_UART_MODE_INT"           @ string offset=977
+	.asciz	"HOSAL_UART_MODE_INT"           @ string offset=976
 .Linfo_string55:
-	.asciz	"hosal_uart_mode_t"             @ string offset=997
+	.asciz	"hosal_uart_mode_t"             @ string offset=996
 .Linfo_string56:
-	.asciz	"hosal_uart_config_t"           @ string offset=1015
+	.asciz	"hosal_uart_config_t"           @ string offset=1014
 .Linfo_string57:
-	.asciz	"tx_cb"                         @ string offset=1035
+	.asciz	"tx_cb"                         @ string offset=1034
 .Linfo_string58:
-	.asciz	"int"                           @ string offset=1041
+	.asciz	"int"                           @ string offset=1040
 .Linfo_string59:
-	.asciz	"hosal_uart_callback_t"         @ string offset=1045
+	.asciz	"hosal_uart_callback_t"         @ string offset=1044
 .Linfo_string60:
-	.asciz	"p_tx_arg"                      @ string offset=1067
+	.asciz	"p_tx_arg"                      @ string offset=1066
 .Linfo_string61:
-	.asciz	"rx_cb"                         @ string offset=1076
+	.asciz	"rx_cb"                         @ string offset=1075
 .Linfo_string62:
-	.asciz	"p_rx_arg"                      @ string offset=1082
+	.asciz	"p_rx_arg"                      @ string offset=1081
 .Linfo_string63:
-	.asciz	"txdma_cb"                      @ string offset=1091
+	.asciz	"txdma_cb"                      @ string offset=1090
 .Linfo_string64:
-	.asciz	"p_txdma_arg"                   @ string offset=1100
+	.asciz	"p_txdma_arg"                   @ string offset=1099
 .Linfo_string65:
-	.asciz	"rxdma_cb"                      @ string offset=1112
+	.asciz	"rxdma_cb"                      @ string offset=1111
 .Linfo_string66:
-	.asciz	"p_rxdma_arg"                   @ string offset=1121
+	.asciz	"p_rxdma_arg"                   @ string offset=1120
 .Linfo_string67:
-	.asciz	"priv"                          @ string offset=1133
+	.asciz	"priv"                          @ string offset=1132
 .Linfo_string68:
-	.asciz	"hosal_uart_dev_t"              @ string offset=1138
+	.asciz	"hosal_uart_dev_t"              @ string offset=1137
 .Linfo_string69:
-	.asciz	"__exi_ctxt"                    @ string offset=1155
+	.asciz	"__exi_ctxt"                    @ string offset=1154
 .Linfo_string70:
-	.asciz	"exp_vect"                      @ string offset=1166
+	.asciz	"exp_vect"                      @ string offset=1165
 .Linfo_string71:
-	.asciz	"uint32_t"                      @ string offset=1175
+	.asciz	"uint32_t"                      @ string offset=1174
 .Linfo_string72:
-	.asciz	"exp_addr"                      @ string offset=1184
+	.asciz	"exp_addr"                      @ string offset=1183
 .Linfo_string73:
-	.asciz	"spsr"                          @ string offset=1193
+	.asciz	"spsr"                          @ string offset=1192
 .Linfo_string74:
-	.asciz	"cpsr"                          @ string offset=1198
+	.asciz	"cpsr"                          @ string offset=1197
 .Linfo_string75:
-	.asciz	"r"                             @ string offset=1203
+	.asciz	"r"                             @ string offset=1202
 .Linfo_string76:
-	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=1205
+	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=1204
 .Linfo_string77:
-	.asciz	"execption_ctxt"                @ string offset=1225
+	.asciz	"execption_ctxt"                @ string offset=1224
 .Linfo_string78:
-	.asciz	"exception_ctxt_t"              @ string offset=1240
+	.asciz	"exception_ctxt_t"              @ string offset=1239
 .Linfo_string79:
-	.asciz	"g_uart_rx_io"                  @ string offset=1257
+	.asciz	"g_uart_rx_io"                  @ string offset=1256
 .Linfo_string80:
-	.asciz	"start"                         @ string offset=1270
+	.asciz	"start"                         @ string offset=1269
 .Linfo_string81:
-	.asciz	"unsigned short"                @ string offset=1276
+	.asciz	"unsigned short"                @ string offset=1275
 .Linfo_string82:
-	.asciz	"uint16_t"                      @ string offset=1291
+	.asciz	"uint16_t"                      @ string offset=1290
 .Linfo_string83:
-	.asciz	"end"                           @ string offset=1300
+	.asciz	"end"                           @ string offset=1299
 .Linfo_string84:
-	.asciz	"recvLen"                       @ string offset=1304
+	.asciz	"recvLen"                       @ string offset=1303
 .Linfo_string85:
-	.asciz	"uart_cache"                    @ string offset=1312
+	.asciz	"uart_cache"                    @ string offset=1311
 .Linfo_string86:
-	.asciz	"uart_io"                       @ string offset=1323
+	.asciz	"uart_io"                       @ string offset=1322
 .Linfo_string87:
-	.asciz	"uart_io_t"                     @ string offset=1331
+	.asciz	"uart_io_t"                     @ string offset=1330
 .Linfo_string88:
-	.asciz	"bsp_c_g_msg"                   @ string offset=1341
+	.asciz	"bsp_c_g_msg"                   @ string offset=1340
 .Linfo_string89:
-	.asciz	"char"                          @ string offset=1353
+	.asciz	"char"                          @ string offset=1352
 .Linfo_string90:
-	.asciz	"hosal_uart_send"               @ string offset=1358
+	.asciz	"hosal_uart_send"               @ string offset=1357
 .Linfo_string91:
-	.asciz	"hosal_uart_ioctl"              @ string offset=1374
+	.asciz	"hosal_uart_ioctl"              @ string offset=1373
 .Linfo_string92:
-	.asciz	"_exp_dump_init"                @ string offset=1391
+	.asciz	"_exp_dump_init"                @ string offset=1390
 .Linfo_string93:
-	.asciz	"table"                         @ string offset=1406
+	.asciz	"table"                         @ string offset=1405
 .Linfo_string94:
-	.asciz	"RBR"                           @ string offset=1412
+	.asciz	"RBR"                           @ string offset=1411
 .Linfo_string95:
-	.asciz	"IER"                           @ string offset=1416
+	.asciz	"IER"                           @ string offset=1415
 .Linfo_string96:
-	.asciz	"FCR"                           @ string offset=1420
+	.asciz	"FCR"                           @ string offset=1419
 .Linfo_string97:
-	.asciz	"LCR"                           @ string offset=1424
+	.asciz	"LCR"                           @ string offset=1423
 .Linfo_string98:
-	.asciz	"MCR"                           @ string offset=1428
+	.asciz	"MCR"                           @ string offset=1427
 .Linfo_string99:
-	.asciz	"LSR"                           @ string offset=1432
+	.asciz	"LSR"                           @ string offset=1431
 .Linfo_string100:
-	.asciz	"MSR"                           @ string offset=1436
+	.asciz	"MSR"                           @ string offset=1435
 .Linfo_string101:
-	.asciz	"SPR"                           @ string offset=1440
+	.asciz	"SPR"                           @ string offset=1439
 .Linfo_string102:
-	.asciz	"xDMA_RX_ADDR"                  @ string offset=1444
+	.asciz	"xDMA_RX_ADDR"                  @ string offset=1443
 .Linfo_string103:
-	.asciz	"xDMA_RX_LEN"                   @ string offset=1457
+	.asciz	"xDMA_RX_LEN"                   @ string offset=1456
 .Linfo_string104:
-	.asciz	"xDMA_TX_ADDR"                  @ string offset=1469
+	.asciz	"xDMA_TX_ADDR"                  @ string offset=1468
 .Linfo_string105:
-	.asciz	"xDMA_TX_LEN"                   @ string offset=1482
+	.asciz	"xDMA_TX_LEN"                   @ string offset=1481
 .Linfo_string106:
-	.asciz	"xDMA_RX_RLEN"                  @ string offset=1494
+	.asciz	"xDMA_RX_RLEN"                  @ string offset=1493
 .Linfo_string107:
-	.asciz	"xDMA_TX_RLEN"                  @ string offset=1507
+	.asciz	"xDMA_TX_RLEN"                  @ string offset=1506
 .Linfo_string108:
-	.asciz	"xDMA_IER"                      @ string offset=1520
+	.asciz	"xDMA_IER"                      @ string offset=1519
 .Linfo_string109:
-	.asciz	"xDMA_INT_STATUS"               @ string offset=1529
+	.asciz	"xDMA_INT_STATUS"               @ string offset=1528
 .Linfo_string110:
-	.asciz	"xDMA_RX_ENABLE"                @ string offset=1545
+	.asciz	"xDMA_RX_ENABLE"                @ string offset=1544
 .Linfo_string111:
-	.asciz	"xDMA_TX_ENABLE"                @ string offset=1560
+	.asciz	"xDMA_TX_ENABLE"                @ string offset=1559
 .Linfo_string112:
-	.asciz	"UART_T"                        @ string offset=1575
+	.asciz	"UART_T"                        @ string offset=1574
 .Linfo_string113:
-	.asciz	"pCSR"                          @ string offset=1582
+	.asciz	"pCSR"                          @ string offset=1581
 .Linfo_string114:
-	.asciz	"_exp_dump_out"                 @ string offset=1587
+	.asciz	"_exp_dump_out"                 @ string offset=1586
 .Linfo_string115:
-	.asciz	"pMsg"                          @ string offset=1601
+	.asciz	"pMsg"                          @ string offset=1600
 .Linfo_string116:
-	.asciz	"len"                           @ string offset=1606
+	.asciz	"len"                           @ string offset=1605
 .Linfo_string117:
-	.asciz	"_uint2strhex"                  @ string offset=1610
+	.asciz	"_uint2strhex"                  @ string offset=1609
 .Linfo_string118:
-	.asciz	"pStr"                          @ string offset=1623
+	.asciz	"pStr"                          @ string offset=1622
 .Linfo_string119:
-	.asciz	"number"                        @ string offset=1628
+	.asciz	"number"                        @ string offset=1627
 .Linfo_string120:
-	.asciz	"nibbles_to_print"              @ string offset=1635
+	.asciz	"nibbles_to_print"              @ string offset=1634
 .Linfo_string121:
-	.asciz	"nibbles"                       @ string offset=1652
+	.asciz	"nibbles"                       @ string offset=1651
 .Linfo_string122:
-	.asciz	"nibble"                        @ string offset=1660
+	.asciz	"nibble"                        @ string offset=1659
 .Linfo_string123:
-	.asciz	"uart_stdio_write"              @ string offset=1667
+	.asciz	"uart_stdio_write"              @ string offset=1666
 .Linfo_string124:
-	.asciz	"uart_stdio_read"               @ string offset=1684
+	.asciz	"uart_stdio_read"               @ string offset=1683
 .Linfo_string125:
-	.asciz	"uart_stdio_en_int_mode"        @ string offset=1700
+	.asciz	"uart_stdio_en_int_mode"        @ string offset=1699
 .Linfo_string126:
-	.asciz	"uart_stdio_init"               @ string offset=1723
+	.asciz	"uart_stdio_init"               @ string offset=1722
 .Linfo_string127:
-	.asciz	"__uartstdio_rx_callback"       @ string offset=1739
+	.asciz	"__uartstdio_rx_callback"       @ string offset=1738
 .Linfo_string128:
-	.asciz	"my_fault_handler_c"            @ string offset=1763
+	.asciz	"my_fault_handler_c"            @ string offset=1762
 .Linfo_string129:
-	.asciz	"_exp_log_out"                  @ string offset=1782
+	.asciz	"_exp_log_out"                  @ string offset=1781
 .Linfo_string130:
-	.asciz	"HardFault_Handler"             @ string offset=1795
+	.asciz	"HardFault_Handler"             @ string offset=1794
 .Linfo_string131:
-	.asciz	"p_data"                        @ string offset=1813
+	.asciz	"p_data"                        @ string offset=1812
 .Linfo_string132:
-	.asciz	"length"                        @ string offset=1820
+	.asciz	"length"                        @ string offset=1819
 .Linfo_string133:
-	.asciz	"byte_cnt"                      @ string offset=1827
+	.asciz	"byte_cnt"                      @ string offset=1826
 .Linfo_string134:
-	.asciz	"p_arg"                         @ string offset=1836
+	.asciz	"p_arg"                         @ string offset=1835
 .Linfo_string135:
-	.asciz	"sp"                            @ string offset=1842
+	.asciz	"sp"                            @ string offset=1841
 .Linfo_string136:
-	.asciz	"lr_value"                      @ string offset=1845
+	.asciz	"lr_value"                      @ string offset=1844
 .Linfo_string137:
-	.asciz	"va"                            @ string offset=1854
+	.asciz	"va"                            @ string offset=1853
 .Linfo_string138:
-	.asciz	"__ap"                          @ string offset=1857
+	.asciz	"__ap"                          @ string offset=1856
 .Linfo_string139:
-	.asciz	"__va_list"                     @ string offset=1862
+	.asciz	"__va_list"                     @ string offset=1861
 .Linfo_string140:
-	.asciz	"__builtin_va_list"             @ string offset=1872
+	.asciz	"__builtin_va_list"             @ string offset=1871
 .Linfo_string141:
-	.asciz	"va_list"                       @ string offset=1890
+	.asciz	"va_list"                       @ string offset=1889
 .Linfo_string142:
-	.asciz	"format"                        @ string offset=1898
+	.asciz	"format"                        @ string offset=1897
 .Linfo_string143:
-	.asciz	"pch"                           @ string offset=1905
+	.asciz	"pch"                           @ string offset=1904
 .Linfo_string144:
-	.asciz	"j"                             @ string offset=1909
+	.asciz	"j"                             @ string offset=1908
 .Linfo_string145:
-	.asciz	"string"                        @ string offset=1911
+	.asciz	"string"                        @ string offset=1910
 	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals

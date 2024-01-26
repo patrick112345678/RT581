@@ -18,16 +18,16 @@
 	.eabi_attribute	26, 2	@ Tag_ABI_enum_size
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"network_management.c"
-	.file	1 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../das_subg_thread/network_management.c"
-	.file	2 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/coap.h"
-	.file	3 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/message.h"
+	.file	1 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../das_subg_thread/network_management.c"
+	.file	2 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/coap.h"
+	.file	3 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/message.h"
 	.file	4 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
-	.file	5 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/ip6.h"
-	.file	6 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\timers.h"
-	.file	7 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/thread.h"
-	.file	8 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/error.h"
-	.file	9 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/thread_ftd.h"
-	.file	10 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\\portmacro.h"
+	.file	5 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/ip6.h"
+	.file	6 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\timers.h"
+	.file	7 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/thread.h"
+	.file	8 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/error.h"
+	.file	9 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/thread_ftd.h"
+	.file	10 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\\portmacro.h"
 	.section	.text.nwk_mgm_debug_level,"ax",%progbits
 	.hidden	nwk_mgm_debug_level             @ -- Begin function nwk_mgm_debug_level
 	.globl	nwk_mgm_debug_level
@@ -1540,8 +1540,8 @@ nwk_mgm_ack_process:
 .Lfunc_end7:
 	.size	nwk_mgm_ack_process, .Lfunc_end7-nwk_mgm_ack_process
 	.cfi_endproc
-	.file	11 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/instance.h"
-	.file	12 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/platform/radio.h"
+	.file	11 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/instance.h"
+	.file	12 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/platform/radio.h"
 	.cantunwind
 	.fnend
                                         @ -- End function
@@ -1992,10 +1992,10 @@ nwk_mgm_neighbor_Change_Callback:
 	@DEBUG_VALUE: nwk_mgm_neighbor_Change_Callback:aEvent <- $r6
 	@DEBUG_VALUE: nwk_mgm_neighbor_Change_Callback:aEntryInfo <- $r4
 	@DEBUG_VALUE: nwk_mgm_neighbor_Change_Callback:aEvent <- $r6
-	.loc	1 1049 6 prologue_end           @ ../das_subg_thread/network_management.c:1049:6
+	.loc	1 1049 5 prologue_end           @ ../das_subg_thread/network_management.c:1049:5
 	bl	otrLock
 .Ltmp235:
-	.loc	1 1049 6 is_stmt 0              @ ../das_subg_thread/network_management.c:1049:6
+	.loc	1 1049 5 is_stmt 0              @ ../das_subg_thread/network_management.c:1049:5
 	bl	otrGetInstance
 .Ltmp236:
 	@DEBUG_VALUE: instance <- $r0
@@ -2010,7 +2010,7 @@ nwk_mgm_neighbor_Change_Callback:
 	mov	r5, r0
 .Ltmp238:
 	@DEBUG_VALUE: instance <- $r5
-	.loc	1 1049 6                        @ ../das_subg_thread/network_management.c:1049:6
+	.loc	1 1049 5                        @ ../das_subg_thread/network_management.c:1049:5
 	bl	otThreadGetDeviceRole
 .Ltmp239:
 	@DEBUG_VALUE: mRole <- $r0
@@ -2030,19 +2030,19 @@ nwk_mgm_neighbor_Change_Callback:
 	@DEBUG_VALUE: instance <- $r5
 	@DEBUG_VALUE: nwk_mgm_neighbor_Change_Callback:aEntryInfo <- $r4
 	@DEBUG_VALUE: mRole <- $r0
-	.loc	1 1049 6                        @ ../das_subg_thread/network_management.c:1049:6
+	.loc	1 1049 5                        @ ../das_subg_thread/network_management.c:1049:5
 	movw	r7, :lower16:nwk_mgm_child_reg_table
 	movt	r7, :upper16:nwk_mgm_child_reg_table
 	ldr	r0, [r7]
 .Ltmp242:
-	.loc	1 1049 6                        @ ../das_subg_thread/network_management.c:1049:6
+	.loc	1 1049 5                        @ ../das_subg_thread/network_management.c:1049:5
 	cbnz	r0, .LBB9_5
 .Ltmp243:
 @ %bb.4:
 	@DEBUG_VALUE: nwk_mgm_neighbor_Change_Callback:aEvent <- $r6
 	@DEBUG_VALUE: instance <- $r5
 	@DEBUG_VALUE: nwk_mgm_neighbor_Change_Callback:aEntryInfo <- $r4
-	.loc	1 1049 6                        @ ../das_subg_thread/network_management.c:1049:6
+	.loc	1 1049 5                        @ ../das_subg_thread/network_management.c:1049:5
 	adr	r0, .LCPI9_0
 	mov.w	r1, #540
 	bl	__2printf
@@ -2058,7 +2058,7 @@ nwk_mgm_neighbor_Change_Callback:
 	@DEBUG_VALUE: nwk_mgm_neighbor_Change_Callback:aEvent <- $r6
 	@DEBUG_VALUE: instance <- $r5
 	@DEBUG_VALUE: nwk_mgm_neighbor_Change_Callback:aEntryInfo <- $r4
-	.loc	1 1049 6                        @ ../das_subg_thread/network_management.c:1049:6
+	.loc	1 1049 5                        @ ../das_subg_thread/network_management.c:1049:5
 	cmp	r6, #1
 	beq	.LBB9_16
 .Ltmp247:
@@ -2073,7 +2073,7 @@ nwk_mgm_neighbor_Change_Callback:
 	@DEBUG_VALUE: nwk_mgm_neighbor_Change_Callback:aEvent <- $r6
 	@DEBUG_VALUE: instance <- $r5
 	@DEBUG_VALUE: nwk_mgm_neighbor_Change_Callback:aEntryInfo <- $r4
-	.loc	1 1049 6                        @ ../das_subg_thread/network_management.c:1049:6
+	.loc	1 1049 5                        @ ../das_subg_thread/network_management.c:1049:5
 	mov	r0, r5
 	bl	otThreadGetRloc16
 .Ltmp249:
@@ -2087,31 +2087,31 @@ nwk_mgm_neighbor_Change_Callback:
 	str	r7, [sp]
 	bl	nwk_mgm_child_reg_table_add
 .Ltmp251:
-	.loc	1 1049 6                        @ ../das_subg_thread/network_management.c:1049:6
+	.loc	1 1049 5                        @ ../das_subg_thread/network_management.c:1049:5
 	cbz	r0, .LBB9_11
 .Ltmp252:
 @ %bb.8:
 	@DEBUG_VALUE: instance <- $r5
 	@DEBUG_VALUE: nwk_mgm_neighbor_Change_Callback:aEntryInfo <- $r4
-	.loc	1 1049 6                        @ ../das_subg_thread/network_management.c:1049:6
+	.loc	1 1049 5                        @ ../das_subg_thread/network_management.c:1049:5
 	movw	r0, :lower16:nwk_mgm_debug_flags
 	movt	r0, :upper16:nwk_mgm_debug_flags
 	ldr	r0, [r0]
 .Ltmp253:
-	.loc	1 1049 6                        @ ../das_subg_thread/network_management.c:1049:6
+	.loc	1 1049 5                        @ ../das_subg_thread/network_management.c:1049:5
 	cbz	r0, .LBB9_10
 .Ltmp254:
 @ %bb.9:
 	@DEBUG_VALUE: instance <- $r5
 	@DEBUG_VALUE: nwk_mgm_neighbor_Change_Callback:aEntryInfo <- $r4
-	.loc	1 1049 6                        @ ../das_subg_thread/network_management.c:1049:6
+	.loc	1 1049 5                        @ ../das_subg_thread/network_management.c:1049:5
 	adr	r0, .LCPI9_2
 	bl	puts
 .Ltmp255:
 .LBB9_10:
 	@DEBUG_VALUE: instance <- $r5
 	@DEBUG_VALUE: nwk_mgm_neighbor_Change_Callback:aEntryInfo <- $r4
-	.loc	1 1049 6                        @ ../das_subg_thread/network_management.c:1049:6
+	.loc	1 1049 5                        @ ../das_subg_thread/network_management.c:1049:5
 	ldrh	r7, [r4, #20]
 	mov	r0, r5
 	bl	otLinkGetPanId
@@ -2141,7 +2141,7 @@ nwk_mgm_neighbor_Change_Callback:
 	@DEBUG_VALUE: instance <- $r5
 	@DEBUG_VALUE: nwk_mgm_neighbor_Change_Callback:aEntryInfo <- $r4
 	@DEBUG_VALUE: mRole <- $r0
-	.loc	1 1049 6                        @ ../das_subg_thread/network_management.c:1049:6
+	.loc	1 1049 5                        @ ../das_subg_thread/network_management.c:1049:5
 	cmp	r6, #1
 	bhi	.LBB9_14
 .Ltmp260:
@@ -2182,19 +2182,19 @@ nwk_mgm_neighbor_Change_Callback:
 	@DEBUG_VALUE: nwk_mgm_neighbor_Change_Callback:aEvent <- $r6
 	@DEBUG_VALUE: instance <- $r5
 	@DEBUG_VALUE: nwk_mgm_neighbor_Change_Callback:aEntryInfo <- $r4
-	.loc	1 1049 6 is_stmt 1              @ ../das_subg_thread/network_management.c:1049:6
+	.loc	1 1049 5 is_stmt 1              @ ../das_subg_thread/network_management.c:1049:5
 	movw	r0, :lower16:nwk_mgm_debug_flags
 	movt	r0, :upper16:nwk_mgm_debug_flags
 	ldr	r0, [r0]
 .Ltmp267:
-	.loc	1 1049 6 is_stmt 0              @ ../das_subg_thread/network_management.c:1049:6
+	.loc	1 1049 5 is_stmt 0              @ ../das_subg_thread/network_management.c:1049:5
 	cbz	r0, .LBB9_18
 .Ltmp268:
 @ %bb.17:
 	@DEBUG_VALUE: nwk_mgm_neighbor_Change_Callback:aEvent <- $r6
 	@DEBUG_VALUE: instance <- $r5
 	@DEBUG_VALUE: nwk_mgm_neighbor_Change_Callback:aEntryInfo <- $r4
-	.loc	1 1049 6                        @ ../das_subg_thread/network_management.c:1049:6
+	.loc	1 1049 5                        @ ../das_subg_thread/network_management.c:1049:5
 	adr	r0, .LCPI9_1
 	bl	puts
 .Ltmp269:
@@ -2202,12 +2202,12 @@ nwk_mgm_neighbor_Change_Callback:
 	@DEBUG_VALUE: nwk_mgm_neighbor_Change_Callback:aEvent <- $r6
 	@DEBUG_VALUE: instance <- $r5
 	@DEBUG_VALUE: nwk_mgm_neighbor_Change_Callback:aEntryInfo <- $r4
-	.loc	1 1049 6                        @ ../das_subg_thread/network_management.c:1049:6
+	.loc	1 1049 5                        @ ../das_subg_thread/network_management.c:1049:5
 	adds	r0, r4, #4
 	bl	nwk_mgm_child_reg_table_remove
 .Ltmp270:
 .LBB9_19:
-	.loc	1 1049 6                        @ ../das_subg_thread/network_management.c:1049:6
+	.loc	1 1049 5                        @ ../das_subg_thread/network_management.c:1049:5
 	add	sp, #4
 	pop.w	{r4, r5, r6, r7, lr}
 .Ltmp271:
@@ -2215,7 +2215,7 @@ nwk_mgm_neighbor_Change_Callback:
 .Ltmp272:
 	.p2align	2
 @ %bb.20:
-	.loc	1 0 6                           @ ../das_subg_thread/network_management.c:0:6
+	.loc	1 0 5                           @ ../das_subg_thread/network_management.c:0:5
 .LCPI9_0:
 .L.str.9:
 	.asciz	"malloc table %u \r\n\000"
@@ -2228,7 +2228,7 @@ nwk_mgm_neighbor_Change_Callback:
 .Lfunc_end9:
 	.size	nwk_mgm_neighbor_Change_Callback, .Lfunc_end9-nwk_mgm_neighbor_Change_Callback
 	.cfi_endproc
-	.file	13 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/openthread_port/include\\openthread_port.h"
+	.file	13 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/openthread_port/include\\openthread_port.h"
 	.cantunwind
 	.fnend
                                         @ -- End function
@@ -2991,7 +2991,7 @@ nwk_mgm_child_reg_table_remove:
 .Lfunc_end12:
 	.size	nwk_mgm_child_reg_table_remove, .Lfunc_end12-nwk_mgm_child_reg_table_remove
 	.cfi_endproc
-	.file	14 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/sysfun.h"
+	.file	14 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/sysfun.h"
 	.cantunwind
 	.fnend
                                         @ -- End function
@@ -4700,10 +4700,10 @@ nwk_mgm_timer_handler:
 .Ltmp546:
 @ %bb.2:
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	1 1118 6 is_stmt 1              @ ../das_subg_thread/network_management.c:1118:6
+	.loc	1 1118 5 is_stmt 1              @ ../das_subg_thread/network_management.c:1118:5
 	bl	otrLock
 .Ltmp547:
-	.loc	1 1118 6 is_stmt 0              @ ../das_subg_thread/network_management.c:1118:6
+	.loc	1 1118 5 is_stmt 0              @ ../das_subg_thread/network_management.c:1118:5
 	bl	otrGetInstance
 .Ltmp548:
 	@DEBUG_VALUE: instance <- $r0
@@ -4712,19 +4712,19 @@ nwk_mgm_timer_handler:
 @ %bb.3:
 	@DEBUG_VALUE: instance <- $r0
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	1 1118 6                        @ ../das_subg_thread/network_management.c:1118:6
+	.loc	1 1118 5                        @ ../das_subg_thread/network_management.c:1118:5
 	bl	otThreadGetDeviceRole
 .Ltmp550:
 	@DEBUG_VALUE: mRole <- $r0
 	cmp	r0, #3
 .Ltmp551:
-	.loc	1 1118 6                        @ ../das_subg_thread/network_management.c:1118:6
+	.loc	1 1118 5                        @ ../das_subg_thread/network_management.c:1118:5
 	it	eq
 	bleq	nwk_mgm_child_register_post
 .Ltmp552:
 .LBB15_4:
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	1 1118 6                        @ ../das_subg_thread/network_management.c:1118:6
+	.loc	1 1118 5                        @ ../das_subg_thread/network_management.c:1118:5
 	bl	otrUnlock
 .Ltmp553:
 .LBB15_5:
@@ -5534,7 +5534,7 @@ nwk_mgm_timer:
 	.hidden	_printf_int_dec
 	.hidden	_printf_longlong_hex
 	.hidden	_printf_str
-	.file	15 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/dataset.h"
+	.file	15 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/dataset.h"
 	.section	.debug_loc,"",%progbits
 .Ldebug_loc0:
 	.long	-1
@@ -10081,7 +10081,7 @@ nwk_mgm_timer:
 	.long	.Ltmp259-.Ltmp258               @ DW_AT_high_pc
 	.byte	1                               @ DW_AT_call_file
 	.short	1049                            @ DW_AT_call_line
-	.byte	6                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	55                              @ Abbrev [55] 0xd18:0x6 DW_TAG_formal_parameter
 	.byte	81                              @ DW_AT_const_value
 	.long	2837                            @ DW_AT_abstract_origin
@@ -10092,7 +10092,7 @@ nwk_mgm_timer:
 	.long	.Ltmp262-.Ltmp260               @ DW_AT_high_pc
 	.byte	1                               @ DW_AT_call_file
 	.short	1049                            @ DW_AT_call_line
-	.byte	6                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	55                              @ Abbrev [55] 0xd30:0x6 DW_TAG_formal_parameter
 	.byte	10                              @ DW_AT_const_value
 	.long	3223                            @ DW_AT_abstract_origin
@@ -10107,7 +10107,7 @@ nwk_mgm_timer:
 	.byte	60                              @ Abbrev [60] 0xd43:0x8 DW_TAG_subprogram
 	.long	.Linfo_string184                @ DW_AT_name
 	.byte	13                              @ DW_AT_decl_file
-	.short	256                             @ DW_AT_decl_line
+	.short	257                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_declaration
                                         @ DW_AT_external
@@ -11988,659 +11988,659 @@ nwk_mgm_timer:
 .Linfo_string1:
 	.asciz	"../das_subg_thread\\network_management.c" @ string offset=55
 .Linfo_string2:
-	.asciz	"D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" @ string offset=95
+	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=95
 .Linfo_string3:
-	.asciz	"nwk_mgm_debug_flags"           @ string offset=157
+	.asciz	"nwk_mgm_debug_flags"           @ string offset=156
 .Linfo_string4:
-	.asciz	"unsigned int"                  @ string offset=177
+	.asciz	"unsigned int"                  @ string offset=176
 .Linfo_string5:
-	.asciz	"nwk_mgm_resource"              @ string offset=190
+	.asciz	"nwk_mgm_resource"              @ string offset=189
 .Linfo_string6:
-	.asciz	"mUriPath"                      @ string offset=207
+	.asciz	"mUriPath"                      @ string offset=206
 .Linfo_string7:
-	.asciz	"char"                          @ string offset=216
+	.asciz	"char"                          @ string offset=215
 .Linfo_string8:
-	.asciz	"mHandler"                      @ string offset=221
+	.asciz	"mHandler"                      @ string offset=220
 .Linfo_string9:
-	.asciz	"otMessage"                     @ string offset=230
+	.asciz	"otMessage"                     @ string offset=229
 .Linfo_string10:
-	.asciz	"mSockAddr"                     @ string offset=240
+	.asciz	"mSockAddr"                     @ string offset=239
 .Linfo_string11:
-	.asciz	"mFields"                       @ string offset=250
+	.asciz	"mFields"                       @ string offset=249
 .Linfo_string12:
-	.asciz	"m8"                            @ string offset=258
+	.asciz	"m8"                            @ string offset=257
 .Linfo_string13:
-	.asciz	"unsigned char"                 @ string offset=261
+	.asciz	"unsigned char"                 @ string offset=260
 .Linfo_string14:
-	.asciz	"uint8_t"                       @ string offset=275
+	.asciz	"uint8_t"                       @ string offset=274
 .Linfo_string15:
-	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=283
+	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=282
 .Linfo_string16:
-	.asciz	"m16"                           @ string offset=303
+	.asciz	"m16"                           @ string offset=302
 .Linfo_string17:
-	.asciz	"unsigned short"                @ string offset=307
+	.asciz	"unsigned short"                @ string offset=306
 .Linfo_string18:
-	.asciz	"uint16_t"                      @ string offset=322
+	.asciz	"uint16_t"                      @ string offset=321
 .Linfo_string19:
-	.asciz	"m32"                           @ string offset=331
+	.asciz	"m32"                           @ string offset=330
 .Linfo_string20:
-	.asciz	"uint32_t"                      @ string offset=335
+	.asciz	"uint32_t"                      @ string offset=334
 .Linfo_string21:
-	.asciz	"mComponents"                   @ string offset=344
+	.asciz	"mComponents"                   @ string offset=343
 .Linfo_string22:
-	.asciz	"mNetworkPrefix"                @ string offset=356
+	.asciz	"mNetworkPrefix"                @ string offset=355
 .Linfo_string23:
-	.asciz	"otIp6NetworkPrefix"            @ string offset=371
+	.asciz	"otIp6NetworkPrefix"            @ string offset=370
 .Linfo_string24:
-	.asciz	"mIid"                          @ string offset=390
+	.asciz	"mIid"                          @ string offset=389
 .Linfo_string25:
-	.asciz	"otIp6InterfaceIdentifier"      @ string offset=395
+	.asciz	"otIp6InterfaceIdentifier"      @ string offset=394
 .Linfo_string26:
-	.asciz	"otIp6AddressComponents"        @ string offset=420
+	.asciz	"otIp6AddressComponents"        @ string offset=419
 .Linfo_string27:
-	.asciz	"otIp6Address"                  @ string offset=443
+	.asciz	"otIp6Address"                  @ string offset=442
 .Linfo_string28:
-	.asciz	"mPeerAddr"                     @ string offset=456
+	.asciz	"mPeerAddr"                     @ string offset=455
 .Linfo_string29:
-	.asciz	"mSockPort"                     @ string offset=466
+	.asciz	"mSockPort"                     @ string offset=465
 .Linfo_string30:
-	.asciz	"mPeerPort"                     @ string offset=476
+	.asciz	"mPeerPort"                     @ string offset=475
 .Linfo_string31:
-	.asciz	"mLinkInfo"                     @ string offset=486
+	.asciz	"mLinkInfo"                     @ string offset=485
 .Linfo_string32:
-	.asciz	"mHopLimit"                     @ string offset=496
+	.asciz	"mHopLimit"                     @ string offset=495
 .Linfo_string33:
-	.asciz	"mEcn"                          @ string offset=506
+	.asciz	"mEcn"                          @ string offset=505
 .Linfo_string34:
-	.asciz	"mIsHostInterface"              @ string offset=511
+	.asciz	"mIsHostInterface"              @ string offset=510
 .Linfo_string35:
-	.asciz	"_Bool"                         @ string offset=528
+	.asciz	"_Bool"                         @ string offset=527
 .Linfo_string36:
-	.asciz	"mAllowZeroHopLimit"            @ string offset=534
+	.asciz	"mAllowZeroHopLimit"            @ string offset=533
 .Linfo_string37:
-	.asciz	"mMulticastLoop"                @ string offset=553
+	.asciz	"mMulticastLoop"                @ string offset=552
 .Linfo_string38:
-	.asciz	"otMessageInfo"                 @ string offset=568
+	.asciz	"otMessageInfo"                 @ string offset=567
 .Linfo_string39:
-	.asciz	"otCoapRequestHandler"          @ string offset=582
+	.asciz	"otCoapRequestHandler"          @ string offset=581
 .Linfo_string40:
-	.asciz	"mContext"                      @ string offset=603
+	.asciz	"mContext"                      @ string offset=602
 .Linfo_string41:
-	.asciz	"mNext"                         @ string offset=612
+	.asciz	"mNext"                         @ string offset=611
 .Linfo_string42:
-	.asciz	"otCoapResource"                @ string offset=618
+	.asciz	"otCoapResource"                @ string offset=617
 .Linfo_string43:
-	.asciz	"mgm_reg_send_timer"            @ string offset=633
+	.asciz	"mgm_reg_send_timer"            @ string offset=632
 .Linfo_string44:
-	.asciz	"mgm_router_up_timer"           @ string offset=652
+	.asciz	"mgm_router_up_timer"           @ string offset=651
 .Linfo_string45:
-	.asciz	"nwk_mgm_child_reg_table"       @ string offset=672
+	.asciz	"nwk_mgm_child_reg_table"       @ string offset=671
 .Linfo_string46:
-	.asciz	"used"                          @ string offset=696
+	.asciz	"used"                          @ string offset=695
 .Linfo_string47:
-	.asciz	"role"                          @ string offset=701
+	.asciz	"role"                          @ string offset=700
 .Linfo_string48:
-	.asciz	"parent"                        @ string offset=706
+	.asciz	"parent"                        @ string offset=705
 .Linfo_string49:
-	.asciz	"rloc"                          @ string offset=713
+	.asciz	"rloc"                          @ string offset=712
 .Linfo_string50:
-	.asciz	"extaddr"                       @ string offset=718
+	.asciz	"extaddr"                       @ string offset=717
 .Linfo_string51:
-	.asciz	"rssi"                          @ string offset=726
+	.asciz	"rssi"                          @ string offset=725
 .Linfo_string52:
-	.asciz	"signed char"                   @ string offset=731
+	.asciz	"signed char"                   @ string offset=730
 .Linfo_string53:
-	.asciz	"int8_t"                        @ string offset=743
+	.asciz	"int8_t"                        @ string offset=742
 .Linfo_string54:
-	.asciz	"validtime"                     @ string offset=750
+	.asciz	"validtime"                     @ string offset=749
 .Linfo_string55:
-	.asciz	"nwk_mgm_child_reg_table_t"     @ string offset=760
+	.asciz	"nwk_mgm_child_reg_table_t"     @ string offset=759
 .Linfo_string56:
-	.asciz	"reg_table_is_full"             @ string offset=786
+	.asciz	"reg_table_is_full"             @ string offset=785
 .Linfo_string57:
-	.asciz	"nwk_mgm_timer"                 @ string offset=804
+	.asciz	"nwk_mgm_timer"                 @ string offset=803
 .Linfo_string58:
-	.asciz	"tmrTimerControl"               @ string offset=818
+	.asciz	"tmrTimerControl"               @ string offset=817
 .Linfo_string59:
-	.asciz	"TimerHandle_t"                 @ string offset=834
+	.asciz	"TimerHandle_t"                 @ string offset=833
 .Linfo_string60:
-	.asciz	"OT_DEVICE_ROLE_DISABLED"       @ string offset=848
+	.asciz	"OT_DEVICE_ROLE_DISABLED"       @ string offset=847
 .Linfo_string61:
-	.asciz	"OT_DEVICE_ROLE_DETACHED"       @ string offset=872
+	.asciz	"OT_DEVICE_ROLE_DETACHED"       @ string offset=871
 .Linfo_string62:
-	.asciz	"OT_DEVICE_ROLE_CHILD"          @ string offset=896
+	.asciz	"OT_DEVICE_ROLE_CHILD"          @ string offset=895
 .Linfo_string63:
-	.asciz	"OT_DEVICE_ROLE_ROUTER"         @ string offset=917
+	.asciz	"OT_DEVICE_ROLE_ROUTER"         @ string offset=916
 .Linfo_string64:
-	.asciz	"OT_DEVICE_ROLE_LEADER"         @ string offset=939
+	.asciz	"OT_DEVICE_ROLE_LEADER"         @ string offset=938
 .Linfo_string65:
-	.asciz	"OT_ERROR_NONE"                 @ string offset=961
+	.asciz	"OT_ERROR_NONE"                 @ string offset=960
 .Linfo_string66:
-	.asciz	"OT_ERROR_FAILED"               @ string offset=975
+	.asciz	"OT_ERROR_FAILED"               @ string offset=974
 .Linfo_string67:
-	.asciz	"OT_ERROR_DROP"                 @ string offset=991
+	.asciz	"OT_ERROR_DROP"                 @ string offset=990
 .Linfo_string68:
-	.asciz	"OT_ERROR_NO_BUFS"              @ string offset=1005
+	.asciz	"OT_ERROR_NO_BUFS"              @ string offset=1004
 .Linfo_string69:
-	.asciz	"OT_ERROR_NO_ROUTE"             @ string offset=1022
+	.asciz	"OT_ERROR_NO_ROUTE"             @ string offset=1021
 .Linfo_string70:
-	.asciz	"OT_ERROR_BUSY"                 @ string offset=1040
+	.asciz	"OT_ERROR_BUSY"                 @ string offset=1039
 .Linfo_string71:
-	.asciz	"OT_ERROR_PARSE"                @ string offset=1054
+	.asciz	"OT_ERROR_PARSE"                @ string offset=1053
 .Linfo_string72:
-	.asciz	"OT_ERROR_INVALID_ARGS"         @ string offset=1069
+	.asciz	"OT_ERROR_INVALID_ARGS"         @ string offset=1068
 .Linfo_string73:
-	.asciz	"OT_ERROR_SECURITY"             @ string offset=1091
+	.asciz	"OT_ERROR_SECURITY"             @ string offset=1090
 .Linfo_string74:
-	.asciz	"OT_ERROR_ADDRESS_QUERY"        @ string offset=1109
+	.asciz	"OT_ERROR_ADDRESS_QUERY"        @ string offset=1108
 .Linfo_string75:
-	.asciz	"OT_ERROR_NO_ADDRESS"           @ string offset=1132
+	.asciz	"OT_ERROR_NO_ADDRESS"           @ string offset=1131
 .Linfo_string76:
-	.asciz	"OT_ERROR_ABORT"                @ string offset=1152
+	.asciz	"OT_ERROR_ABORT"                @ string offset=1151
 .Linfo_string77:
-	.asciz	"OT_ERROR_NOT_IMPLEMENTED"      @ string offset=1167
+	.asciz	"OT_ERROR_NOT_IMPLEMENTED"      @ string offset=1166
 .Linfo_string78:
-	.asciz	"OT_ERROR_INVALID_STATE"        @ string offset=1192
+	.asciz	"OT_ERROR_INVALID_STATE"        @ string offset=1191
 .Linfo_string79:
-	.asciz	"OT_ERROR_NO_ACK"               @ string offset=1215
+	.asciz	"OT_ERROR_NO_ACK"               @ string offset=1214
 .Linfo_string80:
-	.asciz	"OT_ERROR_CHANNEL_ACCESS_FAILURE" @ string offset=1231
+	.asciz	"OT_ERROR_CHANNEL_ACCESS_FAILURE" @ string offset=1230
 .Linfo_string81:
-	.asciz	"OT_ERROR_DETACHED"             @ string offset=1263
+	.asciz	"OT_ERROR_DETACHED"             @ string offset=1262
 .Linfo_string82:
-	.asciz	"OT_ERROR_FCS"                  @ string offset=1281
+	.asciz	"OT_ERROR_FCS"                  @ string offset=1280
 .Linfo_string83:
-	.asciz	"OT_ERROR_NO_FRAME_RECEIVED"    @ string offset=1294
+	.asciz	"OT_ERROR_NO_FRAME_RECEIVED"    @ string offset=1293
 .Linfo_string84:
-	.asciz	"OT_ERROR_UNKNOWN_NEIGHBOR"     @ string offset=1321
+	.asciz	"OT_ERROR_UNKNOWN_NEIGHBOR"     @ string offset=1320
 .Linfo_string85:
-	.asciz	"OT_ERROR_INVALID_SOURCE_ADDRESS" @ string offset=1347
+	.asciz	"OT_ERROR_INVALID_SOURCE_ADDRESS" @ string offset=1346
 .Linfo_string86:
-	.asciz	"OT_ERROR_ADDRESS_FILTERED"     @ string offset=1379
+	.asciz	"OT_ERROR_ADDRESS_FILTERED"     @ string offset=1378
 .Linfo_string87:
-	.asciz	"OT_ERROR_DESTINATION_ADDRESS_FILTERED" @ string offset=1405
+	.asciz	"OT_ERROR_DESTINATION_ADDRESS_FILTERED" @ string offset=1404
 .Linfo_string88:
-	.asciz	"OT_ERROR_NOT_FOUND"            @ string offset=1443
+	.asciz	"OT_ERROR_NOT_FOUND"            @ string offset=1442
 .Linfo_string89:
-	.asciz	"OT_ERROR_ALREADY"              @ string offset=1462
+	.asciz	"OT_ERROR_ALREADY"              @ string offset=1461
 .Linfo_string90:
-	.asciz	"OT_ERROR_IP6_ADDRESS_CREATION_FAILURE" @ string offset=1479
+	.asciz	"OT_ERROR_IP6_ADDRESS_CREATION_FAILURE" @ string offset=1478
 .Linfo_string91:
-	.asciz	"OT_ERROR_NOT_CAPABLE"          @ string offset=1517
+	.asciz	"OT_ERROR_NOT_CAPABLE"          @ string offset=1516
 .Linfo_string92:
-	.asciz	"OT_ERROR_RESPONSE_TIMEOUT"     @ string offset=1538
+	.asciz	"OT_ERROR_RESPONSE_TIMEOUT"     @ string offset=1537
 .Linfo_string93:
-	.asciz	"OT_ERROR_DUPLICATED"           @ string offset=1564
+	.asciz	"OT_ERROR_DUPLICATED"           @ string offset=1563
 .Linfo_string94:
-	.asciz	"OT_ERROR_REASSEMBLY_TIMEOUT"   @ string offset=1584
+	.asciz	"OT_ERROR_REASSEMBLY_TIMEOUT"   @ string offset=1583
 .Linfo_string95:
-	.asciz	"OT_ERROR_NOT_TMF"              @ string offset=1612
+	.asciz	"OT_ERROR_NOT_TMF"              @ string offset=1611
 .Linfo_string96:
-	.asciz	"OT_ERROR_NOT_LOWPAN_DATA_FRAME" @ string offset=1629
+	.asciz	"OT_ERROR_NOT_LOWPAN_DATA_FRAME" @ string offset=1628
 .Linfo_string97:
-	.asciz	"OT_ERROR_LINK_MARGIN_LOW"      @ string offset=1660
+	.asciz	"OT_ERROR_LINK_MARGIN_LOW"      @ string offset=1659
 .Linfo_string98:
-	.asciz	"OT_ERROR_INVALID_COMMAND"      @ string offset=1685
+	.asciz	"OT_ERROR_INVALID_COMMAND"      @ string offset=1684
 .Linfo_string99:
-	.asciz	"OT_ERROR_PENDING"              @ string offset=1710
+	.asciz	"OT_ERROR_PENDING"              @ string offset=1709
 .Linfo_string100:
-	.asciz	"OT_ERROR_REJECTED"             @ string offset=1727
+	.asciz	"OT_ERROR_REJECTED"             @ string offset=1726
 .Linfo_string101:
-	.asciz	"OT_NUM_ERRORS"                 @ string offset=1745
+	.asciz	"OT_NUM_ERRORS"                 @ string offset=1744
 .Linfo_string102:
-	.asciz	"OT_ERROR_GENERIC"              @ string offset=1759
+	.asciz	"OT_ERROR_GENERIC"              @ string offset=1758
 .Linfo_string103:
-	.asciz	"otError"                       @ string offset=1776
+	.asciz	"otError"                       @ string offset=1775
 .Linfo_string104:
-	.asciz	"OT_COAP_CODE_EMPTY"            @ string offset=1784
+	.asciz	"OT_COAP_CODE_EMPTY"            @ string offset=1783
 .Linfo_string105:
-	.asciz	"OT_COAP_CODE_GET"              @ string offset=1803
+	.asciz	"OT_COAP_CODE_GET"              @ string offset=1802
 .Linfo_string106:
-	.asciz	"OT_COAP_CODE_POST"             @ string offset=1820
+	.asciz	"OT_COAP_CODE_POST"             @ string offset=1819
 .Linfo_string107:
-	.asciz	"OT_COAP_CODE_PUT"              @ string offset=1838
+	.asciz	"OT_COAP_CODE_PUT"              @ string offset=1837
 .Linfo_string108:
-	.asciz	"OT_COAP_CODE_DELETE"           @ string offset=1855
+	.asciz	"OT_COAP_CODE_DELETE"           @ string offset=1854
 .Linfo_string109:
-	.asciz	"OT_COAP_CODE_RESPONSE_MIN"     @ string offset=1875
+	.asciz	"OT_COAP_CODE_RESPONSE_MIN"     @ string offset=1874
 .Linfo_string110:
-	.asciz	"OT_COAP_CODE_CREATED"          @ string offset=1901
+	.asciz	"OT_COAP_CODE_CREATED"          @ string offset=1900
 .Linfo_string111:
-	.asciz	"OT_COAP_CODE_DELETED"          @ string offset=1922
+	.asciz	"OT_COAP_CODE_DELETED"          @ string offset=1921
 .Linfo_string112:
-	.asciz	"OT_COAP_CODE_VALID"            @ string offset=1943
+	.asciz	"OT_COAP_CODE_VALID"            @ string offset=1942
 .Linfo_string113:
-	.asciz	"OT_COAP_CODE_CHANGED"          @ string offset=1962
+	.asciz	"OT_COAP_CODE_CHANGED"          @ string offset=1961
 .Linfo_string114:
-	.asciz	"OT_COAP_CODE_CONTENT"          @ string offset=1983
+	.asciz	"OT_COAP_CODE_CONTENT"          @ string offset=1982
 .Linfo_string115:
-	.asciz	"OT_COAP_CODE_CONTINUE"         @ string offset=2004
+	.asciz	"OT_COAP_CODE_CONTINUE"         @ string offset=2003
 .Linfo_string116:
-	.asciz	"OT_COAP_CODE_BAD_REQUEST"      @ string offset=2026
+	.asciz	"OT_COAP_CODE_BAD_REQUEST"      @ string offset=2025
 .Linfo_string117:
-	.asciz	"OT_COAP_CODE_UNAUTHORIZED"     @ string offset=2051
+	.asciz	"OT_COAP_CODE_UNAUTHORIZED"     @ string offset=2050
 .Linfo_string118:
-	.asciz	"OT_COAP_CODE_BAD_OPTION"       @ string offset=2077
+	.asciz	"OT_COAP_CODE_BAD_OPTION"       @ string offset=2076
 .Linfo_string119:
-	.asciz	"OT_COAP_CODE_FORBIDDEN"        @ string offset=2101
+	.asciz	"OT_COAP_CODE_FORBIDDEN"        @ string offset=2100
 .Linfo_string120:
-	.asciz	"OT_COAP_CODE_NOT_FOUND"        @ string offset=2124
+	.asciz	"OT_COAP_CODE_NOT_FOUND"        @ string offset=2123
 .Linfo_string121:
-	.asciz	"OT_COAP_CODE_METHOD_NOT_ALLOWED" @ string offset=2147
+	.asciz	"OT_COAP_CODE_METHOD_NOT_ALLOWED" @ string offset=2146
 .Linfo_string122:
-	.asciz	"OT_COAP_CODE_NOT_ACCEPTABLE"   @ string offset=2179
+	.asciz	"OT_COAP_CODE_NOT_ACCEPTABLE"   @ string offset=2178
 .Linfo_string123:
-	.asciz	"OT_COAP_CODE_REQUEST_INCOMPLETE" @ string offset=2207
+	.asciz	"OT_COAP_CODE_REQUEST_INCOMPLETE" @ string offset=2206
 .Linfo_string124:
-	.asciz	"OT_COAP_CODE_PRECONDITION_FAILED" @ string offset=2239
+	.asciz	"OT_COAP_CODE_PRECONDITION_FAILED" @ string offset=2238
 .Linfo_string125:
-	.asciz	"OT_COAP_CODE_REQUEST_TOO_LARGE" @ string offset=2272
+	.asciz	"OT_COAP_CODE_REQUEST_TOO_LARGE" @ string offset=2271
 .Linfo_string126:
-	.asciz	"OT_COAP_CODE_UNSUPPORTED_FORMAT" @ string offset=2303
+	.asciz	"OT_COAP_CODE_UNSUPPORTED_FORMAT" @ string offset=2302
 .Linfo_string127:
-	.asciz	"OT_COAP_CODE_INTERNAL_ERROR"   @ string offset=2335
+	.asciz	"OT_COAP_CODE_INTERNAL_ERROR"   @ string offset=2334
 .Linfo_string128:
-	.asciz	"OT_COAP_CODE_NOT_IMPLEMENTED"  @ string offset=2363
+	.asciz	"OT_COAP_CODE_NOT_IMPLEMENTED"  @ string offset=2362
 .Linfo_string129:
-	.asciz	"OT_COAP_CODE_BAD_GATEWAY"      @ string offset=2392
+	.asciz	"OT_COAP_CODE_BAD_GATEWAY"      @ string offset=2391
 .Linfo_string130:
-	.asciz	"OT_COAP_CODE_SERVICE_UNAVAILABLE" @ string offset=2417
+	.asciz	"OT_COAP_CODE_SERVICE_UNAVAILABLE" @ string offset=2416
 .Linfo_string131:
-	.asciz	"OT_COAP_CODE_GATEWAY_TIMEOUT"  @ string offset=2450
+	.asciz	"OT_COAP_CODE_GATEWAY_TIMEOUT"  @ string offset=2449
 .Linfo_string132:
-	.asciz	"OT_COAP_CODE_PROXY_NOT_SUPPORTED" @ string offset=2479
+	.asciz	"OT_COAP_CODE_PROXY_NOT_SUPPORTED" @ string offset=2478
 .Linfo_string133:
-	.asciz	"otCoapCode"                    @ string offset=2512
+	.asciz	"otCoapCode"                    @ string offset=2511
 .Linfo_string134:
-	.asciz	"OT_COAP_TYPE_CONFIRMABLE"      @ string offset=2523
+	.asciz	"OT_COAP_TYPE_CONFIRMABLE"      @ string offset=2522
 .Linfo_string135:
-	.asciz	"OT_COAP_TYPE_NON_CONFIRMABLE"  @ string offset=2548
+	.asciz	"OT_COAP_TYPE_NON_CONFIRMABLE"  @ string offset=2547
 .Linfo_string136:
-	.asciz	"OT_COAP_TYPE_ACKNOWLEDGMENT"   @ string offset=2577
+	.asciz	"OT_COAP_TYPE_ACKNOWLEDGMENT"   @ string offset=2576
 .Linfo_string137:
-	.asciz	"OT_COAP_TYPE_RESET"            @ string offset=2605
+	.asciz	"OT_COAP_TYPE_RESET"            @ string offset=2604
 .Linfo_string138:
-	.asciz	"otCoapType"                    @ string offset=2624
+	.asciz	"otCoapType"                    @ string offset=2623
 .Linfo_string139:
-	.asciz	"NWK_MGM_TYPE_CHILD_REG"        @ string offset=2635
+	.asciz	"NWK_MGM_TYPE_CHILD_REG"        @ string offset=2634
 .Linfo_string140:
-	.asciz	"NWK_MGM_TYPE_CHILD_REG_ACK"    @ string offset=2658
+	.asciz	"NWK_MGM_TYPE_CHILD_REG_ACK"    @ string offset=2657
 .Linfo_string141:
-	.asciz	"NWK_MGM_TYPE_CHILD_KICK"       @ string offset=2685
+	.asciz	"NWK_MGM_TYPE_CHILD_KICK"       @ string offset=2684
 .Linfo_string142:
-	.asciz	"OT_NEIGHBOR_TABLE_EVENT_CHILD_ADDED" @ string offset=2709
+	.asciz	"OT_NEIGHBOR_TABLE_EVENT_CHILD_ADDED" @ string offset=2708
 .Linfo_string143:
-	.asciz	"OT_NEIGHBOR_TABLE_EVENT_CHILD_REMOVED" @ string offset=2745
+	.asciz	"OT_NEIGHBOR_TABLE_EVENT_CHILD_REMOVED" @ string offset=2744
 .Linfo_string144:
-	.asciz	"OT_NEIGHBOR_TABLE_EVENT_CHILD_MODE_CHANGED" @ string offset=2783
+	.asciz	"OT_NEIGHBOR_TABLE_EVENT_CHILD_MODE_CHANGED" @ string offset=2782
 .Linfo_string145:
-	.asciz	"OT_NEIGHBOR_TABLE_EVENT_ROUTER_ADDED" @ string offset=2826
+	.asciz	"OT_NEIGHBOR_TABLE_EVENT_ROUTER_ADDED" @ string offset=2825
 .Linfo_string146:
-	.asciz	"OT_NEIGHBOR_TABLE_EVENT_ROUTER_REMOVED" @ string offset=2863
+	.asciz	"OT_NEIGHBOR_TABLE_EVENT_ROUTER_REMOVED" @ string offset=2862
 .Linfo_string147:
-	.asciz	"long int"                      @ string offset=2902
+	.asciz	"long int"                      @ string offset=2901
 .Linfo_string148:
-	.asciz	"BaseType_t"                    @ string offset=2911
+	.asciz	"BaseType_t"                    @ string offset=2910
 .Linfo_string149:
-	.asciz	"data_type"                     @ string offset=2922
+	.asciz	"data_type"                     @ string offset=2921
 .Linfo_string150:
-	.asciz	"self_rloc"                     @ string offset=2932
+	.asciz	"self_rloc"                     @ string offset=2931
 .Linfo_string151:
-	.asciz	"self_extaddr"                  @ string offset=2942
+	.asciz	"self_extaddr"                  @ string offset=2941
 .Linfo_string152:
-	.asciz	"num"                           @ string offset=2955
+	.asciz	"num"                           @ string offset=2954
 .Linfo_string153:
-	.asciz	"child_info"                    @ string offset=2959
+	.asciz	"child_info"                    @ string offset=2958
 .Linfo_string154:
-	.asciz	"nwk_mgm_child_info_t"          @ string offset=2970
+	.asciz	"nwk_mgm_child_info_t"          @ string offset=2969
 .Linfo_string155:
-	.asciz	"nwk_mgm_child_reg_data_t"      @ string offset=2991
+	.asciz	"nwk_mgm_child_reg_data_t"      @ string offset=2990
 .Linfo_string156:
-	.asciz	"state"                         @ string offset=3016
+	.asciz	"state"                         @ string offset=3015
 .Linfo_string157:
-	.asciz	"kick_num"                      @ string offset=3022
+	.asciz	"kick_num"                      @ string offset=3021
 .Linfo_string158:
-	.asciz	"nwk_mgm_child_reg_ack_info_t"  @ string offset=3031
+	.asciz	"nwk_mgm_child_reg_ack_info_t"  @ string offset=3030
 .Linfo_string159:
-	.asciz	"panid"                         @ string offset=3060
+	.asciz	"panid"                         @ string offset=3059
 .Linfo_string160:
-	.asciz	"nwk_mgm_kick_child_info_t"     @ string offset=3066
+	.asciz	"nwk_mgm_kick_child_info_t"     @ string offset=3065
 .Linfo_string161:
-	.asciz	"nwk_mgm_childs_register_ack_proccess" @ string offset=3092
+	.asciz	"nwk_mgm_childs_register_ack_proccess" @ string offset=3091
 .Linfo_string162:
-	.asciz	"buf"                           @ string offset=3129
+	.asciz	"buf"                           @ string offset=3128
 .Linfo_string163:
-	.asciz	"length"                        @ string offset=3133
+	.asciz	"length"                        @ string offset=3132
 .Linfo_string164:
-	.asciz	"instance"                      @ string offset=3140
+	.asciz	"instance"                      @ string offset=3139
 .Linfo_string165:
-	.asciz	"otInstance"                    @ string offset=3149
+	.asciz	"otInstance"                    @ string offset=3148
 .Linfo_string166:
-	.asciz	"child_reg_data_ack"            @ string offset=3160
+	.asciz	"child_reg_data_ack"            @ string offset=3159
 .Linfo_string167:
-	.asciz	"mRole"                         @ string offset=3179
+	.asciz	"mRole"                         @ string offset=3178
 .Linfo_string168:
-	.asciz	"otDeviceRole"                  @ string offset=3185
+	.asciz	"otDeviceRole"                  @ string offset=3184
 .Linfo_string169:
-	.asciz	"aExtAddress"                   @ string offset=3198
+	.asciz	"aExtAddress"                   @ string offset=3197
 .Linfo_string170:
-	.asciz	"otExtAddress"                  @ string offset=3210
+	.asciz	"otExtAddress"                  @ string offset=3209
 .Linfo_string171:
-	.asciz	"i"                             @ string offset=3223
+	.asciz	"i"                             @ string offset=3222
 .Linfo_string172:
-	.asciz	"nwk_mgm_data_piece"            @ string offset=3225
+	.asciz	"nwk_mgm_data_piece"            @ string offset=3224
 .Linfo_string173:
-	.asciz	"type"                          @ string offset=3244
+	.asciz	"type"                          @ string offset=3243
 .Linfo_string174:
-	.asciz	"payload"                       @ string offset=3249
+	.asciz	"payload"                       @ string offset=3248
 .Linfo_string175:
-	.asciz	"payloadlength"                 @ string offset=3257
+	.asciz	"payloadlength"                 @ string offset=3256
 .Linfo_string176:
-	.asciz	"data"                          @ string offset=3271
+	.asciz	"data"                          @ string offset=3270
 .Linfo_string177:
-	.asciz	"tmp"                           @ string offset=3276
+	.asciz	"tmp"                           @ string offset=3275
 .Linfo_string178:
-	.asciz	"kick_child_data"               @ string offset=3280
+	.asciz	"kick_child_data"               @ string offset=3279
 .Linfo_string179:
-	.asciz	"child_reg_data"                @ string offset=3296
+	.asciz	"child_reg_data"                @ string offset=3295
 .Linfo_string180:
-	.asciz	"ptr"                           @ string offset=3311
+	.asciz	"ptr"                           @ string offset=3310
 .Linfo_string181:
-	.asciz	"nwk_mgm_router_update_timer_set" @ string offset=3315
+	.asciz	"nwk_mgm_router_update_timer_set" @ string offset=3314
 .Linfo_string182:
-	.asciz	"time"                          @ string offset=3347
+	.asciz	"time"                          @ string offset=3346
 .Linfo_string183:
-	.asciz	"nwk_mgm_reg_send_timer_set"    @ string offset=3352
+	.asciz	"nwk_mgm_reg_send_timer_set"    @ string offset=3351
 .Linfo_string184:
-	.asciz	"otrUnlock"                     @ string offset=3379
+	.asciz	"otrUnlock"                     @ string offset=3378
 .Linfo_string185:
-	.asciz	"leave_critical_section"        @ string offset=3389
+	.asciz	"leave_critical_section"        @ string offset=3388
 .Linfo_string186:
-	.asciz	"nwk_mgm_childs_register_proccess" @ string offset=3412
+	.asciz	"nwk_mgm_childs_register_proccess" @ string offset=3411
 .Linfo_string187:
-	.asciz	"aMessage"                      @ string offset=3445
+	.asciz	"aMessage"                      @ string offset=3444
 .Linfo_string188:
-	.asciz	"aMessageInfo"                  @ string offset=3454
+	.asciz	"aMessageInfo"                  @ string offset=3453
 .Linfo_string189:
-	.asciz	"error"                         @ string offset=3467
+	.asciz	"error"                         @ string offset=3466
 .Linfo_string190:
-	.asciz	"responseMessage"               @ string offset=3473
+	.asciz	"responseMessage"               @ string offset=3472
 .Linfo_string191:
-	.asciz	"responseCode"                  @ string offset=3489
+	.asciz	"responseCode"                  @ string offset=3488
 .Linfo_string192:
-	.asciz	"ack_rloc"                      @ string offset=3502
+	.asciz	"ack_rloc"                      @ string offset=3501
 .Linfo_string193:
-	.asciz	"k"                             @ string offset=3511
+	.asciz	"k"                             @ string offset=3510
 .Linfo_string194:
-	.asciz	"nwk_mgm_kick_child_proccess"   @ string offset=3513
+	.asciz	"nwk_mgm_kick_child_proccess"   @ string offset=3512
 .Linfo_string195:
-	.asciz	"nwk_mgm_data_parse"            @ string offset=3541
+	.asciz	"nwk_mgm_data_parse"            @ string offset=3540
 .Linfo_string196:
-	.asciz	"int"                           @ string offset=3560
+	.asciz	"int"                           @ string offset=3559
 .Linfo_string197:
-	.asciz	"nwk_mgm_child_register_post_resend" @ string offset=3564
+	.asciz	"nwk_mgm_child_register_post_resend" @ string offset=3563
 .Linfo_string198:
-	.asciz	"mgm_router_update_timer_handler" @ string offset=3599
+	.asciz	"mgm_router_update_timer_handler" @ string offset=3598
 .Linfo_string199:
-	.asciz	"childInfo"                     @ string offset=3631
+	.asciz	"childInfo"                     @ string offset=3630
 .Linfo_string200:
-	.asciz	"mExtAddress"                   @ string offset=3641
+	.asciz	"mExtAddress"                   @ string offset=3640
 .Linfo_string201:
-	.asciz	"mTimeout"                      @ string offset=3653
+	.asciz	"mTimeout"                      @ string offset=3652
 .Linfo_string202:
-	.asciz	"mAge"                          @ string offset=3662
+	.asciz	"mAge"                          @ string offset=3661
 .Linfo_string203:
-	.asciz	"mRloc16"                       @ string offset=3667
+	.asciz	"mRloc16"                       @ string offset=3666
 .Linfo_string204:
-	.asciz	"mChildId"                      @ string offset=3675
+	.asciz	"mChildId"                      @ string offset=3674
 .Linfo_string205:
-	.asciz	"mNetworkDataVersion"           @ string offset=3684
+	.asciz	"mNetworkDataVersion"           @ string offset=3683
 .Linfo_string206:
-	.asciz	"mLinkQualityIn"                @ string offset=3704
+	.asciz	"mLinkQualityIn"                @ string offset=3703
 .Linfo_string207:
-	.asciz	"mAverageRssi"                  @ string offset=3719
+	.asciz	"mAverageRssi"                  @ string offset=3718
 .Linfo_string208:
-	.asciz	"mLastRssi"                     @ string offset=3732
+	.asciz	"mLastRssi"                     @ string offset=3731
 .Linfo_string209:
-	.asciz	"mFrameErrorRate"               @ string offset=3742
+	.asciz	"mFrameErrorRate"               @ string offset=3741
 .Linfo_string210:
-	.asciz	"mMessageErrorRate"             @ string offset=3758
+	.asciz	"mMessageErrorRate"             @ string offset=3757
 .Linfo_string211:
-	.asciz	"mQueuedMessageCnt"             @ string offset=3776
+	.asciz	"mQueuedMessageCnt"             @ string offset=3775
 .Linfo_string212:
-	.asciz	"mSupervisionInterval"          @ string offset=3794
+	.asciz	"mSupervisionInterval"          @ string offset=3793
 .Linfo_string213:
-	.asciz	"mVersion"                      @ string offset=3815
+	.asciz	"mVersion"                      @ string offset=3814
 .Linfo_string214:
-	.asciz	"mRxOnWhenIdle"                 @ string offset=3824
+	.asciz	"mRxOnWhenIdle"                 @ string offset=3823
 .Linfo_string215:
-	.asciz	"mFullThreadDevice"             @ string offset=3838
+	.asciz	"mFullThreadDevice"             @ string offset=3837
 .Linfo_string216:
-	.asciz	"mFullNetworkData"              @ string offset=3856
+	.asciz	"mFullNetworkData"              @ string offset=3855
 .Linfo_string217:
-	.asciz	"mIsStateRestoring"             @ string offset=3873
+	.asciz	"mIsStateRestoring"             @ string offset=3872
 .Linfo_string218:
-	.asciz	"mIsCslSynced"                  @ string offset=3891
+	.asciz	"mIsCslSynced"                  @ string offset=3890
 .Linfo_string219:
-	.asciz	"otChildInfo"                   @ string offset=3904
+	.asciz	"otChildInfo"                   @ string offset=3903
 .Linfo_string220:
-	.asciz	"childernmax"                   @ string offset=3916
+	.asciz	"childernmax"                   @ string offset=3915
 .Linfo_string221:
-	.asciz	"nwk_mgm_child_reg_table_time_handler" @ string offset=3928
+	.asciz	"nwk_mgm_child_reg_table_time_handler" @ string offset=3927
 .Linfo_string222:
-	.asciz	"nwk_mgm_debug_level"           @ string offset=3965
+	.asciz	"nwk_mgm_debug_level"           @ string offset=3964
 .Linfo_string223:
-	.asciz	"otPlatFindNwkMgmChildRegTable" @ string offset=3985
+	.asciz	"otPlatFindNwkMgmChildRegTable" @ string offset=3984
 .Linfo_string224:
-	.asciz	"otPlatNwkMgmIsFull"            @ string offset=4015
+	.asciz	"otPlatNwkMgmIsFull"            @ string offset=4014
 .Linfo_string225:
-	.asciz	"nwk_mgm_child_reg_table_display" @ string offset=4034
+	.asciz	"nwk_mgm_child_reg_table_display" @ string offset=4033
 .Linfo_string226:
-	.asciz	"nwk_mgm_coap_request"          @ string offset=4066
+	.asciz	"nwk_mgm_coap_request"          @ string offset=4065
 .Linfo_string227:
-	.asciz	"nwk_mgm_ack_process"           @ string offset=4087
+	.asciz	"nwk_mgm_ack_process"           @ string offset=4086
 .Linfo_string228:
-	.asciz	"nwk_mgm_child_register_post"   @ string offset=4107
+	.asciz	"nwk_mgm_child_register_post"   @ string offset=4106
 .Linfo_string229:
-	.asciz	"nwk_mgm_neighbor_Change_Callback" @ string offset=4135
+	.asciz	"nwk_mgm_neighbor_Change_Callback" @ string offset=4134
 .Linfo_string230:
-	.asciz	"nwk_mgm_child_reg_table_add"   @ string offset=4168
+	.asciz	"nwk_mgm_child_reg_table_add"   @ string offset=4167
 .Linfo_string231:
-	.asciz	"nwk_mgm_kick_child_post"       @ string offset=4196
+	.asciz	"nwk_mgm_kick_child_post"       @ string offset=4195
 .Linfo_string232:
-	.asciz	"nwk_mgm_child_reg_table_remove" @ string offset=4220
+	.asciz	"nwk_mgm_child_reg_table_remove" @ string offset=4219
 .Linfo_string233:
-	.asciz	"nwk_mgm_init"                  @ string offset=4251
+	.asciz	"nwk_mgm_init"                  @ string offset=4250
 .Linfo_string234:
-	.asciz	"nwk_mgm_request_proccess"      @ string offset=4264
+	.asciz	"nwk_mgm_request_proccess"      @ string offset=4263
 .Linfo_string235:
-	.asciz	"nwk_mgm_timer_handler"         @ string offset=4289
+	.asciz	"nwk_mgm_timer_handler"         @ string offset=4288
 .Linfo_string236:
-	.asciz	"nwk_mgm_reset"                 @ string offset=4311
+	.asciz	"nwk_mgm_reset"                 @ string offset=4310
 .Linfo_string237:
-	.asciz	"level"                         @ string offset=4325
+	.asciz	"level"                         @ string offset=4324
 .Linfo_string238:
-	.asciz	"ret"                           @ string offset=4331
+	.asciz	"ret"                           @ string offset=4330
 .Linfo_string239:
-	.asciz	"count"                         @ string offset=4335
+	.asciz	"count"                         @ string offset=4334
 .Linfo_string240:
-	.asciz	"messageInfo"                   @ string offset=4341
+	.asciz	"messageInfo"                   @ string offset=4340
 .Linfo_string241:
-	.asciz	"aCoapCode"                     @ string offset=4353
+	.asciz	"aCoapCode"                     @ string offset=4352
 .Linfo_string242:
-	.asciz	"message"                       @ string offset=4363
+	.asciz	"message"                       @ string offset=4362
 .Linfo_string243:
-	.asciz	"coapDestinationIp"             @ string offset=4371
+	.asciz	"coapDestinationIp"             @ string offset=4370
 .Linfo_string244:
-	.asciz	"payloadLength"                 @ string offset=4389
+	.asciz	"payloadLength"                 @ string offset=4388
 .Linfo_string245:
-	.asciz	"coap_Path"                     @ string offset=4403
+	.asciz	"coap_Path"                     @ string offset=4402
 .Linfo_string246:
-	.asciz	"coapType"                      @ string offset=4413
+	.asciz	"coapType"                      @ string offset=4412
 .Linfo_string247:
-	.asciz	"string"                        @ string offset=4422
+	.asciz	"string"                        @ string offset=4421
 .Linfo_string248:
-	.asciz	"aContext"                      @ string offset=4429
+	.asciz	"aContext"                      @ string offset=4428
 .Linfo_string249:
-	.asciz	"aResult"                       @ string offset=4438
+	.asciz	"aResult"                       @ string offset=4437
 .Linfo_string250:
-	.asciz	"nwk_mgm_data_type"             @ string offset=4446
+	.asciz	"nwk_mgm_data_type"             @ string offset=4445
 .Linfo_string251:
-	.asciz	"parentInfo"                    @ string offset=4464
+	.asciz	"parentInfo"                    @ string offset=4463
 .Linfo_string252:
-	.asciz	"mRouterId"                     @ string offset=4475
+	.asciz	"mRouterId"                     @ string offset=4474
 .Linfo_string253:
-	.asciz	"mNextHop"                      @ string offset=4485
+	.asciz	"mNextHop"                      @ string offset=4484
 .Linfo_string254:
-	.asciz	"mPathCost"                     @ string offset=4494
+	.asciz	"mPathCost"                     @ string offset=4493
 .Linfo_string255:
-	.asciz	"mLinkQualityOut"               @ string offset=4504
+	.asciz	"mLinkQualityOut"               @ string offset=4503
 .Linfo_string256:
-	.asciz	"mAllocated"                    @ string offset=4520
+	.asciz	"mAllocated"                    @ string offset=4519
 .Linfo_string257:
-	.asciz	"mLinkEstablished"              @ string offset=4531
+	.asciz	"mLinkEstablished"              @ string offset=4530
 .Linfo_string258:
-	.asciz	"mCslClockAccuracy"             @ string offset=4548
+	.asciz	"mCslClockAccuracy"             @ string offset=4547
 .Linfo_string259:
-	.asciz	"mCslUncertainty"               @ string offset=4566
+	.asciz	"mCslUncertainty"               @ string offset=4565
 .Linfo_string260:
-	.asciz	"otRouterInfo"                  @ string offset=4582
+	.asciz	"otRouterInfo"                  @ string offset=4581
 .Linfo_string261:
-	.asciz	"CoapCode"                      @ string offset=4595
+	.asciz	"CoapCode"                      @ string offset=4594
 .Linfo_string262:
-	.asciz	"aEvent"                        @ string offset=4604
+	.asciz	"aEvent"                        @ string offset=4603
 .Linfo_string263:
-	.asciz	"otNeighborTableEvent"          @ string offset=4611
+	.asciz	"otNeighborTableEvent"          @ string offset=4610
 .Linfo_string264:
-	.asciz	"aEntryInfo"                    @ string offset=4632
+	.asciz	"aEntryInfo"                    @ string offset=4631
 .Linfo_string265:
-	.asciz	"mInstance"                     @ string offset=4643
+	.asciz	"mInstance"                     @ string offset=4642
 .Linfo_string266:
-	.asciz	"mInfo"                         @ string offset=4653
+	.asciz	"mInfo"                         @ string offset=4652
 .Linfo_string267:
-	.asciz	"mChild"                        @ string offset=4659
+	.asciz	"mChild"                        @ string offset=4658
 .Linfo_string268:
-	.asciz	"mRouter"                       @ string offset=4666
+	.asciz	"mRouter"                       @ string offset=4665
 .Linfo_string269:
-	.asciz	"mLinkFrameCounter"             @ string offset=4674
+	.asciz	"mLinkFrameCounter"             @ string offset=4673
 .Linfo_string270:
-	.asciz	"mMleFrameCounter"              @ string offset=4692
+	.asciz	"mMleFrameCounter"              @ string offset=4691
 .Linfo_string271:
-	.asciz	"mLinkMargin"                   @ string offset=4709
+	.asciz	"mLinkMargin"                   @ string offset=4708
 .Linfo_string272:
-	.asciz	"mIsChild"                      @ string offset=4721
+	.asciz	"mIsChild"                      @ string offset=4720
 .Linfo_string273:
-	.asciz	"otNeighborInfo"                @ string offset=4730
+	.asciz	"otNeighborInfo"                @ string offset=4729
 .Linfo_string274:
-	.asciz	"otNeighborTableEntryInfo"      @ string offset=4745
+	.asciz	"otNeighborTableEntryInfo"      @ string offset=4744
 .Linfo_string275:
-	.asciz	"aInstance"                     @ string offset=4770
+	.asciz	"aInstance"                     @ string offset=4769
 .Linfo_string276:
-	.asciz	"xTimer"                        @ string offset=4780
+	.asciz	"xTimer"                        @ string offset=4779
 .Linfo_string277:
-	.asciz	"dataset"                       @ string offset=4787
+	.asciz	"dataset"                       @ string offset=4786
 .Linfo_string278:
-	.asciz	"mActiveTimestamp"              @ string offset=4795
+	.asciz	"mActiveTimestamp"              @ string offset=4794
 .Linfo_string279:
-	.asciz	"mSeconds"                      @ string offset=4812
+	.asciz	"mSeconds"                      @ string offset=4811
 .Linfo_string280:
-	.asciz	"long long unsigned int"        @ string offset=4821
+	.asciz	"long long unsigned int"        @ string offset=4820
 .Linfo_string281:
-	.asciz	"uint64_t"                      @ string offset=4844
+	.asciz	"uint64_t"                      @ string offset=4843
 .Linfo_string282:
-	.asciz	"mTicks"                        @ string offset=4853
+	.asciz	"mTicks"                        @ string offset=4852
 .Linfo_string283:
-	.asciz	"mAuthoritative"                @ string offset=4860
+	.asciz	"mAuthoritative"                @ string offset=4859
 .Linfo_string284:
-	.asciz	"otTimestamp"                   @ string offset=4875
+	.asciz	"otTimestamp"                   @ string offset=4874
 .Linfo_string285:
-	.asciz	"mPendingTimestamp"             @ string offset=4887
+	.asciz	"mPendingTimestamp"             @ string offset=4886
 .Linfo_string286:
-	.asciz	"mNetworkKey"                   @ string offset=4905
+	.asciz	"mNetworkKey"                   @ string offset=4904
 .Linfo_string287:
-	.asciz	"otNetworkKey"                  @ string offset=4917
+	.asciz	"otNetworkKey"                  @ string offset=4916
 .Linfo_string288:
-	.asciz	"mNetworkName"                  @ string offset=4930
+	.asciz	"mNetworkName"                  @ string offset=4929
 .Linfo_string289:
-	.asciz	"otNetworkName"                 @ string offset=4943
+	.asciz	"otNetworkName"                 @ string offset=4942
 .Linfo_string290:
-	.asciz	"mExtendedPanId"                @ string offset=4957
+	.asciz	"mExtendedPanId"                @ string offset=4956
 .Linfo_string291:
-	.asciz	"otExtendedPanId"               @ string offset=4972
+	.asciz	"otExtendedPanId"               @ string offset=4971
 .Linfo_string292:
-	.asciz	"mMeshLocalPrefix"              @ string offset=4988
+	.asciz	"mMeshLocalPrefix"              @ string offset=4987
 .Linfo_string293:
-	.asciz	"otMeshLocalPrefix"             @ string offset=5005
+	.asciz	"otMeshLocalPrefix"             @ string offset=5004
 .Linfo_string294:
-	.asciz	"mDelay"                        @ string offset=5023
+	.asciz	"mDelay"                        @ string offset=5022
 .Linfo_string295:
-	.asciz	"mPanId"                        @ string offset=5030
+	.asciz	"mPanId"                        @ string offset=5029
 .Linfo_string296:
-	.asciz	"otPanId"                       @ string offset=5037
+	.asciz	"otPanId"                       @ string offset=5036
 .Linfo_string297:
-	.asciz	"mChannel"                      @ string offset=5045
+	.asciz	"mChannel"                      @ string offset=5044
 .Linfo_string298:
-	.asciz	"mPskc"                         @ string offset=5054
+	.asciz	"mPskc"                         @ string offset=5053
 .Linfo_string299:
-	.asciz	"otPskc"                        @ string offset=5060
+	.asciz	"otPskc"                        @ string offset=5059
 .Linfo_string300:
-	.asciz	"mSecurityPolicy"               @ string offset=5067
+	.asciz	"mSecurityPolicy"               @ string offset=5066
 .Linfo_string301:
-	.asciz	"mRotationTime"                 @ string offset=5083
+	.asciz	"mRotationTime"                 @ string offset=5082
 .Linfo_string302:
-	.asciz	"mObtainNetworkKeyEnabled"      @ string offset=5097
+	.asciz	"mObtainNetworkKeyEnabled"      @ string offset=5096
 .Linfo_string303:
-	.asciz	"mNativeCommissioningEnabled"   @ string offset=5122
+	.asciz	"mNativeCommissioningEnabled"   @ string offset=5121
 .Linfo_string304:
-	.asciz	"mRoutersEnabled"               @ string offset=5150
+	.asciz	"mRoutersEnabled"               @ string offset=5149
 .Linfo_string305:
-	.asciz	"mExternalCommissioningEnabled" @ string offset=5166
+	.asciz	"mExternalCommissioningEnabled" @ string offset=5165
 .Linfo_string306:
-	.asciz	"mCommercialCommissioningEnabled" @ string offset=5196
+	.asciz	"mCommercialCommissioningEnabled" @ string offset=5195
 .Linfo_string307:
-	.asciz	"mAutonomousEnrollmentEnabled"  @ string offset=5228
+	.asciz	"mAutonomousEnrollmentEnabled"  @ string offset=5227
 .Linfo_string308:
-	.asciz	"mNetworkKeyProvisioningEnabled" @ string offset=5257
+	.asciz	"mNetworkKeyProvisioningEnabled" @ string offset=5256
 .Linfo_string309:
-	.asciz	"mTobleLinkEnabled"             @ string offset=5288
+	.asciz	"mTobleLinkEnabled"             @ string offset=5287
 .Linfo_string310:
-	.asciz	"mNonCcmRoutersEnabled"         @ string offset=5306
+	.asciz	"mNonCcmRoutersEnabled"         @ string offset=5305
 .Linfo_string311:
-	.asciz	"mVersionThresholdForRouting"   @ string offset=5328
+	.asciz	"mVersionThresholdForRouting"   @ string offset=5327
 .Linfo_string312:
-	.asciz	"otSecurityPolicy"              @ string offset=5356
+	.asciz	"otSecurityPolicy"              @ string offset=5355
 .Linfo_string313:
-	.asciz	"mChannelMask"                  @ string offset=5373
+	.asciz	"mChannelMask"                  @ string offset=5372
 .Linfo_string314:
-	.asciz	"otChannelMask"                 @ string offset=5386
+	.asciz	"otChannelMask"                 @ string offset=5385
 .Linfo_string315:
-	.asciz	"mIsActiveTimestampPresent"     @ string offset=5400
+	.asciz	"mIsActiveTimestampPresent"     @ string offset=5399
 .Linfo_string316:
-	.asciz	"mIsPendingTimestampPresent"    @ string offset=5426
+	.asciz	"mIsPendingTimestampPresent"    @ string offset=5425
 .Linfo_string317:
-	.asciz	"mIsNetworkKeyPresent"          @ string offset=5453
+	.asciz	"mIsNetworkKeyPresent"          @ string offset=5452
 .Linfo_string318:
-	.asciz	"mIsNetworkNamePresent"         @ string offset=5474
+	.asciz	"mIsNetworkNamePresent"         @ string offset=5473
 .Linfo_string319:
-	.asciz	"mIsExtendedPanIdPresent"       @ string offset=5496
+	.asciz	"mIsExtendedPanIdPresent"       @ string offset=5495
 .Linfo_string320:
-	.asciz	"mIsMeshLocalPrefixPresent"     @ string offset=5520
+	.asciz	"mIsMeshLocalPrefixPresent"     @ string offset=5519
 .Linfo_string321:
-	.asciz	"mIsDelayPresent"               @ string offset=5546
+	.asciz	"mIsDelayPresent"               @ string offset=5545
 .Linfo_string322:
-	.asciz	"mIsPanIdPresent"               @ string offset=5562
+	.asciz	"mIsPanIdPresent"               @ string offset=5561
 .Linfo_string323:
-	.asciz	"mIsChannelPresent"             @ string offset=5578
+	.asciz	"mIsChannelPresent"             @ string offset=5577
 .Linfo_string324:
-	.asciz	"mIsPskcPresent"                @ string offset=5596
+	.asciz	"mIsPskcPresent"                @ string offset=5595
 .Linfo_string325:
-	.asciz	"mIsSecurityPolicyPresent"      @ string offset=5611
+	.asciz	"mIsSecurityPolicyPresent"      @ string offset=5610
 .Linfo_string326:
-	.asciz	"mIsChannelMaskPresent"         @ string offset=5636
+	.asciz	"mIsChannelMaskPresent"         @ string offset=5635
 .Linfo_string327:
-	.asciz	"otOperationalDatasetComponents" @ string offset=5658
+	.asciz	"otOperationalDatasetComponents" @ string offset=5657
 .Linfo_string328:
-	.asciz	"otOperationalDataset"          @ string offset=5689
+	.asciz	"otOperationalDataset"          @ string offset=5688
 	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals

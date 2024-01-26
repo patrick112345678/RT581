@@ -18,9 +18,9 @@
 	.eabi_attribute	26, 2	@ Tag_ABI_enum_size
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"cli.c"
-	.file	1 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/utility/cli/Inc/shell.h"
+	.file	1 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/utility/cli/Inc/shell.h"
 	.file	2 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
-	.file	3 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/utility/cli/cli.c"
+	.file	3 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/utility/cli/cli.c"
 	.section	.text.cli_init,"ax",%progbits
 	.hidden	cli_init                        @ -- Begin function cli_init
 	.globl	cli_init
@@ -30,7 +30,7 @@
 	.thumb_func
 cli_init:
 .Lfunc_begin0:
-	.loc	3 146 0                         @ ../../../components/utility/cli/cli.c:146:0
+	.loc	3 152 0                         @ ../../../components/utility/cli/cli.c:152:0
 	.fnstart
 	.cfi_sections .debug_frame
 	.cfi_startproc
@@ -45,7 +45,7 @@ cli_init:
 	.cfi_def_cfa_offset 16
 	movs	r0, #28
 .Ltmp0:
-	.loc	3 147 5 prologue_end            @ ../../../components/utility/cli/cli.c:147:5
+	.loc	3 153 5 prologue_end            @ ../../../components/utility/cli/cli.c:153:5
 	str	r0, [sp]
 	movw	r0, :lower16:cli_task
 	mov.w	r12, #0
@@ -56,7 +56,7 @@ cli_init:
 	str.w	r12, [sp, #4]
 	bl	xTaskCreate
 .Ltmp1:
-	.loc	3 154 5                         @ ../../../components/utility/cli/cli.c:154:5
+	.loc	3 160 5                         @ ../../../components/utility/cli/cli.c:160:5
 	movs	r0, #0
 	add	sp, #8
 	pop	{r7, pc}
@@ -144,7 +144,7 @@ cli_task:
 	mov	r6, r0
 .Ltmp9:
 	@DEBUG_VALUE: cli_task:cnt <- $r6
-	.loc	3 98 12                         @ ../../../components/utility/cli/cli.c:98:12
+	.loc	3 98 13                         @ ../../../components/utility/cli/cli.c:98:13
 	lsls	r0, r0, #24
 	beq	.LBB1_5
 .Ltmp10:
@@ -306,10 +306,10 @@ _cli_cmd_ps:
 	adr	r0, .LCPI2_3
 	blx	r4
 .Ltmp35:
-	.loc	3 130 8                         @ ../../../components/utility/cli/cli.c:130:8
+	.loc	3 130 9                         @ ../../../components/utility/cli/cli.c:130:9
 	ldr.w	r0, [r8]
 .Ltmp36:
-	.loc	3 130 8 is_stmt 0               @ ../../../components/utility/cli/cli.c:130:8
+	.loc	3 130 9 is_stmt 0               @ ../../../components/utility/cli/cli.c:130:9
 	cmp	r0, r9
 	bhs	.LBB2_2
 .Ltmp37:
@@ -319,19 +319,19 @@ _cli_cmd_ps:
 	@DEBUG_VALUE: _cli_cmd_ps:pExtra <- [DW_OP_LLVM_entry_value 1] $r3
 	@DEBUG_VALUE: _cli_cmd_ps:argv <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: _cli_cmd_ps:argc <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	3 131 28 is_stmt 1              @ ../../../components/utility/cli/cli.c:131:28
+	.loc	3 132 28 is_stmt 1              @ ../../../components/utility/cli/cli.c:132:28
 	ldr.w	r0, [r8]
-	.loc	3 131 43 is_stmt 0              @ ../../../components/utility/cli/cli.c:131:43
+	.loc	3 132 44 is_stmt 0              @ ../../../components/utility/cli/cli.c:132:44
 	add.w	r1, r9, #1
 	movs	r2, #0
 	cmp	r0, r1
-	.loc	3 131 9                         @ ../../../components/utility/cli/cli.c:131:9
+	.loc	3 132 9                         @ ../../../components/utility/cli/cli.c:132:9
 	adr	r0, .LCPI2_4
 	mov.w	r3, #0
-	.loc	3 131 43                        @ ../../../components/utility/cli/cli.c:131:43
+	.loc	3 132 44                        @ ../../../components/utility/cli/cli.c:132:44
 	it	lo
 	movlo	r2, #1
-	.loc	3 131 9                         @ ../../../components/utility/cli/cli.c:131:9
+	.loc	3 132 9                         @ ../../../components/utility/cli/cli.c:132:9
 	blx	r4
 .Ltmp38:
 .LBB2_2:
@@ -340,12 +340,12 @@ _cli_cmd_ps:
 	@DEBUG_VALUE: _cli_cmd_ps:pExtra <- [DW_OP_LLVM_entry_value 1] $r3
 	@DEBUG_VALUE: _cli_cmd_ps:argv <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: _cli_cmd_ps:argc <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	3 133 8 is_stmt 1               @ ../../../components/utility/cli/cli.c:133:8
+	.loc	3 135 9 is_stmt 1               @ ../../../components/utility/cli/cli.c:135:9
 	ldr.w	r0, [r8]
 	movw	r1, #48126
 	movt	r1, #63338
 .Ltmp39:
-	.loc	3 133 8 is_stmt 0               @ ../../../components/utility/cli/cli.c:133:8
+	.loc	3 135 9 is_stmt 0               @ ../../../components/utility/cli/cli.c:135:9
 	cmp	r0, r1
 	bhi	.LBB2_4
 .Ltmp40:
@@ -355,22 +355,22 @@ _cli_cmd_ps:
 	@DEBUG_VALUE: _cli_cmd_ps:pExtra <- [DW_OP_LLVM_entry_value 1] $r3
 	@DEBUG_VALUE: _cli_cmd_ps:argv <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: _cli_cmd_ps:argc <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	3 134 28 is_stmt 1              @ ../../../components/utility/cli/cli.c:134:28
+	.loc	3 137 28 is_stmt 1              @ ../../../components/utility/cli/cli.c:137:28
 	ldr.w	r0, [r8]
 	movw	r1, #64181
 	mvns	r0, r0
 	movt	r1, #61083
-	.loc	3 134 43 is_stmt 0              @ ../../../components/utility/cli/cli.c:134:43
+	.loc	3 137 44 is_stmt 0              @ ../../../components/utility/cli/cli.c:137:44
 	umull	r0, r1, r0, r1
 	lsrs	r0, r1, #27
 	movw	r1, #43691
 	movt	r1, #43690
-	.loc	3 134 55                        @ ../../../components/utility/cli/cli.c:134:55
+	.loc	3 137 57                        @ ../../../components/utility/cli/cli.c:137:57
 	umull	r1, r2, r0, r1
 	lsrs	r1, r2, #4
 	add.w	r1, r1, r1, lsl #1
 	sub.w	r1, r0, r1, lsl #3
-	.loc	3 134 9                         @ ../../../components/utility/cli/cli.c:134:9
+	.loc	3 137 9                         @ ../../../components/utility/cli/cli.c:137:9
 	adr	r0, .LCPI2_5
 	blx	r4
 .Ltmp41:
@@ -380,13 +380,13 @@ _cli_cmd_ps:
 	@DEBUG_VALUE: _cli_cmd_ps:pExtra <- [DW_OP_LLVM_entry_value 1] $r3
 	@DEBUG_VALUE: _cli_cmd_ps:argv <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: _cli_cmd_ps:argc <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	3 136 8 is_stmt 1               @ ../../../components/utility/cli/cli.c:136:8
+	.loc	3 140 9 is_stmt 1               @ ../../../components/utility/cli/cli.c:140:9
 	ldr.w	r0, [r8]
 	movw	r1, #24830
 	movt	r1, #65499
 	movw	r6, #34953
 .Ltmp42:
-	.loc	3 136 8 is_stmt 0               @ ../../../components/utility/cli/cli.c:136:8
+	.loc	3 140 9 is_stmt 0               @ ../../../components/utility/cli/cli.c:140:9
 	cmp	r0, r1
 	movt	r6, #34952
 	bhi	.LBB2_6
@@ -397,21 +397,21 @@ _cli_cmd_ps:
 	@DEBUG_VALUE: _cli_cmd_ps:pExtra <- [DW_OP_LLVM_entry_value 1] $r3
 	@DEBUG_VALUE: _cli_cmd_ps:argv <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: _cli_cmd_ps:argc <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	3 137 28 is_stmt 1              @ ../../../components/utility/cli/cli.c:137:28
+	.loc	3 142 28 is_stmt 1              @ ../../../components/utility/cli/cli.c:142:28
 	ldr.w	r0, [r8]
 	movw	r1, #7557
 	mvns	r0, r0
 	movt	r1, #28633
-	.loc	3 137 43 is_stmt 0              @ ../../../components/utility/cli/cli.c:137:43
+	.loc	3 142 44 is_stmt 0              @ ../../../components/utility/cli/cli.c:142:44
 	umull	r0, r1, r0, r1
 	lsrs	r0, r1, #20
-	.loc	3 137 53                        @ ../../../components/utility/cli/cli.c:137:53
+	.loc	3 142 55                        @ ../../../components/utility/cli/cli.c:142:55
 	umull	r1, r2, r0, r6
 	lsrs	r1, r2, #5
 	lsls	r1, r1, #4
 	sub.w	r1, r1, r2, lsr #5
 	sub.w	r1, r0, r1, lsl #2
-	.loc	3 137 9                         @ ../../../components/utility/cli/cli.c:137:9
+	.loc	3 142 9                         @ ../../../components/utility/cli/cli.c:142:9
 	adr	r0, .LCPI2_6
 	blx	r4
 .Ltmp44:
@@ -421,48 +421,48 @@ _cli_cmd_ps:
 	@DEBUG_VALUE: _cli_cmd_ps:pExtra <- [DW_OP_LLVM_entry_value 1] $r3
 	@DEBUG_VALUE: _cli_cmd_ps:argv <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: _cli_cmd_ps:argc <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	3 139 31 is_stmt 1              @ ../../../components/utility/cli/cli.c:139:31
+	.loc	3 145 31 is_stmt 1              @ ../../../components/utility/cli/cli.c:145:31
 	ldr.w	r0, [r8]
 	movw	r1, #5977
 	mvns	r0, r0
 	movt	r1, #53687
-	.loc	3 139 46 is_stmt 0              @ ../../../components/utility/cli/cli.c:139:46
+	.loc	3 145 47 is_stmt 0              @ ../../../components/utility/cli/cli.c:145:47
 	umull	r0, r1, r0, r1
 	lsrs	r0, r1, #15
-	.loc	3 139 54                        @ ../../../components/utility/cli/cli.c:139:54
+	.loc	3 145 56                        @ ../../../components/utility/cli/cli.c:145:56
 	umull	r1, r2, r0, r6
-	.loc	3 139 63                        @ ../../../components/utility/cli/cli.c:139:63
+	.loc	3 145 65                        @ ../../../components/utility/cli/cli.c:145:65
 	ldr.w	r1, [r8]
 	movw	r3, #52429
 	mvns	r1, r1
 	movt	r3, #52428
-	.loc	3 139 78                        @ ../../../components/utility/cli/cli.c:139:78
+	.loc	3 145 81                        @ ../../../components/utility/cli/cli.c:145:81
 	umull	r1, r3, r1, r3
 	movw	r7, #19923
 	lsrs	r1, r3, #5
 	movt	r7, #4194
-	.loc	3 139 83                        @ ../../../components/utility/cli/cli.c:139:83
+	.loc	3 145 87                        @ ../../../components/utility/cli/cli.c:145:87
 	umull	r1, r7, r1, r7
-	.loc	3 139 54                        @ ../../../components/utility/cli/cli.c:139:54
+	.loc	3 145 56                        @ ../../../components/utility/cli/cli.c:145:56
 	lsrs	r1, r2, #5
 	lsls	r1, r1, #4
 	sub.w	r1, r1, r2, lsr #5
 	sub.w	r1, r0, r1, lsl #2
-	.loc	3 139 83                        @ ../../../components/utility/cli/cli.c:139:83
+	.loc	3 145 87                        @ ../../../components/utility/cli/cli.c:145:87
 	lsrs	r0, r7, #6
 	mov.w	r2, #1000
 	muls	r0, r2, r0
 	rsb	r2, r0, r3, lsr #5
-	.loc	3 139 5                         @ ../../../components/utility/cli/cli.c:139:5
+	.loc	3 145 5                         @ ../../../components/utility/cli/cli.c:145:5
 	movw	r0, :lower16:.L.str.12
 	movt	r0, :upper16:.L.str.12
 	blx	r4
 .Ltmp45:
-	.loc	3 140 5 is_stmt 1               @ ../../../components/utility/cli/cli.c:140:5
+	.loc	3 146 5 is_stmt 1               @ ../../../components/utility/cli/cli.c:146:5
 	mov	r0, r5
 	bl	vPortFree
 .Ltmp46:
-	.loc	3 142 5                         @ ../../../components/utility/cli/cli.c:142:5
+	.loc	3 148 5                         @ ../../../components/utility/cli/cli.c:148:5
 	movs	r0, #0
 	add	sp, #4
 	pop.w	{r4, r5, r6, r7, r8, r9, pc}
@@ -511,7 +511,7 @@ _sh_io_read:
 	@DEBUG_VALUE: _sh_io_read:pBuf <- $r0
 	@DEBUG_VALUE: _sh_io_read:length <- $r1
 	@DEBUG_VALUE: _sh_io_read:pExtra <- $r2
-	.loc	3 50 21 prologue_end            @ ../../../components/utility/cli/cli.c:50:21
+	.loc	3 50 22 prologue_end            @ ../../../components/utility/cli/cli.c:50:22
 	movw	r1, :lower16:g_uart_rx_io
 .Ltmp48:
 	@DEBUG_VALUE: _sh_io_read:length <- [DW_OP_LLVM_entry_value 1] $r1
@@ -519,15 +519,15 @@ _sh_io_read:
 	ldr	r2, [r1, #4]
 .Ltmp49:
 	@DEBUG_VALUE: _sh_io_read:pExtra <- [DW_OP_LLVM_entry_value 1] $r2
-	.loc	3 50 44 is_stmt 0               @ ../../../components/utility/cli/cli.c:50:44
+	.loc	3 50 45 is_stmt 0               @ ../../../components/utility/cli/cli.c:50:45
 	ldr	r3, [r1]
 .Ltmp50:
-	.loc	3 50 8                          @ ../../../components/utility/cli/cli.c:50:8
+	.loc	3 50 9                          @ ../../../components/utility/cli/cli.c:50:9
 	cmp	r2, r3
 .Ltmp51:
 	@DEBUG_VALUE: _sh_io_read:byte_cnt <- 0
 	@DEBUG_VALUE: _sh_io_read:pBuf <- $r0
-	.loc	3 0 8                           @ ../../../components/utility/cli/cli.c:0:8
+	.loc	3 0 9                           @ ../../../components/utility/cli/cli.c:0:9
 	itt	eq
 	moveq	r0, #0
 .Ltmp52:
@@ -591,7 +591,7 @@ _sh_io_write:
 .Lfunc_end4:
 	.size	_sh_io_write, .Lfunc_end4-_sh_io_write
 	.cfi_endproc
-	.file	4 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/utility/uart_stdio/Inc\\uart_stdio.h"
+	.file	4 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/utility/uart_stdio/Inc\\uart_stdio.h"
 	.cantunwind
 	.fnend
                                         @ -- End function
@@ -1223,7 +1223,7 @@ g_uart_rx_io:
 	.long	55                              @ DW_AT_type
                                         @ DW_AT_external
 	.byte	3                               @ DW_AT_decl_file
-	.byte	157                             @ DW_AT_decl_line
+	.byte	163                             @ DW_AT_decl_line
 	.byte	5                               @ DW_AT_location
 	.byte	3
 	.long	g_cli_cmd_ps
@@ -1536,7 +1536,7 @@ g_uart_rx_io:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string42                 @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.byte	145                             @ DW_AT_decl_line
+	.byte	151                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	219                             @ DW_AT_type
                                         @ DW_AT_external
@@ -1803,141 +1803,141 @@ g_uart_rx_io:
 .Linfo_string1:
 	.asciz	"../../../components/utility/cli\\cli.c" @ string offset=55
 .Linfo_string2:
-	.asciz	"D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" @ string offset=93
+	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=93
 .Linfo_string3:
-	.asciz	"g_cli_cmd_ps"                  @ string offset=155
+	.asciz	"g_cli_cmd_ps"                  @ string offset=154
 .Linfo_string4:
-	.asciz	"next"                          @ string offset=168
+	.asciz	"next"                          @ string offset=167
 .Linfo_string5:
-	.asciz	"pCmd_name"                     @ string offset=173
+	.asciz	"pCmd_name"                     @ string offset=172
 .Linfo_string6:
-	.asciz	"char"                          @ string offset=183
+	.asciz	"char"                          @ string offset=182
 .Linfo_string7:
-	.asciz	"cmd_name_len"                  @ string offset=188
+	.asciz	"cmd_name_len"                  @ string offset=187
 .Linfo_string8:
-	.asciz	"unsigned int"                  @ string offset=201
+	.asciz	"unsigned int"                  @ string offset=200
 .Linfo_string9:
-	.asciz	"uint32_t"                      @ string offset=214
+	.asciz	"uint32_t"                      @ string offset=213
 .Linfo_string10:
-	.asciz	"pDescription"                  @ string offset=223
+	.asciz	"pDescription"                  @ string offset=222
 .Linfo_string11:
-	.asciz	"pExtra"                        @ string offset=236
+	.asciz	"pExtra"                        @ string offset=235
 .Linfo_string12:
-	.asciz	"cmd_exec"                      @ string offset=243
+	.asciz	"cmd_exec"                      @ string offset=242
 .Linfo_string13:
-	.asciz	"int"                           @ string offset=252
+	.asciz	"int"                           @ string offset=251
 .Linfo_string14:
-	.asciz	"cb_shell_out_t"                @ string offset=256
+	.asciz	"cb_shell_out_t"                @ string offset=255
 .Linfo_string15:
-	.asciz	"sh_cmd"                        @ string offset=271
+	.asciz	"sh_cmd"                        @ string offset=270
 .Linfo_string16:
-	.asciz	"sh_cmd_t"                      @ string offset=278
+	.asciz	"sh_cmd_t"                      @ string offset=277
 .Linfo_string17:
-	.asciz	"g_line_buf"                    @ string offset=287
+	.asciz	"g_line_buf"                    @ string offset=286
 .Linfo_string18:
-	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=298
+	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=297
 .Linfo_string19:
-	.asciz	"g_history"                     @ string offset=318
+	.asciz	"g_history"                     @ string offset=317
 .Linfo_string20:
-	.asciz	"g_sh_std_io"                   @ string offset=328
+	.asciz	"g_sh_std_io"                   @ string offset=327
 .Linfo_string21:
-	.asciz	"cb_read"                       @ string offset=340
+	.asciz	"cb_read"                       @ string offset=339
 .Linfo_string22:
-	.asciz	"unsigned char"                 @ string offset=348
+	.asciz	"unsigned char"                 @ string offset=347
 .Linfo_string23:
-	.asciz	"uint8_t"                       @ string offset=362
+	.asciz	"uint8_t"                       @ string offset=361
 .Linfo_string24:
-	.asciz	"cb_write"                      @ string offset=370
+	.asciz	"cb_write"                      @ string offset=369
 .Linfo_string25:
-	.asciz	"sh_io_desc"                    @ string offset=379
+	.asciz	"sh_io_desc"                    @ string offset=378
 .Linfo_string26:
-	.asciz	"sh_io_desc_t"                  @ string offset=390
+	.asciz	"sh_io_desc_t"                  @ string offset=389
 .Linfo_string27:
-	.asciz	"g_sh_args"                     @ string offset=403
+	.asciz	"g_sh_args"                     @ string offset=402
 .Linfo_string28:
-	.asciz	"is_blocking"                   @ string offset=413
+	.asciz	"is_blocking"                   @ string offset=412
 .Linfo_string29:
-	.asciz	"delay_time_ms"                 @ string offset=425
+	.asciz	"delay_time_ms"                 @ string offset=424
 .Linfo_string30:
-	.asciz	"exec_result"                   @ string offset=439
+	.asciz	"exec_result"                   @ string offset=438
 .Linfo_string31:
-	.asciz	"cb_regular_alarm"              @ string offset=451
+	.asciz	"cb_regular_alarm"              @ string offset=450
 .Linfo_string32:
-	.asciz	"pTunnel_info"                  @ string offset=468
+	.asciz	"pTunnel_info"                  @ string offset=467
 .Linfo_string33:
-	.asciz	"sh_args"                       @ string offset=481
+	.asciz	"sh_args"                       @ string offset=480
 .Linfo_string34:
-	.asciz	"sh_args_t"                     @ string offset=489
+	.asciz	"sh_args_t"                     @ string offset=488
 .Linfo_string35:
-	.asciz	"g_uart_rx_io"                  @ string offset=499
+	.asciz	"g_uart_rx_io"                  @ string offset=498
 .Linfo_string36:
-	.asciz	"wr_idx"                        @ string offset=512
+	.asciz	"wr_idx"                        @ string offset=511
 .Linfo_string37:
-	.asciz	"rd_idx"                        @ string offset=519
+	.asciz	"rd_idx"                        @ string offset=518
 .Linfo_string38:
-	.asciz	"uart_cache"                    @ string offset=526
+	.asciz	"uart_cache"                    @ string offset=525
 .Linfo_string39:
-	.asciz	"uart_io"                       @ string offset=537
+	.asciz	"uart_io"                       @ string offset=536
 .Linfo_string40:
-	.asciz	"uart_io_t"                     @ string offset=545
+	.asciz	"uart_io_t"                     @ string offset=544
 .Linfo_string41:
-	.asciz	"uart_stdio_write"              @ string offset=555
+	.asciz	"uart_stdio_write"              @ string offset=554
 .Linfo_string42:
-	.asciz	"cli_init"                      @ string offset=572
+	.asciz	"cli_init"                      @ string offset=571
 .Linfo_string43:
-	.asciz	"cli_task"                      @ string offset=581
+	.asciz	"cli_task"                      @ string offset=580
 .Linfo_string44:
-	.asciz	"_cli_cmd_ps"                   @ string offset=590
+	.asciz	"_cli_cmd_ps"                   @ string offset=589
 .Linfo_string45:
-	.asciz	"_sh_io_read"                   @ string offset=602
+	.asciz	"_sh_io_read"                   @ string offset=601
 .Linfo_string46:
-	.asciz	"_sh_io_write"                  @ string offset=614
+	.asciz	"_sh_io_write"                  @ string offset=613
 .Linfo_string47:
-	.asciz	"sh_set"                        @ string offset=627
+	.asciz	"sh_set"                        @ string offset=626
 .Linfo_string48:
-	.asciz	"pLine_buf"                     @ string offset=634
+	.asciz	"pLine_buf"                     @ string offset=633
 .Linfo_string49:
-	.asciz	"line_buf_len"                  @ string offset=644
+	.asciz	"line_buf_len"                  @ string offset=643
 .Linfo_string50:
-	.asciz	"pIO_cache"                     @ string offset=657
+	.asciz	"pIO_cache"                     @ string offset=656
 .Linfo_string51:
-	.asciz	"io_cache_len"                  @ string offset=667
+	.asciz	"io_cache_len"                  @ string offset=666
 .Linfo_string52:
-	.asciz	"pHistory_buf"                  @ string offset=680
+	.asciz	"pHistory_buf"                  @ string offset=679
 .Linfo_string53:
-	.asciz	"line_size"                     @ string offset=693
+	.asciz	"line_size"                     @ string offset=692
 .Linfo_string54:
-	.asciz	"unsigned short"                @ string offset=703
+	.asciz	"unsigned short"                @ string offset=702
 .Linfo_string55:
-	.asciz	"uint16_t"                      @ string offset=718
+	.asciz	"uint16_t"                      @ string offset=717
 .Linfo_string56:
-	.asciz	"cmd_deep"                      @ string offset=727
+	.asciz	"cmd_deep"                      @ string offset=726
 .Linfo_string57:
-	.asciz	"history_buf_size"              @ string offset=736
+	.asciz	"history_buf_size"              @ string offset=735
 .Linfo_string58:
-	.asciz	"pUser_data"                    @ string offset=753
+	.asciz	"pUser_data"                    @ string offset=752
 .Linfo_string59:
-	.asciz	"sh_set_t"                      @ string offset=764
+	.asciz	"sh_set_t"                      @ string offset=763
 .Linfo_string60:
-	.asciz	"pvParameters"                  @ string offset=773
+	.asciz	"pvParameters"                  @ string offset=772
 .Linfo_string61:
-	.asciz	"cnt"                           @ string offset=786
+	.asciz	"cnt"                           @ string offset=785
 .Linfo_string62:
-	.asciz	"argc"                          @ string offset=790
+	.asciz	"argc"                          @ string offset=789
 .Linfo_string63:
-	.asciz	"argv"                          @ string offset=795
+	.asciz	"argv"                          @ string offset=794
 .Linfo_string64:
-	.asciz	"log_out"                       @ string offset=800
+	.asciz	"log_out"                       @ string offset=799
 .Linfo_string65:
-	.asciz	"pbuffer"                       @ string offset=808
+	.asciz	"pbuffer"                       @ string offset=807
 .Linfo_string66:
-	.asciz	"pBuf"                          @ string offset=816
+	.asciz	"pBuf"                          @ string offset=815
 .Linfo_string67:
-	.asciz	"length"                        @ string offset=821
+	.asciz	"length"                        @ string offset=820
 .Linfo_string68:
-	.asciz	"byte_cnt"                      @ string offset=828
+	.asciz	"byte_cnt"                      @ string offset=827
 .Linfo_string69:
-	.asciz	"len"                           @ string offset=837
+	.asciz	"len"                           @ string offset=836
 	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals

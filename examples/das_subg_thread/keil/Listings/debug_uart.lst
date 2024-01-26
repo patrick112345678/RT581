@@ -18,7 +18,7 @@
 	.eabi_attribute	26, 2	@ Tag_ABI_enum_size
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"debug_uart.c"
-	.file	1 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/error.h"
+	.file	1 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/error.h"
 	.section	.text.otPlatDebugUart_printf,"ax",%progbits
 	.hidden	otPlatDebugUart_printf          @ -- Begin function otPlatDebugUart_printf
 	.weak	otPlatDebugUart_printf
@@ -28,7 +28,7 @@
 	.thumb_func
 otPlatDebugUart_printf:
 .Lfunc_begin0:
-	.file	2 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/examples/platforms/utils/debug_uart.c"
+	.file	2 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/examples/platforms/utils/debug_uart.c"
 	.loc	2 44 0                          @ ../../../components/network/thread/subg_openthread/examples/platforms/utils/debug_uart.c:44:0
 	.fnstart
 	.cfi_sections .debug_frame
@@ -343,12 +343,12 @@ otPlatDebugUart_puts:
 	.thumb_func
 otPlatDebugUart_putchar_raw:
 .Lfunc_begin6:
-	.loc	2 106 0                         @ ../../../components/network/thread/subg_openthread/examples/platforms/utils/debug_uart.c:106:0
+	.loc	2 107 0                         @ ../../../components/network/thread/subg_openthread/examples/platforms/utils/debug_uart.c:107:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
 	@DEBUG_VALUE: otPlatDebugUart_putchar_raw:c <- $r0
-	.loc	2 106 66 prologue_end           @ ../../../components/network/thread/subg_openthread/examples/platforms/utils/debug_uart.c:106:66
+	.loc	2 109 1 prologue_end            @ ../../../components/network/thread/subg_openthread/examples/platforms/utils/debug_uart.c:109:1
 	bx	lr
 .Ltmp31:
 .Lfunc_end6:
@@ -366,11 +366,11 @@ otPlatDebugUart_putchar_raw:
 	.thumb_func
 otPlatDebugUart_kbhit:
 .Lfunc_begin7:
-	.loc	2 109 0                         @ ../../../components/network/thread/subg_openthread/examples/platforms/utils/debug_uart.c:109:0
+	.loc	2 113 0                         @ ../../../components/network/thread/subg_openthread/examples/platforms/utils/debug_uart.c:113:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
-	.loc	2 109 35 prologue_end           @ ../../../components/network/thread/subg_openthread/examples/platforms/utils/debug_uart.c:109:35
+	.loc	2 114 5 prologue_end            @ ../../../components/network/thread/subg_openthread/examples/platforms/utils/debug_uart.c:114:5
 	movs	r0, #0
 	bx	lr
 .Ltmp32:
@@ -389,11 +389,11 @@ otPlatDebugUart_kbhit:
 	.thumb_func
 otPlatDebugUart_getc:
 .Lfunc_begin8:
-	.loc	2 112 0                         @ ../../../components/network/thread/subg_openthread/examples/platforms/utils/debug_uart.c:112:0
+	.loc	2 119 0                         @ ../../../components/network/thread/subg_openthread/examples/platforms/utils/debug_uart.c:119:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
-	.loc	2 112 34 prologue_end           @ ../../../components/network/thread/subg_openthread/examples/platforms/utils/debug_uart.c:112:34
+	.loc	2 120 5 prologue_end            @ ../../../components/network/thread/subg_openthread/examples/platforms/utils/debug_uart.c:120:5
 	mov.w	r0, #-1
 	bx	lr
 .Ltmp33:
@@ -412,12 +412,12 @@ otPlatDebugUart_getc:
 	.thumb_func
 otPlatDebugUart_logfile:
 .Lfunc_begin9:
-	.loc	2 116 0                         @ ../../../components/network/thread/subg_openthread/examples/platforms/utils/debug_uart.c:116:0
+	.loc	2 125 0                         @ ../../../components/network/thread/subg_openthread/examples/platforms/utils/debug_uart.c:125:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
 	@DEBUG_VALUE: otPlatDebugUart_logfile:filename <- $r0
-	.loc	2 119 5 prologue_end            @ ../../../components/network/thread/subg_openthread/examples/platforms/utils/debug_uart.c:119:5
+	.loc	2 128 5 prologue_end            @ ../../../components/network/thread/subg_openthread/examples/platforms/utils/debug_uart.c:128:5
 	movs	r0, #1
 .Ltmp34:
 	@DEBUG_VALUE: otPlatDebugUart_logfile:filename <- [DW_OP_LLVM_entry_value 1] $r0
@@ -429,7 +429,7 @@ otPlatDebugUart_logfile:
 	.cantunwind
 	.fnend
                                         @ -- End function
-	.file	3 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/examples/platforms/utils\\debug_uart.c"
+	.file	3 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/examples/platforms/utils\\debug_uart.c"
 	.file	4 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdarg.h"
 	.file	5 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
 	.section	.debug_loc,"",%progbits
@@ -1185,7 +1185,7 @@ otPlatDebugUart_logfile:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string51                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	109                             @ DW_AT_decl_line
+	.byte	112                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	287                             @ DW_AT_type
                                         @ DW_AT_external
@@ -1197,7 +1197,7 @@ otPlatDebugUart_logfile:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string52                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	112                             @ DW_AT_decl_line
+	.byte	118                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	287                             @ DW_AT_type
                                         @ DW_AT_external
@@ -1209,7 +1209,7 @@ otPlatDebugUart_logfile:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string53                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	115                             @ DW_AT_decl_line
+	.byte	124                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	675                             @ DW_AT_type
                                         @ DW_AT_external
@@ -1217,7 +1217,7 @@ otPlatDebugUart_logfile:
 	.long	.Ldebug_loc7                    @ DW_AT_location
 	.long	.Linfo_string69                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	115                             @ DW_AT_decl_line
+	.byte	124                             @ DW_AT_decl_line
 	.long	726                             @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	14                              @ Abbrev [14] 0x2a3:0xb DW_TAG_typedef
@@ -1307,141 +1307,141 @@ otPlatDebugUart_logfile:
 .Linfo_string1:
 	.asciz	"../../../components/network/thread/subg_openthread/examples/platforms/utils\\debug_uart.c" @ string offset=55
 .Linfo_string2:
-	.asciz	"D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" @ string offset=144
+	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=144
 .Linfo_string3:
-	.asciz	"unsigned int"                  @ string offset=206
+	.asciz	"unsigned int"                  @ string offset=205
 .Linfo_string4:
-	.asciz	"OT_ERROR_NONE"                 @ string offset=219
+	.asciz	"OT_ERROR_NONE"                 @ string offset=218
 .Linfo_string5:
-	.asciz	"OT_ERROR_FAILED"               @ string offset=233
+	.asciz	"OT_ERROR_FAILED"               @ string offset=232
 .Linfo_string6:
-	.asciz	"OT_ERROR_DROP"                 @ string offset=249
+	.asciz	"OT_ERROR_DROP"                 @ string offset=248
 .Linfo_string7:
-	.asciz	"OT_ERROR_NO_BUFS"              @ string offset=263
+	.asciz	"OT_ERROR_NO_BUFS"              @ string offset=262
 .Linfo_string8:
-	.asciz	"OT_ERROR_NO_ROUTE"             @ string offset=280
+	.asciz	"OT_ERROR_NO_ROUTE"             @ string offset=279
 .Linfo_string9:
-	.asciz	"OT_ERROR_BUSY"                 @ string offset=298
+	.asciz	"OT_ERROR_BUSY"                 @ string offset=297
 .Linfo_string10:
-	.asciz	"OT_ERROR_PARSE"                @ string offset=312
+	.asciz	"OT_ERROR_PARSE"                @ string offset=311
 .Linfo_string11:
-	.asciz	"OT_ERROR_INVALID_ARGS"         @ string offset=327
+	.asciz	"OT_ERROR_INVALID_ARGS"         @ string offset=326
 .Linfo_string12:
-	.asciz	"OT_ERROR_SECURITY"             @ string offset=349
+	.asciz	"OT_ERROR_SECURITY"             @ string offset=348
 .Linfo_string13:
-	.asciz	"OT_ERROR_ADDRESS_QUERY"        @ string offset=367
+	.asciz	"OT_ERROR_ADDRESS_QUERY"        @ string offset=366
 .Linfo_string14:
-	.asciz	"OT_ERROR_NO_ADDRESS"           @ string offset=390
+	.asciz	"OT_ERROR_NO_ADDRESS"           @ string offset=389
 .Linfo_string15:
-	.asciz	"OT_ERROR_ABORT"                @ string offset=410
+	.asciz	"OT_ERROR_ABORT"                @ string offset=409
 .Linfo_string16:
-	.asciz	"OT_ERROR_NOT_IMPLEMENTED"      @ string offset=425
+	.asciz	"OT_ERROR_NOT_IMPLEMENTED"      @ string offset=424
 .Linfo_string17:
-	.asciz	"OT_ERROR_INVALID_STATE"        @ string offset=450
+	.asciz	"OT_ERROR_INVALID_STATE"        @ string offset=449
 .Linfo_string18:
-	.asciz	"OT_ERROR_NO_ACK"               @ string offset=473
+	.asciz	"OT_ERROR_NO_ACK"               @ string offset=472
 .Linfo_string19:
-	.asciz	"OT_ERROR_CHANNEL_ACCESS_FAILURE" @ string offset=489
+	.asciz	"OT_ERROR_CHANNEL_ACCESS_FAILURE" @ string offset=488
 .Linfo_string20:
-	.asciz	"OT_ERROR_DETACHED"             @ string offset=521
+	.asciz	"OT_ERROR_DETACHED"             @ string offset=520
 .Linfo_string21:
-	.asciz	"OT_ERROR_FCS"                  @ string offset=539
+	.asciz	"OT_ERROR_FCS"                  @ string offset=538
 .Linfo_string22:
-	.asciz	"OT_ERROR_NO_FRAME_RECEIVED"    @ string offset=552
+	.asciz	"OT_ERROR_NO_FRAME_RECEIVED"    @ string offset=551
 .Linfo_string23:
-	.asciz	"OT_ERROR_UNKNOWN_NEIGHBOR"     @ string offset=579
+	.asciz	"OT_ERROR_UNKNOWN_NEIGHBOR"     @ string offset=578
 .Linfo_string24:
-	.asciz	"OT_ERROR_INVALID_SOURCE_ADDRESS" @ string offset=605
+	.asciz	"OT_ERROR_INVALID_SOURCE_ADDRESS" @ string offset=604
 .Linfo_string25:
-	.asciz	"OT_ERROR_ADDRESS_FILTERED"     @ string offset=637
+	.asciz	"OT_ERROR_ADDRESS_FILTERED"     @ string offset=636
 .Linfo_string26:
-	.asciz	"OT_ERROR_DESTINATION_ADDRESS_FILTERED" @ string offset=663
+	.asciz	"OT_ERROR_DESTINATION_ADDRESS_FILTERED" @ string offset=662
 .Linfo_string27:
-	.asciz	"OT_ERROR_NOT_FOUND"            @ string offset=701
+	.asciz	"OT_ERROR_NOT_FOUND"            @ string offset=700
 .Linfo_string28:
-	.asciz	"OT_ERROR_ALREADY"              @ string offset=720
+	.asciz	"OT_ERROR_ALREADY"              @ string offset=719
 .Linfo_string29:
-	.asciz	"OT_ERROR_IP6_ADDRESS_CREATION_FAILURE" @ string offset=737
+	.asciz	"OT_ERROR_IP6_ADDRESS_CREATION_FAILURE" @ string offset=736
 .Linfo_string30:
-	.asciz	"OT_ERROR_NOT_CAPABLE"          @ string offset=775
+	.asciz	"OT_ERROR_NOT_CAPABLE"          @ string offset=774
 .Linfo_string31:
-	.asciz	"OT_ERROR_RESPONSE_TIMEOUT"     @ string offset=796
+	.asciz	"OT_ERROR_RESPONSE_TIMEOUT"     @ string offset=795
 .Linfo_string32:
-	.asciz	"OT_ERROR_DUPLICATED"           @ string offset=822
+	.asciz	"OT_ERROR_DUPLICATED"           @ string offset=821
 .Linfo_string33:
-	.asciz	"OT_ERROR_REASSEMBLY_TIMEOUT"   @ string offset=842
+	.asciz	"OT_ERROR_REASSEMBLY_TIMEOUT"   @ string offset=841
 .Linfo_string34:
-	.asciz	"OT_ERROR_NOT_TMF"              @ string offset=870
+	.asciz	"OT_ERROR_NOT_TMF"              @ string offset=869
 .Linfo_string35:
-	.asciz	"OT_ERROR_NOT_LOWPAN_DATA_FRAME" @ string offset=887
+	.asciz	"OT_ERROR_NOT_LOWPAN_DATA_FRAME" @ string offset=886
 .Linfo_string36:
-	.asciz	"OT_ERROR_LINK_MARGIN_LOW"      @ string offset=918
+	.asciz	"OT_ERROR_LINK_MARGIN_LOW"      @ string offset=917
 .Linfo_string37:
-	.asciz	"OT_ERROR_INVALID_COMMAND"      @ string offset=943
+	.asciz	"OT_ERROR_INVALID_COMMAND"      @ string offset=942
 .Linfo_string38:
-	.asciz	"OT_ERROR_PENDING"              @ string offset=968
+	.asciz	"OT_ERROR_PENDING"              @ string offset=967
 .Linfo_string39:
-	.asciz	"OT_ERROR_REJECTED"             @ string offset=985
+	.asciz	"OT_ERROR_REJECTED"             @ string offset=984
 .Linfo_string40:
-	.asciz	"OT_NUM_ERRORS"                 @ string offset=1003
+	.asciz	"OT_NUM_ERRORS"                 @ string offset=1002
 .Linfo_string41:
-	.asciz	"OT_ERROR_GENERIC"              @ string offset=1017
+	.asciz	"OT_ERROR_GENERIC"              @ string offset=1016
 .Linfo_string42:
-	.asciz	"otError"                       @ string offset=1034
+	.asciz	"otError"                       @ string offset=1033
 .Linfo_string43:
-	.asciz	"int"                           @ string offset=1042
+	.asciz	"int"                           @ string offset=1041
 .Linfo_string44:
-	.asciz	"otPlatDebugUart_printf"        @ string offset=1046
+	.asciz	"otPlatDebugUart_printf"        @ string offset=1045
 .Linfo_string45:
-	.asciz	"otPlatDebugUart_vprintf"       @ string offset=1069
+	.asciz	"otPlatDebugUart_vprintf"       @ string offset=1068
 .Linfo_string46:
-	.asciz	"otPlatDebugUart_puts_no_nl"    @ string offset=1093
+	.asciz	"otPlatDebugUart_puts_no_nl"    @ string offset=1092
 .Linfo_string47:
-	.asciz	"otPlatDebugUart_write_bytes"   @ string offset=1120
+	.asciz	"otPlatDebugUart_write_bytes"   @ string offset=1119
 .Linfo_string48:
-	.asciz	"otPlatDebugUart_putchar"       @ string offset=1148
+	.asciz	"otPlatDebugUart_putchar"       @ string offset=1147
 .Linfo_string49:
-	.asciz	"otPlatDebugUart_puts"          @ string offset=1172
+	.asciz	"otPlatDebugUart_puts"          @ string offset=1171
 .Linfo_string50:
-	.asciz	"otPlatDebugUart_putchar_raw"   @ string offset=1193
+	.asciz	"otPlatDebugUart_putchar_raw"   @ string offset=1192
 .Linfo_string51:
-	.asciz	"otPlatDebugUart_kbhit"         @ string offset=1221
+	.asciz	"otPlatDebugUart_kbhit"         @ string offset=1220
 .Linfo_string52:
-	.asciz	"otPlatDebugUart_getc"          @ string offset=1243
+	.asciz	"otPlatDebugUart_getc"          @ string offset=1242
 .Linfo_string53:
-	.asciz	"otPlatDebugUart_logfile"       @ string offset=1264
+	.asciz	"otPlatDebugUart_logfile"       @ string offset=1263
 .Linfo_string54:
-	.asciz	"ap"                            @ string offset=1288
+	.asciz	"ap"                            @ string offset=1287
 .Linfo_string55:
-	.asciz	"__ap"                          @ string offset=1291
+	.asciz	"__ap"                          @ string offset=1290
 .Linfo_string56:
-	.asciz	"__va_list"                     @ string offset=1296
+	.asciz	"__va_list"                     @ string offset=1295
 .Linfo_string57:
-	.asciz	"__builtin_va_list"             @ string offset=1306
+	.asciz	"__builtin_va_list"             @ string offset=1305
 .Linfo_string58:
-	.asciz	"va_list"                       @ string offset=1324
+	.asciz	"va_list"                       @ string offset=1323
 .Linfo_string59:
-	.asciz	"fmt"                           @ string offset=1332
+	.asciz	"fmt"                           @ string offset=1331
 .Linfo_string60:
-	.asciz	"char"                          @ string offset=1336
+	.asciz	"char"                          @ string offset=1335
 .Linfo_string61:
-	.asciz	"buf"                           @ string offset=1341
+	.asciz	"buf"                           @ string offset=1340
 .Linfo_string62:
-	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=1345
+	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=1344
 .Linfo_string63:
-	.asciz	"s"                             @ string offset=1365
+	.asciz	"s"                             @ string offset=1364
 .Linfo_string64:
-	.asciz	"pBytes"                        @ string offset=1367
+	.asciz	"pBytes"                        @ string offset=1366
 .Linfo_string65:
-	.asciz	"unsigned char"                 @ string offset=1374
+	.asciz	"unsigned char"                 @ string offset=1373
 .Linfo_string66:
-	.asciz	"uint8_t"                       @ string offset=1388
+	.asciz	"uint8_t"                       @ string offset=1387
 .Linfo_string67:
-	.asciz	"nBytes"                        @ string offset=1396
+	.asciz	"nBytes"                        @ string offset=1395
 .Linfo_string68:
-	.asciz	"c"                             @ string offset=1403
+	.asciz	"c"                             @ string offset=1402
 .Linfo_string69:
-	.asciz	"filename"                      @ string offset=1405
+	.asciz	"filename"                      @ string offset=1404
 	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals

@@ -19,12 +19,12 @@
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"das_hex_cmd.c"
 	.file	1 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
-	.file	2 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../das_subg_thread/das_hex_cmd.c"
-	.file	3 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\timers.h"
-	.file	4 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/error.h"
-	.file	5 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/thread.h"
-	.file	6 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\\portmacro.h"
-	.file	7 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/gpio_reg.h"
+	.file	2 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../das_subg_thread/das_hex_cmd.c"
+	.file	3 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\timers.h"
+	.file	4 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/error.h"
+	.file	5 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/thread.h"
+	.file	6 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\\portmacro.h"
+	.file	7 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/gpio_reg.h"
 	.section	.text.das_hex_cmd_status_check,"ax",%progbits
 	.hidden	das_hex_cmd_status_check        @ -- Begin function das_hex_cmd_status_check
 	.globl	das_hex_cmd_status_check
@@ -42,7 +42,7 @@ das_hex_cmd_status_check:
 	mov.w	r0, #1073741824
 .Ltmp0:
 	@DEBUG_VALUE: gpio_pin_get:pin_number <- 30
-	.file	8 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/gpio.h"
+	.file	8 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/gpio.h"
 	.loc	8 248 20 prologue_end           @ ../../../components/platform/soc/rt582/rt582_driver/Inc/gpio.h:248:20
 	ldr	r0, [r0]
 	movs	r1, #1
@@ -112,8 +112,8 @@ das_hex_command_response:
 	add.w	r1, sp, #6
 .Ltmp7:
 	@DEBUG_VALUE: das_hex_cmd_send:cmd_data <- [DW_OP_plus_uconst 6, DW_OP_stack_value] $sp
-	.loc	2 73 5 is_stmt 1                @ ../das_subg_thread/das_hex_cmd.c:73:5
-	movs	r0, #0
+	.loc	2 71 5 is_stmt 1                @ ../das_subg_thread/das_hex_cmd.c:71:5
+	movs	r0, #2
 .Ltmp8:
 	movs	r2, #7
 	bl	app_uart_data_send
@@ -163,8 +163,8 @@ das_hex_cmd_udp_ack:
 	add.w	r1, sp, #3
 .Ltmp13:
 	@DEBUG_VALUE: das_hex_cmd_send:cmd_data <- [DW_OP_plus_uconst 3, DW_OP_stack_value] $sp
-	.loc	2 73 5 is_stmt 1                @ ../das_subg_thread/das_hex_cmd.c:73:5
-	movs	r0, #0
+	.loc	2 71 5 is_stmt 1                @ ../das_subg_thread/das_hex_cmd.c:71:5
+	movs	r0, #2
 	movs	r2, #5
 	bl	app_uart_data_send
 .Ltmp14:
@@ -226,14 +226,14 @@ das_hex_cmd_get_udp_ip:
 .Ltmp20:
 	@DEBUG_VALUE: das_hex_cmd_get_udp_ip:cmd_crc <- -1
 	@DEBUG_VALUE: das_hex_cmd_get_udp_ip:message <- $r0
-	.loc	2 204 8 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:204:8
+	.loc	2 204 9 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:204:9
 	cbz	r0, .LBB3_7
 .Ltmp21:
 @ %bb.1:
 	@DEBUG_VALUE: das_hex_cmd_get_udp_ip:Param <- $r7
 	@DEBUG_VALUE: das_hex_cmd_get_udp_ip:message <- $r0
 	@DEBUG_VALUE: das_hex_cmd_get_udp_ip:cmd_crc <- -1
-	.loc	2 0 8 is_stmt 0                 @ ../das_subg_thread/das_hex_cmd.c:0:8
+	.loc	2 0 9 is_stmt 0                 @ ../das_subg_thread/das_hex_cmd.c:0:9
 	mov	r5, r0
 .Ltmp22:
 	@DEBUG_VALUE: das_hex_cmd_get_udp_ip:message <- $r5
@@ -286,7 +286,7 @@ das_hex_cmd_get_udp_ip:
 .LBB3_4:
 	@DEBUG_VALUE: das_hex_cmd_get_udp_ip:message <- $r5
 	@DEBUG_VALUE: das_hex_cmd_get_udp_ip:cmd_crc <- -1
-	.loc	2 216 78                        @ ../das_subg_thread/das_hex_cmd.c:216:78
+	.loc	2 216 79                        @ ../das_subg_thread/das_hex_cmd.c:216:79
 	subs	r0, r4, #1
 .Ltmp31:
 	@DEBUG_VALUE: das_hex_cmd_crc_calculate:hex_ptr_lens <- $r0
@@ -328,7 +328,7 @@ das_hex_cmd_get_udp_ip:
 	@DEBUG_VALUE: das_hex_cmd_get_udp_ip:Param <- $r7
 	@DEBUG_VALUE: das_hex_cmd_get_udp_ip:message <- $r0
 	@DEBUG_VALUE: das_hex_cmd_get_udp_ip:cmd_crc <- -1
-	.loc	2 222 1 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:222:1
+	.loc	2 225 1 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:225:1
 	add	sp, #4
 	pop	{r4, r5, r6, r7, pc}
 .Ltmp36:
@@ -381,19 +381,19 @@ das_hex_cmd_get_udp_ip:
 	@DEBUG_VALUE: das_hex_cmd_get_udp_ip:message <- $r5
 	@DEBUG_VALUE: das_hex_cmd_get_udp_ip:cmd_crc <- -1
 	@DEBUG_VALUE: das_hex_cmd_get_udp_ip:cmd_crc <- $r1
-	.loc	2 217 32                        @ ../das_subg_thread/das_hex_cmd.c:217:32
+	.loc	2 217 34                        @ ../das_subg_thread/das_hex_cmd.c:217:34
 	strb	r1, [r5, r0]
 .Ltmp43:
 	@DEBUG_VALUE: das_hex_cmd_send:cmd_data_lens <- undef
 	@DEBUG_VALUE: das_hex_cmd_send:cmd_data <- $r5
-	.loc	2 73 5                          @ ../das_subg_thread/das_hex_cmd.c:73:5
-	movs	r0, #0
+	.loc	2 71 5                          @ ../das_subg_thread/das_hex_cmd.c:71:5
+	movs	r0, #2
 	mov	r1, r5
 .Ltmp44:
 	mov	r2, r4
 	bl	app_uart_data_send
 .Ltmp45:
-	.loc	2 221 17                        @ ../das_subg_thread/das_hex_cmd.c:221:17
+	.loc	2 223 9                         @ ../das_subg_thread/das_hex_cmd.c:223:9
 	mov	r0, r5
 	add	sp, #4
 	pop.w	{r4, r5, r6, r7, lr}
@@ -403,7 +403,7 @@ das_hex_cmd_get_udp_ip:
 .Lfunc_end3:
 	.size	das_hex_cmd_get_udp_ip, .Lfunc_end3-das_hex_cmd_get_udp_ip
 	.cfi_endproc
-	.file	9 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/portable.h"
+	.file	9 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/portable.h"
 	.cantunwind
 	.fnend
                                         @ -- End function
@@ -416,13 +416,13 @@ das_hex_cmd_get_udp_ip:
 	.thumb_func
 das_hex_cmd_get_udp_port:
 .Lfunc_begin4:
-	.loc	2 226 0                         @ ../das_subg_thread/das_hex_cmd.c:226:0
+	.loc	2 229 0                         @ ../das_subg_thread/das_hex_cmd.c:229:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
 	@DEBUG_VALUE: das_hex_cmd_get_udp_port:Param <- $r0
 	@DEBUG_VALUE: das_hex_cmd_get_udp_port:lens <- $r1
-	.loc	2 228 1 prologue_end            @ ../das_subg_thread/das_hex_cmd.c:228:1
+	.loc	2 231 1 prologue_end            @ ../das_subg_thread/das_hex_cmd.c:231:1
 	bx	lr
 .Ltmp48:
 .Lfunc_end4:
@@ -440,7 +440,7 @@ das_hex_cmd_get_udp_port:
 	.thumb_func
 das_hex_cmd_get_udp_received_data:
 .Lfunc_begin5:
-	.loc	2 232 0                         @ ../das_subg_thread/das_hex_cmd.c:232:0
+	.loc	2 235 0                         @ ../das_subg_thread/das_hex_cmd.c:235:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -462,53 +462,53 @@ das_hex_cmd_get_udp_received_data:
 	@DEBUG_VALUE: das_hex_cmd_get_udp_received_data:Param <- $r7
 	@DEBUG_VALUE: das_hex_cmd_get_udp_received_data:lens <- $r6
 	@DEBUG_VALUE: das_hex_cmd_get_udp_received_data:Param <- $r7
-	.loc	2 233 33 prologue_end           @ ../das_subg_thread/das_hex_cmd.c:233:33
+	.loc	2 236 33 prologue_end           @ ../das_subg_thread/das_hex_cmd.c:236:33
 	adds	r0, r1, #5
 .Ltmp50:
 	@DEBUG_VALUE: das_hex_cmd_get_udp_received_data:message_len <- $r0
-	.loc	2 234 37                        @ ../das_subg_thread/das_hex_cmd.c:234:37
+	.loc	2 237 37                        @ ../das_subg_thread/das_hex_cmd.c:237:37
 	uxth	r4, r0
-	.loc	2 234 24 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:234:24
+	.loc	2 237 24 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:237:24
 	mov	r0, r4
 .Ltmp51:
 	.loc	2 0 24                          @ ../das_subg_thread/das_hex_cmd.c:0:24
 	mov	r6, r1
 .Ltmp52:
-	.loc	2 234 24                        @ ../das_subg_thread/das_hex_cmd.c:234:24
+	.loc	2 237 24                        @ ../das_subg_thread/das_hex_cmd.c:237:24
 	bl	pvPortMalloc
 .Ltmp53:
 	@DEBUG_VALUE: das_hex_cmd_get_udp_received_data:cmd_crc <- -1
 	@DEBUG_VALUE: das_hex_cmd_get_udp_received_data:message <- $r0
-	.loc	2 236 8 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:236:8
+	.loc	2 239 9 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:239:9
 	cbz	r0, .LBB5_7
 .Ltmp54:
 @ %bb.1:
 	@DEBUG_VALUE: das_hex_cmd_get_udp_received_data:Param <- $r7
 	@DEBUG_VALUE: das_hex_cmd_get_udp_received_data:message <- $r0
 	@DEBUG_VALUE: das_hex_cmd_get_udp_received_data:cmd_crc <- -1
-	.loc	2 0 8 is_stmt 0                 @ ../das_subg_thread/das_hex_cmd.c:0:8
+	.loc	2 0 9 is_stmt 0                 @ ../das_subg_thread/das_hex_cmd.c:0:9
 	mov	r5, r0
 .Ltmp55:
 	@DEBUG_VALUE: das_hex_cmd_get_udp_received_data:message <- $r5
 	@DEBUG_VALUE: das_hex_cmd_get_udp_received_data:message <- $r5
 	movs	r0, #147
 .Ltmp56:
-	.loc	2 238 20 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:238:20
+	.loc	2 241 20 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:241:20
 	strb	r0, [r5]
-	.loc	2 239 29                        @ ../das_subg_thread/das_hex_cmd.c:239:29
+	.loc	2 242 29                        @ ../das_subg_thread/das_hex_cmd.c:242:29
 	adds	r0, r6, #2
-	.loc	2 239 34 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:239:34
+	.loc	2 242 34 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:242:34
 	lsrs	r1, r0, #8
-	.loc	2 240 20 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:240:20
+	.loc	2 243 20 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:243:20
 	strb	r0, [r5, #2]
 	movs	r0, #48
-	.loc	2 239 20                        @ ../das_subg_thread/das_hex_cmd.c:239:20
+	.loc	2 242 20                        @ ../das_subg_thread/das_hex_cmd.c:242:20
 	strb	r1, [r5, #1]
-	.loc	2 241 20                        @ ../das_subg_thread/das_hex_cmd.c:241:20
+	.loc	2 244 20                        @ ../das_subg_thread/das_hex_cmd.c:244:20
 	strb	r0, [r5, #3]
 .Ltmp57:
 	@DEBUG_VALUE: i <- 0
-	.loc	2 243 9                         @ ../das_subg_thread/das_hex_cmd.c:243:9
+	.loc	2 246 9                         @ ../das_subg_thread/das_hex_cmd.c:246:9
 	cbz	r6, .LBB5_4
 .Ltmp58:
 @ %bb.2:
@@ -523,23 +523,23 @@ das_hex_cmd_get_udp_received_data:
 	@DEBUG_VALUE: das_hex_cmd_get_udp_received_data:message <- $r5
 	@DEBUG_VALUE: das_hex_cmd_get_udp_received_data:cmd_crc <- -1
 	@DEBUG_VALUE: i <- undef
-	.loc	2 245 37                        @ ../das_subg_thread/das_hex_cmd.c:245:37
+	.loc	2 248 37                        @ ../das_subg_thread/das_hex_cmd.c:248:37
 	ldrb	r1, [r7], #1
 .Ltmp60:
-	.loc	2 243 32                        @ ../das_subg_thread/das_hex_cmd.c:243:32
+	.loc	2 246 32                        @ ../das_subg_thread/das_hex_cmd.c:246:32
 	subs	r6, #1
 .Ltmp61:
-	.loc	2 245 30                        @ ../das_subg_thread/das_hex_cmd.c:245:30
+	.loc	2 248 30                        @ ../das_subg_thread/das_hex_cmd.c:248:30
 	strb	r1, [r0], #1
 .Ltmp62:
 	@DEBUG_VALUE: i <- [DW_OP_plus_uconst 1, DW_OP_stack_value] undef
-	.loc	2 243 9                         @ ../das_subg_thread/das_hex_cmd.c:243:9
+	.loc	2 246 9                         @ ../das_subg_thread/das_hex_cmd.c:246:9
 	bne	.LBB5_3
 .Ltmp63:
 .LBB5_4:
 	@DEBUG_VALUE: das_hex_cmd_get_udp_received_data:message <- $r5
 	@DEBUG_VALUE: das_hex_cmd_get_udp_received_data:cmd_crc <- -1
-	.loc	2 248 79                        @ ../das_subg_thread/das_hex_cmd.c:248:79
+	.loc	2 251 80                        @ ../das_subg_thread/das_hex_cmd.c:251:80
 	subs	r0, r4, #1
 .Ltmp64:
 	@DEBUG_VALUE: das_hex_cmd_crc_calculate:hex_ptr_lens <- $r0
@@ -581,7 +581,7 @@ das_hex_cmd_get_udp_received_data:
 	@DEBUG_VALUE: das_hex_cmd_get_udp_received_data:Param <- $r7
 	@DEBUG_VALUE: das_hex_cmd_get_udp_received_data:message <- $r0
 	@DEBUG_VALUE: das_hex_cmd_get_udp_received_data:cmd_crc <- -1
-	.loc	2 254 1 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:254:1
+	.loc	2 260 1 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:260:1
 	add	sp, #4
 	pop	{r4, r5, r6, r7, pc}
 .Ltmp69:
@@ -634,19 +634,19 @@ das_hex_cmd_get_udp_received_data:
 	@DEBUG_VALUE: das_hex_cmd_get_udp_received_data:message <- $r5
 	@DEBUG_VALUE: das_hex_cmd_get_udp_received_data:cmd_crc <- -1
 	@DEBUG_VALUE: das_hex_cmd_get_udp_received_data:cmd_crc <- $r1
-	.loc	2 249 32                        @ ../das_subg_thread/das_hex_cmd.c:249:32
+	.loc	2 252 34                        @ ../das_subg_thread/das_hex_cmd.c:252:34
 	strb	r1, [r5, r0]
 .Ltmp76:
 	@DEBUG_VALUE: das_hex_cmd_send:cmd_data_lens <- undef
 	@DEBUG_VALUE: das_hex_cmd_send:cmd_data <- $r5
-	.loc	2 73 5                          @ ../das_subg_thread/das_hex_cmd.c:73:5
-	movs	r0, #0
+	.loc	2 71 5                          @ ../das_subg_thread/das_hex_cmd.c:71:5
+	movs	r0, #2
 	mov	r1, r5
 .Ltmp77:
 	mov	r2, r4
 	bl	app_uart_data_send
 .Ltmp78:
-	.loc	2 253 17                        @ ../das_subg_thread/das_hex_cmd.c:253:17
+	.loc	2 258 9                         @ ../das_subg_thread/das_hex_cmd.c:258:9
 	mov	r0, r5
 	add	sp, #4
 	pop.w	{r4, r5, r6, r7, lr}
@@ -668,7 +668,7 @@ das_hex_cmd_get_udp_received_data:
 	.thumb_func
 das_hex_cmd_command_bootup:
 .Lfunc_begin6:
-	.loc	2 258 0                         @ ../das_subg_thread/das_hex_cmd.c:258:0
+	.loc	2 264 0                         @ ../das_subg_thread/das_hex_cmd.c:264:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -683,10 +683,10 @@ das_hex_cmd_command_bootup:
 	movs	r0, #147
 	movt	r0, #16386
 .Ltmp81:
-	.loc	2 261 16 prologue_end           @ ../das_subg_thread/das_hex_cmd.c:261:16
+	.loc	2 267 16 prologue_end           @ ../das_subg_thread/das_hex_cmd.c:267:16
 	str.w	r0, [sp, #3]
 	movs	r0, #213
-	.loc	2 265 16                        @ ../das_subg_thread/das_hex_cmd.c:265:16
+	.loc	2 271 16                        @ ../das_subg_thread/das_hex_cmd.c:271:16
 	strb.w	r0, [sp, #7]
 .Ltmp82:
 	@DEBUG_VALUE: das_hex_cmd_send:cmd_data_lens <- 5
@@ -694,12 +694,12 @@ das_hex_cmd_command_bootup:
 	add.w	r1, sp, #3
 .Ltmp83:
 	@DEBUG_VALUE: das_hex_cmd_send:cmd_data <- [DW_OP_plus_uconst 3, DW_OP_stack_value] $sp
-	.loc	2 73 5 is_stmt 1                @ ../das_subg_thread/das_hex_cmd.c:73:5
-	movs	r0, #0
+	.loc	2 71 5 is_stmt 1                @ ../das_subg_thread/das_hex_cmd.c:71:5
+	movs	r0, #2
 	movs	r2, #5
 	bl	app_uart_data_send
 .Ltmp84:
-	.loc	2 268 1                         @ ../das_subg_thread/das_hex_cmd.c:268:1
+	.loc	2 274 1                         @ ../das_subg_thread/das_hex_cmd.c:274:1
 	add	sp, #8
 	pop	{r7, pc}
 .Ltmp85:
@@ -718,7 +718,7 @@ das_hex_cmd_command_bootup:
 	.thumb_func
 das_hex_cmd_state_change:
 .Lfunc_begin7:
-	.loc	2 272 0                         @ ../das_subg_thread/das_hex_cmd.c:272:0
+	.loc	2 278 0                         @ ../das_subg_thread/das_hex_cmd.c:278:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -736,16 +736,16 @@ das_hex_cmd_state_change:
 .Ltmp86:
 	@DEBUG_VALUE: das_hex_cmd_state_change:crc <- -26
 	@DEBUG_VALUE: das_hex_cmd_state_change:state <- $r0
-	.loc	2 280 16 prologue_end           @ ../das_subg_thread/das_hex_cmd.c:280:16
+	.loc	2 286 16 prologue_end           @ ../das_subg_thread/das_hex_cmd.c:286:16
 	strb.w	r0, [sp, #6]
-	.loc	2 281 9                         @ ../das_subg_thread/das_hex_cmd.c:281:9
+	.loc	2 287 9                         @ ../das_subg_thread/das_hex_cmd.c:287:9
 	subs	r0, #26
 .Ltmp87:
 	@DEBUG_VALUE: das_hex_cmd_state_change:state <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: das_hex_cmd_state_change:crc <- $r0
-	.loc	2 276 16                        @ ../das_subg_thread/das_hex_cmd.c:276:16
-	str.w	r1, [sp, #2]
 	.loc	2 282 16                        @ ../das_subg_thread/das_hex_cmd.c:282:16
+	str.w	r1, [sp, #2]
+	.loc	2 288 16                        @ ../das_subg_thread/das_hex_cmd.c:288:16
 	strb.w	r0, [sp, #7]
 .Ltmp88:
 	@DEBUG_VALUE: das_hex_cmd_send:cmd_data_lens <- 6
@@ -753,13 +753,13 @@ das_hex_cmd_state_change:
 	add.w	r1, sp, #2
 .Ltmp89:
 	@DEBUG_VALUE: das_hex_cmd_send:cmd_data <- [DW_OP_plus_uconst 2, DW_OP_stack_value] $sp
-	.loc	2 73 5 is_stmt 1                @ ../das_subg_thread/das_hex_cmd.c:73:5
-	movs	r0, #0
+	.loc	2 71 5 is_stmt 1                @ ../das_subg_thread/das_hex_cmd.c:71:5
+	movs	r0, #2
 .Ltmp90:
 	movs	r2, #6
 	bl	app_uart_data_send
 .Ltmp91:
-	.loc	2 285 1                         @ ../das_subg_thread/das_hex_cmd.c:285:1
+	.loc	2 291 1                         @ ../das_subg_thread/das_hex_cmd.c:291:1
 	add	sp, #8
 	pop	{r7, pc}
 .Ltmp92:
@@ -778,7 +778,7 @@ das_hex_cmd_state_change:
 	.thumb_func
 das_hex_cmd_get_meter_id:
 .Lfunc_begin8:
-	.loc	2 415 0                         @ ../das_subg_thread/das_hex_cmd.c:415:0
+	.loc	2 421 0                         @ ../das_subg_thread/das_hex_cmd.c:421:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -796,7 +796,7 @@ das_hex_cmd_get_meter_id:
 	.loc	8 248 20 prologue_end           @ ../../../components/platform/soc/rt582/rt582_driver/Inc/gpio.h:248:20
 	ldr	r0, [r0]
 .Ltmp94:
-	.loc	2 416 9                         @ ../das_subg_thread/das_hex_cmd.c:416:9
+	.loc	2 422 9                         @ ../das_subg_thread/das_hex_cmd.c:422:9
 	lsls	r0, r0, #1
 	bmi	.LBB8_2
 .Ltmp95:
@@ -805,10 +805,10 @@ das_hex_cmd_get_meter_id:
 	movs	r0, #147
 	movt	r0, #36866
 .Ltmp96:
-	.loc	2 420 20 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:420:20
+	.loc	2 426 20 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:426:20
 	str.w	r0, [sp, #3]
 	movs	r0, #37
-	.loc	2 424 20                        @ ../das_subg_thread/das_hex_cmd.c:424:20
+	.loc	2 430 20                        @ ../das_subg_thread/das_hex_cmd.c:430:20
 	strb.w	r0, [sp, #7]
 .Ltmp97:
 	@DEBUG_VALUE: das_hex_cmd_send:cmd_data_lens <- 5
@@ -816,13 +816,13 @@ das_hex_cmd_get_meter_id:
 	add.w	r1, sp, #3
 .Ltmp98:
 	@DEBUG_VALUE: das_hex_cmd_send:cmd_data <- [DW_OP_plus_uconst 3, DW_OP_stack_value] $sp
-	.loc	2 73 5 is_stmt 1                @ ../das_subg_thread/das_hex_cmd.c:73:5
-	movs	r0, #0
+	.loc	2 71 5 is_stmt 1                @ ../das_subg_thread/das_hex_cmd.c:71:5
+	movs	r0, #2
 	movs	r2, #5
 	bl	app_uart_data_send
 .Ltmp99:
 .LBB8_2:
-	.loc	2 428 1                         @ ../das_subg_thread/das_hex_cmd.c:428:1
+	.loc	2 434 1                         @ ../das_subg_thread/das_hex_cmd.c:434:1
 	add	sp, #8
 	pop	{r7, pc}
 .Ltmp100:
@@ -841,7 +841,7 @@ das_hex_cmd_get_meter_id:
 	.thumb_func
 das_hex_cmd_received_task:
 .Lfunc_begin9:
-	.loc	2 666 0                         @ ../das_subg_thread/das_hex_cmd.c:666:0
+	.loc	2 675 0                         @ ../das_subg_thread/das_hex_cmd.c:675:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -873,7 +873,7 @@ das_hex_cmd_received_task:
 	movw	r5, :lower16:das_rx_buf
 	movt	r5, :upper16:das_rx_buf
 .Ltmp102:
-	.loc	2 670 5                         @ ../das_subg_thread/das_hex_cmd.c:670:5
+	.loc	2 679 5                         @ ../das_subg_thread/das_hex_cmd.c:679:5
 	cbz	r1, .LBB9_8
 .Ltmp103:
 @ %bb.1:
@@ -884,7 +884,7 @@ das_hex_cmd_received_task:
 .Ltmp104:
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBufLength <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: das_hex_cmd_received_task:end <- $r1
-	.loc	2 672 13 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:672:13
+	.loc	2 681 13 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:681:13
 	mov	r3, r2
 .Ltmp105:
 	.p2align	2
@@ -895,7 +895,7 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- $r0
 	.loc	2 0 0 is_stmt 0                 @ ../das_subg_thread/das_hex_cmd.c:0:0
 	ldrb	r7, [r0]
-	.loc	2 672 32                        @ ../das_subg_thread/das_hex_cmd.c:672:32
+	.loc	2 681 32                        @ ../das_subg_thread/das_hex_cmd.c:681:32
 	lsls	r4, r3, #16
 	bne	.LBB9_5
 .Ltmp106:
@@ -903,7 +903,7 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_received_task:end <- $r1
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- $r0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBufLength <- [DW_OP_LLVM_entry_value 1] $r1
-	.loc	2 672 13                        @ ../das_subg_thread/das_hex_cmd.c:672:13
+	.loc	2 681 13                        @ ../das_subg_thread/das_hex_cmd.c:681:13
 	cmp	r7, #147
 	bne	.LBB9_7
 .Ltmp107:
@@ -918,26 +918,26 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_received_task:end <- $r1
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- $r0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBufLength <- [DW_OP_LLVM_entry_value 1] $r1
-	.loc	2 674 37 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:674:37
+	.loc	2 683 37 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:683:37
 	adds	r2, r3, #1
-	.loc	2 674 13 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:674:13
+	.loc	2 683 13 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:683:13
 	uxth	r3, r3
-	.loc	2 674 41                        @ ../das_subg_thread/das_hex_cmd.c:674:41
+	.loc	2 683 41                        @ ../das_subg_thread/das_hex_cmd.c:683:41
 	strb	r7, [r5, r3]
 	mov	r3, r2
-	.loc	2 674 37                        @ ../das_subg_thread/das_hex_cmd.c:674:37
+	.loc	2 683 37                        @ ../das_subg_thread/das_hex_cmd.c:683:37
 	strh	r2, [r6]
 .Ltmp109:
 .LBB9_6:                                @   in Loop: Header=BB9_2 Depth=1
 	@DEBUG_VALUE: das_hex_cmd_received_task:end <- $r1
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- $r0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBufLength <- [DW_OP_LLVM_entry_value 1] $r1
-	.loc	2 670 28 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:670:28
+	.loc	2 679 28 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:679:28
 	adds	r0, #1
 .Ltmp110:
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- $r0
-	.loc	2 670 5 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:670:5
+	.loc	2 679 5 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:679:5
 	cmp	r0, r1
 	blo	.LBB9_2
 	b	.LBB9_8
@@ -952,29 +952,29 @@ das_hex_cmd_received_task:
 .Ltmp112:
 .LBB9_8:
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- $r0
-	.loc	2 678 23 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:678:23
+	.loc	2 687 23 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:687:23
 	uxth	r3, r2
 .Ltmp113:
-	.loc	2 678 9 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:678:9
+	.loc	2 687 9 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:687:9
 	cmp	r3, #4
 	blo.w	.LBB9_106
 .Ltmp114:
 @ %bb.9:
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- $r0
-	.loc	2 680 22 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:680:22
+	.loc	2 689 22 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:689:22
 	ldrb	r2, [r5, #1]
-	.loc	2 680 44 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:680:44
+	.loc	2 689 44 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:689:44
 	ldrb	r0, [r5, #2]
 .Ltmp115:
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 680 42                        @ ../das_subg_thread/das_hex_cmd.c:680:42
+	.loc	2 689 42                        @ ../das_subg_thread/das_hex_cmd.c:689:42
 	orr.w	r0, r0, r2, lsl #8
 .Ltmp116:
 	@DEBUG_VALUE: das_hex_cmd_received_task:cmd_length <- $r0
-	.loc	2 681 42 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:681:42
+	.loc	2 690 42 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:690:42
 	adds	r1, r0, #3
 .Ltmp117:
-	.loc	2 681 13 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:681:13
+	.loc	2 690 13 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:690:13
 	cmp	r1, r3
 	bhi.w	.LBB9_106
 .Ltmp118:
@@ -986,10 +986,10 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_process:cmd_id <- -1
 	@DEBUG_VALUE: das_hex_cmd_process:cmd_len <- 0
 	@DEBUG_VALUE: das_hex_cmd_process:aBuf <- $r5
-	.loc	2 645 13 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:645:13
+	.loc	2 654 13 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:654:13
 	ldrb	r1, [r5]
 .Ltmp119:
-	.loc	2 645 13 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:645:13
+	.loc	2 654 13 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:654:13
 	cmp	r1, #147
 	bne.w	.LBB9_105
 .Ltmp120:
@@ -1000,12 +1000,12 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_process:cmd_id <- -1
 	@DEBUG_VALUE: das_hex_cmd_process:crc <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 650 18 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:650:18
+	.loc	2 659 18 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:659:18
 	ldrb.w	r8, [r5, #3]
 .Ltmp121:
 	@DEBUG_VALUE: das_hex_cmd_process:cmd_len <- [DW_OP_LLVM_convert 32 7, DW_OP_LLVM_convert 16 7, DW_OP_stack_value] undef
 	@DEBUG_VALUE: das_hex_cmd_process:cmd_id <- undef
-	.loc	2 653 70                        @ ../das_subg_thread/das_hex_cmd.c:653:70
+	.loc	2 662 71                        @ ../das_subg_thread/das_hex_cmd.c:662:71
 	subs	r1, r3, #1
 .Ltmp122:
 	@DEBUG_VALUE: das_hex_cmd_crc_calculate:i <- 1
@@ -1066,12 +1066,12 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_process:crc <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: das_hex_cmd_process:crc <- $r2
-	.loc	2 654 20                        @ ../das_subg_thread/das_hex_cmd.c:654:20
+	.loc	2 663 20                        @ ../das_subg_thread/das_hex_cmd.c:663:20
 	ldrb	r1, [r5, r1]
-	.loc	2 654 17 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:654:17
+	.loc	2 663 17 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:663:17
 	uxtb	r2, r2
 .Ltmp131:
-	.loc	2 654 13                        @ ../das_subg_thread/das_hex_cmd.c:654:13
+	.loc	2 663 13                        @ ../das_subg_thread/das_hex_cmd.c:663:13
 	cmp	r2, r1
 	bne	.LBB9_25
 .Ltmp132:
@@ -1080,11 +1080,11 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_received_task:cmd_length <- $r0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: das_hex_cmd_process:cmd_len <- undef
-	.loc	2 660 72 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:660:72
+	.loc	2 669 73 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:669:73
 	subs	r4, r0, #2
 .Ltmp133:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:lens <- $r4
-	.loc	2 589 5                         @ ../das_subg_thread/das_hex_cmd.c:589:5
+	.loc	2 598 5                         @ ../das_subg_thread/das_hex_cmd.c:598:5
 	cmp.w	r8, #127
 .Ltmp134:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:Param <- undef
@@ -1094,7 +1094,7 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:need_ack <- 1
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_id <- $r8
-	.loc	2 589 5                         @ ../das_subg_thread/das_hex_cmd.c:589:5
+	.loc	2 598 5                         @ ../das_subg_thread/das_hex_cmd.c:598:5
 	bgt	.LBB9_26
 .Ltmp136:
 @ %bb.16:
@@ -1153,10 +1153,10 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_get_mesh_local_addr:lens <- undef
 	@DEBUG_VALUE: das_hex_cmd_get_mesh_local_addr:cmd_crc <- 0
 	@DEBUG_VALUE: das_hex_cmd_get_mesh_local_addr:i <- 0
-	.loc	2 355 5 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:355:5
+	.loc	2 361 5 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:361:5
 	bl	otrLock
 .Ltmp141:
-	.loc	2 355 5 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:355:5
+	.loc	2 361 5 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:361:5
 	bl	otrGetInstance
 .Ltmp142:
 	@DEBUG_VALUE: instance <- $r0
@@ -1173,12 +1173,12 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:need_ack <- 1
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 355 5                         @ ../das_subg_thread/das_hex_cmd.c:355:5
+	.loc	2 361 5                         @ ../das_subg_thread/das_hex_cmd.c:361:5
 	bl	otThreadGetMeshLocalEid
 .Ltmp144:
 	.loc	2 0 5                           @ ../das_subg_thread/das_hex_cmd.c:0:5
 	add	r1, sp, #64
-	.loc	2 355 5                         @ ../das_subg_thread/das_hex_cmd.c:355:5
+	.loc	2 361 5                         @ ../das_subg_thread/das_hex_cmd.c:361:5
 	movs	r2, #40
 	bl	otIp6AddressToString
 .Ltmp145:
@@ -1191,18 +1191,18 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:need_ack <- 1
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 355 5                         @ ../das_subg_thread/das_hex_cmd.c:355:5
+	.loc	2 361 5                         @ ../das_subg_thread/das_hex_cmd.c:361:5
 	bl	otrUnlock
 .Ltmp146:
-	.loc	2 368 12 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:368:12
+	.loc	2 374 12 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:374:12
 	ldrb.w	r2, [sp, #64]
 	movs	r0, #147
-	.loc	2 363 16                        @ ../das_subg_thread/das_hex_cmd.c:363:16
+	.loc	2 369 16                        @ ../das_subg_thread/das_hex_cmd.c:369:16
 	strh.w	r0, [sp, #16]
 	movs	r0, #113
-	.loc	2 368 5                         @ ../das_subg_thread/das_hex_cmd.c:368:5
+	.loc	2 374 5                         @ ../das_subg_thread/das_hex_cmd.c:374:5
 	cmp	r2, #0
-	.loc	2 365 16                        @ ../das_subg_thread/das_hex_cmd.c:365:16
+	.loc	2 371 16                        @ ../das_subg_thread/das_hex_cmd.c:371:16
 	strb.w	r0, [sp, #19]
 	@DEBUG_VALUE: das_hex_cmd_get_mesh_local_addr:i <- 0
 .Ltmp147:
@@ -1232,25 +1232,25 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: das_hex_cmd_get_mesh_local_addr:i <- $r0
-	.loc	2 372 10 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:372:10
+	.loc	2 378 10 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:378:10
 	adds	r0, #1
 .Ltmp152:
 	@DEBUG_VALUE: das_hex_cmd_get_mesh_local_addr:i <- $r0
-	.loc	2 370 18                        @ ../das_subg_thread/das_hex_cmd.c:370:18
+	.loc	2 376 19                        @ ../das_subg_thread/das_hex_cmd.c:376:19
 	adds	r1, r3, r7
 .Ltmp153:
-	.loc	2 368 12                        @ ../das_subg_thread/das_hex_cmd.c:368:12
+	.loc	2 374 12                        @ ../das_subg_thread/das_hex_cmd.c:374:12
 	uxtb	r3, r0
 .Ltmp154:
-	.loc	2 370 22                        @ ../das_subg_thread/das_hex_cmd.c:370:22
+	.loc	2 376 24                        @ ../das_subg_thread/das_hex_cmd.c:376:24
 	strb	r2, [r1, #4]
-	.loc	2 371 17                        @ ../das_subg_thread/das_hex_cmd.c:371:17
+	.loc	2 377 17                        @ ../das_subg_thread/das_hex_cmd.c:377:17
 	adds	r1, r4, r2
 .Ltmp155:
 	@DEBUG_VALUE: das_hex_cmd_get_mesh_local_addr:cmd_crc <- [DW_OP_LLVM_convert 32 7, DW_OP_LLVM_convert 8 7, DW_OP_stack_value] $r1
-	.loc	2 368 12                        @ ../das_subg_thread/das_hex_cmd.c:368:12
+	.loc	2 374 12                        @ ../das_subg_thread/das_hex_cmd.c:374:12
 	ldrb	r2, [r5, r3]
-	.loc	2 368 5 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:368:5
+	.loc	2 374 5 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:374:5
 	uxtb	r4, r1
 .Ltmp156:
 	@DEBUG_VALUE: das_hex_cmd_get_mesh_local_addr:cmd_crc <- undef
@@ -1294,7 +1294,7 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:need_ack <- 1
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 589 5 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:589:5
+	.loc	2 598 5 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:598:5
 	cmp.w	r8, #159
 	ble	.LBB9_36
 .Ltmp164:
@@ -1340,19 +1340,19 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: das_hex_cmd_to_acsii_comand_process:lens <- $r4
-	.loc	2 575 36                        @ ../das_subg_thread/das_hex_cmd.c:575:36
+	.loc	2 581 36                        @ ../das_subg_thread/das_hex_cmd.c:581:36
 	uxth	r7, r4
-	.loc	2 575 23 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:575:23
+	.loc	2 581 23 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:581:23
 	mov	r0, r7
 .Ltmp168:
 	bl	pvPortMalloc
 .Ltmp169:
 	@DEBUG_VALUE: das_hex_cmd_to_acsii_comand_process:Rx_Buffer <- $r0
-	.loc	2 576 8 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:576:8
+	.loc	2 582 9 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:582:9
 	cmp	r0, #0
 .Ltmp170:
 	@DEBUG_VALUE: das_hex_cmd_to_acsii_comand_process:Param <- undef
-	.loc	2 0 8 is_stmt 0                 @ ../das_subg_thread/das_hex_cmd.c:0:8
+	.loc	2 0 9 is_stmt 0                 @ ../das_subg_thread/das_hex_cmd.c:0:9
 	beq.w	.LBB9_105
 .Ltmp171:
 @ %bb.31:
@@ -1364,7 +1364,7 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:need_ack <- 1
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 578 9 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:578:9
+	.loc	2 584 9 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:584:9
 	adds	r1, r5, #4
 	mov	r2, r7
 .Ltmp172:
@@ -1372,22 +1372,22 @@ das_hex_cmd_received_task:
 	mov	r4, r0
 .Ltmp173:
 	@DEBUG_VALUE: das_hex_cmd_to_acsii_comand_process:Rx_Buffer <- $r4
-	.loc	2 578 9                         @ ../das_subg_thread/das_hex_cmd.c:578:9
+	.loc	2 584 9                         @ ../das_subg_thread/das_hex_cmd.c:584:9
 	bl	__aeabi_memcpy
 .Ltmp174:
 	.loc	2 0 9                           @ ../das_subg_thread/das_hex_cmd.c:0:9
 	movs	r0, #0
-	.loc	2 579 25 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:579:25
+	.loc	2 585 25 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:585:25
 	strb	r0, [r4, r7]
-	.loc	2 580 9                         @ ../das_subg_thread/das_hex_cmd.c:580:9
+	.loc	2 586 9                         @ ../das_subg_thread/das_hex_cmd.c:586:9
 	mov	r0, r4
 	bl	otCliInputLine
 .Ltmp175:
-	.loc	2 582 19                        @ ../das_subg_thread/das_hex_cmd.c:582:19
+	.loc	2 590 9                         @ ../das_subg_thread/das_hex_cmd.c:590:9
 	mov	r0, r4
 	bl	vPortFree
 .Ltmp176:
-	.loc	2 0 19 is_stmt 0                @ ../das_subg_thread/das_hex_cmd.c:0:19
+	.loc	2 0 9 is_stmt 0                 @ ../das_subg_thread/das_hex_cmd.c:0:9
 	b	.LBB9_105
 .Ltmp177:
 .LBB9_32:
@@ -1398,7 +1398,7 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:need_ack <- 1
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 589 5 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:589:5
+	.loc	2 598 5 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:598:5
 	cmp.w	r8, #1
 	beq	.LBB9_50
 .Ltmp178:
@@ -1468,7 +1468,7 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:need_ack <- 1
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 589 5 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:589:5
+	.loc	2 598 5 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:598:5
 	cmp.w	r8, #128
 	beq	.LBB9_58
 .Ltmp186:
@@ -1491,7 +1491,7 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:need_ack <- 1
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 440 13                        @ ../das_subg_thread/das_hex_cmd.c:440:13
+	.loc	2 446 13                        @ ../das_subg_thread/das_hex_cmd.c:446:13
 	uxth.w	r12, r4
 	movs	r0, #0
 .Ltmp188:
@@ -1499,11 +1499,11 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_meter_id_respone:num <- 0
 	@DEBUG_VALUE: das_hex_cmd_meter_id_respone:ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_meter_id_respone:lens <- $r4
-	.loc	2 440 13 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:440:13
+	.loc	2 446 13 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:446:13
 	cmp.w	r12, #10
 .Ltmp189:
 	@DEBUG_VALUE: das_hex_cmd_meter_id_respone:Param <- undef
-	.loc	2 437 5 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:437:5
+	.loc	2 443 5 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:443:5
 	strb.w	r0, [sp, #106]
 	strh.w	r0, [sp, #104]
 .Ltmp190:
@@ -1545,10 +1545,10 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_get_thread_state:Param <- undef
 	@DEBUG_VALUE: das_hex_cmd_get_thread_state:lens <- undef
 	@DEBUG_VALUE: das_hex_cmd_get_thread_state:mRole <- 0
-	.loc	2 293 5 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:293:5
+	.loc	2 299 5 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:299:5
 	bl	otrLock
 .Ltmp193:
-	.loc	2 293 5 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:293:5
+	.loc	2 299 5 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:299:5
 	bl	otrGetInstance
 .Ltmp194:
 	@DEBUG_VALUE: instance <- $r0
@@ -1564,7 +1564,7 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:need_ack <- 1
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 293 5                         @ ../das_subg_thread/das_hex_cmd.c:293:5
+	.loc	2 299 5                         @ ../das_subg_thread/das_hex_cmd.c:299:5
 	bl	otThreadGetDeviceRole
 .Ltmp196:
 	mov	r4, r0
@@ -1585,10 +1585,10 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_get_link_local_addr:lens <- undef
 	@DEBUG_VALUE: das_hex_cmd_get_link_local_addr:cmd_crc <- 0
 	@DEBUG_VALUE: das_hex_cmd_get_link_local_addr:i <- 0
-	.loc	2 320 5 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:320:5
+	.loc	2 326 5 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:326:5
 	bl	otrLock
 .Ltmp199:
-	.loc	2 320 5 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:320:5
+	.loc	2 326 5 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:326:5
 	bl	otrGetInstance
 .Ltmp200:
 	@DEBUG_VALUE: instance <- $r0
@@ -1604,12 +1604,12 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:need_ack <- 1
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 320 5                         @ ../das_subg_thread/das_hex_cmd.c:320:5
+	.loc	2 326 5                         @ ../das_subg_thread/das_hex_cmd.c:326:5
 	bl	otThreadGetLinkLocalIp6Address
 .Ltmp202:
 	.loc	2 0 5                           @ ../das_subg_thread/das_hex_cmd.c:0:5
 	add	r1, sp, #64
-	.loc	2 320 5                         @ ../das_subg_thread/das_hex_cmd.c:320:5
+	.loc	2 326 5                         @ ../das_subg_thread/das_hex_cmd.c:326:5
 	movs	r2, #40
 	bl	otIp6AddressToString
 .Ltmp203:
@@ -1622,23 +1622,23 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:need_ack <- 1
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 320 5                         @ ../das_subg_thread/das_hex_cmd.c:320:5
+	.loc	2 326 5                         @ ../das_subg_thread/das_hex_cmd.c:326:5
 	bl	otrUnlock
 .Ltmp204:
-	.loc	2 333 12 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:333:12
+	.loc	2 339 12 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:339:12
 	ldrb.w	r2, [sp, #64]
 	movs	r0, #147
-	.loc	2 328 16                        @ ../das_subg_thread/das_hex_cmd.c:328:16
+	.loc	2 334 16                        @ ../das_subg_thread/das_hex_cmd.c:334:16
 	strh.w	r0, [sp, #16]
 	movs	r0, #97
-	.loc	2 333 5                         @ ../das_subg_thread/das_hex_cmd.c:333:5
+	.loc	2 339 5                         @ ../das_subg_thread/das_hex_cmd.c:339:5
 	cmp	r2, #0
-	.loc	2 330 16                        @ ../das_subg_thread/das_hex_cmd.c:330:16
+	.loc	2 336 16                        @ ../das_subg_thread/das_hex_cmd.c:336:16
 	strb.w	r0, [sp, #19]
 	@DEBUG_VALUE: das_hex_cmd_get_link_local_addr:i <- 0
 .Ltmp205:
 	@DEBUG_VALUE: das_hex_cmd_get_link_local_addr:cmd_crc <- undef
-	.loc	2 333 5                         @ ../das_subg_thread/das_hex_cmd.c:333:5
+	.loc	2 339 5                         @ ../das_subg_thread/das_hex_cmd.c:339:5
 	beq.w	.LBB9_83
 .Ltmp206:
 @ %bb.45:
@@ -1664,25 +1664,25 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: das_hex_cmd_get_link_local_addr:i <- $r0
-	.loc	2 337 10 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:337:10
+	.loc	2 343 10 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:343:10
 	adds	r0, #1
 .Ltmp210:
 	@DEBUG_VALUE: das_hex_cmd_get_link_local_addr:i <- $r0
-	.loc	2 335 18                        @ ../das_subg_thread/das_hex_cmd.c:335:18
+	.loc	2 341 19                        @ ../das_subg_thread/das_hex_cmd.c:341:19
 	adds	r1, r3, r7
 .Ltmp211:
-	.loc	2 333 12                        @ ../das_subg_thread/das_hex_cmd.c:333:12
+	.loc	2 339 12                        @ ../das_subg_thread/das_hex_cmd.c:339:12
 	uxtb	r3, r0
 .Ltmp212:
-	.loc	2 335 22                        @ ../das_subg_thread/das_hex_cmd.c:335:22
+	.loc	2 341 24                        @ ../das_subg_thread/das_hex_cmd.c:341:24
 	strb	r2, [r1, #4]
-	.loc	2 336 17                        @ ../das_subg_thread/das_hex_cmd.c:336:17
+	.loc	2 342 17                        @ ../das_subg_thread/das_hex_cmd.c:342:17
 	adds	r1, r4, r2
 .Ltmp213:
 	@DEBUG_VALUE: das_hex_cmd_get_link_local_addr:cmd_crc <- [DW_OP_LLVM_convert 32 7, DW_OP_LLVM_convert 8 7, DW_OP_stack_value] $r1
-	.loc	2 333 12                        @ ../das_subg_thread/das_hex_cmd.c:333:12
+	.loc	2 339 12                        @ ../das_subg_thread/das_hex_cmd.c:339:12
 	ldrb	r2, [r5, r3]
-	.loc	2 333 5 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:333:5
+	.loc	2 339 5 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:339:5
 	uxtb	r4, r1
 .Ltmp214:
 	@DEBUG_VALUE: das_hex_cmd_get_link_local_addr:cmd_crc <- undef
@@ -1698,7 +1698,7 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:need_ack <- 1
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 617 9 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:617:9
+	.loc	2 626 9 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:626:9
 	bl	das_hex_cmd_get_build_version
 .Ltmp216:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:need_ack <- 0
@@ -1716,10 +1716,10 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_get_partitionid:Param <- undef
 	@DEBUG_VALUE: das_hex_cmd_get_partitionid:lens <- undef
 	@DEBUG_VALUE: das_hex_cmd_get_partitionid:partitionid <- 0
-	.loc	2 540 5 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:540:5
+	.loc	2 546 5 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:546:5
 	bl	otrLock
 .Ltmp218:
-	.loc	2 540 5 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:540:5
+	.loc	2 546 5 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:546:5
 	bl	otrGetInstance
 .Ltmp219:
 	@DEBUG_VALUE: instance <- $r0
@@ -1735,7 +1735,7 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:need_ack <- 1
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 540 5                         @ ../das_subg_thread/das_hex_cmd.c:540:5
+	.loc	2 546 5                         @ ../das_subg_thread/das_hex_cmd.c:546:5
 	bl	otThreadGetPartitionId
 .Ltmp221:
 	mov	r4, r0
@@ -1858,7 +1858,7 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:need_ack <- 1
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 136 25 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:136:25
+	.loc	2 136 26 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:136:26
 	adds	r1, #1
 	b	.LBB9_89
 .Ltmp235:
@@ -1874,10 +1874,10 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_get_routing_locator_addr:lens <- undef
 	@DEBUG_VALUE: das_hex_cmd_get_routing_locator_addr:cmd_crc <- 0
 	@DEBUG_VALUE: das_hex_cmd_get_routing_locator_addr:i <- 0
-	.loc	2 387 5                         @ ../das_subg_thread/das_hex_cmd.c:387:5
+	.loc	2 393 5                         @ ../das_subg_thread/das_hex_cmd.c:393:5
 	bl	otrLock
 .Ltmp236:
-	.loc	2 387 5 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:387:5
+	.loc	2 393 5 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:393:5
 	bl	otrGetInstance
 .Ltmp237:
 	@DEBUG_VALUE: instance <- $r0
@@ -1893,12 +1893,12 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:need_ack <- 1
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 387 5                         @ ../das_subg_thread/das_hex_cmd.c:387:5
+	.loc	2 393 5                         @ ../das_subg_thread/das_hex_cmd.c:393:5
 	bl	otThreadGetRloc
 .Ltmp239:
 	.loc	2 0 5                           @ ../das_subg_thread/das_hex_cmd.c:0:5
 	add	r1, sp, #64
-	.loc	2 387 5                         @ ../das_subg_thread/das_hex_cmd.c:387:5
+	.loc	2 393 5                         @ ../das_subg_thread/das_hex_cmd.c:393:5
 	movs	r2, #40
 	bl	otIp6AddressToString
 .Ltmp240:
@@ -1911,23 +1911,23 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:need_ack <- 1
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 387 5                         @ ../das_subg_thread/das_hex_cmd.c:387:5
+	.loc	2 393 5                         @ ../das_subg_thread/das_hex_cmd.c:393:5
 	bl	otrUnlock
 .Ltmp241:
-	.loc	2 400 12 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:400:12
+	.loc	2 406 12 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:406:12
 	ldrb.w	r2, [sp, #64]
 	movs	r0, #147
-	.loc	2 395 16                        @ ../das_subg_thread/das_hex_cmd.c:395:16
+	.loc	2 401 16                        @ ../das_subg_thread/das_hex_cmd.c:401:16
 	strh.w	r0, [sp, #16]
 	movs	r0, #129
-	.loc	2 400 5                         @ ../das_subg_thread/das_hex_cmd.c:400:5
+	.loc	2 406 5                         @ ../das_subg_thread/das_hex_cmd.c:406:5
 	cmp	r2, #0
-	.loc	2 397 16                        @ ../das_subg_thread/das_hex_cmd.c:397:16
+	.loc	2 403 16                        @ ../das_subg_thread/das_hex_cmd.c:403:16
 	strb.w	r0, [sp, #19]
 	@DEBUG_VALUE: das_hex_cmd_get_routing_locator_addr:i <- 0
 .Ltmp242:
 	@DEBUG_VALUE: das_hex_cmd_get_routing_locator_addr:cmd_crc <- undef
-	.loc	2 400 5                         @ ../das_subg_thread/das_hex_cmd.c:400:5
+	.loc	2 406 5                         @ ../das_subg_thread/das_hex_cmd.c:406:5
 	beq.w	.LBB9_90
 .Ltmp243:
 @ %bb.61:
@@ -1953,25 +1953,25 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: das_hex_cmd_get_routing_locator_addr:i <- $r0
-	.loc	2 404 10 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:404:10
+	.loc	2 410 10 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:410:10
 	adds	r0, #1
 .Ltmp247:
 	@DEBUG_VALUE: das_hex_cmd_get_routing_locator_addr:i <- $r0
-	.loc	2 402 18                        @ ../das_subg_thread/das_hex_cmd.c:402:18
+	.loc	2 408 19                        @ ../das_subg_thread/das_hex_cmd.c:408:19
 	adds	r1, r3, r7
 .Ltmp248:
-	.loc	2 400 12                        @ ../das_subg_thread/das_hex_cmd.c:400:12
+	.loc	2 406 12                        @ ../das_subg_thread/das_hex_cmd.c:406:12
 	uxtb	r3, r0
 .Ltmp249:
-	.loc	2 402 22                        @ ../das_subg_thread/das_hex_cmd.c:402:22
+	.loc	2 408 24                        @ ../das_subg_thread/das_hex_cmd.c:408:24
 	strb	r2, [r1, #4]
-	.loc	2 403 17                        @ ../das_subg_thread/das_hex_cmd.c:403:17
+	.loc	2 409 17                        @ ../das_subg_thread/das_hex_cmd.c:409:17
 	adds	r1, r4, r2
 .Ltmp250:
 	@DEBUG_VALUE: das_hex_cmd_get_routing_locator_addr:cmd_crc <- [DW_OP_LLVM_convert 32 7, DW_OP_LLVM_convert 8 7, DW_OP_stack_value] $r1
-	.loc	2 400 12                        @ ../das_subg_thread/das_hex_cmd.c:400:12
+	.loc	2 406 12                        @ ../das_subg_thread/das_hex_cmd.c:406:12
 	ldrb	r2, [r5, r3]
-	.loc	2 400 5 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:400:5
+	.loc	2 406 5 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:406:5
 	uxtb	r4, r1
 .Ltmp251:
 	@DEBUG_VALUE: das_hex_cmd_get_routing_locator_addr:cmd_crc <- undef
@@ -2005,7 +2005,7 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: das_hex_cmd_meter_id_respone:num <- 0
 	@DEBUG_VALUE: das_hex_cmd_meter_id_respone:i <- 0
-	.loc	2 445 9 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:445:9
+	.loc	2 451 9 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:451:9
 	lsls	r0, r4, #16
 	beq.w	.LBB9_93
 .Ltmp254:
@@ -2049,10 +2049,10 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_meter_id_respone:i <- $lr
 	@DEBUG_VALUE: das_hex_cmd_meter_id_respone:num <- [DW_OP_LLVM_fragment 0 32] $r11
 	@DEBUG_VALUE: das_hex_cmd_meter_id_respone:num <- [DW_OP_LLVM_fragment 32 32] $r10
-	.loc	2 447 17 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:447:17
+	.loc	2 453 17 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:453:17
 	adds	r0, r5, r3
 	ldrb	r0, [r0, #4]
-	.loc	2 447 33 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:447:33
+	.loc	2 453 33 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:453:33
 	sub.w	r7, r0, #48
 	uxtb	r4, r7
 	cmp	r4, #10
@@ -2073,7 +2073,7 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:need_ack <- 1
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 451 38 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:451:38
+	.loc	2 457 38 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:457:38
 	sub.w	r7, r0, #97
 	uxtb	r7, r7
 	cmp	r7, #5
@@ -2094,7 +2094,7 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:need_ack <- 1
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 453 44                        @ ../das_subg_thread/das_hex_cmd.c:453:44
+	.loc	2 459 44                        @ ../das_subg_thread/das_hex_cmd.c:459:44
 	sub.w	r7, r0, #87
 .Ltmp258:
 	@DEBUG_VALUE: das_hex_cmd_meter_id_respone:hexDigit <- $r7
@@ -2116,7 +2116,7 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:need_ack <- 1
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 455 38 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:455:38
+	.loc	2 461 38 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:461:38
 	sub.w	r7, r0, #65
 	uxtb	r7, r7
 	cmp	r7, #5
@@ -2137,7 +2137,7 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:need_ack <- 1
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 457 44                        @ ../das_subg_thread/das_hex_cmd.c:457:44
+	.loc	2 463 44                        @ ../das_subg_thread/das_hex_cmd.c:463:44
 	sub.w	r7, r0, #55
 .Ltmp261:
 	@DEBUG_VALUE: das_hex_cmd_meter_id_respone:hexDigit <- $r7
@@ -2157,14 +2157,14 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: das_hex_cmd_meter_id_respone:hexDigit <- $r7
-	.loc	2 466 39                        @ ../das_subg_thread/das_hex_cmd.c:466:39
+	.loc	2 472 39                        @ ../das_subg_thread/das_hex_cmd.c:472:39
 	mvns	r0, r3
 	add	r0, r12
 .Ltmp262:
-	.loc	2 466 13 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:466:13
+	.loc	2 472 13 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:472:13
 	cmp	r0, #1
 .Ltmp263:
-	.loc	2 465 20 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:465:20
+	.loc	2 471 20 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:471:20
 	uxtb	r3, r7
 .Ltmp264:
 	@DEBUG_VALUE: das_hex_cmd_meter_id_respone:k <- 0
@@ -2173,7 +2173,7 @@ das_hex_cmd_received_task:
 	.loc	2 0 20 is_stmt 0                @ ../das_subg_thread/das_hex_cmd.c:0:20
 	mov.w	r7, #0
 .Ltmp265:
-	.loc	2 466 13 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:466:13
+	.loc	2 472 13 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:472:13
 	blt	.LBB9_74
 .Ltmp266:
 @ %bb.72:                               @   in Loop: Header=BB9_66 Depth=1
@@ -2217,27 +2217,27 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_meter_id_respone:temp <- [DW_OP_LLVM_fragment 0 32] $r3
 	@DEBUG_VALUE: das_hex_cmd_meter_id_respone:temp <- [DW_OP_LLVM_fragment 32 32] $r7
 	@DEBUG_VALUE: das_hex_cmd_meter_id_respone:k <- $r4
-	.loc	2 466 46                        @ ../das_subg_thread/das_hex_cmd.c:466:46
+	.loc	2 472 46                        @ ../das_subg_thread/das_hex_cmd.c:472:46
 	adds	r4, #1
 .Ltmp268:
 	@DEBUG_VALUE: das_hex_cmd_meter_id_respone:k <- $r4
-	.loc	2 468 22 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:468:22
+	.loc	2 474 22 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:474:22
 	umull	r3, r2, r3, r9
 .Ltmp269:
 	@DEBUG_VALUE: das_hex_cmd_meter_id_respone:temp <- [DW_OP_LLVM_fragment 0 32] $r3
 	add.w	r7, r7, r7, lsl #2
 .Ltmp270:
-	.loc	2 466 25                        @ ../das_subg_thread/das_hex_cmd.c:466:25
+	.loc	2 472 25                        @ ../das_subg_thread/das_hex_cmd.c:472:25
 	uxtb	r1, r4
 .Ltmp271:
-	.loc	2 466 13 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:466:13
+	.loc	2 472 13 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:472:13
 	cmp	r0, r1
 .Ltmp272:
-	.loc	2 468 22 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:468:22
+	.loc	2 474 22 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:474:22
 	add.w	r7, r2, r7, lsl #1
 .Ltmp273:
 	@DEBUG_VALUE: das_hex_cmd_meter_id_respone:temp <- [DW_OP_LLVM_fragment 32 32] $r7
-	.loc	2 466 13                        @ ../das_subg_thread/das_hex_cmd.c:466:13
+	.loc	2 472 13                        @ ../das_subg_thread/das_hex_cmd.c:472:13
 	bgt	.LBB9_73
 .Ltmp274:
 .LBB9_74:                               @   in Loop: Header=BB9_66 Depth=1
@@ -2256,22 +2256,22 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:need_ack <- 1
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 445 32                        @ ../das_subg_thread/das_hex_cmd.c:445:32
+	.loc	2 451 32                        @ ../das_subg_thread/das_hex_cmd.c:451:32
 	add.w	lr, lr, #1
 .Ltmp275:
 	@DEBUG_VALUE: das_hex_cmd_meter_id_respone:i <- $lr
-	.loc	2 470 17                        @ ../das_subg_thread/das_hex_cmd.c:470:17
+	.loc	2 476 17                        @ ../das_subg_thread/das_hex_cmd.c:476:17
 	adds.w	r11, r11, r3
 .Ltmp276:
 	@DEBUG_VALUE: das_hex_cmd_meter_id_respone:num <- [DW_OP_LLVM_fragment 0 32] $r11
-	.loc	2 445 21                        @ ../das_subg_thread/das_hex_cmd.c:445:21
+	.loc	2 451 21                        @ ../das_subg_thread/das_hex_cmd.c:451:21
 	uxtb.w	r3, lr
 .Ltmp277:
-	.loc	2 470 17                        @ ../das_subg_thread/das_hex_cmd.c:470:17
+	.loc	2 476 17                        @ ../das_subg_thread/das_hex_cmd.c:476:17
 	adc.w	r10, r10, r7
 .Ltmp278:
 	@DEBUG_VALUE: das_hex_cmd_meter_id_respone:num <- [DW_OP_LLVM_fragment 32 32] $r10
-	.loc	2 445 9                         @ ../das_subg_thread/das_hex_cmd.c:445:9
+	.loc	2 451 9                         @ ../das_subg_thread/das_hex_cmd.c:451:9
 	cmp	r12, r3
 	bhi	.LBB9_66
 .Ltmp279:
@@ -2416,27 +2416,27 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: das_hex_cmd_get_thread_state:mRole <- undef
-	.loc	2 293 5 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:293:5
+	.loc	2 299 5 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:299:5
 	bl	otrUnlock
 .Ltmp293:
 	.loc	2 0 5 is_stmt 0                 @ ../das_subg_thread/das_hex_cmd.c:0:5
 	movs	r0, #147
 	movt	r0, #20995
-	.loc	2 301 16 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:301:16
+	.loc	2 307 16 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:307:16
 	str	r0, [sp, #16]
-	.loc	2 306 56                        @ ../das_subg_thread/das_hex_cmd.c:306:56
+	.loc	2 312 56                        @ ../das_subg_thread/das_hex_cmd.c:312:56
 	sub.w	r0, r4, #24
-	.loc	2 305 16                        @ ../das_subg_thread/das_hex_cmd.c:305:16
+	.loc	2 311 16                        @ ../das_subg_thread/das_hex_cmd.c:311:16
 	strb.w	r4, [sp, #20]
-	.loc	2 306 16                        @ ../das_subg_thread/das_hex_cmd.c:306:16
+	.loc	2 312 16                        @ ../das_subg_thread/das_hex_cmd.c:312:16
 	strb.w	r0, [sp, #21]
 .Ltmp294:
 	@DEBUG_VALUE: das_hex_cmd_send:cmd_data_lens <- 6
 	.loc	2 0 16 is_stmt 0                @ ../das_subg_thread/das_hex_cmd.c:0:16
 	add	r1, sp, #16
 .Ltmp295:
-	.loc	2 73 5 is_stmt 1                @ ../das_subg_thread/das_hex_cmd.c:73:5
-	movs	r0, #0
+	.loc	2 71 5 is_stmt 1                @ ../das_subg_thread/das_hex_cmd.c:71:5
+	movs	r0, #2
 	movs	r2, #6
 	b	.LBB9_104
 .Ltmp296:
@@ -2471,31 +2471,31 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: das_hex_cmd_get_partitionid:partitionid <- $r4
-	.loc	2 540 5 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:540:5
+	.loc	2 546 5 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:546:5
 	bl	otrUnlock
 .Ltmp299:
 	.loc	2 0 5 is_stmt 0                 @ ../das_subg_thread/das_hex_cmd.c:0:5
 	movs	r0, #147
-	.loc	2 557 31 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:557:31
+	.loc	2 563 31 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:563:31
 	lsrs	r1, r4, #24
 	movt	r0, #45318
 .Ltmp300:
 	@DEBUG_VALUE: das_hex_cmd_get_partitionid:i <- 0
 	@DEBUG_VALUE: das_hex_cmd_get_partitionid:cmd_crc <- 0
-	.loc	2 557 16 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:557:16
+	.loc	2 563 16 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:563:16
 	strb.w	r1, [sp, #20]
-	.loc	2 558 31 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:558:31
+	.loc	2 564 31 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:564:31
 	lsrs	r1, r4, #16
-	.loc	2 552 16                        @ ../das_subg_thread/das_hex_cmd.c:552:16
+	.loc	2 558 16                        @ ../das_subg_thread/das_hex_cmd.c:558:16
 	str	r0, [sp, #16]
 	add	r0, sp, #16
-	.loc	2 558 16                        @ ../das_subg_thread/das_hex_cmd.c:558:16
+	.loc	2 564 16                        @ ../das_subg_thread/das_hex_cmd.c:564:16
 	strb.w	r1, [sp, #21]
-	.loc	2 559 31                        @ ../das_subg_thread/das_hex_cmd.c:559:31
+	.loc	2 565 31                        @ ../das_subg_thread/das_hex_cmd.c:565:31
 	lsrs	r1, r4, #8
-	.loc	2 557 5                         @ ../das_subg_thread/das_hex_cmd.c:557:5
+	.loc	2 563 5                         @ ../das_subg_thread/das_hex_cmd.c:563:5
 	adds	r0, #4
-	.loc	2 559 16                        @ ../das_subg_thread/das_hex_cmd.c:559:16
+	.loc	2 565 16                        @ ../das_subg_thread/das_hex_cmd.c:565:16
 	strb.w	r1, [sp, #22]
 	movs	r1, #74
 .Ltmp301:
@@ -2503,7 +2503,7 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_get_partitionid:cmd_crc <- 74
 	.loc	2 0 16 is_stmt 0                @ ../das_subg_thread/das_hex_cmd.c:0:16
 	movs	r2, #0
-	.loc	2 560 16 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:560:16
+	.loc	2 566 16 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:566:16
 	strb.w	r4, [sp, #23]
 .Ltmp302:
 .LBB9_86:                               @ =>This Inner Loop Header: Depth=1
@@ -2513,23 +2513,23 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:need_ack <- 1
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 564 20                        @ ../das_subg_thread/das_hex_cmd.c:564:20
+	.loc	2 570 20                        @ ../das_subg_thread/das_hex_cmd.c:570:20
 	ldrb	r3, [r0, r2]
 .Ltmp303:
 	@DEBUG_VALUE: das_hex_cmd_get_partitionid:i <- [DW_OP_plus_uconst 4, DW_OP_stack_value] $r2
 	@DEBUG_VALUE: das_hex_cmd_get_partitionid:cmd_crc <- $r1
-	.loc	2 562 20                        @ ../das_subg_thread/das_hex_cmd.c:562:20
+	.loc	2 568 20                        @ ../das_subg_thread/das_hex_cmd.c:568:20
 	adds	r2, #1
 .Ltmp304:
-	.loc	2 562 5 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:562:5
+	.loc	2 568 5 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:568:5
 	cmp	r2, #4
 .Ltmp305:
-	.loc	2 564 17 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:564:17
+	.loc	2 570 17 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:570:17
 	add	r1, r3
 .Ltmp306:
 	@DEBUG_VALUE: das_hex_cmd_get_partitionid:i <- [DW_OP_plus_uconst 5, DW_OP_stack_value] $r2
 	@DEBUG_VALUE: das_hex_cmd_get_partitionid:cmd_crc <- $r1
-	.loc	2 562 5                         @ ../das_subg_thread/das_hex_cmd.c:562:5
+	.loc	2 568 5                         @ ../das_subg_thread/das_hex_cmd.c:568:5
 	bne	.LBB9_86
 .Ltmp307:
 @ %bb.87:
@@ -2541,15 +2541,15 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:need_ack <- 1
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 566 16                        @ ../das_subg_thread/das_hex_cmd.c:566:16
+	.loc	2 572 16                        @ ../das_subg_thread/das_hex_cmd.c:572:16
 	strb.w	r1, [sp, #24]
 .Ltmp308:
 	@DEBUG_VALUE: das_hex_cmd_send:cmd_data_lens <- 9
 	.loc	2 0 16 is_stmt 0                @ ../das_subg_thread/das_hex_cmd.c:0:16
 	add	r1, sp, #16
 .Ltmp309:
-	.loc	2 73 5 is_stmt 1                @ ../das_subg_thread/das_hex_cmd.c:73:5
-	movs	r0, #0
+	.loc	2 71 5 is_stmt 1                @ ../das_subg_thread/das_hex_cmd.c:71:5
+	movs	r0, #2
 	movs	r2, #9
 .Ltmp310:
 	.loc	2 0 5 is_stmt 0                 @ ../das_subg_thread/das_hex_cmd.c:0:5
@@ -2576,7 +2576,7 @@ das_hex_cmd_received_task:
 	movw	r0, :lower16:das_hex_cmd_udp_ip
 	movt	r0, :upper16:das_hex_cmd_udp_ip
 	mov.w	r9, #0
-	.loc	2 136 29 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:136:29
+	.loc	2 136 31 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:136:31
 	strb.w	r9, [r0, r1]
 	.loc	2 137 28 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:137:28
 	movw	r0, :lower16:das_hex_cmd_udp_ip_set
@@ -2620,7 +2620,7 @@ das_hex_cmd_received_task:
 	adds	r2, r0, #5
 .Ltmp316:
 	@DEBUG_VALUE: das_hex_cmd_send:cmd_data_lens <- $r2
-	movs	r0, #0
+	movs	r0, #2
 	b	.LBB9_104
 .Ltmp317:
 .LBB9_93:
@@ -2680,10 +2680,10 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_meter_id_respone:extaddr <- [DW_OP_constu 16, DW_OP_shr, DW_OP_constu 255, DW_OP_and, DW_OP_LLVM_convert 64 7, DW_OP_LLVM_convert 8 7, DW_OP_stack_value, DW_OP_LLVM_fragment 40 8] undef
 	@DEBUG_VALUE: das_hex_cmd_meter_id_respone:extaddr <- [DW_OP_constu 8, DW_OP_shr, DW_OP_constu 255, DW_OP_and, DW_OP_LLVM_convert 64 7, DW_OP_LLVM_convert 8 7, DW_OP_stack_value, DW_OP_LLVM_fragment 48 8] undef
 	@DEBUG_VALUE: das_hex_cmd_meter_id_respone:extaddr <- [DW_OP_constu 255, DW_OP_and, DW_OP_LLVM_convert 64 7, DW_OP_LLVM_convert 8 7, DW_OP_stack_value, DW_OP_LLVM_fragment 56 8] undef
-	.loc	2 477 9 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:477:9
+	.loc	2 483 9 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:483:9
 	bl	otrLock
 .Ltmp321:
-	.loc	2 477 9 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:477:9
+	.loc	2 483 9 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:483:9
 	bl	otrGetInstance
 .Ltmp322:
 	@DEBUG_VALUE: instance <- $r0
@@ -2706,7 +2706,7 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_meter_id_respone:extaddr <- [DW_OP_LLVM_fragment 40 8] $r7
 	@DEBUG_VALUE: das_hex_cmd_meter_id_respone:extaddr <- [DW_OP_plus_uconst 12, DW_OP_LLVM_fragment 48 8] [$sp+0]
 	@DEBUG_VALUE: das_hex_cmd_meter_id_respone:extaddr <- [DW_OP_LLVM_fragment 56 8] $r11
-	.loc	2 477 9                         @ ../das_subg_thread/das_hex_cmd.c:477:9
+	.loc	2 483 9                         @ ../das_subg_thread/das_hex_cmd.c:483:9
 	ldrb.w	r0, [sp, #106]
 	ldrh.w	r1, [sp, #104]
 	strb.w	r0, [sp, #18]
@@ -2717,19 +2717,19 @@ das_hex_cmd_received_task:
 	strb.w	r0, [sp, #22]
 	add	r1, sp, #16
 .Ltmp326:
-	.loc	2 477 9                         @ ../das_subg_thread/das_hex_cmd.c:477:9
+	.loc	2 483 9                         @ ../das_subg_thread/das_hex_cmd.c:483:9
 	mov	r0, r5
 .Ltmp327:
-	.loc	2 477 9                         @ ../das_subg_thread/das_hex_cmd.c:477:9
+	.loc	2 483 9                         @ ../das_subg_thread/das_hex_cmd.c:483:9
 	strb.w	r10, [sp, #19]
 	strb.w	r4, [sp, #20]
 	strb.w	r7, [sp, #21]
 	strb.w	r11, [sp, #23]
 .Ltmp328:
-	.loc	2 477 9                         @ ../das_subg_thread/das_hex_cmd.c:477:9
+	.loc	2 483 9                         @ ../das_subg_thread/das_hex_cmd.c:483:9
 	bl	otLinkSetExtendedAddress
 .Ltmp329:
-	.loc	2 477 9                         @ ../das_subg_thread/das_hex_cmd.c:477:9
+	.loc	2 483 9                         @ ../das_subg_thread/das_hex_cmd.c:483:9
 	cbz	r0, .LBB9_98
 .Ltmp330:
 @ %bb.97:
@@ -2758,12 +2758,12 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:need_ack <- 1
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 477 9                         @ ../das_subg_thread/das_hex_cmd.c:477:9
+	.loc	2 483 9                         @ ../das_subg_thread/das_hex_cmd.c:483:9
 	ldrd	r1, r0, [sp, #16]
 	strd	r1, r0, [sp, #64]
 	add	r1, sp, #64
 .Ltmp333:
-	.loc	2 477 9                         @ ../das_subg_thread/das_hex_cmd.c:477:9
+	.loc	2 483 9                         @ ../das_subg_thread/das_hex_cmd.c:483:9
 	mov	r0, r5
 	bl	otIp6SetMeshLocalIid
 .Ltmp334:
@@ -2771,7 +2771,7 @@ das_hex_cmd_received_task:
 	it	ne
 	movne	r0, #1
 .Ltmp335:
-	.loc	2 477 9                         @ ../das_subg_thread/das_hex_cmd.c:477:9
+	.loc	2 483 9                         @ ../das_subg_thread/das_hex_cmd.c:483:9
 	orr.w	r9, r9, r0
 .Ltmp336:
 	@DEBUG_VALUE: das_hex_cmd_meter_id_respone:ret <- undef
@@ -2782,19 +2782,19 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: das_hex_cmd_meter_id_respone:ret <- undef
-	.loc	2 477 9                         @ ../das_subg_thread/das_hex_cmd.c:477:9
+	.loc	2 483 9                         @ ../das_subg_thread/das_hex_cmd.c:483:9
 	bl	otrUnlock
 .Ltmp337:
 	@DEBUG_VALUE: meter_id_is_geted:is_geted <- 1
-	.loc	2 693 23 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:693:23
+	.loc	2 702 23 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:702:23
 	movw	r0, :lower16:is_meter_id_geted
 	movt	r0, :upper16:is_meter_id_geted
 	movs	r1, #1
 	strb	r1, [r0]
-	.loc	2 694 5                         @ ../das_subg_thread/das_hex_cmd.c:694:5
+	.loc	2 703 5                         @ ../das_subg_thread/das_hex_cmd.c:703:5
 	bl	otrLock
 .Ltmp338:
-	.loc	2 694 5 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:694:5
+	.loc	2 703 5 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:703:5
 	bl	otrGetInstance
 .Ltmp339:
 	@DEBUG_VALUE: instance <- $r0
@@ -2807,14 +2807,14 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:need_ack <- 1
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 694 5                         @ ../das_subg_thread/das_hex_cmd.c:694:5
+	.loc	2 703 5                         @ ../das_subg_thread/das_hex_cmd.c:703:5
 	movs	r1, #1
 .Ltmp341:
 	.loc	2 0 0                           @ ../das_subg_thread/das_hex_cmd.c:0:0
 	mov	r5, r0
 .Ltmp342:
 	@DEBUG_VALUE: instance <- $r5
-	.loc	2 694 5                         @ ../das_subg_thread/das_hex_cmd.c:694:5
+	.loc	2 703 5                         @ ../das_subg_thread/das_hex_cmd.c:703:5
 	bl	otIp6SetEnabled
 .Ltmp343:
 	mov	r0, r5
@@ -2827,7 +2827,7 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:need_ack <- 1
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 694 5                         @ ../das_subg_thread/das_hex_cmd.c:694:5
+	.loc	2 703 5                         @ ../das_subg_thread/das_hex_cmd.c:703:5
 	bl	otrUnlock
 .Ltmp345:
 .LBB9_102:
@@ -2868,7 +2868,7 @@ das_hex_cmd_received_task:
 	add	r1, sp, #16
 .Ltmp350:
 	@DEBUG_VALUE: das_hex_cmd_send:cmd_data <- [DW_OP_plus_uconst 16, DW_OP_stack_value] $sp
-	movs	r0, #0
+	movs	r0, #2
 	movs	r2, #7
 .Ltmp351:
 .LBB9_104:
@@ -2877,20 +2877,20 @@ das_hex_cmd_received_task:
 .Ltmp352:
 .LBB9_105:
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 685 37 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:685:37
+	.loc	2 694 37 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:694:37
 	ldrh	r1, [r6]
-	.loc	2 685 13 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:685:13
+	.loc	2 694 13 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:694:13
 	movw	r0, :lower16:das_rx_buf
 	movt	r0, :upper16:das_rx_buf
 	bl	__aeabi_memclr4
 .Ltmp353:
 	.loc	2 0 13                          @ ../das_subg_thread/das_hex_cmd.c:0:13
 	movs	r0, #0
-	.loc	2 686 27 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:686:27
+	.loc	2 695 27 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:695:27
 	strh	r0, [r6]
 .Ltmp354:
 .LBB9_106:
-	.loc	2 689 1                         @ ../das_subg_thread/das_hex_cmd.c:689:1
+	.loc	2 698 1                         @ ../das_subg_thread/das_hex_cmd.c:698:1
 	add	sp, #108
 	pop.w	{r4, r5, r6, r7, r8, r9, r10, r11, pc}
 .LBB9_107:
@@ -2909,7 +2909,7 @@ das_hex_cmd_received_task:
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:need_ack <- 1
 	@DEBUG_VALUE: das_hex_cmd_fn_exec:cmd_ret <- 0
 	@DEBUG_VALUE: das_hex_cmd_received_task:aBuf <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 455 38                        @ ../das_subg_thread/das_hex_cmd.c:455:38
+	.loc	2 461 38                        @ ../das_subg_thread/das_hex_cmd.c:461:38
 	lsr.w	r0, r11, #8
 	orr.w	r0, r0, r10, lsl #24
 	str	r0, [sp, #12]                   @ 4-byte Spill
@@ -2923,9 +2923,9 @@ das_hex_cmd_received_task:
 .Lfunc_end9:
 	.size	das_hex_cmd_received_task, .Lfunc_end9-das_hex_cmd_received_task
 	.cfi_endproc
-	.file	10 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/instance.h"
-	.file	11 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/ip6.h"
-	.file	12 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/platform/radio.h"
+	.file	10 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/instance.h"
+	.file	11 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/ip6.h"
+	.file	12 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/platform/radio.h"
 	.cantunwind
 	.fnend
                                         @ -- End function
@@ -2938,7 +2938,7 @@ das_hex_cmd_received_task:
 	.thumb_func
 das_get_meter_id_init:
 .Lfunc_begin10:
-	.loc	2 718 0                         @ ../das_subg_thread/das_hex_cmd.c:718:0
+	.loc	2 727 0                         @ ../das_subg_thread/das_hex_cmd.c:727:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -2953,16 +2953,16 @@ das_get_meter_id_init:
 	sub	sp, #8
 	.cfi_def_cfa_offset 24
 .Ltmp357:
-	.loc	2 719 17 prologue_end           @ ../das_subg_thread/das_hex_cmd.c:719:17
+	.loc	2 728 17 prologue_end           @ ../das_subg_thread/das_hex_cmd.c:728:17
 	movw	r5, :lower16:get_meter_id_timer
 	movt	r5, :upper16:get_meter_id_timer
 	ldr	r0, [r5]
 .Ltmp358:
-	.loc	2 719 9 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:719:9
+	.loc	2 728 9 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:728:9
 	cbz	r0, .LBB10_2
 @ %bb.1:
 .Ltmp359:
-	.loc	2 731 9 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:731:9
+	.loc	2 740 9 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:740:9
 	adr	r0, .LCPI10_0
 	add	sp, #8
 	pop.w	{r4, r5, r6, lr}
@@ -2970,7 +2970,7 @@ das_get_meter_id_init:
 	b	puts
 .Ltmp361:
 .LBB10_2:
-	.loc	2 721 30                        @ ../das_subg_thread/das_hex_cmd.c:721:30
+	.loc	2 730 30                        @ ../das_subg_thread/das_hex_cmd.c:730:30
 	movw	r0, :lower16:get_meter_id_timer_handler
 	movt	r0, :upper16:get_meter_id_timer_handler
 	str	r0, [sp]
@@ -2982,9 +2982,9 @@ das_get_meter_id_init:
 	bl	xTimerCreate
 .Ltmp362:
 	mov	r4, r0
-	.loc	2 721 28 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:721:28
+	.loc	2 730 28 is_stmt 0              @ ../das_subg_thread/das_hex_cmd.c:730:28
 	str	r0, [r5]
-	.loc	2 727 9 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:727:9
+	.loc	2 736 9 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:736:9
 	bl	xTaskGetTickCount
 .Ltmp363:
 	mov	r2, r0
@@ -2994,7 +2994,7 @@ das_get_meter_id_init:
 	str	r6, [sp]
 	bl	xTimerGenericCommand
 .Ltmp364:
-	.loc	2 733 1                         @ ../das_subg_thread/das_hex_cmd.c:733:1
+	.loc	2 742 1                         @ ../das_subg_thread/das_hex_cmd.c:742:1
 	add	sp, #8
 	pop	{r4, r5, r6, pc}
 .Ltmp365:
@@ -3020,7 +3020,7 @@ das_get_meter_id_init:
 	.thumb_func
 get_meter_id_timer_handler:
 .Lfunc_begin11:
-	.loc	2 705 0 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:705:0
+	.loc	2 714 0 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:714:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -3034,20 +3034,20 @@ get_meter_id_timer_handler:
 	sub	sp, #8
 	.cfi_def_cfa_offset 16
 .Ltmp366:
-	.loc	2 706 9 prologue_end            @ ../das_subg_thread/das_hex_cmd.c:706:9
+	.loc	2 715 9 prologue_end            @ ../das_subg_thread/das_hex_cmd.c:715:9
 	movw	r0, :lower16:is_meter_id_geted
 .Ltmp367:
 	@DEBUG_VALUE: get_meter_id_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	movt	r0, :upper16:is_meter_id_geted
 	ldrb	r0, [r0]
 .Ltmp368:
-	.loc	2 706 9 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:706:9
+	.loc	2 715 9 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:715:9
 	cmp	r0, #1
 	bne	.LBB11_2
 .Ltmp369:
 @ %bb.1:
 	@DEBUG_VALUE: get_meter_id_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 708 9 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:708:9
+	.loc	2 717 9 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:717:9
 	movw	r0, :lower16:get_meter_id_timer
 	movt	r0, :upper16:get_meter_id_timer
 	ldr	r0, [r0]
@@ -3060,10 +3060,10 @@ get_meter_id_timer_handler:
 .Ltmp370:
 .LBB11_2:
 	@DEBUG_VALUE: get_meter_id_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 712 9                         @ ../das_subg_thread/das_hex_cmd.c:712:9
+	.loc	2 721 9                         @ ../das_subg_thread/das_hex_cmd.c:721:9
 	bl	das_hex_cmd_get_meter_id
 .Ltmp371:
-	.loc	2 713 9                         @ ../das_subg_thread/das_hex_cmd.c:713:9
+	.loc	2 722 9                         @ ../das_subg_thread/das_hex_cmd.c:722:9
 	movw	r0, :lower16:get_meter_id_timer
 	movt	r0, :upper16:get_meter_id_timer
 	ldr	r4, [r0]
@@ -3071,7 +3071,7 @@ get_meter_id_timer_handler:
 .Ltmp372:
 	.loc	2 0 9 is_stmt 0                 @ ../das_subg_thread/das_hex_cmd.c:0:9
 	mov.w	r12, #0
-	.loc	2 713 9                         @ ../das_subg_thread/das_hex_cmd.c:713:9
+	.loc	2 722 9                         @ ../das_subg_thread/das_hex_cmd.c:722:9
 	mov	r2, r0
 	mov	r0, r4
 	movs	r1, #1
@@ -3083,7 +3083,7 @@ get_meter_id_timer_handler:
 	.loc	2 0 0                           @ ../das_subg_thread/das_hex_cmd.c:0:0
 	bl	xTimerGenericCommand
 .Ltmp374:
-	.loc	2 715 1 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:715:1
+	.loc	2 724 1 is_stmt 1               @ ../das_subg_thread/das_hex_cmd.c:724:1
 	add	sp, #8
 	pop	{r4, pc}
 .Ltmp375:
@@ -3100,7 +3100,7 @@ get_meter_id_timer_handler:
 	.thumb_func
 das_hex_cmd_get_build_version:
 .Lfunc_begin12:
-	.loc	2 511 0                         @ ../das_subg_thread/das_hex_cmd.c:511:0
+	.loc	2 517 0                         @ ../das_subg_thread/das_hex_cmd.c:517:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -3122,16 +3122,16 @@ das_hex_cmd_get_build_version:
 	.pad	#4
 	sub	sp, #4
 .Ltmp376:
-	.loc	2 512 26 prologue_end           @ ../das_subg_thread/das_hex_cmd.c:512:26
+	.loc	2 518 26 prologue_end           @ ../das_subg_thread/das_hex_cmd.c:518:26
 	bl	otGetVersionString
 .Ltmp377:
 	mov	r6, r0
 .Ltmp378:
 	@DEBUG_VALUE: das_hex_cmd_get_build_version:string <- $r6
-	.loc	2 513 25                        @ ../das_subg_thread/das_hex_cmd.c:513:25
+	.loc	2 519 25                        @ ../das_subg_thread/das_hex_cmd.c:519:25
 	bl	strlen
 .Ltmp379:
-	.loc	2 513 5 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:513:5
+	.loc	2 519 5 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:519:5
 	adds	r0, #12
 	bic	r0, r0, #7
 	sub.w	r1, sp, r0
@@ -3143,16 +3143,16 @@ das_hex_cmd_get_build_version:
 	@DEBUG_VALUE: das_hex_cmd_get_build_version:i <- 0
 	@DEBUG_VALUE: das_hex_cmd_get_build_version:cmd_crc <- 0
 	@DEBUG_VALUE: das_hex_cmd_get_build_version:__vla_expr0 <- undef
-	.loc	2 517 16 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:517:16
+	.loc	2 523 16 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:523:16
 	strh	r0, [r1]
 	movs	r0, #161
-	.loc	2 519 16                        @ ../das_subg_thread/das_hex_cmd.c:519:16
+	.loc	2 525 16                        @ ../das_subg_thread/das_hex_cmd.c:525:16
 	strb	r0, [r1, #3]
 .Ltmp382:
 	@DEBUG_VALUE: das_hex_cmd_get_build_version:cmd_crc <- undef
-	.loc	2 522 12                        @ ../das_subg_thread/das_hex_cmd.c:522:12
+	.loc	2 528 12                        @ ../das_subg_thread/das_hex_cmd.c:528:12
 	ldrb	r3, [r6]
-	.loc	2 522 5 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:522:5
+	.loc	2 528 5 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:528:5
 	cbz	r3, .LBB12_4
 .Ltmp383:
 @ %bb.1:
@@ -3169,25 +3169,25 @@ das_hex_cmd_get_build_version:
 	@DEBUG_VALUE: das_hex_cmd_get_build_version:string <- $r6
 	@DEBUG_VALUE: das_hex_cmd_get_build_version:message <- [$r1+0]
 	@DEBUG_VALUE: das_hex_cmd_get_build_version:i <- $r0
-	.loc	2 524 18 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:524:18
+	.loc	2 530 19 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:530:19
 	adds	r2, r4, r1
-	.loc	2 526 10                        @ ../das_subg_thread/das_hex_cmd.c:526:10
+	.loc	2 532 10                        @ ../das_subg_thread/das_hex_cmd.c:532:10
 	adds	r0, #1
 .Ltmp385:
 	@DEBUG_VALUE: das_hex_cmd_get_build_version:i <- $r0
-	.loc	2 524 22                        @ ../das_subg_thread/das_hex_cmd.c:524:22
+	.loc	2 530 24                        @ ../das_subg_thread/das_hex_cmd.c:530:24
 	strb	r3, [r2, #4]
 .Ltmp386:
-	.loc	2 522 12                        @ ../das_subg_thread/das_hex_cmd.c:522:12
+	.loc	2 528 12                        @ ../das_subg_thread/das_hex_cmd.c:528:12
 	uxtb	r4, r0
 .Ltmp387:
-	.loc	2 525 17                        @ ../das_subg_thread/das_hex_cmd.c:525:17
+	.loc	2 531 17                        @ ../das_subg_thread/das_hex_cmd.c:531:17
 	adds	r2, r5, r3
 .Ltmp388:
 	@DEBUG_VALUE: das_hex_cmd_get_build_version:cmd_crc <- [DW_OP_LLVM_convert 32 7, DW_OP_LLVM_convert 8 7, DW_OP_stack_value] $r2
-	.loc	2 522 12                        @ ../das_subg_thread/das_hex_cmd.c:522:12
+	.loc	2 528 12                        @ ../das_subg_thread/das_hex_cmd.c:528:12
 	ldrb	r3, [r6, r4]
-	.loc	2 522 5 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:522:5
+	.loc	2 528 5 is_stmt 0               @ ../das_subg_thread/das_hex_cmd.c:528:5
 	uxtb	r5, r2
 .Ltmp389:
 	@DEBUG_VALUE: das_hex_cmd_get_build_version:cmd_crc <- undef
@@ -3198,7 +3198,7 @@ das_hex_cmd_get_build_version:
 	@DEBUG_VALUE: das_hex_cmd_get_build_version:string <- $r6
 	@DEBUG_VALUE: das_hex_cmd_get_build_version:message <- [$r1+0]
 	@DEBUG_VALUE: das_hex_cmd_get_build_version:i <- $r0
-	.loc	2 528 20 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:528:20
+	.loc	2 534 20 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:534:20
 	adds	r3, r4, #4
 	b	.LBB12_5
 .Ltmp391:
@@ -3214,29 +3214,29 @@ das_hex_cmd_get_build_version:
 .LBB12_5:
 	@DEBUG_VALUE: das_hex_cmd_get_build_version:string <- $r6
 	@DEBUG_VALUE: das_hex_cmd_get_build_version:message <- [$r1+0]
-	.loc	2 528 20                        @ ../das_subg_thread/das_hex_cmd.c:528:20
+	.loc	2 534 20                        @ ../das_subg_thread/das_hex_cmd.c:534:20
 	adds	r6, r0, #2
 .Ltmp393:
-	.loc	2 529 13 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:529:13
+	.loc	2 535 13 is_stmt 1              @ ../das_subg_thread/das_hex_cmd.c:535:13
 	add	r2, r6
 .Ltmp394:
 	@DEBUG_VALUE: das_hex_cmd_get_build_version:cmd_crc <- $r2
-	.loc	2 532 31                        @ ../das_subg_thread/das_hex_cmd.c:532:31
+	.loc	2 538 31                        @ ../das_subg_thread/das_hex_cmd.c:538:31
 	uxtb	r0, r0
-	.loc	2 528 16                        @ ../das_subg_thread/das_hex_cmd.c:528:16
+	.loc	2 534 16                        @ ../das_subg_thread/das_hex_cmd.c:534:16
 	strb	r6, [r1, #2]
-	.loc	2 530 22                        @ ../das_subg_thread/das_hex_cmd.c:530:22
+	.loc	2 536 22                        @ ../das_subg_thread/das_hex_cmd.c:536:22
 	strb	r2, [r1, r3]
-	.loc	2 532 31                        @ ../das_subg_thread/das_hex_cmd.c:532:31
+	.loc	2 538 31                        @ ../das_subg_thread/das_hex_cmd.c:538:31
 	adds	r2, r0, #5
 .Ltmp395:
 	@DEBUG_VALUE: das_hex_cmd_send:cmd_data <- $r1
 	@DEBUG_VALUE: das_hex_cmd_send:cmd_data_lens <- $r2
-	.loc	2 73 5                          @ ../das_subg_thread/das_hex_cmd.c:73:5
-	movs	r0, #0
+	.loc	2 71 5                          @ ../das_subg_thread/das_hex_cmd.c:71:5
+	movs	r0, #2
 	bl	app_uart_data_send
 .Ltmp396:
-	.loc	2 534 1                         @ ../das_subg_thread/das_hex_cmd.c:534:1
+	.loc	2 540 1                         @ ../das_subg_thread/das_hex_cmd.c:540:1
 	sub.w	r4, r7, #12
 	mov	sp, r4
 	pop.w	{r4, r5, r6, r7, r8, r9, pc}
@@ -6174,7 +6174,7 @@ is_meter_id_geted:
 	.byte	38                              @ Abbrev [38] 0x539:0xd DW_TAG_subprogram
 	.long	.Linfo_string95                 @ DW_AT_name
 	.byte	9                               @ DW_AT_decl_file
-	.byte	166                             @ DW_AT_decl_line
+	.byte	167                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_declaration
                                         @ DW_AT_external
@@ -6189,7 +6189,7 @@ is_meter_id_geted:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string157                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	225                             @ DW_AT_decl_line
+	.byte	228                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_external
 	.byte	40                              @ Abbrev [40] 0x557:0xd DW_TAG_formal_parameter
@@ -6197,14 +6197,14 @@ is_meter_id_geted:
 	.byte	80
 	.long	.Linfo_string104                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	225                             @ DW_AT_decl_line
+	.byte	228                             @ DW_AT_decl_line
 	.long	552                             @ DW_AT_type
 	.byte	40                              @ Abbrev [40] 0x564:0xd DW_TAG_formal_parameter
 	.byte	1                               @ DW_AT_location
 	.byte	81
 	.long	.Linfo_string105                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	225                             @ DW_AT_decl_line
+	.byte	228                             @ DW_AT_decl_line
 	.long	110                             @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	31                              @ Abbrev [31] 0x572:0xcd DW_TAG_subprogram
@@ -6215,38 +6215,38 @@ is_meter_id_geted:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string158                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	231                             @ DW_AT_decl_line
+	.byte	234                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_external
 	.byte	32                              @ Abbrev [32] 0x583:0xf DW_TAG_formal_parameter
 	.long	.Ldebug_loc13                   @ DW_AT_location
 	.long	.Linfo_string104                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	231                             @ DW_AT_decl_line
+	.byte	234                             @ DW_AT_decl_line
 	.long	552                             @ DW_AT_type
 	.byte	32                              @ Abbrev [32] 0x592:0xf DW_TAG_formal_parameter
 	.long	.Ldebug_loc14                   @ DW_AT_location
 	.long	.Linfo_string105                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	231                             @ DW_AT_decl_line
+	.byte	234                             @ DW_AT_decl_line
 	.long	110                             @ DW_AT_type
 	.byte	33                              @ Abbrev [33] 0x5a1:0xf DW_TAG_variable
 	.long	.Ldebug_loc15                   @ DW_AT_location
 	.long	.Linfo_string166                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	233                             @ DW_AT_decl_line
+	.byte	236                             @ DW_AT_decl_line
 	.long	110                             @ DW_AT_type
 	.byte	33                              @ Abbrev [33] 0x5b0:0xf DW_TAG_variable
 	.long	.Ldebug_loc16                   @ DW_AT_location
 	.long	.Linfo_string111                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	235                             @ DW_AT_decl_line
+	.byte	238                             @ DW_AT_decl_line
 	.long	68                              @ DW_AT_type
 	.byte	33                              @ Abbrev [33] 0x5bf:0xf DW_TAG_variable
 	.long	.Ldebug_loc17                   @ DW_AT_location
 	.long	.Linfo_string110                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	234                             @ DW_AT_decl_line
+	.byte	237                             @ DW_AT_decl_line
 	.long	552                             @ DW_AT_type
 	.byte	34                              @ Abbrev [34] 0x5ce:0x19 DW_TAG_lexical_block
 	.long	.Ltmp57                         @ DW_AT_low_pc
@@ -6255,14 +6255,14 @@ is_meter_id_geted:
 	.long	.Ldebug_loc18                   @ DW_AT_location
 	.long	.Linfo_string93                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	243                             @ DW_AT_decl_line
+	.byte	246                             @ DW_AT_decl_line
 	.long	110                             @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	35                              @ Abbrev [35] 0x5e7:0x31 DW_TAG_inlined_subroutine
 	.long	1075                            @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges1                 @ DW_AT_ranges
 	.byte	2                               @ DW_AT_call_file
-	.byte	248                             @ DW_AT_call_line
+	.byte	251                             @ DW_AT_call_line
 	.byte	20                              @ DW_AT_call_column
 	.byte	24                              @ Abbrev [24] 0x5f3:0x9 DW_TAG_formal_parameter
 	.long	.Ldebug_loc22                   @ DW_AT_location
@@ -6282,7 +6282,7 @@ is_meter_id_geted:
 	.long	.Ltmp76                         @ DW_AT_low_pc
 	.long	.Ltmp78-.Ltmp76                 @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
-	.byte	251                             @ DW_AT_call_line
+	.byte	254                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
 	.byte	27                              @ Abbrev [27] 0x628:0x7 DW_TAG_formal_parameter
 	.byte	1                               @ DW_AT_location
@@ -6304,7 +6304,7 @@ is_meter_id_geted:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string159                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	257                             @ DW_AT_decl_line
+	.short	263                             @ DW_AT_decl_line
                                         @ DW_AT_external
 	.byte	42                              @ Abbrev [42] 0x651:0xf DW_TAG_variable
 	.byte	2                               @ DW_AT_location
@@ -6312,14 +6312,14 @@ is_meter_id_geted:
 	.byte	3
 	.long	.Linfo_string110                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	259                             @ DW_AT_decl_line
+	.short	265                             @ DW_AT_decl_line
 	.long	4715                            @ DW_AT_type
 	.byte	43                              @ Abbrev [43] 0x660:0x21 DW_TAG_inlined_subroutine
 	.long	897                             @ DW_AT_abstract_origin
 	.long	.Ltmp83                         @ DW_AT_low_pc
 	.long	.Ltmp84-.Ltmp83                 @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
-	.short	267                             @ DW_AT_call_line
+	.short	273                             @ DW_AT_call_line
 	.byte	5                               @ DW_AT_call_column
 	.byte	27                              @ Abbrev [27] 0x671:0x9 DW_TAG_formal_parameter
 	.byte	3                               @ DW_AT_location
@@ -6340,14 +6340,14 @@ is_meter_id_geted:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string160                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	271                             @ DW_AT_decl_line
+	.short	277                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_external
 	.byte	45                              @ Abbrev [45] 0x694:0x10 DW_TAG_formal_parameter
 	.long	.Ldebug_loc23                   @ DW_AT_location
 	.long	.Linfo_string115                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	271                             @ DW_AT_decl_line
+	.short	277                             @ DW_AT_decl_line
 	.long	68                              @ DW_AT_type
 	.byte	42                              @ Abbrev [42] 0x6a4:0xf DW_TAG_variable
 	.byte	2                               @ DW_AT_location
@@ -6355,20 +6355,20 @@ is_meter_id_geted:
 	.byte	2
 	.long	.Linfo_string110                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	273                             @ DW_AT_decl_line
+	.short	279                             @ DW_AT_decl_line
 	.long	2986                            @ DW_AT_type
 	.byte	46                              @ Abbrev [46] 0x6b3:0x10 DW_TAG_variable
 	.long	.Ldebug_loc24                   @ DW_AT_location
 	.long	.Linfo_string100                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	274                             @ DW_AT_decl_line
+	.short	280                             @ DW_AT_decl_line
 	.long	68                              @ DW_AT_type
 	.byte	43                              @ Abbrev [43] 0x6c3:0x21 DW_TAG_inlined_subroutine
 	.long	897                             @ DW_AT_abstract_origin
 	.long	.Ltmp89                         @ DW_AT_low_pc
 	.long	.Ltmp91-.Ltmp89                 @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
-	.short	284                             @ DW_AT_call_line
+	.short	290                             @ DW_AT_call_line
 	.byte	5                               @ DW_AT_call_column
 	.byte	27                              @ Abbrev [27] 0x6d4:0x9 DW_TAG_formal_parameter
 	.byte	3                               @ DW_AT_location
@@ -6396,14 +6396,14 @@ is_meter_id_geted:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string161                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	414                             @ DW_AT_decl_line
+	.short	420                             @ DW_AT_decl_line
                                         @ DW_AT_external
 	.byte	43                              @ Abbrev [43] 0x703:0x29 DW_TAG_inlined_subroutine
 	.long	1765                            @ DW_AT_abstract_origin
 	.long	.Ltmp93                         @ DW_AT_low_pc
 	.long	.Ltmp94-.Ltmp93                 @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
-	.short	416                             @ DW_AT_call_line
+	.short	422                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
 	.byte	21                              @ Abbrev [21] 0x714:0x17 DW_TAG_inlined_subroutine
 	.long	834                             @ DW_AT_abstract_origin
@@ -6426,14 +6426,14 @@ is_meter_id_geted:
 	.byte	3
 	.long	.Linfo_string110                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	418                             @ DW_AT_decl_line
+	.short	424                             @ DW_AT_decl_line
 	.long	4715                            @ DW_AT_type
 	.byte	43                              @ Abbrev [43] 0x744:0x21 DW_TAG_inlined_subroutine
 	.long	897                             @ DW_AT_abstract_origin
 	.long	.Ltmp98                         @ DW_AT_low_pc
 	.long	.Ltmp99-.Ltmp98                 @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
-	.short	426                             @ DW_AT_call_line
+	.short	432                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
 	.byte	27                              @ Abbrev [27] 0x755:0x9 DW_TAG_formal_parameter
 	.byte	3                               @ DW_AT_location
@@ -6450,33 +6450,33 @@ is_meter_id_geted:
 	.byte	48                              @ Abbrev [48] 0x767:0x46 DW_TAG_subprogram
 	.long	.Linfo_string97                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	638                             @ DW_AT_decl_line
+	.short	647                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.byte	1                               @ DW_AT_inline
 	.byte	49                              @ Abbrev [49] 0x770:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string98                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	638                             @ DW_AT_decl_line
+	.short	647                             @ DW_AT_decl_line
 	.long	1965                            @ DW_AT_type
 	.byte	49                              @ Abbrev [49] 0x77c:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string99                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	638                             @ DW_AT_decl_line
+	.short	647                             @ DW_AT_decl_line
 	.long	110                             @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0x788:0xc DW_TAG_variable
 	.long	.Linfo_string100                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	640                             @ DW_AT_decl_line
+	.short	649                             @ DW_AT_decl_line
 	.long	68                              @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0x794:0xc DW_TAG_variable
 	.long	.Linfo_string101                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	640                             @ DW_AT_decl_line
+	.short	649                             @ DW_AT_decl_line
 	.long	68                              @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0x7a0:0xc DW_TAG_variable
 	.long	.Linfo_string102                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	641                             @ DW_AT_decl_line
+	.short	650                             @ DW_AT_decl_line
 	.long	110                             @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	9                               @ Abbrev [9] 0x7ad:0x5 DW_TAG_pointer_type
@@ -6486,77 +6486,77 @@ is_meter_id_geted:
 	.byte	48                              @ Abbrev [48] 0x7b7:0x46 DW_TAG_subprogram
 	.long	.Linfo_string103                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	585                             @ DW_AT_decl_line
+	.short	594                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.byte	1                               @ DW_AT_inline
 	.byte	49                              @ Abbrev [49] 0x7c0:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string101                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	585                             @ DW_AT_decl_line
+	.short	594                             @ DW_AT_decl_line
 	.long	68                              @ DW_AT_type
 	.byte	49                              @ Abbrev [49] 0x7cc:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string104                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	585                             @ DW_AT_decl_line
+	.short	594                             @ DW_AT_decl_line
 	.long	552                             @ DW_AT_type
 	.byte	49                              @ Abbrev [49] 0x7d8:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string105                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	585                             @ DW_AT_decl_line
+	.short	594                             @ DW_AT_decl_line
 	.long	110                             @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0x7e4:0xc DW_TAG_variable
 	.long	.Linfo_string106                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	588                             @ DW_AT_decl_line
+	.short	597                             @ DW_AT_decl_line
 	.long	68                              @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0x7f0:0xc DW_TAG_variable
 	.long	.Linfo_string107                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	587                             @ DW_AT_decl_line
+	.short	596                             @ DW_AT_decl_line
 	.long	188                             @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	52                              @ Abbrev [52] 0x7fd:0x64 DW_TAG_subprogram
 	.long	.Linfo_string108                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	349                             @ DW_AT_decl_line
+	.short	355                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	68                              @ DW_AT_type
 	.byte	1                               @ DW_AT_inline
 	.byte	49                              @ Abbrev [49] 0x80a:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string104                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	349                             @ DW_AT_decl_line
+	.short	355                             @ DW_AT_decl_line
 	.long	552                             @ DW_AT_type
 	.byte	49                              @ Abbrev [49] 0x816:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string105                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	349                             @ DW_AT_decl_line
+	.short	355                             @ DW_AT_decl_line
 	.long	110                             @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0x822:0xc DW_TAG_variable
 	.long	.Linfo_string109                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	351                             @ DW_AT_decl_line
+	.short	357                             @ DW_AT_decl_line
 	.long	145                             @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0x82e:0xc DW_TAG_variable
 	.long	.Linfo_string110                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	352                             @ DW_AT_decl_line
+	.short	358                             @ DW_AT_decl_line
 	.long	2145                            @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0x83a:0xc DW_TAG_variable
 	.long	.Linfo_string111                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	353                             @ DW_AT_decl_line
+	.short	359                             @ DW_AT_decl_line
 	.long	68                              @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0x846:0xc DW_TAG_variable
 	.long	.Linfo_string93                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	353                             @ DW_AT_decl_line
+	.short	359                             @ DW_AT_decl_line
 	.long	68                              @ DW_AT_type
 	.byte	53                              @ Abbrev [53] 0x852:0xe DW_TAG_lexical_block
 	.byte	50                              @ Abbrev [50] 0x853:0xc DW_TAG_variable
 	.long	.Linfo_string112                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	355                             @ DW_AT_decl_line
+	.short	361                             @ DW_AT_decl_line
 	.long	2157                            @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	0                               @ End Of Children Mark
@@ -6613,23 +6613,23 @@ is_meter_id_geted:
 	.byte	48                              @ Abbrev [48] 0x8c3:0x2e DW_TAG_subprogram
 	.long	.Linfo_string117                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	573                             @ DW_AT_decl_line
+	.short	579                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.byte	1                               @ DW_AT_inline
 	.byte	49                              @ Abbrev [49] 0x8cc:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string104                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	573                             @ DW_AT_decl_line
+	.short	579                             @ DW_AT_decl_line
 	.long	552                             @ DW_AT_type
 	.byte	49                              @ Abbrev [49] 0x8d8:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string105                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	573                             @ DW_AT_decl_line
+	.short	579                             @ DW_AT_decl_line
 	.long	110                             @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0x8e4:0xc DW_TAG_variable
 	.long	.Linfo_string118                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	575                             @ DW_AT_decl_line
+	.short	581                             @ DW_AT_decl_line
 	.long	829                             @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	18                              @ Abbrev [18] 0x8f1:0x51 DW_TAG_subprogram
@@ -6847,71 +6847,71 @@ is_meter_id_geted:
 	.byte	52                              @ Abbrev [52] 0xa8a:0xa2 DW_TAG_subprogram
 	.long	.Linfo_string135                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	431                             @ DW_AT_decl_line
+	.short	437                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	68                              @ DW_AT_type
 	.byte	1                               @ DW_AT_inline
 	.byte	49                              @ Abbrev [49] 0xa97:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string104                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	431                             @ DW_AT_decl_line
+	.short	437                             @ DW_AT_decl_line
 	.long	552                             @ DW_AT_type
 	.byte	49                              @ Abbrev [49] 0xaa3:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string105                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	431                             @ DW_AT_decl_line
+	.short	437                             @ DW_AT_decl_line
 	.long	110                             @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0xaaf:0xc DW_TAG_variable
 	.long	.Linfo_string136                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	436                             @ DW_AT_decl_line
+	.short	442                             @ DW_AT_decl_line
 	.long	2567                            @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0xabb:0xc DW_TAG_variable
 	.long	.Linfo_string137                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	435                             @ DW_AT_decl_line
+	.short	441                             @ DW_AT_decl_line
 	.long	2860                            @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0xac7:0xc DW_TAG_variable
 	.long	.Linfo_string140                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	435                             @ DW_AT_decl_line
+	.short	441                             @ DW_AT_decl_line
 	.long	2860                            @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0xad3:0xc DW_TAG_variable
 	.long	.Linfo_string141                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	433                             @ DW_AT_decl_line
+	.short	439                             @ DW_AT_decl_line
 	.long	188                             @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0xadf:0xc DW_TAG_variable
 	.long	.Linfo_string93                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	434                             @ DW_AT_decl_line
+	.short	440                             @ DW_AT_decl_line
 	.long	68                              @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0xaeb:0xc DW_TAG_variable
 	.long	.Linfo_string142                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	434                             @ DW_AT_decl_line
+	.short	440                             @ DW_AT_decl_line
 	.long	68                              @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0xaf7:0xc DW_TAG_variable
 	.long	.Linfo_string143                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	434                             @ DW_AT_decl_line
+	.short	440                             @ DW_AT_decl_line
 	.long	68                              @ DW_AT_type
 	.byte	53                              @ Abbrev [53] 0xb03:0x28 DW_TAG_lexical_block
 	.byte	50                              @ Abbrev [50] 0xb04:0xc DW_TAG_variable
 	.long	.Linfo_string112                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	477                             @ DW_AT_decl_line
+	.short	483                             @ DW_AT_decl_line
 	.long	2157                            @ DW_AT_type
 	.byte	53                              @ Abbrev [53] 0xb10:0x1a DW_TAG_lexical_block
 	.byte	50                              @ Abbrev [50] 0xb11:0xc DW_TAG_variable
 	.long	.Linfo_string144                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	477                             @ DW_AT_decl_line
+	.short	483                             @ DW_AT_decl_line
 	.long	2878                            @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0xb1d:0xc DW_TAG_variable
 	.long	.Linfo_string146                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	477                             @ DW_AT_decl_line
+	.short	483                             @ DW_AT_decl_line
 	.long	2579                            @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	0                               @ End Of Children Mark
@@ -6945,35 +6945,35 @@ is_meter_id_geted:
 	.byte	52                              @ Abbrev [52] 0xb5e:0x4c DW_TAG_subprogram
 	.long	.Linfo_string147                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	289                             @ DW_AT_decl_line
+	.short	295                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	68                              @ DW_AT_type
 	.byte	1                               @ DW_AT_inline
 	.byte	49                              @ Abbrev [49] 0xb6b:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string104                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	289                             @ DW_AT_decl_line
+	.short	295                             @ DW_AT_decl_line
 	.long	552                             @ DW_AT_type
 	.byte	49                              @ Abbrev [49] 0xb77:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string105                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	289                             @ DW_AT_decl_line
+	.short	295                             @ DW_AT_decl_line
 	.long	110                             @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0xb83:0xc DW_TAG_variable
 	.long	.Linfo_string110                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	291                             @ DW_AT_decl_line
+	.short	297                             @ DW_AT_decl_line
 	.long	2986                            @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0xb8f:0xc DW_TAG_variable
 	.long	.Linfo_string133                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	292                             @ DW_AT_decl_line
+	.short	298                             @ DW_AT_decl_line
 	.long	2687                            @ DW_AT_type
 	.byte	53                              @ Abbrev [53] 0xb9b:0xe DW_TAG_lexical_block
 	.byte	50                              @ Abbrev [50] 0xb9c:0xc DW_TAG_variable
 	.long	.Linfo_string112                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	293                             @ DW_AT_decl_line
+	.short	299                             @ DW_AT_decl_line
 	.long	2157                            @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	0                               @ End Of Children Mark
@@ -6986,90 +6986,90 @@ is_meter_id_geted:
 	.byte	52                              @ Abbrev [52] 0xbb6:0x64 DW_TAG_subprogram
 	.long	.Linfo_string148                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	314                             @ DW_AT_decl_line
+	.short	320                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	68                              @ DW_AT_type
 	.byte	1                               @ DW_AT_inline
 	.byte	49                              @ Abbrev [49] 0xbc3:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string104                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	314                             @ DW_AT_decl_line
+	.short	320                             @ DW_AT_decl_line
 	.long	552                             @ DW_AT_type
 	.byte	49                              @ Abbrev [49] 0xbcf:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string105                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	314                             @ DW_AT_decl_line
+	.short	320                             @ DW_AT_decl_line
 	.long	110                             @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0xbdb:0xc DW_TAG_variable
 	.long	.Linfo_string109                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	316                             @ DW_AT_decl_line
+	.short	322                             @ DW_AT_decl_line
 	.long	145                             @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0xbe7:0xc DW_TAG_variable
 	.long	.Linfo_string110                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	317                             @ DW_AT_decl_line
+	.short	323                             @ DW_AT_decl_line
 	.long	2145                            @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0xbf3:0xc DW_TAG_variable
 	.long	.Linfo_string111                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	318                             @ DW_AT_decl_line
+	.short	324                             @ DW_AT_decl_line
 	.long	68                              @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0xbff:0xc DW_TAG_variable
 	.long	.Linfo_string93                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	318                             @ DW_AT_decl_line
+	.short	324                             @ DW_AT_decl_line
 	.long	68                              @ DW_AT_type
 	.byte	53                              @ Abbrev [53] 0xc0b:0xe DW_TAG_lexical_block
 	.byte	50                              @ Abbrev [50] 0xc0c:0xc DW_TAG_variable
 	.long	.Linfo_string112                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	320                             @ DW_AT_decl_line
+	.short	326                             @ DW_AT_decl_line
 	.long	2157                            @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	0                               @ End Of Children Mark
 	.byte	52                              @ Abbrev [52] 0xc1a:0x64 DW_TAG_subprogram
 	.long	.Linfo_string149                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	537                             @ DW_AT_decl_line
+	.short	543                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	68                              @ DW_AT_type
 	.byte	1                               @ DW_AT_inline
 	.byte	49                              @ Abbrev [49] 0xc27:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string104                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	537                             @ DW_AT_decl_line
+	.short	543                             @ DW_AT_decl_line
 	.long	552                             @ DW_AT_type
 	.byte	49                              @ Abbrev [49] 0xc33:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string105                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	537                             @ DW_AT_decl_line
+	.short	543                             @ DW_AT_decl_line
 	.long	110                             @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0xc3f:0xc DW_TAG_variable
 	.long	.Linfo_string110                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	548                             @ DW_AT_decl_line
+	.short	554                             @ DW_AT_decl_line
 	.long	3198                            @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0xc4b:0xc DW_TAG_variable
 	.long	.Linfo_string150                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	539                             @ DW_AT_decl_line
+	.short	545                             @ DW_AT_decl_line
 	.long	806                             @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0xc57:0xc DW_TAG_variable
 	.long	.Linfo_string93                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	550                             @ DW_AT_decl_line
+	.short	556                             @ DW_AT_decl_line
 	.long	68                              @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0xc63:0xc DW_TAG_variable
 	.long	.Linfo_string111                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	550                             @ DW_AT_decl_line
+	.short	556                             @ DW_AT_decl_line
 	.long	68                              @ DW_AT_type
 	.byte	53                              @ Abbrev [53] 0xc6f:0xe DW_TAG_lexical_block
 	.byte	50                              @ Abbrev [50] 0xc70:0xc DW_TAG_variable
 	.long	.Linfo_string112                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	540                             @ DW_AT_decl_line
+	.short	546                             @ DW_AT_decl_line
 	.long	2157                            @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	0                               @ End Of Children Mark
@@ -7105,64 +7105,64 @@ is_meter_id_geted:
 	.byte	52                              @ Abbrev [52] 0xcb8:0x64 DW_TAG_subprogram
 	.long	.Linfo_string152                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	382                             @ DW_AT_decl_line
+	.short	388                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	68                              @ DW_AT_type
 	.byte	1                               @ DW_AT_inline
 	.byte	49                              @ Abbrev [49] 0xcc5:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string104                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	382                             @ DW_AT_decl_line
+	.short	388                             @ DW_AT_decl_line
 	.long	552                             @ DW_AT_type
 	.byte	49                              @ Abbrev [49] 0xcd1:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string105                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	382                             @ DW_AT_decl_line
+	.short	388                             @ DW_AT_decl_line
 	.long	110                             @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0xcdd:0xc DW_TAG_variable
 	.long	.Linfo_string109                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	384                             @ DW_AT_decl_line
+	.short	390                             @ DW_AT_decl_line
 	.long	145                             @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0xce9:0xc DW_TAG_variable
 	.long	.Linfo_string110                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	385                             @ DW_AT_decl_line
+	.short	391                             @ DW_AT_decl_line
 	.long	2145                            @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0xcf5:0xc DW_TAG_variable
 	.long	.Linfo_string111                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	386                             @ DW_AT_decl_line
+	.short	392                             @ DW_AT_decl_line
 	.long	68                              @ DW_AT_type
 	.byte	50                              @ Abbrev [50] 0xd01:0xc DW_TAG_variable
 	.long	.Linfo_string93                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	386                             @ DW_AT_decl_line
+	.short	392                             @ DW_AT_decl_line
 	.long	68                              @ DW_AT_type
 	.byte	53                              @ Abbrev [53] 0xd0d:0xe DW_TAG_lexical_block
 	.byte	50                              @ Abbrev [50] 0xd0e:0xc DW_TAG_variable
 	.long	.Linfo_string112                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	387                             @ DW_AT_decl_line
+	.short	393                             @ DW_AT_decl_line
 	.long	2157                            @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	0                               @ End Of Children Mark
 	.byte	48                              @ Abbrev [48] 0xd1c:0x24 DW_TAG_subprogram
 	.long	.Linfo_string153                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	691                             @ DW_AT_decl_line
+	.short	700                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.byte	1                               @ DW_AT_inline
 	.byte	49                              @ Abbrev [49] 0xd25:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string154                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	691                             @ DW_AT_decl_line
+	.short	700                             @ DW_AT_decl_line
 	.long	188                             @ DW_AT_type
 	.byte	53                              @ Abbrev [53] 0xd31:0xe DW_TAG_lexical_block
 	.byte	50                              @ Abbrev [50] 0xd32:0xc DW_TAG_variable
 	.long	.Linfo_string112                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	694                             @ DW_AT_decl_line
+	.short	703                             @ DW_AT_decl_line
 	.long	2157                            @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	0                               @ End Of Children Mark
@@ -7174,38 +7174,38 @@ is_meter_id_geted:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string162                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	665                             @ DW_AT_decl_line
+	.short	674                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_external
 	.byte	45                              @ Abbrev [45] 0xd52:0x10 DW_TAG_formal_parameter
 	.long	.Ldebug_loc25                   @ DW_AT_location
 	.long	.Linfo_string98                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	665                             @ DW_AT_decl_line
+	.short	674                             @ DW_AT_decl_line
 	.long	1965                            @ DW_AT_type
 	.byte	45                              @ Abbrev [45] 0xd62:0x10 DW_TAG_formal_parameter
 	.long	.Ldebug_loc26                   @ DW_AT_location
 	.long	.Linfo_string99                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	665                             @ DW_AT_decl_line
+	.short	674                             @ DW_AT_decl_line
 	.long	110                             @ DW_AT_type
 	.byte	46                              @ Abbrev [46] 0xd72:0x10 DW_TAG_variable
 	.long	.Ldebug_loc27                   @ DW_AT_location
 	.long	.Linfo_string167                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	667                             @ DW_AT_decl_line
+	.short	676                             @ DW_AT_decl_line
 	.long	1965                            @ DW_AT_type
 	.byte	46                              @ Abbrev [46] 0xd82:0x10 DW_TAG_variable
 	.long	.Ldebug_loc28                   @ DW_AT_location
 	.long	.Linfo_string168                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	668                             @ DW_AT_decl_line
+	.short	677                             @ DW_AT_decl_line
 	.long	110                             @ DW_AT_type
 	.byte	57                              @ Abbrev [57] 0xd92:0x40b DW_TAG_inlined_subroutine
 	.long	1895                            @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges2                 @ DW_AT_ranges
 	.byte	2                               @ DW_AT_call_file
-	.short	683                             @ DW_AT_call_line
+	.short	692                             @ DW_AT_call_line
 	.byte	13                              @ DW_AT_call_column
 	.byte	24                              @ Abbrev [24] 0xd9f:0x9 DW_TAG_formal_parameter
 	.long	.Ldebug_loc32                   @ DW_AT_location
@@ -7226,7 +7226,7 @@ is_meter_id_geted:
 	.long	.Ltmp122                        @ DW_AT_low_pc
 	.long	.Ltmp130-.Ltmp122               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
-	.short	653                             @ DW_AT_call_line
+	.short	662                             @ DW_AT_call_line
 	.byte	15                              @ DW_AT_call_column
 	.byte	36                              @ Abbrev [36] 0xdd9:0x5 DW_TAG_formal_parameter
 	.long	1087                            @ DW_AT_abstract_origin
@@ -7247,7 +7247,7 @@ is_meter_id_geted:
 	.long	1975                            @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges3                 @ DW_AT_ranges
 	.byte	2                               @ DW_AT_call_file
-	.short	660                             @ DW_AT_call_line
+	.short	669                             @ DW_AT_call_line
 	.byte	13                              @ DW_AT_call_column
 	.byte	24                              @ Abbrev [24] 0xe07:0x9 DW_TAG_formal_parameter
 	.long	.Ldebug_loc38                   @ DW_AT_location
@@ -7268,7 +7268,7 @@ is_meter_id_geted:
 	.long	.Ltmp140                        @ DW_AT_low_pc
 	.long	.Ltmp157-.Ltmp140               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
-	.short	606                             @ DW_AT_call_line
+	.short	615                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
 	.byte	36                              @ Abbrev [36] 0xe41:0x5 DW_TAG_formal_parameter
 	.long	2058                            @ DW_AT_abstract_origin
@@ -7303,7 +7303,7 @@ is_meter_id_geted:
 	.long	.Ltmp167                        @ DW_AT_low_pc
 	.long	.Ltmp177-.Ltmp167               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
-	.short	625                             @ DW_AT_call_line
+	.short	634                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
 	.byte	36                              @ Abbrev [36] 0xe93:0x5 DW_TAG_formal_parameter
 	.long	2252                            @ DW_AT_abstract_origin
@@ -7318,7 +7318,7 @@ is_meter_id_geted:
 	.long	2289                            @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges4                 @ DW_AT_ranges
 	.byte	2                               @ DW_AT_call_file
-	.short	595                             @ DW_AT_call_line
+	.short	604                             @ DW_AT_call_line
 	.byte	19                              @ DW_AT_call_column
 	.byte	36                              @ Abbrev [36] 0xeb8:0x5 DW_TAG_formal_parameter
 	.long	2301                            @ DW_AT_abstract_origin
@@ -7348,7 +7348,7 @@ is_meter_id_geted:
 	.long	2698                            @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges5                 @ DW_AT_ranges
 	.byte	2                               @ DW_AT_call_file
-	.short	614                             @ DW_AT_call_line
+	.short	623                             @ DW_AT_call_line
 	.byte	19                              @ DW_AT_call_column
 	.byte	36                              @ Abbrev [36] 0xf01:0x5 DW_TAG_formal_parameter
 	.long	2711                            @ DW_AT_abstract_origin
@@ -7405,7 +7405,7 @@ is_meter_id_geted:
 	.long	.Ltmp337                        @ DW_AT_low_pc
 	.long	.Ltmp345-.Ltmp337               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
-	.short	500                             @ DW_AT_call_line
+	.short	506                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
 	.byte	22                              @ Abbrev [22] 0xf8b:0x6 DW_TAG_formal_parameter
 	.byte	1                               @ DW_AT_const_value
@@ -7423,7 +7423,7 @@ is_meter_id_geted:
 	.long	2910                            @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges7                 @ DW_AT_ranges
 	.byte	2                               @ DW_AT_call_file
-	.short	598                             @ DW_AT_call_line
+	.short	607                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
 	.byte	36                              @ Abbrev [36] 0xfb3:0x5 DW_TAG_formal_parameter
 	.long	2923                            @ DW_AT_abstract_origin
@@ -7449,7 +7449,7 @@ is_meter_id_geted:
 	.long	.Ltmp295                        @ DW_AT_low_pc
 	.long	.Ltmp296-.Ltmp295               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
-	.short	308                             @ DW_AT_call_line
+	.short	314                             @ DW_AT_call_line
 	.byte	5                               @ DW_AT_call_column
 	.byte	22                              @ Abbrev [22] 0xff2:0x6 DW_TAG_formal_parameter
 	.byte	6                               @ DW_AT_const_value
@@ -7461,7 +7461,7 @@ is_meter_id_geted:
 	.long	.Ltmp198                        @ DW_AT_low_pc
 	.long	.Ltmp215-.Ltmp198               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
-	.short	602                             @ DW_AT_call_line
+	.short	611                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
 	.byte	36                              @ Abbrev [36] 0x100b:0x5 DW_TAG_formal_parameter
 	.long	3011                            @ DW_AT_abstract_origin
@@ -7495,7 +7495,7 @@ is_meter_id_geted:
 	.long	3098                            @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges8                 @ DW_AT_ranges
 	.byte	2                               @ DW_AT_call_file
-	.short	621                             @ DW_AT_call_line
+	.short	630                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
 	.byte	36                              @ Abbrev [36] 0x1059:0x5 DW_TAG_formal_parameter
 	.long	3111                            @ DW_AT_abstract_origin
@@ -7527,7 +7527,7 @@ is_meter_id_geted:
 	.long	.Ltmp309                        @ DW_AT_low_pc
 	.long	.Ltmp311-.Ltmp309               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
-	.short	568                             @ DW_AT_call_line
+	.short	574                             @ DW_AT_call_line
 	.byte	5                               @ DW_AT_call_column
 	.byte	22                              @ Abbrev [22] 0x10aa:0x6 DW_TAG_formal_parameter
 	.byte	9                               @ DW_AT_const_value
@@ -7538,7 +7538,7 @@ is_meter_id_geted:
 	.long	3210                            @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges9                 @ DW_AT_ranges
 	.byte	2                               @ DW_AT_call_file
-	.short	592                             @ DW_AT_call_line
+	.short	601                             @ DW_AT_call_line
 	.byte	19                              @ DW_AT_call_column
 	.byte	36                              @ Abbrev [36] 0x10bf:0x5 DW_TAG_formal_parameter
 	.long	3222                            @ DW_AT_abstract_origin
@@ -7554,7 +7554,7 @@ is_meter_id_geted:
 	.long	.Ltmp235                        @ DW_AT_low_pc
 	.long	.Ltmp252-.Ltmp235               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
-	.short	610                             @ DW_AT_call_line
+	.short	619                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
 	.byte	36                              @ Abbrev [36] 0x10e8:0x5 DW_TAG_formal_parameter
 	.long	3269                            @ DW_AT_abstract_origin
@@ -7589,7 +7589,7 @@ is_meter_id_geted:
 	.long	.Ltmp346                        @ DW_AT_low_pc
 	.long	.Ltmp348-.Ltmp346               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
-	.short	634                             @ DW_AT_call_line
+	.short	643                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
 	.byte	27                              @ Abbrev [27] 0x113a:0xc DW_TAG_formal_parameter
 	.byte	6                               @ DW_AT_location
@@ -7619,7 +7619,7 @@ is_meter_id_geted:
 	.long	.Ltmp160                        @ DW_AT_low_pc
 	.long	.Ltmp163-.Ltmp160               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
-	.short	656                             @ DW_AT_call_line
+	.short	665                             @ DW_AT_call_line
 	.byte	13                              @ DW_AT_call_column
 	.byte	27                              @ Abbrev [27] 0x1177:0xc DW_TAG_formal_parameter
 	.byte	6                               @ DW_AT_location
@@ -7653,7 +7653,7 @@ is_meter_id_geted:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string163                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	717                             @ DW_AT_decl_line
+	.short	726                             @ DW_AT_decl_line
                                         @ DW_AT_external
 	.byte	61                              @ Abbrev [61] 0x11b0:0x23 DW_TAG_subprogram
 	.long	.Lfunc_begin11                  @ DW_AT_low_pc
@@ -7663,13 +7663,13 @@ is_meter_id_geted:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string164                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	704                             @ DW_AT_decl_line
+	.short	713                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.byte	45                              @ Abbrev [45] 0x11c2:0x10 DW_TAG_formal_parameter
 	.long	.Ldebug_loc72                   @ DW_AT_location
 	.long	.Linfo_string169                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	704                             @ DW_AT_decl_line
+	.short	713                             @ DW_AT_decl_line
 	.long	236                             @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	62                              @ Abbrev [62] 0x11d3:0x98 DW_TAG_subprogram
@@ -7680,24 +7680,24 @@ is_meter_id_geted:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string165                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	510                             @ DW_AT_decl_line
+	.short	516                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	68                              @ DW_AT_type
 	.byte	49                              @ Abbrev [49] 0x11e9:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string104                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	510                             @ DW_AT_decl_line
+	.short	516                             @ DW_AT_decl_line
 	.long	552                             @ DW_AT_type
 	.byte	49                              @ Abbrev [49] 0x11f5:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string105                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	510                             @ DW_AT_decl_line
+	.short	516                             @ DW_AT_decl_line
 	.long	110                             @ DW_AT_type
 	.byte	46                              @ Abbrev [46] 0x1201:0x10 DW_TAG_variable
 	.long	.Ldebug_loc73                   @ DW_AT_location
 	.long	.Linfo_string109                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	512                             @ DW_AT_decl_line
+	.short	518                             @ DW_AT_decl_line
 	.long	4727                            @ DW_AT_type
 	.byte	63                              @ Abbrev [63] 0x1211:0x9 DW_TAG_variable
 	.long	.Linfo_string170                @ DW_AT_name
@@ -7707,26 +7707,26 @@ is_meter_id_geted:
 	.long	.Ldebug_loc74                   @ DW_AT_location
 	.long	.Linfo_string110                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	513                             @ DW_AT_decl_line
+	.short	519                             @ DW_AT_decl_line
 	.long	4737                            @ DW_AT_type
 	.byte	46                              @ Abbrev [46] 0x122a:0x10 DW_TAG_variable
 	.long	.Ldebug_loc75                   @ DW_AT_location
 	.long	.Linfo_string93                 @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	515                             @ DW_AT_decl_line
+	.short	521                             @ DW_AT_decl_line
 	.long	68                              @ DW_AT_type
 	.byte	46                              @ Abbrev [46] 0x123a:0x10 DW_TAG_variable
 	.long	.Ldebug_loc76                   @ DW_AT_location
 	.long	.Linfo_string111                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	515                             @ DW_AT_decl_line
+	.short	521                             @ DW_AT_decl_line
 	.long	68                              @ DW_AT_type
 	.byte	43                              @ Abbrev [43] 0x124a:0x20 DW_TAG_inlined_subroutine
 	.long	897                             @ DW_AT_abstract_origin
 	.long	.Ltmp395                        @ DW_AT_low_pc
 	.long	.Ltmp396-.Ltmp395               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
-	.short	532                             @ DW_AT_call_line
+	.short	538                             @ DW_AT_call_line
 	.byte	5                               @ DW_AT_call_column
 	.byte	27                              @ Abbrev [27] 0x125b:0x7 DW_TAG_formal_parameter
 	.byte	1                               @ DW_AT_location
@@ -7868,343 +7868,343 @@ is_meter_id_geted:
 .Linfo_string1:
 	.asciz	"../das_subg_thread\\das_hex_cmd.c" @ string offset=55
 .Linfo_string2:
-	.asciz	"D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" @ string offset=88
+	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=88
 .Linfo_string3:
-	.asciz	"das_rx_buf"                    @ string offset=150
+	.asciz	"das_rx_buf"                    @ string offset=149
 .Linfo_string4:
-	.asciz	"unsigned char"                 @ string offset=161
+	.asciz	"unsigned char"                 @ string offset=160
 .Linfo_string5:
-	.asciz	"uint8_t"                       @ string offset=175
+	.asciz	"uint8_t"                       @ string offset=174
 .Linfo_string6:
-	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=183
+	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=182
 .Linfo_string7:
-	.asciz	"das_rx_length"                 @ string offset=203
+	.asciz	"das_rx_length"                 @ string offset=202
 .Linfo_string8:
-	.asciz	"unsigned short"                @ string offset=217
+	.asciz	"unsigned short"                @ string offset=216
 .Linfo_string9:
-	.asciz	"uint16_t"                      @ string offset=232
+	.asciz	"uint16_t"                      @ string offset=231
 .Linfo_string10:
-	.asciz	"das_hex_cmd_udp_ip"            @ string offset=241
+	.asciz	"das_hex_cmd_udp_ip"            @ string offset=240
 .Linfo_string11:
-	.asciz	"char"                          @ string offset=260
+	.asciz	"char"                          @ string offset=259
 .Linfo_string12:
-	.asciz	"das_hex_cmd_udp_ip_set"        @ string offset=265
+	.asciz	"das_hex_cmd_udp_ip_set"        @ string offset=264
 .Linfo_string13:
-	.asciz	"_Bool"                         @ string offset=288
+	.asciz	"_Bool"                         @ string offset=287
 .Linfo_string14:
-	.asciz	"is_meter_id_geted"             @ string offset=294
+	.asciz	"is_meter_id_geted"             @ string offset=293
 .Linfo_string15:
-	.asciz	"get_meter_id_timer"            @ string offset=312
+	.asciz	"get_meter_id_timer"            @ string offset=311
 .Linfo_string16:
-	.asciz	"tmrTimerControl"               @ string offset=331
+	.asciz	"tmrTimerControl"               @ string offset=330
 .Linfo_string17:
-	.asciz	"TimerHandle_t"                 @ string offset=347
+	.asciz	"TimerHandle_t"                 @ string offset=346
 .Linfo_string18:
-	.asciz	"unsigned int"                  @ string offset=361
+	.asciz	"unsigned int"                  @ string offset=360
 .Linfo_string19:
-	.asciz	"OT_ERROR_NONE"                 @ string offset=374
+	.asciz	"OT_ERROR_NONE"                 @ string offset=373
 .Linfo_string20:
-	.asciz	"OT_ERROR_FAILED"               @ string offset=388
+	.asciz	"OT_ERROR_FAILED"               @ string offset=387
 .Linfo_string21:
-	.asciz	"OT_ERROR_DROP"                 @ string offset=404
+	.asciz	"OT_ERROR_DROP"                 @ string offset=403
 .Linfo_string22:
-	.asciz	"OT_ERROR_NO_BUFS"              @ string offset=418
+	.asciz	"OT_ERROR_NO_BUFS"              @ string offset=417
 .Linfo_string23:
-	.asciz	"OT_ERROR_NO_ROUTE"             @ string offset=435
+	.asciz	"OT_ERROR_NO_ROUTE"             @ string offset=434
 .Linfo_string24:
-	.asciz	"OT_ERROR_BUSY"                 @ string offset=453
+	.asciz	"OT_ERROR_BUSY"                 @ string offset=452
 .Linfo_string25:
-	.asciz	"OT_ERROR_PARSE"                @ string offset=467
+	.asciz	"OT_ERROR_PARSE"                @ string offset=466
 .Linfo_string26:
-	.asciz	"OT_ERROR_INVALID_ARGS"         @ string offset=482
+	.asciz	"OT_ERROR_INVALID_ARGS"         @ string offset=481
 .Linfo_string27:
-	.asciz	"OT_ERROR_SECURITY"             @ string offset=504
+	.asciz	"OT_ERROR_SECURITY"             @ string offset=503
 .Linfo_string28:
-	.asciz	"OT_ERROR_ADDRESS_QUERY"        @ string offset=522
+	.asciz	"OT_ERROR_ADDRESS_QUERY"        @ string offset=521
 .Linfo_string29:
-	.asciz	"OT_ERROR_NO_ADDRESS"           @ string offset=545
+	.asciz	"OT_ERROR_NO_ADDRESS"           @ string offset=544
 .Linfo_string30:
-	.asciz	"OT_ERROR_ABORT"                @ string offset=565
+	.asciz	"OT_ERROR_ABORT"                @ string offset=564
 .Linfo_string31:
-	.asciz	"OT_ERROR_NOT_IMPLEMENTED"      @ string offset=580
+	.asciz	"OT_ERROR_NOT_IMPLEMENTED"      @ string offset=579
 .Linfo_string32:
-	.asciz	"OT_ERROR_INVALID_STATE"        @ string offset=605
+	.asciz	"OT_ERROR_INVALID_STATE"        @ string offset=604
 .Linfo_string33:
-	.asciz	"OT_ERROR_NO_ACK"               @ string offset=628
+	.asciz	"OT_ERROR_NO_ACK"               @ string offset=627
 .Linfo_string34:
-	.asciz	"OT_ERROR_CHANNEL_ACCESS_FAILURE" @ string offset=644
+	.asciz	"OT_ERROR_CHANNEL_ACCESS_FAILURE" @ string offset=643
 .Linfo_string35:
-	.asciz	"OT_ERROR_DETACHED"             @ string offset=676
+	.asciz	"OT_ERROR_DETACHED"             @ string offset=675
 .Linfo_string36:
-	.asciz	"OT_ERROR_FCS"                  @ string offset=694
+	.asciz	"OT_ERROR_FCS"                  @ string offset=693
 .Linfo_string37:
-	.asciz	"OT_ERROR_NO_FRAME_RECEIVED"    @ string offset=707
+	.asciz	"OT_ERROR_NO_FRAME_RECEIVED"    @ string offset=706
 .Linfo_string38:
-	.asciz	"OT_ERROR_UNKNOWN_NEIGHBOR"     @ string offset=734
+	.asciz	"OT_ERROR_UNKNOWN_NEIGHBOR"     @ string offset=733
 .Linfo_string39:
-	.asciz	"OT_ERROR_INVALID_SOURCE_ADDRESS" @ string offset=760
+	.asciz	"OT_ERROR_INVALID_SOURCE_ADDRESS" @ string offset=759
 .Linfo_string40:
-	.asciz	"OT_ERROR_ADDRESS_FILTERED"     @ string offset=792
+	.asciz	"OT_ERROR_ADDRESS_FILTERED"     @ string offset=791
 .Linfo_string41:
-	.asciz	"OT_ERROR_DESTINATION_ADDRESS_FILTERED" @ string offset=818
+	.asciz	"OT_ERROR_DESTINATION_ADDRESS_FILTERED" @ string offset=817
 .Linfo_string42:
-	.asciz	"OT_ERROR_NOT_FOUND"            @ string offset=856
+	.asciz	"OT_ERROR_NOT_FOUND"            @ string offset=855
 .Linfo_string43:
-	.asciz	"OT_ERROR_ALREADY"              @ string offset=875
+	.asciz	"OT_ERROR_ALREADY"              @ string offset=874
 .Linfo_string44:
-	.asciz	"OT_ERROR_IP6_ADDRESS_CREATION_FAILURE" @ string offset=892
+	.asciz	"OT_ERROR_IP6_ADDRESS_CREATION_FAILURE" @ string offset=891
 .Linfo_string45:
-	.asciz	"OT_ERROR_NOT_CAPABLE"          @ string offset=930
+	.asciz	"OT_ERROR_NOT_CAPABLE"          @ string offset=929
 .Linfo_string46:
-	.asciz	"OT_ERROR_RESPONSE_TIMEOUT"     @ string offset=951
+	.asciz	"OT_ERROR_RESPONSE_TIMEOUT"     @ string offset=950
 .Linfo_string47:
-	.asciz	"OT_ERROR_DUPLICATED"           @ string offset=977
+	.asciz	"OT_ERROR_DUPLICATED"           @ string offset=976
 .Linfo_string48:
-	.asciz	"OT_ERROR_REASSEMBLY_TIMEOUT"   @ string offset=997
+	.asciz	"OT_ERROR_REASSEMBLY_TIMEOUT"   @ string offset=996
 .Linfo_string49:
-	.asciz	"OT_ERROR_NOT_TMF"              @ string offset=1025
+	.asciz	"OT_ERROR_NOT_TMF"              @ string offset=1024
 .Linfo_string50:
-	.asciz	"OT_ERROR_NOT_LOWPAN_DATA_FRAME" @ string offset=1042
+	.asciz	"OT_ERROR_NOT_LOWPAN_DATA_FRAME" @ string offset=1041
 .Linfo_string51:
-	.asciz	"OT_ERROR_LINK_MARGIN_LOW"      @ string offset=1073
+	.asciz	"OT_ERROR_LINK_MARGIN_LOW"      @ string offset=1072
 .Linfo_string52:
-	.asciz	"OT_ERROR_INVALID_COMMAND"      @ string offset=1098
+	.asciz	"OT_ERROR_INVALID_COMMAND"      @ string offset=1097
 .Linfo_string53:
-	.asciz	"OT_ERROR_PENDING"              @ string offset=1123
+	.asciz	"OT_ERROR_PENDING"              @ string offset=1122
 .Linfo_string54:
-	.asciz	"OT_ERROR_REJECTED"             @ string offset=1140
+	.asciz	"OT_ERROR_REJECTED"             @ string offset=1139
 .Linfo_string55:
-	.asciz	"OT_NUM_ERRORS"                 @ string offset=1158
+	.asciz	"OT_NUM_ERRORS"                 @ string offset=1157
 .Linfo_string56:
-	.asciz	"OT_ERROR_GENERIC"              @ string offset=1172
+	.asciz	"OT_ERROR_GENERIC"              @ string offset=1171
 .Linfo_string57:
-	.asciz	"otError"                       @ string offset=1189
+	.asciz	"otError"                       @ string offset=1188
 .Linfo_string58:
-	.asciz	"OT_DEVICE_ROLE_DISABLED"       @ string offset=1197
+	.asciz	"OT_DEVICE_ROLE_DISABLED"       @ string offset=1196
 .Linfo_string59:
-	.asciz	"OT_DEVICE_ROLE_DETACHED"       @ string offset=1221
+	.asciz	"OT_DEVICE_ROLE_DETACHED"       @ string offset=1220
 .Linfo_string60:
-	.asciz	"OT_DEVICE_ROLE_CHILD"          @ string offset=1245
+	.asciz	"OT_DEVICE_ROLE_CHILD"          @ string offset=1244
 .Linfo_string61:
-	.asciz	"OT_DEVICE_ROLE_ROUTER"         @ string offset=1266
+	.asciz	"OT_DEVICE_ROLE_ROUTER"         @ string offset=1265
 .Linfo_string62:
-	.asciz	"OT_DEVICE_ROLE_LEADER"         @ string offset=1288
+	.asciz	"OT_DEVICE_ROLE_LEADER"         @ string offset=1287
 .Linfo_string63:
-	.asciz	"int"                           @ string offset=1310
+	.asciz	"int"                           @ string offset=1309
 .Linfo_string64:
-	.asciz	"long int"                      @ string offset=1314
+	.asciz	"long int"                      @ string offset=1313
 .Linfo_string65:
-	.asciz	"BaseType_t"                    @ string offset=1323
+	.asciz	"BaseType_t"                    @ string offset=1322
 .Linfo_string66:
-	.asciz	"STATE"                         @ string offset=1334
+	.asciz	"STATE"                         @ string offset=1333
 .Linfo_string67:
-	.asciz	"uint32_t"                      @ string offset=1340
+	.asciz	"uint32_t"                      @ string offset=1339
 .Linfo_string68:
-	.asciz	"INT_STATUS"                    @ string offset=1349
+	.asciz	"INT_STATUS"                    @ string offset=1348
 .Linfo_string69:
-	.asciz	"OUTPUT_EN"                     @ string offset=1360
+	.asciz	"OUTPUT_EN"                     @ string offset=1359
 .Linfo_string70:
-	.asciz	"INPUT_EN"                      @ string offset=1370
+	.asciz	"INPUT_EN"                      @ string offset=1369
 .Linfo_string71:
-	.asciz	"ENABLE_INT"                    @ string offset=1379
+	.asciz	"ENABLE_INT"                    @ string offset=1378
 .Linfo_string72:
-	.asciz	"DISABLE_INT"                   @ string offset=1390
+	.asciz	"DISABLE_INT"                   @ string offset=1389
 .Linfo_string73:
-	.asciz	"EDGE_TRIG"                     @ string offset=1402
+	.asciz	"EDGE_TRIG"                     @ string offset=1401
 .Linfo_string74:
-	.asciz	"LEVEL_TRIG"                    @ string offset=1412
+	.asciz	"LEVEL_TRIG"                    @ string offset=1411
 .Linfo_string75:
-	.asciz	"POSTITIVE"                     @ string offset=1423
+	.asciz	"POSTITIVE"                     @ string offset=1422
 .Linfo_string76:
-	.asciz	"NEGATIVE"                      @ string offset=1433
+	.asciz	"NEGATIVE"                      @ string offset=1432
 .Linfo_string77:
-	.asciz	"BOTH_EDGE_EN"                  @ string offset=1442
+	.asciz	"BOTH_EDGE_EN"                  @ string offset=1441
 .Linfo_string78:
-	.asciz	"BOTH_EDGE_CLR"                 @ string offset=1455
+	.asciz	"BOTH_EDGE_CLR"                 @ string offset=1454
 .Linfo_string79:
-	.asciz	"EDGE_INT_CLR"                  @ string offset=1469
+	.asciz	"EDGE_INT_CLR"                  @ string offset=1468
 .Linfo_string80:
-	.asciz	"Reserve"                       @ string offset=1482
+	.asciz	"Reserve"                       @ string offset=1481
 .Linfo_string81:
-	.asciz	"DEBOUCE_EN"                    @ string offset=1490
+	.asciz	"DEBOUCE_EN"                    @ string offset=1489
 .Linfo_string82:
-	.asciz	"DEBOUCE_DIS"                   @ string offset=1501
+	.asciz	"DEBOUCE_DIS"                   @ string offset=1500
 .Linfo_string83:
-	.asciz	"DEBOUNCE_TIME"                 @ string offset=1513
+	.asciz	"DEBOUNCE_TIME"                 @ string offset=1512
 .Linfo_string84:
-	.asciz	"GPIO_T"                        @ string offset=1527
+	.asciz	"GPIO_T"                        @ string offset=1526
 .Linfo_string85:
-	.asciz	"gpio_pin_get"                  @ string offset=1534
+	.asciz	"gpio_pin_get"                  @ string offset=1533
 .Linfo_string86:
-	.asciz	"pin_number"                    @ string offset=1547
+	.asciz	"pin_number"                    @ string offset=1546
 .Linfo_string87:
-	.asciz	"das_hex_cmd_send"              @ string offset=1558
+	.asciz	"das_hex_cmd_send"              @ string offset=1557
 .Linfo_string88:
-	.asciz	"cmd_data"                      @ string offset=1575
+	.asciz	"cmd_data"                      @ string offset=1574
 .Linfo_string89:
-	.asciz	"cmd_data_lens"                 @ string offset=1584
+	.asciz	"cmd_data_lens"                 @ string offset=1583
 .Linfo_string90:
-	.asciz	"das_hex_cmd_crc_calculate"     @ string offset=1598
+	.asciz	"das_hex_cmd_crc_calculate"     @ string offset=1597
 .Linfo_string91:
-	.asciz	"hex_ptr"                       @ string offset=1624
+	.asciz	"hex_ptr"                       @ string offset=1623
 .Linfo_string92:
-	.asciz	"hex_ptr_lens"                  @ string offset=1632
+	.asciz	"hex_ptr_lens"                  @ string offset=1631
 .Linfo_string93:
-	.asciz	"i"                             @ string offset=1645
+	.asciz	"i"                             @ string offset=1644
 .Linfo_string94:
-	.asciz	"crc_8"                         @ string offset=1647
+	.asciz	"crc_8"                         @ string offset=1646
 .Linfo_string95:
-	.asciz	"vPortFree"                     @ string offset=1653
+	.asciz	"vPortFree"                     @ string offset=1652
 .Linfo_string96:
-	.asciz	"das_hex_cmd_status_check"      @ string offset=1663
+	.asciz	"das_hex_cmd_status_check"      @ string offset=1662
 .Linfo_string97:
-	.asciz	"das_hex_cmd_process"           @ string offset=1688
+	.asciz	"das_hex_cmd_process"           @ string offset=1687
 .Linfo_string98:
-	.asciz	"aBuf"                          @ string offset=1708
+	.asciz	"aBuf"                          @ string offset=1707
 .Linfo_string99:
-	.asciz	"aBufLength"                    @ string offset=1713
+	.asciz	"aBufLength"                    @ string offset=1712
 .Linfo_string100:
-	.asciz	"crc"                           @ string offset=1724
+	.asciz	"crc"                           @ string offset=1723
 .Linfo_string101:
-	.asciz	"cmd_id"                        @ string offset=1728
+	.asciz	"cmd_id"                        @ string offset=1727
 .Linfo_string102:
-	.asciz	"cmd_len"                       @ string offset=1735
+	.asciz	"cmd_len"                       @ string offset=1734
 .Linfo_string103:
-	.asciz	"das_hex_cmd_fn_exec"           @ string offset=1743
+	.asciz	"das_hex_cmd_fn_exec"           @ string offset=1742
 .Linfo_string104:
-	.asciz	"Param"                         @ string offset=1763
+	.asciz	"Param"                         @ string offset=1762
 .Linfo_string105:
-	.asciz	"lens"                          @ string offset=1769
+	.asciz	"lens"                          @ string offset=1768
 .Linfo_string106:
-	.asciz	"cmd_ret"                       @ string offset=1774
+	.asciz	"cmd_ret"                       @ string offset=1773
 .Linfo_string107:
-	.asciz	"need_ack"                      @ string offset=1782
+	.asciz	"need_ack"                      @ string offset=1781
 .Linfo_string108:
-	.asciz	"das_hex_cmd_get_mesh_local_addr" @ string offset=1791
+	.asciz	"das_hex_cmd_get_mesh_local_addr" @ string offset=1790
 .Linfo_string109:
-	.asciz	"string"                        @ string offset=1823
+	.asciz	"string"                        @ string offset=1822
 .Linfo_string110:
-	.asciz	"message"                       @ string offset=1830
+	.asciz	"message"                       @ string offset=1829
 .Linfo_string111:
-	.asciz	"cmd_crc"                       @ string offset=1838
+	.asciz	"cmd_crc"                       @ string offset=1837
 .Linfo_string112:
-	.asciz	"instance"                      @ string offset=1846
+	.asciz	"instance"                      @ string offset=1845
 .Linfo_string113:
-	.asciz	"otInstance"                    @ string offset=1855
+	.asciz	"otInstance"                    @ string offset=1854
 .Linfo_string114:
-	.asciz	"das_hex_command_response"      @ string offset=1866
+	.asciz	"das_hex_command_response"      @ string offset=1865
 .Linfo_string115:
-	.asciz	"state"                         @ string offset=1891
+	.asciz	"state"                         @ string offset=1890
 .Linfo_string116:
-	.asciz	"ack_crc"                       @ string offset=1897
+	.asciz	"ack_crc"                       @ string offset=1896
 .Linfo_string117:
-	.asciz	"das_hex_cmd_to_acsii_comand_process" @ string offset=1905
+	.asciz	"das_hex_cmd_to_acsii_comand_process" @ string offset=1904
 .Linfo_string118:
-	.asciz	"Rx_Buffer"                     @ string offset=1941
+	.asciz	"Rx_Buffer"                     @ string offset=1940
 .Linfo_string119:
-	.asciz	"das_hex_cmd_udp_data_send"     @ string offset=1951
+	.asciz	"das_hex_cmd_udp_data_send"     @ string offset=1950
 .Linfo_string120:
-	.asciz	"dst_peerAddr"                  @ string offset=1977
+	.asciz	"dst_peerAddr"                  @ string offset=1976
 .Linfo_string121:
-	.asciz	"mFields"                       @ string offset=1990
+	.asciz	"mFields"                       @ string offset=1989
 .Linfo_string122:
-	.asciz	"m8"                            @ string offset=1998
+	.asciz	"m8"                            @ string offset=1997
 .Linfo_string123:
-	.asciz	"m16"                           @ string offset=2001
+	.asciz	"m16"                           @ string offset=2000
 .Linfo_string124:
-	.asciz	"m32"                           @ string offset=2005
+	.asciz	"m32"                           @ string offset=2004
 .Linfo_string125:
-	.asciz	"mComponents"                   @ string offset=2009
+	.asciz	"mComponents"                   @ string offset=2008
 .Linfo_string126:
-	.asciz	"mNetworkPrefix"                @ string offset=2021
+	.asciz	"mNetworkPrefix"                @ string offset=2020
 .Linfo_string127:
-	.asciz	"otIp6NetworkPrefix"            @ string offset=2036
+	.asciz	"otIp6NetworkPrefix"            @ string offset=2035
 .Linfo_string128:
-	.asciz	"mIid"                          @ string offset=2055
+	.asciz	"mIid"                          @ string offset=2054
 .Linfo_string129:
-	.asciz	"otIp6InterfaceIdentifier"      @ string offset=2060
+	.asciz	"otIp6InterfaceIdentifier"      @ string offset=2059
 .Linfo_string130:
-	.asciz	"otIp6AddressComponents"        @ string offset=2085
+	.asciz	"otIp6AddressComponents"        @ string offset=2084
 .Linfo_string131:
-	.asciz	"otIp6Address"                  @ string offset=2108
+	.asciz	"otIp6Address"                  @ string offset=2107
 .Linfo_string132:
-	.asciz	"error"                         @ string offset=2121
+	.asciz	"error"                         @ string offset=2120
 .Linfo_string133:
-	.asciz	"mRole"                         @ string offset=2127
+	.asciz	"mRole"                         @ string offset=2126
 .Linfo_string134:
-	.asciz	"otDeviceRole"                  @ string offset=2133
+	.asciz	"otDeviceRole"                  @ string offset=2132
 .Linfo_string135:
-	.asciz	"das_hex_cmd_meter_id_respone"  @ string offset=2146
+	.asciz	"das_hex_cmd_meter_id_respone"  @ string offset=2145
 .Linfo_string136:
-	.asciz	"extaddr"                       @ string offset=2175
+	.asciz	"extaddr"                       @ string offset=2174
 .Linfo_string137:
-	.asciz	"temp"                          @ string offset=2183
+	.asciz	"temp"                          @ string offset=2182
 .Linfo_string138:
-	.asciz	"long long unsigned int"        @ string offset=2188
+	.asciz	"long long unsigned int"        @ string offset=2187
 .Linfo_string139:
-	.asciz	"uint64_t"                      @ string offset=2211
+	.asciz	"uint64_t"                      @ string offset=2210
 .Linfo_string140:
-	.asciz	"num"                           @ string offset=2220
+	.asciz	"num"                           @ string offset=2219
 .Linfo_string141:
-	.asciz	"ret"                           @ string offset=2224
+	.asciz	"ret"                           @ string offset=2223
 .Linfo_string142:
-	.asciz	"hexDigit"                      @ string offset=2228
+	.asciz	"hexDigit"                      @ string offset=2227
 .Linfo_string143:
-	.asciz	"k"                             @ string offset=2237
+	.asciz	"k"                             @ string offset=2236
 .Linfo_string144:
-	.asciz	"extAddress"                    @ string offset=2239
+	.asciz	"extAddress"                    @ string offset=2238
 .Linfo_string145:
-	.asciz	"otExtAddress"                  @ string offset=2250
+	.asciz	"otExtAddress"                  @ string offset=2249
 .Linfo_string146:
-	.asciz	"iid"                           @ string offset=2263
+	.asciz	"iid"                           @ string offset=2262
 .Linfo_string147:
-	.asciz	"das_hex_cmd_get_thread_state"  @ string offset=2267
+	.asciz	"das_hex_cmd_get_thread_state"  @ string offset=2266
 .Linfo_string148:
-	.asciz	"das_hex_cmd_get_link_local_addr" @ string offset=2296
+	.asciz	"das_hex_cmd_get_link_local_addr" @ string offset=2295
 .Linfo_string149:
-	.asciz	"das_hex_cmd_get_partitionid"   @ string offset=2328
+	.asciz	"das_hex_cmd_get_partitionid"   @ string offset=2327
 .Linfo_string150:
-	.asciz	"partitionid"                   @ string offset=2356
+	.asciz	"partitionid"                   @ string offset=2355
 .Linfo_string151:
-	.asciz	"das_hex_cmd_store_udpip"       @ string offset=2368
+	.asciz	"das_hex_cmd_store_udpip"       @ string offset=2367
 .Linfo_string152:
-	.asciz	"das_hex_cmd_get_routing_locator_addr" @ string offset=2392
+	.asciz	"das_hex_cmd_get_routing_locator_addr" @ string offset=2391
 .Linfo_string153:
-	.asciz	"meter_id_is_geted"             @ string offset=2429
+	.asciz	"meter_id_is_geted"             @ string offset=2428
 .Linfo_string154:
-	.asciz	"is_geted"                      @ string offset=2447
+	.asciz	"is_geted"                      @ string offset=2446
 .Linfo_string155:
-	.asciz	"das_hex_cmd_udp_ack"           @ string offset=2456
+	.asciz	"das_hex_cmd_udp_ack"           @ string offset=2455
 .Linfo_string156:
-	.asciz	"das_hex_cmd_get_udp_ip"        @ string offset=2476
+	.asciz	"das_hex_cmd_get_udp_ip"        @ string offset=2475
 .Linfo_string157:
-	.asciz	"das_hex_cmd_get_udp_port"      @ string offset=2499
+	.asciz	"das_hex_cmd_get_udp_port"      @ string offset=2498
 .Linfo_string158:
-	.asciz	"das_hex_cmd_get_udp_received_data" @ string offset=2524
+	.asciz	"das_hex_cmd_get_udp_received_data" @ string offset=2523
 .Linfo_string159:
-	.asciz	"das_hex_cmd_command_bootup"    @ string offset=2558
+	.asciz	"das_hex_cmd_command_bootup"    @ string offset=2557
 .Linfo_string160:
-	.asciz	"das_hex_cmd_state_change"      @ string offset=2585
+	.asciz	"das_hex_cmd_state_change"      @ string offset=2584
 .Linfo_string161:
-	.asciz	"das_hex_cmd_get_meter_id"      @ string offset=2610
+	.asciz	"das_hex_cmd_get_meter_id"      @ string offset=2609
 .Linfo_string162:
-	.asciz	"das_hex_cmd_received_task"     @ string offset=2635
+	.asciz	"das_hex_cmd_received_task"     @ string offset=2634
 .Linfo_string163:
-	.asciz	"das_get_meter_id_init"         @ string offset=2661
+	.asciz	"das_get_meter_id_init"         @ string offset=2660
 .Linfo_string164:
-	.asciz	"get_meter_id_timer_handler"    @ string offset=2683
+	.asciz	"get_meter_id_timer_handler"    @ string offset=2682
 .Linfo_string165:
-	.asciz	"das_hex_cmd_get_build_version" @ string offset=2710
+	.asciz	"das_hex_cmd_get_build_version" @ string offset=2709
 .Linfo_string166:
-	.asciz	"message_len"                   @ string offset=2740
+	.asciz	"message_len"                   @ string offset=2739
 .Linfo_string167:
-	.asciz	"end"                           @ string offset=2752
+	.asciz	"end"                           @ string offset=2751
 .Linfo_string168:
-	.asciz	"cmd_length"                    @ string offset=2756
+	.asciz	"cmd_length"                    @ string offset=2755
 .Linfo_string169:
-	.asciz	"xTimer"                        @ string offset=2767
+	.asciz	"xTimer"                        @ string offset=2766
 .Linfo_string170:
-	.asciz	"__vla_expr0"                   @ string offset=2774
+	.asciz	"__vla_expr0"                   @ string offset=2773
 	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals

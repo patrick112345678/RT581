@@ -28,15 +28,10 @@
 #define UART_GET_NOTIFY(ebit)                 enter_critical_section(); ebit = g_uart_evt_var; g_uart_evt_var = UART_EVENT_NONE; ; leave_critical_section()
 
 #define UART1_OPERATION_PORT 1
-HOSAL_UART_DEV_DECL(uart1_dev, UART1_OPERATION_PORT, 4, 5, UART_BAUDRATE_19200)
+HOSAL_UART_DEV_DECL(uart1_dev, UART1_OPERATION_PORT, 4, 5, UART_BAUDRATE_115200)
 
-#if (CONFIG_UART_STDIO_PORT == 0)
 #define UART2_OPERATION_PORT 2
-HOSAL_UART_DEV_DECL(uart2_dev, UART2_OPERATION_PORT, 6, 7, UART_BAUDRATE_115200)
-#else
-#define UART2_OPERATION_PORT 0
-HOSAL_UART_DEV_DECL(uart2_dev, UART2_OPERATION_PORT, 17, 16, UART_BAUDRATE_115200)
-#endif
+HOSAL_UART_DEV_DECL(uart2_dev, UART2_OPERATION_PORT, 6, 7, UART_BAUDRATE_19200)
 //=============================================================================
 //                  Macro Definition
 //=============================================================================
@@ -222,7 +217,6 @@ void __uart1_data_parse()
     uint16_t len = 0;
     len = __uart1_read(g_tmp_buff);
     log_info_hexdump("uart 1 parse", g_tmp_buff, len);
-    udf_Meter_received_task(g_tmp_buff, len);
 }
 
 
@@ -298,12 +292,8 @@ void __uart2_data_parse()
 {
     uint16_t len = 0;
     len = __uart2_read(g_tmp_buff);
-#if (CONFIG_UART_STDIO_PORT == 0)
     log_info_hexdump("uart 2 parse", g_tmp_buff, len);
-#else
-    log_info_hexdump("uart 0 parse", g_tmp_buff, len);
-    das_hex_cmd_received_task(g_tmp_buff, len);
-#endif
+    udf_Meter_received_task(g_tmp_buff, len);
 }
 
 static void __uart_task(void *parameters_ptr)

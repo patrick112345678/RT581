@@ -19,8 +19,8 @@
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"list.c"
 	.file	1 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
-	.file	2 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\\portmacro.h"
-	.file	3 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\list.h"
+	.file	2 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\\portmacro.h"
+	.file	3 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\list.h"
 	.section	.text.vListInitialise,"ax",%progbits
 	.hidden	vListInitialise                 @ -- Begin function vListInitialise
 	.globl	vListInitialise
@@ -30,7 +30,7 @@
 	.thumb_func
 vListInitialise:
 .Lfunc_begin0:
-	.file	4 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/list.c"
+	.file	4 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/list.c"
 	.loc	4 38 0                          @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:38:0
 	.fnstart
 	.cfi_sections .debug_frame
@@ -40,15 +40,15 @@ vListInitialise:
 	mov.w	r1, #-1
 	@DEBUG_VALUE: vListInitialise:pxList <- $r0
 .Ltmp0:
-	.loc	4 46 30 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:46:30
+	.loc	4 46 33 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:46:33
 	mov	r2, r0
 	str	r1, [r2, #8]!
 	movs	r1, #0
-	.loc	4 42 18                         @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:42:18
+	.loc	4 42 21                         @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:42:21
 	str	r2, [r0, #4]
-	.loc	4 50 26                         @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:50:26
+	.loc	4 50 29                         @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:50:29
 	strd	r2, r2, [r0, #12]
-	.loc	4 53 26                         @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:53:26
+	.loc	4 53 29                         @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:53:29
 	str	r1, [r0]
 	.loc	4 59 1                          @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:59:1
 	bx	lr
@@ -76,7 +76,7 @@ vListInitialiseItem:
 	movs	r1, #0
 	@DEBUG_VALUE: vListInitialiseItem:pxItem <- $r0
 .Ltmp2:
-	.loc	4 65 22 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:65:22
+	.loc	4 65 25 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:65:25
 	str	r1, [r0, #16]
 	.loc	4 71 1                          @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:71:1
 	bx	lr
@@ -103,28 +103,28 @@ vListInsertEnd:
 	@DEBUG_VALUE: vListInsertEnd:pxList <- $r0
 	@DEBUG_VALUE: vListInsertEnd:pxList <- $r0
 	@DEBUG_VALUE: vListInsertEnd:pxNewListItem <- $r1
-	.loc	4 99 29 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:99:29
+	.loc	4 99 32 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:99:32
 	ldr.w	r12, [r0]
-	.loc	4 76 38                         @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:76:38
+	.loc	4 76 41                         @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:76:41
 	ldr	r3, [r0, #4]
 .Ltmp4:
 	@DEBUG_VALUE: vListInsertEnd:pxIndex <- $r3
-	.loc	4 97 29                         @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:97:29
+	.loc	4 97 32                         @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:97:32
 	str	r0, [r1, #16]
-	.loc	4 88 39                         @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:88:39
+	.loc	4 88 42                         @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:88:42
 	ldr	r2, [r3, #8]
 	@DEBUG_VALUE: vListInsertEnd:pxNewListItem <- $r1
-	.loc	4 87 24                         @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:87:24
+	.loc	4 87 27                         @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:87:27
 	str	r3, [r1, #4]
-	.loc	4 88 28                         @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:88:28
+	.loc	4 88 31                         @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:88:31
 	str	r2, [r1, #8]
-	.loc	4 93 11                         @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:93:11
+	.loc	4 93 14                         @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:93:14
 	ldr	r2, [r3, #8]
-	.loc	4 94 22                         @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:94:22
+	.loc	4 94 25                         @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:94:25
 	str	r1, [r3, #8]
-	.loc	4 93 30                         @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:93:30
+	.loc	4 93 33                         @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:93:33
 	str	r1, [r2, #4]
-	.loc	4 99 29                         @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:99:29
+	.loc	4 99 32                         @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:99:32
 	add.w	r1, r12, #1
 .Ltmp5:
 	@DEBUG_VALUE: vListInsertEnd:pxNewListItem <- [DW_OP_LLVM_entry_value 1] $r1
@@ -160,11 +160,11 @@ vListInsert:
 	.cfi_offset lr, -4
 	.cfi_offset r7, -8
 .Ltmp7:
-	.loc	4 106 53 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:106:53
+	.loc	4 106 57 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:106:57
 	ldr.w	r12, [r1]
 .Ltmp8:
 	@DEBUG_VALUE: vListInsert:xValueOfInsertion <- $r12
-	.loc	4 122 6                         @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:122:6
+	.loc	4 122 10                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:122:10
 	adds.w	r2, r12, #1
 	@DEBUG_VALUE: vListInsert:pxList <- $r0
 	beq	.LBB3_3
@@ -173,7 +173,7 @@ vListInsert:
 	@DEBUG_VALUE: vListInsert:xValueOfInsertion <- $r12
 	@DEBUG_VALUE: vListInsert:pxNewListItem <- $r1
 	@DEBUG_VALUE: vListInsert:pxList <- $r0
-	.loc	4 150 49                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:150:49
+	.loc	4 150 57                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:150:57
 	add.w	r2, r0, #8
 .Ltmp10:
 	@DEBUG_VALUE: vListInsert:pxIterator <- undef
@@ -186,12 +186,12 @@ vListInsert:
 	mov	lr, r2
 .Ltmp11:
 	@DEBUG_VALUE: vListInsert:pxIterator <- $lr
-	.loc	4 150 73                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:150:73
-	ldr	r2, [r2, #4]
 	.loc	4 150 81                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:150:81
+	ldr	r2, [r2, #4]
+	.loc	4 150 89                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:150:89
 	ldr	r3, [r2]
 .Ltmp12:
-	.loc	4 150 3                         @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:150:3
+	.loc	4 150 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:150:9
 	cmp	r3, r12
 	bls	.LBB3_2
 	b	.LBB3_4
@@ -200,11 +200,11 @@ vListInsert:
 	@DEBUG_VALUE: vListInsert:xValueOfInsertion <- $r12
 	@DEBUG_VALUE: vListInsert:pxNewListItem <- $r1
 	@DEBUG_VALUE: vListInsert:pxList <- $r0
-	.loc	4 124 33 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:124:33
+	.loc	4 124 39 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:124:39
 	ldr.w	lr, [r0, #16]
 .Ltmp14:
 	@DEBUG_VALUE: vListInsert:pxIterator <- $lr
-	.loc	4 157 38                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:157:38
+	.loc	4 157 41                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:157:41
 	ldr.w	r2, [lr, #4]
 .Ltmp15:
 .LBB3_4:
@@ -213,17 +213,17 @@ vListInsert:
 	@DEBUG_VALUE: vListInsert:pxList <- $r0
 	@DEBUG_VALUE: vListInsert:pxIterator <- $lr
 	@DEBUG_VALUE: vListInsert:pxIterator <- $lr
-	.loc	4 157 24 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:157:24
+	.loc	4 157 27 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:157:27
 	str	r2, [r1, #4]
-	.loc	4 158 36 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:158:36
+	.loc	4 158 39 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:158:39
 	str	r1, [r2, #8]
-	.loc	4 159 28                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:159:28
+	.loc	4 159 31                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:159:31
 	str.w	lr, [r1, #8]
-	.loc	4 160 21                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:160:21
+	.loc	4 160 24                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:160:24
 	str.w	r1, [lr, #4]
-	.loc	4 164 29                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:164:29
+	.loc	4 164 32                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:164:32
 	str	r0, [r1, #16]
-	.loc	4 166 29                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:166:29
+	.loc	4 166 32                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:166:32
 	ldr	r1, [r0]
 .Ltmp16:
 	@DEBUG_VALUE: vListInsert:pxNewListItem <- [DW_OP_LLVM_entry_value 1] $r1
@@ -253,41 +253,41 @@ uxListRemove:
 @ %bb.0:
 	@DEBUG_VALUE: uxListRemove:pxItemToRemove <- $r0
 	@DEBUG_VALUE: uxListRemove:pxItemToRemove <- $r0
-	.loc	4 176 18 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:176:18
+	.loc	4 176 21 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:176:21
 	ldrd	r3, r2, [r0, #4]
-	.loc	4 174 41                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:174:41
+	.loc	4 174 44                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:174:44
 	ldr	r1, [r0, #16]
 .Ltmp18:
 	@DEBUG_VALUE: uxListRemove:pxList <- $r1
-	.loc	4 176 37                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:176:37
+	.loc	4 176 40                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:176:40
 	str	r2, [r3, #8]
 .Ltmp19:
-	.loc	4 183 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:183:14
+	.loc	4 183 18                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:183:18
 	ldr.w	r12, [r1, #4]
 .Ltmp20:
-	.loc	4 177 18                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:177:18
+	.loc	4 177 21                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:177:21
 	ldr	r2, [r0, #8]
-	.loc	4 183 6                         @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:183:6
+	.loc	4 183 10                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:183:10
 	cmp	r12, r0
-	.loc	4 177 37                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:177:37
+	.loc	4 177 40                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:177:40
 	str	r3, [r2, #4]
 .Ltmp21:
-	.loc	4 185 19                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:185:19
+	.loc	4 185 25                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:185:25
 	it	eq
 	streq	r2, [r1, #4]
 	movs	r2, #0
 .Ltmp22:
-	.loc	4 192 30                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:192:30
+	.loc	4 192 33                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:192:33
 	str	r2, [r0, #16]
-	.loc	4 193 29                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:193:29
+	.loc	4 193 32                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:193:32
 	ldr	r0, [r1]
 .Ltmp23:
 	@DEBUG_VALUE: uxListRemove:pxItemToRemove <- [DW_OP_LLVM_entry_value 1] $r0
 	subs	r0, #1
 	str	r0, [r1]
-	.loc	4 195 17                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:195:17
+	.loc	4 195 20                        @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:195:20
 	ldr	r0, [r1]
-	.loc	4 195 2 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:195:2
+	.loc	4 195 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/list.c:195:5
 	bx	lr
 .Ltmp24:
 .Lfunc_end4:
@@ -884,67 +884,67 @@ uxListRemove:
 .Linfo_string1:
 	.asciz	"../../../components/platform/soc/rt582/rt582_freertos\\list.c" @ string offset=55
 .Linfo_string2:
-	.asciz	"D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" @ string offset=116
+	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=116
 .Linfo_string3:
-	.asciz	"xItemValue"                    @ string offset=178
+	.asciz	"xItemValue"                    @ string offset=177
 .Linfo_string4:
-	.asciz	"unsigned int"                  @ string offset=189
+	.asciz	"unsigned int"                  @ string offset=188
 .Linfo_string5:
-	.asciz	"uint32_t"                      @ string offset=202
+	.asciz	"uint32_t"                      @ string offset=201
 .Linfo_string6:
-	.asciz	"TickType_t"                    @ string offset=211
+	.asciz	"TickType_t"                    @ string offset=210
 .Linfo_string7:
-	.asciz	"pxNext"                        @ string offset=222
+	.asciz	"pxNext"                        @ string offset=221
 .Linfo_string8:
-	.asciz	"pxPrevious"                    @ string offset=229
+	.asciz	"pxPrevious"                    @ string offset=228
 .Linfo_string9:
-	.asciz	"pvOwner"                       @ string offset=240
+	.asciz	"pvOwner"                       @ string offset=239
 .Linfo_string10:
-	.asciz	"pvContainer"                   @ string offset=248
+	.asciz	"pvContainer"                   @ string offset=247
 .Linfo_string11:
-	.asciz	"uxNumberOfItems"               @ string offset=260
+	.asciz	"uxNumberOfItems"               @ string offset=259
 .Linfo_string12:
-	.asciz	"long unsigned int"             @ string offset=276
+	.asciz	"long unsigned int"             @ string offset=275
 .Linfo_string13:
-	.asciz	"UBaseType_t"                   @ string offset=294
+	.asciz	"UBaseType_t"                   @ string offset=293
 .Linfo_string14:
-	.asciz	"pxIndex"                       @ string offset=306
+	.asciz	"pxIndex"                       @ string offset=305
 .Linfo_string15:
-	.asciz	"xListEnd"                      @ string offset=314
+	.asciz	"xListEnd"                      @ string offset=313
 .Linfo_string16:
-	.asciz	"xMINI_LIST_ITEM"               @ string offset=323
+	.asciz	"xMINI_LIST_ITEM"               @ string offset=322
 .Linfo_string17:
-	.asciz	"MiniListItem_t"                @ string offset=339
+	.asciz	"MiniListItem_t"                @ string offset=338
 .Linfo_string18:
-	.asciz	"xLIST"                         @ string offset=354
+	.asciz	"xLIST"                         @ string offset=353
 .Linfo_string19:
-	.asciz	"xLIST_ITEM"                    @ string offset=360
+	.asciz	"xLIST_ITEM"                    @ string offset=359
 .Linfo_string20:
-	.asciz	"ListItem_t"                    @ string offset=371
+	.asciz	"ListItem_t"                    @ string offset=370
 .Linfo_string21:
-	.asciz	"vListInitialise"               @ string offset=382
+	.asciz	"vListInitialise"               @ string offset=381
 .Linfo_string22:
-	.asciz	"vListInitialiseItem"           @ string offset=398
+	.asciz	"vListInitialiseItem"           @ string offset=397
 .Linfo_string23:
-	.asciz	"vListInsertEnd"                @ string offset=418
+	.asciz	"vListInsertEnd"                @ string offset=417
 .Linfo_string24:
-	.asciz	"vListInsert"                   @ string offset=433
+	.asciz	"vListInsert"                   @ string offset=432
 .Linfo_string25:
-	.asciz	"uxListRemove"                  @ string offset=445
+	.asciz	"uxListRemove"                  @ string offset=444
 .Linfo_string26:
-	.asciz	"pxList"                        @ string offset=458
+	.asciz	"pxList"                        @ string offset=457
 .Linfo_string27:
-	.asciz	"List_t"                        @ string offset=465
+	.asciz	"List_t"                        @ string offset=464
 .Linfo_string28:
-	.asciz	"pxItem"                        @ string offset=472
+	.asciz	"pxItem"                        @ string offset=471
 .Linfo_string29:
-	.asciz	"pxNewListItem"                 @ string offset=479
+	.asciz	"pxNewListItem"                 @ string offset=478
 .Linfo_string30:
-	.asciz	"xValueOfInsertion"             @ string offset=493
+	.asciz	"xValueOfInsertion"             @ string offset=492
 .Linfo_string31:
-	.asciz	"pxIterator"                    @ string offset=511
+	.asciz	"pxIterator"                    @ string offset=510
 .Linfo_string32:
-	.asciz	"pxItemToRemove"                @ string offset=522
+	.asciz	"pxItemToRemove"                @ string offset=521
 	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals

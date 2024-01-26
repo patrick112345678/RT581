@@ -18,10 +18,10 @@
 	.eabi_attribute	26, 2	@ Tag_ABI_enum_size
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"flashctl.c"
-	.file	1 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl.h"
-	.file	2 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/sysctrl.h"
+	.file	1 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl.h"
+	.file	2 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/sysctrl.h"
 	.file	3 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
-	.file	4 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl_reg.h"
+	.file	4 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl_reg.h"
 	.section	.text.flash_suspend_check,"ax",%progbits
 	.hidden	flash_suspend_check             @ -- Begin function flash_suspend_check
 	.globl	flash_suspend_check
@@ -31,7 +31,7 @@
 	.thumb_func
 flash_suspend_check:
 .Lfunc_begin0:
-	.file	5 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c"
+	.file	5 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c"
 	.loc	5 15 0                          @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:15:0
 	.fnstart
 	.cfi_sections .debug_frame
@@ -5364,211 +5364,211 @@ flash_read_otp_sec_page:
 .Linfo_string1:
 	.asciz	"../../../components/platform/soc/rt582/rt582_driver/Src\\flashctl.c" @ string offset=55
 .Linfo_string2:
-	.asciz	"D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" @ string offset=122
+	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=122
 .Linfo_string3:
-	.asciz	"unsigned int"                  @ string offset=184
+	.asciz	"unsigned int"                  @ string offset=183
 .Linfo_string4:
-	.asciz	"FLASH_NOT_SUPPORT"             @ string offset=197
+	.asciz	"FLASH_NOT_SUPPORT"             @ string offset=196
 .Linfo_string5:
-	.asciz	"FLASH_512K"                    @ string offset=215
+	.asciz	"FLASH_512K"                    @ string offset=214
 .Linfo_string6:
-	.asciz	"FLASH_1024K"                   @ string offset=226
+	.asciz	"FLASH_1024K"                   @ string offset=225
 .Linfo_string7:
-	.asciz	"FLASH_2048K"                   @ string offset=238
+	.asciz	"FLASH_2048K"                   @ string offset=237
 .Linfo_string8:
-	.asciz	"FLASH_ERASE_PAGE"              @ string offset=250
+	.asciz	"FLASH_ERASE_PAGE"              @ string offset=249
 .Linfo_string9:
-	.asciz	"FLASH_ERASE_SECTOR"            @ string offset=267
+	.asciz	"FLASH_ERASE_SECTOR"            @ string offset=266
 .Linfo_string10:
-	.asciz	"FLASH_ERASE_32K"               @ string offset=286
+	.asciz	"FLASH_ERASE_32K"               @ string offset=285
 .Linfo_string11:
-	.asciz	"FLASH_ERASE_64K"               @ string offset=302
+	.asciz	"FLASH_ERASE_64K"               @ string offset=301
 .Linfo_string12:
-	.asciz	"FLASH_ERASE_SECURE"            @ string offset=318
+	.asciz	"FLASH_ERASE_SECURE"            @ string offset=317
 .Linfo_string13:
-	.asciz	"SYS_32MHZ_CLK"                 @ string offset=337
+	.asciz	"SYS_32MHZ_CLK"                 @ string offset=336
 .Linfo_string14:
-	.asciz	"SYS_48MHZ_CLK"                 @ string offset=351
+	.asciz	"SYS_48MHZ_CLK"                 @ string offset=350
 .Linfo_string15:
-	.asciz	"SYS_64MHZ_CLK"                 @ string offset=365
+	.asciz	"SYS_64MHZ_CLK"                 @ string offset=364
 .Linfo_string16:
-	.asciz	"COMMAND"                       @ string offset=379
+	.asciz	"COMMAND"                       @ string offset=378
 .Linfo_string17:
-	.asciz	"uint32_t"                      @ string offset=387
+	.asciz	"uint32_t"                      @ string offset=386
 .Linfo_string18:
-	.asciz	"FLASH_ADDR"                    @ string offset=396
+	.asciz	"FLASH_ADDR"                    @ string offset=395
 .Linfo_string19:
-	.asciz	"START"                         @ string offset=407
+	.asciz	"START"                         @ string offset=406
 .Linfo_string20:
-	.asciz	"STATUS"                        @ string offset=413
+	.asciz	"STATUS"                        @ string offset=412
 .Linfo_string21:
-	.asciz	"FLASH_DATA"                    @ string offset=420
+	.asciz	"FLASH_DATA"                    @ string offset=419
 .Linfo_string22:
-	.asciz	"MEM_ADDR"                      @ string offset=431
+	.asciz	"MEM_ADDR"                      @ string offset=430
 .Linfo_string23:
-	.asciz	"CONTROL_SET"                   @ string offset=440
+	.asciz	"CONTROL_SET"                   @ string offset=439
 .Linfo_string24:
-	.asciz	"CRC"                           @ string offset=452
+	.asciz	"CRC"                           @ string offset=451
 .Linfo_string25:
-	.asciz	"DPD"                           @ string offset=456
+	.asciz	"DPD"                           @ string offset=455
 .Linfo_string26:
-	.asciz	"RDPD"                          @ string offset=460
+	.asciz	"RDPD"                          @ string offset=459
 .Linfo_string27:
-	.asciz	"SUSPEND"                       @ string offset=465
+	.asciz	"SUSPEND"                       @ string offset=464
 .Linfo_string28:
-	.asciz	"RESUME"                        @ string offset=473
+	.asciz	"RESUME"                        @ string offset=472
 .Linfo_string29:
-	.asciz	"FLASH_INSTR"                   @ string offset=480
+	.asciz	"FLASH_INSTR"                   @ string offset=479
 .Linfo_string30:
-	.asciz	"PAGE_READ_WORD"                @ string offset=492
+	.asciz	"PAGE_READ_WORD"                @ string offset=491
 .Linfo_string31:
-	.asciz	"FLASH_INFO"                    @ string offset=507
+	.asciz	"FLASH_INFO"                    @ string offset=506
 .Linfo_string32:
-	.asciz	"RESV"                          @ string offset=518
+	.asciz	"RESV"                          @ string offset=517
 .Linfo_string33:
-	.asciz	"FLASH_INT"                     @ string offset=523
+	.asciz	"FLASH_INT"                     @ string offset=522
 .Linfo_string34:
-	.asciz	"PATTERN"                       @ string offset=533
+	.asciz	"PATTERN"                       @ string offset=532
 .Linfo_string35:
-	.asciz	"FLASHCTL_T"                    @ string offset=541
+	.asciz	"FLASHCTL_T"                    @ string offset=540
 .Linfo_string36:
-	.asciz	"unsigned char"                 @ string offset=552
+	.asciz	"unsigned char"                 @ string offset=551
 .Linfo_string37:
-	.asciz	"uint8_t"                       @ string offset=566
+	.asciz	"uint8_t"                       @ string offset=565
 .Linfo_string38:
-	.asciz	"flash_check_busy"              @ string offset=574
+	.asciz	"flash_check_busy"              @ string offset=573
 .Linfo_string39:
-	.asciz	"flash_get_deviceinfo"          @ string offset=591
+	.asciz	"flash_get_deviceinfo"          @ string offset=590
 .Linfo_string40:
-	.asciz	"flash_check_address"           @ string offset=612
+	.asciz	"flash_check_address"           @ string offset=611
 .Linfo_string41:
-	.asciz	"flash_address"                 @ string offset=632
+	.asciz	"flash_address"                 @ string offset=631
 .Linfo_string42:
-	.asciz	"length"                        @ string offset=646
+	.asciz	"length"                        @ string offset=645
 .Linfo_string43:
-	.asciz	"flash_size_id"                 @ string offset=653
+	.asciz	"flash_size_id"                 @ string offset=652
 .Linfo_string44:
-	.asciz	"unsigned short"                @ string offset=667
+	.asciz	"unsigned short"                @ string offset=666
 .Linfo_string45:
-	.asciz	"uint16_t"                      @ string offset=682
+	.asciz	"uint16_t"                      @ string offset=681
 .Linfo_string46:
-	.asciz	"flash_set_timing"              @ string offset=691
+	.asciz	"flash_set_timing"              @ string offset=690
 .Linfo_string47:
-	.asciz	"timing_cfg"                    @ string offset=708
+	.asciz	"timing_cfg"                    @ string offset=707
 .Linfo_string48:
-	.asciz	"deep_pd_timing"                @ string offset=719
+	.asciz	"deep_pd_timing"                @ string offset=718
 .Linfo_string49:
-	.asciz	"deep_rpd_timing"               @ string offset=734
+	.asciz	"deep_rpd_timing"               @ string offset=733
 .Linfo_string50:
-	.asciz	"suspend_timing"                @ string offset=750
+	.asciz	"suspend_timing"                @ string offset=749
 .Linfo_string51:
-	.asciz	"resume_timing"                 @ string offset=765
+	.asciz	"resume_timing"                 @ string offset=764
 .Linfo_string52:
-	.asciz	"flash_timing_mode_t"           @ string offset=779
+	.asciz	"flash_timing_mode_t"           @ string offset=778
 .Linfo_string53:
-	.asciz	"flash_read_otp_sec_register"   @ string offset=799
+	.asciz	"flash_read_otp_sec_register"   @ string offset=798
 .Linfo_string54:
-	.asciz	"buf_addr"                      @ string offset=827
+	.asciz	"buf_addr"                      @ string offset=826
 .Linfo_string55:
-	.asciz	"read_reg_addr"                 @ string offset=836
+	.asciz	"read_reg_addr"                 @ string offset=835
 .Linfo_string56:
-	.asciz	"addr"                          @ string offset=850
+	.asciz	"addr"                          @ string offset=849
 .Linfo_string57:
-	.asciz	"flash_suspend_check"           @ string offset=855
+	.asciz	"flash_suspend_check"           @ string offset=854
 .Linfo_string58:
-	.asciz	"flash_get_status_reg"          @ string offset=875
+	.asciz	"flash_get_status_reg"          @ string offset=874
 .Linfo_string59:
-	.asciz	"flash_size"                    @ string offset=896
+	.asciz	"flash_size"                    @ string offset=895
 .Linfo_string60:
-	.asciz	"flash_size_t"                  @ string offset=907
+	.asciz	"flash_size_t"                  @ string offset=906
 .Linfo_string61:
-	.asciz	"flash_read_page"               @ string offset=920
+	.asciz	"flash_read_page"               @ string offset=919
 .Linfo_string62:
-	.asciz	"flash_read_page_syncmode"      @ string offset=936
+	.asciz	"flash_read_page_syncmode"      @ string offset=935
 .Linfo_string63:
-	.asciz	"flash_read_byte"               @ string offset=961
+	.asciz	"flash_read_byte"               @ string offset=960
 .Linfo_string64:
-	.asciz	"flash_read_byte_check_addr"    @ string offset=977
+	.asciz	"flash_read_byte_check_addr"    @ string offset=976
 .Linfo_string65:
-	.asciz	"flash_erase"                   @ string offset=1004
+	.asciz	"flash_erase"                   @ string offset=1003
 .Linfo_string66:
-	.asciz	"flash_write_page"              @ string offset=1016
+	.asciz	"flash_write_page"              @ string offset=1015
 .Linfo_string67:
-	.asciz	"flash_verify_page"             @ string offset=1033
+	.asciz	"flash_verify_page"             @ string offset=1032
 .Linfo_string68:
-	.asciz	"flash_write_byte"              @ string offset=1051
+	.asciz	"flash_write_byte"              @ string offset=1050
 .Linfo_string69:
-	.asciz	"flash_set_status_reg"          @ string offset=1068
+	.asciz	"flash_set_status_reg"          @ string offset=1067
 .Linfo_string70:
-	.asciz	"flash_write_sec_register"      @ string offset=1089
+	.asciz	"flash_write_sec_register"      @ string offset=1088
 .Linfo_string71:
-	.asciz	"flash_read_sec_register"       @ string offset=1114
+	.asciz	"flash_read_sec_register"       @ string offset=1113
 .Linfo_string72:
-	.asciz	"flash_get_unique_id"           @ string offset=1138
+	.asciz	"flash_get_unique_id"           @ string offset=1137
 .Linfo_string73:
-	.asciz	"flash_timing_init"             @ string offset=1158
+	.asciz	"flash_timing_init"             @ string offset=1157
 .Linfo_string74:
-	.asciz	"flash_read_otp_sec_page"       @ string offset=1176
+	.asciz	"flash_read_otp_sec_page"       @ string offset=1175
 .Linfo_string75:
-	.asciz	"flash_status"                  @ string offset=1200
+	.asciz	"flash_status"                  @ string offset=1199
 .Linfo_string76:
-	.asciz	"require_mode"                  @ string offset=1213
+	.asciz	"require_mode"                  @ string offset=1212
 .Linfo_string77:
-	.asciz	"status1"                       @ string offset=1226
+	.asciz	"status1"                       @ string offset=1225
 .Linfo_string78:
-	.asciz	"status2"                       @ string offset=1234
+	.asciz	"status2"                       @ string offset=1233
 .Linfo_string79:
-	.asciz	"status3"                       @ string offset=1242
+	.asciz	"status3"                       @ string offset=1241
 .Linfo_string80:
-	.asciz	"flash_status_t"                @ string offset=1250
+	.asciz	"flash_status_t"                @ string offset=1249
 .Linfo_string81:
-	.asciz	"status"                        @ string offset=1265
+	.asciz	"status"                        @ string offset=1264
 .Linfo_string82:
-	.asciz	"read_page_addr"                @ string offset=1272
+	.asciz	"read_page_addr"                @ string offset=1271
 .Linfo_string83:
-	.asciz	"read_addr"                     @ string offset=1287
+	.asciz	"read_addr"                     @ string offset=1286
 .Linfo_string84:
-	.asciz	"mode"                          @ string offset=1297
+	.asciz	"mode"                          @ string offset=1296
 .Linfo_string85:
-	.asciz	"flash_erase_mode_t"            @ string offset=1302
+	.asciz	"flash_erase_mode_t"            @ string offset=1301
 .Linfo_string86:
-	.asciz	"flash_addr"                    @ string offset=1321
+	.asciz	"flash_addr"                    @ string offset=1320
 .Linfo_string87:
-	.asciz	"write_page_addr"               @ string offset=1332
+	.asciz	"write_page_addr"               @ string offset=1331
 .Linfo_string88:
-	.asciz	"write_addr"                    @ string offset=1348
+	.asciz	"write_addr"                    @ string offset=1347
 .Linfo_string89:
-	.asciz	"singlebyte"                    @ string offset=1359
+	.asciz	"singlebyte"                    @ string offset=1358
 .Linfo_string90:
-	.asciz	"write_reg_addr"                @ string offset=1370
+	.asciz	"write_reg_addr"                @ string offset=1369
 .Linfo_string91:
-	.asciz	"temp"                          @ string offset=1385
+	.asciz	"temp"                          @ string offset=1384
 .Linfo_string92:
-	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=1390
+	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=1389
 .Linfo_string93:
-	.asciz	"flash_id_buf_addr"             @ string offset=1410
+	.asciz	"flash_id_buf_addr"             @ string offset=1409
 .Linfo_string94:
-	.asciz	"buf_length"                    @ string offset=1428
+	.asciz	"buf_length"                    @ string offset=1427
 .Linfo_string95:
-	.asciz	"ptr"                           @ string offset=1439
+	.asciz	"ptr"                           @ string offset=1438
 .Linfo_string96:
-	.asciz	"i"                             @ string offset=1443
+	.asciz	"i"                             @ string offset=1442
 .Linfo_string97:
-	.asciz	"flash_type_id"                 @ string offset=1445
+	.asciz	"flash_type_id"                 @ string offset=1444
 .Linfo_string98:
-	.asciz	"clk_mode"                      @ string offset=1459
+	.asciz	"clk_mode"                      @ string offset=1458
 .Linfo_string99:
-	.asciz	"tres"                          @ string offset=1468
+	.asciz	"tres"                          @ string offset=1467
 .Linfo_string100:
-	.asciz	"tsus"                          @ string offset=1473
+	.asciz	"tsus"                          @ string offset=1472
 .Linfo_string101:
-	.asciz	"trs"                           @ string offset=1478
+	.asciz	"trs"                           @ string offset=1477
 .Linfo_string102:
-	.asciz	"tdp"                           @ string offset=1482
+	.asciz	"tdp"                           @ string offset=1481
 .Linfo_string103:
-	.asciz	"sys_clk"                       @ string offset=1486
+	.asciz	"sys_clk"                       @ string offset=1485
 .Linfo_string104:
-	.asciz	"flash_timing"                  @ string offset=1494
+	.asciz	"flash_timing"                  @ string offset=1493
 	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals

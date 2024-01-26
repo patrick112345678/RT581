@@ -19,9 +19,9 @@
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"port.c"
 	.file	1 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
-	.file	2 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c"
-	.file	3 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\\portmacro.h"
-	.file	4 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\task.h"
+	.file	2 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c"
+	.file	3 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\\portmacro.h"
+	.file	4 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\task.h"
 	.section	.text.pxPortInitialiseStack,"ax",%progbits
 	.hidden	pxPortInitialiseStack           @ -- Begin function pxPortInitialiseStack
 	.globl	pxPortInitialiseStack
@@ -42,31 +42,31 @@ pxPortInitialiseStack:
 	mov	r3, r0
 .Ltmp0:
 	@DEBUG_VALUE: pxPortInitialiseStack:pxTopOfStack <- [DW_OP_plus_uconst 4294967292, DW_OP_stack_value] $r3
-	.loc	2 183 16 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:183:16
+	.loc	2 183 19 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:183:19
 	movw	r0, :lower16:prvTaskExitError
 	movt	r0, :upper16:prvTaskExitError
 .Ltmp1:
 	@DEBUG_VALUE: pxPortInitialiseStack:pxTopOfStack <- [DW_OP_plus_uconst 4294967264, DW_OP_stack_value] $r3
-	.loc	2 0 16 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:16
+	.loc	2 0 19 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:19
 	mov.w	r12, #16777216
 	@DEBUG_VALUE: pxPortInitialiseStack:pvParameters <- $r2
 	@DEBUG_VALUE: pxPortInitialiseStack:pxCode <- $r1
 .Ltmp2:
 	@DEBUG_VALUE: pxPortInitialiseStack:pxTopOfStack <- [DW_OP_plus_uconst 4294967288, DW_OP_stack_value] $r3
-	.loc	2 181 45 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:181:45
+	.loc	2 181 48 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:181:48
 	bic	r1, r1, #1
 .Ltmp3:
 	@DEBUG_VALUE: pxPortInitialiseStack:pxCode <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: pxPortInitialiseStack:pxTopOfStack <- [DW_OP_plus_uconst 4294967284, DW_OP_stack_value] $r3
-	.loc	2 183 16                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:183:16
+	.loc	2 183 19                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:183:19
 	stmdb	r3, {r0, r1, r12}
-	.loc	2 186 15                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:186:15
+	.loc	2 186 18                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:186:18
 	sub.w	r0, r3, #64
 .Ltmp4:
 	@DEBUG_VALUE: pxPortInitialiseStack:pxTopOfStack <- $r0
-	.loc	2 185 16                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:185:16
+	.loc	2 185 19                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:185:19
 	str	r2, [r3, #-32]
-	.loc	2 188 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:188:2
+	.loc	2 188 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:188:5
 	bx	lr
 .Ltmp5:
 .Lfunc_end0:
@@ -96,20 +96,20 @@ prvTaskExitError:
 	.cfi_def_cfa_offset 16
 	movs	r0, #0
 .Ltmp6:
-	.loc	2 194 19 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:194:19
+	.loc	2 194 23 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:194:23
 	str	r0, [sp, #4]
 .Ltmp7:
-	.loc	2 202 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:202:2
+	.loc	2 202 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:202:5
 	movw	r0, :lower16:uxCriticalNesting
 	movt	r0, :upper16:uxCriticalNesting
 	ldr	r0, [r0]
 .Ltmp8:
-	.loc	2 202 2 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:202:2
+	.loc	2 202 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:202:5
 	adds	r0, #1
 	beq	.LBB1_3
 @ %bb.1:
 .Ltmp9:
-	.loc	2 202 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:202:2
+	.loc	2 202 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:202:5
 	movw	r0, :lower16:.L.str
 	movw	r2, :lower16:.L.str.2
 	mov.w	r12, #202
@@ -128,11 +128,11 @@ prvTaskExitError:
 .Ltmp11:
 	.p2align	2
 .LBB1_2:                                @ =>This Inner Loop Header: Depth=1
-	.loc	2 202 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:202:2
+	.loc	2 202 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:202:5
 	b	.LBB1_2
 .Ltmp12:
 .LBB1_3:
-	.loc	3 197 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\portmacro.h:197:2
+	.loc	3 197 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\portmacro.h:197:5
 	@APP
 	mov.w	r0, #64
 	msr	basepri, r0
@@ -144,9 +144,9 @@ prvTaskExitError:
 	@DEBUG_VALUE: vPortRaiseBASEPRI:ulNewBASEPRI <- $r0
 	.p2align	2
 .LBB1_4:                                @ =>This Inner Loop Header: Depth=1
-	.loc	2 204 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:204:9
+	.loc	2 204 13                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:204:13
 	ldr	r0, [sp, #4]
-	.loc	2 204 2 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:204:2
+	.loc	2 204 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:204:5
 	cmp	r0, #0
 	beq	.LBB1_4
 @ %bb.5:
@@ -182,7 +182,7 @@ vPortSVCHandler:
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
-	.loc	2 219 2 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:219:2
+	.loc	2 219 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:219:5
 	@APP
 	ldr	r3, pxCurrentTCBConst2
 	ldr	r1, [r3]
@@ -231,112 +231,112 @@ xPortStartScheduler:
 	movw	r0, #58368
 	movt	r0, #57344
 .Ltmp16:
-	.loc	2 274 24 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:274:24
+	.loc	2 274 30 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:274:30
 	ldrb	r1, [r0]
-	.loc	2 284 24                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:284:24
+	.loc	2 284 30                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:284:30
 	movw	r2, :lower16:ucMaxSysCallPriority
-	.loc	2 274 22                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:274:22
+	.loc	2 274 28                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:274:28
 	str	r1, [sp, #12]
 	movs	r1, #255
-	.loc	2 278 33                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:278:33
+	.loc	2 278 39                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:278:39
 	strb	r1, [r0]
-	.loc	2 281 24                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:281:24
+	.loc	2 281 30                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:281:30
 	ldrb	r1, [r0]
-	.loc	2 284 24                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:284:24
+	.loc	2 284 30                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:284:30
 	movt	r2, :upper16:ucMaxSysCallPriority
-	.loc	2 281 22                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:281:22
+	.loc	2 281 28                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:281:28
 	strb.w	r1, [sp, #11]
-	.loc	2 284 65                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:284:65
+	.loc	2 284 71                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:284:71
 	ldrb.w	r1, [sp, #11]
-	.loc	2 284 63 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:284:63
+	.loc	2 284 69 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:284:69
 	and	r1, r1, #64
-	.loc	2 284 24                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:284:24
+	.loc	2 284 30                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:284:30
 	strb	r1, [r2]
-	.loc	2 288 22 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:288:22
+	.loc	2 288 28 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:288:28
 	movw	r1, :lower16:ulMaxPRIGROUPValue
 	movt	r1, :upper16:ulMaxPRIGROUPValue
 	movs	r2, #7
 	str	r2, [r1]
-	.loc	2 289 12                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:289:12
+	.loc	2 289 19                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:289:19
 	ldrsb.w	r2, [sp, #11]
-	.loc	2 289 3 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:289:3
+	.loc	2 289 9 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:289:9
 	cmp.w	r2, #-1
 .Ltmp17:
 	@DEBUG_VALUE: pucFirstUserPriorityRegister <- undef
 	bgt	.LBB3_5
 .Ltmp18:
 @ %bb.1:
-	.loc	2 0 3                           @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:3
+	.loc	2 0 9                           @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:9
 	movs	r2, #7
 	.p2align	2
 .LBB3_2:                                @ =>This Inner Loop Header: Depth=1
 .Ltmp19:
-	.loc	2 292 23 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:292:23
+	.loc	2 292 32 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:292:32
 	ldrb.w	r3, [sp, #11]
-	.loc	2 291 22                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:291:22
+	.loc	2 291 31                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:291:31
 	subs	r2, #1
-	.loc	2 292 23                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:292:23
+	.loc	2 292 32                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:292:32
 	lsls	r3, r3, #1
 	strb.w	r3, [sp, #11]
 .Ltmp20:
-	.loc	2 289 12                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:289:12
+	.loc	2 289 19                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:289:19
 	ldrsb.w	r3, [sp, #11]
-	.loc	2 289 3 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:289:3
+	.loc	2 289 9 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:289:9
 	cmp	r3, #0
 	bmi	.LBB3_2
 @ %bb.3:
 .Ltmp21:
-	.loc	2 300 4 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:300:4
+	.loc	2 300 13 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:300:13
 	cmp	r2, #4
 .Ltmp22:
-	.loc	2 291 22                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:291:22
+	.loc	2 291 31                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:291:31
 	str	r2, [r1]
 .Ltmp23:
-	.loc	2 300 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:300:4
+	.loc	2 300 13                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:300:13
 	bne	.LBB3_5
 .Ltmp24:
 @ %bb.4:
-	.loc	2 0 4 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:4
+	.loc	2 0 13 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:13
 	mov.w	r2, #1024
-	.loc	2 316 22 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:316:22
+	.loc	2 316 28 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:316:28
 	str	r2, [r1]
-	.loc	2 320 35                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:320:35
+	.loc	2 320 41                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:320:41
 	ldr	r1, [sp, #12]
-	.loc	2 320 33 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:320:33
+	.loc	2 320 39 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:320:39
 	strb	r1, [r0]
 .Ltmp25:
-	.loc	2 325 23 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:325:23
+	.loc	2 325 26 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:325:26
 	ldr.w	r1, [r0, #2336]
 	orr	r1, r1, #14680064
 	str.w	r1, [r0, #2336]
-	.loc	2 326 23                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:326:23
+	.loc	2 326 26                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:326:26
 	ldr.w	r1, [r0, #2336]
 	orr	r1, r1, #-536870912
 	str.w	r1, [r0, #2336]
-	.loc	2 330 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:330:2
+	.loc	2 330 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:330:5
 	bl	vPortSetupTimerInterrupt
 .Ltmp26:
-	.loc	2 333 20                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:333:20
+	.loc	2 333 23                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:333:23
 	movw	r0, :lower16:uxCriticalNesting
 	movt	r0, :upper16:uxCriticalNesting
 	movs	r1, #0
 	str	r1, [r0]
-	.loc	2 336 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:336:2
+	.loc	2 336 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:336:5
 	bl	prvPortStartFirstTask
 .Ltmp27:
-	.loc	2 344 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:344:2
+	.loc	2 344 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:344:5
 	bl	vTaskSwitchContext
 .Ltmp28:
-	.loc	2 345 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:345:2
+	.loc	2 345 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:345:5
 	bl	prvTaskExitError
 .Ltmp29:
-	.loc	2 348 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:348:2
+	.loc	2 348 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:348:5
 	movs	r0, #0
 	add	sp, #16
 	pop	{r7, pc}
 .LBB3_5:
 .Ltmp30:
-	.loc	2 300 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:300:4
+	.loc	2 300 13                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:300:13
 	movw	r0, :lower16:.L.str
 	movw	r1, :lower16:.L.str.1
 	movw	r2, :lower16:.L.str.2
@@ -355,12 +355,12 @@ xPortStartScheduler:
 .Ltmp32:
 	.p2align	2
 .LBB3_6:                                @ =>This Inner Loop Header: Depth=1
-	.loc	2 300 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:300:4
+	.loc	2 300 13                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:300:13
 	b	.LBB3_6
 .Ltmp33:
 	.p2align	2
 @ %bb.7:
-	.loc	2 0 4 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:4
+	.loc	2 0 13 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:13
 .LCPI3_0:
 .L__func__.xPortStartScheduler:
 	.asciz	"xPortStartScheduler"
@@ -383,27 +383,27 @@ vPortSetupTimerInterrupt:
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
-	.loc	2 621 31 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:621:31
+	.loc	2 621 37 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:621:37
 	movw	r0, :lower16:SystemCoreClock
 	movt	r0, :upper16:SystemCoreClock
 	ldr	r1, [r0]
 	movw	r2, #19923
 	movt	r2, #4194
-	.loc	2 621 54 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:621:54
+	.loc	2 621 60 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:621:60
 	umull	r1, r3, r1, r2
 	lsrs	r1, r3, #6
-	.loc	2 621 27                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:621:27
+	.loc	2 621 33                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:621:33
 	movw	r3, :lower16:ulTimerCountsForOneTick
 	movt	r3, :upper16:ulTimerCountsForOneTick
 	str	r1, [r3]
 	mvn	r3, #-16777216
-	.loc	2 622 59 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:622:59
+	.loc	2 622 65 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:622:65
 	udiv	r1, r3, r1
-	.loc	2 622 35 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:622:35
+	.loc	2 622 41 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:622:41
 	movw	r3, :lower16:xMaximumPossibleSuppressedTicks
 	movt	r3, :upper16:xMaximumPossibleSuppressedTicks
 	str	r1, [r3]
-	.loc	2 623 30 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:623:30
+	.loc	2 623 36 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:623:36
 	movw	r1, :lower16:ulStoppedTimerCompensation
 	movt	r1, :upper16:ulStoppedTimerCompensation
 	movs	r3, #1
@@ -412,21 +412,21 @@ vPortSetupTimerInterrupt:
 	movt	r1, #57344
 	movs	r3, #0
 .Ltmp34:
-	.loc	2 628 28                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:628:28
+	.loc	2 628 31                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:628:31
 	str	r3, [r1]
-	.loc	2 629 37                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:629:37
+	.loc	2 629 40                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:629:40
 	str	r3, [r1, #8]
-	.loc	2 632 32                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:632:32
+	.loc	2 632 35                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:632:35
 	ldr	r0, [r0]
-	.loc	2 632 55 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:632:55
+	.loc	2 632 58 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:632:58
 	umull	r0, r2, r0, r2
 	mov.w	r0, #-1
-	.loc	2 632 78                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:632:78
+	.loc	2 632 81                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:632:81
 	add.w	r0, r0, r2, lsr #6
-	.loc	2 632 28                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:632:28
+	.loc	2 632 31                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:632:31
 	str	r0, [r1, #4]
 	movs	r0, #7
-	.loc	2 633 28 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:633:28
+	.loc	2 633 31 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:633:31
 	str	r0, [r1]
 	.loc	2 634 1                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:634:1
 	bx	lr
@@ -448,7 +448,7 @@ prvPortStartFirstTask:
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
-	.loc	2 239 2 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:239:2
+	.loc	2 239 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:239:5
 	@APP
 	ldr	r0, .Ltmp36
 	ldr	r0, [r0]
@@ -491,12 +491,12 @@ vPortEndScheduler:
 	sub	sp, #8
 	.cfi_def_cfa_offset 16
 .Ltmp38:
-	.loc	2 356 2 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:356:2
+	.loc	2 356 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:356:5
 	movw	r0, :lower16:uxCriticalNesting
 	movt	r0, :upper16:uxCriticalNesting
 	ldr	r0, [r0]
 .Ltmp39:
-	.loc	2 356 2 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:356:2
+	.loc	2 356 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:356:5
 	cmp.w	r0, #1000
 	.loc	2 357 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:357:1
 	itt	eq
@@ -504,7 +504,7 @@ vPortEndScheduler:
 	popeq	{r7, pc}
 .LBB6_1:
 .Ltmp40:
-	.loc	2 356 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:356:2
+	.loc	2 356 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:356:5
 	movw	r0, :lower16:.L.str
 	movw	r2, :lower16:.L.str.2
 	mov.w	r12, #356
@@ -522,12 +522,12 @@ vPortEndScheduler:
 .Ltmp42:
 	.p2align	2
 .LBB6_2:                                @ =>This Inner Loop Header: Depth=1
-	.loc	2 356 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:356:2
+	.loc	2 356 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:356:5
 	b	.LBB6_2
 .Ltmp43:
 	.p2align	2
 @ %bb.3:
-	.loc	2 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:2
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:5
 .LCPI6_0:
 .L.str.3:
 	.asciz	"uxCriticalNesting == 1000UL"
@@ -562,7 +562,7 @@ vPortEnterCritical:
 	sub	sp, #8
 	.cfi_def_cfa_offset 16
 .Ltmp44:
-	.loc	3 197 2 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\portmacro.h:197:2
+	.loc	3 197 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\portmacro.h:197:5
 	@APP
 	mov.w	r0, #64
 	msr	basepri, r0
@@ -572,13 +572,13 @@ vPortEnterCritical:
 	@NO_APP
 .Ltmp45:
 	@DEBUG_VALUE: vPortRaiseBASEPRI:ulNewBASEPRI <- $r0
-	.loc	2 363 19                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:363:19
+	.loc	2 363 22                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:363:22
 	movw	r0, :lower16:uxCriticalNesting
 	movt	r0, :upper16:uxCriticalNesting
 	ldr	r1, [r0]
 	adds	r2, r1, #1
 	str	r2, [r0]
-	.loc	2 370 6                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:370:6
+	.loc	2 370 10                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:370:10
 	cbz	r1, .LBB7_2
 .LBB7_1:
 	.loc	2 374 1                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:374:1
@@ -589,15 +589,15 @@ vPortEnterCritical:
 	movw	r0, #60676
 	movt	r0, #57344
 .Ltmp46:
-	.loc	2 372 3 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:372:3
+	.loc	2 372 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:372:9
 	ldr	r0, [r0]
 .Ltmp47:
-	.loc	2 372 3 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:372:3
+	.loc	2 372 9 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:372:9
 	lsls	r0, r0, #24
 	beq	.LBB7_1
 @ %bb.3:
 .Ltmp48:
-	.loc	2 372 3                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:372:3
+	.loc	2 372 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:372:9
 	movw	r0, :lower16:.L.str
 	movw	r2, :lower16:.L.str.2
 	mov.w	r12, #372
@@ -615,12 +615,12 @@ vPortEnterCritical:
 .Ltmp50:
 	.p2align	2
 .LBB7_4:                                @ =>This Inner Loop Header: Depth=1
-	.loc	2 372 3                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:372:3
+	.loc	2 372 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:372:9
 	b	.LBB7_4
 .Ltmp51:
 	.p2align	2
 @ %bb.5:
-	.loc	2 0 3 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:3
+	.loc	2 0 9 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:9
 .LCPI7_0:
 .L.str.4:
 	.asciz	"( portNVIC_INT_CTRL_REG & portVECTACTIVE_MASK ) == 0\000\000\000"
@@ -655,25 +655,25 @@ vPortExitCritical:
 	sub	sp, #8
 	.cfi_def_cfa_offset 16
 .Ltmp52:
-	.loc	2 379 2 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:379:2
+	.loc	2 379 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:379:5
 	movw	r0, :lower16:uxCriticalNesting
 	movt	r0, :upper16:uxCriticalNesting
 	ldr	r1, [r0]
 .Ltmp53:
-	.loc	2 379 2 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:379:2
+	.loc	2 379 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:379:5
 	cbz	r1, .LBB8_4
 @ %bb.1:
-	.loc	2 380 19 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:380:19
+	.loc	2 380 22 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:380:22
 	subs	r1, #1
 	str	r1, [r0]
-	.loc	2 381 6                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:381:6
+	.loc	2 381 10                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:381:10
 	bne	.LBB8_3
 @ %bb.2:
-	.loc	2 0 6 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:6
+	.loc	2 0 10 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:10
 	movs	r0, #0
 .Ltmp54:
 	@DEBUG_VALUE: vPortSetBASEPRI:ulNewMaskValue <- 0
-	.loc	3 231 2 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\portmacro.h:231:2
+	.loc	3 231 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\portmacro.h:231:5
 	@APP
 	msr	basepri, r0
 	@NO_APP
@@ -684,7 +684,7 @@ vPortExitCritical:
 	pop	{r7, pc}
 .LBB8_4:
 .Ltmp56:
-	.loc	2 379 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:379:2
+	.loc	2 379 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:379:5
 	movw	r0, :lower16:.L.str
 	movw	r2, :lower16:.L.str.2
 	movw	r12, #379
@@ -702,12 +702,12 @@ vPortExitCritical:
 .Ltmp58:
 	.p2align	2
 .LBB8_5:                                @ =>This Inner Loop Header: Depth=1
-	.loc	2 379 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:379:2
+	.loc	2 379 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:379:5
 	b	.LBB8_5
 .Ltmp59:
 	.p2align	2
 @ %bb.6:
-	.loc	2 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:2
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:5
 .LCPI8_0:
 .L.str.5:
 	.asciz	"uxCriticalNesting\000\000"
@@ -733,7 +733,7 @@ xPortPendSVHandler:
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
-	.loc	2 392 2 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:392:2
+	.loc	2 392 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:392:5
 	@APP
 	mrs	r0, psp
 	isb	sy
@@ -790,7 +790,7 @@ xPortSysTickHandler:
 	.cfi_offset lr, -4
 	.cfi_offset r7, -8
 .Ltmp61:
-	.loc	3 197 2 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\portmacro.h:197:2
+	.loc	3 197 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\portmacro.h:197:5
 	@APP
 	mov.w	r0, #64
 	msr	basepri, r0
@@ -800,26 +800,26 @@ xPortSysTickHandler:
 	@NO_APP
 .Ltmp62:
 	@DEBUG_VALUE: vPortRaiseBASEPRI:ulNewBASEPRI <- $r0
-	.loc	2 434 7                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:434:7
+	.loc	2 434 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:434:14
 	bl	xTaskIncrementTick
 .Ltmp63:
-	.loc	2 434 7 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:434:7
+	.loc	2 434 14 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:434:14
 	cbz	r0, .LBB10_2
 @ %bb.1:
-	.loc	2 0 7                           @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:7
+	.loc	2 0 14                          @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:14
 	movw	r0, #60676
 	movt	r0, #57344
 	mov.w	r1, #268435456
 .Ltmp64:
-	.loc	2 438 26 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:438:26
+	.loc	2 438 35 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:438:35
 	str	r1, [r0]
 .Ltmp65:
 .LBB10_2:
-	.loc	2 0 26 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:26
+	.loc	2 0 35 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:35
 	movs	r0, #0
 .Ltmp66:
 	@DEBUG_VALUE: vPortSetBASEPRI:ulNewMaskValue <- 0
-	.loc	3 231 2 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\portmacro.h:231:2
+	.loc	3 231 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\portmacro.h:231:5
 	@APP
 	msr	basepri, r0
 	@NO_APP
@@ -864,115 +864,115 @@ vPortSuppressTicksAndSleep:
 .Ltmp69:
 	@DEBUG_VALUE: vPortSuppressTicksAndSleep:xExpectedIdleTime <- $r5
 	@DEBUG_VALUE: vPortSuppressTicksAndSleep:xExpectedIdleTime <- $r5
-	.loc	2 453 27 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:453:27
+	.loc	2 453 30 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:453:30
 	movw	r0, :lower16:xMaximumPossibleSuppressedTicks
 	movw	r6, #57360
 	movt	r0, :upper16:xMaximumPossibleSuppressedTicks
 	movt	r6, #57344
 	ldr	r0, [r0]
 .Ltmp70:
-	.loc	2 462 29                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:462:29
+	.loc	2 462 31                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:462:31
 	ldr	r1, [r6]
-	.loc	2 453 7                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:453:7
+	.loc	2 453 10                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:453:10
 	cmp	r0, r5
 	it	lo
 	movlo	r5, r0
 .Ltmp71:
 	@DEBUG_VALUE: vPortSuppressTicksAndSleep:xExpectedIdleTime <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: vPortSuppressTicksAndSleep:xExpectedIdleTime <- $r5
-	.loc	2 462 29                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:462:29
+	.loc	2 462 31                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:462:31
 	bic	r0, r1, #1
-	.loc	2 467 58                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:467:58
+	.loc	2 467 60                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:467:60
 	movw	r8, :lower16:ulTimerCountsForOneTick
-	.loc	2 462 29                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:462:29
+	.loc	2 462 31                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:462:31
 	str	r0, [r6]
-	.loc	2 467 58                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:467:58
+	.loc	2 467 60                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:467:60
 	movt	r8, :upper16:ulTimerCountsForOneTick
 .Ltmp72:
-	.loc	2 468 23                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:468:23
+	.loc	2 468 26                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:468:26
 	movw	r9, :lower16:ulStoppedTimerCompensation
 .Ltmp73:
-	.loc	2 467 19                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:467:19
+	.loc	2 467 21                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:467:21
 	ldr	r0, [r6, #8]
-	.loc	2 467 58 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:467:58
+	.loc	2 467 60 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:467:60
 	ldr.w	r1, [r8]
 .Ltmp74:
-	.loc	2 468 23 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:468:23
+	.loc	2 468 26 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:468:26
 	movt	r9, :upper16:ulStoppedTimerCompensation
 .Ltmp75:
-	.loc	2 467 104                       @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:467:104
+	.loc	2 467 106                       @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:467:106
 	subs	r4, r5, #1
 .Ltmp76:
-	.loc	2 468 23                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:468:23
+	.loc	2 468 26                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:468:26
 	ldrb.w	r2, [r9]
 .Ltmp77:
-	.loc	2 467 54                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:467:54
+	.loc	2 467 56                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:467:56
 	mla	r0, r1, r4, r0
 .Ltmp78:
 	@DEBUG_VALUE: vPortSuppressTicksAndSleep:ulReloadValue <- $r0
-	.loc	2 468 23                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:468:23
+	.loc	2 468 26                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:468:26
 	cmp	r2, #0
 	it	ne
 	movne	r2, #45
 .Ltmp79:
-	.loc	2 468 7 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:468:7
+	.loc	2 468 10 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:468:10
 	subs	r7, r0, r2
 	it	ls
 	movls	r7, r0
 .Ltmp80:
 	@DEBUG_VALUE: vPortSuppressTicksAndSleep:ulReloadValue <- $r7
 	@DEBUG_VALUE: vPortSuppressTicksAndSleep:ulReloadValue <- $r7
-	.loc	2 475 3 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:475:3
+	.loc	2 475 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:475:5
 	@APP
 	cpsid i
 	@NO_APP
-	.loc	2 476 3                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:476:3
+	.loc	2 476 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:476:5
 	@APP
 	dsb	sy
 	@NO_APP
-	.loc	2 477 3                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:477:3
+	.loc	2 477 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:477:5
 	@APP
 	isb	sy
 	@NO_APP
 .Ltmp81:
-	.loc	2 481 7                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:481:7
+	.loc	2 481 10                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:481:10
 	bl	eTaskConfirmSleepModeStatus
 .Ltmp82:
-	.loc	2 481 7 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:481:7
+	.loc	2 481 10 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:481:10
 	cbz	r0, .LBB11_5
 .Ltmp83:
 @ %bb.1:
 	@DEBUG_VALUE: vPortSuppressTicksAndSleep:ulReloadValue <- $r7
 	@DEBUG_VALUE: vPortSuppressTicksAndSleep:xExpectedIdleTime <- $r5
-	.loc	2 0 7                           @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:7
+	.loc	2 0 10                          @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:10
 	movs	r0, #0
 .Ltmp84:
-	.loc	2 501 30 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:501:30
+	.loc	2 501 35 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:501:35
 	str	r7, [r6, #4]
-	.loc	2 505 39                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:505:39
+	.loc	2 505 44                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:505:44
 	str	r0, [r6, #8]
-	.loc	2 508 30                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:508:30
+	.loc	2 508 35                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:508:35
 	ldr	r0, [r6]
 	orr	r0, r0, #1
 	str	r0, [r6]
 .Ltmp85:
 	@DEBUG_VALUE: vPortSuppressTicksAndSleep:xModifiableIdleTime <- $r5
-	.loc	2 517 8                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:517:8
+	.loc	2 517 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:517:14
 	cbz	r5, .LBB11_3
 .Ltmp86:
 @ %bb.2:
 	@DEBUG_VALUE: vPortSuppressTicksAndSleep:ulReloadValue <- $r7
 	@DEBUG_VALUE: vPortSuppressTicksAndSleep:xModifiableIdleTime <- $r5
 	@DEBUG_VALUE: vPortSuppressTicksAndSleep:xExpectedIdleTime <- $r5
-	.loc	2 519 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:519:5
+	.loc	2 519 13                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:519:13
 	@APP
 	dsb	sy
 	@NO_APP
-	.loc	2 520 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:520:5
+	.loc	2 520 13                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:520:13
 	@APP
 	wfi
 	@NO_APP
-	.loc	2 521 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:521:5
+	.loc	2 521 13                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:521:13
 	@APP
 	isb	sy
 	@NO_APP
@@ -981,41 +981,41 @@ vPortSuppressTicksAndSleep:
 	@DEBUG_VALUE: vPortSuppressTicksAndSleep:ulReloadValue <- $r7
 	@DEBUG_VALUE: vPortSuppressTicksAndSleep:xModifiableIdleTime <- $r5
 	@DEBUG_VALUE: vPortSuppressTicksAndSleep:xExpectedIdleTime <- $r5
-	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:5
+	.loc	2 0 13 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:13
 	movs	r0, #6
-	.loc	2 528 4 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:528:4
+	.loc	2 528 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:528:9
 	@APP
 	cpsie i
 	@NO_APP
-	.loc	2 529 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:529:4
+	.loc	2 529 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:529:9
 	@APP
 	dsb	sy
 	@NO_APP
-	.loc	2 530 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:530:4
+	.loc	2 530 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:530:9
 	@APP
 	isb	sy
 	@NO_APP
-	.loc	2 536 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:536:4
+	.loc	2 536 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:536:9
 	@APP
 	cpsid i
 	@NO_APP
-	.loc	2 537 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:537:4
+	.loc	2 537 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:537:9
 	@APP
 	dsb	sy
 	@NO_APP
-	.loc	2 538 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:538:4
+	.loc	2 538 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:538:9
 	@APP
 	isb	sy
 	@NO_APP
-	.loc	2 547 30                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:547:30
+	.loc	2 547 35                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:547:35
 	str	r0, [r6]
 .Ltmp88:
-	.loc	2 554 10                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:554:10
+	.loc	2 554 16                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:554:16
 	ldr	r1, [r6]
 	.loc	2 0 0 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:0
 	ldr.w	r0, [r8]
 .Ltmp89:
-	.loc	2 554 8                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:554:8
+	.loc	2 554 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:554:14
 	lsls	r1, r1, #15
 	bmi	.LBB11_6
 .Ltmp90:
@@ -1023,44 +1023,44 @@ vPortSuppressTicksAndSleep:
 	@DEBUG_VALUE: vPortSuppressTicksAndSleep:ulReloadValue <- $r7
 	@DEBUG_VALUE: vPortSuppressTicksAndSleep:xModifiableIdleTime <- $r5
 	@DEBUG_VALUE: vPortSuppressTicksAndSleep:xExpectedIdleTime <- $r5
-	.loc	2 585 86 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:585:86
+	.loc	2 585 94 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:585:94
 	ldr	r1, [r6, #8]
-	.loc	2 585 56 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:585:56
+	.loc	2 585 64 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:585:64
 	mul	r2, r0, r5
-	.loc	2 585 84                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:585:84
+	.loc	2 585 92                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:585:92
 	subs	r1, r2, r1
 .Ltmp91:
 	@DEBUG_VALUE: vPortSuppressTicksAndSleep:ulCompletedSysTickDecrements <- $r1
-	.loc	2 589 58 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:589:58
+	.loc	2 589 66 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:589:66
 	udiv	r4, r1, r0
 .Ltmp92:
 	@DEBUG_VALUE: vPortSuppressTicksAndSleep:ulCompleteTickPeriods <- $r4
-	.loc	2 593 59                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:593:59
+	.loc	2 593 67                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:593:67
 	adds	r2, r4, #1
-	.loc	2 593 67 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:593:67
+	.loc	2 593 75 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:593:75
 	muls	r0, r2, r0
-	.loc	2 593 95                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:593:95
+	.loc	2 593 103                       @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:593:103
 	subs	r0, r0, r1
 	b	.LBB11_7
 .Ltmp93:
 .LBB11_5:
 	@DEBUG_VALUE: vPortSuppressTicksAndSleep:ulReloadValue <- $r7
 	@DEBUG_VALUE: vPortSuppressTicksAndSleep:xExpectedIdleTime <- $r5
-	.loc	2 485 32 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:485:32
+	.loc	2 485 37 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:485:37
 	ldr	r0, [r6, #8]
-	.loc	2 485 30 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:485:30
+	.loc	2 485 35 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:485:35
 	str	r0, [r6, #4]
-	.loc	2 488 30 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:488:30
+	.loc	2 488 35 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:488:35
 	ldr	r0, [r6]
 	orr	r0, r0, #1
 	str	r0, [r6]
-	.loc	2 492 32                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:492:32
+	.loc	2 492 37                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:492:37
 	ldr.w	r0, [r8]
-	.loc	2 492 56 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:492:56
+	.loc	2 492 61 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:492:61
 	subs	r0, #1
-	.loc	2 492 30                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:492:30
+	.loc	2 492 35                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:492:35
 	str	r0, [r6, #4]
-	.loc	2 496 4 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:496:4
+	.loc	2 496 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:496:9
 	@APP
 	cpsie i
 	@NO_APP
@@ -1070,25 +1070,25 @@ vPortSuppressTicksAndSleep:
 	@DEBUG_VALUE: vPortSuppressTicksAndSleep:ulReloadValue <- $r7
 	@DEBUG_VALUE: vPortSuppressTicksAndSleep:xModifiableIdleTime <- $r5
 	@DEBUG_VALUE: vPortSuppressTicksAndSleep:xExpectedIdleTime <- $r5
-	.loc	2 562 83                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:562:83
+	.loc	2 562 91                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:562:91
 	ldr	r1, [r6, #8]
 .Ltmp95:
-	.loc	2 567 35                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:567:35
+	.loc	2 567 44                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:567:44
 	ldrb.w	r3, [r9]
 .Ltmp96:
-	.loc	2 562 55                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:562:55
-	subs	r2, r0, #1
-	.loc	2 562 81 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:562:81
-	subs	r1, r1, r7
 	.loc	2 562 63                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:562:63
+	subs	r2, r0, #1
+	.loc	2 562 89 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:562:89
+	subs	r1, r1, r7
+	.loc	2 562 71                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:562:71
 	add	r1, r2
 .Ltmp97:
 	@DEBUG_VALUE: ulCalculatedLoadValue <- $r1
-	.loc	2 567 35 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:567:35
+	.loc	2 567 44 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:567:44
 	cmp	r3, #0
 	it	ne
 	movne	r3, #45
-	.loc	2 567 64 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:567:64
+	.loc	2 567 73 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:567:73
 	cmp	r1, r0
 	mov	r0, r1
 	it	hi
@@ -1109,23 +1109,23 @@ vPortSuppressTicksAndSleep:
 	movs	r0, #0
 .Ltmp99:
 	@DEBUG_VALUE: vPortSuppressTicksAndSleep:ulCompleteTickPeriods <- $r4
-	.loc	2 599 39 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:599:39
+	.loc	2 599 44 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:599:44
 	str	r0, [r6, #8]
-	.loc	2 600 30                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:600:30
+	.loc	2 600 35                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:600:35
 	ldr	r0, [r6]
 	orr	r0, r0, #1
 	str	r0, [r6]
-	.loc	2 601 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:601:4
+	.loc	2 601 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:601:9
 	mov	r0, r4
 	bl	vTaskStepTick
 .Ltmp100:
-	.loc	2 602 32                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:602:32
+	.loc	2 602 37                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:602:37
 	ldr.w	r0, [r8]
-	.loc	2 602 56 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:602:56
+	.loc	2 602 61 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:602:61
 	subs	r0, #1
-	.loc	2 602 30                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:602:30
+	.loc	2 602 35                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:602:35
 	str	r0, [r6, #4]
-	.loc	2 605 4 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:605:4
+	.loc	2 605 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:605:9
 	@APP
 	cpsie i
 	@NO_APP
@@ -1133,7 +1133,7 @@ vPortSuppressTicksAndSleep:
 .LBB11_8:
 	@DEBUG_VALUE: vPortSuppressTicksAndSleep:ulReloadValue <- $r7
 	@DEBUG_VALUE: vPortSuppressTicksAndSleep:xExpectedIdleTime <- $r5
-	.loc	2 607 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:607:2
+	.loc	2 607 1                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:607:1
 	add	sp, #4
 	pop.w	{r4, r5, r6, r7, r8, r9, pc}
 .Ltmp102:
@@ -1165,38 +1165,38 @@ vPortValidateInterruptPriority:
 	sub	sp, #8
 	.cfi_def_cfa_offset 16
 .Ltmp103:
-	.loc	2 645 3 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:645:3
+	.loc	2 645 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:645:5
 	@APP
 	mrs	r0, ipsr
 	@NO_APP
 .Ltmp104:
 	@DEBUG_VALUE: vPortValidateInterruptPriority:ulCurrentInterrupt <- $r0
-	.loc	2 648 7                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:648:7
+	.loc	2 648 10                        @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:648:10
 	cmp	r0, #16
 	blo	.LBB12_4
 .Ltmp105:
 @ %bb.1:
 	@DEBUG_VALUE: vPortValidateInterruptPriority:ulCurrentInterrupt <- $r0
-	.loc	2 0 7 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:7
+	.loc	2 0 10 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:10
 	movw	r1, #58352
 	movt	r1, #57344
 .Ltmp106:
-	.loc	2 651 24 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:651:24
+	.loc	2 651 29 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:651:29
 	ldrb	r0, [r0, r1]
 .Ltmp107:
 	@DEBUG_VALUE: vPortValidateInterruptPriority:ucCurrentPriority <- $r0
-	.loc	2 676 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:676:4
+	.loc	2 676 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:676:9
 	movw	r1, :lower16:ucMaxSysCallPriority
 	movt	r1, :upper16:ucMaxSysCallPriority
 	ldrb	r1, [r1]
 .Ltmp108:
-	.loc	2 676 4 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:676:4
+	.loc	2 676 9 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:676:9
 	cmp	r0, r1
 	bhs	.LBB12_4
 .Ltmp109:
 @ %bb.2:
 	@DEBUG_VALUE: vPortValidateInterruptPriority:ucCurrentPriority <- $r0
-	.loc	2 676 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:676:4
+	.loc	2 676 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:676:9
 	movw	r0, :lower16:.L.str
 .Ltmp110:
 	movw	r2, :lower16:.L.str.2
@@ -1216,30 +1216,30 @@ vPortValidateInterruptPriority:
 .Ltmp112:
 	.p2align	2
 .LBB12_3:                               @ =>This Inner Loop Header: Depth=1
-	.loc	2 676 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:676:4
+	.loc	2 676 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:676:9
 	b	.LBB12_3
 .Ltmp113:
 .LBB12_4:
-	.loc	2 0 4 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:4
+	.loc	2 0 9 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:9
 	movw	r0, #60684
 	movt	r0, #57344
 .Ltmp114:
-	.loc	2 692 3 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:692:3
+	.loc	2 692 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:692:5
 	movw	r1, :lower16:ulMaxPRIGROUPValue
 	ldr	r0, [r0]
 	movt	r1, :upper16:ulMaxPRIGROUPValue
 	ldr	r1, [r1]
 	and	r0, r0, #1792
 .Ltmp115:
-	.loc	2 692 3 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:692:3
+	.loc	2 692 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:692:5
 	cmp	r0, r1
-	.loc	2 693 2 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:693:2
+	.loc	2 693 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:693:1
 	itt	ls
 	addls	sp, #8
 	popls	{r7, pc}
 .LBB12_5:
 .Ltmp116:
-	.loc	2 692 3                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:692:3
+	.loc	2 692 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:692:5
 	movw	r0, :lower16:.L.str
 	movw	r1, :lower16:.L.str.7
 	movw	r2, :lower16:.L.str.2
@@ -1259,12 +1259,12 @@ vPortValidateInterruptPriority:
 .Ltmp118:
 	.p2align	2
 .LBB12_6:                               @ =>This Inner Loop Header: Depth=1
-	.loc	2 692 3                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:692:3
+	.loc	2 692 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:692:5
 	b	.LBB12_6
 .Ltmp119:
 	.p2align	2
 @ %bb.7:
-	.loc	2 0 3 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:3
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3/port.c:0:5
 .LCPI12_0:
 .L.str.6:
 	.asciz	"ucCurrentPriority >= ucMaxSysCallPriority\000\000"
@@ -1352,7 +1352,7 @@ ulStoppedTimerCompensation:
 	.hidden	_printf_d
 	.hidden	_printf_int_dec
 	.hidden	_printf_str
-	.file	6 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/projdefs.h"
+	.file	6 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/projdefs.h"
 	.section	.debug_loc,"",%progbits
 .Ldebug_loc0:
 	.long	-1
@@ -2294,14 +2294,14 @@ ulStoppedTimerCompensation:
 	.long	.Ltmp11-.Ltmp10                 @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.byte	202                             @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	20                              @ Abbrev [20] 0x1bd:0x16 DW_TAG_inlined_subroutine
 	.long	378                             @ DW_AT_abstract_origin
 	.long	.Ltmp12                         @ DW_AT_low_pc
 	.long	.Ltmp13-.Ltmp12                 @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.byte	203                             @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	21                              @ Abbrev [21] 0x1cd:0x5 DW_TAG_variable
 	.long	386                             @ DW_AT_abstract_origin
 	.byte	0                               @ End Of Children Mark
@@ -2358,7 +2358,7 @@ ulStoppedTimerCompensation:
 	.long	.Ltmp32-.Ltmp31                 @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	300                             @ DW_AT_call_line
-	.byte	4                               @ DW_AT_call_column
+	.byte	13                              @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	0                               @ End Of Children Mark
 	.byte	28                              @ Abbrev [28] 0x23d:0x12 DW_TAG_subprogram
@@ -2399,7 +2399,7 @@ ulStoppedTimerCompensation:
 	.long	.Ltmp42-.Ltmp41                 @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	356                             @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	30                              @ Abbrev [30] 0x284:0x35 DW_TAG_subprogram
 	.long	.Lfunc_begin7                   @ DW_AT_low_pc
@@ -2418,14 +2418,14 @@ ulStoppedTimerCompensation:
 	.long	.Ltmp45-.Ltmp44                 @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	362                             @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	27                              @ Abbrev [27] 0x2a7:0x11 DW_TAG_inlined_subroutine
 	.long	369                             @ DW_AT_abstract_origin
 	.long	.Ltmp49                         @ DW_AT_low_pc
 	.long	.Ltmp50-.Ltmp49                 @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	372                             @ DW_AT_call_line
-	.byte	3                               @ DW_AT_call_column
+	.byte	9                               @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	15                              @ Abbrev [15] 0x2b9:0x14 DW_TAG_subprogram
 	.long	.Linfo_string25                 @ DW_AT_name
@@ -2456,14 +2456,14 @@ ulStoppedTimerCompensation:
 	.long	.Ltmp58-.Ltmp57                 @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	379                             @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	32                              @ Abbrev [32] 0x2f0:0x18 DW_TAG_inlined_subroutine
 	.long	697                             @ DW_AT_abstract_origin
 	.long	.Ltmp54                         @ DW_AT_low_pc
 	.long	.Ltmp55-.Ltmp54                 @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	383                             @ DW_AT_call_line
-	.byte	3                               @ DW_AT_call_column
+	.byte	9                               @ DW_AT_call_column
 	.byte	33                              @ Abbrev [33] 0x301:0x6 DW_TAG_formal_parameter
 	.byte	0                               @ DW_AT_const_value
 	.long	705                             @ DW_AT_abstract_origin
@@ -2497,14 +2497,14 @@ ulStoppedTimerCompensation:
 	.long	.Ltmp62-.Ltmp61                 @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	431                             @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	32                              @ Abbrev [32] 0x33e:0x18 DW_TAG_inlined_subroutine
 	.long	697                             @ DW_AT_abstract_origin
 	.long	.Ltmp66                         @ DW_AT_low_pc
 	.long	.Ltmp67-.Ltmp66                 @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	441                             @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	33                              @ Abbrev [33] 0x34f:0x6 DW_TAG_formal_parameter
 	.byte	0                               @ DW_AT_const_value
 	.long	705                             @ DW_AT_abstract_origin
@@ -2591,14 +2591,14 @@ ulStoppedTimerCompensation:
 	.long	.Ltmp112-.Ltmp111               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	676                             @ DW_AT_call_line
-	.byte	4                               @ DW_AT_call_column
+	.byte	9                               @ DW_AT_call_column
 	.byte	27                              @ Abbrev [27] 0x417:0x11 DW_TAG_inlined_subroutine
 	.long	369                             @ DW_AT_abstract_origin
 	.long	.Ltmp117                        @ DW_AT_low_pc
 	.long	.Ltmp118-.Ltmp117               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	692                             @ DW_AT_call_line
-	.byte	3                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	4                               @ Abbrev [4] 0x429:0x5 DW_TAG_pointer_type
 	.long	260                             @ DW_AT_type
@@ -2667,115 +2667,115 @@ ulStoppedTimerCompensation:
 .Linfo_string1:
 	.asciz	"../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\\port.c" @ string offset=55
 .Linfo_string2:
-	.asciz	"D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" @ string offset=137
+	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=137
 .Linfo_string3:
-	.asciz	"pcInterruptPriorityRegisters"  @ string offset=199
+	.asciz	"pcInterruptPriorityRegisters"  @ string offset=198
 .Linfo_string4:
-	.asciz	"unsigned char"                 @ string offset=228
+	.asciz	"unsigned char"                 @ string offset=227
 .Linfo_string5:
-	.asciz	"uint8_t"                       @ string offset=242
+	.asciz	"uint8_t"                       @ string offset=241
 .Linfo_string6:
-	.asciz	"ucMaxSysCallPriority"          @ string offset=250
+	.asciz	"ucMaxSysCallPriority"          @ string offset=249
 .Linfo_string7:
-	.asciz	"ulMaxPRIGROUPValue"            @ string offset=271
+	.asciz	"ulMaxPRIGROUPValue"            @ string offset=270
 .Linfo_string8:
-	.asciz	"unsigned int"                  @ string offset=290
+	.asciz	"unsigned int"                  @ string offset=289
 .Linfo_string9:
-	.asciz	"uint32_t"                      @ string offset=303
+	.asciz	"uint32_t"                      @ string offset=302
 .Linfo_string10:
-	.asciz	"uxCriticalNesting"             @ string offset=312
+	.asciz	"uxCriticalNesting"             @ string offset=311
 .Linfo_string11:
-	.asciz	"long unsigned int"             @ string offset=330
+	.asciz	"long unsigned int"             @ string offset=329
 .Linfo_string12:
-	.asciz	"UBaseType_t"                   @ string offset=348
+	.asciz	"UBaseType_t"                   @ string offset=347
 .Linfo_string13:
-	.asciz	"xMaximumPossibleSuppressedTicks" @ string offset=360
+	.asciz	"xMaximumPossibleSuppressedTicks" @ string offset=359
 .Linfo_string14:
-	.asciz	"ulTimerCountsForOneTick"       @ string offset=392
+	.asciz	"ulTimerCountsForOneTick"       @ string offset=391
 .Linfo_string15:
-	.asciz	"ulStoppedTimerCompensation"    @ string offset=416
+	.asciz	"ulStoppedTimerCompensation"    @ string offset=415
 .Linfo_string16:
-	.asciz	"eAbortSleep"                   @ string offset=443
+	.asciz	"eAbortSleep"                   @ string offset=442
 .Linfo_string17:
-	.asciz	"eStandardSleep"                @ string offset=455
+	.asciz	"eStandardSleep"                @ string offset=454
 .Linfo_string18:
-	.asciz	"eNoTasksWaitingTimeout"        @ string offset=470
+	.asciz	"eNoTasksWaitingTimeout"        @ string offset=469
 .Linfo_string19:
-	.asciz	"StackType_t"                   @ string offset=493
+	.asciz	"StackType_t"                   @ string offset=492
 .Linfo_string20:
-	.asciz	"long int"                      @ string offset=505
+	.asciz	"long int"                      @ string offset=504
 .Linfo_string21:
-	.asciz	"BaseType_t"                    @ string offset=514
+	.asciz	"BaseType_t"                    @ string offset=513
 .Linfo_string22:
-	.asciz	"__disable_irq"                 @ string offset=525
+	.asciz	"__disable_irq"                 @ string offset=524
 .Linfo_string23:
-	.asciz	"vPortRaiseBASEPRI"             @ string offset=539
+	.asciz	"vPortRaiseBASEPRI"             @ string offset=538
 .Linfo_string24:
-	.asciz	"ulNewBASEPRI"                  @ string offset=557
+	.asciz	"ulNewBASEPRI"                  @ string offset=556
 .Linfo_string25:
-	.asciz	"vPortSetBASEPRI"               @ string offset=570
+	.asciz	"vPortSetBASEPRI"               @ string offset=569
 .Linfo_string26:
-	.asciz	"ulNewMaskValue"                @ string offset=586
+	.asciz	"ulNewMaskValue"                @ string offset=585
 .Linfo_string27:
-	.asciz	"pxPortInitialiseStack"         @ string offset=601
+	.asciz	"pxPortInitialiseStack"         @ string offset=600
 .Linfo_string28:
-	.asciz	"prvTaskExitError"              @ string offset=623
+	.asciz	"prvTaskExitError"              @ string offset=622
 .Linfo_string29:
-	.asciz	"vPortSVCHandler"               @ string offset=640
+	.asciz	"vPortSVCHandler"               @ string offset=639
 .Linfo_string30:
-	.asciz	"xPortStartScheduler"           @ string offset=656
+	.asciz	"xPortStartScheduler"           @ string offset=655
 .Linfo_string31:
-	.asciz	"vPortSetupTimerInterrupt"      @ string offset=676
+	.asciz	"vPortSetupTimerInterrupt"      @ string offset=675
 .Linfo_string32:
-	.asciz	"prvPortStartFirstTask"         @ string offset=701
+	.asciz	"prvPortStartFirstTask"         @ string offset=700
 .Linfo_string33:
-	.asciz	"vPortEndScheduler"             @ string offset=723
+	.asciz	"vPortEndScheduler"             @ string offset=722
 .Linfo_string34:
-	.asciz	"vPortEnterCritical"            @ string offset=741
+	.asciz	"vPortEnterCritical"            @ string offset=740
 .Linfo_string35:
-	.asciz	"vPortExitCritical"             @ string offset=760
+	.asciz	"vPortExitCritical"             @ string offset=759
 .Linfo_string36:
-	.asciz	"xPortPendSVHandler"            @ string offset=778
+	.asciz	"xPortPendSVHandler"            @ string offset=777
 .Linfo_string37:
-	.asciz	"xPortSysTickHandler"           @ string offset=797
+	.asciz	"xPortSysTickHandler"           @ string offset=796
 .Linfo_string38:
-	.asciz	"vPortSuppressTicksAndSleep"    @ string offset=817
+	.asciz	"vPortSuppressTicksAndSleep"    @ string offset=816
 .Linfo_string39:
-	.asciz	"vPortValidateInterruptPriority" @ string offset=844
+	.asciz	"vPortValidateInterruptPriority" @ string offset=843
 .Linfo_string40:
-	.asciz	"pxTopOfStack"                  @ string offset=875
+	.asciz	"pxTopOfStack"                  @ string offset=874
 .Linfo_string41:
-	.asciz	"pxCode"                        @ string offset=888
+	.asciz	"pxCode"                        @ string offset=887
 .Linfo_string42:
-	.asciz	"TaskFunction_t"                @ string offset=895
+	.asciz	"TaskFunction_t"                @ string offset=894
 .Linfo_string43:
-	.asciz	"pvParameters"                  @ string offset=910
+	.asciz	"pvParameters"                  @ string offset=909
 .Linfo_string44:
-	.asciz	"ulDummy"                       @ string offset=923
+	.asciz	"ulDummy"                       @ string offset=922
 .Linfo_string45:
-	.asciz	"ulOriginalPriority"            @ string offset=931
+	.asciz	"ulOriginalPriority"            @ string offset=930
 .Linfo_string46:
-	.asciz	"ucMaxPriorityValue"            @ string offset=950
+	.asciz	"ucMaxPriorityValue"            @ string offset=949
 .Linfo_string47:
-	.asciz	"pucFirstUserPriorityRegister"  @ string offset=969
+	.asciz	"pucFirstUserPriorityRegister"  @ string offset=968
 .Linfo_string48:
-	.asciz	"xExpectedIdleTime"             @ string offset=998
+	.asciz	"xExpectedIdleTime"             @ string offset=997
 .Linfo_string49:
-	.asciz	"TickType_t"                    @ string offset=1016
+	.asciz	"TickType_t"                    @ string offset=1015
 .Linfo_string50:
-	.asciz	"ulReloadValue"                 @ string offset=1027
+	.asciz	"ulReloadValue"                 @ string offset=1026
 .Linfo_string51:
-	.asciz	"xModifiableIdleTime"           @ string offset=1041
+	.asciz	"xModifiableIdleTime"           @ string offset=1040
 .Linfo_string52:
-	.asciz	"ulCompletedSysTickDecrements"  @ string offset=1061
+	.asciz	"ulCompletedSysTickDecrements"  @ string offset=1060
 .Linfo_string53:
-	.asciz	"ulCompleteTickPeriods"         @ string offset=1090
+	.asciz	"ulCompleteTickPeriods"         @ string offset=1089
 .Linfo_string54:
-	.asciz	"ulCalculatedLoadValue"         @ string offset=1112
+	.asciz	"ulCalculatedLoadValue"         @ string offset=1111
 .Linfo_string55:
-	.asciz	"ulCurrentInterrupt"            @ string offset=1134
+	.asciz	"ulCurrentInterrupt"            @ string offset=1133
 .Linfo_string56:
-	.asciz	"ucCurrentPriority"             @ string offset=1153
+	.asciz	"ucCurrentPriority"             @ string offset=1152
 	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals

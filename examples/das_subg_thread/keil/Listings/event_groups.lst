@@ -19,10 +19,10 @@
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"event_groups.c"
 	.file	1 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
-	.file	2 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\\portmacro.h"
-	.file	3 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\event_groups.h"
-	.file	4 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/event_groups.c"
-	.file	5 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/list.h"
+	.file	2 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\\portmacro.h"
+	.file	3 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\event_groups.h"
+	.file	4 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/event_groups.c"
+	.file	5 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/list.h"
 	.section	.text.xEventGroupCreateStatic,"ax",%progbits
 	.hidden	xEventGroupCreateStatic         @ -- Begin function xEventGroupCreateStatic
 	.globl	xEventGroupCreateStatic
@@ -48,58 +48,58 @@ xEventGroupCreateStatic:
 	sub	sp, #8
 	.cfi_def_cfa_offset 16
 .Ltmp0:
-	.loc	4 98 3 prologue_end             @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:98:3
+	.loc	4 98 5 prologue_end             @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:98:5
 	cbz	r0, .LBB0_3
 .Ltmp1:
 @ %bb.1:
 	@DEBUG_VALUE: xEventGroupCreateStatic:pxEventGroupBuffer <- $r0
-	.loc	4 0 3 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:3
+	.loc	4 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:5
 	mov	r4, r0
 .Ltmp2:
 	@DEBUG_VALUE: xEventGroupCreateStatic:pxEventGroupBuffer <- $r4
 	@DEBUG_VALUE: xEventGroupCreateStatic:pxEventGroupBuffer <- $r4
 	movs	r0, #32
 .Ltmp3:
-	.loc	4 105 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:105:20
+	.loc	4 105 25 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:105:25
 	str	r0, [sp, #4]
 .Ltmp4:
-	.loc	4 106 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:106:4
+	.loc	4 106 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:106:9
 	ldr	r0, [sp, #4]
 .Ltmp5:
-	.loc	4 106 4 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:106:4
+	.loc	4 106 9 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:106:9
 	cmp	r0, #32
 	bne	.LBB0_5
 .Ltmp6:
 @ %bb.2:
 	@DEBUG_VALUE: xEventGroupCreateStatic:pxEventGroupBuffer <- $r4
-	.loc	4 0 4                           @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:4
+	.loc	4 0 9                           @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:9
 	movs	r0, #0
 .Ltmp7:
 	@DEBUG_VALUE: xEventGroupCreateStatic:pxEventBits <- $r4
-	.loc	4 115 29 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:115:29
+	.loc	4 115 34 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:115:34
 	str	r0, [r4]
-	.loc	4 116 37                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:116:37
+	.loc	4 116 42                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:116:42
 	adds	r0, r4, #4
-	.loc	4 116 4 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:116:4
+	.loc	4 116 9 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:116:9
 	bl	vListInitialise
 .Ltmp8:
-	.loc	4 0 4                           @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:4
+	.loc	4 0 9                           @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:9
 	movs	r1, #1
 .Ltmp9:
-	.loc	4 137 3 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:137:3
+	.loc	4 137 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:137:5
 	mov	r0, r4
 .Ltmp10:
-	.loc	4 123 40                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:123:40
+	.loc	4 123 48                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:123:48
 	strb	r1, [r4, #28]
 .Ltmp11:
 	@DEBUG_VALUE: xEventGroupCreateStatic:pxEventBits <- undef
-	.loc	4 137 3                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:137:3
+	.loc	4 137 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:137:5
 	add	sp, #8
 	pop	{r4, pc}
 .Ltmp12:
 .LBB0_3:
 	@DEBUG_VALUE: xEventGroupCreateStatic:pxEventGroupBuffer <- $r0
-	.loc	4 98 3                          @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:98:3
+	.loc	4 98 5                          @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:98:5
 	movw	r0, :lower16:.L.str
 .Ltmp13:
 	@DEBUG_VALUE: xEventGroupCreateStatic:pxEventGroupBuffer <- [DW_OP_LLVM_entry_value 1] $r0
@@ -122,12 +122,12 @@ xEventGroupCreateStatic:
 	.p2align	2
 .LBB0_4:                                @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: xEventGroupCreateStatic:pxEventGroupBuffer <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	4 98 3                          @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:98:3
+	.loc	4 98 5                          @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:98:5
 	b	.LBB0_4
 .Ltmp16:
 .LBB0_5:
 	@DEBUG_VALUE: xEventGroupCreateStatic:pxEventGroupBuffer <- $r4
-	.loc	4 106 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:106:4
+	.loc	4 106 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:106:9
 	movw	r0, :lower16:.L.str
 	movw	r2, :lower16:.L.str.2
 	movw	r3, :lower16:.L__func__.xEventGroupCreateStatic
@@ -149,12 +149,12 @@ xEventGroupCreateStatic:
 	.p2align	2
 .LBB0_6:                                @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: xEventGroupCreateStatic:pxEventGroupBuffer <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	4 106 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:106:4
+	.loc	4 106 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:106:9
 	b	.LBB0_6
 .Ltmp20:
 	.p2align	2
 @ %bb.7:
-	.loc	4 0 4 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:4
+	.loc	4 0 9 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:9
 .LCPI0_0:
 .L.str.3:
 	.asciz	"xSize == sizeof( EventGroup_t )"
@@ -188,35 +188,35 @@ xEventGroupCreate:
 	.cfi_offset r5, -12
 	.cfi_offset r4, -16
 .Ltmp21:
-	.loc	4 162 36 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:162:36
+	.loc	4 162 38 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:162:38
 	movs	r0, #32
 	bl	pvPortMalloc
 .Ltmp22:
 	mov	r4, r0
 .Ltmp23:
 	@DEBUG_VALUE: xEventGroupCreate:pxEventBits <- $r4
-	.loc	4 164 7                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:164:7
+	.loc	4 164 10                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:164:10
 	cbz	r0, .LBB1_2
 .Ltmp24:
 @ %bb.1:
 	@DEBUG_VALUE: xEventGroupCreate:pxEventBits <- $r4
-	.loc	4 0 7 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:7
+	.loc	4 0 10 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:10
 	movs	r5, #0
 .Ltmp25:
-	.loc	4 167 37 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:167:37
+	.loc	4 167 42 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:167:42
 	adds	r0, r4, #4
-	.loc	4 166 29                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:166:29
+	.loc	4 166 34                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:166:34
 	str	r5, [r4]
-	.loc	4 167 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:167:4
+	.loc	4 167 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:167:9
 	bl	vListInitialise
 .Ltmp26:
-	.loc	4 174 40                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:174:40
+	.loc	4 174 48                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:174:48
 	strb	r5, [r4, #28]
 .Ltmp27:
 .LBB1_2:
 	@DEBUG_VALUE: xEventGroupCreate:pxEventBits <- $r4
 	@DEBUG_VALUE: xEventGroupCreate:pxEventBits <- $r4
-	.loc	4 185 3                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:185:3
+	.loc	4 185 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:185:5
 	mov	r0, r4
 	pop	{r4, r5, r7, pc}
 .Ltmp28:
@@ -260,7 +260,7 @@ xEventGroupSync:
 	.cfi_def_cfa_offset 32
 .Ltmp29:
 	@DEBUG_VALUE: xEventGroupSync:pxEventBits <- $r0
-	.loc	4 198 2 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:198:2
+	.loc	4 198 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:198:5
 	cmp.w	r2, #16777216
 .Ltmp30:
 	@DEBUG_VALUE: xEventGroupSync:xTimeoutOccurred <- 0
@@ -275,7 +275,7 @@ xEventGroupSync:
 	@DEBUG_VALUE: xEventGroupSync:pxEventBits <- $r0
 	@DEBUG_VALUE: xEventGroupSync:xEventGroup <- $r0
 	@DEBUG_VALUE: xEventGroupSync:xTimeoutOccurred <- 0
-	.loc	4 198 2 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:198:2
+	.loc	4 198 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:198:5
 	movw	r0, :lower16:.L.str
 .Ltmp32:
 	@DEBUG_VALUE: xEventGroupSync:xEventGroup <- [DW_OP_LLVM_entry_value 1] $r0
@@ -288,9 +288,9 @@ xEventGroupSync:
 	movw	r3, :lower16:.L__func__.xEventGroupSync
 .Ltmp35:
 	@DEBUG_VALUE: xEventGroupSync:xTicksToWait <- [DW_OP_LLVM_entry_value 1] $r3
-	.loc	4 0 2                           @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:2
+	.loc	4 0 5                           @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:5
 	movs	r7, #198
-	.loc	4 198 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:198:2
+	.loc	4 198 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:198:5
 	movt	r0, :upper16:.L.str
 	movt	r1, :upper16:.L.str.4
 	movt	r2, :upper16:.L.str.2
@@ -310,7 +310,7 @@ xEventGroupSync:
 	@DEBUG_VALUE: xEventGroupSync:uxBitsToSet <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: xEventGroupSync:xEventGroup <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: xEventGroupSync:xTimeoutOccurred <- 0
-	.loc	4 198 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:198:2
+	.loc	4 198 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:198:5
 	b	.LBB2_2
 .Ltmp38:
 .LBB2_3:
@@ -321,14 +321,14 @@ xEventGroupSync:
 	@DEBUG_VALUE: xEventGroupSync:xEventGroup <- $r0
 	@DEBUG_VALUE: xEventGroupSync:xTimeoutOccurred <- 0
 	@DEBUG_VALUE: xEventGroupSync:xTicksToWait <- $r3
-	.loc	4 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:2
+	.loc	4 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:5
 	mov	r4, r2
 .Ltmp39:
 	@DEBUG_VALUE: xEventGroupSync:uxBitsToWaitFor <- $r4
 	@DEBUG_VALUE: xEventGroupSync:uxBitsToSet <- $r1
 	@DEBUG_VALUE: xEventGroupSync:xEventGroup <- $r0
 	@DEBUG_VALUE: xEventGroupSync:pxEventBits <- $r0
-	.loc	4 199 2 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:199:2
+	.loc	4 199 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:199:5
 	cbz	r2, .LBB2_8
 .Ltmp40:
 @ %bb.4:
@@ -338,7 +338,7 @@ xEventGroupSync:
 	@DEBUG_VALUE: xEventGroupSync:pxEventBits <- $r0
 	@DEBUG_VALUE: xEventGroupSync:xEventGroup <- $r0
 	@DEBUG_VALUE: xEventGroupSync:xTimeoutOccurred <- 0
-	.loc	4 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:2
+	.loc	4 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:5
 	mov	r6, r3
 .Ltmp41:
 	@DEBUG_VALUE: xEventGroupSync:xTicksToWait <- $r6
@@ -352,10 +352,10 @@ xEventGroupSync:
 	@DEBUG_VALUE: xEventGroupSync:xEventGroup <- $r5
 	@DEBUG_VALUE: xEventGroupSync:pxEventBits <- $r5
 	@DEBUG_VALUE: xEventGroupSync:xEventGroup <- $r5
-	.loc	4 202 3 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:202:3
+	.loc	4 202 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:202:9
 	bl	xTaskGetSchedulerState
 .Ltmp44:
-	.loc	4 202 3 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:202:3
+	.loc	4 202 9 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:202:9
 	cbz	r6, .LBB2_10
 .Ltmp45:
 @ %bb.5:
@@ -374,7 +374,7 @@ xEventGroupSync:
 	@DEBUG_VALUE: xEventGroupSync:xEventGroup <- $r5
 	@DEBUG_VALUE: xEventGroupSync:uxBitsToWaitFor <- $r4
 	@DEBUG_VALUE: xEventGroupSync:xTimeoutOccurred <- 0
-	.loc	4 202 3                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:202:3
+	.loc	4 202 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:202:9
 	movw	r0, :lower16:.L.str
 	movw	r1, :lower16:.L.str.6
 	movw	r2, :lower16:.L.str.2
@@ -402,7 +402,7 @@ xEventGroupSync:
 	@DEBUG_VALUE: xEventGroupSync:uxBitsToWaitFor <- $r4
 	@DEBUG_VALUE: xEventGroupSync:uxBitsToSet <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: xEventGroupSync:xTimeoutOccurred <- 0
-	.loc	4 202 3                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:202:3
+	.loc	4 202 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:202:9
 	b	.LBB2_7
 .Ltmp50:
 .LBB2_8:
@@ -412,7 +412,7 @@ xEventGroupSync:
 	@DEBUG_VALUE: xEventGroupSync:pxEventBits <- $r0
 	@DEBUG_VALUE: xEventGroupSync:xEventGroup <- $r0
 	@DEBUG_VALUE: xEventGroupSync:xTimeoutOccurred <- 0
-	.loc	4 199 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:199:2
+	.loc	4 199 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:199:5
 	movw	r0, :lower16:.L.str
 .Ltmp51:
 	@DEBUG_VALUE: xEventGroupSync:xEventGroup <- [DW_OP_LLVM_entry_value 1] $r0
@@ -423,9 +423,9 @@ xEventGroupSync:
 	movw	r3, :lower16:.L__func__.xEventGroupSync
 .Ltmp53:
 	@DEBUG_VALUE: xEventGroupSync:xTicksToWait <- [DW_OP_LLVM_entry_value 1] $r3
-	.loc	4 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:2
+	.loc	4 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:5
 	movs	r7, #199
-	.loc	4 199 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:199:2
+	.loc	4 199 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:199:5
 	movt	r0, :upper16:.L.str
 	movt	r1, :upper16:.L.str.5
 	movt	r2, :upper16:.L.str.2
@@ -445,7 +445,7 @@ xEventGroupSync:
 	@DEBUG_VALUE: xEventGroupSync:uxBitsToSet <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: xEventGroupSync:xEventGroup <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: xEventGroupSync:xTimeoutOccurred <- 0
-	.loc	4 199 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:199:2
+	.loc	4 199 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:199:5
 	b	.LBB2_9
 .Ltmp56:
 .LBB2_10:
@@ -455,26 +455,26 @@ xEventGroupSync:
 	@DEBUG_VALUE: xEventGroupSync:xEventGroup <- $r5
 	@DEBUG_VALUE: xEventGroupSync:uxBitsToWaitFor <- $r4
 	@DEBUG_VALUE: xEventGroupSync:xTimeoutOccurred <- 0
-	.loc	4 206 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:206:2
+	.loc	4 206 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:206:5
 	bl	vTaskSuspendAll
 .Ltmp57:
-	.loc	4 208 37                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:208:37
+	.loc	4 208 43                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:208:43
 	ldr.w	r8, [r5]
 .Ltmp58:
 	@DEBUG_VALUE: xEventGroupSync:uxOriginalBitValue <- $r8
-	.loc	4 210 12                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:210:12
+	.loc	4 210 18                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:210:18
 	mov	r0, r5
 	mov	r1, r7
 	bl	xEventGroupSetBits
 .Ltmp59:
-	.loc	4 212 30                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:212:30
+	.loc	4 212 37                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:212:37
 	orr.w	r7, r7, r8
 .Ltmp60:
 	@DEBUG_VALUE: xEventGroupSync:uxBitsToSet <- [DW_OP_LLVM_entry_value 1] $r1
-	.loc	4 212 46 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:212:46
+	.loc	4 212 53 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:212:53
 	and.w	r0, r7, r4
 .Ltmp61:
-	.loc	4 212 7                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:212:7
+	.loc	4 212 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:212:14
 	cmp	r0, r4
 	bne	.LBB2_12
 .Ltmp62:
@@ -487,13 +487,13 @@ xEventGroupSync:
 	@DEBUG_VALUE: xEventGroupSync:uxBitsToSet <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: xEventGroupSync:xTimeoutOccurred <- 0
 	@DEBUG_VALUE: xEventGroupSync:uxReturn <- $r7
-	.loc	4 219 29 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:219:29
+	.loc	4 219 38 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:219:38
 	ldr	r0, [r5]
 	bics	r0, r4
 	str	r0, [r5]
 .Ltmp63:
 	@DEBUG_VALUE: xEventGroupSync:xTicksToWait <- 0
-	.loc	4 0 29 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:29
+	.loc	4 0 38 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:38
 	b	.LBB2_19
 .Ltmp64:
 .LBB2_12:
@@ -504,7 +504,7 @@ xEventGroupSync:
 	@DEBUG_VALUE: xEventGroupSync:uxBitsToWaitFor <- $r4
 	@DEBUG_VALUE: xEventGroupSync:uxBitsToSet <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: xEventGroupSync:xTimeoutOccurred <- 0
-	.loc	4 225 8 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:225:8
+	.loc	4 225 18 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:225:18
 	cbz	r6, .LBB2_18
 .Ltmp65:
 @ %bb.13:
@@ -515,22 +515,22 @@ xEventGroupSync:
 	@DEBUG_VALUE: xEventGroupSync:uxBitsToWaitFor <- $r4
 	@DEBUG_VALUE: xEventGroupSync:uxBitsToSet <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: xEventGroupSync:xTimeoutOccurred <- 0
-	.loc	4 232 53                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:232:53
+	.loc	4 232 65                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:232:65
 	adds	r0, r5, #4
-	.loc	4 232 127 is_stmt 0             @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:232:127
+	.loc	4 232 139 is_stmt 0             @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:232:139
 	orr	r1, r4, #83886080
-	.loc	4 232 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:232:5
+	.loc	4 232 17                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:232:17
 	mov	r2, r6
 	bl	vTaskPlaceOnUnorderedEventList
 .Ltmp66:
 	@DEBUG_VALUE: xEventGroupSync:uxReturn <- 0
 	@DEBUG_VALUE: xEventGroupSync:xTimeoutOccurred <- undef
 	@DEBUG_VALUE: xEventGroupSync:xTicksToWait <- undef
-	.loc	4 249 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:249:20
+	.loc	4 249 23 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:249:23
 	bl	xTaskResumeAll
 .Ltmp67:
 	@DEBUG_VALUE: xEventGroupSync:xAlreadyYielded <- $r0
-	.loc	4 253 7                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:253:7
+	.loc	4 253 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:253:14
 	cbnz	r0, .LBB2_15
 .Ltmp68:
 @ %bb.14:
@@ -541,13 +541,13 @@ xEventGroupSync:
 	@DEBUG_VALUE: xEventGroupSync:xAlreadyYielded <- $r0
 	@DEBUG_VALUE: xEventGroupSync:uxReturn <- 0
 	@DEBUG_VALUE: xEventGroupSync:uxBitsToSet <- [DW_OP_LLVM_entry_value 1] $r1
-	.loc	4 0 7 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:7
+	.loc	4 0 14 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:14
 	movw	r0, #60676
 .Ltmp69:
 	movt	r0, #57344
 	mov.w	r1, #268435456
 .Ltmp70:
-	.loc	4 255 4 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:255:4
+	.loc	4 255 13 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:255:13
 	str	r1, [r0]
 	@APP
 	dsb	sy
@@ -563,13 +563,13 @@ xEventGroupSync:
 	@DEBUG_VALUE: xEventGroupSync:uxBitsToWaitFor <- $r4
 	@DEBUG_VALUE: xEventGroupSync:uxReturn <- 0
 	@DEBUG_VALUE: xEventGroupSync:uxBitsToSet <- [DW_OP_LLVM_entry_value 1] $r1
-	.loc	4 266 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:266:14
+	.loc	4 266 20                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:266:20
 	bl	uxTaskResetEventItemValue
 .Ltmp72:
 	mov	r6, r0
 .Ltmp73:
 	@DEBUG_VALUE: xEventGroupSync:uxReturn <- $r6
-	.loc	4 268 7                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:268:7
+	.loc	4 268 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:268:14
 	lsls	r0, r0, #6
 	bmi	.LBB2_17
 .Ltmp74:
@@ -580,25 +580,25 @@ xEventGroupSync:
 	@DEBUG_VALUE: xEventGroupSync:xEventGroup <- $r5
 	@DEBUG_VALUE: xEventGroupSync:uxBitsToWaitFor <- $r4
 	@DEBUG_VALUE: xEventGroupSync:uxBitsToSet <- [DW_OP_LLVM_entry_value 1] $r1
-	.loc	4 271 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:271:4
+	.loc	4 271 13                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:271:13
 	bl	vPortEnterCritical
 .Ltmp75:
-	.loc	4 273 29                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:273:29
+	.loc	4 273 41                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:273:41
 	ldr	r6, [r5]
 .Ltmp76:
 	@DEBUG_VALUE: xEventGroupSync:uxReturn <- $r6
-	.loc	4 279 20                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:279:20
+	.loc	4 279 33                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:279:33
 	and.w	r0, r6, r4
 .Ltmp77:
-	.loc	4 279 9 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:279:9
+	.loc	4 279 22 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:279:22
 	cmp	r0, r4
 .Ltmp78:
-	.loc	4 281 31 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:281:31
+	.loc	4 281 46 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:281:46
 	itt	eq
 	biceq.w	r0, r6, r4
 	streq	r0, [r5]
 .Ltmp79:
-	.loc	4 288 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:288:4
+	.loc	4 288 13                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:288:13
 	bl	vPortExitCritical
 .Ltmp80:
 	@DEBUG_VALUE: xEventGroupSync:xTimeoutOccurred <- 1
@@ -611,11 +611,11 @@ xEventGroupSync:
 	@DEBUG_VALUE: xEventGroupSync:uxBitsToSet <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: xEventGroupSync:xTimeoutOccurred <- undef
 	@DEBUG_VALUE: xEventGroupSync:uxReturn <- $r6
-	.loc	4 299 12                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:299:12
+	.loc	4 299 18                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:299:18
 	bic	r7, r6, #-16777216
 .Ltmp81:
 	@DEBUG_VALUE: xEventGroupSync:uxReturn <- $r7
-	.loc	4 0 12 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:12
+	.loc	4 0 18 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:18
 	b	.LBB2_20
 .Ltmp82:
 .LBB2_18:
@@ -626,7 +626,7 @@ xEventGroupSync:
 	@DEBUG_VALUE: xEventGroupSync:uxBitsToWaitFor <- $r4
 	@DEBUG_VALUE: xEventGroupSync:uxBitsToSet <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: xEventGroupSync:xTimeoutOccurred <- 0
-	.loc	4 244 29 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:244:29
+	.loc	4 244 41 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:244:41
 	ldr	r7, [r5]
 .Ltmp83:
 	@DEBUG_VALUE: xEventGroupSync:uxReturn <- $r7
@@ -641,7 +641,7 @@ xEventGroupSync:
 	@DEBUG_VALUE: xEventGroupSync:xTicksToWait <- undef
 	@DEBUG_VALUE: xEventGroupSync:xTimeoutOccurred <- undef
 	@DEBUG_VALUE: xEventGroupSync:uxReturn <- 0
-	.loc	4 249 20                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:249:20
+	.loc	4 249 23                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:249:23
 	bl	xTaskResumeAll
 .Ltmp84:
 .LBB2_20:
@@ -652,7 +652,7 @@ xEventGroupSync:
 	@DEBUG_VALUE: xEventGroupSync:uxBitsToSet <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: xEventGroupSync:xTimeoutOccurred <- undef
 	@DEBUG_VALUE: xEventGroupSync:uxReturn <- $r7
-	.loc	4 307 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:307:2
+	.loc	4 307 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:307:5
 	mov	r0, r7
 	add	sp, #8
 	pop.w	{r4, r5, r6, r7, r8, pc}
@@ -697,7 +697,7 @@ xEventGroupSetBits:
 	@DEBUG_VALUE: xEventGroupSetBits:uxBitsToClear <- 0
 	@DEBUG_VALUE: xEventGroupSetBits:pxEventBits <- $r0
 	@DEBUG_VALUE: xEventGroupSetBits:uxBitsToSet <- $r1
-	.loc	4 530 2 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:530:2
+	.loc	4 530 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:530:5
 	cbz	r0, .LBB3_4
 .Ltmp87:
 @ %bb.1:
@@ -708,11 +708,11 @@ xEventGroupSetBits:
 	@DEBUG_VALUE: xEventGroupSetBits:xMatchFound <- 0
 	@DEBUG_VALUE: xEventGroupSetBits:xEventGroup <- $r0
 	@DEBUG_VALUE: xEventGroupSetBits:pxEventBits <- $r0
-	.loc	4 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:2
+	.loc	4 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:5
 	mov	r5, r1
 .Ltmp88:
 	@DEBUG_VALUE: xEventGroupSetBits:uxBitsToSet <- $r5
-	.loc	4 531 2 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:531:2
+	.loc	4 531 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:531:5
 	cmp.w	r1, #16777216
 	blo	.LBB3_6
 .Ltmp89:
@@ -722,7 +722,7 @@ xEventGroupSetBits:
 	@DEBUG_VALUE: xEventGroupSetBits:xEventGroup <- $r0
 	@DEBUG_VALUE: xEventGroupSetBits:uxBitsToClear <- 0
 	@DEBUG_VALUE: xEventGroupSetBits:xMatchFound <- 0
-	.loc	4 531 2 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:531:2
+	.loc	4 531 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:531:5
 	movw	r0, :lower16:.L.str
 .Ltmp90:
 	@DEBUG_VALUE: xEventGroupSetBits:xEventGroup <- [DW_OP_LLVM_entry_value 1] $r0
@@ -747,7 +747,7 @@ xEventGroupSetBits:
 	@DEBUG_VALUE: xEventGroupSetBits:xEventGroup <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: xEventGroupSetBits:uxBitsToClear <- 0
 	@DEBUG_VALUE: xEventGroupSetBits:xMatchFound <- 0
-	.loc	4 531 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:531:2
+	.loc	4 531 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:531:5
 	b	.LBB3_3
 .Ltmp93:
 .LBB3_4:
@@ -756,7 +756,7 @@ xEventGroupSetBits:
 	@DEBUG_VALUE: xEventGroupSetBits:xEventGroup <- $r0
 	@DEBUG_VALUE: xEventGroupSetBits:uxBitsToClear <- 0
 	@DEBUG_VALUE: xEventGroupSetBits:xMatchFound <- 0
-	.loc	4 530 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:530:2
+	.loc	4 530 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:530:5
 	movw	r0, :lower16:.L.str
 .Ltmp94:
 	@DEBUG_VALUE: xEventGroupSetBits:xEventGroup <- [DW_OP_LLVM_entry_value 1] $r0
@@ -784,7 +784,7 @@ xEventGroupSetBits:
 	@DEBUG_VALUE: xEventGroupSetBits:xEventGroup <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: xEventGroupSetBits:uxBitsToClear <- 0
 	@DEBUG_VALUE: xEventGroupSetBits:xMatchFound <- 0
-	.loc	4 530 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:530:2
+	.loc	4 530 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:530:5
 	b	.LBB3_5
 .Ltmp98:
 .LBB3_6:
@@ -793,36 +793,36 @@ xEventGroupSetBits:
 	@DEBUG_VALUE: xEventGroupSetBits:xEventGroup <- $r0
 	@DEBUG_VALUE: xEventGroupSetBits:uxBitsToClear <- 0
 	@DEBUG_VALUE: xEventGroupSetBits:xMatchFound <- 0
-	.loc	4 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:2
+	.loc	4 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:5
 	mov	r4, r0
 .Ltmp99:
 	@DEBUG_VALUE: xEventGroupSetBits:pxEventBits <- $r4
 	@DEBUG_VALUE: xEventGroupSetBits:xEventGroup <- $r4
 	@DEBUG_VALUE: xEventGroupSetBits:pxList <- [DW_OP_plus_uconst 4, DW_OP_stack_value] $r4
-	.loc	4 534 14 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:534:14
+	.loc	4 534 17 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:534:17
 	add.w	r8, r0, #12
 .Ltmp100:
 	@DEBUG_VALUE: xEventGroupSetBits:pxListEnd <- $r8
-	.loc	4 535 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:535:2
+	.loc	4 535 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:535:5
 	bl	vTaskSuspendAll
 .Ltmp101:
-	.loc	4 542 28                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:542:28
+	.loc	4 542 34                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:542:34
 	ldr	r0, [r4]
-	.loc	4 539 16                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:539:16
+	.loc	4 539 22                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:539:22
 	ldr	r7, [r4, #16]
 .Ltmp102:
 	@DEBUG_VALUE: xEventGroupSetBits:pxListItem <- $r7
-	.loc	4 542 28                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:542:28
+	.loc	4 542 34                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:542:34
 	orrs	r0, r5
-	.loc	4 545 3                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:545:3
+	.loc	4 545 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:545:9
 	cmp	r7, r8
 	mov.w	r5, #0
 .Ltmp103:
 	@DEBUG_VALUE: xEventGroupSetBits:uxBitsToSet <- [DW_OP_LLVM_entry_value 1] $r1
-	.loc	4 542 28                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:542:28
+	.loc	4 542 34                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:542:34
 	str	r0, [r4]
 	@DEBUG_VALUE: xEventGroupSetBits:uxBitsToClear <- 0
-	.loc	4 545 3                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:545:3
+	.loc	4 545 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:545:9
 	beq	.LBB3_13
 .Ltmp104:
 	.p2align	2
@@ -833,7 +833,7 @@ xEventGroupSetBits:
 	@DEBUG_VALUE: xEventGroupSetBits:xEventGroup <- $r4
 	@DEBUG_VALUE: xEventGroupSetBits:pxEventBits <- $r4
 	@DEBUG_VALUE: xEventGroupSetBits:uxBitsToSet <- [DW_OP_LLVM_entry_value 1] $r1
-	.loc	4 0 3 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:3
+	.loc	4 0 9 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:9
 	mov	r0, r7
 .Ltmp105:
 	@DEBUG_VALUE: xEventGroupSetBits:pxNext <- undef
@@ -842,23 +842,23 @@ xEventGroupSetBits:
 	@DEBUG_VALUE: xEventGroupSetBits:pxListItem <- $r0
 	@DEBUG_VALUE: xEventGroupSetBits:xMatchFound <- 0
 	@DEBUG_VALUE: xEventGroupSetBits:uxBitsToClear <- $r5
-	.loc	4 548 22 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:548:22
+	.loc	4 548 31 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:548:31
 	ldrd	r2, r7, [r7]
 .Ltmp106:
 	.loc	4 0 0 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:0
 	ldr	r1, [r4]
 .Ltmp107:
-	.loc	4 553 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:553:20
+	.loc	4 553 29 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:553:29
 	bic	r3, r2, #-16777216
 .Ltmp108:
 	@DEBUG_VALUE: xEventGroupSetBits:uxBitsWaitedFor <- $r3
-	.loc	4 555 8                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:555:8
+	.loc	4 555 18                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:555:18
 	lsls	r6, r2, #5
 .Ltmp109:
 	.loc	4 0 0 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:0
 	and.w	r6, r1, r3
 .Ltmp110:
-	.loc	4 555 8                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:555:8
+	.loc	4 555 18                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:555:18
 	bmi	.LBB3_11
 .Ltmp111:
 @ %bb.8:                                @   in Loop: Header=BB3_7 Depth=1
@@ -872,7 +872,7 @@ xEventGroupSetBits:
 	@DEBUG_VALUE: xEventGroupSetBits:uxBitsToSet <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: xEventGroupSetBits:xMatchFound <- 0
 	@DEBUG_VALUE: xEventGroupSetBits:xMatchFound <- undef
-	.loc	4 0 8                           @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:8
+	.loc	4 0 18                          @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:18
 	cbz	r6, .LBB3_10
 .Ltmp112:
 .LBB3_9:                                @   in Loop: Header=BB3_7 Depth=1
@@ -884,15 +884,15 @@ xEventGroupSetBits:
 	@DEBUG_VALUE: xEventGroupSetBits:uxBitsWaitedFor <- $r3
 	@DEBUG_VALUE: xEventGroupSetBits:pxListItem <- $r0
 	@DEBUG_VALUE: xEventGroupSetBits:uxBitsToSet <- [DW_OP_LLVM_entry_value 1] $r1
-	.loc	4 594 77 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:594:77
+	.loc	4 594 89 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:594:89
 	orr	r1, r1, #33554432
-	.loc	4 580 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:580:9
+	.loc	4 580 22                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:580:22
 	lsls	r2, r2, #7
 	it	mi
 	orrmi	r5, r3
 .Ltmp113:
 	@DEBUG_VALUE: xEventGroupSetBits:uxBitsToClear <- $r5
-	.loc	4 594 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:594:5
+	.loc	4 594 17                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:594:17
 	bl	vTaskRemoveFromUnorderedEventList
 .Ltmp114:
 .LBB3_10:                               @   in Loop: Header=BB3_7 Depth=1
@@ -904,7 +904,7 @@ xEventGroupSetBits:
 	@DEBUG_VALUE: xEventGroupSetBits:uxBitsToSet <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: xEventGroupSetBits:uxBitsToClear <- $r5
 	@DEBUG_VALUE: xEventGroupSetBits:pxListItem <- $r7
-	.loc	4 545 3                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:545:3
+	.loc	4 545 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:545:9
 	cmp	r7, r8
 	bne	.LBB3_7
 	b	.LBB3_12
@@ -921,7 +921,7 @@ xEventGroupSetBits:
 	@DEBUG_VALUE: xEventGroupSetBits:uxBitsToSet <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: xEventGroupSetBits:xMatchFound <- 0
 	@DEBUG_VALUE: xEventGroupSetBits:xMatchFound <- undef
-	.loc	4 577 8                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:577:8
+	.loc	4 577 18                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:577:18
 	cmp	r6, r3
 	beq	.LBB3_9
 	b	.LBB3_10
@@ -934,7 +934,7 @@ xEventGroupSetBits:
 	@DEBUG_VALUE: xEventGroupSetBits:xEventGroup <- $r4
 	@DEBUG_VALUE: xEventGroupSetBits:pxEventBits <- $r4
 	@DEBUG_VALUE: xEventGroupSetBits:uxBitsToSet <- [DW_OP_LLVM_entry_value 1] $r1
-	.loc	4 605 28                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:605:28
+	.loc	4 605 34                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:605:34
 	ldr	r0, [r4]
 .Ltmp117:
 .LBB3_13:
@@ -947,18 +947,18 @@ xEventGroupSetBits:
 	bics	r0, r5
 	str	r0, [r4]
 .Ltmp118:
-	.loc	4 607 11                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:607:11
+	.loc	4 607 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:607:14
 	bl	xTaskResumeAll
 .Ltmp119:
-	.loc	4 609 22                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:609:22
+	.loc	4 609 25                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:609:25
 	ldr	r0, [r4]
-	.loc	4 609 2 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:609:2
+	.loc	4 609 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:609:5
 	add	sp, #8
 	pop.w	{r4, r5, r6, r7, r8, pc}
 .Ltmp120:
 	.p2align	2
 @ %bb.14:
-	.loc	4 0 2                           @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:2
+	.loc	4 0 5                           @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:5
 .LCPI3_0:
 .L.str.9:
 	.asciz	"( uxBitsToSet & eventEVENT_BITS_CONTROL_BYTES ) == 0\000\000\000"
@@ -1008,7 +1008,7 @@ xEventGroupWaitBits:
 	@DEBUG_VALUE: xEventGroupWaitBits:pxEventBits <- $r0
 	@DEBUG_VALUE: xEventGroupWaitBits:xTicksToWait <- [DW_OP_plus_uconst 32] [$sp+0]
 	@DEBUG_VALUE: xEventGroupWaitBits:uxBitsToWaitFor <- $r1
-	.loc	4 320 2 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:320:2
+	.loc	4 320 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:320:5
 	cbz	r0, .LBB4_4
 .Ltmp122:
 @ %bb.1:
@@ -1024,11 +1024,11 @@ xEventGroupWaitBits:
 	@DEBUG_VALUE: xEventGroupWaitBits:xClearOnExit <- $r2
 	@DEBUG_VALUE: xEventGroupWaitBits:xEventGroup <- $r0
 	@DEBUG_VALUE: xEventGroupWaitBits:pxEventBits <- $r0
-	.loc	4 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:2
+	.loc	4 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:5
 	mov	r5, r1
 .Ltmp123:
 	@DEBUG_VALUE: xEventGroupWaitBits:uxBitsToWaitFor <- $r5
-	.loc	4 321 2 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:321:2
+	.loc	4 321 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:321:5
 	cmp.w	r1, #16777216
 	blo	.LBB4_6
 .Ltmp124:
@@ -1041,7 +1041,7 @@ xEventGroupWaitBits:
 	@DEBUG_VALUE: xEventGroupWaitBits:xTicksToWait <- [DW_OP_plus_uconst 32] [$sp+0]
 	@DEBUG_VALUE: xEventGroupWaitBits:uxControlBits <- 0
 	@DEBUG_VALUE: xEventGroupWaitBits:xTimeoutOccurred <- 0
-	.loc	4 321 2 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:321:2
+	.loc	4 321 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:321:5
 	movw	r0, :lower16:.L.str
 .Ltmp125:
 	@DEBUG_VALUE: xEventGroupWaitBits:xEventGroup <- [DW_OP_LLVM_entry_value 1] $r0
@@ -1052,9 +1052,9 @@ xEventGroupWaitBits:
 	movw	r3, :lower16:.L__func__.xEventGroupWaitBits
 .Ltmp127:
 	@DEBUG_VALUE: xEventGroupWaitBits:xWaitForAllBits <- [DW_OP_LLVM_entry_value 1] $r3
-	.loc	4 0 2                           @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:2
+	.loc	4 0 5                           @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:5
 	movw	r7, #321
-	.loc	4 321 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:321:2
+	.loc	4 321 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:321:5
 	movt	r0, :upper16:.L.str
 	movt	r1, :upper16:.L.str.4
 	movt	r2, :upper16:.L.str.2
@@ -1076,7 +1076,7 @@ xEventGroupWaitBits:
 	@DEBUG_VALUE: xEventGroupWaitBits:xEventGroup <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: xEventGroupWaitBits:uxControlBits <- 0
 	@DEBUG_VALUE: xEventGroupWaitBits:xTimeoutOccurred <- 0
-	.loc	4 321 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:321:2
+	.loc	4 321 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:321:5
 	b	.LBB4_3
 .Ltmp130:
 .LBB4_4:
@@ -1088,7 +1088,7 @@ xEventGroupWaitBits:
 	@DEBUG_VALUE: xEventGroupWaitBits:xTicksToWait <- [DW_OP_plus_uconst 32] [$sp+0]
 	@DEBUG_VALUE: xEventGroupWaitBits:uxControlBits <- 0
 	@DEBUG_VALUE: xEventGroupWaitBits:xTimeoutOccurred <- 0
-	.loc	4 320 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:320:2
+	.loc	4 320 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:320:5
 	movw	r0, :lower16:.L.str
 .Ltmp131:
 	@DEBUG_VALUE: xEventGroupWaitBits:xEventGroup <- [DW_OP_LLVM_entry_value 1] $r0
@@ -1101,9 +1101,9 @@ xEventGroupWaitBits:
 	movw	r3, :lower16:.L__func__.xEventGroupWaitBits
 .Ltmp134:
 	@DEBUG_VALUE: xEventGroupWaitBits:xWaitForAllBits <- [DW_OP_LLVM_entry_value 1] $r3
-	.loc	4 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:2
+	.loc	4 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:5
 	mov.w	r7, #320
-	.loc	4 320 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:320:2
+	.loc	4 320 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:320:5
 	movt	r0, :upper16:.L.str
 	movt	r1, :upper16:.L.str.7
 	movt	r2, :upper16:.L.str.2
@@ -1125,7 +1125,7 @@ xEventGroupWaitBits:
 	@DEBUG_VALUE: xEventGroupWaitBits:xEventGroup <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: xEventGroupWaitBits:uxControlBits <- 0
 	@DEBUG_VALUE: xEventGroupWaitBits:xTimeoutOccurred <- 0
-	.loc	4 320 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:320:2
+	.loc	4 320 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:320:5
 	b	.LBB4_5
 .Ltmp137:
 .LBB4_6:
@@ -1141,7 +1141,7 @@ xEventGroupWaitBits:
 	@DEBUG_VALUE: xEventGroupWaitBits:xClearOnExit <- $r2
 	@DEBUG_VALUE: xEventGroupWaitBits:pxEventBits <- $r0
 	@DEBUG_VALUE: xEventGroupWaitBits:xEventGroup <- $r0
-	.loc	4 322 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:322:2
+	.loc	4 322 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:322:5
 	cbz	r5, .LBB4_11
 .Ltmp138:
 @ %bb.7:
@@ -1153,7 +1153,7 @@ xEventGroupWaitBits:
 	@DEBUG_VALUE: xEventGroupWaitBits:xTicksToWait <- [DW_OP_plus_uconst 32] [$sp+0]
 	@DEBUG_VALUE: xEventGroupWaitBits:uxControlBits <- 0
 	@DEBUG_VALUE: xEventGroupWaitBits:xTimeoutOccurred <- 0
-	.loc	4 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:2
+	.loc	4 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:5
 	ldr.w	r8, [sp, #32]
 	mov	r7, r3
 .Ltmp139:
@@ -1168,10 +1168,10 @@ xEventGroupWaitBits:
 	@DEBUG_VALUE: xEventGroupWaitBits:xEventGroup <- $r4
 	@DEBUG_VALUE: xEventGroupWaitBits:xEventGroup <- $r4
 	@DEBUG_VALUE: xEventGroupWaitBits:pxEventBits <- $r4
-	.loc	4 325 3 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:325:3
+	.loc	4 325 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:325:9
 	bl	xTaskGetSchedulerState
 .Ltmp142:
-	.loc	4 325 3 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:325:3
+	.loc	4 325 9 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:325:9
 	cmp.w	r8, #0
 	beq	.LBB4_13
 .Ltmp143:
@@ -1195,7 +1195,7 @@ xEventGroupWaitBits:
 	@DEBUG_VALUE: xEventGroupWaitBits:xTicksToWait <- [DW_OP_plus_uconst 32] [$sp+0]
 	@DEBUG_VALUE: xEventGroupWaitBits:uxControlBits <- 0
 	@DEBUG_VALUE: xEventGroupWaitBits:xTimeoutOccurred <- 0
-	.loc	4 325 3                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:325:3
+	.loc	4 325 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:325:9
 	movw	r0, :lower16:.L.str
 	movw	r1, :lower16:.L.str.6
 	movw	r2, :lower16:.L.str.2
@@ -1225,7 +1225,7 @@ xEventGroupWaitBits:
 	@DEBUG_VALUE: xEventGroupWaitBits:xWaitForAllBits <- [DW_OP_LLVM_entry_value 1] $r3
 	@DEBUG_VALUE: xEventGroupWaitBits:uxControlBits <- 0
 	@DEBUG_VALUE: xEventGroupWaitBits:xTimeoutOccurred <- 0
-	.loc	4 325 3                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:325:3
+	.loc	4 325 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:325:9
 	b	.LBB4_10
 .Ltmp148:
 .LBB4_11:
@@ -1237,7 +1237,7 @@ xEventGroupWaitBits:
 	@DEBUG_VALUE: xEventGroupWaitBits:xTicksToWait <- [DW_OP_plus_uconst 32] [$sp+0]
 	@DEBUG_VALUE: xEventGroupWaitBits:uxControlBits <- 0
 	@DEBUG_VALUE: xEventGroupWaitBits:xTimeoutOccurred <- 0
-	.loc	4 322 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:322:2
+	.loc	4 322 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:322:5
 	movw	r0, :lower16:.L.str
 .Ltmp149:
 	@DEBUG_VALUE: xEventGroupWaitBits:xEventGroup <- [DW_OP_LLVM_entry_value 1] $r0
@@ -1248,9 +1248,9 @@ xEventGroupWaitBits:
 	movw	r3, :lower16:.L__func__.xEventGroupWaitBits
 .Ltmp151:
 	@DEBUG_VALUE: xEventGroupWaitBits:xWaitForAllBits <- [DW_OP_LLVM_entry_value 1] $r3
-	.loc	4 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:2
+	.loc	4 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:5
 	mov.w	r7, #322
-	.loc	4 322 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:322:2
+	.loc	4 322 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:322:5
 	movt	r0, :upper16:.L.str
 	movt	r1, :upper16:.L.str.5
 	movt	r2, :upper16:.L.str.2
@@ -1272,7 +1272,7 @@ xEventGroupWaitBits:
 	@DEBUG_VALUE: xEventGroupWaitBits:xEventGroup <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: xEventGroupWaitBits:uxControlBits <- 0
 	@DEBUG_VALUE: xEventGroupWaitBits:xTimeoutOccurred <- 0
-	.loc	4 322 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:322:2
+	.loc	4 322 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:322:5
 	b	.LBB4_12
 .Ltmp154:
 .LBB4_13:
@@ -1284,10 +1284,10 @@ xEventGroupWaitBits:
 	@DEBUG_VALUE: xEventGroupWaitBits:xTicksToWait <- [DW_OP_plus_uconst 32] [$sp+0]
 	@DEBUG_VALUE: xEventGroupWaitBits:uxControlBits <- 0
 	@DEBUG_VALUE: xEventGroupWaitBits:xTimeoutOccurred <- 0
-	.loc	4 329 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:329:2
+	.loc	4 329 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:329:5
 	bl	vTaskSuspendAll
 .Ltmp155:
-	.loc	4 331 55                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:331:55
+	.loc	4 331 61                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:331:61
 	ldr.w	r9, [r4]
 .Ltmp156:
 	@DEBUG_VALUE: prvTestWaitCondition:xWaitConditionMet <- 0
@@ -1295,7 +1295,7 @@ xEventGroupWaitBits:
 	@DEBUG_VALUE: prvTestWaitCondition:uxBitsToWaitFor <- $r5
 	@DEBUG_VALUE: prvTestWaitCondition:uxCurrentEventBits <- $r9
 	@DEBUG_VALUE: uxCurrentEventBits <- $r9
-	.loc	4 675 6                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:675:6
+	.loc	4 675 10                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:675:10
 	ands.w	r0, r9, r5
 	sub.w	r1, r0, r5
 	it	ne
@@ -1306,7 +1306,7 @@ xEventGroupWaitBits:
 	lsrne	r0, r1, #5
 .Ltmp157:
 	@DEBUG_VALUE: xEventGroupWaitBits:xWaitConditionMet <- [DW_OP_LLVM_convert 1 7, DW_OP_LLVM_convert 32 7, DW_OP_stack_value] $r0
-	.loc	4 336 7                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:336:7
+	.loc	4 336 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:336:14
 	cmp	r0, #1
 	bne	.LBB4_16
 .Ltmp158:
@@ -1323,7 +1323,7 @@ xEventGroupWaitBits:
 	@DEBUG_VALUE: xEventGroupWaitBits:xTimeoutOccurred <- 0
 	@DEBUG_VALUE: xEventGroupWaitBits:xTicksToWait <- 0
 	@DEBUG_VALUE: xEventGroupWaitBits:uxReturn <- $r9
-	.loc	4 344 8                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:344:8
+	.loc	4 344 18                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:344:18
 	cmp	r6, #0
 	beq	.LBB4_25
 .Ltmp159:
@@ -1339,7 +1339,7 @@ xEventGroupWaitBits:
 	@DEBUG_VALUE: xEventGroupWaitBits:xTicksToWait <- 0
 	@DEBUG_VALUE: xEventGroupWaitBits:uxControlBits <- 0
 	@DEBUG_VALUE: xEventGroupWaitBits:xTimeoutOccurred <- 0
-	.loc	4 346 30                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:346:30
+	.loc	4 346 42                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:346:42
 	bic.w	r0, r9, r5
 .Ltmp160:
 	str	r0, [r4]
@@ -1356,7 +1356,7 @@ xEventGroupWaitBits:
 	@DEBUG_VALUE: xEventGroupWaitBits:xTicksToWait <- [DW_OP_plus_uconst 32] [$sp+0]
 	@DEBUG_VALUE: xEventGroupWaitBits:uxControlBits <- 0
 	@DEBUG_VALUE: xEventGroupWaitBits:xTimeoutOccurred <- 0
-	.loc	4 353 12                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:353:12
+	.loc	4 353 19                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:353:19
 	cmp.w	r8, #0
 	beq	.LBB4_25
 .Ltmp162:
@@ -1371,18 +1371,18 @@ xEventGroupWaitBits:
 	@DEBUG_VALUE: xEventGroupWaitBits:xTicksToWait <- [DW_OP_plus_uconst 32] [$sp+0]
 	@DEBUG_VALUE: xEventGroupWaitBits:uxControlBits <- 0
 	@DEBUG_VALUE: xEventGroupWaitBits:xTimeoutOccurred <- 0
-	.loc	4 366 21                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:366:21
+	.loc	4 366 31                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:366:31
 	mov	r0, r6
 .Ltmp163:
 	cmp	r6, #0
 	it	ne
 	movne	r0, #1
 .Ltmp164:
-	.loc	4 366 8 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:366:8
+	.loc	4 366 18 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:366:18
 	lsls	r1, r0, #24
 .Ltmp165:
 	@DEBUG_VALUE: xEventGroupWaitBits:uxControlBits <- $r1
-	.loc	4 375 8 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:375:8
+	.loc	4 375 18 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:375:18
 	add.w	r1, r1, #67108864
 .Ltmp166:
 	cmp	r7, #0
@@ -1390,23 +1390,23 @@ xEventGroupWaitBits:
 	lsleq	r1, r0, #24
 .Ltmp167:
 	@DEBUG_VALUE: xEventGroupWaitBits:uxControlBits <- $r1
-	.loc	4 387 52                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:387:52
+	.loc	4 387 61                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:387:61
 	adds	r0, r4, #4
-	.loc	4 387 94 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:387:94
+	.loc	4 387 103 is_stmt 0             @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:387:103
 	orrs	r1, r5
 .Ltmp168:
-	.loc	4 387 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:387:4
+	.loc	4 387 13                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:387:13
 	mov	r2, r8
 	bl	vTaskPlaceOnUnorderedEventList
 .Ltmp169:
 	@DEBUG_VALUE: xEventGroupWaitBits:uxReturn <- 0
 	@DEBUG_VALUE: xEventGroupWaitBits:xTimeoutOccurred <- undef
 	@DEBUG_VALUE: xEventGroupWaitBits:xTicksToWait <- undef
-	.loc	4 397 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:397:20
+	.loc	4 397 23 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:397:23
 	bl	xTaskResumeAll
 .Ltmp170:
 	@DEBUG_VALUE: xEventGroupWaitBits:xAlreadyYielded <- $r0
-	.loc	4 401 7                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:401:7
+	.loc	4 401 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:401:14
 	cbnz	r0, .LBB4_19
 .Ltmp171:
 @ %bb.18:
@@ -1417,13 +1417,13 @@ xEventGroupWaitBits:
 	@DEBUG_VALUE: xEventGroupWaitBits:xEventGroup <- $r4
 	@DEBUG_VALUE: xEventGroupWaitBits:xAlreadyYielded <- $r0
 	@DEBUG_VALUE: xEventGroupWaitBits:uxReturn <- 0
-	.loc	4 0 7 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:7
+	.loc	4 0 14 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:14
 	movw	r0, #60676
 .Ltmp172:
 	movt	r0, #57344
 	mov.w	r1, #268435456
 .Ltmp173:
-	.loc	4 403 4 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:403:4
+	.loc	4 403 13 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:403:13
 	str	r1, [r0]
 	@APP
 	dsb	sy
@@ -1439,13 +1439,13 @@ xEventGroupWaitBits:
 	@DEBUG_VALUE: xEventGroupWaitBits:pxEventBits <- $r4
 	@DEBUG_VALUE: xEventGroupWaitBits:xEventGroup <- $r4
 	@DEBUG_VALUE: xEventGroupWaitBits:uxReturn <- 0
-	.loc	4 414 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:414:14
+	.loc	4 414 20                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:414:20
 	bl	uxTaskResetEventItemValue
 .Ltmp175:
 	mov	r8, r0
 .Ltmp176:
 	@DEBUG_VALUE: xEventGroupWaitBits:uxReturn <- $r8
-	.loc	4 416 7                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:416:7
+	.loc	4 416 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:416:14
 	lsls	r0, r0, #6
 	bmi	.LBB4_24
 .Ltmp177:
@@ -1456,10 +1456,10 @@ xEventGroupWaitBits:
 	@DEBUG_VALUE: xEventGroupWaitBits:uxBitsToWaitFor <- $r5
 	@DEBUG_VALUE: xEventGroupWaitBits:pxEventBits <- $r4
 	@DEBUG_VALUE: xEventGroupWaitBits:xEventGroup <- $r4
-	.loc	4 418 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:418:4
+	.loc	4 418 13                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:418:13
 	bl	vPortEnterCritical
 .Ltmp178:
-	.loc	4 421 29                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:421:29
+	.loc	4 421 41                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:421:41
 	ldr.w	r8, [r4]
 .Ltmp179:
 	@DEBUG_VALUE: prvTestWaitCondition:xWaitConditionMet <- 0
@@ -1467,7 +1467,7 @@ xEventGroupWaitBits:
 	@DEBUG_VALUE: prvTestWaitCondition:uxBitsToWaitFor <- $r5
 	@DEBUG_VALUE: prvTestWaitCondition:uxCurrentEventBits <- $r8
 	@DEBUG_VALUE: xEventGroupWaitBits:uxReturn <- $r8
-	.loc	4 675 6                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:675:6
+	.loc	4 675 10                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:675:10
 	ands.w	r0, r8, r5
 	sub.w	r1, r0, r5
 	it	ne
@@ -1477,7 +1477,7 @@ xEventGroupWaitBits:
 	it	ne
 	lsrne	r0, r1, #5
 .Ltmp180:
-	.loc	4 425 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:425:9
+	.loc	4 425 22                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:425:22
 	cbz	r6, .LBB4_23
 .Ltmp181:
 @ %bb.21:
@@ -1496,7 +1496,7 @@ xEventGroupWaitBits:
 	@DEBUG_VALUE: xEventGroupWaitBits:uxBitsToWaitFor <- $r5
 	@DEBUG_VALUE: xEventGroupWaitBits:pxEventBits <- $r4
 	@DEBUG_VALUE: xEventGroupWaitBits:xEventGroup <- $r4
-	.loc	4 429 32                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:429:32
+	.loc	4 429 50                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:429:50
 	bic.w	r0, r8, r5
 	str	r0, [r4]
 .Ltmp183:
@@ -1508,7 +1508,7 @@ xEventGroupWaitBits:
 	@DEBUG_VALUE: xEventGroupWaitBits:pxEventBits <- $r4
 	@DEBUG_VALUE: xEventGroupWaitBits:xEventGroup <- $r4
 	@DEBUG_VALUE: xEventGroupWaitBits:xTimeoutOccurred <- 1
-	.loc	4 442 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:442:4
+	.loc	4 442 13                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:442:13
 	bl	vPortExitCritical
 .Ltmp184:
 .LBB4_24:
@@ -1520,11 +1520,11 @@ xEventGroupWaitBits:
 	@DEBUG_VALUE: xEventGroupWaitBits:xEventGroup <- $r4
 	@DEBUG_VALUE: xEventGroupWaitBits:xTimeoutOccurred <- undef
 	@DEBUG_VALUE: xEventGroupWaitBits:uxReturn <- $r8
-	.loc	4 450 12                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:450:12
+	.loc	4 450 18                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:450:18
 	bic	r9, r8, #-16777216
 .Ltmp185:
 	@DEBUG_VALUE: xEventGroupWaitBits:uxReturn <- $r9
-	.loc	4 0 12 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:12
+	.loc	4 0 18 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:18
 	b	.LBB4_26
 .Ltmp186:
 .LBB4_25:
@@ -1538,7 +1538,7 @@ xEventGroupWaitBits:
 	@DEBUG_VALUE: xEventGroupWaitBits:xTicksToWait <- undef
 	@DEBUG_VALUE: xEventGroupWaitBits:xTimeoutOccurred <- undef
 	@DEBUG_VALUE: xEventGroupWaitBits:uxReturn <- 0
-	.loc	4 397 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:397:20
+	.loc	4 397 23 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:397:23
 	bl	xTaskResumeAll
 .Ltmp187:
 .LBB4_26:
@@ -1549,7 +1549,7 @@ xEventGroupWaitBits:
 	@DEBUG_VALUE: xEventGroupWaitBits:xEventGroup <- $r4
 	@DEBUG_VALUE: xEventGroupWaitBits:xTimeoutOccurred <- undef
 	@DEBUG_VALUE: xEventGroupWaitBits:uxReturn <- $r9
-	.loc	4 457 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:457:2
+	.loc	4 457 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:457:5
 	mov	r0, r9
 	add	sp, #4
 	pop.w	{r4, r5, r6, r7, r8, r9, pc}
@@ -1590,7 +1590,7 @@ xEventGroupClearBits:
 	@DEBUG_VALUE: xEventGroupClearBits:pxEventBits <- $r0
 	@DEBUG_VALUE: xEventGroupClearBits:pxEventBits <- $r0
 	@DEBUG_VALUE: xEventGroupClearBits:uxBitsToClear <- $r1
-	.loc	4 468 2 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:468:2
+	.loc	4 468 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:468:5
 	cbz	r0, .LBB5_4
 .Ltmp190:
 @ %bb.1:
@@ -1599,11 +1599,11 @@ xEventGroupClearBits:
 	@DEBUG_VALUE: xEventGroupClearBits:xEventGroup <- $r0
 	@DEBUG_VALUE: xEventGroupClearBits:xEventGroup <- $r0
 	@DEBUG_VALUE: xEventGroupClearBits:pxEventBits <- $r0
-	.loc	4 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:2
+	.loc	4 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:5
 	mov	r5, r1
 .Ltmp191:
 	@DEBUG_VALUE: xEventGroupClearBits:uxBitsToClear <- $r5
-	.loc	4 469 2 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:469:2
+	.loc	4 469 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:469:5
 	cmp.w	r1, #16777216
 	blo	.LBB5_6
 .Ltmp192:
@@ -1611,7 +1611,7 @@ xEventGroupClearBits:
 	@DEBUG_VALUE: xEventGroupClearBits:uxBitsToClear <- $r5
 	@DEBUG_VALUE: xEventGroupClearBits:pxEventBits <- $r0
 	@DEBUG_VALUE: xEventGroupClearBits:xEventGroup <- $r0
-	.loc	4 469 2 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:469:2
+	.loc	4 469 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:469:5
 	movw	r0, :lower16:.L.str
 .Ltmp193:
 	@DEBUG_VALUE: xEventGroupClearBits:xEventGroup <- [DW_OP_LLVM_entry_value 1] $r0
@@ -1634,14 +1634,14 @@ xEventGroupClearBits:
 .LBB5_3:                                @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: xEventGroupClearBits:uxBitsToClear <- $r5
 	@DEBUG_VALUE: xEventGroupClearBits:xEventGroup <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	4 469 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:469:2
+	.loc	4 469 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:469:5
 	b	.LBB5_3
 .Ltmp196:
 .LBB5_4:
 	@DEBUG_VALUE: xEventGroupClearBits:uxBitsToClear <- $r1
 	@DEBUG_VALUE: xEventGroupClearBits:pxEventBits <- $r0
 	@DEBUG_VALUE: xEventGroupClearBits:xEventGroup <- $r0
-	.loc	4 468 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:468:2
+	.loc	4 468 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:468:5
 	movw	r0, :lower16:.L.str
 .Ltmp197:
 	@DEBUG_VALUE: xEventGroupClearBits:xEventGroup <- [DW_OP_LLVM_entry_value 1] $r0
@@ -1667,41 +1667,41 @@ xEventGroupClearBits:
 .LBB5_5:                                @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: xEventGroupClearBits:uxBitsToClear <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: xEventGroupClearBits:xEventGroup <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	4 468 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:468:2
+	.loc	4 468 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:468:5
 	b	.LBB5_5
 .Ltmp201:
 .LBB5_6:
 	@DEBUG_VALUE: xEventGroupClearBits:uxBitsToClear <- $r5
 	@DEBUG_VALUE: xEventGroupClearBits:pxEventBits <- $r0
 	@DEBUG_VALUE: xEventGroupClearBits:xEventGroup <- $r0
-	.loc	4 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:2
+	.loc	4 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:5
 	mov	r4, r0
 .Ltmp202:
 	@DEBUG_VALUE: xEventGroupClearBits:xEventGroup <- $r4
 	@DEBUG_VALUE: xEventGroupClearBits:pxEventBits <- $r4
 	@DEBUG_VALUE: xEventGroupClearBits:xEventGroup <- $r4
-	.loc	4 471 2 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:471:2
+	.loc	4 471 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:471:5
 	bl	vPortEnterCritical
 .Ltmp203:
-	.loc	4 477 27                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:477:27
+	.loc	4 477 33                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:477:33
 	ldr	r6, [r4]
 .Ltmp204:
 	@DEBUG_VALUE: xEventGroupClearBits:uxReturn <- $r6
-	.loc	4 480 28                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:480:28
+	.loc	4 480 34                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:480:34
 	bic.w	r0, r6, r5
 	str	r0, [r4]
 .Ltmp205:
-	.loc	4 482 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:482:2
+	.loc	4 482 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:482:5
 	bl	vPortExitCritical
 .Ltmp206:
-	.loc	4 484 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:484:2
+	.loc	4 484 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:484:5
 	mov	r0, r6
 	add	sp, #8
 	pop	{r4, r5, r6, pc}
 .Ltmp207:
 	.p2align	2
 @ %bb.7:
-	.loc	4 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:2
+	.loc	4 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:5
 .LCPI5_0:
 .L.str.8:
 	.asciz	"( uxBitsToClear & eventEVENT_BITS_CONTROL_BYTES ) == 0\000"
@@ -1732,7 +1732,7 @@ xEventGroupClearBitsFromISR:
 	@DEBUG_VALUE: xEventGroupClearBitsFromISR:uxBitsToClear <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: xEventGroupClearBitsFromISR:uxBitsToClear <- $r2
 	@DEBUG_VALUE: xEventGroupClearBitsFromISR:xEventGroup <- $r1
-	.loc	4 495 13 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:495:13
+	.loc	4 495 15 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:495:15
 	movw	r0, :lower16:vEventGroupClearBitsCallback
 	movt	r0, :upper16:vEventGroupClearBitsCallback
 	@DEBUG_VALUE: xEventGroupClearBitsFromISR:uxBitsToClear <- $r2
@@ -1744,7 +1744,7 @@ xEventGroupClearBitsFromISR:
 .Lfunc_end6:
 	.size	xEventGroupClearBitsFromISR, .Lfunc_end6-xEventGroupClearBitsFromISR
 	.cfi_endproc
-	.file	7 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/timers.h"
+	.file	7 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/timers.h"
 	.cantunwind
 	.fnend
                                         @ -- End function
@@ -1767,7 +1767,7 @@ vEventGroupClearBitsCallback:
 	@DEBUG_VALUE: vEventGroupClearBitsCallback:ulBitsToClear <- $r1
 	@DEBUG_VALUE: vEventGroupClearBitsCallback:ulBitsToClear <- $r1
 	@DEBUG_VALUE: vEventGroupClearBitsCallback:ulBitsToClear <- $r1
-	.loc	4 667 11 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:667:11
+	.loc	4 667 14 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:667:14
 	b	xEventGroupClearBits
 .Ltmp211:
 .Lfunc_end7:
@@ -1793,7 +1793,7 @@ xEventGroupGetBitsFromISR:
 	@DEBUG_VALUE: xEventGroupGetBitsFromISR:xEventGroup <- $r0
 	@DEBUG_VALUE: xEventGroupGetBitsFromISR:pxEventBits <- $r0
 	@DEBUG_VALUE: xEventGroupGetBitsFromISR:pxEventBits <- $r0
-	.loc	2 213 2 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\portmacro.h:213:2
+	.loc	2 213 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\portmacro.h:213:5
 	@APP
 	mrs	r2, basepri
 	mov.w	r1, #64
@@ -1806,18 +1806,18 @@ xEventGroupGetBitsFromISR:
 	@DEBUG_VALUE: ulPortRaiseBASEPRI:ulNewBASEPRI <- undef
 	@DEBUG_VALUE: xEventGroupGetBitsFromISR:uxSavedInterruptStatus <- $r2
 	@DEBUG_VALUE: ulPortRaiseBASEPRI:ulOriginalBASEPRI <- $r2
-	.loc	4 511 27                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:511:27
+	.loc	4 511 33                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:511:33
 	ldr	r0, [r0]
 .Ltmp213:
 	@DEBUG_VALUE: xEventGroupGetBitsFromISR:xEventGroup <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: xEventGroupGetBitsFromISR:uxReturn <- $r0
 	@DEBUG_VALUE: vPortSetBASEPRI:ulNewMaskValue <- $r2
-	.loc	2 231 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\portmacro.h:231:2
+	.loc	2 231 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\portmacro.h:231:5
 	@APP
 	msr	basepri, r2
 	@NO_APP
 .Ltmp214:
-	.loc	4 515 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:515:2
+	.loc	4 515 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:515:5
 	bx	lr
 .Ltmp215:
 .Lfunc_end8:
@@ -1859,19 +1859,19 @@ vEventGroupDelete:
 	@DEBUG_VALUE: vEventGroupDelete:pxTasksWaitingForBits <- [DW_OP_plus_uconst 4, DW_OP_stack_value] $r4
 	@DEBUG_VALUE: vEventGroupDelete:pxEventBits <- $r4
 	@DEBUG_VALUE: vEventGroupDelete:xEventGroup <- $r4
-	.loc	4 618 2 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:618:2
+	.loc	4 618 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:618:5
 	bl	vTaskSuspendAll
 .Ltmp218:
-	.loc	4 622 10                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:622:10
+	.loc	4 622 17                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:622:17
 	ldr	r0, [r4, #4]
-	.loc	4 622 3 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:622:3
+	.loc	4 622 9 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:622:9
 	cbz	r0, .LBB9_4
 .Ltmp219:
 @ %bb.1:
 	@DEBUG_VALUE: vEventGroupDelete:pxEventBits <- $r4
 	@DEBUG_VALUE: vEventGroupDelete:pxTasksWaitingForBits <- [DW_OP_plus_uconst 4, DW_OP_stack_value] $r4
 	@DEBUG_VALUE: vEventGroupDelete:xEventGroup <- $r4
-	.loc	4 0 3                           @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:3
+	.loc	4 0 9                           @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:9
 	add.w	r5, r4, #12
 .Ltmp220:
 	.p2align	2
@@ -1879,10 +1879,10 @@ vEventGroupDelete:
 	@DEBUG_VALUE: vEventGroupDelete:pxEventBits <- $r4
 	@DEBUG_VALUE: vEventGroupDelete:pxTasksWaitingForBits <- [DW_OP_plus_uconst 4, DW_OP_stack_value] $r4
 	@DEBUG_VALUE: vEventGroupDelete:xEventGroup <- $r4
-	.loc	4 626 4 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:626:4
+	.loc	4 626 13 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:626:13
 	ldr	r0, [r4, #16]
 .Ltmp221:
-	.loc	4 626 4 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:626:4
+	.loc	4 626 13 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:626:13
 	cmp	r0, r5
 	beq	.LBB9_7
 .Ltmp222:
@@ -1890,13 +1890,13 @@ vEventGroupDelete:
 	@DEBUG_VALUE: vEventGroupDelete:pxEventBits <- $r4
 	@DEBUG_VALUE: vEventGroupDelete:pxTasksWaitingForBits <- [DW_OP_plus_uconst 4, DW_OP_stack_value] $r4
 	@DEBUG_VALUE: vEventGroupDelete:xEventGroup <- $r4
-	.loc	4 627 4 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:627:4
+	.loc	4 627 13 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:627:13
 	mov.w	r1, #33554432
 	bl	vTaskRemoveFromUnorderedEventList
 .Ltmp223:
-	.loc	4 622 10                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:622:10
+	.loc	4 622 17                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:622:17
 	ldr	r0, [r4, #4]
-	.loc	4 622 3 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:622:3
+	.loc	4 622 9 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:622:9
 	cmp	r0, #0
 	bne	.LBB9_2
 .Ltmp224:
@@ -1904,17 +1904,17 @@ vEventGroupDelete:
 	@DEBUG_VALUE: vEventGroupDelete:pxEventBits <- $r4
 	@DEBUG_VALUE: vEventGroupDelete:pxTasksWaitingForBits <- [DW_OP_plus_uconst 4, DW_OP_stack_value] $r4
 	@DEBUG_VALUE: vEventGroupDelete:xEventGroup <- $r4
-	.loc	4 640 21 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:640:21
+	.loc	4 640 31 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:640:31
 	ldrb	r0, [r4, #28]
 .Ltmp225:
-	.loc	4 640 8 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:640:8
+	.loc	4 640 18 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:640:18
 	cbnz	r0, .LBB9_6
 .Ltmp226:
 @ %bb.5:
 	@DEBUG_VALUE: vEventGroupDelete:pxEventBits <- $r4
 	@DEBUG_VALUE: vEventGroupDelete:pxTasksWaitingForBits <- [DW_OP_plus_uconst 4, DW_OP_stack_value] $r4
 	@DEBUG_VALUE: vEventGroupDelete:xEventGroup <- $r4
-	.loc	4 642 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:642:5
+	.loc	4 642 17 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:642:17
 	mov	r0, r4
 	bl	vPortFree
 .Ltmp227:
@@ -1922,7 +1922,7 @@ vEventGroupDelete:
 	@DEBUG_VALUE: vEventGroupDelete:pxEventBits <- $r4
 	@DEBUG_VALUE: vEventGroupDelete:pxTasksWaitingForBits <- [DW_OP_plus_uconst 4, DW_OP_stack_value] $r4
 	@DEBUG_VALUE: vEventGroupDelete:xEventGroup <- $r4
-	.loc	4 651 11                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:651:11
+	.loc	4 651 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:651:14
 	add	sp, #8
 	pop.w	{r4, r5, r7, lr}
 .Ltmp228:
@@ -1932,7 +1932,7 @@ vEventGroupDelete:
 	@DEBUG_VALUE: vEventGroupDelete:pxEventBits <- $r4
 	@DEBUG_VALUE: vEventGroupDelete:pxTasksWaitingForBits <- [DW_OP_plus_uconst 4, DW_OP_stack_value] $r4
 	@DEBUG_VALUE: vEventGroupDelete:xEventGroup <- $r4
-	.loc	4 626 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:626:4
+	.loc	4 626 13                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:626:13
 	movw	r0, :lower16:.L.str
 	movw	r1, :lower16:.L.str.10
 	movw	r2, :lower16:.L.str.2
@@ -1954,19 +1954,19 @@ vEventGroupDelete:
 	@DEBUG_VALUE: vEventGroupDelete:pxEventBits <- $r4
 	@DEBUG_VALUE: vEventGroupDelete:pxTasksWaitingForBits <- [DW_OP_plus_uconst 4, DW_OP_stack_value] $r4
 	@DEBUG_VALUE: vEventGroupDelete:xEventGroup <- $r4
-	.loc	4 626 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:626:4
+	.loc	4 626 13                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:626:13
 	b	.LBB9_8
 .Ltmp232:
 	.p2align	2
 @ %bb.9:
-	.loc	4 0 4 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:4
+	.loc	4 0 13 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:13
 .LCPI9_0:
 .L__func__.vEventGroupDelete:
 	.asciz	"vEventGroupDelete\000\000"
 .Lfunc_end9:
 	.size	vEventGroupDelete, .Lfunc_end9-vEventGroupDelete
 	.cfi_endproc
-	.file	8 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/task.h"
+	.file	8 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/task.h"
 	.cantunwind
 	.fnend
                                         @ -- End function
@@ -1989,7 +1989,7 @@ vEventGroupSetBitsCallback:
 	@DEBUG_VALUE: vEventGroupSetBitsCallback:ulBitsToSet <- $r1
 	@DEBUG_VALUE: vEventGroupSetBitsCallback:ulBitsToSet <- $r1
 	@DEBUG_VALUE: vEventGroupSetBitsCallback:ulBitsToSet <- $r1
-	.loc	4 659 11 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:659:11
+	.loc	4 659 14 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:659:14
 	b	xEventGroupSetBits
 .Ltmp233:
 .Lfunc_end10:
@@ -2024,7 +2024,7 @@ xEventGroupSetBitsFromISR:
 	@DEBUG_VALUE: xEventGroupSetBitsFromISR:pxHigherPriorityTaskWoken <- $r3
 	@DEBUG_VALUE: xEventGroupSetBitsFromISR:uxBitsToSet <- $r2
 	@DEBUG_VALUE: xEventGroupSetBitsFromISR:xEventGroup <- $r1
-	.loc	4 713 13 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:713:13
+	.loc	4 713 15 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:713:15
 	movw	r0, :lower16:vEventGroupSetBitsCallback
 	movt	r0, :upper16:vEventGroupSetBitsCallback
 	@DEBUG_VALUE: xEventGroupSetBitsFromISR:pxHigherPriorityTaskWoken <- $r3
@@ -2056,22 +2056,22 @@ uxEventGroupGetNumber:
 	@DEBUG_VALUE: uxEventGroupGetNumber:xEventGroup <- $r0
 	@DEBUG_VALUE: uxEventGroupGetNumber:pxEventBits <- $r0
 	@DEBUG_VALUE: uxEventGroupGetNumber:pxEventBits <- $r0
-	.loc	4 728 7 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:728:7
+	.loc	4 728 10 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:728:10
 	cmp	r0, #0
 	@DEBUG_VALUE: uxEventGroupGetNumber:pxEventBits <- $r0
 .Ltmp238:
-	.loc	4 734 27                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:734:27
+	.loc	4 734 32                        @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:734:32
 	ite	ne
 	ldrne	r0, [r0, #24]
 .Ltmp239:
 	@DEBUG_VALUE: uxEventGroupGetNumber:xEventGroup <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: uxEventGroupGetNumber:xReturn <- $r0
 	@DEBUG_VALUE: uxEventGroupGetNumber:xReturn <- $r0
-	.loc	4 0 27 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:27
+	.loc	4 0 32 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:0:32
 	moveq	r0, #0
 .Ltmp240:
 	@DEBUG_VALUE: uxEventGroupGetNumber:xReturn <- $r0
-	.loc	4 737 3 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:737:3
+	.loc	4 737 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:737:5
 	bx	lr
 .Ltmp241:
 .Lfunc_end12:
@@ -2097,9 +2097,9 @@ vEventGroupSetNumber:
 	@DEBUG_VALUE: vEventGroupSetNumber:xEventGroup <- $r0
 	@DEBUG_VALUE: vEventGroupSetNumber:uxEventGroupNumber <- $r1
 	@DEBUG_VALUE: vEventGroupSetNumber:uxEventGroupNumber <- $r1
-	.loc	4 747 58 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:747:58
+	.loc	4 747 60 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:747:60
 	str	r1, [r0, #24]
-	.loc	4 748 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:748:2
+	.loc	4 748 1                         @ ../../../components/platform/soc/rt582/rt582_freertos/event_groups.c:748:1
 	bx	lr
 .Ltmp242:
 .Lfunc_end13:
@@ -2166,8 +2166,8 @@ vEventGroupSetNumber:
 
 	.type	.L.str.10,%object               @ @.str.10
 .L.str.10:
-	.asciz	"pxTasksWaitingForBits->xListEnd.pxNext != ( const ListItem_t * ) &( pxTasksWaitingForBits->xListEnd )"
-	.size	.L.str.10, 102
+	.asciz	"pxTasksWaitingForBits->xListEnd.pxNext != ( const ListItem_t * ) & ( pxTasksWaitingForBits->xListEnd )"
+	.size	.L.str.10, 103
 
 	.globl	_printf_percent
 	.globl	_printf_s
@@ -2180,7 +2180,7 @@ vEventGroupSetNumber:
 	.hidden	_printf_int_dec
 	.hidden	_printf_str
 	.file	9 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdlib.h"
-	.file	10 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\FreeRTOS.h"
+	.file	10 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\FreeRTOS.h"
 	.section	.debug_loc,"",%progbits
 .Ldebug_loc0:
 	.long	-1
@@ -4167,7 +4167,7 @@ vEventGroupSetNumber:
 	.long	.Ltmp19-.Ltmp18                 @ DW_AT_high_pc
 	.byte	4                               @ DW_AT_call_file
 	.byte	106                             @ DW_AT_call_line
-	.byte	4                               @ DW_AT_call_column
+	.byte	9                               @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	16                              @ Abbrev [16] 0x216:0x10 DW_TAG_inlined_subroutine
 	.long	438                             @ DW_AT_abstract_origin
@@ -4175,7 +4175,7 @@ vEventGroupSetNumber:
 	.long	.Ltmp15-.Ltmp14                 @ DW_AT_high_pc
 	.byte	4                               @ DW_AT_call_file
 	.byte	98                              @ DW_AT_call_line
-	.byte	3                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	11                              @ Abbrev [11] 0x227:0x25 DW_TAG_subprogram
 	.long	.Lfunc_begin1                   @ DW_AT_low_pc
@@ -4268,21 +4268,21 @@ vEventGroupSetNumber:
 	.long	.Ltmp37-.Ltmp36                 @ DW_AT_high_pc
 	.byte	4                               @ DW_AT_call_file
 	.byte	198                             @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	16                              @ Abbrev [16] 0x2f8:0x10 DW_TAG_inlined_subroutine
 	.long	438                             @ DW_AT_abstract_origin
 	.long	.Ltmp48                         @ DW_AT_low_pc
 	.long	.Ltmp49-.Ltmp48                 @ DW_AT_high_pc
 	.byte	4                               @ DW_AT_call_file
 	.byte	202                             @ DW_AT_call_line
-	.byte	3                               @ DW_AT_call_column
+	.byte	9                               @ DW_AT_call_column
 	.byte	16                              @ Abbrev [16] 0x308:0x10 DW_TAG_inlined_subroutine
 	.long	438                             @ DW_AT_abstract_origin
 	.long	.Ltmp54                         @ DW_AT_low_pc
 	.long	.Ltmp55-.Ltmp54                 @ DW_AT_high_pc
 	.byte	4                               @ DW_AT_call_file
 	.byte	199                             @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	17                              @ Abbrev [17] 0x319:0xe1 DW_TAG_subprogram
 	.long	.Lfunc_begin3                   @ DW_AT_low_pc
@@ -4366,14 +4366,14 @@ vEventGroupSetNumber:
 	.long	.Ltmp92-.Ltmp91                 @ DW_AT_high_pc
 	.byte	4                               @ DW_AT_call_file
 	.short	531                             @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	21                              @ Abbrev [21] 0x3e8:0x11 DW_TAG_inlined_subroutine
 	.long	438                             @ DW_AT_abstract_origin
 	.long	.Ltmp96                         @ DW_AT_low_pc
 	.long	.Ltmp97-.Ltmp96                 @ DW_AT_high_pc
 	.byte	4                               @ DW_AT_call_file
 	.short	530                             @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	22                              @ Abbrev [22] 0x3fa:0x3e DW_TAG_subprogram
 	.long	.Linfo_string34                 @ DW_AT_name
@@ -4491,28 +4491,28 @@ vEventGroupSetNumber:
 	.long	.Ltmp129-.Ltmp128               @ DW_AT_high_pc
 	.byte	4                               @ DW_AT_call_file
 	.short	321                             @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	21                              @ Abbrev [21] 0x519:0x11 DW_TAG_inlined_subroutine
 	.long	438                             @ DW_AT_abstract_origin
 	.long	.Ltmp135                        @ DW_AT_low_pc
 	.long	.Ltmp136-.Ltmp135               @ DW_AT_high_pc
 	.byte	4                               @ DW_AT_call_file
 	.short	320                             @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	21                              @ Abbrev [21] 0x52a:0x11 DW_TAG_inlined_subroutine
 	.long	438                             @ DW_AT_abstract_origin
 	.long	.Ltmp146                        @ DW_AT_low_pc
 	.long	.Ltmp147-.Ltmp146               @ DW_AT_high_pc
 	.byte	4                               @ DW_AT_call_file
 	.short	325                             @ DW_AT_call_line
-	.byte	3                               @ DW_AT_call_column
+	.byte	9                               @ DW_AT_call_column
 	.byte	21                              @ Abbrev [21] 0x53b:0x11 DW_TAG_inlined_subroutine
 	.long	438                             @ DW_AT_abstract_origin
 	.long	.Ltmp152                        @ DW_AT_low_pc
 	.long	.Ltmp153-.Ltmp152               @ DW_AT_high_pc
 	.byte	4                               @ DW_AT_call_file
 	.short	322                             @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	24                              @ Abbrev [24] 0x54c:0x47 DW_TAG_lexical_block
 	.long	.Ltmp155                        @ DW_AT_low_pc
 	.long	.Ltmp169-.Ltmp155               @ DW_AT_high_pc
@@ -4528,7 +4528,7 @@ vEventGroupSetNumber:
 	.long	.Ltmp157-.Ltmp156               @ DW_AT_high_pc
 	.byte	4                               @ DW_AT_call_file
 	.short	334                             @ DW_AT_call_line
-	.byte	23                              @ DW_AT_call_column
+	.byte	29                              @ DW_AT_call_column
 	.byte	26                              @ Abbrev [26] 0x576:0x7 DW_TAG_formal_parameter
 	.byte	1                               @ DW_AT_location
 	.byte	89
@@ -4552,7 +4552,7 @@ vEventGroupSetNumber:
 	.long	.Ltmp180-.Ltmp179               @ DW_AT_high_pc
 	.byte	4                               @ DW_AT_call_file
 	.short	425                             @ DW_AT_call_line
-	.byte	9                               @ DW_AT_call_column
+	.byte	22                              @ DW_AT_call_column
 	.byte	26                              @ Abbrev [26] 0x5a4:0x7 DW_TAG_formal_parameter
 	.byte	1                               @ DW_AT_location
 	.byte	88
@@ -4612,14 +4612,14 @@ vEventGroupSetNumber:
 	.long	.Ltmp195-.Ltmp194               @ DW_AT_high_pc
 	.byte	4                               @ DW_AT_call_file
 	.short	469                             @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	21                              @ Abbrev [21] 0x628:0x11 DW_TAG_inlined_subroutine
 	.long	438                             @ DW_AT_abstract_origin
 	.long	.Ltmp199                        @ DW_AT_low_pc
 	.long	.Ltmp200-.Ltmp199               @ DW_AT_high_pc
 	.byte	4                               @ DW_AT_call_file
 	.short	468                             @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	17                              @ Abbrev [17] 0x63a:0x4c DW_TAG_subprogram
 	.long	.Lfunc_begin6                   @ DW_AT_low_pc
@@ -4785,14 +4785,14 @@ vEventGroupSetNumber:
 	.long	.Ltmp212-.Lfunc_begin8          @ DW_AT_high_pc
 	.byte	4                               @ DW_AT_call_file
 	.short	509                             @ DW_AT_call_line
-	.byte	27                              @ DW_AT_call_column
+	.byte	30                              @ DW_AT_call_column
 	.byte	25                              @ Abbrev [25] 0x793:0x19 DW_TAG_inlined_subroutine
 	.long	1816                            @ DW_AT_abstract_origin
 	.long	.Ltmp213                        @ DW_AT_low_pc
 	.long	.Ltmp214-.Ltmp213               @ DW_AT_high_pc
 	.byte	4                               @ DW_AT_call_file
 	.short	513                             @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	26                              @ Abbrev [26] 0x7a4:0x7 DW_TAG_formal_parameter
 	.byte	1                               @ DW_AT_location
 	.byte	82
@@ -4834,7 +4834,7 @@ vEventGroupSetNumber:
 	.long	.Ltmp231-.Ltmp230               @ DW_AT_high_pc
 	.byte	4                               @ DW_AT_call_file
 	.short	626                             @ DW_AT_call_line
-	.byte	4                               @ DW_AT_call_column
+	.byte	13                              @ DW_AT_call_column
 	.byte	28                              @ Abbrev [28] 0x800:0x9 DW_TAG_GNU_call_site
 	.long	2058                            @ DW_AT_abstract_origin
                                         @ DW_AT_GNU_tail_call
@@ -5149,203 +5149,203 @@ vEventGroupSetNumber:
 .Linfo_string1:
 	.asciz	"../../../components/platform/soc/rt582/rt582_freertos\\event_groups.c" @ string offset=55
 .Linfo_string2:
-	.asciz	"D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" @ string offset=124
+	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=124
 .Linfo_string3:
-	.asciz	"uxEventBits"                   @ string offset=186
+	.asciz	"uxEventBits"                   @ string offset=185
 .Linfo_string4:
-	.asciz	"unsigned int"                  @ string offset=198
+	.asciz	"unsigned int"                  @ string offset=197
 .Linfo_string5:
-	.asciz	"uint32_t"                      @ string offset=211
+	.asciz	"uint32_t"                      @ string offset=210
 .Linfo_string6:
-	.asciz	"TickType_t"                    @ string offset=220
+	.asciz	"TickType_t"                    @ string offset=219
 .Linfo_string7:
-	.asciz	"EventBits_t"                   @ string offset=231
+	.asciz	"EventBits_t"                   @ string offset=230
 .Linfo_string8:
-	.asciz	"xTasksWaitingForBits"          @ string offset=243
+	.asciz	"xTasksWaitingForBits"          @ string offset=242
 .Linfo_string9:
-	.asciz	"uxNumberOfItems"               @ string offset=264
+	.asciz	"uxNumberOfItems"               @ string offset=263
 .Linfo_string10:
-	.asciz	"long unsigned int"             @ string offset=280
+	.asciz	"long unsigned int"             @ string offset=279
 .Linfo_string11:
-	.asciz	"UBaseType_t"                   @ string offset=298
+	.asciz	"UBaseType_t"                   @ string offset=297
 .Linfo_string12:
-	.asciz	"pxIndex"                       @ string offset=310
+	.asciz	"pxIndex"                       @ string offset=309
 .Linfo_string13:
-	.asciz	"xItemValue"                    @ string offset=318
+	.asciz	"xItemValue"                    @ string offset=317
 .Linfo_string14:
-	.asciz	"pxNext"                        @ string offset=329
+	.asciz	"pxNext"                        @ string offset=328
 .Linfo_string15:
-	.asciz	"pxPrevious"                    @ string offset=336
+	.asciz	"pxPrevious"                    @ string offset=335
 .Linfo_string16:
-	.asciz	"pvOwner"                       @ string offset=347
+	.asciz	"pvOwner"                       @ string offset=346
 .Linfo_string17:
-	.asciz	"pvContainer"                   @ string offset=355
+	.asciz	"pvContainer"                   @ string offset=354
 .Linfo_string18:
-	.asciz	"xLIST_ITEM"                    @ string offset=367
+	.asciz	"xLIST_ITEM"                    @ string offset=366
 .Linfo_string19:
-	.asciz	"ListItem_t"                    @ string offset=378
+	.asciz	"ListItem_t"                    @ string offset=377
 .Linfo_string20:
-	.asciz	"xListEnd"                      @ string offset=389
+	.asciz	"xListEnd"                      @ string offset=388
 .Linfo_string21:
-	.asciz	"xMINI_LIST_ITEM"               @ string offset=398
+	.asciz	"xMINI_LIST_ITEM"               @ string offset=397
 .Linfo_string22:
-	.asciz	"MiniListItem_t"                @ string offset=414
+	.asciz	"MiniListItem_t"                @ string offset=413
 .Linfo_string23:
-	.asciz	"xLIST"                         @ string offset=429
+	.asciz	"xLIST"                         @ string offset=428
 .Linfo_string24:
-	.asciz	"List_t"                        @ string offset=435
+	.asciz	"List_t"                        @ string offset=434
 .Linfo_string25:
-	.asciz	"uxEventGroupNumber"            @ string offset=442
+	.asciz	"uxEventGroupNumber"            @ string offset=441
 .Linfo_string26:
-	.asciz	"ucStaticallyAllocated"         @ string offset=461
+	.asciz	"ucStaticallyAllocated"         @ string offset=460
 .Linfo_string27:
-	.asciz	"unsigned char"                 @ string offset=483
+	.asciz	"unsigned char"                 @ string offset=482
 .Linfo_string28:
-	.asciz	"uint8_t"                       @ string offset=497
+	.asciz	"uint8_t"                       @ string offset=496
 .Linfo_string29:
-	.asciz	"EventGroupDef_t"               @ string offset=505
+	.asciz	"EventGroupDef_t"               @ string offset=504
 .Linfo_string30:
-	.asciz	"EventGroup_t"                  @ string offset=521
+	.asciz	"EventGroup_t"                  @ string offset=520
 .Linfo_string31:
-	.asciz	"long int"                      @ string offset=534
+	.asciz	"long int"                      @ string offset=533
 .Linfo_string32:
-	.asciz	"BaseType_t"                    @ string offset=543
+	.asciz	"BaseType_t"                    @ string offset=542
 .Linfo_string33:
-	.asciz	"__disable_irq"                 @ string offset=554
+	.asciz	"__disable_irq"                 @ string offset=553
 .Linfo_string34:
-	.asciz	"prvTestWaitCondition"          @ string offset=568
+	.asciz	"prvTestWaitCondition"          @ string offset=567
 .Linfo_string35:
-	.asciz	"uxCurrentEventBits"            @ string offset=589
+	.asciz	"uxCurrentEventBits"            @ string offset=588
 .Linfo_string36:
-	.asciz	"uxBitsToWaitFor"               @ string offset=608
+	.asciz	"uxBitsToWaitFor"               @ string offset=607
 .Linfo_string37:
-	.asciz	"xWaitForAllBits"               @ string offset=624
+	.asciz	"xWaitForAllBits"               @ string offset=623
 .Linfo_string38:
-	.asciz	"xWaitConditionMet"             @ string offset=640
+	.asciz	"xWaitConditionMet"             @ string offset=639
 .Linfo_string39:
-	.asciz	"xTimerPendFunctionCallFromISR" @ string offset=658
+	.asciz	"xTimerPendFunctionCallFromISR" @ string offset=657
 .Linfo_string40:
-	.asciz	"ulPortRaiseBASEPRI"            @ string offset=688
+	.asciz	"ulPortRaiseBASEPRI"            @ string offset=687
 .Linfo_string41:
-	.asciz	"ulOriginalBASEPRI"             @ string offset=707
+	.asciz	"ulOriginalBASEPRI"             @ string offset=706
 .Linfo_string42:
-	.asciz	"ulNewBASEPRI"                  @ string offset=725
+	.asciz	"ulNewBASEPRI"                  @ string offset=724
 .Linfo_string43:
-	.asciz	"vPortSetBASEPRI"               @ string offset=738
+	.asciz	"vPortSetBASEPRI"               @ string offset=737
 .Linfo_string44:
-	.asciz	"ulNewMaskValue"                @ string offset=754
+	.asciz	"ulNewMaskValue"                @ string offset=753
 .Linfo_string45:
-	.asciz	"xTaskResumeAll"                @ string offset=769
+	.asciz	"xTaskResumeAll"                @ string offset=768
 .Linfo_string46:
-	.asciz	"xEventGroupCreateStatic"       @ string offset=784
+	.asciz	"xEventGroupCreateStatic"       @ string offset=783
 .Linfo_string47:
-	.asciz	"EventGroupHandle_t"            @ string offset=808
+	.asciz	"EventGroupHandle_t"            @ string offset=807
 .Linfo_string48:
-	.asciz	"xEventGroupCreate"             @ string offset=827
+	.asciz	"xEventGroupCreate"             @ string offset=826
 .Linfo_string49:
-	.asciz	"xEventGroupSync"               @ string offset=845
+	.asciz	"xEventGroupSync"               @ string offset=844
 .Linfo_string50:
-	.asciz	"xEventGroupSetBits"            @ string offset=861
+	.asciz	"xEventGroupSetBits"            @ string offset=860
 .Linfo_string51:
-	.asciz	"xEventGroupWaitBits"           @ string offset=880
+	.asciz	"xEventGroupWaitBits"           @ string offset=879
 .Linfo_string52:
-	.asciz	"xEventGroupClearBits"          @ string offset=900
+	.asciz	"xEventGroupClearBits"          @ string offset=899
 .Linfo_string53:
-	.asciz	"xEventGroupClearBitsFromISR"   @ string offset=921
+	.asciz	"xEventGroupClearBitsFromISR"   @ string offset=920
 .Linfo_string54:
-	.asciz	"vEventGroupClearBitsCallback"  @ string offset=949
+	.asciz	"vEventGroupClearBitsCallback"  @ string offset=948
 .Linfo_string55:
-	.asciz	"xEventGroupGetBitsFromISR"     @ string offset=978
+	.asciz	"xEventGroupGetBitsFromISR"     @ string offset=977
 .Linfo_string56:
-	.asciz	"vEventGroupDelete"             @ string offset=1004
+	.asciz	"vEventGroupDelete"             @ string offset=1003
 .Linfo_string57:
-	.asciz	"vEventGroupSetBitsCallback"    @ string offset=1022
+	.asciz	"vEventGroupSetBitsCallback"    @ string offset=1021
 .Linfo_string58:
-	.asciz	"xEventGroupSetBitsFromISR"     @ string offset=1049
+	.asciz	"xEventGroupSetBitsFromISR"     @ string offset=1048
 .Linfo_string59:
-	.asciz	"uxEventGroupGetNumber"         @ string offset=1075
+	.asciz	"uxEventGroupGetNumber"         @ string offset=1074
 .Linfo_string60:
-	.asciz	"vEventGroupSetNumber"          @ string offset=1097
+	.asciz	"vEventGroupSetNumber"          @ string offset=1096
 .Linfo_string61:
-	.asciz	"xSize"                         @ string offset=1118
+	.asciz	"xSize"                         @ string offset=1117
 .Linfo_string62:
-	.asciz	"size_t"                        @ string offset=1124
+	.asciz	"size_t"                        @ string offset=1123
 .Linfo_string63:
-	.asciz	"pxEventGroupBuffer"            @ string offset=1131
+	.asciz	"pxEventGroupBuffer"            @ string offset=1130
 .Linfo_string64:
-	.asciz	"xDummy1"                       @ string offset=1150
+	.asciz	"xDummy1"                       @ string offset=1149
 .Linfo_string65:
-	.asciz	"xDummy2"                       @ string offset=1158
+	.asciz	"xDummy2"                       @ string offset=1157
 .Linfo_string66:
-	.asciz	"uxDummy2"                      @ string offset=1166
+	.asciz	"uxDummy2"                      @ string offset=1165
 .Linfo_string67:
-	.asciz	"pvDummy3"                      @ string offset=1175
+	.asciz	"pvDummy3"                      @ string offset=1174
 .Linfo_string68:
-	.asciz	"xDummy4"                       @ string offset=1184
+	.asciz	"xDummy4"                       @ string offset=1183
 .Linfo_string69:
-	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=1192
+	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=1191
 .Linfo_string70:
-	.asciz	"xSTATIC_MINI_LIST_ITEM"        @ string offset=1212
+	.asciz	"xSTATIC_MINI_LIST_ITEM"        @ string offset=1211
 .Linfo_string71:
-	.asciz	"StaticMiniListItem_t"          @ string offset=1235
+	.asciz	"StaticMiniListItem_t"          @ string offset=1234
 .Linfo_string72:
-	.asciz	"xSTATIC_LIST"                  @ string offset=1256
+	.asciz	"xSTATIC_LIST"                  @ string offset=1255
 .Linfo_string73:
-	.asciz	"StaticList_t"                  @ string offset=1269
+	.asciz	"StaticList_t"                  @ string offset=1268
 .Linfo_string74:
-	.asciz	"uxDummy3"                      @ string offset=1282
+	.asciz	"uxDummy3"                      @ string offset=1281
 .Linfo_string75:
-	.asciz	"ucDummy4"                      @ string offset=1291
+	.asciz	"ucDummy4"                      @ string offset=1290
 .Linfo_string76:
-	.asciz	"xSTATIC_EVENT_GROUP"           @ string offset=1300
+	.asciz	"xSTATIC_EVENT_GROUP"           @ string offset=1299
 .Linfo_string77:
-	.asciz	"StaticEventGroup_t"            @ string offset=1320
+	.asciz	"StaticEventGroup_t"            @ string offset=1319
 .Linfo_string78:
-	.asciz	"pxEventBits"                   @ string offset=1339
+	.asciz	"pxEventBits"                   @ string offset=1338
 .Linfo_string79:
-	.asciz	"xEventGroup"                   @ string offset=1351
+	.asciz	"xEventGroup"                   @ string offset=1350
 .Linfo_string80:
-	.asciz	"uxBitsToSet"                   @ string offset=1363
+	.asciz	"uxBitsToSet"                   @ string offset=1362
 .Linfo_string81:
-	.asciz	"xTicksToWait"                  @ string offset=1375
+	.asciz	"xTicksToWait"                  @ string offset=1374
 .Linfo_string82:
-	.asciz	"xTimeoutOccurred"              @ string offset=1388
+	.asciz	"xTimeoutOccurred"              @ string offset=1387
 .Linfo_string83:
-	.asciz	"uxOriginalBitValue"            @ string offset=1405
+	.asciz	"uxOriginalBitValue"            @ string offset=1404
 .Linfo_string84:
-	.asciz	"uxReturn"                      @ string offset=1424
+	.asciz	"uxReturn"                      @ string offset=1423
 .Linfo_string85:
-	.asciz	"xAlreadyYielded"               @ string offset=1433
+	.asciz	"xAlreadyYielded"               @ string offset=1432
 .Linfo_string86:
-	.asciz	"xMatchFound"                   @ string offset=1449
+	.asciz	"xMatchFound"                   @ string offset=1448
 .Linfo_string87:
-	.asciz	"uxBitsToClear"                 @ string offset=1461
+	.asciz	"uxBitsToClear"                 @ string offset=1460
 .Linfo_string88:
-	.asciz	"pxList"                        @ string offset=1475
+	.asciz	"pxList"                        @ string offset=1474
 .Linfo_string89:
-	.asciz	"pxListEnd"                     @ string offset=1482
+	.asciz	"pxListEnd"                     @ string offset=1481
 .Linfo_string90:
-	.asciz	"pxListItem"                    @ string offset=1492
+	.asciz	"pxListItem"                    @ string offset=1491
 .Linfo_string91:
-	.asciz	"uxControlBits"                 @ string offset=1503
+	.asciz	"uxControlBits"                 @ string offset=1502
 .Linfo_string92:
-	.asciz	"uxBitsWaitedFor"               @ string offset=1517
+	.asciz	"uxBitsWaitedFor"               @ string offset=1516
 .Linfo_string93:
-	.asciz	"xClearOnExit"                  @ string offset=1533
+	.asciz	"xClearOnExit"                  @ string offset=1532
 .Linfo_string94:
-	.asciz	"xReturn"                       @ string offset=1546
+	.asciz	"xReturn"                       @ string offset=1545
 .Linfo_string95:
-	.asciz	"pvEventGroup"                  @ string offset=1554
+	.asciz	"pvEventGroup"                  @ string offset=1553
 .Linfo_string96:
-	.asciz	"ulBitsToClear"                 @ string offset=1567
+	.asciz	"ulBitsToClear"                 @ string offset=1566
 .Linfo_string97:
-	.asciz	"uxSavedInterruptStatus"        @ string offset=1581
+	.asciz	"uxSavedInterruptStatus"        @ string offset=1580
 .Linfo_string98:
-	.asciz	"pxTasksWaitingForBits"         @ string offset=1604
+	.asciz	"pxTasksWaitingForBits"         @ string offset=1603
 .Linfo_string99:
-	.asciz	"ulBitsToSet"                   @ string offset=1626
+	.asciz	"ulBitsToSet"                   @ string offset=1625
 .Linfo_string100:
-	.asciz	"pxHigherPriorityTaskWoken"     @ string offset=1638
+	.asciz	"pxHigherPriorityTaskWoken"     @ string offset=1637
 	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals

@@ -18,14 +18,14 @@
 	.eabi_attribute	26, 2	@ Tag_ABI_enum_size
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"timers.c"
-	.file	1 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\queue.h"
-	.file	2 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/timers.c"
-	.file	3 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/task.h"
-	.file	4 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\\portmacro.h"
-	.file	5 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/list.h"
+	.file	1 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\queue.h"
+	.file	2 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/timers.c"
+	.file	3 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/task.h"
+	.file	4 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\\portmacro.h"
+	.file	5 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/list.h"
 	.file	6 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
-	.file	7 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\FreeRTOS.h"
-	.file	8 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\timers.h"
+	.file	7 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\FreeRTOS.h"
+	.file	8 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\timers.h"
 	.section	.text.xTimerCreateTimerTask,"ax",%progbits
 	.hidden	xTimerCreateTimerTask           @ -- Begin function xTimerCreateTimerTask
 	.globl	xTimerCreateTimerTask
@@ -50,49 +50,49 @@ xTimerCreateTimerTask:
 	.cfi_def_cfa_offset 32
 .Ltmp0:
 	@DEBUG_VALUE: xTimerCreateTimerTask:xReturn <- 0
-	.loc	2 235 2 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:235:2
+	.loc	2 235 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:235:5
 	bl	prvCheckForValidListAndQueue
 .Ltmp1:
-	.loc	2 237 6                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:237:6
+	.loc	2 237 10                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:237:10
 	movw	r0, :lower16:xTimerQueue
 	movt	r0, :upper16:xTimerQueue
 	ldr	r0, [r0]
 .Ltmp2:
-	.loc	2 237 6 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:237:6
+	.loc	2 237 10 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:237:10
 	cbz	r0, .LBB0_3
 .Ltmp3:
 @ %bb.1:
 	@DEBUG_VALUE: xTimerCreateTimerTask:xReturn <- 0
-	.loc	2 0 6                           @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:6
+	.loc	2 0 10                          @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:10
 	movs	r0, #0
 .Ltmp4:
 	@DEBUG_VALUE: pxTimerTaskTCBBuffer <- 0
 	@DEBUG_VALUE: pxTimerTaskStackBuffer <- 0
-	.loc	2 242 17 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:242:17
+	.loc	2 242 26 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:242:26
 	strd	r0, r0, [sp, #16]
 .Ltmp5:
 	@DEBUG_VALUE: ulTimerTaskStackSize <- [DW_OP_plus_uconst 12, DW_OP_deref] $sp
 	@DEBUG_VALUE: pxTimerTaskStackBuffer <- [DW_OP_plus_uconst 16, DW_OP_deref] $sp
 	@DEBUG_VALUE: pxTimerTaskTCBBuffer <- [DW_OP_plus_uconst 20, DW_OP_deref] $sp
-	.loc	2 0 17 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:17
+	.loc	2 0 26 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:26
 	add	r0, sp, #20
 	add	r1, sp, #16
 	add	r2, sp, #12
-	.loc	2 245 4 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:245:4
+	.loc	2 245 13 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:245:13
 	bl	vApplicationGetTimerTaskMemory
 .Ltmp6:
 	@DEBUG_VALUE: ulTimerTaskStackSize <- $r2
-	.loc	2 248 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:248:14
+	.loc	2 248 53                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:248:53
 	ldrd	r2, r0, [sp, #12]
 .Ltmp7:
 	@DEBUG_VALUE: pxTimerTaskStackBuffer <- $r0
-	.loc	2 0 14 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:14
+	.loc	2 0 53 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:53
 	movs	r1, #31
-	.loc	2 252 14 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:252:14
+	.loc	2 252 53 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:252:53
 	ldr.w	r12, [sp, #20]
 .Ltmp8:
 	@DEBUG_VALUE: pxTimerTaskTCBBuffer <- $r12
-	.loc	2 246 23                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:246:23
+	.loc	2 246 32                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:246:32
 	strd	r1, r0, [sp]
 	movw	r0, :lower16:prvTimerTask
 .Ltmp9:
@@ -102,25 +102,25 @@ xTimerCreateTimerTask:
 	str.w	r12, [sp, #8]
 	bl	xTaskCreateStatic
 .Ltmp10:
-	.loc	2 246 21 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:246:21
+	.loc	2 246 30 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:246:30
 	movw	r1, :lower16:xTimerTaskHandle
 	movt	r1, :upper16:xTimerTaskHandle
 	str	r0, [r1]
 .Ltmp11:
 	@DEBUG_VALUE: xTimerCreateTimerTask:xReturn <- undef
-	.loc	2 0 21                          @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:21
+	.loc	2 0 30                          @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:30
 	cbz	r0, .LBB0_3
 .Ltmp12:
 @ %bb.2:
 	@DEBUG_VALUE: xTimerCreateTimerTask:xReturn <- 1
-	.loc	2 276 2 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:276:2
+	.loc	2 276 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:276:5
 	movs	r0, #1
 	add	sp, #24
 	pop	{r7, pc}
 .Ltmp13:
 .LBB0_3:
 	@DEBUG_VALUE: xTimerCreateTimerTask:xReturn <- 1
-	.loc	2 275 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:275:2
+	.loc	2 275 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:275:5
 	movw	r0, :lower16:.L.str.1
 	movw	r2, :lower16:.L.str.3
 	movw	r12, #275
@@ -140,12 +140,12 @@ xTimerCreateTimerTask:
 	.p2align	2
 .LBB0_4:                                @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: xTimerCreateTimerTask:xReturn <- 1
-	.loc	2 275 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:275:2
+	.loc	2 275 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:275:5
 	b	.LBB0_4
 .Ltmp16:
 	.p2align	2
 @ %bb.5:
-	.loc	2 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:2
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 .LCPI0_0:
 .L.str:
 	.asciz	"Tmr Svc"
@@ -183,47 +183,47 @@ prvCheckForValidListAndQueue:
 	sub	sp, #8
 	.cfi_def_cfa_offset 24
 .Ltmp17:
-	.loc	2 946 2 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:946:2
+	.loc	2 946 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:946:5
 	bl	vPortEnterCritical
 .Ltmp18:
-	.loc	2 948 7                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:948:7
+	.loc	2 948 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:948:14
 	movw	r6, :lower16:xTimerQueue
 	movt	r6, :upper16:xTimerQueue
 	ldr	r0, [r6]
 .Ltmp19:
-	.loc	2 948 7 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:948:7
+	.loc	2 948 14 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:948:14
 	cbnz	r0, .LBB1_3
 @ %bb.1:
 .Ltmp20:
-	.loc	2 950 4 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:950:4
+	.loc	2 950 13 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:950:13
 	movw	r4, :lower16:xActiveTimerList1
 	movt	r4, :upper16:xActiveTimerList1
 	mov	r0, r4
 	bl	vListInitialise
 .Ltmp21:
-	.loc	2 951 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:951:4
+	.loc	2 951 13                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:951:13
 	movw	r5, :lower16:xActiveTimerList2
 	movt	r5, :upper16:xActiveTimerList2
 	mov	r0, r5
 	bl	vListInitialise
 .Ltmp22:
-	.loc	2 952 23                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:952:23
+	.loc	2 952 32                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:952:32
 	movw	r0, :lower16:pxCurrentTimerList
 	movt	r0, :upper16:pxCurrentTimerList
 	str	r4, [r0]
-	.loc	2 953 24                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:953:24
+	.loc	2 953 33                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:953:33
 	movw	r0, :lower16:pxOverflowTimerList
 	movt	r0, :upper16:pxOverflowTimerList
 .Ltmp23:
-	.loc	2 962 19                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:962:19
+	.loc	2 962 31                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:962:31
 	movw	r2, :lower16:prvCheckForValidListAndQueue.ucStaticTimerQueueStorage
 	movw	r3, :lower16:prvCheckForValidListAndQueue.xStaticTimerQueue
 .Ltmp24:
-	.loc	2 953 24                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:953:24
+	.loc	2 953 33                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:953:33
 	str	r5, [r0]
 	movs	r5, #0
 .Ltmp25:
-	.loc	2 962 19                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:962:19
+	.loc	2 962 31                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:962:31
 	movt	r2, :upper16:prvCheckForValidListAndQueue.ucStaticTimerQueueStorage
 	movt	r3, :upper16:prvCheckForValidListAndQueue.xStaticTimerQueue
 	movs	r0, #10
@@ -231,19 +231,19 @@ prvCheckForValidListAndQueue:
 	str	r5, [sp]
 	bl	xQueueGenericCreateStatic
 .Ltmp26:
-	.loc	2 962 17 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:962:17
+	.loc	2 962 29 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:962:29
 	str	r0, [r6]
 .Ltmp27:
-	.loc	2 972 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:972:9
+	.loc	2 972 22 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:972:22
 	cbz	r0, .LBB1_3
 @ %bb.2:
 .Ltmp28:
-	.loc	2 974 6                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:974:6
+	.loc	2 974 21                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:974:21
 	adr	r1, .LCPI1_0
 	bl	vQueueAddToRegistry
 .Ltmp29:
 .LBB1_3:
-	.loc	2 988 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:988:2
+	.loc	2 988 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:988:5
 	add	sp, #8
 	pop.w	{r4, r5, r6, lr}
 .Ltmp30:
@@ -251,7 +251,7 @@ prvCheckForValidListAndQueue:
 .Ltmp31:
 	.p2align	2
 @ %bb.4:
-	.loc	2 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:2
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 .LCPI1_0:
 .L.str.13:
 	.asciz	"TmrQ\000\000\000"
@@ -288,21 +288,21 @@ prvTimerTask:
 .LBB2_1:                                @ =>This Loop Header: Depth=1
                                         @     Child Loop BB2_34 Depth 2
 	@DEBUG_VALUE: prvGetNextExpireTime:pxListWasEmpty <- undef
-	.loc	2 655 20 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:655:20
+	.loc	2 655 23 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:655:23
 	ldr.w	r0, [r11]
 .Ltmp33:
 	@DEBUG_VALUE: prvTimerTask:pvParameters <- [DW_OP_LLVM_entry_value 1] $r0
 	ldr	r6, [r0]
-	.loc	2 656 6                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:656:6
+	.loc	2 656 10                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:656:10
 	cbz	r6, .LBB2_3
 .Ltmp34:
 @ %bb.2:                                @   in Loop: Header=BB2_1 Depth=1
-	.loc	2 658 21                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:658:21
+	.loc	2 658 27                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:658:27
 	ldr	r0, [r0, #12]
 	ldr.w	r8, [r0]
 .Ltmp35:
 	@DEBUG_VALUE: prvGetNextExpireTime:xNextExpireTime <- $r8
-	.loc	2 0 21 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:21
+	.loc	2 0 27 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:27
 	b	.LBB2_4
 .Ltmp36:
 	.p2align	2
@@ -312,22 +312,22 @@ prvTimerTask:
 .Ltmp37:
 	@DEBUG_VALUE: prvTimerTask:xNextExpireTime <- $r8
 	@DEBUG_VALUE: prvProcessTimerOrBlockTask:xNextExpireTime <- $r8
-	.loc	2 589 2 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:589:2
+	.loc	2 589 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:589:5
 	bl	vTaskSuspendAll
 .Ltmp38:
 	@DEBUG_VALUE: prvProcessTimerOrBlockTask:xTimerListsWereSwitched <- [DW_OP_plus_uconst 8, DW_OP_deref] $sp
-	.loc	2 596 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:596:14
+	.loc	2 596 20                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:596:20
 	mov	r0, r4
 	bl	prvSampleTimeNow
 .Ltmp39:
-	.loc	2 597 7                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:597:7
+	.loc	2 597 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:597:14
 	ldr	r1, [sp, #8]
 .Ltmp40:
 	@DEBUG_VALUE: prvProcessTimerOrBlockTask:xTimerListsWereSwitched <- $r1
 	@DEBUG_VALUE: prvProcessTimerOrBlockTask:xListWasEmpty <- [DW_OP_LLVM_convert 1 7, DW_OP_LLVM_convert 32 7, DW_OP_stack_value] undef
 	@DEBUG_VALUE: prvTimerTask:xListWasEmpty <- [DW_OP_LLVM_convert 1 7, DW_OP_LLVM_convert 32 7, DW_OP_stack_value] undef
 	@DEBUG_VALUE: prvProcessTimerOrBlockTask:xTimeNow <- $r0
-	.loc	2 597 7 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:597:7
+	.loc	2 597 14 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:597:14
 	cbz	r1, .LBB2_6
 .Ltmp41:
 @ %bb.5:                                @   in Loop: Header=BB2_1 Depth=1
@@ -335,10 +335,10 @@ prvTimerTask:
 	@DEBUG_VALUE: prvTimerTask:xNextExpireTime <- $r8
 	@DEBUG_VALUE: prvProcessTimerOrBlockTask:xTimerListsWereSwitched <- $r1
 	@DEBUG_VALUE: prvProcessTimerOrBlockTask:xTimeNow <- $r0
-	.loc	2 638 13 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:638:13
+	.loc	2 638 22 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:638:22
 	bl	xTaskResumeAll
 .Ltmp42:
-	.loc	2 0 13 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:13
+	.loc	2 0 22 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:22
 	b	.LBB2_34
 .Ltmp43:
 	.p2align	2
@@ -350,7 +350,7 @@ prvTimerTask:
 	mov	r9, r0
 .Ltmp44:
 	@DEBUG_VALUE: prvProcessTimerOrBlockTask:xTimeNow <- $r9
-	.loc	2 600 37 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:600:37
+	.loc	2 600 47 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:600:47
 	cbz	r6, .LBB2_10
 .Ltmp45:
 @ %bb.7:                                @   in Loop: Header=BB2_1 Depth=1
@@ -366,10 +366,10 @@ prvTimerTask:
 	@DEBUG_VALUE: prvProcessTimerOrBlockTask:xNextExpireTime <- $r8
 	@DEBUG_VALUE: prvTimerTask:xNextExpireTime <- $r8
 	@DEBUG_VALUE: prvProcessTimerOrBlockTask:xTimerListsWereSwitched <- $r1
-	.loc	2 602 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:602:14
+	.loc	2 602 26                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:602:26
 	bl	xTaskResumeAll
 .Ltmp47:
-	.loc	2 510 41                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:510:41
+	.loc	2 510 44                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:510:44
 	ldr.w	r0, [r11]
 	mov	r6, r11
 .Ltmp48:
@@ -379,15 +379,15 @@ prvTimerTask:
 	ldr.w	r11, [r0, #12]
 .Ltmp49:
 	@DEBUG_VALUE: prvProcessExpiredTimer:pxTimer <- $r11
-	.loc	2 514 37                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:514:37
+	.loc	2 514 40                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:514:40
 	add.w	r0, r11, #4
-	.loc	2 514 11 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:514:11
+	.loc	2 514 14 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:514:14
 	bl	uxListRemove
 .Ltmp50:
-	.loc	2 519 17 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:519:17
+	.loc	2 519 21 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:519:21
 	ldrb.w	r0, [r11, #40]
 .Ltmp51:
-	.loc	2 519 6 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:519:6
+	.loc	2 519 10 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:519:10
 	lsls	r1, r0, #29
 	bmi	.LBB2_12
 .Ltmp52:
@@ -398,7 +398,7 @@ prvTimerTask:
 	@DEBUG_VALUE: prvProcessExpiredTimer:xNextExpireTime <- $r8
 	@DEBUG_VALUE: prvProcessTimerOrBlockTask:xNextExpireTime <- $r8
 	@DEBUG_VALUE: prvTimerTask:xNextExpireTime <- $r8
-	.loc	2 539 21 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:539:21
+	.loc	2 539 27 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:539:27
 	and	r0, r0, #254
 	strb.w	r0, [r11, #40]
 	b	.LBB2_14
@@ -408,7 +408,7 @@ prvTimerTask:
 	@DEBUG_VALUE: prvProcessTimerOrBlockTask:xNextExpireTime <- $r8
 	@DEBUG_VALUE: prvTimerTask:xNextExpireTime <- $r8
 	@DEBUG_VALUE: prvProcessTimerOrBlockTask:xTimerListsWereSwitched <- $r1
-	.loc	2 613 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:613:9
+	.loc	2 613 22                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:613:22
 	cbz	r6, .LBB2_15
 .Ltmp54:
 @ %bb.11:                               @   in Loop: Header=BB2_1 Depth=1
@@ -416,7 +416,7 @@ prvTimerTask:
 	@DEBUG_VALUE: prvProcessTimerOrBlockTask:xNextExpireTime <- $r8
 	@DEBUG_VALUE: prvTimerTask:xNextExpireTime <- $r8
 	@DEBUG_VALUE: prvProcessTimerOrBlockTask:xTimerListsWereSwitched <- $r1
-	.loc	2 0 9 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:9
+	.loc	2 0 22 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:22
 	movs	r2, #0
 	b	.LBB2_16
 .Ltmp55:
@@ -428,18 +428,18 @@ prvTimerTask:
 	@DEBUG_VALUE: prvProcessTimerOrBlockTask:xNextExpireTime <- $r8
 	@DEBUG_VALUE: prvTimerTask:xNextExpireTime <- $r8
 	@DEBUG_VALUE: prvProcessExpiredTimer:xTimeNow <- $r9
-	.loc	2 524 73 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:524:73
+	.loc	2 524 80 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:524:80
 	ldr.w	r0, [r11, #24]
-	.loc	2 524 7 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:524:7
+	.loc	2 524 14 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:524:14
 	mov	r2, r9
-	.loc	2 524 62                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:524:62
+	.loc	2 524 69                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:524:69
 	add.w	r1, r0, r8
-	.loc	2 524 7                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:524:7
+	.loc	2 524 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:524:14
 	mov	r0, r11
 	mov	r3, r8
 	bl	prvInsertTimerInActiveList
 .Ltmp56:
-	.loc	2 524 7                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:524:7
+	.loc	2 524 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:524:14
 	cbz	r0, .LBB2_14
 .Ltmp57:
 @ %bb.13:                               @   in Loop: Header=BB2_1 Depth=1
@@ -449,7 +449,7 @@ prvTimerTask:
 	@DEBUG_VALUE: prvProcessExpiredTimer:xNextExpireTime <- $r8
 	@DEBUG_VALUE: prvProcessTimerOrBlockTask:xNextExpireTime <- $r8
 	@DEBUG_VALUE: prvTimerTask:xNextExpireTime <- $r8
-	.loc	2 528 14 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:528:14
+	.loc	2 528 23 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:528:23
 	mov	r0, r11
 	movs	r1, #0
 	mov	r2, r8
@@ -458,7 +458,7 @@ prvTimerTask:
 	bl	xTimerGenericCommand
 .Ltmp58:
 	@DEBUG_VALUE: prvProcessExpiredTimer:xResult <- $r0
-	.loc	2 529 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:529:4
+	.loc	2 529 13                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:529:13
 	cmp	r0, #0
 	beq.w	.LBB2_39
 .Ltmp59:
@@ -469,13 +469,13 @@ prvTimerTask:
 	@DEBUG_VALUE: prvProcessExpiredTimer:xNextExpireTime <- $r8
 	@DEBUG_VALUE: prvProcessTimerOrBlockTask:xNextExpireTime <- $r8
 	@DEBUG_VALUE: prvTimerTask:xNextExpireTime <- $r8
-	.loc	2 544 11                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:544:11
+	.loc	2 544 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:544:14
 	ldr.w	r1, [r11, #32]
-	.loc	2 544 2 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:544:2
+	.loc	2 544 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:544:5
 	mov	r0, r11
 	blx	r1
 .Ltmp60:
-	.loc	2 0 2                           @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:2
+	.loc	2 0 5                           @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 	mov	r11, r6
 .Ltmp61:
 	b	.LBB2_34
@@ -485,7 +485,7 @@ prvTimerTask:
 	@DEBUG_VALUE: prvProcessTimerOrBlockTask:xNextExpireTime <- $r8
 	@DEBUG_VALUE: prvTimerTask:xNextExpireTime <- $r8
 	@DEBUG_VALUE: prvProcessTimerOrBlockTask:xTimerListsWereSwitched <- $r1
-	.loc	2 617 22 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:617:22
+	.loc	2 617 37 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:617:37
 	movw	r0, :lower16:pxOverflowTimerList
 	movt	r0, :upper16:pxOverflowTimerList
 	ldr	r0, [r0]
@@ -500,18 +500,18 @@ prvTimerTask:
 	@DEBUG_VALUE: prvTimerTask:xNextExpireTime <- $r8
 	@DEBUG_VALUE: prvProcessTimerOrBlockTask:xTimerListsWereSwitched <- $r1
 	@DEBUG_VALUE: prvProcessTimerOrBlockTask:xListWasEmpty <- $r2
-	.loc	2 620 37                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:620:37
+	.loc	2 620 49                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:620:49
 	ldr	r0, [r7]
-	.loc	2 620 68 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:620:68
+	.loc	2 620 80 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:620:80
 	sub.w	r1, r8, r9
 .Ltmp64:
-	.loc	2 620 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:620:5
+	.loc	2 620 17                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:620:17
 	bl	vQueueWaitForMessageRestricted
 .Ltmp65:
-	.loc	2 622 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:622:9
+	.loc	2 622 22 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:622:22
 	bl	xTaskResumeAll
 .Ltmp66:
-	.loc	2 622 9 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:622:9
+	.loc	2 622 22 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:622:22
 	cmp	r0, #0
 	bne	.LBB2_34
 .Ltmp67:
@@ -519,7 +519,7 @@ prvTimerTask:
 	@DEBUG_VALUE: prvProcessTimerOrBlockTask:xTimeNow <- $r9
 	@DEBUG_VALUE: prvProcessTimerOrBlockTask:xNextExpireTime <- $r8
 	@DEBUG_VALUE: prvTimerTask:xNextExpireTime <- $r8
-	.loc	2 628 6 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:628:6
+	.loc	2 628 21 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:628:21
 	movw	r0, #60676
 	movt	r0, #57344
 	mov.w	r1, #268435456
@@ -535,62 +535,62 @@ prvTimerTask:
 	.p2align	2
 .LBB2_18:                               @   in Loop: Header=BB2_34 Depth=2
 	@DEBUG_VALUE: prvTimerTask:xNextExpireTime <- $r8
-	.loc	2 747 17                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:747:17
+	.loc	2 747 27                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:747:27
 	ldr	r0, [sp, #8]
 .Ltmp69:
-	.loc	2 747 8 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:747:8
+	.loc	2 747 18 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:747:18
 	cmp.w	r0, #-1
 	bgt	.LBB2_20
 .Ltmp70:
 @ %bb.19:                               @   in Loop: Header=BB2_34 Depth=2
 	@DEBUG_VALUE: prvTimerTask:xNextExpireTime <- $r8
 	@DEBUG_VALUE: pxCallback <- [DW_OP_plus_uconst 8, DW_OP_plus_uconst 4, DW_OP_stack_value] $sp
-	.loc	2 756 17 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:756:17
+	.loc	2 756 29 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:756:29
 	ldrd	r2, r0, [sp, #12]
-	.loc	2 756 75 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:756:75
+	.loc	2 756 87 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:756:87
 	ldr	r1, [sp, #20]
-	.loc	2 756 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:756:5
+	.loc	2 756 17                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:756:17
 	blx	r2
 .Ltmp71:
-	.loc	2 767 16 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:767:16
+	.loc	2 767 23 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:767:23
 	ldr	r0, [sp, #8]
 .Ltmp72:
-	.loc	2 767 7 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:767:7
+	.loc	2 767 14 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:767:14
 	cmp	r0, #0
 	bmi	.LBB2_34
 .Ltmp73:
 .LBB2_20:                               @   in Loop: Header=BB2_34 Depth=2
 	@DEBUG_VALUE: prvTimerTask:xNextExpireTime <- $r8
-	.loc	2 771 42 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:771:42
+	.loc	2 771 51 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:771:51
 	ldr	r6, [sp, #16]
 .Ltmp74:
 	@DEBUG_VALUE: prvProcessReceivedCommands:pxTimer <- $r6
-	.loc	2 773 8                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:773:8
+	.loc	2 773 18                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:773:18
 	ldr	r0, [r6, #20]
 .Ltmp75:
-	.loc	2 773 8 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:773:8
+	.loc	2 773 18 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:773:18
 	cbz	r0, .LBB2_22
 .Ltmp76:
 @ %bb.21:                               @   in Loop: Header=BB2_34 Depth=2
 	@DEBUG_VALUE: prvTimerTask:xNextExpireTime <- $r8
 	@DEBUG_VALUE: prvProcessReceivedCommands:pxTimer <- $r6
-	.loc	2 773 8                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:773:8
+	.loc	2 773 18                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:773:18
 	adds	r0, r6, #4
 .Ltmp77:
-	.loc	2 776 14 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:776:14
+	.loc	2 776 26 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:776:26
 	bl	uxListRemove
 .Ltmp78:
 .LBB2_22:                               @   in Loop: Header=BB2_34 Depth=2
 	@DEBUG_VALUE: prvTimerTask:xNextExpireTime <- $r8
 	@DEBUG_VALUE: prvProcessReceivedCommands:pxTimer <- $r6
 	@DEBUG_VALUE: prvProcessReceivedCommands:xTimerListsWereSwitched <- [DW_OP_plus_uconst 4, DW_OP_deref] $sp
-	.loc	2 791 15                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:791:15
+	.loc	2 791 24                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:791:24
 	mov	r0, r5
 	bl	prvSampleTimeNow
 .Ltmp79:
-	.loc	2 793 21                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:793:21
+	.loc	2 793 31                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:793:31
 	ldr	r1, [sp, #8]
-	.loc	2 793 4 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:793:4
+	.loc	2 793 13 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:793:13
 	cmp	r1, #9
 .Ltmp80:
 	@DEBUG_VALUE: prvProcessReceivedCommands:xTimeNow <- $r0
@@ -601,7 +601,7 @@ prvTimerTask:
 	@DEBUG_VALUE: prvProcessReceivedCommands:pxTimer <- $r6
 	@DEBUG_VALUE: prvProcessReceivedCommands:xTimeNow <- $r0
 	@DEBUG_VALUE: prvProcessReceivedCommands:xTimerListsWereSwitched <- [DW_OP_plus_uconst 4, DW_OP_deref] $sp
-	.loc	2 0 4                           @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:4
+	.loc	2 0 13                          @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:13
 	mov	r2, r0
 .Ltmp82:
 	@DEBUG_VALUE: prvProcessReceivedCommands:xTimeNow <- $r2
@@ -627,41 +627,41 @@ prvTimerTask:
 	@DEBUG_VALUE: prvProcessReceivedCommands:pxTimer <- $r6
 	@DEBUG_VALUE: prvProcessReceivedCommands:xTimeNow <- $r2
 	@DEBUG_VALUE: prvProcessReceivedCommands:xTimerListsWereSwitched <- [DW_OP_plus_uconst 4, DW_OP_deref] $sp
-	.loc	2 801 24 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:801:24
+	.loc	2 801 35 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:801:35
 	ldrb.w	r0, [r6, #40]
 .Ltmp85:
-	.loc	2 802 76                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:802:76
+	.loc	2 802 88                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:802:88
 	ldr	r3, [sp, #12]
-	.loc	2 802 101 is_stmt 0             @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:802:101
+	.loc	2 802 113 is_stmt 0             @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:802:113
 	ldr	r1, [r6, #24]
 .Ltmp86:
-	.loc	2 801 24 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:801:24
+	.loc	2 801 35 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:801:35
 	orr	r0, r0, #1
 	strb.w	r0, [r6, #40]
 .Ltmp87:
-	.loc	2 802 90                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:802:90
+	.loc	2 802 102                       @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:802:102
 	add	r1, r3
-	.loc	2 802 10 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:802:10
+	.loc	2 802 22 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:802:22
 	mov	r0, r6
 	bl	prvInsertTimerInActiveList
 .Ltmp88:
-	.loc	2 802 10                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:802:10
+	.loc	2 802 22                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:802:22
 	cbz	r0, .LBB2_34
 .Ltmp89:
 @ %bb.26:                               @   in Loop: Header=BB2_34 Depth=2
 	@DEBUG_VALUE: prvTimerTask:xNextExpireTime <- $r8
 	@DEBUG_VALUE: prvProcessReceivedCommands:pxTimer <- $r6
 	@DEBUG_VALUE: prvProcessReceivedCommands:xTimerListsWereSwitched <- [DW_OP_plus_uconst 4, DW_OP_deref] $sp
-	.loc	2 806 16 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:806:16
+	.loc	2 806 30 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:806:30
 	ldr	r1, [r6, #32]
-	.loc	2 806 7 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:806:7
+	.loc	2 806 21 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:806:21
 	mov	r0, r6
 	blx	r1
 .Ltmp90:
-	.loc	2 809 22 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:809:22
+	.loc	2 809 37 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:809:37
 	ldrb.w	r0, [r6, #40]
 .Ltmp91:
-	.loc	2 809 11 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:809:11
+	.loc	2 809 26 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:809:26
 	lsls	r0, r0, #29
 	bpl	.LBB2_34
 .Ltmp92:
@@ -669,22 +669,22 @@ prvTimerTask:
 	@DEBUG_VALUE: prvTimerTask:xNextExpireTime <- $r8
 	@DEBUG_VALUE: prvProcessReceivedCommands:pxTimer <- $r6
 	@DEBUG_VALUE: prvProcessReceivedCommands:xTimerListsWereSwitched <- [DW_OP_plus_uconst 4, DW_OP_deref] $sp
-	.loc	2 811 106 is_stmt 1             @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:811:106
+	.loc	2 811 123 is_stmt 1             @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:811:123
 	ldr	r0, [sp, #12]
-	.loc	2 811 131 is_stmt 0             @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:811:131
+	.loc	2 811 148 is_stmt 0             @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:811:148
 	ldr	r1, [r6, #24]
-	.loc	2 811 18                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:811:18
+	.loc	2 811 35                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:811:35
 	movs	r3, #0
-	.loc	2 811 120                       @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:811:120
+	.loc	2 811 137                       @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:811:137
 	adds	r2, r1, r0
-	.loc	2 811 18                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:811:18
+	.loc	2 811 35                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:811:35
 	mov	r0, r6
 	movs	r1, #0
 	str.w	r10, [sp]
 	bl	xTimerGenericCommand
 .Ltmp93:
 	@DEBUG_VALUE: prvProcessReceivedCommands:xResult <- $r0
-	.loc	2 812 8 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:812:8
+	.loc	2 812 25 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:812:25
 	cbnz	r0, .LBB2_34
 	b	.LBB2_37
 .Ltmp94:
@@ -693,7 +693,7 @@ prvTimerTask:
 	@DEBUG_VALUE: prvProcessReceivedCommands:pxTimer <- $r6
 	@DEBUG_VALUE: prvProcessReceivedCommands:xTimeNow <- $r2
 	@DEBUG_VALUE: prvProcessReceivedCommands:xTimerListsWereSwitched <- [DW_OP_plus_uconst 4, DW_OP_deref] $sp
-	.loc	2 829 24                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:829:24
+	.loc	2 829 35                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:829:35
 	ldrb.w	r0, [r6, #40]
 .Ltmp95:
 .LBB2_29:                               @   in Loop: Header=BB2_34 Depth=2
@@ -711,16 +711,16 @@ prvTimerTask:
 	@DEBUG_VALUE: prvProcessReceivedCommands:pxTimer <- $r6
 	@DEBUG_VALUE: prvProcessReceivedCommands:xTimeNow <- $r2
 	@DEBUG_VALUE: prvProcessReceivedCommands:xTimerListsWereSwitched <- [DW_OP_plus_uconst 4, DW_OP_deref] $sp
-	.loc	2 834 24 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:834:24
+	.loc	2 834 35 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:834:35
 	ldrb.w	r0, [r6, #40]
 	orr	r1, r0, #1
-	.loc	2 835 65                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:835:65
+	.loc	2 835 76                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:835:76
 	ldr	r0, [sp, #12]
-	.loc	2 834 24                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:834:24
+	.loc	2 834 35                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:834:35
 	strb.w	r1, [r6, #40]
-	.loc	2 835 35                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:835:35
+	.loc	2 835 46                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:835:46
 	str	r0, [r6, #24]
-	.loc	2 836 6                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:836:6
+	.loc	2 836 17                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:836:17
 	cbz	r0, .LBB2_35
 .Ltmp97:
 @ %bb.31:                               @   in Loop: Header=BB2_34 Depth=2
@@ -728,14 +728,14 @@ prvTimerTask:
 	@DEBUG_VALUE: prvProcessReceivedCommands:pxTimer <- $r6
 	@DEBUG_VALUE: prvProcessReceivedCommands:xTimeNow <- $r2
 	@DEBUG_VALUE: prvProcessReceivedCommands:xTimerListsWereSwitched <- [DW_OP_plus_uconst 4, DW_OP_deref] $sp
-	.loc	2 844 63                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:844:63
+	.loc	2 844 74                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:844:74
 	adds	r1, r0, r2
-	.loc	2 844 15 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:844:15
+	.loc	2 844 26 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:844:26
 	mov	r0, r6
 	mov	r3, r2
 	bl	prvInsertTimerInActiveList
 .Ltmp98:
-	.loc	2 0 15                          @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:15
+	.loc	2 0 26                          @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:26
 	b	.LBB2_34
 .Ltmp99:
 .LBB2_32:                               @   in Loop: Header=BB2_34 Depth=2
@@ -743,10 +743,10 @@ prvTimerTask:
 	@DEBUG_VALUE: prvProcessReceivedCommands:pxTimer <- $r6
 	@DEBUG_VALUE: prvProcessReceivedCommands:xTimeNow <- $r2
 	@DEBUG_VALUE: prvProcessReceivedCommands:xTimerListsWereSwitched <- [DW_OP_plus_uconst 4, DW_OP_deref] $sp
-	.loc	2 853 22 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:853:22
+	.loc	2 853 33 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:853:33
 	ldrb.w	r0, [r6, #40]
 .Ltmp100:
-	.loc	2 853 11 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:853:11
+	.loc	2 853 22 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:853:22
 	lsls	r1, r0, #30
 	bmi	.LBB2_29
 .Ltmp101:
@@ -755,7 +755,7 @@ prvTimerTask:
 	@DEBUG_VALUE: prvProcessReceivedCommands:pxTimer <- $r6
 	@DEBUG_VALUE: prvProcessReceivedCommands:xTimeNow <- $r2
 	@DEBUG_VALUE: prvProcessReceivedCommands:xTimerListsWereSwitched <- [DW_OP_plus_uconst 4, DW_OP_deref] $sp
-	.loc	2 855 8 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:855:8
+	.loc	2 855 21 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:855:21
 	mov	r0, r6
 	bl	vPortFree
 .Ltmp102:
@@ -763,14 +763,14 @@ prvTimerTask:
 .LBB2_34:                               @   Parent Loop BB2_1 Depth=1
                                         @ =>  This Inner Loop Header: Depth=2
 	@DEBUG_VALUE: prvTimerTask:xNextExpireTime <- $r8
-	.loc	2 741 24                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:741:24
+	.loc	2 741 28                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:741:28
 	ldr	r0, [r7]
-	.loc	2 741 9 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:741:9
+	.loc	2 741 13 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:741:13
 	mov	r1, r4
 	movs	r2, #0
 	bl	xQueueReceive
 .Ltmp103:
-	.loc	2 741 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:741:2
+	.loc	2 741 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:741:5
 	cmp	r0, #0
 	bne.w	.LBB2_18
 	b	.LBB2_1
@@ -780,7 +780,7 @@ prvTimerTask:
 	@DEBUG_VALUE: prvProcessReceivedCommands:pxTimer <- $r6
 	@DEBUG_VALUE: prvProcessReceivedCommands:xTimeNow <- $r2
 	@DEBUG_VALUE: prvProcessReceivedCommands:xTimerListsWereSwitched <- [DW_OP_plus_uconst 4, DW_OP_deref] $sp
-	.loc	2 836 6 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:836:6
+	.loc	2 836 17 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:836:17
 	movw	r0, :lower16:.L.str.1
 	movw	r2, :lower16:.L.str.3
 .Ltmp105:
@@ -803,7 +803,7 @@ prvTimerTask:
 	@DEBUG_VALUE: prvTimerTask:xNextExpireTime <- $r8
 	@DEBUG_VALUE: prvProcessReceivedCommands:pxTimer <- $r6
 	@DEBUG_VALUE: prvProcessReceivedCommands:xTimerListsWereSwitched <- [DW_OP_plus_uconst 4, DW_OP_deref] $sp
-	.loc	2 836 6                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:836:6
+	.loc	2 836 17                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:836:17
 	b	.LBB2_36
 .Ltmp108:
 .LBB2_37:
@@ -811,7 +811,7 @@ prvTimerTask:
 	@DEBUG_VALUE: prvProcessReceivedCommands:pxTimer <- $r6
 	@DEBUG_VALUE: prvProcessReceivedCommands:xResult <- $r0
 	@DEBUG_VALUE: prvProcessReceivedCommands:xTimerListsWereSwitched <- [DW_OP_plus_uconst 4, DW_OP_deref] $sp
-	.loc	2 812 8                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:812:8
+	.loc	2 812 25                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:812:25
 	movw	r0, :lower16:.L.str.1
 .Ltmp109:
 	movw	r1, :lower16:.L.str.10
@@ -835,7 +835,7 @@ prvTimerTask:
 	@DEBUG_VALUE: prvTimerTask:xNextExpireTime <- $r8
 	@DEBUG_VALUE: prvProcessReceivedCommands:pxTimer <- $r6
 	@DEBUG_VALUE: prvProcessReceivedCommands:xTimerListsWereSwitched <- [DW_OP_plus_uconst 4, DW_OP_deref] $sp
-	.loc	2 812 8                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:812:8
+	.loc	2 812 25                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:812:25
 	b	.LBB2_38
 .Ltmp112:
 .LBB2_39:
@@ -846,7 +846,7 @@ prvTimerTask:
 	@DEBUG_VALUE: prvProcessTimerOrBlockTask:xNextExpireTime <- $r8
 	@DEBUG_VALUE: prvTimerTask:xNextExpireTime <- $r8
 	@DEBUG_VALUE: prvProcessExpiredTimer:xResult <- $r0
-	.loc	2 529 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:529:4
+	.loc	2 529 13                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:529:13
 	movw	r0, :lower16:.L.str.1
 .Ltmp113:
 	movw	r1, :lower16:.L.str.10
@@ -872,12 +872,12 @@ prvTimerTask:
 	@DEBUG_VALUE: prvProcessExpiredTimer:xNextExpireTime <- $r8
 	@DEBUG_VALUE: prvProcessTimerOrBlockTask:xNextExpireTime <- $r8
 	@DEBUG_VALUE: prvTimerTask:xNextExpireTime <- $r8
-	.loc	2 529 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:529:4
+	.loc	2 529 13                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:529:13
 	b	.LBB2_40
 .Ltmp116:
 	.p2align	2
 @ %bb.41:
-	.loc	2 0 4 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:4
+	.loc	2 0 13 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:13
 .LCPI2_0:
 .L__func__.prvProcessExpiredTimer:
 	.asciz	"prvProcessExpiredTimer\000"
@@ -927,35 +927,35 @@ xTimerCreate:
 	@DEBUG_VALUE: xTimerCreate:uxAutoReload <- $r5
 	@DEBUG_VALUE: xTimerCreate:xTimerPeriodInTicks <- $r6
 	@DEBUG_VALUE: xTimerCreate:pcTimerName <- $r4
-	.loc	2 290 30 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:290:30
+	.loc	2 290 32 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:290:32
 	movs	r0, #44
 	mov	r8, r3
 .Ltmp118:
-	.loc	2 0 30 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:30
+	.loc	2 0 32 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:32
 	mov	r5, r2
 .Ltmp119:
 	mov	r6, r1
 .Ltmp120:
-	.loc	2 290 30                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:290:30
+	.loc	2 290 32                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:290:32
 	bl	pvPortMalloc
 .Ltmp121:
 	mov	r7, r0
 .Ltmp122:
 	@DEBUG_VALUE: xTimerCreate:pxNewTimer <- $r7
-	.loc	2 292 7 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:292:7
+	.loc	2 292 10 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:292:10
 	cbz	r0, .LBB3_2
 .Ltmp123:
 @ %bb.1:
 	@DEBUG_VALUE: xTimerCreate:pxNewTimer <- $r7
 	@DEBUG_VALUE: xTimerCreate:pcTimerName <- $r4
 	@DEBUG_VALUE: xTimerCreate:pxCallbackFunction <- [DW_OP_plus_uconst 32] [$sp+0]
-	.loc	2 0 7 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:7
+	.loc	2 0 10 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:10
 	ldr	r0, [sp, #32]
 	movs	r1, #0
 .Ltmp124:
-	.loc	2 297 25 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:297:25
+	.loc	2 297 30 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:297:30
 	strb.w	r1, [r7, #40]
-	.loc	2 298 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:298:4
+	.loc	2 298 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:298:9
 	str	r0, [sp]
 	mov	r0, r4
 	mov	r1, r6
@@ -968,7 +968,7 @@ xTimerCreate:
 	@DEBUG_VALUE: xTimerCreate:pxNewTimer <- $r7
 	@DEBUG_VALUE: xTimerCreate:pcTimerName <- $r4
 	@DEBUG_VALUE: xTimerCreate:pxCallbackFunction <- [DW_OP_plus_uconst 32] [$sp+0]
-	.loc	2 301 3                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:301:3
+	.loc	2 301 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:301:5
 	mov	r0, r7
 	add	sp, #8
 	pop.w	{r4, r5, r6, r7, r8, pc}
@@ -1014,7 +1014,7 @@ prvInitialiseNewTimer:
 	@DEBUG_VALUE: prvInitialiseNewTimer:pxNewTimer <- [DW_OP_plus_uconst 36] [$sp+0]
 	@DEBUG_VALUE: prvInitialiseNewTimer:pxCallbackFunction <- [DW_OP_plus_uconst 32] [$sp+0]
 	@DEBUG_VALUE: prvInitialiseNewTimer:pcTimerName <- $r0
-	.loc	2 357 2 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:357:2
+	.loc	2 357 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:357:5
 	cbz	r1, .LBB4_5
 .Ltmp128:
 @ %bb.1:
@@ -1028,9 +1028,9 @@ prvInitialiseNewTimer:
 	@DEBUG_VALUE: prvInitialiseNewTimer:uxAutoReload <- $r2
 	@DEBUG_VALUE: prvInitialiseNewTimer:xTimerPeriodInTicks <- $r1
 	@DEBUG_VALUE: prvInitialiseNewTimer:pcTimerName <- $r0
-	.loc	2 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:2
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 	ldr	r4, [sp, #36]
-	.loc	2 359 6 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:359:6
+	.loc	2 359 10 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:359:10
 	cbz	r4, .LBB4_4
 .Ltmp129:
 @ %bb.2:
@@ -1040,7 +1040,7 @@ prvInitialiseNewTimer:
 	@DEBUG_VALUE: prvInitialiseNewTimer:pcTimerName <- $r0
 	@DEBUG_VALUE: prvInitialiseNewTimer:pxCallbackFunction <- [DW_OP_plus_uconst 32] [$sp+0]
 	@DEBUG_VALUE: prvInitialiseNewTimer:pxNewTimer <- [DW_OP_plus_uconst 36] [$sp+0]
-	.loc	2 0 6 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:6
+	.loc	2 0 10 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:10
 	ldr.w	r9, [sp, #32]
 	mov	r5, r3
 .Ltmp130:
@@ -1058,21 +1058,21 @@ prvInitialiseNewTimer:
 .Ltmp133:
 	@DEBUG_VALUE: prvInitialiseNewTimer:pcTimerName <- $r7
 	@DEBUG_VALUE: prvInitialiseNewTimer:pcTimerName <- $r7
-	.loc	2 363 3 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:363:3
+	.loc	2 363 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:363:9
 	bl	prvCheckForValidListAndQueue
 .Ltmp134:
-	.loc	2 371 39                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:371:39
+	.loc	2 371 45                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:371:45
 	adds	r0, r4, #4
-	.loc	2 367 27                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:367:27
+	.loc	2 367 33                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:367:33
 	str	r7, [r4]
-	.loc	2 368 35                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:368:35
+	.loc	2 368 41                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:368:41
 	strd	r6, r5, [r4, #24]
-	.loc	2 370 34                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:370:34
+	.loc	2 370 40                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:370:40
 	str.w	r9, [r4, #32]
-	.loc	2 371 3                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:371:3
+	.loc	2 371 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:371:9
 	bl	vListInitialiseItem
 .Ltmp135:
-	.loc	2 372 7                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:372:7
+	.loc	2 372 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:372:14
 	cmp.w	r8, #0
 	beq	.LBB4_4
 .Ltmp136:
@@ -1083,7 +1083,7 @@ prvInitialiseNewTimer:
 	@DEBUG_VALUE: prvInitialiseNewTimer:pvTimerID <- $r5
 	@DEBUG_VALUE: prvInitialiseNewTimer:pxCallbackFunction <- [DW_OP_plus_uconst 32] [$sp+0]
 	@DEBUG_VALUE: prvInitialiseNewTimer:pxNewTimer <- [DW_OP_plus_uconst 36] [$sp+0]
-	.loc	2 374 25                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:374:25
+	.loc	2 374 34                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:374:34
 	ldrb.w	r0, [r4, #40]
 	orr	r0, r0, #4
 	strb.w	r0, [r4, #40]
@@ -1102,16 +1102,16 @@ prvInitialiseNewTimer:
 	@DEBUG_VALUE: prvInitialiseNewTimer:pcTimerName <- $r0
 	@DEBUG_VALUE: prvInitialiseNewTimer:pxCallbackFunction <- [DW_OP_plus_uconst 32] [$sp+0]
 	@DEBUG_VALUE: prvInitialiseNewTimer:pxNewTimer <- [DW_OP_plus_uconst 36] [$sp+0]
-	.loc	2 357 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:357:2
+	.loc	2 357 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:357:5
 	movw	r0, :lower16:.L.str.1
 .Ltmp139:
 	@DEBUG_VALUE: prvInitialiseNewTimer:pcTimerName <- [DW_OP_LLVM_entry_value 1] $r0
 	movw	r2, :lower16:.L.str.3
 .Ltmp140:
 	@DEBUG_VALUE: prvInitialiseNewTimer:uxAutoReload <- [DW_OP_LLVM_entry_value 1] $r2
-	.loc	2 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:2
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 	movw	r7, #357
-	.loc	2 357 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:357:2
+	.loc	2 357 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:357:5
 	movt	r0, :upper16:.L.str.1
 	adr	r1, .LCPI4_0
 .Ltmp141:
@@ -1136,12 +1136,12 @@ prvInitialiseNewTimer:
 	@DEBUG_VALUE: prvInitialiseNewTimer:xTimerPeriodInTicks <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: prvInitialiseNewTimer:uxAutoReload <- [DW_OP_LLVM_entry_value 1] $r2
 	@DEBUG_VALUE: prvInitialiseNewTimer:pcTimerName <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 357 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:357:2
+	.loc	2 357 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:357:5
 	b	.LBB4_6
 .Ltmp145:
 	.p2align	2
 @ %bb.7:
-	.loc	2 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:2
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 .LCPI4_0:
 .L.str.9:
 	.asciz	"( xTimerPeriodInTicks > 0 )"
@@ -1187,14 +1187,14 @@ xTimerCreateStatic:
 	@DEBUG_VALUE: xTimerCreateStatic:pxCallbackFunction <- [DW_OP_plus_uconst 32] [$sp+0]
 	@DEBUG_VALUE: xTimerCreateStatic:pvTimerID <- $r3
 	@DEBUG_VALUE: xTimerCreateStatic:uxAutoReload <- $r2
-	.loc	2 323 20 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:323:20
+	.loc	2 323 25 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:323:25
 	str	r4, [sp, #12]
 .Ltmp147:
-	.loc	2 324 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:324:4
+	.loc	2 324 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:324:9
 	ldr	r4, [sp, #12]
 .Ltmp148:
 	@DEBUG_VALUE: xTimerCreateStatic:xTimerPeriodInTicks <- $r1
-	.loc	2 324 4 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:324:4
+	.loc	2 324 9 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:324:9
 	cmp	r4, #44
 	@DEBUG_VALUE: xTimerCreateStatic:pcTimerName <- $r0
 	bne	.LBB5_3
@@ -1206,12 +1206,12 @@ xTimerCreateStatic:
 	@DEBUG_VALUE: xTimerCreateStatic:pcTimerName <- $r0
 	@DEBUG_VALUE: xTimerCreateStatic:pxCallbackFunction <- [DW_OP_plus_uconst 32] [$sp+0]
 	@DEBUG_VALUE: xTimerCreateStatic:pxTimerBuffer <- [DW_OP_plus_uconst 36] [$sp+0]
-	.loc	2 0 4                           @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:4
+	.loc	2 0 9                           @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:9
 	ldr	r5, [sp, #36]
-	.loc	2 325 13 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:325:13
+	.loc	2 325 18 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:325:18
 	ldr	r4, [sp, #12]
 .Ltmp150:
-	.loc	2 330 3                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:330:3
+	.loc	2 330 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:330:5
 	cbz	r5, .LBB5_5
 .Ltmp151:
 @ %bb.2:
@@ -1221,15 +1221,15 @@ xTimerCreateStatic:
 	@DEBUG_VALUE: xTimerCreateStatic:pcTimerName <- $r0
 	@DEBUG_VALUE: xTimerCreateStatic:pxCallbackFunction <- [DW_OP_plus_uconst 32] [$sp+0]
 	@DEBUG_VALUE: xTimerCreateStatic:pxTimerBuffer <- [DW_OP_plus_uconst 36] [$sp+0]
-	.loc	2 0 3 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:3
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 	ldr.w	r12, [sp, #32]
 .Ltmp152:
 	@DEBUG_VALUE: xTimerCreateStatic:pxNewTimer <- $r5
 	movs	r4, #2
 .Ltmp153:
-	.loc	2 338 25 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:338:25
+	.loc	2 338 30 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:338:30
 	strb.w	r4, [r5, #40]
-	.loc	2 340 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:340:4
+	.loc	2 340 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:340:9
 	strd	r12, r5, [sp]
 	bl	prvInitialiseNewTimer
 .Ltmp154:
@@ -1237,7 +1237,7 @@ xTimerCreateStatic:
 	@DEBUG_VALUE: xTimerCreateStatic:uxAutoReload <- [DW_OP_LLVM_entry_value 1] $r2
 	@DEBUG_VALUE: xTimerCreateStatic:xTimerPeriodInTicks <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: xTimerCreateStatic:pcTimerName <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 343 3                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:343:3
+	.loc	2 343 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:343:5
 	mov	r0, r5
 	add	sp, #16
 	pop	{r4, r5, r7, pc}
@@ -1249,7 +1249,7 @@ xTimerCreateStatic:
 	@DEBUG_VALUE: xTimerCreateStatic:pcTimerName <- $r0
 	@DEBUG_VALUE: xTimerCreateStatic:pxCallbackFunction <- [DW_OP_plus_uconst 32] [$sp+0]
 	@DEBUG_VALUE: xTimerCreateStatic:pxTimerBuffer <- [DW_OP_plus_uconst 36] [$sp+0]
-	.loc	2 324 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:324:4
+	.loc	2 324 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:324:9
 	movw	r0, :lower16:.L.str.1
 .Ltmp156:
 	@DEBUG_VALUE: xTimerCreateStatic:pcTimerName <- [DW_OP_LLVM_entry_value 1] $r0
@@ -1259,9 +1259,9 @@ xTimerCreateStatic:
 	movw	r3, :lower16:.L__func__.xTimerCreateStatic
 .Ltmp158:
 	@DEBUG_VALUE: xTimerCreateStatic:pvTimerID <- [DW_OP_LLVM_entry_value 1] $r3
-	.loc	2 0 4 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:4
+	.loc	2 0 9 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:9
 	mov.w	r4, #324
-	.loc	2 324 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:324:4
+	.loc	2 324 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:324:9
 	movt	r0, :upper16:.L.str.1
 	adr	r1, .LCPI5_0
 .Ltmp159:
@@ -1284,7 +1284,7 @@ xTimerCreateStatic:
 	@DEBUG_VALUE: xTimerCreateStatic:pvTimerID <- [DW_OP_LLVM_entry_value 1] $r3
 	@DEBUG_VALUE: xTimerCreateStatic:uxAutoReload <- [DW_OP_LLVM_entry_value 1] $r2
 	@DEBUG_VALUE: xTimerCreateStatic:pcTimerName <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 324 4                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:324:4
+	.loc	2 324 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:324:9
 	b	.LBB5_4
 .Ltmp162:
 .LBB5_5:
@@ -1294,7 +1294,7 @@ xTimerCreateStatic:
 	@DEBUG_VALUE: xTimerCreateStatic:pcTimerName <- $r0
 	@DEBUG_VALUE: xTimerCreateStatic:pxCallbackFunction <- [DW_OP_plus_uconst 32] [$sp+0]
 	@DEBUG_VALUE: xTimerCreateStatic:pxTimerBuffer <- [DW_OP_plus_uconst 36] [$sp+0]
-	.loc	2 330 3                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:330:3
+	.loc	2 330 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:330:5
 	movw	r0, :lower16:.L.str.1
 .Ltmp163:
 	@DEBUG_VALUE: xTimerCreateStatic:pcTimerName <- [DW_OP_LLVM_entry_value 1] $r0
@@ -1304,9 +1304,9 @@ xTimerCreateStatic:
 	movw	r3, :lower16:.L__func__.xTimerCreateStatic
 .Ltmp165:
 	@DEBUG_VALUE: xTimerCreateStatic:pvTimerID <- [DW_OP_LLVM_entry_value 1] $r3
-	.loc	2 0 3 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:3
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 	mov.w	r5, #330
-	.loc	2 330 3                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:330:3
+	.loc	2 330 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:330:5
 	movt	r0, :upper16:.L.str.1
 	adr	r1, .LCPI5_1
 .Ltmp166:
@@ -1329,12 +1329,12 @@ xTimerCreateStatic:
 	@DEBUG_VALUE: xTimerCreateStatic:pvTimerID <- [DW_OP_LLVM_entry_value 1] $r3
 	@DEBUG_VALUE: xTimerCreateStatic:uxAutoReload <- [DW_OP_LLVM_entry_value 1] $r2
 	@DEBUG_VALUE: xTimerCreateStatic:pcTimerName <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 330 3                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:330:3
+	.loc	2 330 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:330:5
 	b	.LBB5_6
 .Ltmp169:
 	.p2align	2
 @ %bb.7:
-	.loc	2 0 3 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:3
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 .LCPI5_0:
 .L.str.4:
 	.asciz	"xSize == sizeof( Timer_t )\000"
@@ -1379,7 +1379,7 @@ xTimerGenericCommand:
 	@DEBUG_VALUE: xTimerGenericCommand:xReturn <- 0
 	@DEBUG_VALUE: xTimerGenericCommand:xTicksToWait <- [DW_OP_plus_uconst 32] [$sp+0]
 	@DEBUG_VALUE: xTimerGenericCommand:xCommandID <- $r1
-	.loc	2 386 2 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:386:2
+	.loc	2 386 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:386:5
 	cbz	r0, .LBB6_5
 .Ltmp171:
 @ %bb.1:
@@ -1389,7 +1389,7 @@ xTimerGenericCommand:
 	@DEBUG_VALUE: xTimerGenericCommand:xTimer <- $r0
 	@DEBUG_VALUE: xTimerGenericCommand:xTicksToWait <- [DW_OP_plus_uconst 32] [$sp+0]
 	@DEBUG_VALUE: xTimerGenericCommand:xReturn <- 0
-	.loc	2 390 6                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:390:6
+	.loc	2 390 10                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:390:10
 	movw	r4, :lower16:xTimerQueue
 	movt	r4, :upper16:xTimerQueue
 	mov	r12, r0
@@ -1397,7 +1397,7 @@ xTimerGenericCommand:
 	@DEBUG_VALUE: xTimerGenericCommand:xTimer <- $r12
 	ldr	r0, [r4]
 .Ltmp173:
-	.loc	2 390 6 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:390:6
+	.loc	2 390 10 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:390:10
 	cbz	r0, .LBB6_7
 .Ltmp174:
 @ %bb.2:
@@ -1407,13 +1407,13 @@ xTimerGenericCommand:
 	@DEBUG_VALUE: xTimerGenericCommand:xCommandID <- $r1
 	@DEBUG_VALUE: xTimerGenericCommand:xTicksToWait <- [DW_OP_plus_uconst 32] [$sp+0]
 	@DEBUG_VALUE: xTimerGenericCommand:xReturn <- 0
-	.loc	2 397 7 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:397:7
+	.loc	2 397 14 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:397:14
 	cmp	r1, #5
-	.loc	2 393 23                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:393:23
+	.loc	2 393 29                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:393:29
 	strd	r1, r2, [sp, #8]
-	.loc	2 395 39                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:395:39
+	.loc	2 395 45                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:395:45
 	str.w	r12, [sp, #16]
-	.loc	2 397 7                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:397:7
+	.loc	2 397 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:397:14
 	bgt	.LBB6_8
 .Ltmp175:
 @ %bb.3:
@@ -1423,7 +1423,7 @@ xTimerGenericCommand:
 	@DEBUG_VALUE: xTimerGenericCommand:xCommandID <- $r1
 	@DEBUG_VALUE: xTimerGenericCommand:xTicksToWait <- [DW_OP_plus_uconst 32] [$sp+0]
 	@DEBUG_VALUE: xTimerGenericCommand:xReturn <- 0
-	.loc	2 399 8                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:399:8
+	.loc	2 399 18                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:399:18
 	bl	xTaskGetSchedulerState
 .Ltmp176:
 	@DEBUG_VALUE: xTimerGenericCommand:pxHigherPriorityTaskWoken <- [DW_OP_LLVM_entry_value 1] $r3
@@ -1433,7 +1433,7 @@ xTimerGenericCommand:
 	.loc	2 0 0 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:0
 	ldr	r0, [r4]
 .Ltmp177:
-	.loc	2 399 8                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:399:8
+	.loc	2 399 18                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:399:18
 	cmp	r1, #2
 	bne	.LBB6_9
 .Ltmp178:
@@ -1443,7 +1443,7 @@ xTimerGenericCommand:
 	@DEBUG_VALUE: xTimerGenericCommand:xOptionalValue <- [DW_OP_LLVM_entry_value 1] $r2
 	@DEBUG_VALUE: xTimerGenericCommand:xCommandID <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: xTimerGenericCommand:xReturn <- 0
-	.loc	2 0 8                           @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:8
+	.loc	2 0 18                          @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:18
 	ldr	r2, [sp, #32]
 	add	r1, sp, #8
 	b	.LBB6_10
@@ -1455,7 +1455,7 @@ xTimerGenericCommand:
 	@DEBUG_VALUE: xTimerGenericCommand:xTimer <- $r0
 	@DEBUG_VALUE: xTimerGenericCommand:xTicksToWait <- [DW_OP_plus_uconst 32] [$sp+0]
 	@DEBUG_VALUE: xTimerGenericCommand:xReturn <- 0
-	.loc	2 386 2 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:386:2
+	.loc	2 386 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:386:5
 	movw	r0, :lower16:.L.str.1
 .Ltmp180:
 	@DEBUG_VALUE: xTimerGenericCommand:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
@@ -1465,9 +1465,9 @@ xTimerGenericCommand:
 	movw	r2, :lower16:.L.str.3
 .Ltmp182:
 	@DEBUG_VALUE: xTimerGenericCommand:xOptionalValue <- [DW_OP_LLVM_entry_value 1] $r2
-	.loc	2 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:2
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 	mov.w	r4, #386
-	.loc	2 386 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:386:2
+	.loc	2 386 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:386:5
 	movt	r0, :upper16:.L.str.1
 	movt	r1, :upper16:.L.str.6
 	movt	r2, :upper16:.L.str.3
@@ -1490,7 +1490,7 @@ xTimerGenericCommand:
 	@DEBUG_VALUE: xTimerGenericCommand:xOptionalValue <- [DW_OP_LLVM_entry_value 1] $r2
 	@DEBUG_VALUE: xTimerGenericCommand:xCommandID <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: xTimerGenericCommand:xReturn <- 0
-	.loc	2 386 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:386:2
+	.loc	2 386 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:386:5
 	b	.LBB6_6
 .Ltmp186:
 .LBB6_7:
@@ -1500,7 +1500,7 @@ xTimerGenericCommand:
 	@DEBUG_VALUE: xTimerGenericCommand:xCommandID <- $r1
 	@DEBUG_VALUE: xTimerGenericCommand:xTicksToWait <- [DW_OP_plus_uconst 32] [$sp+0]
 	@DEBUG_VALUE: xTimerGenericCommand:xReturn <- 0
-	.loc	2 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:2
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 	movs	r0, #0
 	b	.LBB6_11
 .Ltmp187:
@@ -1514,7 +1514,7 @@ xTimerGenericCommand:
 	add	r1, sp, #8
 .Ltmp188:
 	@DEBUG_VALUE: xTimerGenericCommand:xCommandID <- [DW_OP_LLVM_entry_value 1] $r1
-	.loc	2 410 14 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:410:14
+	.loc	2 410 23 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:410:23
 	mov	r2, r3
 .Ltmp189:
 	@DEBUG_VALUE: xTimerGenericCommand:xOptionalValue <- [DW_OP_LLVM_entry_value 1] $r2
@@ -1524,7 +1524,7 @@ xTimerGenericCommand:
 	bl	xQueueGenericSendFromISR
 .Ltmp191:
 	@DEBUG_VALUE: xTimerGenericCommand:xReturn <- $r0
-	.loc	2 0 14 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:14
+	.loc	2 0 23 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:23
 	b	.LBB6_11
 .Ltmp192:
 .LBB6_9:
@@ -1535,7 +1535,7 @@ xTimerGenericCommand:
 	@DEBUG_VALUE: xTimerGenericCommand:xReturn <- 0
 	add	r1, sp, #8
 .Ltmp193:
-	.loc	2 405 15 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:405:15
+	.loc	2 405 27 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:405:27
 	movs	r2, #0
 .Ltmp194:
 .LBB6_10:
@@ -1552,13 +1552,13 @@ xTimerGenericCommand:
 .LBB6_11:
 	@DEBUG_VALUE: xTimerGenericCommand:xTicksToWait <- [DW_OP_plus_uconst 32] [$sp+0]
 	@DEBUG_VALUE: xTimerGenericCommand:xReturn <- $r0
-	.loc	2 420 2 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:420:2
+	.loc	2 420 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:420:5
 	add	sp, #24
 	pop	{r4, pc}
 .Ltmp196:
 	.p2align	2
 @ %bb.12:
-	.loc	2 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:2
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 .LCPI6_0:
 .L__func__.xTimerGenericCommand:
 	.asciz	"xTimerGenericCommand\000\000\000"
@@ -1590,20 +1590,20 @@ xTimerGetTimerDaemonTaskHandle:
 	sub	sp, #8
 	.cfi_def_cfa_offset 16
 .Ltmp197:
-	.loc	2 428 2 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:428:2
+	.loc	2 428 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:428:5
 	movw	r0, :lower16:xTimerTaskHandle
 	movt	r0, :upper16:xTimerTaskHandle
 	ldr	r0, [r0]
 .Ltmp198:
-	.loc	2 428 2 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:428:2
+	.loc	2 428 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:428:5
 	cbz	r0, .LBB7_2
 @ %bb.1:
-	.loc	2 429 2 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:429:2
+	.loc	2 429 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:429:5
 	add	sp, #8
 	pop	{r7, pc}
 .LBB7_2:
 .Ltmp199:
-	.loc	2 428 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:428:2
+	.loc	2 428 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:428:5
 	movw	r0, :lower16:.L.str.1
 	movw	r2, :lower16:.L.str.3
 	mov.w	r12, #428
@@ -1621,12 +1621,12 @@ xTimerGetTimerDaemonTaskHandle:
 .Ltmp201:
 	.p2align	2
 .LBB7_3:                                @ =>This Inner Loop Header: Depth=1
-	.loc	2 428 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:428:2
+	.loc	2 428 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:428:5
 	b	.LBB7_3
 .Ltmp202:
 	.p2align	2
 @ %bb.4:
-	.loc	2 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:2
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 .LCPI7_0:
 .L.str.7:
 	.asciz	"( xTimerTaskHandle != NULL )\000\000\000"
@@ -1665,24 +1665,24 @@ xTimerGetPeriod:
 .Ltmp203:
 	@DEBUG_VALUE: xTimerGetPeriod:pxTimer <- $r0
 	@DEBUG_VALUE: xTimerGetPeriod:pxTimer <- $r0
-	.loc	2 437 2 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:437:2
+	.loc	2 437 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:437:5
 	cbz	r0, .LBB8_2
 .Ltmp204:
 @ %bb.1:
 	@DEBUG_VALUE: xTimerGetPeriod:pxTimer <- $r0
 	@DEBUG_VALUE: xTimerGetPeriod:xTimer <- $r0
-	.loc	2 438 18                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:438:18
+	.loc	2 438 21                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:438:21
 	ldr	r0, [r0, #24]
 .Ltmp205:
 	@DEBUG_VALUE: xTimerGetPeriod:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 438 2 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:438:2
+	.loc	2 438 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:438:5
 	add	sp, #8
 	pop	{r7, pc}
 .Ltmp206:
 .LBB8_2:
 	@DEBUG_VALUE: xTimerGetPeriod:pxTimer <- $r0
 	@DEBUG_VALUE: xTimerGetPeriod:xTimer <- $r0
-	.loc	2 437 2 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:437:2
+	.loc	2 437 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:437:5
 	movw	r0, :lower16:.L.str.1
 .Ltmp207:
 	@DEBUG_VALUE: xTimerGetPeriod:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
@@ -1704,12 +1704,12 @@ xTimerGetPeriod:
 	.p2align	2
 .LBB8_3:                                @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: xTimerGetPeriod:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 437 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:437:2
+	.loc	2 437 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:437:5
 	b	.LBB8_3
 .Ltmp210:
 	.p2align	2
 @ %bb.4:
-	.loc	2 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:2
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 .LCPI8_0:
 .L__func__.xTimerGetPeriod:
 	.asciz	"xTimerGetPeriod"
@@ -1749,14 +1749,14 @@ vTimerSetReloadMode:
 	@DEBUG_VALUE: vTimerSetReloadMode:pxTimer <- $r0
 	@DEBUG_VALUE: vTimerSetReloadMode:pxTimer <- $r0
 	@DEBUG_VALUE: vTimerSetReloadMode:uxAutoReload <- $r1
-	.loc	2 446 2 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:446:2
+	.loc	2 446 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:446:5
 	cbz	r0, .LBB9_2
 .Ltmp212:
 @ %bb.1:
 	@DEBUG_VALUE: vTimerSetReloadMode:uxAutoReload <- $r1
 	@DEBUG_VALUE: vTimerSetReloadMode:pxTimer <- $r0
 	@DEBUG_VALUE: vTimerSetReloadMode:xTimer <- $r0
-	.loc	2 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:2
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 	mov	r4, r0
 .Ltmp213:
 	@DEBUG_VALUE: vTimerSetReloadMode:xTimer <- $r4
@@ -1766,29 +1766,29 @@ vTimerSetReloadMode:
 .Ltmp214:
 	@DEBUG_VALUE: vTimerSetReloadMode:uxAutoReload <- $r5
 	@DEBUG_VALUE: vTimerSetReloadMode:uxAutoReload <- $r5
-	.loc	2 447 2 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:447:2
+	.loc	2 447 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:447:5
 	bl	vPortEnterCritical
 .Ltmp215:
 	.loc	2 0 0 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:0
 	ldrb.w	r0, [r4, #40]
-	.loc	2 449 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:449:20
+	.loc	2 449 27 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:449:27
 	cmp	r5, #0
 .Ltmp216:
-	.loc	2 449 7 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:449:7
+	.loc	2 449 14 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:449:14
 	and	r0, r0, #251
 .Ltmp217:
-	.loc	2 449 20                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:449:20
+	.loc	2 449 27                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:449:27
 	it	ne
 	movne	r5, #1
 .Ltmp218:
 	@DEBUG_VALUE: vTimerSetReloadMode:uxAutoReload <- [DW_OP_LLVM_entry_value 1] $r1
-	.loc	2 449 7                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:449:7
+	.loc	2 449 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:449:14
 	orr.w	r0, r0, r5, lsl #2
 .Ltmp219:
 	.loc	2 0 0                           @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:0
 	strb.w	r0, [r4, #40]
 .Ltmp220:
-	.loc	2 458 2 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:458:2
+	.loc	2 458 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:458:5
 	add	sp, #8
 	pop.w	{r4, r5, r7, lr}
 .Ltmp221:
@@ -1799,7 +1799,7 @@ vTimerSetReloadMode:
 	@DEBUG_VALUE: vTimerSetReloadMode:uxAutoReload <- $r1
 	@DEBUG_VALUE: vTimerSetReloadMode:pxTimer <- $r0
 	@DEBUG_VALUE: vTimerSetReloadMode:xTimer <- $r0
-	.loc	2 446 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:446:2
+	.loc	2 446 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:446:5
 	movw	r0, :lower16:.L.str.1
 .Ltmp223:
 	@DEBUG_VALUE: vTimerSetReloadMode:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
@@ -1824,12 +1824,12 @@ vTimerSetReloadMode:
 .LBB9_3:                                @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: vTimerSetReloadMode:uxAutoReload <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: vTimerSetReloadMode:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 446 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:446:2
+	.loc	2 446 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:446:5
 	b	.LBB9_3
 .Ltmp227:
 	.p2align	2
 @ %bb.4:
-	.loc	2 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:2
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 .LCPI9_0:
 .L__func__.vTimerSetReloadMode:
 	.asciz	"vTimerSetReloadMode"
@@ -1865,33 +1865,33 @@ uxTimerGetReloadMode:
 .Ltmp228:
 	@DEBUG_VALUE: uxTimerGetReloadMode:pxTimer <- $r0
 	@DEBUG_VALUE: uxTimerGetReloadMode:pxTimer <- $r0
-	.loc	2 467 2 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:467:2
+	.loc	2 467 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:467:5
 	cbz	r0, .LBB10_2
 .Ltmp229:
 @ %bb.1:
 	@DEBUG_VALUE: uxTimerGetReloadMode:pxTimer <- $r0
 	@DEBUG_VALUE: uxTimerGetReloadMode:xTimer <- $r0
-	.loc	2 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:2
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 	mov	r4, r0
 .Ltmp230:
 	@DEBUG_VALUE: uxTimerGetReloadMode:xTimer <- $r4
 	@DEBUG_VALUE: uxTimerGetReloadMode:xTimer <- $r4
 	@DEBUG_VALUE: uxTimerGetReloadMode:pxTimer <- $r4
-	.loc	2 468 2 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:468:2
+	.loc	2 468 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:468:5
 	bl	vPortEnterCritical
 .Ltmp231:
-	.loc	2 470 18                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:470:18
+	.loc	2 470 25                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:470:25
 	ldrb.w	r0, [r4, #40]
 .Ltmp232:
-	.loc	2 470 7 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:470:7
+	.loc	2 470 14 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:470:14
 	ubfx	r4, r0, #2, #1
 .Ltmp233:
 	@DEBUG_VALUE: uxTimerGetReloadMode:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: uxTimerGetReloadMode:uxReturn <- $r4
-	.loc	2 481 2 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:481:2
+	.loc	2 481 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:481:5
 	bl	vPortExitCritical
 .Ltmp234:
-	.loc	2 483 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:483:2
+	.loc	2 483 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:483:5
 	mov	r0, r4
 	add	sp, #8
 	pop	{r4, pc}
@@ -1899,7 +1899,7 @@ uxTimerGetReloadMode:
 .LBB10_2:
 	@DEBUG_VALUE: uxTimerGetReloadMode:pxTimer <- $r0
 	@DEBUG_VALUE: uxTimerGetReloadMode:xTimer <- $r0
-	.loc	2 467 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:467:2
+	.loc	2 467 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:467:5
 	movw	r0, :lower16:.L.str.1
 .Ltmp236:
 	@DEBUG_VALUE: uxTimerGetReloadMode:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
@@ -1921,12 +1921,12 @@ uxTimerGetReloadMode:
 	.p2align	2
 .LBB10_3:                               @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: uxTimerGetReloadMode:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 467 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:467:2
+	.loc	2 467 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:467:5
 	b	.LBB10_3
 .Ltmp239:
 	.p2align	2
 @ %bb.4:
-	.loc	2 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:2
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 .LCPI10_0:
 .L__func__.uxTimerGetReloadMode:
 	.asciz	"uxTimerGetReloadMode\000\000\000"
@@ -1962,25 +1962,25 @@ xTimerGetExpiryTime:
 .Ltmp240:
 	@DEBUG_VALUE: xTimerGetExpiryTime:pxTimer <- $r0
 	@DEBUG_VALUE: xTimerGetExpiryTime:pxTimer <- $r0
-	.loc	2 492 2 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:492:2
+	.loc	2 492 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:492:5
 	cbz	r0, .LBB11_2
 .Ltmp241:
 @ %bb.1:
 	@DEBUG_VALUE: xTimerGetExpiryTime:pxTimer <- $r0
 	@DEBUG_VALUE: xTimerGetExpiryTime:xTimer <- $r0
-	.loc	2 493 12                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:493:12
+	.loc	2 493 15                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:493:15
 	ldr	r0, [r0, #4]
 .Ltmp242:
 	@DEBUG_VALUE: xTimerGetExpiryTime:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: xTimerGetExpiryTime:xReturn <- $r0
-	.loc	2 494 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:494:2
+	.loc	2 494 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:494:5
 	add	sp, #8
 	pop	{r7, pc}
 .Ltmp243:
 .LBB11_2:
 	@DEBUG_VALUE: xTimerGetExpiryTime:pxTimer <- $r0
 	@DEBUG_VALUE: xTimerGetExpiryTime:xTimer <- $r0
-	.loc	2 492 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:492:2
+	.loc	2 492 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:492:5
 	movw	r0, :lower16:.L.str.1
 .Ltmp244:
 	@DEBUG_VALUE: xTimerGetExpiryTime:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
@@ -2002,12 +2002,12 @@ xTimerGetExpiryTime:
 	.p2align	2
 .LBB11_3:                               @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: xTimerGetExpiryTime:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 492 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:492:2
+	.loc	2 492 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:492:5
 	b	.LBB11_3
 .Ltmp247:
 	.p2align	2
 @ %bb.4:
-	.loc	2 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:2
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 .LCPI11_0:
 .L__func__.xTimerGetExpiryTime:
 	.asciz	"xTimerGetExpiryTime"
@@ -2043,24 +2043,24 @@ pcTimerGetName:
 .Ltmp248:
 	@DEBUG_VALUE: pcTimerGetName:pxTimer <- $r0
 	@DEBUG_VALUE: pcTimerGetName:pxTimer <- $r0
-	.loc	2 502 2 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:502:2
+	.loc	2 502 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:502:5
 	cbz	r0, .LBB12_2
 .Ltmp249:
 @ %bb.1:
 	@DEBUG_VALUE: pcTimerGetName:pxTimer <- $r0
 	@DEBUG_VALUE: pcTimerGetName:xTimer <- $r0
-	.loc	2 503 18                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:503:18
+	.loc	2 503 21                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:503:21
 	ldr	r0, [r0]
 .Ltmp250:
 	@DEBUG_VALUE: pcTimerGetName:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 503 2 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:503:2
+	.loc	2 503 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:503:5
 	add	sp, #8
 	pop	{r7, pc}
 .Ltmp251:
 .LBB12_2:
 	@DEBUG_VALUE: pcTimerGetName:pxTimer <- $r0
 	@DEBUG_VALUE: pcTimerGetName:xTimer <- $r0
-	.loc	2 502 2 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:502:2
+	.loc	2 502 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:502:5
 	movw	r0, :lower16:.L.str.1
 .Ltmp252:
 	@DEBUG_VALUE: pcTimerGetName:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
@@ -2082,12 +2082,12 @@ pcTimerGetName:
 	.p2align	2
 .LBB12_3:                               @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: pcTimerGetName:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 502 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:502:2
+	.loc	2 502 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:502:5
 	b	.LBB12_3
 .Ltmp255:
 	.p2align	2
 @ %bb.4:
-	.loc	2 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:2
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 .LCPI12_0:
 .L__func__.pcTimerGetName:
 	.asciz	"pcTimerGetName\000"
@@ -2123,33 +2123,33 @@ xTimerIsTimerActive:
 .Ltmp256:
 	@DEBUG_VALUE: xTimerIsTimerActive:pxTimer <- $r0
 	@DEBUG_VALUE: xTimerIsTimerActive:pxTimer <- $r0
-	.loc	2 997 2 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:997:2
+	.loc	2 997 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:997:5
 	cbz	r0, .LBB13_2
 .Ltmp257:
 @ %bb.1:
 	@DEBUG_VALUE: xTimerIsTimerActive:pxTimer <- $r0
 	@DEBUG_VALUE: xTimerIsTimerActive:xTimer <- $r0
-	.loc	2 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:2
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 	mov	r4, r0
 .Ltmp258:
 	@DEBUG_VALUE: xTimerIsTimerActive:xTimer <- $r4
 	@DEBUG_VALUE: xTimerIsTimerActive:xTimer <- $r4
 	@DEBUG_VALUE: xTimerIsTimerActive:pxTimer <- $r4
-	.loc	2 1000 2 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1000:2
+	.loc	2 1000 5 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1000:5
 	bl	vPortEnterCritical
 .Ltmp259:
-	.loc	2 1002 18                       @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1002:18
+	.loc	2 1002 25                       @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1002:25
 	ldrb.w	r0, [r4, #40]
 .Ltmp260:
-	.loc	2 1002 7 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1002:7
+	.loc	2 1002 14 is_stmt 0             @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1002:14
 	and	r4, r0, #1
 .Ltmp261:
 	@DEBUG_VALUE: xTimerIsTimerActive:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: xTimerIsTimerActive:xReturn <- $r4
-	.loc	2 1011 2 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1011:2
+	.loc	2 1011 5 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1011:5
 	bl	vPortExitCritical
 .Ltmp262:
-	.loc	2 1013 2                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1013:2
+	.loc	2 1013 5                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1013:5
 	mov	r0, r4
 	add	sp, #8
 	pop	{r4, pc}
@@ -2157,7 +2157,7 @@ xTimerIsTimerActive:
 .LBB13_2:
 	@DEBUG_VALUE: xTimerIsTimerActive:pxTimer <- $r0
 	@DEBUG_VALUE: xTimerIsTimerActive:xTimer <- $r0
-	.loc	2 997 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:997:2
+	.loc	2 997 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:997:5
 	movw	r0, :lower16:.L.str.1
 .Ltmp264:
 	@DEBUG_VALUE: xTimerIsTimerActive:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
@@ -2179,12 +2179,12 @@ xTimerIsTimerActive:
 	.p2align	2
 .LBB13_3:                               @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: xTimerIsTimerActive:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 997 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:997:2
+	.loc	2 997 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:997:5
 	b	.LBB13_3
 .Ltmp267:
 	.p2align	2
 @ %bb.4:
-	.loc	2 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:2
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 .LCPI13_0:
 .L__func__.xTimerIsTimerActive:
 	.asciz	"xTimerIsTimerActive"
@@ -2220,30 +2220,30 @@ pvTimerGetTimerID:
 .Ltmp268:
 	@DEBUG_VALUE: pvTimerGetTimerID:pxTimer <- $r0
 	@DEBUG_VALUE: pvTimerGetTimerID:pxTimer <- $r0
-	.loc	2 1022 2 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1022:2
+	.loc	2 1022 5 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1022:5
 	cbz	r0, .LBB14_2
 .Ltmp269:
 @ %bb.1:
 	@DEBUG_VALUE: pvTimerGetTimerID:pxTimer <- $r0
 	@DEBUG_VALUE: pvTimerGetTimerID:xTimer <- $r0
-	.loc	2 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:2
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 	mov	r4, r0
 .Ltmp270:
 	@DEBUG_VALUE: pvTimerGetTimerID:xTimer <- $r4
 	@DEBUG_VALUE: pvTimerGetTimerID:xTimer <- $r4
 	@DEBUG_VALUE: pvTimerGetTimerID:pxTimer <- $r4
-	.loc	2 1024 2 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1024:2
+	.loc	2 1024 5 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1024:5
 	bl	vPortEnterCritical
 .Ltmp271:
-	.loc	2 1026 23                       @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1026:23
+	.loc	2 1026 29                       @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1026:29
 	ldr	r4, [r4, #28]
 .Ltmp272:
 	@DEBUG_VALUE: pvTimerGetTimerID:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: pvTimerGetTimerID:pvReturn <- $r4
-	.loc	2 1028 2                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1028:2
+	.loc	2 1028 5                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1028:5
 	bl	vPortExitCritical
 .Ltmp273:
-	.loc	2 1030 2                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1030:2
+	.loc	2 1030 5                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1030:5
 	mov	r0, r4
 	add	sp, #8
 	pop	{r4, pc}
@@ -2251,7 +2251,7 @@ pvTimerGetTimerID:
 .LBB14_2:
 	@DEBUG_VALUE: pvTimerGetTimerID:pxTimer <- $r0
 	@DEBUG_VALUE: pvTimerGetTimerID:xTimer <- $r0
-	.loc	2 1022 2                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1022:2
+	.loc	2 1022 5                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1022:5
 	movw	r0, :lower16:.L.str.1
 .Ltmp275:
 	@DEBUG_VALUE: pvTimerGetTimerID:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
@@ -2273,12 +2273,12 @@ pvTimerGetTimerID:
 	.p2align	2
 .LBB14_3:                               @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: pvTimerGetTimerID:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 1022 2                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1022:2
+	.loc	2 1022 5                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1022:5
 	b	.LBB14_3
 .Ltmp278:
 	.p2align	2
 @ %bb.4:
-	.loc	2 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:2
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 .LCPI14_0:
 .L__func__.pvTimerGetTimerID:
 	.asciz	"pvTimerGetTimerID\000\000"
@@ -2318,14 +2318,14 @@ vTimerSetTimerID:
 	@DEBUG_VALUE: vTimerSetTimerID:pxTimer <- $r0
 	@DEBUG_VALUE: vTimerSetTimerID:pxTimer <- $r0
 	@DEBUG_VALUE: vTimerSetTimerID:pvNewID <- $r1
-	.loc	2 1038 2 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1038:2
+	.loc	2 1038 5 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1038:5
 	cbz	r0, .LBB15_2
 .Ltmp280:
 @ %bb.1:
 	@DEBUG_VALUE: vTimerSetTimerID:pvNewID <- $r1
 	@DEBUG_VALUE: vTimerSetTimerID:pxTimer <- $r0
 	@DEBUG_VALUE: vTimerSetTimerID:xTimer <- $r0
-	.loc	2 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:2
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 	mov	r4, r0
 .Ltmp281:
 	@DEBUG_VALUE: vTimerSetTimerID:xTimer <- $r4
@@ -2335,13 +2335,13 @@ vTimerSetTimerID:
 .Ltmp282:
 	@DEBUG_VALUE: vTimerSetTimerID:pvNewID <- $r5
 	@DEBUG_VALUE: vTimerSetTimerID:pvNewID <- $r5
-	.loc	2 1040 2 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1040:2
+	.loc	2 1040 5 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1040:5
 	bl	vPortEnterCritical
 .Ltmp283:
-	.loc	2 1042 22                       @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1042:22
+	.loc	2 1042 28                       @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1042:28
 	str	r5, [r4, #28]
 .Ltmp284:
-	.loc	2 1044 2                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1044:2
+	.loc	2 1044 5                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1044:5
 	add	sp, #8
 	pop.w	{r4, r5, r7, lr}
 .Ltmp285:
@@ -2353,7 +2353,7 @@ vTimerSetTimerID:
 	@DEBUG_VALUE: vTimerSetTimerID:pvNewID <- $r1
 	@DEBUG_VALUE: vTimerSetTimerID:pxTimer <- $r0
 	@DEBUG_VALUE: vTimerSetTimerID:xTimer <- $r0
-	.loc	2 1038 2                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1038:2
+	.loc	2 1038 5                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1038:5
 	movw	r0, :lower16:.L.str.1
 .Ltmp287:
 	@DEBUG_VALUE: vTimerSetTimerID:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
@@ -2378,12 +2378,12 @@ vTimerSetTimerID:
 .LBB15_3:                               @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: vTimerSetTimerID:pvNewID <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: vTimerSetTimerID:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 1038 2                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1038:2
+	.loc	2 1038 5                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1038:5
 	b	.LBB15_3
 .Ltmp291:
 	.p2align	2
 @ %bb.4:
-	.loc	2 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:2
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 .LCPI15_0:
 .L__func__.vTimerSetTimerID:
 	.asciz	"vTimerSetTimerID\000\000\000"
@@ -2426,22 +2426,22 @@ xTimerPendFunctionCallFromISR:
 	@DEBUG_VALUE: xTimerPendFunctionCallFromISR:ulParameter2 <- $r2
 	@DEBUG_VALUE: xTimerPendFunctionCallFromISR:pvParameter1 <- $r1
 	@DEBUG_VALUE: xTimerPendFunctionCallFromISR:xFunctionToPend <- $r0
-	.loc	2 1057 23 prologue_end          @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1057:23
+	.loc	2 1057 25 prologue_end          @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1057:25
 	strd	r3, r0, [sp]
-	.loc	2 1062 13                       @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1062:13
+	.loc	2 1062 15                       @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1062:15
 	movw	r0, :lower16:xTimerQueue
 .Ltmp293:
 	@DEBUG_VALUE: xTimerPendFunctionCallFromISR:xFunctionToPend <- [DW_OP_LLVM_entry_value 1] $r0
 	movt	r0, :upper16:xTimerQueue
 	ldr	r0, [r0]
-	.loc	2 1059 47                       @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1059:47
+	.loc	2 1059 49                       @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1059:49
 	str	r1, [sp, #8]
-	.loc	2 1060 47                       @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1060:47
+	.loc	2 1060 49                       @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1060:49
 	str	r2, [sp, #12]
 	mov	r1, sp
 .Ltmp294:
 	@DEBUG_VALUE: xTimerPendFunctionCallFromISR:pvParameter1 <- [DW_OP_LLVM_entry_value 1] $r1
-	.loc	2 1062 13                       @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1062:13
+	.loc	2 1062 15                       @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1062:15
 	mov	r2, r12
 .Ltmp295:
 	@DEBUG_VALUE: xTimerPendFunctionCallFromISR:ulParameter2 <- [DW_OP_LLVM_entry_value 1] $r2
@@ -2450,7 +2450,7 @@ xTimerPendFunctionCallFromISR:
 	bl	xQueueGenericSendFromISR
 .Ltmp296:
 	@DEBUG_VALUE: xTimerPendFunctionCallFromISR:xReturn <- $r0
-	.loc	2 1066 3                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1066:3
+	.loc	2 1066 5                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1066:5
 	add	sp, #16
 	pop	{r7, pc}
 .Ltmp297:
@@ -2488,13 +2488,13 @@ xTimerPendFunctionCall:
 	sub	sp, #24
 	.cfi_def_cfa_offset 32
 .Ltmp298:
-	.loc	2 1082 3 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1082:3
+	.loc	2 1082 5 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1082:5
 	movw	r12, :lower16:xTimerQueue
 	movt	r12, :upper16:xTimerQueue
 	ldr.w	r12, [r12]
 .Ltmp299:
 	@DEBUG_VALUE: xTimerPendFunctionCall:pvParameter1 <- $r1
-	.loc	2 1082 3 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1082:3
+	.loc	2 1082 5 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1082:5
 	cmp.w	r12, #0
 	@DEBUG_VALUE: xTimerPendFunctionCall:xFunctionToPend <- $r0
 	beq	.LBB17_2
@@ -2504,16 +2504,16 @@ xTimerPendFunctionCall:
 	@DEBUG_VALUE: xTimerPendFunctionCall:ulParameter2 <- $r2
 	@DEBUG_VALUE: xTimerPendFunctionCall:pvParameter1 <- $r1
 	@DEBUG_VALUE: xTimerPendFunctionCall:xFunctionToPend <- $r0
-	.loc	2 0 3                           @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:3
+	.loc	2 0 5                           @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 	mov.w	lr, #-1
-	.loc	2 1086 23 is_stmt 1             @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1086:23
+	.loc	2 1086 25 is_stmt 1             @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1086:25
 	strd	lr, r0, [sp, #8]
-	.loc	2 1088 47                       @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1088:47
+	.loc	2 1088 49                       @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1088:49
 	strd	r1, r2, [sp, #16]
 	add	r1, sp, #8
 .Ltmp301:
 	@DEBUG_VALUE: xTimerPendFunctionCall:pvParameter1 <- [DW_OP_LLVM_entry_value 1] $r1
-	.loc	2 1091 13                       @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1091:13
+	.loc	2 1091 15                       @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1091:15
 	mov	r0, r12
 .Ltmp302:
 	@DEBUG_VALUE: xTimerPendFunctionCall:xFunctionToPend <- [DW_OP_LLVM_entry_value 1] $r0
@@ -2526,7 +2526,7 @@ xTimerPendFunctionCall:
 	bl	xQueueGenericSend
 .Ltmp305:
 	@DEBUG_VALUE: xTimerPendFunctionCall:xReturn <- $r0
-	.loc	2 1095 3                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1095:3
+	.loc	2 1095 5                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1095:5
 	add	sp, #24
 	pop	{r7, pc}
 .Ltmp306:
@@ -2535,16 +2535,16 @@ xTimerPendFunctionCall:
 	@DEBUG_VALUE: xTimerPendFunctionCall:ulParameter2 <- $r2
 	@DEBUG_VALUE: xTimerPendFunctionCall:pvParameter1 <- $r1
 	@DEBUG_VALUE: xTimerPendFunctionCall:xFunctionToPend <- $r0
-	.loc	2 1082 3                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1082:3
+	.loc	2 1082 5                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1082:5
 	movw	r0, :lower16:.L.str.1
 .Ltmp307:
 	@DEBUG_VALUE: xTimerPendFunctionCall:xFunctionToPend <- [DW_OP_LLVM_entry_value 1] $r0
 	movw	r2, :lower16:.L.str.3
 .Ltmp308:
 	@DEBUG_VALUE: xTimerPendFunctionCall:ulParameter2 <- [DW_OP_LLVM_entry_value 1] $r2
-	.loc	2 0 3 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:3
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 	movw	r12, #1082
-	.loc	2 1082 3                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1082:3
+	.loc	2 1082 5                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1082:5
 	movt	r0, :upper16:.L.str.1
 	adr	r1, .LCPI17_0
 .Ltmp309:
@@ -2567,12 +2567,12 @@ xTimerPendFunctionCall:
 	@DEBUG_VALUE: xTimerPendFunctionCall:ulParameter2 <- [DW_OP_LLVM_entry_value 1] $r2
 	@DEBUG_VALUE: xTimerPendFunctionCall:xFunctionToPend <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: xTimerPendFunctionCall:pvParameter1 <- [DW_OP_LLVM_entry_value 1] $r1
-	.loc	2 1082 3                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1082:3
+	.loc	2 1082 5                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1082:5
 	b	.LBB17_3
 .Ltmp313:
 	.p2align	2
 @ %bb.4:
-	.loc	2 0 3 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:3
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 .LCPI17_0:
 .L.str.8:
 	.asciz	"xTimerQueue"
@@ -2600,11 +2600,11 @@ uxTimerGetTimerNumber:
 @ %bb.0:
 	@DEBUG_VALUE: uxTimerGetTimerNumber:xTimer <- $r0
 	@DEBUG_VALUE: uxTimerGetTimerNumber:xTimer <- $r0
-	.loc	2 1105 36 prologue_end          @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1105:36
+	.loc	2 1105 38 prologue_end          @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1105:38
 	ldr	r0, [r0, #36]
 .Ltmp314:
 	@DEBUG_VALUE: uxTimerGetTimerNumber:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 1105 3 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1105:3
+	.loc	2 1105 5 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1105:5
 	bx	lr
 .Ltmp315:
 .Lfunc_end18:
@@ -2630,9 +2630,9 @@ vTimerSetTimerNumber:
 	@DEBUG_VALUE: vTimerSetTimerNumber:xTimer <- $r0
 	@DEBUG_VALUE: vTimerSetTimerNumber:uxTimerNumber <- $r1
 	@DEBUG_VALUE: vTimerSetTimerNumber:uxTimerNumber <- $r1
-	.loc	2 1115 43 prologue_end          @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1115:43
+	.loc	2 1115 45 prologue_end          @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1115:45
 	str	r1, [r0, #36]
-	.loc	2 1116 2                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1116:2
+	.loc	2 1116 1                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:1116:1
 	bx	lr
 .Ltmp316:
 .Lfunc_end19:
@@ -2672,69 +2672,69 @@ prvSampleTimeNow:
 .Ltmp317:
 	@DEBUG_VALUE: prvSampleTimeNow:pxTimerListsWereSwitched <- $r8
 	@DEBUG_VALUE: prvSampleTimeNow:pxTimerListsWereSwitched <- $r8
-	.loc	2 675 13 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:675:13
+	.loc	2 675 16 prologue_end           @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:675:16
 	bl	xTaskGetTickCount
 .Ltmp318:
-	.loc	2 677 17                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:677:17
+	.loc	2 677 21                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:677:21
 	movw	r9, :lower16:prvSampleTimeNow.xLastTime
 	movt	r9, :upper16:prvSampleTimeNow.xLastTime
 	ldr.w	r1, [r9]
 .Ltmp319:
-	.loc	2 675 13                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:675:13
+	.loc	2 675 16                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:675:16
 	mov	r10, r0
 .Ltmp320:
 	@DEBUG_VALUE: prvSampleTimeNow:xTimeNow <- $r10
-	.loc	2 677 6                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:677:6
+	.loc	2 677 10                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:677:10
 	cmp	r0, r1
 	bhs	.LBB20_9
 .Ltmp321:
 @ %bb.1:
 	@DEBUG_VALUE: prvSampleTimeNow:xTimeNow <- $r10
 	@DEBUG_VALUE: prvSampleTimeNow:pxTimerListsWereSwitched <- $r8
-	.loc	2 893 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:893:9
+	.loc	2 893 13                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:893:13
 	movw	r5, :lower16:pxCurrentTimerList
 	movt	r5, :upper16:pxCurrentTimerList
 	ldr	r0, [r5]
 	ldr	r1, [r0]
-	.loc	2 893 2 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:893:2
+	.loc	2 893 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:893:5
 	cbz	r1, .LBB20_8
 .Ltmp322:
 @ %bb.2:
 	@DEBUG_VALUE: prvSampleTimeNow:xTimeNow <- $r10
 	@DEBUG_VALUE: prvSampleTimeNow:pxTimerListsWereSwitched <- $r8
-	.loc	2 0 2                           @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:2
+	.loc	2 0 5                           @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 	mov.w	r11, #0
 .Ltmp323:
 	.p2align	2
 .LBB20_3:                               @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: prvSampleTimeNow:xTimeNow <- $r10
 	@DEBUG_VALUE: prvSampleTimeNow:pxTimerListsWereSwitched <- $r8
-	.loc	2 895 21 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:895:21
+	.loc	2 895 27 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:895:27
 	ldr	r0, [r0, #12]
-	.loc	2 898 27                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:898:27
+	.loc	2 898 33                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:898:33
 	ldr	r6, [r0, #12]
 .Ltmp324:
 	@DEBUG_VALUE: prvSwitchTimerLists:pxTimer <- $r6
-	.loc	2 895 21                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:895:21
+	.loc	2 895 27                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:895:27
 	ldr	r4, [r0]
 .Ltmp325:
 	@DEBUG_VALUE: prvSwitchTimerLists:xNextExpireTime <- $r4
-	.loc	2 899 38                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:899:38
+	.loc	2 899 44                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:899:44
 	adds	r7, r6, #4
-	.loc	2 899 12 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:899:12
+	.loc	2 899 18 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:899:18
 	mov	r0, r7
 	bl	uxListRemove
 .Ltmp326:
-	.loc	2 905 12 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:905:12
+	.loc	2 905 18 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:905:18
 	ldr	r1, [r6, #32]
-	.loc	2 905 3 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:905:3
+	.loc	2 905 9 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:905:9
 	mov	r0, r6
 	blx	r1
 .Ltmp327:
-	.loc	2 907 18 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:907:18
+	.loc	2 907 25 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:907:25
 	ldrb.w	r0, [r6, #40]
 .Ltmp328:
-	.loc	2 907 7 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:907:7
+	.loc	2 907 14 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:907:14
 	lsls	r0, r0, #29
 	bpl	.LBB20_7
 .Ltmp329:
@@ -2743,13 +2743,13 @@ prvSampleTimeNow:
 	@DEBUG_VALUE: prvSampleTimeNow:pxTimerListsWereSwitched <- $r8
 	@DEBUG_VALUE: prvSwitchTimerLists:pxTimer <- $r6
 	@DEBUG_VALUE: prvSwitchTimerLists:xNextExpireTime <- $r4
-	.loc	2 915 47 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:915:47
+	.loc	2 915 56 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:915:56
 	ldr	r0, [r6, #24]
-	.loc	2 915 36 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:915:36
+	.loc	2 915 45 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:915:45
 	add	r0, r4
 .Ltmp330:
 	@DEBUG_VALUE: prvSwitchTimerLists:xReloadTime <- $r0
-	.loc	2 916 8 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:916:8
+	.loc	2 916 18 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:916:18
 	cmp	r0, r4
 	bls	.LBB20_6
 .Ltmp331:
@@ -2759,19 +2759,19 @@ prvSampleTimeNow:
 	@DEBUG_VALUE: prvSwitchTimerLists:pxTimer <- $r6
 	@DEBUG_VALUE: prvSwitchTimerLists:xNextExpireTime <- $r4
 	@DEBUG_VALUE: prvSwitchTimerLists:xReloadTime <- $r0
-	.loc	2 918 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:918:5
+	.loc	2 918 17                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:918:17
 	str	r0, [r6, #4]
-	.loc	2 920 18                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:920:18
+	.loc	2 920 30                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:920:30
 	ldr	r0, [r5]
 .Ltmp332:
-	.loc	2 920 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:920:5
+	.loc	2 920 17 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:920:17
 	mov	r1, r7
-	.loc	2 919 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:919:5
+	.loc	2 919 17 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:919:17
 	str	r6, [r6, #16]
-	.loc	2 920 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:920:5
+	.loc	2 920 17                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:920:17
 	bl	vListInsert
 .Ltmp333:
-	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
+	.loc	2 0 17 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:17
 	b	.LBB20_7
 .Ltmp334:
 	.p2align	2
@@ -2781,7 +2781,7 @@ prvSampleTimeNow:
 	@DEBUG_VALUE: prvSwitchTimerLists:pxTimer <- $r6
 	@DEBUG_VALUE: prvSwitchTimerLists:xNextExpireTime <- $r4
 	@DEBUG_VALUE: prvSwitchTimerLists:xReloadTime <- $r0
-	.loc	2 924 15 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:924:15
+	.loc	2 924 27 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:924:27
 	mov	r0, r6
 .Ltmp335:
 	movs	r1, #0
@@ -2791,7 +2791,7 @@ prvSampleTimeNow:
 	bl	xTimerGenericCommand
 .Ltmp336:
 	@DEBUG_VALUE: prvSwitchTimerLists:xResult <- $r0
-	.loc	2 925 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:925:5
+	.loc	2 925 17                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:925:17
 	cbz	r0, .LBB20_11
 .Ltmp337:
 .LBB20_7:                               @   in Loop: Header=BB20_3 Depth=1
@@ -2799,10 +2799,10 @@ prvSampleTimeNow:
 	@DEBUG_VALUE: prvSampleTimeNow:pxTimerListsWereSwitched <- $r8
 	@DEBUG_VALUE: prvSwitchTimerLists:pxTimer <- $r6
 	@DEBUG_VALUE: prvSwitchTimerLists:xNextExpireTime <- $r4
-	.loc	2 893 9                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:893:9
+	.loc	2 893 13                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:893:13
 	ldr	r0, [r5]
 	ldr	r1, [r0]
-	.loc	2 893 2 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:893:2
+	.loc	2 893 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:893:5
 	cmp	r1, #0
 	bne	.LBB20_3
 .Ltmp338:
@@ -2810,22 +2810,22 @@ prvSampleTimeNow:
 	@DEBUG_VALUE: prvSampleTimeNow:xTimeNow <- $r10
 	@DEBUG_VALUE: prvSampleTimeNow:pxTimerListsWereSwitched <- $r8
 	@DEBUG_VALUE: prvSwitchTimerLists:pxTemp <- $r0
-	.loc	2 936 23 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:936:23
+	.loc	2 936 26 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:936:26
 	movw	r1, :lower16:pxOverflowTimerList
 	movt	r1, :upper16:pxOverflowTimerList
 	ldr	r2, [r1]
-	.loc	2 937 22                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:937:22
+	.loc	2 937 25                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:937:25
 	str	r0, [r1]
 	movs	r0, #1
 .Ltmp339:
-	.loc	2 936 21                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:936:21
+	.loc	2 936 24                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:936:24
 	str	r2, [r5]
 	b	.LBB20_10
 .Ltmp340:
 .LBB20_9:
 	@DEBUG_VALUE: prvSampleTimeNow:xTimeNow <- $r10
 	@DEBUG_VALUE: prvSampleTimeNow:pxTimerListsWereSwitched <- $r8
-	.loc	2 0 21 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:21
+	.loc	2 0 24 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:24
 	movs	r0, #0
 .Ltmp341:
 .LBB20_10:
@@ -2833,11 +2833,11 @@ prvSampleTimeNow:
 	@DEBUG_VALUE: prvSampleTimeNow:pxTimerListsWereSwitched <- $r8
 	str.w	r0, [r8]
 .Ltmp342:
-	.loc	2 689 2 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:689:2
+	.loc	2 689 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:689:5
 	mov	r0, r10
-	.loc	2 687 12                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:687:12
+	.loc	2 687 15                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:687:15
 	str.w	r10, [r9]
-	.loc	2 689 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:689:2
+	.loc	2 689 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:689:5
 	add	sp, #4
 	pop.w	{r4, r5, r6, r7, r8, r9, r10, r11, pc}
 .Ltmp343:
@@ -2847,7 +2847,7 @@ prvSampleTimeNow:
 	@DEBUG_VALUE: prvSwitchTimerLists:pxTimer <- $r6
 	@DEBUG_VALUE: prvSwitchTimerLists:xNextExpireTime <- $r4
 	@DEBUG_VALUE: prvSwitchTimerLists:xResult <- $r0
-	.loc	2 925 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:925:5
+	.loc	2 925 17                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:925:17
 	movw	r0, :lower16:.L.str.1
 .Ltmp344:
 	movw	r1, :lower16:.L.str.10
@@ -2871,12 +2871,12 @@ prvSampleTimeNow:
 	@DEBUG_VALUE: prvSampleTimeNow:pxTimerListsWereSwitched <- $r8
 	@DEBUG_VALUE: prvSwitchTimerLists:pxTimer <- $r6
 	@DEBUG_VALUE: prvSwitchTimerLists:xNextExpireTime <- $r4
-	.loc	2 925 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:925:5
+	.loc	2 925 17                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:925:17
 	b	.LBB20_12
 .Ltmp347:
 	.p2align	2
 @ %bb.13:
-	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
+	.loc	2 0 17 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:17
 .LCPI20_0:
 .L__func__.prvSwitchTimerLists:
 	.asciz	"prvSwitchTimerLists"
@@ -2913,14 +2913,14 @@ prvInsertTimerInActiveList:
 	@DEBUG_VALUE: prvInsertTimerInActiveList:xTimeNow <- $r2
 	@DEBUG_VALUE: prvInsertTimerInActiveList:xNextExpiryTime <- $r12
 	@DEBUG_VALUE: prvInsertTimerInActiveList:pxTimer <- $r0
-	.loc	2 697 2 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:697:2
+	.loc	2 697 5 prologue_end            @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:697:5
 	mov	r1, r0
 	str	r12, [r1, #4]!
-	.loc	2 700 6                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:700:6
+	.loc	2 700 10                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:700:10
 	cmp	r12, r2
-	.loc	2 698 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:698:2
+	.loc	2 698 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:698:5
 	str	r0, [r0, #16]
-	.loc	2 700 6                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:700:6
+	.loc	2 700 10                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:700:10
 	bls	.LBB21_4
 .Ltmp349:
 @ %bb.1:
@@ -2929,7 +2929,7 @@ prvInsertTimerInActiveList:
 	@DEBUG_VALUE: prvInsertTimerInActiveList:xTimeNow <- $r2
 	@DEBUG_VALUE: prvInsertTimerInActiveList:pxTimer <- $r0
 	@DEBUG_VALUE: prvInsertTimerInActiveList:xProcessTimerNow <- 0
-	.loc	2 717 35                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:717:35
+	.loc	2 717 42                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:717:42
 	cmp	r2, r3
 	bhs	.LBB21_3
 .Ltmp350:
@@ -2948,7 +2948,7 @@ prvInsertTimerInActiveList:
 	@DEBUG_VALUE: prvInsertTimerInActiveList:xTimeNow <- $r2
 	@DEBUG_VALUE: prvInsertTimerInActiveList:pxTimer <- $r0
 	@DEBUG_VALUE: prvInsertTimerInActiveList:xProcessTimerNow <- 0
-	.loc	2 726 17                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:726:17
+	.loc	2 726 26                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:726:26
 	movw	r0, :lower16:pxCurrentTimerList
 .Ltmp352:
 	@DEBUG_VALUE: prvInsertTimerInActiveList:pxTimer <- [DW_OP_LLVM_entry_value 1] $r0
@@ -2961,15 +2961,15 @@ prvInsertTimerInActiveList:
 	@DEBUG_VALUE: prvInsertTimerInActiveList:xTimeNow <- $r2
 	@DEBUG_VALUE: prvInsertTimerInActiveList:pxTimer <- $r0
 	@DEBUG_VALUE: prvInsertTimerInActiveList:xProcessTimerNow <- 0
-	.loc	2 704 66                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:704:66
+	.loc	2 704 73                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:704:73
 	ldr	r0, [r0, #24]
 .Ltmp354:
 	@DEBUG_VALUE: prvInsertTimerInActiveList:pxTimer <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 704 35 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:704:35
+	.loc	2 704 42 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:704:42
 	subs	r2, r2, r3
 .Ltmp355:
 	@DEBUG_VALUE: prvInsertTimerInActiveList:xTimeNow <- [DW_OP_LLVM_entry_value 1] $r2
-	.loc	2 704 7                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:704:7
+	.loc	2 704 14                        @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:704:14
 	cmp	r2, r0
 	bhs	.LBB21_7
 .Ltmp356:
@@ -2979,7 +2979,7 @@ prvInsertTimerInActiveList:
 	@DEBUG_VALUE: prvInsertTimerInActiveList:xTimeNow <- [DW_OP_LLVM_entry_value 1] $r2
 	@DEBUG_VALUE: prvInsertTimerInActiveList:pxTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: prvInsertTimerInActiveList:xProcessTimerNow <- 0
-	.loc	2 712 17 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:712:17
+	.loc	2 712 26 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:712:26
 	movw	r0, :lower16:pxOverflowTimerList
 	movt	r0, :upper16:pxOverflowTimerList
 .Ltmp357:
@@ -2996,18 +2996,18 @@ prvInsertTimerInActiveList:
 	movs	r0, #0
 .Ltmp359:
 	@DEBUG_VALUE: prvInsertTimerInActiveList:xProcessTimerNow <- $r0
-	.loc	2 730 2 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:730:2
+	.loc	2 730 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:730:5
 	pop	{r7, pc}
 .Ltmp360:
 .LBB21_7:
 	@DEBUG_VALUE: prvInsertTimerInActiveList:xNextExpiryTime <- $r12
 	@DEBUG_VALUE: prvInsertTimerInActiveList:xCommandTime <- $r3
 	@DEBUG_VALUE: prvInsertTimerInActiveList:xProcessTimerNow <- 0
-	.loc	2 0 2 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:2
+	.loc	2 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:0:5
 	movs	r0, #1
 .Ltmp361:
 	@DEBUG_VALUE: prvInsertTimerInActiveList:xProcessTimerNow <- $r0
-	.loc	2 730 2                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:730:2
+	.loc	2 730 5                         @ ../../../components/platform/soc/rt582/rt582_freertos/timers.c:730:5
 	pop	{r7, pc}
 .Ltmp362:
 .Lfunc_end21:
@@ -3121,7 +3121,7 @@ prvCheckForValidListAndQueue.ucStaticTimerQueueStorage:
 	.hidden	_printf_int_dec
 	.hidden	_printf_str
 	.file	10 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdlib.h"
-	.file	11 "D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/projdefs.h"
+	.file	11 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/projdefs.h"
 	.section	.debug_loc,"",%progbits
 .Ldebug_loc0:
 	.long	-1
@@ -5641,7 +5641,7 @@ prvCheckForValidListAndQueue.ucStaticTimerQueueStorage:
 	.long	.Ldebug_ranges3                 @ DW_AT_ranges
 	.byte	2                               @ DW_AT_call_file
 	.short	679                             @ DW_AT_call_line
-	.byte	3                               @ DW_AT_call_column
+	.byte	9                               @ DW_AT_call_column
 	.byte	16                              @ Abbrev [16] 0x1e1:0x9 DW_TAG_variable
 	.long	.Ldebug_loc73                   @ DW_AT_location
 	.long	3812                            @ DW_AT_abstract_origin
@@ -5663,7 +5663,7 @@ prvCheckForValidListAndQueue.ucStaticTimerQueueStorage:
 	.long	.Ltmp346-.Ltmp345               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	925                             @ DW_AT_call_line
-	.byte	5                               @ DW_AT_call_column
+	.byte	17                              @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	0                               @ End Of Children Mark
 	.byte	2                               @ Abbrev [2] 0x221:0x11 DW_TAG_variable
@@ -6050,7 +6050,7 @@ prvCheckForValidListAndQueue.ucStaticTimerQueueStorage:
 	.long	.Ltmp15-.Ltmp14                 @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	275                             @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	34                              @ Abbrev [34] 0x542:0x7 DW_TAG_subprogram
 	.long	.Linfo_string73                 @ DW_AT_name
@@ -6323,7 +6323,7 @@ prvCheckForValidListAndQueue.ucStaticTimerQueueStorage:
 	.long	.Ltmp36-.Ltmp32                 @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	572                             @ DW_AT_call_line
-	.byte	21                              @ DW_AT_call_column
+	.byte	27                              @ DW_AT_call_column
 	.byte	42                              @ Abbrev [42] 0x772:0x5 DW_TAG_formal_parameter
 	.long	1366                            @ DW_AT_abstract_origin
 	.byte	16                              @ Abbrev [16] 0x777:0x9 DW_TAG_variable
@@ -6335,7 +6335,7 @@ prvCheckForValidListAndQueue.ucStaticTimerQueueStorage:
 	.long	.Ldebug_ranges0                 @ DW_AT_ranges
 	.byte	2                               @ DW_AT_call_file
 	.short	576                             @ DW_AT_call_line
-	.byte	3                               @ DW_AT_call_column
+	.byte	9                               @ DW_AT_call_column
 	.byte	43                              @ Abbrev [43] 0x78e:0x9 DW_TAG_formal_parameter
 	.long	.Ldebug_loc7                    @ DW_AT_location
 	.long	1410                            @ DW_AT_abstract_origin
@@ -6353,7 +6353,7 @@ prvCheckForValidListAndQueue.ucStaticTimerQueueStorage:
 	.long	.Ldebug_ranges1                 @ DW_AT_ranges
 	.byte	2                               @ DW_AT_call_file
 	.short	603                             @ DW_AT_call_line
-	.byte	5                               @ DW_AT_call_column
+	.byte	17                              @ DW_AT_call_column
 	.byte	43                              @ Abbrev [43] 0x7bf:0x9 DW_TAG_formal_parameter
 	.long	.Ldebug_loc12                   @ DW_AT_location
 	.long	1473                            @ DW_AT_abstract_origin
@@ -6372,7 +6372,7 @@ prvCheckForValidListAndQueue.ucStaticTimerQueueStorage:
 	.long	.Ltmp115-.Ltmp114               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	529                             @ DW_AT_call_line
-	.byte	4                               @ DW_AT_call_column
+	.byte	13                              @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	0                               @ End Of Children Mark
 	.byte	41                              @ Abbrev [41] 0x7f6:0x75 DW_TAG_inlined_subroutine
@@ -6381,7 +6381,7 @@ prvCheckForValidListAndQueue.ucStaticTimerQueueStorage:
 	.long	.Ltmp112-.Ltmp68                @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	579                             @ DW_AT_call_line
-	.byte	3                               @ DW_AT_call_column
+	.byte	9                               @ DW_AT_call_column
 	.byte	44                              @ Abbrev [44] 0x807:0x8 DW_TAG_variable
 	.byte	2                               @ DW_AT_location
 	.byte	145
@@ -6417,14 +6417,14 @@ prvCheckForValidListAndQueue.ucStaticTimerQueueStorage:
 	.long	.Ltmp111-.Ltmp110               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	812                             @ DW_AT_call_line
-	.byte	8                               @ DW_AT_call_column
+	.byte	25                              @ DW_AT_call_column
 	.byte	17                              @ Abbrev [17] 0x859:0x11 DW_TAG_inlined_subroutine
 	.long	1228                            @ DW_AT_abstract_origin
 	.long	.Ltmp106                        @ DW_AT_low_pc
 	.long	.Ltmp107-.Ltmp106               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	836                             @ DW_AT_call_line
-	.byte	6                               @ DW_AT_call_column
+	.byte	17                              @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	0                               @ End Of Children Mark
 	.byte	45                              @ Abbrev [45] 0x86c:0x76 DW_TAG_subprogram
@@ -6534,7 +6534,7 @@ prvCheckForValidListAndQueue.ucStaticTimerQueueStorage:
 	.long	.Ltmp144-.Ltmp143               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	357                             @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	45                              @ Abbrev [45] 0x964:0xbc DW_TAG_subprogram
 	.long	.Lfunc_begin5                   @ DW_AT_low_pc
@@ -6610,7 +6610,7 @@ prvCheckForValidListAndQueue.ucStaticTimerQueueStorage:
 	.long	.Ltmp161-.Ltmp160               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	324                             @ DW_AT_call_line
-	.byte	4                               @ DW_AT_call_column
+	.byte	9                               @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	17                              @ Abbrev [17] 0xa0e:0x11 DW_TAG_inlined_subroutine
 	.long	1228                            @ DW_AT_abstract_origin
@@ -6618,7 +6618,7 @@ prvCheckForValidListAndQueue.ucStaticTimerQueueStorage:
 	.long	.Ltmp168-.Ltmp167               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	330                             @ DW_AT_call_line
-	.byte	3                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	45                              @ Abbrev [45] 0xa20:0x96 DW_TAG_subprogram
 	.long	.Lfunc_begin6                   @ DW_AT_low_pc
@@ -6684,7 +6684,7 @@ prvCheckForValidListAndQueue.ucStaticTimerQueueStorage:
 	.long	.Ltmp185-.Ltmp184               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	386                             @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	45                              @ Abbrev [45] 0xab6:0x28 DW_TAG_subprogram
 	.long	.Lfunc_begin7                   @ DW_AT_low_pc
@@ -6704,7 +6704,7 @@ prvCheckForValidListAndQueue.ucStaticTimerQueueStorage:
 	.long	.Ltmp201-.Ltmp200               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	428                             @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	45                              @ Abbrev [45] 0xade:0x48 DW_TAG_subprogram
 	.long	.Lfunc_begin8                   @ DW_AT_low_pc
@@ -6736,7 +6736,7 @@ prvCheckForValidListAndQueue.ucStaticTimerQueueStorage:
 	.long	.Ltmp209-.Ltmp208               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	437                             @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	49                              @ Abbrev [49] 0xb26:0x5d DW_TAG_subprogram
 	.long	.Lfunc_begin9                   @ DW_AT_low_pc
@@ -6773,7 +6773,7 @@ prvCheckForValidListAndQueue.ucStaticTimerQueueStorage:
 	.long	.Ltmp226-.Ltmp225               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	446                             @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	19                              @ Abbrev [19] 0xb79:0x9 DW_TAG_GNU_call_site
 	.long	1346                            @ DW_AT_abstract_origin
                                         @ DW_AT_GNU_tail_call
@@ -6815,7 +6815,7 @@ prvCheckForValidListAndQueue.ucStaticTimerQueueStorage:
 	.long	.Ltmp238-.Ltmp237               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	467                             @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	45                              @ Abbrev [45] 0xbdb:0x58 DW_TAG_subprogram
 	.long	.Lfunc_begin11                  @ DW_AT_low_pc
@@ -6853,7 +6853,7 @@ prvCheckForValidListAndQueue.ucStaticTimerQueueStorage:
 	.long	.Ltmp246-.Ltmp245               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	492                             @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	45                              @ Abbrev [45] 0xc33:0x48 DW_TAG_subprogram
 	.long	.Lfunc_begin12                  @ DW_AT_low_pc
@@ -6885,7 +6885,7 @@ prvCheckForValidListAndQueue.ucStaticTimerQueueStorage:
 	.long	.Ltmp254-.Ltmp253               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	502                             @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	45                              @ Abbrev [45] 0xc7b:0x58 DW_TAG_subprogram
 	.long	.Lfunc_begin13                  @ DW_AT_low_pc
@@ -6923,7 +6923,7 @@ prvCheckForValidListAndQueue.ucStaticTimerQueueStorage:
 	.long	.Ltmp266-.Ltmp265               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	997                             @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	45                              @ Abbrev [45] 0xcd3:0x58 DW_TAG_subprogram
 	.long	.Lfunc_begin14                  @ DW_AT_low_pc
@@ -6961,7 +6961,7 @@ prvCheckForValidListAndQueue.ucStaticTimerQueueStorage:
 	.long	.Ltmp277-.Ltmp276               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	1022                            @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	49                              @ Abbrev [49] 0xd2b:0x5d DW_TAG_subprogram
 	.long	.Lfunc_begin15                  @ DW_AT_low_pc
@@ -6998,7 +6998,7 @@ prvCheckForValidListAndQueue.ucStaticTimerQueueStorage:
 	.long	.Ltmp290-.Ltmp289               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	1038                            @ DW_AT_call_line
-	.byte	2                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	19                              @ Abbrev [19] 0xd7e:0x9 DW_TAG_GNU_call_site
 	.long	1346                            @ DW_AT_abstract_origin
                                         @ DW_AT_GNU_tail_call
@@ -7111,7 +7111,7 @@ prvCheckForValidListAndQueue.ucStaticTimerQueueStorage:
 	.long	.Ltmp312-.Ltmp311               @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
 	.short	1082                            @ DW_AT_call_line
-	.byte	3                               @ DW_AT_call_column
+	.byte	5                               @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	45                              @ Abbrev [45] 0xe85:0x27 DW_TAG_subprogram
 	.long	.Lfunc_begin18                  @ DW_AT_low_pc
@@ -7535,341 +7535,341 @@ prvCheckForValidListAndQueue.ucStaticTimerQueueStorage:
 .Linfo_string1:
 	.asciz	"../../../components/platform/soc/rt582/rt582_freertos\\timers.c" @ string offset=55
 .Linfo_string2:
-	.asciz	"D:\\Rafael-IoT-SDK-Internal-main\\examples\\das_subg_thread\\keil" @ string offset=118
+	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=118
 .Linfo_string3:
-	.asciz	"xTimerQueue"                   @ string offset=180
+	.asciz	"xTimerQueue"                   @ string offset=179
 .Linfo_string4:
-	.asciz	"QueueDefinition"               @ string offset=192
+	.asciz	"QueueDefinition"               @ string offset=191
 .Linfo_string5:
-	.asciz	"QueueHandle_t"                 @ string offset=208
+	.asciz	"QueueHandle_t"                 @ string offset=207
 .Linfo_string6:
-	.asciz	"xTimerTaskHandle"              @ string offset=222
+	.asciz	"xTimerTaskHandle"              @ string offset=221
 .Linfo_string7:
-	.asciz	"tskTaskControlBlock"           @ string offset=239
+	.asciz	"tskTaskControlBlock"           @ string offset=238
 .Linfo_string8:
-	.asciz	"TaskHandle_t"                  @ string offset=259
+	.asciz	"TaskHandle_t"                  @ string offset=258
 .Linfo_string9:
-	.asciz	"pxCurrentTimerList"            @ string offset=272
+	.asciz	"pxCurrentTimerList"            @ string offset=271
 .Linfo_string10:
-	.asciz	"uxNumberOfItems"               @ string offset=291
+	.asciz	"uxNumberOfItems"               @ string offset=290
 .Linfo_string11:
-	.asciz	"long unsigned int"             @ string offset=307
+	.asciz	"long unsigned int"             @ string offset=306
 .Linfo_string12:
-	.asciz	"UBaseType_t"                   @ string offset=325
+	.asciz	"UBaseType_t"                   @ string offset=324
 .Linfo_string13:
-	.asciz	"pxIndex"                       @ string offset=337
+	.asciz	"pxIndex"                       @ string offset=336
 .Linfo_string14:
-	.asciz	"xItemValue"                    @ string offset=345
+	.asciz	"xItemValue"                    @ string offset=344
 .Linfo_string15:
-	.asciz	"unsigned int"                  @ string offset=356
+	.asciz	"unsigned int"                  @ string offset=355
 .Linfo_string16:
-	.asciz	"uint32_t"                      @ string offset=369
+	.asciz	"uint32_t"                      @ string offset=368
 .Linfo_string17:
-	.asciz	"TickType_t"                    @ string offset=378
+	.asciz	"TickType_t"                    @ string offset=377
 .Linfo_string18:
-	.asciz	"pxNext"                        @ string offset=389
+	.asciz	"pxNext"                        @ string offset=388
 .Linfo_string19:
-	.asciz	"pxPrevious"                    @ string offset=396
+	.asciz	"pxPrevious"                    @ string offset=395
 .Linfo_string20:
-	.asciz	"pvOwner"                       @ string offset=407
+	.asciz	"pvOwner"                       @ string offset=406
 .Linfo_string21:
-	.asciz	"pvContainer"                   @ string offset=415
+	.asciz	"pvContainer"                   @ string offset=414
 .Linfo_string22:
-	.asciz	"xLIST_ITEM"                    @ string offset=427
+	.asciz	"xLIST_ITEM"                    @ string offset=426
 .Linfo_string23:
-	.asciz	"ListItem_t"                    @ string offset=438
+	.asciz	"ListItem_t"                    @ string offset=437
 .Linfo_string24:
-	.asciz	"xListEnd"                      @ string offset=449
+	.asciz	"xListEnd"                      @ string offset=448
 .Linfo_string25:
-	.asciz	"xMINI_LIST_ITEM"               @ string offset=458
+	.asciz	"xMINI_LIST_ITEM"               @ string offset=457
 .Linfo_string26:
-	.asciz	"MiniListItem_t"                @ string offset=474
+	.asciz	"MiniListItem_t"                @ string offset=473
 .Linfo_string27:
-	.asciz	"xLIST"                         @ string offset=489
+	.asciz	"xLIST"                         @ string offset=488
 .Linfo_string28:
-	.asciz	"List_t"                        @ string offset=495
+	.asciz	"List_t"                        @ string offset=494
 .Linfo_string29:
-	.asciz	"xLastTime"                     @ string offset=502
+	.asciz	"xLastTime"                     @ string offset=501
 .Linfo_string30:
-	.asciz	"pxOverflowTimerList"           @ string offset=512
+	.asciz	"pxOverflowTimerList"           @ string offset=511
 .Linfo_string31:
-	.asciz	"xStaticTimerQueue"             @ string offset=532
+	.asciz	"xStaticTimerQueue"             @ string offset=531
 .Linfo_string32:
-	.asciz	"pvDummy1"                      @ string offset=550
+	.asciz	"pvDummy1"                      @ string offset=549
 .Linfo_string33:
-	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=559
+	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=558
 .Linfo_string34:
-	.asciz	"u"                             @ string offset=579
+	.asciz	"u"                             @ string offset=578
 .Linfo_string35:
-	.asciz	"pvDummy2"                      @ string offset=581
+	.asciz	"pvDummy2"                      @ string offset=580
 .Linfo_string36:
-	.asciz	"uxDummy2"                      @ string offset=590
+	.asciz	"uxDummy2"                      @ string offset=589
 .Linfo_string37:
-	.asciz	"xDummy3"                       @ string offset=599
+	.asciz	"xDummy3"                       @ string offset=598
 .Linfo_string38:
-	.asciz	"pvDummy3"                      @ string offset=607
+	.asciz	"pvDummy3"                      @ string offset=606
 .Linfo_string39:
-	.asciz	"xDummy4"                       @ string offset=616
+	.asciz	"xDummy4"                       @ string offset=615
 .Linfo_string40:
-	.asciz	"xDummy2"                       @ string offset=624
+	.asciz	"xDummy2"                       @ string offset=623
 .Linfo_string41:
-	.asciz	"xSTATIC_MINI_LIST_ITEM"        @ string offset=632
+	.asciz	"xSTATIC_MINI_LIST_ITEM"        @ string offset=631
 .Linfo_string42:
-	.asciz	"StaticMiniListItem_t"          @ string offset=655
+	.asciz	"StaticMiniListItem_t"          @ string offset=654
 .Linfo_string43:
-	.asciz	"xSTATIC_LIST"                  @ string offset=676
+	.asciz	"xSTATIC_LIST"                  @ string offset=675
 .Linfo_string44:
-	.asciz	"StaticList_t"                  @ string offset=689
+	.asciz	"StaticList_t"                  @ string offset=688
 .Linfo_string45:
-	.asciz	"uxDummy4"                      @ string offset=702
+	.asciz	"uxDummy4"                      @ string offset=701
 .Linfo_string46:
-	.asciz	"ucDummy5"                      @ string offset=711
+	.asciz	"ucDummy5"                      @ string offset=710
 .Linfo_string47:
-	.asciz	"unsigned char"                 @ string offset=720
+	.asciz	"unsigned char"                 @ string offset=719
 .Linfo_string48:
-	.asciz	"uint8_t"                       @ string offset=734
+	.asciz	"uint8_t"                       @ string offset=733
 .Linfo_string49:
-	.asciz	"ucDummy6"                      @ string offset=742
+	.asciz	"ucDummy6"                      @ string offset=741
 .Linfo_string50:
-	.asciz	"uxDummy8"                      @ string offset=751
+	.asciz	"uxDummy8"                      @ string offset=750
 .Linfo_string51:
-	.asciz	"ucDummy9"                      @ string offset=760
+	.asciz	"ucDummy9"                      @ string offset=759
 .Linfo_string52:
-	.asciz	"xSTATIC_QUEUE"                 @ string offset=769
+	.asciz	"xSTATIC_QUEUE"                 @ string offset=768
 .Linfo_string53:
-	.asciz	"StaticQueue_t"                 @ string offset=783
+	.asciz	"StaticQueue_t"                 @ string offset=782
 .Linfo_string54:
-	.asciz	"ucStaticTimerQueueStorage"     @ string offset=797
+	.asciz	"ucStaticTimerQueueStorage"     @ string offset=796
 .Linfo_string55:
-	.asciz	"xActiveTimerList1"             @ string offset=823
+	.asciz	"xActiveTimerList1"             @ string offset=822
 .Linfo_string56:
-	.asciz	"xActiveTimerList2"             @ string offset=841
+	.asciz	"xActiveTimerList2"             @ string offset=840
 .Linfo_string57:
-	.asciz	"long int"                      @ string offset=859
+	.asciz	"long int"                      @ string offset=858
 .Linfo_string58:
-	.asciz	"BaseType_t"                    @ string offset=868
+	.asciz	"BaseType_t"                    @ string offset=867
 .Linfo_string59:
-	.asciz	"pcTimerName"                   @ string offset=879
+	.asciz	"pcTimerName"                   @ string offset=878
 .Linfo_string60:
-	.asciz	"char"                          @ string offset=891
+	.asciz	"char"                          @ string offset=890
 .Linfo_string61:
-	.asciz	"xTimerListItem"                @ string offset=896
+	.asciz	"xTimerListItem"                @ string offset=895
 .Linfo_string62:
-	.asciz	"xTimerPeriodInTicks"           @ string offset=911
+	.asciz	"xTimerPeriodInTicks"           @ string offset=910
 .Linfo_string63:
-	.asciz	"pvTimerID"                     @ string offset=931
+	.asciz	"pvTimerID"                     @ string offset=930
 .Linfo_string64:
-	.asciz	"pxCallbackFunction"            @ string offset=941
+	.asciz	"pxCallbackFunction"            @ string offset=940
 .Linfo_string65:
-	.asciz	"TimerHandle_t"                 @ string offset=960
+	.asciz	"TimerHandle_t"                 @ string offset=959
 .Linfo_string66:
-	.asciz	"TimerCallbackFunction_t"       @ string offset=974
+	.asciz	"TimerCallbackFunction_t"       @ string offset=973
 .Linfo_string67:
-	.asciz	"uxTimerNumber"                 @ string offset=998
+	.asciz	"uxTimerNumber"                 @ string offset=997
 .Linfo_string68:
-	.asciz	"ucStatus"                      @ string offset=1012
+	.asciz	"ucStatus"                      @ string offset=1011
 .Linfo_string69:
-	.asciz	"tmrTimerControl"               @ string offset=1021
+	.asciz	"tmrTimerControl"               @ string offset=1020
 .Linfo_string70:
-	.asciz	"xTIMER"                        @ string offset=1037
+	.asciz	"xTIMER"                        @ string offset=1036
 .Linfo_string71:
-	.asciz	"Timer_t"                       @ string offset=1044
+	.asciz	"Timer_t"                       @ string offset=1043
 .Linfo_string72:
-	.asciz	"__disable_irq"                 @ string offset=1052
+	.asciz	"__disable_irq"                 @ string offset=1051
 .Linfo_string73:
-	.asciz	"vPortExitCritical"             @ string offset=1066
+	.asciz	"vPortExitCritical"             @ string offset=1065
 .Linfo_string74:
-	.asciz	"prvGetNextExpireTime"          @ string offset=1084
+	.asciz	"prvGetNextExpireTime"          @ string offset=1083
 .Linfo_string75:
-	.asciz	"pxListWasEmpty"                @ string offset=1105
+	.asciz	"pxListWasEmpty"                @ string offset=1104
 .Linfo_string76:
-	.asciz	"xNextExpireTime"               @ string offset=1120
+	.asciz	"xNextExpireTime"               @ string offset=1119
 .Linfo_string77:
-	.asciz	"prvProcessTimerOrBlockTask"    @ string offset=1136
+	.asciz	"prvProcessTimerOrBlockTask"    @ string offset=1135
 .Linfo_string78:
-	.asciz	"xListWasEmpty"                 @ string offset=1163
+	.asciz	"xListWasEmpty"                 @ string offset=1162
 .Linfo_string79:
-	.asciz	"xTimerListsWereSwitched"       @ string offset=1177
+	.asciz	"xTimerListsWereSwitched"       @ string offset=1176
 .Linfo_string80:
-	.asciz	"xTimeNow"                      @ string offset=1201
+	.asciz	"xTimeNow"                      @ string offset=1200
 .Linfo_string81:
-	.asciz	"prvProcessExpiredTimer"        @ string offset=1210
+	.asciz	"prvProcessExpiredTimer"        @ string offset=1209
 .Linfo_string82:
-	.asciz	"pxTimer"                       @ string offset=1233
+	.asciz	"pxTimer"                       @ string offset=1232
 .Linfo_string83:
-	.asciz	"xResult"                       @ string offset=1241
+	.asciz	"xResult"                       @ string offset=1240
 .Linfo_string84:
-	.asciz	"prvProcessReceivedCommands"    @ string offset=1249
+	.asciz	"prvProcessReceivedCommands"    @ string offset=1248
 .Linfo_string85:
-	.asciz	"xMessage"                      @ string offset=1276
+	.asciz	"xMessage"                      @ string offset=1275
 .Linfo_string86:
-	.asciz	"xMessageID"                    @ string offset=1285
+	.asciz	"xMessageID"                    @ string offset=1284
 .Linfo_string87:
-	.asciz	"xTimerParameters"              @ string offset=1296
+	.asciz	"xTimerParameters"              @ string offset=1295
 .Linfo_string88:
-	.asciz	"xMessageValue"                 @ string offset=1313
+	.asciz	"xMessageValue"                 @ string offset=1312
 .Linfo_string89:
-	.asciz	"tmrTimerParameters"            @ string offset=1327
+	.asciz	"tmrTimerParameters"            @ string offset=1326
 .Linfo_string90:
-	.asciz	"TimerParameter_t"              @ string offset=1346
+	.asciz	"TimerParameter_t"              @ string offset=1345
 .Linfo_string91:
-	.asciz	"xCallbackParameters"           @ string offset=1363
+	.asciz	"xCallbackParameters"           @ string offset=1362
 .Linfo_string92:
-	.asciz	"PendedFunction_t"              @ string offset=1383
+	.asciz	"PendedFunction_t"              @ string offset=1382
 .Linfo_string93:
-	.asciz	"pvParameter1"                  @ string offset=1400
+	.asciz	"pvParameter1"                  @ string offset=1399
 .Linfo_string94:
-	.asciz	"ulParameter2"                  @ string offset=1413
+	.asciz	"ulParameter2"                  @ string offset=1412
 .Linfo_string95:
-	.asciz	"tmrCallbackParameters"         @ string offset=1426
+	.asciz	"tmrCallbackParameters"         @ string offset=1425
 .Linfo_string96:
-	.asciz	"CallbackParameters_t"          @ string offset=1448
+	.asciz	"CallbackParameters_t"          @ string offset=1447
 .Linfo_string97:
-	.asciz	"tmrTimerQueueMessage"          @ string offset=1469
+	.asciz	"tmrTimerQueueMessage"          @ string offset=1468
 .Linfo_string98:
-	.asciz	"DaemonTaskMessage_t"           @ string offset=1490
+	.asciz	"DaemonTaskMessage_t"           @ string offset=1489
 .Linfo_string99:
-	.asciz	"pxCallback"                    @ string offset=1510
+	.asciz	"pxCallback"                    @ string offset=1509
 .Linfo_string100:
-	.asciz	"prvSwitchTimerLists"           @ string offset=1521
+	.asciz	"prvSwitchTimerLists"           @ string offset=1520
 .Linfo_string101:
-	.asciz	"xReloadTime"                   @ string offset=1541
+	.asciz	"xReloadTime"                   @ string offset=1540
 .Linfo_string102:
-	.asciz	"pxTemp"                        @ string offset=1553
+	.asciz	"pxTemp"                        @ string offset=1552
 .Linfo_string103:
-	.asciz	"xTimerCreateTimerTask"         @ string offset=1560
+	.asciz	"xTimerCreateTimerTask"         @ string offset=1559
 .Linfo_string104:
-	.asciz	"prvCheckForValidListAndQueue"  @ string offset=1582
+	.asciz	"prvCheckForValidListAndQueue"  @ string offset=1581
 .Linfo_string105:
-	.asciz	"prvTimerTask"                  @ string offset=1611
+	.asciz	"prvTimerTask"                  @ string offset=1610
 .Linfo_string106:
-	.asciz	"xTimerCreate"                  @ string offset=1624
+	.asciz	"xTimerCreate"                  @ string offset=1623
 .Linfo_string107:
-	.asciz	"prvInitialiseNewTimer"         @ string offset=1637
+	.asciz	"prvInitialiseNewTimer"         @ string offset=1636
 .Linfo_string108:
-	.asciz	"xTimerCreateStatic"            @ string offset=1659
+	.asciz	"xTimerCreateStatic"            @ string offset=1658
 .Linfo_string109:
-	.asciz	"xTimerGenericCommand"          @ string offset=1678
+	.asciz	"xTimerGenericCommand"          @ string offset=1677
 .Linfo_string110:
-	.asciz	"xTimerGetTimerDaemonTaskHandle" @ string offset=1699
+	.asciz	"xTimerGetTimerDaemonTaskHandle" @ string offset=1698
 .Linfo_string111:
-	.asciz	"xTimerGetPeriod"               @ string offset=1730
+	.asciz	"xTimerGetPeriod"               @ string offset=1729
 .Linfo_string112:
-	.asciz	"vTimerSetReloadMode"           @ string offset=1746
+	.asciz	"vTimerSetReloadMode"           @ string offset=1745
 .Linfo_string113:
-	.asciz	"uxTimerGetReloadMode"          @ string offset=1766
+	.asciz	"uxTimerGetReloadMode"          @ string offset=1765
 .Linfo_string114:
-	.asciz	"xTimerGetExpiryTime"           @ string offset=1787
+	.asciz	"xTimerGetExpiryTime"           @ string offset=1786
 .Linfo_string115:
-	.asciz	"pcTimerGetName"                @ string offset=1807
+	.asciz	"pcTimerGetName"                @ string offset=1806
 .Linfo_string116:
-	.asciz	"xTimerIsTimerActive"           @ string offset=1822
+	.asciz	"xTimerIsTimerActive"           @ string offset=1821
 .Linfo_string117:
-	.asciz	"pvTimerGetTimerID"             @ string offset=1842
+	.asciz	"pvTimerGetTimerID"             @ string offset=1841
 .Linfo_string118:
-	.asciz	"vTimerSetTimerID"              @ string offset=1860
+	.asciz	"vTimerSetTimerID"              @ string offset=1859
 .Linfo_string119:
-	.asciz	"xTimerPendFunctionCallFromISR" @ string offset=1877
+	.asciz	"xTimerPendFunctionCallFromISR" @ string offset=1876
 .Linfo_string120:
-	.asciz	"xTimerPendFunctionCall"        @ string offset=1907
+	.asciz	"xTimerPendFunctionCall"        @ string offset=1906
 .Linfo_string121:
-	.asciz	"uxTimerGetTimerNumber"         @ string offset=1930
+	.asciz	"uxTimerGetTimerNumber"         @ string offset=1929
 .Linfo_string122:
-	.asciz	"vTimerSetTimerNumber"          @ string offset=1952
+	.asciz	"vTimerSetTimerNumber"          @ string offset=1951
 .Linfo_string123:
-	.asciz	"prvSampleTimeNow"              @ string offset=1973
+	.asciz	"prvSampleTimeNow"              @ string offset=1972
 .Linfo_string124:
-	.asciz	"prvInsertTimerInActiveList"    @ string offset=1990
+	.asciz	"prvInsertTimerInActiveList"    @ string offset=1989
 .Linfo_string125:
-	.asciz	"xReturn"                       @ string offset=2017
+	.asciz	"xReturn"                       @ string offset=2016
 .Linfo_string126:
-	.asciz	"pxTimerTaskTCBBuffer"          @ string offset=2025
+	.asciz	"pxTimerTaskTCBBuffer"          @ string offset=2024
 .Linfo_string127:
-	.asciz	"pxDummy1"                      @ string offset=2046
+	.asciz	"pxDummy1"                      @ string offset=2045
 .Linfo_string128:
-	.asciz	"xSTATIC_LIST_ITEM"             @ string offset=2055
+	.asciz	"xSTATIC_LIST_ITEM"             @ string offset=2054
 .Linfo_string129:
-	.asciz	"StaticListItem_t"              @ string offset=2073
+	.asciz	"StaticListItem_t"              @ string offset=2072
 .Linfo_string130:
-	.asciz	"uxDummy5"                      @ string offset=2090
+	.asciz	"uxDummy5"                      @ string offset=2089
 .Linfo_string131:
-	.asciz	"pxDummy6"                      @ string offset=2099
+	.asciz	"pxDummy6"                      @ string offset=2098
 .Linfo_string132:
-	.asciz	"ucDummy7"                      @ string offset=2108
+	.asciz	"ucDummy7"                      @ string offset=2107
 .Linfo_string133:
-	.asciz	"uxDummy10"                     @ string offset=2117
+	.asciz	"uxDummy10"                     @ string offset=2116
 .Linfo_string134:
-	.asciz	"uxDummy12"                     @ string offset=2127
+	.asciz	"uxDummy12"                     @ string offset=2126
 .Linfo_string135:
-	.asciz	"ulDummy16"                     @ string offset=2137
+	.asciz	"ulDummy16"                     @ string offset=2136
 .Linfo_string136:
-	.asciz	"ulDummy18"                     @ string offset=2147
+	.asciz	"ulDummy18"                     @ string offset=2146
 .Linfo_string137:
-	.asciz	"ucDummy19"                     @ string offset=2157
+	.asciz	"ucDummy19"                     @ string offset=2156
 .Linfo_string138:
-	.asciz	"uxDummy20"                     @ string offset=2167
+	.asciz	"uxDummy20"                     @ string offset=2166
 .Linfo_string139:
-	.asciz	"xSTATIC_TCB"                   @ string offset=2177
+	.asciz	"xSTATIC_TCB"                   @ string offset=2176
 .Linfo_string140:
-	.asciz	"StaticTask_t"                  @ string offset=2189
+	.asciz	"StaticTask_t"                  @ string offset=2188
 .Linfo_string141:
-	.asciz	"pxTimerTaskStackBuffer"        @ string offset=2202
+	.asciz	"pxTimerTaskStackBuffer"        @ string offset=2201
 .Linfo_string142:
-	.asciz	"StackType_t"                   @ string offset=2225
+	.asciz	"StackType_t"                   @ string offset=2224
 .Linfo_string143:
-	.asciz	"ulTimerTaskStackSize"          @ string offset=2237
+	.asciz	"ulTimerTaskStackSize"          @ string offset=2236
 .Linfo_string144:
-	.asciz	"pvParameters"                  @ string offset=2258
+	.asciz	"pvParameters"                  @ string offset=2257
 .Linfo_string145:
-	.asciz	"uxAutoReload"                  @ string offset=2271
+	.asciz	"uxAutoReload"                  @ string offset=2270
 .Linfo_string146:
-	.asciz	"pxNewTimer"                    @ string offset=2284
+	.asciz	"pxNewTimer"                    @ string offset=2283
 .Linfo_string147:
-	.asciz	"xSize"                         @ string offset=2295
+	.asciz	"xSize"                         @ string offset=2294
 .Linfo_string148:
-	.asciz	"size_t"                        @ string offset=2301
+	.asciz	"size_t"                        @ string offset=2300
 .Linfo_string149:
-	.asciz	"pxTimerBuffer"                 @ string offset=2308
+	.asciz	"pxTimerBuffer"                 @ string offset=2307
 .Linfo_string150:
-	.asciz	"pvDummy5"                      @ string offset=2322
+	.asciz	"pvDummy5"                      @ string offset=2321
 .Linfo_string151:
-	.asciz	"pvDummy6"                      @ string offset=2331
+	.asciz	"pvDummy6"                      @ string offset=2330
 .Linfo_string152:
-	.asciz	"TaskFunction_t"                @ string offset=2340
+	.asciz	"TaskFunction_t"                @ string offset=2339
 .Linfo_string153:
-	.asciz	"uxDummy7"                      @ string offset=2355
+	.asciz	"uxDummy7"                      @ string offset=2354
 .Linfo_string154:
-	.asciz	"ucDummy8"                      @ string offset=2364
+	.asciz	"ucDummy8"                      @ string offset=2363
 .Linfo_string155:
-	.asciz	"xSTATIC_TIMER"                 @ string offset=2373
+	.asciz	"xSTATIC_TIMER"                 @ string offset=2372
 .Linfo_string156:
-	.asciz	"StaticTimer_t"                 @ string offset=2387
+	.asciz	"StaticTimer_t"                 @ string offset=2386
 .Linfo_string157:
-	.asciz	"xTimer"                        @ string offset=2401
+	.asciz	"xTimer"                        @ string offset=2400
 .Linfo_string158:
-	.asciz	"xCommandID"                    @ string offset=2408
+	.asciz	"xCommandID"                    @ string offset=2407
 .Linfo_string159:
-	.asciz	"xOptionalValue"                @ string offset=2419
+	.asciz	"xOptionalValue"                @ string offset=2418
 .Linfo_string160:
-	.asciz	"pxHigherPriorityTaskWoken"     @ string offset=2434
+	.asciz	"pxHigherPriorityTaskWoken"     @ string offset=2433
 .Linfo_string161:
-	.asciz	"xTicksToWait"                  @ string offset=2460
+	.asciz	"xTicksToWait"                  @ string offset=2459
 .Linfo_string162:
-	.asciz	"uxReturn"                      @ string offset=2473
+	.asciz	"uxReturn"                      @ string offset=2472
 .Linfo_string163:
-	.asciz	"pvReturn"                      @ string offset=2482
+	.asciz	"pvReturn"                      @ string offset=2481
 .Linfo_string164:
-	.asciz	"pvNewID"                       @ string offset=2491
+	.asciz	"pvNewID"                       @ string offset=2490
 .Linfo_string165:
-	.asciz	"xFunctionToPend"               @ string offset=2499
+	.asciz	"xFunctionToPend"               @ string offset=2498
 .Linfo_string166:
-	.asciz	"pxTimerListsWereSwitched"      @ string offset=2515
+	.asciz	"pxTimerListsWereSwitched"      @ string offset=2514
 .Linfo_string167:
-	.asciz	"xNextExpiryTime"               @ string offset=2540
+	.asciz	"xNextExpiryTime"               @ string offset=2539
 .Linfo_string168:
-	.asciz	"xCommandTime"                  @ string offset=2556
+	.asciz	"xCommandTime"                  @ string offset=2555
 .Linfo_string169:
-	.asciz	"xProcessTimerNow"              @ string offset=2569
+	.asciz	"xProcessTimerNow"              @ string offset=2568
 	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals
