@@ -148,6 +148,28 @@ static int _cli_cmd_ps(int argc, char **argv, cb_shell_out_t log_out, void *pExt
     return 0;
 }
 
+extern void debug_flag_setting(bool a_flag);
+extern bool debug_flag_get();
+
+static int _cli_cmd_debug(int argc, char **argv, cb_shell_out_t log_out, void *pExtra)
+{
+    if (argc > 1)
+    {
+        if (utility_strtoul(argv[1], 0) == 0)
+        {
+            debug_flag_setting(false);
+        }
+        else
+        {
+            debug_flag_setting(true);
+        }
+    }
+    else
+    {
+        printf("debug_flag %s \r\n", (debug_flag_get() == true ? "True" : "False"));
+    }
+}
+
 int cli_init(void)
 {
     xTaskCreate(cli_task,
@@ -165,4 +187,11 @@ const sh_cmd_t g_cli_cmd_ps STATIC_CLI_CMD_ATTRIBUTE =
     .pCmd_name    = "ps",
     .pDescription = "Show task and memory usage",
     .cmd_exec     = _cli_cmd_ps,
+};
+
+const sh_cmd_t g_cli_cmd_debug STATIC_CLI_CMD_ATTRIBUTE =
+{
+    .pCmd_name    = "debug",
+    .pDescription = "switch print",
+    .cmd_exec     = _cli_cmd_debug,
 };

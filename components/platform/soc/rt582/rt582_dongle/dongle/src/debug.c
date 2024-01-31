@@ -42,6 +42,8 @@ enum ranks
 
 #define EMIT(x) { if (o < n) { *q++ = (x); } o++; }
 
+static bool g_debug_flash = false;
+
 static size_t
 format_int(char *q, size_t n, uintmax_t val, unsigned int flags,
            int base, int width, int prec)
@@ -571,7 +573,10 @@ static char *flt(char *str, double num, int size, int precision, char fmt, int f
 
 void debug_print(uint8_t *data, uint32_t len)
 {
-    uart_stdio_write(data, len);
+    if (g_debug_flash == true)
+    {
+        uart_stdio_write(data, len);
+    }
 }
 
 static char string[512];
@@ -1055,4 +1060,14 @@ int puts(const char *s)
 void vMainUARTPrintString(char *pcString)
 {
     puts(pcString);
+}
+
+void debug_flag_setting(bool a_flag)
+{
+    g_debug_flash = a_flag;
+}
+
+bool debug_flag_get()
+{
+    return g_debug_flash;
 }

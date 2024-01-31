@@ -1,6 +1,11 @@
 ./objects/das_dlms_cmd.o: ..\das_subg_thread\das_dlms_cmd.c \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h \
+  ..\..\..\components\network\thread\subg_openthread\src\core\openthread-core-config.h \
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\config.h \
+  ..\..\..\components\network\thread\openthread_port\include\openthread-core-RT58x-config.h \
+  ..\das_subg_thread\Include\project_config.h \
+  ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\chip_define.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\cm3_mcu.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\chip_define.h \
   C:\Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm3.h \
@@ -22,8 +27,6 @@
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\wdt_reg.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\flashctl_reg.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\flashds.h \
-  ..\das_subg_thread\Include\project_config.h \
-  ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\chip_define.h \
   ..\..\..\components\network\rt569_rf\include\comm_subsystem_ahb_reg.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\qspi_reg.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\dma_reg.h \
@@ -51,50 +54,6 @@
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\comparator.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\swi.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\lpm.h \
-  ..\..\..\components\utility\uart_stdio\Inc\uart_stdio.h \
-  ..\das_subg_thread\Include\main.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\thread.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\dataset.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\instance.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\error.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\toolchain.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\logging.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdarg.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\ip6.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\message.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\radio.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\crypto.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\link.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\commissioner.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\joiner.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\thread_ftd.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\icmp6.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\cli.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\ncp.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\coap.h \
-  ..\..\..\components\network\thread\openthread_port\include\openthread_port.h \
-  ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\FreeRTOS.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stddef.h \
-  ..\..\..\components\platform\soc\rt582\rt582_freertos\config\FreeRTOSConfig.h \
-  ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\projdefs.h \
-  ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\portable.h \
-  ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\deprecated_definitions.h \
-  ..\..\..\components\platform\soc\rt582\rt582_freertos\portable\GCC\ARM_CM3\portmacro.h \
-  ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\mpu_wrappers.h \
-  ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\task.h \
-  ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\list.h \
-  ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\timers.h \
-  ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\task.h \
-  ..\..\..\components\utility\log\log.h \
-  ..\..\..\components\utility\utility\Inc\util_log.h \
-  ..\..\..\components\utility\log\log_type.h \
-  ..\..\..\components\utility\log\log_cfg.h \
-  ..\..\..\components\network\thread\subg_openthread\third_party\mbedtls\repo\include\mbedtls\gcm.h \
-  ..\..\..\components\network\thread\subg_openthread\third_party\mbedtls\mbedtls-config.h \
-  ..\..\..\components\network\thread\subg_openthread\src\core\openthread-core-config.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\config.h \
-  ..\..\..\components\network\thread\openthread_port\include\openthread-core-RT58x-config.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\config\announce_sender.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\config\backbone_router.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\config\border_agent.h \
@@ -149,8 +108,52 @@
   ..\..\..\components\network\thread\subg_openthread\src\core\config\tmf.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\config\openthread-core-config-check.h \
   ..\..\..\components\network\thread\openthread_port\include\openthread-core-rafael-config-check.h \
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\thread.h \
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\dataset.h \
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\instance.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h \
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\error.h \
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\toolchain.h \
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\logging.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdarg.h \
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\ip6.h \
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\message.h \
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\radio.h \
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\crypto.h \
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\link.h \
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\commissioner.h \
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\joiner.h \
+  ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\FreeRTOS.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stddef.h \
+  ..\..\..\components\platform\soc\rt582\rt582_freertos\config\FreeRTOSConfig.h \
+  ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\projdefs.h \
+  ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\portable.h \
+  ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\deprecated_definitions.h \
+  ..\..\..\components\platform\soc\rt582\rt582_freertos\portable\GCC\ARM_CM3\portmacro.h \
+  ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\mpu_wrappers.h \
+  ..\..\..\components\utility\log\log.h \
+  ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\task.h \
+  ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\list.h \
+  ..\..\..\components\utility\utility\Inc\util_log.h \
+  ..\..\..\components\utility\log\log_type.h \
+  ..\..\..\components\utility\log\log_cfg.h \
+  ..\das_subg_thread\Include\main.h \
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\thread_ftd.h \
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\icmp6.h \
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\cli.h \
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\ncp.h \
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\coap.h \
+  ..\..\..\components\network\thread\openthread_port\include\openthread_port.h \
+  ..\..\..\components\network\thread\subg_openthread\third_party\mbedtls\repo\include\mbedtls\gcm.h \
+  ..\..\..\components\network\thread\subg_openthread\third_party\mbedtls\mbedtls-config.h \
   ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\memory.h \
   ..\..\..\components\network\thread\subg_openthread\third_party\mbedtls\repo\include\mbedtls\check_config.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\limits.h \
   ..\..\..\components\network\thread\subg_openthread\third_party\mbedtls\repo\include\mbedtls\cipher.h \
-  ..\..\..\components\network\thread\subg_openthread\third_party\mbedtls\repo\include\mbedtls\platform_util.h
+  ..\..\..\components\network\thread\subg_openthread\third_party\mbedtls\repo\include\mbedtls\platform_util.h \
+  ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\timers.h \
+  ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\task.h \
+  ..\..\..\components\utility\uart_stdio\Inc\uart_stdio.h \
+  ..\..\..\components\utility\cli\Inc\shell.h \
+  ..\..\..\components\utility\cli\Inc\cli.h \
+  ..\..\..\components\utility\cli\Inc\shell.h

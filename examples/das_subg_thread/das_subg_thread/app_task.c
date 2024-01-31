@@ -170,7 +170,7 @@ void otrInitUser(otInstance *instance)
 
     App_Dataset.mActiveTimestamp.mSeconds = 0;
     App_Dataset.mComponents.mIsActiveTimestampPresent = true;
-
+#if 0 //use dataset flash 
     /* Set Channel */
     App_Dataset.mChannel = THREAD_CHANNEL;
     App_Dataset.mComponents.mIsChannelPresent = true;
@@ -179,13 +179,13 @@ void otrInitUser(otInstance *instance)
     App_Dataset.mPanId = THREAD_PANID;
     App_Dataset.mComponents.mIsPanIdPresent = true;
 
-    /* Set Extended Pan ID */
-    memcpy(App_Dataset.mExtendedPanId.m8, extPanId, OT_EXT_PAN_ID_SIZE);
-    App_Dataset.mComponents.mIsExtendedPanIdPresent = true;
-
     /* Set network key */
     memcpy(App_Dataset.mNetworkKey.m8, nwkkey, OT_NETWORK_KEY_SIZE);
     App_Dataset.mComponents.mIsNetworkKeyPresent = true;
+#endif
+    /* Set Extended Pan ID */
+    memcpy(App_Dataset.mExtendedPanId.m8, extPanId, OT_EXT_PAN_ID_SIZE);
+    App_Dataset.mComponents.mIsExtendedPanIdPresent = true;
 
     /* Set Network Name */
     size_t length = strlen(aNetworkName);
@@ -221,6 +221,8 @@ void otrInitUser(otInstance *instance)
 #endif
     ota_init(instance);
 #endif
+    udf_Meter_init(instance);
+
     otIp6SetEnabled(instance, true);
     otThreadSetEnabled(instance, true);
 }

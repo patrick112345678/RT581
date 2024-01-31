@@ -365,7 +365,7 @@ void app_uart_init(void)
 
     app_uart_handle = xQueueCreate(16, sizeof(_app_uart_data_t));
 
-    xReturned = xTaskCreate(__uart_task, "app_uart_task", 512, NULL, configMAX_PRIORITIES - 2, &app_uart_taskHandle);
+    xReturned = xTaskCreate(__uart_task, "app_uart_task", 1024, NULL, configMAX_PRIORITIES - 2, &app_uart_taskHandle);
     if ( xReturned != pdPASS )
     {
         log_error("task create fail\n");

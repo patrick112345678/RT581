@@ -614,7 +614,7 @@ app_uart_init:
 	movt	r12, :upper16:app_uart_taskHandle
 	movt	r0, :upper16:__uart_task
 	adr	r1, .LCPI4_0
-	mov.w	r2, #512
+	mov.w	r2, #1024
 	movs	r3, #0
 	str.w	r12, [sp, #4]
 	bl	xTaskCreate
@@ -3894,7 +3894,7 @@ g_tx_buf:
 	.byte	43                              @ Abbrev [43] 0x961:0x12 DW_TAG_subprogram
 	.long	.Linfo_string194                @ DW_AT_name
 	.byte	9                               @ DW_AT_decl_file
-	.byte	43                              @ DW_AT_decl_line
+	.byte	44                              @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_declaration
                                         @ DW_AT_external

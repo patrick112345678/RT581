@@ -40,6 +40,7 @@ void das_hex_cmd_get_udp_ip(uint8_t *Param, uint16_t lens);
 void das_hex_cmd_get_udp_received_data(uint8_t *Param, uint16_t lens);
 
 /*das_dlms_cmd*/
+void udf_Meter_init(otInstance *instance);
 void udf_Meter_received_task(const uint8_t *aBuf, uint16_t aBufLength);
 
 /*app uart*/
