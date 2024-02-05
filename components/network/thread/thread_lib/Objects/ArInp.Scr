@@ -1,7 +1,8 @@
 --create .\Objects\thread_lib.lib
 .\objects\ot_alarm.o
+.\objects\ot_crypto.o
+.\objects\ot_diag.o
 .\objects\ot_entropy.o
-.\objects\ot_flash.o
 .\objects\ot_freertos.o
 .\objects\ot_logging.o
 .\objects\ot_memory.o

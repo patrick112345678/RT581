@@ -377,11 +377,10 @@ void nwk_mgm_child_reg_table_display()
 
 static void nwk_mgm_reset()
 {
-    OT_THREAD_SAFE(
-        otInstance *instance = otrGetInstance();
-        if (instance)
-{
-    otDeviceRole mRole = otThreadGetDeviceRole(instance);
+    otInstance *instance = otrGetInstance();
+    if (instance)
+    {
+        otDeviceRole mRole = otThreadGetDeviceRole(instance);
         if (OT_DEVICE_ROLE_ROUTER == mRole || OT_DEVICE_ROLE_CHILD == mRole)
         {
             otOperationalDataset dataset;
@@ -397,7 +396,6 @@ static void nwk_mgm_reset()
             OT_ASSERT(otThreadBecomeDetached(instance) == OT_ERROR_NONE);
         }
     }
-    )
 }
 
 static int nwk_mgm_data_parse(uint8_t type, uint8_t *payload, uint16_t payloadlength, void *data)
@@ -525,11 +523,11 @@ static void nwk_mgm_childs_register_proccess(otMessage *aMessage, const otMessag
     uint16_t *ack_rloc = NULL;
     uint8_t *payload = NULL;
     uint16_t i = 0, k = 0, payloadlength;
-    OT_THREAD_SAFE(
-        otInstance *instance = otrGetInstance();
-        if (instance)
-{
-    mRole = otThreadGetDeviceRole(instance);
+
+    otInstance *instance = otrGetInstance();
+    if (instance)
+    {
+        mRole = otThreadGetDeviceRole(instance);
         do
         {
             if (length > 0)
@@ -691,17 +689,15 @@ static void nwk_mgm_childs_register_proccess(otMessage *aMessage, const otMessag
             otMessageFree(responseMessage);
         }
     }
-    )
-
 }
 
 static void nwk_mgm_childs_register_ack_proccess(uint8_t *buf, uint16_t length)
 {
-    OT_THREAD_SAFE(
-        otInstance *instance = otrGetInstance();
-        if (instance)
-{
-    otDeviceRole mRole = otThreadGetDeviceRole(instance);
+
+    otInstance *instance = otrGetInstance();
+    if (instance)
+    {
+        otDeviceRole mRole = otThreadGetDeviceRole(instance);
         nwk_mgm_child_reg_ack_info_t child_reg_data_ack;
         otExtAddress aExtAddress;
         aExtAddress = *otLinkGetExtendedAddress(instance);
@@ -758,17 +754,16 @@ static void nwk_mgm_childs_register_ack_proccess(uint8_t *buf, uint16_t length)
             }
         } while (0);
     }
-    )
 }
 
 static void nwk_mgm_kick_child_proccess(uint8_t *buf, uint16_t length)
 {
     nwk_mgm_kick_child_info_t kick_child_data;
-    OT_THREAD_SAFE(
-        otInstance *instance = otrGetInstance();
-        if (instance)
-{
-    otDeviceRole mRole = otThreadGetDeviceRole(instance);
+
+    otInstance *instance = otrGetInstance();
+    if (instance)
+    {
+        otDeviceRole mRole = otThreadGetDeviceRole(instance);
 
         do
         {
@@ -794,7 +789,6 @@ static void nwk_mgm_kick_child_proccess(uint8_t *buf, uint16_t length)
             }
         } while (0);
     }
-    )
 }
 
 static void nwk_mgm_request_proccess(void *aContext, otMessage *aMessage, const otMessageInfo *aMessageInfo)
@@ -876,13 +870,13 @@ otError nwk_mgm_coap_request(otCoapCode aCoapCode, otIp6Address coapDestinationI
     otError error = OT_ERROR_NONE;
     otMessage *message = NULL;
     otMessageInfo messageInfo;
-    OT_THREAD_SAFE(
-        otInstance *instance = otrGetInstance();
-        if (instance)
-{
-    do
+
+    otInstance *instance = otrGetInstance();
+    if (instance)
     {
-        message = otCoapNewMessage(instance, NULL);
+        do
+        {
+            message = otCoapNewMessage(instance, NULL);
             if (NULL == message)
             {
                 error = OT_ERROR_NO_BUFS;
@@ -936,19 +930,18 @@ otError nwk_mgm_coap_request(otCoapCode aCoapCode, otIp6Address coapDestinationI
             otMessageFree(message);
         }
     }
-    )
     return error;
 }
 
 void nwk_mgm_child_register_post()
 {
-    OT_THREAD_SAFE(
-        otInstance *instance = otrGetInstance();
-        if (instance)
-{
-    otError error = OT_ERROR_NONE;
-    otCoapCode CoapCode = OT_COAP_CODE_POST;
-    otIp6Address coapDestinationIp = *otThreadGetRloc(instance);
+
+    otInstance *instance = otrGetInstance();
+    if (instance)
+    {
+        otError error = OT_ERROR_NONE;
+        otCoapCode CoapCode = OT_COAP_CODE_POST;
+        otIp6Address coapDestinationIp = *otThreadGetRloc(instance);
         coapDestinationIp.mFields.m8[14] = 0xfc;
         coapDestinationIp.mFields.m8[15] = 0x00;
         char string[OT_IP6_ADDRESS_STRING_SIZE];
@@ -997,25 +990,23 @@ void nwk_mgm_child_register_post()
             nwk_mgm_router_update_timer_set(NWK_MGM_ROUTER_KEEP_ALIVE_TIME);
         }
     }
-    )
-
     return;
 }
 
 static void nwk_mgm_kick_child_post(uint16_t rloc, uint16_t panid, uint8_t *extaddr)
 {
-    OT_THREAD_SAFE(
-        otInstance *instance = otrGetInstance();
-        if (instance)
-{
-    otError error = OT_ERROR_NONE;
-    otCoapCode CoapCode = OT_COAP_CODE_POST;
-    otIp6Address coapDestinationIp;
-    nwk_mgm_kick_child_info_t kick_child_data;
-    uint8_t *payload = NULL;
-    uint16_t payloadlength = 0;
 
-    payload = pvPortMalloc(sizeof(nwk_mgm_kick_child_info_t));
+    otInstance *instance = otrGetInstance();
+    if (instance)
+    {
+        otError error = OT_ERROR_NONE;
+        otCoapCode CoapCode = OT_COAP_CODE_POST;
+        otIp6Address coapDestinationIp;
+        nwk_mgm_kick_child_info_t kick_child_data;
+        uint8_t *payload = NULL;
+        uint16_t payloadlength = 0;
+
+        payload = pvPortMalloc(sizeof(nwk_mgm_kick_child_info_t));
         if (payload)
         {
             kick_child_data.data_type = NWK_MGM_TYPE_CHILD_KICK;
@@ -1040,19 +1031,18 @@ static void nwk_mgm_kick_child_post(uint16_t rloc, uint16_t panid, uint8_t *exta
             }
         }
     }
-    )
     return;
 }
 
 void nwk_mgm_neighbor_Change_Callback(otNeighborTableEvent aEvent, const otNeighborTableEntryInfo *aEntryInfo)
 {
-    OT_THREAD_SAFE(
-        otInstance *instance = otrGetInstance();
-        if (instance)
-{
-    otDeviceRole mRole;
 
-    mRole = otThreadGetDeviceRole(instance);
+    otInstance *instance = otrGetInstance();
+    if (instance)
+    {
+        otDeviceRole mRole;
+
+        mRole = otThreadGetDeviceRole(instance);
 
         if (mRole == OT_DEVICE_ROLE_LEADER)
         {
@@ -1110,32 +1100,30 @@ void nwk_mgm_neighbor_Change_Callback(otNeighborTableEvent aEvent, const otNeigh
             }
         }
     }
-    )
 }
 
 static void nwk_mgm_child_register_post_resend()
 {
-    OT_THREAD_SAFE(
-        otInstance *instance = otrGetInstance();
-        if (instance)
-{
-    otDeviceRole mRole = otThreadGetDeviceRole(instance);
+
+    otInstance *instance = otrGetInstance();
+    if (instance)
+    {
+        otDeviceRole mRole = otThreadGetDeviceRole(instance);
 
         if (mRole == OT_DEVICE_ROLE_ROUTER)
         {
             nwk_mgm_child_register_post();
         }
     }
-    )
 }
 
 static void mgm_router_update_timer_handler()
 {
-    OT_THREAD_SAFE(
-        otInstance *instance = otrGetInstance();
-        if (instance)
-{
-    otDeviceRole mRole = otThreadGetDeviceRole(instance);
+
+    otInstance *instance = otrGetInstance();
+    if (instance)
+    {
+        otDeviceRole mRole = otThreadGetDeviceRole(instance);
 
         if (mRole == OT_DEVICE_ROLE_ROUTER)
         {
@@ -1176,7 +1164,6 @@ static void mgm_router_update_timer_handler()
         }
         nwk_mgm_router_update_timer_set(NWK_MGM_ROUTER_KEEP_ALIVE_TIME);
     }
-    )
 }
 
 static void nwk_mgm_timer_handler( TimerHandle_t xTimer )

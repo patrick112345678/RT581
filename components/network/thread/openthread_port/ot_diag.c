@@ -12,7 +12,6 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
-#include <sys/time.h>
 
 #include <openthread/config.h>
 #include <openthread/platform/alarm-milli.h>

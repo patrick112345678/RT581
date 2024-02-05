@@ -1,18 +1,12 @@
 ./objects/ot_crypto.o: ..\openthread_port\ot_crypto.c \
   ..\subg_openthread\include\openthread\config.h \
-  ..\openthread_port\include\openthread-core-rafael-config.h \
-  ..\subg_openthread\examples\platforms\openthread-system.h \
-  ..\subg_openthread\include\openthread\instance.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h \
-  ..\subg_openthread\include\openthread\error.h \
-  ..\subg_openthread\include\openthread\platform\toolchain.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdbool.h \
-  ..\subg_openthread\include\openthread\platform\logging.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdarg.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \
+  ..\openthread_port\include\openthread-core-RT58x-config.h \
+  ..\..\..\..\examples\das_subg_thread\das_subg_thread\Include\project_config.h \
+  ..\..\..\platform\soc\rt582\rt582_driver\Inc\chip_define.h \
   ..\..\..\platform\soc\rt582\rt582_driver\Inc\cm3_mcu.h \
   ..\..\..\platform\soc\rt582\rt582_driver\Inc\chip_define.h \
   C:\Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm3.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \
   C:\Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_version.h \
   C:\Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_compiler.h \
   C:\Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h \
@@ -21,6 +15,7 @@
   ..\..\..\platform\soc\rt582\rt582_driver\Inc\status.h \
   ..\..\..\platform\soc\rt582\rt582_driver\Inc\assert_help.h \
   ..\..\..\platform\soc\rt582\rt582_driver\Inc\sysfun.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdbool.h \
   ..\..\..\platform\soc\rt582\rt582_driver\Inc\gpio_reg.h \
   ..\..\..\platform\soc\rt582\rt582_driver\Inc\uart_reg.h \
   ..\..\..\platform\soc\rt582\rt582_driver\Inc\i2cm_reg.h \
@@ -29,8 +24,6 @@
   ..\..\..\platform\soc\rt582\rt582_driver\Inc\wdt_reg.h \
   ..\..\..\platform\soc\rt582\rt582_driver\Inc\flashctl_reg.h \
   ..\..\..\platform\soc\rt582\rt582_driver\Inc\flashds.h \
-  ..\..\..\..\examples\das_subg_thread\das_subg_thread\Include\project_config.h \
-  ..\..\..\platform\soc\rt582\rt582_driver\Inc\chip_define.h \
   ..\..\rt569_rf\include\comm_subsystem_ahb_reg.h \
   ..\..\..\platform\soc\rt582\rt582_driver\Inc\qspi_reg.h \
   ..\..\..\platform\soc\rt582\rt582_driver\Inc\dma_reg.h \
@@ -58,6 +51,13 @@
   ..\..\..\platform\soc\rt582\rt582_driver\Inc\comparator.h \
   ..\..\..\platform\soc\rt582\rt582_driver\Inc\swi.h \
   ..\..\..\platform\soc\rt582\rt582_driver\Inc\lpm.h \
+  ..\subg_openthread\examples\platforms\openthread-system.h \
+  ..\subg_openthread\include\openthread\instance.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h \
+  ..\subg_openthread\include\openthread\error.h \
+  ..\subg_openthread\include\openthread\platform\toolchain.h \
+  ..\subg_openthread\include\openthread\platform\logging.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdarg.h \
   ..\..\..\platform\soc\rt582\rt582_crypto\Inc\rt_aes.h \
   ..\..\..\platform\soc\rt582\rt582_driver\Inc\status.h \
   ..\subg_openthread\include\openthread\platform\crypto.h \

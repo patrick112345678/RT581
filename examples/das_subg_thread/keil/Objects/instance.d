@@ -119,6 +119,10 @@
   ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\toolchain.h \
   ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\logging.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdarg.h \
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\memory.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\stddef.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stddef.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\__nullptr \
   ..\..\..\components\network\thread\subg_openthread\src\core\common\array.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\common\code_utils.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\common\arg_macros.hpp \
@@ -158,9 +162,6 @@
   ..\..\..\components\network\thread\subg_openthread\src\core\common\non_copyable.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\common\pool.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\common\timer.hpp \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\stddef.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stddef.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\__nullptr \
   ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\alarm-micro.h \
   ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\alarm-milli.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\common\tasklet.hpp \
@@ -226,7 +227,6 @@
   ..\..\..\components\network\thread\subg_openthread\src\core\meshcop\dtls.hpp \
   ..\..\..\components\network\thread\subg_openthread\third_party\mbedtls\repo\include\mbedtls\net_sockets.h \
   ..\..\..\components\network\thread\subg_openthread\third_party\mbedtls\mbedtls-config.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\memory.h \
   ..\..\..\components\network\thread\subg_openthread\third_party\mbedtls\repo\include\mbedtls\check_config.h \
   ..\..\..\components\network\thread\subg_openthread\third_party\mbedtls\repo\include\mbedtls\ssl.h \
   ..\..\..\components\network\thread\subg_openthread\third_party\mbedtls\repo\include\mbedtls\bignum.h \
@@ -322,6 +322,7 @@
   ..\..\..\components\network\thread\subg_openthread\src\core\net\nat64_translator.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\net\nd_agent.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\net\sntp_client.hpp \
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\sntp.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\net\srp_client.hpp \
   ..\..\..\components\network\thread\subg_openthread\include\openthread\srp_client.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\thread\network_data_service.hpp \

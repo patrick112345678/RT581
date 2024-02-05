@@ -323,6 +323,7 @@
   ..\..\..\components\network\thread\subg_openthread\src\core\net\nat64_translator.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\net\nd_agent.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\net\sntp_client.hpp \
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\sntp.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\net\srp_client.hpp \
   ..\..\..\components\network\thread\subg_openthread\include\openthread\srp_client.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\thread\network_data_service.hpp \

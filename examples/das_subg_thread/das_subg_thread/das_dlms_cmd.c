@@ -585,42 +585,41 @@ static void udf_Rafael_data(uint16_t task_id, uint8_t type, char *meter_data,
     uint8_t *payload = NULL;
     otIp6Address LeaderIp;
 
-    OT_THREAD_SAFE(otInstance *instance = otrGetInstance(); if (instance)
-{
     otIp6AddressToString(otThreadGetMeshLocalEid(instance), string,
                          sizeof(string));
-        LeaderIp = *otThreadGetRloc(instance);
-        LeaderIp.mFields.m8[14] = 0xfc;
-        LeaderIp.mFields.m8[15] = 0x00;
-    })
-    payload_len = 1 + strlen(string) + 1 + 2 + meter_len;
+    LeaderIp = *otThreadGetRloc(instance);
+    LeaderIp.mFields.m8[14] = 0xfc;
+    LeaderIp.mFields.m8[15] = 0x00;
+}
 
-    payload = pvPortMalloc(payload_len);
-    if (payload)
-    {
-        uint8_t *tmp = payload;
-        *tmp++ = strlen(string);
-        memcpy(tmp, string, strlen(string));
-        tmp += strlen(string);
-        *tmp++ = type;
-        *tmp++ = task_id / 256;
-        *tmp++ = task_id % 256;
-        memcpy(tmp, meter_data, meter_len);
-        tmp += meter_len;
-        if ((tmp - payload) != payload_len)
-        {
-            printf("send lens error %u %u \n", (tmp - payload), payload_len);
-        }
-        else
-        {
-            app_udpSend(THREAD_UDP_PORT, LeaderIp, payload, payload_len);
-        }
-    }
+payload_len = 1 + strlen(string) + 1 + 2 + meter_len;
 
-    if (payload)
+payload = pvPortMalloc(payload_len);
+if (payload)
+{
+    uint8_t *tmp = payload;
+    *tmp++ = strlen(string);
+    memcpy(tmp, string, strlen(string));
+    tmp += strlen(string);
+    *tmp++ = type;
+    *tmp++ = task_id / 256;
+    *tmp++ = task_id % 256;
+    memcpy(tmp, meter_data, meter_len);
+    tmp += meter_len;
+    if ((tmp - payload) != payload_len)
     {
-        vPortFree(payload);
+        printf("send lens error %u %u \n", (tmp - payload), payload_len);
     }
+    else
+    {
+        app_udpSend(THREAD_UDP_PORT, LeaderIp, payload, payload_len);
+    }
+}
+
+if (payload)
+{
+    vPortFree(payload);
+}
 }
 
 static void ACK_function(uint8_t num)
@@ -2883,7 +2882,7 @@ static void udf_Meter_Process(uint8_t *meter_data, uint16_t data_len)
                 SETdata_index = 0;
                 memset(saveSETdata, 0, sizeof(saveSETdata));
                 udf_Rafael_data(TASK_ID, 0xB2, (char *)&meter_data[0], 3,
-                                uart_len1); // ���]��4g
+                                uart_len1); // Packaged for 4G
             }
             else if (pt[0] == 0xC5 && pt[3] != 0 &&
                      SET_TOU_C2_Start != 0) // tou_c2 ok

@@ -42,7 +42,7 @@ enum ranks
 
 #define EMIT(x) { if (o < n) { *q++ = (x); } o++; }
 
-static bool g_debug_flash = false;
+static bool g_debug_flash = true;
 
 static size_t
 format_int(char *q, size_t n, uintmax_t val, unsigned int flags,

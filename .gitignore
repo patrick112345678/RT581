@@ -1,3 +1,13 @@
+# Keil projects
+*.opt
+*.uvopt
+*.uvgui
+*.uvgui.*
+*.uvguix.*
+RTE/
+Listings/
+Objects/
+
 .vscode
 .repo
 .cache

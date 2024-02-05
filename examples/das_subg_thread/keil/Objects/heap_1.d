@@ -110,26 +110,4 @@
   ..\..\..\components\network\thread\subg_openthread\src\core\config\time_sync.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\config\tmf.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\config\openthread-core-config-check.h \
-  ..\..\..\components\network\thread\openthread_port\include\openthread-core-rafael-config-check.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\stddef.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stddef.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\__nullptr \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\const_cast.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\non_copyable.hpp \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\string.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\code_utils.hpp \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\error.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\toolchain.h \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\arg_macros.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\debug.hpp \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\ctype.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\ctype.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\stdio.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\misc.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\instance.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\stdlib.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\logging.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdarg.h
+  ..\..\..\components\network\thread\openthread_port\include\openthread-core-rafael-config-check.h

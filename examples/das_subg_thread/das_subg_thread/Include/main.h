@@ -10,11 +10,11 @@
 #include <openthread_port.h>
 
 #if OPENTHREAD_CONFIG_RADIO_915MHZ_OQPSK_SUPPORT
-#define THREAD_CHANNEL      3
+#define THREAD_CHANNEL      4
 #else
 #define THREAD_CHANNEL      11
 #endif
-#define THREAD_PANID        0x6767
+#define THREAD_PANID        0xff01
 #define THREAD_UDP_PORT     5678
 #define THREAD_COAP_PORT    (THREAD_UDP_PORT + 2)
 

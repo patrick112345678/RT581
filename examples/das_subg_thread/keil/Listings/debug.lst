@@ -2038,9 +2038,9 @@ debug_flag_get:
 	.fnend
                                         @ -- End function
 	.type	g_debug_flash,%object           @ @g_debug_flash
-	.section	.bss.g_debug_flash,"aw",%nobits
+	.section	.data.g_debug_flash,"aw",%progbits
 g_debug_flash:
-	.byte	0                               @ 0x0
+	.byte	1                               @ 0x1
 	.size	g_debug_flash, 1
 
 	.type	string,%object                  @ @string

@@ -189,6 +189,7 @@
   ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\misc.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\common\instance.hpp \
   ..\..\..\components\network\thread\subg_openthread\include\openthread\heap.h \
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\memory.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\common\as_core_type.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\common\extension.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\common\log.hpp \
@@ -255,7 +256,6 @@
   ..\..\..\components\network\thread\subg_openthread\src\core\meshcop\dtls.hpp \
   ..\..\..\components\network\thread\subg_openthread\third_party\mbedtls\repo\include\mbedtls\net_sockets.h \
   ..\..\..\components\network\thread\subg_openthread\third_party\mbedtls\mbedtls-config.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\memory.h \
   ..\..\..\components\network\thread\subg_openthread\third_party\mbedtls\repo\include\mbedtls\check_config.h \
   ..\..\..\components\network\thread\subg_openthread\third_party\mbedtls\repo\include\mbedtls\ssl.h \
   ..\..\..\components\network\thread\subg_openthread\third_party\mbedtls\repo\include\mbedtls\bignum.h \

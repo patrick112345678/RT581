@@ -133,17 +133,17 @@
   ..\..\..\components\network\thread\subg_openthread\src\core\common\settings_driver.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\common\error.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\utils\flash.hpp \
+  ..\..\..\components\network\thread\subg_openthread\src\core\crypto\ecdsa.hpp \
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\crypto.h \
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\crypto.h \
+  ..\..\..\components\network\thread\subg_openthread\src\core\crypto\sha256.hpp \
+  ..\..\..\components\network\thread\subg_openthread\src\core\common\as_core_type.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\common\debug.hpp \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\ctype.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\ctype.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\stdio.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h \
   ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\misc.h \
-  ..\..\..\components\network\thread\subg_openthread\src\core\crypto\ecdsa.hpp \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\crypto.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\crypto.h \
-  ..\..\..\components\network\thread\subg_openthread\src\core\crypto\sha256.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\as_core_type.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\common\code_utils.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\common\arg_macros.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\common\type_traits.hpp \
@@ -323,6 +323,7 @@
   ..\..\..\components\network\thread\subg_openthread\src\core\net\nat64_translator.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\net\nd_agent.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\net\sntp_client.hpp \
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\sntp.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\net\srp_client.hpp \
   ..\..\..\components\network\thread\subg_openthread\include\openthread\srp_client.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\thread\network_data_service.hpp \

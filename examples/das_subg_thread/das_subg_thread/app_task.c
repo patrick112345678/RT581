@@ -22,7 +22,6 @@ static void ot_stateChangeCallback(otChangedFlags flags, void *p_context)
 {
     otInstance *instance = (otInstance *)p_context;
     uint8_t *p;
-
     if (flags & OT_CHANGED_THREAD_ROLE)
     {
 
@@ -93,44 +92,28 @@ static void app_udp_cb(otMessage *otMsg, const otMessageInfo *otInfo)
 
         memset(p, 0x0, len);
         otMessageRead(otMsg, otMessageGetOffset(otMsg), p, len);
-        if (!das_hex_cmd_status_check())
-        {
-            log_info("Received len     : %d ", len);
-            log_info("Received ip      : %s ", string);
-            log_info("Received port    : %d ", otInfo->mSockPort);
+        /* print payload*/
+        log_info("Received len     : %d ", len);
+        log_info("Received ip      : %s ", string);
+        log_info("Received port    : %d ", otInfo->mSockPort);
 
-            log_info_hexdump("Received Message ", p, len);
-        }
-        else
+        log_info_hexdump("Received Message ", p, len);
+        /*check is udp ack data*/
+        if (memcmp(&p, "ACK", sizeof(char) * 3) != 0)
         {
-            /*check is udp ack data*/
-            if (memcmp(&p, "ACK", sizeof(char) * 3) != 0)
+            if (otInfo->mSockAddr.mFields.m8[0] == 0xff)
             {
-#if 0 /*DAS data have ip addr*/
-                /* print ip*/
-                das_hex_cmd_get_udp_ip(string, strlen(string));
-                Delay_us(49999);
-#endif
-                /* print payload*/
-                das_hex_cmd_get_udp_received_data(p, len);
-
-                if (otInfo->mSockAddr.mFields.m8[0] == 0xff)
+                if (otInfo->mSockAddr.mFields.m8[1] == 0x02 || otInfo->mSockAddr.mFields.m8[1] == 0x03)
                 {
-                    if (otInfo->mSockAddr.mFields.m8[1] == 0x02 || otInfo->mSockAddr.mFields.m8[1] == 0x03)
-                    {
-                        is_multicast = true;
-                    }
-                }
-
-                if (!is_multicast)
-                {
-                    memcpy((char *)p, "ACK", sizeof(char) * 3);
-                    app_udpSend(otInfo->mSockPort, otInfo->mPeerAddr, p, 3);
+                    is_multicast = true;
                 }
             }
-            else
+            if (!is_multicast)
             {
-                das_hex_cmd_udp_ack();
+                memcpy((char *)p, "ACK", sizeof(char) * 3);
+                printf("check 1 \r\n");
+                app_udpSend(otInfo->mSockPort, otInfo->mPeerAddr, p, 3);
+                printf("check 2 \r\n");
             }
         }
     } while (0);
@@ -170,7 +153,7 @@ void otrInitUser(otInstance *instance)
 
     App_Dataset.mActiveTimestamp.mSeconds = 0;
     App_Dataset.mComponents.mIsActiveTimestampPresent = true;
-#if 0 //use dataset flash 
+#if 1 //use dataset flash 
     /* Set Channel */
     App_Dataset.mChannel = THREAD_CHANNEL;
     App_Dataset.mComponents.mIsChannelPresent = true;

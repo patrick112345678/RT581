@@ -25,6 +25,7 @@ void otPlatLog(otLogLevel aLogLevel, otLogRegion aLogRegion, const char *aFormat
     va_start(argp, aFormat);
     vprintf(aFormat, argp);
     va_end(argp);
+    printf("\r\n");
 }
 #else
 extern void vprint(const char *fmt, va_list argp);
