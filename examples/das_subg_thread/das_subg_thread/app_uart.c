@@ -23,10 +23,6 @@
 //=============================================================================
 //                  Constant Definition
 //=============================================================================
-#define UART_NOTIFY_ISR(ebit)                 (g_uart_evt_var |= ebit); __uart_signal()
-#define UART_NOTIFY(ebit)                     enter_critical_section(); g_uart_evt_var |= ebit; leave_critical_section(); __uart_signal()
-#define UART_GET_NOTIFY(ebit)                 enter_critical_section(); ebit = g_uart_evt_var; g_uart_evt_var = UART_EVENT_NONE; ; leave_critical_section()
-
 #define UART1_OPERATION_PORT 1
 HOSAL_UART_DEV_DECL(uart1_dev, UART1_OPERATION_PORT, 4, 5, UART_BAUDRATE_115200)
 
@@ -50,19 +46,6 @@ typedef struct uart_io
     uint8_t uart_cache[RX_BUFF_SIZE];
 } uart_io_t;
 
-typedef enum
-{
-    UART_EVENT_NONE                       = 0,
-
-    UART1_EVENT_UART_IN                    = 0x00000002,
-    UART2_EVENT_UART_IN                    = 0x00000004,
-    UART_EVENT_UART_OUT                    = 0x00000008,
-    UART_EVENT_UART_OUT_DONE               = 0x00000010,
-
-    UART_EVENT_ALL                         = 0xffffffff,
-} uart_event_t;
-
-
 typedef struct
 {
     uint8_t port;
@@ -73,8 +56,6 @@ typedef struct
 //=============================================================================
 //                  Global Data Definition
 //=============================================================================
-static uart_event_t g_uart_evt_var;
-static TaskHandle_t app_uart_taskHandle = NULL;
 static QueueHandle_t app_uart_handle;
 static uart_io_t g_uart1_rx_io = { .start = 0, .end = 0, };
 static uart_io_t g_uart2_rx_io = { .start = 0, .end = 0, };
@@ -89,31 +70,18 @@ static hosal_uart_dma_cfg_t txdam_cfg =
 //=============================================================================
 //                  Private Function Definition
 //=============================================================================
-static void __uart_signal(void)
-{
-    if (xPortIsInsideInterrupt())
-    {
-        BaseType_t pxHigherPriorityTaskWoken = pdTRUE;
-        vTaskNotifyGiveFromISR( app_uart_taskHandle, &pxHigherPriorityTaskWoken);
-    }
-    else
-    {
-        xTaskNotifyGive(app_uart_taskHandle);
-    }
-}
-
 static int __uart_tx_callback(void *p_arg)
 {
-    UART_NOTIFY_ISR(UART_EVENT_UART_OUT_DONE);
+    APP_EVENT_NOTIFY_ISR(EVENT_UART_UART_OUT_DONE);
     return 0;
 }
 
-static void __uart_queue_send(uart_event_t evt)
+static void __uart_queue_send(app_task_event_t evt)
 {
     _app_uart_data_t uart_data;
     static uint32_t __tx_done = 1;
 
-    if ((UART_EVENT_UART_OUT_DONE & evt))
+    if ((EVENT_UART_UART_OUT_DONE & evt))
     {
         __tx_done = 1;
         return;
@@ -205,7 +173,7 @@ static int __uart1_rx_callback(void *p_arg)
         if (g_uart1_rx_io.recvLen != len)
         {
             g_uart1_rx_io.recvLen = len;
-            UART_NOTIFY_ISR(UART1_EVENT_UART_IN);
+            APP_EVENT_NOTIFY_ISR(EVENT_UART1_UART_IN);
         }
     }
 
@@ -281,7 +249,7 @@ static int __uart2_rx_callback(void *p_arg)
         if (g_uart2_rx_io.recvLen != len)
         {
             g_uart2_rx_io.recvLen = len;
-            UART_NOTIFY_ISR(UART2_EVENT_UART_IN);
+            APP_EVENT_NOTIFY_ISR(EVENT_UART2_UART_IN);
         }
     }
 
@@ -292,49 +260,26 @@ void __uart2_data_parse()
 {
     uint16_t len = 0;
     len = __uart2_read(g_tmp_buff);
-    log_info_hexdump("uart 2 parse", g_tmp_buff, len);
+    //log_info_hexdump("uart 2 parse", g_tmp_buff, len);
     udf_Meter_received_task(g_tmp_buff, len);
 }
 
-static void __uart_task(void *parameters_ptr)
+void __uart_task(app_task_event_t sevent)
 {
-    uart_event_t sevent = UART_EVENT_NONE;
-    /* Configure UART Rx interrupt callback function */
-    hosal_uart_callback_set(&uart1_dev, HOSAL_UART_RX_CALLBACK, __uart1_rx_callback, &uart1_dev);
-    hosal_uart_callback_set(&uart1_dev, HOSAL_UART_TX_DMA_CALLBACK, __uart_tx_callback, &uart1_dev);
-
-    hosal_uart_callback_set(&uart2_dev, HOSAL_UART_RX_CALLBACK, __uart2_rx_callback, &uart2_dev);
-    hosal_uart_callback_set(&uart2_dev, HOSAL_UART_TX_DMA_CALLBACK, __uart_tx_callback, &uart2_dev);
-
-    /* Configure UART to interrupt mode */
-    hosal_uart_ioctl(&uart1_dev, HOSAL_UART_MODE_SET, (void *)HOSAL_UART_MODE_INT_RX);
-    hosal_uart_ioctl(&uart2_dev, HOSAL_UART_MODE_SET, (void *)HOSAL_UART_MODE_INT_RX);
-
-    __NVIC_SetPriority(Uart1_IRQn, 2);
-    __NVIC_SetPriority(Uart2_IRQn, 2);
-
-    for (;;)
+    if ((EVENT_UART_UART_OUT & sevent) || (EVENT_UART_UART_OUT_DONE & sevent))
     {
-        UART_GET_NOTIFY(sevent);
-
-        if ((UART_EVENT_UART_OUT & sevent) || (UART_EVENT_UART_OUT_DONE & sevent))
-        {
-            __uart_queue_send(sevent);
-        }
-
-        if (UART1_EVENT_UART_IN & sevent)
-        {
-            __uart1_data_parse();
-        }
-
-        if (UART2_EVENT_UART_IN & sevent)
-        {
-            __uart2_data_parse();
-        }
-
-        ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+        __uart_queue_send(sevent);
     }
 
+    if (EVENT_UART1_UART_IN & sevent)
+    {
+        __uart1_data_parse();
+    }
+
+    if (EVENT_UART2_UART_IN & sevent)
+    {
+        __uart2_data_parse();
+    }
 }
 
 int app_uart_data_send(uint8_t u_port, uint8_t *p_data, uint16_t data_len)
@@ -349,7 +294,7 @@ int app_uart_data_send(uint8_t u_port, uint8_t *p_data, uint16_t data_len)
         uart_data.dlen = data_len;
         while (xQueueSend(app_uart_handle, (void *)&uart_data, portMAX_DELAY) != pdPASS);
 
-        UART_NOTIFY(UART_EVENT_UART_OUT);
+        APP_EVENT_NOTIFY(EVENT_UART_UART_OUT);
     }
 
     return 0;
@@ -357,17 +302,23 @@ int app_uart_data_send(uint8_t u_port, uint8_t *p_data, uint16_t data_len)
 
 void app_uart_init(void)
 {
-    BaseType_t xReturned;
-
     /*Init UART In the first place*/
     hosal_uart_init(&uart1_dev);
     hosal_uart_init(&uart2_dev);
 
     app_uart_handle = xQueueCreate(16, sizeof(_app_uart_data_t));
 
-    xReturned = xTaskCreate(__uart_task, "app_uart_task", 1024, NULL, configMAX_PRIORITIES - 2, &app_uart_taskHandle);
-    if ( xReturned != pdPASS )
-    {
-        log_error("task create fail\n");
-    }
+    /* Configure UART Rx interrupt callback function */
+    hosal_uart_callback_set(&uart1_dev, HOSAL_UART_RX_CALLBACK, __uart1_rx_callback, &uart1_dev);
+    hosal_uart_callback_set(&uart1_dev, HOSAL_UART_TX_DMA_CALLBACK, __uart_tx_callback, &uart1_dev);
+
+    hosal_uart_callback_set(&uart2_dev, HOSAL_UART_RX_CALLBACK, __uart2_rx_callback, &uart2_dev);
+    hosal_uart_callback_set(&uart2_dev, HOSAL_UART_TX_DMA_CALLBACK, __uart_tx_callback, &uart2_dev);
+
+    /* Configure UART to interrupt mode */
+    hosal_uart_ioctl(&uart1_dev, HOSAL_UART_MODE_SET, (void *)HOSAL_UART_MODE_INT_RX);
+    hosal_uart_ioctl(&uart2_dev, HOSAL_UART_MODE_SET, (void *)HOSAL_UART_MODE_INT_RX);
+
+    __NVIC_SetPriority(Uart1_IRQn, 2);
+    __NVIC_SetPriority(Uart2_IRQn, 2);
 }

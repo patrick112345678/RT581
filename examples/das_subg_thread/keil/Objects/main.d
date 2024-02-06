@@ -90,4 +90,8 @@
   ..\..\..\components\network\thread\subg_openthread\include\openthread\icmp6.h \
   ..\..\..\components\network\thread\subg_openthread\include\openthread\cli.h \
   ..\..\..\components\network\thread\subg_openthread\include\openthread\ncp.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\coap.h
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\coap.h \
+  ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\semphr.h \
+  ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\queue.h \
+  ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\task.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\time.h

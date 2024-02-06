@@ -145,8 +145,11 @@
   ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\mpu_wrappers.h \
   ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\task.h \
   ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\list.h \
-  ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\timers.h \
+  ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\semphr.h \
+  ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\queue.h \
   ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\task.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\time.h \
+  ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\timers.h \
   ..\..\..\components\utility\log\log.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h \
   ..\..\..\components\utility\utility\Inc\util_log.h \

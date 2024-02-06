@@ -50,7 +50,7 @@ gpio_31_isr_handle_cb:
 	.section	.text.app_main,"ax",%progbits
 	.hidden	app_main                        @ -- Begin function app_main
 	.globl	app_main
-	.p2align	2
+	.p2align	1
 	.type	app_main,%function
 	.code	16                              @ @app_main
 	.thumb_func
@@ -102,43 +102,12 @@ app_main:
 	bl	pin_set_pullopt
 .Ltmp8:
 	.loc	4 37 5                          @ ../das_subg_thread/main.c:37:5
-	bl	app_uart_init
-.Ltmp9:
-	.loc	4 39 9                          @ ../das_subg_thread/main.c:39:9
-	bl	das_hex_cmd_status_check
-.Ltmp10:
-	.loc	4 39 9 is_stmt 0                @ ../das_subg_thread/main.c:39:9
-	cbz	r0, .LBB1_2
-.Ltmp11:
-@ %bb.1:
-	.loc	4 41 9 is_stmt 1                @ ../das_subg_thread/main.c:41:9
-	bl	das_hex_cmd_command_bootup
-.Ltmp12:
-	.loc	4 42 9                          @ ../das_subg_thread/main.c:42:9
-	bl	das_get_meter_id_init
-.Ltmp13:
-	.loc	4 0 9 is_stmt 0                 @ ../das_subg_thread/main.c:0:9
-	b	.LBB1_3
-.Ltmp14:
-.LBB1_2:
-	.loc	4 46 9 is_stmt 1                @ ../das_subg_thread/main.c:46:9
-	adr	r0, .LCPI1_0
-	bl	puts
-.Ltmp15:
-.LBB1_3:
-	.loc	4 49 5                          @ ../das_subg_thread/main.c:49:5
 	bl	app_task
-.Ltmp16:
-	.loc	4 50 5                          @ ../das_subg_thread/main.c:50:5
+.Ltmp9:
+	.loc	4 38 5                          @ ../das_subg_thread/main.c:38:5
 	movs	r0, #0
 	pop	{r7, pc}
-.Ltmp17:
-	.p2align	2
-@ %bb.4:
-	.loc	4 0 5 is_stmt 0                 @ ../das_subg_thread/main.c:0:5
-.LCPI1_0:
-.Lstr:
-	.asciz	"DAS SubG Thread Init ability FTD \n\r"
+.Ltmp10:
 .Lfunc_end1:
 	.size	app_main, .Lfunc_end1-app_main
 	.cfi_endproc

@@ -144,6 +144,10 @@
   ..\..\..\components\network\thread\subg_openthread\include\openthread\ncp.h \
   ..\..\..\components\network\thread\subg_openthread\include\openthread\coap.h \
   ..\..\..\components\network\thread\openthread_port\include\openthread_port.h \
+  ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\semphr.h \
+  ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\queue.h \
+  ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\task.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\time.h \
   ..\..\..\components\network\thread\subg_openthread\third_party\mbedtls\repo\include\mbedtls\gcm.h \
   ..\..\..\components\network\thread\subg_openthread\third_party\mbedtls\mbedtls-config.h \
   ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\memory.h \
@@ -152,7 +156,6 @@
   ..\..\..\components\network\thread\subg_openthread\third_party\mbedtls\repo\include\mbedtls\cipher.h \
   ..\..\..\components\network\thread\subg_openthread\third_party\mbedtls\repo\include\mbedtls\platform_util.h \
   ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\timers.h \
-  ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\task.h \
   ..\..\..\components\utility\uart_stdio\Inc\uart_stdio.h \
   ..\..\..\components\utility\cli\Inc\shell.h \
   ..\..\..\components\utility\cli\Inc\cli.h \

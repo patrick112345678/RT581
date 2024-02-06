@@ -34,18 +34,6 @@ int app_main(void)
     gpio_cfg_input(30, 0);
     pin_set_pullopt(29, MODE_PULLUP_10K);
 
-    app_uart_init();
-
-    if (das_hex_cmd_status_check())
-    {
-        das_hex_cmd_command_bootup();
-        das_get_meter_id_init();
-    }
-    else
-    {
-        log_info("DAS SubG Thread Init ability FTD \n");
-    }
-
     app_task();
     return 0;
 }

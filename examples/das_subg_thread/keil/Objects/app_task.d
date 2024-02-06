@@ -85,9 +85,11 @@
   ..\..\..\components\network\thread\subg_openthread\include\openthread\ncp.h \
   ..\..\..\components\network\thread\subg_openthread\include\openthread\coap.h \
   ..\..\..\components\network\thread\openthread_port\include\openthread_port.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\time.h \
   ..\..\..\components\utility\log\log.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h \
   ..\..\..\components\utility\utility\Inc\util_log.h \
   ..\..\..\components\utility\log\log_type.h \
   ..\..\..\components\utility\log\log_cfg.h \
-  ..\..\..\components\network\thread\openthread_port\include\ot_ota_handler.h
+  ..\..\..\components\network\thread\openthread_port\include\ot_ota_handler.h \
+  ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\timers.h

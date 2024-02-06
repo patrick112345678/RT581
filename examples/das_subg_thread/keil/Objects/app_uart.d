@@ -91,4 +91,5 @@
   ..\..\..\components\network\thread\subg_openthread\include\openthread\cli.h \
   ..\..\..\components\network\thread\subg_openthread\include\openthread\ncp.h \
   ..\..\..\components\network\thread\subg_openthread\include\openthread\coap.h \
-  ..\..\..\components\network\thread\openthread_port\include\openthread_port.h
+  ..\..\..\components\network\thread\openthread_port\include\openthread_port.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\time.h

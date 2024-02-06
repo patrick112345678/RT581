@@ -26,6 +26,8 @@
 #include "uart_stdio.h"
 #include "shell.h"
 #include "cli.h"
+#include <semphr.h>
+#include <time.h>
 //=============================================================================
 //                Private Definitions of const value
 //=============================================================================
@@ -42,11 +44,42 @@
 //=============================================================================
 #define QUEUE_SIZE 20
 #define COMMAND_LENGTH 1500
+
+typedef struct
+{
+    uint16_t dlen;
+    uint8_t *pdata;
+} _ELS61_Block_data_t ;
+
+static QueueHandle_t ELS61_Block_Queue_handle;
+// static unsigned char ELS61_Block_Queue[QUEUE_SIZE][COMMAND_LENGTH];
+//static unsigned char RF_Block_Queue[QUEUE_SIZE][COMMAND_LENGTH];
+static char Send_RF_lastcommand[1500];
+static int receiveIndex = 0;
+static uint8_t receivebusyflag = 0, RF_command_current_flag = 0, RF_send_retry = 0, RF_command_retry_count = 0;
 #define APP_COMMISSION_DATA_FLASH_START 0xF1000
 #define ConfigurationPage APP_COMMISSION_DATA_FLASH_START
+#define TEST_NOTIFICATION 1 // test 1:每次產生就發生 0:每天產生一次
 //=============================================================================
 //                Private Global Variables
 //=============================================================================
+time_t now_time;
+static uint8_t kek_chipher[24] = {0x8E, 0xAC, 0x01, 0x11, 0x05, 0x21, 0x15, 0xAA, 0x3A, 0x99, 0x22, 0x06, 0xF8, 0x7D, 0x63, 0x9B, 0x80, 0xC6, 0xE5, 0x07, 0xD8, 0xB1, 0xDC, 0x99}, kek_plaint[16];
+uint32_t now_timer, RTC_CNT;
+static uint8_t rememberAddressFlag = 0 ;
+static uint32_t PingMeterSec = 0;
+static uint8_t ondemand_busy = 0;
+static uint16_t KeyResCount = 0;
+static uint16_t RFCOUNT = 0, WaitBlockCount = 0;
+struct tm begin = {7, 16, 00, 16, 11 - 1, 2022 - 1900};
+static uint16_t cmdTXT_Len = 0, blockType = 0;
+static unsigned char selfAddress[4] = {0}; //for AM2 address now
+static unsigned char rememberAddress[4] = {0}; //Block used for reTransmit
+static unsigned char blockTXT[793] = {0}; //Block used for reconstruction
+static unsigned char cmdTXT[793] = {0};//Store data generated from all the function and Will be inserted into the RF_MessageQueue
+static uint8_t CheckFirewall = 1 ;
+static unsigned char VersionNumber[3] = {0x13, 0x0B, 0x01}, FirewallSetData[2] = {0}, FlowSetData[2] = {0}; //版本號 firewall設定值 流量設定值
+static uint8_t lengthCount = 0;
 static uint8_t actionkey_response[128], Key_Restart = 0;
 static uint8_t Broadcast_savebuff_flag = 0, Broadcast_flag = 0;
 static uint8_t continuebusytime = 120;
@@ -67,12 +100,12 @@ static uint8_t PingCheckMeter = 1; // 0:success 1:fail
 static uint8_t registerRetrytime = 1;
 static uint8_t receivebusytime = 3;
 static uint8_t Rafael_reset = 1;
+static uint8_t sendbusytime = 3;
 static uint8_t RFretrytime = 1;
 static uint8_t sst_flag = 0;
 static uint8_t start_dis = 0;
 static uint8_t sendbusyflag = 0;
-static uint8_t target_pos = 0;     // 1:leader 2:router 3:child
-static uint8_t read_targetpos = 0; // 1:did read status 0:didn't read status
+uint8_t target_pos = 0;     // 1:leader 2:router 3:child
 static uint8_t register_steps = 0; // am1 register flag
 static uint8_t riva_fix_cnt = 0;
 static uint8_t Verification_AA_done = 1;
@@ -92,7 +125,7 @@ static uint8_t EVENT_LOG_POWER_ON = 0, NOT_COMPLETELY_POWER_OFF = 0,
                POWER_ON_NOTIFICATION_FLAG = 0, POWERON_Restart = 0;
 static uint8_t CONTINUE_BUSY = 0; // Continuous transmission flag
 static uint8_t FLAG_PING_METER = 0;
-static uint8_t MAA_flag = 0;
+uint8_t MAA_flag = 0;
 static uint8_t MAAFIRST = 0;
 static uint8_t MC_done = 0;
 static uint8_t RE_AA = 0;
@@ -132,7 +165,6 @@ static int TASK_ID = 0;
 
 static size_t ipv6_length = 0;
 static size_t virtual_ipv6_length = 0;
-
 // Task code : Automatic meter reading, Number of tasks Reading tasks Do AA
 // before A3
 static uint8_t Tesk_ID = 0, On_Demand_ID = 0, Auto_Reading = 0, Task_count = 0,
@@ -282,12 +314,68 @@ uint8_t ELS61IOType = 0, ELS61inPointer = 0, ELS61outPointer = 0,
         ELS61_IO_Difference = 0, ELS61_MESSAGE_LOCK = 0, ELS_CSQ = 0,
         Get_CSQ_FLAG = 0;
 int Event_Notification;
+unsigned char Meter_ALL_ID[48] = {0x00};
+typedef enum
+{
+    DISC,
+    SNRM,
+    AARQ,
+    District_ID,
+    Customer_ID,
+    Meter_ID,
+    Server_CODE,
+    Get_time,
+    Preliminary_Work_Completed
+} MeterBootSteps;
+
+MeterBootSteps meterBootStep = DISC;
+int denominator = 0;
+uint8_t SuccessRole = 0;
+static uint8_t  SENCOND_REGISGER = 1, IPv6Flag = 0, HESKEY = 0, ack_flag = 0/*回傳註冊ack*/, RE_REG = 0;
+
+static uint8_t FIRST_POWER_ON_FLAG = 1, POWERONDATAREADY = 0;//首次上電 復電buff組裝完成
+static int flag_now_time = 0, flag_Power_Off_fifteen = 0, flag_loadprofile_it = 0, flag_midnight_it = 0, flag_Alt_it = 0, flag_MAA = 0, flag_event_notification = 0;
+//斷電紀錄 0:上電 1:斷電 15 秒 每小時主動讀loadprofile 午夜12點讀取midnight 每兩小時讀取ALT notification while 只跑一次
+static uint8_t registerCheck = 0, AAcheck = 0, A2_TIMESynchronize = 0, SETOUpket = 0, SQBCT = 0, A1_TIMESynchronize = 0;
+static char ipv6_output[40];
+static char Broadcast_ip[7] = {0x66, 0x66, 0x30, 0x33, 0x3a, 0x3a, 0x31};
+
 //=============================================================================
 //                Private Definition of Compare/Operation/Inline function/
 //=============================================================================
 //=============================================================================
 //                Functions
 //=============================================================================
+static void ReadFlashData_Normal(uint32_t ReadAddress, uint8_t *dest_Data, uint32_t num)
+{
+    int i = 0;
+    char strbuf[128];
+    while (i < num)
+    {
+        *(dest_Data + i) = *(__IO uint16_t *) ReadAddress;
+        ReadAddress += 2;//get even address
+
+        sprintf(strbuf, "%02X ", dest_Data[i]);
+        printf(strbuf);
+        i++;
+    }
+}
+static unsigned short calculate_checksum(char *data, int len)
+{
+    unsigned long sum = 0;
+    int i = 0, checksum1 = 0;
+    char strbuf[128];
+
+    for (i = 0; i < len; i++)
+    {
+        sum = sum + data[i];
+    }
+    checksum1 = sum % 256;
+    //      sprintf(strbuf, "checksum = %02X\n\r",checksum1);
+    //      printf(strbuf);
+    return checksum1;
+}
+
 static void WriteFlashData(uint32_t WriteAddress, unsigned char *data, uint8_t num)
 {
     static uint8_t program_data[0x100], read_buf[0x100];
@@ -483,6 +571,34 @@ static void _cli_cmd_factory_id_set(int argc, char **argv, cb_shell_out_t log_ou
         printf("\r\n");
     }
 }
+static uint8_t fan_number(void)
+{
+    char string[OT_IP6_ADDRESS_STRING_SIZE];
+    uint8_t message[5 + sizeof(string)];
+    uint8_t  i = 0;
+
+
+    otInstance *instance = otrGetInstance();
+    if (instance)
+    {
+        otIp6AddressToString(otThreadGetMeshLocalEid(instance), string, sizeof(string));
+    }
+
+    if (string[0] != '\0')
+    {
+        while (string[i] != '\0')
+        {
+            ipv6_output[i] = string[i];
+            i++;
+        }
+        register_steps = 1;
+        log_info("IPV6 : %s", ipv6_output);
+    }
+    else
+    {
+        fan_number();
+    }
+}
 
 static unsigned short UpdateCRC16(unsigned short crc, unsigned char value)
 {
@@ -585,41 +701,188 @@ static void udf_Rafael_data(uint16_t task_id, uint8_t type, char *meter_data,
     uint8_t *payload = NULL;
     otIp6Address LeaderIp;
 
-    otIp6AddressToString(otThreadGetMeshLocalEid(instance), string,
-                         sizeof(string));
-    LeaderIp = *otThreadGetRloc(instance);
-    LeaderIp.mFields.m8[14] = 0xfc;
-    LeaderIp.mFields.m8[15] = 0x00;
-}
-
-payload_len = 1 + strlen(string) + 1 + 2 + meter_len;
-
-payload = pvPortMalloc(payload_len);
-if (payload)
-{
-    uint8_t *tmp = payload;
-    *tmp++ = strlen(string);
-    memcpy(tmp, string, strlen(string));
-    tmp += strlen(string);
-    *tmp++ = type;
-    *tmp++ = task_id / 256;
-    *tmp++ = task_id % 256;
-    memcpy(tmp, meter_data, meter_len);
-    tmp += meter_len;
-    if ((tmp - payload) != payload_len)
+    otInstance *instance = otrGetInstance();
+    if (instance)
     {
-        printf("send lens error %u %u \n", (tmp - payload), payload_len);
+        otIp6AddressToString(otThreadGetMeshLocalEid(instance), string,
+                             sizeof(string));
+        LeaderIp = *otThreadGetRloc(instance);
+        LeaderIp.mFields.m8[14] = 0xfc;
+        LeaderIp.mFields.m8[15] = 0x00;
     }
-    else
+    payload_len = 1 + strlen(string) + 1 + 2 + meter_len;
+
+    payload = pvPortMalloc(payload_len);
+    if (payload)
     {
-        app_udpSend(THREAD_UDP_PORT, LeaderIp, payload, payload_len);
+        uint8_t *tmp = payload;
+        *tmp++ = strlen(string);
+        memcpy(tmp, string, strlen(string));
+        tmp += strlen(string);
+        *tmp++ = type;
+        *tmp++ = task_id / 256;
+        *tmp++ = task_id % 256;
+        memcpy(tmp, meter_data, meter_len);
+        tmp += meter_len;
+        if ((tmp - payload) != payload_len)
+        {
+            printf("send lens error %u %u \n", (tmp - payload), payload_len);
+        }
+        else
+        {
+            //                   if ((flag_Power_Off == 0) && (CONTINUE_BUSY == 0) && (POWERONFLAG == 0))
+            //                   {
+            //                              // 检查队列是否已满
+            //                              if (sendIndex >= QUEUE_SIZE)
+            //                              {
+            //                                      // 队列已满，可能需要记录日志或执行其他操作
+            //                                      sprintf(strbuf, "\n\r Send Command buffer full, %d / %d\n\r", sendIndex, QUEUE_SIZE);
+            //                                      printf(strbuf);
+            //                                      return;
+            //                              }
+            //
+            //                              // 将数据加入队列
+            //                              memcpy(RF_Block_Queue[sendIndex], payload, payload_len); // 注意：确保队列中每个元素的大小足以存储 payload
+            //                              sendIndex++; // 更新队列索引
+            //                      }
+            //                      else
+            //                      {
+            //                              // 直接发送数据的逻辑
+            //                              app_udpSend(THREAD_UDP_PORT, LeaderIp, payload, payload_len);
+            //                      }
+            app_udpSend(THREAD_UDP_PORT, LeaderIp, payload, payload_len);
+        }
+    }
+
+    if (payload)
+    {
+        vPortFree(payload);
     }
 }
 
-if (payload)
+void register_command(void)
 {
-    vPortFree(payload);
+    int i = 0;
+    char register_buff[100];
+    printf("REGISTER\r\n");
+
+    for (i = 0; i < 26; i++)
+    {
+        register_buff[i] = Meter_ALL_ID[i];
+    }
+    udf_Rafael_data(1, 1, &register_buff[0], 3, 38);
+
+    register_steps = 2;
 }
+
+static void flashsetfuntion(unsigned char *flashdata)
+{
+    int i = 0, j = 0;
+    char flashbuffer[151] = {0}, strbuf[128];
+    ReadFlashData_Normal(ConfigurationPage, Configuration_Page, 142);//0615
+    printf("\nConfiguration_Page[12] =");
+    for (i = 12, j = 0; i <= 26; i++, j++)
+    {
+        Configuration_Page[i] = flashdata[j];
+        sprintf(strbuf, " %02X ", flashdata[j]);
+        printf(strbuf);
+    }
+    printf("\n");
+    printf("Configuration_Page[96] =");
+    for (i = 96, j = 15; i <= 97; i++, j++)
+    {
+        Configuration_Page[i] = flashdata[j];
+        sprintf(strbuf, " %02X ", flashdata[j]);
+        printf(strbuf);
+    }
+    printf("\n");
+    printf("Configuration_Page[138] =");
+    for (i = 138, j = 17; i <= 141; i++, j++)
+    {
+        Configuration_Page[i] = flashdata[j];
+        sprintf(strbuf, " %02X ", flashdata[j]);
+        printf(strbuf);
+    }
+    printf("\n");
+
+    WriteFlashData(ConfigurationPage, Configuration_Page, 143);
+
+    Leaderweight_num = Configuration_Page[12];
+
+    //networkid
+    Networkidtime_num = Configuration_Page[13] * 256 +  Configuration_Page[14];
+
+    //panid
+    PANID_num = Configuration_Page[15] * 256 +  Configuration_Page[16];
+
+    //channel
+    Channel_num = Configuration_Page[17];
+
+    //send els61 timeout
+    sendbusytime = Configuration_Page[18] * 256 +  Configuration_Page[19];
+
+    //send rf timeout
+    RFretrytime =  Configuration_Page[20] * 256 +  Configuration_Page[21];
+
+    //receive timeout
+    receivebusytime = Configuration_Page[22] * 256 +  Configuration_Page[23];
+
+    //continue busy timeout
+    continuebusytime =  Configuration_Page[24] * 256 +  Configuration_Page[25];
+
+    LoadprofileAB = Configuration_Page[26];//0616
+
+    ondemandreadingtime = Configuration_Page[96] * 256 + Configuration_Page[97];
+
+    keyObtainedStatusIncorrecttimeout = Configuration_Page[138];
+
+    registerRetrytime = Configuration_Page[139];
+
+    Rafael_reset = Configuration_Page[140];
+
+    Broadcastmeterdelay = Configuration_Page[141];
+
+
+    ReadFlashData_Normal(ConfigurationPage, Configuration_Page, 142);//0615
+
+    flashbuffer[0] = 0x01;
+    for (i = 0; i < 150; i++)
+    {
+        flashbuffer[i + 1] = Configuration_Page[i];
+    }
+    udf_Rafael_data(TASK_ID, 0xDD, &flashbuffer[0], 3, 143);
+
+}
+
+static void _cli_cmd_get_fan_status(int argc, char **argv, cb_shell_out_t log_out, void *pExtra)
+{
+    int i = 0;
+    log_info("The real IPv6 address is: %s", ipv6_output);
+    struct tm *p;
+    p = localtime(&now_timer);
+    log_info("%d / %d / %d   %d : %d : %d\n", (p->tm_year + 1900), (p->tm_mon + 1), p->tm_mday, p->tm_hour, p->tm_min, p->tm_sec );
+    switch (target_pos)
+    {
+    case 0:
+        printf("Disabled\r\n");
+        break;
+    case 1:
+        printf("Detached\r\n");
+        break;
+    case 2:
+        printf("Child\r\n");
+        break;
+    case 3:
+        printf("Router\r\n");
+        break;
+    case 4:
+        printf("Leader\r\n");
+        break;
+    }
+    log_info("SuccessRole = %d MAA_flag = %d", SuccessRole, MAA_flag);
+    log_info("RTC_CNT = %d", RTC_CNT);
+    register_command();
+
 }
 
 static void ACK_function(uint8_t num)
@@ -750,7 +1013,7 @@ static void udf_Send_AARQ(uint8_t type)
         }
 
         printf("\n\r");
-        app_uart_data_send(1, no_en_aarq, sizeof(no_en_aarq));
+        app_uart_data_send(2, no_en_aarq, sizeof(no_en_aarq));
     }
     else   // if(type==2/*get_id_done==1*/)
     {
@@ -862,7 +1125,7 @@ static void udf_Send_AARQ(uint8_t type)
         }
         printf("\n\r");
 
-        app_uart_data_send(1, cmdbuf, sizeof(cmdbuf));
+        app_uart_data_send(2, cmdbuf, sizeof(cmdbuf));
     }
 }
 
@@ -944,7 +1207,7 @@ static void udf_Management_Client(uint8_t type)
     }
     printf("\n\r");
 
-    app_uart_data_send(1, cmdbuf, sizeof(cmdbuf));
+    app_uart_data_send(2, cmdbuf, sizeof(cmdbuf));
 }
 
 static void udf_Han_Client(void)
@@ -1025,7 +1288,7 @@ static void udf_Han_Client(void)
     }
     printf("\n\r");
 
-    app_uart_data_send(1, cmdbuf, sizeof(cmdbuf));
+    app_uart_data_send(2, cmdbuf, sizeof(cmdbuf));
 }
 
 static void Decide_Once(unsigned char *pt, unsigned char *meter_data)
@@ -1247,7 +1510,7 @@ static void udf_GetData_Request(uint8_t *obis_data, uint16_t ic_index,
         }
         printf("\n\r");
 
-        app_uart_data_send(1, cmdbuf, sizeof(cmdbuf));
+        app_uart_data_send(2, cmdbuf, sizeof(cmdbuf));
     }
     else
     {
@@ -1343,7 +1606,7 @@ static void udf_GetData_Request(uint8_t *obis_data, uint16_t ic_index,
         }
         printf("\n\r");
 
-        app_uart_data_send(1, cmdbuf, sizeof(cmdbuf));
+        app_uart_data_send(2, cmdbuf, sizeof(cmdbuf));
     }
 }
 
@@ -1442,7 +1705,233 @@ static void udf_Get_New_Number_of_pens(uint16_t ic_count, uint8_t *obis,
     }
     printf("\n\r");
 
-    app_uart_data_send(1, cmdbuf, sizeof(cmdbuf));
+    app_uart_data_send(2, cmdbuf, sizeof(cmdbuf));
+}
+
+static void Check_Demand_Type(unsigned char *obis)
+{
+    if (obis[0] == 0x07 && obis[1] == 0x01 && obis[2] == 0x00 &&
+            obis[3] == 0x63 && obis[4] == 0x01 && obis[5] == 0x00 && obis[6] == 0xFF )//loadprofile
+    {
+        On_Demand_Type = 3;
+    }
+    else if (obis[0] == 0x07 && obis[1] == 0x00 && obis[2] == 0x00 &&
+             obis[3] == 0x15 && obis[4] == 0x00 && obis[5] == 0x05 && obis[6] == 0xFF )//Midnight
+    {
+        On_Demand_Type = 4;
+    }
+    else if (obis[0] == 0x07 && obis[1] == 0x00 && obis[2] == 0x00 &&
+             obis[3] == 0x15 && obis[4] == 0x00 && obis[5] == 0x08 && obis[6] == 0xFF )//ALT
+    {
+        On_Demand_Type = 5;
+    }
+    else if (obis[0] == 0x07 && obis[1] == 0x00 && obis[2] == 0x00 &&
+             obis[3] == 0x63 && obis[4] == 0x62 && obis[5] == 0x00 && obis[6] == 0xFF )//Event Log
+    {
+        On_Demand_Type = 6;
+    }
+    else if (obis[0] == 0x07 && obis[1] == 0x00 && obis[2] == 0x00 &&
+             obis[3] == 0x15 && obis[4] == 0x00 && obis[5] == 0x07 && obis[6] == 0xFF)//»Ý¶q´_Âk
+    {
+        On_Demand_Type = 10;
+    }
+    else if (obis[0] == 0x0B && obis[1] == 0x00 && obis[2] == 0x00 &&
+             obis[3] == 0x0B && obis[4] == 0x00 && obis[5] == 0x00 && obis[6] == 0xFF)//special day
+    {
+        On_Demand_Type = 11;
+    }
+    else if (obis[0] == 0x14 && obis[1] == 0x00 && obis[2] == 0x00 &&
+             obis[3] == 0x0d && obis[4] == 0x00 && obis[5] == 0x00 && obis[6] == 0xFF)//Activity calendar for tou
+    {
+        On_Demand_Type = 12;
+    }
+    else //§Y®ÉREG
+    {
+        On_Demand_Type = 7;
+    }
+}
+static void On_Demand_date(uint16_t ic_count, unsigned char *obis_time_data) //®É¶¡­­¨îbuffer¶Ç°e
+{
+    uint16_t CRC_check;
+    unsigned char cmdbuf[] =
+    {
+        0x7E, 0xA0, 0x5D, 0x03, 0x23, 0x13, 0xF1, 0xF9, 0xE6, 0xE6, //[0-9]
+        0x00, 0xD0, 0x4F, 0x30, 0x00, 0x00, 0x00, 0x05, //[10-17]
+        0xC0, 0x01, 0x42, 0x00, //[18-21]
+        0x07, 0x01, 0x00, 0x63, 0x01, 0x00, 0xFF, 0x02,//[22-29]
+        0x01, 0x01, //[30-31]
+        0x02, 0x04, //[32-33]
+        0x02, 0x04, //[34-35]
+        0x12, 0x00, 0x08, //[36-38]
+        0x09, 0x06, 0x00, 0x00, 0x01, 0x00, 0x00, 0xFF, 0x0F, 0x02, 0x12, 0x00, 0x00, //[39-51]
+        0x19, 0x07, 0xE2, 0x07, 0x01, 0xFF, 0x01, 0x00, 0x00, 0xFF, 0x80, 0x00, 0x00, //[52-65]
+        0x19, 0x07, 0xE2, 0x07, 0x0a, 0xFF, 0x00, 0x00, 0x00, 0xFF, 0x80, 0x00, 0x00, //[65-79]
+        0x01, 0x00, //[80-81]
+        0xEA, 0xDB, 0x61, 0x8B, 0x34, 0x98, 0x1A, 0xBE, 0x16, 0x66, 0xF2, 0x12,
+        0xE3, 0x1E, 0x7E
+    };
+    int i/*,last_hours_time*/;
+    char strbuf[128];
+    unsigned char cipher[128], tag[16];
+    unsigned short crc16;
+    unsigned char ch;
+    uint8_t pt_len;
+    printf("obis_time_data = ");
+    for (i = 0; i < 27; i++)
+    {
+        sprintf(strbuf, "%02X ", obis_time_data[i]);
+        printf(strbuf);
+    }
+    for (i = 0; i <= 8; i++)
+    {
+        cmdbuf[i + 22] = obis_time_data[i];
+    }
+    //  sprintf(strbuf,"p_last = %d s ",p_last_hours_time);
+    //  printf(strbuf);
+    for (i = 53; i <= 60; i++)
+    {
+        cmdbuf[i] = obis_time_data[i - 44];    //9 10 11 12 13 14 15 16
+    }
+    for (i = 66; i <= 73; i++)
+    {
+        cmdbuf[i] = obis_time_data[i - 49];    //17 18 19 20 21 22 23 24 25
+    }
+
+
+    //  sprintf(strbuf,"loadprofile %d hours %d min %d sec \n",p->tm_hour,p->tm_min,p->tm_sec);
+    //  printf(strbuf);
+
+    CRC_check = CRC_COMPUTE((char *)&cmdbuf[1], 5);
+    cmdbuf [6] = CRC_check & 0xff;
+    cmdbuf [7] = (CRC_check >> 8) & 0xff;
+
+
+    // update buffer
+    cmdbuf[16] = (ic_count >> 8) & 0xFF;
+    cmdbuf[17] = ic_count & 0xFF;
+
+    cmdbuf[20] = ((ic_count - 3) % 0x40) + 0x40;
+
+    //uart_read_data2[44]
+
+    //      for(i = 0;i <= 7;i++) //­×§ï¤é´Á°t¦XFDM
+    //      {
+    //          cmdbuf[i + 54] = uart_read_data2[44+i];
+    //          cmdbuf[i + 68] = uart_read_data2[58+i];
+    //      }
+
+    // data encrypt
+    pt_len = cmdbuf[12] - 17;
+
+    for (i = 0; i < 4; i++)
+    {
+        tpc_c_iv[8 + i] = cmdbuf[14 + i];
+    }
+
+    udf_AES_GCM_Encrypt(tpc_dk, tpc_gcm_ak, tpc_c_iv, &cmdbuf[18], &cipher[0], &tag[0], pt_len, 17);
+
+    for (i = 0; i < pt_len; i++) // update cipher to buffer
+    {
+        cmdbuf[18 + i] = cipher[i];
+    }
+
+    for (i = 0; i < 12; i++) // update tag to buffer
+    {
+        cmdbuf[18 + pt_len + i] = tag[i];
+    }
+
+    // CRC
+    crc16 = 0xFFFF;
+    for (i = 1; i < sizeof(cmdbuf) - 3; i++)
+    {
+        ch = cmdbuf[i];
+        crc16 = UpdateCRC16(crc16, ch);
+    }
+
+    crc16 = ~crc16;
+    cmdbuf[sizeof(cmdbuf) - 3] = crc16 & 0xFF;
+    cmdbuf[sizeof(cmdbuf) - 2] = (crc16 >> 8) & 0xFF;
+
+    for (i = 0; i < sizeof(cmdbuf); i++)
+    {
+        sprintf(strbuf, "%02X ", cmdbuf[i]);
+        printf(strbuf);
+    }
+    printf("\n\r");
+
+    app_uart_data_send(2, cmdbuf, sizeof(cmdbuf));
+    printf("COMMAND SENT METER!!\n\r");
+}
+
+static void receive_queue(char *recvbuf, int receive_length)
+{
+    receivebusyflag = 1;
+    receivebusyflagstart = (uint32_t)now_time + RTC_CNT;
+    //將命令添加到接收對列
+
+    _ELS61_Block_data_t ELS61_Block_data;
+
+    ELS61_Block_data.pdata =  pvPortMalloc(receive_length);
+    if (ELS61_Block_data.pdata)
+    {
+        memcpy(ELS61_Block_data.pdata, (uint8_t *)recvbuf, receive_length);
+        ELS61_Block_data.dlen = receive_length;
+        while (xQueueSend(ELS61_Block_Queue_handle, (void *)&ELS61_Block_data, portMAX_DELAY) != pdPASS);
+
+        APP_EVENT_NOTIFY(EVENT_ELS61_BLOCK_QUEUE);
+    }
+
+    receiveIndex++;
+    receivebusyflag = 0;
+    receivebusyflagstart = 0;
+
+}
+static void AC_Command(char *recvbuf)
+{
+    unsigned char obis_number_of_pens_data[18] = {0};
+    unsigned char obis_time_data[24] = {0};
+    unsigned char obis_data[10] = {   0x00, 0x07, 0x01, 0x00,  0x63, 0x01, 0x00, 0xFF, 0x02, 0x00};
+    int i = 0;
+    char strbuf[128];
+    On_Demand_ID = 1;
+    printf("Check_Demand_Type:\n");
+    for (i = 0; i < 30; i++)
+    {
+        sprintf(strbuf, "%02X ", recvbuf[i]);
+        printf(strbuf);
+    }
+    printf("\n");
+    Check_Demand_Type((unsigned char *)&recvbuf[0]);
+
+
+    if (recvbuf[8] == 0x00)
+    {
+        for (i = 0 ; i <= 8; i++)
+        {
+            obis_data[i + 1] = recvbuf[i];
+        }
+        udf_GetData_Request(obis_data, ic_count, 1);
+    }
+    else if (recvbuf[8] == 0x01)
+    {
+        for (i = 0 ; i <= 24; i++)
+        {
+            obis_time_data[i] = recvbuf[i];
+        }
+        On_Demand_date(ic_count, &obis_time_data[0]);
+    }
+    else if (recvbuf[8] == 0x02)
+    {
+        for (i = 0; i <= 18; i++)
+        {
+            obis_number_of_pens_data[i] = recvbuf[i];
+        }
+        udf_Get_New_Number_of_pens(ic_count, &obis_number_of_pens_data[0], 0);
+    }
+    else
+    {
+        printf("OBIS CODE ERROR!\n\r");
+    }
 }
 
 static void udf_SMIP_Res(uint8_t *meter_data)
@@ -2022,7 +2511,7 @@ static void udf_Set_Transmit(unsigned char obisTXT[], unsigned char plainTXT[],
     }
     printf("\n\r");
 
-    app_uart_data_send(1, cmdTXT, (frameLen + 2));
+    app_uart_data_send(2, cmdTXT, (frameLen + 2));
 }
 
 static void Set_TOU_C2(uint8_t start)
@@ -2091,7 +2580,7 @@ void SQBrespone(uint8_t type, unsigned char *auto_data)
     ondemand_idle = 0; // frank,201811
 }
 
-void set_Test()
+void set_Test(void)
 {
     int sendPoint = 700, i = 0, lastnum = 0;
     unsigned char TOUobisTXT[9] = {0};
@@ -2145,6 +2634,101 @@ void set_Test()
         }
     }
 }
+
+static void Set_Command_Select(uint8_t type_Cx, char *command_pk)
+{
+    uint16_t rf_Len = 0, ip_len = 0;
+    uint16_t dataLen = 0;
+    uint16_t i = 0;
+    unsigned char obis[9];
+    //  14 00 00 0D 00 00 FF 09 00
+    printf("\n\rIn Set_Command_Select\n\r");
+    rf_Len = (command_pk[0] << 8) + command_pk[1];
+    ip_len = command_pk[3];
+
+    if (type_Cx == 0xC1) //general set
+    {
+        dataLen = (rf_Len - 15 - 12 - ip_len); //6-12-9( header/ tag/ obis)
+        SET_TOU_C1_INDEX = 1;
+        for (i = 0; i < 9; i++)
+        {
+            obis[i] = command_pk[i + 7 + ip_len];
+        }
+        udf_Set_Transmit(obis, &command_pk[16 + ip_len], dataLen,   0, 0);
+    }
+    else if (type_Cx == 0xC2) //combine tou set
+    {
+        if (command_pk[ip_len + 7] == 0) //1 pk set
+        {
+            //[9],³]©w´Xµ§ [10][11,12]
+
+            dataLen = rf_Len - 8 - 12 - ip_len;
+            memcpy( saveSETdata, (void *)&command_pk[ip_len + 9], dataLen);
+            SETdata_index = 0;
+            Set_TOU_C2(SET_TOU_C2_Start = 1); //start=1
+        }
+        else if (command_pk[ip_len + 7] == 1) //transmit
+        {
+            if (command_pk[ip_len + 8] == 1) //Äò¶Ç²Ä¤@¥]
+            {
+                //
+                SETdata_RECEIVE_Tatol_LEN = 0;
+                memset(saveSETdata, 0, sizeof(saveSETdata));
+            }
+
+            dataLen = rf_Len - 8 - 12 - ip_len;
+            memcpy( &saveSETdata[SETdata_RECEIVE_Tatol_LEN], (void *)&command_pk[ip_len + 9], dataLen);
+
+            SETdata_RECEIVE_Tatol_LEN += dataLen;
+            printf("\n\rC2 Transmit ACK!!\n\r");
+
+            udf_Rafael_data(TASK_ID, 0xB2, &command_pk[ip_len + 8], 3, 1); //B2¦^À³
+        }
+        else if (command_pk[ip_len + 7] == 2) //transmit last 1
+        {
+            dataLen = rf_Len - 8 - 12 - ip_len;
+            memcpy( &saveSETdata[SETdata_RECEIVE_Tatol_LEN], (void *)&command_pk[ip_len + 9], dataLen);
+
+            SETdata_RECEIVE_Tatol_LEN += dataLen;
+            //send 2 meter set data
+            printf("\n\rC2 Transmit Set!!\n\r");
+            SETdata_index = 0;
+            Set_TOU_C2(SET_TOU_C2_Start = 1);
+        }
+
+    }
+    else if (type_Cx == 0xC3) //0626
+    {
+        if (command_pk[ip_len + 7] == 1) //transmit
+        {
+            if (command_pk[ip_len + 8] == 1)
+            {
+                //
+                SETdata_RECEIVE_Tatol_LEN = 0;
+                memset(saveSETdata, 0, sizeof(saveSETdata));
+            }
+
+            dataLen = rf_Len - 8 - 12 - ip_len;
+            memcpy( &saveSETdata[SETdata_RECEIVE_Tatol_LEN], (void *)&command_pk[ip_len + 9], dataLen);
+
+            SETdata_RECEIVE_Tatol_LEN += dataLen;
+            printf("\n\rC3 Transmit ACK!!\n\r");
+            udf_Rafael_data(TASK_ID, 0xB3, &command_pk[ip_len + 8], 3, 1); //B2¦^À³
+        }
+        else    if (command_pk[ip_len + 7] == 2) //last transmit
+        {
+            dataLen = rf_Len - 8 - 12 - ip_len;
+            memcpy( &saveSETdata[SETdata_RECEIVE_Tatol_LEN], (void *)&command_pk[ip_len + 9], dataLen);
+            SETdata_RECEIVE_Tatol_LEN += dataLen;
+            printf("\n\rC3 Transmit Set in flash!!!\n\r");
+
+            //WriteFlashData(SETDATA_C3_PAGE, saveSETdata ,SETdata_RECEIVE_Tatol_LEN);
+
+        }
+
+    }
+}
+
 
 void udf_Alarm_Register1(void)
 {
@@ -2222,7 +2806,7 @@ void udf_Send_DISC(uint8_t type)
     }
     printf("\n\r");
 
-    app_uart_data_send(1, cmdbuf, sizeof(cmdbuf));
+    app_uart_data_send(2, cmdbuf, sizeof(cmdbuf));
 }
 
 void udf_Send_SNRM(uint8_t type)
@@ -2259,9 +2843,200 @@ void udf_Send_SNRM(uint8_t type)
     }
     printf("\n");
 
-    app_uart_data_send(1, cmdbuf, sizeof(cmdbuf));
+    app_uart_data_send(2, cmdbuf, sizeof(cmdbuf));
 }
 
+static void Broadcast_delay(void)
+{
+    char hex[5], strbuf[30];
+    int i = 0, num;
+    int size = sizeof(hex) / sizeof(hex[0]);
+    char str[30];
+
+    for (i = 19; i < 24; i++)
+    {
+        hex[i - 19] = Meter_ALL_ID[i];
+    }
+
+
+
+    //將字節數組轉換為一個字符串
+    for (i = 0; i < size; i++)
+    {
+        str[i] = hex[i];
+    }
+    str[size] = '\0'; //添加結束字符
+    //將字符串轉換為整數
+    sscanf(str, "%d", &num);
+    sprintf(strbuf, "The decimal number is: %d\r\n", num);
+    printf(strbuf);
+    denominator = num;
+}
+
+static void udf_get_noEn(unsigned char *obis_data)
+{
+    uint16_t CRC_check;
+    unsigned char cmdbuf[] =
+    {
+        0x7E, 0xA0, 0x19, 0x03, 0x21, 0x13, 0xF1, 0xF9, 0xE6, 0xE6, //[0-9]
+        0x00, 0xC0, 0x01, 0x42,
+        0x00, 0x07, 0x01, 0x00, 0x63, 0x01, 0x00, 0xFF, 0x02, 0x01,
+        0x01, 0x02,
+        0x7E, /*
+         0x02, 0x04, //[34-35]
+         0x12, 0x00, 0x08, //[36-38]
+         0x09, 0x06, 0x00, 0x00, 0x01, 0x00, 0x00, 0xFF, 0x0F, 0x02, 0x12, 0x00, 0x00, //[39-51]
+         0x09, 0x0C, 0x07, 0xE1, 0x07, 0x15, 0x05, 0x07, 0x00, 0x00, 0xFF, 0x80, 0x00, 0x00, //[52-65]
+         0x09, 0x0C, 0x07, 0xE1, 0x07, 0x15, 0x05, 0x08, 0x00, 0x00, 0xFF, 0x80, 0x00, 0x00, //[66-79]
+         0x01, 0x00, //[80-81]
+         0xEA, 0xDB, 0x61, 0x8B, 0x34, 0x98, 0x1A, 0xBE, 0x16, 0x66, 0xF2, 0x12,
+         0xE3, 0x1E, 0x7E*/
+    };
+    int i;
+    char strbuf[128];
+
+    //      log_info_hexdump("\robis", obis_data, sizeof(obis_data));
+
+    //      for (i=0; i<10; i++)
+    //      {
+    //          sprintf(strbuf, "%02X ", *(obis_data+i));
+    //          printf(strbuf);
+    //      }
+    //      printf("\n");
+
+
+    CRC_check = CRC_COMPUTE((char *)&cmdbuf[1], 5);
+    cmdbuf [6] = CRC_check & 0xff;
+    cmdbuf [7] = (CRC_check >> 8) & 0xff;
+
+    for (i = 0; i < 10; i++)
+    {
+        cmdbuf[14 + i] = *(obis_data + i);
+    }
+
+    CRC_check = CRC_COMPUTE((char *)&cmdbuf[1], 23);
+    cmdbuf [24] = CRC_check & 0xff;
+    cmdbuf [25] = (CRC_check >> 8) & 0xff;
+
+    for (i = 0; i < 27; i++)
+    {
+        sprintf(strbuf, "%02X ", cmdbuf[i]);
+        printf(strbuf);
+    }
+    printf("\n");
+
+
+    app_uart_data_send(2, cmdbuf, 27);
+}
+
+
+static void meter_Boot_Step(void)
+{
+    unsigned char OBIS_Meter_ID[10] = {0x00, 0x01, 0x01, 0x00, 0x00, 0x00, 0x02, 0xff, 0x02, 0x00};
+    unsigned char OBIS_Customer_ID[10] = {0x00, 0x01, 0x01, 0x00, 0x00, 0x00, 0x01, 0xff, 0x02, 0x00};
+    unsigned char OBIS_District_ID[10] = {0x00, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0xff, 0x02, 0x00};
+    unsigned char OBIS_Meter_Type[10] = {0x00, 0x01, 0x00, 0x00, 0x60, 0x01, 0x00, 0xff, 0x02, 0x00};
+    unsigned char OBIS_TIME[10] = {0x00, 0x08, 0x00, 0x00, 0x01, 0x00, 0x00, 0xff, 0x02, 0x00};
+    int i = 0;
+    switch (meterBootStep)
+    {
+    case DISC:
+        if ((dlms_rx_buf[3] == 0x21 && dlms_rx_buf[5] == 0x1F) || (dlms_rx_buf[3] == 0x21 && dlms_rx_buf[5] == 0x73))
+        {
+            udf_Send_SNRM(1);
+        }
+        meterBootStep = SNRM;
+        break;
+    case SNRM:
+        printf("Meter_UA\r");
+        if (dlms_rx_buf[3] == 0x21)
+        {
+            udf_Send_AARQ(1);
+        }
+        meterBootStep = AARQ;
+        break;
+
+    case AARQ://RES-UA
+        printf("Meter_AARE_V\r");
+        if (dlms_rx_buf[5] == 0x13 && dlms_rx_buf[11] == 0x61)
+        {
+            printf("District_ID\r");
+            udf_get_noEn(&OBIS_District_ID[0]);
+            meterBootStep = District_ID;
+        }
+        break;
+
+    case District_ID:   //Read_RES
+        if (dlms_rx_buf[9] == 0xE7 && dlms_rx_buf[11] == 0xC4)
+        {
+            for (i = 0; i < 8; i++)
+            {
+                Meter_ALL_ID[i] = dlms_rx_buf[17 + i];
+            }
+
+            printf("Customer_ID\r");
+            udf_get_noEn(&OBIS_Customer_ID[0]);
+            meterBootStep = Customer_ID;
+        }
+        break;
+    case Customer_ID:   //Read_RES
+        if (dlms_rx_buf[9] == 0xE7 && dlms_rx_buf[11] == 0xC4)
+        {
+            for (i = 0; i < 8; i++)
+            {
+                Meter_ALL_ID[8 + i] = dlms_rx_buf[17 + i];
+            }
+
+            printf("Meter_ID\r");
+            udf_get_noEn(&OBIS_Meter_ID[0]);
+            meterBootStep = Meter_ID;
+            //IWDG_ReloadCounter();
+        }
+        break;
+    case Meter_ID:  //Read_RES
+        if (dlms_rx_buf[9] == 0xE7 && dlms_rx_buf[11] == 0xC4)
+        {
+            for (i = 0; i < 8; i++)
+            {
+                Meter_ALL_ID[16 + i] = dlms_rx_buf[17 + i];
+            }
+            printf("Service_Code\r");
+            udf_get_noEn(&OBIS_Meter_Type[0]);
+            meterBootStep = Server_CODE;
+        }
+        break;
+    case Server_CODE:
+        if (dlms_rx_buf[9] == 0xE7 && dlms_rx_buf[11] == 0xC4)
+        {
+            for (i = 0; i < 6; i++)
+            {
+                Meter_ALL_ID[24 + i] = dlms_rx_buf[17 + i];
+            }
+            printf("get time\r");
+            udf_get_noEn(&OBIS_TIME[0]);
+            meterBootStep = Get_time;
+        }
+        break;
+    case Get_time:
+        if (dlms_rx_buf[9] == 0xE7 && dlms_rx_buf[11] == 0xC4)
+        {
+            begin.tm_year = (dlms_rx_buf[16] * 256 + dlms_rx_buf[16 + 1] - 1900); /*= {recvbuf[19],recvbuf[18],recvbuf[17],recvbuf[14],recvbuf[14], recvbuf[12]};(recvbuf[12]*256 + recvbuf[13] -1900)};//12~19*/
+            begin.tm_mon = dlms_rx_buf[16 + 2] - 1;
+            begin.tm_mday = dlms_rx_buf[16 + 3];
+            begin.tm_hour = dlms_rx_buf[16 + 5];
+            begin.tm_min = dlms_rx_buf[16 + 6];
+            begin.tm_sec = dlms_rx_buf[16 + 7];
+            now_time = mktime(&begin);
+            RTC_CNT = 0;
+            Broadcast_delay();
+            meterBootStep = Preliminary_Work_Completed;
+
+            APP_EVENT_NOTIFY(EVENT_METER_BOOT_STEP);
+        }
+        break;
+    }
+
+}
 static void udf_Meter_Process(uint8_t *meter_data, uint16_t data_len)
 {
     int i = 0;
@@ -2270,28 +3045,18 @@ static void udf_Meter_Process(uint8_t *meter_data, uint16_t data_len)
     uint8_t ex_byte = 0, Res_type;
     uint16_t ct_len = 0;
     uint8_t EN_done = 0;
-    unsigned char obis_notification_data[] = {0x07, 0x00, 0x00, 0x63,
-                                              0x62, 0x00, 0xFF, 0x02
-                                             };
-    unsigned char obis_data[10] = {0x00, 0x07, 0x01, 0x00, 0x63,
-                                   0x01, 0x00, 0xFF, 0x02, 0x00
-                                  },
-                                  ack_buff[1] = {0x01};
 
-    if (meter_data[3] == 0x27) // PASS HAN // frank,201810
+    unsigned char obis_notification_data[] = { 0x07, 0x00, 0x00, 0x63, 0x62, 0x00, 0xFF, 0x02};
+    unsigned char obis_data[10] = {   0x00, 0x07, 0x01, 0x00,  0x63, 0x01, 0x00, 0xFF, 0x02, 0x00}, ack_buff[1] = {0x01};
+
+    if (meter_data[3] == 0x27)  //PASS HAN // frank,201810
     {
-#if (CONFIG_UART_STDIO_PORT == 0)
-        app_uart_data_send(2, meter_data, data_len);
-#else
-        app_uart_data_send(0, meter_data, data_len);
-#endif
+        uart_stdio_write(meter_data, data_len);
         return;
     }
 
-    ///////////////////////////Event
-    ///Notification///////////////////////////////////////////////
-    if (MC_done == 1 && data_len == 60 &&
-            meter_data[11] == 0xCA) // Event Notification
+    ///////////////////////////Event Notification///////////////////////////////////////////////
+    if (MC_done == 1 && data_len == 60 && meter_data[11] == 0xCA) // Event Notification
     {
         printf("send notification\n");
         EN_done = 1;
@@ -2300,26 +3065,24 @@ static void udf_Meter_Process(uint8_t *meter_data, uint16_t data_len)
         {
             memcmp(event_notification_data, meter_data, 60);
             udf_Rafael_data(1, 8, (char *)&event_notification_data[0], 3, 60);
-            // Notification_Buff(&event_notification_data[0]);
+            //Notification_Buff(&event_notification_data[0]);
         }
-        if (flag_Power_Off == 1) // Power off
+        if (flag_Power_Off == 1) //Power off
         {
         }
         if (MAA_flag == 0)
         {
-            AAcheck = 1; // start AA
+            AAcheck = 1;//start AA
             flag_MAA = 0;
             MAAFIRST = 1;
         }
-#elif TEST_NOTIFICATION == 0 // Only generated once per day.
+#elif  TEST_NOTIFICATION == 0 //Only generated once per day.
         // Replace IV
         memcmp(&tpc_s_iv[8], &meter_data[14], 4);
 
         // Replace Tag
         memcmp(tag, &meter_data[45], 12);
-        if (udf_AES_GCM_Decrypt(tpc_guk, tpc_gcm_ak, tpc_s_iv,
-                                (uint8_t *)&meter_data[18], tag, &pt[0], 27,
-                                17))
+        if (udf_AES_GCM_Decrypt(tpc_guk, tpc_gcm_ak, tpc_s_iv, (uint8_t *)&meter_data[18], tag, &pt[0], 27, 17))
         {
             printf("AES_GCM_Decrypt fail \r\n");
         }
@@ -2327,8 +3090,9 @@ static void udf_Meter_Process(uint8_t *meter_data, uint16_t data_len)
         {
             Decide_Once(&pt[0], &meter_data[0]);
         }
-        if (flag_Power_Off == 1) // Power off
+        if (flag_Power_Off == 1) //Power off
         {
+
         }
 #endif
     }
@@ -2342,480 +3106,463 @@ static void udf_Meter_Process(uint8_t *meter_data, uint16_t data_len)
         {
             ic_count++;
         }
-        for (i = 0; i < data_len; i++)
-        {
-            sprintf(strbuf, "%02X ", meter_data[i]);
-            printf(strbuf);
-        }
-        printf("\n\r");
+        //        for (i = 0; i < data_len; i++)
+        //        {
+        //            sprintf(strbuf, "%02X ", meter_data[i]);
+        //            printf(strbuf);
+        //        }
+        //        printf("\n\r");
         Res_type = Check_Meter_Res((char *)&meter_data[0], data_len);
         sprintf(strbuf, "Res Type: %d\n\r", Res_type);
         printf(strbuf);
-
-        switch (Res_type)
+        if (meterBootStep == Preliminary_Work_Completed)
         {
-        case 73:
-            printf("Meter_UA\n\r");
-            if (meter_data[3] == 0x23)
+            switch (Res_type)
             {
-                udf_Send_AARQ(2);
-            }
-            if (meter_data[3] == 0x21)
-            {
-                if (FLAG_PING_METER == 1)
+            case 73:
+                printf("Meter_UA\n\r");
+                if (meter_data[3] == 0x23)
                 {
-                    PingCheckMeter = 0;
-                    udf_Send_AARQ(1);
+                    udf_Send_AARQ(2);
+                }
+                if (meter_data[3] == 0x21)
+                {
+                    if (FLAG_PING_METER == 1)
+                    {
+                        PingCheckMeter = 0;
+                        udf_Send_AARQ(1);
+                    }
+                    else
+                    {
+                        udf_Send_AARQ(1);
+                    }
+                }
+                if (meter_data[3] == 0x27)
+                {
+                    udf_Send_AARQ(4);
+                }
+                MC_done = 1;
+                break;
+
+            case 61://RES-UA
+                if (meter_data[3] == 0x23)
+                {
+                    printf("Meter_AARE_M\n\r");
+                    // Replace GMAC_AK
+                    for (i = 0; i < 8; i++)
+                    {
+                        tpc_gmac_ak[17 + i] = meter_data[65 + i];
+                    }
+
+                    // Replace Server Sys-T
+                    for (i = 0; i < 8; i++)
+                    {
+                        tpc_s_iv[i] = meter_data[40 + i];
+                    }
+
+                    // Replace IV
+                    for (i = 0; i < 4; i++)
+                    {
+                        tpc_s_iv[8 + i] = meter_data[80 + i];
+                    }
+
+                    // Replace Tag
+                    for (i = 0; i < 12; i++)
+                    {
+                        tag[i] = meter_data[98 + i];
+                    }
+
+                    udf_AES_GCM_Decrypt(tpc_guk, tpc_gcm_ak, tpc_s_iv, &meter_data[84], tag, &pt[0], 14, 17);
+                    udf_Management_Client(1);
+                }
+                else if (meter_data[3] == 0x27)
+                {
+                    printf("Meter_AARE_H\n\r");
+                    // Replace GMAC_AK
+                    for (i = 0; i < 8; i++)
+                    {
+                        tpc_gmac_ak[17 + i] = meter_data[65 + i];
+                    }
+
+                    // Replace Server Sys-T
+                    for (i = 0; i < 8; i++)
+                    {
+                        tpc_s_iv_h[i] = meter_data[40 + i];
+                    }
+
+                    // Replace IV
+                    for (i = 0; i < 4; i++)
+                    {
+                        tpc_s_iv_h[8 + i] = meter_data[80 + i];    //80
+                    }
+
+                    // Replace Tag
+                    for (i = 0; i < 12; i++)
+                    {
+                        tag[i] = meter_data[98 + i];    //98
+                    }
+
+                    udf_AES_GCM_Decrypt(tpc_guk, tpc_gcm_ak, tpc_s_iv_h, &meter_data[84], tag, &pt[0], 14, 17);
+                    udf_Han_Client();
+                }
+                else if (meter_data[3] == 0x21)
+                {
+                    printf("Meter_AARE_V\n\r");
+                }
+
+                break;
+
+            case 11://RES-Client AA & Change Key RES
+                if ((unsigned char)meter_data[12] > 128)
+                {
+                    ex_byte = meter_data[12] & 0x0F;
                 }
                 else
                 {
-                    udf_Send_AARQ(1);
-                }
-            }
-            if (meter_data[3] == 0x27)
-            {
-                udf_Send_AARQ(4);
-            }
-            MC_done = 1;
-            break;
-
-        case 61: // RES-UA
-            if (meter_data[3] == 0x23)
-            {
-                printf("Meter_AARE_M\n\r");
-                // Replace GMAC_AK
-                for (i = 0; i < 8; i++)
-                {
-                    tpc_gmac_ak[17 + i] = meter_data[65 + i];
+                    ex_byte = 0;
                 }
 
-                // Replace Server Sys-T
-                for (i = 0; i < 8; i++)
+                if (ex_byte == 2)
                 {
-                    tpc_s_iv[i] = meter_data[40 + i];
+                    ct_len = (meter_data[11 + ex_byte] * 256) + meter_data[12 + ex_byte] - 17;
                 }
-
-                // Replace IV
-                for (i = 0; i < 4; i++)
+                else
                 {
-                    tpc_s_iv[8 + i] = meter_data[80 + i];
+                    ct_len = meter_data[12 + ex_byte] - 17;
                 }
-
-                // Replace Tag
-                for (i = 0; i < 12; i++)
+                if (meter_data[3] == 0x23)
                 {
-                    tag[i] = meter_data[98 + i];
-                }
-
-                udf_AES_GCM_Decrypt(tpc_guk, tpc_gcm_ak, tpc_s_iv,
-                                    &meter_data[84], tag, &pt[0], 14, 17);
-                udf_Management_Client(1);
-            }
-            else if (meter_data[3] == 0x27)
-            {
-                printf("Meter_AARE_H\n\r");
-                // Replace GMAC_AK
-                for (i = 0; i < 8; i++)
-                {
-                    tpc_gmac_ak[17 + i] = meter_data[65 + i];
-                }
-
-                // Replace Server Sys-T
-                for (i = 0; i < 8; i++)
-                {
-                    tpc_s_iv_h[i] = meter_data[40 + i];
-                }
-
-                // Replace IV
-                for (i = 0; i < 4; i++)
-                {
-                    tpc_s_iv_h[8 + i] = meter_data[80 + i];    // 80
-                }
-
-                // Replace Tag
-                for (i = 0; i < 12; i++)
-                {
-                    tag[i] = meter_data[98 + i];    // 98
-                }
-
-                udf_AES_GCM_Decrypt(tpc_guk, tpc_gcm_ak, tpc_s_iv_h,
-                                    &meter_data[84], tag, &pt[0], 14, 17);
-                udf_Han_Client();
-            }
-            else if (meter_data[3] == 0x21)
-            {
-                printf("Meter_AARE_V\n\r");
-            }
-
-            break;
-
-        case 11: // RES-Client AA & Change Key RES
-            if ((unsigned char)meter_data[12] > 128)
-            {
-                ex_byte = meter_data[12] & 0x0F;
-            }
-            else
-            {
-                ex_byte = 0;
-            }
-
-            if (ex_byte == 2)
-                ct_len = (meter_data[11 + ex_byte] * 256) +
-                         meter_data[12 + ex_byte] - 17;
-            else
-            {
-                ct_len = meter_data[12 + ex_byte] - 17;
-            }
-            if (meter_data[3] == 0x23)
-            {
-                // Replace IV
-                for (i = 0; i < 4; i++)
-                {
-                    tpc_s_iv[8 + i] = meter_data[14 + ex_byte + i];
-                }
-
-                // Replace Tag
-                for (i = 0; i < 12; i++)
-                {
-                    tag[i] = meter_data[18 + ex_byte + ct_len + i];
-                }
-
-                udf_AES_GCM_Decrypt(tpc_guk, tpc_gcm_ak, tpc_s_iv,
-                                    &meter_data[18], tag, &pt[0], ct_len,
-                                    17);
-                if (RE_AA == 1)
-                {
-                    MAA_flag = 3;
-                    RE_AA = 0;
-                }
-                if (MAAFIRST == 1)
-                {
-                    MAA_flag = 1;
-                    RegistrationprocessStart =
-                        0; // (u32)now_time + RTC_CNT; What does this do?
-                    sst_flag = 1;
-                    if (memcmp(tpc_guk, &Configuration_Page[48], 16) == 0 &&
-                            memcmp(&tpc_gcm_ak[1], &Configuration_Page[64],
-                                   16) == 0 &&
-                            memcmp(tpc_mkey, &Configuration_Page[80], 16) ==
-                            0)
+                    // Replace IV
+                    for (i = 0; i < 4; i++)
                     {
-                        printf(
-                            "No need to write the same key into flash if "
-                            "it is already the same.\n");
+                        tpc_s_iv[8 + i] = meter_data[14 + ex_byte + i];
                     }
-                    else
+
+                    // Replace Tag
+                    for (i = 0; i < 12; i++)
                     {
-                        SaveKey();
+                        tag[i] = meter_data[18 + ex_byte + ct_len + i];
                     }
-                    KeyErrorflag = 0; // key correct
-                    register_steps = 2;
-                    if (target_pos == 2 || target_pos == 3)
+
+                    udf_AES_GCM_Decrypt(tpc_guk, tpc_gcm_ak, tpc_s_iv, &meter_data[18], tag, &pt[0], ct_len, 17);
+                    if (RE_AA == 1)
                     {
-                        read_targetpos = 0;
+                        MAA_flag = 3;
+                        RE_AA = 0;
                     }
-                    MAAFIRST = 2;
-                }
-                if (ACTION_CHANGE_KEY == 1)
-                {
-                    if (pt[0] == 0xC7 && pt[3] == 0x00 &&
-                            pt[4] == 0x00) // right key and change
+                    if (MAAFIRST == 1)
                     {
-                        if (TPC_AK_FLAG == 1)
+                        MAA_flag = 1;
+                        RegistrationprocessStart = 0;// (u32)now_time + RTC_CNT; What does this do?
+                        sst_flag = 1;
+                        if (memcmp(tpc_guk, &Configuration_Page[48], 16) == 0 &&
+                                memcmp(&tpc_gcm_ak[1], &Configuration_Page[64], 16) == 0 &&
+                                memcmp(tpc_mkey, &Configuration_Page[80], 16) == 0)
                         {
-                            //                              for(i=0;i<17;i++)
-                            //                              {
-                            //                                  tpc_gcm_ak[i]
-                            //= new_tpc_gcm_ak[i];                                  tpc_gmac_ak[i] =
-                            //new_tpc_gmac_ak[i];
-                            //                              }
-                            TPC_AK_FLAG = 2;
-                        }
-                        if (TPC_GUK_FLAG == 1)
-                        {
-                            //                              for(i = 0;i <
-                            //16; i++)                                  tpc_guk[i] = new_tpc_guk[i];
-                            TPC_GUK_FLAG = 2;
-                        }
-                        if (TPC_MK_FLAG == 1)
-                        {
-                            //                              for(i=0 ;i<16
-                            //;i++)                                     tpc_mkey[i] = new_tpc_mkey[i];
-                            TPC_MK_FLAG = 2;
-                        }
-                        for (i = 0; i < meter_data[2] + 2;
-                                i++) // copy response
-                        {
-                            actionkey_response[i] = meter_data[i];
-                        }
-                        KEYresponse_len = meter_data[2] + 2;
-                        udf_Rafael_data(TASK_ID, 0x1A,
-                                        (char *)&meter_data[0], 3,
-                                        uart_len1);
-                        // SQBrespone(0x1A, &meter_data[0]);
-                        RE_AA = 1;
-                        // udf_Send_SNRM(2);
-                    }
-                    else
-                    {
-                        for (i = 0; i < meter_data[2] + 2;
-                                i++) // copy response
-                        {
-                            actionkey_response[i] = meter_data[i];
-                        }
-                        TPC_GUK_FLAG = 0;
-                        TPC_AK_FLAG = 0;
-                        TPC_MK_FLAG = 0;
-                        udf_Rafael_data(TASK_ID, 0x1A,
-                                        (char *)&meter_data[0], 3,
-                                        uart_len1);
-                    }
-                    ACTION_CHANGE_KEY = 0;
-                    MAA_flag = 3;
-                }
-                else if (ON_DEMAND_AA_FLAG == 1)
-                {
-                    On_Demand_Reading_Type = 1;
-                    ondemandreadingstart =
-                        0; // (u32)now_time + RTC_CNT; What does this do?
-                    for (i = 14; i <= 22; i++)
-                    {
-                        obis_data[i - 13] = On_Demand_Task_Command[i - 14];
-                    }
-                    // Task_count --;
-                    udf_GetData_Request(obis_data, ic_count, 1);
-                    MAA_flag = 3;
-                    ON_DEMAND_AA_FLAG = 0; // frank,201811
-                    AUTO_AA = 0;
-                    AUTO_AA_FLAG = 1;
-                    ondemand_idle = 0; // frank,201811
-                }
-                else if (AUTO_AA == 1)
-                {
-                    AUTO_AA = 0;
-                    AUTO_AA_FLAG = 1;
-                    ondemand_idle = 0; // frank,201811
-                    MAA_flag = 3;
-                }
-
-                if (NOT_COMPLETELY_POWER_OFF == 1)
-                {
-                    printf("NOT_COMPLETELY_POWER_OFF = 1\n");
-                    udf_Get_New_Number_of_pens(
-                        ic_count, &obis_notification_data[0], 1);
-                }
-            }
-            if (meter_data[3] == 0x27)
-            {
-                // Replace IV
-                for (i = 0; i < 4; i++)
-                {
-                    tpc_s_iv_h[8 + i] = meter_data[14 + ex_byte + i];
-                }
-
-                // Replace Tag
-                for (i = 0; i < 12; i++)
-                {
-                    tag[i] = meter_data[18 + ex_byte + ct_len + i];
-                }
-
-                udf_AES_GCM_Decrypt(tpc_guk, tpc_gcm_ak, tpc_s_iv_h,
-                                    &meter_data[18], tag, &pt[0], ct_len,
-                                    17);
-            }
-            MC_done = 1;
-            break;
-
-        case 1:
-            if (get_id_done ==
-                    0) // Reserve, Unable to obtaon V AA connection ID
-            {
-                printf("Meter_ID\n\r");
-                udf_SMIP_Res(meter_data);
-                Verification_AA_done = 1;
-                get_id_done = 1;
-            }
-            else
-            {
-                printf("Send_Meter_Res\n\r");
-                udf_SMIP_Res(meter_data);
-            }
-            break;
-
-        case 2: // Read_RES
-            if ((unsigned char)meter_data[12] > 128)
-            {
-                ex_byte = meter_data[12] & 0x0F;
-            }
-            else
-            {
-                ex_byte = 0;
-            }
-
-            if (ex_byte == 2)
-                ct_len = (meter_data[11 + ex_byte] * 256) +
-                         meter_data[12 + ex_byte] - 17;
-            else
-            {
-                ct_len = meter_data[12 + ex_byte] - 17;
-            }
-            if (meter_data[3] == 0x23)
-            {
-                // Replace IV
-                for (i = 0; i < 4; i++)
-                {
-                    tpc_s_iv[8 + i] = meter_data[14 + ex_byte + i];
-                }
-
-                // Replace Tag
-                for (i = 0; i < 12; i++)
-                {
-                    tag[i] = meter_data[18 + ex_byte + ct_len + i];
-                }
-
-                udf_AES_GCM_Decrypt(tpc_dk, tpc_gcm_ak, tpc_s_iv,
-                                    &meter_data[18 + ex_byte], tag, &pt[0],
-                                    ct_len, 17);
-
-                if (pt[1] == 0x02 && MAA_flag == 3 &&
-                        flag_Power_Off == 0) // Continue transmission
-                {
-                    sprintf(strbuf,
-                            "===========================On_Demand_ID : %d, "
-                            "On_Demand_Reading_Type : "
-                            "%d===============================\n\r ",
-                            On_Demand_ID, On_Demand_Reading_Type);
-                    CONTINUE_BUSY = (pt[3] == 0x00) ? 1 : 0;
-                    continuebusyflagstart =
-                        0; //(u32)now_time + RTC_CNT; What does this do?
-                    if (CONTINUE_BUSY == 1)
-                    {
-                        ELS61_MESSAGE_LOCK = 1; // LOCK 4G QUEUE
-                        if (On_Demand_Reading_Type == 1)
-                        {
-                            on_Demand_Task_Assembly(&pt[0], ct_len, &pt[0]);
-                        }
-                        else if (Auto_Reading == 1 &&
-                                 On_Demand_Reading_Type == 0)
-                        {
-                            udf_Rafael_data(TASK_ID, On_Demand_Type,
-                                            (char *)&meter_data[0], 3,
-                                            uart_len1);
-                            // auto_send_type_buff(On_Demand_Type,&meter_data[0]);
-                        }
-                        else if (On_Demand_ID == 1 &&
-                                 On_Demand_Reading_Type == 0)
-                        {
-                            sprintf(strbuf,
-                                    "task id =%d , On_Demand_Type = %d\n",
-                                    TASK_ID, On_Demand_Type);
-                            printf(strbuf);
-                            udf_Rafael_data(TASK_ID, On_Demand_Type,
-                                            (char *)&meter_data[0], 3,
-                                            uart_len1);
-                            // On_Demand_type_buff(On_Demand_Type,&meter_data[0]);
+                            printf("No need to write the same key into flash if it is already the same.\n");
                         }
                         else
                         {
-                            printf("\nERROR\n");
+                            SaveKey();
+                        }
+                        KeyErrorflag = 0;//key correct
+                        register_steps = 2;
+                        MAAFIRST = 2;
+                    }
+                    if (ACTION_CHANGE_KEY == 1)
+                    {
+                        if ( pt[0] == 0xC7 && pt[3] == 0x00 && pt[4] == 0x00) // right key and change
+                        {
+                            if (TPC_AK_FLAG == 1)
+                            {
+                                //                              for(i=0;i<17;i++)
+                                //                              {
+                                //                                  tpc_gcm_ak[i] = new_tpc_gcm_ak[i];
+                                //                                  tpc_gmac_ak[i] = new_tpc_gmac_ak[i];
+                                //                              }
+                                TPC_AK_FLAG = 2;
+                            }
+                            if (TPC_GUK_FLAG == 1)
+                            {
+                                //                              for(i = 0;i < 16; i++)
+                                //                                  tpc_guk[i] = new_tpc_guk[i];
+                                TPC_GUK_FLAG = 2;
+                            }
+                            if (TPC_MK_FLAG == 1)
+                            {
+                                //                              for(i=0 ;i<16 ;i++)
+                                //                                  tpc_mkey[i] = new_tpc_mkey[i];
+                                TPC_MK_FLAG = 2;
+                            }
+                            for (i = 0 ; i < meter_data[2] + 2 ; i++) //copy response
+                            {
+                                actionkey_response[i] = meter_data[i];
+                            }
+                            KEYresponse_len = meter_data[2] + 2;
+                            udf_Rafael_data(TASK_ID, 0x1A, (char *)&meter_data[0], 3, uart_len1);
+                            //SQBrespone(0x1A, &meter_data[0]);
+                            RE_AA = 1;
+                            //udf_Send_SNRM(2);
+                        }
+                        else
+                        {
+                            for (i = 0 ; i < meter_data[2] + 2 ; i++) //copy response
+                            {
+                                actionkey_response[i] = meter_data[i];
+                            }
+                            TPC_GUK_FLAG = 0;
+                            TPC_AK_FLAG = 0;
+                            TPC_MK_FLAG = 0;
+                            udf_Rafael_data(TASK_ID, 0x1A, (char *)&meter_data[0], 3, uart_len1);
+                        }
+                        ACTION_CHANGE_KEY = 0;
+                        MAA_flag = 3;
+                    }
+                    else if (ON_DEMAND_AA_FLAG == 1)
+                    {
+                        On_Demand_Reading_Type = 1;
+                        ondemandreadingstart = 0;// (u32)now_time + RTC_CNT; What does this do?
+                        for (i = 14 ; i <= 22; i++)
+                        {
+                            obis_data[i - 13] = On_Demand_Task_Command[i - 14];
+                        }
+                        //Task_count --;
+                        udf_GetData_Request(obis_data, ic_count, 1);
+                        MAA_flag = 3;
+                        ON_DEMAND_AA_FLAG = 0; // frank,201811
+                        AUTO_AA = 0;
+                        AUTO_AA_FLAG = 1;
+                        ondemand_idle = 0; // frank,201811
+                    }
+                    else if (AUTO_AA == 1)
+                    {
+                        AUTO_AA = 0;
+                        AUTO_AA_FLAG = 1;
+                        ondemand_idle = 0; // frank,201811
+                        MAA_flag = 3;
+                    }
+
+
+                    if (NOT_COMPLETELY_POWER_OFF == 1)
+                    {
+                        printf("NOT_COMPLETELY_POWER_OFF = 1\n");
+                        udf_Get_New_Number_of_pens(ic_count, &obis_notification_data[0], 1);
+                    }
+                }
+                if (meter_data[3] == 0x27)
+                {
+                    // Replace IV
+                    for (i = 0; i < 4; i++)
+                    {
+                        tpc_s_iv_h[8 + i] = meter_data[14 + ex_byte + i];
+                    }
+
+                    // Replace Tag
+                    for (i = 0; i < 12; i++)
+                    {
+                        tag[i] = meter_data[18 + ex_byte + ct_len + i];
+                    }
+
+                    udf_AES_GCM_Decrypt(tpc_guk, tpc_gcm_ak, tpc_s_iv_h, &meter_data[18], tag, &pt[0], ct_len, 17);
+                }
+                MC_done = 1;
+                break;
+
+            case 1:
+                if (get_id_done == 0) //Reserve, Unable to obtaon V AA connection ID
+                {
+                    printf("Meter_ID\n\r");
+                    udf_SMIP_Res(meter_data);
+                    Verification_AA_done = 1;
+                    get_id_done = 1;
+                }
+                else
+                {
+                    printf("Send_Meter_Res\n\r");
+                    udf_SMIP_Res(meter_data);
+                }
+                break;
+
+            case 2: //Read_RES
+                if ((unsigned char)meter_data[12] > 128)
+                {
+                    ex_byte = meter_data[12] & 0x0F;
+                }
+                else
+                {
+                    ex_byte = 0;
+                }
+
+                if (ex_byte == 2)
+                {
+                    ct_len = (meter_data[11 + ex_byte] * 256) + meter_data[12 + ex_byte] - 17;
+                }
+                else
+                {
+                    ct_len = meter_data[12 + ex_byte] - 17;
+                }
+                if (meter_data[3] == 0x23)
+                {
+                    // Replace IV
+                    for (i = 0; i < 4; i++)
+                    {
+                        tpc_s_iv[8 + i] = meter_data[14 + ex_byte + i];
+                    }
+
+                    // Replace Tag
+                    for (i = 0; i < 12; i++)
+                    {
+                        tag[i] = meter_data[18 + ex_byte + ct_len + i];
+                    }
+
+                    udf_AES_GCM_Decrypt(tpc_dk, tpc_gcm_ak, tpc_s_iv, &meter_data[18 + ex_byte], tag, &pt[0], ct_len, 17);
+
+                    if (pt[1] == 0x02  && MAA_flag == 3 && flag_Power_Off == 0) //Continue transmission
+                    {
+                        sprintf(strbuf, "===========================On_Demand_ID : %d, On_Demand_Reading_Type : %d===============================\n\r ", On_Demand_ID, On_Demand_Reading_Type);
+                        CONTINUE_BUSY = (pt[3] == 0x00) ? 1 : 0;
+                        continuebusyflagstart = 0; //(u32)now_time + RTC_CNT; What does this do?
+                        if (CONTINUE_BUSY == 1)
+                        {
+
+                            ELS61_MESSAGE_LOCK = 1;             //LOCK 4G QUEUE
+                            if (On_Demand_Reading_Type == 1)
+                            {
+                                on_Demand_Task_Assembly(&pt[0], ct_len, &pt[0]);
+                            }
+                            else if (Auto_Reading == 1 && On_Demand_Reading_Type == 0)
+                            {
+
+                                udf_Rafael_data(TASK_ID, On_Demand_Type, (char *)&meter_data[0], 3, uart_len1);
+                                //auto_send_type_buff(On_Demand_Type,&meter_data[0]);
+                            }
+                            else if (On_Demand_ID == 1 && On_Demand_Reading_Type == 0)
+                            {
+                                sprintf(strbuf, "task id =%d , On_Demand_Type = %d\n", TASK_ID, On_Demand_Type);
+                                printf(strbuf);
+                                udf_Rafael_data(TASK_ID, On_Demand_Type, (char *)&meter_data[0], 3, uart_len1);
+                                //On_Demand_type_buff(On_Demand_Type,&meter_data[0]);
+                            }
+                            else
+                            {
+                                printf("\nERROR\n");
+                                CONTINUE_BUSY = 0;
+                                ELS61_MESSAGE_LOCK = 0;
+                                Resume_index = 1;
+                            }
+                        }
+                        else
+                        {
+                            CONTINUE_BUSY = 1;
+                            if (On_Demand_Reading_Type == 1)
+                            {
+                                on_Demand_Task_Assembly(&pt[0], ct_len, &pt[0]);
+                            }
+                            else if (Auto_Reading == 1 && On_Demand_Reading_Type == 0)
+                            {
+
+                                udf_Rafael_data(TASK_ID, On_Demand_Type, (char *)&meter_data[0], 3, uart_len1);
+                                //auto_send_type_buff(On_Demand_Type,&meter_data[0]);
+                                Auto_Reading = 0;
+                            }
+                            else if (On_Demand_ID == 1 && On_Demand_Reading_Type == 0)
+                            {
+                                udf_Rafael_data(TASK_ID, On_Demand_Type, (char *)&meter_data[0], 3, uart_len1);
+                                //On_Demand_type_buff(On_Demand_Type,&meter_data[0]);
+                                On_Demand_ID = 0;
+                            }
+                            else
+                            {
+                                printf("\nERROR COMMAND\n");
+                            }
                             CONTINUE_BUSY = 0;
-                            ELS61_MESSAGE_LOCK = 0;
+                        }
+                        STEP_CONTINUE_FLAG = 0;
+
+                        if (CONTINUE_BUSY == 0)
+                        {
                             Resume_index = 1;
+                            ELS61_MESSAGE_LOCK = 0;             //UNLOCK 4G QUEUE
                         }
                     }
-                    else
+                    else if (MAA_flag == 3 && flag_Power_Off == 0 && NOT_COMPLETELY_POWER_OFF == 0)
                     {
-                        CONTINUE_BUSY = 1;
                         if (On_Demand_Reading_Type == 1)
                         {
                             on_Demand_Task_Assembly(&pt[0], ct_len, &pt[0]);
                         }
-                        else if (Auto_Reading == 1 &&
-                                 On_Demand_Reading_Type == 0)
+                        else if (Auto_Reading == 1 && On_Demand_Reading_Type == 0)
                         {
-                            udf_Rafael_data(TASK_ID, On_Demand_Type,
-                                            (char *)&meter_data[0], 3,
-                                            uart_len1);
-                            // auto_send_type_buff(On_Demand_Type,&meter_data[0]);
+                            udf_Rafael_data(TASK_ID, On_Demand_Type, (char *)&meter_data[0], 3, uart_len1);
+                            //auto_send_type_buff(On_Demand_Type,&meter_data[0]);
                             Auto_Reading = 0;
                         }
-                        else if (On_Demand_ID == 1 &&
-                                 On_Demand_Reading_Type == 0)
+                        else if (On_Demand_ID == 1 && On_Demand_Reading_Type == 0)
                         {
-                            udf_Rafael_data(TASK_ID, On_Demand_Type,
-                                            (char *)&meter_data[0], 3,
-                                            uart_len1);
-                            // On_Demand_type_buff(On_Demand_Type,&meter_data[0]);
+                            sprintf(strbuf, "task id =%d , On_Demand_Type = %d\n", TASK_ID, On_Demand_Type);
+                            printf(strbuf);
+
+                            udf_Rafael_data(TASK_ID, On_Demand_Type, (char *)&meter_data[0], 3, uart_len1);
+                            //On_Demand_type_buff(On_Demand_Type,&meter_data[0]);
                             On_Demand_ID = 0;
                         }
                         else
                         {
-                            printf("\nERROR COMMAND\n");
+                            printf("\nERROR COMMAND2\n");
                         }
                         CONTINUE_BUSY = 0;
-                    }
-                    STEP_CONTINUE_FLAG = 0;
-
-                    if (CONTINUE_BUSY == 0)
-                    {
+                        ELS61_MESSAGE_LOCK = 0;
                         Resume_index = 1;
-                        ELS61_MESSAGE_LOCK = 0; // UNLOCK 4G QUEUE
+                    }
+                    if (MAA_flag == 2 || NOT_COMPLETELY_POWER_OFF == 1 && sendbusyflag == 0)
+                    {
+                        MAA_flag = 3;
+                        Power_On_Event_Log_Return(&pt[0]); //Return Negative charge data
+                        NOT_COMPLETELY_POWER_OFF = 0;
+                        printf_off = 1;
                     }
                 }
-                else if (MAA_flag == 3 && flag_Power_Off == 0 &&
-                         NOT_COMPLETELY_POWER_OFF == 0)
+                if (meter_data[3] == 0x27)
                 {
-                    if (On_Demand_Reading_Type == 1)
+                    // Replace IV
+                    for (i = 0; i < 4; i++)
                     {
-                        on_Demand_Task_Assembly(&pt[0], ct_len, &pt[0]);
+                        tpc_s_iv_h[8 + i] = meter_data[14 + ex_byte + i];
                     }
-                    else if (Auto_Reading == 1 &&
-                             On_Demand_Reading_Type == 0)
-                    {
-                        udf_Rafael_data(TASK_ID, On_Demand_Type,
-                                        (char *)&meter_data[0], 3,
-                                        uart_len1);
-                        // auto_send_type_buff(On_Demand_Type,&meter_data[0]);
-                        Auto_Reading = 0;
-                    }
-                    else if (On_Demand_ID == 1 &&
-                             On_Demand_Reading_Type == 0)
-                    {
-                        sprintf(strbuf,
-                                "task id =%d , On_Demand_Type = %d\n",
-                                TASK_ID, On_Demand_Type);
-                        printf(strbuf);
 
-                        udf_Rafael_data(TASK_ID, On_Demand_Type,
-                                        (char *)&meter_data[0], 3,
-                                        uart_len1);
-                        // On_Demand_type_buff(On_Demand_Type,&meter_data[0]);
-                        On_Demand_ID = 0;
-                    }
-                    else
+                    // Replace Tag
+                    for (i = 0; i < 12; i++)
                     {
-                        printf("\nERROR COMMAND2\n");
+                        tag[i] = meter_data[18 + ex_byte + ct_len + i];
                     }
-                    CONTINUE_BUSY = 0;
-                    ELS61_MESSAGE_LOCK = 0;
-                    Resume_index = 1;
+
+                    udf_AES_GCM_Decrypt(tpc_dk, tpc_gcm_ak, tpc_s_iv_h, &meter_data[18 + ex_byte], tag, &pt[0], ct_len, 17);
                 }
-                if (MAA_flag == 2 ||
-                        NOT_COMPLETELY_POWER_OFF == 1 && sendbusyflag == 0)
+                break;
+
+            case 21://SET_RES
+                if ((unsigned char)meter_data[12] > 128)
                 {
-                    MAA_flag = 3;
-                    Power_On_Event_Log_Return(
-                        &pt[0]); // Return Negative charge data
-                    NOT_COMPLETELY_POWER_OFF = 0;
-                    printf_off = 1;
+                    ex_byte = meter_data[12] & 0x0F;
                 }
-            }
-            if (meter_data[3] == 0x27)
-            {
+                else
+                {
+                    ex_byte = 0;
+                }
+
+                if (ex_byte == 2)
+                {
+                    ct_len = (meter_data[11 + ex_byte] * 256) + meter_data[12 + ex_byte] - 17;
+                }
+                else
+                {
+                    ct_len = meter_data[12 + ex_byte] - 17;
+                }
+
                 // Replace IV
                 for (i = 0; i < 4; i++)
                 {
-                    tpc_s_iv_h[8 + i] = meter_data[14 + ex_byte + i];
+                    tpc_s_iv[8 + i] = meter_data[14 + ex_byte + i];
                 }
 
                 // Replace Tag
@@ -2824,264 +3571,213 @@ static void udf_Meter_Process(uint8_t *meter_data, uint16_t data_len)
                     tag[i] = meter_data[18 + ex_byte + ct_len + i];
                 }
 
-                udf_AES_GCM_Decrypt(tpc_dk, tpc_gcm_ak, tpc_s_iv_h,
-                                    &meter_data[18 + ex_byte], tag, &pt[0],
-                                    ct_len, 17);
-            }
-            break;
-
-        case 21: // SET_RES
-            if ((unsigned char)meter_data[12] > 128)
-            {
-                ex_byte = meter_data[12] & 0x0F;
-            }
-            else
-            {
-                ex_byte = 0;
-            }
-
-            if (ex_byte == 2)
-                ct_len = (meter_data[11 + ex_byte] * 256) +
-                         meter_data[12 + ex_byte] - 17;
-            else
-            {
-                ct_len = meter_data[12 + ex_byte] - 17;
-            }
-
-            // Replace IV
-            for (i = 0; i < 4; i++)
-            {
-                tpc_s_iv[8 + i] = meter_data[14 + ex_byte + i];
-            }
-
-            // Replace Tag
-            for (i = 0; i < 12; i++)
-            {
-                tag[i] = meter_data[18 + ex_byte + ct_len + i];
-            }
-
-            udf_AES_GCM_Decrypt(tpc_dk, tpc_gcm_ak, tpc_s_iv,
-                                &meter_data[18 + ex_byte], tag, &pt[0],
-                                ct_len, 17);
-            SETACTION++;
-            // 0615//bob
-            if (pt[0] == 0xC5 && pt[3] == 0 && SET_TOU_C2_Start != 0 &&
-                    SET_TOU_C2_Start <= saveSETdata[0] /*0620*/) // tou_c2 ok
-            {
-                // 0617
-                printf("\n\ragain\n\r");
-                Set_TOU_C2(SET_TOU_C2_Start);
-            }
-            else if (pt[0] == 0xC5 && pt[3] == 0 &&
-                     SET_TOU_C2_Start >
-                     saveSETdata[0] /*0620*/) // tou_c2 last, ok sent
-                // ack
-            {
-                printf("\n\rSET_TOU_C2 OK!!!!\n\r");
-                SET_TOU_C2_Start = 0;
-                SETdata_index = 0;
-                memset(saveSETdata, 0, sizeof(saveSETdata));
-                udf_Rafael_data(TASK_ID, 0xB2, (char *)&meter_data[0], 3,
-                                uart_len1); // Packaged for 4G
-            }
-            else if (pt[0] == 0xC5 && pt[3] != 0 &&
-                     SET_TOU_C2_Start != 0) // tou_c2 ok
-            {
-                printf("\n\rSET_TOU_C2 errrrrrr!!!!\n\r");
-                udf_Rafael_data(TASK_ID, 0xB2, (char *)&meter_data[0], 3,
-                                uart_len1); // 0717
-
-                SET_TOU_C2_Start = 0;
-                SETdata_index = 0;
-                memset(saveSETdata, 0, sizeof(saveSETdata));
-            }
-            // 0615//bob
-            // 0617//bob
-            if (pt[0] == 0xC5 && pt[3] == 0 &&
-                    SET_TOU_C1_INDEX == 1) // tou_c1 last, ok sent ack
-            {
-                // SET_TOU_C1_INDEX
-                printf("\n\rSET_TOU_C1 OK!!!!\n\r");
-                SET_TOU_C1_INDEX = 0;
-                udf_Rafael_data(TASK_ID, 0xB1, (char *)&meter_data[0], 3,
-                                meter_data[2] + 2); // Packaged for 4G
-            }
-            else if (pt[0] == 0xC5 && pt[3] != 0 &&
-                     SET_TOU_C1_INDEX == 1) // tou_c1 error
-            {
-                printf("\n\rSET_TOU_C1 error!!!!\n\r");
-                SET_TOU_C1_INDEX = 0;
-                udf_Rafael_data(TASK_ID, 0xB1, (char *)&meter_data[0], 3,
-                                meter_data[2] + 2); // Packaged for 4G
-            }
-            // 0617//bob
-            // 0621
-            if (pt[0] == 0xC5 && pt[3] == 0 &&
-                    SET_TIME_C0_INDEX == 1) // set time
-            {
-                // SET_TOU_C1_INDEX
-                printf("\n\rSET_TIME_C0_INDEX OK!!!!\n\r");
-                SET_TIME_C0_INDEX = 0;
-                udf_Rafael_data(TASK_ID, 0xB0, (char *)&meter_data[0], 3,
-                                uart_len1); // Packaged for 4G
-            }
-            else if (pt[0] == 0xC5 && pt[3] != 0 &&
-                     SET_TIME_C0_INDEX == 1)
-            {
-                printf("\n\rSET_TIME_C0_INDEX error!!!!\n\r");
-                SET_TIME_C0_INDEX = 0;
-                udf_Rafael_data(TASK_ID, 0xB0, (char *)&meter_data[0], 3,
-                                uart_len1); // Packaged for 4G
-            }
-            // 0621
-            if (pt[3] != 0 && pt[0] == 0xC5 && SQBsetStart == 1) // error
-            {
-                SQBrespone(0x1B, &meter_data[0]);
-                SQBsettingNUM = 0xFF; // break
-                SQBsetStart = 0;
-
-                SETQBtmp = 1;
-                HANDSQB = 0;
-                memset(saveSETdata, 0, sizeof(saveSETdata));
-                //      memset( SaveSETheader
-                //,0,sizeof(SaveSETheader));//bob
-            }
-
-            if (SETACTION != 0 && hitHANDguN == 1)
-            {
-                set_Test();
-            }
-            break;
-
-        case 3:
-            printf("GET Alarm\n\r");
-            udf_Alarm_Register1();
-            break;
-        case 99: // ACTION_RES
-            printf("GET Action_res\n\r");
-            if (Auto_Reading == 1)
-            {
-                auto_read_loadprofile = 0;
-                auto_read_Midnight = 0;
-                auto_read_ALT = 0;
-                Auto_Reading = 0;
-            }
-            if (POWERON_Restart == 1) // 0205 matt
-            {
-                POWERON_Restart = 0;
-            }
-            if ((unsigned char)meter_data[12] > 128)
-            {
-                ex_byte = meter_data[12] & 0x0F;
-            }
-            else
-            {
-                ex_byte = 0;
-            }
-
-            if (ex_byte == 2)
-                ct_len = (meter_data[11 + ex_byte] * 256) +
-                         meter_data[12 + ex_byte] - 17;
-            else
-            {
-                ct_len = meter_data[12 + ex_byte] - 17;
-            }
-
-            // Replace IV
-            for (i = 0; i < 4; i++)
-            {
-                tpc_s_iv[8 + i] = meter_data[14 + ex_byte + i];
-            }
-
-            // Replace Tag
-            for (i = 0; i < 12; i++)
-            {
-                tag[i] = meter_data[18 + ex_byte + ct_len + i];
-            }
-
-            udf_AES_GCM_Decrypt(tpc_dk, tpc_gcm_ak, tpc_s_iv,
-                                &meter_data[18 + ex_byte], tag, &pt[0],
-                                ct_len, 17);
-            udf_Rafael_data(TASK_ID, 19, (char *)&meter_data[0], 3,
-                            uart_len1);
-            // On_Demand_type_buff(0x19,&meter_data[0]);//20191104
-            break;
-        case 33: // Error
-            if (MAA_flag == 0 && sst_flag == 1)
-            {
-                // NVIC_SystemReset(); // 0211 matt
-                printf("Key_Error or SST Fail\n\r");
-                // udf_Rafael_data(1,1,(char *)&ack_buff[0],3,1);
-
-                RESTART_FLAG = 1; // key error 1hr restart 0211 matt
-            }
-            if (TPC_GUK_FLAG == 1 || TPC_AK_FLAG == 1 || TPC_MK_FLAG == 1)
-            {
-                TPC_GUK_FLAG = 0;
-                TPC_AK_FLAG = 0;
-                TPC_MK_FLAG = 0;
-            }
-            if (POWERON_Restart == 1) // 0205 matt
-            {
-                printf("NVIC_SystemReset:4\n\r");
-                NVIC_SystemReset();
-            }
-
-            if (MAA_flag == 3)
-            {
-                Refuse_Command++;
-                if (CONTINUE_BUSY == 1 || ELS61_MESSAGE_LOCK == 1)
+                udf_AES_GCM_Decrypt(tpc_dk, tpc_gcm_ak, tpc_s_iv, &meter_data[18 + ex_byte], tag, &pt[0], ct_len, 17);
+                SETACTION++;
+                //0615//bob
+                if (pt[0] == 0xC5 && pt[3] == 0 && SET_TOU_C2_Start != 0 && SET_TOU_C2_Start <= saveSETdata[0]/*0620*/ ) //tou_c2 ok
                 {
-                    CONTINUE_BUSY = 0;
-                    ELS61_MESSAGE_LOCK = 0;
+                    //0617
+                    printf("\n\ragain\n\r");
+                    Set_TOU_C2(SET_TOU_C2_Start);
+                }
+                else if (pt[0] == 0xC5 && pt[3] == 0 && SET_TOU_C2_Start > saveSETdata[0]/*0620*/) //tou_c2 last, ok sent ack
+                {
+                    printf("\n\rSET_TOU_C2 OK!!!!\n\r");
+                    SET_TOU_C2_Start = 0;
+                    SETdata_index = 0;
+                    memset(saveSETdata, 0, sizeof(saveSETdata));
+                    udf_Rafael_data(TASK_ID, 0xB2, (char *)&meter_data[0], 3, uart_len1); //���]��4g
+                }
+                else if (pt[0] == 0xC5 && pt[3] != 0 && SET_TOU_C2_Start != 0) //tou_c2 ok
+                {
+                    printf("\n\rSET_TOU_C2 errrrrrr!!!!\n\r");
+                    udf_Rafael_data(TASK_ID, 0xB2, (char *)&meter_data[0], 3, uart_len1); //0717
+
+                    SET_TOU_C2_Start = 0;
+                    SETdata_index = 0;
+                    memset(saveSETdata, 0, sizeof(saveSETdata));
+                }
+                //0615//bob
+                //0617//bob
+                if (pt[0] == 0xC5 && pt[3] == 0 && SET_TOU_C1_INDEX == 1) //tou_c1 last, ok sent ack
+                {
+                    //SET_TOU_C1_INDEX
+                    printf("\n\rSET_TOU_C1 OK!!!!\n\r");
+                    SET_TOU_C1_INDEX = 0;
+                    udf_Rafael_data(TASK_ID, 0xB1, (char *)&meter_data[0], 3, meter_data[2] + 2); // Packaged for 4G
+                }
+                else    if (pt[0] == 0xC5 && pt[3] != 0 && SET_TOU_C1_INDEX == 1) //tou_c1 error
+                {
+                    printf("\n\rSET_TOU_C1 error!!!!\n\r");
+                    SET_TOU_C1_INDEX = 0;
+                    udf_Rafael_data(TASK_ID, 0xB1, (char *)&meter_data[0], 3, meter_data[2] + 2); // Packaged for 4G
+                }
+                //0617//bob
+                //0621
+                if (pt[0] == 0xC5 && pt[3] == 0 && SET_TIME_C0_INDEX == 1) //set time
+                {
+                    //SET_TOU_C1_INDEX
+                    printf("\n\rSET_TIME_C0_INDEX OK!!!!\n\r");
+                    SET_TIME_C0_INDEX = 0;
+                    udf_Rafael_data(TASK_ID, 0xB0, (char *)&meter_data[0], 3, uart_len1); // Packaged for 4G
+                }
+                else    if (pt[0] == 0xC5 && pt[3] != 0 && SET_TIME_C0_INDEX == 1)
+                {
+                    printf("\n\rSET_TIME_C0_INDEX error!!!!\n\r");
+                    SET_TIME_C0_INDEX = 0;
+                    udf_Rafael_data(TASK_ID, 0xB0, (char *)&meter_data[0], 3, uart_len1); // Packaged for 4G
+                }
+                //0621
+                if ( pt[3] != 0  && pt[0] == 0xC5 && SQBsetStart == 1) //error
+                {
+                    SQBrespone(0x1B, &meter_data[0] );
+                    SQBsettingNUM = 0xFF;//break
+                    SQBsetStart = 0;
+
+                    SETQBtmp = 1;
+                    HANDSQB = 0;
+                    memset( saveSETdata, 0, sizeof(saveSETdata));
+                    //      memset( SaveSETheader ,0,sizeof(SaveSETheader));//bob
                 }
 
-                if (Refuse_Command >= 3)
+                if (SETACTION != 0 && hitHANDguN == 1)
                 {
-                    printf("NVIC_SystemReset:5\n\r");
-                    NVIC_SystemReset();
+                    set_Test();
+                }
+                break;
+
+            case 3:
+                printf("GET Alarm\n\r");
+                udf_Alarm_Register1();
+                break;
+            case 99://ACTION_RES
+                printf("GET Action_res\n\r");
+                if (Auto_Reading == 1)
+                {
+                    auto_read_loadprofile = 0;
+                    auto_read_Midnight = 0;
+                    auto_read_ALT  = 0;
+                    Auto_Reading = 0;
+                }
+                if (POWERON_Restart == 1)   //0205 matt
+                {
+                    POWERON_Restart = 0;
+                }
+                if ((unsigned char)meter_data[12] > 128)
+                {
+                    ex_byte = meter_data[12] & 0x0F;
+                }
+                else
+                {
+                    ex_byte = 0;
                 }
 
-                udf_Send_DISC(2);
-            }
-            break;
-        case 12: // EVENT NOTIFICATION
-            if (meter_data[3] == 0x27)
-            {
+                if (ex_byte == 2)
+                {
+                    ct_len = (meter_data[11 + ex_byte] * 256) + meter_data[12 + ex_byte] - 17;
+                }
+                else
+                {
+                    ct_len = meter_data[12 + ex_byte] - 17;
+                }
+
                 // Replace IV
                 for (i = 0; i < 4; i++)
                 {
-                    tpc_s_iv_h[8 + i] = meter_data[14 + i];
+                    tpc_s_iv[8 + i] = meter_data[14 + ex_byte + i];
                 }
 
                 // Replace Tag
                 for (i = 0; i < 12; i++)
                 {
-                    tag[i] = meter_data[45 + i];
+                    tag[i] = meter_data[18 + ex_byte + ct_len + i];
                 }
-                printf("\r\nGET Event Notification\r\n");
-                Event_Notification = 1;
-                MC_done = 1;
-                udf_AES_GCM_Decrypt(tpc_guk, tpc_gcm_ak, tpc_s_iv_h,
-                                    &meter_data[18], tag, &pt[0], 27, 17);
+
+                udf_AES_GCM_Decrypt(tpc_dk, tpc_gcm_ak, tpc_s_iv, &meter_data[18 + ex_byte], tag, &pt[0], ct_len, 17);
+                udf_Rafael_data(TASK_ID, 19, (char *)&meter_data[0], 3, uart_len1);
+                //On_Demand_type_buff(0x19,&meter_data[0]);//20191104
+                break;
+            case 33://Error
+                if (MAA_flag == 0 && sst_flag == 1)
+                {
+                    //NVIC_SystemReset(); // 0211 matt
+                    printf("Key_Error or SST Fail\n\r");
+                    //udf_Rafael_data(1,1,(char *)&ack_buff[0],3,1);
+
+                    RESTART_FLAG = 1;       // key error 1hr restart 0211 matt
+                }
+                if (TPC_GUK_FLAG == 1 || TPC_AK_FLAG == 1 || TPC_MK_FLAG == 1)
+                {
+                    TPC_GUK_FLAG = 0;
+                    TPC_AK_FLAG = 0;
+                    TPC_MK_FLAG = 0;
+                }
+                if (POWERON_Restart == 1)   //0205 matt
+                {
+                    printf("NVIC_SystemReset:4\n\r");
+                    NVIC_SystemReset();
+                }
+
+                if (MAA_flag == 3)
+                {
+                    Refuse_Command ++;
+                    if (CONTINUE_BUSY == 1 || ELS61_MESSAGE_LOCK == 1)
+                    {
+                        CONTINUE_BUSY = 0;
+                        ELS61_MESSAGE_LOCK = 0;
+                    }
+
+                    if (Refuse_Command >= 3)
+                    {
+                        printf("NVIC_SystemReset:5\n\r");
+                        NVIC_SystemReset();
+                    }
+
+                    udf_Send_DISC(2);
+                }
+                break;
+            case 12://EVENT NOTIFICATION
+                if (meter_data[3] == 0x27)
+                {
+                    // Replace IV
+                    for (i = 0; i < 4; i++)
+                    {
+                        tpc_s_iv_h[8 + i] = meter_data[14 + i];
+                    }
+
+                    // Replace Tag
+                    for (i = 0; i < 12; i++)
+                    {
+                        tag[i] = meter_data[45 + i];
+                    }
+                    printf("\r\nGET Event Notification\r\n");
+                    Event_Notification = 1;
+                    MC_done = 1;
+                    udf_AES_GCM_Decrypt(tpc_guk, tpc_gcm_ak, tpc_s_iv_h, &meter_data[18], tag, &pt[0], 27, 17);
+                }
+                if (AUTO_AA == 1)
+                {
+                    udf_Send_DISC(2);
+                }
+                break;
+            case 88:
+                udf_Send_SNRM(2);
+                DISC_FLAG = 0;
+                break;
+            default:
+                break;
             }
-            if (AUTO_AA == 1)
-            {
-                udf_Send_DISC(2);
-            }
-            break;
-        case 88:
-            udf_Send_SNRM(2);
-            DISC_FLAG = 0;
-            break;
-        default:
-            break;
+
+            gettime_flag = 0;
+
+        }
+        else //Read Meter Data on Boot
+        {
+            meter_Boot_Step();
         }
 
-        gettime_flag = 0;
     }
 }
-
 static void flash_Information(void)
 {
     char strbuf[128];
@@ -3214,8 +3910,9 @@ static void flash_Information(void)
 
 void udf_Meter_received_task(const uint8_t *aBuf, uint16_t aBufLength)
 {
-    const uint8_t *end;
+    const uint8_t    *end;
     uint16_t cmd_length;
+    char strbuf[128];
     end = aBuf + aBufLength;
     for (; aBuf < end; aBuf++)
     {
@@ -3224,10 +3921,18 @@ void udf_Meter_received_task(const uint8_t *aBuf, uint16_t aBufLength)
             dlms_rx_buf[dlms_rx_length++] = *aBuf;
         }
     }
-
+    //udf_Meter_Process(dlms_rx_buf, dlms_rx_length);
     cmd_length = ((dlms_rx_buf[1] & 0x0F) * 256) + dlms_rx_buf[2] + 2;
 
-    if (dlms_rx_length >= cmd_length)
+
+    if (dlms_rx_length == cmd_length)
+    {
+        log_info_hexdump("Meter data", dlms_rx_buf, dlms_rx_length);
+        udf_Meter_Process(dlms_rx_buf, dlms_rx_length);
+        memset(dlms_rx_buf, 0x0, dlms_rx_length);
+        dlms_rx_length = 0;
+    }
+    if (dlms_rx_length > cmd_length)
     {
         udf_Meter_Process(dlms_rx_buf, dlms_rx_length);
         /*dlms_rx_buf clean*/
@@ -3235,11 +3940,14 @@ void udf_Meter_received_task(const uint8_t *aBuf, uint16_t aBufLength)
         dlms_rx_length = 0;
     }
 }
-
 void udf_Meter_init(otInstance *instance)
 {
     Configuration_Page_init(instance);
     flash_Information();
+    udf_Send_DISC(1);
+
+    ELS61_Block_Queue_handle = xQueueCreate(QUEUE_SIZE, sizeof(_ELS61_Block_data_t));
+
 }
 
 const sh_cmd_t g_cli_cmd_factoryid STATIC_CLI_CMD_ATTRIBUTE =
@@ -3247,4 +3955,1088 @@ const sh_cmd_t g_cli_cmd_factoryid STATIC_CLI_CMD_ATTRIBUTE =
     .pCmd_name    = "factoryid",
     .pDescription = "factory id setting",
     .cmd_exec     = _cli_cmd_factory_id_set,
+
+    //      .pCmd_name    = "flag status",
+    //    .pDescription = "get_fan_status",
+    //    .cmd_exec     = _cli_cmd_get_fan_status,
 };
+const sh_cmd_t g_cli_cmd_get_fanstatus STATIC_CLI_CMD_ATTRIBUTE =
+{
+    .pCmd_name    = "flagstatus",
+    .pDescription = "get_fan_status",
+    .cmd_exec     = _cli_cmd_get_fan_status,
+};
+static void udf_Action_Transmit(unsigned char obisTXT[], unsigned char plainTXT[], uint16_t plainTXT_Len, uint32_t frameNum, uint8_t lastNum)
+{
+    unsigned char cmdTXT[779] =
+    {
+        0x7E, 0xA0, 0x2C, 0x03, 0x23, 0x13, 0x6C, 0x8D, 0xE6, 0xE6,
+        0x00, 0xD3, 0x1E, 0x30, 0x00, 0x00, 0x00, 0x01, 0xC3, 0x01,
+        0x49, 0x00, 0x0A, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
+        0x08, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, //50
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, //100
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, //150
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, //200
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, //250
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, //300
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, //350
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, //400
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, //450
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, //500
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, //550
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, //600
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, //650
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, //700
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, //750
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11,
+        0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x7E
+    }; //779B
+    uint8_t key_update_obis[9] = {0x40, 0x00, 0x00, 0x2B, 0x00, 0x01, 0xFF, 0x02, 0x01};
+    uint8_t shift = 0, shiftTrans = 0, shiftOBIS = 0, check_key_update_obis = 0;
+    uint16_t i = 0, frameLen = 0, cipherLen = 0, plainLen = 0;
+    unsigned short crc16;
+    unsigned char ch;
+    char strbuf[777];
+    unsigned char cipher[744], tag[16];
+    //int riva_cnt = 0x40;
+    printf("in Action Transmit\n\r");
+
+    plainLen = plainTXT_Len;
+    cipherLen = plainLen + 21; //5 + 4 + 12
+    frameLen = cipherLen + 14; //12 + 2
+
+
+    //Total frame length modification
+    if (frameLen >= 256)
+    {
+        if (cipherLen >= 256) //encrypt plain text length modification
+        {
+            shift = 2;
+            cmdTXT[12] = 0x82; //extra
+            cmdTXT[15] = 0x30;
+        }
+        else if (cipherLen >= 128)
+        {
+            shift = 1;
+            cmdTXT[12] = 0x81; //extra
+        }
+    }
+    else if (frameLen >= 128)
+    {
+        if (cipherLen >= 128)
+        {
+            shift = 1;
+            cmdTXT[12] = 0x81; //extra
+        }
+        else
+        {
+            shift = 0;
+        }
+    }
+    else
+    {
+        shift = 0;
+    }
+
+    cmdTXT[14 + shift] = 0x00;
+    cmdTXT[15 + shift] = 0x00;
+    cmdTXT[16 + shift] = (ic_count >> 8) & 0xFF;
+    cmdTXT[17 + shift] = ic_count & 0xFF;
+    cmdTXT[18 + shift] = 0xC3;
+    cmdTXT[19 + shift] = 01;
+    cmdTXT[20 + shift] = ((ic_count - 3) % 0x40) + 0x40;; //40¶}©l
+    cmdTXT[21 + shift] = (lastNum > 0) ? 01 : 00;
+
+    for (i = 0; i < 9; i++)
+    {
+        cmdTXT[22 + shift + i] = obisTXT[i]; //OBIS insertion
+        if (key_update_obis[i] == obisTXT[i])
+        {
+            check_key_update_obis ++;
+        }
+    }
+    shiftOBIS = 9;
+    if (check_key_update_obis == 9)
+    {
+        cmdTXT[11] = 0xCB;
+    }
+
+    //Continuing transmit set up
+    if (frameNum != 0)
+    {
+        if (frameNum == 1)
+        {
+            cmdTXT[19 + shift] = 0x02; //transmit command
+            cmdTXT[31 + shift] = 0x00; //extra "1"
+            shiftOBIS++;
+        }
+        else
+        {
+            cmdTXT[19 + shift] = 0x03; //transmit command
+            shiftOBIS -= 9;
+        }
+        cmdTXT[22 + shift + shiftOBIS] = (frameNum >> 24) & 0xFF; //extra
+        cmdTXT[23 + shift + shiftOBIS] = (frameNum >> 16) & 0xFF; //extra
+        cmdTXT[24 + shift + shiftOBIS] = (frameNum >> 8) & 0xFF; //extra
+        cmdTXT[25 + shift + shiftOBIS] = frameNum & 0xFF; //extra
+        if (plainLen >= 256)
+        {
+            cmdTXT[26 + shift + shiftOBIS] = 0x82; //extra
+            cmdTXT[27 + shift + shiftOBIS] = (plainLen >> 8) & 0xFF; //extra
+            cmdTXT[28 + shift + shiftOBIS] = plainLen & 0xFF; //extra
+            shiftTrans = 7; //4 + 3
+        }
+        else if (plainLen >= 128)
+        {
+            cmdTXT[26 + shift + shiftOBIS] = 0x81;  //extra
+            cmdTXT[27 + shift + shiftOBIS] = plainLen & 0xFF; //extra
+            shiftTrans = 6; //4 + 2
+        }
+        else
+        {
+            cmdTXT[26 + shift + shiftOBIS] = plainLen & 0xFF; //extra
+            shiftTrans = 5; //4 + 1
+        }
+    }
+
+    //Length adjustment
+    frameLen += (shift + shiftTrans + shiftOBIS);
+    cipherLen += (shiftTrans + shiftOBIS);
+    cmdTXT[1] = ((frameLen >> 8) & 0xFF) + 0xA0;
+    cmdTXT[2] = (frameLen) & 0xFF;
+    switch (shift)
+    {
+    case 0:
+        cmdTXT[12] = cipherLen;
+        cmdTXT[13] = 0x30;
+        break;
+    case 1:
+        cmdTXT[13] = cipherLen;
+        cmdTXT[14] = 0x30;
+        break;
+    case 2:
+        cmdTXT[13] = ((cipherLen) >> 8) & 0xFF; //extra
+        cmdTXT[14] = (cipherLen) & 0xFF;
+        break;
+    default:
+        break;
+    }
+
+
+    //Byte1~5 CRC
+    crc16 = 0xFFFF;
+    for (i = 1; i < 6; i++)
+    {
+        ch = cmdTXT[i];
+        crc16 = UpdateCRC16(crc16, ch);
+    }
+
+    //Byte1~5 CRC   insertion
+    crc16 = ~crc16;
+    cmdTXT[6] = crc16 & 0xFF;
+    cmdTXT[7] = (crc16 >> 8) & 0xFF;
+
+    //plainTXT insertion
+    for (i = 0; i < plainLen; i++)
+    {
+        cmdTXT[22 + shift + shiftTrans + shiftOBIS + i] = plainTXT[i];
+    }
+
+    //Data encrypt
+    for (i = 0; i < 4; i++)
+    {
+        tpc_c_iv[8 + i] = cmdTXT[14 + shift + i]; //¥Îcount±a¤J¨ìiv¤º
+    }
+    if (check_key_update_obis == 9)
+    {
+        udf_AES_GCM_Encrypt(tpc_guk, tpc_gcm_ak, tpc_c_iv, &cmdTXT[18 + shift], &cipher[0], &tag[0], plainLen + shiftTrans + shiftOBIS + 4, 17);
+    }
+    else
+    {
+        udf_AES_GCM_Encrypt(tpc_dk, tpc_gcm_ak, tpc_c_iv, &cmdTXT[18 + shift], &cipher[0], &tag[0], plainLen + shiftTrans + shiftOBIS + 4, 17);    //©ñ¤Jcmdbuf,²£¥Í§¹¦¨«á¥Ñcipher±µ¦¬
+    }
+
+    //Cipher insertion
+    for (i = 0; i < 4 + shiftOBIS + shiftTrans + plainLen; i++)
+    {
+        cmdTXT[18 + shift + i] = cipher[i];
+    }
+
+    //Tag insertion
+    for (i = 0; i < 12; i++)
+    {
+        cmdTXT[22 + shift + shiftTrans + shiftOBIS + plainLen + i] = tag[i];
+    }
+
+    //Total CRC
+    crc16 = 0xFFFF;
+    for (i = 1; i <= frameLen - 2; i++)
+    {
+        ch = cmdTXT[i];
+        crc16 = UpdateCRC16(crc16, ch);
+    }
+
+    //Total CRC insertion
+    crc16 = ~crc16;
+    cmdTXT[frameLen - 1] = crc16 & 0xFF;
+    cmdTXT[frameLen] = (crc16 >> 8) & 0xFF;
+    cmdTXT[frameLen + 1] = 0x7E;  //end flag
+
+    /*for (i = 0; i < frameLen + 2 ; i++)
+    {
+      sprintf(strbuf, "%02X ", cmdTXT[i]);
+      printf(strbuf);
+    }
+    printf("\n\r");*/
+    for (i = 0; i < frameLen + 2; i++)
+    {
+        sprintf(strbuf, "%02X ", cmdTXT[i]);
+        printf(strbuf);
+    }
+    printf("\n\r");
+    app_uart_data_send(2, cmdTXT, frameLen + 2);
+
+
+}
+
+static void DASprocessCommand(uint8_t *data, uint16_t data_lens)
+{
+    char strbuf[128];
+    uint8_t checkSum = 0, actionkey_resend_FLAG = 0, ipv6check = 0, plaintext_location = 0;
+    uint16_t i = 0, dataLen = 0, j = 0, command_datalocation = 0; //, k = 0
+    unsigned char obis[8] = {0}, timeobis[9] = {8, 0, 0, 1, 0, 0, 255, 2, 0};
+    //IWDG_ReloadCounter();
+    char *recvbuf = NULL;
+    recvbuf = pvPortMalloc(1500 * sizeof(char));
+    if (NULL == recvbuf)
+    {
+        return;
+    }
+    memset(recvbuf, 0x0, (1500 * sizeof(char)));
+    memcpy(recvbuf, (char *)data, data_lens);
+
+    if (256 * recvbuf[1] + recvbuf[2] + 4 <= 1500)
+    {
+        dataLen = 256 * recvbuf[1] + recvbuf[2] + 4;
+        if (target_pos == 2 || target_pos == 3)
+        {
+            dataLen = 256 * recvbuf[8] + recvbuf[9] + 4 + 8;
+        }
+        dataLen = (dataLen > 0x8000) ? dataLen - 0x8000 : dataLen ; //bob
+    }
+    sprintf(strbuf, "\n\rprocessCommand \n\rdataLen = %d / 1500\n\r", dataLen);
+    printf(strbuf);
+
+
+
+
+    for (i = 12; i < 12 + recvbuf[11]; i++)
+    {
+        if (recvbuf[i] == ipv6_output[i - 12])
+        {
+            ipv6check++;
+        }
+    }
+    if (ipv6check == ipv6_length) //§PÂ_ipv6¬O§_¥¿½T
+    {
+        ipv6check = 0;
+        if (recvbuf[recvbuf[11] + 13] * 256 + recvbuf[recvbuf[11] + 14] < 65535)
+        {
+            TASK_ID = recvbuf[recvbuf[11] + 13] * 256 + recvbuf[recvbuf[11] + 14];
+        }
+        sprintf(strbuf, "TASK_ID = %d ", TASK_ID);
+        printf(strbuf);
+        if (recvbuf[recvbuf[11] + 12] == 0xA1)
+        {
+            HESKEY = 1;
+            if (A2_TIMESynchronize == 0 && MAA_flag == 0)
+            {
+                plaintext_location = recvbuf[11] + 15;
+                sst_flag = 1;//start sst
+                RE_REG = 0;//RE_REGISTER_END
+                begin.tm_year = (recvbuf[plaintext_location] * 256 + recvbuf[plaintext_location + 1] - 1900); /*= {recvbuf[19],recvbuf[18],recvbuf[17],recvbuf[14],recvbuf[14], recvbuf[12]};(recvbuf[12]*256 + recvbuf[13] -1900)};//12~19*/
+                begin.tm_mon = recvbuf[plaintext_location + 2] - 1;
+                begin.tm_mday = recvbuf[plaintext_location + 3];
+                begin.tm_hour = recvbuf[plaintext_location + 5];
+                begin.tm_min = recvbuf[plaintext_location + 6];
+                begin.tm_sec = recvbuf[plaintext_location + 7];
+                for (i = 0 ; i < 16 ; i++) //update key
+                {
+                    tpc_guk[i] = recvbuf[plaintext_location + 8 + i];
+                    tpc_gcm_ak[i + 1] = recvbuf[plaintext_location + 24 + i];
+                    tpc_gmac_ak[i + 1] = recvbuf[plaintext_location + 24 + i];
+                    tpc_mkey[i] = recvbuf[plaintext_location + 40 + i];
+                }
+                now_time = mktime(&begin);
+                RTC_CNT = 0;
+                AAcheck = 1;//start AA
+                flag_MAA = 0;
+                MAAFIRST = 1;
+            }
+            else if (KeyErrorflag == 1 && A2_TIMESynchronize == 1 && MAA_flag == 0) //­Y¬Okey¿ù»~ «h¯à¦A®³key
+            {
+                plaintext_location = recvbuf[11] + 15;
+                sst_flag = 1;//start sst
+                RE_REG = 0;//RE_REGISTER_END
+                begin.tm_year = (recvbuf[plaintext_location] * 256 + recvbuf[plaintext_location + 1] - 1900); /*= {recvbuf[19],recvbuf[18],recvbuf[17],recvbuf[14],recvbuf[14], recvbuf[12]};(recvbuf[12]*256 + recvbuf[13] -1900)};//12~19*/
+                begin.tm_mon = recvbuf[plaintext_location + 2] - 1;
+                begin.tm_mday = recvbuf[plaintext_location + 3];
+                begin.tm_hour = recvbuf[plaintext_location + 5];
+                begin.tm_min = recvbuf[plaintext_location + 6];
+                begin.tm_sec = recvbuf[plaintext_location + 7];
+                for (i = 0 ; i < 16 ; i++) //update key
+                {
+                    tpc_guk[i] = recvbuf[plaintext_location + 8 + i];
+                    tpc_gcm_ak[i + 1] = recvbuf[plaintext_location + 24 + i];
+                    tpc_gmac_ak[i + 1] = recvbuf[plaintext_location + 24 + i];
+                    tpc_mkey[i] = recvbuf[plaintext_location + 40 + i];
+                }
+                now_time = mktime(&begin);
+                RTC_CNT = 0;
+                AAcheck = 1;//start AA
+                flag_MAA = 0;
+                MAAFIRST = 1;
+                registerRetrytime = 60;//­Y¬Okey¬O¿ù»~ªº«h±N­«·sµù¥U§ï¬°1¤p®É¤@¦¸
+            }
+            else
+            {
+                if (MAA_flag == 3)
+                {
+                    MAA_flag = 3;
+                }
+            }
+            A2_TIMESynchronize = 1;
+
+        }
+        else if (recvbuf[ipv6_length + 12] == 0xC1) //0614
+        {
+
+            Set_Command_Select(recvbuf[ipv6_length + 12], &recvbuf[8]/*RF_len in*/);
+        }
+        else if (recvbuf[ipv6_length + 12] == 0xC2) //0615
+        {
+            printf("set\n");
+            Set_Command_Select(recvbuf[ipv6_length + 12], &recvbuf[8]/*RF_len in*/);
+        }
+        else if (recvbuf[ipv6_length + 12] == 0xC3) //0626
+        {
+            Set_Command_Select(recvbuf[ipv6_length + 12], &recvbuf[8]);
+        }
+        else if (recvbuf[ipv6_length + 12] == 0xC4) //0626
+        {
+            Set_Command_Select(recvbuf[ipv6_length + 12], &recvbuf[8]);
+        }
+        else if (recvbuf[recvbuf[11] + 12] == 0x96) //Reset
+        {
+            printf("reset ok!\n\r");
+            //Reset_FAN();
+        }
+        else if (recvbuf[recvbuf[11] + 12] == 0xA4)
+        {
+            //setContinue = ((ELSData[9]>>7) ==1) ? 1:0;
+            //setLast = (setContinue == 1) ? 1 :0;
+            dataLen = (recvbuf[9] << 1) * 128 + recvbuf[10];
+            for (i = 0; i < 9; i++)
+            {
+                obis[i] = recvbuf[i + 13];
+            }
+
+            udf_Set_Transmit(obis, (unsigned char *)&recvbuf[22], dataLen - 11, 0, 0);
+        }
+        else if (recvbuf[recvbuf[11] + 12] == 0xA3) //On Demand Reading
+        {
+            //On_Demand_Reading_Type = 1;
+            //Tesk_ID = ELSData[12];
+            //On_Demand_ID = 1;
+            Task_count = recvbuf[recvbuf[11] + 15];
+            Task_count_all = Task_count;
+            ON_DEMAND_AA_FLAG = 1;
+            printf("On_Demand_Task_Command = ");
+            for (i = recvbuf[11] + 16; i < recvbuf[11] + 16 + Task_count * 9; i++)
+            {
+                On_Demand_Task_Command[i - recvbuf[11] - 16] = recvbuf[i];
+                sprintf(strbuf, "%02X ", On_Demand_Task_Command[i - recvbuf[11] - 16]);
+                printf(strbuf);
+            }
+            printf("\n");
+            udf_Send_DISC(2);
+        }
+        else if (recvbuf[recvbuf[11] + 12] == 0x09) //ACTION,20191104
+        {
+            printf("ACTION\n\r");
+            udf_Action_Transmit((unsigned char *)&recvbuf[recvbuf[11] + 15], (unsigned char *)&recvbuf[recvbuf[11] + 24], dataLen - 12 - recvbuf[11] - 14 - 4 - 9, 0, 0);
+        }
+        else if (recvbuf[recvbuf[11] + 12] == 0xAC && MAA_flag == 3) //¸ÉÅª
+        {
+            printf("\n\rde:\n\r");
+            for (i = 0; i < dataLen; i++)
+            {
+                sprintf(strbuf, "%02X ", recvbuf[i]);
+                printf(strbuf);
+            }
+            printf("\n\r");
+            AC_Command(&recvbuf[recvbuf[11] + 15]);
+
+        }
+        else if (recvbuf[recvbuf[11] + 12] == 0x93) //³]©wFirewall¥\¯à && ¬y¶q­­¨î
+        {
+            //firewall³]©w­È
+            FirewallSetData[0] = recvbuf[12];
+            FirewallSetData[1] = recvbuf[13];
+
+
+            if (recvbuf[12] == FirewallSetData[0] && recvbuf[13] ==  FirewallSetData[1])
+            {
+                CheckFirewall = 0;
+            }
+
+            //¬y¶q­­¨î³]©w­È
+            FlowSetData[0] = recvbuf[14];
+            FlowSetData[1] = recvbuf[15];
+
+            //Change A,B type
+            Initial_Value[6] = recvbuf[16];
+            LoadprofileAB = Initial_Value[6];
+
+            //write flash
+            WriteFlashData(ConfigurationPage, Initial_Value, 256);
+
+            //Firewall_Set_Check();
+        }
+        else if (recvbuf[recvbuf[11] + 12] == 0x92) //FAN LOG
+        {
+            //                      RF_CommandLog(0xff);
+        }
+        else if (recvbuf[recvbuf[11] + 12] == 0x91) //FAN¦Û§ÚÀË´ú
+        {
+            //FAN_Check();
+        }
+        else if (recvbuf[recvbuf[11] + 12] == 0x94) //Ping FAN
+        {
+            udf_Rafael_data(1, 0x24, 0x00, 3, 1);
+        }
+        else if (recvbuf[recvbuf[11] + 12] == 0x95) //Ping meter
+        {
+            FLAG_PING_METER = 1;
+            PingMeterSec = RTC_CNT;
+            udf_Send_SNRM(1);
+
+        }
+        else if (recvbuf[recvbuf[11] + 12] == 0xAA)
+        {
+            ACTION_CHANGE_KEY = 1;
+            for (i = 0; i < recvbuf[recvbuf[11] + 12 + 13]; i++) // total no. key
+            {
+                if (recvbuf[recvbuf[11] + 12 + 17 + i * 30] == 0x00 || recvbuf[recvbuf[11] + 12 + 17 + i * 30] == 0x02 || recvbuf[recvbuf[11] + 12 + 17 + i * 30] == 0x62 || recvbuf[recvbuf[11] + 12 + 17 + i * 30] == 0x63 || recvbuf[recvbuf[11] + 12 + 17 + i * 30] == 0x64)
+                {
+                    for (j = 0 ; j < 24 ; j++)
+                    {
+                        kek_chipher[j] = recvbuf[recvbuf[11] + 12 + 17 + 3 + j + i * 30];
+                    }
+                    //                              udf_AES_KEK_Decrypt();
+
+                    if (recvbuf[recvbuf[11] + 12 + 17 + i * 30] == 0x00) //FAN_guk
+                    {
+                        printf("tpc_guk_update\n\r");
+                        //                                  for(k=0 ;k<16 ;k++)
+                        //                                      new_tpc_guk[k] = kek_plaint[k];
+                        if (TPC_GUK_FLAG == 0)
+                        {
+                            TPC_GUK_FLAG = 1;
+                        }
+                        else
+                        {
+                            actionkey_resend_FLAG = 1;
+                        }
+                    }
+                    else if (recvbuf[recvbuf[11] + 12 + 17 + i * 30] == 0x02) //FAN_ak
+                    {
+                        printf("tpc_ak_update\n\r");
+                        //                                  for(k=0 ;k<16 ;k++)
+                        //                                  {
+                        //                                      new_tpc_gcm_ak[k+1] = kek_plaint[k];
+                        //                                      new_tpc_gmac_ak[k+1] = kek_plaint[k];
+                        //                                  }
+                        if (TPC_AK_FLAG == 0)
+                        {
+                            TPC_AK_FLAG = 1;
+                        }
+                        else
+                        {
+                            actionkey_resend_FLAG = 1;
+                        }
+                    }
+                    else if (recvbuf[recvbuf[11] + 12 + 17 + i * 30] == 0x062) //HAN_guk
+                    {
+                        printf("HAN_guk_update\n\r");
+
+                    }
+                    else if (recvbuf[recvbuf[11] + 12 + 17 + i * 30] == 0x063) //HAN_ak
+                    {
+                        printf("HAN_ak_update\n\r");
+
+                    }
+                    else if (recvbuf[recvbuf[11] + 12 + 17 + i * 30] == 0x064) //MK
+                    {
+                        printf("tpc_MK_update\n\r");
+                        //                                  for(k=0 ;k<16 ;k++)
+                        //                                      new_tpc_mkey[k] = kek_plaint[k];
+                        if (TPC_MK_FLAG == 0)
+                        {
+                            TPC_MK_FLAG = 1;
+                        }
+                        else
+                        {
+                            actionkey_resend_FLAG = 1;
+                        }
+                    }
+
+                }
+            }
+            if (actionkey_resend_FLAG == 1)
+            {
+                printf("Resend_actionkey_response\n\r");
+                //Key_Restart = 1;
+                KeyResCount = 0;
+                udf_Rafael_data(TASK_ID, 0x1A, (char *)&actionkey_response[0], 3, KEYresponse_len);
+                //SQBrespone(0x1A, &actionkey_response[0]);
+            }
+            else
+            {
+                Key_Restart = 1;
+                KeyResCount = 0;
+                sprintf(strbuf, "len = %d \n", (recvbuf[8] * 256) + recvbuf[9] - 18 - recvbuf[11]);
+                printf(strbuf);
+                udf_Action_Transmit((unsigned char *)&recvbuf[recvbuf[11] + 15], (unsigned char *)&recvbuf[recvbuf[11] + 24], (recvbuf[8] * 256) + recvbuf[9] - 27 - recvbuf[11], 0, 0);
+            }
+        }
+    }
+    else
+    {
+        if (recvbuf[11] == 0xA9 && (recvbuf[19] == selfAddress[3]))
+        {
+            udf_Set_Transmit(timeobis, (unsigned char *)&recvbuf[18 + recvbuf[18] + 1], 13, 0, 0);
+
+            printf("Broadcast block adjustment!\n\r");
+            //Broadcast number adjustment
+            recvbuf[18]--;
+
+            //Data Shift
+            for (i = 19; i < dataLen - 1; i++)
+            {
+                recvbuf[i] = recvbuf[i + 1];
+            }
+
+            //dataLen adjustment
+            dataLen--;
+
+            //checkSum generation and insertion
+            for (i = 1; i < dataLen - 2; i++)
+            {
+                checkSum += recvbuf[i];
+            }
+            recvbuf[dataLen - 2] = checkSum;
+
+            printf("ELSData[] = \n\r");
+            for (i = 0; i < dataLen; i++)
+            {
+                sprintf(strbuf, "%02X ", recvbuf[i]);
+                printf(strbuf);
+            }
+            printf("\n\r");
+        }
+        else if (recvbuf[recvbuf[11] + 12] == 0xA3)
+        {
+            ondemand_busy = 1;
+        }
+        else if (recvbuf[recvbuf[11] + 12] == 0xA2)
+        {
+            for (i = 0; i < 4; i++)
+            {
+                rememberAddress[i] = recvbuf[i + 5];    //remember the address
+            }
+            RFCOUNT = 0;
+            rememberAddressFlag = 1;
+        }
+        //RFSendData(recvbuf,len_test+13);
+        for (i = 0; i < dataLen; i++)
+        {
+            cmdTXT[i] = recvbuf[i];
+        }
+        blockType = recvbuf[11];
+        cmdTXT_Len = dataLen;
+        lengthCount = 0;
+
+        //Transmittion Address Check
+        //                  RF_BlockAddressCheck(cmdTXT);
+
+        //  AM1Address[0] = ELSData[5];
+        //  AM1Address[1] = ELSData[6];
+        //  AM1Address[2] = ELSData[7];
+        //  AM1Address[3] = ELSData[8];
+        //RFSendFlag = 1;
+    }
+
+
+
+
+}
+
+void ELS61_Block_Queue_processing(void)
+{
+    _ELS61_Block_data_t ELS61_Block_data;
+
+    //若接收對列不為空且不忙碌時，取出命令進行處理
+    if (receiveIndex > 0 && receivebusyflag == 0 && CONTINUE_BUSY == 0 && On_Demand_Reading_Type == 0)
+    {
+        if (xQueueReceive(ELS61_Block_Queue_handle, (void *)&ELS61_Block_data, 0) == pdPASS)
+        {
+            DASprocessCommand(ELS61_Block_data.pdata, ELS61_Block_data.dlen);
+            if (ELS61_Block_data.pdata)
+            {
+                vPortFree(ELS61_Block_data.pdata);
+            }
+        }
+    }
+}
+
+void Queue_processing(void)
+{
+    char receivecommand[COMMAND_LENGTH], sendcommand[COMMAND_LENGTH], recv_c;
+    int i = 0, Rafael_datalen = 0;
+    char strbuf[128];
+
+    //      // 若發送對列不為空且不忙碌時，取出命令進行處理
+    //      if (sendIndex > 0 && sendbusyflag == 0 && CONTINUE_BUSY == 0 && On_Demand_Reading_Type == 0)
+    //      {
+    //
+    //              memcpy(sendcommand, RF_Block_Queue[0], COMMAND_LENGTH);
+    //              for (i = 0; i < sendIndex - 1; i++) {
+    //                   memcpy(RF_Block_Queue[i], RF_Block_Queue[i + 1], COMMAND_LENGTH);
+    //              }
+    //
+    //              if(target_pos == 2 || target_pos == 3)
+    //                  sendIndex--;
+    //              //µo°e©R¥O
+    //               if(target_pos == 2 || target_pos == 3)
+    //              {
+    //                  sprintf(strbuf,"\n\r Send Command buffer  , %d / %d\n\r",sendIndex,QUEUE_SIZE);
+    //                  printf(strbuf);
+    //                  Change_the_Virtual_Leader_IPv6();
+    //                  //Set_IP(&Virtual_leader_ipv6[0],virtual_ipv6_length);
+    //                  sendbusyflag = 1;
+    //                  //sendbusyflagstart = (u32)now_time + RTC_CNT;
+    //                  Rafael_datalen = sendcommand[1]*256 + sendcommand[2] + 3;
+    //                  memcpy(Send_RF_lastcommand, (char *)sendcommand, Rafael_datalen);
+    //
+    //
+    ////                    for(i=0;i<Rafael_datalen;i++)
+    ////                    {
+    ////                        recv_c=sendcommand[i];
+    ////                        USART_SendData(UART7, recv_c);
+    ////                        while(!(UART7->STS & USART_FLAG_TXE));
+    ////                    }
+    //                  sendbusyflag = 0;
+    //                  sendbusyflagstart = 0;
+    //
+    //              }
+    //      }
+}
+static void Auto_MAA(void)
+{
+    //  if( p->tm_min == 59 && p->tm_sec == 00 && flag_MAA == 0)
+    //  {
+    udf_Send_DISC(2);
+    flag_MAA = 1;
+    //      flag_snrm = 0;
+    //}
+
+}
+
+void AAFIRST(void)
+{
+    int i = 0;
+
+    if (MAA_flag == 0)
+    {
+        for (i = 0; i < 16; i++)
+        {
+            tpc_guk[i] = Configuration_Page[i + 48];
+            tpc_gcm_ak[i + 1] = Configuration_Page[i + 64];
+            tpc_gmac_ak[i + 1] = Configuration_Page[i + 64];
+            tpc_mkey[i] = Configuration_Page[i + 80];
+        }
+        MAAFIRST = 1;
+        Auto_MAA();
+
+
+    }
+}
+
+
+void Rafael_Register(void)
+{
+    char strbuf[128];
+    int i = 0;
+    unsigned char obis_notification_data[] = { 0x07, 0x00, 0x00, 0x63, 0x62, 0x00, 0xFF, 0x02};
+    char ack_buff[1] = {0x00};
+
+    if (register_steps == 0)
+    {
+        fan_number();
+    }
+    if ((target_pos == 2 || target_pos == 3) && register_steps == 1 && MAA_flag == 0 && SuccessRole == 1)
+    {
+        printf("register222222\r\n");
+        register_command();
+    }
+
+    if (sst_flag == 1 && MAA_flag == 1 && register_steps == 2 && SuccessRole == 1)
+    {
+
+        printf("ack Corrent\n\r");//®³¨ìkey«ásend ack
+        ACK_function(0);
+        RE_REG = 1;
+        sst_flag = 0;
+        MAA_flag = 2;
+        //MAAFlagNot3 = now_timer;//ken,20191022
+        if (target_pos == 2 || target_pos == 3)
+        {
+            ack_flag = 1;    // green light on flag
+        }
+    }
+    ///////////////////////////////////////////////////////////////
+    if ((MAA_flag == 2 && FIRST_POWER_ON_FLAG == 1 ) || (EVENT_LOG_POWER_ON == 1 && NOT_COMPLETELY_POWER_OFF == 1 ))
+    {
+        if (target_pos == 2 || target_pos == 3 )
+        {
+            printf("MAA_flag = 1\n");
+            FIRST_POWER_ON_FLAG = 0;
+            EVENT_LOG_POWER_ON = 0;
+            sprintf(strbuf, "NOT_COMPLETELY_POWER_OFF = %d , FIRST_NOT_COMPLETELY_POWER_ON_FLAG = %d\n", NOT_COMPLETELY_POWER_OFF, FIRST_NOT_COMPLETELY_POWER_ON_FLAG);
+            printf(strbuf);
+            if (NOT_COMPLETELY_POWER_OFF == 1 && FIRST_NOT_COMPLETELY_POWER_ON_FLAG == 1)
+            {
+                printf("NVIC_SystemReset:1\n\r");
+                NVIC_SystemReset();
+            }
+            else
+            {
+                udf_Get_New_Number_of_pens(ic_count, &obis_notification_data[0], 1);
+            }
+        }
+    }
+    if (AAcheck == 1 && flag_MAA == 0)
+    {
+        Auto_MAA();
+    }
+
+
+
+    if (MAA_flag >= 2 && (target_pos == 2 || target_pos == 3) && ack_flag == 0 && SuccessRole == 1)
+    {
+        //          Change_the_Virtual_Leader_IPv6();
+        //          Set_IP(&Virtual_leader_ipv6[0],virtual_ipv6_length);
+        sprintf(strbuf, "\nack flag =%d =================\n\r", ack_flag);
+        printf(strbuf);
+        ack_flag = 1; // green light on flag
+    }
+    //}
+}
+void evaluate_commandAM1(char *recvbuf, uint16_t len_test)
+{
+    unsigned char timeobis[9] = {8, 0, 0, 1, 0, 0, 255, 2, 0}, ack_buff[1] = {0x00};
+    //size_t len_test=0;
+    int i = 0, j;
+    char strbuf[128];
+    uint8_t default_tag[12], ipv6check = 0;
+    uint8_t *default_pt = NULL;
+    char *am1buffer = NULL;
+    char flashbuffer[150] = {0};
+    printf("\n\rprocessCommand buffer:\n\r");
+
+    for (i = 1, j = 0 ; i < 1 + recvbuf[0]; i++, j++)
+    {
+        if (recvbuf[i] == ipv6_output[j])
+        {
+            ipv6check++;
+        }
+    }
+    am1buffer = pvPortMalloc(1500 * sizeof(char));
+    if (NULL == am1buffer)
+    {
+        return;
+    }
+    default_pt = pvPortMalloc(1500 * sizeof(uint8_t));
+    if (NULL == default_pt)
+    {
+        return;
+    }
+    if (ipv6check == ipv6_length)
+    {
+
+        printf("AM1 buffer:\n\r");
+
+        for (i = 11; i <= len_test + 4 + 6; i++)
+        {
+            am1buffer[i] = recvbuf[i - 11];
+            sprintf(strbuf, "%02X ", am1buffer[i]);
+            printf(strbuf);
+        }
+        printf("\n\r");
+
+        if (recvbuf[am1buffer[11] + 13] * 256 + am1buffer[am1buffer[11] + 14] < 65535)
+        {
+            TASK_ID = am1buffer[am1buffer[11] + 13] * 256 + am1buffer[am1buffer[11] + 14];
+        }
+        sprintf(strbuf, "TASK_ID = %d ", TASK_ID);
+        printf(strbuf);
+        if (am1buffer[am1buffer[11] + 12] == 0x91 || am1buffer[am1buffer[11] + 12] == 0x92 || am1buffer[am1buffer[11] + 12] == 0x94 || am1buffer[am1buffer[11] + 12] == 0x95 || am1buffer[am1buffer[11] + 12] == 0x96) // not Decrypt command
+        {
+            receive_queue(&am1buffer[0], len_test + 4);
+        }
+        else if (am1buffer[am1buffer[11] + 12] == 0x03 && MAA_flag == 3) //¸ÉÅª
+        {
+            printf("\n\rAC buffer:\n\r");
+            for (i = 0; i < len_test + 4 + 6; i++)
+            {
+                sprintf(strbuf, "%02X ", am1buffer[i]);
+                printf(strbuf);
+            }
+            printf("\n\r");
+            AC_Command(&am1buffer[am1buffer[11] + 15]);
+
+        }
+        else if (am1buffer[am1buffer[11] + 12]  == 0xDC ) //set flash
+        {
+            flashsetfuntion(&am1buffer[am1buffer[11] + 15]);
+        }
+        else if (am1buffer[am1buffer[11] + 12]  == 0xDD ) //get flash
+        {
+            ReadFlashData_Normal(ConfigurationPage, Configuration_Page, 150);//0615
+            flashbuffer[0] = 0x00;
+            for (i = 0; i < 150; i++)
+            {
+                flashbuffer[i + 1] = Configuration_Page[i];
+            }
+            udf_Rafael_data(TASK_ID, 0xDD, &flashbuffer[0], 3, 143);
+
+        }
+        else if (am1buffer[am1buffer[11] + 12]  == 0xDF ) //Reset
+        {
+            CONTINUE_BUSY   =   1;
+            udf_Rafael_data(TASK_ID, 0xF2, &ack_buff[0], 3, 1);
+            //              ResetRF_Flag = 1;
+            //              ResetRFstart = (u32)now_time + RTC_CNT;
+        }
+        else if (am1buffer[am1buffer[11] + 12] == 0x97 ) //set time without encrypt
+        {
+            begin.tm_year = (am1buffer[42] * 256 + am1buffer[43] - 1900);
+            begin.tm_mon  = am1buffer[44] - 1;
+            begin.tm_mday = am1buffer[45];
+            begin.tm_hour = am1buffer[47];
+            begin.tm_min  = am1buffer[48];
+            begin.tm_sec  = am1buffer[49];
+            RTC_CNT = 0;
+            now_time = mktime(&begin);//19
+            //SET_FAN_TIME();
+        }
+        else if (am1buffer[am1buffer[11] + 12] == 0xA8 ) //set time without encrypt
+        {
+            begin.tm_year = (am1buffer[43] * 256 + am1buffer[44] - 1900);
+            begin.tm_mon  = am1buffer[45] - 1;
+            begin.tm_mday = am1buffer[46];
+            begin.tm_hour = am1buffer[48];
+            begin.tm_min  = am1buffer[49];
+            begin.tm_sec  = am1buffer[50];
+            RTC_CNT = 0;
+            now_time = mktime(&begin);//19
+
+            //­×§ï®É¶¡ + ®É¶¡®t  = ²{¦b®É¶¡
+            udf_Set_Transmit(timeobis, &recvbuf[42], 13, 0, 0);
+        }
+        else
+        {
+            ///update command///////////////////////////////////
+            for (i = 0; i < 12; i++)                                                        //
+            {
+                default_tag[i] = am1buffer[i + len_test - 1];    //
+            }
+            sprintf(strbuf, "\nrecvbuf[%02x] len = %d \n\r", am1buffer[11] + 15, len_test - 5 - am1buffer[11] - 13);
+            printf(strbuf);
+            //udf_AES_GCM_Decrypt(system_ekey, system_add, system_ic, &am1buffer[am1buffer[11]+ 15], default_tag, &default_pt[0], len_test-5-am1buffer[11]-13, 17);                                             //
+
+            for (i = 0; i < len_test - 14 - am1buffer[11]; i++)                                         // decrypt
+            {
+                am1buffer[am1buffer[11] + 15 + i] = default_pt[i];    //
+            }
+            //
+            ///update over//////////////////////////////////////
+            if (MAA_flag != 3 && (am1buffer[am1buffer[11] + 12] == 0xAC || am1buffer[am1buffer[11] + 12] == 0xA3))
+            {
+                sprintf(strbuf, "***Initialization*** ,%02X\n ", recvbuf[11]);
+                printf(strbuf);
+            }
+            else
+            {
+                receive_queue(&am1buffer[0], len_test + 4);
+            }
+        }
+
+
+    }
+    else
+    {
+        ipv6check = 0;
+        printf("check Broadcast ipv6: \n");
+        for (i = 1, j = 0 ; i < 1 + recvbuf[0]; i++, j++)
+        {
+            sprintf(strbuf, "%02X ", recvbuf[i]);
+            printf(strbuf);
+        }
+        for (i = 1, j = 0 ; i < 1 + recvbuf[0]; i++, j++)
+        {
+            if (recvbuf[i] == Broadcast_ip[j])
+            {
+                ipv6check++;
+            }
+        }
+        //¼s¼½©R¥O
+        if (ipv6check == 7)
+        {
+
+            printf("Broadcast_ip\n");
+            len_test = recvbuf[1] * 256 + recvbuf[2];
+
+
+            printf("AM1 buffer:\n\r");
+
+            for (i = 7; i < len_test + 4 + 6; i++)
+            {
+                am1buffer[i] = recvbuf[i - 7];
+                sprintf(strbuf, "%02X ", am1buffer[i]);
+                printf(strbuf);
+            }
+            printf("\n\r");
+            printf("AM1 buffer:");
+            for (i = 0; i < len_test + 4 + 6; i++)
+            {
+                sprintf(strbuf, "%02X ", am1buffer[i]);
+                printf(strbuf);
+            }
+            printf("\n\r");
+            if (recvbuf[am1buffer[11] + 13] * 256 + am1buffer[am1buffer[11] + 14] < 65535)
+            {
+                TASK_ID = am1buffer[am1buffer[11] + 13] * 256 + am1buffer[am1buffer[11] + 14];
+            }
+            sprintf(strbuf, "TASK_ID = %d ", TASK_ID);
+            printf(strbuf);
+            if (am1buffer[am1buffer[11] + 12] == 0x03 && MAA_flag == 3) //¸ÉÅª
+            {
+                Broadcast_savebuff_flag = 1;
+                printf("\n\rAC buffer:\n\r");
+                for (i = 0; i < len_test + 4 + 6; i++)
+                {
+                    sprintf(strbuf, "%02X ", am1buffer[i]);
+                    printf(strbuf);
+                }
+                printf("\n\r");
+                AC_Command(&am1buffer[am1buffer[11] + 15]);
+
+            }
+            else if (am1buffer[am1buffer[11] + 12] == 0x45 ) //Flash initialization.
+            {
+                printf("\n\rflash_set_test\n\r");
+                WriteFlashData(ConfigurationPage, flash_test, 200);
+                //NVIC_SystemReset();
+            }
+        }
+        //IPV6¿ù»~
+        else
+        {
+            printf("send ipv6 error\n");
+        }
+    }
+    if (am1buffer)
+    {
+        vPortFree(am1buffer);
+    }
+    if (default_pt)
+    {
+        vPortFree(default_pt);
+    }
+}
+
+void __das_dlms_task(app_task_event_t sevent)
+{
+    if (sevent & EVENT_METER_BOOT_STEP)
+    {
+        if (meterBootStep == Preliminary_Work_Completed)
+        {
+            AAFIRST();//register to server
+        }
+    }
+
+    if (sevent & EVENT_ELS61_BLOCK_QUEUE)
+    {
+        ELS61_Block_Queue_processing();
+    }
+}

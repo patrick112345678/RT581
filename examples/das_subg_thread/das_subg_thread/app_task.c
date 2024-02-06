@@ -15,8 +15,26 @@
 #include "main.h"
 #include "log.h"
 #include "ot_ota_handler.h"
+#include "timers.h"
+#include <time.h>
 
 static SemaphoreHandle_t    appSemHandle          = NULL;
+app_task_event_t g_app_task_evt_var = EVENT_NONE;
+// Declare a global variable to hold the task handle of the RafaelRegisterTask.
+TaskHandle_t xRafaelRegisterTaskHandle = NULL;
+
+void __app_task_signal(void)
+{
+    if (xPortIsInsideInterrupt())
+    {
+        BaseType_t pxHigherPriorityTaskWoken = pdTRUE;
+        xSemaphoreGiveFromISR( appSemHandle, &pxHigherPriorityTaskWoken);
+    }
+    else
+    {
+        xSemaphoreGive(appSemHandle);
+    }
+}
 
 static void ot_stateChangeCallback(otChangedFlags flags, void *p_context)
 {
@@ -29,17 +47,25 @@ static void ot_stateChangeCallback(otChangedFlags flags, void *p_context)
         switch (role)
         {
         case OT_DEVICE_ROLE_CHILD:
+            target_pos = OT_DEVICE_ROLE_CHILD;
+            SuccessRole = 1;
             break;
         case OT_DEVICE_ROLE_ROUTER:
+            target_pos = OT_DEVICE_ROLE_ROUTER;
+            SuccessRole = 1;
 #if NET_MGM_ENABLED
             nwk_mgm_child_register_post();
 #endif
             break;
         case OT_DEVICE_ROLE_LEADER:
+            target_pos = OT_DEVICE_ROLE_LEADER;
+            SuccessRole = 1;
             break;
 
         case OT_DEVICE_ROLE_DISABLED:
+            target_pos = OT_DEVICE_ROLE_DISABLED;
         case OT_DEVICE_ROLE_DETACHED:
+            target_pos = OT_DEVICE_ROLE_DETACHED;
         default:
             break;
         }
@@ -92,28 +118,30 @@ static void app_udp_cb(otMessage *otMsg, const otMessageInfo *otInfo)
 
         memset(p, 0x0, len);
         otMessageRead(otMsg, otMessageGetOffset(otMsg), p, len);
-        /* print payload*/
-        log_info("Received len     : %d ", len);
-        log_info("Received ip      : %s ", string);
-        log_info("Received port    : %d ", otInfo->mSockPort);
 
-        log_info_hexdump("Received Message ", p, len);
         /*check is udp ack data*/
         if (memcmp(&p, "ACK", sizeof(char) * 3) != 0)
         {
+            /* print payload*/
+            log_info("Received len     : %d ", len);
+            log_info("Received ip      : %s ", string);
+            log_info("Received port    : %d ", otInfo->mSockPort);
+            /*process data and send to meter (p, len) */
+            app_udp_received_queue_push(p, len);
+
             if (otInfo->mSockAddr.mFields.m8[0] == 0xff)
             {
-                if (otInfo->mSockAddr.mFields.m8[1] == 0x02 || otInfo->mSockAddr.mFields.m8[1] == 0x03)
+                if (otInfo->mSockAddr.mFields.m8[1] == 0x02 ||
+                        otInfo->mSockAddr.mFields.m8[1] == 0x03)
                 {
                     is_multicast = true;
                 }
             }
+
             if (!is_multicast)
             {
                 memcpy((char *)p, "ACK", sizeof(char) * 3);
-                printf("check 1 \r\n");
                 app_udpSend(otInfo->mSockPort, otInfo->mPeerAddr, p, 3);
-                printf("check 2 \r\n");
             }
         }
     } while (0);
@@ -123,7 +151,71 @@ static void app_udp_cb(otMessage *otMsg, const otMessageInfo *otInfo)
         vPortFree(p);
     }
 }
+// Implementation of the RafaelRegisterTask function
+static void RafaelRegisterTask(void *pvParameters)
+{
+    // Wait for notification indefinitely
+    for (;;)
+    {
+        // Check if MAA_flag is 3 or more before waiting for notification
+        if (MAA_flag >= 3)
+        {
+            // Optionally: Log or perform any cleanup before stopping the task
+            // Example: log_info("Stopping RafaelRegisterTask as MAA_flag reached 3.");
 
+            // Delete this task
+            vTaskDelete(NULL); // This will terminate the RafaelRegisterTask
+        }
+
+        // Wait for notification to execute Rafael_Register
+        if (ulTaskNotifyTake(pdTRUE, portMAX_DELAY))
+        {
+            // Upon receiving a notification, execute Rafael_Register
+            Rafael_Register();
+        }
+    }
+}
+
+
+// Function to trigger notification to RafaelRegisterTask
+static void TriggerRafaelRegisterCallback()
+{
+    if (xRafaelRegisterTaskHandle != NULL)
+    {
+        // Notify the RafaelRegisterTask to execute Rafael_Register function
+        xTaskNotifyGive(xRafaelRegisterTaskHandle);
+    }
+}
+
+// Task to check the SuccessRole variable and trigger notification
+static void CheckSuccessRoleTask(void *pvParameters)
+{
+    const TickType_t xDelay = pdMS_TO_TICKS(1000); // Delay for 1 second to prevent continuous checking
+
+    while (1)
+    {
+        if (SuccessRole == 1 && MAA_flag < 3)
+        {
+            // If SuccessRole is 1, trigger the RafaelRegisterTask notification
+            TriggerRafaelRegisterCallback();
+            // Optionally reset SuccessRole here to prevent repeated notifications
+            // SuccessRole = 0; // Uncomment if you wish to reset SuccessRole after notification
+        }
+        else if (MAA_flag >= 3)
+        {
+            // Optional: Log or perform any cleanup before stopping the task
+            // Example: Log_info("MAA_flag has reached 3, stopping CheckSuccessRoleTask.");
+
+            // Stop the task from further execution
+            break; // This will exit the while loop
+        }
+
+        // Delay for a period to prevent continuous checking
+        vTaskDelay(xDelay);
+    }
+    // Optionally delete the task if it should no longer run
+    vTaskDelete(NULL); // Uncomment if you want to delete the task when finished
+}
 
 void otrInitUser(otInstance *instance)
 {
@@ -194,6 +286,11 @@ void otrInitUser(otInstance *instance)
 
     otSetStateChangedCallback(instance, ot_stateChangeCallback, instance);
 
+    // At system initialization or an appropriate location, create the RafaelRegisterTask
+    xTaskCreate(RafaelRegisterTask, "RafaelRegister", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1, &xRafaelRegisterTaskHandle);
+
+    // Create the CheckSuccessRoleTask at the start of your program to continuously monitor the SuccessRole
+    xTaskCreate(CheckSuccessRoleTask, "CheckSuccess", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1, NULL);
 
 #if OPENTHREAD_FTD
     app_sockInit(instance, app_udp_cb, THREAD_UDP_PORT);
@@ -208,18 +305,35 @@ void otrInitUser(otInstance *instance)
 
     otIp6SetEnabled(instance, true);
     otThreadSetEnabled(instance, true);
+    now_time = mktime(&begin);
 }
 
 
 void app_task (void)
 {
     appSemHandle = xSemaphoreCreateBinary();
+    app_task_event_t event = EVENT_NONE;
+
+    app_uart_init();
+
+    log_info("DAS SubG Thread Init ability FTD \n");
 
     while (true)
     {
-        if (xSemaphoreTake(appSemHandle, 10000))
+        if (xSemaphoreTake(appSemHandle, portMAX_DELAY))
         {
+            APP_EVENT_GET_NOTIFY(event);
 
+            /*app uart use*/
+            __uart_task(event);
+
+            /*app udp use*/
+            __udp_task(event);
+
+            /*das dlms use*/
+            __das_dlms_task(event);
         }
     }
 }
+
+

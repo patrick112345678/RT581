@@ -37,36 +37,27 @@ Note: source file '..\..\..\components\platform\soc\rt582\rt582_driver\Src\timer
 Note: source file '..\..\..\components\platform\soc\rt582\rt582_dongle\dongle\src\debug.c' - object file renamed from '.\Objects\debug.o' to '.\Objects\debug_1.o'.
 Note: source file '..\..\..\components\platform\soc\rt582\rt582_dongle\dongle\src\system_cm3_mcu.c' - object file renamed from '.\Objects\system_cm3_mcu.o' to '.\Objects\system_cm3_mcu_1.o'.
 Note: source file '..\..\..\components\utility\cli\cli.c' - object file renamed from '.\Objects\cli.o' to '.\Objects\cli_1.o'.
+creating list file for rt_main.c...
+compiling app_udp.c...
+creating list file for app_udp.c...
+creating list file for app_uart.c...
 compiling app_task.c...
+compiling main.c...
+compiling rt_main.c...
+creating list file for main.c...
 creating list file for app_task.c...
-creating list file for das_dlms_cmd.c...
-../das_subg_thread/das_dlms_cmd.c(588): error: use of undeclared identifier 'instance'
-    otIp6AddressToString(otThreadGetMeshLocalEid(instance), string,
-                                                 ^
-../das_subg_thread/das_dlms_cmd.c(590): error: use of undeclared identifier 'instance'
-        LeaderIp = *otThreadGetRloc(instance);
-                                    ^
-../das_subg_thread/das_dlms_cmd.c(595): error: use of undeclared identifier 'string'
-    payload_len = 1 + strlen(string) + 1 + 2 + meter_len;
-                             ^
-../das_subg_thread/das_dlms_cmd.c(595): error: use of undeclared identifier 'meter_len'
-    payload_len = 1 + strlen(string) + 1 + 2 + meter_len;
-                                               ^
-../das_subg_thread/das_dlms_cmd.c(597): error: initializer element is not a compile-time constant
-    payload = pvPortMalloc(payload_len);
-              ^~~~~~~~~~~~~~~~~~~~~~~~~
-../das_subg_thread/das_dlms_cmd.c(598): error: expected identifier or '('
-    if (payload)
-    ^
-../das_subg_thread/das_dlms_cmd.c(619): error: expected identifier or '('
-    if (payload)
-    ^
-../das_subg_thread/das_dlms_cmd.c(623): error: extraneous closing brace ('}')
-}
-^
-8 errors generated.
+compiling app_uart.c...
+compiling das_hex_cmd.c...
+creating list file for das_hex_cmd.c...
+creating list file for network_management.c...
+compiling network_management.c...
 compiling das_dlms_cmd.c...
-".\Objects\das_subg_thread.axf" - 8 Error(s), 0 Warning(s).
+creating list file for das_dlms_cmd.c...
+linking...
+Program Size: Code=368624 RO-data=89780 RW-data=880 ZI-data=86272  
+FromELF: creating hex file...
+After Build - User command #1: C:\Keil_v5\\ARM\ARMCC\bin\fromelf.exe --bin --output=Bin\das_subg_thread.bin .\Objects\das_subg_thread.axf
+".\Objects\das_subg_thread.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -84,8 +75,7 @@ Package Vendor: ARM
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.5.0
-Target not created.
-Build Time Elapsed:  00:00:26
+Build Time Elapsed:  00:00:47
 </pre>
 </body>
 </html>

@@ -11,8 +11,9 @@
 
 #if defined(__CC_ARM) || defined(__CLANG_ARM) || (defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050))
 extern uint32_t Image$$RW_IRAM2_FREERTOS_HEAP_POOL_START$$RO$$Base;
+#define RAM_ALREADY_USED_SIZE (unsigned int)(FREETOS_HEAP_POOL_START - 0x20000000)
 #define FREETOS_HEAP_POOL_START    ((void*)&Image$$RW_IRAM2_FREERTOS_HEAP_POOL_START$$RO$$Base)
-#define FREETOS_HEAP_POOL_SIZE 0x14D00
+unsigned int _heap_size = 0;
 #else
 extern uint8_t _heap_start;
 extern uint8_t _heap_size;
@@ -30,7 +31,7 @@ extern int puts(const char *s);
 static HeapRegion_t xHeapRegions[] =
 {
 #if defined(__CC_ARM) || defined(__CLANG_ARM) || (defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050))
-    { FREETOS_HEAP_POOL_START,  (unsigned int) FREETOS_HEAP_POOL_SIZE}, //set on runtime
+    { FREETOS_HEAP_POOL_START, (unsigned int)0}, //set on runtime
 #else
     { &_heap_start,  (unsigned int) &_heap_size}, //set on runtime
 #endif
@@ -174,7 +175,7 @@ static void _dump_boot_info(void)
     puts(__TIME__);
     puts("\r\n");
 #if defined(__CC_ARM) || defined(__CLANG_ARM) || (defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050))
-    printf("Heap %u@%p\r\n", (unsigned int)FREETOS_HEAP_POOL_SIZE, FREETOS_HEAP_POOL_START );
+    printf("Heap %u@%p\r\n", (unsigned int)_heap_size, FREETOS_HEAP_POOL_START );
 #else
     printf("Heap %u@%p \r\n", (unsigned int)&_heap_size, &_heap_start);
 #endif
@@ -282,7 +283,10 @@ void rt582_utick_set_clear()
 int main(void)
 {
     pin_mux_init();
-
+#if defined(__CC_ARM) || defined(__CLANG_ARM) || (defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050))
+    _heap_size = (0x00024000 - RAM_ALREADY_USED_SIZE);
+    xHeapRegions[0].xSizeInBytes = _heap_size;
+#endif
     vPortDefineHeapRegions(xHeapRegions);
 
     rt582_utick_set_clear();
@@ -317,7 +321,7 @@ int main(void)
         puts("Task create fail....\r\n");
     }
 
-    puts("[OS] Starting OS Scheduler...\r\n");
+    puts("[OS] Starting OS Scheduler... \r\n");
 
     vTaskStartScheduler();
     while (1);

@@ -22,6 +22,14 @@ static otUdpSocket          appSock;
 static void (*app_udpHandler) (otMessage *, const otMessageInfo *);
 static uint16_t appUdpPort = THREAD_UDP_PORT;
 
+static QueueHandle_t app_udp_handle;
+
+typedef struct
+{
+    uint16_t dlen;
+    uint8_t *pdata;
+} _app_udp_data_t ;
+
 static void otUdpReceive_handler(void *aContext, otMessage *aMessage, const otMessageInfo *aMessageInfo)
 {
     log_info("UPD Packet received, port: %d, len: %d", aMessageInfo->mPeerPort, otMessageGetLength(aMessage));
@@ -30,32 +38,26 @@ static void otUdpReceive_handler(void *aContext, otMessage *aMessage, const otMe
     {
         app_udpHandler(aMessage, aMessageInfo);
     }
-
-    otMessageFree(aMessage);
-
 }
 
-otError app_udpSend(uint16_t PeerPort, otIp6Address PeerAddr, uint8_t *data, uint8_t data_lens)
+otError app_udpSend(uint16_t PeerPort, otIp6Address PeerAddr, uint8_t *data,
+                    uint8_t data_lens)
 {
     otError error = OT_ERROR_NONE;
     otMessage *message = NULL;
     otMessageInfo messageInfo;
     otMessageSettings messageSettings = {true, OT_MESSAGE_PRIORITY_NORMAL};
-    char *buf = NULL;
-    printf("send 1 \r\n");
+
     do
     {
-        printf("send 2 \r\n");
         memset(&messageInfo, 0, sizeof(messageInfo));
 
         messageInfo.mPeerPort = PeerPort;
         messageInfo.mPeerAddr = PeerAddr;
-        printf("send 3 \r\n");
+
         otInstance *instance = otrGetInstance();
-        printf("send 4 \r\n");
         if (instance)
         {
-            printf("send 5 \r\n");
             message = otUdpNewMessage(instance, &messageSettings);
             if (message == NULL)
             {
@@ -65,18 +67,15 @@ otError app_udpSend(uint16_t PeerPort, otIp6Address PeerAddr, uint8_t *data, uin
             error = otMessageAppend(message, data, data_lens);
             if (error != OT_ERROR_NONE)
             {
-                printf("otMessageAppend fail \r\n");
                 break;
             }
 
             error = otUdpSend(instance, &appSock, message, &messageInfo);
             if (error != OT_ERROR_NONE)
             {
-                printf("otUdpSend fail \r\n");
                 break;
             }
         }
-        printf("send 6 \r\n");
         message = NULL;
 
     } while (0);
@@ -88,9 +87,42 @@ otError app_udpSend(uint16_t PeerPort, otIp6Address PeerAddr, uint8_t *data, uin
     return error;
 }
 
+void app_udp_received_queue_push(uint8_t *data, uint16_t data_lens)
+{
+    _app_udp_data_t u_data;
+
+    u_data.pdata =  pvPortMalloc(data_lens);
+    if (u_data.pdata)
+    {
+        memcpy(u_data.pdata, data, data_lens);
+        u_data.dlen = data_lens;
+        while (xQueueSend(app_udp_handle, (void *)&u_data, portMAX_DELAY) != pdPASS);
+
+        APP_EVENT_NOTIFY(EVENT_UDP_RECEIVED);
+    }
+}
+
+void __udp_task(app_task_event_t sevent)
+{
+    if ((EVENT_UDP_RECEIVED & sevent))
+    {
+        _app_udp_data_t u_data;
+        if (xQueueReceive(app_udp_handle, (void *)&u_data, 0) == pdPASS)
+        {
+            log_info_hexdump("Received Message ", u_data.pdata, u_data.dlen);
+            evaluate_commandAM1(u_data.pdata, u_data.dlen);
+            if (u_data.pdata)
+            {
+                vPortFree(u_data.pdata);
+            }
+        }
+    }
+}
+
 uint8_t app_sockInit(otInstance *instance, void (*handler)(otMessage *, const otMessageInfo *), uint16_t udp_port)
 {
     otSockAddr sockAddr;
+    BaseType_t xReturned;
 
     uint8_t ret;
 
@@ -109,6 +141,8 @@ uint8_t app_sockInit(otInstance *instance, void (*handler)(otMessage *, const ot
             log_info("UDP PORT           : 0x%x", udp_port);
         }
     }
+
+    app_udp_handle = xQueueCreate(5, sizeof(_app_udp_data_t));
 
     return ret;
 }
