@@ -2118,7 +2118,7 @@ app_udpHandler:
 	.long	.Linfo_string112                @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
 	.byte	44                              @ DW_AT_decl_line
-	.long	288                             @ DW_AT_type
+	.long	325                             @ DW_AT_type
 	.byte	25                              @ Abbrev [25] 0x524:0xe DW_TAG_variable
 	.byte	2                               @ DW_AT_location
 	.byte	145

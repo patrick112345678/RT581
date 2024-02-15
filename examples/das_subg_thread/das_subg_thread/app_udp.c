@@ -41,7 +41,7 @@ static void otUdpReceive_handler(void *aContext, otMessage *aMessage, const otMe
 }
 
 otError app_udpSend(uint16_t PeerPort, otIp6Address PeerAddr, uint8_t *data,
-                    uint8_t data_lens)
+                    uint16_t data_lens)
 {
     otError error = OT_ERROR_NONE;
     otMessage *message = NULL;

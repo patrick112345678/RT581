@@ -83,7 +83,7 @@ void __uart_task(app_task_event_t sevent);
 
 /*app udp*/
 uint8_t app_sockInit(otInstance *instance, void (*handler)(otMessage *, const otMessageInfo *), uint16_t udp_port);
-otError app_udpSend(uint16_t PeerPort, otIp6Address PeerAddr, uint8_t *data, uint8_t data_lens);
+otError app_udpSend(uint16_t PeerPort, otIp6Address PeerAddr, uint8_t *data, uint16_t data_lens);
 void app_udp_received_queue_push(uint8_t *data, uint16_t data_lens);
 void __udp_task(app_task_event_t sevent);
 

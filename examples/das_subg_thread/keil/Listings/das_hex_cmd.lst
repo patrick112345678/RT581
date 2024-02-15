@@ -2379,7 +2379,7 @@ das_hex_cmd_received_task:
 	.loc	2 179 17                        @ ../das_subg_thread/das_hex_cmd.c:179:17
 	add	r7, sp, #16
 	ldm	r7, {r1, r2, r3, r7}
-	uxtb	r0, r4
+	uxth	r0, r4
 	adds	r5, #4
 .Ltmp287:
 	strd	r5, r0, [sp, #4]

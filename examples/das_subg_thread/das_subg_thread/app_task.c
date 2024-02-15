@@ -120,7 +120,7 @@ static void app_udp_cb(otMessage *otMsg, const otMessageInfo *otInfo)
         otMessageRead(otMsg, otMessageGetOffset(otMsg), p, len);
 
         /*check is udp ack data*/
-        if (memcmp(&p, "ACK", sizeof(char) * 3) != 0)
+        if (memcmp(p, "ACK", sizeof(char) * 3) != 0)
         {
             /* print payload*/
             log_info("Received len     : %d ", len);
