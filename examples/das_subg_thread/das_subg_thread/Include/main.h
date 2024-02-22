@@ -42,6 +42,7 @@ typedef enum
 
     EVENT_ELS61_BLOCK_QUEUE                = 0x00000080,
 
+    EVENT_SEND_QUEUE                             = 0x00000100,
     EVENT_ALL                              = 0xffffffff,
 } app_task_event_t;
 
@@ -71,7 +72,7 @@ void udf_Meter_received_task(const uint8_t *aBuf, uint16_t aBufLength);
 void evaluate_commandAM1(char *recvbuf, uint16_t len_test);
 void __das_dlms_task(app_task_event_t sevent);
 extern uint8_t target_pos;
-extern uint8_t SuccessRole, MAA_flag;
+extern uint8_t SuccessRole, MAA_flag, GreenLight_Flag, flag_Power_Off;
 extern time_t now_time;
 extern uint32_t now_timer, RTC_CNT;
 extern struct tm begin;

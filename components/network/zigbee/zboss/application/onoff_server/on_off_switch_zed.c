@@ -614,9 +614,9 @@ void zboss_signal_handler(zb_uint8_t param)
         {
             TRACE_MSG(TRACE_APP1, "Finding&binding done", (FMT__0));
             ZB_SCHEDULE_APP_CALLBACK(send_node_desc_req, req_buf); /* starts sendindg a sequence of
-                * descriptors to the coordinator,
-                * just for an example of descriptors
-                * requests usage */
+    * descriptors to the coordinator,
+    * just for an example of descriptors
+    * requests usage */
 #ifndef ZB_USE_BUTTONS
             /* Do not have buttons in simulator - just start periodic on/off sending */
             cmd_in_progress = ZB_FALSE;

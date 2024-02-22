@@ -91,11 +91,6 @@
 #include "common/string.hpp"
 #include "mac/channel_mask.hpp"
 
-extern "C"{
-    extern bool das_hex_cmd_status_check();
-    extern void das_hex_command_response(bool state, uint8_t cmd_id);
-}
-
 namespace ot {
 namespace Cli {
 
@@ -153,10 +148,7 @@ Interpreter::Interpreter(Instance *aInstance, otCliOutputCallback aCallback, voi
     otIp6SetReceiveCallback(GetInstancePtr(), &Interpreter::HandleIp6Receive, this);
 #endif
     memset(&mUserCommands, 0, sizeof(mUserCommands));
-    if (!das_hex_cmd_status_check())
-    {
-        OutputPrompt();
-    }
+    OutputPrompt();
 }
 
 void Interpreter::OutputResult(otError aError)
@@ -167,33 +159,16 @@ void Interpreter::OutputResult(otError aError)
 
     if (aError == OT_ERROR_NONE)
     {
-        if (das_hex_cmd_status_check())
-        {
-            das_hex_command_response(0, 0xF1);
-        }
-        else
-        {
-            OutputLine("Done");
-        }
+        OutputLine("Done");
     }
     else
     {
-        if (das_hex_cmd_status_check())
-        {
-            das_hex_command_response(1, 0xF1);
-        }
-        else
-        {
-            OutputLine("Error %u: %s", aError, otThreadErrorToString(aError));
-        }
+        OutputLine("Error %u: %s", aError, otThreadErrorToString(aError));
     }
 
     mCommandIsPending = false;
     mTimer.Stop();
-    if (!das_hex_cmd_status_check())
-    {
-        OutputPrompt();
-    }
+    OutputPrompt();
 exit:
     return;
 }

@@ -101,7 +101,7 @@ static void __uart_queue_send(app_task_event_t evt)
             else if (UART2_OPERATION_PORT == uart_data.port)
             {
                 hosal_uart_ioctl(&uart2_dev, HOSAL_UART_DMA_TX_START, &txdam_cfg);
-                log_debug_hexdump("uart2 Tx", uart_data.pdata, uart_data.dlen);
+                log_debug_hexdump("Send Meter (uart2 Tx)", uart_data.pdata, uart_data.dlen);
             }
             __tx_done = 0;
             if (uart_data.pdata)

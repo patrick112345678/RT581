@@ -120,7 +120,6 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name></Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -154,7 +153,7 @@
           <Type>0</Type>
           <LineNumber>282</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>39464</Address>
+          <Address>39972</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -164,38 +163,6 @@
           <Filename>..\..\..\components\utility\uart_stdio\uart_stdio.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\das_subg_thread\../../../components/utility/uart_stdio/uart_stdio.c\282</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>25</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>276146</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\das_subg_thread\main.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\das_subg_thread\../das_subg_thread/main.c\25</Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
-          <LineNumber>205</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>..\das_subg_thread\app_task.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -4749,7 +4716,7 @@
 
   <Group>
     <GroupName>SDK-Dongle</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -5112,18 +5079,6 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\das_subg_thread\das_hex_cmd.c</PathWithFileName>
-      <FilenameWithoutPath>das_hex_cmd.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>26</GroupNumber>
-      <FileNumber>389</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
       <PathWithFileName>..\das_subg_thread\network_management.c</PathWithFileName>
       <FilenameWithoutPath>network_management.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
@@ -5139,7 +5094,7 @@
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>27</GroupNumber>
-      <FileNumber>390</FileNumber>
+      <FileNumber>389</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -5151,7 +5106,7 @@
     </File>
     <File>
       <GroupNumber>27</GroupNumber>
-      <FileNumber>391</FileNumber>
+      <FileNumber>390</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -5163,7 +5118,7 @@
     </File>
     <File>
       <GroupNumber>27</GroupNumber>
-      <FileNumber>392</FileNumber>
+      <FileNumber>391</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -5183,7 +5138,7 @@
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>28</GroupNumber>
-      <FileNumber>393</FileNumber>
+      <FileNumber>392</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -5195,7 +5150,7 @@
     </File>
     <File>
       <GroupNumber>28</GroupNumber>
-      <FileNumber>394</FileNumber>
+      <FileNumber>393</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -5207,7 +5162,7 @@
     </File>
     <File>
       <GroupNumber>28</GroupNumber>
-      <FileNumber>395</FileNumber>
+      <FileNumber>394</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -5219,7 +5174,7 @@
     </File>
     <File>
       <GroupNumber>28</GroupNumber>
-      <FileNumber>396</FileNumber>
+      <FileNumber>395</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -5231,7 +5186,7 @@
     </File>
     <File>
       <GroupNumber>28</GroupNumber>
-      <FileNumber>397</FileNumber>
+      <FileNumber>396</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -5243,7 +5198,7 @@
     </File>
     <File>
       <GroupNumber>28</GroupNumber>
-      <FileNumber>398</FileNumber>
+      <FileNumber>397</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>

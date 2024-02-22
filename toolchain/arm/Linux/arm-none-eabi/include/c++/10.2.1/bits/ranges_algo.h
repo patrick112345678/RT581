@@ -3721,7 +3721,7 @@ struct __lexicographical_compare_fn
 private:
     template<typename _Iter, typename _Ref = iter_reference_t<_Iter>>
     static constexpr bool __ptr_to_nonvolatile
-        = is_pointer_v<_Iter> && !is_volatile_v<remove_reference_t<_Ref>>;
+        = is_pointer_v<_Iter>&& !is_volatile_v<remove_reference_t<_Ref>>;
 };
 
 inline constexpr __lexicographical_compare_fn lexicographical_compare;

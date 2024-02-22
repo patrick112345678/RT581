@@ -12,13 +12,31 @@
 #include "log.h"
 #include "main.h"
 
-void gpio_31_isr_handle_cb(uint32_t pin, void *isr_param)
+void wdt_isr(void)
 {
 
 }
 
+void wdt_init(void)
+{
+    wdt_config_mode_t wdt_mode;
+    wdt_config_tick_t wdt_cfg_ticks;
+
+    wdt_mode.int_enable = 1;
+    wdt_mode.reset_enable = 1;
+    wdt_mode.lock_enable = 0;
+    wdt_mode.prescale = WDT_PRESCALE_32;
+
+    wdt_cfg_ticks.wdt_ticks = 5000 * 2000;
+    wdt_cfg_ticks.int_ticks = 20 * 2000;
+    wdt_cfg_ticks.wdt_min_ticks = 0;
+
+    Wdt_Start(wdt_mode, wdt_cfg_ticks, wdt_isr);
+}
+
 int app_main(void)
 {
+    wdt_init();
     hosal_rf_init(HOSAL_RF_MODE_RUCI_CMD);
 #if OPENTHREAD_CONFIG_RADIO_915MHZ_OQPSK_SUPPORT
     lmac15p4_init(LMAC15P4_SUBG_FSK);
@@ -29,10 +47,9 @@ int app_main(void)
 #endif
     otrStart();
     /*Check have HUN module?*/
-    gpio_cfg_input(31, 0);
+    // gpio_cfg_input(31, 0);
     /*Check have AR8 MCU?*/
-    gpio_cfg_input(30, 0);
-    pin_set_pullopt(29, MODE_PULLUP_10K);
+    // gpio_cfg_input(30, 0);
 
     app_task();
     return 0;

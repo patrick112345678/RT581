@@ -17,12 +17,12 @@
 #include "ot_ota_handler.h"
 #include "timers.h"
 #include <time.h>
-
+#define RAFAEL_REGISTER_TASK_STACK_SIZE (2 * configMINIMAL_STACK_SIZE)
 static SemaphoreHandle_t    appSemHandle          = NULL;
 app_task_event_t g_app_task_evt_var = EVENT_NONE;
 // Declare a global variable to hold the task handle of the RafaelRegisterTask.
 TaskHandle_t xRafaelRegisterTaskHandle = NULL;
-
+TimerHandle_t xLightTimer;
 void __app_task_signal(void)
 {
     if (xPortIsInsideInterrupt())
@@ -36,6 +36,24 @@ void __app_task_signal(void)
     }
 }
 
+void vLightTimerCallback(TimerHandle_t xTimer)
+{
+    if (GreenLight_Flag)
+    {
+        gpio_pin_write(14, 1);
+        GreenLight_Flag = 0;
+    }
+    else
+    {
+        gpio_pin_write(14, 0);
+        GreenLight_Flag = 1;
+    }
+    if (target_pos == OT_DEVICE_ROLE_CHILD || target_pos ==  OT_DEVICE_ROLE_ROUTER || target_pos == OT_DEVICE_ROLE_LEADER)
+    {
+        gpio_pin_write(14, 1);
+        xTimerStop(xLightTimer, portMAX_DELAY);
+    }
+}
 static void ot_stateChangeCallback(otChangedFlags flags, void *p_context)
 {
     otInstance *instance = (otInstance *)p_context;
@@ -69,7 +87,22 @@ static void ot_stateChangeCallback(otChangedFlags flags, void *p_context)
         default:
             break;
         }
-
+        if (SuccessRole)
+        {
+            APP_EVENT_NOTIFY(EVENT_SEND_QUEUE);
+        }
+        if (role == OT_DEVICE_ROLE_DISABLED || role == OT_DEVICE_ROLE_DETACHED)
+        {
+            uint32_t timerPeriod = pdMS_TO_TICKS(200);
+            if (xLightTimer == NULL)
+            {
+                xLightTimer = xTimerCreate("LightTimer", timerPeriod, pdTRUE, (void *)0, vLightTimerCallback);
+                if (xLightTimer != NULL)
+                {
+                    xTimerStart(xLightTimer, 0);
+                }
+            }
+        }
         if (role)
         {
             log_info("Current role       : %s", otThreadDeviceRoleToString(otThreadGetDeviceRole(p_context)));
@@ -207,6 +240,7 @@ static void CheckSuccessRoleTask(void *pvParameters)
             // Example: Log_info("MAA_flag has reached 3, stopping CheckSuccessRoleTask.");
 
             // Stop the task from further execution
+            printf("MAA_flag >= 3\r\n");
             break; // This will exit the while loop
         }
 
@@ -287,7 +321,7 @@ void otrInitUser(otInstance *instance)
     otSetStateChangedCallback(instance, ot_stateChangeCallback, instance);
 
     // At system initialization or an appropriate location, create the RafaelRegisterTask
-    xTaskCreate(RafaelRegisterTask, "RafaelRegister", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1, &xRafaelRegisterTaskHandle);
+    xTaskCreate(RafaelRegisterTask, "RafaelRegister", RAFAEL_REGISTER_TASK_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1, &xRafaelRegisterTaskHandle);
 
     // Create the CheckSuccessRoleTask at the start of your program to continuously monitor the SuccessRole
     xTaskCreate(CheckSuccessRoleTask, "CheckSuccess", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1, NULL);
@@ -303,8 +337,11 @@ void otrInitUser(otInstance *instance)
 #endif
     udf_Meter_init(instance);
 
+
     otIp6SetEnabled(instance, true);
     otThreadSetEnabled(instance, true);
+
+
     now_time = mktime(&begin);
 }
 
