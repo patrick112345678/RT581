@@ -508,7 +508,7 @@ int32_t udf_AES_GCM_Encrypt(uint8_t *gcm_ek, uint8_t *gcm_aad, uint8_t *gcm_iv,
 static uint16_t CRC_COMPUTE(char *recv_buff, uint16_t len)
 {
     int i;
-    char strbuf[128], crc;
+    char crc;
     unsigned short crc16;
     unsigned char ch;
     unsigned char crcbuf[2];
@@ -694,7 +694,6 @@ static void udf_Get_New_Number_of_pens(uint16_t ic_count, uint8_t *obis,
         0x1A, 0xBE, 0x16, 0x66, 0xF2, 0x12, 0xE3, 0x1E, 0x7E
     };
     int i;
-    //    char strbuf[128];
     unsigned char cipher[128], tag[16];
     unsigned short crc16;
     unsigned char ch;
@@ -939,7 +938,6 @@ void udf_Send_DISC(uint8_t type)
                               0x53, 0xB3, 0xF4, 0x7E
                              };
     int i;
-    char strbuf[128];
     uint16_t CRC_check;
 
     if (type == 1)
@@ -957,11 +955,10 @@ void udf_Send_DISC(uint8_t type)
     CRC_check = CRC_COMPUTE((char *)&cmdbuf[1], 5);
     cmdbuf[6] = CRC_check & 0xff;
     cmdbuf[7] = (CRC_check >> 8) & 0xff;
-    printf("\n\rDISC-DM\n");
+    printf("\n\rDISC-DM :\n");
     for (i = 0; i < sizeof(cmdbuf); i++)
     {
-        sprintf(strbuf, "%02X ", cmdbuf[i]);
-        printf(strbuf);
+        printf("%02X ", cmdbuf[i]);
     }
     printf("\n\r");
 
@@ -1055,14 +1052,11 @@ void vTimerCallback(TimerHandle_t xTimer)
 static void ReadFlashData_Normal(uint32_t ReadAddress, uint8_t *dest_Data, uint32_t num)
 {
     int i = 0;
-    char strbuf[128];
     while (i < num)
     {
         *(dest_Data + i) = *(__IO uint16_t *) ReadAddress;
         ReadAddress += 2;//get even address
-
-        sprintf(strbuf, "%02X ", dest_Data[i]);
-        printf(strbuf);
+        printf("%02X ", dest_Data[i]);
         i++;
     }
 }
@@ -1070,15 +1064,13 @@ static unsigned short calculate_checksum(char *data, int len)
 {
     unsigned long sum = 0;
     int i = 0, checksum1 = 0;
-    char strbuf[128];
 
     for (i = 0; i < len; i++)
     {
         sum = sum + data[i];
     }
     checksum1 = sum % 256;
-    //      sprintf(strbuf, "checksum = %02X\n\r",checksum1);
-    //      printf(strbuf);
+    // printf("checksum = %02X\n\r",checksum1);
     return checksum1;
 }
 
@@ -1361,30 +1353,27 @@ static int32_t udf_AES_GCM_Decrypt(uint8_t *gcm_ek, uint8_t *gcm_aad,
 static void flashsetfuntion(unsigned char *flashdata)
 {
     int i = 0, j = 0;
-    char flashbuffer[151] = {0}, strbuf[128];
+    char flashbuffer[151] = {0};
     ReadFlashData_Normal(ConfigurationPage, Configuration_Page, 142);//0615
     printf("\nConfiguration_Page[12] =");
     for (i = 12, j = 0; i <= 26; i++, j++)
     {
         Configuration_Page[i] = flashdata[j];
-        sprintf(strbuf, " %02X ", flashdata[j]);
-        printf(strbuf);
+        printf(" %02X ", flashdata[j]);
     }
     printf("\n");
     printf("Configuration_Page[96] =");
     for (i = 96, j = 15; i <= 97; i++, j++)
     {
         Configuration_Page[i] = flashdata[j];
-        sprintf(strbuf, " %02X ", flashdata[j]);
-        printf(strbuf);
+        printf(" %02X ", flashdata[j]);
     }
     printf("\n");
     printf("Configuration_Page[138] =");
     for (i = 138, j = 17; i <= 141; i++, j++)
     {
         Configuration_Page[i] = flashdata[j];
-        sprintf(strbuf, " %02X ", flashdata[j]);
-        printf(strbuf);
+        printf(" %02X ", flashdata[j]);
     }
     printf("\n");
 
@@ -1467,7 +1456,6 @@ static void udf_GetData_Request(uint8_t *obis_data, uint16_t ic_index,
             0xF2, 0x12, 0xE3, 0x1E, 0x7E
         };
         int i;
-        char strbuf[128];
         unsigned char cipher[128], tag[16];
         unsigned short crc16;
         unsigned char ch;
@@ -1561,7 +1549,6 @@ static void udf_GetData_Request(uint8_t *obis_data, uint16_t ic_index,
         }; // 46B
 
         int i;
-        char strbuf[128];
         unsigned char cipher[128], tag[16];
         unsigned short crc16, CRC_check;
         unsigned char ch;
@@ -1776,12 +1763,11 @@ static void On_Demand_date(uint16_t ic_count, unsigned char *obis_time_data) //�
     cmdbuf[sizeof(cmdbuf) - 3] = crc16 & 0xFF;
     cmdbuf[sizeof(cmdbuf) - 2] = (crc16 >> 8) & 0xFF;
 
-    //    for (i = 0; i < sizeof(cmdbuf); i++)
-    //    {
-    //        sprintf(strbuf, "%02X ", cmdbuf[i]);
-    //        printf(strbuf);
-    //    }
-    //    printf("\n\r");
+    // for (i = 0; i < sizeof(cmdbuf); i++)
+    // {
+    //     printf("%02X ", cmdbuf[i]);
+    // }
+    // printf("\n\r");
 
     log_info_hexdump("Send Command to Meter", cmdbuf, sizeof(cmdbuf));
 
@@ -2091,7 +2077,6 @@ static void udf_Send_AARQ(uint8_t type)
         0x1F, 0x04, 0x00, 0x00, 0x10, 0x14, 0x03, 0x00, 0x5D, 0x67, 0x7E
     };
     int i;
-    char strbuf[128];
     unsigned char cipher[128], tag[16];
     unsigned short crc16, CRC_check;
     unsigned char ch;
@@ -2108,8 +2093,7 @@ static void udf_Send_AARQ(uint8_t type)
         no_en_aarq[sizeof(no_en_aarq) - 2] = (crc16 >> 8) & 0xff;
         for (i = 0; i < sizeof(no_en_aarq); i++)
         {
-            sprintf(strbuf, "%02X ", no_en_aarq[i]);
-            printf(strbuf);
+            printf("%02X ", no_en_aarq[i]);
         }
 
         printf("\n\r");
@@ -2220,8 +2204,7 @@ static void udf_Send_AARQ(uint8_t type)
 
         for (i = 0; i < sizeof(cmdbuf); i++)
         {
-            sprintf(strbuf, "%02X ", cmdbuf[i]);
-            printf(strbuf);
+            printf("%02X ", cmdbuf[i]);
         }
         printf("\n\r");
 
@@ -2245,7 +2228,6 @@ static void udf_Management_Client(uint8_t type)
     };      // 46B
 
     int i;
-    char strbuf[128];
     unsigned char cipher[128], tag[16];
     unsigned short crc16, CRC_check;
     unsigned char ch;
@@ -2302,8 +2284,7 @@ static void udf_Management_Client(uint8_t type)
 
     for (i = 0; i < sizeof(cmdbuf); i++)
     {
-        sprintf(strbuf, "%02X ", cmdbuf[i]);
-        printf(strbuf);
+        printf("%02X ", cmdbuf[i]);
     }
     printf("\n\r");
 
@@ -2326,7 +2307,6 @@ static void udf_Han_Client(void)
     };      // 46B
 
     int i;
-    char strbuf[128];
     unsigned char cipher[128], tag[16];
     unsigned short crc16, CRC_check;
     unsigned char ch;
@@ -2383,8 +2363,7 @@ static void udf_Han_Client(void)
 
     for (i = 0; i < sizeof(cmdbuf); i++)
     {
-        sprintf(strbuf, "%02X ", cmdbuf[i]);
-        printf(strbuf);
+        printf("%02X ", cmdbuf[i]);
     }
     printf("\n\r");
 
@@ -2394,11 +2373,9 @@ static void udf_Han_Client(void)
 static void Decide_Once(unsigned char *pt, unsigned char *meter_data)
 {
     int i = 0;
-    char strbuf[128];
     printf("Decide_Once\n");
 
-    sprintf(strbuf, "pt[26] = %d\n", pt[26]);
-    printf(strbuf);
+    printf("pt[26] = %d\n", pt[26]);
     if (pt[26] == 0x01) // Voltage too low
     {
         if (NOTIFICATION_CODE[0] == 0)
@@ -2531,8 +2508,6 @@ static void udf_SMIP_Res(uint8_t *meter_data)
                            0xC4, 0x01, 0x43, 0x00, 0x0A, 0x08, 0x31, 0x36,
                            0x36, 0x39, 0x33, 0x37, 0x35, 0x31
                           };
-    char strbuf[128];
-
     uint16_t i = 0;
 
     send_buff[10] = riva_fix_cnt;
@@ -2546,8 +2521,7 @@ static void udf_SMIP_Res(uint8_t *meter_data)
 
     for (i = 0; i < 22; i++)
     {
-        sprintf(strbuf, "%02X ", send_buff[i]); // test only
-        printf(strbuf);
+        printf("%02X ", send_buff[i]);// test only
     }
     printf("\n\r");
 
@@ -2566,7 +2540,6 @@ static void on_Demand_Task_Assembly(unsigned char *auto_data, uint16_t ct_len,
                                     unsigned char *pt_confirm)
 {
     unsigned char auto_send_data[1000];
-    char strbuf[128];
     int i = 0, data_len, j = 0; //,check_sum = 0
     unsigned char obis_data[10] = {0x00, 0x07, 0x01, 0x00, 0x63,
                                    0x01, 0x00, 0xFF, 0x02, 0x00
@@ -2577,9 +2550,8 @@ static void on_Demand_Task_Assembly(unsigned char *auto_data, uint16_t ct_len,
         auto_send_data[i] = pt_confirm[i];
     }
 
-    sprintf(strbuf, "pt[1] = %d , pt[3] = %d\n\r", pt_confirm[1],
-            pt_confirm[3]);
-    printf(strbuf);
+    printf("pt[1] = %d , pt[3] = %d\n\r", pt_confirm[1],
+           pt_confirm[3]);
     if ((pt_confirm[1] == 0x02 && pt_confirm[3] == 0x01) ||
             (pt_confirm[1] == 0x02 && pt_confirm[3] == 0x00) ||
             (pt_confirm[1] == 0x01 && pt_confirm[3] == 0x00) ||
@@ -2590,34 +2562,29 @@ static void on_Demand_Task_Assembly(unsigned char *auto_data, uint16_t ct_len,
             for (i = 0, j = 0; i < data_len; i++, j++)
             {
                 On_Demand_Task_Buff[j] = pt_confirm[i];
-                sprintf(strbuf, "%02X ", On_Demand_Task_Buff[j]);
-                printf(strbuf);
+                printf("%02X ", On_Demand_Task_Buff[j]);
             }
             On_Demand_length = On_Demand_length + data_len;
-            sprintf(strbuf, "On_Demand_length = %d \n", On_Demand_length);
-            printf(strbuf);
+            printf("On_Demand_length = %d \n", On_Demand_length);
         }
         else
         {
             for (i = 0, j = On_Demand_length; i < data_len; i++, j++)
             {
                 On_Demand_Task_Buff[j] = pt_confirm[i];
-                sprintf(strbuf, "%02X ", On_Demand_Task_Buff[j]);
-                printf(strbuf);
+                printf("%02X ", On_Demand_Task_Buff[j]);
             }
             On_Demand_length = On_Demand_length + data_len;
-            sprintf(strbuf, "On_Demand_length = %d \n", On_Demand_length);
-            printf(strbuf);
+            printf("On_Demand_length = %d \n", On_Demand_length);
         }
 
         Task_count--;
 
         if (Task_count > 0)
         {
-            sprintf(strbuf, "Task_count = %d FIRST = %02X  END = %02X \n",
-                    Task_count, (Task_count_all - Task_count) * 9 + 1,
-                    (Task_count_all - Task_count) * 9 + 9);
-            printf(strbuf);
+            printf("Task_count = %d FIRST = %02X  END = %02X \n",
+                   Task_count, (Task_count_all - Task_count) * 9 + 1,
+                   (Task_count_all - Task_count) * 9 + 9);
 
             for (i = (Task_count_all - Task_count) * 9, j = 1;
                     i < (Task_count_all - Task_count) * 9 + 9; i++, j++)
@@ -2631,8 +2598,7 @@ static void on_Demand_Task_Assembly(unsigned char *auto_data, uint16_t ct_len,
             printf("On_Demand_Task_Buff = ");
             for (i = 0; i < On_Demand_length; i++)
             {
-                sprintf(strbuf, "%02X ", On_Demand_Task_Buff[i]);
-                printf(strbuf);
+                printf("%02X ", On_Demand_Task_Buff[i]);
             }
             printf("\n");
             udf_Rafael_data(TASK_ID, 7, (char *)&On_Demand_Task_Buff[0], 3,
@@ -2673,7 +2639,6 @@ static void Power_On_Event_Log_Return(
     unsigned short crc16;
     unsigned char cipher[128], tag[16];
     // uint8_t pt_len;
-    char strbuf[128];
     unsigned char ch;
     uint8_t NEW_POWER_ON_FLAG = 0, FLAG_POWER_ON = 0;
     unsigned char obis_Power_On_Event_Code[] = {0x12, 0x00, 0x0f},
@@ -2708,9 +2673,8 @@ static void Power_On_Event_Log_Return(
                                 if (NEW_POWER_ON_FLAG == 0)
                                 {
                                     Power_On_data_Buff[k] = Notification_pt[j];
-                                    sprintf(strbuf, "%02X ",
-                                            Power_On_data_Buff[k]);
-                                    printf(strbuf);
+                                    printf("%02X ",
+                                           Power_On_data_Buff[k]);
                                     FLAG_POWER_ON = 1;
                                 }
                             }
@@ -2742,9 +2706,8 @@ static void Power_On_Event_Log_Return(
                                 if (NEW_POWER_ON_FLAG == 0)
                                 {
                                     Power_On_data_Buff[k] = Notification_pt[j];
-                                    sprintf(strbuf, "%02X ",
-                                            Power_On_data_Buff[k]);
-                                    printf(strbuf);
+                                    printf("%02X ",
+                                           Power_On_data_Buff[k]);
                                     FLAG_POWER_ON = 1;
                                 }
                             }
@@ -2770,8 +2733,7 @@ static void Power_On_Event_Log_Return(
         printf("\nNotification = ");
         for (i = 0; i < sizeof(Power_On_Event_Buff); i++)
         {
-            sprintf(strbuf, "%02X ", Power_On_Event_Buff[i]);
-            printf(strbuf);
+            printf("%02X ", Power_On_Event_Buff[i]);
         }
         printf("\n");
         for (i = 0; i < 4; i++)
@@ -2790,8 +2752,7 @@ static void Power_On_Event_Log_Return(
         for (i = 0; i < 12; i++) // update tag to buffer
         {
             Power_On_Event_Buff[45 + i] = tag[i];
-            sprintf(strbuf, "%02X ", tag[i]);
-            printf(strbuf);
+            printf("%02X ", tag[i]);
         }
         printf("\n");
         // CRC
@@ -2810,8 +2771,7 @@ static void Power_On_Event_Log_Return(
         printf("\n Encrypt Notification = ");
         for (i = 0; i < sizeof(Power_On_Event_Buff); i++)
         {
-            sprintf(strbuf, "%02X ", Power_On_Event_Buff[i]);
-            printf(strbuf);
+            printf("%02X ", Power_On_Event_Buff[i]);
         }
         printf("\n");
         udf_Rafael_data(
@@ -2915,7 +2875,6 @@ static void udf_Set_Transmit(unsigned char obisTXT[], unsigned char plainTXT[],
     uint16_t i = 0, frameLen = 0, cipherLen = 0, plainLen = 0;
     unsigned short crc16;
     unsigned char ch;
-    char strbuf[777];
     unsigned char cipher[744], tag[16];
     // int riva_cnt = 0x40;
     printf("in Set Transmit\n\r");
@@ -3091,14 +3050,12 @@ static void udf_Set_Transmit(unsigned char obisTXT[], unsigned char plainTXT[],
 
     /*for (i = 0; i < frameLen + 2 ; i++)
     {
-        sprintf(strbuf, "%02X ", cmdTXT[i]);
-        printf(strbuf);
+        printf("%02X ", cmdTXT[i]);
     }
     printf("\n\r");*/
     for (i = 0; i < frameLen + 2; i++)
     {
-        sprintf(strbuf, "%02X ", cmdTXT[i]);
-        printf(strbuf);
+        printf("%02X ", cmdTXT[i]);
     }
     printf("\n\r");
 
@@ -3336,7 +3293,6 @@ void udf_Alarm_Register1(void)
     };
     unsigned int write_len;
     int i;
-    char strbuf[128];
 
     cmdbuf[10] = uart_read_data2[10];
     write_len = 17;
@@ -3358,8 +3314,7 @@ void udf_Alarm_Register1(void)
         USART_SendData(USART2, ucMeterPacket[i]); // stay for test
         while (!(USART2->STS & USART_FLAG_TXE));
 
-        sprintf(strbuf, "%02X ", ucMeterPacket[i]);
-        printf(strbuf);
+        printf("%02X ", ucMeterPacket[i]);
     }
 
     Event_Notification = 0;
@@ -3373,7 +3328,6 @@ void udf_Send_SNRM(uint8_t type)
                               0x93, 0xBF, 0x32, 0x7E
                              };
     int i;
-    char strbuf[128];
     uint16_t CRC_check;
     if (type == 1)
     {
@@ -3396,8 +3350,7 @@ void udf_Send_SNRM(uint8_t type)
     cmdbuf[7] = (CRC_check >> 8) & 0xff;
     for (i = 0; i < sizeof(cmdbuf); i++)
     {
-        sprintf(strbuf, "%02X ", cmdbuf[i]);
-        printf(strbuf);
+        printf("%02X ", cmdbuf[i]);
     }
     printf("\n");
 
@@ -3406,7 +3359,7 @@ void udf_Send_SNRM(uint8_t type)
 
 static void Broadcast_delay(void)
 {
-    char hex[5], strbuf[30];
+    char hex[5];
     int i = 0, num;
     int size = sizeof(hex) / sizeof(hex[0]);
     char str[30];
@@ -3426,8 +3379,7 @@ static void Broadcast_delay(void)
     str[size] = '\0'; //添加結束字符
     //將字符串轉換為整數
     sscanf(str, "%d", &num);
-    sprintf(strbuf, "The decimal number is: %d\r\n", num);
-    printf(strbuf);
+    printf("The decimal number is: %d\r\n", num);
     denominator = num;
     if ((denominator % Broadcastmeterdelay) == 0)
     {
@@ -3459,14 +3411,12 @@ static void udf_get_noEn(unsigned char *obis_data)
          0xE3, 0x1E, 0x7E*/
     };
     int i;
-    char strbuf[128];
 
     //      log_info_hexdump("\robis", obis_data, sizeof(obis_data));
 
     //      for (i=0; i<10; i++)
     //      {
-    //          sprintf(strbuf, "%02X ", *(obis_data+i));
-    //          printf(strbuf);
+    //          printf("%02X ", *(obis_data+i));
     //      }
     //      printf("\n");
 
@@ -3486,8 +3436,7 @@ static void udf_get_noEn(unsigned char *obis_data)
 
     for (i = 0; i < 27; i++)
     {
-        sprintf(strbuf, "%02X ", cmdbuf[i]);
-        printf(strbuf);
+        printf("%02X ", cmdbuf[i]);
     }
     printf("\n");
 
@@ -3609,7 +3558,6 @@ static void meter_Boot_Step(void)
 static void udf_Meter_Process(uint8_t *meter_data, uint16_t data_len)
 {
     int i = 0;
-    char strbuf[128];
     uint8_t tag[12], pt[1024] = {0};
     uint8_t ex_byte = 0, Res_type;
     uint16_t ct_len = 0;
@@ -3678,13 +3626,11 @@ static void udf_Meter_Process(uint8_t *meter_data, uint16_t data_len)
         }
         //        for (i = 0; i < data_len; i++)
         //        {
-        //            sprintf(strbuf, "%02X ", meter_data[i]);
-        //            printf(strbuf);
+        //            printf("%02X ", meter_data[i]);
         //        }
         //        printf("\n\r");
         Res_type = Check_Meter_Res((char *)&meter_data[0], data_len);
-        sprintf(strbuf, "Res Type: %d\n\r", Res_type);
-        printf(strbuf);
+        printf("Res Type: %d\n\r", Res_type);
         if (meterBootStep == Preliminary_Work_Completed)
         {
             switch (Res_type)
@@ -3989,7 +3935,7 @@ static void udf_Meter_Process(uint8_t *meter_data, uint16_t data_len)
                     udf_AES_GCM_Decrypt(tpc_dk, tpc_gcm_ak, tpc_s_iv, &meter_data[18 + ex_byte], tag, &pt[0], ct_len, 17);
                     if (pt[1] == 0x02  && MAA_flag == 3 && flag_Power_Off == 0) //Continue transmission
                     {
-                        sprintf(strbuf, "===========================On_Demand_ID : %d, On_Demand_Reading_Type : %d===============================\n\r ", On_Demand_ID, On_Demand_Reading_Type);
+                        printf("===========================On_Demand_ID : %d, On_Demand_Reading_Type : %d===============================\n\r ", On_Demand_ID, On_Demand_Reading_Type);
                         CONTINUE_BUSY = (pt[3] == 0x00) ? 1 : 0;
                         if (pt[7] == 0x01)
                         {
@@ -4013,8 +3959,7 @@ static void udf_Meter_Process(uint8_t *meter_data, uint16_t data_len)
                             }
                             else if (On_Demand_ID == 1 && On_Demand_Reading_Type == 0)
                             {
-                                sprintf(strbuf, "task id =%d , On_Demand_Type = %d\n", TASK_ID, On_Demand_Type);
-                                printf(strbuf);
+                                printf("task id =%d , On_Demand_Type = %d\n", TASK_ID, On_Demand_Type);
                                 log_info_hexdump("meter_data", meter_data, data_len);
                                 udf_Rafael_data(TASK_ID, On_Demand_Type, (char *)&meter_data[0], 3, data_len);
                                 //On_Demand_type_buff(On_Demand_Type,&meter_data[0]);
@@ -4077,8 +4022,6 @@ static void udf_Meter_Process(uint8_t *meter_data, uint16_t data_len)
                         {
                             log_info("task id = %d On_Demand_Type = %d data_len = %d", TASK_ID, On_Demand_Type, data_len);
 
-                            //                            sprintf(strbuf, "task id =%d , On_Demand_Type = %d\n", TASK_ID, On_Demand_Type);
-                            //                            printf(strbuf);
                             log_info_hexdump("meter_data", meter_data, data_len);
                             udf_Rafael_data(TASK_ID, On_Demand_Type, (char *)&meter_data[0], 3, data_len);
                             //On_Demand_type_buff(On_Demand_Type,&meter_data[0]);
@@ -4357,7 +4300,6 @@ static void udf_Meter_Process(uint8_t *meter_data, uint16_t data_len)
 }
 static void flash_Information(void)
 {
-    char strbuf[128];
     static uint8_t read_buf[0x100];
     int i = 0;
     printf("\n\rflash_get_Configuration_Page(200) = ");
@@ -4366,122 +4308,102 @@ static void flash_Information(void)
     printf("\nFan ID: ");
     for (i = 0; i <= 11; i++)
     {
-        sprintf(strbuf, "%c ", Configuration_Page[i]);
-        printf(strbuf);
+        printf("%c ", Configuration_Page[i]);
     }
     printf("\n");
 #if 0 //use ot dataset command directily
-    sprintf(strbuf, "Leader Weight: %02X\n", Configuration_Page[12]);
-    printf(strbuf);
+    printf("Leader Weight: %02X\n", Configuration_Page[12]);
     printf("Networkid: ");
     for (i = 13; i <= 14; i++)
     {
-        sprintf(strbuf, "%02X ", Configuration_Page[i]);
-        printf(strbuf);
+        printf("%02X ", Configuration_Page[i]);
     }
     printf("\n");
     printf("PANID: ");
     for (i = 15; i <= 16; i++)
     {
-        sprintf(strbuf, "%02X ", Configuration_Page[i]);
-        printf(strbuf);
+        printf("%02X ", Configuration_Page[i]);
     }
     printf("\n");
-    sprintf(strbuf, "Channel: %02X\n", Configuration_Page[17]);
-    printf(strbuf);
+    printf("Channel: %02X\n", Configuration_Page[17]);
 #endif
     printf("send els61 timeout: ");
     for (i = 18; i <= 19; i++)
     {
-        sprintf(strbuf, "%02X ", Configuration_Page[i]);
-        printf(strbuf);
+        printf("%02X ", Configuration_Page[i]);
     }
     printf("(10 sec)");
     printf("\n");
     printf("send rf timeout: ");
     for (i = 20; i <= 21; i++)
     {
-        sprintf(strbuf, "%02X ", Configuration_Page[i]);
-        printf(strbuf);
+        printf("%02X ", Configuration_Page[i]);
     }
     printf("(10 sec)");
     printf("\n");
     printf("receive timeout: ");
     for (i = 22; i <= 23; i++)
     {
-        sprintf(strbuf, "%02X ", Configuration_Page[i]);
-        printf(strbuf);
+        printf("%02X ", Configuration_Page[i]);
     }
     printf("(10 sec)");
     printf("\n");
     printf("continue timeout: ");
     for (i = 24; i <= 25; i++)
     {
-        sprintf(strbuf, "%02X ", Configuration_Page[i]);
-        printf(strbuf);
+        printf("%02X ", Configuration_Page[i]);
     }
     printf("(10 sec)");
     printf("\n");
-    sprintf(strbuf, "A: %02X\n", Configuration_Page[26]);
-    printf(strbuf);
+    printf("A: %02X\n", Configuration_Page[26]);
     printf("Server IP: ");
     for (i = 27; i <= 30; i++)
     {
-        sprintf(strbuf, "%02X ", Configuration_Page[i]);
-        printf(strbuf);
+        printf("%02X ", Configuration_Page[i]);
     }
     printf("\n");
     printf("Socket port: ");
     for (i = 31; i <= 32; i++)
     {
-        sprintf(strbuf, "%02X ", Configuration_Page[i]);
-        printf(strbuf);
+        printf("%02X ", Configuration_Page[i]);
     }
     printf("\n");
     printf("APN: ");
     for (i = 33; i <= 47; i++)
     {
-        sprintf(strbuf, "%02X ", Configuration_Page[i]);
-        printf(strbuf);
+        printf("%02X ", Configuration_Page[i]);
     }
     printf("\n");
     printf("tpc guk: ");
     for (i = 48; i <= 63; i++)
     {
-        sprintf(strbuf, "%02X ", Configuration_Page[i]);
-        printf(strbuf);
+        printf("%02X ", Configuration_Page[i]);
     }
     printf("\n");
     printf("tpc gcm ak: ");
     for (i = 64; i <= 79; i++)
     {
-        sprintf(strbuf, "%02X ", Configuration_Page[i]);
-        printf(strbuf);
+        printf("%02X ", Configuration_Page[i]);
     }
     printf("\n");
     printf("tpc mkey: ");
     for (i = 80; i <= 95; i++)
     {
-        sprintf(strbuf, "%02X ", Configuration_Page[i]);
-        printf(strbuf);
+        printf("%02X ", Configuration_Page[i]);
     }
     printf("\n");
     printf("on demandreading timeout: ");
 
     for (i = 96; i <= 97; i++)
     {
-        sprintf(strbuf, "%02X ", Configuration_Page[i]);
-        printf(strbuf);
+        printf("%02X ", Configuration_Page[i]);
     }
     printf("(10 sec)");
     printf("\n");
 
-    sprintf(strbuf, "keyObtainedStatusIncorrecttimeout : %d (min)\n", Configuration_Page[138]);
-    printf(strbuf);
-    sprintf(strbuf, "registerRetrytime : %d (min)\nRafael_reset :%d (min)\n", Configuration_Page[139], Configuration_Page[140]);
-    printf(strbuf);
-    sprintf(strbuf, "Broadcastmeterdelay : %d (MOD)\n", Configuration_Page[141]);
-    printf(strbuf);
+    printf("keyObtainedStatusIncorrecttimeout : %d (min)\n", Configuration_Page[138]);
+    printf("registerRetrytime : %d (min)\nRafael_reset :%d (min)\n", Configuration_Page[139], Configuration_Page[140]);
+    printf("Broadcastmeterdelay : %d (MOD)\n", Configuration_Page[141]);
 
 }
 
@@ -4489,7 +4411,6 @@ void udf_Meter_received_task(const uint8_t *aBuf, uint16_t aBufLength)
 {
     const uint8_t    *end;
     uint16_t cmd_length;
-    char strbuf[128];
     end = aBuf + aBufLength;
     for (; aBuf < end; aBuf++)
     {
@@ -4645,7 +4566,6 @@ static void udf_Action_Transmit(unsigned char obisTXT[], unsigned char plainTXT[
     uint16_t i = 0, frameLen = 0, cipherLen = 0, plainLen = 0;
     unsigned short crc16;
     unsigned char ch;
-    char strbuf[777];
     unsigned char cipher[744], tag[16];
     //int riva_cnt = 0x40;
     printf("in Action Transmit\n\r");
@@ -4833,14 +4753,12 @@ static void udf_Action_Transmit(unsigned char obisTXT[], unsigned char plainTXT[
 
     /*for (i = 0; i < frameLen + 2 ; i++)
     {
-      sprintf(strbuf, "%02X ", cmdTXT[i]);
-      printf(strbuf);
+      printf("%02X ", cmdTXT[i]);
     }
     printf("\n\r");*/
     for (i = 0; i < frameLen + 2; i++)
     {
-        sprintf(strbuf, "%02X ", cmdTXT[i]);
-        printf(strbuf);
+        printf("%02X ", cmdTXT[i]);
     }
     printf("\n\r");
     app_uart_data_send(2, cmdTXT, frameLen + 2);
@@ -4850,7 +4768,6 @@ static void udf_Action_Transmit(unsigned char obisTXT[], unsigned char plainTXT[
 
 static void DASprocessCommand(uint8_t *data, uint16_t data_lens)
 {
-    char strbuf[128];
     uint8_t checkSum = 0, actionkey_resend_FLAG = 0, ipv6check = 0, plaintext_location = 0;
     uint16_t i = 0, dataLen = 0, j = 0, command_datalocation = 0; //, k = 0
     unsigned char obis[8] = {0}, timeobis[9] = {8, 0, 0, 1, 0, 0, 255, 2, 0};
@@ -4873,8 +4790,7 @@ static void DASprocessCommand(uint8_t *data, uint16_t data_lens)
         }
         dataLen = (dataLen > 0x8000) ? dataLen - 0x8000 : dataLen ; //bob
     }
-    sprintf(strbuf, "\n\rprocessCommand \n\rdataLen = %d / 1500\n\r", dataLen);
-    printf(strbuf);
+    printf("\n\rprocessCommand \n\rdataLen = %d / 1500\n\r", dataLen);
     log_info_hexdump("DASprocessCommand", recvbuf, dataLen);
 
 
@@ -4893,8 +4809,7 @@ static void DASprocessCommand(uint8_t *data, uint16_t data_lens)
         {
             TASK_ID = recvbuf[recvbuf[11] + 13] * 256 + recvbuf[recvbuf[11] + 14];
         }
-        sprintf(strbuf, "TASK_ID = %d ", TASK_ID);
-        printf(strbuf);
+        printf("TASK_ID = %d ", TASK_ID);
         if (recvbuf[recvbuf[11] + 12] == 0xA1)
         {
             HESKEY = 1;
@@ -5004,8 +4919,7 @@ static void DASprocessCommand(uint8_t *data, uint16_t data_lens)
             for (i = recvbuf[11] + 16; i < recvbuf[11] + 16 + Task_count * 9; i++)
             {
                 On_Demand_Task_Command[i - recvbuf[11] - 16] = recvbuf[i];
-                sprintf(strbuf, "%02X ", On_Demand_Task_Command[i - recvbuf[11] - 16]);
-                printf(strbuf);
+                printf("%02X ", On_Demand_Task_Command[i - recvbuf[11] - 16]);
             }
             printf("\n");
             udf_Send_DISC(2);
@@ -5146,8 +5060,7 @@ static void DASprocessCommand(uint8_t *data, uint16_t data_lens)
             {
                 Key_Restart = 1;
                 KeyResCount = 0;
-                sprintf(strbuf, "len = %d \n", (recvbuf[8] * 256) + recvbuf[9] - 18 - recvbuf[11]);
-                printf(strbuf);
+                printf("len = %d \n", (recvbuf[8] * 256) + recvbuf[9] - 18 - recvbuf[11]);
                 udf_Action_Transmit((unsigned char *)&recvbuf[recvbuf[11] + 15], (unsigned char *)&recvbuf[recvbuf[11] + 24], (recvbuf[8] * 256) + recvbuf[9] - 27 - recvbuf[11], 0, 0);
             }
         }
@@ -5181,8 +5094,7 @@ static void DASprocessCommand(uint8_t *data, uint16_t data_lens)
             printf("ELSData[] = \n\r");
             for (i = 0; i < dataLen; i++)
             {
-                sprintf(strbuf, "%02X ", recvbuf[i]);
-                printf(strbuf);
+                printf("%02X ", recvbuf[i]);
             }
             printf("\n\r");
         }
@@ -5424,7 +5336,6 @@ void evaluate_commandAM1(char *recvbuf, uint16_t len_test)
     unsigned char timeobis[9] = {8, 0, 0, 1, 0, 0, 255, 2, 0}, ack_buff[1] = {0x00};
     //size_t len_test=0;
     int i = 0, j;
-    char strbuf[128];
     uint8_t default_tag[12], ipv6check = 0;
     uint8_t *default_pt = NULL;
     char *am1buffer = NULL;
@@ -5471,8 +5382,7 @@ void evaluate_commandAM1(char *recvbuf, uint16_t len_test)
             printf("\n\rAC buffer:\n\r");
             for (i = 0; i < len_test + 4 + 6; i++)
             {
-                sprintf(strbuf, "%02X ", am1buffer[i]);
-                printf(strbuf);
+                printf("%02X ", am1buffer[i]);
             }
             printf("\n\r");
             AC_Command(&am1buffer[am1buffer[11] + 15]);
@@ -5577,8 +5487,7 @@ void evaluate_commandAM1(char *recvbuf, uint16_t len_test)
             {
                 TASK_ID = am1buffer[am1buffer[11] + 13] * 256 + am1buffer[am1buffer[11] + 14];
             }
-            sprintf(strbuf, "TASK_ID = %d ", TASK_ID);
-            printf(strbuf);
+            printf("TASK_ID = %d ", TASK_ID);
             if (am1buffer[am1buffer[11] + 12] == 0x03 && MAA_flag == 3) //¸ÉÅª
             {
                 Broadcast_savebuff_flag = 1;
