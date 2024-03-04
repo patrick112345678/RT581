@@ -28,6 +28,7 @@
 #include "cli.h"
 #include <semphr.h>
 #include <time.h>
+//#include "C:\\Users\\testo\\Desktop\\rafel_das_watchdog\\rafael-iot-sdk-das-Release_v1.0.0\\rafael-iot-sdk-das-Release_v1.0.0\\version.h"
 //=============================================================================
 //                Private Definitions of const value
 //=============================================================================
@@ -367,15 +368,17 @@ uint8_t SuccessRole = 0, SENCOND_REGISGER = 1;
 static uint8_t  IPv6Flag = 0, HESKEY = 0, ack_flag = 0/*回傳註冊ack*/, RE_REG = 0;
 
 static uint8_t FIRST_POWER_ON_FLAG = 1, POWERONDATAREADY = 0;//首次上電 復電buff組裝完成
-static int flag_now_time = 0, flag_Power_Off_fifteen = 0, flag_loadprofile_it = 0, flag_midnight_it = 0, flag_Alt_it = 0, flag_MAA = 0, flag_event_notification = 0;
+static int  flag_loadprofile_it = 0, flag_midnight_it = 0, flag_Alt_it = 0, flag_MAA = 0, flag_event_notification = 0;
 //斷電紀錄 0:上電 1:斷電 15 秒 每小時主動讀loadprofile 午夜12點讀取midnight 每兩小時讀取ALT notification while 只跑一次
 static uint8_t registerCheck = 0, AAcheck = 0, A2_TIMESynchronize = 0, SETOUpket = 0, SQBCT = 0, A1_TIMESynchronize = 0;
 static char ipv6_output[40];
 static char Broadcast_ip[7] = {0x66, 0x66, 0x30, 0x33, 0x3a, 0x3a, 0x31};
 static uint8_t ResetRF_Flag = 0, ResetRFcount = 0;
-static uint16_t receivecount = 0, sendcount = 0, OnDemandReadingcount = 0, MAANO3count = 0, CointbusyCount = 0, BroadcastCount = 0, LastpSendCount = 0;
-//static testread =0;
-static uint32_t RegisterCount = 0;
+uint16_t Register_Timeout = 0;
+static uint16_t receivecount = 0, sendcount = 0, OnDemandReadingcount = 0, MAANO3count = 0, CointbusyCount = 0, BroadcastCount = 0, LastpSendCount = 0, LastpCount = 0;
+static uint8_t PowerOnCount = 0;
+static uint8_t LastpSendFlag = 0;
+static uint8_t GetPowerOnFlag = 0;
 typedef enum
 {
     Registerflag,
@@ -383,7 +386,8 @@ typedef enum
     sendflag,
     ondemandreadflag,
     continueflag,
-    resetflag
+    resetflag,
+    broadcastflag,
 } _ERRORflag;
 _ERRORflag _Errorprintf = Registerflag;
 //=============================================================================
@@ -600,7 +604,7 @@ static void udf_Rafael_data(uint16_t task_id, uint8_t type, char *meter_data,
         LeaderIp.mFields.m8[15] = 0x00;
     }
     payload_len = 1 + strlen(string) + 1 + 2 + meter_len;
-    log_info("payload_len = %d", payload_len);
+    log_info("udf_Rafael_data send payload_len = %d", payload_len);
     payload = pvPortMalloc(payload_len);
     if (payload)
     {
@@ -785,6 +789,7 @@ static void Power_Off_Function(void)
             udf_Rafael_data(TASK_ID, 0x1c, (char *)&LastpBuffer[0], 3, 4);
         }
         LastpSendCount = 0;
+        LastpSendFlag = 1;
     }
 }
 
@@ -795,13 +800,12 @@ void user_gpio29_isr_handler(uint32_t pin, void *isr_param)
     if (flag_Power_Off == 0)
     {
         flag_Power_Off = 1;
-        printf("GPIO29 Interrupt Triggered\r\nPower OFF\r\n");
+
     }
     else
     {
         flag_Power_Off = 0;
         NOT_COMPLETELY_POWER_OFF = 1;
-        printf("GPIO29 Interrupt Triggered\r\nPower ON\r\n");
     }
 
 }
@@ -827,11 +831,10 @@ void setup_gpio29(void)
 void Broadcast_function_timeout_handlr(void)
 {
 
-    printf("==========================   Preparing to send: =======================================\n\r");
+    printf("==========================   Broadcast transmission: =======================================\n\r");
     app_udpSend(broadcastData.PeerPort, broadcastData.PeerAddr, broadcastData.pdata, broadcastData.dlen);
     Broadcast_flag = 0;
 
-    // 重置或停止定时器根据需要
 }
 uint8_t HandleBusyFlagAndCount(uint8_t  *busyFlag, uint16_t *count, uint16_t busyTime, uint8_t Error_flag)
 {
@@ -978,77 +981,6 @@ static void Auto_MAA(void)
 }
 
 
-void vTimerCallback(TimerHandle_t xTimer)
-{
-    unsigned char obis_notification_data[] = { 0x07, 0x00, 0x00, 0x63, 0x62, 0x00, 0xFF, 0x02};
-    uint8_t RetryRegisterCommand = 0, RegisterFlag = 1, BroadcastFlag = 0, Continue_Flag = 0, ResetFAN_Flag = 0;
-    RTC_CNT++;
-    now_timer = now_time + RTC_CNT;
-    if (MAA_flag == 0 && register_steps >= 1 && SuccessRole)
-    {
-        RegisterCount ++;
-    }
-
-    //rececive
-    HandleBusyFlagAndCount(&receivebusyflag, &receivecount, receivebusytime * 10, 1); //*(10sec)
-
-    //send
-    HandleBusyFlagAndCount(&sendbusyflag, &sendcount, sendbusytime * 10, 2); //*(10sec)
-
-    //On_Demand_Reading_Type
-    HandleBusyFlagAndCount(&On_Demand_Reading_Type, &OnDemandReadingcount, ondemandreadingtime * 10, 3); //*(10sec)
-
-    //CONTINUE_BUSY
-    Continue_Flag = HandleBusyFlagAndCount(&CONTINUE_BUSY, &CointbusyCount, continuebusytime * 10, 4); //*(10sec)
-    if (Continue_Flag)
-    {
-        Continue_function_timeout_handlr();
-    }
-    //ResetRF_Flag
-    ResetFAN_Flag = HandleBusyFlagAndCount(&ResetRF_Flag, &ResetRFcount, 10, 5); //*(10sec)
-    if (ResetFAN_Flag)
-    {
-        NVIC_SystemReset();
-    }
-    if (MAA_flag == 1 || MAA_flag == 2) //300 sec
-    {
-        MAANO3count ++;
-        if (MAANO3count >= 300)
-        {
-            sst_flag = 0;
-            MAA_flag = 3;
-            MAANO3count = 0;
-        }
-    }
-    Light_controller_function();
-
-    //BroadcastsendFuntion
-    BroadcastFlag = HandleBusyFlagAndCount(&Broadcast_flag, &BroadcastCount, Broadcast_meterdelay, 6);
-
-    if (BroadcastFlag)
-    {
-        Broadcast_function_timeout_handlr();
-    }
-    if (flag_Power_Off)
-    {
-        LastpSendCount ++;
-        gpio_pin_write(14, 0);
-        gpio_pin_write(15, 0);
-        Power_Off_Function();
-        flag_Power_Off = 2;
-
-    }
-    else if (flag_Power_Off == 0 && NOT_COMPLETELY_POWER_OFF)
-    {
-        printf("After a power outage, and before the MCU has restarted, upon power restoration, start querying for power restoration messages.\r\n");
-        gpio_pin_write(14, 1);
-        gpio_pin_write(15, 1);
-        Auto_MAA();
-        //udf_Get_New_Number_of_pens(ic_count,&obis_notification_data[0],1);
-
-    }
-
-}
 static void ReadFlashData_Normal(uint32_t ReadAddress, uint8_t *dest_Data, uint32_t num)
 {
     int i = 0;
@@ -1821,7 +1753,10 @@ static void AC_Command(char *recvbuf)
 
 }
 
+static void _cli_cmd_get_queue_status(int argc, char **argv, cb_shell_out_t log_out, void *pExtra)
+{
 
+}
 static void _cli_cmd_get_fan_status(int argc, char **argv, cb_shell_out_t log_out, void *pExtra)
 {
     int i = 0;
@@ -1833,23 +1768,25 @@ static void _cli_cmd_get_fan_status(int argc, char **argv, cb_shell_out_t log_ou
 
 
     log_info("\r\n%d / %d / %d   %d : %d : %d", (p->tm_year + 1900), (p->tm_mon + 1), p->tm_mday, p->tm_hour, p->tm_min, p->tm_sec );
+    log_info("Rafel Thread version                            :      %s", otGetVersionString());
+    //    log_info("Das version                                     :      %s", VERSION);
     printf  ("Role                                            : ");
     switch (target_pos)
     {
     case 0:
-        printf("     Disabled\r\n");
+        log_info("     Disabled");
         break;
     case 1:
-        printf("     Detached\r\n");
+        log_info("     Detached");
         break;
     case 2:
-        printf("     Child\r\n");
+        log_info("     Child");
         break;
     case 3:
-        printf("     Router\r\n");
+        log_info("     Router");
         break;
     case 4:
-        printf("     Leader\r\n");
+        log_info("     Leader");
         break;
     }
     log_info("MAA_flag                                        : %6d ", MAA_flag);
@@ -1867,26 +1804,9 @@ static void _cli_cmd_get_fan_status(int argc, char **argv, cb_shell_out_t log_ou
         log_info("The server provided an incorrect key.\n");
     }
 
-    if (MAA_flag == 3)
-    {
-        printf("REGISTER OK\r\n");
-    }
     if (MAA_flag == 0 && 　SuccessRole)
     {
-        if (SENCOND_REGISGER == 1)
-        {
-            countdown = (Broadcast_meterdelay + 64) - RegisterCount;
-            countdown = countdown < 0 ? 0 : countdown;
-            log_info("(First) Re-registration in progress. Countdown  : %6d        (s)", (int)countdown);
-
-        }
-        else if (SENCOND_REGISGER == 2)
-        {
-            countdown = (registerRetrytime * 60) - RegisterCount;
-            countdown = countdown < 0 ? 0 : countdown;
-            log_info("(Other) Re-registration in progress. Countdown  : %6d      (s)", (int)countdown);
-
-        }
+        log_info("Re-registration in progress. Countdown          : %7d        (s)", (int)Register_Timeout);
     }
     if (MAA_flag == 1    || MAA_flag == 2)
     {
@@ -1895,10 +1815,7 @@ static void _cli_cmd_get_fan_status(int argc, char **argv, cb_shell_out_t log_ou
         log_info("MAA_flag >= 1 than or equal to 1 and the key is obtained ,but the status hasn't reached MAA_flag == 3,\r\nRemaining time until MAA_flag = 3               : %6d      (s)", (int)countdown);
 
     }
-    //      if(MAA_flag != 3)
-    //      {
-    //          printf("When MAA_flag is not equal to 3, Restart the countdown: %01f(s) \r\n",);
-    //      }
+
     if (Broadcast_flag)
     {
         log_info("=========== Broadcast Count Starts =================");
@@ -1913,8 +1830,19 @@ static void _cli_cmd_get_fan_status(int argc, char **argv, cb_shell_out_t log_ou
         countdown = (denominator % 11) - LastpSendCount;
         countdown = countdown < 0 ? 0 : countdown;
         log_info("====================== Lastp ======================");
+        log_info("LastpSendFlag                                   : %6d ", LastpSendFlag);
         log_info("Lastp sending countdown                         : %6d      (s)", (int)countdown);
         log_info("===================================================\r\n");
+    }
+    if (NOT_COMPLETELY_POWER_OFF)
+    {
+        log_info("===================================================");
+        countdown = 10 - PowerOnCount;
+        countdown = countdown < 0 ? 0 : countdown;
+        log_info("Flags related to rapid power restoration before the MCU has restarted");
+        log_info("GetPowerOnFlag                                  : %6d ", GetPowerOnFlag);
+        log_info("Get Power on event countdown                    : %6d      (s)", (int)countdown);
+        log_info("===================================================");
     }
 
     if (receivebusyflag)
@@ -1949,6 +1877,8 @@ static void _cli_cmd_get_fan_status(int argc, char **argv, cb_shell_out_t log_ou
         countdown = countdown < 0 ? 0 : countdown;
         log_info("Remaining time until ResetRF_Flag               : %6d      (s)", (int)countdown);;
     }
+    log_info("Receive Queue                                   : %6d / %d", receiveIndex, QUEUE_SIZE);
+    log_info("Send Queue                                      : %6d / %d",  sendIndex, QUEUE_SIZE);
     //      if(testread == 0)
     //      {
     //          Broadcast_flag = 1;
@@ -1959,7 +1889,12 @@ static void _cli_cmd_get_fan_status(int argc, char **argv, cb_shell_out_t log_ou
     //          testread = 1;
     //          MAA_flag = 1;
     //      }
-
+    if (flag_Power_Off && NOT_COMPLETELY_POWER_OFF )
+    {
+        countdown = 300 - ResetRFcount;
+        countdown = countdown < 0 ? 0 : countdown;
+        log_info("When both flag_Power_Off and NOT_COMPLETELY_POWER_OFF flags are present, reset countdown: %d", countdown);
+    }
     log_info("=============================================================   Flag   =============================================================");
     log_info("receivebusyflag               :%-3d receivebusytime        = %-10d receivecount           = %d", receivebusyflag, (receivebusytime * 10), receivecount);
     log_info("sendbusyflag                  :%-3d sendbusytime           = %-10d sendcount              = %d", sendbusyflag, (sendbusytime * 10), sendcount);
@@ -1967,15 +1902,20 @@ static void _cli_cmd_get_fan_status(int argc, char **argv, cb_shell_out_t log_ou
     log_info("CONTINUE_BUSY                 :%-3d continuebusytime       = %-10d CointbusyCount         = %d", CONTINUE_BUSY, continuebusytime * 10, CointbusyCount);
     log_info("Broadcast_flag                :%-3d Broadcast_meterdelay   = %-10d BroadcastCount         = %d", Broadcast_flag, Broadcast_meterdelay, BroadcastCount);
     log_info("flag_Power_Off                :%-3d LastpSend              = %-10d LastpSendCount         = %d", flag_Power_Off, (denominator % 11), LastpSendCount);
+    log_info("NOT_COMPLETELY_POWER_OFF      :%-3d GetPoweronevent        = %-10d PowerOnCount           = %d", NOT_COMPLETELY_POWER_OFF, 10, PowerOnCount);
     log_info("====================================================================================================================================\r\n");
-
+    //      log_info("send meter command test");
+    //      udf_Send_DISC(2);
 }
 
 static void ACK_function(uint8_t num)
 {
     char ack_buff[1] = {0x00};
     ack_buff[0] = num;
-    udf_Rafael_data(TASK_ID, 0x11, &ack_buff[0], 3, 1);
+    if (SuccessRole)
+    {
+        udf_Rafael_data(TASK_ID, 0x11, &ack_buff[0], 3, 1);
+    }
 }
 
 static uint8_t Check_Meter_Res(char *recv_buff, uint16_t len)
@@ -3389,6 +3329,7 @@ static void Broadcast_delay(void)
     {
         Broadcast_meterdelay = (denominator % Broadcastmeterdelay);
     }
+    Register_Timeout = (Broadcast_meterdelay + 64);
 }
 
 static void udf_get_noEn(unsigned char *obis_data)
@@ -4040,6 +3981,7 @@ static void udf_Meter_Process(uint8_t *meter_data, uint16_t data_len)
                         MAA_flag = 3;
                         Power_On_Event_Log_Return(&pt[0]); //Return Negative charge data
                         NOT_COMPLETELY_POWER_OFF = 0;
+                        GetPowerOnFlag = 0;
                     }
                 }
                 if (meter_data[3] == 0x27)
@@ -4438,29 +4380,7 @@ void udf_Meter_received_task(const uint8_t *aBuf, uint16_t aBufLength)
         dlms_rx_length = 0;
     }
 }
-void udf_Meter_init(otInstance *instance)
-{
-    gpio_cfg_output(14);
-    gpio_cfg_output(15);
-    gpio_pin_write(14, 0); //green,close
-    gpio_pin_write(15, 1); //red ,open
-    Configuration_Page_init(instance);
-    flash_Information();
-    udf_Send_DISC(1);
 
-    //    ELS61_Block_Queue_handle = xQueueCreate(QUEUE_SIZE, sizeof(_ELS61_Block_data_t));
-    ReceiveCommand_Queue_handle = xQueueCreate(QUEUE_SIZE, sizeof(_ReceiveCommand_data_t));
-    SendCommand_Queue_handle        = xQueueCreate(QUEUE_SIZE, sizeof(_SendCommand_data_t));
-
-    das_dlms_timer = xTimerCreate("das_dlms_timer",
-                                  (1000),
-                                  true,
-                                  ( void * ) 0,
-                                  vTimerCallback);
-
-    xTimerStart(das_dlms_timer, 0 );
-    setup_gpio29();
-}
 
 const sh_cmd_t g_cli_cmd_factoryid STATIC_CLI_CMD_ATTRIBUTE =
 {
@@ -4477,6 +4397,12 @@ const sh_cmd_t g_cli_cmd_get_fanstatus STATIC_CLI_CMD_ATTRIBUTE =
     .pCmd_name    = "flagstatus",
     .pDescription = "get_fan_status",
     .cmd_exec     = _cli_cmd_get_fan_status,
+};
+const sh_cmd_t g_cli_cmd_get_queue STATIC_CLI_CMD_ATTRIBUTE =
+{
+    .pCmd_name    = "QueueProcess",
+    .pDescription = "get_queue_status",
+    .cmd_exec     = _cli_cmd_get_queue_status,
 };
 static void udf_Action_Transmit(unsigned char obisTXT[], unsigned char plainTXT[], uint16_t plainTXT_Len, uint32_t frameNum, uint8_t lastNum)
 {
@@ -4795,340 +4721,250 @@ static void DASprocessCommand(uint8_t *data, uint16_t data_lens)
 
 
 
-    for (i = 12; i < 12 + recvbuf[11]; i++)
+    if (recvbuf[recvbuf[11] + 13] * 256 + recvbuf[recvbuf[11] + 14] < 65535)
     {
-        if (recvbuf[i] == ipv6_output[i - 12])
+        TASK_ID = recvbuf[recvbuf[11] + 13] * 256 + recvbuf[recvbuf[11] + 14];
+    }
+    printf("TASK_ID = %d ", TASK_ID);
+    if (recvbuf[recvbuf[11] + 12] == 0xA1)
+    {
+        HESKEY = 1;
+        if (A2_TIMESynchronize == 0 && MAA_flag == 0)
         {
-            ipv6check++;
+            plaintext_location = recvbuf[11] + 15;
+            sst_flag = 1;//start sst
+            RE_REG = 0;//RE_REGISTER_END
+            begin.tm_year = (recvbuf[plaintext_location] * 256 + recvbuf[plaintext_location + 1] - 1900); /*= {recvbuf[19],recvbuf[18],recvbuf[17],recvbuf[14],recvbuf[14], recvbuf[12]};(recvbuf[12]*256 + recvbuf[13] -1900)};//12~19*/
+            begin.tm_mon = recvbuf[plaintext_location + 2] - 1;
+            begin.tm_mday = recvbuf[plaintext_location + 3];
+            begin.tm_hour = recvbuf[plaintext_location + 5];
+            begin.tm_min = recvbuf[plaintext_location + 6];
+            begin.tm_sec = recvbuf[plaintext_location + 7];
+            for (i = 0 ; i < 16 ; i++) //update key
+            {
+                tpc_guk[i] = recvbuf[plaintext_location + 8 + i];
+                tpc_gcm_ak[i + 1] = recvbuf[plaintext_location + 24 + i];
+                tpc_gmac_ak[i + 1] = recvbuf[plaintext_location + 24 + i];
+                tpc_mkey[i] = recvbuf[plaintext_location + 40 + i];
+            }
+            now_time = mktime(&begin);
+            RTC_CNT = 0;
+            AAcheck = 1;//start AA
+            flag_MAA = 0;
+            MAAFIRST = 1;
+        }
+        else if (KeyErrorflag == 1 && A2_TIMESynchronize == 1 && MAA_flag == 0) //­Y¬Okey¿ù»~ «h¯à¦A®³key
+        {
+            plaintext_location = recvbuf[11] + 15;
+            sst_flag = 1;//start sst
+            RE_REG = 0;//RE_REGISTER_END
+            begin.tm_year = (recvbuf[plaintext_location] * 256 + recvbuf[plaintext_location + 1] - 1900); /*= {recvbuf[19],recvbuf[18],recvbuf[17],recvbuf[14],recvbuf[14], recvbuf[12]};(recvbuf[12]*256 + recvbuf[13] -1900)};//12~19*/
+            begin.tm_mon = recvbuf[plaintext_location + 2] - 1;
+            begin.tm_mday = recvbuf[plaintext_location + 3];
+            begin.tm_hour = recvbuf[plaintext_location + 5];
+            begin.tm_min = recvbuf[plaintext_location + 6];
+            begin.tm_sec = recvbuf[plaintext_location + 7];
+            for (i = 0 ; i < 16 ; i++) //update key
+            {
+                tpc_guk[i] = recvbuf[plaintext_location + 8 + i];
+                tpc_gcm_ak[i + 1] = recvbuf[plaintext_location + 24 + i];
+                tpc_gmac_ak[i + 1] = recvbuf[plaintext_location + 24 + i];
+                tpc_mkey[i] = recvbuf[plaintext_location + 40 + i];
+            }
+            now_time = mktime(&begin);
+            RTC_CNT = 0;
+            AAcheck = 1;//start AA
+            flag_MAA = 0;
+            MAAFIRST = 1;
+            registerRetrytime = 60;//
+        }
+        else
+        {
+            if (MAA_flag == 3)
+            {
+                MAA_flag = 3;
+            }
+        }
+        A2_TIMESynchronize = 1;
+
+    }
+
+    else if (recvbuf[recvbuf[11] + 12] == 0x96) //Reset
+    {
+        printf("reset ok!\n\r");
+        //Reset_FAN();
+    }
+    else if (recvbuf[recvbuf[11] + 12] == 0xA4)
+    {
+        //setContinue = ((ELSData[9]>>7) ==1) ? 1:0;
+        //setLast = (setContinue == 1) ? 1 :0;
+        dataLen = (recvbuf[9] << 1) * 128 + recvbuf[10];
+        for (i = 0; i < 9; i++)
+        {
+            obis[i] = recvbuf[i + 13];
+        }
+
+        udf_Set_Transmit(obis, (unsigned char *)&recvbuf[22], dataLen - 11, 0, 0);
+    }
+    else if (recvbuf[recvbuf[11] + 12] == 0xA3) //On Demand Reading
+    {
+        //On_Demand_Reading_Type = 1;
+        //Tesk_ID = ELSData[12];
+        //On_Demand_ID = 1;
+        Task_count = recvbuf[recvbuf[11] + 15];
+        Task_count_all = Task_count;
+        ON_DEMAND_AA_FLAG = 1;
+        printf("On_Demand_Task_Command = ");
+        for (i = recvbuf[11] + 16; i < recvbuf[11] + 16 + Task_count * 9; i++)
+        {
+            On_Demand_Task_Command[i - recvbuf[11] - 16] = recvbuf[i];
+            printf("%02X ", On_Demand_Task_Command[i - recvbuf[11] - 16]);
+        }
+        printf("\n");
+        udf_Send_DISC(2);
+    }
+    else if (recvbuf[recvbuf[11] + 12] == 0x09) //ACTION,20191104
+    {
+        printf("ACTION\n\r");
+        udf_Action_Transmit((unsigned char *)&recvbuf[recvbuf[11] + 15], (unsigned char *)&recvbuf[recvbuf[11] + 24], dataLen - 12 - recvbuf[11] - 14 - 4 - 9, 0, 0);
+    }
+    else if (recvbuf[recvbuf[11] + 12] == 0xAC && MAA_flag == 3) //
+    {
+        AC_Command(&recvbuf[recvbuf[11] + 15]);
+    }
+    else if (recvbuf[recvbuf[11] + 12] == 0x93) //³]©wFirewall¥\¯à && ¬y¶q­­¨î
+    {
+        //firewall³]©w­È
+        FirewallSetData[0] = recvbuf[12];
+        FirewallSetData[1] = recvbuf[13];
+
+
+        if (recvbuf[12] == FirewallSetData[0] && recvbuf[13] ==  FirewallSetData[1])
+        {
+            CheckFirewall = 0;
+        }
+
+        //¬y¶q­­¨î³]©w­È
+        FlowSetData[0] = recvbuf[14];
+        FlowSetData[1] = recvbuf[15];
+
+        //Change A,B type
+        Initial_Value[6] = recvbuf[16];
+        LoadprofileAB = Initial_Value[6];
+
+        //write flash
+        WriteFlashData(ConfigurationPage, Initial_Value, 256);
+
+        //Firewall_Set_Check();
+    }
+    else if (recvbuf[recvbuf[11] + 12] == 0x92) //FAN LOG
+    {
+        //                      RF_CommandLog(0xff);
+    }
+    else if (recvbuf[recvbuf[11] + 12] == 0x91) //FAN¦Û§ÚÀË´ú
+    {
+        //FAN_Check();
+    }
+    else if (recvbuf[recvbuf[11] + 12] == 0x94) //Ping FAN
+    {
+        udf_Rafael_data(1, 0x24, 0x00, 3, 1);
+    }
+    else if (recvbuf[recvbuf[11] + 12] == 0x95) //Ping meter
+    {
+        FLAG_PING_METER = 1;
+        PingMeterSec = RTC_CNT;
+        udf_Send_SNRM(1);
+
+    }
+    else if (recvbuf[recvbuf[11] + 12] == 0xAA)
+    {
+        ACTION_CHANGE_KEY = 1;
+        for (i = 0; i < recvbuf[recvbuf[11] + 12 + 13]; i++) // total no. key
+        {
+            if (recvbuf[recvbuf[11] + 12 + 17 + i * 30] == 0x00 || recvbuf[recvbuf[11] + 12 + 17 + i * 30] == 0x02 || recvbuf[recvbuf[11] + 12 + 17 + i * 30] == 0x62 || recvbuf[recvbuf[11] + 12 + 17 + i * 30] == 0x63 || recvbuf[recvbuf[11] + 12 + 17 + i * 30] == 0x64)
+            {
+                for (j = 0 ; j < 24 ; j++)
+                {
+                    kek_chipher[j] = recvbuf[recvbuf[11] + 12 + 17 + 3 + j + i * 30];
+                }
+                //                              udf_AES_KEK_Decrypt();
+
+                if (recvbuf[recvbuf[11] + 12 + 17 + i * 30] == 0x00) //FAN_guk
+                {
+                    printf("tpc_guk_update\n\r");
+                    //                                  for(k=0 ;k<16 ;k++)
+                    //                                      new_tpc_guk[k] = kek_plaint[k];
+                    if (TPC_GUK_FLAG == 0)
+                    {
+                        TPC_GUK_FLAG = 1;
+                    }
+                    else
+                    {
+                        actionkey_resend_FLAG = 1;
+                    }
+                }
+                else if (recvbuf[recvbuf[11] + 12 + 17 + i * 30] == 0x02) //FAN_ak
+                {
+                    printf("tpc_ak_update\n\r");
+                    //                                  for(k=0 ;k<16 ;k++)
+                    //                                  {
+                    //                                      new_tpc_gcm_ak[k+1] = kek_plaint[k];
+                    //                                      new_tpc_gmac_ak[k+1] = kek_plaint[k];
+                    //                                  }
+                    if (TPC_AK_FLAG == 0)
+                    {
+                        TPC_AK_FLAG = 1;
+                    }
+                    else
+                    {
+                        actionkey_resend_FLAG = 1;
+                    }
+                }
+                else if (recvbuf[recvbuf[11] + 12 + 17 + i * 30] == 0x062) //HAN_guk
+                {
+                    printf("HAN_guk_update\n\r");
+
+                }
+                else if (recvbuf[recvbuf[11] + 12 + 17 + i * 30] == 0x063) //HAN_ak
+                {
+                    printf("HAN_ak_update\n\r");
+
+                }
+                else if (recvbuf[recvbuf[11] + 12 + 17 + i * 30] == 0x064) //MK
+                {
+                    printf("tpc_MK_update\n\r");
+                    //                                  for(k=0 ;k<16 ;k++)
+                    //                                      new_tpc_mkey[k] = kek_plaint[k];
+                    if (TPC_MK_FLAG == 0)
+                    {
+                        TPC_MK_FLAG = 1;
+                    }
+                    else
+                    {
+                        actionkey_resend_FLAG = 1;
+                    }
+                }
+
+            }
+        }
+        if (actionkey_resend_FLAG == 1)
+        {
+            printf("Resend_actionkey_response\n\r");
+            //Key_Restart = 1;
+            KeyResCount = 0;
+            udf_Rafael_data(TASK_ID, 0x1A, (char *)&actionkey_response[0], 3, KEYresponse_len);
+            //SQBrespone(0x1A, &actionkey_response[0]);
+        }
+        else
+        {
+            Key_Restart = 1;
+            KeyResCount = 0;
+            printf("len = %d \n", (recvbuf[8] * 256) + recvbuf[9] - 18 - recvbuf[11]);
+            udf_Action_Transmit((unsigned char *)&recvbuf[recvbuf[11] + 15], (unsigned char *)&recvbuf[recvbuf[11] + 24], (recvbuf[8] * 256) + recvbuf[9] - 27 - recvbuf[11], 0, 0);
         }
     }
-    if (ipv6check == ipv6_length) //§PÂ_ipv6¬O§_¥¿½T
-    {
-        ipv6check = 0;
-        if (recvbuf[recvbuf[11] + 13] * 256 + recvbuf[recvbuf[11] + 14] < 65535)
-        {
-            TASK_ID = recvbuf[recvbuf[11] + 13] * 256 + recvbuf[recvbuf[11] + 14];
-        }
-        printf("TASK_ID = %d ", TASK_ID);
-        if (recvbuf[recvbuf[11] + 12] == 0xA1)
-        {
-            HESKEY = 1;
-            if (A2_TIMESynchronize == 0 && MAA_flag == 0)
-            {
-                plaintext_location = recvbuf[11] + 15;
-                sst_flag = 1;//start sst
-                RE_REG = 0;//RE_REGISTER_END
-                begin.tm_year = (recvbuf[plaintext_location] * 256 + recvbuf[plaintext_location + 1] - 1900); /*= {recvbuf[19],recvbuf[18],recvbuf[17],recvbuf[14],recvbuf[14], recvbuf[12]};(recvbuf[12]*256 + recvbuf[13] -1900)};//12~19*/
-                begin.tm_mon = recvbuf[plaintext_location + 2] - 1;
-                begin.tm_mday = recvbuf[plaintext_location + 3];
-                begin.tm_hour = recvbuf[plaintext_location + 5];
-                begin.tm_min = recvbuf[plaintext_location + 6];
-                begin.tm_sec = recvbuf[plaintext_location + 7];
-                for (i = 0 ; i < 16 ; i++) //update key
-                {
-                    tpc_guk[i] = recvbuf[plaintext_location + 8 + i];
-                    tpc_gcm_ak[i + 1] = recvbuf[plaintext_location + 24 + i];
-                    tpc_gmac_ak[i + 1] = recvbuf[plaintext_location + 24 + i];
-                    tpc_mkey[i] = recvbuf[plaintext_location + 40 + i];
-                }
-                now_time = mktime(&begin);
-                RTC_CNT = 0;
-                AAcheck = 1;//start AA
-                flag_MAA = 0;
-                MAAFIRST = 1;
-            }
-            else if (KeyErrorflag == 1 && A2_TIMESynchronize == 1 && MAA_flag == 0) //­Y¬Okey¿ù»~ «h¯à¦A®³key
-            {
-                plaintext_location = recvbuf[11] + 15;
-                sst_flag = 1;//start sst
-                RE_REG = 0;//RE_REGISTER_END
-                begin.tm_year = (recvbuf[plaintext_location] * 256 + recvbuf[plaintext_location + 1] - 1900); /*= {recvbuf[19],recvbuf[18],recvbuf[17],recvbuf[14],recvbuf[14], recvbuf[12]};(recvbuf[12]*256 + recvbuf[13] -1900)};//12~19*/
-                begin.tm_mon = recvbuf[plaintext_location + 2] - 1;
-                begin.tm_mday = recvbuf[plaintext_location + 3];
-                begin.tm_hour = recvbuf[plaintext_location + 5];
-                begin.tm_min = recvbuf[plaintext_location + 6];
-                begin.tm_sec = recvbuf[plaintext_location + 7];
-                for (i = 0 ; i < 16 ; i++) //update key
-                {
-                    tpc_guk[i] = recvbuf[plaintext_location + 8 + i];
-                    tpc_gcm_ak[i + 1] = recvbuf[plaintext_location + 24 + i];
-                    tpc_gmac_ak[i + 1] = recvbuf[plaintext_location + 24 + i];
-                    tpc_mkey[i] = recvbuf[plaintext_location + 40 + i];
-                }
-                now_time = mktime(&begin);
-                RTC_CNT = 0;
-                AAcheck = 1;//start AA
-                flag_MAA = 0;
-                MAAFIRST = 1;
-                registerRetrytime = 60;//
-            }
-            else
-            {
-                if (MAA_flag == 3)
-                {
-                    MAA_flag = 3;
-                }
-            }
-            A2_TIMESynchronize = 1;
-
-        }
-        else if (recvbuf[ipv6_length + 12] == 0xC1) //0614
-        {
-
-            Set_Command_Select(recvbuf[ipv6_length + 12], &recvbuf[8]/*RF_len in*/);
-        }
-        else if (recvbuf[ipv6_length + 12] == 0xC2) //0615
-        {
-            printf("set\n");
-            Set_Command_Select(recvbuf[ipv6_length + 12], &recvbuf[8]/*RF_len in*/);
-        }
-        else if (recvbuf[ipv6_length + 12] == 0xC3) //0626
-        {
-            Set_Command_Select(recvbuf[ipv6_length + 12], &recvbuf[8]);
-        }
-        else if (recvbuf[ipv6_length + 12] == 0xC4) //0626
-        {
-            Set_Command_Select(recvbuf[ipv6_length + 12], &recvbuf[8]);
-        }
-        else if (recvbuf[recvbuf[11] + 12] == 0x96) //Reset
-        {
-            printf("reset ok!\n\r");
-            //Reset_FAN();
-        }
-        else if (recvbuf[recvbuf[11] + 12] == 0xA4)
-        {
-            //setContinue = ((ELSData[9]>>7) ==1) ? 1:0;
-            //setLast = (setContinue == 1) ? 1 :0;
-            dataLen = (recvbuf[9] << 1) * 128 + recvbuf[10];
-            for (i = 0; i < 9; i++)
-            {
-                obis[i] = recvbuf[i + 13];
-            }
-
-            udf_Set_Transmit(obis, (unsigned char *)&recvbuf[22], dataLen - 11, 0, 0);
-        }
-        else if (recvbuf[recvbuf[11] + 12] == 0xA3) //On Demand Reading
-        {
-            //On_Demand_Reading_Type = 1;
-            //Tesk_ID = ELSData[12];
-            //On_Demand_ID = 1;
-            Task_count = recvbuf[recvbuf[11] + 15];
-            Task_count_all = Task_count;
-            ON_DEMAND_AA_FLAG = 1;
-            printf("On_Demand_Task_Command = ");
-            for (i = recvbuf[11] + 16; i < recvbuf[11] + 16 + Task_count * 9; i++)
-            {
-                On_Demand_Task_Command[i - recvbuf[11] - 16] = recvbuf[i];
-                printf("%02X ", On_Demand_Task_Command[i - recvbuf[11] - 16]);
-            }
-            printf("\n");
-            udf_Send_DISC(2);
-        }
-        else if (recvbuf[recvbuf[11] + 12] == 0x09) //ACTION,20191104
-        {
-            printf("ACTION\n\r");
-            udf_Action_Transmit((unsigned char *)&recvbuf[recvbuf[11] + 15], (unsigned char *)&recvbuf[recvbuf[11] + 24], dataLen - 12 - recvbuf[11] - 14 - 4 - 9, 0, 0);
-        }
-        else if (recvbuf[recvbuf[11] + 12] == 0xAC && MAA_flag == 3) //
-        {
-            AC_Command(&recvbuf[recvbuf[11] + 15]);
-        }
-        else if (recvbuf[recvbuf[11] + 12] == 0x93) //³]©wFirewall¥\¯à && ¬y¶q­­¨î
-        {
-            //firewall³]©w­È
-            FirewallSetData[0] = recvbuf[12];
-            FirewallSetData[1] = recvbuf[13];
 
 
-            if (recvbuf[12] == FirewallSetData[0] && recvbuf[13] ==  FirewallSetData[1])
-            {
-                CheckFirewall = 0;
-            }
-
-            //¬y¶q­­¨î³]©w­È
-            FlowSetData[0] = recvbuf[14];
-            FlowSetData[1] = recvbuf[15];
-
-            //Change A,B type
-            Initial_Value[6] = recvbuf[16];
-            LoadprofileAB = Initial_Value[6];
-
-            //write flash
-            WriteFlashData(ConfigurationPage, Initial_Value, 256);
-
-            //Firewall_Set_Check();
-        }
-        else if (recvbuf[recvbuf[11] + 12] == 0x92) //FAN LOG
-        {
-            //                      RF_CommandLog(0xff);
-        }
-        else if (recvbuf[recvbuf[11] + 12] == 0x91) //FAN¦Û§ÚÀË´ú
-        {
-            //FAN_Check();
-        }
-        else if (recvbuf[recvbuf[11] + 12] == 0x94) //Ping FAN
-        {
-            udf_Rafael_data(1, 0x24, 0x00, 3, 1);
-        }
-        else if (recvbuf[recvbuf[11] + 12] == 0x95) //Ping meter
-        {
-            FLAG_PING_METER = 1;
-            PingMeterSec = RTC_CNT;
-            udf_Send_SNRM(1);
-
-        }
-        else if (recvbuf[recvbuf[11] + 12] == 0xAA)
-        {
-            ACTION_CHANGE_KEY = 1;
-            for (i = 0; i < recvbuf[recvbuf[11] + 12 + 13]; i++) // total no. key
-            {
-                if (recvbuf[recvbuf[11] + 12 + 17 + i * 30] == 0x00 || recvbuf[recvbuf[11] + 12 + 17 + i * 30] == 0x02 || recvbuf[recvbuf[11] + 12 + 17 + i * 30] == 0x62 || recvbuf[recvbuf[11] + 12 + 17 + i * 30] == 0x63 || recvbuf[recvbuf[11] + 12 + 17 + i * 30] == 0x64)
-                {
-                    for (j = 0 ; j < 24 ; j++)
-                    {
-                        kek_chipher[j] = recvbuf[recvbuf[11] + 12 + 17 + 3 + j + i * 30];
-                    }
-                    //                              udf_AES_KEK_Decrypt();
-
-                    if (recvbuf[recvbuf[11] + 12 + 17 + i * 30] == 0x00) //FAN_guk
-                    {
-                        printf("tpc_guk_update\n\r");
-                        //                                  for(k=0 ;k<16 ;k++)
-                        //                                      new_tpc_guk[k] = kek_plaint[k];
-                        if (TPC_GUK_FLAG == 0)
-                        {
-                            TPC_GUK_FLAG = 1;
-                        }
-                        else
-                        {
-                            actionkey_resend_FLAG = 1;
-                        }
-                    }
-                    else if (recvbuf[recvbuf[11] + 12 + 17 + i * 30] == 0x02) //FAN_ak
-                    {
-                        printf("tpc_ak_update\n\r");
-                        //                                  for(k=0 ;k<16 ;k++)
-                        //                                  {
-                        //                                      new_tpc_gcm_ak[k+1] = kek_plaint[k];
-                        //                                      new_tpc_gmac_ak[k+1] = kek_plaint[k];
-                        //                                  }
-                        if (TPC_AK_FLAG == 0)
-                        {
-                            TPC_AK_FLAG = 1;
-                        }
-                        else
-                        {
-                            actionkey_resend_FLAG = 1;
-                        }
-                    }
-                    else if (recvbuf[recvbuf[11] + 12 + 17 + i * 30] == 0x062) //HAN_guk
-                    {
-                        printf("HAN_guk_update\n\r");
-
-                    }
-                    else if (recvbuf[recvbuf[11] + 12 + 17 + i * 30] == 0x063) //HAN_ak
-                    {
-                        printf("HAN_ak_update\n\r");
-
-                    }
-                    else if (recvbuf[recvbuf[11] + 12 + 17 + i * 30] == 0x064) //MK
-                    {
-                        printf("tpc_MK_update\n\r");
-                        //                                  for(k=0 ;k<16 ;k++)
-                        //                                      new_tpc_mkey[k] = kek_plaint[k];
-                        if (TPC_MK_FLAG == 0)
-                        {
-                            TPC_MK_FLAG = 1;
-                        }
-                        else
-                        {
-                            actionkey_resend_FLAG = 1;
-                        }
-                    }
-
-                }
-            }
-            if (actionkey_resend_FLAG == 1)
-            {
-                printf("Resend_actionkey_response\n\r");
-                //Key_Restart = 1;
-                KeyResCount = 0;
-                udf_Rafael_data(TASK_ID, 0x1A, (char *)&actionkey_response[0], 3, KEYresponse_len);
-                //SQBrespone(0x1A, &actionkey_response[0]);
-            }
-            else
-            {
-                Key_Restart = 1;
-                KeyResCount = 0;
-                printf("len = %d \n", (recvbuf[8] * 256) + recvbuf[9] - 18 - recvbuf[11]);
-                udf_Action_Transmit((unsigned char *)&recvbuf[recvbuf[11] + 15], (unsigned char *)&recvbuf[recvbuf[11] + 24], (recvbuf[8] * 256) + recvbuf[9] - 27 - recvbuf[11], 0, 0);
-            }
-        }
-    }
-    else
-    {
-        if (recvbuf[11] == 0xA9 && (recvbuf[19] == selfAddress[3]))
-        {
-            udf_Set_Transmit(timeobis, (unsigned char *)&recvbuf[18 + recvbuf[18] + 1], 13, 0, 0);
-
-            printf("Broadcast block adjustment!\n\r");
-            //Broadcast number adjustment
-            recvbuf[18]--;
-
-            //Data Shift
-            for (i = 19; i < dataLen - 1; i++)
-            {
-                recvbuf[i] = recvbuf[i + 1];
-            }
-
-            //dataLen adjustment
-            dataLen--;
-
-            //checkSum generation and insertion
-            for (i = 1; i < dataLen - 2; i++)
-            {
-                checkSum += recvbuf[i];
-            }
-            recvbuf[dataLen - 2] = checkSum;
-
-            printf("ELSData[] = \n\r");
-            for (i = 0; i < dataLen; i++)
-            {
-                printf("%02X ", recvbuf[i]);
-            }
-            printf("\n\r");
-        }
-        else if (recvbuf[recvbuf[11] + 12] == 0xA3)
-        {
-            ondemand_busy = 1;
-        }
-        else if (recvbuf[recvbuf[11] + 12] == 0xA2)
-        {
-            for (i = 0; i < 4; i++)
-            {
-                rememberAddress[i] = recvbuf[i + 5];    //remember the address
-            }
-            RFCOUNT = 0;
-            rememberAddressFlag = 1;
-        }
-        //RFSendData(recvbuf,len_test+13);
-        for (i = 0; i < dataLen; i++)
-        {
-            cmdTXT[i] = recvbuf[i];
-        }
-        blockType = recvbuf[11];
-        cmdTXT_Len = dataLen;
-        lengthCount = 0;
-
-        //Transmittion Address Check
-        //                  RF_BlockAddressCheck(cmdTXT);
-
-        //  AM1Address[0] = ELSData[5];
-        //  AM1Address[1] = ELSData[6];
-        //  AM1Address[2] = ELSData[7];
-        //  AM1Address[3] = ELSData[8];
-        //RFSendFlag = 1;
-    }
 
 
 
@@ -5187,8 +5023,11 @@ void Send_Queue_processing(void)
     }
     else
     {
-        log_info("sendIndex = %d  sendbusyflag = %d  CONTINUE_BUSY = %d  On_Demand_Reading_Type = %d target_pos = %d", sendIndex, sendbusyflag, CONTINUE_BUSY, On_Demand_Reading_Type, target_pos);
-        printf("Command Flag Error\r\n");
+        if (sendIndex > 0)
+        {
+            log_info("sendIndex = %d  sendbusyflag = %d  CONTINUE_BUSY = %d  On_Demand_Reading_Type = %d target_pos = %d", sendIndex, sendbusyflag, CONTINUE_BUSY, On_Demand_Reading_Type, target_pos);
+            printf("Command Flag Error\r\n");
+        }
     }
 }
 
@@ -5200,10 +5039,10 @@ void AAFIRST(void)
     {
         for (i = 0; i < 16; i++)
         {
-            tpc_guk[i] = Configuration_Page[i + 48];
-            tpc_gcm_ak[i + 1] = Configuration_Page[i + 64];
-            tpc_gmac_ak[i + 1] = Configuration_Page[i + 64];
-            tpc_mkey[i] = Configuration_Page[i + 80];
+            //            tpc_guk[i] = Configuration_Page[i + 48];
+            //            tpc_gcm_ak[i + 1] = Configuration_Page[i + 64];
+            //            tpc_gmac_ak[i + 1] = Configuration_Page[i + 64];
+            //            tpc_mkey[i] = Configuration_Page[i + 80];
         }
         MAAFIRST = 1;
         Auto_MAA();
@@ -5220,38 +5059,20 @@ void AAFIRST(void)
 //  printf("MAA_flag  == 3 \r\n");
 //  MAA_flag = 3;
 //}
-void vRegisterTimerCallback(TimerHandle_t xTimer)
-{
-    if (MAA_flag == 0)
-    {
-        printf("Retry Register \r\n");
-        SENCOND_REGISGER = 2;
-        RegisterCount = 0;
-        register_command();
-        uint32_t timerPeriod = pdMS_TO_TICKS( (registerRetrytime * 60) * 1000); //將秒數轉換成毫秒
-        xTimerChangePeriod(xRegisterTimer, timerPeriod, 0);
 
+
+static void Retry_Register_task(void)
+{
+    if (MAA_flag)
+    {
+        Register_Timeout = 0;
     }
     else
     {
-        xTimerStop(xRegisterTimer, portMAX_DELAY);//停止定時器
-        RegisterCount = 0;
-        printf("When the key is obtained and verified as correct, there is no need to register again.\r\n");
+        register_command();
+        Register_Timeout = (registerRetrytime * 60);
     }
 }
-//void vAcquireIPv6Callback(TimerHandle_t xTimer)
-//{
-//  if((ipv6_output == NULL || ipv6_output[0] == '\0'))
-//  {
-//          printf("Retry  Acquire IPv6\r\n");
-//          fan_number();
-//  }
-//  else
-//  {
-//      xTimerStop(xIPv6Timer, portMAX_DELAY);
-//  }
-//}
-
 void Rafael_Register(void)
 {
 
@@ -5271,16 +5092,6 @@ void Rafael_Register(void)
     {
         register_command();
         register_steps = 2;
-        uint32_t timerPeriod = pdMS_TO_TICKS((Broadcast_meterdelay + 64) * 1000); //將秒數轉換成毫秒
-        if (xRegisterTimer == NULL)
-        {
-            // 定时器尚未创建，首次创建
-            xRegisterTimer = xTimerCreate("RegisterTimer", timerPeriod, pdTRUE, (void *)0, vRegisterTimerCallback);
-            if (xRegisterTimer != NULL)
-            {
-                xTimerStart(xRegisterTimer, 0);
-            }
-        }
     }
 
     if (sst_flag == 1 && MAA_flag == 1 && register_steps == 2 && SuccessRole == 1)
@@ -5331,12 +5142,161 @@ void Rafael_Register(void)
 
     //}
 }
+void vTimerCallback(TimerHandle_t xTimer)
+{
+    unsigned char obis_notification_data[] = { 0x07, 0x00, 0x00, 0x63, 0x62, 0x00, 0xFF, 0x02};
+    uint8_t RetryRegisterCommand = 0, RegisterFlag = 1, BroadcastFlag = 0, Continue_Flag = 0, ResetFAN_Flag = 0;
+    RTC_CNT++;
+    now_timer = now_time + RTC_CNT;
+    if (SuccessRole)
+    {
+        Rafael_Register();
+    }
+    if (MAA_flag == 0 && register_steps == 2)
+    {
+        if (Register_Timeout > 0 && --Register_Timeout == 0)
+        {
+            APP_EVENT_NOTIFY(EVENT_REGISTER);
+        }
+    }
+    //rececive
+    HandleBusyFlagAndCount(&receivebusyflag, &receivecount, receivebusytime * 10, 1); //*(10sec)
+
+    //send
+    HandleBusyFlagAndCount(&sendbusyflag, &sendcount, sendbusytime * 10, 2); //*(10sec)
+
+    //On_Demand_Reading_Type
+    HandleBusyFlagAndCount(&On_Demand_Reading_Type, &OnDemandReadingcount, ondemandreadingtime * 10, 3); //*(10sec)
+
+    //CONTINUE_BUSY
+    Continue_Flag = HandleBusyFlagAndCount(&CONTINUE_BUSY, &CointbusyCount, continuebusytime * 10, 4); //*(10sec)
+    if (Continue_Flag)
+    {
+        Continue_function_timeout_handlr();
+    }
+    //ResetRF_Flag
+    ResetFAN_Flag = HandleBusyFlagAndCount(&ResetRF_Flag, &ResetRFcount, 10, 5); //*(10sec)
+    if (ResetFAN_Flag)
+    {
+        NVIC_SystemReset();
+    }
+    if (MAA_flag == 1 || MAA_flag == 2) //300 sec
+    {
+        MAANO3count ++;
+        if (MAANO3count >= 300)
+        {
+            sst_flag = 0;
+            MAA_flag = 3;
+            MAANO3count = 0;
+        }
+    }
+    Light_controller_function();
+
+    //BroadcastsendFuntion
+    BroadcastFlag = HandleBusyFlagAndCount(&Broadcast_flag, &BroadcastCount, Broadcast_meterdelay, 6);
+
+    if (BroadcastFlag)
+    {
+        Broadcast_function_timeout_handlr();
+    }
+    if (flag_Power_Off && LastpSendFlag == 0)
+    {
+        if (LastpCount == 0)
+        {
+            printf("GPIO29 Interrupt Triggered\r\nPower OFF\r\n");
+        }
+        LastpSendCount ++;
+        gpio_pin_write(14, 0);
+        gpio_pin_write(15, 0);
+        Power_Off_Function();
+    }
+    else if (flag_Power_Off == 0 && NOT_COMPLETELY_POWER_OFF && GetPowerOnFlag == 0)
+    {
+        if (PowerOnCount == 0)
+        {
+            printf("GPIO29 Interrupt Triggered\r\nPower ON\r\n");
+        }
+        PowerOnCount++;
+        gpio_pin_write(14, 1);
+        gpio_pin_write(15, 1);
+        if (PowerOnCount > 10)
+        {
+            printf("After a power outage, and before the MCU has restarted, upon power restoration, start querying for power restoration messages.\r\n");
+            GetPowerOnFlag = 1;
+            udf_Send_DISC(2);
+            PowerOnCount = 0;
+        }
+    }
+
+    if (flag_Power_Off)
+    {
+
+        LastpCount++;
+        if (LastpCount >= 300)
+        {
+            printf("Rapid power cycling causing abnormal state\r\n");
+            gpio_pin_write(14, 1);
+            gpio_pin_write(15, 1);
+            flag_Power_Off = 0;
+            LastpSendFlag = 0;
+            NOT_COMPLETELY_POWER_OFF = 0;
+            GetPowerOnFlag = 0;
+            LastpCount = 0;
+        }
+    }
+    else if (NOT_COMPLETELY_POWER_OFF)
+    {
+
+        LastpCount++;
+        gpio_pin_write(14, 1);
+        gpio_pin_write(15, 1);
+        if (LastpCount >= 300)
+        {
+            printf("Rapid power cycling causing abnormal state\r\n");
+            gpio_pin_write(14, 1);
+            gpio_pin_write(15, 1);
+            LastpSendFlag = 0;
+            NOT_COMPLETELY_POWER_OFF = 0;
+            GetPowerOnFlag = 0;
+            LastpCount = 0;
+        }
+    }
+
+
+}
+
+void udf_Meter_init(otInstance *instance)
+{
+    gpio_cfg_output(14);
+    gpio_cfg_output(15);
+    gpio_pin_write(14, 0); //green,close
+    gpio_pin_write(15, 1); //red ,open
+    Configuration_Page_init(instance);
+    flash_Information();
+    udf_Send_DISC(1);
+
+    //    ELS61_Block_Queue_handle = xQueueCreate(QUEUE_SIZE, sizeof(_ELS61_Block_data_t));
+    ReceiveCommand_Queue_handle = xQueueCreate(QUEUE_SIZE, sizeof(_ReceiveCommand_data_t));
+    SendCommand_Queue_handle        = xQueueCreate(QUEUE_SIZE, sizeof(_SendCommand_data_t));
+
+    das_dlms_timer = xTimerCreate("das_dlms_timer",
+                                  (1000),
+                                  true,
+                                  ( void * ) 0,
+                                  vTimerCallback);
+
+    xTimerStart(das_dlms_timer, 0 );
+    setup_gpio29();
+
+    Register_Timeout = 500;
+}
 void evaluate_commandAM1(char *recvbuf, uint16_t len_test)
 {
     unsigned char timeobis[9] = {8, 0, 0, 1, 0, 0, 255, 2, 0}, ack_buff[1] = {0x00};
     //size_t len_test=0;
     int i = 0, j;
     uint8_t default_tag[12], ipv6check = 0;
+    uint16_t ip6_len;
     uint8_t *default_pt = NULL;
     char *am1buffer = NULL;
     char flashbuffer[150] = {0};
@@ -5344,7 +5304,7 @@ void evaluate_commandAM1(char *recvbuf, uint16_t len_test)
 
     for (i = 1, j = 0 ; i < 1 + recvbuf[0]; i++, j++)
     {
-        if (recvbuf[i] == ipv6_output[j])
+        if (recvbuf[i] == Broadcast_ip[j])
         {
             ipv6check++;
         }
@@ -5359,8 +5319,43 @@ void evaluate_commandAM1(char *recvbuf, uint16_t len_test)
     {
         return;
     }
-    log_info("ipv6check = %d ipv6_length = %d", ipv6check, ipv6_length);
-    if (ipv6check == ipv6_length)
+    if (ipv6check == 7)
+    {
+        ipv6check = 0;
+        log_info_hexdump("check Broadcast ipv6: ", recvbuf, recvbuf[0] + 1);
+        for (i = 1, j = 0 ; i < 1 + recvbuf[0]; i++, j++)
+        {
+            if (recvbuf[i] == Broadcast_ip[j])
+            {
+                ipv6check++;
+            }
+        }
+
+
+        printf("Broadcast_ip\r\n");
+
+
+        memcpy(&am1buffer[11], recvbuf, len_test + 11);
+        log_info_hexdump("Am1buffer", am1buffer, len_test + 11);
+        if (recvbuf[am1buffer[11] + 13] * 256 + am1buffer[am1buffer[11] + 14] < 65535)
+        {
+            TASK_ID = am1buffer[am1buffer[11] + 13] * 256 + am1buffer[am1buffer[11] + 14];
+        }
+        printf("TASK_ID = %d ", TASK_ID);
+        if (am1buffer[am1buffer[11] + 12] == 0x03 && MAA_flag == 3)
+        {
+            Broadcast_savebuff_flag = 1;
+            AC_Command(&am1buffer[am1buffer[11] + 15]);
+
+        }
+        else if (am1buffer[am1buffer[11] + 12] == 0x45 ) //Flash initialization.
+        {
+            printf("\n\rflash_set_test\n\r");
+            WriteFlashData(ConfigurationPage, flash_test, 200);
+            //NVIC_SystemReset();
+        }
+    }
+    else
     {
 
         memcpy(&am1buffer[11], recvbuf, len_test);
@@ -5372,10 +5367,37 @@ void evaluate_commandAM1(char *recvbuf, uint16_t len_test)
         {
             TASK_ID = am1buffer[am1buffer[11] + 13] * 256 + am1buffer[am1buffer[11] + 14];
         }
+        ip6_len = am1buffer[11];
         log_info("TASK_ID = %d", TASK_ID);
+        log_info("ip6_len = %d", ip6_len);
+        log_info("typecheck = %d", am1buffer[am1buffer[11] + 12]);
         if (am1buffer[am1buffer[11] + 12] == 0x91 || am1buffer[am1buffer[11] + 12] == 0x92 || am1buffer[am1buffer[11] + 12] == 0x94 || am1buffer[am1buffer[11] + 12] == 0x95 || am1buffer[am1buffer[11] + 12] == 0x96) // not Decrypt command
         {
             receive_queue(&am1buffer[0], len_test + 4);
+        }
+        else if (am1buffer[am1buffer[11] + 12] == 0xC0)
+        {
+            //                                      if(uart_read_data7[ipv6_len + 6]*256 + uart_read_data7[ipv6_len + 7] < 65535)
+            //                          TASK_ID = uart_read_data7[ipv6_len + 6]*256 + uart_read_data7[ipv6_len + 7];
+            //                      sprintf(strbuf,"TASK_ID = %d ",TASK_ID);
+            //                      udf_printf(strbuf);
+            //                      begin.tm_year = (uart_read_data7[ipv6_len +9] * 256 + uart_read_data7[ipv6_len +10] - 1900);
+            //                      begin.tm_mon  = uart_read_data7[ipv6_len +11] - 1;
+            //                      begin.tm_mday = uart_read_data7[ipv6_len +12];
+            //                      begin.tm_hour = uart_read_data7[ipv6_len +14];
+            //                      begin.tm_min  = uart_read_data7[ipv6_len +15];
+            //                      begin.tm_sec  = uart_read_data7[ipv6_len +16];//bob//0614
+            //                      RTC_CNT =0;
+            //                      now_time = mktime(&begin);//19
+            printf("\n\rSet Time_C0\n");
+            //修改時間+時間差=現在時間
+            SET_TIME_C0_INDEX = 1;//0714
+            udf_Set_Transmit(timeobis, &am1buffer[am1buffer[11] + 15], 13, 0, 0);   //0714
+        }
+        else if (am1buffer[am1buffer[11] + 12] == 0xC1 || am1buffer[am1buffer[11] + 12] == 0xC2 || am1buffer[am1buffer[11] + 12] == 0xC3 || am1buffer[am1buffer[11] + 12] == 0xC4) //0614
+        {
+            printf("set\n");
+            Set_Command_Select(recvbuf[ipv6_length + 12], &recvbuf[8]/*RF_len in*/);
         }
         else if (am1buffer[am1buffer[11] + 12] == 0x03 && MAA_flag == 3) //¸ÉÅª
         {
@@ -5463,50 +5485,8 @@ void evaluate_commandAM1(char *recvbuf, uint16_t len_test)
 
 
     }
-    else
-    {
-        ipv6check = 0;
-        log_info_hexdump("check Broadcast ipv6: ", recvbuf, recvbuf[0] + 1);
-        for (i = 1, j = 0 ; i < 1 + recvbuf[0]; i++, j++)
-        {
-            if (recvbuf[i] == Broadcast_ip[j])
-            {
-                ipv6check++;
-            }
-        }
-        //¼s¼½©R¥O
-        if (ipv6check == 7)
-        {
-
-            printf("Broadcast_ip\r\n");
 
 
-            memcpy(&am1buffer[11], recvbuf, len_test + 11);
-            log_info_hexdump("Am1buffer", am1buffer, len_test + 11);
-            if (recvbuf[am1buffer[11] + 13] * 256 + am1buffer[am1buffer[11] + 14] < 65535)
-            {
-                TASK_ID = am1buffer[am1buffer[11] + 13] * 256 + am1buffer[am1buffer[11] + 14];
-            }
-            printf("TASK_ID = %d ", TASK_ID);
-            if (am1buffer[am1buffer[11] + 12] == 0x03 && MAA_flag == 3) //¸ÉÅª
-            {
-                Broadcast_savebuff_flag = 1;
-                AC_Command(&am1buffer[am1buffer[11] + 15]);
-
-            }
-            else if (am1buffer[am1buffer[11] + 12] == 0x45 ) //Flash initialization.
-            {
-                printf("\n\rflash_set_test\n\r");
-                WriteFlashData(ConfigurationPage, flash_test, 200);
-                //NVIC_SystemReset();
-            }
-        }
-        //IPV6¿ù»~
-        else
-        {
-            printf("send ipv6 error\n");
-        }
-    }
     if (am1buffer)
     {
         vPortFree(am1buffer);
@@ -5534,5 +5514,9 @@ void __das_dlms_task(app_task_event_t sevent)
     if (sevent & EVENT_SEND_QUEUE)
     {
         Send_Queue_processing();
+    }
+    if (sevent & EVENT_REGISTER)
+    {
+        Retry_Register_task();
     }
 }

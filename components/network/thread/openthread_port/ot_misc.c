@@ -55,4 +55,5 @@ void otPlatWakeHost(void)
 void otPlatAssertFail(const char *aFilename, int aLineNumber)
 {
     printf("otPlatAssertFail, %s @ %d\r\n", aFilename, aLineNumber);
+    otPlatReset(NULL);
 }

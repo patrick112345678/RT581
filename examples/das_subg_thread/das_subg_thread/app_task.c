@@ -87,24 +87,13 @@ static void ot_stateChangeCallback(otChangedFlags flags, void *p_context)
         default:
             break;
         }
-        if (SuccessRole)
-        {
-            APP_EVENT_NOTIFY(EVENT_SEND_QUEUE);
-        }
-        if (role == OT_DEVICE_ROLE_DISABLED || role == OT_DEVICE_ROLE_DETACHED)
-        {
-            uint32_t timerPeriod = pdMS_TO_TICKS(200);
-            if (xLightTimer == NULL)
-            {
-                xLightTimer = xTimerCreate("LightTimer", timerPeriod, pdTRUE, (void *)0, vLightTimerCallback);
-                if (xLightTimer != NULL)
-                {
-                    xTimerStart(xLightTimer, 0);
-                }
-            }
-        }
+
         if (role)
         {
+            if (SuccessRole)
+            {
+                APP_EVENT_NOTIFY(EVENT_SEND_QUEUE);
+            }
             log_info("Current role       : %s", otThreadDeviceRoleToString(otThreadGetDeviceRole(p_context)));
 
             p = (uint8_t *)(otLinkGetExtendedAddress(instance)->m8);
@@ -185,72 +174,6 @@ static void app_udp_cb(otMessage *otMsg, const otMessageInfo *otInfo)
     }
 }
 // Implementation of the RafaelRegisterTask function
-static void RafaelRegisterTask(void *pvParameters)
-{
-    // Wait for notification indefinitely
-    for (;;)
-    {
-        // Check if MAA_flag is 3 or more before waiting for notification
-        if (MAA_flag >= 3)
-        {
-            // Optionally: Log or perform any cleanup before stopping the task
-            // Example: log_info("Stopping RafaelRegisterTask as MAA_flag reached 3.");
-
-            // Delete this task
-            vTaskDelete(NULL); // This will terminate the RafaelRegisterTask
-        }
-
-        // Wait for notification to execute Rafael_Register
-        if (ulTaskNotifyTake(pdTRUE, portMAX_DELAY))
-        {
-            // Upon receiving a notification, execute Rafael_Register
-            Rafael_Register();
-        }
-    }
-}
-
-
-// Function to trigger notification to RafaelRegisterTask
-static void TriggerRafaelRegisterCallback()
-{
-    if (xRafaelRegisterTaskHandle != NULL)
-    {
-        // Notify the RafaelRegisterTask to execute Rafael_Register function
-        xTaskNotifyGive(xRafaelRegisterTaskHandle);
-    }
-}
-
-// Task to check the SuccessRole variable and trigger notification
-static void CheckSuccessRoleTask(void *pvParameters)
-{
-    const TickType_t xDelay = pdMS_TO_TICKS(1000); // Delay for 1 second to prevent continuous checking
-
-    while (1)
-    {
-        if (SuccessRole == 1 && MAA_flag < 3)
-        {
-            // If SuccessRole is 1, trigger the RafaelRegisterTask notification
-            TriggerRafaelRegisterCallback();
-            // Optionally reset SuccessRole here to prevent repeated notifications
-            // SuccessRole = 0; // Uncomment if you wish to reset SuccessRole after notification
-        }
-        else if (MAA_flag >= 3)
-        {
-            // Optional: Log or perform any cleanup before stopping the task
-            // Example: Log_info("MAA_flag has reached 3, stopping CheckSuccessRoleTask.");
-
-            // Stop the task from further execution
-            printf("MAA_flag >= 3\r\n");
-            break; // This will exit the while loop
-        }
-
-        // Delay for a period to prevent continuous checking
-        vTaskDelay(xDelay);
-    }
-    // Optionally delete the task if it should no longer run
-    vTaskDelete(NULL); // Uncomment if you want to delete the task when finished
-}
-
 void otrInitUser(otInstance *instance)
 {
     ota_bootloader_info_check();
@@ -320,12 +243,6 @@ void otrInitUser(otInstance *instance)
 
     otSetStateChangedCallback(instance, ot_stateChangeCallback, instance);
 
-    // At system initialization or an appropriate location, create the RafaelRegisterTask
-    xTaskCreate(RafaelRegisterTask, "RafaelRegister", RAFAEL_REGISTER_TASK_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1, &xRafaelRegisterTaskHandle);
-
-    // Create the CheckSuccessRoleTask at the start of your program to continuously monitor the SuccessRole
-    xTaskCreate(CheckSuccessRoleTask, "CheckSuccess", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1, NULL);
-
 #if OPENTHREAD_FTD
     app_sockInit(instance, app_udp_cb, THREAD_UDP_PORT);
 #endif
@@ -361,6 +278,7 @@ void app_task (void)
         {
             APP_EVENT_GET_NOTIFY(event);
 
+            printf("app event %x \r\n", event);
             /*app uart use*/
             __uart_task(event);
 

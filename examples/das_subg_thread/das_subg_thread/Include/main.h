@@ -42,7 +42,8 @@ typedef enum
 
     EVENT_ELS61_BLOCK_QUEUE                = 0x00000080,
 
-    EVENT_SEND_QUEUE                             = 0x00000100,
+    EVENT_SEND_QUEUE                       = 0x00000100,
+    EVENT_REGISTER                         = 0x00000200,
     EVENT_ALL                              = 0xffffffff,
 } app_task_event_t;
 
@@ -76,7 +77,6 @@ extern uint8_t SuccessRole, MAA_flag, GreenLight_Flag, flag_Power_Off;
 extern time_t now_time;
 extern uint32_t now_timer, RTC_CNT;
 extern struct tm begin;
-
 /*app uart*/
 void app_uart_init(void);
 int app_uart_data_send(uint8_t u_port, uint8_t *p_data, uint16_t data_len);

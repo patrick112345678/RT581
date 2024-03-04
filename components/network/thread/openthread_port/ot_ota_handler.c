@@ -18,8 +18,10 @@
 #include <openthread/thread_ftd.h>
 #include <openthread/platform/misc.h>
 #include <openthread/random_noncrypto.h>
+#include <openthread_port.h>
 #include "FreeRTOS.h"
-#include "task.h"
+#include <semphr.h>
+#include <task.h>
 #include "timers.h"
 #include "log.h"
 #include "queue.h"
@@ -27,7 +29,7 @@
 //=============================================================================
 //                Private Function Declaration
 //=============================================================================
-unsigned int ota_debug_flags = 0;
+unsigned int ota_debug_flags = 1;
 #define ota_printf(args, ...)        \
     do {                                \
         if(ota_debug_flags > 0)    \
@@ -115,6 +117,7 @@ static bool need_reboot = true;
 static uint8_t g_ota_response_k = 2;
 static uint8_t g_ota_response_c = 0;
 static uint16_t g_resp_table[OTA_RESPONSE_TABLE_SIZE];
+static SemaphoreHandle_t    otaSemHandle          = NULL;
 //=============================================================================
 //                Functions
 //=============================================================================
@@ -124,7 +127,7 @@ uint32_t crc32checksum(uint32_t flash_addr, uint32_t data_len)
     uint32_t i;
     uint8_t *buf = ((uint8_t *)flash_addr);
     uint32_t chkSum = ~0, len = data_len;
-    enter_critical_section();
+    OT_ENTER_CRITICAL();
     for (i = 0; i < len; i ++ )
     {
         chkSum ^= *buf++;
@@ -133,7 +136,7 @@ uint32_t crc32checksum(uint32_t flash_addr, uint32_t data_len)
             chkSum = chkSum & 1 ? (chkSum >> 1) ^ 0xedb88320 : chkSum >> 1;
         }
     }
-    leave_critical_section();
+    OT_EXIT_CRITICAL();
     return ~chkSum;
 }
 
@@ -150,19 +153,26 @@ uint32_t *ota_bitmap_init(uint32_t lens)
     bitmap_size *= sizeof(uint32_t);
 
     bitmap = pvPortMalloc(bitmap_size);
-    memset(bitmap, 0x0, bitmap_size);
+    if (NULL == bitmap)
+    {
+        ota_printf("ota_bitmap_init fail \r\n");
+    }
+    else
+    {
+        memset(bitmap, 0x0, bitmap_size);
+    }
     return bitmap;
 }
 
 void ota_bitmap_set(uint32_t *bitmap, uint32_t index)
 {
-    enter_critical_section();
+    OT_ENTER_CRITICAL();
     uint32_t tmp_index = 0, bit = 0;
     tmp_index = index >> 5;
     bit = index % 32;
 
     bitmap[tmp_index] |= 0x1 << bit;
-    leave_critical_section();
+    OT_EXIT_CRITICAL();
 }
 
 void ota_bitmap_delete(uint32_t *bitmap)
@@ -355,13 +365,13 @@ void ota_bootloader_info_check()
                 t_bootloader_ota_info.fotabank_ready = FOTA_IMAGE_READY + 1;
             }
         }
-        enter_critical_section();
+        OT_ENTER_CRITICAL();
         while (flash_check_busy());
         flash_erase(FLASH_ERASE_SECTOR, FOTA_UPDATE_BANK_INFO_ADDRESS);
         while (flash_check_busy());
         flash_write_page((uint32_t)&t_bootloader_ota_info, FOTA_UPDATE_BANK_INFO_ADDRESS);
         while (flash_check_busy());
-        leave_critical_section();
+        OT_EXIT_CRITICAL();
     } while (0);
 
     printf("ota ver : 0x%08x\n", ota_get_image_version());
@@ -384,14 +394,14 @@ static void ota_bootinfo_ready()
     memset(&program_data, 0xFF, 0x100);
     memcpy(&program_data, (uint8_t *)&t_bootloader_ota_info, sizeof(fota_information_t));
 
-    enter_critical_section();
+    OT_ENTER_CRITICAL();
     while (flash_check_busy());
     flash_erase(FLASH_ERASE_SECTOR, FOTA_UPDATE_BANK_INFO_ADDRESS);
 
     while (flash_check_busy());
     flash_write_page((uint32_t)&program_data, FOTA_UPDATE_BANK_INFO_ADDRESS);
     while (flash_check_busy());
-    leave_critical_section();
+    OT_EXIT_CRITICAL();
 
     ota_printf("bootinfo ready");
 }
@@ -414,14 +424,14 @@ void ota_bootinfo_reset()
     memset(&program_data, 0xFF, 0x100);
     memcpy(&program_data, (uint8_t *)&t_bootloader_ota_info, sizeof(fota_information_t));
 
-    enter_critical_section();
+    OT_ENTER_CRITICAL();
     while (flash_check_busy());
     flash_erase(FLASH_ERASE_SECTOR, FOTA_UPDATE_BANK_INFO_ADDRESS);
 
     while (flash_check_busy());
     flash_write_page((uint32_t)&program_data, FOTA_UPDATE_BANK_INFO_ADDRESS);
     while (flash_check_busy());
-    leave_critical_section();
+    OT_EXIT_CRITICAL();
 
     ota_printf("bootinfo reset\n");
 }
@@ -457,11 +467,20 @@ static void ota_check_have_sleep_child()
 static void ota_event_queue_push(uint8_t event, uint8_t *data, uint16_t data_lens)
 {
     ota_event_data_t event_data;
+    ota_printf("event push %u \r\n", event);
     event_data.event = event;
     memcpy(&event_data.data, data, data_lens);
     event_data.data_lens = data_lens;
     while (xQueueSend(ota_even_queue, (void *)&event_data, portMAX_DELAY) != pdPASS);
-    xTaskNotifyGive(ota_taskHandle);
+    if (xPortIsInsideInterrupt())
+    {
+        BaseType_t pxHigherPriorityTaskWoken = pdTRUE;
+        xSemaphoreGiveFromISR( otaSemHandle, &pxHigherPriorityTaskWoken);
+    }
+    else
+    {
+        xSemaphoreGive(otaSemHandle);
+    }
 }
 
 static int ota_data_parse(uint8_t type, uint8_t *payload, uint16_t payloadlength, void *data)
@@ -1024,10 +1043,10 @@ static void ota_data_send_handler()
         ota_data.segments = g_ota_segments_size;
         ota_data.intervel = g_ota_data_intervel;
         ota_data.is_unicast = is_unicst;
-        enter_critical_section();
+        OT_ENTER_CRITICAL();
         temp_addr = (uint32_t *)(OTA_FLASH_START + (ota_data.seq * ota_data.segments));
         memcpy(&ota_data.data, temp_addr, ota_data_lens);
-        leave_critical_section();
+        OT_EXIT_CRITICAL();
 
         payload = pvPortMalloc(sizeof(ota_data_t));
         if (payload)
@@ -1134,11 +1153,11 @@ static void ota_response_send_handler()
         {
             ota_response_data_lens = g_ota_image_size % g_ota_segments_size;
         }
-        enter_critical_section();
+        OT_ENTER_CRITICAL();
         temp_addr = (uint32_t *)(OTA_FLASH_START + (ota_response.seq * g_ota_segments_size));
 
         memcpy(&ota_response.data, temp_addr, ota_response_data_lens);
-        leave_critical_section();
+        OT_EXIT_CRITICAL();
 
         payload = pvPortMalloc(sizeof(ota_response_t));
         if (payload)
@@ -1327,7 +1346,7 @@ static void ota_response_table_handler(uint16_t *req_table)
     {
         memset(g_resp_table, 0xff, sizeof(g_resp_table));
     }
-    enter_critical_section();
+    OT_ENTER_CRITICAL();
     for (i = 0 ; i < OTA_REQUEST_TABLE_SIZE ; i++)
     {
         if (req_table[i] != 0xFFFF)
@@ -1363,7 +1382,7 @@ static void ota_response_table_handler(uint16_t *req_table)
             break;
         }
     }
-    leave_critical_section();
+    OT_EXIT_CRITICAL();
     if (need_response == true && !xTimerIsTimerActive(ota_resp_timer))
     {
         timeout = otRandomNonCryptoGetUint16InRange(1, (OTA_RESPONESE_TIMEOUT));
@@ -1716,7 +1735,7 @@ static void ota_data_received_event_handler(uint8_t *data, uint16_t lens)
         {
             if (g_ota_state == OTA_IDLE)
             {
-                ota_printf("ota data OTA_IDLE\n");
+                ota_printf("ota data OTA_IDLE \r\n");
                 break;
             }
             if (ota_bitmap_get_bit(g_ota_bitmap, ota_data.seq))
@@ -1739,6 +1758,7 @@ static void ota_data_received_event_handler(uint8_t *data, uint16_t lens)
             g_ota_data_intervel = ota_data.intervel;
             ota_bootinfo_reset();
             g_ota_bitmap = ota_bitmap_init(toatol_num);
+
             if (ota_data.is_unicast == true)
             {
                 ota_change_state_and_timer(OTA_UNICASE_RECEIVING, timeout);
@@ -1747,7 +1767,7 @@ static void ota_data_received_event_handler(uint8_t *data, uint16_t lens)
             {
                 ota_change_state_and_timer(OTA_DATA_RECEIVING, timeout);
             }
-            enter_critical_section();
+            OT_ENTER_CRITICAL();
             for (i = 0; i < 0x57; i++)
             {
                 // Page erase (4096 bytes)
@@ -1755,14 +1775,14 @@ static void ota_data_received_event_handler(uint8_t *data, uint16_t lens)
                 flash_erase(FLASH_ERASE_SECTOR, OTA_FLASH_START + (0x1000 * i));
                 while (flash_check_busy());
             }
-            leave_critical_section();
+            OT_EXIT_CRITICAL();
         }
 
         ota_printf("[R] ota data seq %u remain %u\n", ota_data.seq, ota_bitmap_get_remain(g_ota_bitmap, toatol_num));
 
         ota_bitmap_set(g_ota_bitmap, ota_data.seq);
 
-        enter_critical_section();
+        OT_ENTER_CRITICAL();
         tmp_addr = OTA_FLASH_START + (ota_data.segments * ota_data.seq);
         for (i = 0; i < ota_data_lens ; i++)
         {
@@ -1770,7 +1790,7 @@ static void ota_data_received_event_handler(uint8_t *data, uint16_t lens)
             flash_write_byte(tmp_addr + i, ota_data.data[i]);
             while (flash_check_busy());
         }
-        leave_critical_section();
+        OT_EXIT_CRITICAL();
 
         if (0 == ota_bitmap_get_remain(g_ota_bitmap, toatol_num))
         {
@@ -1955,7 +1975,7 @@ static void ota_response_received_event_handler(uint8_t *data, uint16_t lens)
                     g_ota_toatol_num = toatol_num;
                     g_ota_segments_size = ota_response.segments;
                     ota_bootinfo_reset();
-                    enter_critical_section();
+                    OT_ENTER_CRITICAL();
                     for (i = 0; i < 0x57; i++)
                     {
                         // Page erase (4096 bytes)
@@ -1963,7 +1983,7 @@ static void ota_response_received_event_handler(uint8_t *data, uint16_t lens)
                         flash_erase(FLASH_ERASE_SECTOR, OTA_FLASH_START + (0x1000 * i));
                         while (flash_check_busy());
                     }
-                    leave_critical_section();
+                    OT_EXIT_CRITICAL();
                     ota_change_state_and_timer(OTA_REQUEST_SENDING, (OTA_REQUEST_TABLE_SIZE * OTA_RESPONESE_TIMEOUT));
                     break;
                 }
@@ -1996,7 +2016,7 @@ static void ota_response_received_event_handler(uint8_t *data, uint16_t lens)
         {
             ota_change_state_and_timer(OTA_DONE, OTA_DONE_TIMEOUT);
         }
-        enter_critical_section();
+        OT_ENTER_CRITICAL();
         for (i = 0 ; i < OTA_RESPONSE_TABLE_SIZE ; i++)
         {
             if (g_resp_table[i] == ota_response.seq)
@@ -2014,7 +2034,7 @@ static void ota_response_received_event_handler(uint8_t *data, uint16_t lens)
             }
         }
         g_ota_request_cnt = 0;
-        leave_critical_section();
+        OT_EXIT_CRITICAL();
         if (ota_bitmap_get_bit(g_ota_bitmap, ota_response.seq))
         {
             // ota_printf("ota response seq same %u\n",ota_response_header->seq);
@@ -2031,7 +2051,7 @@ static void ota_response_received_event_handler(uint8_t *data, uint16_t lens)
             ota_bitmap_set(g_ota_bitmap, ota_response.seq);
             ota_printf("[R] ota response %u remain %u\n", ota_response.seq, ota_bitmap_get_remain(g_ota_bitmap, toatol_num));
 
-            enter_critical_section();
+            OT_ENTER_CRITICAL();
             tmp_addr = OTA_FLASH_START + (ota_response.segments * ota_response.seq);
             // ota_bitmap_print(ota_bitmap,toatol_num);
 
@@ -2041,7 +2061,7 @@ static void ota_response_received_event_handler(uint8_t *data, uint16_t lens)
                 flash_write_byte(tmp_addr + i, ota_response.data[i]);
                 while (flash_check_busy());
             }
-            leave_critical_section();
+            OT_EXIT_CRITICAL();
             if (0 == ota_bitmap_get_remain(g_ota_bitmap, toatol_num))
             {
                 crc32 = crc32checksum((OTA_FLASH_START + 0x20), (ota_response.size - 0x20));
@@ -2064,42 +2084,41 @@ void ota_event_handler()
 {
     ota_event_data_t event_data;
     memset(&event_data, 0x0, sizeof(ota_event_data_t));
+    otaSemHandle = xSemaphoreCreateBinary();
     /*process ota event*/
     for (;;)
     {
-        do
+        if (xSemaphoreTake(otaSemHandle, portMAX_DELAY))
         {
             if (xQueueReceive(ota_even_queue, (void *)&event_data, 0) == pdPASS)
             {
-                break;
+                ota_printf("data event %u \r\n", event_data.event);
+                switch (event_data.event)
+                {
+                case OTA_DATA_SEND_EVENT:
+                    ota_data_sended_event_handler(event_data.data, event_data.data_lens);
+                    break;
+                case OTA_REQUEST_SEND_EVENT:
+                    ota_request_sended_event_handler(event_data.data, event_data.data_lens);
+                    break;
+                case OTA_RESPONSE_SEND_EVENT:
+                    ota_response_sended_event_handler(event_data.data, event_data.data_lens);
+                    break;
+                case OTA_DATA_RECEIVE_EVENT:
+                    ota_data_received_event_handler(event_data.data, event_data.data_lens);
+                    break;
+                case OTA_REQUEST_RECEIVE_EVENT:
+                    ota_request_received_event_handler(event_data.data, event_data.data_lens);
+                    break;
+                case OTA_RESPONSE_RECEIVE_EVENT:
+                    ota_response_received_event_handler(event_data.data, event_data.data_lens);
+                    break;
+                default:
+                    ota_printf("unknow event %u\n", event_data.event);
+                    break;
+                }
             }
-
-            switch (event_data.event)
-            {
-            case OTA_DATA_SEND_EVENT:
-                ota_data_sended_event_handler(event_data.data, event_data.data_lens);
-                break;
-            case OTA_REQUEST_SEND_EVENT:
-                ota_request_sended_event_handler(event_data.data, event_data.data_lens);
-                break;
-            case OTA_RESPONSE_SEND_EVENT:
-                ota_response_sended_event_handler(event_data.data, event_data.data_lens);
-                break;
-            case OTA_DATA_RECEIVE_EVENT:
-                ota_data_received_event_handler(event_data.data, event_data.data_lens);
-                break;
-            case OTA_REQUEST_RECEIVE_EVENT:
-                ota_request_received_event_handler(event_data.data, event_data.data_lens);
-                break;
-            case OTA_RESPONSE_RECEIVE_EVENT:
-                ota_response_received_event_handler(event_data.data, event_data.data_lens);
-                break;
-            default:
-                ota_printf("unknow event %u\n", event_data.event);
-                break;
-            }
-        } while (0);
-        ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+        }
     }
 }
 

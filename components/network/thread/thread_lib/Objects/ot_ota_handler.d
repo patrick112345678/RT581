@@ -21,6 +21,7 @@
   ..\subg_openthread\include\openthread\thread.h \
   ..\subg_openthread\include\openthread\platform\misc.h \
   ..\subg_openthread\include\openthread\random_noncrypto.h \
+  ..\openthread_port\include\openthread_port.h \
   ..\..\..\platform\soc\rt582\rt582_freertos\Inc\FreeRTOS.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stddef.h \
   ..\..\..\platform\soc\rt582\rt582_freertos\config\FreeRTOSConfig.h \
@@ -80,8 +81,10 @@
   ..\..\..\platform\soc\rt582\rt582_freertos\Inc\mpu_wrappers.h \
   ..\..\..\platform\soc\rt582\rt582_freertos\Inc\task.h \
   ..\..\..\platform\soc\rt582\rt582_freertos\Inc\list.h \
-  ..\..\..\platform\soc\rt582\rt582_freertos\Inc\timers.h \
+  ..\..\..\platform\soc\rt582\rt582_freertos\Inc\semphr.h \
+  ..\..\..\platform\soc\rt582\rt582_freertos\Inc\queue.h \
   ..\..\..\platform\soc\rt582\rt582_freertos\Inc\task.h \
+  ..\..\..\platform\soc\rt582\rt582_freertos\Inc\timers.h \
   ..\..\..\utility\log\log.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h \
   ..\..\..\utility\utility\Inc\util_log.h \

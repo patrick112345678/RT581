@@ -123,7 +123,7 @@ enum
 };
 
 #define OTRADIO_MAC_HEADER_ACK_REQUEST_MASK (1 << 5)
-#define OTRADIO_MAX_PSDU                    152
+#define OTRADIO_MAX_PSDU                    (OT_RADIO_FRAME_MAX_SIZE+25)
 #define OTRADIO_RX_FRAME_BUFFER_NUM         16
 
 typedef struct _otRadio_rxFrame_t
