@@ -50,4 +50,5 @@
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\comparator.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\swi.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\lpm.h \
+  ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\flash_protect.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\mp_sector.h

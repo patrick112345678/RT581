@@ -168,6 +168,7 @@ static int _cli_cmd_debug(int argc, char **argv, cb_shell_out_t log_out, void *p
     {
         printf("debug_flag %s \r\n", (debug_flag_get() == true ? "True" : "False"));
     }
+    return 0;
 }
 
 int cli_init(void)

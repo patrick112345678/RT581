@@ -133,7 +133,7 @@ flash_suspend_check:
 	.thumb_func
 flash_get_status_reg:
 .Lfunc_begin1:
-	.loc	5 372 0                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:372:0
+	.loc	5 434 0                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:434:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -151,14 +151,14 @@ flash_get_status_reg:
 	.loc	1 566 21 prologue_end           @ ../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl.h:566:21
 	ldr	r1, [r5]
 .Ltmp11:
-	.loc	5 374 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:374:9
+	.loc	5 443 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:443:9
 	lsls	r1, r1, #23
 	@DEBUG_VALUE: flash_get_status_reg:status <- $r0
 	itt	mi
 	movmi	r0, #3
 .Ltmp12:
 	@DEBUG_VALUE: flash_get_status_reg:status <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	5 413 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:413:1
+	.loc	5 482 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:482:1
 	popmi	{r4, r5, r6, pc}
 .Ltmp13:
 .LBB1_1:
@@ -167,30 +167,30 @@ flash_get_status_reg:
 	mov	r4, r0
 .Ltmp14:
 	@DEBUG_VALUE: flash_get_status_reg:status <- $r4
-	.loc	5 381 18 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:381:18
+	.loc	5 450 18 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:450:18
 	ldrb	r0, [r0]
 	movw	r6, #16980
 .Ltmp15:
-	.loc	5 381 9 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:381:9
+	.loc	5 450 9 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:450:9
 	lsls	r1, r0, #31
 	movt	r6, #21057
 	beq	.LBB1_5
 .Ltmp16:
 @ %bb.2:
 	@DEBUG_VALUE: flash_get_status_reg:status <- $r4
-	.loc	5 383 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:383:9
+	.loc	5 452 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:452:9
 	bl	enter_critical_section
 .Ltmp17:
 	.loc	5 0 9 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:9
 	movs	r0, #13
-	.loc	5 385 24 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:385:24
+	.loc	5 454 24 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:454:24
 	str	r0, [r5, #-8]
 	movs	r0, #1
-	.loc	5 386 24                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:386:24
+	.loc	5 455 24                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:455:24
 	str	r6, [r5, #60]
-	.loc	5 387 22                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:387:22
+	.loc	5 456 22                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:456:22
 	str	r0, [r5]
-	.loc	5 389 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:389:9
+	.loc	5 458 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:458:9
 	bl	leave_critical_section
 .Ltmp18:
 	.p2align	2
@@ -199,44 +199,44 @@ flash_get_status_reg:
 	.loc	1 566 21                        @ ../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl.h:566:21
 	ldr	r0, [r5]
 .Ltmp19:
-	.loc	5 392 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:392:9
+	.loc	5 461 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:461:9
 	lsls	r0, r0, #23
 	bmi	.LBB1_3
 .Ltmp20:
 @ %bb.4:
 	@DEBUG_VALUE: flash_get_status_reg:status <- $r4
-	.loc	5 393 45                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:393:45
+	.loc	5 462 45                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:462:45
 	ldr	r0, [r5, #8]
-	.loc	5 393 57 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:393:57
+	.loc	5 462 57 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:462:57
 	lsrs	r1, r0, #8
 .Ltmp21:
-	.loc	5 396 17 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:396:17
+	.loc	5 465 17 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:465:17
 	ldrb	r0, [r4]
 .Ltmp22:
-	.loc	5 393 25                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:393:25
+	.loc	5 462 25                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:462:25
 	strb	r1, [r4, #1]
 .Ltmp23:
 .LBB1_5:
 	@DEBUG_VALUE: flash_get_status_reg:status <- $r4
-	.loc	5 396 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:396:9
+	.loc	5 465 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:465:9
 	lsls	r0, r0, #30
 	bpl	.LBB1_9
 .Ltmp24:
 @ %bb.6:
 	@DEBUG_VALUE: flash_get_status_reg:status <- $r4
-	.loc	5 398 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:398:9
+	.loc	5 467 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:467:9
 	bl	enter_critical_section
 .Ltmp25:
 	.loc	5 0 9 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:9
 	movs	r0, #14
-	.loc	5 400 24 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:400:24
+	.loc	5 469 24 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:469:24
 	str	r0, [r5, #-8]
 	movs	r0, #1
-	.loc	5 401 24                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:401:24
+	.loc	5 470 24                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:470:24
 	str	r6, [r5, #60]
-	.loc	5 402 22                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:402:22
+	.loc	5 471 22                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:471:22
 	str	r0, [r5]
-	.loc	5 404 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:404:9
+	.loc	5 473 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:473:9
 	bl	leave_critical_section
 .Ltmp26:
 	.p2align	2
@@ -245,24 +245,24 @@ flash_get_status_reg:
 	.loc	1 566 21                        @ ../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl.h:566:21
 	ldr	r0, [r5]
 .Ltmp27:
-	.loc	5 406 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:406:9
+	.loc	5 475 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:475:9
 	lsls	r0, r0, #23
 	bmi	.LBB1_7
 .Ltmp28:
 @ %bb.8:
 	@DEBUG_VALUE: flash_get_status_reg:status <- $r4
-	.loc	5 407 45                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:407:45
+	.loc	5 476 45                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:476:45
 	ldr	r0, [r5, #8]
-	.loc	5 407 57 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:407:57
+	.loc	5 476 57 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:476:57
 	lsrs	r0, r0, #8
-	.loc	5 407 25                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:407:25
+	.loc	5 476 25                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:476:25
 	strb	r0, [r4, #2]
 .Ltmp29:
 .LBB1_9:
 	@DEBUG_VALUE: flash_get_status_reg:status <- $r4
 	.loc	5 0 25                          @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:25
 	movs	r0, #0
-	.loc	5 413 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:413:1
+	.loc	5 482 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:482:1
 	pop	{r4, r5, r6, pc}
 .Ltmp30:
 .Lfunc_end1:
@@ -476,7 +476,7 @@ flash_read_page:
 	it	eq
 	moveq.w	r2, #516096
 .Ltmp52:
-	.loc	5 93 9 is_stmt 1                @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:93:9
+	.loc	5 103 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:103:9
 	cmp	r1, r2
 	bhs	.LBB5_4
 .Ltmp53:
@@ -485,43 +485,43 @@ flash_read_page:
 	.loc	1 566 21                        @ ../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl.h:566:21
 	ldr	r0, [r6, #8]
 .Ltmp54:
-	.loc	5 98 9                          @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:98:9
+	.loc	5 108 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:108:9
 	lsls	r0, r0, #23
 	itt	mi
 	movmi	r0, #3
-	.loc	5 114 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:114:1
+	.loc	5 124 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:124:1
 	popmi	{r4, r5, r6, pc}
 .Ltmp55:
 .LBB5_3:
-	.loc	5 103 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:103:5
+	.loc	5 113 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:113:5
 	bl	enter_critical_section
 .Ltmp56:
 	.loc	5 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:5
 	movs	r0, #8
-	.loc	5 105 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:105:20
+	.loc	5 115 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:115:20
 	str	r0, [r6]
 	movw	r0, #16980
 	movt	r0, #21057
-	.loc	5 106 23                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:106:23
+	.loc	5 116 23                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:116:23
 	str	r4, [r6, #4]
-	.loc	5 107 22                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:107:22
+	.loc	5 117 22                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:117:22
 	str	r5, [r6, #20]
-	.loc	5 108 20                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:108:20
+	.loc	5 118 20                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:118:20
 	str	r0, [r6, #68]
 	movs	r0, #1
-	.loc	5 109 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:109:18
+	.loc	5 119 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:119:18
 	str	r0, [r6, #8]
-	.loc	5 111 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:111:5
+	.loc	5 121 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:121:5
 	bl	leave_critical_section
 .Ltmp57:
 	.loc	5 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:5
 	movs	r0, #0
-	.loc	5 114 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:114:1
+	.loc	5 124 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:124:1
 	pop	{r4, r5, r6, pc}
 .LBB5_4:
 	.loc	5 0 1 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:1
 	movs	r0, #1
-	.loc	5 114 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:114:1
+	.loc	5 124 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:124:1
 	pop	{r4, r5, r6, pc}
 .Ltmp58:
 .Lfunc_end5:
@@ -539,7 +539,7 @@ flash_read_page:
 	.thumb_func
 flash_read_page_syncmode:
 .Lfunc_begin6:
-	.loc	5 123 0 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:123:0
+	.loc	5 133 0 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:133:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -597,7 +597,7 @@ flash_read_page_syncmode:
 	it	eq
 	moveq.w	r2, #516096
 .Ltmp66:
-	.loc	5 124 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:124:9
+	.loc	5 142 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:142:9
 	cmp	r1, r2
 	bhs	.LBB6_6
 .Ltmp67:
@@ -606,33 +606,33 @@ flash_read_page_syncmode:
 	.loc	1 566 21                        @ ../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl.h:566:21
 	ldr	r0, [r6, #8]
 .Ltmp68:
-	.loc	5 129 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:129:9
+	.loc	5 147 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:147:9
 	lsls	r0, r0, #23
 	itt	mi
 	movmi	r0, #3
-	.loc	5 147 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:147:1
+	.loc	5 165 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:165:1
 	popmi	{r4, r5, r6, pc}
 .Ltmp69:
 .LBB6_3:
-	.loc	5 134 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:134:5
+	.loc	5 152 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:152:5
 	bl	enter_critical_section
 .Ltmp70:
 	.loc	5 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:5
 	movs	r0, #8
-	.loc	5 136 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:136:20
+	.loc	5 154 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:154:20
 	str	r0, [r6]
 	movw	r0, #16980
 	movt	r0, #21057
-	.loc	5 137 23                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:137:23
+	.loc	5 155 23                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:155:23
 	str	r4, [r6, #4]
-	.loc	5 138 22                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:138:22
+	.loc	5 156 22                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:156:22
 	str	r5, [r6, #20]
-	.loc	5 139 20                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:139:20
+	.loc	5 157 20                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:157:20
 	str	r0, [r6, #68]
 	movs	r0, #1
-	.loc	5 140 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:140:18
+	.loc	5 158 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:158:18
 	str	r0, [r6, #8]
-	.loc	5 142 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:142:5
+	.loc	5 160 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:160:5
 	bl	leave_critical_section
 .Ltmp71:
 	.p2align	2
@@ -640,18 +640,18 @@ flash_read_page_syncmode:
 	.loc	1 566 21                        @ ../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl.h:566:21
 	ldr	r0, [r6, #8]
 .Ltmp72:
-	.loc	5 144 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:144:5
+	.loc	5 162 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:162:5
 	lsls	r0, r0, #23
 	bmi	.LBB6_4
 @ %bb.5:
 	.loc	5 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:5
 	movs	r0, #0
-	.loc	5 147 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:147:1
+	.loc	5 165 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:165:1
 	pop	{r4, r5, r6, pc}
 .LBB6_6:
 	.loc	5 0 1 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:1
 	movs	r0, #1
-	.loc	5 147 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:147:1
+	.loc	5 165 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:165:1
 	pop	{r4, r5, r6, pc}
 .Ltmp73:
 .Lfunc_end6:
@@ -669,7 +669,7 @@ flash_read_page_syncmode:
 	.thumb_func
 flash_read_byte:
 .Lfunc_begin7:
-	.loc	5 150 0 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:150:0
+	.loc	5 168 0 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:168:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -694,29 +694,29 @@ flash_read_byte:
 	.loc	1 566 21 prologue_end           @ ../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl.h:566:21
 	ldr	r0, [r5, #8]
 .Ltmp76:
-	.loc	5 152 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:152:5
+	.loc	5 177 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:177:5
 	lsls	r0, r0, #23
 	bmi	.LBB7_1
 .Ltmp77:
 @ %bb.2:
 	@DEBUG_VALUE: flash_read_byte:read_addr <- $r4
-	.loc	5 154 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:154:5
+	.loc	5 179 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:179:5
 	bl	enter_critical_section
 .Ltmp78:
 	.loc	5 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:5
 	movs	r0, #0
-	.loc	5 156 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:156:20
+	.loc	5 181 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:181:20
 	str	r0, [r5]
 	movw	r0, #16980
 	movt	r0, #21057
-	.loc	5 157 23                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:157:23
+	.loc	5 182 23                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:182:23
 	str	r4, [r5, #4]
-	.loc	5 158 20                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:158:20
+	.loc	5 183 20                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:183:20
 	str	r0, [r5, #68]
 	movs	r0, #1
-	.loc	5 159 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:159:18
+	.loc	5 184 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:184:18
 	str	r0, [r5, #8]
-	.loc	5 161 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:161:5
+	.loc	5 186 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:186:5
 	bl	leave_critical_section
 .Ltmp79:
 	.p2align	2
@@ -725,15 +725,15 @@ flash_read_byte:
 	.loc	1 566 21                        @ ../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl.h:566:21
 	ldr	r0, [r5, #8]
 .Ltmp80:
-	.loc	5 163 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:163:5
+	.loc	5 188 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:188:5
 	lsls	r0, r0, #23
 	bmi	.LBB7_3
 .Ltmp81:
 @ %bb.4:
 	@DEBUG_VALUE: flash_read_byte:read_addr <- $r4
-	.loc	5 165 19                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:165:19
+	.loc	5 190 19                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:190:19
 	ldr	r0, [r5, #16]
-	.loc	5 165 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:165:5
+	.loc	5 190 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:190:5
 	ubfx	r0, r0, #8, #8
 	pop	{r4, r5, r7, pc}
 .Ltmp82:
@@ -752,7 +752,7 @@ flash_read_byte:
 	.thumb_func
 flash_read_byte_check_addr:
 .Lfunc_begin8:
-	.loc	5 169 0 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:169:0
+	.loc	5 194 0 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:194:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -805,7 +805,7 @@ flash_read_byte_check_addr:
 	it	eq
 	moveq.w	r1, #516096
 .Ltmp89:
-	.loc	5 170 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:170:9
+	.loc	5 202 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:202:9
 	cmp	r1, r5
 	bls	.LBB8_6
 .Ltmp90:
@@ -814,31 +814,31 @@ flash_read_byte_check_addr:
 	.loc	1 566 21                        @ ../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl.h:566:21
 	ldr	r0, [r6, #8]
 .Ltmp91:
-	.loc	5 175 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:175:9
+	.loc	5 207 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:207:9
 	lsls	r0, r0, #23
 	itt	mi
 	movmi	r0, #3
-	.loc	5 194 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:194:1
+	.loc	5 226 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:226:1
 	popmi	{r4, r5, r6, pc}
 .Ltmp92:
 .LBB8_3:
-	.loc	5 180 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:180:5
+	.loc	5 212 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:212:5
 	bl	enter_critical_section
 .Ltmp93:
 	.loc	5 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:5
 	movs	r0, #0
-	.loc	5 182 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:182:20
+	.loc	5 214 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:214:20
 	str	r0, [r6]
 	movw	r0, #16980
 	movt	r0, #21057
-	.loc	5 183 23                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:183:23
+	.loc	5 215 23                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:215:23
 	str	r5, [r6, #4]
-	.loc	5 184 20                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:184:20
+	.loc	5 216 20                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:216:20
 	str	r0, [r6, #68]
 	movs	r0, #1
-	.loc	5 185 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:185:18
+	.loc	5 217 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:217:18
 	str	r0, [r6, #8]
-	.loc	5 187 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:187:5
+	.loc	5 219 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:219:5
 	bl	leave_critical_section
 .Ltmp94:
 	.p2align	2
@@ -846,23 +846,23 @@ flash_read_byte_check_addr:
 	.loc	1 566 21                        @ ../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl.h:566:21
 	ldr	r0, [r6, #8]
 .Ltmp95:
-	.loc	5 189 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:189:5
+	.loc	5 221 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:221:5
 	lsls	r0, r0, #23
 	bmi	.LBB8_4
 @ %bb.5:
-	.loc	5 191 25                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:191:25
+	.loc	5 223 25                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:223:25
 	ldr	r0, [r6, #16]
-	.loc	5 191 42 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:191:42
+	.loc	5 223 42 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:223:42
 	ubfx	r0, r0, #8, #8
-	.loc	5 191 15                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:191:15
+	.loc	5 223 15                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:223:15
 	str	r0, [r4]
 	movs	r0, #0
-	.loc	5 194 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:194:1
+	.loc	5 226 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:226:1
 	pop	{r4, r5, r6, pc}
 .LBB8_6:
 	.loc	5 0 1 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:1
 	movs	r0, #1
-	.loc	5 194 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:194:1
+	.loc	5 226 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:226:1
 	pop	{r4, r5, r6, pc}
 .Ltmp96:
 .Lfunc_end8:
@@ -880,7 +880,7 @@ flash_read_byte_check_addr:
 	.thumb_func
 flash_erase:
 .Lfunc_begin9:
-	.loc	5 197 0 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:197:0
+	.loc	5 229 0 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:229:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -895,11 +895,11 @@ flash_erase:
 	.cfi_offset r5, -12
 	.cfi_offset r4, -16
 .Ltmp97:
-	.loc	5 198 9 prologue_end            @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:198:9
+	.loc	5 237 9 prologue_end            @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:237:9
 	cmp	r0, #4
 	@DEBUG_VALUE: flash_erase:flash_addr <- $r1
 	@DEBUG_VALUE: flash_erase:flash_addr <- $r1
-	.loc	5 205 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:205:5
+	.loc	5 244 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:244:5
 	it	ls
 	cmpls	r0, #4
 	bls	.LBB9_2
@@ -907,7 +907,7 @@ flash_erase:
 .LBB9_1:
 	.loc	5 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:5
 	movs	r0, #1
-	.loc	5 280 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:280:1
+	.loc	5 319 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:319:1
 	pop	{r4, r5, r7, pc}
 .LBB9_2:
 .Ltmp99:
@@ -942,10 +942,10 @@ flash_erase:
 	.loc	5 41 20 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:41:20
 	ldr	r1, [r0, #56]
 .Ltmp105:
-	.loc	5 209 38                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:209:38
+	.loc	5 248 38                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:248:38
 	uxtb	r1, r1
 .Ltmp106:
-	.loc	5 209 14 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:209:14
+	.loc	5 248 14 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:248:14
 	cmp	r1, #133
 	bne	.LBB9_1
 .Ltmp107:
@@ -987,7 +987,7 @@ flash_erase:
 	it	eq
 	moveq.w	r2, #516096
 .Ltmp112:
-	.loc	5 214 13 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:214:13
+	.loc	5 253 13 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:253:13
 	cmp	r1, r2
 	bhs	.LBB9_1
 .Ltmp113:
@@ -1043,7 +1043,7 @@ flash_erase:
 	it	eq
 	moveq.w	r2, #516096
 .Ltmp121:
-	.loc	5 224 13 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:224:13
+	.loc	5 263 13 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:263:13
 	cmp	r1, r2
 	bhs	.LBB9_1
 .Ltmp122:
@@ -1100,7 +1100,7 @@ flash_erase:
 	it	eq
 	moveq.w	r2, #516096
 .Ltmp130:
-	.loc	5 234 13 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:234:13
+	.loc	5 273 13 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:273:13
 	cmp	r1, r2
 	bhs	.LBB9_1
 .Ltmp131:
@@ -1157,7 +1157,7 @@ flash_erase:
 	it	eq
 	moveq.w	r2, #516096
 .Ltmp139:
-	.loc	5 244 13 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:244:13
+	.loc	5 283 13 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:283:13
 	cmp	r1, r2
 	bhs.w	.LBB9_1
 .Ltmp140:
@@ -1178,26 +1178,26 @@ flash_erase:
 	.loc	1 566 21 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl.h:566:21
 	ldr	r0, [r5, #8]
 .Ltmp143:
-	.loc	5 264 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:264:9
+	.loc	5 303 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:303:9
 	lsls	r0, r0, #23
 	itt	mi
 	movmi	r0, #3
-	.loc	5 280 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:280:1
+	.loc	5 319 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:319:1
 	popmi	{r4, r5, r7, pc}
 .Ltmp144:
 .LBB9_18:
-	.loc	5 269 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:269:5
+	.loc	5 308 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:308:5
 	bl	enter_critical_section
 .Ltmp145:
 	.loc	5 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:5
 	movw	r0, #16980
 	movt	r0, #21057
-	.loc	5 271 23 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:271:23
+	.loc	5 310 23 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:310:23
 	str	r4, [r5, #4]
-	.loc	5 272 20                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:272:20
+	.loc	5 311 20                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:311:20
 	str	r0, [r5, #68]
 	movs	r0, #1
-	.loc	5 273 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:273:18
+	.loc	5 312 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:312:18
 	str	r0, [r5, #8]
 	.p2align	2
 .LBB9_19:                               @ =>This Inner Loop Header: Depth=1
@@ -1205,16 +1205,16 @@ flash_erase:
 	.loc	1 566 21                        @ ../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl.h:566:21
 	ldr	r0, [r5, #8]
 .Ltmp147:
-	.loc	5 275 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:275:5
+	.loc	5 314 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:314:5
 	lsls	r0, r0, #23
 	bmi	.LBB9_19
 @ %bb.20:
-	.loc	5 277 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:277:5
+	.loc	5 316 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:316:5
 	bl	leave_critical_section
 .Ltmp148:
 	.loc	5 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:5
 	movs	r0, #0
-	.loc	5 280 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:280:1
+	.loc	5 319 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:319:1
 	pop	{r4, r5, r7, pc}
 .Ltmp149:
 .Lfunc_end9:
@@ -1232,33 +1232,33 @@ flash_erase:
 	.thumb_func
 flash_set_timing:
 .Lfunc_begin10:
-	.loc	5 283 0                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:283:0
+	.loc	5 322 0                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:322:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
 	@DEBUG_VALUE: flash_set_timing:timing_cfg <- $r0
 	@DEBUG_VALUE: flash_set_timing:timing_cfg <- $r0
-	.loc	5 284 30 prologue_end           @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:284:30
+	.loc	5 323 30 prologue_end           @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:323:30
 	ldrh	r1, [r0]
 	movs	r2, #32
 	movt	r2, #41008
-	.loc	5 284 16 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:284:16
+	.loc	5 323 16 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:323:16
 	str	r1, [r2]
-	.loc	5 285 31 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:285:31
+	.loc	5 324 31 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:324:31
 	ldrh	r1, [r0, #2]
-	.loc	5 285 17 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:285:17
+	.loc	5 324 17 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:324:17
 	str	r1, [r2, #4]
-	.loc	5 286 34 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:286:34
+	.loc	5 325 34 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:325:34
 	ldrh	r1, [r0, #4]
-	.loc	5 286 20 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:286:20
+	.loc	5 325 20 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:325:20
 	str	r1, [r2, #8]
-	.loc	5 287 34 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:287:34
+	.loc	5 326 34 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:326:34
 	ldrh	r0, [r0, #6]
 .Ltmp150:
 	@DEBUG_VALUE: flash_set_timing:timing_cfg <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	5 287 20 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:287:20
+	.loc	5 326 20 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:326:20
 	str	r0, [r2, #12]
-	.loc	5 288 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:288:5
+	.loc	5 327 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:327:5
 	bx	lr
 .Ltmp151:
 .Lfunc_end10:
@@ -1276,7 +1276,7 @@ flash_set_timing:
 	.thumb_func
 flash_write_page:
 .Lfunc_begin11:
-	.loc	5 292 0                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:292:0
+	.loc	5 331 0                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:331:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -1334,7 +1334,7 @@ flash_write_page:
 	it	eq
 	moveq.w	r2, #516096
 .Ltmp159:
-	.loc	5 293 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:293:9
+	.loc	5 340 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:340:9
 	cmp	r1, r2
 	bhs	.LBB11_6
 .Ltmp160:
@@ -1343,31 +1343,31 @@ flash_write_page:
 	.loc	1 566 21                        @ ../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl.h:566:21
 	ldr	r0, [r6, #8]
 .Ltmp161:
-	.loc	5 299 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:299:9
+	.loc	5 346 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:346:9
 	lsls	r0, r0, #23
 	itt	mi
 	movmi	r0, #3
-	.loc	5 317 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:317:1
+	.loc	5 364 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:364:1
 	popmi	{r4, r5, r6, pc}
 .Ltmp162:
 .LBB11_3:
-	.loc	5 304 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:304:5
+	.loc	5 351 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:351:5
 	bl	enter_critical_section
 .Ltmp163:
 	.loc	5 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:5
 	movs	r0, #24
-	.loc	5 306 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:306:20
+	.loc	5 353 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:353:20
 	str	r0, [r6]
 	movw	r0, #16980
 	movt	r0, #21057
-	.loc	5 307 23                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:307:23
+	.loc	5 354 23                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:354:23
 	str	r4, [r6, #4]
-	.loc	5 308 22                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:308:22
+	.loc	5 355 22                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:355:22
 	str	r5, [r6, #20]
-	.loc	5 309 20                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:309:20
+	.loc	5 356 20                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:356:20
 	str	r0, [r6, #68]
 	movs	r0, #1
-	.loc	5 310 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:310:18
+	.loc	5 357 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:357:18
 	str	r0, [r6, #8]
 	.p2align	2
 .LBB11_4:                               @ =>This Inner Loop Header: Depth=1
@@ -1375,21 +1375,21 @@ flash_write_page:
 	.loc	1 566 21                        @ ../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl.h:566:21
 	ldr	r0, [r6, #8]
 .Ltmp165:
-	.loc	5 312 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:312:5
+	.loc	5 359 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:359:5
 	lsls	r0, r0, #23
 	bmi	.LBB11_4
 @ %bb.5:
-	.loc	5 314 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:314:5
+	.loc	5 361 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:361:5
 	bl	leave_critical_section
 .Ltmp166:
 	.loc	5 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:5
 	movs	r0, #0
-	.loc	5 317 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:317:1
+	.loc	5 364 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:364:1
 	pop	{r4, r5, r6, pc}
 .LBB11_6:
 	.loc	5 0 1 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:1
 	movs	r0, #1
-	.loc	5 317 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:317:1
+	.loc	5 364 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:364:1
 	pop	{r4, r5, r6, pc}
 .Ltmp167:
 .Lfunc_end11:
@@ -1407,7 +1407,7 @@ flash_write_page:
 	.thumb_func
 flash_verify_page:
 .Lfunc_begin12:
-	.loc	5 320 0 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:320:0
+	.loc	5 367 0 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:367:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -1457,7 +1457,7 @@ flash_verify_page:
 	it	eq
 	moveq.w	r2, #516096
 .Ltmp174:
-	.loc	5 321 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:321:9
+	.loc	5 375 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:375:9
 	cmp	r1, r2
 	bhs	.LBB12_4
 .Ltmp175:
@@ -1465,40 +1465,40 @@ flash_verify_page:
 	.loc	1 566 21                        @ ../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl.h:566:21
 	ldr	r0, [r5, #8]
 .Ltmp176:
-	.loc	5 327 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:327:9
+	.loc	5 381 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:381:9
 	lsls	r0, r0, #23
 	itt	mi
 	movmi	r0, #3
-	.loc	5 342 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:342:1
+	.loc	5 396 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:396:1
 	popmi	{r4, r5, r7, pc}
 .LBB12_3:
-	.loc	5 332 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:332:5
+	.loc	5 386 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:386:5
 	bl	enter_critical_section
 .Ltmp177:
 	.loc	5 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:5
 	movs	r0, #4
-	.loc	5 334 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:334:20
+	.loc	5 388 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:388:20
 	str	r0, [r5]
 	movw	r0, #16980
 	movt	r0, #21057
-	.loc	5 335 23                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:335:23
+	.loc	5 389 23                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:389:23
 	str	r4, [r5, #4]
-	.loc	5 336 20                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:336:20
+	.loc	5 390 20                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:390:20
 	str	r0, [r5, #68]
 	movs	r0, #1
-	.loc	5 337 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:337:18
+	.loc	5 391 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:391:18
 	str	r0, [r5, #8]
-	.loc	5 339 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:339:5
+	.loc	5 393 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:393:5
 	bl	leave_critical_section
 .Ltmp178:
 	.loc	5 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:5
 	movs	r0, #0
-	.loc	5 342 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:342:1
+	.loc	5 396 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:396:1
 	pop	{r4, r5, r7, pc}
 .LBB12_4:
 	.loc	5 0 1 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:1
 	movs	r0, #1
-	.loc	5 342 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:342:1
+	.loc	5 396 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:396:1
 	pop	{r4, r5, r7, pc}
 .Ltmp179:
 .Lfunc_end12:
@@ -1516,7 +1516,7 @@ flash_verify_page:
 	.thumb_func
 flash_write_byte:
 .Lfunc_begin13:
-	.loc	5 345 0 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:345:0
+	.loc	5 399 0 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:399:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -1573,7 +1573,7 @@ flash_write_byte:
 	it	eq
 	moveq.w	r1, #516096
 .Ltmp188:
-	.loc	5 346 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:346:9
+	.loc	5 408 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:408:9
 	cmp	r1, r4
 	bls	.LBB13_4
 .Ltmp189:
@@ -1583,45 +1583,45 @@ flash_write_byte:
 	.loc	1 566 21                        @ ../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl.h:566:21
 	ldr	r0, [r6, #8]
 .Ltmp190:
-	.loc	5 352 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:352:9
+	.loc	5 414 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:414:9
 	lsls	r0, r0, #23
 	itt	mi
 	movmi	r0, #3
-	.loc	5 368 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:368:1
+	.loc	5 430 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:430:1
 	popmi	{r4, r5, r6, pc}
 .Ltmp191:
 .LBB13_3:
 	@DEBUG_VALUE: flash_write_byte:singlebyte <- $r5
-	.loc	5 357 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:357:5
+	.loc	5 419 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:419:5
 	bl	enter_critical_section
 .Ltmp192:
 	.loc	5 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:5
 	movs	r0, #16
-	.loc	5 359 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:359:20
+	.loc	5 421 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:421:20
 	str	r0, [r6]
 	movw	r0, #16980
 	movt	r0, #21057
-	.loc	5 360 23                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:360:23
+	.loc	5 422 23                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:422:23
 	str	r4, [r6, #4]
-	.loc	5 361 23                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:361:23
+	.loc	5 423 23                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:423:23
 	str	r5, [r6, #16]
-	.loc	5 362 20                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:362:20
+	.loc	5 424 20                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:424:20
 	str	r0, [r6, #68]
 	movs	r0, #1
-	.loc	5 363 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:363:18
+	.loc	5 425 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:425:18
 	str	r0, [r6, #8]
-	.loc	5 365 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:365:5
+	.loc	5 427 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:427:5
 	bl	leave_critical_section
 .Ltmp193:
 	.loc	5 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:5
 	movs	r0, #0
-	.loc	5 368 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:368:1
+	.loc	5 430 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:430:1
 	pop	{r4, r5, r6, pc}
 .Ltmp194:
 .LBB13_4:
 	.loc	5 0 1 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:1
 	movs	r0, #1
-	.loc	5 368 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:368:1
+	.loc	5 430 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:430:1
 	pop	{r4, r5, r6, pc}
 .Ltmp195:
 .Lfunc_end13:
@@ -1639,7 +1639,7 @@ flash_write_byte:
 	.thumb_func
 flash_set_status_reg:
 .Lfunc_begin14:
-	.loc	5 417 0 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:417:0
+	.loc	5 486 0 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:486:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -1657,14 +1657,14 @@ flash_set_status_reg:
 	.loc	1 566 21 prologue_end           @ ../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl.h:566:21
 	ldr	r1, [r5]
 .Ltmp197:
-	.loc	5 420 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:420:9
+	.loc	5 496 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:496:9
 	lsls	r1, r1, #23
 	@DEBUG_VALUE: flash_set_status_reg:status <- $r0
 	itt	mi
 	movmi	r0, #3
 .Ltmp198:
 	@DEBUG_VALUE: flash_set_status_reg:status <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	5 458 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:458:1
+	.loc	5 534 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:534:1
 	popmi	{r4, r5, r7, pc}
 .Ltmp199:
 .LBB14_1:
@@ -1673,10 +1673,10 @@ flash_set_status_reg:
 	mov	r4, r0
 .Ltmp200:
 	@DEBUG_VALUE: flash_set_status_reg:status <- $r4
-	.loc	5 429 17 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:429:17
+	.loc	5 505 17 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:505:17
 	ldrb	r0, [r0]
 .Ltmp201:
-	.loc	5 429 9 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:429:9
+	.loc	5 505 9 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:505:9
 	cmp	r0, #1
 	beq	.LBB14_5
 .Ltmp202:
@@ -1687,25 +1687,25 @@ flash_set_status_reg:
 .Ltmp203:
 @ %bb.3:
 	@DEBUG_VALUE: flash_set_status_reg:status <- $r4
-	.loc	5 431 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:431:9
+	.loc	5 507 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:507:9
 	bl	enter_critical_section
 .Ltmp204:
 	.loc	5 0 9 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:9
 	movs	r0, #28
-	.loc	5 433 24 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:433:24
+	.loc	5 509 24 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:509:24
 	str	r0, [r5, #-8]
-	.loc	5 434 55                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:434:55
+	.loc	5 510 55                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:510:55
 	ldrh.w	r0, [r4, #1]
-	.loc	5 434 24 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:434:24
+	.loc	5 510 24 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:510:24
 	str	r0, [r5, #4]
 	movw	r0, #16980
 	movt	r0, #21057
-	.loc	5 435 24 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:435:24
+	.loc	5 511 24 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:511:24
 	str	r0, [r5, #60]
 	movs	r0, #1
-	.loc	5 436 22                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:436:22
+	.loc	5 512 22                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:512:22
 	str	r0, [r5]
-	.loc	5 438 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:438:9
+	.loc	5 514 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:514:9
 	bl	leave_critical_section
 .Ltmp205:
 	.p2align	2
@@ -1714,32 +1714,32 @@ flash_set_status_reg:
 	.loc	1 566 21                        @ ../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl.h:566:21
 	ldr	r0, [r5]
 .Ltmp206:
-	.loc	5 440 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:440:9
+	.loc	5 516 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:516:9
 	lsls	r0, r0, #23
 	bmi	.LBB14_4
 	b	.LBB14_7
 .Ltmp207:
 .LBB14_5:
 	@DEBUG_VALUE: flash_set_status_reg:status <- $r4
-	.loc	5 444 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:444:9
+	.loc	5 520 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:520:9
 	bl	enter_critical_section
 .Ltmp208:
 	.loc	5 0 9 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:9
 	movs	r0, #29
-	.loc	5 446 24 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:446:24
+	.loc	5 522 24 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:522:24
 	str	r0, [r5, #-8]
-	.loc	5 447 35                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:447:35
+	.loc	5 523 35                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:523:35
 	ldrb	r0, [r4, #1]
-	.loc	5 447 24 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:447:24
+	.loc	5 523 24 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:523:24
 	str	r0, [r5, #4]
 	movw	r0, #16980
 	movt	r0, #21057
-	.loc	5 448 24 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:448:24
+	.loc	5 524 24 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:524:24
 	str	r0, [r5, #60]
 	movs	r0, #1
-	.loc	5 449 22                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:449:22
+	.loc	5 525 22                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:525:22
 	str	r0, [r5]
-	.loc	5 451 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:451:9
+	.loc	5 527 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:527:9
 	bl	leave_critical_section
 .Ltmp209:
 	.p2align	2
@@ -1748,7 +1748,7 @@ flash_set_status_reg:
 	.loc	1 566 21                        @ ../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl.h:566:21
 	ldr	r0, [r5]
 .Ltmp210:
-	.loc	5 453 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:453:9
+	.loc	5 529 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:529:9
 	lsls	r0, r0, #23
 	bmi	.LBB14_6
 .Ltmp211:
@@ -1756,7 +1756,7 @@ flash_set_status_reg:
 	@DEBUG_VALUE: flash_set_status_reg:status <- $r4
 	.loc	5 0 9 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:9
 	movs	r0, #0
-	.loc	5 458 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:458:1
+	.loc	5 534 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:534:1
 	pop	{r4, r5, r7, pc}
 .Ltmp212:
 .Lfunc_end14:
@@ -1774,7 +1774,7 @@ flash_set_status_reg:
 	.thumb_func
 flash_write_sec_register:
 .Lfunc_begin15:
-	.loc	5 464 0                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:464:0
+	.loc	5 540 0                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:540:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -1796,14 +1796,14 @@ flash_write_sec_register:
 .Ltmp215:
 	@DEBUG_VALUE: flash_write_sec_register:addr <- [DW_OP_constu 12, DW_OP_shr, DW_OP_stack_value] $r4
 	@DEBUG_VALUE: flash_write_sec_register:write_reg_addr <- $r4
-	.loc	5 469 20 prologue_end           @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:469:20
+	.loc	5 552 20 prologue_end           @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:552:20
 	tst	r4, r1
 	@DEBUG_VALUE: flash_write_sec_register:buf_addr <- $r0
 	itt	ne
 	movne	r0, #1
 .Ltmp216:
 	@DEBUG_VALUE: flash_write_sec_register:buf_addr <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	5 493 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:493:1
+	.loc	5 576 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:576:1
 	popne	{r4, r5, r6, pc}
 .Ltmp217:
 .LBB15_1:
@@ -1817,38 +1817,38 @@ flash_write_sec_register:
 	.loc	1 566 21 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl.h:566:21
 	ldr	r0, [r6, #8]
 .Ltmp219:
-	.loc	5 477 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:477:9
+	.loc	5 560 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:560:9
 	lsls	r0, r0, #23
 	itt	mi
 	movmi	r0, #3
-	.loc	5 493 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:493:1
+	.loc	5 576 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:576:1
 	popmi	{r4, r5, r6, pc}
 .Ltmp220:
 .LBB15_2:
-	.loc	5 482 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:482:5
+	.loc	5 565 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:565:5
 	bl	enter_critical_section
 .Ltmp221:
 	.loc	5 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:5
 	movs	r0, #88
-	.loc	5 484 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:484:20
+	.loc	5 567 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:567:20
 	str	r0, [r6]
 	movw	r0, #16980
 	movt	r0, #21057
-	.loc	5 485 23                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:485:23
+	.loc	5 568 23                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:568:23
 	str	r4, [r6, #4]
-	.loc	5 486 22                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:486:22
+	.loc	5 569 22                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:569:22
 	str	r5, [r6, #20]
-	.loc	5 487 20                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:487:20
+	.loc	5 570 20                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:570:20
 	str	r0, [r6, #68]
 	movs	r0, #1
-	.loc	5 488 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:488:18
+	.loc	5 571 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:571:18
 	str	r0, [r6, #8]
-	.loc	5 490 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:490:5
+	.loc	5 573 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:573:5
 	bl	leave_critical_section
 .Ltmp222:
 	.loc	5 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:5
 	movs	r0, #0
-	.loc	5 493 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:493:1
+	.loc	5 576 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:576:1
 	pop	{r4, r5, r6, pc}
 .Ltmp223:
 .Lfunc_end15:
@@ -1866,7 +1866,7 @@ flash_write_sec_register:
 	.thumb_func
 flash_read_sec_register:
 .Lfunc_begin16:
-	.loc	5 499 0                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:499:0
+	.loc	5 582 0                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:582:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -1893,7 +1893,7 @@ flash_read_sec_register:
 .Ltmp225:
 	@DEBUG_VALUE: flash_read_sec_register:read_reg_addr <- $r6
 	@DEBUG_VALUE: flash_read_sec_register:read_reg_addr <- $r6
-	.loc	5 506 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:506:9
+	.loc	5 594 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:594:9
 	lsls	r1, r2, #23
 	@DEBUG_VALUE: flash_read_sec_register:buf_addr <- $r0
 	bmi	.LBB16_5
@@ -1908,7 +1908,7 @@ flash_read_sec_register:
 	@DEBUG_VALUE: flash_read_sec_register:buf_addr <- $r5
 	@DEBUG_VALUE: flash_read_sec_register:addr <- [DW_OP_constu 12, DW_OP_shr, DW_OP_stack_value] $r6
 	movs	r0, #0
-	.loc	5 512 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:512:9
+	.loc	5 600 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:600:9
 	cmp.w	r0, r6, lsr #14
 	mov.w	r4, #1
 	bne	.LBB16_6
@@ -1917,24 +1917,24 @@ flash_read_sec_register:
 	@DEBUG_VALUE: flash_read_sec_register:addr <- [DW_OP_constu 12, DW_OP_shr, DW_OP_stack_value] $r6
 	@DEBUG_VALUE: flash_read_sec_register:read_reg_addr <- $r6
 	@DEBUG_VALUE: flash_read_sec_register:buf_addr <- $r5
-	.loc	5 518 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:518:5
+	.loc	5 606 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:606:5
 	bl	enter_critical_section
 .Ltmp229:
 	.loc	5 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:5
 	movs	r0, #72
-	.loc	5 520 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:520:20
+	.loc	5 608 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:608:20
 	str	r0, [r7]
 	movw	r0, #16980
 	movt	r0, #21057
-	.loc	5 521 23                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:521:23
+	.loc	5 609 23                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:609:23
 	str	r6, [r7, #4]
-	.loc	5 522 22                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:522:22
+	.loc	5 610 22                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:610:22
 	str	r5, [r7, #20]
-	.loc	5 523 20                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:523:20
+	.loc	5 611 20                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:611:20
 	str	r0, [r7, #68]
-	.loc	5 524 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:524:18
+	.loc	5 612 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:612:18
 	str	r4, [r7, #8]
-	.loc	5 526 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:526:5
+	.loc	5 614 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:614:5
 	bl	leave_critical_section
 .Ltmp230:
 	.p2align	2
@@ -1945,7 +1945,7 @@ flash_read_sec_register:
 	.loc	1 566 21                        @ ../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl.h:566:21
 	ldr	r0, [r7, #8]
 .Ltmp231:
-	.loc	5 528 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:528:5
+	.loc	5 616 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:616:5
 	lsls	r0, r0, #23
 	bmi	.LBB16_3
 .Ltmp232:
@@ -1964,7 +1964,7 @@ flash_read_sec_register:
 .Ltmp234:
 .LBB16_6:
 	@DEBUG_VALUE: flash_read_sec_register:read_reg_addr <- $r6
-	.loc	5 531 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:531:1
+	.loc	5 619 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:619:1
 	mov	r0, r4
 	add	sp, #4
 	pop	{r4, r5, r6, r7, pc}
@@ -1984,7 +1984,7 @@ flash_read_sec_register:
 	.thumb_func
 flash_get_unique_id:
 .Lfunc_begin17:
-	.loc	5 542 0                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:542:0
+	.loc	5 630 0                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:630:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -2011,7 +2011,7 @@ flash_get_unique_id:
 .Ltmp237:
 	@DEBUG_VALUE: flash_get_unique_id:buf_length <- $r4
 	@DEBUG_VALUE: flash_get_unique_id:buf_length <- $r4
-	.loc	5 547 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:547:9
+	.loc	5 641 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:641:9
 	lsls	r1, r2, #23
 	@DEBUG_VALUE: flash_get_unique_id:flash_id_buf_addr <- $r0
 	bmi	.LBB17_7
@@ -2022,7 +2022,7 @@ flash_get_unique_id:
 	@DEBUG_VALUE: flash_get_unique_id:flash_id_buf_addr <- $r0
 	.loc	5 0 9 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:9
 	mov.w	r8, #1
-	.loc	5 556 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:556:9
+	.loc	5 650 9 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:650:9
 	cbz	r4, .LBB17_8
 .Ltmp239:
 @ %bb.2:
@@ -2033,26 +2033,26 @@ flash_get_unique_id:
 .Ltmp240:
 	@DEBUG_VALUE: flash_get_unique_id:flash_id_buf_addr <- $r5
 	@DEBUG_VALUE: flash_get_unique_id:flash_id_buf_addr <- $r5
-	.loc	5 565 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:565:5
+	.loc	5 659 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:659:5
 	bl	enter_critical_section
 .Ltmp241:
 	.loc	5 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:5
 	movs	r0, #9
-	.loc	5 567 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:567:20
+	.loc	5 661 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:661:20
 	str	r0, [r7, #-8]
 	movs	r0, #15
-	.loc	5 568 27                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:568:27
+	.loc	5 662 27                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:662:27
 	str	r0, [r7, #44]
 	movw	r0, #16980
 	mov	r6, sp
 	movt	r0, #21057
-	.loc	5 569 22                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:569:22
+	.loc	5 663 22                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:663:22
 	str	r6, [r7, #12]
-	.loc	5 570 20                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:570:20
+	.loc	5 664 20                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:664:20
 	str	r0, [r7, #60]
-	.loc	5 571 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:571:18
+	.loc	5 665 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:665:18
 	str.w	r8, [r7]
-	.loc	5 573 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:573:5
+	.loc	5 667 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:667:5
 	bl	leave_critical_section
 .Ltmp242:
 	@DEBUG_VALUE: flash_get_unique_id:ptr <- $r5
@@ -2064,7 +2064,7 @@ flash_get_unique_id:
 	.loc	1 566 21                        @ ../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl.h:566:21
 	ldr	r0, [r7]
 .Ltmp243:
-	.loc	5 577 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:577:5
+	.loc	5 671 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:671:5
 	lsls	r0, r0, #23
 	bmi	.LBB17_3
 .Ltmp244:
@@ -2075,14 +2075,14 @@ flash_get_unique_id:
 	.loc	5 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:5
 	movs	r0, #255
 .Ltmp245:
-	.loc	5 560 14 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:560:14
+	.loc	5 654 14 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:654:14
 	cmp	r4, #16
 	it	hs
 	movhs	r4, #16
 .Ltmp246:
 	@DEBUG_VALUE: flash_get_unique_id:buf_length <- [DW_OP_LLVM_entry_value 1] $r1
 	@DEBUG_VALUE: flash_get_unique_id:buf_length <- $r4
-	.loc	5 579 27                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:579:27
+	.loc	5 673 27                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:673:27
 	str	r0, [r7, #44]
 	movs	r0, #0
 .Ltmp247:
@@ -2093,16 +2093,16 @@ flash_get_unique_id:
 	@DEBUG_VALUE: flash_get_unique_id:flash_id_buf_addr <- $r5
 	@DEBUG_VALUE: flash_get_unique_id:buf_length <- $r4
 	@DEBUG_VALUE: flash_get_unique_id:i <- $r0
-	.loc	5 584 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:584:18
+	.loc	5 678 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:678:18
 	ldrb	r1, [r6, r0]
-	.loc	5 584 16 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:584:16
+	.loc	5 678 16 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:678:16
 	strb	r1, [r5, r0]
 .Ltmp248:
-	.loc	5 582 34 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:582:34
+	.loc	5 676 34 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:676:34
 	adds	r0, #1
 .Ltmp249:
 	@DEBUG_VALUE: flash_get_unique_id:i <- $r0
-	.loc	5 582 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:582:5
+	.loc	5 676 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:676:5
 	cmp	r0, r4
 	blo	.LBB17_5
 .Ltmp250:
@@ -2122,7 +2122,7 @@ flash_get_unique_id:
 .Ltmp252:
 .LBB17_8:
 	@DEBUG_VALUE: flash_get_unique_id:buf_length <- $r4
-	.loc	5 588 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:588:1
+	.loc	5 682 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:682:1
 	mov	r0, r8
 	add	sp, #16
 	pop.w	{r4, r5, r6, r7, r8, pc}
@@ -2142,7 +2142,7 @@ flash_get_unique_id:
 	.thumb_func
 flash_timing_init:
 .Lfunc_begin18:
-	.loc	5 591 0                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:591:0
+	.loc	5 685 0                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:685:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -2160,11 +2160,11 @@ flash_timing_init:
 	ldr	r5, [r4, #24]
 .Ltmp255:
 	@DEBUG_VALUE: flash_timing_init:flash_type_id <- [DW_OP_LLVM_convert 32 7, DW_OP_LLVM_convert 16 7, DW_OP_stack_value] $r5
-	.loc	5 599 16                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:599:16
+	.loc	5 693 16                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:693:16
 	bl	Get_Ahb_System_Clk
 .Ltmp256:
 	@DEBUG_VALUE: flash_timing_init:clk_mode <- $r0
-	.loc	5 602 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:602:9
+	.loc	5 696 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:696:9
 	uxth	r1, r5
 	movw	r2, #24776
 	movs	r3, #30
@@ -2173,7 +2173,7 @@ flash_timing_init:
 	@DEBUG_VALUE: flash_timing_init:tsus <- 40
 	@DEBUG_VALUE: flash_timing_init:trs <- 100
 	@DEBUG_VALUE: flash_timing_init:tdp <- 3
-	.loc	5 610 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:610:9
+	.loc	5 704 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:704:9
 	cmp	r1, r2
 	mov.w	r2, #40
 	movw	r5, #24709
@@ -2184,66 +2184,66 @@ flash_timing_init:
 	moveq	r3, #20
 	it	eq
 	moveq	r2, #20
-	.loc	5 618 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:618:9
+	.loc	5 712 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:712:9
 	cmp	r1, r5
 	mov.w	r1, #32
 	@DEBUG_VALUE: flash_timing_init:tres <- undef
 	@DEBUG_VALUE: flash_timing_init:tsus <- undef
-	.loc	5 628 31                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:628:31
+	.loc	5 722 31                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:722:31
 	add.w	r0, r1, r0, lsl #4
 .Ltmp259:
 	@DEBUG_VALUE: flash_timing_init:sys_clk <- $r0
-	.loc	5 630 35                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:630:35
+	.loc	5 724 35                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:724:35
 	add.w	r1, r0, r0, lsl #1
 .Ltmp260:
 	@DEBUG_VALUE: flash_timing_init:flash_timing <- [DW_OP_LLVM_convert 32 7, DW_OP_LLVM_convert 16 7, DW_OP_constu 3, DW_OP_mul, DW_OP_constu 2, DW_OP_or, DW_OP_stack_value, DW_OP_LLVM_fragment 0 16] $r0
-	.loc	5 618 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:618:9
+	.loc	5 712 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:712:9
 	itt	eq
 	moveq	r3, #30
 	moveq	r2, #40
 .Ltmp261:
-	.loc	5 284 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:284:18
+	.loc	5 323 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:323:18
 	adds	r1, #2
 .Ltmp262:
-	.loc	5 631 41                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:631:41
+	.loc	5 725 41                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:725:41
 	muls	r3, r0, r3
 .Ltmp263:
 	@DEBUG_VALUE: flash_timing_init:flash_timing <- [DW_OP_LLVM_convert 32 7, DW_OP_LLVM_convert 16 7, DW_OP_constu 2, DW_OP_or, DW_OP_stack_value, DW_OP_LLVM_fragment 16 16] $r3
-	.loc	5 284 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:284:18
+	.loc	5 323 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:323:18
 	uxth	r1, r1
 	movs	r5, #100
-	.loc	5 284 16 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:284:16
+	.loc	5 323 16 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:323:16
 	str	r1, [r4]
-	.loc	5 285 19 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:285:19
+	.loc	5 324 19 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:324:19
 	adds	r1, r3, #2
 .Ltmp264:
-	.loc	5 632 40                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:632:40
+	.loc	5 726 40                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:726:40
 	muls	r2, r0, r2
 .Ltmp265:
 	@DEBUG_VALUE: flash_timing_init:flash_timing <- [DW_OP_LLVM_convert 32 7, DW_OP_LLVM_convert 16 7, DW_OP_constu 2, DW_OP_or, DW_OP_stack_value, DW_OP_LLVM_fragment 32 16] $r2
-	.loc	5 633 34                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:633:34
+	.loc	5 727 34                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:727:34
 	muls	r0, r5, r0
 .Ltmp266:
 	@DEBUG_VALUE: flash_set_timing:timing_cfg <- undef
 	@DEBUG_VALUE: flash_timing_init:flash_timing <- [DW_OP_LLVM_convert 32 7, DW_OP_LLVM_convert 16 7, DW_OP_constu 100, DW_OP_mul, DW_OP_constu 2, DW_OP_or, DW_OP_stack_value, DW_OP_LLVM_fragment 48 16] undef
-	.loc	5 285 19                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:285:19
+	.loc	5 324 19                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:324:19
 	uxth	r1, r1
-	.loc	5 285 17 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:285:17
+	.loc	5 324 17 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:324:17
 	str	r1, [r4, #4]
-	.loc	5 286 22 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:286:22
+	.loc	5 325 22 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:325:22
 	adds	r1, r2, #2
-	.loc	5 287 22                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:287:22
+	.loc	5 326 22                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:326:22
 	adds	r0, #2
-	.loc	5 286 22                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:286:22
+	.loc	5 325 22                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:325:22
 	uxth	r1, r1
-	.loc	5 287 22                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:287:22
+	.loc	5 326 22                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:326:22
 	uxth	r0, r0
-	.loc	5 286 20                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:286:20
+	.loc	5 325 20                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:325:20
 	str	r1, [r4, #8]
-	.loc	5 287 20                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:287:20
+	.loc	5 326 20                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:326:20
 	str	r0, [r4, #12]
 .Ltmp267:
-	.loc	5 636 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:636:1
+	.loc	5 730 1                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:730:1
 	pop	{r4, r5, r7, pc}
 .Ltmp268:
 .Lfunc_end18:
@@ -2261,7 +2261,7 @@ flash_timing_init:
 	.thumb_func
 flash_read_otp_sec_page:
 .Lfunc_begin19:
-	.loc	5 673 0                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:673:0
+	.loc	5 775 0                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:775:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -2275,7 +2275,7 @@ flash_read_otp_sec_page:
 	movw	r1, #26055
 	movt	r1, #20
 .Ltmp270:
-	.loc	5 674 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:674:5
+	.loc	5 776 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:776:5
 	cmp	r3, r1
 	mov.w	r12, #0
 	bgt	.LBB19_6
@@ -2285,7 +2285,7 @@ flash_read_otp_sec_page:
 	.loc	5 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:5
 	movw	r1, #24709
 	movt	r1, #19
-	.loc	5 674 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:674:5
+	.loc	5 776 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:776:5
 	cmp	r3, r1
 	beq	.LBB19_3
 .Ltmp272:
@@ -2294,7 +2294,7 @@ flash_read_otp_sec_page:
 	.loc	5 0 5                           @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:5
 	movw	r1, #24776
 	movt	r1, #20
-	.loc	5 674 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:674:5
+	.loc	5 776 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:776:5
 	cmp	r3, r1
 	bne	.LBB19_12
 .Ltmp273:
@@ -2307,7 +2307,7 @@ flash_read_otp_sec_page:
 	ldr	r1, [r2, #8]
 	mov.w	r12, #1
 .Ltmp274:
-	.loc	5 649 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:649:9
+	.loc	5 751 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:751:9
 	lsls	r1, r1, #23
 	bmi	.LBB19_12
 .Ltmp275:
@@ -2318,21 +2318,21 @@ flash_read_otp_sec_page:
 	@DEBUG_VALUE: flash_read_otp_sec_register:read_reg_addr <- 8192
 	.loc	5 0 9 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:9
 	movs	r1, #72
-	.loc	5 661 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:661:20
+	.loc	5 763 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:763:20
 	str	r1, [r2]
 	mov.w	r1, #8192
-	.loc	5 662 23                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:662:23
+	.loc	5 764 23                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:764:23
 	str	r1, [r2, #4]
-	.loc	5 663 22                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:663:22
+	.loc	5 765 22                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:765:22
 	str	r0, [r2, #20]
 	movw	r0, #16980
 .Ltmp276:
 	@DEBUG_VALUE: flash_read_otp_sec_page:buf_addr <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	5 0 22 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:22
 	movt	r0, #21057
-	.loc	5 664 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:664:20
+	.loc	5 766 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:766:20
 	str	r0, [r2, #68]
-	.loc	5 665 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:665:18
+	.loc	5 767 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:767:18
 	str.w	r12, [r2, #8]
 .Ltmp277:
 	.p2align	2
@@ -2343,7 +2343,7 @@ flash_read_otp_sec_page:
 	.loc	1 566 21                        @ ../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl.h:566:21
 	ldr	r0, [r2, #8]
 .Ltmp278:
-	.loc	5 667 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:667:5
+	.loc	5 769 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:769:5
 	lsls	r0, r0, #23
 	bmi	.LBB19_5
 	b	.LBB19_11
@@ -2353,7 +2353,7 @@ flash_read_otp_sec_page:
 	.loc	5 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:5
 	movw	r1, #26056
 	movt	r1, #20
-	.loc	5 674 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:674:5
+	.loc	5 776 5 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:776:5
 	cmp	r3, r1
 	beq	.LBB19_8
 .Ltmp280:
@@ -2362,7 +2362,7 @@ flash_read_otp_sec_page:
 	.loc	5 0 5 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:5
 	movw	r1, #26056
 	movt	r1, #21
-	.loc	5 674 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:674:5
+	.loc	5 776 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:776:5
 	cmp	r3, r1
 	bne	.LBB19_12
 .Ltmp281:
@@ -2375,7 +2375,7 @@ flash_read_otp_sec_page:
 	ldr	r1, [r2, #8]
 	mov.w	r12, #1
 .Ltmp282:
-	.loc	5 649 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:649:9
+	.loc	5 751 9                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:751:9
 	lsls	r1, r1, #23
 	bmi	.LBB19_12
 .Ltmp283:
@@ -2386,21 +2386,21 @@ flash_read_otp_sec_page:
 	@DEBUG_VALUE: flash_read_otp_sec_register:read_reg_addr <- 0
 	.loc	5 0 9 is_stmt 0                 @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:9
 	movs	r1, #72
-	.loc	5 661 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:661:20
+	.loc	5 763 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:763:20
 	str	r1, [r2]
 	movs	r1, #0
-	.loc	5 662 23                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:662:23
+	.loc	5 764 23                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:764:23
 	str	r1, [r2, #4]
-	.loc	5 663 22                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:663:22
+	.loc	5 765 22                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:765:22
 	str	r0, [r2, #20]
 	movw	r0, #16980
 .Ltmp284:
 	@DEBUG_VALUE: flash_read_otp_sec_page:buf_addr <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	5 0 22 is_stmt 0                @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:0:22
 	movt	r0, #21057
-	.loc	5 664 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:664:20
+	.loc	5 766 20 is_stmt 1              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:766:20
 	str	r0, [r2, #68]
-	.loc	5 665 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:665:18
+	.loc	5 767 18                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:767:18
 	str.w	r12, [r2, #8]
 .Ltmp285:
 	.p2align	2
@@ -2411,7 +2411,7 @@ flash_read_otp_sec_page:
 	.loc	1 566 21                        @ ../../../components/platform/soc/rt582/rt582_driver/Inc/flashctl.h:566:21
 	ldr	r0, [r2, #8]
 .Ltmp286:
-	.loc	5 667 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:667:5
+	.loc	5 769 5                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:769:5
 	lsls	r0, r0, #23
 	bmi	.LBB19_10
 .Ltmp287:
@@ -2421,12 +2421,101 @@ flash_read_otp_sec_page:
 	mov.w	r12, #0
 .Ltmp288:
 .LBB19_12:
-	.loc	5 692 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:692:1
+	.loc	5 794 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:794:1
 	mov	r0, r12
 	bx	lr
 .Ltmp289:
 .Lfunc_end19:
 	.size	flash_read_otp_sec_page, .Lfunc_end19-flash_read_otp_sec_page
+	.cfi_endproc
+	.cantunwind
+	.fnend
+                                        @ -- End function
+	.section	.text.flash_enable_suspend,"ax",%progbits
+	.hidden	flash_enable_suspend            @ -- Begin function flash_enable_suspend
+	.globl	flash_enable_suspend
+	.p2align	1
+	.type	flash_enable_suspend,%function
+	.code	16                              @ @flash_enable_suspend
+	.thumb_func
+flash_enable_suspend:
+.Lfunc_begin20:
+	.loc	5 798 0                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:798:0
+	.fnstart
+	.cfi_startproc
+@ %bb.0:
+	movs	r0, #24
+	movt	r0, #41008
+.Ltmp290:
+	.loc	5 799 33 prologue_end           @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:799:33
+	ldr	r1, [r0]
+	.loc	5 799 45 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:799:45
+	orr	r1, r1, #512
+	.loc	5 799 24                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:799:24
+	str	r1, [r0]
+	.loc	5 800 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:800:1
+	bx	lr
+.Ltmp291:
+.Lfunc_end20:
+	.size	flash_enable_suspend, .Lfunc_end20-flash_enable_suspend
+	.cfi_endproc
+	.cantunwind
+	.fnend
+                                        @ -- End function
+	.section	.text.flash_disable_suspend,"ax",%progbits
+	.hidden	flash_disable_suspend           @ -- Begin function flash_disable_suspend
+	.globl	flash_disable_suspend
+	.p2align	1
+	.type	flash_disable_suspend,%function
+	.code	16                              @ @flash_disable_suspend
+	.thumb_func
+flash_disable_suspend:
+.Lfunc_begin21:
+	.loc	5 803 0                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:803:0
+	.fnstart
+	.cfi_startproc
+@ %bb.0:
+	movs	r0, #24
+	movt	r0, #41008
+.Ltmp292:
+	.loc	5 804 33 prologue_end           @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:804:33
+	ldr	r1, [r0]
+	.loc	5 804 45 is_stmt 0              @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:804:45
+	bic	r1, r1, #512
+	.loc	5 804 24                        @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:804:24
+	str	r1, [r0]
+	.loc	5 805 1 is_stmt 1               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:805:1
+	bx	lr
+.Ltmp293:
+.Lfunc_end21:
+	.size	flash_disable_suspend, .Lfunc_end21-flash_disable_suspend
+	.cfi_endproc
+	.cantunwind
+	.fnend
+                                        @ -- End function
+	.section	.text.flash_get_control_reg,"ax",%progbits
+	.hidden	flash_get_control_reg           @ -- Begin function flash_get_control_reg
+	.globl	flash_get_control_reg
+	.p2align	1
+	.type	flash_get_control_reg,%function
+	.code	16                              @ @flash_get_control_reg
+	.thumb_func
+flash_get_control_reg:
+.Lfunc_begin22:
+	.loc	5 808 0                         @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:808:0
+	.fnstart
+	.cfi_startproc
+@ %bb.0:
+	movs	r0, #24
+	movt	r0, #41008
+.Ltmp294:
+	.loc	5 809 19 prologue_end           @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:809:19
+	ldr	r0, [r0]
+	.loc	5 809 5 is_stmt 0               @ ../../../components/platform/soc/rt582/rt582_driver/Src/flashctl.c:809:5
+	bx	lr
+.Ltmp295:
+.Lfunc_end22:
+	.size	flash_get_control_reg, .Lfunc_end22-flash_get_control_reg
 	.cfi_endproc
 	.cantunwind
 	.fnend
@@ -3869,20 +3958,68 @@ flash_read_otp_sec_page:
 	.byte	0                               @ EOM(1)
 	.byte	0                               @ EOM(2)
 	.byte	41                              @ Abbreviation Code
+	.byte	46                              @ DW_TAG_subprogram
+	.byte	0                               @ DW_CHILDREN_no
+	.byte	17                              @ DW_AT_low_pc
+	.byte	1                               @ DW_FORM_addr
+	.byte	18                              @ DW_AT_high_pc
+	.byte	6                               @ DW_FORM_data4
+	.byte	64                              @ DW_AT_frame_base
+	.byte	24                              @ DW_FORM_exprloc
+	.ascii	"\227B"                         @ DW_AT_GNU_all_call_sites
+	.byte	25                              @ DW_FORM_flag_present
+	.byte	3                               @ DW_AT_name
+	.byte	14                              @ DW_FORM_strp
+	.byte	58                              @ DW_AT_decl_file
+	.byte	11                              @ DW_FORM_data1
+	.byte	59                              @ DW_AT_decl_line
+	.byte	5                               @ DW_FORM_data2
+	.byte	39                              @ DW_AT_prototyped
+	.byte	25                              @ DW_FORM_flag_present
+	.byte	63                              @ DW_AT_external
+	.byte	25                              @ DW_FORM_flag_present
+	.byte	0                               @ EOM(1)
+	.byte	0                               @ EOM(2)
+	.byte	42                              @ Abbreviation Code
+	.byte	46                              @ DW_TAG_subprogram
+	.byte	0                               @ DW_CHILDREN_no
+	.byte	17                              @ DW_AT_low_pc
+	.byte	1                               @ DW_FORM_addr
+	.byte	18                              @ DW_AT_high_pc
+	.byte	6                               @ DW_FORM_data4
+	.byte	64                              @ DW_AT_frame_base
+	.byte	24                              @ DW_FORM_exprloc
+	.ascii	"\227B"                         @ DW_AT_GNU_all_call_sites
+	.byte	25                              @ DW_FORM_flag_present
+	.byte	3                               @ DW_AT_name
+	.byte	14                              @ DW_FORM_strp
+	.byte	58                              @ DW_AT_decl_file
+	.byte	11                              @ DW_FORM_data1
+	.byte	59                              @ DW_AT_decl_line
+	.byte	5                               @ DW_FORM_data2
+	.byte	39                              @ DW_AT_prototyped
+	.byte	25                              @ DW_FORM_flag_present
+	.byte	73                              @ DW_AT_type
+	.byte	19                              @ DW_FORM_ref4
+	.byte	63                              @ DW_AT_external
+	.byte	25                              @ DW_FORM_flag_present
+	.byte	0                               @ EOM(1)
+	.byte	0                               @ EOM(2)
+	.byte	43                              @ Abbreviation Code
 	.byte	38                              @ DW_TAG_const_type
 	.byte	0                               @ DW_CHILDREN_no
 	.byte	73                              @ DW_AT_type
 	.byte	19                              @ DW_FORM_ref4
 	.byte	0                               @ EOM(1)
 	.byte	0                               @ EOM(2)
-	.byte	42                              @ Abbreviation Code
+	.byte	44                              @ Abbreviation Code
 	.byte	1                               @ DW_TAG_array_type
 	.byte	1                               @ DW_CHILDREN_yes
 	.byte	73                              @ DW_AT_type
 	.byte	19                              @ DW_FORM_ref4
 	.byte	0                               @ EOM(1)
 	.byte	0                               @ EOM(2)
-	.byte	43                              @ Abbreviation Code
+	.byte	45                              @ Abbreviation Code
 	.byte	33                              @ DW_TAG_subrange_type
 	.byte	0                               @ DW_CHILDREN_no
 	.byte	73                              @ DW_AT_type
@@ -3891,7 +4028,7 @@ flash_read_otp_sec_page:
 	.byte	11                              @ DW_FORM_data1
 	.byte	0                               @ EOM(1)
 	.byte	0                               @ EOM(2)
-	.byte	44                              @ Abbreviation Code
+	.byte	46                              @ Abbreviation Code
 	.byte	36                              @ DW_TAG_base_type
 	.byte	0                               @ DW_CHILDREN_no
 	.byte	3                               @ DW_AT_name
@@ -3910,7 +4047,7 @@ flash_read_otp_sec_page:
 	.short	4                               @ DWARF version number
 	.long	.debug_abbrev                   @ Offset Into Abbrev. Section
 	.byte	4                               @ Address Size (in bytes)
-	.byte	1                               @ Abbrev [1] 0xb:0xbd3 DW_TAG_compile_unit
+	.byte	1                               @ Abbrev [1] 0xb:0xc10 DW_TAG_compile_unit
 	.long	.Linfo_string0                  @ DW_AT_producer
 	.short	12                              @ DW_AT_language
 	.long	.Linfo_string1                  @ DW_AT_name
@@ -4135,10 +4272,10 @@ flash_read_otp_sec_page:
 	.byte	2                               @ DW_AT_location
 	.byte	145
 	.byte	4
-	.long	.Linfo_string75                 @ DW_AT_name
+	.long	.Linfo_string78                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
 	.byte	16                              @ DW_AT_decl_line
-	.long	2923                            @ DW_AT_type
+	.long	2984                            @ DW_AT_type
 	.byte	13                              @ Abbrev [13] 0x1d0:0x10 DW_TAG_inlined_subroutine
 	.long	420                             @ DW_AT_abstract_origin
 	.long	.Ltmp4                          @ DW_AT_low_pc
@@ -4162,36 +4299,36 @@ flash_read_otp_sec_page:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string58                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	371                             @ DW_AT_decl_line
+	.short	433                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	386                             @ DW_AT_type
                                         @ DW_AT_external
 	.byte	15                              @ Abbrev [15] 0x207:0x10 DW_TAG_formal_parameter
 	.long	.Ldebug_loc0                    @ DW_AT_location
-	.long	.Linfo_string81                 @ DW_AT_name
+	.long	.Linfo_string84                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	371                             @ DW_AT_decl_line
-	.long	2987                            @ DW_AT_type
+	.short	433                             @ DW_AT_decl_line
+	.long	3048                            @ DW_AT_type
 	.byte	16                              @ Abbrev [16] 0x217:0x11 DW_TAG_inlined_subroutine
 	.long	420                             @ DW_AT_abstract_origin
 	.long	.Ltmp10                         @ DW_AT_low_pc
 	.long	.Ltmp11-.Ltmp10                 @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.short	374                             @ DW_AT_call_line
+	.short	443                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
 	.byte	16                              @ Abbrev [16] 0x228:0x11 DW_TAG_inlined_subroutine
 	.long	420                             @ DW_AT_abstract_origin
 	.long	.Ltmp18                         @ DW_AT_low_pc
 	.long	.Ltmp19-.Ltmp18                 @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.short	392                             @ DW_AT_call_line
+	.short	461                             @ DW_AT_call_line
 	.byte	16                              @ DW_AT_call_column
 	.byte	16                              @ Abbrev [16] 0x239:0x11 DW_TAG_inlined_subroutine
 	.long	420                             @ DW_AT_abstract_origin
 	.long	.Ltmp26                         @ DW_AT_low_pc
 	.long	.Ltmp27-.Ltmp26                 @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.short	406                             @ DW_AT_call_line
+	.short	475                             @ DW_AT_call_line
 	.byte	16                              @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	17                              @ Abbrev [17] 0x24b:0xf DW_TAG_subprogram
@@ -4219,7 +4356,7 @@ flash_read_otp_sec_page:
 	.byte	5                               @ DW_AT_decl_file
 	.byte	44                              @ DW_AT_decl_line
                                         @ DW_AT_prototyped
-	.long	2912                            @ DW_AT_type
+	.long	2973                            @ DW_AT_type
                                         @ DW_AT_external
 	.byte	20                              @ Abbrev [20] 0x27b:0xb DW_TAG_variable
 	.long	.Linfo_string43                 @ DW_AT_name
@@ -4311,7 +4448,7 @@ flash_read_otp_sec_page:
 	.long	386                             @ DW_AT_type
 	.byte	26                              @ Abbrev [26] 0x336:0xf DW_TAG_formal_parameter
 	.long	.Ldebug_loc5                    @ DW_AT_location
-	.long	.Linfo_string82                 @ DW_AT_name
+	.long	.Linfo_string85                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
 	.byte	91                              @ DW_AT_decl_line
 	.long	386                             @ DW_AT_type
@@ -4320,7 +4457,7 @@ flash_read_otp_sec_page:
 	.long	.Ltmp46                         @ DW_AT_low_pc
 	.long	.Ltmp52-.Ltmp46                 @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.byte	93                              @ DW_AT_call_line
+	.byte	103                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
 	.byte	28                              @ Abbrev [28] 0x355:0x7 DW_TAG_formal_parameter
 	.ascii	"\200\002"                      @ DW_AT_const_value
@@ -4341,7 +4478,7 @@ flash_read_otp_sec_page:
 	.long	.Ltmp53                         @ DW_AT_low_pc
 	.long	.Ltmp54-.Ltmp53                 @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.byte	98                              @ DW_AT_call_line
+	.byte	108                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	19                              @ Abbrev [19] 0x387:0x85 DW_TAG_subprogram
@@ -4352,7 +4489,7 @@ flash_read_otp_sec_page:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string62                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.byte	122                             @ DW_AT_decl_line
+	.byte	132                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	386                             @ DW_AT_type
                                         @ DW_AT_external
@@ -4360,20 +4497,20 @@ flash_read_otp_sec_page:
 	.long	.Ldebug_loc7                    @ DW_AT_location
 	.long	.Linfo_string54                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.byte	122                             @ DW_AT_decl_line
+	.byte	132                             @ DW_AT_decl_line
 	.long	386                             @ DW_AT_type
 	.byte	26                              @ Abbrev [26] 0x3ab:0xf DW_TAG_formal_parameter
 	.long	.Ldebug_loc8                    @ DW_AT_location
-	.long	.Linfo_string82                 @ DW_AT_name
+	.long	.Linfo_string85                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.byte	122                             @ DW_AT_decl_line
+	.byte	132                             @ DW_AT_decl_line
 	.long	386                             @ DW_AT_type
 	.byte	27                              @ Abbrev [27] 0x3ba:0x31 DW_TAG_inlined_subroutine
 	.long	722                             @ DW_AT_abstract_origin
 	.long	.Ltmp60                         @ DW_AT_low_pc
 	.long	.Ltmp66-.Ltmp60                 @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.byte	124                             @ DW_AT_call_line
+	.byte	142                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
 	.byte	28                              @ Abbrev [28] 0x3ca:0x7 DW_TAG_formal_parameter
 	.ascii	"\200\002"                      @ DW_AT_const_value
@@ -4394,14 +4531,14 @@ flash_read_otp_sec_page:
 	.long	.Ltmp67                         @ DW_AT_low_pc
 	.long	.Ltmp68-.Ltmp67                 @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.byte	129                             @ DW_AT_call_line
+	.byte	147                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
 	.byte	13                              @ Abbrev [13] 0x3fb:0x10 DW_TAG_inlined_subroutine
 	.long	420                             @ DW_AT_abstract_origin
 	.long	.Ltmp71                         @ DW_AT_low_pc
 	.long	.Ltmp72-.Ltmp71                 @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.byte	144                             @ DW_AT_call_line
+	.byte	162                             @ DW_AT_call_line
 	.byte	12                              @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	19                              @ Abbrev [19] 0x40c:0x45 DW_TAG_subprogram
@@ -4412,29 +4549,29 @@ flash_read_otp_sec_page:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string63                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.byte	149                             @ DW_AT_decl_line
+	.byte	167                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	397                             @ DW_AT_type
                                         @ DW_AT_external
 	.byte	26                              @ Abbrev [26] 0x421:0xf DW_TAG_formal_parameter
 	.long	.Ldebug_loc10                   @ DW_AT_location
-	.long	.Linfo_string83                 @ DW_AT_name
+	.long	.Linfo_string86                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.byte	149                             @ DW_AT_decl_line
+	.byte	167                             @ DW_AT_decl_line
 	.long	386                             @ DW_AT_type
 	.byte	13                              @ Abbrev [13] 0x430:0x10 DW_TAG_inlined_subroutine
 	.long	420                             @ DW_AT_abstract_origin
 	.long	.Ltmp75                         @ DW_AT_low_pc
 	.long	.Ltmp76-.Ltmp75                 @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.byte	152                             @ DW_AT_call_line
+	.byte	177                             @ DW_AT_call_line
 	.byte	12                              @ DW_AT_call_column
 	.byte	13                              @ Abbrev [13] 0x440:0x10 DW_TAG_inlined_subroutine
 	.long	420                             @ DW_AT_abstract_origin
 	.long	.Ltmp79                         @ DW_AT_low_pc
 	.long	.Ltmp80-.Ltmp79                 @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.byte	163                             @ DW_AT_call_line
+	.byte	188                             @ DW_AT_call_line
 	.byte	12                              @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	19                              @ Abbrev [19] 0x451:0x84 DW_TAG_subprogram
@@ -4445,7 +4582,7 @@ flash_read_otp_sec_page:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string64                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.byte	168                             @ DW_AT_decl_line
+	.byte	193                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	386                             @ DW_AT_type
                                         @ DW_AT_external
@@ -4453,20 +4590,20 @@ flash_read_otp_sec_page:
 	.long	.Ldebug_loc11                   @ DW_AT_location
 	.long	.Linfo_string54                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.byte	168                             @ DW_AT_decl_line
-	.long	2992                            @ DW_AT_type
+	.byte	193                             @ DW_AT_decl_line
+	.long	3053                            @ DW_AT_type
 	.byte	26                              @ Abbrev [26] 0x475:0xf DW_TAG_formal_parameter
 	.long	.Ldebug_loc12                   @ DW_AT_location
-	.long	.Linfo_string83                 @ DW_AT_name
+	.long	.Linfo_string86                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.byte	168                             @ DW_AT_decl_line
+	.byte	193                             @ DW_AT_decl_line
 	.long	386                             @ DW_AT_type
 	.byte	27                              @ Abbrev [27] 0x484:0x30 DW_TAG_inlined_subroutine
 	.long	722                             @ DW_AT_abstract_origin
 	.long	.Ltmp84                         @ DW_AT_low_pc
 	.long	.Ltmp89-.Ltmp84                 @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.byte	170                             @ DW_AT_call_line
+	.byte	202                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
 	.byte	28                              @ Abbrev [28] 0x494:0x6 DW_TAG_formal_parameter
 	.byte	1                               @ DW_AT_const_value
@@ -4487,17 +4624,17 @@ flash_read_otp_sec_page:
 	.long	.Ltmp90                         @ DW_AT_low_pc
 	.long	.Ltmp91-.Ltmp90                 @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.byte	175                             @ DW_AT_call_line
+	.byte	207                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
 	.byte	13                              @ Abbrev [13] 0x4c4:0x10 DW_TAG_inlined_subroutine
 	.long	420                             @ DW_AT_abstract_origin
 	.long	.Ltmp94                         @ DW_AT_low_pc
 	.long	.Ltmp95-.Ltmp94                 @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.byte	189                             @ DW_AT_call_line
+	.byte	221                             @ DW_AT_call_line
 	.byte	12                              @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
-	.byte	19                              @ Abbrev [19] 0x4d5:0x148 DW_TAG_subprogram
+	.byte	19                              @ Abbrev [19] 0x4d5:0x14b DW_TAG_subprogram
 	.long	.Lfunc_begin9                   @ DW_AT_low_pc
 	.long	.Lfunc_end9-.Lfunc_begin9       @ DW_AT_high_pc
 	.byte	1                               @ DW_AT_frame_base
@@ -4505,35 +4642,35 @@ flash_read_otp_sec_page:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string65                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.byte	196                             @ DW_AT_decl_line
+	.byte	228                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	386                             @ DW_AT_type
                                         @ DW_AT_external
 	.byte	26                              @ Abbrev [26] 0x4ea:0xf DW_TAG_formal_parameter
 	.long	.Ldebug_loc14                   @ DW_AT_location
-	.long	.Linfo_string84                 @ DW_AT_name
+	.long	.Linfo_string87                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.byte	196                             @ DW_AT_decl_line
-	.long	2997                            @ DW_AT_type
+	.byte	228                             @ DW_AT_decl_line
+	.long	3058                            @ DW_AT_type
 	.byte	26                              @ Abbrev [26] 0x4f9:0xf DW_TAG_formal_parameter
 	.long	.Ldebug_loc15                   @ DW_AT_location
-	.long	.Linfo_string86                 @ DW_AT_name
+	.long	.Linfo_string89                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.byte	196                             @ DW_AT_decl_line
+	.byte	228                             @ DW_AT_decl_line
 	.long	386                             @ DW_AT_type
 	.byte	13                              @ Abbrev [13] 0x508:0x10 DW_TAG_inlined_subroutine
 	.long	602                             @ DW_AT_abstract_origin
 	.long	.Ltmp104                        @ DW_AT_low_pc
 	.long	.Ltmp105-.Ltmp104               @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.byte	209                             @ DW_AT_call_line
+	.byte	248                             @ DW_AT_call_line
 	.byte	15                              @ DW_AT_call_column
 	.byte	27                              @ Abbrev [27] 0x518:0x38 DW_TAG_inlined_subroutine
 	.long	722                             @ DW_AT_abstract_origin
 	.long	.Ltmp107                        @ DW_AT_low_pc
 	.long	.Ltmp112-.Ltmp107               @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.byte	214                             @ DW_AT_call_line
+	.byte	253                             @ DW_AT_call_line
 	.byte	13                              @ DW_AT_call_column
 	.byte	29                              @ Abbrev [29] 0x528:0x7 DW_TAG_formal_parameter
 	.byte	1                               @ DW_AT_location
@@ -4553,24 +4690,24 @@ flash_read_otp_sec_page:
 	.byte	75                              @ DW_AT_call_line
 	.byte	24                              @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
-	.byte	27                              @ Abbrev [27] 0x550:0x38 DW_TAG_inlined_subroutine
+	.byte	30                              @ Abbrev [30] 0x550:0x39 DW_TAG_inlined_subroutine
 	.long	722                             @ DW_AT_abstract_origin
 	.long	.Ltmp116                        @ DW_AT_low_pc
 	.long	.Ltmp121-.Ltmp116               @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.byte	224                             @ DW_AT_call_line
+	.short	263                             @ DW_AT_call_line
 	.byte	13                              @ DW_AT_call_column
-	.byte	29                              @ Abbrev [29] 0x560:0x7 DW_TAG_formal_parameter
+	.byte	29                              @ Abbrev [29] 0x561:0x7 DW_TAG_formal_parameter
 	.byte	1                               @ DW_AT_location
 	.byte	84
 	.long	734                             @ DW_AT_abstract_origin
-	.byte	28                              @ Abbrev [28] 0x567:0x7 DW_TAG_formal_parameter
+	.byte	28                              @ Abbrev [28] 0x568:0x7 DW_TAG_formal_parameter
 	.ascii	"\200 "                         @ DW_AT_const_value
 	.long	745                             @ DW_AT_abstract_origin
-	.byte	23                              @ Abbrev [23] 0x56e:0x9 DW_TAG_variable
+	.byte	23                              @ Abbrev [23] 0x56f:0x9 DW_TAG_variable
 	.long	.Ldebug_loc17                   @ DW_AT_location
 	.long	756                             @ DW_AT_abstract_origin
-	.byte	13                              @ Abbrev [13] 0x577:0x10 DW_TAG_inlined_subroutine
+	.byte	13                              @ Abbrev [13] 0x578:0x10 DW_TAG_inlined_subroutine
 	.long	602                             @ DW_AT_abstract_origin
 	.long	.Ltmp116                        @ DW_AT_low_pc
 	.long	.Ltmp117-.Ltmp116               @ DW_AT_high_pc
@@ -4578,24 +4715,24 @@ flash_read_otp_sec_page:
 	.byte	75                              @ DW_AT_call_line
 	.byte	24                              @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
-	.byte	27                              @ Abbrev [27] 0x588:0x39 DW_TAG_inlined_subroutine
+	.byte	30                              @ Abbrev [30] 0x589:0x3a DW_TAG_inlined_subroutine
 	.long	722                             @ DW_AT_abstract_origin
 	.long	.Ltmp125                        @ DW_AT_low_pc
 	.long	.Ltmp130-.Ltmp125               @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.byte	234                             @ DW_AT_call_line
+	.short	273                             @ DW_AT_call_line
 	.byte	13                              @ DW_AT_call_column
-	.byte	29                              @ Abbrev [29] 0x598:0x7 DW_TAG_formal_parameter
+	.byte	29                              @ Abbrev [29] 0x59a:0x7 DW_TAG_formal_parameter
 	.byte	1                               @ DW_AT_location
 	.byte	84
 	.long	734                             @ DW_AT_abstract_origin
-	.byte	28                              @ Abbrev [28] 0x59f:0x8 DW_TAG_formal_parameter
+	.byte	28                              @ Abbrev [28] 0x5a1:0x8 DW_TAG_formal_parameter
 	.ascii	"\200\200\002"                  @ DW_AT_const_value
 	.long	745                             @ DW_AT_abstract_origin
-	.byte	23                              @ Abbrev [23] 0x5a7:0x9 DW_TAG_variable
+	.byte	23                              @ Abbrev [23] 0x5a9:0x9 DW_TAG_variable
 	.long	.Ldebug_loc18                   @ DW_AT_location
 	.long	756                             @ DW_AT_abstract_origin
-	.byte	13                              @ Abbrev [13] 0x5b0:0x10 DW_TAG_inlined_subroutine
+	.byte	13                              @ Abbrev [13] 0x5b2:0x10 DW_TAG_inlined_subroutine
 	.long	602                             @ DW_AT_abstract_origin
 	.long	.Ltmp125                        @ DW_AT_low_pc
 	.long	.Ltmp126-.Ltmp125               @ DW_AT_high_pc
@@ -4603,24 +4740,24 @@ flash_read_otp_sec_page:
 	.byte	75                              @ DW_AT_call_line
 	.byte	24                              @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
-	.byte	27                              @ Abbrev [27] 0x5c1:0x39 DW_TAG_inlined_subroutine
+	.byte	30                              @ Abbrev [30] 0x5c3:0x3a DW_TAG_inlined_subroutine
 	.long	722                             @ DW_AT_abstract_origin
 	.long	.Ltmp134                        @ DW_AT_low_pc
 	.long	.Ltmp139-.Ltmp134               @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.byte	244                             @ DW_AT_call_line
+	.short	283                             @ DW_AT_call_line
 	.byte	13                              @ DW_AT_call_column
-	.byte	29                              @ Abbrev [29] 0x5d1:0x7 DW_TAG_formal_parameter
+	.byte	29                              @ Abbrev [29] 0x5d4:0x7 DW_TAG_formal_parameter
 	.byte	1                               @ DW_AT_location
 	.byte	84
 	.long	734                             @ DW_AT_abstract_origin
-	.byte	28                              @ Abbrev [28] 0x5d8:0x8 DW_TAG_formal_parameter
+	.byte	28                              @ Abbrev [28] 0x5db:0x8 DW_TAG_formal_parameter
 	.ascii	"\200\200\004"                  @ DW_AT_const_value
 	.long	745                             @ DW_AT_abstract_origin
-	.byte	23                              @ Abbrev [23] 0x5e0:0x9 DW_TAG_variable
+	.byte	23                              @ Abbrev [23] 0x5e3:0x9 DW_TAG_variable
 	.long	.Ldebug_loc19                   @ DW_AT_location
 	.long	756                             @ DW_AT_abstract_origin
-	.byte	13                              @ Abbrev [13] 0x5e9:0x10 DW_TAG_inlined_subroutine
+	.byte	13                              @ Abbrev [13] 0x5ec:0x10 DW_TAG_inlined_subroutine
 	.long	602                             @ DW_AT_abstract_origin
 	.long	.Ltmp134                        @ DW_AT_low_pc
 	.long	.Ltmp135-.Ltmp134               @ DW_AT_high_pc
@@ -4628,33 +4765,33 @@ flash_read_otp_sec_page:
 	.byte	75                              @ DW_AT_call_line
 	.byte	24                              @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
-	.byte	16                              @ Abbrev [16] 0x5fa:0x11 DW_TAG_inlined_subroutine
+	.byte	16                              @ Abbrev [16] 0x5fd:0x11 DW_TAG_inlined_subroutine
 	.long	420                             @ DW_AT_abstract_origin
 	.long	.Ltmp142                        @ DW_AT_low_pc
 	.long	.Ltmp143-.Ltmp142               @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.short	264                             @ DW_AT_call_line
+	.short	303                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
-	.byte	16                              @ Abbrev [16] 0x60b:0x11 DW_TAG_inlined_subroutine
+	.byte	16                              @ Abbrev [16] 0x60e:0x11 DW_TAG_inlined_subroutine
 	.long	420                             @ DW_AT_abstract_origin
 	.long	.Ltmp146                        @ DW_AT_low_pc
 	.long	.Ltmp147-.Ltmp146               @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.short	275                             @ DW_AT_call_line
+	.short	314                             @ DW_AT_call_line
 	.byte	12                              @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
-	.byte	21                              @ Abbrev [21] 0x61d:0x19 DW_TAG_subprogram
+	.byte	21                              @ Abbrev [21] 0x620:0x19 DW_TAG_subprogram
 	.long	.Lfunc_begin10                  @ DW_AT_low_pc
 	.long	.Lfunc_end10-.Lfunc_begin10     @ DW_AT_high_pc
 	.byte	1                               @ DW_AT_frame_base
 	.byte	93
                                         @ DW_AT_GNU_all_call_sites
-	.long	2375                            @ DW_AT_abstract_origin
-	.byte	22                              @ Abbrev [22] 0x62c:0x9 DW_TAG_formal_parameter
+	.long	2378                            @ DW_AT_abstract_origin
+	.byte	22                              @ Abbrev [22] 0x62f:0x9 DW_TAG_formal_parameter
 	.long	.Ldebug_loc20                   @ DW_AT_location
-	.long	2384                            @ DW_AT_abstract_origin
+	.long	2387                            @ DW_AT_abstract_origin
 	.byte	0                               @ End Of Children Mark
-	.byte	14                              @ Abbrev [14] 0x636:0x8b DW_TAG_subprogram
+	.byte	14                              @ Abbrev [14] 0x639:0x8b DW_TAG_subprogram
 	.long	.Lfunc_begin11                  @ DW_AT_low_pc
 	.long	.Lfunc_end11-.Lfunc_begin11     @ DW_AT_high_pc
 	.byte	1                               @ DW_AT_frame_base
@@ -4662,36 +4799,36 @@ flash_read_otp_sec_page:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string66                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	291                             @ DW_AT_decl_line
+	.short	330                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	386                             @ DW_AT_type
                                         @ DW_AT_external
-	.byte	15                              @ Abbrev [15] 0x64c:0x10 DW_TAG_formal_parameter
+	.byte	15                              @ Abbrev [15] 0x64f:0x10 DW_TAG_formal_parameter
 	.long	.Ldebug_loc21                   @ DW_AT_location
 	.long	.Linfo_string54                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	291                             @ DW_AT_decl_line
+	.short	330                             @ DW_AT_decl_line
 	.long	386                             @ DW_AT_type
-	.byte	15                              @ Abbrev [15] 0x65c:0x10 DW_TAG_formal_parameter
+	.byte	15                              @ Abbrev [15] 0x65f:0x10 DW_TAG_formal_parameter
 	.long	.Ldebug_loc22                   @ DW_AT_location
-	.long	.Linfo_string87                 @ DW_AT_name
+	.long	.Linfo_string90                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	291                             @ DW_AT_decl_line
+	.short	330                             @ DW_AT_decl_line
 	.long	386                             @ DW_AT_type
-	.byte	30                              @ Abbrev [30] 0x66c:0x32 DW_TAG_inlined_subroutine
+	.byte	30                              @ Abbrev [30] 0x66f:0x32 DW_TAG_inlined_subroutine
 	.long	722                             @ DW_AT_abstract_origin
 	.long	.Ltmp153                        @ DW_AT_low_pc
 	.long	.Ltmp159-.Ltmp153               @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.short	293                             @ DW_AT_call_line
+	.short	340                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
-	.byte	28                              @ Abbrev [28] 0x67d:0x7 DW_TAG_formal_parameter
+	.byte	28                              @ Abbrev [28] 0x680:0x7 DW_TAG_formal_parameter
 	.ascii	"\200\002"                      @ DW_AT_const_value
 	.long	745                             @ DW_AT_abstract_origin
-	.byte	23                              @ Abbrev [23] 0x684:0x9 DW_TAG_variable
+	.byte	23                              @ Abbrev [23] 0x687:0x9 DW_TAG_variable
 	.long	.Ldebug_loc23                   @ DW_AT_location
 	.long	756                             @ DW_AT_abstract_origin
-	.byte	13                              @ Abbrev [13] 0x68d:0x10 DW_TAG_inlined_subroutine
+	.byte	13                              @ Abbrev [13] 0x690:0x10 DW_TAG_inlined_subroutine
 	.long	602                             @ DW_AT_abstract_origin
 	.long	.Ltmp153                        @ DW_AT_low_pc
 	.long	.Ltmp154-.Ltmp153               @ DW_AT_high_pc
@@ -4699,22 +4836,22 @@ flash_read_otp_sec_page:
 	.byte	75                              @ DW_AT_call_line
 	.byte	24                              @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
-	.byte	16                              @ Abbrev [16] 0x69e:0x11 DW_TAG_inlined_subroutine
+	.byte	16                              @ Abbrev [16] 0x6a1:0x11 DW_TAG_inlined_subroutine
 	.long	420                             @ DW_AT_abstract_origin
 	.long	.Ltmp160                        @ DW_AT_low_pc
 	.long	.Ltmp161-.Ltmp160               @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.short	299                             @ DW_AT_call_line
+	.short	346                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
-	.byte	16                              @ Abbrev [16] 0x6af:0x11 DW_TAG_inlined_subroutine
+	.byte	16                              @ Abbrev [16] 0x6b2:0x11 DW_TAG_inlined_subroutine
 	.long	420                             @ DW_AT_abstract_origin
 	.long	.Ltmp164                        @ DW_AT_low_pc
 	.long	.Ltmp165-.Ltmp164               @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.short	312                             @ DW_AT_call_line
+	.short	359                             @ DW_AT_call_line
 	.byte	12                              @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
-	.byte	14                              @ Abbrev [14] 0x6c1:0x6a DW_TAG_subprogram
+	.byte	14                              @ Abbrev [14] 0x6c4:0x6a DW_TAG_subprogram
 	.long	.Lfunc_begin12                  @ DW_AT_low_pc
 	.long	.Lfunc_end12-.Lfunc_begin12     @ DW_AT_high_pc
 	.byte	1                               @ DW_AT_frame_base
@@ -4722,30 +4859,30 @@ flash_read_otp_sec_page:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string67                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	319                             @ DW_AT_decl_line
+	.short	366                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	386                             @ DW_AT_type
                                         @ DW_AT_external
-	.byte	15                              @ Abbrev [15] 0x6d7:0x10 DW_TAG_formal_parameter
+	.byte	15                              @ Abbrev [15] 0x6da:0x10 DW_TAG_formal_parameter
 	.long	.Ldebug_loc24                   @ DW_AT_location
-	.long	.Linfo_string82                 @ DW_AT_name
+	.long	.Linfo_string85                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	319                             @ DW_AT_decl_line
+	.short	366                             @ DW_AT_decl_line
 	.long	386                             @ DW_AT_type
-	.byte	30                              @ Abbrev [30] 0x6e7:0x32 DW_TAG_inlined_subroutine
+	.byte	30                              @ Abbrev [30] 0x6ea:0x32 DW_TAG_inlined_subroutine
 	.long	722                             @ DW_AT_abstract_origin
 	.long	.Ltmp169                        @ DW_AT_low_pc
 	.long	.Ltmp174-.Ltmp169               @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.short	321                             @ DW_AT_call_line
+	.short	375                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
-	.byte	28                              @ Abbrev [28] 0x6f8:0x7 DW_TAG_formal_parameter
+	.byte	28                              @ Abbrev [28] 0x6fb:0x7 DW_TAG_formal_parameter
 	.ascii	"\200\002"                      @ DW_AT_const_value
 	.long	745                             @ DW_AT_abstract_origin
-	.byte	23                              @ Abbrev [23] 0x6ff:0x9 DW_TAG_variable
+	.byte	23                              @ Abbrev [23] 0x702:0x9 DW_TAG_variable
 	.long	.Ldebug_loc25                   @ DW_AT_location
 	.long	756                             @ DW_AT_abstract_origin
-	.byte	13                              @ Abbrev [13] 0x708:0x10 DW_TAG_inlined_subroutine
+	.byte	13                              @ Abbrev [13] 0x70b:0x10 DW_TAG_inlined_subroutine
 	.long	602                             @ DW_AT_abstract_origin
 	.long	.Ltmp169                        @ DW_AT_low_pc
 	.long	.Ltmp170-.Ltmp169               @ DW_AT_high_pc
@@ -4753,15 +4890,15 @@ flash_read_otp_sec_page:
 	.byte	75                              @ DW_AT_call_line
 	.byte	24                              @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
-	.byte	16                              @ Abbrev [16] 0x719:0x11 DW_TAG_inlined_subroutine
+	.byte	16                              @ Abbrev [16] 0x71c:0x11 DW_TAG_inlined_subroutine
 	.long	420                             @ DW_AT_abstract_origin
 	.long	.Ltmp175                        @ DW_AT_low_pc
 	.long	.Ltmp176-.Ltmp175               @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.short	327                             @ DW_AT_call_line
+	.short	381                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
-	.byte	14                              @ Abbrev [14] 0x72b:0x79 DW_TAG_subprogram
+	.byte	14                              @ Abbrev [14] 0x72e:0x79 DW_TAG_subprogram
 	.long	.Lfunc_begin13                  @ DW_AT_low_pc
 	.long	.Lfunc_end13-.Lfunc_begin13     @ DW_AT_high_pc
 	.byte	1                               @ DW_AT_frame_base
@@ -4769,36 +4906,36 @@ flash_read_otp_sec_page:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string68                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	344                             @ DW_AT_decl_line
+	.short	398                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	386                             @ DW_AT_type
                                         @ DW_AT_external
-	.byte	15                              @ Abbrev [15] 0x741:0x10 DW_TAG_formal_parameter
+	.byte	15                              @ Abbrev [15] 0x744:0x10 DW_TAG_formal_parameter
 	.long	.Ldebug_loc26                   @ DW_AT_location
-	.long	.Linfo_string88                 @ DW_AT_name
+	.long	.Linfo_string91                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	344                             @ DW_AT_decl_line
+	.short	398                             @ DW_AT_decl_line
 	.long	386                             @ DW_AT_type
-	.byte	15                              @ Abbrev [15] 0x751:0x10 DW_TAG_formal_parameter
+	.byte	15                              @ Abbrev [15] 0x754:0x10 DW_TAG_formal_parameter
 	.long	.Ldebug_loc27                   @ DW_AT_location
-	.long	.Linfo_string89                 @ DW_AT_name
+	.long	.Linfo_string92                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	344                             @ DW_AT_decl_line
+	.short	398                             @ DW_AT_decl_line
 	.long	397                             @ DW_AT_type
-	.byte	30                              @ Abbrev [30] 0x761:0x31 DW_TAG_inlined_subroutine
+	.byte	30                              @ Abbrev [30] 0x764:0x31 DW_TAG_inlined_subroutine
 	.long	722                             @ DW_AT_abstract_origin
 	.long	.Ltmp181                        @ DW_AT_low_pc
 	.long	.Ltmp188-.Ltmp181               @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.short	346                             @ DW_AT_call_line
+	.short	408                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
-	.byte	28                              @ Abbrev [28] 0x772:0x6 DW_TAG_formal_parameter
+	.byte	28                              @ Abbrev [28] 0x775:0x6 DW_TAG_formal_parameter
 	.byte	1                               @ DW_AT_const_value
 	.long	745                             @ DW_AT_abstract_origin
-	.byte	23                              @ Abbrev [23] 0x778:0x9 DW_TAG_variable
+	.byte	23                              @ Abbrev [23] 0x77b:0x9 DW_TAG_variable
 	.long	.Ldebug_loc28                   @ DW_AT_location
 	.long	756                             @ DW_AT_abstract_origin
-	.byte	13                              @ Abbrev [13] 0x781:0x10 DW_TAG_inlined_subroutine
+	.byte	13                              @ Abbrev [13] 0x784:0x10 DW_TAG_inlined_subroutine
 	.long	602                             @ DW_AT_abstract_origin
 	.long	.Ltmp181                        @ DW_AT_low_pc
 	.long	.Ltmp182-.Ltmp181               @ DW_AT_high_pc
@@ -4806,15 +4943,15 @@ flash_read_otp_sec_page:
 	.byte	75                              @ DW_AT_call_line
 	.byte	24                              @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
-	.byte	16                              @ Abbrev [16] 0x792:0x11 DW_TAG_inlined_subroutine
+	.byte	16                              @ Abbrev [16] 0x795:0x11 DW_TAG_inlined_subroutine
 	.long	420                             @ DW_AT_abstract_origin
 	.long	.Ltmp189                        @ DW_AT_low_pc
 	.long	.Ltmp190-.Ltmp189               @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.short	352                             @ DW_AT_call_line
+	.short	414                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
-	.byte	14                              @ Abbrev [14] 0x7a4:0x5a DW_TAG_subprogram
+	.byte	14                              @ Abbrev [14] 0x7a7:0x5a DW_TAG_subprogram
 	.long	.Lfunc_begin14                  @ DW_AT_low_pc
 	.long	.Lfunc_end14-.Lfunc_begin14     @ DW_AT_high_pc
 	.byte	1                               @ DW_AT_frame_base
@@ -4822,39 +4959,39 @@ flash_read_otp_sec_page:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string69                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	416                             @ DW_AT_decl_line
+	.short	485                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	386                             @ DW_AT_type
                                         @ DW_AT_external
-	.byte	15                              @ Abbrev [15] 0x7ba:0x10 DW_TAG_formal_parameter
+	.byte	15                              @ Abbrev [15] 0x7bd:0x10 DW_TAG_formal_parameter
 	.long	.Ldebug_loc29                   @ DW_AT_location
-	.long	.Linfo_string81                 @ DW_AT_name
+	.long	.Linfo_string84                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	416                             @ DW_AT_decl_line
-	.long	3008                            @ DW_AT_type
-	.byte	16                              @ Abbrev [16] 0x7ca:0x11 DW_TAG_inlined_subroutine
+	.short	485                             @ DW_AT_decl_line
+	.long	3069                            @ DW_AT_type
+	.byte	16                              @ Abbrev [16] 0x7cd:0x11 DW_TAG_inlined_subroutine
 	.long	420                             @ DW_AT_abstract_origin
 	.long	.Ltmp196                        @ DW_AT_low_pc
 	.long	.Ltmp197-.Ltmp196               @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.short	420                             @ DW_AT_call_line
+	.short	496                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
-	.byte	16                              @ Abbrev [16] 0x7db:0x11 DW_TAG_inlined_subroutine
+	.byte	16                              @ Abbrev [16] 0x7de:0x11 DW_TAG_inlined_subroutine
 	.long	420                             @ DW_AT_abstract_origin
 	.long	.Ltmp205                        @ DW_AT_low_pc
 	.long	.Ltmp206-.Ltmp205               @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.short	440                             @ DW_AT_call_line
+	.short	516                             @ DW_AT_call_line
 	.byte	16                              @ DW_AT_call_column
-	.byte	16                              @ Abbrev [16] 0x7ec:0x11 DW_TAG_inlined_subroutine
+	.byte	16                              @ Abbrev [16] 0x7ef:0x11 DW_TAG_inlined_subroutine
 	.long	420                             @ DW_AT_abstract_origin
 	.long	.Ltmp209                        @ DW_AT_low_pc
 	.long	.Ltmp210-.Ltmp209               @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.short	453                             @ DW_AT_call_line
+	.short	529                             @ DW_AT_call_line
 	.byte	16                              @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
-	.byte	14                              @ Abbrev [14] 0x7fe:0x58 DW_TAG_subprogram
+	.byte	14                              @ Abbrev [14] 0x801:0x58 DW_TAG_subprogram
 	.long	.Lfunc_begin15                  @ DW_AT_low_pc
 	.long	.Lfunc_end15-.Lfunc_begin15     @ DW_AT_high_pc
 	.byte	1                               @ DW_AT_frame_base
@@ -4862,37 +4999,37 @@ flash_read_otp_sec_page:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string70                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	463                             @ DW_AT_decl_line
+	.short	539                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	386                             @ DW_AT_type
                                         @ DW_AT_external
-	.byte	15                              @ Abbrev [15] 0x814:0x10 DW_TAG_formal_parameter
+	.byte	15                              @ Abbrev [15] 0x817:0x10 DW_TAG_formal_parameter
 	.long	.Ldebug_loc30                   @ DW_AT_location
 	.long	.Linfo_string54                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	463                             @ DW_AT_decl_line
+	.short	539                             @ DW_AT_decl_line
 	.long	386                             @ DW_AT_type
-	.byte	15                              @ Abbrev [15] 0x824:0x10 DW_TAG_formal_parameter
+	.byte	15                              @ Abbrev [15] 0x827:0x10 DW_TAG_formal_parameter
 	.long	.Ldebug_loc31                   @ DW_AT_location
-	.long	.Linfo_string90                 @ DW_AT_name
+	.long	.Linfo_string93                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	463                             @ DW_AT_decl_line
+	.short	539                             @ DW_AT_decl_line
 	.long	386                             @ DW_AT_type
-	.byte	31                              @ Abbrev [31] 0x834:0x10 DW_TAG_variable
+	.byte	31                              @ Abbrev [31] 0x837:0x10 DW_TAG_variable
 	.long	.Ldebug_loc32                   @ DW_AT_location
 	.long	.Linfo_string56                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	465                             @ DW_AT_decl_line
+	.short	541                             @ DW_AT_decl_line
 	.long	386                             @ DW_AT_type
-	.byte	16                              @ Abbrev [16] 0x844:0x11 DW_TAG_inlined_subroutine
+	.byte	16                              @ Abbrev [16] 0x847:0x11 DW_TAG_inlined_subroutine
 	.long	420                             @ DW_AT_abstract_origin
 	.long	.Ltmp218                        @ DW_AT_low_pc
 	.long	.Ltmp219-.Ltmp218               @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.short	477                             @ DW_AT_call_line
+	.short	560                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
-	.byte	14                              @ Abbrev [14] 0x856:0x69 DW_TAG_subprogram
+	.byte	14                              @ Abbrev [14] 0x859:0x69 DW_TAG_subprogram
 	.long	.Lfunc_begin16                  @ DW_AT_low_pc
 	.long	.Lfunc_end16-.Lfunc_begin16     @ DW_AT_high_pc
 	.byte	1                               @ DW_AT_frame_base
@@ -4900,44 +5037,44 @@ flash_read_otp_sec_page:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string71                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	498                             @ DW_AT_decl_line
+	.short	581                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	386                             @ DW_AT_type
                                         @ DW_AT_external
-	.byte	15                              @ Abbrev [15] 0x86c:0x10 DW_TAG_formal_parameter
+	.byte	15                              @ Abbrev [15] 0x86f:0x10 DW_TAG_formal_parameter
 	.long	.Ldebug_loc33                   @ DW_AT_location
 	.long	.Linfo_string54                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	498                             @ DW_AT_decl_line
+	.short	581                             @ DW_AT_decl_line
 	.long	386                             @ DW_AT_type
-	.byte	15                              @ Abbrev [15] 0x87c:0x10 DW_TAG_formal_parameter
+	.byte	15                              @ Abbrev [15] 0x87f:0x10 DW_TAG_formal_parameter
 	.long	.Ldebug_loc34                   @ DW_AT_location
 	.long	.Linfo_string55                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	498                             @ DW_AT_decl_line
+	.short	581                             @ DW_AT_decl_line
 	.long	386                             @ DW_AT_type
-	.byte	31                              @ Abbrev [31] 0x88c:0x10 DW_TAG_variable
+	.byte	31                              @ Abbrev [31] 0x88f:0x10 DW_TAG_variable
 	.long	.Ldebug_loc35                   @ DW_AT_location
 	.long	.Linfo_string56                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	500                             @ DW_AT_decl_line
+	.short	583                             @ DW_AT_decl_line
 	.long	386                             @ DW_AT_type
-	.byte	16                              @ Abbrev [16] 0x89c:0x11 DW_TAG_inlined_subroutine
+	.byte	16                              @ Abbrev [16] 0x89f:0x11 DW_TAG_inlined_subroutine
 	.long	420                             @ DW_AT_abstract_origin
 	.long	.Ltmp224                        @ DW_AT_low_pc
 	.long	.Ltmp225-.Ltmp224               @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.short	506                             @ DW_AT_call_line
+	.short	594                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
-	.byte	16                              @ Abbrev [16] 0x8ad:0x11 DW_TAG_inlined_subroutine
+	.byte	16                              @ Abbrev [16] 0x8b0:0x11 DW_TAG_inlined_subroutine
 	.long	420                             @ DW_AT_abstract_origin
 	.long	.Ltmp230                        @ DW_AT_low_pc
 	.long	.Ltmp231-.Ltmp230               @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.short	528                             @ DW_AT_call_line
+	.short	616                             @ DW_AT_call_line
 	.byte	12                              @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
-	.byte	14                              @ Abbrev [14] 0x8bf:0x88 DW_TAG_subprogram
+	.byte	14                              @ Abbrev [14] 0x8c2:0x88 DW_TAG_subprogram
 	.long	.Lfunc_begin17                  @ DW_AT_low_pc
 	.long	.Lfunc_end17-.Lfunc_begin17     @ DW_AT_high_pc
 	.byte	1                               @ DW_AT_frame_base
@@ -4945,107 +5082,107 @@ flash_read_otp_sec_page:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string72                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	541                             @ DW_AT_decl_line
+	.short	629                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	386                             @ DW_AT_type
                                         @ DW_AT_external
-	.byte	15                              @ Abbrev [15] 0x8d5:0x10 DW_TAG_formal_parameter
+	.byte	15                              @ Abbrev [15] 0x8d8:0x10 DW_TAG_formal_parameter
 	.long	.Ldebug_loc36                   @ DW_AT_location
-	.long	.Linfo_string93                 @ DW_AT_name
+	.long	.Linfo_string96                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	541                             @ DW_AT_decl_line
+	.short	629                             @ DW_AT_decl_line
 	.long	386                             @ DW_AT_type
-	.byte	15                              @ Abbrev [15] 0x8e5:0x10 DW_TAG_formal_parameter
+	.byte	15                              @ Abbrev [15] 0x8e8:0x10 DW_TAG_formal_parameter
 	.long	.Ldebug_loc37                   @ DW_AT_location
-	.long	.Linfo_string94                 @ DW_AT_name
+	.long	.Linfo_string97                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	541                             @ DW_AT_decl_line
+	.short	629                             @ DW_AT_decl_line
 	.long	386                             @ DW_AT_type
-	.byte	32                              @ Abbrev [32] 0x8f5:0xf DW_TAG_variable
+	.byte	32                              @ Abbrev [32] 0x8f8:0xf DW_TAG_variable
 	.byte	2                               @ DW_AT_location
 	.byte	145
 	.byte	0
-	.long	.Linfo_string91                 @ DW_AT_name
+	.long	.Linfo_string94                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	544                             @ DW_AT_decl_line
-	.long	3018                            @ DW_AT_type
-	.byte	31                              @ Abbrev [31] 0x904:0x10 DW_TAG_variable
+	.short	632                             @ DW_AT_decl_line
+	.long	3079                            @ DW_AT_type
+	.byte	31                              @ Abbrev [31] 0x907:0x10 DW_TAG_variable
 	.long	.Ldebug_loc38                   @ DW_AT_location
-	.long	.Linfo_string95                 @ DW_AT_name
+	.long	.Linfo_string98                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	544                             @ DW_AT_decl_line
+	.short	632                             @ DW_AT_decl_line
 	.long	415                             @ DW_AT_type
-	.byte	31                              @ Abbrev [31] 0x914:0x10 DW_TAG_variable
+	.byte	31                              @ Abbrev [31] 0x917:0x10 DW_TAG_variable
 	.long	.Ldebug_loc39                   @ DW_AT_location
-	.long	.Linfo_string96                 @ DW_AT_name
+	.long	.Linfo_string99                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	543                             @ DW_AT_decl_line
+	.short	631                             @ DW_AT_decl_line
 	.long	386                             @ DW_AT_type
-	.byte	16                              @ Abbrev [16] 0x924:0x11 DW_TAG_inlined_subroutine
+	.byte	16                              @ Abbrev [16] 0x927:0x11 DW_TAG_inlined_subroutine
 	.long	420                             @ DW_AT_abstract_origin
 	.long	.Ltmp236                        @ DW_AT_low_pc
 	.long	.Ltmp237-.Ltmp236               @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.short	547                             @ DW_AT_call_line
+	.short	641                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
-	.byte	16                              @ Abbrev [16] 0x935:0x11 DW_TAG_inlined_subroutine
+	.byte	16                              @ Abbrev [16] 0x938:0x11 DW_TAG_inlined_subroutine
 	.long	420                             @ DW_AT_abstract_origin
 	.long	.Ltmp242                        @ DW_AT_low_pc
 	.long	.Ltmp243-.Ltmp242               @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.short	577                             @ DW_AT_call_line
+	.short	671                             @ DW_AT_call_line
 	.byte	12                              @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
-	.byte	33                              @ Abbrev [33] 0x947:0x16 DW_TAG_subprogram
+	.byte	33                              @ Abbrev [33] 0x94a:0x16 DW_TAG_subprogram
 	.long	.Linfo_string46                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	282                             @ DW_AT_decl_line
+	.short	321                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_external
 	.byte	1                               @ DW_AT_inline
-	.byte	34                              @ Abbrev [34] 0x950:0xc DW_TAG_formal_parameter
+	.byte	34                              @ Abbrev [34] 0x953:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string47                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	282                             @ DW_AT_decl_line
-	.long	2397                            @ DW_AT_type
+	.short	321                             @ DW_AT_decl_line
+	.long	2400                            @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
-	.byte	5                               @ Abbrev [5] 0x95d:0x5 DW_TAG_pointer_type
-	.long	2402                            @ DW_AT_type
-	.byte	6                               @ Abbrev [6] 0x962:0xb DW_TAG_typedef
-	.long	2413                            @ DW_AT_type
+	.byte	5                               @ Abbrev [5] 0x960:0x5 DW_TAG_pointer_type
+	.long	2405                            @ DW_AT_type
+	.byte	6                               @ Abbrev [6] 0x965:0xb DW_TAG_typedef
+	.long	2416                            @ DW_AT_type
 	.long	.Linfo_string52                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
 	.byte	165                             @ DW_AT_decl_line
-	.byte	7                               @ Abbrev [7] 0x96d:0x35 DW_TAG_structure_type
+	.byte	7                               @ Abbrev [7] 0x970:0x35 DW_TAG_structure_type
 	.byte	8                               @ DW_AT_byte_size
 	.byte	1                               @ DW_AT_decl_file
 	.byte	159                             @ DW_AT_decl_line
-	.byte	8                               @ Abbrev [8] 0x971:0xc DW_TAG_member
+	.byte	8                               @ Abbrev [8] 0x974:0xc DW_TAG_member
 	.long	.Linfo_string48                 @ DW_AT_name
 	.long	768                             @ DW_AT_type
 	.byte	1                               @ DW_AT_decl_file
 	.byte	161                             @ DW_AT_decl_line
 	.byte	0                               @ DW_AT_data_member_location
-	.byte	8                               @ Abbrev [8] 0x97d:0xc DW_TAG_member
+	.byte	8                               @ Abbrev [8] 0x980:0xc DW_TAG_member
 	.long	.Linfo_string49                 @ DW_AT_name
 	.long	768                             @ DW_AT_type
 	.byte	1                               @ DW_AT_decl_file
 	.byte	162                             @ DW_AT_decl_line
 	.byte	2                               @ DW_AT_data_member_location
-	.byte	8                               @ Abbrev [8] 0x989:0xc DW_TAG_member
+	.byte	8                               @ Abbrev [8] 0x98c:0xc DW_TAG_member
 	.long	.Linfo_string50                 @ DW_AT_name
 	.long	768                             @ DW_AT_type
 	.byte	1                               @ DW_AT_decl_file
 	.byte	163                             @ DW_AT_decl_line
 	.byte	4                               @ DW_AT_data_member_location
-	.byte	8                               @ Abbrev [8] 0x995:0xc DW_TAG_member
+	.byte	8                               @ Abbrev [8] 0x998:0xc DW_TAG_member
 	.long	.Linfo_string51                 @ DW_AT_name
 	.long	768                             @ DW_AT_type
 	.byte	1                               @ DW_AT_decl_file
 	.byte	164                             @ DW_AT_decl_line
 	.byte	6                               @ DW_AT_data_member_location
 	.byte	0                               @ End Of Children Mark
-	.byte	35                              @ Abbrev [35] 0x9a2:0xb7 DW_TAG_subprogram
+	.byte	35                              @ Abbrev [35] 0x9a5:0xb7 DW_TAG_subprogram
 	.long	.Lfunc_begin18                  @ DW_AT_low_pc
 	.long	.Lfunc_end18-.Lfunc_begin18     @ DW_AT_high_pc
 	.byte	1                               @ DW_AT_frame_base
@@ -5053,98 +5190,98 @@ flash_read_otp_sec_page:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string73                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	590                             @ DW_AT_decl_line
+	.short	684                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_external
-	.byte	31                              @ Abbrev [31] 0x9b4:0x10 DW_TAG_variable
+	.byte	31                              @ Abbrev [31] 0x9b7:0x10 DW_TAG_variable
 	.long	.Ldebug_loc40                   @ DW_AT_location
-	.long	.Linfo_string97                 @ DW_AT_name
-	.byte	5                               @ DW_AT_decl_file
-	.short	593                             @ DW_AT_decl_line
-	.long	768                             @ DW_AT_type
-	.byte	31                              @ Abbrev [31] 0x9c4:0x10 DW_TAG_variable
-	.long	.Ldebug_loc41                   @ DW_AT_location
-	.long	.Linfo_string98                 @ DW_AT_name
-	.byte	5                               @ DW_AT_decl_file
-	.short	592                             @ DW_AT_decl_line
-	.long	386                             @ DW_AT_type
-	.byte	31                              @ Abbrev [31] 0x9d4:0x10 DW_TAG_variable
-	.long	.Ldebug_loc42                   @ DW_AT_location
-	.long	.Linfo_string99                 @ DW_AT_name
-	.byte	5                               @ DW_AT_decl_file
-	.short	593                             @ DW_AT_decl_line
-	.long	768                             @ DW_AT_type
-	.byte	31                              @ Abbrev [31] 0x9e4:0x10 DW_TAG_variable
-	.long	.Ldebug_loc43                   @ DW_AT_location
 	.long	.Linfo_string100                @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	593                             @ DW_AT_decl_line
+	.short	687                             @ DW_AT_decl_line
 	.long	768                             @ DW_AT_type
-	.byte	31                              @ Abbrev [31] 0x9f4:0x10 DW_TAG_variable
-	.long	.Ldebug_loc44                   @ DW_AT_location
+	.byte	31                              @ Abbrev [31] 0x9c7:0x10 DW_TAG_variable
+	.long	.Ldebug_loc41                   @ DW_AT_location
 	.long	.Linfo_string101                @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	593                             @ DW_AT_decl_line
-	.long	768                             @ DW_AT_type
-	.byte	31                              @ Abbrev [31] 0xa04:0x10 DW_TAG_variable
-	.long	.Ldebug_loc45                   @ DW_AT_location
+	.short	686                             @ DW_AT_decl_line
+	.long	386                             @ DW_AT_type
+	.byte	31                              @ Abbrev [31] 0x9d7:0x10 DW_TAG_variable
+	.long	.Ldebug_loc42                   @ DW_AT_location
 	.long	.Linfo_string102                @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	593                             @ DW_AT_decl_line
+	.short	687                             @ DW_AT_decl_line
 	.long	768                             @ DW_AT_type
-	.byte	31                              @ Abbrev [31] 0xa14:0x10 DW_TAG_variable
-	.long	.Ldebug_loc46                   @ DW_AT_location
+	.byte	31                              @ Abbrev [31] 0x9e7:0x10 DW_TAG_variable
+	.long	.Ldebug_loc43                   @ DW_AT_location
 	.long	.Linfo_string103                @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	592                             @ DW_AT_decl_line
-	.long	386                             @ DW_AT_type
-	.byte	31                              @ Abbrev [31] 0xa24:0x10 DW_TAG_variable
-	.long	.Ldebug_loc47                   @ DW_AT_location
+	.short	687                             @ DW_AT_decl_line
+	.long	768                             @ DW_AT_type
+	.byte	31                              @ Abbrev [31] 0x9f7:0x10 DW_TAG_variable
+	.long	.Ldebug_loc44                   @ DW_AT_location
 	.long	.Linfo_string104                @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	595                             @ DW_AT_decl_line
-	.long	2402                            @ DW_AT_type
-	.byte	16                              @ Abbrev [16] 0xa34:0x11 DW_TAG_inlined_subroutine
+	.short	687                             @ DW_AT_decl_line
+	.long	768                             @ DW_AT_type
+	.byte	31                              @ Abbrev [31] 0xa07:0x10 DW_TAG_variable
+	.long	.Ldebug_loc45                   @ DW_AT_location
+	.long	.Linfo_string105                @ DW_AT_name
+	.byte	5                               @ DW_AT_decl_file
+	.short	687                             @ DW_AT_decl_line
+	.long	768                             @ DW_AT_type
+	.byte	31                              @ Abbrev [31] 0xa17:0x10 DW_TAG_variable
+	.long	.Ldebug_loc46                   @ DW_AT_location
+	.long	.Linfo_string106                @ DW_AT_name
+	.byte	5                               @ DW_AT_decl_file
+	.short	686                             @ DW_AT_decl_line
+	.long	386                             @ DW_AT_type
+	.byte	31                              @ Abbrev [31] 0xa27:0x10 DW_TAG_variable
+	.long	.Ldebug_loc47                   @ DW_AT_location
+	.long	.Linfo_string107                @ DW_AT_name
+	.byte	5                               @ DW_AT_decl_file
+	.short	689                             @ DW_AT_decl_line
+	.long	2405                            @ DW_AT_type
+	.byte	16                              @ Abbrev [16] 0xa37:0x11 DW_TAG_inlined_subroutine
 	.long	602                             @ DW_AT_abstract_origin
 	.long	.Ltmp254                        @ DW_AT_low_pc
 	.long	.Ltmp255-.Ltmp254               @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.short	597                             @ DW_AT_call_line
+	.short	691                             @ DW_AT_call_line
 	.byte	21                              @ DW_AT_call_column
-	.byte	36                              @ Abbrev [36] 0xa45:0x13 DW_TAG_inlined_subroutine
-	.long	2375                            @ DW_AT_abstract_origin
+	.byte	36                              @ Abbrev [36] 0xa48:0x13 DW_TAG_inlined_subroutine
+	.long	2378                            @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges0                 @ DW_AT_ranges
 	.byte	5                               @ DW_AT_call_file
-	.short	635                             @ DW_AT_call_line
+	.short	729                             @ DW_AT_call_line
 	.byte	5                               @ DW_AT_call_column
-	.byte	37                              @ Abbrev [37] 0xa52:0x5 DW_TAG_formal_parameter
-	.long	2384                            @ DW_AT_abstract_origin
+	.byte	37                              @ Abbrev [37] 0xa55:0x5 DW_TAG_formal_parameter
+	.long	2387                            @ DW_AT_abstract_origin
 	.byte	0                               @ End Of Children Mark
 	.byte	0                               @ End Of Children Mark
-	.byte	38                              @ Abbrev [38] 0xa59:0x32 DW_TAG_subprogram
+	.byte	38                              @ Abbrev [38] 0xa5c:0x32 DW_TAG_subprogram
 	.long	.Linfo_string53                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	641                             @ DW_AT_decl_line
+	.short	735                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	386                             @ DW_AT_type
 	.byte	1                               @ DW_AT_inline
-	.byte	34                              @ Abbrev [34] 0xa66:0xc DW_TAG_formal_parameter
+	.byte	34                              @ Abbrev [34] 0xa69:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string54                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	641                             @ DW_AT_decl_line
+	.short	735                             @ DW_AT_decl_line
 	.long	386                             @ DW_AT_type
-	.byte	34                              @ Abbrev [34] 0xa72:0xc DW_TAG_formal_parameter
+	.byte	34                              @ Abbrev [34] 0xa75:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string55                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	641                             @ DW_AT_decl_line
+	.short	735                             @ DW_AT_decl_line
 	.long	386                             @ DW_AT_type
-	.byte	39                              @ Abbrev [39] 0xa7e:0xc DW_TAG_variable
+	.byte	39                              @ Abbrev [39] 0xa81:0xc DW_TAG_variable
 	.long	.Linfo_string56                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	643                             @ DW_AT_decl_line
+	.short	737                             @ DW_AT_decl_line
 	.long	386                             @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
-	.byte	14                              @ Abbrev [14] 0xa8b:0xd5 DW_TAG_subprogram
+	.byte	14                              @ Abbrev [14] 0xa8e:0xd5 DW_TAG_subprogram
 	.long	.Lfunc_begin19                  @ DW_AT_low_pc
 	.long	.Lfunc_end19-.Lfunc_begin19     @ DW_AT_high_pc
 	.byte	1                               @ DW_AT_frame_base
@@ -5152,155 +5289,189 @@ flash_read_otp_sec_page:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string74                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	672                             @ DW_AT_decl_line
+	.short	774                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	386                             @ DW_AT_type
                                         @ DW_AT_external
-	.byte	15                              @ Abbrev [15] 0xaa1:0x10 DW_TAG_formal_parameter
+	.byte	15                              @ Abbrev [15] 0xaa4:0x10 DW_TAG_formal_parameter
 	.long	.Ldebug_loc48                   @ DW_AT_location
 	.long	.Linfo_string54                 @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.short	672                             @ DW_AT_decl_line
+	.short	774                             @ DW_AT_decl_line
 	.long	386                             @ DW_AT_type
-	.byte	16                              @ Abbrev [16] 0xab1:0x11 DW_TAG_inlined_subroutine
+	.byte	16                              @ Abbrev [16] 0xab4:0x11 DW_TAG_inlined_subroutine
 	.long	602                             @ DW_AT_abstract_origin
 	.long	.Ltmp269                        @ DW_AT_low_pc
 	.long	.Ltmp270-.Ltmp269               @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.short	674                             @ DW_AT_call_line
+	.short	776                             @ DW_AT_call_line
 	.byte	13                              @ DW_AT_call_column
-	.byte	30                              @ Abbrev [30] 0xac2:0x50 DW_TAG_inlined_subroutine
-	.long	2649                            @ DW_AT_abstract_origin
+	.byte	30                              @ Abbrev [30] 0xac5:0x50 DW_TAG_inlined_subroutine
+	.long	2652                            @ DW_AT_abstract_origin
 	.long	.Ltmp273                        @ DW_AT_low_pc
 	.long	.Ltmp279-.Ltmp273               @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.short	678                             @ DW_AT_call_line
+	.short	780                             @ DW_AT_call_line
 	.byte	13                              @ DW_AT_call_column
-	.byte	22                              @ Abbrev [22] 0xad3:0x9 DW_TAG_formal_parameter
+	.byte	22                              @ Abbrev [22] 0xad6:0x9 DW_TAG_formal_parameter
 	.long	.Ldebug_loc49                   @ DW_AT_location
-	.long	2662                            @ DW_AT_abstract_origin
-	.byte	28                              @ Abbrev [28] 0xadc:0x7 DW_TAG_formal_parameter
+	.long	2665                            @ DW_AT_abstract_origin
+	.byte	28                              @ Abbrev [28] 0xadf:0x7 DW_TAG_formal_parameter
 	.ascii	"\200@"                         @ DW_AT_const_value
-	.long	2674                            @ DW_AT_abstract_origin
-	.byte	40                              @ Abbrev [40] 0xae3:0xc DW_TAG_variable
+	.long	2677                            @ DW_AT_abstract_origin
+	.byte	40                              @ Abbrev [40] 0xae6:0xc DW_TAG_variable
 	.byte	6                               @ DW_AT_location
 	.byte	16
 	.ascii	"\200@"
 	.byte	60
 	.byte	37
 	.byte	159
-	.long	2686                            @ DW_AT_abstract_origin
-	.byte	16                              @ Abbrev [16] 0xaef:0x11 DW_TAG_inlined_subroutine
+	.long	2689                            @ DW_AT_abstract_origin
+	.byte	16                              @ Abbrev [16] 0xaf2:0x11 DW_TAG_inlined_subroutine
 	.long	420                             @ DW_AT_abstract_origin
 	.long	.Ltmp273                        @ DW_AT_low_pc
 	.long	.Ltmp274-.Ltmp273               @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.short	649                             @ DW_AT_call_line
+	.short	751                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
-	.byte	16                              @ Abbrev [16] 0xb00:0x11 DW_TAG_inlined_subroutine
+	.byte	16                              @ Abbrev [16] 0xb03:0x11 DW_TAG_inlined_subroutine
 	.long	420                             @ DW_AT_abstract_origin
 	.long	.Ltmp277                        @ DW_AT_low_pc
 	.long	.Ltmp278-.Ltmp277               @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.short	667                             @ DW_AT_call_line
+	.short	769                             @ DW_AT_call_line
 	.byte	12                              @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
-	.byte	30                              @ Abbrev [30] 0xb12:0x4d DW_TAG_inlined_subroutine
-	.long	2649                            @ DW_AT_abstract_origin
+	.byte	30                              @ Abbrev [30] 0xb15:0x4d DW_TAG_inlined_subroutine
+	.long	2652                            @ DW_AT_abstract_origin
 	.long	.Ltmp281                        @ DW_AT_low_pc
 	.long	.Ltmp287-.Ltmp281               @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.short	685                             @ DW_AT_call_line
+	.short	787                             @ DW_AT_call_line
 	.byte	13                              @ DW_AT_call_column
-	.byte	22                              @ Abbrev [22] 0xb23:0x9 DW_TAG_formal_parameter
+	.byte	22                              @ Abbrev [22] 0xb26:0x9 DW_TAG_formal_parameter
 	.long	.Ldebug_loc50                   @ DW_AT_location
-	.long	2662                            @ DW_AT_abstract_origin
-	.byte	28                              @ Abbrev [28] 0xb2c:0x6 DW_TAG_formal_parameter
+	.long	2665                            @ DW_AT_abstract_origin
+	.byte	28                              @ Abbrev [28] 0xb2f:0x6 DW_TAG_formal_parameter
 	.byte	0                               @ DW_AT_const_value
-	.long	2674                            @ DW_AT_abstract_origin
-	.byte	40                              @ Abbrev [40] 0xb32:0xa DW_TAG_variable
+	.long	2677                            @ DW_AT_abstract_origin
+	.byte	40                              @ Abbrev [40] 0xb35:0xa DW_TAG_variable
 	.byte	4                               @ DW_AT_location
 	.byte	48
 	.byte	60
 	.byte	37
 	.byte	159
-	.long	2686                            @ DW_AT_abstract_origin
-	.byte	16                              @ Abbrev [16] 0xb3c:0x11 DW_TAG_inlined_subroutine
+	.long	2689                            @ DW_AT_abstract_origin
+	.byte	16                              @ Abbrev [16] 0xb3f:0x11 DW_TAG_inlined_subroutine
 	.long	420                             @ DW_AT_abstract_origin
 	.long	.Ltmp281                        @ DW_AT_low_pc
 	.long	.Ltmp282-.Ltmp281               @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.short	649                             @ DW_AT_call_line
+	.short	751                             @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
-	.byte	16                              @ Abbrev [16] 0xb4d:0x11 DW_TAG_inlined_subroutine
+	.byte	16                              @ Abbrev [16] 0xb50:0x11 DW_TAG_inlined_subroutine
 	.long	420                             @ DW_AT_abstract_origin
 	.long	.Ltmp285                        @ DW_AT_low_pc
 	.long	.Ltmp286-.Ltmp285               @ DW_AT_high_pc
 	.byte	5                               @ DW_AT_call_file
-	.short	667                             @ DW_AT_call_line
+	.short	769                             @ DW_AT_call_line
 	.byte	12                              @ DW_AT_call_column
 	.byte	0                               @ End Of Children Mark
 	.byte	0                               @ End Of Children Mark
-	.byte	6                               @ Abbrev [6] 0xb60:0xb DW_TAG_typedef
+	.byte	41                              @ Abbrev [41] 0xb63:0x12 DW_TAG_subprogram
+	.long	.Lfunc_begin20                  @ DW_AT_low_pc
+	.long	.Lfunc_end20-.Lfunc_begin20     @ DW_AT_high_pc
+	.byte	1                               @ DW_AT_frame_base
+	.byte	93
+                                        @ DW_AT_GNU_all_call_sites
+	.long	.Linfo_string75                 @ DW_AT_name
+	.byte	5                               @ DW_AT_decl_file
+	.short	797                             @ DW_AT_decl_line
+                                        @ DW_AT_prototyped
+                                        @ DW_AT_external
+	.byte	41                              @ Abbrev [41] 0xb75:0x12 DW_TAG_subprogram
+	.long	.Lfunc_begin21                  @ DW_AT_low_pc
+	.long	.Lfunc_end21-.Lfunc_begin21     @ DW_AT_high_pc
+	.byte	1                               @ DW_AT_frame_base
+	.byte	93
+                                        @ DW_AT_GNU_all_call_sites
+	.long	.Linfo_string76                 @ DW_AT_name
+	.byte	5                               @ DW_AT_decl_file
+	.short	802                             @ DW_AT_decl_line
+                                        @ DW_AT_prototyped
+                                        @ DW_AT_external
+	.byte	42                              @ Abbrev [42] 0xb87:0x16 DW_TAG_subprogram
+	.long	.Lfunc_begin22                  @ DW_AT_low_pc
+	.long	.Lfunc_end22-.Lfunc_begin22     @ DW_AT_high_pc
+	.byte	1                               @ DW_AT_frame_base
+	.byte	93
+                                        @ DW_AT_GNU_all_call_sites
+	.long	.Linfo_string77                 @ DW_AT_name
+	.byte	5                               @ DW_AT_decl_file
+	.short	807                             @ DW_AT_decl_line
+                                        @ DW_AT_prototyped
+	.long	386                             @ DW_AT_type
+                                        @ DW_AT_external
+	.byte	6                               @ Abbrev [6] 0xb9d:0xb DW_TAG_typedef
 	.long	38                              @ DW_AT_type
 	.long	.Linfo_string60                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
 	.byte	135                             @ DW_AT_decl_line
-	.byte	6                               @ Abbrev [6] 0xb6b:0xb DW_TAG_typedef
-	.long	2934                            @ DW_AT_type
-	.long	.Linfo_string80                 @ DW_AT_name
+	.byte	6                               @ Abbrev [6] 0xba8:0xb DW_TAG_typedef
+	.long	2995                            @ DW_AT_type
+	.long	.Linfo_string83                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
 	.byte	184                             @ DW_AT_decl_line
-	.byte	7                               @ Abbrev [7] 0xb76:0x35 DW_TAG_structure_type
+	.byte	7                               @ Abbrev [7] 0xbb3:0x35 DW_TAG_structure_type
 	.byte	4                               @ DW_AT_byte_size
 	.byte	1                               @ DW_AT_decl_file
 	.byte	178                             @ DW_AT_decl_line
-	.byte	8                               @ Abbrev [8] 0xb7a:0xc DW_TAG_member
-	.long	.Linfo_string76                 @ DW_AT_name
+	.byte	8                               @ Abbrev [8] 0xbb7:0xc DW_TAG_member
+	.long	.Linfo_string79                 @ DW_AT_name
 	.long	397                             @ DW_AT_type
 	.byte	1                               @ DW_AT_decl_file
 	.byte	180                             @ DW_AT_decl_line
 	.byte	0                               @ DW_AT_data_member_location
-	.byte	8                               @ Abbrev [8] 0xb86:0xc DW_TAG_member
-	.long	.Linfo_string77                 @ DW_AT_name
+	.byte	8                               @ Abbrev [8] 0xbc3:0xc DW_TAG_member
+	.long	.Linfo_string80                 @ DW_AT_name
 	.long	397                             @ DW_AT_type
 	.byte	1                               @ DW_AT_decl_file
 	.byte	181                             @ DW_AT_decl_line
 	.byte	1                               @ DW_AT_data_member_location
-	.byte	8                               @ Abbrev [8] 0xb92:0xc DW_TAG_member
-	.long	.Linfo_string78                 @ DW_AT_name
+	.byte	8                               @ Abbrev [8] 0xbcf:0xc DW_TAG_member
+	.long	.Linfo_string81                 @ DW_AT_name
 	.long	397                             @ DW_AT_type
 	.byte	1                               @ DW_AT_decl_file
 	.byte	182                             @ DW_AT_decl_line
 	.byte	2                               @ DW_AT_data_member_location
-	.byte	8                               @ Abbrev [8] 0xb9e:0xc DW_TAG_member
-	.long	.Linfo_string79                 @ DW_AT_name
+	.byte	8                               @ Abbrev [8] 0xbdb:0xc DW_TAG_member
+	.long	.Linfo_string82                 @ DW_AT_name
 	.long	397                             @ DW_AT_type
 	.byte	1                               @ DW_AT_decl_file
 	.byte	183                             @ DW_AT_decl_line
 	.byte	3                               @ DW_AT_data_member_location
 	.byte	0                               @ End Of Children Mark
-	.byte	5                               @ Abbrev [5] 0xbab:0x5 DW_TAG_pointer_type
-	.long	2923                            @ DW_AT_type
-	.byte	5                               @ Abbrev [5] 0xbb0:0x5 DW_TAG_pointer_type
+	.byte	5                               @ Abbrev [5] 0xbe8:0x5 DW_TAG_pointer_type
+	.long	2984                            @ DW_AT_type
+	.byte	5                               @ Abbrev [5] 0xbed:0x5 DW_TAG_pointer_type
 	.long	386                             @ DW_AT_type
-	.byte	6                               @ Abbrev [6] 0xbb5:0xb DW_TAG_typedef
+	.byte	6                               @ Abbrev [6] 0xbf2:0xb DW_TAG_typedef
 	.long	78                              @ DW_AT_type
-	.long	.Linfo_string85                 @ DW_AT_name
+	.long	.Linfo_string88                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
 	.byte	147                             @ DW_AT_decl_line
-	.byte	5                               @ Abbrev [5] 0xbc0:0x5 DW_TAG_pointer_type
-	.long	3013                            @ DW_AT_type
-	.byte	41                              @ Abbrev [41] 0xbc5:0x5 DW_TAG_const_type
-	.long	2923                            @ DW_AT_type
-	.byte	42                              @ Abbrev [42] 0xbca:0xc DW_TAG_array_type
+	.byte	5                               @ Abbrev [5] 0xbfd:0x5 DW_TAG_pointer_type
+	.long	3074                            @ DW_AT_type
+	.byte	43                              @ Abbrev [43] 0xc02:0x5 DW_TAG_const_type
+	.long	2984                            @ DW_AT_type
+	.byte	44                              @ Abbrev [44] 0xc07:0xc DW_TAG_array_type
 	.long	397                             @ DW_AT_type
-	.byte	43                              @ Abbrev [43] 0xbcf:0x6 DW_TAG_subrange_type
-	.long	3030                            @ DW_AT_type
+	.byte	45                              @ Abbrev [45] 0xc0c:0x6 DW_TAG_subrange_type
+	.long	3091                            @ DW_AT_type
 	.byte	16                              @ DW_AT_count
 	.byte	0                               @ End Of Children Mark
-	.byte	44                              @ Abbrev [44] 0xbd6:0x7 DW_TAG_base_type
-	.long	.Linfo_string92                 @ DW_AT_name
+	.byte	46                              @ Abbrev [46] 0xc13:0x7 DW_TAG_base_type
+	.long	.Linfo_string95                 @ DW_AT_name
 	.byte	8                               @ DW_AT_byte_size
 	.byte	7                               @ DW_AT_encoding
 	.byte	0                               @ End Of Children Mark
@@ -5356,6 +5527,12 @@ flash_read_otp_sec_page:
 	.long	.Lfunc_end18
 	.long	.Lfunc_begin19
 	.long	.Lfunc_end19
+	.long	.Lfunc_begin20
+	.long	.Lfunc_end20
+	.long	.Lfunc_begin21
+	.long	.Lfunc_end21
+	.long	.Lfunc_begin22
+	.long	.Lfunc_end22
 	.long	0
 	.long	0
 	.section	.debug_str,"MS",%progbits,1
@@ -5510,65 +5687,71 @@ flash_read_otp_sec_page:
 .Linfo_string74:
 	.asciz	"flash_read_otp_sec_page"       @ string offset=1175
 .Linfo_string75:
-	.asciz	"flash_status"                  @ string offset=1199
+	.asciz	"flash_enable_suspend"          @ string offset=1199
 .Linfo_string76:
-	.asciz	"require_mode"                  @ string offset=1212
+	.asciz	"flash_disable_suspend"         @ string offset=1220
 .Linfo_string77:
-	.asciz	"status1"                       @ string offset=1225
+	.asciz	"flash_get_control_reg"         @ string offset=1242
 .Linfo_string78:
-	.asciz	"status2"                       @ string offset=1233
+	.asciz	"flash_status"                  @ string offset=1264
 .Linfo_string79:
-	.asciz	"status3"                       @ string offset=1241
+	.asciz	"require_mode"                  @ string offset=1277
 .Linfo_string80:
-	.asciz	"flash_status_t"                @ string offset=1249
+	.asciz	"status1"                       @ string offset=1290
 .Linfo_string81:
-	.asciz	"status"                        @ string offset=1264
+	.asciz	"status2"                       @ string offset=1298
 .Linfo_string82:
-	.asciz	"read_page_addr"                @ string offset=1271
+	.asciz	"status3"                       @ string offset=1306
 .Linfo_string83:
-	.asciz	"read_addr"                     @ string offset=1286
+	.asciz	"flash_status_t"                @ string offset=1314
 .Linfo_string84:
-	.asciz	"mode"                          @ string offset=1296
+	.asciz	"status"                        @ string offset=1329
 .Linfo_string85:
-	.asciz	"flash_erase_mode_t"            @ string offset=1301
+	.asciz	"read_page_addr"                @ string offset=1336
 .Linfo_string86:
-	.asciz	"flash_addr"                    @ string offset=1320
+	.asciz	"read_addr"                     @ string offset=1351
 .Linfo_string87:
-	.asciz	"write_page_addr"               @ string offset=1331
+	.asciz	"mode"                          @ string offset=1361
 .Linfo_string88:
-	.asciz	"write_addr"                    @ string offset=1347
+	.asciz	"flash_erase_mode_t"            @ string offset=1366
 .Linfo_string89:
-	.asciz	"singlebyte"                    @ string offset=1358
+	.asciz	"flash_addr"                    @ string offset=1385
 .Linfo_string90:
-	.asciz	"write_reg_addr"                @ string offset=1369
+	.asciz	"write_page_addr"               @ string offset=1396
 .Linfo_string91:
-	.asciz	"temp"                          @ string offset=1384
+	.asciz	"write_addr"                    @ string offset=1412
 .Linfo_string92:
-	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=1389
+	.asciz	"singlebyte"                    @ string offset=1423
 .Linfo_string93:
-	.asciz	"flash_id_buf_addr"             @ string offset=1409
+	.asciz	"write_reg_addr"                @ string offset=1434
 .Linfo_string94:
-	.asciz	"buf_length"                    @ string offset=1427
+	.asciz	"temp"                          @ string offset=1449
 .Linfo_string95:
-	.asciz	"ptr"                           @ string offset=1438
+	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=1454
 .Linfo_string96:
-	.asciz	"i"                             @ string offset=1442
+	.asciz	"flash_id_buf_addr"             @ string offset=1474
 .Linfo_string97:
-	.asciz	"flash_type_id"                 @ string offset=1444
+	.asciz	"buf_length"                    @ string offset=1492
 .Linfo_string98:
-	.asciz	"clk_mode"                      @ string offset=1458
+	.asciz	"ptr"                           @ string offset=1503
 .Linfo_string99:
-	.asciz	"tres"                          @ string offset=1467
+	.asciz	"i"                             @ string offset=1507
 .Linfo_string100:
-	.asciz	"tsus"                          @ string offset=1472
+	.asciz	"flash_type_id"                 @ string offset=1509
 .Linfo_string101:
-	.asciz	"trs"                           @ string offset=1477
+	.asciz	"clk_mode"                      @ string offset=1523
 .Linfo_string102:
-	.asciz	"tdp"                           @ string offset=1481
+	.asciz	"tres"                          @ string offset=1532
 .Linfo_string103:
-	.asciz	"sys_clk"                       @ string offset=1485
+	.asciz	"tsus"                          @ string offset=1537
 .Linfo_string104:
-	.asciz	"flash_timing"                  @ string offset=1493
+	.asciz	"trs"                           @ string offset=1542
+.Linfo_string105:
+	.asciz	"tdp"                           @ string offset=1546
+.Linfo_string106:
+	.asciz	"sys_clk"                       @ string offset=1550
+.Linfo_string107:
+	.asciz	"flash_timing"                  @ string offset=1558
 	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals

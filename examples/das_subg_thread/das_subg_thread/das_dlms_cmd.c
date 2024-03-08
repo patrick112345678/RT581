@@ -28,7 +28,9 @@
 #include "cli.h"
 #include <semphr.h>
 #include <time.h>
-//#include "C:\\Users\\testo\\Desktop\\rafel_das_watchdog\\rafael-iot-sdk-das-Release_v1.0.0\\rafael-iot-sdk-das-Release_v1.0.0\\version.h"
+// #include "C:\\Users\\testo\\Desktop\\rafel_das_watchdog\\rafael-iot-sdk-das-Release_v1.0.0\\rafael-iot-sdk-das-Release_v1.0.0\\version.h"
+
+
 //=============================================================================
 //                Private Definitions of const value
 //=============================================================================
@@ -224,10 +226,10 @@ unsigned char flash_test[200] =
     0x00, 0x78,             /*networkid 13~14*/
     0x01, 0x2c,             /*PANid         15~16*/
     0x03,                   /*Channel  17*/
-    0x00, 0x01,             /*send els61 timeout 18~19*/
+    0x00, 0x24,             /*send els61 timeout 18~19*/
     0x00, 0x01,             /*send rf  timeout   20~21*/
     0x00, 0x01,             /*receive timeout    22~23*/
-    0x00, 0x3C,             /*continue timeout      24~25*/
+    0x00, 0x78,             /*continue timeout      24~25*/
     0X0F,                   /*loadprofile        26*/
     0x64, 0x61, 0x73, 0x00, /*server ip                 27~30*/
     0x07, 0xD1, 0x04, 0x64, 0x61, 0x73, 0x38, 0xFF, 0xFF, 0xFF, 0xFF,
@@ -366,7 +368,7 @@ MeterBootSteps meterBootStep = DISC;
 int denominator = 0;
 uint8_t SuccessRole = 0, SENCOND_REGISGER = 1;
 static uint8_t  IPv6Flag = 0, HESKEY = 0, ack_flag = 0/*回傳註冊ack*/, RE_REG = 0;
-
+char Serial_Number[12] = {0x41, 0x43, 0x31, 0x30, 0x31, 0x30, 0x30, 0x30, 0x30, 0x32, 0x33, 0x34};
 static uint8_t FIRST_POWER_ON_FLAG = 1, POWERONDATAREADY = 0;//首次上電 復電buff組裝完成
 static int  flag_loadprofile_it = 0, flag_midnight_it = 0, flag_Alt_it = 0, flag_MAA = 0, flag_event_notification = 0;
 //斷電紀錄 0:上電 1:斷電 15 秒 每小時主動讀loadprofile 午夜12點讀取midnight 每兩小時讀取ALT notification while 只跑一次
@@ -375,10 +377,13 @@ static char ipv6_output[40];
 static char Broadcast_ip[7] = {0x66, 0x66, 0x30, 0x33, 0x3a, 0x3a, 0x31};
 static uint8_t ResetRF_Flag = 0, ResetRFcount = 0;
 uint16_t Register_Timeout = 0;
-static uint16_t receivecount = 0, sendcount = 0, OnDemandReadingcount = 0, MAANO3count = 0, CointbusyCount = 0, BroadcastCount = 0, LastpSendCount = 0, LastpCount = 0;
+static uint16_t receivecount = 0, sendcount = 0, OnDemandReadingcount = 0, MAANO3count = 0, CointbusyCount = 0, BroadcastCount = 0, LastpSendCount = 0;
+static uint16_t RafaelRoleCount = 0;
+static uint16_t PowerResetAnomalyCount = 0;
 static uint8_t PowerOnCount = 0;
 static uint8_t LastpSendFlag = 0;
 static uint8_t GetPowerOnFlag = 0;
+static uint8_t meterBootStepCount = 0;
 typedef enum
 {
     Registerflag,
@@ -604,7 +609,7 @@ static void udf_Rafael_data(uint16_t task_id, uint8_t type, char *meter_data,
         LeaderIp.mFields.m8[15] = 0x00;
     }
     payload_len = 1 + strlen(string) + 1 + 2 + meter_len;
-    log_info("udf_Rafael_data send payload_len = %d", payload_len);
+    log_info("payload_len = %d", payload_len);
     payload = pvPortMalloc(payload_len);
     if (payload)
     {
@@ -788,8 +793,9 @@ static void Power_Off_Function(void)
         {
             udf_Rafael_data(TASK_ID, 0x1c, (char *)&LastpBuffer[0], 3, 4);
         }
-        LastpSendCount = 0;
         LastpSendFlag = 1;
+        LastpSendCount = 0;
+
     }
 }
 
@@ -801,11 +807,23 @@ void user_gpio29_isr_handler(uint32_t pin, void *isr_param)
     {
         flag_Power_Off = 1;
 
+        LastpSendFlag = 0;
+        LastpSendCount = 0;
+        NOT_COMPLETELY_POWER_OFF = 0;
+        GetPowerOnFlag = 0;
+        PowerResetAnomalyCount = 0;
+        PowerOnCount = 0;
     }
     else
     {
         flag_Power_Off = 0;
         NOT_COMPLETELY_POWER_OFF = 1;
+
+        LastpSendFlag = 0;
+        LastpSendCount = 0;
+        GetPowerOnFlag = 0;
+        PowerOnCount = 0;
+        PowerResetAnomalyCount = 0;
     }
 
 }
@@ -903,6 +921,10 @@ void register_command(void)
     {
         register_buff[i] = Meter_ALL_ID[i];
     }
+    for (i = 0; i < 12; i++)
+    {
+        register_buff[26 + i] = Serial_Number[i];
+    }
     udf_Rafael_data(1, 1, &register_buff[0], 3, 38);
 
     register_steps = 2;
@@ -926,7 +948,10 @@ static void Light_controller_function(void)
     }
     else if (MAA_flag == 3  && (target_pos == OT_DEVICE_ROLE_CHILD || target_pos ==  OT_DEVICE_ROLE_ROUTER || target_pos == OT_DEVICE_ROLE_LEADER))
     {
-        gpio_pin_write(14, 1);
+        if (gpio_pin_get(14) == 0 && flag_Power_Off == 0)
+        {
+            gpio_pin_write(14, 1);
+        }
     }
 }
 void Continue_function_timeout_handlr(void)
@@ -1114,6 +1139,7 @@ static void Configuration_Page_init(otInstance *instance)
 {
     printf("\n\rConfiguration_Page \r\n");
     static uint8_t read_buf[0x100];
+    int i;
     uint8_t factory_id_null[10] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
     flash_read_page((uint32_t)(read_buf), ConfigurationPage);
 
@@ -1151,8 +1177,12 @@ static void Configuration_Page_init(otInstance *instance)
     // channel
     Channel_num = Configuration_Page[17];
 #endif
+    for (i = 2; i < 12; i++)
+    {
+        Serial_Number[i] = Configuration_Page[i];
+    }
     // send els61 timeout
-    // sendbusytime = Configuration_Page[18]*256 +  Configuration_Page[19];
+    sendbusytime = Configuration_Page[18] * 256 +  Configuration_Page[19];
 
     // send rf timeout
     RFretrytime = Configuration_Page[20] * 256 + Configuration_Page[21];
@@ -1166,7 +1196,7 @@ static void Configuration_Page_init(otInstance *instance)
     LoadprofileAB = Configuration_Page[26];
 
     ondemandreadingtime = Configuration_Page[96] * 256 + Configuration_Page[97];
-
+    log_info("ondemandreadingtime = %d", ondemandreadingtime);
     keyObtainedStatusIncorrecttimeout = Configuration_Page[138];
 
     registerRetrytime = Configuration_Page[139];
@@ -1201,6 +1231,31 @@ static void _cli_cmd_factory_id_set(int argc, char **argv, cb_shell_out_t log_ou
         printf("\r\n");
     }
 }
+//static void _cli_cmd_factory_id_set(int argc, char **argv, cb_shell_out_t log_out, void *pExtra)
+//{
+//    int i = 0;
+//    printf("save factory id \r\n");
+//    if (argc > 1)
+//    {
+//        printf("factory id : ");
+//        memcpy(&Configuration_Page[2], argv[1], 10);
+//        for (i = 0; i < 10; i++)
+//        {
+//            printf("%02X", Configuration_Page[2 + i]);
+//        }
+//        printf("\r\n");
+//        WriteFlashData(ConfigurationPage, Configuration_Page, 180);
+//    }
+//    else
+//    {
+//        printf("factory id : ");
+//        for (i = 0; i < 10; i++)
+//        {
+//            printf("%02X", Configuration_Page[2 + i]);
+//        }
+//        printf("\r\n");
+//    }
+//}
 static uint8_t fan_number(void)
 {
     char string[OT_IP6_ADDRESS_STRING_SIZE];
@@ -1286,7 +1341,10 @@ static void flashsetfuntion(unsigned char *flashdata)
 {
     int i = 0, j = 0;
     char flashbuffer[151] = {0};
-    ReadFlashData_Normal(ConfigurationPage, Configuration_Page, 142);//0615
+    static uint8_t read_buf[0x100];
+    printf("\n\rflash_get_Configuration_Page(200) = ");
+    flash_read_page((uint32_t)(read_buf), ConfigurationPage);
+    memcpy(Configuration_Page, read_buf, 200);
     printf("\nConfiguration_Page[12] =");
     for (i = 12, j = 0; i <= 26; i++, j++)
     {
@@ -1346,8 +1404,8 @@ static void flashsetfuntion(unsigned char *flashdata)
 
     Broadcastmeterdelay = Configuration_Page[141];
 
-
-    ReadFlashData_Normal(ConfigurationPage, Configuration_Page, 142);//0615
+    flash_read_page((uint32_t)(read_buf), ConfigurationPage);
+    memcpy(Configuration_Page, read_buf, 200);
 
     flashbuffer[0] = 0x01;
     for (i = 0; i < 150; i++)
@@ -1753,10 +1811,7 @@ static void AC_Command(char *recvbuf)
 
 }
 
-static void _cli_cmd_get_queue_status(int argc, char **argv, cb_shell_out_t log_out, void *pExtra)
-{
 
-}
 static void _cli_cmd_get_fan_status(int argc, char **argv, cb_shell_out_t log_out, void *pExtra)
 {
     int i = 0;
@@ -1769,7 +1824,7 @@ static void _cli_cmd_get_fan_status(int argc, char **argv, cb_shell_out_t log_ou
 
     log_info("\r\n%d / %d / %d   %d : %d : %d", (p->tm_year + 1900), (p->tm_mon + 1), p->tm_mday, p->tm_hour, p->tm_min, p->tm_sec );
     log_info("Rafel Thread version                            :      %s", otGetVersionString());
-    //    log_info("Das version                                     :      %s", VERSION);
+    // log_info("Das version                                     :      %s", VERSION);
     printf  ("Role                                            : ");
     switch (target_pos)
     {
@@ -1789,10 +1844,19 @@ static void _cli_cmd_get_fan_status(int argc, char **argv, cb_shell_out_t log_ou
         log_info("     Leader");
         break;
     }
+
     log_info("MAA_flag                                        : %6d ", MAA_flag);
-    if ((target_pos != 4 && target_pos != 2 && target_pos != 3) && (ipv6_output == NULL || ipv6_output[0] == '\0'))
+    if (meterBootStep != Preliminary_Work_Completed)
     {
-        printf("Rafael not receiving status.\r\n");
+        countdown = 10 - meterBootStepCount;
+        countdown = countdown < 0 ? 0 : countdown;
+        log_info("Incomplete acquisition of startup information from the meter. \r\nRestart countdown:                              : %6d      (s)", (int)countdown);
+    }
+    if ((target_pos != 4 && target_pos != 2 && target_pos != 3))
+    {
+        countdown = (Rafael_reset * 60.0) - RafaelRoleCount;
+        countdown = countdown < 0 ? 0 : countdown;
+        log_info("Rafael not receiving status. \r\nResetting countdown timer                       : %6d      (s)", (int)countdown);
     }
     else
     {
@@ -1804,7 +1868,7 @@ static void _cli_cmd_get_fan_status(int argc, char **argv, cb_shell_out_t log_ou
         log_info("The server provided an incorrect key.\n");
     }
 
-    if (MAA_flag == 0 && 　SuccessRole)
+    if (MAA_flag == 0 && SuccessRole)
     {
         log_info("Re-registration in progress. Countdown          : %7d        (s)", (int)Register_Timeout);
     }
@@ -1832,6 +1896,18 @@ static void _cli_cmd_get_fan_status(int argc, char **argv, cb_shell_out_t log_ou
         log_info("====================== Lastp ======================");
         log_info("LastpSendFlag                                   : %6d ", LastpSendFlag);
         log_info("Lastp sending countdown                         : %6d      (s)", (int)countdown);
+        if (PowerResetAnomalyCount > 100)
+        {
+            countdown = 300 - PowerResetAnomalyCount;
+            countdown = countdown < 0 ? 0 : countdown;
+            log_info("When both flag_Power_Off and NOT_COMPLETELY_POWER_OFF flags are present,\r\nreset countdown                                 : %6d      (s)", (int)countdown);
+        }
+        else if (NOT_COMPLETELY_POWER_OFF)
+        {
+            countdown = 300 - PowerResetAnomalyCount;
+            countdown = countdown < 0 ? 0 : countdown;
+            log_info("When both flag_Power_Off and NOT_COMPLETELY_POWER_OFF flags are present,\r\nreset countdown                                 : %6d      (s)", (int)countdown);
+        }
         log_info("===================================================\r\n");
     }
     if (NOT_COMPLETELY_POWER_OFF)
@@ -1844,7 +1920,10 @@ static void _cli_cmd_get_fan_status(int argc, char **argv, cb_shell_out_t log_ou
         log_info("Get Power on event countdown                    : %6d      (s)", (int)countdown);
         log_info("===================================================");
     }
+    if (flag_Power_Off)
+    {
 
+    }
     if (receivebusyflag)
     {
         countdown = receivebusytime * 10 - receivecount;
@@ -1879,22 +1958,8 @@ static void _cli_cmd_get_fan_status(int argc, char **argv, cb_shell_out_t log_ou
     }
     log_info("Receive Queue                                   : %6d / %d", receiveIndex, QUEUE_SIZE);
     log_info("Send Queue                                      : %6d / %d",  sendIndex, QUEUE_SIZE);
-    //      if(testread == 0)
-    //      {
-    //          Broadcast_flag = 1;
-    //          receivebusyflag = 1;
-    //          sendbusyflag = 1;
-    //          On_Demand_Reading_Type = 1;
-    //          CONTINUE_BUSY = 1;
-    //          testread = 1;
-    //          MAA_flag = 1;
-    //      }
-    if (flag_Power_Off && NOT_COMPLETELY_POWER_OFF )
-    {
-        countdown = 300 - ResetRFcount;
-        countdown = countdown < 0 ? 0 : countdown;
-        log_info("When both flag_Power_Off and NOT_COMPLETELY_POWER_OFF flags are present, reset countdown: %d", countdown);
-    }
+
+
     log_info("=============================================================   Flag   =============================================================");
     log_info("receivebusyflag               :%-3d receivebusytime        = %-10d receivecount           = %d", receivebusyflag, (receivebusytime * 10), receivecount);
     log_info("sendbusyflag                  :%-3d sendbusytime           = %-10d sendcount              = %d", sendbusyflag, (sendbusytime * 10), sendcount);
@@ -4177,7 +4242,7 @@ static void udf_Meter_Process(uint8_t *meter_data, uint16_t data_len)
                 if (POWERON_Restart == 1)   //0205 matt
                 {
                     printf("NVIC_SystemReset:4\n\r");
-                    NVIC_SystemReset();
+                    // NVIC_SystemReset();
                 }
 
                 if (MAA_flag == 3)
@@ -4192,7 +4257,7 @@ static void udf_Meter_Process(uint8_t *meter_data, uint16_t data_len)
                     if (Refuse_Command >= 3)
                     {
                         printf("NVIC_SystemReset:5\n\r");
-                        NVIC_SystemReset();
+                        // NVIC_SystemReset();
                     }
 
                     udf_Send_DISC(2);
@@ -4247,12 +4312,13 @@ static void flash_Information(void)
     printf("\n\rflash_get_Configuration_Page(200) = ");
     flash_read_page((uint32_t)(read_buf), ConfigurationPage);
     memcpy(Configuration_Page, read_buf, 200);
-    printf("\nFan ID: ");
-    for (i = 0; i <= 11; i++)
+    printf("\nFan ID                            :  ");
+    for (i = 2; i <= 11; i++)
     {
         printf("%c ", Configuration_Page[i]);
     }
     printf("\n");
+
 #if 0 //use ot dataset command directily
     printf("Leader Weight: %02X\n", Configuration_Page[12]);
     printf("Networkid: ");
@@ -4269,83 +4335,83 @@ static void flash_Information(void)
     printf("\n");
     printf("Channel: %02X\n", Configuration_Page[17]);
 #endif
-    printf("send els61 timeout: ");
+    printf("send els61 timeout                :  ");
     for (i = 18; i <= 19; i++)
     {
         printf("%02X ", Configuration_Page[i]);
     }
-    printf("(10 sec)");
+    printf("   (10 sec)");
     printf("\n");
-    printf("send rf timeout: ");
-    for (i = 20; i <= 21; i++)
-    {
-        printf("%02X ", Configuration_Page[i]);
-    }
-    printf("(10 sec)");
-    printf("\n");
-    printf("receive timeout: ");
+    //    printf("send rf timeout                   :  ");
+    //    for (i = 20; i <= 21; i++)
+    //    {
+    //        printf("%02X ", Configuration_Page[i]);
+    //    }
+    //    printf("   (10 sec)");
+    printf("receive timeout                   :  ");
     for (i = 22; i <= 23; i++)
     {
         printf("%02X ", Configuration_Page[i]);
     }
-    printf("(10 sec)");
+    printf("   (10 sec)");
     printf("\n");
-    printf("continue timeout: ");
+    printf("continue timeout                  :  ");
     for (i = 24; i <= 25; i++)
     {
         printf("%02X ", Configuration_Page[i]);
     }
-    printf("(10 sec)");
+    printf("   (10 sec)");
     printf("\n");
-    printf("A: %02X\n", Configuration_Page[26]);
-    printf("Server IP: ");
-    for (i = 27; i <= 30; i++)
-    {
-        printf("%02X ", Configuration_Page[i]);
-    }
-    printf("\n");
-    printf("Socket port: ");
-    for (i = 31; i <= 32; i++)
-    {
-        printf("%02X ", Configuration_Page[i]);
-    }
-    printf("\n");
-    printf("APN: ");
-    for (i = 33; i <= 47; i++)
-    {
-        printf("%02X ", Configuration_Page[i]);
-    }
-    printf("\n");
-    printf("tpc guk: ");
+    //    printf("A                                : %02X\n", Configuration_Page[26]);
+    //    printf("Server IP: ");
+    //    for (i = 27; i <= 30; i++)
+    //    {
+    //        printf("%02X ", Configuration_Page[i]);
+    //    }
+    //    printf("\n");
+    //    printf("Socket port: ");
+    //    for (i = 31; i <= 32; i++)
+    //    {
+    //        printf("%02X ", Configuration_Page[i]);
+    //    }
+    //    printf("\n");
+    //    printf("APN: ");
+    //    for (i = 33; i <= 47; i++)
+    //    {
+    //        printf("%02X ", Configuration_Page[i]);
+    //    }
+    //    printf("\n");
+    printf("tpc guk                           :  ");
     for (i = 48; i <= 63; i++)
     {
         printf("%02X ", Configuration_Page[i]);
     }
     printf("\n");
-    printf("tpc gcm ak: ");
+    printf("tpc gcm ak                        :  ");
     for (i = 64; i <= 79; i++)
     {
         printf("%02X ", Configuration_Page[i]);
     }
     printf("\n");
-    printf("tpc mkey: ");
+    printf("tpc mkey                          :  ");
     for (i = 80; i <= 95; i++)
     {
         printf("%02X ", Configuration_Page[i]);
     }
     printf("\n");
-    printf("on demandreading timeout: ");
+    printf("on demandreading timeout          :  ");
 
     for (i = 96; i <= 97; i++)
     {
         printf("%02X ", Configuration_Page[i]);
     }
-    printf("(10 sec)");
+    printf("   (10 sec)");
     printf("\n");
 
-    printf("keyObtainedStatusIncorrecttimeout : %d (min)\n", Configuration_Page[138]);
-    printf("registerRetrytime : %d (min)\nRafael_reset :%d (min)\n", Configuration_Page[139], Configuration_Page[140]);
-    printf("Broadcastmeterdelay : %d (MOD)\n", Configuration_Page[141]);
+    printf("keyObtainedStatusIncorrecttimeout : %3d       (min)\n", Configuration_Page[138]);
+    printf("registerRetrytime                 : %3d       (min)\n", Configuration_Page[139]);
+    printf("Rafael_reset                      : %3d       (min)\n", Configuration_Page[140]);
+    printf("Broadcastmeterdelay               : %3d       (MOD)\n", Configuration_Page[141]);
 
 }
 
@@ -4381,7 +4447,10 @@ void udf_Meter_received_task(const uint8_t *aBuf, uint16_t aBufLength)
     }
 }
 
-
+static void _cli_cmd_get_flash(int argc, char **argv, cb_shell_out_t log_out, void *pExtra)
+{
+    flash_Information();
+}
 const sh_cmd_t g_cli_cmd_factoryid STATIC_CLI_CMD_ATTRIBUTE =
 {
     .pCmd_name    = "factoryid",
@@ -4400,9 +4469,9 @@ const sh_cmd_t g_cli_cmd_get_fanstatus STATIC_CLI_CMD_ATTRIBUTE =
 };
 const sh_cmd_t g_cli_cmd_get_queue STATIC_CLI_CMD_ATTRIBUTE =
 {
-    .pCmd_name    = "QueueProcess",
-    .pDescription = "get_queue_status",
-    .cmd_exec     = _cli_cmd_get_queue_status,
+    .pCmd_name    = "getflash",
+    .pDescription = "get_flash",
+    .cmd_exec     = _cli_cmd_get_flash,
 };
 static void udf_Action_Transmit(unsigned char obisTXT[], unsigned char plainTXT[], uint16_t plainTXT_Len, uint32_t frameNum, uint8_t lastNum)
 {
@@ -5039,10 +5108,10 @@ void AAFIRST(void)
     {
         for (i = 0; i < 16; i++)
         {
-            //            tpc_guk[i] = Configuration_Page[i + 48];
-            //            tpc_gcm_ak[i + 1] = Configuration_Page[i + 64];
-            //            tpc_gmac_ak[i + 1] = Configuration_Page[i + 64];
-            //            tpc_mkey[i] = Configuration_Page[i + 80];
+            tpc_guk[i] = Configuration_Page[i + 48];
+            tpc_gcm_ak[i + 1] = Configuration_Page[i + 64];
+            tpc_gmac_ak[i + 1] = Configuration_Page[i + 64];
+            tpc_mkey[i] = Configuration_Page[i + 80];
         }
         MAAFIRST = 1;
         Auto_MAA();
@@ -5050,15 +5119,6 @@ void AAFIRST(void)
 
     }
 }
-//void vResetRFCallback(TimerHandle_t xTimer)
-//{
-//  NVIC_SystemReset();
-//}
-//void vMAAflagCallback(TimerHandle_t xTimer)
-//{
-//  printf("MAA_flag  == 3 \r\n");
-//  MAA_flag = 3;
-//}
 
 
 static void Retry_Register_task(void)
@@ -5088,7 +5148,7 @@ void Rafael_Register(void)
         fan_number();
         ipv6_first = 1;
     }
-    if ((target_pos == 2 || target_pos == 3) && register_steps == 1 && MAA_flag == 0 && SuccessRole == 1)
+    if (meterBootStep == Preliminary_Work_Completed && (target_pos == 2 || target_pos == 3) && register_steps == 1 && MAA_flag == 0 && SuccessRole == 1)
     {
         register_command();
         register_steps = 2;
@@ -5133,7 +5193,6 @@ void Rafael_Register(void)
     }
 
 
-
     if (MAA_flag >= 2 && (target_pos == 2 || target_pos == 3) && ack_flag == 0 && SuccessRole == 1)
     {
         log_info( "ack flag = %d", ack_flag);
@@ -5142,12 +5201,96 @@ void Rafael_Register(void)
 
     //}
 }
+static void udf_Get_continue(void)
+{
+    int i;
+    char strbuf[128];
+    unsigned char cipher[128], tag[16];
+    unsigned short crc16;
+    unsigned char ch;
+    uint8_t pt_len;
+
+    unsigned char cmdbuf[] =
+    {
+        0x7E, 0xA0, 0x26, 0x03, 0x23, 0x13, 0x5F, 0x25, 0xE6, 0xE6, //7E A0 26 03 23 13 5F 25 E6 E6 00 D0 18
+        0x00, 0xD0, 0x18, 0x30,
+        0x00, 0x00, 0x00, 0x05,
+        0xC0, 0x02, 0x44,
+        0x00, 0x00, 0x00, 0x01,
+        0x00, 0xEA, 0xDB, 0x61, 0x8B, 0x34, 0x98, 0x1A, 0xBE, 0x16, 0x66, 0xF2, //tag
+        0xE3, 0x1E, 0x7E
+    }; // 46B
+
+    cmdbuf[23] = (Resume_index >> 8) & 0xFF;
+    cmdbuf[24] = Resume_index & 0xFF;
+
+    // update buffer
+    cmdbuf[16] = (ic_count >> 8) & 0xFF;
+    cmdbuf[17] = ic_count & 0xFF;
+
+    cmdbuf[20] = ((ic_count - 3) % 0x40) + 0x40;
+
+    //  for (i=0; i<10; i++)
+    //      cmdbuf[21+i] = obis_data[i];
+
+    // data encrypt
+    pt_len = cmdbuf[12] - 17;
+
+    for (i = 0; i < 4; i++)
+    {
+        tpc_c_iv[8 + i] = cmdbuf[14 + i];
+    }
+
+    udf_AES_GCM_Encrypt(tpc_dk, tpc_gcm_ak, tpc_c_iv, &cmdbuf[18], &cipher[0], &tag[0], pt_len, 17);
+
+    for (i = 0; i < pt_len; i++) // update cipher to buffer
+    {
+        cmdbuf[18 + i] = cipher[i];
+    }
+
+    for (i = 0; i < 12; i++) // update tag to buffer
+    {
+        cmdbuf[18 + pt_len + i] = tag[i];
+    }
+
+    // CRC
+    crc16 = 0xFFFF;
+    for (i = 1; i < sizeof(cmdbuf) - 3; i++)
+    {
+        ch = cmdbuf[i];
+        crc16 = UpdateCRC16(crc16, ch);
+    }
+
+    crc16 = ~crc16;
+    cmdbuf[sizeof(cmdbuf) - 3] = crc16 & 0xFF;
+    cmdbuf[sizeof(cmdbuf) - 2] = (crc16 >> 8) & 0xFF;
+
+    for (i = 0; i < sizeof(cmdbuf); i++)
+    {
+        printf("%02X ", cmdbuf[i]);
+
+    }
+    printf("\n\r");
+
+    app_uart_data_send(2, cmdbuf, sizeof(cmdbuf));
+
+    Resume_index++;
+}
+
 void vTimerCallback(TimerHandle_t xTimer)
 {
     unsigned char obis_notification_data[] = { 0x07, 0x00, 0x00, 0x63, 0x62, 0x00, 0xFF, 0x02};
     uint8_t RetryRegisterCommand = 0, RegisterFlag = 1, BroadcastFlag = 0, Continue_Flag = 0, ResetFAN_Flag = 0;
     RTC_CNT++;
     now_timer = now_time + RTC_CNT;
+    if (meterBootStep != Preliminary_Work_Completed)
+    {
+        meterBootStepCount++;
+        if (meterBootStepCount > 10)
+        {
+            // NVIC_SystemReset();
+        }
+    }
     if (SuccessRole)
     {
         Rafael_Register();
@@ -5170,20 +5313,38 @@ void vTimerCallback(TimerHandle_t xTimer)
 
     //CONTINUE_BUSY
     Continue_Flag = HandleBusyFlagAndCount(&CONTINUE_BUSY, &CointbusyCount, continuebusytime * 10, 4); //*(10sec)
+    if ((target_pos == 2 || target_pos  == 3) && CONTINUE_BUSY == 1 && STEP_CONTINUE_FLAG == 0 && flag_Power_Off == 0 )
+    {
+        udf_Get_continue();
+        STEP_CONTINUE_FLAG = 1;
+    }
     if (Continue_Flag)
     {
         Continue_function_timeout_handlr();
     }
     //ResetRF_Flag
     ResetFAN_Flag = HandleBusyFlagAndCount(&ResetRF_Flag, &ResetRFcount, 10, 5); //*(10sec)
+
+    if ((target_pos != 4 && target_pos != 2 && target_pos != 3) )
+    {
+        RafaelRoleCount ++;
+        if (RafaelRoleCount >= (Rafael_reset * 60.0))
+        {
+            // NVIC_SystemReset();
+        }
+    }
+    else
+    {
+        RafaelRoleCount = 0;
+    }
     if (ResetFAN_Flag)
     {
-        NVIC_SystemReset();
+        // NVIC_SystemReset();
     }
     if (MAA_flag == 1 || MAA_flag == 2) //300 sec
     {
         MAANO3count ++;
-        if (MAANO3count >= 300)
+        if (MAANO3count >= (keyObtainedStatusIncorrecttimeout * 60))
         {
             sst_flag = 0;
             MAA_flag = 3;
@@ -5201,8 +5362,9 @@ void vTimerCallback(TimerHandle_t xTimer)
     }
     if (flag_Power_Off && LastpSendFlag == 0)
     {
-        if (LastpCount == 0)
+        if (LastpSendCount == 0)
         {
+            log_info("flag_Power_Off = %d LastpSendFlag = %d LastpCount = %d", flag_Power_Off, LastpSendFlag, LastpSendCount);
             printf("GPIO29 Interrupt Triggered\r\nPower OFF\r\n");
         }
         LastpSendCount ++;
@@ -5231,34 +5393,38 @@ void vTimerCallback(TimerHandle_t xTimer)
     if (flag_Power_Off)
     {
 
-        LastpCount++;
-        if (LastpCount >= 300)
+        PowerResetAnomalyCount++;
+        if (PowerResetAnomalyCount >= 300)
         {
             printf("Rapid power cycling causing abnormal state\r\n");
             gpio_pin_write(14, 1);
             gpio_pin_write(15, 1);
             flag_Power_Off = 0;
             LastpSendFlag = 0;
+            LastpSendCount = 0;
             NOT_COMPLETELY_POWER_OFF = 0;
             GetPowerOnFlag = 0;
-            LastpCount = 0;
+            PowerResetAnomalyCount = 0;
+            PowerOnCount = 0;
         }
     }
     else if (NOT_COMPLETELY_POWER_OFF)
     {
 
-        LastpCount++;
+        PowerResetAnomalyCount++;
         gpio_pin_write(14, 1);
         gpio_pin_write(15, 1);
-        if (LastpCount >= 300)
+        if (PowerResetAnomalyCount >= 300)
         {
             printf("Rapid power cycling causing abnormal state\r\n");
             gpio_pin_write(14, 1);
             gpio_pin_write(15, 1);
             LastpSendFlag = 0;
+            LastpSendCount = 0;
             NOT_COMPLETELY_POWER_OFF = 0;
             GetPowerOnFlag = 0;
-            LastpCount = 0;
+            PowerResetAnomalyCount = 0;
+            PowerOnCount = 0;
         }
     }
 
@@ -5287,8 +5453,6 @@ void udf_Meter_init(otInstance *instance)
 
     xTimerStart(das_dlms_timer, 0 );
     setup_gpio29();
-
-    Register_Timeout = 500;
 }
 void evaluate_commandAM1(char *recvbuf, uint16_t len_test)
 {
@@ -5485,8 +5649,6 @@ void evaluate_commandAM1(char *recvbuf, uint16_t len_test)
 
 
     }
-
-
     if (am1buffer)
     {
         vPortFree(am1buffer);

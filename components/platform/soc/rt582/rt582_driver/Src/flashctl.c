@@ -6,7 +6,7 @@
  * @copyright
 *****************************************************************************/
 
-
+#include "project_config.h"
 #include "cm3_mcu.h"
 
 #define FLASH_UNLOCK_PATTER   0x52414254
@@ -90,6 +90,16 @@ uint32_t flash_check_address(uint32_t flash_address, uint32_t length)
  */
 uint32_t flash_read_page(uint32_t buf_addr, uint32_t read_page_addr)
 {
+
+#if LPWR_FLASH_PROTECT_ENABLE==1
+
+    if (flash_protect == TRUE)
+    {
+        return STATUS_INVALID_PARAM;
+    }
+
+#endif
+
     if (flash_check_address(read_page_addr, LENGTH_PAGE) == STATUS_INVALID_PARAM)
     {
         return STATUS_INVALID_PARAM; //invalid addres range
@@ -121,6 +131,14 @@ uint32_t flash_read_page(uint32_t buf_addr, uint32_t read_page_addr)
  */
 uint32_t flash_read_page_syncmode(uint32_t buf_addr, uint32_t read_page_addr)
 {
+#if LPWR_FLASH_PROTECT_ENABLE==1
+
+    if (flash_protect == TRUE)
+    {
+        return STATUS_INVALID_PARAM;
+    }
+#endif
+
     if (flash_check_address(read_page_addr, LENGTH_PAGE) == STATUS_INVALID_PARAM)
     {
         return STATUS_INVALID_PARAM; //invalid addres range
@@ -148,6 +166,13 @@ uint32_t flash_read_page_syncmode(uint32_t buf_addr, uint32_t read_page_addr)
 
 uint8_t flash_read_byte(uint32_t read_addr)
 {
+
+#if LPWR_FLASH_PROTECT_ENABLE==1
+    if (flash_protect == TRUE)
+    {
+        return STATUS_INVALID_PARAM;
+    }
+#endif
     /*this is not a good idea to block function here....*/
     while (flash_check_busy()) {;}
 
@@ -167,6 +192,13 @@ uint8_t flash_read_byte(uint32_t read_addr)
 
 uint32_t flash_read_byte_check_addr(uint32_t *buf_addr, uint32_t read_addr)
 {
+#if LPWR_FLASH_PROTECT_ENABLE==1
+    if (flash_protect == TRUE)
+    {
+        return STATUS_INVALID_PARAM;
+    }
+#endif
+
     if (flash_check_address(read_addr, LENGTH_BYTE) == STATUS_INVALID_PARAM)
     {
         return STATUS_INVALID_PARAM; //invalid addres range
@@ -195,6 +227,13 @@ uint32_t flash_read_byte_check_addr(uint32_t *buf_addr, uint32_t read_addr)
 
 uint32_t flash_erase(flash_erase_mode_t mode, uint32_t flash_addr)
 {
+#if LPWR_FLASH_PROTECT_ENABLE==1
+    if (flash_protect == TRUE)
+    {
+        return STATUS_INVALID_PARAM;
+    }
+#endif
+
     if (mode > FLASH_ERASE_SECURE)
     {
         return STATUS_INVALID_PARAM;
@@ -290,6 +329,14 @@ void flash_set_timing(flash_timing_mode_t *timing_cfg)
 
 uint32_t flash_write_page(uint32_t buf_addr, uint32_t write_page_addr)
 {
+
+#if LPWR_FLASH_PROTECT_ENABLE==1
+    if (flash_protect == TRUE)
+    {
+        return STATUS_INVALID_PARAM;
+    }
+#endif
+
     if (flash_check_address(write_page_addr, LENGTH_PAGE) == STATUS_INVALID_PARAM)
     {
         return STATUS_INVALID_PARAM; //invalid addres range
@@ -318,6 +365,13 @@ uint32_t flash_write_page(uint32_t buf_addr, uint32_t write_page_addr)
 
 uint32_t flash_verify_page(uint32_t read_page_addr)
 {
+#if LPWR_FLASH_PROTECT_ENABLE==1
+    if (flash_protect == TRUE)
+    {
+        return STATUS_INVALID_PARAM;
+    }
+#endif
+
     if (flash_check_address(read_page_addr, LENGTH_PAGE) == STATUS_INVALID_PARAM)
     {
         return STATUS_INVALID_PARAM; //invalid addres range
@@ -343,6 +397,14 @@ uint32_t flash_verify_page(uint32_t read_page_addr)
 
 uint32_t flash_write_byte(uint32_t write_addr, uint8_t singlebyte)
 {
+
+#if LPWR_FLASH_PROTECT_ENABLE==1
+    if (flash_protect == TRUE)
+    {
+        return STATUS_INVALID_PARAM;
+    }
+#endif
+
     if (flash_check_address(write_addr, LENGTH_BYTE) == STATUS_INVALID_PARAM)
     {
         return STATUS_INVALID_PARAM; //invalid addres range
@@ -370,6 +432,13 @@ uint32_t flash_write_byte(uint32_t write_addr, uint8_t singlebyte)
 /*get Flash status register*/
 uint32_t flash_get_status_reg(flash_status_t *status)
 {
+#if LPWR_FLASH_PROTECT_ENABLE==1
+    if (flash_protect == TRUE)
+    {
+        return STATUS_INVALID_PARAM;
+    }
+#endif
+
     /*2022/04/28 add, Device busy. try again.*/
     if (flash_check_busy())
     {
@@ -415,6 +484,13 @@ uint32_t flash_get_status_reg(flash_status_t *status)
 /*set Flash status register*/
 uint32_t flash_set_status_reg(const flash_status_t *status)
 {
+
+#if LPWR_FLASH_PROTECT_ENABLE==1
+    if (flash_protect == TRUE)
+    {
+        return STATUS_INVALID_PARAM;
+    }
+#endif
 
     /*2022/04/28 add, Device busy. try again.*/
     if (flash_check_busy())
@@ -466,6 +542,13 @@ uint32_t flash_write_sec_register(uint32_t buf_addr, uint32_t write_reg_addr)
     /*first we should check write_reg_addr*/
     addr = write_reg_addr >> 12;
 
+#if LPWR_FLASH_PROTECT_ENABLE==1
+    if (flash_protect == TRUE)
+    {
+        return STATUS_INVALID_PARAM;
+    }
+#endif
+
     if ((addr > 3) || (write_reg_addr & 0xFF))
     {
         /*only support 3 secureity register.*/
@@ -501,7 +584,12 @@ uint32_t flash_read_sec_register(uint32_t buf_addr, uint32_t read_reg_addr)
     /*first we should check read_reg_addr*/
     addr = read_reg_addr >> 12;
 
-
+#if LPWR_FLASH_PROTECT_ENABLE==1
+    if (flash_protect == TRUE)
+    {
+        return STATUS_INVALID_PARAM;
+    }
+#endif
     /*2022/04/28 add, Device busy. try again.*/
     if (flash_check_busy())
     {
@@ -543,6 +631,12 @@ uint32_t flash_get_unique_id(uint32_t flash_id_buf_addr, uint32_t buf_length)
     uint32_t  i;
     uint8_t  temp[16], *ptr;
 
+#if LPWR_FLASH_PROTECT_ENABLE==1
+    if (flash_protect == TRUE)
+    {
+        return STATUS_INVALID_PARAM;
+    }
+#endif
 
     if (flash_check_busy())
     {
@@ -641,6 +735,14 @@ void flash_timing_init(void)
 static uint32_t flash_read_otp_sec_register(uint32_t buf_addr, uint32_t read_reg_addr)
 {
     uint32_t  addr;
+
+#if LPWR_FLASH_PROTECT_ENABLE==1
+    if (flash_protect == TRUE)
+    {
+        return STATUS_INVALID_PARAM;
+    }
+#endif
+
     /*first we should check read_reg_addr*/
     addr = read_reg_addr >> 12;
 
@@ -689,4 +791,20 @@ uint32_t flash_read_otp_sec_page(uint32_t buf_addr)
     }
 
     return STATUS_SUCCESS;
+}
+
+
+void flash_enable_suspend(void)
+{
+    FLASH->CONTROL_SET = FLASH->CONTROL_SET | 0x200;
+}
+
+void flash_disable_suspend(void)
+{
+    FLASH->CONTROL_SET = FLASH->CONTROL_SET & ~(0x200);
+}
+
+uint32_t flash_get_control_reg(void)
+{
+    return FLASH->CONTROL_SET;
 }

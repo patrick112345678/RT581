@@ -1185,7 +1185,7 @@ static void nwk_mgm_timer_handler( TimerHandle_t xTimer )
 otError nwk_mgm_init(otInstance *aInstance)
 {
     otError error = OT_ERROR_NONE;
-
+    printf("nwk_mgm_init \r\n");
     do
     {
         memset(&nwk_mgm_resource, 0, sizeof(nwk_mgm_resource));
@@ -1213,5 +1213,6 @@ otError nwk_mgm_init(otInstance *aInstance)
         }
     } while (0);
 
+    printf("nwk_mgm_init error %u \r\n", error);
     return error;
 }

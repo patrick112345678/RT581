@@ -52,6 +52,7 @@ void __app_task_signal(void);
 void app_task (void) ;
 
 /*network_management*/
+otError nwk_mgm_init(otInstance *aInstance);
 void nwk_mgm_neighbor_Change_Callback(otNeighborTableEvent aEvent, const otNeighborTableEntryInfo *aEntryInfo);
 
 /*das_hex_cmd*/
@@ -77,6 +78,7 @@ extern uint8_t SuccessRole, MAA_flag, GreenLight_Flag, flag_Power_Off;
 extern time_t now_time;
 extern uint32_t now_timer, RTC_CNT;
 extern struct tm begin;
+extern uint16_t Register_Timeout;
 /*app uart*/
 void app_uart_init(void);
 int app_uart_data_send(uint8_t u_port, uint8_t *p_data, uint16_t data_len);

@@ -1,5 +1,7 @@
 ./objects/flashctl.o: \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Src\flashctl.c \
+  ..\das_subg_thread\Include\project_config.h \
+  ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\chip_define.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\cm3_mcu.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\chip_define.h \
   C:\Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm3.h \
@@ -21,8 +23,6 @@
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\wdt_reg.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\flashctl_reg.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\flashds.h \
-  ..\das_subg_thread\Include\project_config.h \
-  ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\chip_define.h \
   ..\..\..\components\network\rt569_rf\include\comm_subsystem_ahb_reg.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\qspi_reg.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\dma_reg.h \
@@ -49,4 +49,5 @@
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\sadc.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\comparator.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\swi.h \
-  ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\lpm.h
+  ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\lpm.h \
+  ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\flash_protect.h

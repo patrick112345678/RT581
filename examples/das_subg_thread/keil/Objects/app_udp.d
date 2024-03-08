@@ -70,6 +70,7 @@
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\comparator.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\swi.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\lpm.h \
+  ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\flash_protect.h \
   ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\projdefs.h \
   ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\portable.h \
   ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\deprecated_definitions.h \
@@ -91,4 +92,6 @@
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h \
   ..\..\..\components\utility\utility\Inc\util_log.h \
   ..\..\..\components\utility\log\log_type.h \
-  ..\..\..\components\utility\log\log_cfg.h
+  ..\..\..\components\utility\log\log_cfg.h \
+  ..\..\..\components\utility\cli\Inc\cli.h \
+  ..\..\..\components\utility\cli\Inc\shell.h

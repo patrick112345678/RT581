@@ -250,12 +250,11 @@ _exp_log_out(const char *format, ...)
 static int
 _exp_dump_init(void)
 {
-    UART_T *table[] = {UART0, UART1, UART2};
-    UART_T *pCSR = table[CONFIG_UART_STDIO_PORT];
+    UART_T  *pCSR = (UART_T *)UART0;
 
     pCSR->LCR |= (0x1 << 7);
-    pCSR->DLL = UART_BAUDRATE_Baud2000000 & 0xFF;
-    pCSR->DLM = UART_BAUDRATE_Baud2000000 >> 8;
+    pCSR->DLL = UART_BAUDRATE_Baud115200 & 0xFF;
+    pCSR->DLM = UART_BAUDRATE_Baud115200 >> 8;
     pCSR->LCR &= ~(0x1 << 7);
     pCSR->LCR = 0x3;
     return 0;

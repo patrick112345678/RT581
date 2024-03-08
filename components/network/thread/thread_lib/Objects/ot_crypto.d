@@ -51,6 +51,7 @@
   ..\..\..\platform\soc\rt582\rt582_driver\Inc\comparator.h \
   ..\..\..\platform\soc\rt582\rt582_driver\Inc\swi.h \
   ..\..\..\platform\soc\rt582\rt582_driver\Inc\lpm.h \
+  ..\..\..\platform\soc\rt582\rt582_driver\Inc\flash_protect.h \
   ..\subg_openthread\examples\platforms\openthread-system.h \
   ..\subg_openthread\include\openthread\instance.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h \

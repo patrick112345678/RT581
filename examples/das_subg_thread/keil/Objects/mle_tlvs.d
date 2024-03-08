@@ -57,6 +57,7 @@
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\comparator.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\swi.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\lpm.h \
+  ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\flash_protect.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\config\announce_sender.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\config\backbone_router.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\config\border_agent.h \
@@ -185,6 +186,4 @@
   ..\..\..\components\network\thread\subg_openthread\src\core\common\tlvs.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\meshcop\timestamp.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\common\random.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\thread\link_metrics_tlvs.hpp \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\link_metrics.h \
-  ..\..\..\components\network\thread\subg_openthread\src\core\thread\link_metrics_types.hpp
+  ..\..\..\components\network\thread\subg_openthread\src\core\thread\link_metrics_tlvs.hpp

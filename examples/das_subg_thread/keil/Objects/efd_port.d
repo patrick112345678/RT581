@@ -50,6 +50,7 @@
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\comparator.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\swi.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\lpm.h \
+  ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\flash_protect.h \
   ..\..\..\components\utility\EnhancedFlashDataset\Inc\EnhancedFlashDataset.h \
   ..\..\..\components\utility\EnhancedFlashDataset\Inc\efd_cfg.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stddef.h \

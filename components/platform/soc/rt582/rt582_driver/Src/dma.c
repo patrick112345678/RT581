@@ -8,7 +8,7 @@
 
 #include "cm3_mcu.h"
 
-
+#include "project_config.h"
 
 #define MAX_NUMBER_OF_DMA       4         /*RT58x has 4 DMA channel*/
 

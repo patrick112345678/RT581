@@ -38,16 +38,12 @@
 	.file	18 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/src/core\\meshcop/timestamp.hpp"
 	.file	19 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/src/core\\meshcop/meshcop_tlvs.hpp"
 	.file	20 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/src/core\\thread/lowpan.hpp"
-	.file	21 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/src/core\\thread/link_metrics_tlvs.hpp"
-	.file	22 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/src/core\\thread/mle_tlvs.hpp"
-	.file	23 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/src/core\\thread/thread_tlvs.hpp"
-	.file	24 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/src/core\\thread/network_data_tlvs.hpp"
-	.file	25 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/src/core\\net/dhcp6.hpp"
-	.file	26 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/src/core\\net/ip4_types.hpp"
-	.file	27 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/src/core\\net/dns_types.hpp"
-	.file	28 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/src/core\\net/sntp_client.hpp"
-	.file	29 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/src/core\\thread/network_data_service.hpp"
-	.file	30 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/src/core\\thread/network_diagnostic_tlvs.hpp"
+	.file	21 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/src/core\\thread/mle_tlvs.hpp"
+	.file	22 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/src/core\\thread/thread_tlvs.hpp"
+	.file	23 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/src/core\\thread/network_data_tlvs.hpp"
+	.file	24 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/src/core\\net/ip4_types.hpp"
+	.file	25 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/src/core\\thread/network_data_service.hpp"
+	.file	26 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/src/core\\thread/network_diagnostic_tlvs.hpp"
 	.section	.debug_abbrev,"",%progbits
 	.byte	1                               @ Abbreviation Code
 	.byte	17                              @ DW_TAG_compile_unit
@@ -452,7 +448,7 @@
 	.short	4                               @ DWARF version number
 	.long	.debug_abbrev                   @ Offset Into Abbrev. Section
 	.byte	4                               @ Address Size (in bytes)
-	.byte	1                               @ Abbrev [1] 0xb:0x1c3f DW_TAG_compile_unit
+	.byte	1                               @ Abbrev [1] 0xb:0x1bfd DW_TAG_compile_unit
 	.long	.Linfo_string0                  @ DW_AT_producer
 	.short	26                              @ DW_AT_language
 	.long	.Linfo_string1                  @ DW_AT_name
@@ -3899,7 +3895,7 @@
 	.byte	9                               @ DW_AT_decl_file
 	.short	269                             @ DW_AT_decl_line
 	.long	6662                            @ DW_AT_import
-	.byte	28                              @ Abbrev [28] 0x1a1f:0x214 DW_TAG_namespace
+	.byte	28                              @ Abbrev [28] 0x1a1f:0x1d2 DW_TAG_namespace
 	.long	.Linfo_string253                @ DW_AT_name
 	.byte	28                              @ Abbrev [28] 0x1a24:0xbe DW_TAG_namespace
 	.long	.Linfo_string254                @ DW_AT_name
@@ -3936,7 +3932,7 @@
                                         @ DW_AT_declaration
                                         @ DW_AT_external
 	.byte	6                               @ Abbrev [6] 0x1a67:0x5 DW_TAG_formal_parameter
-	.long	7226                            @ DW_AT_type
+	.long	7160                            @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	32                              @ Abbrev [32] 0x1a6d:0x16 DW_TAG_subprogram
 	.long	.Linfo_string273                @ DW_AT_linkage_name
@@ -3948,7 +3944,7 @@
 	.byte	6                               @ Abbrev [6] 0x1a78:0x5 DW_TAG_formal_parameter
 	.long	186                             @ DW_AT_type
 	.byte	6                               @ Abbrev [6] 0x1a7d:0x5 DW_TAG_formal_parameter
-	.long	7236                            @ DW_AT_type
+	.long	7170                            @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	0                               @ End Of Children Mark
 	.byte	28                              @ Abbrev [28] 0x1a84:0x5d DW_TAG_namespace
@@ -3984,7 +3980,7 @@
                                         @ DW_AT_declaration
                                         @ DW_AT_external
 	.byte	6                               @ Abbrev [6] 0x1ac3:0x5 DW_TAG_formal_parameter
-	.long	7226                            @ DW_AT_type
+	.long	7160                            @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	33                              @ Abbrev [33] 0x1ac9:0x17 DW_TAG_subprogram
 	.long	.Linfo_string265                @ DW_AT_linkage_name
@@ -3996,7 +3992,7 @@
 	.byte	6                               @ Abbrev [6] 0x1ad5:0x5 DW_TAG_formal_parameter
 	.long	186                             @ DW_AT_type
 	.byte	6                               @ Abbrev [6] 0x1ada:0x5 DW_TAG_formal_parameter
-	.long	7236                            @ DW_AT_type
+	.long	7170                            @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	0                               @ End Of Children Mark
 	.byte	0                               @ End Of Children Mark
@@ -4087,115 +4083,79 @@
 	.byte	71                              @ DW_AT_decl_line
 	.long	6702                            @ DW_AT_import
 	.byte	0                               @ End Of Children Mark
-	.byte	28                              @ Abbrev [28] 0x1b7e:0xd DW_TAG_namespace
+	.byte	28                              @ Abbrev [28] 0x1b7e:0x14 DW_TAG_namespace
 	.long	.Linfo_string275                @ DW_AT_name
 	.byte	29                              @ Abbrev [29] 0x1b83:0x7 DW_TAG_imported_declaration
+	.byte	21                              @ DW_AT_decl_file
+	.byte	52                              @ DW_AT_decl_line
+	.long	6702                            @ DW_AT_import
+	.byte	29                              @ Abbrev [29] 0x1b8a:0x7 DW_TAG_imported_declaration
 	.byte	21                              @ DW_AT_decl_file
 	.byte	53                              @ DW_AT_decl_line
 	.long	6723                            @ DW_AT_import
 	.byte	0                               @ End Of Children Mark
-	.byte	28                              @ Abbrev [28] 0x1b8b:0x14 DW_TAG_namespace
-	.long	.Linfo_string276                @ DW_AT_name
-	.byte	29                              @ Abbrev [29] 0x1b90:0x7 DW_TAG_imported_declaration
+	.byte	29                              @ Abbrev [29] 0x1b92:0x7 DW_TAG_imported_declaration
 	.byte	22                              @ DW_AT_decl_file
-	.byte	52                              @ DW_AT_decl_line
-	.long	6702                            @ DW_AT_import
-	.byte	29                              @ Abbrev [29] 0x1b97:0x7 DW_TAG_imported_declaration
-	.byte	22                              @ DW_AT_decl_file
-	.byte	53                              @ DW_AT_decl_line
-	.long	6723                            @ DW_AT_import
-	.byte	0                               @ End Of Children Mark
-	.byte	29                              @ Abbrev [29] 0x1b9f:0x7 DW_TAG_imported_declaration
-	.byte	23                              @ DW_AT_decl_file
 	.byte	49                              @ DW_AT_decl_line
 	.long	6702                            @ DW_AT_import
-	.byte	29                              @ Abbrev [29] 0x1ba6:0x7 DW_TAG_imported_declaration
-	.byte	23                              @ DW_AT_decl_file
+	.byte	29                              @ Abbrev [29] 0x1b99:0x7 DW_TAG_imported_declaration
+	.byte	22                              @ DW_AT_decl_file
 	.byte	50                              @ DW_AT_decl_line
 	.long	6723                            @ DW_AT_import
-	.byte	28                              @ Abbrev [28] 0x1bad:0x28 DW_TAG_namespace
-	.long	.Linfo_string277                @ DW_AT_name
-	.byte	29                              @ Abbrev [29] 0x1bb2:0x7 DW_TAG_imported_declaration
-	.byte	24                              @ DW_AT_decl_file
+	.byte	28                              @ Abbrev [28] 0x1ba0:0x28 DW_TAG_namespace
+	.long	.Linfo_string276                @ DW_AT_name
+	.byte	29                              @ Abbrev [29] 0x1ba5:0x7 DW_TAG_imported_declaration
+	.byte	23                              @ DW_AT_decl_file
 	.byte	51                              @ DW_AT_decl_line
 	.long	6702                            @ DW_AT_import
-	.byte	29                              @ Abbrev [29] 0x1bb9:0x7 DW_TAG_imported_declaration
-	.byte	24                              @ DW_AT_decl_file
+	.byte	29                              @ Abbrev [29] 0x1bac:0x7 DW_TAG_imported_declaration
+	.byte	23                              @ DW_AT_decl_file
 	.byte	52                              @ DW_AT_decl_line
 	.long	6723                            @ DW_AT_import
-	.byte	28                              @ Abbrev [28] 0x1bc0:0x14 DW_TAG_namespace
-	.long	.Linfo_string282                @ DW_AT_name
-	.byte	29                              @ Abbrev [29] 0x1bc5:0x7 DW_TAG_imported_declaration
-	.byte	29                              @ DW_AT_decl_file
+	.byte	28                              @ Abbrev [28] 0x1bb3:0x14 DW_TAG_namespace
+	.long	.Linfo_string278                @ DW_AT_name
+	.byte	29                              @ Abbrev [29] 0x1bb8:0x7 DW_TAG_imported_declaration
+	.byte	25                              @ DW_AT_decl_file
 	.byte	53                              @ DW_AT_decl_line
 	.long	6702                            @ DW_AT_import
-	.byte	29                              @ Abbrev [29] 0x1bcc:0x7 DW_TAG_imported_declaration
-	.byte	29                              @ DW_AT_decl_file
+	.byte	29                              @ Abbrev [29] 0x1bbf:0x7 DW_TAG_imported_declaration
+	.byte	25                              @ DW_AT_decl_file
 	.byte	54                              @ DW_AT_decl_line
 	.long	6723                            @ DW_AT_import
 	.byte	0                               @ End Of Children Mark
 	.byte	0                               @ End Of Children Mark
-	.byte	28                              @ Abbrev [28] 0x1bd5:0x14 DW_TAG_namespace
-	.long	.Linfo_string278                @ DW_AT_name
-	.byte	29                              @ Abbrev [29] 0x1bda:0x7 DW_TAG_imported_declaration
-	.byte	25                              @ DW_AT_decl_file
-	.byte	51                              @ DW_AT_decl_line
-	.long	6702                            @ DW_AT_import
-	.byte	29                              @ Abbrev [29] 0x1be1:0x7 DW_TAG_imported_declaration
-	.byte	25                              @ DW_AT_decl_file
-	.byte	52                              @ DW_AT_decl_line
-	.long	6723                            @ DW_AT_import
-	.byte	0                               @ End Of Children Mark
-	.byte	28                              @ Abbrev [28] 0x1be9:0x14 DW_TAG_namespace
-	.long	.Linfo_string279                @ DW_AT_name
-	.byte	29                              @ Abbrev [29] 0x1bee:0x7 DW_TAG_imported_declaration
-	.byte	26                              @ DW_AT_decl_file
+	.byte	28                              @ Abbrev [28] 0x1bc8:0x14 DW_TAG_namespace
+	.long	.Linfo_string277                @ DW_AT_name
+	.byte	29                              @ Abbrev [29] 0x1bcd:0x7 DW_TAG_imported_declaration
+	.byte	24                              @ DW_AT_decl_file
 	.byte	68                              @ DW_AT_decl_line
 	.long	6702                            @ DW_AT_import
-	.byte	29                              @ Abbrev [29] 0x1bf5:0x7 DW_TAG_imported_declaration
-	.byte	26                              @ DW_AT_decl_file
+	.byte	29                              @ Abbrev [29] 0x1bd4:0x7 DW_TAG_imported_declaration
+	.byte	24                              @ DW_AT_decl_file
 	.byte	69                              @ DW_AT_decl_line
 	.long	6723                            @ DW_AT_import
 	.byte	0                               @ End Of Children Mark
-	.byte	28                              @ Abbrev [28] 0x1bfd:0x14 DW_TAG_namespace
-	.long	.Linfo_string280                @ DW_AT_name
-	.byte	29                              @ Abbrev [29] 0x1c02:0x7 DW_TAG_imported_declaration
-	.byte	27                              @ DW_AT_decl_file
-	.byte	62                              @ DW_AT_decl_line
-	.long	6702                            @ DW_AT_import
-	.byte	29                              @ Abbrev [29] 0x1c09:0x7 DW_TAG_imported_declaration
-	.byte	27                              @ DW_AT_decl_file
-	.byte	63                              @ DW_AT_decl_line
-	.long	6723                            @ DW_AT_import
-	.byte	0                               @ End Of Children Mark
-	.byte	28                              @ Abbrev [28] 0x1c11:0xd DW_TAG_namespace
-	.long	.Linfo_string281                @ DW_AT_name
-	.byte	29                              @ Abbrev [29] 0x1c16:0x7 DW_TAG_imported_declaration
-	.byte	28                              @ DW_AT_decl_file
-	.byte	52                              @ DW_AT_decl_line
-	.long	6723                            @ DW_AT_import
-	.byte	0                               @ End Of Children Mark
-	.byte	28                              @ Abbrev [28] 0x1c1e:0x14 DW_TAG_namespace
-	.long	.Linfo_string283                @ DW_AT_name
-	.byte	29                              @ Abbrev [29] 0x1c23:0x7 DW_TAG_imported_declaration
-	.byte	30                              @ DW_AT_decl_file
+	.byte	28                              @ Abbrev [28] 0x1bdc:0x14 DW_TAG_namespace
+	.long	.Linfo_string279                @ DW_AT_name
+	.byte	29                              @ Abbrev [29] 0x1be1:0x7 DW_TAG_imported_declaration
+	.byte	26                              @ DW_AT_decl_file
 	.byte	55                              @ DW_AT_decl_line
 	.long	6702                            @ DW_AT_import
-	.byte	29                              @ Abbrev [29] 0x1c2a:0x7 DW_TAG_imported_declaration
-	.byte	30                              @ DW_AT_decl_file
+	.byte	29                              @ Abbrev [29] 0x1be8:0x7 DW_TAG_imported_declaration
+	.byte	26                              @ DW_AT_decl_file
 	.byte	56                              @ DW_AT_decl_line
 	.long	6723                            @ DW_AT_import
 	.byte	0                               @ End Of Children Mark
 	.byte	0                               @ End Of Children Mark
-	.byte	29                              @ Abbrev [29] 0x1c33:0x7 DW_TAG_imported_declaration
+	.byte	29                              @ Abbrev [29] 0x1bf1:0x7 DW_TAG_imported_declaration
 	.byte	11                              @ DW_AT_decl_file
 	.byte	50                              @ DW_AT_decl_line
 	.long	6702                            @ DW_AT_import
-	.byte	7                               @ Abbrev [7] 0x1c3a:0x5 DW_TAG_pointer_type
-	.long	7231                            @ DW_AT_type
-	.byte	8                               @ Abbrev [8] 0x1c3f:0x5 DW_TAG_const_type
+	.byte	7                               @ Abbrev [7] 0x1bf8:0x5 DW_TAG_pointer_type
+	.long	7165                            @ DW_AT_type
+	.byte	8                               @ Abbrev [8] 0x1bfd:0x5 DW_TAG_const_type
 	.long	134                             @ DW_AT_type
-	.byte	7                               @ Abbrev [7] 0x1c44:0x5 DW_TAG_pointer_type
+	.byte	7                               @ Abbrev [7] 0x1c02:0x5 DW_TAG_pointer_type
 	.long	134                             @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 .Ldebug_info_end0:
@@ -4751,23 +4711,15 @@
 .Linfo_string274:
 	.asciz	"Lowpan"                        @ string offset=3113
 .Linfo_string275:
-	.asciz	"LinkMetrics"                   @ string offset=3120
+	.asciz	"Mle"                           @ string offset=3120
 .Linfo_string276:
-	.asciz	"Mle"                           @ string offset=3132
+	.asciz	"NetworkData"                   @ string offset=3124
 .Linfo_string277:
-	.asciz	"NetworkData"                   @ string offset=3136
+	.asciz	"Ip4"                           @ string offset=3136
 .Linfo_string278:
-	.asciz	"Dhcp6"                         @ string offset=3148
+	.asciz	"Service"                       @ string offset=3140
 .Linfo_string279:
-	.asciz	"Ip4"                           @ string offset=3154
-.Linfo_string280:
-	.asciz	"Dns"                           @ string offset=3158
-.Linfo_string281:
-	.asciz	"Sntp"                          @ string offset=3162
-.Linfo_string282:
-	.asciz	"Service"                       @ string offset=3167
-.Linfo_string283:
-	.asciz	"NetworkDiagnostic"             @ string offset=3175
+	.asciz	"NetworkDiagnostic"             @ string offset=3148
 	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.ARM_attribute	16, 1	@ Tag_AV_eba

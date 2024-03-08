@@ -58,7 +58,7 @@ static QueueHandle_t g_rf_evt_handle;
 static SemaphoreHandle_t xSemaphore = NULL;
 static StaticSemaphore_t xSemaphoreBuffer;
 
-static uint8_t g_event_buffer[384], g_rx_data[384];
+static uint8_t g_event_buffer[384], g_rx_data[1024];
 static hosal_rf_callback_t g_pci_rx_done_cb = NULL;
 static hosal_rf_callback_t g_pci_tx_done_cb = NULL;
 static hosal_rf_callback_t g_hci_evt_cb = NULL;

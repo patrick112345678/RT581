@@ -538,6 +538,12 @@ void Sadc_Compensation_Init(uint32_t xPeriodicTimeInSec);
  */
 void Sadc_Compensation_Deinit(void);
 
+
+
+void Sadc_Config_Enable_Vbat(sadc_config_resolution_t res, sadc_config_oversample_t os, sadc_isr_handler_t sadc_int_callback);
+uint32_t Sadc_Channel_Read_Vbat(sadc_input_ch_t ch);
+uint32_t Sadc_Init_vBAT(sadc_config_t *p_config, sadc_isr_handler_t sadc_int_callback);
+void Sadc_Compensation_vbat_Init(uint32_t xPeriodicTimeInSec);
 #endif
 
 #endif /* end of _SADC_H_ */

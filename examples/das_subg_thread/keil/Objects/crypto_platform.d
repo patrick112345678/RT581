@@ -56,6 +56,7 @@
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\comparator.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\swi.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\lpm.h \
+  ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\flash_protect.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\config\announce_sender.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\config\backbone_router.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\config\border_agent.h \
@@ -288,10 +289,8 @@
   ..\..\..\components\network\thread\subg_openthread\src\core\mac\data_poll_handler.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\thread\src_match_controller.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\thread\link_metrics.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\thread\link_metrics_tlvs.hpp \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\link_metrics.h \
-  ..\..\..\components\network\thread\subg_openthread\src\core\thread\link_metrics_types.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\thread\mle_tlvs.hpp \
+  ..\..\..\components\network\thread\subg_openthread\src\core\thread\link_metrics_tlvs.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\thread\radio_selector.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\thread\mle.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\crypto\aes_ccm.hpp \
@@ -315,21 +314,14 @@
   ..\..\..\components\network\thread\subg_openthread\src\core\net\dhcp6_client.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\net\dhcp6_server.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\net\dns_client.hpp \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\dns_client.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\dns.h \
-  ..\..\..\components\network\thread\subg_openthread\src\core\net\dns_types.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\appender.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\net\ip4_types.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\net\dns_dso.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\net\dnssd_server.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\net\ip6_filter.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\net\nat64_translator.hpp \
+  ..\..\..\components\network\thread\subg_openthread\src\core\net\ip4_types.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\net\nd_agent.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\net\sntp_client.hpp \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\sntp.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\net\srp_client.hpp \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\srp_client.h \
-  ..\..\..\components\network\thread\subg_openthread\src\core\thread\network_data_service.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\net\srp_server.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\thread\address_resolver.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\thread\announce_begin_server.hpp \
@@ -346,6 +338,7 @@
   ..\..\..\components\network\thread\subg_openthread\src\core\thread\network_data_local.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\thread\network_data_notifier.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\thread\network_data_publisher.hpp \
+  ..\..\..\components\network\thread\subg_openthread\src\core\thread\network_data_service.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\thread\network_diagnostic.hpp \
   ..\..\..\components\network\thread\subg_openthread\include\openthread\netdiag.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\thread\network_diagnostic_tlvs.hpp \
@@ -361,6 +354,5 @@
   ..\..\..\components\network\thread\subg_openthread\src\core\utils\ping_sender.hpp \
   ..\..\..\components\network\thread\subg_openthread\include\openthread\ping_sender.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\utils\srp_client_buffers.hpp \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\srp_client_buffers.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\common\new.hpp \
   ..\..\..\components\network\thread\subg_openthread\src\core\config\crypto.h

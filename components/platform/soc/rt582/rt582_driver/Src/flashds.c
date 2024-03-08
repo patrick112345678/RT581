@@ -8,31 +8,42 @@
 #include <stdio.h>
 #include <string.h>
 #include "cm3_mcu.h"
+#include "mp_sector.h"
 
-static ds_info_t  dsinfo;
+static volatile ds_t                                    ds_record_table[DS_TABLE_TYPE_MAX];
+static volatile ds_info_t                                   dsinfo;
+static uint32_t ds_end_address = 0;
 
-uint32_t ds_initinal(uint32_t start_addr, uint32_t end_addr, uint32_t size)
+uint32_t ds_initinal(ds_config_t ds_init)
 {
-    uint8_t page_size = 0;
+    uint32_t page_size = 0, status;
 
-    if ((end_addr > DS_END_ADDRESS) || (start_addr < DS_START_ADDRESS))
+    status = ds_load_page_end_address_max();
+
+    if (status != STATUS_SUCCESS)
+    {
+        dsinfo.invaild = DS_INVAILD;
+        return status;
+    }
+
+    if ((ds_init.end_address > ds_end_address) || (ds_init.end_address < ds_init.start_address))
     {
         dsinfo.invaild = DS_INVAILD;
         return STATUS_INVALID_PARAM;
     }
 
-    page_size = (end_addr - start_addr) / size;
+    dsinfo.page_number = (ds_init.end_address - ds_init.start_address) / DATA_PAGE_SIZE_4K;
 
-    if (page_size != DS_PAGE_MAX)
+    if ((dsinfo.page_number == DS_PAGE_0) || (dsinfo.page_number % 2) != DS_PAGE_0)
     {
         dsinfo.invaild = DS_INVAILD;
         return STATUS_INVALID_PARAM;
     }
 
-    dsinfo.start_address = start_addr;
-    dsinfo.end_address = end_addr;
-    dsinfo.page_size = size;
-    dsinfo.page_number = ((start_addr - end_addr) / size) >> 1;
+    page_size = (ds_init.end_address - ds_init.start_address) >> 1;
+    dsinfo.start_address = ds_init.start_address;
+    dsinfo.end_address = ds_init.end_address;
+    dsinfo.middle_address = ds_init.start_address + page_size;
 
     ds_pagex_check();
 
@@ -42,103 +53,107 @@ uint32_t ds_initinal(uint32_t start_addr, uint32_t end_addr, uint32_t size)
 
 uint32_t ds_pagex_check()
 {
+
     uint32_t page1_satatus, page2_satatus, satatus = STATUS_SUCCESS;
     uint32_t ds_page1_addr = dsinfo.start_address;
-    uint32_t ds_page2_addr = (dsinfo.start_address + dsinfo.page_size);
+    uint32_t ds_page2_addr = dsinfo.middle_address;
+
     uint32_t ds_page1_sn, ds_page2_sn;
     ds_search_t ds_search_pagex;
-    ds_t    *dspack1, *dspack2;
-
 
     ds_search_pagex.address = ds_page1_addr;
+    ds_search_pagex.end_address = dsinfo.middle_address;
     ds_search_pagex.offset = DS_START_OFFSET;
     ds_search_pagex.type = DS_VAILD_TYPE;
+    ds_search_pagex.flag = DS_VAILD_TYPE_SEARCH;
 
     page1_satatus = ds_erase_check(&ds_search_pagex);
 
     ds_search_pagex.address = ds_page2_addr;
+    ds_search_pagex.end_address = dsinfo.end_address;
+
     page2_satatus = ds_erase_check(&ds_search_pagex);
 
-
-    if ((page1_satatus == STATUS_SUCCESS) && (page2_satatus == STATUS_SUCCESS))                   //Page1 and Page 2 All 0xFF
+    if ((page1_satatus == STATUS_SUCCESS) && (page2_satatus == STATUS_SUCCESS))                 //Page1 and Page 2 All 0xFF
     {
-        dsinfo.current_page = DS_PAGE_1;
+        dsinfo.current_page = DS_PAGE_0;
         dsinfo.current_offset = DS_START_OFFSET;
         dsinfo.current_address = ds_page1_addr;
         dsinfo.current_sn = DS_SERAIL_NUMBER_START;
     }
-    else if ((page1_satatus != STATUS_SUCCESS) && (page2_satatus == STATUS_SUCCESS))              //Page2 All 0xFF,Page1 has record data
+    else if ((page1_satatus != STATUS_SUCCESS) && (page2_satatus == STATUS_SUCCESS))            //Page2 All 0xFF,Page1 has record data
     {
-        satatus = ds_page_vaild_address(ds_page1_addr, dspack1);                                                //check page 1 data
+        satatus = ds_page_vaild_address(ds_page1_addr);                                         //check page 1 data
+        dsinfo.current_sn += 1;
 
-        if (satatus == STATUS_INVALID_PARAM)                                                                                            //Page1 invaild data
+        if (satatus != STATUS_SUCCESS)                                                          //Page1 invaild data
         {
-            dsinfo.current_page = DS_PAGE_2;
+            dsinfo.current_page = DS_PAGE_1;
             dsinfo.current_offset = DS_START_OFFSET;
             dsinfo.current_address = ds_page2_addr;
+            ds_migration(DS_PAGE_0);
+            ds_migration_erase(DS_PAGE_0);
+        }
+    }
+    else if ((page1_satatus == STATUS_SUCCESS) && (page2_satatus != STATUS_SUCCESS))             //Page1 All 0xFF, Page2 has record data
+    {
+        satatus = ds_page_vaild_address(ds_page2_addr);                                          //check page 1 data
+        dsinfo.current_sn += 1;
+
+        if (satatus != STATUS_SUCCESS)                                                           //Page2 invaild data
+        {
+            dsinfo.current_page = DS_PAGE_0;
+            dsinfo.current_offset = DS_START_OFFSET;
+            dsinfo.current_address = ds_page1_addr;
             ds_migration(DS_PAGE_1);
             ds_migration_erase(DS_PAGE_1);
         }
     }
-    else if ((page1_satatus == STATUS_SUCCESS) && (page2_satatus != STATUS_SUCCESS))                  //Page1 All 0xFF, Page2 has record data
-    {
-        satatus = ds_page_vaild_address(ds_page2_addr, dspack2);                                                //check page 1 data
-
-        if (satatus == STATUS_INVALID_PARAM)                                                                                            //Page2 invaild data
-        {
-            dsinfo.current_page = DS_PAGE_1;
-            dsinfo.current_offset = DS_START_OFFSET;
-            dsinfo.current_address = ds_page1_addr;
-            ds_migration(DS_PAGE_2);
-            ds_migration_erase(DS_PAGE_2);
-        }
-    }
     else
     {
-        page1_satatus = ds_page_vaild_address(ds_page1_addr, dspack1);
+        page1_satatus = ds_page_vaild_address(ds_page1_addr);
         ds_page1_sn = dsinfo.current_sn;
 
-        page2_satatus = ds_page_vaild_address(ds_page2_addr, dspack2);
+        page2_satatus = ds_page_vaild_address(ds_page2_addr);
         ds_page2_sn = dsinfo.current_sn;
 
-        if ((page1_satatus == STATUS_SUCCESS) && (page2_satatus == STATUS_SUCCESS)) //all page data is okay
+        dsinfo.current_sn += 1;
+
+        if ((page1_satatus == STATUS_SUCCESS) && (page2_satatus == STATUS_SUCCESS))             //All page data is okay
         {
             if (ds_page1_sn > ds_page2_sn)
             {
-                ds_migration_erase(DS_PAGE_2);
-                ds_migration(DS_PAGE_1);
+                ds_page_vaild_address(ds_page1_addr);
                 ds_migration_erase(DS_PAGE_1);
-                ds_page_vaild_address(ds_page2_addr, dspack2);
+                ds_migration(DS_PAGE_0);
+                ds_migration_erase(DS_PAGE_0);
+                ds_page_vaild_address(ds_page2_addr);
             }
             else
             {
+                ds_page_vaild_address(ds_page2_addr);
+                ds_migration_erase(DS_PAGE_0);
+                ds_migration(DS_PAGE_1);
                 ds_migration_erase(DS_PAGE_1);
-                ds_migration(DS_PAGE_2);
-                ds_migration_erase(DS_PAGE_2);
-                ds_page_vaild_address(ds_page1_addr, dspack1);
+                ds_page_vaild_address(ds_page1_addr);
             }
-
         }
         else if ((page1_satatus == STATUS_INVALID_PARAM) && (page2_satatus == STATUS_SUCCESS))
         {
-            ds_migration_erase(DS_PAGE_1);
-            dsinfo.current_page = DS_PAGE_2;
+            ds_migration_erase(DS_PAGE_0);
+            dsinfo.current_page = DS_PAGE_1;
         }
         else if ((page1_satatus == STATUS_SUCCESS) && (page2_satatus == STATUS_INVALID_PARAM))
         {
-            ds_migration_erase(DS_PAGE_2);
-            dsinfo.current_page = DS_PAGE_1;
+            ds_migration_erase(DS_PAGE_1);
+            dsinfo.current_page = DS_PAGE_0;
         }
         else if ((page1_satatus == STATUS_INVALID_PARAM) && (page2_satatus == STATUS_INVALID_PARAM))
         {
-            ds_migration_erase(DS_PAGE_1);
-            ds_migration_erase(DS_PAGE_2);
-            dsinfo.current_page = DS_PAGE_1;
-            dsinfo.current_offset = DS_START_OFFSET;
-            dsinfo.current_address = ds_page1_addr;
-            dsinfo.current_sn = 1;
+            ds_reset_to_default();
         }
     }
+
 
     return STATUS_SUCCESS;
 }
@@ -146,12 +161,16 @@ uint32_t ds_pagex_check()
 
 uint32_t ds_erase_check(ds_search_t *ds_search)
 {
-    uint32_t i, j;
     uint8_t dsbufP1[DS_DATA_CHECK_SIZE];
+    uint32_t i, j;
+    uint32_t end_address, start_address;
 
-    for (i = 0; i < dsinfo.page_size; i += DS_DATA_CHECK_SIZE)
+    end_address = ds_search->end_address;
+    start_address = ds_search->address;
+
+    for (i = start_address; i < end_address; i += DS_DATA_CHECK_SIZE)
     {
-        flash_read_page((uint32_t)dsbufP1, (ds_search->address + i));
+        flash_read_page((uint32_t)dsbufP1, i);
 
         while (flash_check_busy());
 
@@ -160,7 +179,7 @@ uint32_t ds_erase_check(ds_search_t *ds_search)
             if (dsbufP1[j] != DS_VAILD_TYPE)
             {
                 ds_search->offset = j;
-                ds_search->address = (ds_search->address + i);
+                ds_search->address = i;
 
                 return STATUS_ERROR;
             }
@@ -171,7 +190,7 @@ uint32_t ds_erase_check(ds_search_t *ds_search)
 }
 
 
-uint32_t ds_page_vaild_address(uint32_t ds_start_address, ds_t *dspacktmp)
+uint32_t ds_page_vaild_address(uint32_t ds_start_address)
 {
     uint32_t ds_status;
     ds_search_t ds_vaild_search;
@@ -181,80 +200,44 @@ uint32_t ds_page_vaild_address(uint32_t ds_start_address, ds_t *dspacktmp)
     ds_vaild_search.type = DS_VAILD_TYPE;
     ds_vaild_search.flag = DS_VAILD_TYPE_SEARCH;
 
-    ds_status = ds_vaild_address_search(&ds_vaild_search, dspacktmp);
-
-    if (ds_status == STATUS_SUCCESS)
+    if (ds_start_address == dsinfo.start_address)
     {
-
-        dsinfo.current_page = (((dsinfo.current_address - dsinfo.start_address) / dsinfo.page_size));
+        dsinfo.current_page  = DS_PAGE_0;
+        ds_vaild_search.end_address = dsinfo.middle_address;
     }
+    else
+    {
+        dsinfo.current_page  = DS_PAGE_1;
+        ds_vaild_search.end_address = dsinfo.end_address;
+    }
+
+    ds_status = ds_vaild_address_search(&ds_vaild_search);
 
     return ds_status;
 }
 
 
-uint32_t ds_vaild_address_search(ds_search_t *dssearch, ds_t *dspacktmp)
+uint32_t ds_vaild_address_search(ds_search_t *dssearch)
 {
-
-    uint32_t    ds_status, read_type_search;
-    uint32_t    maxaddress, address;
-    ds_t dspack;
-
-    dspack = (*(ds_t *)(dssearch->address + dssearch->offset));
-
-    if (dspack.type == DS_VAILD_TYPE)
-    {
-        return STATUS_INVALID_PARAM;
-    }
-
-    read_type_search = 0;
+    uint32_t    ds_status = STATUS_INVALID_PARAM;
+    uint32_t    address, end_address = dssearch->end_address;
+    ds_t        dspack;
 
     do
     {
         dspack = (*(ds_t *)(dssearch->address + dssearch->offset));
 
-        ds_status = ds_vaild(dssearch, &dspack);
-
-        if (ds_status == STATUS_SUCCESS && dssearch->type == DS_VAILD_TYPE)
-        {
-            break;
-        }
-
-        if (ds_status == STATUS_TIMEOUT && dssearch->type != DS_VAILD_TYPE)
-        {
-            if ((dspack.type == DS_VAILD_TYPE) && (read_type_search != DS_READ_TYPE_SEARCH))
-            {
-                ds_status = STATUS_INVALID_REQUEST;
-            }
-            else
-            {
-                ds_status = STATUS_SUCCESS;
-            }
-            break;
-        }
-        else if (ds_status == DS_READ_STATUS_SUCCESS && dssearch->type != DS_VAILD_TYPE)
-        {
-            if (dspack.type == DS_VAILD_TYPE)
-            {
-                ds_status = STATUS_INVALID_REQUEST;
-            }
-            else
-            {
-                read_type_search = DS_READ_TYPE_SEARCH;
-                memcpy(dspacktmp, (ds_t *)&dspack, sizeof(ds_t));
-            }
-        }
-
-        dssearch->offset += DS_HEADER_OFFSET + dspack.len + DS_TAIL_OFFSET;
-
-        address =   (dssearch->address + dssearch->offset);
-        maxaddress = dssearch->address + dsinfo.page_size;
-
-        if ((address) > (maxaddress))
+        if (address > end_address)
         {
             ds_status = STATUS_INVALID_PARAM;
             break;
         }
+
+        ds_status = ds_vaild(dssearch, &dspack);
+
+        dssearch->offset += DS_HEADER_OFFSET + dspack.len + DS_TAIL_OFFSET;
+
+        address = (dssearch->address + dssearch->offset);
 
     } while (ds_status != STATUS_SUCCESS);
 
@@ -263,122 +246,68 @@ uint32_t ds_vaild_address_search(ds_search_t *dssearch, ds_t *dspacktmp)
 
 
 
-uint32_t ds_vaild(ds_search_t *dssearch, ds_t *ds_get_vaild)
+uint32_t ds_vaild(ds_search_t *dssearch, ds_t *ds_vaild)
 {
     static uint8_t          crc_result, crc;
-    uint16_t    magic;
-    uint32_t  address;
-    ds_t dspack;
+    uint16_t                    magic;
+    uint32_t                    address;
+    ds_header_t                 dspack_header;
+    ds_tail_t                   dspack_tail;
+    ds_t                                ds_table;
     ds_rw_t dscrc;
-    address = (dssearch->address + dssearch->offset);
 
-    dspack = (*(ds_t *)(dssearch->address + dssearch->offset));
+    dspack_header = (*(ds_header_t *)(dssearch->address + dssearch->offset));
 
-
-    if (dspack.type == DS_VAILD_TYPE)
+    if (dspack_header.type == DS_VAILD_TYPE)
     {
-        if (dssearch->flag == DS_VAILD_TYPE_SEARCH)
-        {
-            dsinfo.current_address = dssearch->address + dssearch->offset;
-            dsinfo.current_offset = dssearch->offset;
-            return STATUS_SUCCESS;
-        }
+        dsinfo.current_address = dssearch->address + dssearch->offset;
+        dsinfo.current_offset = dssearch->offset;
 
-        return STATUS_TIMEOUT;
+        return STATUS_SUCCESS;
     }
-    else if (dssearch->type == dspack.type)
+    else if ((dssearch->type == DS_VAILD_TYPE) || (dssearch->type == DS_INVAILD_TYPE_00))
     {
-        ds_get_vaild->type = dspack.type;
-        ds_get_vaild->len = dspack.len;
-        ds_get_vaild->sn = dspack.sn;
+        address = (dssearch->address + dssearch->offset);
+
+        ds_vaild->type = dspack_header.type;
+        ds_vaild->len = dspack_header.len;
+        ds_vaild->sn = dspack_header.sn;
+
         address += DS_HEADER_OFFSET;
+        ds_vaild->buf_addr = address;
 
-        ds_get_vaild->buf_addr = address;
+        address += dspack_header.len;
+        dspack_tail = *(ds_tail_t *)(address);
 
-        address += dspack.len;
-        crc = flash_read_byte(address);
+        crc = dspack_tail.crc;
+        magic = dspack_tail.magic;
 
-        address += sizeof(uint8_t);
-        magic = flash_read_byte(address);
+        dscrc.type = ds_vaild->type;
+        dscrc.address = ds_vaild->buf_addr;
+        dscrc.len = ds_vaild->len;
 
-        address += sizeof(uint8_t);
-        magic |= flash_read_byte(address) << 8;
+        crc_result = ds_cal_crc(&dscrc, dspack_header.sn);
 
-
-        dscrc.type = ds_get_vaild->type;
-        dscrc.address = ds_get_vaild->buf_addr;
-        dscrc.len = ds_get_vaild->len;
-        crc_result = ds_cal_crc(&dscrc, dspack.sn);
-
-        if (crc_result != crc)
+        if (dssearch->type != DS_INVAILD_TYPE_00)
         {
-            return STATUS_INVALID_PARAM;
+            if (crc_result != crc)
+            {
+                return STATUS_INVALID_PARAM;
+            }
+
+            ds_vaild->crc = crc;
+            ds_vaild->magic = magic;
         }
 
         if (dssearch->flag == DS_VAILD_TYPE_SEARCH)
         {
-            if (dspack.type >= dsinfo.type_max)
-            {
-                dsinfo.type_max = dspack.type;
-            }
-
-            if (dspack.sn >= dsinfo.current_sn)
-            {
-                dsinfo.current_sn = dspack.sn;
-            }
+            ds_update_type(dspack_header.type);
+            ds_update_crrent_sn(dspack_header.sn);
         }
 
-        ds_get_vaild->crc = crc;
-        ds_get_vaild->magic = magic;
+        memcpy(&ds_table, ds_vaild, sizeof(ds_t));
 
-
-        return DS_READ_STATUS_SUCCESS;
-    }
-    else if (dssearch->type == DS_VAILD_TYPE)
-    {
-
-        ds_get_vaild->type = dspack.type;
-        ds_get_vaild->len = dspack.len;
-        ds_get_vaild->sn = dspack.sn;
-        address += DS_HEADER_OFFSET;
-
-        ds_get_vaild->buf_addr = address;
-
-        address += dspack.len;
-        crc = flash_read_byte(address);
-
-        address += sizeof(uint8_t);
-        magic = flash_read_byte(address);
-
-        address += sizeof(uint8_t);
-        magic |= flash_read_byte(address) << 8;
-
-        dscrc.type = ds_get_vaild->type;
-        dscrc.address = ds_get_vaild->buf_addr;
-        dscrc.len = ds_get_vaild->len;
-        crc_result = ds_cal_crc(&dscrc, dspack.sn);
-
-
-        if (crc_result != crc)
-        {
-            return STATUS_INVALID_PARAM;
-        }
-
-        if (dssearch->flag == DS_VAILD_TYPE_SEARCH)
-        {
-            if (dspack.type >= dsinfo.type_max)
-            {
-                dsinfo.type_max = dspack.type;
-            }
-
-            if (dspack.sn >= dsinfo.current_sn)
-            {
-                dsinfo.current_sn = dspack.sn;
-            }
-        }
-
-        ds_get_vaild->crc = dspack.crc;
-        ds_get_vaild->magic = dspack.magic;
+        ds_update_table(ds_table);
     }
 
     return STATUS_INVALID_REQUEST;
@@ -400,7 +329,15 @@ uint32_t ds_set_current_page(uint8_t set_page)
     }
 
     dsinfo.current_page = set_page;
-    dsinfo.current_address = dsinfo.start_address + dsinfo.page_size * set_page;
+
+    if (ds_get_current_page() == DS_PAGE_0)
+    {
+        dsinfo.current_address = dsinfo.start_address;
+    }
+    else
+    {
+        dsinfo.current_address = dsinfo.middle_address;
+    }
 
     return STATUS_SUCCESS;
 }
@@ -412,12 +349,18 @@ uint32_t ds_get_current_page_offset()
 
 uint32_t ds_set_current_page_offset(uint32_t set_page_offset)
 {
-
     uint32_t dsaddress, endaddress;
 
-    dsaddress = dsinfo.current_address + set_page_offset;
-
-    endaddress = dsinfo.start_address + dsinfo.page_size * (dsinfo.current_page + 1);
+    if (ds_get_current_page() == DS_PAGE_0)
+    {
+        dsaddress = dsinfo.current_address + set_page_offset;
+        endaddress = dsinfo.middle_address;
+    }
+    else
+    {
+        dsaddress = dsinfo.current_address + set_page_offset;
+        endaddress = dsinfo.end_address;
+    }
 
     if ((dsaddress > endaddress))
     {
@@ -431,36 +374,23 @@ uint32_t ds_set_current_page_offset(uint32_t set_page_offset)
 
 uint32_t ds_read(ds_rw_t *ds_read)
 {
-    uint32_t ds_status;
-    uint32_t address;
-    ds_search_t dssearch;
-    ds_t                dspacktmp;
+    uint32_t        ds_status = STATUS_INVALID_PARAM;
+    uint8_t         index = (ds_read->type - 1), ds_table_type;
+
 
     if (dsinfo.invaild == DS_INVAILD)
     {
         return STATUS_INVALID_PARAM;
     }
 
-    if (ds_get_current_page() == DS_PAGE_1)
-    {
-        address = dsinfo.start_address;
-    }
-    else
-    {
-        address = dsinfo.start_address + dsinfo.page_size * dsinfo.current_page;
-    }
+    ds_table_type = ds_record_table[index].type;
 
-    dssearch.type = ds_read->type;
-    dssearch.address = address;
-    dssearch.offset = DS_START_OFFSET;
-    dssearch.flag = DS_READ_TYPE_SEARCH;
-
-    ds_status = ds_vaild_address_search(&dssearch, &dspacktmp);
-
-    if (ds_status == STATUS_SUCCESS)
+    if ((ds_table_type > DS_INVAILD_TYPE_00) && (ds_table_type < DS_INVAILD_TYPE_FF))
     {
-        ds_read->address = dspacktmp.buf_addr;
-        ds_read->len = dspacktmp.len;
+        ds_read->address = ds_record_table[index].buf_addr;
+        ds_read->len = ds_record_table[index].len;
+
+        ds_status = STATUS_SUCCESS;
     }
     else
     {
@@ -475,53 +405,74 @@ uint32_t ds_read(ds_rw_t *ds_read)
 uint32_t ds_write(ds_rw_t *ds_write)
 {
 
-    uint32_t i;
-    uint32_t dswraddress, dsmaxaddress;
-    uint8_t  bufTemp, crc_result, magic_number;
+    uint8_t     temp, crc_result, type = ds_write->type;
+    uint32_t    i;
+    uint32_t    dswraddress, dsmaxaddress, address = ds_write->address;
+    uint16_t    magic_number, len = ds_write->len;
+    ds_t        ds_table_update;
 
     if (dsinfo.invaild == DS_INVAILD)
     {
         return STATUS_INVALID_PARAM;
     }
 
-    if ((ds_write->type == DS_INVAILD_A_TYPE) || (ds_write->type == DS_INVAILD_B_TYPE) )
+    if ((type == DS_INVAILD_TYPE_00) || (type == DS_INVAILD_TYPE_FF))
     {
-        return STATUS_INVALID_PARAM;
+        return STATUS_INVALID_REQUEST;
     }
 
+    if (ds_get_current_page() == DS_PAGE_0)
+    {
+        dsmaxaddress =  dsinfo.middle_address;
+    }
+    else
+    {
+        dsmaxaddress =  dsinfo.end_address;
+    }
 
-    dsmaxaddress = dsinfo.start_address + (dsinfo.page_size << dsinfo.current_page);
-    dswraddress = dsinfo.current_address + DS_HEADER_OFFSET + DS_TAIL_OFFSET + ds_write->len;
+    dswraddress = dsinfo.current_address  + DS_HEADER_OFFSET + len + DS_TAIL_OFFSET;
+
 
     if ((dswraddress > dsmaxaddress))
     {
-        //data migration
-        if (ds_get_current_page() == 1)
+
+        if (ds_get_current_page() == DS_PAGE_1)
         {
-            ds_migration_erase(DS_PAGE_1);
-            ds_migration(DS_PAGE_2);
-            dsinfo.current_page = DS_PAGE_1;
+            ds_migration_erase(DS_PAGE_0);
+            ds_migration(DS_PAGE_1);
+            dsinfo.current_page = DS_PAGE_0;
+            dsmaxaddress =  dsinfo.middle_address;
+            dswraddress = dsinfo.migration_address + DS_HEADER_OFFSET + len + DS_TAIL_OFFSET;
+            dsinfo.current_address = dsinfo.migration_address;
         }
         else
         {
-            ds_migration_erase(DS_PAGE_2);
-            ds_migration(DS_PAGE_1);
-            dsinfo.current_page = DS_PAGE_2;
+
+            ds_migration_erase(DS_PAGE_1);
+            ds_migration(DS_PAGE_0);
+            dsinfo.current_page = DS_PAGE_1;
+            dsmaxaddress = dsinfo.end_address;
+            dswraddress = dsinfo.migration_address + DS_HEADER_OFFSET + len + DS_TAIL_OFFSET;
+            dsinfo.current_address = dsinfo.migration_address;
         }
 
-        dsinfo.current_address = dsinfo.migration_address;
+        if ((dswraddress > dsmaxaddress))
+        {
+            return STATUS_INVALID_REQUEST;
+        }
     }
 
     dswraddress = dsinfo.current_address;
 
+    ds_update_type(type);
 
-    flash_write_byte(dswraddress, ds_write->type);
+    flash_write_byte(dswraddress, type);
     while (flash_check_busy()) {;}
     dswraddress += 1;
-    flash_write_byte(dswraddress, ds_write->len);
+    flash_write_byte(dswraddress, len);
     while (flash_check_busy()) {;}
     dswraddress += 1;
-    flash_write_byte(dswraddress, ds_write->len >> 8);
+    flash_write_byte(dswraddress, len >> 8);
     while (flash_check_busy()) {;}
     dswraddress += 1;
 
@@ -543,10 +494,10 @@ uint32_t ds_write(ds_rw_t *ds_write)
     while (flash_check_busy()) {;}
     dswraddress += 1;
 
-    for (i = 0; i < ds_write->len; i++)
+    for (i = 0; i < len; i++)
     {
-        bufTemp = (*(uint32_t *)(ds_write->address + i));
-        flash_write_byte(dswraddress, bufTemp);
+        temp = (*(uint32_t *)(address + i));
+        flash_write_byte(dswraddress, temp);
         while (flash_check_busy()) {;}
         dswraddress += 1;
     }
@@ -563,6 +514,15 @@ uint32_t ds_write(ds_rw_t *ds_write)
     flash_write_byte(dswraddress, magic_number >> 8);
     while (flash_check_busy()) {;}
     dswraddress += 1;
+
+    ds_table_update.type = type;
+    ds_table_update.len = len;
+    ds_table_update.sn = dsinfo.current_sn;
+    ds_table_update.buf_addr = dsinfo.current_address + DS_HEADER_OFFSET;
+    ds_table_update.crc = crc_result;
+    ds_table_update.magic = magic_number;
+
+    ds_update_table(ds_table_update);
 
     dsinfo.current_address = dswraddress;
     dsinfo.current_offset = dswraddress;
@@ -574,85 +534,31 @@ uint32_t ds_write(ds_rw_t *ds_write)
 
 uint32_t ds_migration(ds_page_t page)
 {
-
-    uint32_t        ds_status;
-    uint32_t        address, end_address, i;
-    uint8_t         update_flag;
-    ds_search_t dssearch;
+    uint32_t        i;
     ds_rw_t         dswr;
-    ds_t                dspack;
-    ds_t                ds_migration_after;
-    ds_t                ds_migration_befor;
 
-    if (dsinfo.invaild == 1)
+    if (dsinfo.invaild == DS_INVAILD)
     {
         return STATUS_INVALID_PARAM;
     }
 
-    if (page == DS_PAGE_1)
+    if (page == DS_PAGE_0)
     {
-        address = dsinfo.start_address;
-        end_address = dsinfo.start_address + dsinfo.page_size;
-        dsinfo.migration_address = dsinfo.start_address + dsinfo.page_size;
+        dsinfo.migration_address = dsinfo.middle_address;
     }
     else
     {
-        address = dsinfo.start_address + dsinfo.page_size;
-        end_address = dsinfo.start_address + dsinfo.page_size * (page + 1);
         dsinfo.migration_address = dsinfo.start_address;
     }
 
-    update_flag = 0;
-
-    for (i = 1; i <= dsinfo.type_max; i++)
+    for (i = 0; i < DS_TABLE_TYPE_MAX; i++)
     {
-        dssearch.address = address;
-        dssearch.offset = DS_START_OFFSET;
-        dssearch.type = (uint8_t)i;
-        dssearch.flag = DS_READ_TYPE_SEARCH;
-
-        do
+        if ((ds_record_table[i].type != DS_INVAILD_TYPE_00))
         {
-
-            dspack = (*(ds_t *)(dssearch.address + dssearch.offset));
-
-            ds_status = ds_vaild(&dssearch, &dspack);
-
-            if (ds_status == DS_READ_STATUS_SUCCESS && dssearch.type != DS_VAILD_TYPE)
-            {
-                if (update_flag == 0)
-                {
-                    memcpy((ds_t *)&ds_migration_befor, (ds_t *)&dspack, sizeof(ds_t));
-                    update_flag = 1;
-                }
-                else
-                {
-                    memcpy((ds_t *)&ds_migration_after, (ds_t *)&dspack, sizeof(ds_t));
-
-                    if ((ds_migration_after.sn) > (ds_migration_befor.sn))
-                    {
-                        memcpy((ds_t *)&ds_migration_befor, (ds_t *)&ds_migration_after, sizeof(ds_t));
-                        update_flag = 2;
-                    }
-                }
-            }
-
-            dssearch.offset += DS_HEADER_OFFSET + dspack.len + DS_TAIL_OFFSET;
-
-            if ((dssearch.address + dssearch.offset) > end_address)
-            {
-                break;
-            }
-
-        } while (ds_status != STATUS_SUCCESS);
-
-        if (update_flag != 0)
-        {
-            dswr.type = ds_migration_befor.type;
-            dswr.len = ds_migration_befor.len;
-            dswr.address = ds_migration_befor.buf_addr;
+            dswr.type = ds_record_table[i].type;
+            dswr.len = ds_record_table[i].len;
+            dswr.address = ds_record_table[i].buf_addr;
             ds_migration_write(page, &dswr);
-            update_flag = 0;
         }
     }
 
@@ -660,33 +566,22 @@ uint32_t ds_migration(ds_page_t page)
 }
 uint32_t ds_migration_write(ds_page_t page, ds_rw_t *ds_write)
 {
-
-    uint32_t i;
-    uint32_t dswraddress;
-    uint8_t  bufTemp, crc_result, magic_number;
-
-    if (dsinfo.invaild == DS_INVAILD)
-    {
-        return STATUS_INVALID_PARAM;
-    }
-
-    if ((ds_write->type == DS_INVAILD_A_TYPE) || (ds_write->type == DS_INVAILD_B_TYPE))
-    {
-        return STATUS_INVALID_REQUEST;
-    }
+    uint32_t    i;
+    uint32_t    dswraddress, address = ds_write->address;
+    uint8_t     value, crc_result, type = ds_write->type;
+    uint16_t    magic_number, len = ds_write->len ;
+    ds_t        ds_table;
 
     dswraddress = dsinfo.migration_address;
+    dsinfo.current_sn += 1;
 
-    crc_result = ds_cal_crc(ds_write, dsinfo.current_sn);
-    magic_number = DS_MAGIC_NUMBER;
-
-    flash_write_byte(dswraddress, ds_write->type);
+    flash_write_byte(dswraddress, type);
     while (flash_check_busy()) {;}
     dswraddress += 1;
-    flash_write_byte(dswraddress, ds_write->len);
+    flash_write_byte(dswraddress, len);
     while (flash_check_busy()) {;}
     dswraddress += 1;
-    flash_write_byte(dswraddress, ds_write->len >> 8);
+    flash_write_byte(dswraddress, len >> 8);
     while (flash_check_busy()) {;}
     dswraddress += 1;
 
@@ -708,10 +603,10 @@ uint32_t ds_migration_write(ds_page_t page, ds_rw_t *ds_write)
     while (flash_check_busy()) {;}
     dswraddress += 1;
 
-    for (i = 0; i < ds_write->len; i++)
+    for (i = 0; i < len; i++)
     {
-        bufTemp = (*(uint32_t *)(ds_write->address + i));
-        flash_write_byte(dswraddress, bufTemp);
+        value = (*(uint32_t *)(address + i));
+        flash_write_byte(dswraddress, value);
         while (flash_check_busy()) {;}
         dswraddress += 1;
     }
@@ -729,8 +624,16 @@ uint32_t ds_migration_write(ds_page_t page, ds_rw_t *ds_write)
     while (flash_check_busy()) {;}
     dswraddress += 1;
 
+    ds_table.type = type;
+    ds_table.len = len;
+    ds_table.sn = dsinfo.current_sn;
+    ds_table.buf_addr = dsinfo.migration_address + DS_HEADER_OFFSET;
+    ds_table.crc = crc_result;
+    ds_table.magic = magic_number;
+
+    ds_update_table(ds_table);
+
     dsinfo.migration_address = dswraddress;
-    dsinfo.current_sn += 1;
 
     return STATUS_SUCCESS;
 }
@@ -740,15 +643,23 @@ uint32_t ds_migration_erase(ds_page_t page)
     uint32_t i, end_addr;
     uint32_t  start_addr;
 
-    if ((dsinfo.invaild == DS_INVAILD) || (page > DS_PAGE_2))
+    if ((dsinfo.invaild == DS_INVAILD) || (page > DS_PAGE_1))
     {
         return STATUS_INVALID_PARAM;
     }
 
-    end_addr = dsinfo.start_address + (dsinfo.page_size << page);
-    start_addr = dsinfo.start_address + (dsinfo.page_size * page);
+    if (page == DS_PAGE_0)
+    {
+        start_addr = dsinfo.start_address;
+        end_addr = dsinfo.middle_address;
+    }
+    else
+    {
+        start_addr = dsinfo.middle_address;
+        end_addr = dsinfo.end_address;
+    }
 
-    for (i = start_addr; i < end_addr; i += DATA_SHEET_ERASE_SIZE)
+    for (i = start_addr; i < end_addr; i += DATA_SET_ERASE_SIZE)
     {
         flash_erase(FLASH_ERASE_SECTOR, i);
     }
@@ -766,43 +677,151 @@ uint32_t ds_reset_to_default()
         return STATUS_INVALID_PARAM;
     }
 
-    end_addr = dsinfo.end_address;
     start_addr = dsinfo.start_address;
+    end_addr = dsinfo.end_address;
 
-    for (i = start_addr; i < end_addr; i += DATA_SHEET_ERASE_SIZE)
+    for (i = start_addr; i < end_addr; i += DATA_SET_ERASE_SIZE)
     {
         flash_erase(FLASH_ERASE_SECTOR, i);
     }
 
-    dsinfo.current_page = DS_PAGE_1;
+    dsinfo.current_page = DS_PAGE_0;
     dsinfo.current_offset = DS_START_OFFSET;
     dsinfo.current_address = start_addr;
     dsinfo.current_sn = DS_SERAIL_NUMBER_START;
 
     return STATUS_SUCCESS;
+
+}
+
+uint32_t ds_delete_type(uint8_t type)
+{
+    uint32_t        address;
+    uint32_t        index = (type - 1);
+
+    if ((type > dsinfo.type_max) || (type == DS_INVAILD_TYPE_00) || (type == DS_INVAILD_TYPE_FF) || (dsinfo.invaild == DS_INVAILD) || (type >= DS_TABLE_TYPE_MAX))
+    {
+        return STATUS_INVALID_PARAM;
+    }
+
+    if (ds_record_table[index].type == type)
+    {
+        address = (ds_record_table[index].buf_addr - DS_HEADER_OFFSET);
+
+        flash_write_byte(address, DS_INVAILD_TYPE_00);
+        while (flash_check_busy()) {;} //clear type
+
+        ds_record_table[index].type = 0;
+        ds_record_table[index].len = 0x0000;
+        ds_record_table[index].sn = 0;
+        ds_record_table[index].buf_addr = 0;
+        ds_record_table[index].crc = 0;
+        ds_record_table[index].magic = 0;
+
+        return STATUS_SUCCESS;
+    }
+
+    return STATUS_INVALID_REQUEST;
 }
 
 uint8_t ds_cal_crc(ds_rw_t *ds_crc, uint32_t sn)
 {
-    uint8_t value = 0, crc_result = 0;
-    uint32_t i = 0;
+    uint8_t value = 0, crc_result = 0, type = ds_crc->type;
+    uint16_t len = ds_crc->len;
+    uint32_t i = 0, address = ds_crc->address;
 
 
-    crc_result ^= (ds_crc->type);
-    crc_result ^= (ds_crc->len & 0xFF);
-    crc_result ^= (ds_crc->len >> 8);
+    crc_result ^= (type);
+    crc_result ^= (len & 0xFF);
+    crc_result ^= (len >> 8);
 
     crc_result ^= (sn & 0xFF);
     crc_result ^= (sn >> 8);
     crc_result ^= (sn >> 16);
     crc_result ^= (sn >> 24);
 
-    for (i = 0; i < ds_crc->len; i++)
+    for (i = 0; i < len; i++)
     {
-        value = (*(uint32_t *)(ds_crc->address + i));
+        value = (*(uint32_t *)(address + i));
         crc_result ^= value;
     }
 
     return crc_result;
 }
 
+uint32_t ds_update_type( uint8_t type)
+{
+    if (type >= dsinfo.type_max)
+    {
+        dsinfo.type_max = type;
+    }
+
+    return STATUS_SUCCESS;
+}
+
+uint32_t ds_update_crrent_sn( uint32_t serial_number)
+{
+    if (serial_number >= dsinfo.current_sn)
+    {
+        dsinfo.current_sn = serial_number;
+    }
+
+    return STATUS_SUCCESS;
+}
+
+uint32_t ds_update_table(ds_t ds_table)
+{
+    uint8_t index = (ds_table.type - 1), type = ds_table.type;
+
+    if ((type > dsinfo.type_max) || (type == DS_INVAILD_TYPE_00) || (type == DS_INVAILD_TYPE_FF) || (dsinfo.invaild == DS_INVAILD))
+    {
+        return STATUS_INVALID_PARAM;
+    }
+
+    if (ds_record_table[index].type == DS_INVAILD_TYPE_00)
+    {
+        ds_record_table[index].type = ds_table.type;
+        ds_record_table[index].len = ds_table.len;
+        ds_record_table[index].sn = ds_table.sn;
+        ds_record_table[index].buf_addr = ds_table.buf_addr;
+        ds_record_table[index].crc = ds_table.crc;
+        ds_record_table[index].magic = ds_table.magic;
+    }
+    else if ((ds_record_table[index].type == type) && (ds_record_table[index].sn < ds_table.sn))
+    {
+        ds_record_table[index].type = ds_table.type;
+        ds_record_table[index].len = ds_table.len;
+        ds_record_table[index].sn = ds_table.sn;
+        ds_record_table[index].buf_addr = ds_table.buf_addr;
+        ds_record_table[index].crc = ds_table.crc;
+        ds_record_table[index].magic = ds_table.magic;
+    }
+
+    return STATUS_SUCCESS;
+}
+
+uint32_t ds_load_page_end_address_max()
+{
+
+    uint32_t  flash_size_id = flash_size();
+
+    if (flash_size_id == FLASH_512K)
+    {
+        ds_end_address = (MP_SECTOR_BASE_512K  + 0x4000);
+    }
+    else if ( flash_size_id == FLASH_1024K)
+    {
+        ds_end_address = (MP_SECTOR_BASE_1024K + 0x4000);
+    }
+    else if ( flash_size_id == FLASH_2048K)
+    {
+        ds_end_address = (MP_SECTOR_BASE_2048K + 0x4000);
+    }
+    else
+    {
+        ds_end_address = 0;
+        return STATUS_INVALID_PARAM;
+    }
+
+    return STATUS_SUCCESS;
+}

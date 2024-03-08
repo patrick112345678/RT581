@@ -123,7 +123,11 @@ enum
 };
 
 #define OTRADIO_MAC_HEADER_ACK_REQUEST_MASK (1 << 5)
+#if OPENTHREAD_CONFIG_RADIO_2P4GHZ_OQPSK_SUPPORT
 #define OTRADIO_MAX_PSDU                    (OT_RADIO_FRAME_MAX_SIZE+25)
+#elif OPENTHREAD_CONFIG_RADIO_915MHZ_OQPSK_SUPPORT
+#define OTRADIO_MAX_PSDU                    (OT_RADIO_FRAME_MAX_SIZE+32)
+#endif
 #define OTRADIO_RX_FRAME_BUFFER_NUM         16
 
 typedef struct _otRadio_rxFrame_t
@@ -1317,13 +1321,15 @@ static void _RxDoneEvent(uint16_t packet_length, uint8_t *rx_data_address,
 
         if (p)
         {
+            OT_ENTER_CRITICAL();
 #if OPENTHREAD_CONFIG_RADIO_2P4GHZ_OQPSK_SUPPORT
-            memcpy(p->frame.mPsdu, (rx_data_address + 8), (packet_length - 9));
+            memcpy(p->frame.mPsdu, (rx_data_address + 8), (packet_length - 13));
             p->frame.mLength = (packet_length - 13);
 #elif OPENTHREAD_CONFIG_RADIO_915MHZ_OQPSK_SUPPORT
-            memcpy(p->frame.mPsdu, (rx_data_address + 9), (packet_length - 10));
+            memcpy(p->frame.mPsdu, (rx_data_address + 9), (packet_length - 14));
             p->frame.mLength = (packet_length - 14);
 #endif
+            OT_EXIT_CRITICAL();
             p->frame.mChannel = sCurrentChannel;
             p->frame.mInfo.mRxInfo.mRssi = -rssi;
             p->frame.mInfo.mRxInfo.mLqi = ((RAFAEL_RECEIVE_SENSITIVITY - rssi) * 0xFF) / RAFAEL_RECEIVE_SENSITIVITY;

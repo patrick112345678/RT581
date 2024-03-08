@@ -647,6 +647,41 @@ __STATIC_INLINE void flush_cache(void)
     CACHE->CCR.reg = CACHE->CCR.reg | (3 << 8);
 }
 
+/**
+ * @brief enable suspend
+ *
+ * @param    NONE
+ *
+ * @retval   NONE
+ *
+ * @details  This function enable flash suspend.
+ *
+ */
+void flash_enable_suspend(void);
+
+/**
+ * @brief disable suspend
+ *
+ * @param    NONE
+ *
+ * @retval   NONE
+ *
+ * @details  This function disable flash suspend.
+ *
+ */
+void flash_disable_suspend(void);
+
+/**
+ * @brief get flash control register
+ *
+ * @param    NONE
+ *
+ * @retval   control register value
+ *
+ * @details  This function get flash control register.
+ *
+ */
+uint32_t flash_get_control_reg(void);
 
 /*@}*/ /* end of peripheral_group Flash_Drver */
 

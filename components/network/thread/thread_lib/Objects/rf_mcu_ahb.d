@@ -49,6 +49,7 @@
   ..\..\..\platform\soc\rt582\rt582_driver\Inc\comparator.h \
   ..\..\..\platform\soc\rt582\rt582_driver\Inc\swi.h \
   ..\..\..\platform\soc\rt582\rt582_driver\Inc\lpm.h \
+  ..\..\..\platform\soc\rt582\rt582_driver\Inc\flash_protect.h \
   ..\..\rt569_rf\include\rf_mcu_ahb.h \
   ..\..\rt569_rf\include\rf_mcu_types.h \
   ..\..\rt569_rf\include\rf_mcu_chip.h \

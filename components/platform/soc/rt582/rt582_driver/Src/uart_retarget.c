@@ -8,7 +8,7 @@
 
 #include "cm3_mcu.h"
 
-
+#include "project_config.h"
 
 #include "uart_drv.h"
 #include "uart_retarget.h"

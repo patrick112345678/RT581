@@ -17,6 +17,7 @@
 #include "ot_ota_handler.h"
 #include "timers.h"
 #include <time.h>
+#define NET_MGM_ENABLED 1
 #define RAFAEL_REGISTER_TASK_STACK_SIZE (2 * configMINIMAL_STACK_SIZE)
 static SemaphoreHandle_t    appSemHandle          = NULL;
 app_task_event_t g_app_task_evt_var = EVENT_NONE;
@@ -87,13 +88,24 @@ static void ot_stateChangeCallback(otChangedFlags flags, void *p_context)
         default:
             break;
         }
-
+        if (SuccessRole)
+        {
+            APP_EVENT_NOTIFY(EVENT_SEND_QUEUE);
+        }
+        if (role == OT_DEVICE_ROLE_DISABLED || role == OT_DEVICE_ROLE_DETACHED)
+        {
+            uint32_t timerPeriod = pdMS_TO_TICKS(200);
+            if (xLightTimer == NULL)
+            {
+                xLightTimer = xTimerCreate("LightTimer", timerPeriod, pdTRUE, (void *)0, vLightTimerCallback);
+                if (xLightTimer != NULL)
+                {
+                    xTimerStart(xLightTimer, 0);
+                }
+            }
+        }
         if (role)
         {
-            if (SuccessRole)
-            {
-                APP_EVENT_NOTIFY(EVENT_SEND_QUEUE);
-            }
             log_info("Current role       : %s", otThreadDeviceRoleToString(otThreadGetDeviceRole(p_context)));
 
             p = (uint8_t *)(otLinkGetExtendedAddress(instance)->m8);
@@ -258,8 +270,8 @@ void otrInitUser(otInstance *instance)
     otIp6SetEnabled(instance, true);
     otThreadSetEnabled(instance, true);
 
-
     now_time = mktime(&begin);
+    Register_Timeout = 500;
 }
 
 
@@ -278,7 +290,6 @@ void app_task (void)
         {
             APP_EVENT_GET_NOTIFY(event);
 
-            printf("app event %x \r\n", event);
             /*app uart use*/
             __uart_task(event);
 

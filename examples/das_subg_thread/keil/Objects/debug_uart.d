@@ -53,6 +53,7 @@
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\comparator.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\swi.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\lpm.h \
+  ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\flash_protect.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\config\announce_sender.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\config\backbone_router.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\config\border_agent.h \

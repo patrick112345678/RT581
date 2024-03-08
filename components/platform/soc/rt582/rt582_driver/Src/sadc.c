@@ -114,6 +114,12 @@ static sadc_config_resolution_t sadc_config_res = SADC_RES_12BIT;
 static sadc_config_oversample_t sadc_config_os = SADC_OVERSAMPLE_256;
 static sadc_isr_handler_t sadc_config_int_callback = NULL;
 
+#if (LPWR_FLASH_PROTECT_ENABLE==1) &&  (LPWR_FLASH_VBAT_PROTECT_ENABLE==1)
+
+static sadc_config_resolution_t sadc_config_vbat_res = SADC_RES_12BIT;
+static sadc_config_oversample_t sadc_config_vbat_os = SADC_OVERSAMPLE_0;
+static sadc_isr_handler_t sadc_config_int_vbat_callback = NULL;
+#endif
 #endif
 
 
@@ -861,6 +867,310 @@ uint32_t Sadc_Channel_Read(sadc_input_ch_t ch)
     return read_status;
 }
 
+#if LPWR_FLASH_PROTECT_ENABLE==1 && LPWR_FLASH_VBAT_PROTECT_ENABLE==1
+uint32_t Sadc_Init_Vbat(sadc_config_t *p_config, sadc_isr_handler_t sadc_int_callback)
+{
+    if (p_config == NULL)
+    {
+        return STATUS_INVALID_PARAM;
+    }
+
+    sadc_xdma_single_mode = DISABLE;
+    sadc_convert_state = SADC_CONVERT_IDLE;
+
+    SADC_RESET();                                       /*Reset SADC*/
+
+    Sadc_Analog_Init();
+
+    SADC_RES_BIT(p_config->sadc_resolution);            /*Set SADC resolution bit*/
+
+    SADC_OVERSAMPLE_RATE(p_config->sadc_oversample);    /*Set SADC oversample rate*/
+
+    if (p_config->sadc_xdma.enable == ENABLE)
+    {
+        Sadc_Xdma_Config(p_config->sadc_xdma.start_addr, p_config->sadc_xdma.seg_size, p_config->sadc_xdma.blk_size);
+
+        if (p_config->sadc_xdma.blk_size == 0)
+        {
+            sadc_xdma_single_mode = ENABLE;
+        }
+    }
+
+
+    if (sadc_int_callback != NULL)
+    {
+        Sadc_Register_Int_Callback(sadc_int_callback);
+    }
+
+    //Sadc_Int_Enable(p_config->sadc_int_mask.reg);
+    SADC->SADC_INT_CLEAR.reg = SADC_INT_CLEAR_ALL;
+    SADC->SADC_INT_MASK.reg = p_config->sadc_int_mask.reg;
+
+    SADC_SAMPLE_MODE(p_config->sadc_sample_mode);                    /*Sample rate depends on timer rate*/
+    if (p_config->sadc_sample_mode == SADC_SAMPLE_TIMER)
+    {
+        SADC_TIMER_CLOCK(p_config->sadc_timer.timer_clk_src);        /*Timer clock source = system clock*/
+        SADC_TIMER_CLOCK_DIV(p_config->sadc_timer.timer_clk_div);    /*Timer rate configuration*/
+    }
+
+    SADC_MANUAL_MODE();                                                             /*Set the SADC to manual mode*/
+    SADC_VGA_ENABLE();                                                              /*Enable the SADC VGA*/
+    SADC_LDO_ENABLE();                                                              /*Enable the SADC LDO*/
+
+    Delay_us(15);                                                           /*Delay 1ms for VGA settle*/
+
+#if (SADC_TEST_MODE == 1)
+    SADC_TEST_ENABLE();
+    SADC_TEST_ADJUST_VALUE(SADC_TEST_VALUE);
+#elif (SADC_CALIBRATION_VALUE != 0)
+    SADC_TEST_ADJUST_VALUE((uint32_t)SADC_CALIBRATION_VALUE);
+#endif
+
+    return STATUS_SUCCESS;
+}
+
+
+void Sadc_Config_Enable_Vbat(sadc_config_resolution_t res, sadc_config_oversample_t os, sadc_isr_handler_t sadc_int_callback)
+{
+    sadc_config_t p_sadc_config;
+
+    Sadc_Calibration_Init();
+
+    //=== Sadc config backup ===
+    sadc_config_vbat_res = res;
+    sadc_config_vbat_os = os;
+    sadc_config_int_vbat_callback = sadc_int_callback;
+
+    //=== Sadc_Config(&p_sadc_config); start ===
+    p_sadc_config.sadc_int_mask.bit.DONE = 1;                         /*Set SADC interrupt mask*/
+    p_sadc_config.sadc_int_mask.bit.MODE_DONE = 1;
+    p_sadc_config.sadc_int_mask.bit.MONITOR_HIGH = 0x3FF;
+    p_sadc_config.sadc_int_mask.bit.MONITOR_LOW = 0x3FF;
+    p_sadc_config.sadc_int_mask.bit.VALID = 0;
+    p_sadc_config.sadc_int_mask.bit.WDMA = 1;
+    p_sadc_config.sadc_int_mask.bit.WDMA_ERROR = 1;
+
+    p_sadc_config.sadc_resolution = res;                              /*Set SADC resolution bit*/
+
+    p_sadc_config.sadc_oversample = os;                               /*Set SADC oversample rate*/
+
+    p_sadc_config.sadc_xdma.enable = DISABLE;
+    p_sadc_config.sadc_xdma.start_addr = (uint32_t)&sadc_ch_value;
+    p_sadc_config.sadc_xdma.seg_size = 1;
+    p_sadc_config.sadc_xdma.blk_size = 0;
+
+    p_sadc_config.sadc_sample_mode = SADC_SAMPLE_START;               /*Sample rate depends on start trigger*/
+    //=== Sadc_Config(&p_sadc_config); end ===
+
+    Sadc_Init_Vbat(&p_sadc_config, sadc_int_callback);
+
+    Sadc_Enable();       /*Enable SADC*/
+}
+
+uint32_t Sadc_Channel_Read_Vbat(sadc_input_ch_t ch)
+{
+    uint32_t read_status;
+    sadc_cb_t cb;
+    sadc_int_t reg_sadc_int_status;
+    sadc_value_t  sadc_value;
+    sadc_cal_type_t cal_type;
+    enter_critical_section();
+
+    if (sadc_ch_read_convert_state != SADC_CONVERT_START)
+    {
+        leave_critical_section();
+        sadc_ch_read_convert_state = SADC_CONVERT_START;
+        Lpm_Low_Power_Mask(LOW_POWER_MASK_BIT_TASK_ADC);
+        sadc_convert_ch = ch;
+        Sadc_Config_Enable_Vbat(sadc_config_vbat_res, sadc_config_vbat_os, sadc_config_int_vbat_callback);
+        Sadc_Channel_Enable(&sadc_ch_init[ch]);
+        Sadc_Start();
+
+        while (SADC->SADC_INT_STATUS.reg == 0);
+
+        reg_sadc_int_status.reg = SADC->SADC_INT_STATUS.reg;
+        SADC->SADC_INT_CLEAR.reg = reg_sadc_int_status.reg;
+
+        if (reg_sadc_int_status.reg != 0)
+        {
+            if (reg_sadc_int_status.bit.DONE == 1)
+            {
+            }
+            if (reg_sadc_int_status.bit.VALID == 1)
+            {
+                if (sadc_convert_ch <= SADC_CH_VBAT)
+                {
+                    if (sadc_reg_handler != NULL)
+                    {
+                        cb.type = SADC_CB_SAMPLE;
+                        sadc_value = SADC_GET_ADC_VALUE();
+
+                        Sadc_Resolution_Compensation(&sadc_value);
+                        cb.raw.conversion_value = sadc_value;
+
+                        sadc_value = Sadc_Compensation(sadc_value);
+                        cb.raw.compensation_value = sadc_value;
+
+                        if (sadc_convert_ch <= SADC_CH_AIN7)
+                        {
+                            cal_type = SADC_CALIBRATION_AIO;
+                        }
+                        else if (sadc_convert_ch <= SADC_CH_VBAT)
+                        {
+                            cal_type = SADC_CALIBRATION_VBAT;
+                        }
+                        sadc_value = Sadc_Calibration(cal_type, sadc_value);
+                        cb.raw.calibration_value = sadc_value;
+
+                        if (sadc_convert_ch == SADC_CH_VBAT)
+                        {
+                            VbatAdc = sadc_value;   /*vbat value for Temperature sensor*/
+                        }
+
+                        cb.data.sample.value = sadc_value;
+                        cb.data.sample.channel = sadc_convert_ch;
+
+                        sadc_reg_handler(&cb);
+                    }
+                }
+                else if (sadc_convert_ch <= SADC_COMP_TEMPERATURE)
+                {
+                    if (sadc_txcomp_handler != NULL)
+                    {
+                        cb.type = SADC_CB_SAMPLE;
+                        sadc_value = SADC_GET_ADC_VALUE();
+
+                        if (sadc_convert_ch == SADC_COMP_VBAT)
+                        {
+                            Sadc_Resolution_Compensation(&sadc_value);
+                            cb.raw.conversion_value = sadc_value;
+
+                            Cvbat = sadc_value;     /*cvbat for temperature sensor*/
+
+                            sadc_value = Sadc_Compensation(sadc_value);
+                            cb.raw.compensation_value = sadc_value;
+
+                            sadc_value = Sadc_Calibration(SADC_CALIBRATION_VBAT, sadc_value);
+                            cb.raw.calibration_value = sadc_value;
+                        }
+                        else if (sadc_convert_ch == SADC_COMP_TEMPERATURE)
+                        {
+                            Sadc_Temperature_Disable();
+
+                            Sadc_Resolution_Compensation(&sadc_value);
+                            cb.raw.conversion_value = sadc_value;
+
+#if (1)
+                            sadc_value = Sadc_Compensation(sadc_value);
+#endif
+
+                            cb.raw.compensation_value = sadc_value;
+
+                            sadc_value = Sadc_Temperature_Calibration(sadc_value);
+
+                            cb.raw.calibration_value = sadc_value;
+                        }
+
+                        cb.data.sample.value = sadc_value;
+                        cb.data.sample.channel = sadc_convert_ch;
+
+                        sadc_txcomp_handler(&cb);
+                    }
+                }
+                else if (sadc_convert_ch <= SADC_COMP_VCM)
+                {
+                    if (sadc_adcomp_handler != NULL)
+                    {
+                        cb.type = SADC_CB_SAMPLE;
+
+                        sadc_value = SADC_GET_ADC_VALUE();
+
+                        if (sadc_convert_ch == SADC_COMP_VCM)
+                        {
+                            //Sadc_Resolution_Compensation(&sadc_value);
+                            sadc_value >>= 2;          // fix ADC resolution 12-bit for VCM temperature compensation
+                            cb.raw.conversion_value = sadc_value;
+
+                            cb.raw.compensation_value = sadc_value;
+
+                            cb.raw.calibration_value = sadc_value;
+                        }
+
+                        cb.data.sample.value = sadc_value;
+                        cb.data.sample.channel = sadc_convert_ch;
+
+                        sadc_adcomp_handler(&cb);
+                    }
+                }
+                else if (sadc_convert_ch <= SADC_0VADC) /*0V ADC Value for temperature senor calcuation*/
+                {
+                    if (sadc_txcomp_handler != NULL)
+                    {
+                        cb.type = SADC_CB_SAMPLE;
+                        sadc_value = SADC_GET_ADC_VALUE();
+
+                        Sadc_Resolution_Compensation(&sadc_value);
+                        cb.raw.conversion_value = sadc_value;
+
+                        sadc_value = Sadc_Compensation(sadc_value);
+                        cb.raw.compensation_value = sadc_value;
+
+                        /*0V ADC Value for temperature senor calcuation*/
+                        C0vAdc = sadc_value;
+
+                        cb.data.sample.value = sadc_value;
+                        cb.data.sample.channel = sadc_convert_ch;
+
+                        //sadc_txcomp_handler(&cb);
+                    }
+                }
+
+                Lpm_Low_Power_Unmask(LOW_POWER_MASK_BIT_TASK_ADC);
+                Sadc_Disable();
+
+                sadc_ch_read_convert_state = SADC_CONVERT_DONE;
+            }
+            if (reg_sadc_int_status.bit.MODE_DONE == 1)
+            {
+                if (SADC_GET_SAMPLE_MODE() == SADC_SAMPLE_START)
+                {
+                    sadc_convert_state = SADC_CONVERT_DONE;
+                }
+
+                /*
+                if(sadc_reg_handler != NULL)
+                {
+                        cb.type = SADC_CB_DONE;
+                        cb.data.done.p_buffer = (sadc_value_t *)(SADC_GET_XDMA_START_ADDRESS());
+                        cb.data.done.size = SADC_GET_XDMA_RESULT_NUMBER();
+                        sadc_reg_handler(&cb);
+                }
+                */
+            }
+            if (reg_sadc_int_status.bit.WDMA == 1)
+            {
+            }
+            if (reg_sadc_int_status.bit.WDMA_ERROR == 1)
+            {
+            }
+        }
+        read_status = STATUS_SUCCESS;
+    }
+    else
+    {
+        leave_critical_section();
+
+        read_status = STATUS_EBUSY;
+    }
+
+
+
+
+    return read_status;
+}
+
+
+#endif
 
 void Sadc_Compensation_Int_Handler(sadc_cb_t *p_cb)
 {
@@ -945,6 +1255,50 @@ void Sadc_Compensation_Deinit(void)
 
     Sadc_Register_Adcomp_Int_Callback(NULL);
 }
+
+
+#if LPWR_FLASH_PROTECT_ENABLE==1 && LPWR_FLASH_VBAT_PROTECT_ENABLE==1
+
+void Sadc_Compensation_vbat_Init(uint32_t xPeriodicTimeInSec)
+{
+    Sadc_Register_Adcomp_Int_Callback(Sadc_Compensation_Int_Handler);
+
+#if (SUPPORT_FREERTOS_PORT == 1)
+    sadc_comp_timer_handle = xTimerCreate
+                             ( /* Just a text name, not used by the RTOS kernel. */
+                                 "Timer",
+                                 /* The timer period in ticks, must be greater than 0. */
+                                 pdMS_TO_TICKS(xPeriodicTimeInSec * 1000),
+                                 /* The timers will auto-reload themselves when they expire. */
+                                 pdTRUE,
+                                 /* The ID is used to store a count of the number of times the timer has expired, which is initialised to 0. */
+                                 (void *) 0,
+                                 /* Each timer calls the same callback when it expires. */
+                                 Sadc_Compensation_Periodic_Callback
+                             );
+
+    if (sadc_comp_timer_handle == NULL)
+    {
+        /* The timer was not created. */
+    }
+    else
+    {
+        /* Start the timer.  No block time is specified, and
+        even if one was it would be ignored because the RTOS
+        scheduler has not yet been started. */
+        if (xTimerStart(sadc_comp_timer_handle, 0) != pdPASS)
+        {
+            /* The timer could not be set into the Active state. */
+        }
+    }
+#else
+
+    Sadc_Channel_Read(SADC_COMP_VCM);
+
+#endif
+}
+
+#endif
 
 #endif
 

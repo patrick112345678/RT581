@@ -29,24 +29,8 @@
 #ifndef OPENTHREAD_CORE_RT582_CONFIG_H_
 #define OPENTHREAD_CORE_RT582_CONFIG_H_
 
-/**
- * @def OPENTHREAD_CONFIG_NCP_HDLC_ENABLE
- *
- * Define to 1 to enable NCP HDLC support.
- *
- */
-#ifndef OPENTHREAD_CONFIG_NCP_HDLC_ENABLE
-#define OPENTHREAD_CONFIG_NCP_HDLC_ENABLE 0
+#if OPENTHREAD_CONFIG_PLATFORM_KEY_REFERENCES_ENABLE
+#error "PSA Crypto is not yet supported for RT58x: OPENTHREAD_CONFIG_PLATFORM_KEY_REFERENCES_ENABLE"
 #endif
-
-/**
- * @def OPENTHREAD_CONFIG_PLATFORM_FLASH_API_ENABLE
- *
- * Define to 1 to enable otPlatFlash* APIs to support non-volatile storage.
- *
- * When defined to 1, the platform MUST implement the otPlatFlash* APIs instead of the otPlatSettings* APIs.
- *
- */
-#define OPENTHREAD_CONFIG_PLATFORM_FLASH_API_ENABLE 1
 
 #endif // OPENTHREAD_CORE_BL702_CONFIG_H_

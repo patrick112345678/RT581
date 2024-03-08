@@ -17,6 +17,7 @@
 
 #include <main.h>
 #include "log.h"
+#include "cli.h"
 
 static otUdpSocket          appSock;
 static void (*app_udpHandler) (otMessage *, const otMessageInfo *);
@@ -146,3 +147,30 @@ uint8_t app_sockInit(otInstance *instance, void (*handler)(otMessage *, const ot
 
     return ret;
 }
+
+static int _cli_cmd_udpsend(int argc, char **argv, cb_shell_out_t log_out, void *pExtra)
+{
+    otIp6Address PeerAddr;
+    uint16_t payload_len;
+    uint8_t *payload = NULL;
+    if (argc > 2)
+    {
+        otIp6AddressFromString(argv[1], &PeerAddr);
+        payload_len = utility_strtox(argv[2], 0, 4) ;
+        payload = pvPortMalloc(payload_len);
+        if (payload)
+        {
+            memset(payload, 0xfe, payload_len);
+            app_udpSend(THREAD_UDP_PORT, PeerAddr, payload, payload_len);
+            vPortFree(payload);
+        }
+    }
+    return 0;
+}
+
+const sh_cmd_t g_cli_cmd_udpsend STATIC_CLI_CMD_ATTRIBUTE =
+{
+    .pCmd_name    = "udpsend",
+    .pDescription = "udp send <ip> <lens>",
+    .cmd_exec     = _cli_cmd_udpsend,
+};

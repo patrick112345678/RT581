@@ -57,6 +57,7 @@
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\comparator.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\swi.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\lpm.h \
+  ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\flash_protect.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\config\announce_sender.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\config\backbone_router.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\config\border_agent.h \
@@ -110,78 +111,4 @@
   ..\..\..\components\network\thread\subg_openthread\src\core\config\time_sync.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\config\tmf.h \
   ..\..\..\components\network\thread\subg_openthread\src\core\config\openthread-core-config-check.h \
-  ..\..\..\components\network\thread\openthread_port\include\openthread-core-rafael-config-check.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\link_metrics.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\ip6.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\message.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\instance.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\stdlib.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\error.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\toolchain.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\logging.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdarg.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\radio.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\crypto.h \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\as_core_type.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\debug.hpp \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\ctype.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\ctype.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\stdio.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\misc.h \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\clearable.hpp \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\string.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\encoding.hpp \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\limits.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\limits.h \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\message.hpp \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\nat64.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\messagepool.h \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\code_utils.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\arg_macros.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\const_cast.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\data.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\equatable.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\error.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\num_utils.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\numeric_limits.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\type_traits.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\iterator_utils.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\linked_list.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\locator.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\non_copyable.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\pool.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\array.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\timer.hpp \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\stddef.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stddef.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\__nullptr \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\alarm-micro.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\alarm-milli.h \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\tasklet.hpp \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\tasklet.h \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\time.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\serial_number.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\mac\mac_types.hpp \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\link.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\commissioner.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\dataset.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\joiner.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\thread.h \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\string.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\binary_search.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\crypto\storage.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\thread\child_mask.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\bit_vector.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\thread\link_quality.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\thread\mle_types.hpp \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\thread_ftd.h \
-  ..\..\..\components\network\thread\subg_openthread\src\core\meshcop\extended_panid.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\net\ip6_address.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\thread\network_data_types.hpp \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\netdata.h \
-  ..\..\..\components\network\thread\subg_openthread\src\core\common\preference.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\mac\mac_frame.hpp \
-  ..\..\..\components\network\thread\subg_openthread\src\core\meshcop\network_name.hpp
+  ..\..\..\components\network\thread\openthread_port\include\openthread-core-rafael-config-check.h

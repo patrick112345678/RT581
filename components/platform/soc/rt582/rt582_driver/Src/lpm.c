@@ -254,7 +254,6 @@ void Lpm_Set_Sram_Sleep_Deepsleep_Shutdown(uint32_t value)
     set_sram_shutdown_sleep(value);                                   /* SRAM shut-down control in Low Power Mode, set the corresponding bit0~bit4 to shut-down SRAM0~SRAM4 in Sleep/DeepSleep Mode */
 }
 
-
 void Lpm_Enter_Low_Power_Mode(void)
 {
     pmu_dcdc_ctrl1_t pmu_cdcd_ctrl1_buf;
@@ -275,6 +274,7 @@ void Lpm_Enter_Low_Power_Mode(void)
             COMM_SUBSYSTEM_AHB->COMM_SUBSYSTEM_HOST |= COMMUMICATION_SUBSYSTEM_DEEPSLEEP;  /* communication system enter deep sleep mode */
             Lpm_Comm_Subsystem_Check_System_DeepSleep();
             Lpm_Set_Sram_Sleep_Deepsleep_Shutdown(LPM_SRAM0_RETAIN);
+            sys_set_retention_reg(6, 0x00);     //Disable CM3 peripherals/APBGPIO and Remap/communication subsystem/ reset wdt triggered.
             Lpm_Set_Platform_Low_Power_Wakeup(LOW_POWER_PLATFORM_ENTER_DEEP_SLEEP);        /* set platform system wakeup source when entering deep sleep mode*/
             SYSCTRL->POWER_STATE_CTRL = LOW_POWER_PLATFORM_ENTER_DEEP_SLEEP;               /* platform system enter deep sleep mode */
             __WFI();

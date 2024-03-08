@@ -30,7 +30,7 @@
 	.thumb_func
 cli_init:
 .Lfunc_begin0:
-	.loc	3 174 0                         @ ../../../components/utility/cli/cli.c:174:0
+	.loc	3 175 0                         @ ../../../components/utility/cli/cli.c:175:0
 	.fnstart
 	.cfi_sections .debug_frame
 	.cfi_startproc
@@ -45,7 +45,7 @@ cli_init:
 	.cfi_def_cfa_offset 16
 	movs	r0, #28
 .Ltmp0:
-	.loc	3 175 5 prologue_end            @ ../../../components/utility/cli/cli.c:175:5
+	.loc	3 176 5 prologue_end            @ ../../../components/utility/cli/cli.c:176:5
 	str	r0, [sp]
 	movw	r0, :lower16:cli_task
 	mov.w	r12, #0
@@ -56,7 +56,7 @@ cli_init:
 	str.w	r12, [sp, #4]
 	bl	xTaskCreate
 .Ltmp1:
-	.loc	3 182 5                         @ ../../../components/utility/cli/cli.c:182:5
+	.loc	3 183 5                         @ ../../../components/utility/cli/cli.c:183:5
 	movs	r0, #0
 	add	sp, #8
 	pop	{r7, pc}
@@ -544,23 +544,23 @@ _cli_cmd_debug:
 	.loc	3 158 13                        @ ../../../components/utility/cli/cli.c:158:13
 	cmp	r0, #0
 .Ltmp53:
-	.loc	3 160 13 is_stmt 1              @ ../../../components/utility/cli/cli.c:160:13
-	ite	eq
-	moveq	r0, #0
-.Ltmp54:
-	.loc	3 164 13                        @ ../../../components/utility/cli/cli.c:164:13
+	.loc	3 164 13 is_stmt 1              @ ../../../components/utility/cli/cli.c:164:13
+	ite	ne
 	movne	r0, #1
+.Ltmp54:
+	.loc	3 160 13                        @ ../../../components/utility/cli/cli.c:160:13
+	moveq	r0, #0
 	bl	debug_flag_setting
 .Ltmp55:
-	.loc	3 171 1                         @ ../../../components/utility/cli/cli.c:171:1
-	pop	{r7, pc}
+	.loc	3 0 13 is_stmt 0                @ ../../../components/utility/cli/cli.c:0:13
+	b	.LBB3_3
 .Ltmp56:
 .LBB3_2:
 	@DEBUG_VALUE: _cli_cmd_debug:pExtra <- $r3
 	@DEBUG_VALUE: _cli_cmd_debug:log_out <- $r2
 	@DEBUG_VALUE: _cli_cmd_debug:argv <- $r1
 	@DEBUG_VALUE: _cli_cmd_debug:argc <- $r0
-	.loc	3 169 39                        @ ../../../components/utility/cli/cli.c:169:39
+	.loc	3 169 39 is_stmt 1              @ ../../../components/utility/cli/cli.c:169:39
 	bl	debug_flag_get
 .Ltmp57:
 	@DEBUG_VALUE: _cli_cmd_debug:pExtra <- [DW_OP_LLVM_entry_value 1] $r3
@@ -578,12 +578,18 @@ _cli_cmd_debug:
 	.loc	3 169 9                         @ ../../../components/utility/cli/cli.c:169:9
 	bl	__2printf
 .Ltmp58:
-	.loc	3 171 1 is_stmt 1               @ ../../../components/utility/cli/cli.c:171:1
+.LBB3_3:
+	@DEBUG_VALUE: _cli_cmd_debug:pExtra <- [DW_OP_LLVM_entry_value 1] $r3
+	@DEBUG_VALUE: _cli_cmd_debug:log_out <- [DW_OP_LLVM_entry_value 1] $r2
+	@DEBUG_VALUE: _cli_cmd_debug:argv <- [DW_OP_LLVM_entry_value 1] $r1
+	@DEBUG_VALUE: _cli_cmd_debug:argc <- [DW_OP_LLVM_entry_value 1] $r0
+	.loc	3 171 5 is_stmt 1               @ ../../../components/utility/cli/cli.c:171:5
+	movs	r0, #0
 	pop	{r7, pc}
 .Ltmp59:
 	.p2align	2
-@ %bb.3:
-	.loc	3 0 1 is_stmt 0                 @ ../../../components/utility/cli/cli.c:0:1
+@ %bb.4:
+	.loc	3 0 5 is_stmt 0                 @ ../../../components/utility/cli/cli.c:0:5
 .LCPI3_0:
 .L.str.16:
 	.asciz	"True\000\000\000"
@@ -1466,7 +1472,7 @@ g_uart_rx_io:
 	.long	55                              @ DW_AT_type
                                         @ DW_AT_external
 	.byte	3                               @ DW_AT_decl_file
-	.byte	185                             @ DW_AT_decl_line
+	.byte	186                             @ DW_AT_decl_line
 	.byte	5                               @ DW_AT_location
 	.byte	3
 	.long	g_cli_cmd_ps
@@ -1580,7 +1586,7 @@ g_uart_rx_io:
 	.long	55                              @ DW_AT_type
                                         @ DW_AT_external
 	.byte	3                               @ DW_AT_decl_file
-	.byte	192                             @ DW_AT_decl_line
+	.byte	193                             @ DW_AT_decl_line
 	.byte	5                               @ DW_AT_location
 	.byte	3
 	.long	g_cli_cmd_debug
@@ -1788,7 +1794,7 @@ g_uart_rx_io:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string43                 @ DW_AT_name
 	.byte	3                               @ DW_AT_decl_file
-	.byte	173                             @ DW_AT_decl_line
+	.byte	174                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.long	219                             @ DW_AT_type
                                         @ DW_AT_external

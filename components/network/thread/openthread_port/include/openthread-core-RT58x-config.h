@@ -59,6 +59,10 @@
 #define OPENTHREAD_CONFIG_ANNOUNCE_SENDER_ENABLE 0
 #endif
 
+#ifndef OPENTHREAD_CONFIG_MLE_SEND_UNICAST_ANNOUNCE_RESPONSE
+#define OPENTHREAD_CONFIG_MLE_SEND_UNICAST_ANNOUNCE_RESPONSE 0
+#endif
+
 /**
  * @def OPENTHREAD_CONFIG_CLI_MAX_LINE_LENGTH
  *
@@ -80,10 +84,7 @@
 #endif
 
 #if OPENTHREAD_CONFIG_MLE_MAX_CHILDREN > 256
-#define OPENTHREAD_CONFIG_MESSAGE_BUFFER_SIZE                             \
-    (sizeof(void *) * ((OPENTHREAD_CONFIG_MLE_MAX_CHILDREN % 8) > 0       \
-                           ? (OPENTHREAD_CONFIG_MLE_MAX_CHILDREN / 8) + 1 \
-                           : (OPENTHREAD_CONFIG_MLE_MAX_CHILDREN / 8)))
+#define OPENTHREAD_CONFIG_MESSAGE_BUFFER_SIZE (sizeof(void *) * ((OPENTHREAD_CONFIG_MLE_MAX_CHILDREN%8) > 0 ? (OPENTHREAD_CONFIG_MLE_MAX_CHILDREN/8)+1:(OPENTHREAD_CONFIG_MLE_MAX_CHILDREN/8)))
 #endif
 
 /**
@@ -93,7 +94,7 @@
  *
  */
 #ifndef OPENTHREAD_CONFIG_TMF_ADDRESS_CACHE_ENTRIES
-#define OPENTHREAD_CONFIG_TMF_ADDRESS_CACHE_ENTRIES 100
+#define OPENTHREAD_CONFIG_TMF_ADDRESS_CACHE_ENTRIES 64
 #endif
 
 /**
@@ -103,8 +104,7 @@
  *
  */
 #ifndef OPENTHREAD_CONFIG_MLE_CHILD_TIMEOUT_DEFAULT
-#define OPENTHREAD_CONFIG_MLE_CHILD_TIMEOUT_DEFAULT \
-    240 // 2147483000(Deep sleep use)
+#define OPENTHREAD_CONFIG_MLE_CHILD_TIMEOUT_DEFAULT 300 // 2147483000
 #endif
 
 /**
@@ -122,8 +122,7 @@
 /**
  * @def OPENTHREAD_CONFIG_OPERATIONAL_DATASET_AUTO_INIT
  *
- * Define as 1 to enable support for locally initializing an Active Operational
- * Dataset.
+ * Define as 1 to enable support for locally initializing an Active Operational Dataset.
  *
  * @note This functionality is deprecated and not recommended.
  *
@@ -157,23 +156,20 @@
 #define OPENTHREAD_CONFIG_COAP_API_ENABLE 1
 #define OPENTHREAD_CONFIG_JOINER_ENABLE 1
 #define OPENTHREAD_CONFIG_COMMISSIONER_ENABLE 0
-#define OPENTHREAD_CONFIG_UDP_FORWARD_ENABLE 0
+#define OPENTHREAD_CONFIG_UDP_FORWARD_ENABLE 1
 #define OPENTHREAD_CONFIG_BORDER_ROUTER_ENABLE 0
 #define OPENTHREAD_CONFIG_IP6_SLAAC_ENABLE 1
 #define OPENTHREAD_CONFIG_DTLS_ENABLE 1
 #define OPENTHREAD_CONFIG_ENABLE_BUILTIN_MBEDTLS_MANAGEMENT 1
 #define OPENTHREAD_CONFIG_PING_SENDER_ENABLE 1
 #define OPENTHREAD_CONFIG_TCP_ENABLE 0
-#define OPENTHREAD_CONFIG_TMF_NETDIAG_CLIENT_ENABLE 1
-#define OPENTHREAD_SPINEL_CONFIG_OPENTHREAD_MESSAGE_ENABLE 1
-#define OPENTHREAD_CONFIG_SNTP_CLIENT_ENABLE 1
 
 #define OPENTHREAD_CONFIG_ECDSA_ENABLE 1
 
 #define OPENTHREAD_CONFIG_NUM_MESSAGE_BUFFERS 160
-#define OPENTHREAD_CONFIG_MAC_DEFAULT_MAX_FRAME_RETRIES_DIRECT 3
-#define OPENTHREAD_CONFIG_MAC_DEFAULT_MAX_FRAME_RETRIES_INDIRECT 3
-#define OPENTHREAD_CONFIG_MAC_MAX_TX_ATTEMPTS_INDIRECT_POLLS 3
+#define OPENTHREAD_CONFIG_MAC_DEFAULT_MAX_FRAME_RETRIES_DIRECT 2
+#define OPENTHREAD_CONFIG_MAC_DEFAULT_MAX_FRAME_RETRIES_INDIRECT 2
+#define OPENTHREAD_CONFIG_MAC_MAX_TX_ATTEMPTS_INDIRECT_POLLS 2
 
 #define OPENTHREAD_CONFIG_MAC_MAX_CSMA_BACKOFFS_DIRECT 5
 #define OPENTHREAD_CONFIG_MAC_MAX_CSMA_BACKOFFS_INDIRECT 5
@@ -182,23 +178,25 @@
 #define OPENTHREAD_CONFIG_LOG_LEVEL_INIT OT_LOG_LEVEL_NONE
 #define OPENTHREAD_CONFIG_LOG_LEVEL_DYNAMIC_ENABLE 1
 #define OPENTHREAD_CONFIG_LOG_PLATFORM 1
+#define OPENTHREAD_CONFIG_LOG_OUTPUT OPENTHREAD_CONFIG_LOG_OUTPUT_PLATFORM_DEFINED
+
 
 #define OPENTHREAD_CONFIG_IP6_FRAGMENTATION_ENABLE 1
-#define OPENTHREAD_CONFIG_SRP_CLIENT_ENABLE 1
-#define OPENTHREAD_CONFIG_DNS_CLIENT_ENABLE 1
-#define OPENTHREAD_CONFIG_THREAD_VERSION OT_THREAD_VERSION_1_3
+#define OPENTHREAD_CONFIG_SRP_CLIENT_ENABLE 0
+#define OPENTHREAD_CONFIG_DNS_CLIENT_ENABLE 0
+#define OPENTHREAD_CONFIG_TMF_NETDIAG_CLIENT_ENABLE 1
+//#define OPENTHREAD_CONFIG_THREAD_VERSION OT_THREAD_VERSION_1_3
 
-#define OPENTHREAD_PLATFORM_POSIX 0
 /**
  * @def OPENTHREAD_CONFIG_MLE_CHILD_ROUTER_LINKS
  *
- * Specifies the desired number of router links that a REED / FED attempts to
- * maintain.
+ * Specifies the desired number of router links that a REED / FED attempts to maintain.
  *
  */
 #ifndef OPENTHREAD_CONFIG_MLE_CHILD_ROUTER_LINKS
 #define OPENTHREAD_CONFIG_MLE_CHILD_ROUTER_LINKS 1
 #endif
+
 
 /**
  * @def OPENTHREAD_CONFIG_MLE_LINK_METRICS_INITIATOR_ENABLE
@@ -207,7 +205,7 @@
  *
  */
 #ifndef OPENTHREAD_CONFIG_MLE_LINK_METRICS_INITIATOR_ENABLE
-#define OPENTHREAD_CONFIG_MLE_LINK_METRICS_INITIATOR_ENABLE 1
+#define OPENTHREAD_CONFIG_MLE_LINK_METRICS_INITIATOR_ENABLE 0
 #endif
 
 /**
@@ -220,9 +218,8 @@
 #define OPENTHREAD_CONFIG_MLE_LINK_METRICS_SUBJECT_ENABLE 0
 #endif
 
-#define OPENTHREAD_CONFIG_MLR_ENABLE 1
-
 #define OPENTHREAD_CONFIG_MAC_CSL_RECEIVER_ENABLE 0 //(if use freertos set to 0)
+
 
 #if OPENTHREAD_CONFIG_MAC_CSL_RECEIVER_ENABLE == 1
 
@@ -239,8 +236,7 @@
 /**
  * @def OPENTHREAD_CONFIG_CSL_RECEIVE_TIME_AHEAD
  *
- * Reception scheduling and ramp up time needed for the CSL receiver to be
- * ready, in units of microseconds.
+ * Reception scheduling and ramp up time needed for the CSL receiver to be ready, in units of microseconds.
  *
  */
 #ifndef OPENTHREAD_CONFIG_CSL_RECEIVE_TIME_AHEAD
@@ -250,9 +246,8 @@
 /**
  * @def OPENTHREAD_CONFIG_MIN_RECEIVE_ON_AHEAD
  *
- * The minimum time (in microseconds) before the MHR start that the radio should
- * be in receive state and ready to properly receive in order to properly
- * receive any IEEE 802.15.4 frame. Defaults to the duration of SHR + PHR.
+ * The minimum time (in microseconds) before the MHR start that the radio should be in receive state and ready to
+ * properly receive in order to properly receive any IEEE 802.15.4 frame. Defaults to the duration of SHR + PHR.
  *
  */
 #ifndef OPENTHREAD_CONFIG_MIN_RECEIVE_ON_AHEAD
@@ -262,11 +257,10 @@
 /**
  * @def OPENTHREAD_CONFIG_MIN_RECEIVE_ON_AFTER
  *
- * The minimum time (in microseconds) after the MHR start that the radio should
- * be in receive state in order to properly receive any IEEE 802.15.4 frame.
- * Defaults to the duration of a maximum size frame, plus AIFS, plus the
- * duration of maximum enh-ack frame. Platforms are encouraged to improve this
- * value for energy efficiency purposes.
+ * The minimum time (in microseconds) after the MHR start that the radio should be in receive state in order
+ * to properly receive any IEEE 802.15.4 frame. Defaults to the duration of a maximum size frame, plus AIFS,
+ * plus the duration of maximum enh-ack frame. Platforms are encouraged to improve this value for energy
+ * efficiency purposes.
  *
  */
 #ifndef OPENTHREAD_CONFIG_MIN_RECEIVE_ON_AFTER
@@ -280,24 +274,24 @@
  *
  */
 #ifndef OPENTHREAD_CONFIG_PLATFORM_USEC_TIMER_ENABLE
-#define OPENTHREAD_CONFIG_PLATFORM_USEC_TIMER_ENABLE \
-    OPENTHREAD_CONFIG_MAC_CSL_RECEIVER_ENABLE
+#define OPENTHREAD_CONFIG_PLATFORM_USEC_TIMER_ENABLE OPENTHREAD_CONFIG_MAC_CSL_RECEIVER_ENABLE
 #endif
 
-#endif // OPENTHREAD_CONFIG_MAC_CSL_RECEIVER_ENABLE
+#endif //OPENTHREAD_CONFIG_MAC_CSL_RECEIVER_ENABLE
 
 #define OPENTHREAD_CONFIG_MAC_FILTER_ENABLE 1
 #define OPENTHREAD_CONFIG_REFERENCE_DEVICE_ENABLE 1
 
-#define OPENTHREAD_CONFIG_DUA_ENABLE 1
-#define OPENTHREAD_CONFIG_MLR_ENABLE 1
-#define OPENTHREAD_CONFIG_DHCP6_CLIENT_ENABLE 1
+#define OPENTHREAD_CONFIG_DUA_ENABLE 0
+#define OPENTHREAD_CONFIG_MLR_ENABLE 0
+#define OPENTHREAD_CONFIG_DHCP6_CLIENT_ENABLE 0
+
 
 /**
  * @OPENTHREAD_CONFIG_DELAY_AWARE_QUEUE_MANAGEMENT_MARK_ECN_INTERVAL
  *
- * Specifies the time-in-queue threshold interval in milliseconds to mark ECN on
- * a message if it is ECN-capable or drop the message if not ECN-capable.
+ * Specifies the time-in-queue threshold interval in milliseconds to mark ECN on a message if it is ECN-capable or
+ * drop the message if not ECN-capable.
  *
  */
 #ifndef OPENTHREAD_CONFIG_DELAY_AWARE_QUEUE_MANAGEMENT_MARK_ECN_INTERVAL
@@ -307,8 +301,7 @@
 /**
  * @OPENTHREAD_CONFIG_DELAY_AWARE_QUEUE_MANAGEMENT_DROP_MSG_INTERVAL
  *
- * Specifies the time-in-queue threshold interval in milliseconds to drop a
- * message.
+ * Specifies the time-in-queue threshold interval in milliseconds to drop a message.
  *
  */
 #ifndef OPENTHREAD_CONFIG_DELAY_AWARE_QUEUE_MANAGEMENT_DROP_MSG_INTERVAL

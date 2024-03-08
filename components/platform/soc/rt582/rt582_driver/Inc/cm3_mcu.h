@@ -424,6 +424,9 @@ typedef enum IRQn_Type
 #include "swi.h"
 #include "lpm.h"
 
+
+#include "flash_protect.h"
+
 /*set debug port as uart0*/
 #define  DEBUGPORT            0
 

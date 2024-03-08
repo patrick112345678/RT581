@@ -26,10 +26,12 @@
 #include "log.h"
 #include "queue.h"
 #include "ot_ota_handler.h"
+#include "util_string.h"
+#include "cli.h"
 //=============================================================================
 //                Private Function Declaration
 //=============================================================================
-unsigned int ota_debug_flags = 1;
+unsigned int ota_debug_flags = 0;
 #define ota_printf(args, ...)        \
     do {                                \
         if(ota_debug_flags > 0)    \
@@ -1487,7 +1489,7 @@ static void ota_response_timer_handler()
 
 static void ota_timer_handler()
 {
-    // ota_printf("state %s \n",OtaStateToString(g_ota_state));
+    ota_printf("state %s \n",OtaStateToString(g_ota_state));
     switch (g_ota_state)
     {
     case OTA_DATA_SENDING:
@@ -2218,3 +2220,36 @@ otError ota_init(otInstance *aInstance)
 
     return error;
 }
+
+static int _cli_cmd_ota(int argc, char **argv, cb_shell_out_t log_out, void *pExtra)
+{
+    if (argc > 2)
+    {
+        if (!strcmp(argv[1], "debug"))
+        {
+            if (utility_strtoul(argv[2], 0) == 0)
+            {
+                ota_debug_level(0);
+            }
+            else
+            {
+                ota_debug_level(1);
+            }
+        }
+    }
+    else
+    {
+        printf("ota state : %s \n", OtaStateToString(ota_get_state()));
+        printf("ota image version : 0x%08x\n", ota_get_image_version());
+        printf("ota image size : 0x%08x \n", ota_get_image_size());
+        printf("ota image crc : 0x%08x \n", ota_get_image_crc());
+    }
+    return 0;
+}
+
+const sh_cmd_t g_cli_cmd_ota STATIC_CLI_CMD_ATTRIBUTE =
+{
+    .pCmd_name    = "ota",
+    .pDescription = "ota <debug> <0 or 1>",
+    .cmd_exec     = _cli_cmd_ota,
+};

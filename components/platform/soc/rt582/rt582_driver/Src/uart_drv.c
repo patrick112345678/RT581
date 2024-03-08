@@ -9,7 +9,7 @@
 
 #include "cm3_mcu.h"
 #include "uart_drv.h"
-
+#include "project_config.h"
 
 
 #define MAX_NUMBER_OF_UART        3

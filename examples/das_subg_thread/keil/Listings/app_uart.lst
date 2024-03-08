@@ -3490,7 +3490,7 @@ g_tx_buf:
 	.byte	43                              @ Abbrev [43] 0x8ff:0x12 DW_TAG_subprogram
 	.long	.Linfo_string189                @ DW_AT_name
 	.byte	5                               @ DW_AT_decl_file
-	.byte	72                              @ DW_AT_decl_line
+	.byte	73                              @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_declaration
                                         @ DW_AT_external

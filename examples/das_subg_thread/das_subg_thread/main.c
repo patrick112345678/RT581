@@ -14,7 +14,7 @@
 
 void wdt_isr(void)
 {
-
+    Wdt_Kick();
 }
 
 void wdt_init(void)
