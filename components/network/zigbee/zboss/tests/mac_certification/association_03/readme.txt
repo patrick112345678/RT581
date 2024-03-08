@@ -1,1 +1,0 @@
-Use association_01, but roles of devices are reverted.

@@ -1,1 +1,0 @@
-This is same test as association_02, but devices roles are reverted.

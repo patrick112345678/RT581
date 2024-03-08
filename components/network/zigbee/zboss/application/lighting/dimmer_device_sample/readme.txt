@@ -1,1 +1,0 @@
-Dimmer switch and dimmable light samples
