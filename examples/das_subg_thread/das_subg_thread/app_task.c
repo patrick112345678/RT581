@@ -17,6 +17,7 @@
 #include "ot_ota_handler.h"
 #include "timers.h"
 #include <time.h>
+#include <openthread/link.h>
 #define NET_MGM_ENABLED 1
 #define RAFAEL_REGISTER_TASK_STACK_SIZE (2 * configMINIMAL_STACK_SIZE)
 static SemaphoreHandle_t    appSemHandle          = NULL;
@@ -127,6 +128,27 @@ static void ot_stateChangeCallback(otChangedFlags flags, void *p_context)
                      p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12], p[13], p[14], p[15]);
         }
     }
+}
+
+int8_t app_get_parent_rssi()
+{
+    int8_t rssi = (-128);
+    otRouterInfo parentInfo;
+    otNeighborInfo         neighborInfo;
+    otNeighborInfoIterator iterator = OT_NEIGHBOR_INFO_ITERATOR_INIT;
+    otInstance *instance = otrGetInstance();
+    if(otThreadGetParentInfo(instance, &parentInfo) == OT_ERROR_NONE)
+    {
+        while (otThreadGetNextNeighborInfo(instance, &iterator, &neighborInfo) == OT_ERROR_NONE)
+        {
+            if(neighborInfo.mRloc16 == parentInfo.mRloc16)
+            {
+                rssi = neighborInfo.mAverageRssi;
+                break;
+            }
+        }
+    }
+    return rssi;
 }
 
 static void app_udp_cb(otMessage *otMsg, const otMessageInfo *otInfo)

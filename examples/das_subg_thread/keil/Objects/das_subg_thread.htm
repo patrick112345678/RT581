@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\das_subg_thread.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\das_subg_thread.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6160001: Last Updated: Mon Mar 18 10:55:04 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6160001: Last Updated: Mon Mar 18 16:38:37 2024
 <BR><P>
 <H3>Maximum Stack Usage =       3748 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -715,8 +715,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[405]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ot::CslTxScheduler::GetNextCslTransmissionDelay(ot::Child const&, unsigned int&, unsigned int) const
 <LI><a href="#[a9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbedtls_mpi_div_mpi
 <LI><a href="#[5f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ot::Cli::Output::OutputUint64(unsigned long long)
-<LI><a href="#[b9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 <LI><a href="#[b99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+<LI><a href="#[b9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
 
 <P><STRONG><a name="[173]"></a>__rt_ctype_table</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, ctype_o.o(.text))
@@ -1383,8 +1383,8 @@ Global Symbols
 <LI><a href="#[180]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
 </UL>
 <BR>[Called By]<UL><LI><a href="#[182]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
-<LI><a href="#[b9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 <LI><a href="#[183]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
+<LI><a href="#[b9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
 
 <P><STRONG><a name="[182]"></a>__aeabi_dsub</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, dadd.o(.text))
@@ -16692,7 +16692,7 @@ Global Symbols
 
 <P><STRONG><a name="[6cc]"></a>ot::Radio::Transmit(ot::Mac::TxFrame&)</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, radio.o(.text._ZN2ot5Radio8TransmitERNS_3Mac7TxFrameE))
 <BR><BR>[Stack]<UL><LI>Max Depth = 264 + Unknown Stack Size
-<LI>Call Chain = ot::Radio::Transmit(ot::Mac::TxFrame&) &rArr; otPlatRadioTransmit &rArr; subg_ctrl_frequency_set &rArr; hosal_rf_ioctl &rArr; hosal_rf_read_event &rArr; xQueueReceive &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; __2printf
+<LI>Call Chain = ot::Radio::Transmit(ot::Mac::TxFrame&) &rArr; otPlatRadioTransmit &rArr; lmac15p4_tx_data_send &rArr; hosal_rf_ioctl &rArr; hosal_rf_read_event &rArr; xQueueReceive &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; __2printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[829]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;otPlatRadioTransmit
 </UL>
@@ -24759,8 +24759,6 @@ Global Symbols
 <LI><a href="#[192]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lmac15p4_init
-<LI><a href="#[b39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;subg_ctrl_idle_set
-<LI><a href="#[b12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;subg_ctrl_frequency_set
 <LI><a href="#[b3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;subg_ctrl_filter_set
 <LI><a href="#[a4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lmac15p4_tx_data_send
 <LI><a href="#[a4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lmac15p4_src_match_short_entry
@@ -24780,6 +24778,8 @@ Global Symbols
 <LI><a href="#[b3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;subg_ctrl_preamble_set
 <LI><a href="#[b3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;subg_ctrl_modem_config_set
 <LI><a href="#[b3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;subg_ctrl_mac_set
+<LI><a href="#[b39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;subg_ctrl_idle_set
+<LI><a href="#[b12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;subg_ctrl_frequency_set
 </UL>
 
 <P><STRONG><a name="[a39]"></a>hosal_rf_read_event</STRONG> (Thumb, 64 bytes, Stack size 24 bytes, hosal_rf.o(.text.hosal_rf_read_event))
@@ -29227,10 +29227,10 @@ Global Symbols
 
 <P><STRONG><a name="[6c4]"></a>otPlatRadioReceive</STRONG> (Thumb, 72 bytes, Stack size unknown bytes, ot_radio.o(.text.otPlatRadioReceive))
 <BR><BR>[Stack]<UL><LI>Max Depth = 264 + Unknown Stack Size
-<LI>Call Chain = otPlatRadioReceive &rArr; subg_ctrl_frequency_set &rArr; hosal_rf_ioctl &rArr; hosal_rf_read_event &rArr; xQueueReceive &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; __2printf
+<LI>Call Chain = otPlatRadioReceive &rArr; lmac15p4_auto_state_set &rArr; hosal_rf_ioctl &rArr; hosal_rf_read_event &rArr; xQueueReceive &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;subg_ctrl_frequency_set
-<LI><a href="#[a43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lmac15p4_auto_state_set
+<BR>[Calls]<UL><LI><a href="#[a43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lmac15p4_auto_state_set
+<LI><a href="#[b12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;subg_ctrl_frequency_set
 </UL>
 <BR>[Called By]<UL><LI><a href="#[692]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ot::Mac::SubMac::Receive(unsigned char)
 <LI><a href="#[697]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ot::Mac::SubMac::EnergyScan(unsigned char, unsigned short)
@@ -29341,7 +29341,7 @@ Global Symbols
 
 <P><STRONG><a name="[829]"></a>otPlatRadioTransmit</STRONG> (Thumb, 188 bytes, Stack size unknown bytes, ot_radio.o(.text.otPlatRadioTransmit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 264 + Unknown Stack Size
-<LI>Call Chain = otPlatRadioTransmit &rArr; subg_ctrl_frequency_set &rArr; hosal_rf_ioctl &rArr; hosal_rf_read_event &rArr; xQueueReceive &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; __2printf
+<LI>Call Chain = otPlatRadioTransmit &rArr; lmac15p4_tx_data_send &rArr; hosal_rf_ioctl &rArr; hosal_rf_read_event &rArr; xQueueReceive &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; __2printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;otPlatRadioTxStarted
 <LI><a href="#[1eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortExitCritical
@@ -29349,10 +29349,10 @@ Global Symbols
 <LI><a href="#[1f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Lpm_Low_Power_Unmask
 <LI><a href="#[b15]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Lpm_Low_Power_Mask
 <LI><a href="#[b16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;otMacFrameGetSequence
-<LI><a href="#[b12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;subg_ctrl_frequency_set
 <LI><a href="#[a4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lmac15p4_tx_data_send
 <LI><a href="#[1f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;otSysEventSignalPending
 <LI><a href="#[b11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;otPlatTimeGet
+<LI><a href="#[b12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;subg_ctrl_frequency_set
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ot::Radio::Transmit(ot::Mac::TxFrame&)
 </UL>
@@ -30322,14 +30322,12 @@ Global Symbols
 
 <P><STRONG><a name="[b36]"></a>ot_radioInit</STRONG> (Thumb, 388 bytes, Stack size unknown bytes, ot_radio.o(.text.ot_radioInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 264 + Unknown Stack Size
-<LI>Call Chain = ot_radioInit &rArr; subg_ctrl_idle_set &rArr; hosal_rf_ioctl &rArr; hosal_rf_read_event &rArr; xQueueReceive &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; __2printf
+<LI>Call Chain = ot_radioInit &rArr; subg_ctrl_filter_set &rArr; hosal_rf_ioctl &rArr; hosal_rf_read_event &rArr; xQueueReceive &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; __2printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortExitCritical
 <LI><a href="#[1ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
 <LI><a href="#[a2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;flash_read_sec_register
 <LI><a href="#[a2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;flash_get_unique_id
-<LI><a href="#[b39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;subg_ctrl_idle_set
-<LI><a href="#[b12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;subg_ctrl_frequency_set
 <LI><a href="#[b3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;subg_ctrl_filter_set
 <LI><a href="#[a4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lmac15p4_src_match_ctrl
 <LI><a href="#[a48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lmac15p4_phy_pib_set
@@ -30344,6 +30342,8 @@ Global Symbols
 <LI><a href="#[b3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;subg_ctrl_preamble_set
 <LI><a href="#[b3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;subg_ctrl_modem_config_set
 <LI><a href="#[b3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;subg_ctrl_mac_set
+<LI><a href="#[b39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;subg_ctrl_idle_set
+<LI><a href="#[b12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;subg_ctrl_frequency_set
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
 </UL>
@@ -34358,11 +34358,11 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[b99]"></a>_printf_core</STRONG> (Thumb, 1744 bytes, Stack size 136 bytes, printfa.o(i._printf_core), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[b9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
-<LI><a href="#[170]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
+<BR><BR>[Calls]<UL><LI><a href="#[170]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
 <LI><a href="#[ba2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
 <LI><a href="#[ba0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_pre_padding
 <LI><a href="#[ba1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_post_padding
+<LI><a href="#[b9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0vsnprintf
 <LI><a href="#[b9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0vprintf

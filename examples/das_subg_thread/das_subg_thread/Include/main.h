@@ -50,6 +50,7 @@ typedef enum
 extern app_task_event_t g_app_task_evt_var;
 void __app_task_signal(void);
 void app_task (void) ;
+int8_t app_get_parent_rssi();
 
 /*network_management*/
 otError nwk_mgm_init(otInstance *aInstance);
