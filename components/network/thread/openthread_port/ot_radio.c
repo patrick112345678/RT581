@@ -1207,12 +1207,12 @@ void ot_radioTask(ot_system_event_t trxEvent)
             if (trxEvent & OT_SYSTEM_EVENT_RADIO_TX_NO_ACK)
             {
                 otPlatRadioTxDone(otRadio_var.aInstance, txframe, NULL, OT_ERROR_NO_ACK);
-                log_warn_hexdump("Tx No ACK", txframe->mPsdu, txframe->mLength);
+                // log_warn_hexdump("Tx No ACK", txframe->mPsdu, txframe->mLength);
             }
             if (trxEvent & OT_SYSTEM_EVENT_RADIO_TX_CCA_FAIL)
             {
                 otPlatRadioTxDone(otRadio_var.aInstance, txframe, NULL, OT_ERROR_CHANNEL_ACCESS_FAILURE);
-                log_warn_hexdump("Tx CCA Fail", txframe->mPsdu, txframe->mLength);
+                // log_warn_hexdump("Tx CCA Fail", txframe->mPsdu, txframe->mLength);
             }
         }
     }
@@ -1246,7 +1246,7 @@ void ot_radioTask(ot_system_event_t trxEvent)
         }
         else
         {
-            log_warn("otRadio_var.dbgRxFrameNum %d", otRadio_var.dbgRxFrameNum);
+            // log_warn("otRadio_var.dbgRxFrameNum %d", otRadio_var.dbgRxFrameNum);
         }
     }
     else if (trxEvent & OT_SYSTEM_EVENT_RADIO_RX_NO_BUFF)
