@@ -656,7 +656,7 @@ static void nwk_mgm_childs_register_proccess(otMessage *aMessage, const otMessag
                             nwk_mgm_printf("isn't leader \n");
                         }
                         nwk_mgm_printf("ack send %u \n", child_reg_data_ack.kick_num);
-                        payload = pvPortMalloc(sizeof(nwk_mgm_child_reg_ack_info_t));
+                        payload = mem_malloc(sizeof(nwk_mgm_child_reg_ack_info_t));
                         if (payload)
                         {
                             nwk_mgm_data_piece(NWK_MGM_TYPE_CHILD_REG_ACK, payload, &payloadlength, &child_reg_data_ack);
@@ -682,7 +682,7 @@ static void nwk_mgm_childs_register_proccess(otMessage *aMessage, const otMessag
         } while (0);
         if (payload)
         {
-            vPortFree(payload);
+            mem_free(payload);
         }
         if (error != OT_ERROR_NONE && responseMessage != NULL)
         {
@@ -804,7 +804,7 @@ static void nwk_mgm_request_proccess(void *aContext, otMessage *aMessage, const 
     {
         if (length > 0)
         {
-            buf = pvPortMalloc(length);
+            buf = mem_malloc(length);
             if (NULL != buf)
             {
                 otMessageRead(aMessage, otMessageGetOffset(aMessage), buf, length);
@@ -826,7 +826,7 @@ static void nwk_mgm_request_proccess(void *aContext, otMessage *aMessage, const 
 
     if (buf)
     {
-        vPortFree(buf);
+        mem_free(buf);
     }
 }
 
@@ -842,7 +842,7 @@ static void nwk_mgm_ack_process(void *aContext, otMessage *aMessage, const otMes
     {
         if (length > 0)
         {
-            buf = pvPortMalloc(length);
+            buf = mem_malloc(length);
             if (NULL != buf)
             {
                 otMessageRead(aMessage, otMessageGetOffset(aMessage), buf, length);
@@ -861,7 +861,7 @@ static void nwk_mgm_ack_process(void *aContext, otMessage *aMessage, const otMes
 
     if (buf)
     {
-        vPortFree(buf);
+        mem_free(buf);
     }
 }
 
@@ -980,13 +980,13 @@ void nwk_mgm_child_register_post()
             child_reg_data.num++;
         }
 
-        payload = pvPortMalloc(sizeof(nwk_mgm_child_reg_data_t));
+        payload = mem_malloc(sizeof(nwk_mgm_child_reg_data_t));
         if (payload)
         {
             nwk_mgm_data_piece(NWK_MGM_TYPE_CHILD_REG, payload, &payloadlength, &child_reg_data);
             error = nwk_mgm_coap_request(CoapCode, coapDestinationIp, coapType, payload, payloadlength, RAFAEL_NWK_MGM_URL);
             nwk_mgm_printf("register %s %u %u \n", string, error, payloadlength);
-            vPortFree(payload);
+            mem_free(payload);
             nwk_mgm_router_update_timer_set(NWK_MGM_ROUTER_KEEP_ALIVE_TIME);
         }
     }
@@ -1006,7 +1006,7 @@ static void nwk_mgm_kick_child_post(uint16_t rloc, uint16_t panid, uint8_t *exta
         uint8_t *payload = NULL;
         uint16_t payloadlength = 0;
 
-        payload = pvPortMalloc(sizeof(nwk_mgm_kick_child_info_t));
+        payload = mem_malloc(sizeof(nwk_mgm_kick_child_info_t));
         if (payload)
         {
             kick_child_data.data_type = NWK_MGM_TYPE_CHILD_KICK;
@@ -1027,7 +1027,7 @@ static void nwk_mgm_kick_child_post(uint16_t rloc, uint16_t panid, uint8_t *exta
             nwk_mgm_printf("kick %s %u \n", string, error);
             if (payload)
             {
-                vPortFree(payload);
+                mem_free(payload);
             }
         }
     }
@@ -1049,7 +1049,7 @@ void nwk_mgm_neighbor_Change_Callback(otNeighborTableEvent aEvent, const otNeigh
             if (NULL == nwk_mgm_child_reg_table)
             {
                 printf("malloc table %u \r\n", (sizeof(nwk_mgm_child_reg_table_t) * NWK_MGM_CHILD_REQ_TATLE_SIZE));
-                nwk_mgm_child_reg_table = pvPortMalloc(sizeof(nwk_mgm_child_reg_table_t) * NWK_MGM_CHILD_REQ_TATLE_SIZE);
+                nwk_mgm_child_reg_table = mem_malloc(sizeof(nwk_mgm_child_reg_table_t) * NWK_MGM_CHILD_REQ_TATLE_SIZE);
                 memset(nwk_mgm_child_reg_table, 0x0, sizeof(nwk_mgm_child_reg_table_t) * NWK_MGM_CHILD_REQ_TATLE_SIZE);
             }
             switch (aEvent)
@@ -1087,7 +1087,7 @@ void nwk_mgm_neighbor_Change_Callback(otNeighborTableEvent aEvent, const otNeigh
             }
             if (nwk_mgm_child_reg_table)
             {
-                vPortFree(nwk_mgm_child_reg_table);
+                mem_free(nwk_mgm_child_reg_table);
                 nwk_mgm_child_reg_table = NULL;
             }
         }
@@ -1095,7 +1095,7 @@ void nwk_mgm_neighbor_Change_Callback(otNeighborTableEvent aEvent, const otNeigh
         {
             if (nwk_mgm_child_reg_table)
             {
-                vPortFree(nwk_mgm_child_reg_table);
+                mem_free(nwk_mgm_child_reg_table);
                 nwk_mgm_child_reg_table = NULL;
             }
         }
@@ -1130,7 +1130,7 @@ static void mgm_router_update_timer_handler()
             nwk_mgm_child_register_post();
             if (nwk_mgm_child_reg_table)
             {
-                vPortFree(nwk_mgm_child_reg_table);
+                mem_free(nwk_mgm_child_reg_table);
                 nwk_mgm_child_reg_table = NULL;
             }
         }
@@ -1158,7 +1158,7 @@ static void mgm_router_update_timer_handler()
         {
             if (nwk_mgm_child_reg_table)
             {
-                vPortFree(nwk_mgm_child_reg_table);
+                mem_free(nwk_mgm_child_reg_table);
                 nwk_mgm_child_reg_table = NULL;
             }
         }

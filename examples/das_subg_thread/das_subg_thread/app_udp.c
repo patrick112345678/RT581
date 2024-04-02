@@ -33,7 +33,7 @@ typedef struct
 
 static void otUdpReceive_handler(void *aContext, otMessage *aMessage, const otMessageInfo *aMessageInfo)
 {
-    log_info("UPD Packet received, port: %d, len: %d", aMessageInfo->mPeerPort, otMessageGetLength(aMessage));
+    //log_info("\nUPD Packet received, port: %d, len: %d", aMessageInfo->mPeerPort, otMessageGetLength(aMessage));
 
     if (app_udpHandler)
     {
@@ -92,7 +92,7 @@ void app_udp_received_queue_push(uint8_t *data, uint16_t data_lens)
 {
     _app_udp_data_t u_data;
 
-    u_data.pdata =  pvPortMalloc(data_lens);
+    u_data.pdata =  mem_malloc(data_lens);
     if (u_data.pdata)
     {
         memcpy(u_data.pdata, data, data_lens);
@@ -114,7 +114,7 @@ void __udp_task(app_task_event_t sevent)
             evaluate_commandAM1(u_data.pdata, u_data.dlen);
             if (u_data.pdata)
             {
-                vPortFree(u_data.pdata);
+                mem_free(u_data.pdata);
             }
         }
     }
@@ -157,12 +157,13 @@ static int _cli_cmd_udpsend(int argc, char **argv, cb_shell_out_t log_out, void 
     {
         otIp6AddressFromString(argv[1], &PeerAddr);
         payload_len = utility_strtox(argv[2], 0, 4) ;
-        payload = pvPortMalloc(payload_len);
+        payload = mem_malloc(payload_len);
         if (payload)
         {
             memset(payload, 0xfe, payload_len);
+            Rafael_printFunction(payload, payload_len);
             app_udpSend(THREAD_UDP_PORT, PeerAddr, payload, payload_len);
-            vPortFree(payload);
+            mem_free(payload);
         }
     }
     return 0;

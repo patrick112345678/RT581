@@ -27,7 +27,7 @@ int log_buf_out(const char *file, int line, const void *inbuf, int len, LOG_BUF_
     char *buf = (char *)inbuf;
     char *pbuffer = NULL;
 
-    pbuffer = (char *)pvPortMalloc(sizeof(log_buf));
+    pbuffer = (char *)mem_malloc(sizeof(log_buf));
     if (pbuffer == NULL)
     {
         return -1;
@@ -142,7 +142,7 @@ int log_buf_out(const char *file, int line, const void *inbuf, int len, LOG_BUF_
 
     MODULE_LOG_LOCK_UNLOCK;
 
-    vPortFree(pbuffer);
+    mem_free(pbuffer);
 
     return 0;
 }

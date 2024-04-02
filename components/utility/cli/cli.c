@@ -18,7 +18,7 @@
 
 #include "shell.h"
 #include "cli.h"
-
+#include "mem_mgmt.h"
 
 #define SYS_CLI_TASK_STACK_SIZE 2048
 #define SYS_CLI_TASK_PRIORITY (28)
@@ -143,7 +143,7 @@ static int _cli_cmd_ps(int argc, char **argv, cb_shell_out_t log_out, void *pExt
     }
 
     log_out("%u.%u s \r\n", ((Timer_25us_Tick / 40000) % 60), ((Timer_25us_Tick / 40) % 1000));
-    vPortFree(pbuffer);
+    mem_free(pbuffer);
 
     return 0;
 }
@@ -171,6 +171,12 @@ static int _cli_cmd_debug(int argc, char **argv, cb_shell_out_t log_out, void *p
     return 0;
 }
 
+static int _cli_cmd_mem(int argc, char **argv, cb_shell_out_t log_out, void *pExtra)
+{
+    mem_mgmt_show_info();
+    return 0;
+}
+
 int cli_init(void)
 {
     xTaskCreate(cli_task,
@@ -195,4 +201,11 @@ const sh_cmd_t g_cli_cmd_debug STATIC_CLI_CMD_ATTRIBUTE =
     .pCmd_name    = "debug",
     .pDescription = "switch print",
     .cmd_exec     = _cli_cmd_debug,
+};
+
+const sh_cmd_t g_cli_cmd_mem STATIC_CLI_CMD_ATTRIBUTE =
+{
+    .pCmd_name    = "mem",
+    .pDescription = "memory mgmt print",
+    .cmd_exec     = _cli_cmd_mem,
 };

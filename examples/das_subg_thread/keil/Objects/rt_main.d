@@ -73,4 +73,5 @@
   ..\..\..\components\utility\log\log.h \
   ..\..\..\components\utility\utility\Inc\util_log.h \
   ..\..\..\components\utility\log\log_type.h \
-  ..\..\..\components\utility\log\log_cfg.h
+  ..\..\..\components\utility\log\log_cfg.h \
+  ..\..\..\components\utility\MemoryMgmt\Inc\mem_mgmt.h

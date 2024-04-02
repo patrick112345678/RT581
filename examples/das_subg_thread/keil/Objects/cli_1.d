@@ -65,4 +65,5 @@
   ..\..\..\components\utility\uart_stdio\Inc\uart_stdio.h \
   ..\..\..\components\utility\cli\Inc\shell.h \
   ..\..\..\components\utility\cli\Inc\cli.h \
-  ..\..\..\components\utility\cli\Inc\shell.h
+  ..\..\..\components\utility\cli\Inc\shell.h \
+  ..\..\..\components\utility\MemoryMgmt\Inc\mem_mgmt.h

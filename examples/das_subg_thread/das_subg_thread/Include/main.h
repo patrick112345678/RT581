@@ -10,7 +10,14 @@
 #include <openthread_port.h>
 #include "FreeRTOS.h"
 #include "semphr.h"
+#include "mem_mgmt.h"
 #include <time.h>
+#define NETWORKKEY_USE 0//0: NO networkkey 1:use networkkey
+#define STATUS_NOT_OBTAINED_KEY 0 // Status indicating the key has not been obtained
+#define STATUS_OBTAINED_KEY     1 // Status indicating the key has been obtained
+#define STATUS_SENT_ACK         2 // Status indicating the ACK has been sent after obtaining the key
+#define STATUS_REGISTRATION_COMPLETE 3 // Status indicating the registration process is complete
+
 #if OPENTHREAD_CONFIG_RADIO_915MHZ_OQPSK_SUPPORT
 #define THREAD_CHANNEL      4
 #else
@@ -88,6 +95,7 @@ void __uart_task(app_task_event_t sevent);
 /*app udp*/
 uint8_t app_sockInit(otInstance *instance, void (*handler)(otMessage *, const otMessageInfo *), uint16_t udp_port);
 otError app_udpSend(uint16_t PeerPort, otIp6Address PeerAddr, uint8_t *data, uint16_t data_lens);
+void Rafael_printFunction(uint8_t *payload, uint16_t meter_len);
 void app_udp_received_queue_push(uint8_t *data, uint16_t data_lens);
 void __udp_task(app_task_event_t sevent);
 

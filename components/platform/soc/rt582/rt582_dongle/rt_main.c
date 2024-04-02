@@ -8,6 +8,7 @@
 #include "uart_stdio.h"
 #include "hosal_uart.h"
 #include "EnhancedFlashDataset.h"
+#include "mem_mgmt.h"
 
 #if defined(__CC_ARM) || defined(__CLANG_ARM) || (defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050))
 extern uint32_t Image$$RW_IRAM2_FREERTOS_HEAP_POOL_START$$RO$$Base;
@@ -287,6 +288,7 @@ int main(void)
     _heap_size = (0x00024000 - RAM_ALREADY_USED_SIZE);
     xHeapRegions[0].xSizeInBytes = _heap_size;
 #endif
+
     vPortDefineHeapRegions(xHeapRegions);
 
     rt582_utick_set_clear();

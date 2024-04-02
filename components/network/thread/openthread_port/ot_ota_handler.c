@@ -28,6 +28,7 @@
 #include "ot_ota_handler.h"
 #include "util_string.h"
 #include "cli.h"
+#include "mem_mgmt.h"
 //=============================================================================
 //                Private Function Declaration
 //=============================================================================
@@ -154,7 +155,7 @@ uint32_t *ota_bitmap_init(uint32_t lens)
     }
     bitmap_size *= sizeof(uint32_t);
 
-    bitmap = pvPortMalloc(bitmap_size);
+    bitmap = mem_malloc(bitmap_size);
     if (NULL == bitmap)
     {
         ota_printf("ota_bitmap_init fail \r\n");
@@ -181,7 +182,7 @@ void ota_bitmap_delete(uint32_t *bitmap)
 {
     if (bitmap)
     {
-        vPortFree(bitmap);
+        mem_free(bitmap);
     }
     bitmap = NULL;
 }
@@ -713,7 +714,7 @@ static void ota_coap_data_proccess(void *aContext, otMessage *aMessage, const ot
     {
         if (length > 0)
         {
-            buf = pvPortMalloc(length);
+            buf = mem_malloc(length);
             if (NULL != buf)
             {
                 otMessageRead(aMessage, otMessageGetOffset(aMessage), buf, length);
@@ -740,7 +741,7 @@ static void ota_coap_data_proccess(void *aContext, otMessage *aMessage, const ot
                     ota_data_ack.data_type =  OTA_PAYLOAD_TYPE_DATA_ACK;
                     ota_data_ack.version = ota_data.version;
                     ota_data_ack.seq = ota_data.seq;
-                    payload = pvPortMalloc(sizeof(ota_data_ack_t));
+                    payload = mem_malloc(sizeof(ota_data_ack_t));
                     if (payload)
                     {
                         ota_data_piece(OTA_PAYLOAD_TYPE_DATA_ACK, payload, &payloadlength, &ota_data_ack);
@@ -766,11 +767,11 @@ static void ota_coap_data_proccess(void *aContext, otMessage *aMessage, const ot
     } while (0);
     if (buf)
     {
-        vPortFree(buf);
+        mem_free(buf);
     }
     if (payload)
     {
-        vPortFree(payload);
+        mem_free(payload);
     }
     if (error != OT_ERROR_NONE && responseMessage != NULL)
     {
@@ -789,7 +790,7 @@ static void ota_coap_request_proccess(void *aContext, otMessage *aMessage, const
     {
         if (length > 0)
         {
-            buf = pvPortMalloc(length);
+            buf = mem_malloc(length);
             if (NULL != buf)
             {
                 otMessageRead(aMessage, otMessageGetOffset(aMessage), buf, length);
@@ -800,7 +801,7 @@ static void ota_coap_request_proccess(void *aContext, otMessage *aMessage, const
 
     if (buf)
     {
-        vPortFree(buf);
+        mem_free(buf);
     }
 }
 
@@ -815,7 +816,7 @@ static void ota_coap_response_proccess(void *aContext, otMessage *aMessage, cons
     {
         if (length > 0)
         {
-            buf = pvPortMalloc(length);
+            buf = mem_malloc(length);
             if (NULL != buf)
             {
                 otMessageRead(aMessage, otMessageGetOffset(aMessage), buf, length);
@@ -826,7 +827,7 @@ static void ota_coap_response_proccess(void *aContext, otMessage *aMessage, cons
 
     if (buf)
     {
-        vPortFree(buf);
+        mem_free(buf);
     }
 }
 
@@ -877,7 +878,7 @@ static void ota_coap_ack_process(void *aContext, otMessage *aMessage, const otMe
     {
         if (length > 0)
         {
-            buf = pvPortMalloc(length);
+            buf = mem_malloc(length);
             if (NULL != buf)
             {
                 otMessageRead(aMessage, otMessageGetOffset(aMessage), buf, length);
@@ -904,7 +905,7 @@ static void ota_coap_ack_process(void *aContext, otMessage *aMessage, const otMe
 
     if (buf)
     {
-        vPortFree(buf);
+        mem_free(buf);
     }
 }
 
@@ -1050,7 +1051,7 @@ static void ota_data_send_handler()
         memcpy(&ota_data.data, temp_addr, ota_data_lens);
         OT_EXIT_CRITICAL();
 
-        payload = pvPortMalloc(sizeof(ota_data_t));
+        payload = mem_malloc(sizeof(ota_data_t));
         if (payload)
         {
             memset(payload, 0x0, sizeof(ota_data_t));
@@ -1071,7 +1072,7 @@ static void ota_data_send_handler()
 
     if (payload)
     {
-        vPortFree(payload);
+        mem_free(payload);
     }
     return;
 }
@@ -1161,7 +1162,7 @@ static void ota_response_send_handler()
         memcpy(&ota_response.data, temp_addr, ota_response_data_lens);
         OT_EXIT_CRITICAL();
 
-        payload = pvPortMalloc(sizeof(ota_response_t));
+        payload = mem_malloc(sizeof(ota_response_t));
         if (payload)
         {
             memset(payload, 0x0, sizeof(ota_response_t));
@@ -1175,7 +1176,7 @@ static void ota_response_send_handler()
 
     if (payload)
     {
-        vPortFree(payload);
+        mem_free(payload);
     }
 
     resp_table_num = 0;
@@ -1304,7 +1305,7 @@ static void ota_request_handler()
                 }
             }
             ota_printf(" ] \r\n");
-            payload = pvPortMalloc(sizeof(ota_request_t));
+            payload = mem_malloc(sizeof(ota_request_t));
             if (payload)
             {
                 memset(payload, 0x0, sizeof(ota_request_t));
@@ -1336,7 +1337,7 @@ static void ota_request_handler()
 
     if (payload)
     {
-        vPortFree(payload);
+        mem_free(payload);
     }
 }
 
@@ -1489,7 +1490,7 @@ static void ota_response_timer_handler()
 
 static void ota_timer_handler()
 {
-    ota_printf("state %s \n",OtaStateToString(g_ota_state));
+    ota_printf("state %s \n", OtaStateToString(g_ota_state));
     switch (g_ota_state)
     {
     case OTA_DATA_SENDING:

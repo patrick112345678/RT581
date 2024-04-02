@@ -93,4 +93,5 @@
   ..\..\..\platform\soc\rt582\rt582_freertos\Inc\queue.h \
   ..\openthread_port\include\ot_ota_handler.h \
   ..\..\..\utility\utility\Inc\util_string.h \
-  ..\..\..\utility\cli\Inc\cli.h ..\..\..\utility\cli\Inc\shell.h
+  ..\..\..\utility\cli\Inc\cli.h ..\..\..\utility\cli\Inc\shell.h \
+  ..\..\..\utility\MemoryMgmt\Inc\mem_mgmt.h

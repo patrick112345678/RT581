@@ -148,6 +148,7 @@
   ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\semphr.h \
   ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\queue.h \
   ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\task.h \
+  ..\..\..\components\utility\MemoryMgmt\Inc\mem_mgmt.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\time.h \
   ..\..\..\components\network\thread\subg_openthread\third_party\mbedtls\repo\include\mbedtls\gcm.h \
   ..\..\..\components\network\thread\subg_openthread\third_party\mbedtls\mbedtls-config.h \

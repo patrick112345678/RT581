@@ -40,7 +40,7 @@
 	.thumb_func
 __app_task_signal:
 .Lfunc_begin0:
-	.loc	2 29 0                          @ ../das_subg_thread/app_task.c:29:0
+	.loc	2 30 0                          @ ../das_subg_thread/app_task.c:30:0
 	.fnstart
 	.cfi_sections .debug_frame
 	.cfi_startproc
@@ -61,11 +61,11 @@ __app_task_signal:
 .Ltmp1:
 	@DEBUG_VALUE: xPortIsInsideInterrupt:xReturn <- [DW_OP_LLVM_convert 1 7, DW_OP_LLVM_convert 32 7, DW_OP_stack_value] undef
 	@DEBUG_VALUE: xPortIsInsideInterrupt:ulCurrentInterrupt <- $r0
-	.loc	2 30 9                          @ ../das_subg_thread/app_task.c:30:9
+	.loc	2 31 9                          @ ../das_subg_thread/app_task.c:31:9
 	cbz	r0, .LBB0_2
 @ %bb.1:
 .Ltmp2:
-	.loc	2 33 9                          @ ../das_subg_thread/app_task.c:33:9
+	.loc	2 34 9                          @ ../das_subg_thread/app_task.c:34:9
 	movw	r0, :lower16:appSemHandle
 	movt	r0, :upper16:appSemHandle
 	movs	r1, #1
@@ -74,18 +74,18 @@ __app_task_signal:
 	ldr	r0, [r0]
 .Ltmp4:
 	@DEBUG_VALUE: pxHigherPriorityTaskWoken <- [DW_OP_plus_uconst 4, DW_OP_deref] $sp
-	.loc	2 32 20                         @ ../das_subg_thread/app_task.c:32:20
+	.loc	2 33 20                         @ ../das_subg_thread/app_task.c:33:20
 	str	r1, [sp, #4]
 	add	r1, sp, #4
-	.loc	2 33 9                          @ ../das_subg_thread/app_task.c:33:9
+	.loc	2 34 9                          @ ../das_subg_thread/app_task.c:34:9
 	bl	xQueueGiveFromISR
 .Ltmp5:
-	.loc	2 39 1                          @ ../das_subg_thread/app_task.c:39:1
+	.loc	2 40 1                          @ ../das_subg_thread/app_task.c:40:1
 	add	sp, #8
 	pop	{r7, pc}
 .Ltmp6:
 .LBB0_2:
-	.loc	2 37 9                          @ ../das_subg_thread/app_task.c:37:9
+	.loc	2 38 9                          @ ../das_subg_thread/app_task.c:38:9
 	movw	r0, :lower16:appSemHandle
 	movt	r0, :upper16:appSemHandle
 	ldr	r0, [r0]
@@ -112,7 +112,7 @@ __app_task_signal:
 	.thumb_func
 vLightTimerCallback:
 .Lfunc_begin1:
-	.loc	2 42 0                          @ ../das_subg_thread/app_task.c:42:0
+	.loc	2 43 0                          @ ../das_subg_thread/app_task.c:43:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -126,14 +126,14 @@ vLightTimerCallback:
 	sub	sp, #8
 	.cfi_def_cfa_offset 16
 .Ltmp9:
-	.loc	2 43 9 prologue_end             @ ../das_subg_thread/app_task.c:43:9
+	.loc	2 44 9 prologue_end             @ ../das_subg_thread/app_task.c:44:9
 	movw	r0, :lower16:GreenLight_Flag
 	movt	r0, :upper16:GreenLight_Flag
 	ldrb	r1, [r0]
 .Ltmp10:
 	@DEBUG_VALUE: gpio_pin_write:pin_number <- 14
 	@DEBUG_VALUE: gpio_pin_write:pin_number <- 14
-	.loc	2 43 9 is_stmt 0                @ ../das_subg_thread/app_task.c:43:9
+	.loc	2 44 9 is_stmt 0                @ ../das_subg_thread/app_task.c:44:9
 	cbz	r1, .LBB1_2
 .Ltmp11:
 @ %bb.1:
@@ -164,7 +164,7 @@ vLightTimerCallback:
 	movs	r1, #1
 .Ltmp15:
 .LBB1_3:
-	.loc	2 53 9                          @ ../das_subg_thread/app_task.c:53:9
+	.loc	2 54 9                          @ ../das_subg_thread/app_task.c:54:9
 	movw	r2, :lower16:target_pos
 	movt	r2, :upper16:target_pos
 	ldrb	r2, [r2]
@@ -172,7 +172,7 @@ vLightTimerCallback:
 	.loc	2 0 0 is_stmt 0                 @ ../das_subg_thread/app_task.c:0:0
 	strb	r1, [r0]
 .Ltmp17:
-	.loc	2 53 44                         @ ../das_subg_thread/app_task.c:53:44
+	.loc	2 54 44                         @ ../das_subg_thread/app_task.c:54:44
 	subs	r2, #2
 	cmp	r2, #2
 	bhi	.LBB1_5
@@ -187,7 +187,7 @@ vLightTimerCallback:
 	.loc	14 167 23 is_stmt 1             @ ../../../components/platform/soc/rt582/rt582_driver/Inc/gpio.h:167:23
 	str	r1, [r0]
 .Ltmp19:
-	.loc	2 56 9                          @ ../das_subg_thread/app_task.c:56:9
+	.loc	2 57 9                          @ ../das_subg_thread/app_task.c:57:9
 	movw	r0, :lower16:xLightTimer
 	movt	r0, :upper16:xLightTimer
 	ldr	r0, [r0]
@@ -199,7 +199,7 @@ vLightTimerCallback:
 	bl	xTimerGenericCommand
 .Ltmp20:
 .LBB1_5:
-	.loc	2 58 1                          @ ../das_subg_thread/app_task.c:58:1
+	.loc	2 59 1                          @ ../das_subg_thread/app_task.c:59:1
 	add	sp, #8
 	pop	{r7, pc}
 .Ltmp21:
@@ -218,7 +218,7 @@ vLightTimerCallback:
 	.thumb_func
 app_get_parent_rssi:
 .Lfunc_begin2:
-	.loc	2 134 0                         @ ../das_subg_thread/app_task.c:134:0
+	.loc	2 135 0                         @ ../das_subg_thread/app_task.c:135:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -236,33 +236,33 @@ app_get_parent_rssi:
 .Ltmp22:
 	@DEBUG_VALUE: app_get_parent_rssi:iterator <- 0
 	@DEBUG_VALUE: app_get_parent_rssi:rssi <- -128
-	.loc	2 138 28 prologue_end           @ ../das_subg_thread/app_task.c:138:28
+	.loc	2 139 28 prologue_end           @ ../das_subg_thread/app_task.c:139:28
 	strh.w	r0, [sp, #6]
-	.loc	2 139 28                        @ ../das_subg_thread/app_task.c:139:28
+	.loc	2 140 28                        @ ../das_subg_thread/app_task.c:140:28
 	bl	otrGetInstance
 .Ltmp23:
 	.loc	2 0 28 is_stmt 0                @ ../das_subg_thread/app_task.c:0:28
 	add	r1, sp, #44
-	.loc	2 139 28                        @ ../das_subg_thread/app_task.c:139:28
+	.loc	2 140 28                        @ ../das_subg_thread/app_task.c:140:28
 	mov	r4, r0
 .Ltmp24:
 	@DEBUG_VALUE: app_get_parent_rssi:instance <- $r4
-	.loc	2 140 8 is_stmt 1               @ ../das_subg_thread/app_task.c:140:8
+	.loc	2 141 9 is_stmt 1               @ ../das_subg_thread/app_task.c:141:9
 	bl	otThreadGetParentInfo
 .Ltmp25:
-	.loc	2 140 8 is_stmt 0               @ ../das_subg_thread/app_task.c:140:8
+	.loc	2 141 9 is_stmt 0               @ ../das_subg_thread/app_task.c:141:9
 	cbz	r0, .LBB2_3
 .Ltmp26:
 .LBB2_1:
 	@DEBUG_VALUE: app_get_parent_rssi:instance <- $r4
 	@DEBUG_VALUE: app_get_parent_rssi:rssi <- -128
-	.loc	2 0 8                           @ ../das_subg_thread/app_task.c:0:8
+	.loc	2 0 9                           @ ../das_subg_thread/app_task.c:0:9
 	movs	r0, #128
 .Ltmp27:
 .LBB2_2:
 	@DEBUG_VALUE: app_get_parent_rssi:instance <- $r4
 	@DEBUG_VALUE: app_get_parent_rssi:rssi <- $r0
-	.loc	2 151 5 is_stmt 1               @ ../das_subg_thread/app_task.c:151:5
+	.loc	2 152 5 is_stmt 1               @ ../das_subg_thread/app_task.c:152:5
 	sxtb	r0, r0
 .Ltmp28:
 	add	sp, #64
@@ -281,13 +281,13 @@ app_get_parent_rssi:
 	@DEBUG_VALUE: app_get_parent_rssi:instance <- $r4
 	@DEBUG_VALUE: app_get_parent_rssi:rssi <- -128
 	@DEBUG_VALUE: app_get_parent_rssi:iterator <- [DW_OP_plus_uconst 6, DW_OP_deref] $sp
-	.loc	2 142 16 is_stmt 1              @ ../das_subg_thread/app_task.c:142:16
+	.loc	2 143 16 is_stmt 1              @ ../das_subg_thread/app_task.c:143:16
 	mov	r0, r4
 	mov	r1, r5
 	mov	r2, r6
 	bl	otThreadGetNextNeighborInfo
 .Ltmp31:
-	.loc	2 142 9 is_stmt 0               @ ../das_subg_thread/app_task.c:142:9
+	.loc	2 143 9 is_stmt 0               @ ../das_subg_thread/app_task.c:143:9
 	cmp	r0, #0
 	bne	.LBB2_1
 .Ltmp32:
@@ -295,12 +295,12 @@ app_get_parent_rssi:
 	@DEBUG_VALUE: app_get_parent_rssi:instance <- $r4
 	@DEBUG_VALUE: app_get_parent_rssi:iterator <- [DW_OP_plus_uconst 6, DW_OP_deref] $sp
 	@DEBUG_VALUE: app_get_parent_rssi:rssi <- -128
-	.loc	2 144 29 is_stmt 1              @ ../das_subg_thread/app_task.c:144:29
+	.loc	2 145 30 is_stmt 1              @ ../das_subg_thread/app_task.c:145:30
 	ldrh.w	r0, [sp, #20]
-	.loc	2 144 51 is_stmt 0              @ ../das_subg_thread/app_task.c:144:51
+	.loc	2 145 52 is_stmt 0              @ ../das_subg_thread/app_task.c:145:52
 	ldrh.w	r1, [sp, #52]
 .Ltmp33:
-	.loc	2 144 16                        @ ../das_subg_thread/app_task.c:144:16
+	.loc	2 145 17                        @ ../das_subg_thread/app_task.c:145:17
 	cmp	r0, r1
 	bne	.LBB2_4
 .Ltmp34:
@@ -308,7 +308,7 @@ app_get_parent_rssi:
 	@DEBUG_VALUE: app_get_parent_rssi:instance <- $r4
 	@DEBUG_VALUE: app_get_parent_rssi:iterator <- [DW_OP_plus_uconst 6, DW_OP_deref] $sp
 	@DEBUG_VALUE: app_get_parent_rssi:rssi <- -128
-	.loc	2 146 37 is_stmt 1              @ ../das_subg_thread/app_task.c:146:37
+	.loc	2 147 37 is_stmt 1              @ ../das_subg_thread/app_task.c:147:37
 	ldrb.w	r0, [sp, #33]
 .Ltmp35:
 	@DEBUG_VALUE: app_get_parent_rssi:rssi <- undef
@@ -330,7 +330,7 @@ app_get_parent_rssi:
 	.thumb_func
 otrInitUser:
 .Lfunc_begin3:
-	.loc	2 212 0 is_stmt 1               @ ../das_subg_thread/app_task.c:212:0
+	.loc	2 213 0 is_stmt 1               @ ../das_subg_thread/app_task.c:213:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -350,96 +350,96 @@ otrInitUser:
 .Ltmp37:
 	@DEBUG_VALUE: otrInitUser:instance <- $r4
 	@DEBUG_VALUE: otrInitUser:instance <- $r4
-	.loc	2 213 5 prologue_end            @ ../das_subg_thread/app_task.c:213:5
+	.loc	2 214 5 prologue_end            @ ../das_subg_thread/app_task.c:214:5
 	bl	ota_bootloader_info_check
 .Ltmp38:
-	.loc	2 229 5                         @ ../das_subg_thread/app_task.c:229:5
+	.loc	2 237 5                         @ ../das_subg_thread/app_task.c:237:5
 	mov	r0, r4
 	bl	otAppCliInit
 .Ltmp39:
 	.loc	2 0 5 is_stmt 0                 @ ../das_subg_thread/app_task.c:0:5
 	mov	r5, sp
-	.loc	2 233 5 is_stmt 1               @ ../das_subg_thread/app_task.c:233:5
+	.loc	2 241 5 is_stmt 1               @ ../das_subg_thread/app_task.c:241:5
 	mov	r0, r5
 	movs	r1, #120
 	bl	__aeabi_memclr8
 .Ltmp40:
-	.loc	2 235 5                         @ ../das_subg_thread/app_task.c:235:5
+	.loc	2 243 5                         @ ../das_subg_thread/app_task.c:243:5
 	mov	r0, r4
 	mov	r1, r5
 	bl	otDatasetGetActive
 .Ltmp41:
-	.loc	2 242 47                        @ ../das_subg_thread/app_task.c:242:47
+	.loc	2 250 47                        @ ../das_subg_thread/app_task.c:250:47
 	ldrb.w	r0, [sp, #117]
-	.loc	2 249 5                         @ ../das_subg_thread/app_task.c:249:5
+	.loc	2 257 5                         @ ../das_subg_thread/app_task.c:257:5
 	ldr	r2, .LCPI3_0
-	.loc	2 242 47                        @ ../das_subg_thread/app_task.c:242:47
+	.loc	2 250 47                        @ ../das_subg_thread/app_task.c:250:47
 	orr	r0, r0, #1
 	strb.w	r0, [sp, #117]
 	movw	r0, #65281
 	movt	r0, #4
-	.loc	2 245 24                        @ ../das_subg_thread/app_task.c:245:24
+	.loc	2 253 24                        @ ../das_subg_thread/app_task.c:253:24
 	str	r0, [sp, #88]
-	.loc	2 249 5                         @ ../das_subg_thread/app_task.c:249:5
+	.loc	2 257 5                         @ ../das_subg_thread/app_task.c:257:5
 	adr	r0, .LCPI3_0
 	str	r2, [sp, #32]
 	ldrd	r2, r3, [r0, #4]
 	ldr	r0, [r0, #12]
-	.loc	2 238 55                        @ ../das_subg_thread/app_task.c:238:55
+	.loc	2 246 55                        @ ../das_subg_thread/app_task.c:246:55
 	ldrb.w	r1, [sp, #116]
-	.loc	2 249 5                         @ ../das_subg_thread/app_task.c:249:5
+	.loc	2 257 5                         @ ../das_subg_thread/app_task.c:257:5
 	str	r0, [sp, #44]
 	movw	r0, #3328
 	movt	r0, #184
-	.loc	2 257 21                        @ ../das_subg_thread/app_task.c:257:21
+	.loc	2 265 21                        @ ../das_subg_thread/app_task.c:265:21
 	movw	r6, :lower16:otrInitUser.aNetworkName
-	.loc	2 253 5                         @ ../das_subg_thread/app_task.c:253:5
+	.loc	2 261 5                         @ ../das_subg_thread/app_task.c:261:5
 	str.w	r0, [sp, #65]
-	.loc	2 254 53                        @ ../das_subg_thread/app_task.c:254:53
+	.loc	2 262 53                        @ ../das_subg_thread/app_task.c:262:53
 	orr	r0, r1, #149
-	.loc	2 257 21                        @ ../das_subg_thread/app_task.c:257:21
+	.loc	2 265 21                        @ ../das_subg_thread/app_task.c:265:21
 	movt	r6, :upper16:otrInitUser.aNetworkName
 	movs	r7, #0
-	.loc	2 254 53                        @ ../das_subg_thread/app_task.c:254:53
+	.loc	2 262 53                        @ ../das_subg_thread/app_task.c:262:53
 	strb.w	r0, [sp, #116]
-	.loc	2 257 21                        @ ../das_subg_thread/app_task.c:257:21
+	.loc	2 265 21                        @ ../das_subg_thread/app_task.c:265:21
 	mov	r0, r6
-	.loc	2 237 43                        @ ../das_subg_thread/app_task.c:237:43
+	.loc	2 245 43                        @ ../das_subg_thread/app_task.c:245:43
 	strd	r7, r7, [sp]
-	.loc	2 249 5                         @ ../das_subg_thread/app_task.c:249:5
+	.loc	2 257 5                         @ ../das_subg_thread/app_task.c:257:5
 	strd	r2, r3, [sp, #36]
-	.loc	2 253 5                         @ ../das_subg_thread/app_task.c:253:5
+	.loc	2 261 5                         @ ../das_subg_thread/app_task.c:261:5
 	str.w	r7, [sp, #69]
-	.loc	2 257 21                        @ ../das_subg_thread/app_task.c:257:21
+	.loc	2 265 21                        @ ../das_subg_thread/app_task.c:265:21
 	bl	strlen
 .Ltmp42:
 	mov	r2, r0
 .Ltmp43:
 	@DEBUG_VALUE: otrInitUser:length <- $r2
-	.loc	2 258 5                         @ ../das_subg_thread/app_task.c:258:5
+	.loc	2 266 5                         @ ../das_subg_thread/app_task.c:266:5
 	add.w	r0, r5, #48
 	mov	r1, r6
 	bl	__aeabi_memcpy4
 .Ltmp44:
-	.loc	2 259 51                        @ ../das_subg_thread/app_task.c:259:51
+	.loc	2 267 51                        @ ../das_subg_thread/app_task.c:267:51
 	ldrb.w	r0, [sp, #116]
 	movs	r1, #253
 	movt	r1, #47117
-	.loc	2 262 55                        @ ../das_subg_thread/app_task.c:262:55
+	.loc	2 270 55                        @ ../das_subg_thread/app_task.c:270:55
 	orr	r0, r0, #40
-	.loc	2 261 5                         @ ../das_subg_thread/app_task.c:261:5
+	.loc	2 269 5                         @ ../das_subg_thread/app_task.c:269:5
 	str.w	r1, [sp, #73]
-	.loc	2 262 55                        @ ../das_subg_thread/app_task.c:262:55
+	.loc	2 270 55                        @ ../das_subg_thread/app_task.c:270:55
 	strb.w	r0, [sp, #116]
-	.loc	2 265 5                         @ ../das_subg_thread/app_task.c:265:5
+	.loc	2 273 5                         @ ../das_subg_thread/app_task.c:273:5
 	mov	r0, r4
 	mov	r1, r5
-	.loc	2 261 5                         @ ../das_subg_thread/app_task.c:261:5
+	.loc	2 269 5                         @ ../das_subg_thread/app_task.c:269:5
 	str.w	r7, [sp, #77]
-	.loc	2 265 5                         @ ../das_subg_thread/app_task.c:265:5
+	.loc	2 273 5                         @ ../das_subg_thread/app_task.c:273:5
 	bl	otDatasetSetActive
 .Ltmp45:
-	.loc	2 267 5                         @ ../das_subg_thread/app_task.c:267:5
+	.loc	2 275 5                         @ ../das_subg_thread/app_task.c:275:5
 	bl	otGetVersionString
 .Ltmp46:
 	mov	r1, r0
@@ -447,7 +447,7 @@ otrInitUser:
 	movt	r0, :upper16:.L.str
 	bl	__2printf
 .Ltmp47:
-	.loc	2 269 5                         @ ../das_subg_thread/app_task.c:269:5
+	.loc	2 277 5                         @ ../das_subg_thread/app_task.c:277:5
 	mov	r0, r4
 	bl	otThreadGetLinkMode
 .Ltmp48:
@@ -465,7 +465,7 @@ otrInitUser:
 	mov	r2, r6
 	bl	__2printf
 .Ltmp51:
-	.loc	2 273 5                         @ ../das_subg_thread/app_task.c:273:5
+	.loc	2 281 5                         @ ../das_subg_thread/app_task.c:281:5
 	mov	r0, r4
 	bl	otThreadGetNetworkName
 .Ltmp52:
@@ -473,7 +473,7 @@ otrInitUser:
 	adr	r0, .LCPI3_2
 	bl	__2printf
 .Ltmp53:
-	.loc	2 274 5                         @ ../das_subg_thread/app_task.c:274:5
+	.loc	2 282 5                         @ ../das_subg_thread/app_task.c:282:5
 	mov	r0, r4
 	bl	otLinkGetPanId
 .Ltmp54:
@@ -481,7 +481,7 @@ otrInitUser:
 	adr	r0, .LCPI3_3
 	bl	__2printf
 .Ltmp55:
-	.loc	2 276 5                         @ ../das_subg_thread/app_task.c:276:5
+	.loc	2 284 5                         @ ../das_subg_thread/app_task.c:284:5
 	mov	r0, r4
 	bl	otLinkGetChannel
 .Ltmp56:
@@ -489,63 +489,63 @@ otrInitUser:
 	adr	r0, .LCPI3_4
 	bl	__2printf
 .Ltmp57:
-	.loc	2 278 5                         @ ../das_subg_thread/app_task.c:278:5
+	.loc	2 286 5                         @ ../das_subg_thread/app_task.c:286:5
 	movw	r1, :lower16:ot_stateChangeCallback
 	movt	r1, :upper16:ot_stateChangeCallback
 	mov	r0, r4
 	mov	r2, r4
 	bl	otSetStateChangedCallback
 .Ltmp58:
-	.loc	2 281 5                         @ ../das_subg_thread/app_task.c:281:5
+	.loc	2 289 5                         @ ../das_subg_thread/app_task.c:289:5
 	movw	r1, :lower16:app_udp_cb
 	movt	r1, :upper16:app_udp_cb
 	mov	r0, r4
 	movw	r2, #5678
 	bl	app_sockInit
 .Ltmp59:
-	.loc	2 284 5                         @ ../das_subg_thread/app_task.c:284:5
+	.loc	2 292 5                         @ ../das_subg_thread/app_task.c:292:5
 	mov	r0, r4
 	bl	nwk_mgm_init
 .Ltmp60:
-	.loc	2 285 5                         @ ../das_subg_thread/app_task.c:285:5
+	.loc	2 293 5                         @ ../das_subg_thread/app_task.c:293:5
 	movw	r1, :lower16:nwk_mgm_neighbor_Change_Callback
 	movt	r1, :upper16:nwk_mgm_neighbor_Change_Callback
 	mov	r0, r4
 	bl	otThreadRegisterNeighborTableCallback
 .Ltmp61:
-	.loc	2 287 5                         @ ../das_subg_thread/app_task.c:287:5
+	.loc	2 295 5                         @ ../das_subg_thread/app_task.c:295:5
 	mov	r0, r4
 	bl	ota_init
 .Ltmp62:
-	.loc	2 289 5                         @ ../das_subg_thread/app_task.c:289:5
+	.loc	2 297 5                         @ ../das_subg_thread/app_task.c:297:5
 	mov	r0, r4
 	bl	udf_Meter_init
 .Ltmp63:
-	.loc	2 292 5                         @ ../das_subg_thread/app_task.c:292:5
+	.loc	2 300 5                         @ ../das_subg_thread/app_task.c:300:5
 	mov	r0, r4
 	movs	r1, #1
 	bl	otIp6SetEnabled
 .Ltmp64:
-	.loc	2 293 5                         @ ../das_subg_thread/app_task.c:293:5
+	.loc	2 301 5                         @ ../das_subg_thread/app_task.c:301:5
 	mov	r0, r4
 	movs	r1, #1
 	bl	otThreadSetEnabled
 .Ltmp65:
-	.loc	2 295 16                        @ ../das_subg_thread/app_task.c:295:16
+	.loc	2 303 16                        @ ../das_subg_thread/app_task.c:303:16
 	movw	r0, :lower16:begin
 	movt	r0, :upper16:begin
 	bl	mktime
 .Ltmp66:
-	.loc	2 295 14 is_stmt 0              @ ../das_subg_thread/app_task.c:295:14
+	.loc	2 303 14 is_stmt 0              @ ../das_subg_thread/app_task.c:303:14
 	movw	r1, :lower16:now_time
 	movt	r1, :upper16:now_time
 	str	r0, [r1]
-	.loc	2 296 22 is_stmt 1              @ ../das_subg_thread/app_task.c:296:22
+	.loc	2 304 22 is_stmt 1              @ ../das_subg_thread/app_task.c:304:22
 	movw	r0, :lower16:Register_Timeout
 	movt	r0, :upper16:Register_Timeout
 	mov.w	r1, #500
 	strh	r1, [r0]
-	.loc	2 297 1                         @ ../das_subg_thread/app_task.c:297:1
+	.loc	2 305 1                         @ ../das_subg_thread/app_task.c:305:1
 	add	sp, #124
 	pop	{r4, r5, r6, r7, pc}
 .Ltmp67:
@@ -580,7 +580,7 @@ otrInitUser:
 	.thumb_func
 ot_stateChangeCallback:
 .Lfunc_begin4:
-	.loc	2 60 0 is_stmt 1                @ ../das_subg_thread/app_task.c:60:0
+	.loc	2 61 0 is_stmt 1                @ ../das_subg_thread/app_task.c:61:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -604,7 +604,7 @@ ot_stateChangeCallback:
 	.cfi_def_cfa_offset 104
 .Ltmp68:
 	@DEBUG_VALUE: ot_stateChangeCallback:instance <- $r1
-	.loc	2 63 9 prologue_end             @ ../das_subg_thread/app_task.c:63:9
+	.loc	2 64 9 prologue_end             @ ../das_subg_thread/app_task.c:64:9
 	lsls	r0, r0, #29
 .Ltmp69:
 	@DEBUG_VALUE: ot_stateChangeCallback:flags <- [DW_OP_LLVM_entry_value 1] $r0
@@ -616,7 +616,7 @@ ot_stateChangeCallback:
 	@DEBUG_VALUE: ot_stateChangeCallback:instance <- $r1
 	@DEBUG_VALUE: ot_stateChangeCallback:p_context <- $r1
 	@DEBUG_VALUE: ot_stateChangeCallback:flags <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 66 29                         @ ../das_subg_thread/app_task.c:66:29
+	.loc	2 67 29                         @ ../das_subg_thread/app_task.c:67:29
 	mov	r0, r1
 	mov	r4, r1
 .Ltmp71:
@@ -628,7 +628,7 @@ ot_stateChangeCallback:
 	mov	r5, r0
 .Ltmp73:
 	@DEBUG_VALUE: role <- $r5
-	.loc	2 67 9                          @ ../das_subg_thread/app_task.c:67:9
+	.loc	2 68 9                          @ ../das_subg_thread/app_task.c:68:9
 	cmp	r0, #4
 	bhi	.LBB4_6
 .Ltmp74:
@@ -656,7 +656,7 @@ ot_stateChangeCallback:
 	@DEBUG_VALUE: ot_stateChangeCallback:instance <- $r4
 	@DEBUG_VALUE: ot_stateChangeCallback:p_context <- $r4
 	@DEBUG_VALUE: ot_stateChangeCallback:flags <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 88 24 is_stmt 1               @ ../das_subg_thread/app_task.c:88:24
+	.loc	2 89 24 is_stmt 1               @ ../das_subg_thread/app_task.c:89:24
 	movw	r0, :lower16:target_pos
 	movt	r0, :upper16:target_pos
 	movs	r1, #1
@@ -668,17 +668,17 @@ ot_stateChangeCallback:
 	@DEBUG_VALUE: ot_stateChangeCallback:instance <- $r4
 	@DEBUG_VALUE: ot_stateChangeCallback:p_context <- $r4
 	@DEBUG_VALUE: ot_stateChangeCallback:flags <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 74 24                         @ ../das_subg_thread/app_task.c:74:24
+	.loc	2 75 24                         @ ../das_subg_thread/app_task.c:75:24
 	movw	r0, :lower16:target_pos
 	movt	r0, :upper16:target_pos
 	movs	r1, #3
 	strb	r1, [r0]
-	.loc	2 75 25                         @ ../das_subg_thread/app_task.c:75:25
+	.loc	2 76 25                         @ ../das_subg_thread/app_task.c:76:25
 	movw	r0, :lower16:SuccessRole
 	movt	r0, :upper16:SuccessRole
 	movs	r1, #1
 	strb	r1, [r0]
-	.loc	2 77 13                         @ ../das_subg_thread/app_task.c:77:13
+	.loc	2 78 13                         @ ../das_subg_thread/app_task.c:78:13
 	bl	nwk_mgm_child_register_post
 .Ltmp78:
 .LBB4_6:
@@ -686,12 +686,12 @@ ot_stateChangeCallback:
 	@DEBUG_VALUE: ot_stateChangeCallback:instance <- $r4
 	@DEBUG_VALUE: ot_stateChangeCallback:p_context <- $r4
 	@DEBUG_VALUE: ot_stateChangeCallback:flags <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 92 13                         @ ../das_subg_thread/app_task.c:92:13
+	.loc	2 93 13                         @ ../das_subg_thread/app_task.c:93:13
 	movw	r0, :lower16:SuccessRole
 	movt	r0, :upper16:SuccessRole
 	ldrb	r0, [r0]
 .Ltmp79:
-	.loc	2 92 13 is_stmt 0               @ ../das_subg_thread/app_task.c:92:13
+	.loc	2 93 13 is_stmt 0               @ ../das_subg_thread/app_task.c:93:13
 	cbnz	r0, .LBB4_9
 	b	.LBB4_10
 .Ltmp80:
@@ -721,7 +721,7 @@ ot_stateChangeCallback:
 	@DEBUG_VALUE: ot_stateChangeCallback:instance <- $r4
 	@DEBUG_VALUE: ot_stateChangeCallback:p_context <- $r4
 	@DEBUG_VALUE: ot_stateChangeCallback:flags <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 94 13 is_stmt 1               @ ../das_subg_thread/app_task.c:94:13
+	.loc	2 95 13 is_stmt 1               @ ../das_subg_thread/app_task.c:95:13
 	bl	enter_critical_section
 .Ltmp83:
 	movw	r0, :lower16:g_app_task_evt_var
@@ -739,7 +739,7 @@ ot_stateChangeCallback:
 	@DEBUG_VALUE: ot_stateChangeCallback:p_context <- $r4
 	@DEBUG_VALUE: ot_stateChangeCallback:flags <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: timerPeriod <- 200
-	.loc	2 96 45                         @ ../das_subg_thread/app_task.c:96:45
+	.loc	2 97 45                         @ ../das_subg_thread/app_task.c:97:45
 	cmp	r5, #1
 	bhi	.LBB4_14
 .Ltmp86:
@@ -752,7 +752,7 @@ ot_stateChangeCallback:
 	movw	r7, :lower16:xLightTimer
 	movt	r7, :upper16:xLightTimer
 	ldr	r0, [r7]
-	.loc	2 96 45                         @ ../das_subg_thread/app_task.c:96:45
+	.loc	2 97 45                         @ ../das_subg_thread/app_task.c:97:45
 	cbnz	r0, .LBB4_14
 .Ltmp87:
 @ %bb.12:
@@ -760,7 +760,7 @@ ot_stateChangeCallback:
 	@DEBUG_VALUE: ot_stateChangeCallback:instance <- $r4
 	@DEBUG_VALUE: ot_stateChangeCallback:p_context <- $r4
 	@DEBUG_VALUE: ot_stateChangeCallback:flags <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 101 31 is_stmt 1              @ ../das_subg_thread/app_task.c:101:31
+	.loc	2 102 31 is_stmt 1              @ ../das_subg_thread/app_task.c:102:31
 	movw	r0, :lower16:vLightTimerCallback
 	movt	r0, :upper16:vLightTimerCallback
 	str	r0, [sp]
@@ -771,9 +771,9 @@ ot_stateChangeCallback:
 	mov.w	r8, #0
 	bl	xTimerCreate
 .Ltmp88:
-	.loc	2 101 29 is_stmt 0              @ ../das_subg_thread/app_task.c:101:29
+	.loc	2 102 29 is_stmt 0              @ ../das_subg_thread/app_task.c:102:29
 	str	r0, [r7]
-	.loc	2 102 21 is_stmt 1              @ ../das_subg_thread/app_task.c:102:21
+	.loc	2 103 21 is_stmt 1              @ ../das_subg_thread/app_task.c:103:21
 	cbz	r0, .LBB4_14
 .Ltmp89:
 @ %bb.13:
@@ -784,7 +784,7 @@ ot_stateChangeCallback:
 	.loc	2 0 0 is_stmt 0                 @ ../das_subg_thread/app_task.c:0:0
 	mov	r6, r0
 .Ltmp90:
-	.loc	2 104 21 is_stmt 1              @ ../das_subg_thread/app_task.c:104:21
+	.loc	2 105 21 is_stmt 1              @ ../das_subg_thread/app_task.c:105:21
 	bl	xTaskGetTickCount
 .Ltmp91:
 	mov	r2, r0
@@ -799,7 +799,7 @@ ot_stateChangeCallback:
 	@DEBUG_VALUE: ot_stateChangeCallback:instance <- $r4
 	@DEBUG_VALUE: ot_stateChangeCallback:p_context <- $r4
 	@DEBUG_VALUE: ot_stateChangeCallback:flags <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 108 13                        @ ../das_subg_thread/app_task.c:108:13
+	.loc	2 109 13                        @ ../das_subg_thread/app_task.c:109:13
 	cmp	r5, #0
 	beq.w	.LBB4_16
 .Ltmp93:
@@ -808,7 +808,7 @@ ot_stateChangeCallback:
 	@DEBUG_VALUE: ot_stateChangeCallback:instance <- $r4
 	@DEBUG_VALUE: ot_stateChangeCallback:p_context <- $r4
 	@DEBUG_VALUE: ot_stateChangeCallback:flags <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 110 13                        @ ../das_subg_thread/app_task.c:110:13
+	.loc	2 111 13                        @ ../das_subg_thread/app_task.c:111:13
 	mov	r0, r4
 	bl	otThreadGetDeviceRole
 .Ltmp94:
@@ -818,12 +818,12 @@ ot_stateChangeCallback:
 	adr	r0, .LCPI4_1
 	bl	__2printf
 .Ltmp96:
-	.loc	2 112 29                        @ ../das_subg_thread/app_task.c:112:29
+	.loc	2 113 29                        @ ../das_subg_thread/app_task.c:113:29
 	mov	r0, r4
 	bl	otLinkGetExtendedAddress
 .Ltmp97:
 	@DEBUG_VALUE: ot_stateChangeCallback:p <- $r0
-	.loc	2 113 13                        @ ../das_subg_thread/app_task.c:113:13
+	.loc	2 114 13                        @ ../das_subg_thread/app_task.c:114:13
 	ldrb	r1, [r0]
 	ldrb	r2, [r0, #1]
 	ldrb	r3, [r0, #2]
@@ -842,7 +842,7 @@ ot_stateChangeCallback:
 	str.w	r12, [sp, #16]
 	bl	__2printf
 .Ltmp100:
-	.loc	2 116 29                        @ ../das_subg_thread/app_task.c:116:29
+	.loc	2 117 29                        @ ../das_subg_thread/app_task.c:117:29
 	mov	r0, r4
 	str	r4, [sp, #64]                   @ 4-byte Spill
 .Ltmp101:
@@ -850,7 +850,7 @@ ot_stateChangeCallback:
 	bl	otThreadGetMeshLocalPrefix
 .Ltmp102:
 	@DEBUG_VALUE: ot_stateChangeCallback:p <- $r0
-	.loc	2 117 13                        @ ../das_subg_thread/app_task.c:117:13
+	.loc	2 118 13                        @ ../das_subg_thread/app_task.c:118:13
 	ldrb	r1, [r0]
 	ldrb	r2, [r0, #1]
 	ldrb	r3, [r0, #2]
@@ -867,12 +867,12 @@ ot_stateChangeCallback:
 	str.w	r12, [sp, #16]
 	bl	__2printf
 .Ltmp105:
-	.loc	2 120 29                        @ ../das_subg_thread/app_task.c:120:29
+	.loc	2 121 29                        @ ../das_subg_thread/app_task.c:121:29
 	mov	r0, r8
 	bl	otThreadGetLinkLocalIp6Address
 .Ltmp106:
 	@DEBUG_VALUE: ot_stateChangeCallback:p <- $r0
-	.loc	2 121 13                        @ ../das_subg_thread/app_task.c:121:13
+	.loc	2 122 13                        @ ../das_subg_thread/app_task.c:122:13
 	ldrb	r1, [r0]
 	ldrb	r2, [r0, #1]
 	str	r1, [sp, #60]                   @ 4-byte Spill
@@ -910,7 +910,7 @@ ot_stateChangeCallback:
 	ldr	r4, [sp, #64]                   @ 4-byte Reload
 .Ltmp109:
 	@DEBUG_VALUE: ot_stateChangeCallback:p_context <- $r4
-	.loc	2 124 13 is_stmt 1              @ ../das_subg_thread/app_task.c:124:13
+	.loc	2 125 13 is_stmt 1              @ ../das_subg_thread/app_task.c:125:13
 	mov	r0, r4
 	bl	otThreadGetRloc16
 .Ltmp110:
@@ -918,12 +918,12 @@ ot_stateChangeCallback:
 	adr	r0, .LCPI4_3
 	bl	__2printf
 .Ltmp111:
-	.loc	2 126 29                        @ ../das_subg_thread/app_task.c:126:29
+	.loc	2 127 29                        @ ../das_subg_thread/app_task.c:127:29
 	mov	r0, r4
 	bl	otThreadGetRloc
 .Ltmp112:
 	@DEBUG_VALUE: ot_stateChangeCallback:p <- $r0
-	.loc	2 127 13                        @ ../das_subg_thread/app_task.c:127:13
+	.loc	2 128 13                        @ ../das_subg_thread/app_task.c:128:13
 	ldrb	r1, [r0]
 	ldrb	r3, [r0, #2]
 	str	r1, [sp, #64]                   @ 4-byte Spill
@@ -960,7 +960,7 @@ ot_stateChangeCallback:
 .Ltmp115:
 .LBB4_16:
 	@DEBUG_VALUE: ot_stateChangeCallback:flags <- [DW_OP_LLVM_entry_value 1] $r0
-	.loc	2 131 1                         @ ../das_subg_thread/app_task.c:131:1
+	.loc	2 132 1                         @ ../das_subg_thread/app_task.c:132:1
 	add	sp, #68
 	pop.w	{r4, r5, r6, r7, r8, r9, r10, r11, pc}
 .Ltmp116:
@@ -992,7 +992,7 @@ ot_stateChangeCallback:
 	.thumb_func
 app_udp_cb:
 .Lfunc_begin5:
-	.loc	2 155 0 is_stmt 1               @ ../das_subg_thread/app_task.c:155:0
+	.loc	2 156 0 is_stmt 1               @ ../das_subg_thread/app_task.c:156:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -1019,39 +1019,41 @@ app_udp_cb:
 	@DEBUG_VALUE: app_udp_cb:p <- 0
 	@DEBUG_VALUE: app_udp_cb:otInfo <- $r4
 	@DEBUG_VALUE: app_udp_cb:otMsg <- $r7
-	.loc	2 160 28 prologue_end           @ ../das_subg_thread/app_task.c:160:28
+	.loc	2 161 28 prologue_end           @ ../das_subg_thread/app_task.c:161:28
 	bl	otrGetInstance
 .Ltmp119:
 	@DEBUG_VALUE: app_udp_cb:instance <- undef
-	.loc	2 163 35                        @ ../das_subg_thread/app_task.c:163:35
+	.loc	2 164 35                        @ ../das_subg_thread/app_task.c:164:35
 	add.w	r0, r4, #16
 	add	r1, sp, #12
-	.loc	2 163 5 is_stmt 0               @ ../das_subg_thread/app_task.c:163:5
+	.loc	2 164 5 is_stmt 0               @ ../das_subg_thread/app_task.c:164:5
 	movs	r2, #40
 	bl	otIp6AddressToString
 .Ltmp120:
-	.loc	2 164 11 is_stmt 1              @ ../das_subg_thread/app_task.c:164:11
+	.loc	2 165 11 is_stmt 1              @ ../das_subg_thread/app_task.c:165:11
 	mov	r0, r7
 	bl	otMessageGetLength
 .Ltmp121:
 	mov	r5, r0
-	.loc	2 164 39 is_stmt 0              @ ../das_subg_thread/app_task.c:164:39
+	.loc	2 165 39 is_stmt 0              @ ../das_subg_thread/app_task.c:165:39
 	mov	r0, r7
 	bl	otMessageGetOffset
 .Ltmp122:
-	.loc	2 164 37                        @ ../das_subg_thread/app_task.c:164:37
+	.loc	2 165 37                        @ ../das_subg_thread/app_task.c:165:37
 	subs	r0, r5, r0
 .Ltmp123:
 	@DEBUG_VALUE: app_udp_cb:len <- $r0
-	.loc	2 166 22 is_stmt 1              @ ../das_subg_thread/app_task.c:166:22
+	.loc	2 167 9 is_stmt 1               @ ../das_subg_thread/app_task.c:167:9
 	uxth	r6, r0
-	.loc	2 166 9 is_stmt 0               @ ../das_subg_thread/app_task.c:166:9
+	movw	r1, :lower16:.L__FUNCTION__.app_udp_cb
+	movt	r1, :upper16:.L__FUNCTION__.app_udp_cb
 	mov	r0, r6
 .Ltmp124:
-	bl	pvPortMalloc
+	movs	r2, #167
+	bl	mem_malloc_fn
 .Ltmp125:
 	@DEBUG_VALUE: app_udp_cb:p <- $r0
-	.loc	2 170 13 is_stmt 1              @ ../das_subg_thread/app_task.c:170:13
+	.loc	2 171 13                        @ ../das_subg_thread/app_task.c:171:13
 	cmp	r0, #0
 	beq	.LBB5_6
 .Ltmp126:
@@ -1060,35 +1062,35 @@ app_udp_cb:
 	@DEBUG_VALUE: app_udp_cb:otInfo <- $r4
 	@DEBUG_VALUE: app_udp_cb:p <- $r0
 	@DEBUG_VALUE: app_udp_cb:is_multicast <- 0
-	.loc	2 175 9                         @ ../das_subg_thread/app_task.c:175:9
+	.loc	2 176 9                         @ ../das_subg_thread/app_task.c:176:9
 	mov	r1, r6
 .Ltmp127:
 	.loc	2 0 0 is_stmt 0                 @ ../das_subg_thread/app_task.c:0:0
 	mov	r5, r0
 .Ltmp128:
 	@DEBUG_VALUE: app_udp_cb:p <- $r5
-	.loc	2 175 9                         @ ../das_subg_thread/app_task.c:175:9
+	.loc	2 176 9                         @ ../das_subg_thread/app_task.c:176:9
 	bl	__aeabi_memclr
 .Ltmp129:
-	.loc	2 176 30 is_stmt 1              @ ../das_subg_thread/app_task.c:176:30
+	.loc	2 177 30 is_stmt 1              @ ../das_subg_thread/app_task.c:177:30
 	mov	r0, r7
 	bl	otMessageGetOffset
 .Ltmp130:
 	mov	r1, r0
-	.loc	2 176 9 is_stmt 0               @ ../das_subg_thread/app_task.c:176:9
+	.loc	2 177 9 is_stmt 0               @ ../das_subg_thread/app_task.c:177:9
 	mov	r0, r7
 	mov	r2, r5
 	mov	r3, r6
 	bl	otMessageRead
 .Ltmp131:
-	.loc	2 179 13 is_stmt 1              @ ../das_subg_thread/app_task.c:179:13
+	.loc	2 180 13 is_stmt 1              @ ../das_subg_thread/app_task.c:180:13
 	movw	r1, :lower16:.L.str.13
 	movt	r1, :upper16:.L.str.13
 	mov	r0, r5
 	movs	r2, #3
 	bl	memcmp
 .Ltmp132:
-	.loc	2 179 13 is_stmt 0              @ ../das_subg_thread/app_task.c:179:13
+	.loc	2 180 13 is_stmt 0              @ ../das_subg_thread/app_task.c:180:13
 	cbz	r0, .LBB5_5
 .Ltmp133:
 @ %bb.2:
@@ -1096,30 +1098,30 @@ app_udp_cb:
 	@DEBUG_VALUE: app_udp_cb:p <- $r5
 	@DEBUG_VALUE: app_udp_cb:otInfo <- $r4
 	@DEBUG_VALUE: app_udp_cb:is_multicast <- 0
-	.loc	2 182 13 is_stmt 1              @ ../das_subg_thread/app_task.c:182:13
+	.loc	2 183 13 is_stmt 1              @ ../das_subg_thread/app_task.c:183:13
 	adr	r0, .LCPI5_0
 	mov	r1, r6
 	bl	__2printf
 .Ltmp134:
-	.loc	2 183 13                        @ ../das_subg_thread/app_task.c:183:13
+	.loc	2 184 13                        @ ../das_subg_thread/app_task.c:184:13
 	adr	r0, .LCPI5_1
 	add	r1, sp, #12
 	bl	__2printf
 .Ltmp135:
-	.loc	2 184 13                        @ ../das_subg_thread/app_task.c:184:13
+	.loc	2 185 13                        @ ../das_subg_thread/app_task.c:185:13
 	ldrh	r1, [r4, #32]
 	adr	r0, .LCPI5_2
 	bl	__2printf
 .Ltmp136:
-	.loc	2 186 13                        @ ../das_subg_thread/app_task.c:186:13
+	.loc	2 187 13                        @ ../das_subg_thread/app_task.c:187:13
 	mov	r0, r5
 	mov	r1, r6
 	bl	app_udp_received_queue_push
 .Ltmp137:
-	.loc	2 188 17                        @ ../das_subg_thread/app_task.c:188:17
+	.loc	2 189 17                        @ ../das_subg_thread/app_task.c:189:17
 	ldrb	r0, [r4]
 .Ltmp138:
-	.loc	2 188 17 is_stmt 0              @ ../das_subg_thread/app_task.c:188:17
+	.loc	2 189 17 is_stmt 0              @ ../das_subg_thread/app_task.c:189:17
 	cmp	r0, #255
 	bne	.LBB5_4
 .Ltmp139:
@@ -1128,9 +1130,9 @@ app_udp_cb:
 	@DEBUG_VALUE: app_udp_cb:p <- $r5
 	@DEBUG_VALUE: app_udp_cb:otInfo <- $r4
 	@DEBUG_VALUE: app_udp_cb:is_multicast <- 0
-	.loc	2 190 21 is_stmt 1              @ ../das_subg_thread/app_task.c:190:21
+	.loc	2 191 21 is_stmt 1              @ ../das_subg_thread/app_task.c:191:21
 	ldrb	r0, [r4, #1]
-	.loc	2 190 61 is_stmt 0              @ ../das_subg_thread/app_task.c:190:61
+	.loc	2 191 61 is_stmt 0              @ ../das_subg_thread/app_task.c:191:61
 	and	r0, r0, #254
 	cmp	r0, #2
 	beq	.LBB5_5
@@ -1144,16 +1146,16 @@ app_udp_cb:
 	.loc	2 0 61                          @ ../das_subg_thread/app_task.c:0:61
 	movs	r0, #75
 .Ltmp141:
-	.loc	2 199 17 is_stmt 1              @ ../das_subg_thread/app_task.c:199:17
+	.loc	2 200 17 is_stmt 1              @ ../das_subg_thread/app_task.c:200:17
 	strb	r0, [r5, #2]
 	movw	r0, #17217
 	strh	r0, [r5]
-	.loc	2 200 17                        @ ../das_subg_thread/app_task.c:200:17
+	.loc	2 201 17                        @ ../das_subg_thread/app_task.c:201:17
 	add.w	r7, r4, #16
 .Ltmp142:
-	.loc	2 200 37 is_stmt 0              @ ../das_subg_thread/app_task.c:200:37
+	.loc	2 201 37 is_stmt 0              @ ../das_subg_thread/app_task.c:201:37
 	ldrh	r0, [r4, #32]
-	.loc	2 200 17                        @ ../das_subg_thread/app_task.c:200:17
+	.loc	2 201 17                        @ ../das_subg_thread/app_task.c:201:17
 	ldm	r7, {r1, r2, r3, r7}
 	movs	r6, #3
 	str	r6, [sp, #8]
@@ -1163,13 +1165,16 @@ app_udp_cb:
 .LBB5_5:
 	@DEBUG_VALUE: app_udp_cb:p <- $r5
 	@DEBUG_VALUE: app_udp_cb:otInfo <- $r4
-	.loc	2 207 9 is_stmt 1               @ ../das_subg_thread/app_task.c:207:9
+	.loc	2 208 9 is_stmt 1               @ ../das_subg_thread/app_task.c:208:9
+	movw	r1, :lower16:.L__FUNCTION__.app_udp_cb
+	movt	r1, :upper16:.L__FUNCTION__.app_udp_cb
 	mov	r0, r5
-	bl	vPortFree
+	movs	r2, #208
+	bl	mem_free_fn
 .Ltmp144:
 .LBB5_6:
 	@DEBUG_VALUE: app_udp_cb:otInfo <- $r4
-	.loc	2 209 1                         @ ../das_subg_thread/app_task.c:209:1
+	.loc	2 210 1                         @ ../das_subg_thread/app_task.c:210:1
 	add	sp, #52
 	pop	{r4, r5, r6, r7, pc}
 .Ltmp145:
@@ -1200,27 +1205,27 @@ app_udp_cb:
 	.thumb_func
 app_task:
 .Lfunc_begin6:
-	.loc	2 301 0 is_stmt 1               @ ../das_subg_thread/app_task.c:301:0
+	.loc	2 309 0 is_stmt 1               @ ../das_subg_thread/app_task.c:309:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
-	.loc	2 302 20 prologue_end           @ ../das_subg_thread/app_task.c:302:20
+	.loc	2 310 20 prologue_end           @ ../das_subg_thread/app_task.c:310:20
 	movs	r0, #1
 	movs	r1, #0
 	movs	r2, #3
 	movs	r5, #0
 	bl	xQueueGenericCreate
 .Ltmp146:
-	.loc	2 302 18 is_stmt 0              @ ../das_subg_thread/app_task.c:302:18
+	.loc	2 310 18 is_stmt 0              @ ../das_subg_thread/app_task.c:310:18
 	movw	r6, :lower16:appSemHandle
 	movt	r6, :upper16:appSemHandle
 	str	r0, [r6]
 .Ltmp147:
 	@DEBUG_VALUE: app_task:event <- 0
-	.loc	2 305 5 is_stmt 1               @ ../das_subg_thread/app_task.c:305:5
+	.loc	2 313 5 is_stmt 1               @ ../das_subg_thread/app_task.c:313:5
 	bl	app_uart_init
 .Ltmp148:
-	.loc	2 307 5                         @ ../das_subg_thread/app_task.c:307:5
+	.loc	2 315 5                         @ ../das_subg_thread/app_task.c:315:5
 	adr	r0, .LCPI6_0
 	bl	puts
 .Ltmp149:
@@ -1230,17 +1235,17 @@ app_task:
 .Ltmp150:
 	.p2align	2
 .LBB6_1:                                @ =>This Inner Loop Header: Depth=1
-	.loc	2 311 13 is_stmt 1              @ ../das_subg_thread/app_task.c:311:13
+	.loc	2 319 13 is_stmt 1              @ ../das_subg_thread/app_task.c:319:13
 	ldr	r0, [r6]
 	mov.w	r1, #-1
 	bl	xQueueSemaphoreTake
 .Ltmp151:
-	.loc	2 311 13 is_stmt 0              @ ../das_subg_thread/app_task.c:311:13
+	.loc	2 319 13 is_stmt 0              @ ../das_subg_thread/app_task.c:319:13
 	cmp	r0, #0
 	beq	.LBB6_1
 @ %bb.2:                                @   in Loop: Header=BB6_1 Depth=1
 .Ltmp152:
-	.loc	2 313 13 is_stmt 1              @ ../das_subg_thread/app_task.c:313:13
+	.loc	2 321 13 is_stmt 1              @ ../das_subg_thread/app_task.c:321:13
 	bl	enter_critical_section
 .Ltmp153:
 	ldr	r4, [r7]
@@ -1249,15 +1254,15 @@ app_task:
 	str	r5, [r7]
 	bl	leave_critical_section
 .Ltmp155:
-	.loc	2 316 13                        @ ../das_subg_thread/app_task.c:316:13
+	.loc	2 324 13                        @ ../das_subg_thread/app_task.c:324:13
 	mov	r0, r4
 	bl	__uart_task
 .Ltmp156:
-	.loc	2 319 13                        @ ../das_subg_thread/app_task.c:319:13
+	.loc	2 327 13                        @ ../das_subg_thread/app_task.c:327:13
 	mov	r0, r4
 	bl	__udp_task
 .Ltmp157:
-	.loc	2 322 13                        @ ../das_subg_thread/app_task.c:322:13
+	.loc	2 330 13                        @ ../das_subg_thread/app_task.c:330:13
 	mov	r0, r4
 	bl	__das_dlms_task
 .Ltmp158:
@@ -1336,6 +1341,11 @@ otrInitUser.aNetworkName:
 .L.str.12:
 	.asciz	"Rloc               : %02x%02x:%02x%02x:%02x%02x:%02x%02x:%02x%02x:%02x%02x:%02x%02x:%02x%02x\r\n"
 	.size	.L.str.12, 95
+
+	.type	.L__FUNCTION__.app_udp_cb,%object @ @__FUNCTION__.app_udp_cb
+.L__FUNCTION__.app_udp_cb:
+	.asciz	"app_udp_cb"
+	.size	.L__FUNCTION__.app_udp_cb, 11
 
 	.type	.L.str.13,%object               @ @.str.13
 .L.str.13:
@@ -2240,7 +2250,7 @@ otrInitUser.aNetworkName:
 	.long	55                              @ DW_AT_type
                                         @ DW_AT_external
 	.byte	2                               @ DW_AT_decl_file
-	.byte	24                              @ DW_AT_decl_line
+	.byte	25                              @ DW_AT_decl_line
 	.byte	5                               @ DW_AT_location
 	.byte	3
 	.long	g_app_task_evt_var
@@ -2248,12 +2258,12 @@ otrInitUser.aNetworkName:
 	.long	66                              @ DW_AT_type
 	.long	.Linfo_string16                 @ DW_AT_name
 	.byte	1                               @ DW_AT_decl_file
-	.byte	48                              @ DW_AT_decl_line
+	.byte	55                              @ DW_AT_decl_line
 	.byte	4                               @ Abbrev [4] 0x42:0x52 DW_TAG_enumeration_type
 	.long	148                             @ DW_AT_type
 	.byte	4                               @ DW_AT_byte_size
 	.byte	1                               @ DW_AT_decl_file
-	.byte	30                              @ DW_AT_decl_line
+	.byte	37                              @ DW_AT_decl_line
 	.byte	5                               @ Abbrev [5] 0x4a:0x6 DW_TAG_enumerator
 	.long	.Linfo_string5                  @ DW_AT_name
 	.byte	0                               @ DW_AT_const_value
@@ -2297,7 +2307,7 @@ otrInitUser.aNetworkName:
 	.long	172                             @ DW_AT_type
                                         @ DW_AT_external
 	.byte	2                               @ DW_AT_decl_file
-	.byte	26                              @ DW_AT_decl_line
+	.byte	27                              @ DW_AT_decl_line
 	.byte	5                               @ DW_AT_location
 	.byte	3
 	.long	xRafaelRegisterTaskHandle
@@ -2319,14 +2329,14 @@ otrInitUser.aNetworkName:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string151                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	211                             @ DW_AT_decl_line
+	.byte	212                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_external
 	.byte	10                              @ Abbrev [10] 0xd2:0x11 DW_TAG_variable
 	.long	.Linfo_string20                 @ DW_AT_name
 	.long	317                             @ DW_AT_type
 	.byte	2                               @ DW_AT_decl_file
-	.byte	217                             @ DW_AT_decl_line
+	.byte	218                             @ DW_AT_decl_line
 	.byte	5                               @ DW_AT_location
 	.byte	3
 	.long	otrInitUser.aNetworkName
@@ -2334,7 +2344,7 @@ otrInitUser.aNetworkName:
 	.long	.Ldebug_loc4                    @ DW_AT_location
 	.long	.Linfo_string195                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	211                             @ DW_AT_decl_line
+	.byte	212                             @ DW_AT_decl_line
 	.long	1040                            @ DW_AT_type
 	.byte	12                              @ Abbrev [12] 0xf2:0xe DW_TAG_variable
 	.byte	2                               @ DW_AT_location
@@ -2342,33 +2352,33 @@ otrInitUser.aNetworkName:
 	.byte	0
 	.long	.Linfo_string196                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	232                             @ DW_AT_decl_line
+	.byte	240                             @ DW_AT_decl_line
 	.long	2634                            @ DW_AT_type
 	.byte	13                              @ Abbrev [13] 0x100:0x10 DW_TAG_variable
 	.long	.Ldebug_loc5                    @ DW_AT_location
 	.long	.Linfo_string250                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	257                             @ DW_AT_decl_line
+	.short	265                             @ DW_AT_decl_line
 	.long	3483                            @ DW_AT_type
 	.byte	14                              @ Abbrev [14] 0x110:0xb DW_TAG_variable
 	.long	.Linfo_string252                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	218                             @ DW_AT_decl_line
+	.byte	219                             @ DW_AT_decl_line
 	.long	2348                            @ DW_AT_type
 	.byte	14                              @ Abbrev [14] 0x11b:0xb DW_TAG_variable
 	.long	.Linfo_string253                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	219                             @ DW_AT_decl_line
+	.byte	221                             @ DW_AT_decl_line
 	.long	2916                            @ DW_AT_type
 	.byte	14                              @ Abbrev [14] 0x126:0xb DW_TAG_variable
 	.long	.Linfo_string254                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	222                             @ DW_AT_decl_line
+	.byte	230                             @ DW_AT_decl_line
 	.long	2348                            @ DW_AT_type
 	.byte	14                              @ Abbrev [14] 0x131:0xb DW_TAG_variable
 	.long	.Linfo_string255                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	223                             @ DW_AT_decl_line
+	.byte	231                             @ DW_AT_decl_line
 	.long	2916                            @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	15                              @ Abbrev [15] 0x13d:0xc DW_TAG_array_type
@@ -2390,7 +2400,7 @@ otrInitUser.aNetworkName:
 	.long	360                             @ DW_AT_type
                                         @ DW_AT_external
 	.byte	2                               @ DW_AT_decl_file
-	.byte	27                              @ DW_AT_decl_line
+	.byte	28                              @ DW_AT_decl_line
 	.byte	5                               @ DW_AT_location
 	.byte	3
 	.long	xLightTimer
@@ -2408,7 +2418,7 @@ otrInitUser.aNetworkName:
 	.long	.Linfo_string26                 @ DW_AT_name
 	.long	398                             @ DW_AT_type
 	.byte	2                               @ DW_AT_decl_file
-	.byte	23                              @ DW_AT_decl_line
+	.byte	24                              @ DW_AT_decl_line
 	.byte	5                               @ DW_AT_location
 	.byte	3
 	.long	appSemHandle
@@ -2889,7 +2899,7 @@ otrInitUser.aNetworkName:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string146                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	28                              @ DW_AT_decl_line
+	.byte	29                              @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_external
 	.byte	25                              @ Abbrev [25] 0x57a:0x10 DW_TAG_inlined_subroutine
@@ -2897,7 +2907,7 @@ otrInitUser.aNetworkName:
 	.long	.Ltmp0                          @ DW_AT_low_pc
 	.long	.Ltmp1-.Ltmp0                   @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
-	.byte	30                              @ DW_AT_call_line
+	.byte	31                              @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
 	.byte	26                              @ Abbrev [26] 0x58a:0x19 DW_TAG_lexical_block
 	.long	.Ltmp2                          @ DW_AT_low_pc
@@ -2906,7 +2916,7 @@ otrInitUser.aNetworkName:
 	.long	.Ldebug_loc0                    @ DW_AT_location
 	.long	.Linfo_string155                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	32                              @ DW_AT_decl_line
+	.byte	33                              @ DW_AT_decl_line
 	.long	1000                            @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	28                              @ Abbrev [28] 0x5a3:0x9 DW_TAG_GNU_call_site
@@ -2983,20 +2993,20 @@ otrInitUser.aNetworkName:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string147                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	41                              @ DW_AT_decl_line
+	.byte	42                              @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_external
 	.byte	33                              @ Abbrev [33] 0x62c:0xb DW_TAG_formal_parameter
 	.long	.Linfo_string156                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	41                              @ DW_AT_decl_line
+	.byte	42                              @ DW_AT_decl_line
 	.long	360                             @ DW_AT_type
 	.byte	34                              @ Abbrev [34] 0x637:0x34 DW_TAG_inlined_subroutine
 	.long	1512                            @ DW_AT_abstract_origin
 	.long	.Ltmp12                         @ DW_AT_low_pc
 	.long	.Ltmp13-.Ltmp12                 @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
-	.byte	45                              @ DW_AT_call_line
+	.byte	46                              @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
 	.byte	35                              @ Abbrev [35] 0x647:0x6 DW_TAG_formal_parameter
 	.byte	14                              @ DW_AT_const_value
@@ -3021,7 +3031,7 @@ otrInitUser.aNetworkName:
 	.long	.Ltmp14                         @ DW_AT_low_pc
 	.long	.Ltmp15-.Ltmp14                 @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
-	.byte	50                              @ DW_AT_call_line
+	.byte	51                              @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
 	.byte	35                              @ Abbrev [35] 0x67b:0x6 DW_TAG_formal_parameter
 	.byte	14                              @ DW_AT_const_value
@@ -3046,7 +3056,7 @@ otrInitUser.aNetworkName:
 	.long	.Ltmp18                         @ DW_AT_low_pc
 	.long	.Ltmp19-.Ltmp18                 @ DW_AT_high_pc
 	.byte	2                               @ DW_AT_call_file
-	.byte	55                              @ DW_AT_call_line
+	.byte	56                              @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
 	.byte	35                              @ Abbrev [35] 0x6af:0x6 DW_TAG_formal_parameter
 	.byte	14                              @ DW_AT_const_value
@@ -3075,7 +3085,7 @@ otrInitUser.aNetworkName:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string148                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	133                             @ DW_AT_decl_line
+	.byte	134                             @ DW_AT_decl_line
 	.long	2120                            @ DW_AT_type
                                         @ DW_AT_external
 	.byte	12                              @ Abbrev [12] 0x6e9:0xe DW_TAG_variable
@@ -3084,7 +3094,7 @@ otrInitUser.aNetworkName:
 	.byte	44
 	.long	.Linfo_string157                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	136                             @ DW_AT_decl_line
+	.byte	137                             @ DW_AT_decl_line
 	.long	2138                            @ DW_AT_type
 	.byte	12                              @ Abbrev [12] 0x6f7:0xe DW_TAG_variable
 	.byte	2                               @ DW_AT_location
@@ -3092,25 +3102,25 @@ otrInitUser.aNetworkName:
 	.byte	8
 	.long	.Linfo_string177                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	137                             @ DW_AT_decl_line
+	.byte	138                             @ DW_AT_decl_line
 	.long	2385                            @ DW_AT_type
 	.byte	27                              @ Abbrev [27] 0x705:0xf DW_TAG_variable
 	.long	.Ldebug_loc1                    @ DW_AT_location
 	.long	.Linfo_string190                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	138                             @ DW_AT_decl_line
+	.byte	139                             @ DW_AT_decl_line
 	.long	2605                            @ DW_AT_type
 	.byte	27                              @ Abbrev [27] 0x714:0xf DW_TAG_variable
 	.long	.Ldebug_loc2                    @ DW_AT_location
 	.long	.Linfo_string194                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	135                             @ DW_AT_decl_line
+	.byte	136                             @ DW_AT_decl_line
 	.long	2120                            @ DW_AT_type
 	.byte	27                              @ Abbrev [27] 0x723:0xf DW_TAG_variable
 	.long	.Ldebug_loc3                    @ DW_AT_location
 	.long	.Linfo_string195                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	139                             @ DW_AT_decl_line
+	.byte	140                             @ DW_AT_decl_line
 	.long	1040                            @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	37                              @ Abbrev [37] 0x733:0x7c DW_TAG_subprogram
@@ -3121,31 +3131,31 @@ otrInitUser.aNetworkName:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string152                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	59                              @ DW_AT_decl_line
+	.byte	60                              @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.byte	11                              @ Abbrev [11] 0x744:0xf DW_TAG_formal_parameter
 	.long	.Ldebug_loc6                    @ DW_AT_location
 	.long	.Linfo_string256                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	59                              @ DW_AT_decl_line
+	.byte	60                              @ DW_AT_decl_line
 	.long	3494                            @ DW_AT_type
 	.byte	11                              @ Abbrev [11] 0x753:0xf DW_TAG_formal_parameter
 	.long	.Ldebug_loc7                    @ DW_AT_location
 	.long	.Linfo_string258                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	59                              @ DW_AT_decl_line
+	.byte	60                              @ DW_AT_decl_line
 	.long	1339                            @ DW_AT_type
 	.byte	27                              @ Abbrev [27] 0x762:0xf DW_TAG_variable
 	.long	.Ldebug_loc8                    @ DW_AT_location
 	.long	.Linfo_string195                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	61                              @ DW_AT_decl_line
+	.byte	62                              @ DW_AT_decl_line
 	.long	1040                            @ DW_AT_type
 	.byte	27                              @ Abbrev [27] 0x771:0xf DW_TAG_variable
 	.long	.Ldebug_loc10                   @ DW_AT_location
 	.long	.Linfo_string261                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	62                              @ DW_AT_decl_line
+	.byte	63                              @ DW_AT_decl_line
 	.long	1340                            @ DW_AT_type
 	.byte	26                              @ Abbrev [26] 0x780:0x2e DW_TAG_lexical_block
 	.long	.Ltmp70                         @ DW_AT_low_pc
@@ -3154,7 +3164,7 @@ otrInitUser.aNetworkName:
 	.long	.Ldebug_loc9                    @ DW_AT_location
 	.long	.Linfo_string259                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	66                              @ DW_AT_decl_line
+	.byte	67                              @ DW_AT_decl_line
 	.long	3505                            @ DW_AT_type
 	.byte	26                              @ Abbrev [26] 0x798:0x15 DW_TAG_lexical_block
 	.long	.Ltmp87                         @ DW_AT_low_pc
@@ -3162,7 +3172,7 @@ otrInitUser.aNetworkName:
 	.byte	14                              @ Abbrev [14] 0x7a1:0xb DW_TAG_variable
 	.long	.Linfo_string262                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	98                              @ DW_AT_decl_line
+	.byte	99                              @ DW_AT_decl_line
 	.long	1029                            @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	0                               @ End Of Children Mark
@@ -3175,19 +3185,19 @@ otrInitUser.aNetworkName:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string153                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	154                             @ DW_AT_decl_line
+	.byte	155                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.byte	11                              @ Abbrev [11] 0x7c0:0xf DW_TAG_formal_parameter
 	.long	.Ldebug_loc11                   @ DW_AT_location
 	.long	.Linfo_string264                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	154                             @ DW_AT_decl_line
+	.byte	155                             @ DW_AT_decl_line
 	.long	3528                            @ DW_AT_type
 	.byte	11                              @ Abbrev [11] 0x7cf:0xf DW_TAG_formal_parameter
 	.long	.Ldebug_loc12                   @ DW_AT_location
 	.long	.Linfo_string266                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	154                             @ DW_AT_decl_line
+	.byte	155                             @ DW_AT_decl_line
 	.long	3549                            @ DW_AT_type
 	.byte	12                              @ Abbrev [12] 0x7de:0xe DW_TAG_variable
 	.byte	2                               @ DW_AT_location
@@ -3195,30 +3205,30 @@ otrInitUser.aNetworkName:
 	.byte	12
 	.long	.Linfo_string263                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	161                             @ DW_AT_decl_line
+	.byte	162                             @ DW_AT_decl_line
 	.long	3516                            @ DW_AT_type
 	.byte	27                              @ Abbrev [27] 0x7ec:0xf DW_TAG_variable
 	.long	.Ldebug_loc13                   @ DW_AT_location
 	.long	.Linfo_string286                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	157                             @ DW_AT_decl_line
+	.byte	158                             @ DW_AT_decl_line
 	.long	2378                            @ DW_AT_type
 	.byte	27                              @ Abbrev [27] 0x7fb:0xf DW_TAG_variable
 	.long	.Ldebug_loc14                   @ DW_AT_location
 	.long	.Linfo_string261                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	156                             @ DW_AT_decl_line
+	.byte	157                             @ DW_AT_decl_line
 	.long	1340                            @ DW_AT_type
 	.byte	14                              @ Abbrev [14] 0x80a:0xb DW_TAG_variable
 	.long	.Linfo_string195                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	160                             @ DW_AT_decl_line
+	.byte	161                             @ DW_AT_decl_line
 	.long	1040                            @ DW_AT_type
 	.byte	27                              @ Abbrev [27] 0x815:0xf DW_TAG_variable
 	.long	.Ldebug_loc15                   @ DW_AT_location
 	.long	.Linfo_string287                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.byte	158                             @ DW_AT_decl_line
+	.byte	159                             @ DW_AT_decl_line
 	.long	2360                            @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	38                              @ Abbrev [38] 0x825:0x23 DW_TAG_subprogram
@@ -3229,14 +3239,14 @@ otrInitUser.aNetworkName:
                                         @ DW_AT_GNU_all_call_sites
 	.long	.Linfo_string154                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	300                             @ DW_AT_decl_line
+	.short	308                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
                                         @ DW_AT_external
 	.byte	13                              @ Abbrev [13] 0x837:0x10 DW_TAG_variable
 	.long	.Ldebug_loc16                   @ DW_AT_location
 	.long	.Linfo_string288                @ DW_AT_name
 	.byte	2                               @ DW_AT_decl_file
-	.short	303                             @ DW_AT_decl_line
+	.short	311                             @ DW_AT_decl_line
 	.long	55                              @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	3                               @ Abbrev [3] 0x848:0xb DW_TAG_typedef

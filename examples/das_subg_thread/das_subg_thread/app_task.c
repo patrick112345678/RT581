@@ -19,6 +19,7 @@
 #include <time.h>
 #include <openthread/link.h>
 #define NET_MGM_ENABLED 1
+
 #define RAFAEL_REGISTER_TASK_STACK_SIZE (2 * configMINIMAL_STACK_SIZE)
 static SemaphoreHandle_t    appSemHandle          = NULL;
 app_task_event_t g_app_task_evt_var = EVENT_NONE;
@@ -137,11 +138,11 @@ int8_t app_get_parent_rssi()
     otNeighborInfo         neighborInfo;
     otNeighborInfoIterator iterator = OT_NEIGHBOR_INFO_ITERATOR_INIT;
     otInstance *instance = otrGetInstance();
-    if(otThreadGetParentInfo(instance, &parentInfo) == OT_ERROR_NONE)
+    if (otThreadGetParentInfo(instance, &parentInfo) == OT_ERROR_NONE)
     {
         while (otThreadGetNextNeighborInfo(instance, &iterator, &neighborInfo) == OT_ERROR_NONE)
         {
-            if(neighborInfo.mRloc16 == parentInfo.mRloc16)
+            if (neighborInfo.mRloc16 == parentInfo.mRloc16)
             {
                 rssi = neighborInfo.mAverageRssi;
                 break;
@@ -163,7 +164,7 @@ static void app_udp_cb(otMessage *otMsg, const otMessageInfo *otInfo)
     otIp6AddressToString(&otInfo->mPeerAddr, string, sizeof(string));
     len = otMessageGetLength(otMsg) - otMessageGetOffset(otMsg);
 
-    p = pvPortMalloc(len);
+    p = mem_malloc(len);
 
     do
     {
@@ -204,7 +205,7 @@ static void app_udp_cb(otMessage *otMsg, const otMessageInfo *otInfo)
 
     if (p != NULL)
     {
-        vPortFree(p);
+        mem_free(p);
     }
 }
 // Implementation of the RafaelRegisterTask function
@@ -216,9 +217,16 @@ void otrInitUser(otInstance *instance)
 #else
     static char aNetworkName[] = "Thread_RT58X";
     uint8_t extPanId[OT_EXT_PAN_ID_SIZE] = {0x00, 0x0d, 0xb8, 0x00, 0x00, 0x00, 0x00, 0x00};
+#if NETWORKKEY_USE == 0
     uint8_t nwkkey[OT_NETWORK_KEY_SIZE] = {0xfe, 0x77, 0x44, 0x8a, 0x67, 0x29, 0xfe, 0xab,
                                            0xab, 0xfe, 0x29, 0x67, 0x8a, 0x44, 0x88, 0xff
                                           };
+#endif
+#if NETWORKKEY_USE
+    uint8_t nwkkey[OT_NETWORK_KEY_SIZE] = {0x16, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77,
+                                           0x88, 0x99, 0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0x66,
+                                          };
+#endif
     uint8_t meshLocalPrefix[OT_MESH_LOCAL_PREFIX_SIZE] = {0xfd, 0x00, 0x0d, 0xb8, 0x00, 0x00, 0x00, 0x00};
     uint8_t aPSKc[OT_PSKC_MAX_SIZE] = {0x74, 0x68, 0x72, 0x65,
                                        0x61, 0x64, 0x6a, 0x70,

@@ -1,5 +1,5 @@
 ./objects/system_cm3_mcu.o: \
-  ..\..\..\components\platform\soc\rt582\rt582_driver\Src\system_cm3_mcu.c \
+  ..\..\..\components\platform\soc\rt582\rt582_dongle\dongle\src\system_cm3_mcu.c \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\cm3_mcu.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\chip_define.h \
@@ -50,4 +50,5 @@
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\comparator.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\swi.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\lpm.h \
+  ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\flash_protect.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\mp_sector.h

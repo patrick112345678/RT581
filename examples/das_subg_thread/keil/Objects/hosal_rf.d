@@ -96,4 +96,5 @@
   ..\..\..\components\utility\utility\Inc\util_log.h \
   ..\..\..\components\utility\log\log_type.h \
   ..\..\..\components\utility\log\log_cfg.h \
-  ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\mp_sector.h
+  ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\mp_sector.h \
+  ..\..\..\components\utility\MemoryMgmt\Inc\mem_mgmt.h

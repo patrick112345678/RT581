@@ -22,7 +22,7 @@
 #include "hosal_rf.h"
 #include "log.h"
 #include "mp_sector.h"
-
+#include "mem_mgmt.h"
 /**************************************************************************************************
  *    MACROS
  *************************************************************************************************/
@@ -213,7 +213,7 @@ static void __rf_check_state(void)
             }
             event_len = RfMcu_EvtQueueRead(g_event_buffer, &rxCmdError);
 
-            evt_ptr = pvPortMalloc(event_len);
+            evt_ptr = mem_malloc(event_len);
 
             if (evt_ptr)
             {
@@ -229,14 +229,14 @@ static void __rf_check_state(void)
                     {
                         g_hci_evt_cb(evt_ptr);
                     }
-                    vPortFree(evt_ptr);
+                    mem_free(evt_ptr);
                 }
             }
             break;
         case HOSAL_RF_RX_DATA_STS:
             event_len = RfMcu_RxQueueRead(g_rx_data, &rx_queue_error);
 
-            evt_ptr = pvPortMalloc(event_len);
+            evt_ptr = mem_malloc(event_len);
 
             if (evt_ptr)
             {
@@ -255,7 +255,7 @@ static void __rf_check_state(void)
                         g_hci_data_cb(evt_ptr);
                     }
                 }
-                vPortFree(evt_ptr);
+                mem_free(evt_ptr);
             }
 
             break;
@@ -663,7 +663,7 @@ static hosal_rf_status_t __rf_modem_set(hosal_rf_modem_t modem)
     {
         if (modem == HOSAL_RF_MODEM_FSK)
         {
-            cmd_ptr = pvPortMalloc(RUCI_LEN_INITIATE_FSK);
+            cmd_ptr = mem_malloc(RUCI_LEN_INITIATE_FSK);
 
             if (cmd_ptr == NULL)
             {
@@ -678,7 +678,7 @@ static hosal_rf_status_t __rf_modem_set(hosal_rf_modem_t modem)
         }
         else if (modem == HOSAL_RF_MODEM_2P4G_OQPSK)
         {
-            cmd_ptr = pvPortMalloc(sizeof(ruci_para_initiate_zigbee_t));
+            cmd_ptr = mem_malloc(sizeof(ruci_para_initiate_zigbee_t));
 
             if (cmd_ptr == NULL)
             {
@@ -698,7 +698,7 @@ static hosal_rf_status_t __rf_modem_set(hosal_rf_modem_t modem)
         }
         else if (modem == HOSAL_RF_MODEM_SUBG_OQPSK)
         {
-            cmd_ptr = pvPortMalloc(RUCI_LEN_INITIATE_OQPSK);
+            cmd_ptr = mem_malloc(RUCI_LEN_INITIATE_OQPSK);
 
             if (cmd_ptr == NULL)
             {
@@ -731,7 +731,7 @@ static hosal_rf_status_t __rf_modem_set(hosal_rf_modem_t modem)
 
     if (cmd_ptr)
     {
-        vPortFree(cmd_ptr);
+        mem_free(cmd_ptr);
     }
 
     return rval;
@@ -753,7 +753,7 @@ static hosal_rf_status_t __rf_tx_pwr_comp_set(hosal_rf_modem_t *modem)
         uint32_t r_pab_pw_pre = 0;
         uint8_t  r_modem_type = 0;
 
-        cmd_ptr = pvPortMalloc(RUCI_LEN_SET_TX_POWER_COMPENSATION);
+        cmd_ptr = mem_malloc(RUCI_LEN_SET_TX_POWER_COMPENSATION);
 
         if (cmd_ptr == NULL)
         {
@@ -834,7 +834,7 @@ static hosal_rf_status_t __rf_tx_pwr_ch_comp_set(hosal_rf_tx_power_ch_comp_t *tx
 
         log_info("offset: %d, %d, %d, %d", r_tx_pwr_offset0, r_tx_pwr_offset1, r_tx_pwr_offset2, r_tx_pwr_offset3);
 
-        cmd_ptr = pvPortMalloc(RUCI_LEN_SET_TX_POWER_CHANNEL_COMPENSATION);
+        cmd_ptr = mem_malloc(RUCI_LEN_SET_TX_POWER_CHANNEL_COMPENSATION);
 
         if (cmd_ptr == NULL)
         {
@@ -906,7 +906,7 @@ static hosal_rf_status_t __rf_tx_pwr_comp_seg_set(hosal_rf_tx_power_comp_seg_t *
                  tx_pwr_comp_seg_ctrl->segmentB,
                  tx_pwr_comp_seg_ctrl->segmentC);
 
-        cmd_ptr = pvPortMalloc(RUCI_LEN_SET_TX_POWER_CHANNEL_SEGMENT);
+        cmd_ptr = mem_malloc(RUCI_LEN_SET_TX_POWER_CHANNEL_SEGMENT);
 
         if (cmd_ptr == NULL)
         {
@@ -1169,7 +1169,7 @@ static hosal_rf_status_t __rf_tx_data_start_set(hosal_rf_tx_data_t *tx_data)
     do
     {
         tmp_len += tx_data->data_len;
-        cmd_ptr = pvPortMalloc(RUCI_LEN_SET_TX_CONTROL_FIELD + tx_data->data_len);
+        cmd_ptr = mem_malloc(RUCI_LEN_SET_TX_CONTROL_FIELD + tx_data->data_len);
 
         if (cmd_ptr == NULL)
         {
@@ -1188,7 +1188,7 @@ static hosal_rf_status_t __rf_tx_data_start_set(hosal_rf_tx_data_t *tx_data)
 
     if (cmd_ptr)
     {
-        vPortFree(cmd_ptr);
+        mem_free(cmd_ptr);
     }
 
     return rval;
@@ -1582,7 +1582,7 @@ uint32_t hosal_rf_read_event(uint8_t *event_data_ptr)
 
     memcpy(event_data_ptr, pdata, event_len);
 
-    vPortFree(pdata);
+    mem_free(pdata);
 
     return event_len;
 }

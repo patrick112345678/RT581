@@ -31,7 +31,7 @@ HOSAL_UART_DEV_DECL(uart2_dev, UART2_OPERATION_PORT, 6, 7, UART_BAUDRATE_19200)
 //=============================================================================
 //                  Macro Definition
 //=============================================================================
-#define RX_BUFF_SIZE                    484
+#define RX_BUFF_SIZE                    1200
 #define TX_BUFF_SIZE                    RX_BUFF_SIZE
 #define TX_BUFF_MASK                    (TX_BUFF_SIZE -1)
 //=============================================================================
@@ -60,7 +60,6 @@ static QueueHandle_t app_uart_handle;
 static uart_io_t g_uart1_rx_io = { .start = 0, .end = 0, };
 static uart_io_t g_uart2_rx_io = { .start = 0, .end = 0, };
 static uint8_t g_tx_buf[TX_BUFF_SIZE];
-static uint8_t g_tmp_buff[RX_BUFF_SIZE];
 static hosal_uart_dma_cfg_t txdam_cfg =
 {
     .dma_buf = g_tx_buf,
@@ -106,7 +105,7 @@ static void __uart_queue_send(app_task_event_t evt)
             __tx_done = 0;
             if (uart_data.pdata)
             {
-                vPortFree(uart_data.pdata);
+                mem_free(uart_data.pdata);
             }
         }
     }
@@ -183,8 +182,13 @@ static int __uart1_rx_callback(void *p_arg)
 void __uart1_data_parse()
 {
     uint16_t len = 0;
-    len = __uart1_read(g_tmp_buff);
-    log_info_hexdump("uart 1 parse", g_tmp_buff, len);
+    uint8_t *tmp_buff = mem_malloc(RX_BUFF_SIZE);
+    if (tmp_buff)
+    {
+        len = __uart1_read(tmp_buff);
+        log_info_hexdump("uart 1 parse", tmp_buff, len);
+        mem_free(tmp_buff);
+    }
 }
 
 
@@ -259,9 +263,14 @@ static int __uart2_rx_callback(void *p_arg)
 void __uart2_data_parse()
 {
     uint16_t len = 0;
-    len = __uart2_read(g_tmp_buff);
-    //log_info_hexdump("uart 2 parse", g_tmp_buff, len);
-    udf_Meter_received_task(g_tmp_buff, len);
+    uint8_t *tmp_buff = mem_malloc(RX_BUFF_SIZE);
+    if (tmp_buff)
+    {
+        len = __uart2_read(tmp_buff);
+        //log_info_hexdump("uart 2 parse", g_tmp_buff, len);
+        udf_Meter_received_task(tmp_buff, len);
+        mem_free(tmp_buff);
+    }
 }
 
 void __uart_task(app_task_event_t sevent)
@@ -286,15 +295,24 @@ int app_uart_data_send(uint8_t u_port, uint8_t *p_data, uint16_t data_len)
 {
     _app_uart_data_t uart_data;
 
-    uart_data.pdata =  pvPortMalloc(data_len);
+    uart_data.pdata =  mem_malloc(data_len);
     if (uart_data.pdata)
     {
         memcpy(uart_data.pdata, p_data, data_len);
         uart_data.port = u_port;
         uart_data.dlen = data_len;
-        while (xQueueSend(app_uart_handle, (void *)&uart_data, portMAX_DELAY) != pdPASS);
+        //log_info_hexdump("uart sent",p_data,data_len);
+        //        while (xQueueSend(app_uart_handle, (void *)&uart_data, portMAX_DELAY) != pdPASS);
 
-        APP_EVENT_NOTIFY(EVENT_UART_UART_OUT);
+        //        APP_EVENT_NOTIFY(EVENT_UART_UART_OUT);
+        if (xQueueSend(app_uart_handle, (void *)&uart_data, portMAX_DELAY) != pdPASS)
+        {
+            printf("queue full \r\n");
+        }
+        else
+        {
+            APP_EVENT_NOTIFY(EVENT_UART_UART_OUT);
+        }
     }
 
     return 0;
