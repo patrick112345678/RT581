@@ -726,7 +726,7 @@ main:
 	.asciz	"Build Version: "
 .LCPI9_5:
 .L.str.16:
-	.asciz	"1.0.0\000\000"
+	.asciz	"1.0.3\000\000"
 .LCPI9_6:
 .L.str.17:
 	.asciz	"Build Date: \000\000\000"
@@ -738,7 +738,7 @@ main:
 	.asciz	"Build Time: \000\000\000"
 .LCPI9_9:
 .L.str.20:
-	.asciz	"15:13:41\000\000\000"
+	.asciz	"16:03:04\000\000\000"
 .LCPI9_10:
 .L.str.21:
 	.asciz	"Heap %u@%p\r\n\000\000\000"

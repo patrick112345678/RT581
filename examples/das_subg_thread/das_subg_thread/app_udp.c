@@ -97,9 +97,14 @@ void app_udp_received_queue_push(uint8_t *data, uint16_t data_lens)
     {
         memcpy(u_data.pdata, data, data_lens);
         u_data.dlen = data_lens;
-        while (xQueueSend(app_udp_handle, (void *)&u_data, portMAX_DELAY) != pdPASS);
-
-        APP_EVENT_NOTIFY(EVENT_UDP_RECEIVED);
+        if (xQueueSend(app_udp_handle, (void *)&u_data, 0) != pdPASS)
+        {
+            mem_free(u_data.pdata);
+        }
+        else
+        {
+            APP_EVENT_NOTIFY(EVENT_UDP_RECEIVED);
+        }
     }
 }
 

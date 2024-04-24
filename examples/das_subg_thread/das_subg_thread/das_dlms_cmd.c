@@ -28,7 +28,7 @@
 #include "cli.h"
 #include <semphr.h>
 #include <time.h>
-// #include "C:\\Users\\testo\\Desktop\\rafel_das_watchdog\\rafael-iot-sdk-das-Release_v1.0.0\\rafael-iot-sdk-das-Release_v1.0.0\\version.h"
+#include "C:\\Users\\testo\\Desktop\\rafel_das_watchdog\\rafael-iot-sdk-das-Release_v1.0.0\\rafael-iot-sdk-das-Release_v1.0.0\\version.h"
 
 
 //=============================================================================
@@ -47,7 +47,8 @@
 //=============================================================================
 #define QUEUE_SIZE 20
 #define COMMAND_LENGTH 1500
-
+#define MAX_QUEUE_BYTES 2450  // 假設總共可以存儲2450個字節
+static int currentQueueBytes = 0;  // 目前佇列中的字節數
 //typedef struct
 //{
 //    uint16_t dlen;
@@ -74,6 +75,9 @@ typedef struct
 } BroadcastData;
 BroadcastData broadcastData;
 TimerHandle_t xRegisterTimer, xLastpTimer;
+#define TASK_UNFINISHED_FLAG  0
+#define TASK_FINISHED_FLAG  1
+static  uint8_t TASKCOMMAND = TASK_FINISHED_FLAG;
 //static QueueHandle_t ELS61_Block_Queue_handle;
 static QueueHandle_t ReceiveCommand_Queue_handle;
 static QueueHandle_t SendCommand_Queue_handle;
@@ -81,11 +85,14 @@ static TimerHandle_t das_dlms_timer = NULL;
 // static unsigned char ELS61_Block_Queue[QUEUE_SIZE][COMMAND_LENGTH];
 //static unsigned char RF_Block_Queue[QUEUE_SIZE][COMMAND_LENGTH];
 static char Send_RF_lastcommand[1500];
-static int receiveIndex = 0;
+static uint8_t receiveIndex = 0;
 static uint8_t receivebusyflag = 0, RF_command_current_flag = 0, RF_send_retry = 0, RF_command_retry_count = 0;
 #define APP_COMMISSION_DATA_FLASH_START 0xF1000
 #define ConfigurationPage APP_COMMISSION_DATA_FLASH_START
 #define TEST_NOTIFICATION 1 // test 1:每次產生就發生 0:每天產生一次
+#define LOGLEVEL2CLOSE 0
+#define LOGLEVEL2OPEN 1
+static uint8_t LOGLEVEL2 = LOGLEVEL2CLOSE;
 //=============================================================================
 //                Private Global Variables
 //=============================================================================
@@ -101,8 +108,7 @@ struct tm begin = {7, 16, 00, 16, 11 - 1, 2022 - 1900};
 static uint16_t cmdTXT_Len = 0, blockType = 0;
 static unsigned char selfAddress[4] = {0}; //for AM2 address now
 static unsigned char rememberAddress[4] = {0}; //Block used for reTransmit
-static unsigned char blockTXT[793] = {0}; //Block used for reconstruction
-static unsigned char cmdTXT[793] = {0};//Store data generated from all the function and Will be inserted into the RF_MessageQueue
+//static unsigned char cmdTXT[793] = {0};//Store data generated from all the function and Will be inserted into the RF_MessageQueue
 static uint8_t CheckFirewall = 1 ;
 static unsigned char VersionNumber[3] = {0x13, 0x0B, 0x01}, FirewallSetData[2] = {0}, FlowSetData[2] = {0}; //版本號 firewall設定值 流量設定值
 static uint8_t lengthCount = 0;
@@ -186,12 +192,12 @@ static int Networkidtime_num = 120;
 static int ondemand_idle = 0;
 static int PANID_num = 30;
 static int setdataLen = 0;
-static int sendIndex = 0;
+static uint8_t sendIndex = 0;
 static int SQBsetStart = 0;
 static int SETQBtmp = 1;
 static int SQBCTLEN = 0;
 static int TASK_ID = 0;
-
+static int Continue_TASK_ID = 0;
 static size_t ipv6_length = 0;
 static size_t virtual_ipv6_length = 0;
 // Task code : Automatic meter reading, Number of tasks Reading tasks Do AA
@@ -207,18 +213,14 @@ static uint8_t TPC_GUK_FLAG = 0, TPC_AK_FLAG = 0, TPC_MK_FLAG = 0;
 
 /* timer flag  */
 static uint8_t continuebusyflagstart = 0;
-static uint32_t ObtainIPv6StartTime = 0;
-static uint32_t RegistrationprocessStart = 0;
 static uint32_t Rafael_time = 0;
-static uint32_t sendbusyflagstart = 0;
-static uint32_t UART7InitializationSTART = 0;
 
 static uint8_t ucMeterPacket[350];
 static unsigned char Configuration_Page[180];
 static unsigned char event_notification_data[80];
 static unsigned char Initial_Value[256];
 static unsigned char saveSETdata[2000] = {0x00};
-static unsigned char uart_read_data2[1500];
+static unsigned char uart_read_data2[300];
 
 unsigned char flash_test[200] =
 {
@@ -486,34 +488,40 @@ int32_t udf_AES_GCM_Encrypt(uint8_t *gcm_ek, uint8_t *gcm_aad, uint8_t *gcm_iv,
                                     gcm_ct, 12, gcm_tag);
 
     printf("=============Encrypt=========================\r\n");
-    log_info_hexdump("Ciphertext", gcm_ct, gcm_ptlen);
+    if (LOGLEVEL2 == LOGLEVEL2OPEN)
+    {
+        log_info_hexdump("Ciphertext", gcm_ct, gcm_ptlen);
+    }
     log_info_hexdump("Plaintext", gcm_pt, gcm_ptlen);
 
     // Print EK (Encryption Key)
-    printf("EK: \r\n");
-    for (int i = 0; i < 16; i++) // Corrected to iterate over 16 bytes (128 bits)
+    if (LOGLEVEL2 == LOGLEVEL2OPEN)
     {
-        printf("%02X ", gcm_ek[i]);
-    }
-    printf("\r\n");
+        printf("EK: \r\n");
+        for (int i = 0; i < 16; i++) // Corrected to iterate over 16 bytes (128 bits)
+        {
+            printf("%02X ", gcm_ek[i]);
+        }
+        printf("\r\n");
 
-    // Print IV (Initialization Vector)
-    printf("IV: \r\n");
-    for (int i = 0; i < 12; i++)
-    {
-        printf("%02X ", gcm_iv[i]);
-    }
-    printf("\r\n");
+        // Print IV (Initialization Vector)
+        printf("IV: \r\n");
+        for (int i = 0; i < 12; i++)
+        {
+            printf("%02X ", gcm_iv[i]);
+        }
+        printf("\r\n");
 
-    // Print AAD (Additional Authenticated Data)
-    printf("AAD: \r\n");
-    for (int i = 0; i < gcm_aadlen; i++)
-    {
-        printf("%02X ", gcm_aad[i]);
+        // Print AAD (Additional Authenticated Data)
+        printf("AAD: \r\n");
+        for (int i = 0; i < gcm_aadlen; i++)
+        {
+            printf("%02X ", gcm_aad[i]);
+        }
+        printf("\r\n");
+        // Log the authentication tag
+        log_info_hexdump("Tag", gcm_tag, 12);
     }
-    printf("\r\n");
-    // Log the authentication tag
-    log_info_hexdump("Tag", gcm_tag, 12);
     printf("=============================================\r\n");
     mbedtls_gcm_free(&ctx);
     return ret;
@@ -552,7 +560,7 @@ static uint16_t CRC_COMPUTE(char *recv_buff, uint16_t len)
 
     return crc16;
 }
-
+/*
 static void send_queue(uint16_t PeerPort, otIp6Address PeerAddr, char *recvbuf, int send_length)
 {
     if (sendIndex >= QUEUE_SIZE)
@@ -590,6 +598,47 @@ static void send_queue(uint16_t PeerPort, otIp6Address PeerAddr, char *recvbuf, 
     }
 
 
+}
+*/
+
+
+static void send_queue(uint16_t PeerPort, otIp6Address PeerAddr, char *recvbuf, int send_length)
+{
+
+
+    if (currentQueueBytes + send_length > MAX_QUEUE_BYTES)
+    {
+        printf("Send Queue is full or overflow: %d bytes needed, %d bytes available\n", send_length, MAX_QUEUE_BYTES - currentQueueBytes);
+        APP_EVENT_NOTIFY(EVENT_SEND_QUEUE);  // 通知系統已發送隊列事件
+        return;
+    }
+    sendbusyflag = 1;
+
+    _SendCommand_data_t SendCommand_data;
+
+    // 為要發送的數據分配內存
+    SendCommand_data.pdata = mem_malloc(send_length);
+    if (SendCommand_data.pdata)
+    {
+        // 儲存UDP通信所需的所有信息
+        SendCommand_data.PeerPort = PeerPort;
+        SendCommand_data.PeerAddr = PeerAddr;
+        memcpy(SendCommand_data.pdata, (uint8_t *)recvbuf, send_length);
+        SendCommand_data.dlen = send_length;
+
+        // 將包含所有必要信息的結構體發送到隊列
+        while (xQueueSend(SendCommand_Queue_handle, (void *)&SendCommand_data, portMAX_DELAY) != pdPASS);
+        sendIndex ++;
+        currentQueueBytes += send_length;  // 更新目前佇列使用的字節數
+        sendbusyflag = 0;  // 清除忙碌標記
+        APP_EVENT_NOTIFY(EVENT_SEND_QUEUE);  // 通知系統已發送隊列事件
+
+        printf("Saved in Send Queue: %d bytes, %d bytes total in queue\n", send_length, currentQueueBytes);
+    }
+    else
+    {
+        // 處理動態內存分配失敗的情況
+    }
 }
 
 
@@ -925,7 +974,7 @@ void register_command(void)
     int i = 0;
     char register_buff[100];
     printf("REGISTER \r\n");
-
+    On_Demand_ID = 1;
     for (i = 0; i < 26; i++)
     {
         register_buff[i] = Meter_ALL_ID[i];
@@ -1229,6 +1278,8 @@ static void _cli_cmd_factory_id_set(int argc, char **argv, cb_shell_out_t log_ou
         }
         printf("\r\n");
         WriteFlashData(ConfigurationPage, Configuration_Page, 180);
+        gpio_pin_write(15, 0);
+        NVIC_SystemReset();
     }
     else
     {
@@ -1317,32 +1368,38 @@ static int32_t udf_AES_GCM_Decrypt(uint8_t *gcm_ek, uint8_t *gcm_aad,
                                     gcm_iv, 12, gcm_aad, gcm_aadlen, gcm_ct,
                                     gcm_pt, 12, gcm_tag);
     printf("=============Decrypt=========================\r\n");
-    log_info_hexdump("Ciphertext", gcm_ct, gcm_ctlen);
+    if (LOGLEVEL2 == LOGLEVEL2OPEN)
+    {
+        log_info_hexdump("Ciphertext", gcm_ct, gcm_ctlen);
+    }
     log_info_hexdump("Plaintext", gcm_pt, gcm_ctlen);
 
     // Print EK (Encryption Key)
-    printf("EK: \r\n");
-    for (int i = 0; i < 16; i++) // Corrected to iterate over 16 bytes (128 bits)
+    if (LOGLEVEL2 == LOGLEVEL2OPEN)
     {
-        printf("%02X ", gcm_ek[i]);
-    }
-    printf("\r\n");
+        printf("EK: \r\n");
+        for (int i = 0; i < 16; i++) // Corrected to iterate over 16 bytes (128 bits)
+        {
+            printf("%02X ", gcm_ek[i]);
+        }
+        printf("\r\n");
 
-    // Print IV (Initialization Vector)
-    printf("IV: \r\n");
-    for (int i = 0; i < 12; i++)
-    {
-        printf("%02X ", gcm_iv[i]);
-    }
-    printf("\r\n");
+        // Print IV (Initialization Vector)
+        printf("IV: \r\n");
+        for (int i = 0; i < 12; i++)
+        {
+            printf("%02X ", gcm_iv[i]);
+        }
+        printf("\r\n");
 
-    // Print AAD (Additional Authenticated Data)
-    printf("AAD: \r\n");
-    for (int i = 0; i < gcm_aadlen; i++)
-    {
-        printf("%02X ", gcm_aad[i]);
+        // Print AAD (Additional Authenticated Data)
+        printf("AAD: \r\n");
+        for (int i = 0; i < gcm_aadlen; i++)
+        {
+            printf("%02X ", gcm_aad[i]);
+        }
+        printf("\r\n");
     }
-    printf("\r\n");
     printf("=============================================\r\n");
     mbedtls_gcm_free(&ctx);
     return ret;
@@ -1535,7 +1592,7 @@ static void udf_GetData_Request(uint8_t *obis_data, uint16_t ic_index,
         cmdbuf[sizeof(cmdbuf) - 3] = crc16 & 0xFF;
         cmdbuf[sizeof(cmdbuf) - 2] = (crc16 >> 8) & 0xFF;
 
-        log_info_hexdump("Send to Meter", cmdbuf, sizeof(cmdbuf));
+        //log_info_hexdump("Send to Meter", cmdbuf, sizeof(cmdbuf));
         app_uart_data_send(2, cmdbuf, sizeof(cmdbuf));
     }
     else
@@ -1622,7 +1679,7 @@ static void udf_GetData_Request(uint8_t *obis_data, uint16_t ic_index,
         crc16 = ~crc16;
         cmdbuf[sizeof(cmdbuf) - 3] = crc16 & 0xFF;
         cmdbuf[sizeof(cmdbuf) - 2] = (crc16 >> 8) & 0xFF;
-        log_info_hexdump("Send to Meter", cmdbuf, sizeof(cmdbuf));
+        //log_info_hexdump("Send to Meter", cmdbuf, sizeof(cmdbuf));
         app_uart_data_send(2, cmdbuf, sizeof(cmdbuf));
     }
 }
@@ -1780,7 +1837,8 @@ static void AC_Command(char *recvbuf)
 {
     unsigned char obis_number_of_pens_data[18] = {0};
     unsigned char obis_time_data[25] = {0};
-    unsigned char obis_data[10] = {   0x00, 0x07, 0x01, 0x00,  0x63, 0x01, 0x00, 0xFF, 0x02, 0x00};
+    unsigned char obis_data[10] = { 0x00, 0x07, 0x01, 0x00,  0x63, 0x01, 0x00, 0xFF, 0x02, 0x00};
+
     int i = 0;
     On_Demand_ID = 1;
     Check_Demand_Type((unsigned char *)&recvbuf[0]);
@@ -1839,7 +1897,7 @@ static void _cli_cmd_get_fan_status(int argc, char **argv, cb_shell_out_t log_ou
 
     log_info("%d / %d / %d   %d : %d : %d", (p->tm_year + 1900), (p->tm_mon + 1), p->tm_mday, p->tm_hour, p->tm_min, p->tm_sec );
     log_info("Rafel Thread version                            :      %s", otGetVersionString());
-    // log_info("Das version                                     :      %s", VERSION);
+    log_info("Das version                                     :      %s", VERSION);
     printf  ("Role                                            : ");
     switch (target_pos)
     {
@@ -2054,23 +2112,51 @@ static void _cli_cmd_get_fan_status(int argc, char **argv, cb_shell_out_t log_ou
         countdown = countdown < 0 ? 0 : countdown;
         log_info("Remaining time until ResetRF_Flag               :      %-6d      (s)", (int)countdown);
     }
-    log_info("Receive Queue                                   :      %d / %d", receiveIndex, QUEUE_SIZE);
-    log_info("Send Queue                                      :      %d / %d",  sendIndex, QUEUE_SIZE);
+    log_info("Receive Queue                                   :      %d ", receiveIndex);
+    log_info("Send Queue                                      :      %d ", sendIndex);
+    log_info("Save byte                                       :      %d / %d",  currentQueueBytes, MAX_QUEUE_BYTES);
+    if (receivebusyflag || sendbusyflag || On_Demand_Reading_Type || CONTINUE_BUSY || Broadcast_flag || flag_Power_Off || ResetRF_Flag || NOT_COMPLETELY_POWER_OFF || REGISTER_FLAG)
+    {
+        log_info("=============================================================   Flag   =============================================================");
+        if (receivebusyflag)
+        {
+            log_info("receivebusyflag               :%-3d Timeout        = %-10d receivecount           = %d", receivebusyflag, (receivebusytime * 10), receivecount);
+        }
+        if (sendbusyflag)
+        {
+            log_info("sendbusyflag                  :%-3d Timeout        = %-10d sendcount              = %d", sendbusyflag, (sendbusytime * 10), sendcount);
+        }
+        if (On_Demand_Reading_Type)
+        {
+            log_info("On_Demand_Reading_Type        :%-3d Timeout        = %-10d OnDemandReadingcount   = %d", On_Demand_Reading_Type, ondemandreadingtime * 10, OnDemandReadingcount);
+        }
+        if (CONTINUE_BUSY)
+        {
+            log_info("CONTINUE_BUSY                 :%-3d Timeout        = %-10d CointbusyCount         = %d", CONTINUE_BUSY, continuebusytime * 10, CointbusyCount);
+        }
+        if (Broadcast_flag)
+        {
+            log_info("Broadcast_flag                :%-3d Timeout        = %-10d BroadcastCount         = %d", Broadcast_flag, Broadcast_meterdelay, BroadcastCount);
+        }
+        if (flag_Power_Off)
+        {
+            log_info("flag_Power_Off                :%-3d Timeout        = %-10d LastpSendCount         = %d", flag_Power_Off, (denominator % 20), LastpSendCount);
+        }
+        if (ResetRF_Flag)
+        {
+            log_info("ResetRF_Flag                  :%-3d Timeout        = %-10d LastpSendCount         = %d", flag_Power_Off, 10, ResetRFcount);
+        }
+        if (NOT_COMPLETELY_POWER_OFF)
+        {
+            log_info("NOT_COMPLETELY_POWER_OFF      :%-3d Timeout        = %-10d PowerOnCount           = %d", NOT_COMPLETELY_POWER_OFF, 10, PowerOnCount);
+        }
+        if (REGISTER_FLAG)
+        {
+            log_info("REGISTER_FLAG                 :%-3d Timeout        = %-10d RegisterCount          = %d", REGISTER_FLAG, 3600, RegisterCount);
+        }
+        log_info("====================================================================================================================================\r\n");
+    }
 
-
-    log_info("=============================================================   Flag   =============================================================");
-    log_info("receivebusyflag               :%-3d Timeout        = %-10d receivecount           = %d", receivebusyflag, (receivebusytime * 10), receivecount);
-    log_info("sendbusyflag                  :%-3d Timeout        = %-10d sendcount              = %d", sendbusyflag, (sendbusytime * 10), sendcount);
-    log_info("On_Demand_Reading_Type        :%-3d Timeout        = %-10d OnDemandReadingcount   = %d", On_Demand_Reading_Type, ondemandreadingtime * 10, OnDemandReadingcount);
-    log_info("CONTINUE_BUSY                 :%-3d Timeout        = %-10d CointbusyCount         = %d", CONTINUE_BUSY, continuebusytime * 10, CointbusyCount);
-    log_info("Broadcast_flag                :%-3d Timeout        = %-10d BroadcastCount         = %d", Broadcast_flag, Broadcast_meterdelay, BroadcastCount);
-    log_info("flag_Power_Off                :%-3d Timeout        = %-10d LastpSendCount         = %d", flag_Power_Off, (denominator % 20), LastpSendCount);
-    log_info("ResetRF_Flag                  :%-3d Timeout        = %-10d LastpSendCount         = %d", flag_Power_Off, 10, ResetRFcount);
-    log_info("NOT_COMPLETELY_POWER_OFF      :%-3d Timeout        = %-10d PowerOnCount           = %d", NOT_COMPLETELY_POWER_OFF, 10, PowerOnCount);
-    log_info("REGISTER_FLAG                 :%-3d Timeout        = %-10d RegisterCount          = %d", REGISTER_FLAG, 3600, RegisterCount);
-    log_info("====================================================================================================================================\r\n");
-    //      log_info("send meter command test");
-    //      udf_Send_DISC(2);
 }
 
 static void ACK_function(uint8_t num)
@@ -2577,7 +2663,7 @@ static void Decide_Once(unsigned char *pt, unsigned char *meter_data)
     }
 }
 
-
+/*
 static void receive_queue(char *recvbuf, int receive_length)
 {
 
@@ -2606,6 +2692,36 @@ static void receive_queue(char *recvbuf, int receive_length)
     receivebusyflag = 0;
 
 }
+*/
+
+static void receive_queue(char *recvbuf, int receive_length)
+{
+
+    if (currentQueueBytes + receive_length > MAX_QUEUE_BYTES)
+    {
+        printf("Receive Queue is full or overflow: %d bytes needed, %d bytes available\n", receive_length, MAX_QUEUE_BYTES - currentQueueBytes);
+        APP_EVENT_NOTIFY(EVENT_ELS61_BLOCK_QUEUE);
+        return;
+    }
+    receivebusyflag = 1;
+
+    _ReceiveCommand_data_t ReceiveCommand_data;
+
+    ReceiveCommand_data.pdata = mem_malloc(receive_length);
+    if (ReceiveCommand_data.pdata)
+    {
+        memcpy(ReceiveCommand_data.pdata, (uint8_t *)recvbuf, receive_length);
+        ReceiveCommand_data.dlen = receive_length;
+
+        while (xQueueSend(ReceiveCommand_Queue_handle, (void *)&ReceiveCommand_data, portMAX_DELAY) != pdPASS);
+        receiveIndex ++;
+        currentQueueBytes += receive_length;  // 更新目前接收佇列使用的字節數
+        APP_EVENT_NOTIFY(EVENT_ELS61_BLOCK_QUEUE);
+    }
+
+    receivebusyflag = 0;
+}
+
 
 static void udf_SMIP_Res(uint8_t *meter_data)
 {
@@ -3960,7 +4076,6 @@ static void udf_Meter_Process(uint8_t *meter_data, uint16_t data_len)
                     if (MAAFIRST == 1)
                     {
                         MAA_flag = STATUS_OBTAINED_KEY;
-                        RegistrationprocessStart = 0;// (u32)now_time + RTC_CNT; What does this do?
                         sst_flag = 1;
                         if (memcmp(tpc_guk, &Configuration_Page[48], 16) == 0 &&
                                 memcmp(&tpc_gcm_ak[1], &Configuration_Page[64], 16) == 0 &&
@@ -4126,17 +4241,18 @@ static void udf_Meter_Process(uint8_t *meter_data, uint16_t data_len)
                     if (pt[1] == 0x02  && MAA_flag == STATUS_REGISTRATION_COMPLETE && flag_Power_Off == 0) //Continue transmission
                     {
                         Refuse_Command = 0;
-                        printf("===========================On_Demand_ID : %d, On_Demand_Reading_Type : %d===============================\n\r", On_Demand_ID, On_Demand_Reading_Type);
+                        log_info("====== continuable transmission ======");
                         CONTINUE_BUSY = (pt[3] == 0x00) ? 1 : 0;
                         if (pt[6] == 0 && pt[7] == 0x01)
                         {
                             continuebusyflagstart = 1;
                             Resume_index = 1;
                             Continue_lastindex = 0;
-
+                            Continue_TASK_ID = TASK_ID;
                         }
                         Continue_index = pt[6] * 256 + pt[7];
-                        log_info("Continue_index = %d\n", Continue_index);
+                        log_info("continue transfer to: %d", Continue_index);
+
                         /////////////////////////////
                         if (CONTINUE_BUSY == 1)
                         {
@@ -4149,12 +4265,12 @@ static void udf_Meter_Process(uint8_t *meter_data, uint16_t data_len)
                             else if (Auto_Reading == 1 && On_Demand_Reading_Type == 0)
                             {
 
-                                udf_Rafael_data(TASK_ID, On_Demand_Type, (char *)&meter_data[0], 3, data_len);
+                                udf_Rafael_data(Continue_TASK_ID, On_Demand_Type, (char *)&meter_data[0], 3, data_len);
                                 //auto_send_type_buff(On_Demand_Type,&meter_data[0]);
                             }
                             else if (On_Demand_ID == 1 && On_Demand_Reading_Type == 0)
                             {
-                                udf_Rafael_data(TASK_ID, On_Demand_Type, (char *)&meter_data[0], 3, data_len);
+                                udf_Rafael_data(Continue_TASK_ID, On_Demand_Type, (char *)&meter_data[0], 3, data_len);
                                 //On_Demand_type_buff(On_Demand_Type,&meter_data[0]);
                             }
                             else
@@ -4175,13 +4291,13 @@ static void udf_Meter_Process(uint8_t *meter_data, uint16_t data_len)
                             else if (Auto_Reading == 1 && On_Demand_Reading_Type == 0)
                             {
 
-                                udf_Rafael_data(TASK_ID, On_Demand_Type, (char *)&meter_data[0], 3, data_len);
+                                udf_Rafael_data(Continue_TASK_ID, On_Demand_Type, (char *)&meter_data[0], 3, data_len);
                                 //auto_send_type_buff(On_Demand_Type,&meter_data[0]);
                                 Auto_Reading = 0;
                             }
                             else if (On_Demand_ID == 1 && On_Demand_Reading_Type == 0)
                             {
-                                udf_Rafael_data(TASK_ID, On_Demand_Type, (char *)&meter_data[0], 3, data_len);
+                                udf_Rafael_data(Continue_TASK_ID, On_Demand_Type, (char *)&meter_data[0], 3, data_len);
                                 //On_Demand_type_buff(On_Demand_Type,&meter_data[0]);
                                 On_Demand_ID = 0;
                             }
@@ -4622,10 +4738,10 @@ static void flash_Information(void)
     printf("   (10 sec)");
     printf("\n");
 
-    printf("keyObtainedStatusIncorrecttimeout : %3d       (min)\n", Configuration_Page[138]);
-    printf("registerRetrytime                 : %3d       (min)\n", Configuration_Page[139]);
-    printf("Rafael_reset                      : %3d       (min)\n", Configuration_Page[140]);
-    printf("Broadcastmeterdelay               : %3d       (MOD)\n", Configuration_Page[141]);
+    printf("keyObtainedStatusIncorrecttimeout :  %-3d      (min)\n", Configuration_Page[138]);
+    printf("registerRetrytime                 :  %-3d      (min)\n", Configuration_Page[139]);
+    printf("Rafael_reset                      :  %-3d      (min)\n", Configuration_Page[140]);
+    printf("Broadcastmeterdelay               :  %-3d      (MOD)\n", Configuration_Page[141]);
 
 }
 void udf_Meter_received_task(const uint8_t *aBuf, uint16_t aBufLength)
@@ -4673,10 +4789,20 @@ static void _cli_cmd_get_flash(int argc, char **argv, cb_shell_out_t log_out, vo
 {
     flash_Information();
 }
-static void _cli_cmd_continuetest(int argc, char **argv, cb_shell_out_t log_out, void *pExtra)
+static void _cli_cmd_setflash(int argc, char **argv, cb_shell_out_t log_out, void *pExtra)
 {
-    //  register_command();
-    //  //continuetest();
+    //// unsigned char obis_data[19] = { 0x07, 0x01, 0x00, 0x63, 0x01, 0x00, 0xFF, 0x02, 0x02, 0x06, 0x00, 0x00, 0x00, 0x01, 0x06, 0x00, 0x00, 0x00, 0x14};
+    ////        MAA_flag = STATUS_REGISTRATION_COMPLETE;
+    ////     On_Demand_ID = 1;
+    ////     target_pos = 0;
+    ////     On_Demand_Reading_Type = 0;
+    ////     AC_Command(obis_data);
+    //  if(CONTINUE_BUSY== 0)
+    //   CONTINUE_BUSY = 1;
+    //  else
+    //      CONTINUE_BUSY = 0;
+    ////    register_command();
+    //    //  //continuetest();
     static uint8_t read_buf[0x100];
     int i;
     uint8_t factory_id_null[10] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
@@ -4701,11 +4827,54 @@ static void _cli_cmd_maa(int argc, char **argv, cb_shell_out_t log_out, void *pE
     log_info("MAA_flag 3  --->  STATUS_REGISTRATION_COMPLETE");
     log_info("Registration Complete\n");
 }
-const sh_cmd_t g_cli_cmd_test STATIC_CLI_CMD_ATTRIBUTE =
+static void _cli_cmd_RESTART(int argc, char **argv, cb_shell_out_t log_out, void *pExtra)
 {
-    .pCmd_name    = "setflash",
-    .pDescription = "continuetest setting",
-    .cmd_exec     = _cli_cmd_continuetest,
+    NVIC_SystemReset();
+}
+static void _cli_cmd_log_level(int argc, char **argv, cb_shell_out_t log_out, void *pExtra)
+{
+    if (LOGLEVEL2 == LOGLEVEL2CLOSE)
+    {
+        log_info("log level 1");
+    }
+    else
+    {
+        log_info("log level 2");
+    }
+}
+static void _cli_cmd_log_level1(int argc, char **argv, cb_shell_out_t log_out, void *pExtra)
+{
+    LOGLEVEL2 = LOGLEVEL2CLOSE;
+    log_info("disable encryption and decryption, leaving only plaintext");
+}
+static void _cli_cmd_log_level2(int argc, char **argv, cb_shell_out_t log_out, void *pExtra)
+{
+    LOGLEVEL2 = LOGLEVEL2OPEN;
+    log_info("display all encrypted and decrypted content");
+}
+const sh_cmd_t g_cli_cmd_setflash STATIC_CLI_CMD_ATTRIBUTE =
+{
+    .pCmd_name    = "flash_set",
+    .pDescription = "set_flash",
+    .cmd_exec     = _cli_cmd_setflash,
+};
+const sh_cmd_t g_cli_cmd_log_level1 STATIC_CLI_CMD_ATTRIBUTE =
+{
+    .pCmd_name    = "log_level_1",
+    .pDescription = "disable encryption and decryption, leaving only plaintext",
+    .cmd_exec     = _cli_cmd_log_level1,
+};
+const sh_cmd_t g_cli_cmd_log_level STATIC_CLI_CMD_ATTRIBUTE =
+{
+    .pCmd_name    = "loglevel?",
+    .pDescription = "Check the current log level",
+    .cmd_exec     = _cli_cmd_log_level,
+};
+const sh_cmd_t g_cli_cmd_log_level2 STATIC_CLI_CMD_ATTRIBUTE =
+{
+    .pCmd_name    = "log_level_2",
+    .pDescription = "display all encrypted and decrypted content",
+    .cmd_exec     = _cli_cmd_log_level2,
 };
 const sh_cmd_t g_cli_cmd_maa STATIC_CLI_CMD_ATTRIBUTE =
 {
@@ -4726,14 +4895,20 @@ const sh_cmd_t g_cli_cmd_factoryid STATIC_CLI_CMD_ATTRIBUTE =
 const sh_cmd_t g_cli_cmd_get_fanstatus STATIC_CLI_CMD_ATTRIBUTE =
 {
     .pCmd_name    = "flagstatus",
-    .pDescription = "get_fan_status",
+    .pDescription = "flagstatus represents the status of all flags",
     .cmd_exec     = _cli_cmd_get_fan_status,
 };
 const sh_cmd_t g_cli_cmd_get_queue STATIC_CLI_CMD_ATTRIBUTE =
 {
-    .pCmd_name    = "getflash",
-    .pDescription = "get_flash",
+    .pCmd_name    = "flash_get",
+    .pDescription = "Flash configuration status",
     .cmd_exec     = _cli_cmd_get_flash,
+};
+const sh_cmd_t g_cli_cmd_RESTART STATIC_CLI_CMD_ATTRIBUTE =
+{
+    .pCmd_name    = "FAN_SYS_RESTART",
+    .pDescription = "Restart module",
+    .cmd_exec     = _cli_cmd_RESTART,
 };
 static void udf_Action_Transmit(unsigned char obisTXT[], unsigned char plainTXT[], uint16_t plainTXT_Len, uint32_t frameNum, uint8_t lastNum)
 {
@@ -5342,13 +5517,18 @@ void ReceiveCommand_Queue_processing(void)
     _ReceiveCommand_data_t ReceiveCommand_data;
     if ( receivebusyflag == 0 && CONTINUE_BUSY == 0 && On_Demand_Reading_Type == 0)
     {
-        printf("\nReceive Queue : %d / %d\r\n", receiveIndex, QUEUE_SIZE);
-        while (xQueueReceive(ReceiveCommand_Queue_handle, (void *)&ReceiveCommand_data, 0) == pdPASS)
+        printf("\nReceive Queue : %d \r\n", receiveIndex);
+        if (xQueueReceive(ReceiveCommand_Queue_handle, (void *)&ReceiveCommand_data, 0) == pdPASS)
         {
             DASprocessCommand(ReceiveCommand_data.pdata, ReceiveCommand_data.dlen);
             if (receiveIndex > 0)
             {
                 receiveIndex--;
+            }
+            // 更新發送佇列的字節計數
+            if (currentQueueBytes >= ReceiveCommand_data.dlen)
+            {
+                currentQueueBytes -= ReceiveCommand_data.dlen;
             }
             if (ReceiveCommand_data.pdata)
             {
@@ -5374,7 +5554,7 @@ void Rafael_printFunction(uint8_t *payload, uint16_t meter_len)
     printf("\n");
     log_info("===========================================================================================");
 
-
+    TASKCOMMAND = TASK_FINISHED_FLAG;
 
 
 
@@ -5386,11 +5566,11 @@ void Send_Queue_processing(void)
 
     if (sendIndex > 0 && sendbusyflag == 0 && CONTINUE_BUSY == 0 && On_Demand_Reading_Type == 0 && (target_pos == 3 || target_pos == 2))
     {
-        while (xQueuePeek(SendCommand_Queue_handle, (void *)&SendCommand_data, 10) == pdTRUE)
+        while (xQueuePeek(SendCommand_Queue_handle, (void *)&SendCommand_data, 0) == pdTRUE)
         {
             if (xQueueReceive(SendCommand_Queue_handle, (void *)&SendCommand_data, 0) == pdPASS)
             {
-                log_info("\nSend Queue : %d / %d", sendIndex, QUEUE_SIZE);
+                log_info("\nSend Queue : %d ", sendIndex);
                 Rafael_printFunction(SendCommand_data.pdata, SendCommand_data.dlen);
                 if (app_udpSend(SendCommand_data.PeerPort, SendCommand_data.PeerAddr, SendCommand_data.pdata, SendCommand_data.dlen))
                 {
@@ -5399,6 +5579,11 @@ void Send_Queue_processing(void)
                 if (sendIndex > 0)
                 {
                     sendIndex --;
+                }
+                // 更新發送佇列的字節計數
+                if (currentQueueBytes >= SendCommand_data.dlen)
+                {
+                    currentQueueBytes -= SendCommand_data.dlen;
                 }
                 if (SendCommand_data.pdata)
                 {
@@ -5688,6 +5873,17 @@ void vTimerCallback(TimerHandle_t xTimer)
             RegisterCount = 0;
         }
     }
+
+    if (sendIndex > 0 && sendbusyflag == 0 && CONTINUE_BUSY == 0 && On_Demand_Reading_Type == 0 && (target_pos == 3 || target_pos == 2))
+    {
+        APP_EVENT_NOTIFY(EVENT_SEND_QUEUE);
+    }
+    else if (receiveIndex > 0  && receivebusyflag == 0 && CONTINUE_BUSY == 0 && On_Demand_Reading_Type == 0 && TASKCOMMAND == TASK_FINISHED_FLAG )
+    {
+        TASKCOMMAND = TASK_UNFINISHED_FLAG;
+        APP_EVENT_NOTIFY(EVENT_ELS61_BLOCK_QUEUE);
+    }
+
 }
 
 void udf_Meter_init(otInstance *instance)
@@ -5726,7 +5922,7 @@ void evaluate_commandAM1(char *recvbuf, uint16_t len_test)
     char *am1buffer = NULL;
     char flashbuffer[150] = {0};
     int8_t Rssi = 0;
-    int8_t Set_address　 = 0;
+    int8_t Set_address = 0;
 
     for (i = 1, j = 0 ; i < 1 + recvbuf[0]; i++, j++)
     {

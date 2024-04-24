@@ -46,17 +46,9 @@ typedef struct uart_io
     uint8_t uart_cache[RX_BUFF_SIZE];
 } uart_io_t;
 
-typedef struct
-{
-    uint8_t port;
-    uint16_t dlen;
-    uint8_t *pdata;
-} _app_uart_data_t ;
-
 //=============================================================================
 //                  Global Data Definition
 //=============================================================================
-static QueueHandle_t app_uart_handle;
 static uart_io_t g_uart1_rx_io = { .start = 0, .end = 0, };
 static uart_io_t g_uart2_rx_io = { .start = 0, .end = 0, };
 static uint8_t g_tx_buf[TX_BUFF_SIZE];
@@ -66,49 +58,21 @@ static hosal_uart_dma_cfg_t txdam_cfg =
     .dma_buf_size = sizeof(g_tx_buf),
 };
 
+static uint8_t __uart1_tx_done = 1;
+static uint8_t __uart2_tx_done = 1;
 //=============================================================================
 //                  Private Function Definition
 //=============================================================================
-static int __uart_tx_callback(void *p_arg)
+static int __uart1_tx_callback(void *p_arg)
 {
-    APP_EVENT_NOTIFY_ISR(EVENT_UART_UART_OUT_DONE);
+    APP_EVENT_NOTIFY_ISR(EVENT_UART1_UART_OUT_DONE);
     return 0;
 }
 
-static void __uart_queue_send(app_task_event_t evt)
+static int __uart2_tx_callback(void *p_arg)
 {
-    _app_uart_data_t uart_data;
-    static uint32_t __tx_done = 1;
-
-    if ((EVENT_UART_UART_OUT_DONE & evt))
-    {
-        __tx_done = 1;
-        return;
-    }
-
-    if (__tx_done == 1)
-    {
-        if (xQueueReceive(app_uart_handle, (void *)&uart_data, 0) == pdPASS)
-        {
-            memcpy(txdam_cfg.dma_buf, uart_data.pdata, uart_data.dlen);
-            txdam_cfg.dma_buf_size = uart_data.dlen;
-            if (UART1_OPERATION_PORT == uart_data.port)
-            {
-                hosal_uart_ioctl(&uart1_dev, HOSAL_UART_DMA_TX_START, &txdam_cfg);
-                log_debug_hexdump("uart1 Tx", uart_data.pdata, uart_data.dlen);
-            }
-            else if (UART2_OPERATION_PORT == uart_data.port)
-            {
-                hosal_uart_ioctl(&uart2_dev, HOSAL_UART_DMA_TX_START, &txdam_cfg);
-                log_debug_hexdump("Send Meter (uart2 Tx)", uart_data.pdata, uart_data.dlen);
-            }
-            __tx_done = 0;
-            if (uart_data.pdata)
-            {
-                mem_free(uart_data.pdata);
-            }
-        }
-    }
+    APP_EVENT_NOTIFY_ISR(EVENT_UART2_UART_OUT_DONE);
+    return 0;
 }
 
 /*uart 1 use*/
@@ -275,9 +239,20 @@ void __uart2_data_parse()
 
 void __uart_task(app_task_event_t sevent)
 {
-    if ((EVENT_UART_UART_OUT & sevent) || (EVENT_UART_UART_OUT_DONE & sevent))
+    if (EVENT_UART1_UART_OUT_DONE & sevent)
     {
-        __uart_queue_send(sevent);
+        if (!__uart1_tx_done)
+        {
+            __uart1_tx_done = 1;
+        }
+    }
+
+    if (EVENT_UART2_UART_OUT_DONE & sevent)
+    {
+        if (!__uart2_tx_done)
+        {
+            __uart2_tx_done = 1;
+        }
     }
 
     if (EVENT_UART1_UART_IN & sevent)
@@ -293,26 +268,31 @@ void __uart_task(app_task_event_t sevent)
 
 int app_uart_data_send(uint8_t u_port, uint8_t *p_data, uint16_t data_len)
 {
-    _app_uart_data_t uart_data;
-
-    uart_data.pdata =  mem_malloc(data_len);
-    if (uart_data.pdata)
+    //log_info_hexdump("uart sent",p_data,data_len);
+    if (__uart1_tx_done || __uart2_tx_done)
     {
-        memcpy(uart_data.pdata, p_data, data_len);
-        uart_data.port = u_port;
-        uart_data.dlen = data_len;
-        //log_info_hexdump("uart sent",p_data,data_len);
-        //        while (xQueueSend(app_uart_handle, (void *)&uart_data, portMAX_DELAY) != pdPASS);
-
-        //        APP_EVENT_NOTIFY(EVENT_UART_UART_OUT);
-        if (xQueueSend(app_uart_handle, (void *)&uart_data, portMAX_DELAY) != pdPASS)
+        memcpy(txdam_cfg.dma_buf, p_data, data_len);
+        txdam_cfg.dma_buf_size = data_len;
+        if (UART1_OPERATION_PORT == u_port && __uart1_tx_done )
         {
-            printf("queue full \r\n");
+            hosal_uart_ioctl(&uart1_dev, HOSAL_UART_DMA_TX_START, &txdam_cfg);
+            log_debug_hexdump("uart1 Tx", txdam_cfg.dma_buf, txdam_cfg.dma_buf_size);
+            __uart1_tx_done = 0;
+        }
+        else if (UART2_OPERATION_PORT == u_port && __uart2_tx_done )
+        {
+            hosal_uart_ioctl(&uart2_dev, HOSAL_UART_DMA_TX_START, &txdam_cfg);
+            log_debug_hexdump("Send Meter (uart2 Tx)", txdam_cfg.dma_buf, txdam_cfg.dma_buf_size);
+            __uart2_tx_done = 0;
         }
         else
         {
-            APP_EVENT_NOTIFY(EVENT_UART_UART_OUT);
+            printf("1. uart tx fail %u %u\r\n", __uart1_tx_done, __uart2_tx_done);
         }
+    }
+    else
+    {
+        printf("2. uart tx fail %u %u\r\n", __uart1_tx_done, __uart2_tx_done);
     }
 
     return 0;
@@ -324,14 +304,12 @@ void app_uart_init(void)
     hosal_uart_init(&uart1_dev);
     hosal_uart_init(&uart2_dev);
 
-    app_uart_handle = xQueueCreate(16, sizeof(_app_uart_data_t));
-
     /* Configure UART Rx interrupt callback function */
     hosal_uart_callback_set(&uart1_dev, HOSAL_UART_RX_CALLBACK, __uart1_rx_callback, &uart1_dev);
-    hosal_uart_callback_set(&uart1_dev, HOSAL_UART_TX_DMA_CALLBACK, __uart_tx_callback, &uart1_dev);
+    hosal_uart_callback_set(&uart1_dev, HOSAL_UART_TX_DMA_CALLBACK, __uart1_tx_callback, &uart1_dev);
 
     hosal_uart_callback_set(&uart2_dev, HOSAL_UART_RX_CALLBACK, __uart2_rx_callback, &uart2_dev);
-    hosal_uart_callback_set(&uart2_dev, HOSAL_UART_TX_DMA_CALLBACK, __uart_tx_callback, &uart2_dev);
+    hosal_uart_callback_set(&uart2_dev, HOSAL_UART_TX_DMA_CALLBACK, __uart2_tx_callback, &uart2_dev);
 
     /* Configure UART to interrupt mode */
     hosal_uart_ioctl(&uart1_dev, HOSAL_UART_MODE_SET, (void *)HOSAL_UART_MODE_INT_RX);

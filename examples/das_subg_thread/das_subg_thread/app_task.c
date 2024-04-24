@@ -54,7 +54,33 @@ void vLightTimerCallback(TimerHandle_t xTimer)
     if (target_pos == OT_DEVICE_ROLE_CHILD || target_pos ==  OT_DEVICE_ROLE_ROUTER || target_pos == OT_DEVICE_ROLE_LEADER)
     {
         gpio_pin_write(14, 1);
-        xTimerStop(xLightTimer, portMAX_DELAY);
+        if (xLightTimer != NULL)
+        {
+            // Attempt to stop the timer
+            BaseType_t result = xTimerStop(xLightTimer, portMAX_DELAY);
+            if (result == pdPASS)
+            {
+                // Timer stopped successfully, now try to delete it
+                result = xTimerDelete(xLightTimer, portMAX_DELAY);
+                if (result == pdPASS)
+                {
+                    // Timer deleted successfully, set handle to NULL
+                    xLightTimer = NULL;
+                }
+                else
+                {
+                    // Failed to delete the timer, log the error and consider retrying
+                    log_error("Failed to delete timer, will retry...");
+                    // Retry logic or wait before retrying could be implemented here
+                }
+            }
+            else
+            {
+                // Failed to stop the timer, log the error and consider retrying
+                log_error("Failed to stop timer, will retry...");
+                // Retry logic or wait before retrying could be implemented here
+            }
+        }
     }
 }
 static void ot_stateChangeCallback(otChangedFlags flags, void *p_context)
@@ -96,6 +122,7 @@ static void ot_stateChangeCallback(otChangedFlags flags, void *p_context)
         }
         if (role == OT_DEVICE_ROLE_DISABLED || role == OT_DEVICE_ROLE_DETACHED)
         {
+
             uint32_t timerPeriod = pdMS_TO_TICKS(200);
             if (xLightTimer == NULL)
             {
@@ -184,7 +211,8 @@ static void app_udp_cb(otMessage *otMsg, const otMessageInfo *otInfo)
             log_info("Received ip      : %s ", string);
             log_info("Received port    : %d ", otInfo->mSockPort);
             /*process data and send to meter (p, len) */
-            app_udp_received_queue_push(p, len);
+            // app_udp_received_queue_push(p, len);
+            evaluate_commandAM1(p, len);
 
             if (otInfo->mSockAddr.mFields.m8[0] == 0xff)
             {
