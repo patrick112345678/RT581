@@ -32,6 +32,8 @@
 #include "util_list.h"
 #include "project_config.h"
 #include "lmac15p4.h"
+#include "mac_frame_gen.h"
+#include "mem_mgmt.h"
 #if OPENTHREAD_CONFIG_RADIO_915MHZ_OQPSK_SUPPORT
 #include "subg_ctrl.h"
 #endif
@@ -82,6 +84,8 @@
 #define MAC_PIB_MAC_MIN_BE 2
 #endif
 
+#define MAC_HEADER_CHAR "rafael"
+
 #define MAC_RX_BUFFERS 100
 #if OPENTHREAD_CONFIG_RADIO_2P4GHZ_OQPSK_SUPPORT
 #define FREQ (2405)
@@ -92,6 +96,7 @@
 
 extern uint8_t rfb_port_ack_packet_read(uint8_t *rx_data_address);
 static bool hasFramePending(const otRadioFrame *aFrame);
+static void (*radio_mac_received_cb)(uint8_t *data, uint16_t lens, int8_t rssi, uint8_t *src_addr);
 //=============================================================================
 //                Private ENUM
 //=============================================================================
@@ -186,7 +191,8 @@ static uint32_t sUnitBackoffPeriod;
 static uint32_t sFrameTotalWaitTime;
 uint32_t sPhyDataRate = SUBG_CTRL_DATA_RATE_300K;
 #endif
-
+static otError sTransmitError;
+static bool sWaitMacTxDone = false;
 static uint16_t sMacAckWaitTime = MAC_PIB_MAC_ACK_WAIT_DURATION;
 static uint8_t sMacFrameRetris = MAC_PIB_MAC_MAX_FRAME_RETRIES;
 
@@ -223,6 +229,150 @@ static bool sAuto_State_Set = false;
 //=============================================================================
 //                Functions
 //=============================================================================
+
+void radio_mac_received_callback(void (*mac_rcb)(uint8_t *data, uint16_t lensm, int8_t rssi, uint8_t *src_addr))
+{
+    radio_mac_received_cb = mac_rcb;
+}
+
+void radio_mac_broadcast_send(otInstance *aInstance, uint8_t *data, uint16_t lens)
+{
+    char mac_data_header[6] = MAC_HEADER_CHAR;
+    uint8_t *mac_tx_data = NULL;
+    uint16_t mac_tx_lens = lens + 6;
+
+    static uint8_t mac_tx_dsn = 0;
+    static MacBuffer_t MacHdrPtr;
+    static MacHdr_t MacHdr;
+
+    uint8_t tx_control;
+
+    if (otRadio_var.pTxFrame == NULL && sWaitMacTxDone == false)
+    {
+        tx_control = 0x0;
+
+        MacHdr.macFrmCtrl.frameType        = MAC_DATA;
+        MacHdr.macFrmCtrl.secEnab          = false;
+        MacHdr.macFrmCtrl.framePending     = false;
+        MacHdr.macFrmCtrl.ackReq           = false;
+
+        MacHdr.macSecCtrl.secLevel         = SEC_LEVEL_NONE;
+        MacHdr.macSecCtrl.keyIdMode        = KEY_ID_MODE_IMPLICITY;
+        MacHdr.macFrmCtrl.panidCompr       = true;
+
+        MacHdr.dsn                         = mac_tx_dsn;
+
+        MacHdr.destPanid                   = 0xFFFF;
+
+        MacHdr.destAddr.mode               = SHORT_ADDR;
+        MacHdr.destAddr.shortAddr          = 0xFFFF;
+        // MacHdr.destAddr.longAddr[0]        = 0xFFFFFFFF;
+        // MacHdr.destAddr.longAddr[1]        = 0xFFFFFFFF;
+
+        MacHdr.srcPanid                    = otLinkGetPanId(aInstance);
+
+        const otExtAddress *extaddr = otLinkGetExtendedAddress(aInstance);
+
+        MacHdr.srcAddr.mode                = LONG_ADDR;
+        MacHdr.srcAddr.longAddr[0] =
+            extaddr->m8[4] << 24 | extaddr->m8[5] << 16 | extaddr->m8[6] << 8 | extaddr->m8[7];
+        MacHdr.srcAddr.longAddr[1] =
+            extaddr->m8[0] << 24 | extaddr->m8[1] << 16 | extaddr->m8[2] << 8 | extaddr->m8[3];
+
+
+        memset(&MacHdrPtr.buf[0], 0x0, MAX_DATA_SIZE);
+        MacHdrPtr.dptr = &MacHdrPtr.buf[0];
+        MacHdrPtr.len = 0;
+        mac_genHeader(&MacHdrPtr, &MacHdr);
+
+        mac_tx_lens += MacHdrPtr.len;
+
+        mac_tx_data = mem_malloc(mac_tx_lens);
+
+        if (mac_tx_data)
+        {
+            mem_memcpy(mac_tx_data, MacHdrPtr.dptr, MacHdrPtr.len);
+            mem_memcpy(&mac_tx_data[MacHdrPtr.len], mac_data_header, 6);
+            mem_memcpy(&mac_tx_data[MacHdrPtr.len + 6], data, lens);
+            // util_log_mem(UTIL_LOG_INFO, "mac send ", mac_tx_data, mac_tx_lens, 0);
+            lmac15p4_tx_data_send(0, mac_tx_data, mac_tx_lens, tx_control, mac_tx_dsn);
+            sWaitMacTxDone = true;
+            mem_free(mac_tx_data);
+            ++mac_tx_dsn;
+        }
+    }
+}
+
+int radio_mac_unicast_send(otInstance *aInstance, uint8_t * dst_mac_addr, uint8_t *data, uint16_t lens)
+{
+    char mac_data_header[6] = MAC_HEADER_CHAR;
+    uint8_t *mac_tx_data = NULL;
+    uint16_t mac_tx_lens = lens + 6;
+
+    static uint8_t mac_tx_dsn = 0;
+    static MacBuffer_t MacHdrPtr;
+    static MacHdr_t MacHdr;
+
+    uint8_t tx_control;
+
+    if (otRadio_var.pTxFrame == NULL && sWaitMacTxDone == false)
+    {
+        tx_control = 0x0;
+
+        MacHdr.macFrmCtrl.frameType        = MAC_DATA;
+        MacHdr.macFrmCtrl.secEnab          = false;
+        MacHdr.macFrmCtrl.framePending     = false;
+        MacHdr.macFrmCtrl.ackReq           = true;
+
+        MacHdr.macSecCtrl.secLevel         = SEC_LEVEL_NONE;
+        MacHdr.macSecCtrl.keyIdMode        = KEY_ID_MODE_IMPLICITY;
+        MacHdr.macFrmCtrl.panidCompr       = true;
+
+        MacHdr.dsn                         = mac_tx_dsn;
+
+        MacHdr.destPanid                   = otLinkGetPanId(aInstance);
+
+        MacHdr.destAddr.mode               = LONG_ADDR;
+        MacHdr.destAddr.longAddr[0] =
+            dst_mac_addr[4] << 24 | dst_mac_addr[5] << 16 | dst_mac_addr[6] << 8 | dst_mac_addr[7];
+        MacHdr.destAddr.longAddr[1] =
+            dst_mac_addr[0] << 24 | dst_mac_addr[1] << 16 | dst_mac_addr[2] << 8 | dst_mac_addr[3];
+
+        MacHdr.srcPanid                    = otLinkGetPanId(aInstance);
+
+        const otExtAddress *extaddr = otLinkGetExtendedAddress(aInstance);
+
+        MacHdr.srcAddr.mode                = LONG_ADDR;
+        MacHdr.srcAddr.longAddr[0] =
+            extaddr->m8[4] << 24 | extaddr->m8[5] << 16 | extaddr->m8[6] << 8 | extaddr->m8[7];
+        MacHdr.srcAddr.longAddr[1] =
+            extaddr->m8[0] << 24 | extaddr->m8[1] << 16 | extaddr->m8[2] << 8 | extaddr->m8[3];
+
+
+        memset(&MacHdrPtr.buf[0], 0x0, MAX_DATA_SIZE);
+        MacHdrPtr.dptr = &MacHdrPtr.buf[0];
+        MacHdrPtr.len = 0;
+        mac_genHeader(&MacHdrPtr, &MacHdr);
+
+        mac_tx_lens += MacHdrPtr.len;
+
+        mac_tx_data = mem_malloc(mac_tx_lens);
+
+        if (mac_tx_data)
+        {
+            mem_memcpy(mac_tx_data, MacHdrPtr.dptr, MacHdrPtr.len);
+            mem_memcpy(&mac_tx_data[MacHdrPtr.len], mac_data_header, 6);
+            mem_memcpy(&mac_tx_data[MacHdrPtr.len + 6], data, lens);
+            // util_log_mem(UTIL_LOG_INFO, "mac send ", mac_tx_data, mac_tx_lens, 0);
+            lmac15p4_tx_data_send(0, mac_tx_data, mac_tx_lens, tx_control, mac_tx_dsn);
+            sWaitMacTxDone = true;
+            while(sWaitMacTxDone != false) vTaskDelay(1);
+            mem_free(mac_tx_data);
+            ++mac_tx_dsn;
+        }
+    }
+    return sTransmitError;
+}
 
 static void ReverseExtAddress(otExtAddress *aReversed, const otExtAddress *aOrigin)
 {
@@ -827,23 +977,18 @@ otError otPlatRadioTransmit(otInstance *aInstance, otRadioFrame *aFrame)
     assert(aFrame != NULL);
 
     uint8_t tx_control = 0;
-    //uint8_t temp[OT_RADIO_FRAME_MAX_SIZE + 4];
 
     otError error = OT_ERROR_INVALID_STATE;
-
 
     if (otRadio_var.pTxFrame == NULL)
     {
         otRadio_var.pTxFrame = aFrame;
-        //if (sCurrentChannel != aFrame->mChannel)
-        {
-            sCurrentChannel = aFrame->mChannel;
+        sCurrentChannel = aFrame->mChannel;
 #if OPENTHREAD_CONFIG_RADIO_2P4GHZ_OQPSK_SUPPORT
-            lmac15p4_channel_set((lmac154_channel_t)(sCurrentChannel - kMinChannel));
+        lmac15p4_channel_set((lmac154_channel_t)(sCurrentChannel - kMinChannel));
 #elif OPENTHREAD_CONFIG_RADIO_915MHZ_OQPSK_SUPPORT
-            subg_ctrl_frequency_set(FREQ + (CHANNEL_SPACING * (sCurrentChannel - kMinChannel)));
+        subg_ctrl_frequency_set(FREQ + (CHANNEL_SPACING * (sCurrentChannel - kMinChannel)));
 #endif
-        }
     }
 #if OPENTHREAD_CONFIG_MAC_CSL_RECEIVER_ENABLE
     if (sCslPeriod > 0 && !sTransmitFrame.mInfo.mTxInfo.mIsHeaderUpdated)
@@ -864,36 +1009,24 @@ otError otPlatRadioTransmit(otInstance *aInstance, otRadioFrame *aFrame)
     {
         tx_control ^= (1 << 1);
     }
-    // tx_control |= (1 << 2 );
-    // if (otMacFrameIsSecurityEnabled(aFrame))
-    // {
-    //     // uint32_t temp_fc; //=spRFBCtrl->frame_counter_get();
-
-    //     // if (sMacFrameCounter < temp_fc)
-    //     // {
-    //     //     sMacFrameCounter = temp_fc + 1;
-    //     // }
-    // }
-    // temp[0] = ((sMacFrameCounter >> 0) & 0xFF);
-    // temp[1] = ((sMacFrameCounter >> 8) & 0xFF);
-    // temp[2] = ((sMacFrameCounter >> 16) & 0xFF);
-    // temp[3] = ((sMacFrameCounter >> 24) & 0xFF);
-
-    // memcpy(temp + 4, otRadio_var.pTxFrame->mPsdu, otRadio_var.pTxFrame->mLength);
-    // if (otRadio_var.pTxFrame->mInfo.mTxInfo.mTxDelay != 0)
-    // {
-    //     tx_control ^= (1 << 1);
-    // }
-
+  
     Lpm_Low_Power_Mask(LOW_POWER_MASK_BIT_RESERVED4);
 
-    if (lmac15p4_tx_data_send(0, aFrame->mPsdu,
-                              aFrame->mLength - 2,
-                              tx_control,
-                              otMacFrameGetSequence(aFrame)) != 0)
+    if(sWaitMacTxDone)
     {
         Lpm_Low_Power_Unmask(LOW_POWER_MASK_BIT_RESERVED4);
-        OT_NOTIFY(OT_SYSTEM_EVENT_RADIO_TX_NO_ACK);
+        OT_NOTIFY(OT_SYSTEM_EVENT_RADIO_TX_CCA_FAIL);
+    }
+    else
+    {
+        if (lmac15p4_tx_data_send(0, aFrame->mPsdu,
+                                aFrame->mLength - 2,
+                                tx_control,
+                                otMacFrameGetSequence(aFrame)) != 0)
+        {
+            Lpm_Low_Power_Unmask(LOW_POWER_MASK_BIT_RESERVED4);
+            OT_NOTIFY(OT_SYSTEM_EVENT_RADIO_TX_NO_ACK);
+        }
     }
 
     otPlatRadioTxStarted(aInstance, aFrame);
@@ -1232,6 +1365,26 @@ void ot_radioTask(ot_system_event_t trxEvent)
 
         if (pframe)
         {
+            for(int i =0 ; i < (pframe->frame.mLength-6); i++)
+            {
+                if (memcmp(&pframe->frame.mPsdu[i], MAC_HEADER_CHAR, 6) == 0)
+                {
+                    if (radio_mac_received_cb)
+                    {
+                        uint8_t src_mac_addr[8];
+                        for(uint8_t k =0 ; k < 8 ;k++)
+                        {
+                            src_mac_addr[7-k] = pframe->frame.mPsdu[i-8+k];
+                        }
+                        radio_mac_received_cb(&pframe->frame.mPsdu[i+6], 
+                            (pframe->frame.mLength - i - 6 - 2), 
+                            (pframe->frame.mInfo.mRxInfo.mRssi),
+                            (uint8_t*)&src_mac_addr);
+                    }
+                    break;
+                }
+            }
+
             otPlatRadioReceiveDone(otRadio_var.aInstance, &pframe->frame, OT_ERROR_NONE);
 
             OT_ENTER_CRITICAL();
@@ -1265,6 +1418,12 @@ static void _TxDoneEvent(uint32_t tx_status)
 {
     uint32_t ack_nowTime;
 
+    if (sWaitMacTxDone == true)
+    {
+        sTransmitError = tx_status;
+        sWaitMacTxDone = false;
+        return;
+    }
     if (otRadio_var.pTxFrame)
     {
         if (0 == tx_status)

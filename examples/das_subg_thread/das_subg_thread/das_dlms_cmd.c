@@ -28,7 +28,7 @@
 #include "cli.h"
 #include <semphr.h>
 #include <time.h>
-#include "C:\\Users\\testo\\Desktop\\rafel_das_watchdog\\rafael-iot-sdk-das-Release_v1.0.0\\rafael-iot-sdk-das-Release_v1.0.0\\version.h"
+//#include "C:\\Users\\testo\\Desktop\\rafel_das_watchdog\\rafael-iot-sdk-das-Release_v1.0.0\\rafael-iot-sdk-das-Release_v1.0.0\\version.h"
 
 
 //=============================================================================
@@ -1897,7 +1897,7 @@ static void _cli_cmd_get_fan_status(int argc, char **argv, cb_shell_out_t log_ou
 
     log_info("%d / %d / %d   %d : %d : %d", (p->tm_year + 1900), (p->tm_mon + 1), p->tm_mday, p->tm_hour, p->tm_min, p->tm_sec );
     log_info("Rafel Thread version                            :      %s", otGetVersionString());
-    log_info("Das version                                     :      %s", VERSION);
+//    log_info("Das version                                     :      %s", VERSION);
     printf  ("Role                                            : ");
     switch (target_pos)
     {

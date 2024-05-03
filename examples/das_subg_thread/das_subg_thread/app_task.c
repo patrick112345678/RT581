@@ -236,6 +236,12 @@ static void app_udp_cb(otMessage *otMsg, const otMessageInfo *otInfo)
         mem_free(p);
     }
 }
+void mac_received_cb(uint8_t *data, uint16_t lens, int8_t rssi, uint8_t *src_addr)
+{
+    log_info("rssi %d \r\n", rssi);
+    log_debug_hexdump("Src addr : ", src_addr, 8);
+    log_debug_hexdump("MacR : ", data, lens);
+}
 // Implementation of the RafaelRegisterTask function
 void otrInitUser(otInstance *instance)
 {
@@ -299,6 +305,8 @@ void otrInitUser(otInstance *instance)
 
     /* Set the Active Operational Dataset to this dataset */
     otDatasetSetActive(instance, &App_Dataset);
+
+    radio_mac_received_callback(mac_received_cb);
 
     log_info("Thread version     : %s", otGetVersionString());
 

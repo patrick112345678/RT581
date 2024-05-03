@@ -146,6 +146,8 @@
   ..\subg_openthread\examples\platforms\utils\mac_frame.h \
   ..\subg_openthread\examples\platforms\utils\soft_source_match_table.h \
   ..\..\..\utility\utility\Inc\util_list.h ..\..\lmac15p4\Inc\lmac15p4.h \
+  ..\openthread_port\include\mac_frame_gen.h \
+  ..\..\..\utility\MemoryMgmt\Inc\mem_mgmt.h \
   ..\..\subg_ctrl\Inc\subg_ctrl.h ..\..\..\utility\log\log.h \
   ..\..\..\utility\utility\Inc\util_log.h \
   ..\..\..\utility\log\log_type.h ..\..\..\utility\log\log_cfg.h

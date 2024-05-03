@@ -221,6 +221,10 @@ extern void otAppNcpInit(otInstance *aInstance);
 void rf_ot_cpc_rcp_process(void);
 void rf_ot_cpc_init(void);
 
+void radio_mac_broadcast_send(otInstance *aInstance, uint8_t *data, uint16_t lens);
+int radio_mac_unicast_send(otInstance *aInstance, uint8_t * dst_mac_addr, uint8_t *data, uint16_t lens);
+void radio_mac_received_callback(void (*mac_rcb)(uint8_t *data, uint16_t lens, int8_t rssi, uint8_t *src_addr));
+
 #define OT_CLI_UART_OUTPUT_LOCK()
 #define OT_CLI_UART_OUTPUT_UNLOCK()
 
