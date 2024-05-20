@@ -383,20 +383,21 @@ ARM Macro Assembler    Page 6
   280 0000001C                 END
               00000000 
               00000000 
-Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --depend=.\ob
-jects\startup_cm3_mcu.d -o.\objects\startup_cm3_mcu.o -I.\RTE\_das_subg_thread 
--IC:\Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include -IC:
-\Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\Device\ARM\ARMCM3\Include -
--predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 536" --prede
+Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M3 --depe
+nd=.\objects\startup_cm3_mcu.d -o.\objects\startup_cm3_mcu.o -I.\RTE\_das_subg_
+thread -IC:\Keil_v5\ARM\Pack\ARM\CMSIS\6.0.0\CMSIS\Core\Include -IC:\Keil_v5\AR
+M\Pack\ARM\Cortex_DFP\1.0.0\Device\ARMCM3\Include -IC:\Keil_v5\ARM\Pack\ARM\Cor
+tex_DFP\1.0.0\Device\ARM\ARMCM3\Include --predefine="__MICROLIB SETA 1" --prede
 
 
 
 ARM Macro Assembler    Page 7 
 
 
-fine="_RTE_ SETA 1" --predefine="ARMCM3 SETA 1" --predefine="_RTE_ SETA 1" --pr
-edefine="USE_FREERTOS SETA 1" --list=.\listings\startup_cm3_mcu.lst ..\..\..\co
-mponents\platform\soc\rt582\rt582_dongle\dongle\src\boot\ARM\startup_cm3_mcu.s
+fine="__UVISION_VERSION SETA 539" --predefine="_RTE_ SETA 1" --predefine="ARMCM
+3 SETA 1" --predefine="_RTE_ SETA 1" --predefine="USE_FREERTOS SETA 1" --list=.
+\listings\startup_cm3_mcu.lst ..\..\..\components\platform\soc\rt582\rt582_dong
+le\dongle\src\boot\ARM\startup_cm3_mcu.s
 
 
 

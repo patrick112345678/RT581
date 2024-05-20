@@ -1213,6 +1213,5 @@ otError nwk_mgm_init(otInstance *aInstance)
         }
     } while (0);
 
-    printf("nwk_mgm_init error %u \r\n", error);
     return error;
 }

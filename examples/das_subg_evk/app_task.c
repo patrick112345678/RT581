@@ -50,9 +50,12 @@ static uint8_t SMacAddr[8] = {0xFF, 0xFF, 0xEE, 0xEE, 0xAA, 0xBB, 0xCC, 0xDD};
 static uint8_t SMacTxState = 0;
 static uint8_t SMacIsTxDone = 1;
 
-typedef struct 
+static const uint8_t channel_min = 1;
+static const uint8_t channel_max = 10;
+
+typedef struct
 {
-    uint16_t lens; 
+    uint16_t lens;
     uint8_t data[FSK_MAX_DATA_SIZE];
     uint8_t rssi;
     uint8_t snr;
@@ -60,6 +63,7 @@ typedef struct
 
 static rx_done_pkt_t rx_done_pkt;
 
+static uint8_t mac_tx_dsn = 0;
 
 void __app_task_signal(void)
 {
@@ -80,7 +84,6 @@ void __mac_broadcast_send(uint8_t *data, uint16_t lens)
     uint8_t *mac_tx_data = NULL;
     uint16_t mac_tx_lens = lens + 6;
 
-    static uint8_t mac_tx_dsn = 0;
     static MacBuffer_t MacHdrPtr;
     static MacHdr_t MacHdr;
 
@@ -112,7 +115,7 @@ void __mac_broadcast_send(uint8_t *data, uint16_t lens)
 
         MacHdr.srcAddr.mode                = LONG_ADDR;
         MacHdr.srcAddr.longAddr[0] =
-            SMacAddr[4] << 24 | SMacAddr[5] << 16 | SMacAddr[6] << 8 |SMacAddr[7];
+            SMacAddr[4] << 24 | SMacAddr[5] << 16 | SMacAddr[6] << 8 | SMacAddr[7];
         MacHdr.srcAddr.longAddr[1] =
             SMacAddr[0] << 24 | SMacAddr[1] << 16 | SMacAddr[2] << 8 | SMacAddr[3];
 
@@ -146,7 +149,6 @@ int __mac_unicast_send(uint8_t *dst_mac_addr, uint8_t *data, uint16_t lens)
     uint8_t *mac_tx_data = NULL;
     uint16_t mac_tx_lens = lens + 6;
 
-    static uint8_t mac_tx_dsn = 0;
     static MacBuffer_t MacHdrPtr;
     static MacHdr_t MacHdr;
 
@@ -179,7 +181,7 @@ int __mac_unicast_send(uint8_t *dst_mac_addr, uint8_t *data, uint16_t lens)
 
         MacHdr.srcAddr.mode                = LONG_ADDR;
         MacHdr.srcAddr.longAddr[0] =
-            SMacAddr[4] << 24 | SMacAddr[5] << 16 | SMacAddr[6] << 8 |SMacAddr[7];
+            SMacAddr[4] << 24 | SMacAddr[5] << 16 | SMacAddr[6] << 8 | SMacAddr[7];
         MacHdr.srcAddr.longAddr[1] =
             SMacAddr[0] << 24 | SMacAddr[1] << 16 | SMacAddr[2] << 8 | SMacAddr[3];
 
@@ -196,13 +198,16 @@ int __mac_unicast_send(uint8_t *dst_mac_addr, uint8_t *data, uint16_t lens)
         if (mac_tx_data)
         {
             mem_memcpy(mac_tx_data, MacHdrPtr.dptr, MacHdrPtr.len);
-            mem_memcpy(&mac_tx_data[MacHdrPtr.len], mac_data_header,MAC_HEADER_CHAR_LENS);
+            mem_memcpy(&mac_tx_data[MacHdrPtr.len], mac_data_header, MAC_HEADER_CHAR_LENS);
             mem_memcpy(&mac_tx_data[MacHdrPtr.len + MAC_HEADER_CHAR_LENS], data, lens);
             log_debug_hexdump("mac send ", mac_tx_data, mac_tx_lens);
             lmac15p4_tx_data_send(0, mac_tx_data, mac_tx_lens, tx_control, mac_tx_dsn);
             SMacIsTxDone = 0;
             SMacTxState = 0;
-            while(SMacIsTxDone != 1) vTaskDelay(1);
+            while (SMacIsTxDone != 1)
+            {
+                vTaskDelay(1);
+            }
             mem_free(mac_tx_data);
             ++mac_tx_dsn;
         }
@@ -217,29 +222,63 @@ void __mac_received_cb(uint8_t *data, uint16_t lens, int8_t rssi, uint8_t *src_a
     log_debug_hexdump("MacR : ", data, lens);
 }
 
+void __scan_received_cb(uint16_t panid, uint8_t *src_addr)
+{
+   
+    log_debug_hexdump("Src addr ", src_addr, 8);
+		log_info("panid %04x \r\n", panid);
+}
+
+void __scan_start()
+{
+    uint8_t tmp_ch = 0;
+    uint8_t data[8] = {0x03, 0x08, 0x00, 0xff, 0xff, 0xff, 0xff, 0x07};
+    for (tmp_ch = channel_min; tmp_ch <= channel_max ; tmp_ch++)
+    {
+
+        subg_ctrl_frequency_set(FREQ + (CHANNEL_SPACING * (tmp_ch - SMinChannel)));
+
+        lmac15p4_tx_data_send(0, data, 8, 0, mac_tx_dsn);
+        mac_tx_dsn++;
+        vTaskDelay(200);
+    }
+
+    /*set channel back*/
+    subg_ctrl_frequency_set(FREQ + (CHANNEL_SPACING * (SCurrentChannel - SMinChannel)));
+}
+
 void __mac_task(app_task_event_t sevent)
 {
-    if(sevent & EVENT_MAC_RX_DONE)
+    if (sevent & EVENT_MAC_RX_DONE)
     {
-        for(int i =0 ; i < (rx_done_pkt.lens - MAC_HEADER_CHAR_LENS); i++)
+        uint8_t src_mac_addr[8];
+        for (int i = 0 ; i < (rx_done_pkt.lens - MAC_HEADER_CHAR_LENS); i++)
         {
             if (memcmp(&rx_done_pkt.data[i], MAC_HEADER_CHAR, MAC_HEADER_CHAR_LENS) == 0)
             {
-                uint8_t src_mac_addr[8];
-                for(uint8_t k =0 ; k < 8 ;k++)
+                for (uint8_t k = 0 ; k < 8 ; k++)
                 {
-                        src_mac_addr[7-k] = rx_done_pkt.data[i-8+k];
+                    src_mac_addr[7 - k] = rx_done_pkt.data[i - 8 + k];
                 }
-                __mac_received_cb(&rx_done_pkt.data[i + MAC_HEADER_CHAR_LENS], 
-                        (rx_done_pkt.lens - i - MAC_HEADER_CHAR_LENS - 2), 
-                        (-rx_done_pkt.rssi),
-                        (uint8_t*)&src_mac_addr);
+                __mac_received_cb(&rx_done_pkt.data[i + MAC_HEADER_CHAR_LENS],
+                                  (rx_done_pkt.lens - i - MAC_HEADER_CHAR_LENS - 2),
+                                  (-rx_done_pkt.rssi),
+                                  (uint8_t *)&src_mac_addr);
                 break;
             }
         }
+        if (rx_done_pkt.data[0] == 0x0)
+        {
+            uint16_t id = rx_done_pkt.data[4] << 8 | rx_done_pkt.data[3];
+            for (uint8_t k = 0 ; k < 8 ; k++)
+            {
+                src_mac_addr[7 - k] = rx_done_pkt.data[5 + k];
+            }
+            __scan_received_cb(id, src_mac_addr);
+        }
     }
 
-    if(sevent & EVENT_MAC_TX_DONE)
+    if (sevent & EVENT_MAC_TX_DONE)
     {
         if (SMacIsTxDone == 0)
         {
@@ -250,21 +289,21 @@ void __mac_task(app_task_event_t sevent)
 
 static void __mac_tx_done(uint32_t tx_status)
 {
-   
+
     SMacTxState = tx_status;
     APP_EVENT_NOTIFY_ISR(EVENT_MAC_TX_DONE);
 
 }
 
 static void __mac_rx_done(uint16_t packet_length, uint8_t *rx_data_address,
-                         uint8_t crc_status, uint8_t rssi, uint8_t snr)
+                          uint8_t crc_status, uint8_t rssi, uint8_t snr)
 {
     static uint8_t rx_done_cnt = 0;
 
     if (crc_status == 0)
     {
-        rx_done_pkt.lens = packet_length;
-        memcpy(&rx_done_pkt.data ,rx_data_address, rx_done_pkt.lens);
+        rx_done_pkt.lens = packet_length - 14;
+        memcpy(&rx_done_pkt.data, rx_data_address + 9, rx_done_pkt.lens);
         rx_done_pkt.rssi = rssi;
         rx_done_pkt.snr = snr;
         APP_EVENT_NOTIFY_ISR(EVENT_MAC_RX_DONE);
@@ -295,9 +334,9 @@ void __mac_init()
     subg_ctrl_filter_set(SUBG_CTRL_MODU_FSK, SUBG_CTRL_FILTER_TYPE_GFSK);
 
     /* PHY PIB */
-    lmac15p4_phy_pib_set(PHY_PIB_TURNAROUND_TIMER, 
-                         PHY_PIB_CCA_DETECT_MODE, 
-                         PHY_PIB_CCA_THRESHOLD, 
+    lmac15p4_phy_pib_set(PHY_PIB_TURNAROUND_TIMER,
+                         PHY_PIB_CCA_DETECT_MODE,
+                         PHY_PIB_CCA_THRESHOLD,
                          PHY_PIB_CCA_DETECTED_TIME);
     /* MAC PIB */
     lmac15p4_mac_pib_set(MAC_PIB_UNIT_BACKOFF_PERIOD, MAC_PIB_MAC_ACK_WAIT_DURATION,
@@ -308,13 +347,13 @@ void __mac_init()
 
     subg_ctrl_frequency_set(FREQ + (CHANNEL_SPACING * (SCurrentChannel - SMinChannel)));
 
-    uint32_t sExtendAddr_0 = 
-        SMacAddr[4] << 24 | SMacAddr[5] << 16 | SMacAddr[6] << 8 |SMacAddr[7];        
-        
+    uint32_t sExtendAddr_0 =
+        SMacAddr[4] << 24 | SMacAddr[5] << 16 | SMacAddr[6] << 8 | SMacAddr[7];
+
     uint32_t sExtendAddr_1 =
         SMacAddr[0] << 24 | SMacAddr[1] << 16 | SMacAddr[2] << 8 | SMacAddr[3];
-        
-    lmac15p4_address_filter_set(0, false, 0xFFFF, sExtendAddr_0, sExtendAddr_1, SUBG_PANID, 0);
+
+    lmac15p4_address_filter_set(0, false, 0xFFFF, sExtendAddr_0, sExtendAddr_1, SPanId, 0);
 
     /* Auto ACK */
     lmac15p4_auto_ack_set(true);
@@ -334,14 +373,21 @@ void app_task (void)
     app_uart_init();
 
     log_info("DAS SubG EVK Init \n");
-    
-    log_info("PAN ID              : %x", SUBG_PANID);
 
-    log_info("channel             : %d", SUBG_CHANNEL);
+    log_info("PAN ID              : %x", SPanId);
+
+    if (SCurrentChannel < channel_min || SCurrentChannel > channel_max)
+    {
+        log_info("error channel             : %d", SCurrentChannel);
+    }
+    else
+    {
+        log_info("channel             : %d", SCurrentChannel);
+    }
 
     log_info("mac addr            : %02X%02X%02X%02X%02X%02X%02X%02X \r\n",
-        SMacAddr[0], SMacAddr[1] ,SMacAddr[2], SMacAddr[3] ,SMacAddr[4], SMacAddr[5],
-        SMacAddr[6], SMacAddr[7]);
+             SMacAddr[0], SMacAddr[1], SMacAddr[2], SMacAddr[3], SMacAddr[4], SMacAddr[5],
+             SMacAddr[6], SMacAddr[7]);
 
     while (true)
     {
@@ -358,38 +404,103 @@ void app_task (void)
     }
 }
 
-static int _cli_cmd_macsend(int argc, char **argv, cb_shell_out_t log_out, void *pExtra)
+static int _cli_cmd_panid(int argc, char **argv, cb_shell_out_t log_out, void *pExtra)
 {
-    uint8_t dst_addr[8];
-    uint8_t br_addr[8] = {0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
-    uint16_t payload_len;
-    uint8_t *payload = NULL;
-    if (argc > 2)
+    if(argc > 1)
     {
-        for(uint8_t i = 0 ; i < 8; i++)
+        uint16_t apanid = utility_strtox(argv[1], 0, 4) ;
+        if(SPanId != apanid)
         {
-            dst_addr[i] = (uint8_t)utility_strtox(&argv[1][i*2], 0, 2);
-        }
-        payload_len = utility_strtox(argv[2], 0, 4) ;
-        payload = mem_malloc(payload_len);
-        if (payload)
-        {
-            memset(payload, 0xfe, payload_len);
-            log_info("send mac addr            : %02X%02X%02X%02X%02X%02X%02X%02X \r\n",
-                dst_addr[0], dst_addr[1] ,dst_addr[2], dst_addr[3] ,dst_addr[4], dst_addr[5],
-                dst_addr[6], dst_addr[7]);
-            if(memcmp(&br_addr, &dst_addr, 8) == 0)
-            {
-                __mac_broadcast_send(payload, payload_len);
-            }
-            else
-            {
-                __mac_unicast_send(&dst_addr, payload, payload_len);
-            }
+            SPanId = apanid;
+            uint32_t sExtendAddr_0 =
+                SMacAddr[4] << 24 | SMacAddr[5] << 16 | SMacAddr[6] << 8 | SMacAddr[7];
 
-            mem_free(payload);
+            uint32_t sExtendAddr_1 =
+                SMacAddr[0] << 24 | SMacAddr[1] << 16 | SMacAddr[2] << 8 | SMacAddr[3];
+
+            lmac15p4_address_filter_set(0, false, 0xFFFF, sExtendAddr_0, sExtendAddr_1, SPanId, 0);
         }
     }
+    else
+    {
+        log_info("%02x",SPanId);
+    }
+
+}
+
+static int _cli_cmd_channel(int argc, char **argv, cb_shell_out_t log_out, void *pExtra)
+{
+    if(argc > 1)
+    {
+        uint8_t achannel = utility_strtox(argv[1], 0, 2) ;
+        if(SCurrentChannel != achannel)
+        {
+            SCurrentChannel = achannel;
+            subg_ctrl_frequency_set(FREQ + (CHANNEL_SPACING * (SCurrentChannel - SMinChannel)));
+        }
+    }
+    else
+    {
+        log_info("%u",SCurrentChannel);
+    }
+}
+
+static int _cli_cmd_scan(int argc, char **argv, cb_shell_out_t log_out, void *pExtra)
+{
+    __scan_start();
+}
+
+static int _cli_cmd_macsend(int argc, char **argv, cb_shell_out_t log_out, void *pExtra)
+{
+		log_info("send buffer");
+    if (argc < 4) {
+        log_info("Usage: macsend <dst_addr> <payload_len> <payload_hex>");
+        return -1;
+    }
+
+    uint8_t dst_addr[8];
+    uint8_t br_addr[8] = {0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
+    
+    for(uint8_t i = 0 ; i < 8; i++)
+    {
+        dst_addr[i] = (uint8_t)utility_strtox(&argv[1][i*2], 0, 2);
+    }
+
+    uint16_t payload_len = (uint16_t)utility_strtox(argv[2], 0, 4);
+		if (payload_len * 2 != strlen(argv[3])) 
+		{
+			log_info("payload_len = %d datalen = %d",payload_len*2,strlen(argv[3]) );
+			log_info("Error: payload length does not match length of provided hex data");
+			return -1;
+		}
+
+    uint8_t* payload = (uint8_t*)malloc(payload_len);
+    if (!payload) 
+		{
+        log_info("Error: Memory allocation failed");
+        return -1;
+    }
+
+    for (uint16_t i = 0; i < payload_len; i++) 
+		{
+        payload[i] = (uint8_t)utility_strtox(&argv[3][i*2], 0, 2);
+    }
+
+    log_info("send mac addr            : %02X%02X%02X%02X%02X%02X%02X%02X \r\n",
+             dst_addr[0], dst_addr[1], dst_addr[2], dst_addr[3], dst_addr[4], dst_addr[5], dst_addr[6], dst_addr[7]);
+
+
+    if(memcmp(&br_addr, &dst_addr, 8) == 0)
+    {
+        __mac_broadcast_send(payload, payload_len);
+    }
+    else
+    {
+        __mac_unicast_send(&dst_addr, payload, payload_len);
+    }
+
+    free(payload);
+
     return 0;
 }
 
@@ -398,4 +509,25 @@ const sh_cmd_t g_cli_cmd_macsend STATIC_CLI_CMD_ATTRIBUTE =
     .pCmd_name    = "macsend",
     .pDescription = "mac send ",
     .cmd_exec     = _cli_cmd_macsend,
+};
+
+const sh_cmd_t g_cli_cmd_scan STATIC_CLI_CMD_ATTRIBUTE =
+{
+    .pCmd_name    = "scan",
+    .pDescription = "scan",
+    .cmd_exec     = _cli_cmd_scan,
+};
+
+const sh_cmd_t g_cli_cmd_panid STATIC_CLI_CMD_ATTRIBUTE =
+{
+    .pCmd_name    = "panid",
+    .pDescription = "panid",
+    .cmd_exec     = _cli_cmd_panid,
+};
+
+const sh_cmd_t g_cli_cmd_channel STATIC_CLI_CMD_ATTRIBUTE =
+{
+    .pCmd_name    = "channel",
+    .pDescription = "channel",
+    .cmd_exec     = _cli_cmd_channel,
 };

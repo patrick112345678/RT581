@@ -2,12 +2,13 @@
   ..\..\..\components\platform\soc\rt582\rt582_driver\Src\lpm.c \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\cm3_mcu.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\chip_define.h \
-  C:\Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm3.h \
+  C:\Keil_v5\ARM\Pack\ARM\CMSIS\6.0.0\CMSIS\Core\Include\core_cm3.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \
-  C:\Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_version.h \
-  C:\Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_compiler.h \
-  C:\Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h \
-  C:\Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\mpu_armv7.h \
+  C:\Keil_v5\ARM\Pack\ARM\CMSIS\6.0.0\CMSIS\Core\Include\cmsis_version.h \
+  C:\Keil_v5\ARM\Pack\ARM\CMSIS\6.0.0\CMSIS\Core\Include\cmsis_compiler.h \
+  C:\Keil_v5\ARM\Pack\ARM\CMSIS\6.0.0\CMSIS\Core\Include\.\m-profile\cmsis_armclang_m.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\arm_acle.h \
+  C:\Keil_v5\ARM\Pack\ARM\CMSIS\6.0.0\CMSIS\Core\Include\m-profile\armv7m_mpu.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\system_cm3_mcu.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\status.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\assert_help.h \

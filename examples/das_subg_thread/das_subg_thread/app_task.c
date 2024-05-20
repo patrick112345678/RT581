@@ -212,7 +212,10 @@ static void app_udp_cb(otMessage *otMsg, const otMessageInfo *otInfo)
             log_info("Received port    : %d ", otInfo->mSockPort);
             /*process data and send to meter (p, len) */
             // app_udp_received_queue_push(p, len);
-            evaluate_commandAM1(p, len);
+            if (EVK_READ_FLAG == EVK_NOT_READ)
+            {
+                evaluate_commandAM1(p, len);
+            }
 
             if (otInfo->mSockAddr.mFields.m8[0] == 0xff)
             {
@@ -238,9 +241,31 @@ static void app_udp_cb(otMessage *otMsg, const otMessageInfo *otInfo)
 }
 void mac_received_cb(uint8_t *data, uint16_t lens, int8_t rssi, uint8_t *src_addr)
 {
+    uint8_t evk_addr[8] = {0xff, 0xff, 0xee, 0xee, 0xaa, 0xbb, 0xcc, 0xdd};
+    uint8_t evk_br[4]  = {0xff, 0xff, 0xff, 0xff};
+    log_info("mac_received_cb");
     log_info("rssi %d \r\n", rssi);
-    log_debug_hexdump("Src addr : ", src_addr, 8);
-    log_debug_hexdump("MacR : ", data, lens);
+    log_debug_hexdump("Src addr ", src_addr, 8);
+    log_debug_hexdump("MacR  ", data, lens);
+    log_debug_hexdump("evk_addr", evk_addr, 8);
+    if (memcmp(evk_addr, src_addr, 8) == 0)
+    {
+        EVK_READ_FLAG = EVK_READ_START;
+        if (memcmp(evk_br, data, 4) == 0)
+        {
+            log_info("Evk boardcast");
+            EVK_BOARDCAST_READ_FLAG = EVK_READ_BOARDCAST_START;
+            app_uart_data_send(2, &data[4], lens - 4);
+        }
+        else
+        {
+            app_uart_data_send(2, data, lens);
+        }
+    }
+    else
+    {
+        log_info("NO EVK ADDR");
+    }
 }
 // Implementation of the RafaelRegisterTask function
 void otrInitUser(otInstance *instance)
@@ -356,6 +381,7 @@ void app_task (void)
         {
             APP_EVENT_GET_NOTIFY(event);
 
+            //log_info("Handling event: %X\n", event);
             /*app uart use*/
             __uart_task(event);
 

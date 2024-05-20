@@ -18,13 +18,13 @@
 	.eabi_attribute	26, 2	@ Tag_ABI_enum_size
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"queue.c"
-	.file	1 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/queue.c"
-	.file	2 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
-	.file	3 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/task.h"
-	.file	4 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\\portmacro.h"
-	.file	5 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/list.h"
-	.file	6 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\queue.h"
-	.file	7 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdlib.h"
+	.file	1 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/queue.c"
+	.file	2 "C:\\" "Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include\\stdint.h"
+	.file	3 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/task.h"
+	.file	4 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\\portmacro.h"
+	.file	5 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/list.h"
+	.file	6 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\queue.h"
+	.file	7 "C:\\" "Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include\\stdlib.h"
 	.section	.text.xQueueGenericReset,"ax",%progbits
 	.hidden	xQueueGenericReset              @ -- Begin function xQueueGenericReset
 	.globl	xQueueGenericReset
@@ -140,8 +140,8 @@ xQueueGenericReset:
 	str	r5, [sp]
 	bl	__2printf
 .Ltmp13:
-	.file	8 "C:/Users\\P350\\AppData\\Local\\Arm\\Packs\\ARM\\CMSIS\\5.8.0\\CMSIS\\Core\\Include" "cmsis_armclang.h"
-	.loc	8 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.file	8 "C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile" "cmsis_armclang_m.h"
+	.loc	8 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -306,7 +306,7 @@ xQueueGenericCreateStatic:
 	str	r5, [sp]
 	bl	__2printf
 .Ltmp33:
-	.loc	8 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -348,7 +348,7 @@ xQueueGenericCreateStatic:
 	str	r5, [sp]
 	bl	__2printf
 .Ltmp40:
-	.loc	8 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -385,7 +385,7 @@ xQueueGenericCreateStatic:
 	str	r5, [sp]
 	bl	__2printf
 .Ltmp46:
-	.loc	8 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -438,7 +438,7 @@ xQueueGenericCreateStatic:
 	str	r5, [sp]
 	bl	__2printf
 .Ltmp54:
-	.loc	8 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -548,7 +548,7 @@ xQueueGenericCreateStatic:
 	str	r5, [sp]
 	bl	__2printf
 .Ltmp76:
-	.loc	8 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -720,7 +720,7 @@ xQueueGenericCreate:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp99:
-	.loc	8 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -1018,7 +1018,7 @@ xQueueGetMutexHolderFromISR:
 	str.w	r12, [sp]
 	bl	__2printf
 .Ltmp132:
-	.loc	8 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -1116,7 +1116,7 @@ xQueueGiveMutexRecursive:
 	str	r4, [sp]
 	bl	__2printf
 .Ltmp142:
-	.loc	8 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -1311,7 +1311,7 @@ xQueueGenericSend:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp162:
-	.loc	8 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -1356,7 +1356,7 @@ xQueueGenericSend:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp169:
-	.loc	8 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -1407,7 +1407,7 @@ xQueueGenericSend:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp175:
-	.loc	8 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -1676,7 +1676,7 @@ xQueueGenericSend:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp216:
-	.loc	8 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -1910,7 +1910,7 @@ xQueueTakeMutexRecursive:
 	str	r5, [sp]
 	bl	__2printf
 .Ltmp249:
-	.loc	8 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -2037,7 +2037,7 @@ xQueueSemaphoreTake:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp261:
-	.loc	8 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -2075,7 +2075,7 @@ xQueueSemaphoreTake:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp266:
-	.loc	8 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -2132,7 +2132,7 @@ xQueueSemaphoreTake:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp273:
-	.loc	8 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -2504,7 +2504,7 @@ xQueueSemaphoreTake:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp338:
-	.loc	8 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -2672,7 +2672,7 @@ xQueueCreateCountingSemaphoreStatic:
 	str	r4, [sp]
 	bl	__2printf
 .Ltmp360:
-	.loc	8 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -2708,7 +2708,7 @@ xQueueCreateCountingSemaphoreStatic:
 	str	r4, [sp]
 	bl	__2printf
 .Ltmp366:
-	.loc	8 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -2822,7 +2822,7 @@ xQueueCreateCountingSemaphore:
 	str	r4, [sp]
 	bl	__2printf
 .Ltmp380:
-	.loc	8 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -2854,7 +2854,7 @@ xQueueCreateCountingSemaphore:
 	str	r4, [sp]
 	bl	__2printf
 .Ltmp385:
-	.loc	8 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -3453,7 +3453,7 @@ xQueueGenericSendFromISR:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp466:
-	.loc	8 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -3501,7 +3501,7 @@ xQueueGenericSendFromISR:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp472:
-	.loc	8 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -3608,7 +3608,7 @@ xQueueGenericSendFromISR:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp488:
-	.loc	8 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -3734,7 +3734,7 @@ xQueueGiveFromISR:
 	str	r6, [sp]
 	bl	__2printf
 .Ltmp501:
-	.loc	8 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -3768,7 +3768,7 @@ xQueueGiveFromISR:
 	str	r6, [sp]
 	bl	__2printf
 .Ltmp506:
-	.loc	8 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -3919,7 +3919,7 @@ xQueueGiveFromISR:
 	str	r6, [sp]
 	bl	__2printf
 .Ltmp530:
-	.loc	8 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -4071,7 +4071,7 @@ xQueueReceive:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp547:
-	.loc	8 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -4110,7 +4110,7 @@ xQueueReceive:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp553:
-	.loc	8 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -4273,7 +4273,7 @@ xQueueReceive:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp577:
-	.loc	8 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -4621,7 +4621,7 @@ xQueuePeek:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp631:
-	.loc	8 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -4660,7 +4660,7 @@ xQueuePeek:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp637:
-	.loc	8 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -4824,7 +4824,7 @@ xQueuePeek:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp661:
-	.loc	8 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -5291,7 +5291,7 @@ xQueueReceiveFromISR:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp735:
-	.loc	8 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -5334,7 +5334,7 @@ xQueueReceiveFromISR:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp740:
-	.loc	8 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -5560,7 +5560,7 @@ xQueuePeekFromISR:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp769:
-	.loc	8 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -5596,7 +5596,7 @@ xQueuePeekFromISR:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp773:
-	.loc	8 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -5625,7 +5625,7 @@ xQueuePeekFromISR:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp776:
-	.loc	8 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -5739,7 +5739,7 @@ uxQueueMessagesWaiting:
 	str	r4, [sp]
 	bl	__2printf
 .Ltmp790:
-	.loc	8 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -5840,7 +5840,7 @@ uxQueueSpacesAvailable:
 	str	r4, [sp]
 	bl	__2printf
 .Ltmp801:
-	.loc	8 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -5921,7 +5921,7 @@ uxQueueMessagesWaitingFromISR:
 	str.w	r12, [sp]
 	bl	__2printf
 .Ltmp809:
-	.loc	8 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -6024,7 +6024,7 @@ vQueueDelete:
 	str.w	r12, [sp]
 	bl	__2printf
 .Ltmp820:
-	.loc	8 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -6081,7 +6081,7 @@ vQueueDelete:
 .Lfunc_end24:
 	.size	vQueueDelete, .Lfunc_end24-vQueueDelete
 	.cfi_endproc
-	.file	9 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/portable.h"
+	.file	9 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/portable.h"
 	.cantunwind
 	.fnend
                                         @ -- End function
@@ -6300,7 +6300,7 @@ xQueueIsQueueEmptyFromISR:
 	str.w	r12, [sp]
 	bl	__2printf
 .Ltmp851:
-	.loc	8 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -6388,7 +6388,7 @@ xQueueIsQueueFullFromISR:
 	str.w	r12, [sp]
 	bl	__2printf
 .Ltmp860:
-	.loc	8 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	8 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -6803,7 +6803,7 @@ xQueueRegistry:
 	.hidden	_printf_d
 	.hidden	_printf_int_dec
 	.hidden	_printf_str
-	.file	10 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\FreeRTOS.h"
+	.file	10 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\FreeRTOS.h"
 	.section	.debug_loc,"",%progbits
 .Ldebug_loc0:
 	.long	-1
@@ -10962,7 +10962,7 @@ xQueueRegistry:
 	.byte	16                              @ Abbrev [16] 0x34a:0x9 DW_TAG_subprogram
 	.long	.Linfo_string66                 @ DW_AT_name
 	.byte	8                               @ DW_AT_decl_file
-	.short	750                             @ DW_AT_decl_line
+	.short	706                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.byte	1                               @ DW_AT_inline
 	.byte	17                              @ Abbrev [17] 0x353:0x55 DW_TAG_subprogram
@@ -13532,352 +13532,352 @@ xQueueRegistry:
 	.long	0
 	.section	.debug_str,"MS",%progbits,1
 .Linfo_string0:
-	.asciz	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]" @ string offset=0
+	.asciz	"Component: Arm Compiler for Embedded 6.21 Tool: armclang [5dfeb700]" @ string offset=0
 .Linfo_string1:
-	.asciz	"../../../components/platform/soc/rt582/rt582_freertos\\queue.c" @ string offset=55
+	.asciz	"../../../components/platform/soc/rt582/rt582_freertos\\queue.c" @ string offset=68
 .Linfo_string2:
-	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=117
+	.asciz	"C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" @ string offset=130
 .Linfo_string3:
-	.asciz	"xQueueRegistry"                @ string offset=178
+	.asciz	"xQueueRegistry"                @ string offset=215
 .Linfo_string4:
-	.asciz	"pcQueueName"                   @ string offset=193
+	.asciz	"pcQueueName"                   @ string offset=230
 .Linfo_string5:
-	.asciz	"char"                          @ string offset=205
+	.asciz	"char"                          @ string offset=242
 .Linfo_string6:
-	.asciz	"xHandle"                       @ string offset=210
+	.asciz	"xHandle"                       @ string offset=247
 .Linfo_string7:
-	.asciz	"pcHead"                        @ string offset=218
+	.asciz	"pcHead"                        @ string offset=255
 .Linfo_string8:
-	.asciz	"signed char"                   @ string offset=225
+	.asciz	"signed char"                   @ string offset=262
 .Linfo_string9:
-	.asciz	"int8_t"                        @ string offset=237
+	.asciz	"int8_t"                        @ string offset=274
 .Linfo_string10:
-	.asciz	"pcWriteTo"                     @ string offset=244
+	.asciz	"pcWriteTo"                     @ string offset=281
 .Linfo_string11:
-	.asciz	"u"                             @ string offset=254
+	.asciz	"u"                             @ string offset=291
 .Linfo_string12:
-	.asciz	"xQueue"                        @ string offset=256
+	.asciz	"xQueue"                        @ string offset=293
 .Linfo_string13:
-	.asciz	"pcTail"                        @ string offset=263
+	.asciz	"pcTail"                        @ string offset=300
 .Linfo_string14:
-	.asciz	"pcReadFrom"                    @ string offset=270
+	.asciz	"pcReadFrom"                    @ string offset=307
 .Linfo_string15:
-	.asciz	"QueuePointers"                 @ string offset=281
+	.asciz	"QueuePointers"                 @ string offset=318
 .Linfo_string16:
-	.asciz	"QueuePointers_t"               @ string offset=295
+	.asciz	"QueuePointers_t"               @ string offset=332
 .Linfo_string17:
-	.asciz	"xSemaphore"                    @ string offset=311
+	.asciz	"xSemaphore"                    @ string offset=348
 .Linfo_string18:
-	.asciz	"xMutexHolder"                  @ string offset=322
+	.asciz	"xMutexHolder"                  @ string offset=359
 .Linfo_string19:
-	.asciz	"tskTaskControlBlock"           @ string offset=335
+	.asciz	"tskTaskControlBlock"           @ string offset=372
 .Linfo_string20:
-	.asciz	"TaskHandle_t"                  @ string offset=355
+	.asciz	"TaskHandle_t"                  @ string offset=392
 .Linfo_string21:
-	.asciz	"uxRecursiveCallCount"          @ string offset=368
+	.asciz	"uxRecursiveCallCount"          @ string offset=405
 .Linfo_string22:
-	.asciz	"long unsigned int"             @ string offset=389
+	.asciz	"long unsigned int"             @ string offset=426
 .Linfo_string23:
-	.asciz	"UBaseType_t"                   @ string offset=407
+	.asciz	"UBaseType_t"                   @ string offset=444
 .Linfo_string24:
-	.asciz	"SemaphoreData"                 @ string offset=419
+	.asciz	"SemaphoreData"                 @ string offset=456
 .Linfo_string25:
-	.asciz	"SemaphoreData_t"               @ string offset=433
+	.asciz	"SemaphoreData_t"               @ string offset=470
 .Linfo_string26:
-	.asciz	"xTasksWaitingToSend"           @ string offset=449
+	.asciz	"xTasksWaitingToSend"           @ string offset=486
 .Linfo_string27:
-	.asciz	"uxNumberOfItems"               @ string offset=469
+	.asciz	"uxNumberOfItems"               @ string offset=506
 .Linfo_string28:
-	.asciz	"pxIndex"                       @ string offset=485
+	.asciz	"pxIndex"                       @ string offset=522
 .Linfo_string29:
-	.asciz	"xItemValue"                    @ string offset=493
+	.asciz	"xItemValue"                    @ string offset=530
 .Linfo_string30:
-	.asciz	"unsigned int"                  @ string offset=504
+	.asciz	"unsigned int"                  @ string offset=541
 .Linfo_string31:
-	.asciz	"uint32_t"                      @ string offset=517
+	.asciz	"uint32_t"                      @ string offset=554
 .Linfo_string32:
-	.asciz	"TickType_t"                    @ string offset=526
+	.asciz	"TickType_t"                    @ string offset=563
 .Linfo_string33:
-	.asciz	"pxNext"                        @ string offset=537
+	.asciz	"pxNext"                        @ string offset=574
 .Linfo_string34:
-	.asciz	"pxPrevious"                    @ string offset=544
+	.asciz	"pxPrevious"                    @ string offset=581
 .Linfo_string35:
-	.asciz	"pvOwner"                       @ string offset=555
+	.asciz	"pvOwner"                       @ string offset=592
 .Linfo_string36:
-	.asciz	"pvContainer"                   @ string offset=563
+	.asciz	"pvContainer"                   @ string offset=600
 .Linfo_string37:
-	.asciz	"xLIST_ITEM"                    @ string offset=575
+	.asciz	"xLIST_ITEM"                    @ string offset=612
 .Linfo_string38:
-	.asciz	"ListItem_t"                    @ string offset=586
+	.asciz	"ListItem_t"                    @ string offset=623
 .Linfo_string39:
-	.asciz	"xListEnd"                      @ string offset=597
+	.asciz	"xListEnd"                      @ string offset=634
 .Linfo_string40:
-	.asciz	"xMINI_LIST_ITEM"               @ string offset=606
+	.asciz	"xMINI_LIST_ITEM"               @ string offset=643
 .Linfo_string41:
-	.asciz	"MiniListItem_t"                @ string offset=622
+	.asciz	"MiniListItem_t"                @ string offset=659
 .Linfo_string42:
-	.asciz	"xLIST"                         @ string offset=637
+	.asciz	"xLIST"                         @ string offset=674
 .Linfo_string43:
-	.asciz	"List_t"                        @ string offset=643
+	.asciz	"List_t"                        @ string offset=680
 .Linfo_string44:
-	.asciz	"xTasksWaitingToReceive"        @ string offset=650
+	.asciz	"xTasksWaitingToReceive"        @ string offset=687
 .Linfo_string45:
-	.asciz	"uxMessagesWaiting"             @ string offset=673
+	.asciz	"uxMessagesWaiting"             @ string offset=710
 .Linfo_string46:
-	.asciz	"uxLength"                      @ string offset=691
+	.asciz	"uxLength"                      @ string offset=728
 .Linfo_string47:
-	.asciz	"uxItemSize"                    @ string offset=700
+	.asciz	"uxItemSize"                    @ string offset=737
 .Linfo_string48:
-	.asciz	"cRxLock"                       @ string offset=711
+	.asciz	"cRxLock"                       @ string offset=748
 .Linfo_string49:
-	.asciz	"cTxLock"                       @ string offset=719
+	.asciz	"cTxLock"                       @ string offset=756
 .Linfo_string50:
-	.asciz	"ucStaticallyAllocated"         @ string offset=727
+	.asciz	"ucStaticallyAllocated"         @ string offset=764
 .Linfo_string51:
-	.asciz	"unsigned char"                 @ string offset=749
+	.asciz	"unsigned char"                 @ string offset=786
 .Linfo_string52:
-	.asciz	"uint8_t"                       @ string offset=763
+	.asciz	"uint8_t"                       @ string offset=800
 .Linfo_string53:
-	.asciz	"uxQueueNumber"                 @ string offset=771
+	.asciz	"uxQueueNumber"                 @ string offset=808
 .Linfo_string54:
-	.asciz	"ucQueueType"                   @ string offset=785
+	.asciz	"ucQueueType"                   @ string offset=822
 .Linfo_string55:
-	.asciz	"QueueDefinition"               @ string offset=797
+	.asciz	"QueueDefinition"               @ string offset=834
 .Linfo_string56:
-	.asciz	"QueueHandle_t"                 @ string offset=813
+	.asciz	"QueueHandle_t"                 @ string offset=850
 .Linfo_string57:
-	.asciz	"QUEUE_REGISTRY_ITEM"           @ string offset=827
+	.asciz	"QUEUE_REGISTRY_ITEM"           @ string offset=864
 .Linfo_string58:
-	.asciz	"xQueueRegistryItem"            @ string offset=847
+	.asciz	"xQueueRegistryItem"            @ string offset=884
 .Linfo_string59:
-	.asciz	"QueueRegistryItem_t"           @ string offset=866
+	.asciz	"QueueRegistryItem_t"           @ string offset=903
 .Linfo_string60:
-	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=886
+	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=923
 .Linfo_string61:
-	.asciz	"long int"                      @ string offset=906
+	.asciz	"long int"                      @ string offset=943
 .Linfo_string62:
-	.asciz	"BaseType_t"                    @ string offset=915
+	.asciz	"BaseType_t"                    @ string offset=952
 .Linfo_string63:
-	.asciz	"xQUEUE"                        @ string offset=926
+	.asciz	"xQUEUE"                        @ string offset=963
 .Linfo_string64:
-	.asciz	"Queue_t"                       @ string offset=933
+	.asciz	"Queue_t"                       @ string offset=970
 .Linfo_string65:
-	.asciz	"size_t"                        @ string offset=941
+	.asciz	"size_t"                        @ string offset=978
 .Linfo_string66:
-	.asciz	"__disable_irq"                 @ string offset=948
+	.asciz	"__disable_irq"                 @ string offset=985
 .Linfo_string67:
-	.asciz	"prvInitialiseNewQueue"         @ string offset=962
+	.asciz	"prvInitialiseNewQueue"         @ string offset=999
 .Linfo_string68:
-	.asciz	"uxQueueLength"                 @ string offset=984
+	.asciz	"uxQueueLength"                 @ string offset=1021
 .Linfo_string69:
-	.asciz	"pucQueueStorage"               @ string offset=998
+	.asciz	"pucQueueStorage"               @ string offset=1035
 .Linfo_string70:
-	.asciz	"pxNewQueue"                    @ string offset=1014
+	.asciz	"pxNewQueue"                    @ string offset=1051
 .Linfo_string71:
-	.asciz	"prvInitialiseMutex"            @ string offset=1025
+	.asciz	"prvInitialiseMutex"            @ string offset=1062
 .Linfo_string72:
-	.asciz	"prvIsQueueFull"                @ string offset=1044
+	.asciz	"prvIsQueueFull"                @ string offset=1081
 .Linfo_string73:
-	.asciz	"pxQueue"                       @ string offset=1059
+	.asciz	"pxQueue"                       @ string offset=1096
 .Linfo_string74:
-	.asciz	"xReturn"                       @ string offset=1067
+	.asciz	"xReturn"                       @ string offset=1104
 .Linfo_string75:
-	.asciz	"prvIsQueueEmpty"               @ string offset=1075
+	.asciz	"prvIsQueueEmpty"               @ string offset=1112
 .Linfo_string76:
-	.asciz	"prvGetDisinheritPriorityAfterTimeout" @ string offset=1091
+	.asciz	"prvGetDisinheritPriorityAfterTimeout" @ string offset=1128
 .Linfo_string77:
-	.asciz	"uxHighestPriorityOfWaitingTasks" @ string offset=1128
+	.asciz	"uxHighestPriorityOfWaitingTasks" @ string offset=1165
 .Linfo_string78:
-	.asciz	"vPortExitCritical"             @ string offset=1160
+	.asciz	"vPortExitCritical"             @ string offset=1197
 .Linfo_string79:
-	.asciz	"ulPortRaiseBASEPRI"            @ string offset=1178
+	.asciz	"ulPortRaiseBASEPRI"            @ string offset=1215
 .Linfo_string80:
-	.asciz	"ulOriginalBASEPRI"             @ string offset=1197
+	.asciz	"ulOriginalBASEPRI"             @ string offset=1234
 .Linfo_string81:
-	.asciz	"ulNewBASEPRI"                  @ string offset=1215
+	.asciz	"ulNewBASEPRI"                  @ string offset=1252
 .Linfo_string82:
-	.asciz	"vPortSetBASEPRI"               @ string offset=1228
+	.asciz	"vPortSetBASEPRI"               @ string offset=1265
 .Linfo_string83:
-	.asciz	"ulNewMaskValue"                @ string offset=1244
+	.asciz	"ulNewMaskValue"                @ string offset=1281
 .Linfo_string84:
-	.asciz	"prvCopyDataFromQueue"          @ string offset=1259
+	.asciz	"prvCopyDataFromQueue"          @ string offset=1296
 .Linfo_string85:
-	.asciz	"pvBuffer"                      @ string offset=1280
+	.asciz	"pvBuffer"                      @ string offset=1317
 .Linfo_string86:
-	.asciz	"vQueueUnregisterQueue"         @ string offset=1289
+	.asciz	"vQueueUnregisterQueue"         @ string offset=1326
 .Linfo_string87:
-	.asciz	"ux"                            @ string offset=1311
+	.asciz	"ux"                            @ string offset=1348
 .Linfo_string88:
-	.asciz	"vPortFree"                     @ string offset=1314
+	.asciz	"vPortFree"                     @ string offset=1351
 .Linfo_string89:
-	.asciz	"xQueueGenericReset"            @ string offset=1324
+	.asciz	"xQueueGenericReset"            @ string offset=1361
 .Linfo_string90:
-	.asciz	"xQueueGenericCreateStatic"     @ string offset=1343
+	.asciz	"xQueueGenericCreateStatic"     @ string offset=1380
 .Linfo_string91:
-	.asciz	"xQueueGenericCreate"           @ string offset=1369
+	.asciz	"xQueueGenericCreate"           @ string offset=1406
 .Linfo_string92:
-	.asciz	"xQueueCreateMutex"             @ string offset=1389
+	.asciz	"xQueueCreateMutex"             @ string offset=1426
 .Linfo_string93:
-	.asciz	"xQueueCreateMutexStatic"       @ string offset=1407
+	.asciz	"xQueueCreateMutexStatic"       @ string offset=1444
 .Linfo_string94:
-	.asciz	"xQueueGetMutexHolder"          @ string offset=1431
+	.asciz	"xQueueGetMutexHolder"          @ string offset=1468
 .Linfo_string95:
-	.asciz	"xQueueGetMutexHolderFromISR"   @ string offset=1452
+	.asciz	"xQueueGetMutexHolderFromISR"   @ string offset=1489
 .Linfo_string96:
-	.asciz	"xQueueGiveMutexRecursive"      @ string offset=1480
+	.asciz	"xQueueGiveMutexRecursive"      @ string offset=1517
 .Linfo_string97:
-	.asciz	"xQueueGenericSend"             @ string offset=1505
+	.asciz	"xQueueGenericSend"             @ string offset=1542
 .Linfo_string98:
-	.asciz	"xQueueTakeMutexRecursive"      @ string offset=1523
+	.asciz	"xQueueTakeMutexRecursive"      @ string offset=1560
 .Linfo_string99:
-	.asciz	"xQueueSemaphoreTake"           @ string offset=1548
+	.asciz	"xQueueSemaphoreTake"           @ string offset=1585
 .Linfo_string100:
-	.asciz	"xQueueCreateCountingSemaphoreStatic" @ string offset=1568
+	.asciz	"xQueueCreateCountingSemaphoreStatic" @ string offset=1605
 .Linfo_string101:
-	.asciz	"xQueueCreateCountingSemaphore" @ string offset=1604
+	.asciz	"xQueueCreateCountingSemaphore" @ string offset=1641
 .Linfo_string102:
-	.asciz	"prvCopyDataToQueue"            @ string offset=1634
+	.asciz	"prvCopyDataToQueue"            @ string offset=1671
 .Linfo_string103:
-	.asciz	"prvUnlockQueue"                @ string offset=1653
+	.asciz	"prvUnlockQueue"                @ string offset=1690
 .Linfo_string104:
-	.asciz	"xQueueGenericSendFromISR"      @ string offset=1668
+	.asciz	"xQueueGenericSendFromISR"      @ string offset=1705
 .Linfo_string105:
-	.asciz	"xQueueGiveFromISR"             @ string offset=1693
+	.asciz	"xQueueGiveFromISR"             @ string offset=1730
 .Linfo_string106:
-	.asciz	"xQueueReceive"                 @ string offset=1711
+	.asciz	"xQueueReceive"                 @ string offset=1748
 .Linfo_string107:
-	.asciz	"xQueuePeek"                    @ string offset=1725
+	.asciz	"xQueuePeek"                    @ string offset=1762
 .Linfo_string108:
-	.asciz	"xQueueReceiveFromISR"          @ string offset=1736
+	.asciz	"xQueueReceiveFromISR"          @ string offset=1773
 .Linfo_string109:
-	.asciz	"xQueuePeekFromISR"             @ string offset=1757
+	.asciz	"xQueuePeekFromISR"             @ string offset=1794
 .Linfo_string110:
-	.asciz	"uxQueueMessagesWaiting"        @ string offset=1775
+	.asciz	"uxQueueMessagesWaiting"        @ string offset=1812
 .Linfo_string111:
-	.asciz	"uxQueueSpacesAvailable"        @ string offset=1798
+	.asciz	"uxQueueSpacesAvailable"        @ string offset=1835
 .Linfo_string112:
-	.asciz	"uxQueueMessagesWaitingFromISR" @ string offset=1821
+	.asciz	"uxQueueMessagesWaitingFromISR" @ string offset=1858
 .Linfo_string113:
-	.asciz	"vQueueDelete"                  @ string offset=1851
+	.asciz	"vQueueDelete"                  @ string offset=1888
 .Linfo_string114:
-	.asciz	"uxQueueGetQueueNumber"         @ string offset=1864
+	.asciz	"uxQueueGetQueueNumber"         @ string offset=1901
 .Linfo_string115:
-	.asciz	"vQueueSetQueueNumber"          @ string offset=1886
+	.asciz	"vQueueSetQueueNumber"          @ string offset=1923
 .Linfo_string116:
-	.asciz	"ucQueueGetQueueType"           @ string offset=1907
+	.asciz	"ucQueueGetQueueType"           @ string offset=1944
 .Linfo_string117:
-	.asciz	"xQueueIsQueueEmptyFromISR"     @ string offset=1927
+	.asciz	"xQueueIsQueueEmptyFromISR"     @ string offset=1964
 .Linfo_string118:
-	.asciz	"xQueueIsQueueFullFromISR"      @ string offset=1953
+	.asciz	"xQueueIsQueueFullFromISR"      @ string offset=1990
 .Linfo_string119:
-	.asciz	"vQueueAddToRegistry"           @ string offset=1978
+	.asciz	"vQueueAddToRegistry"           @ string offset=2015
 .Linfo_string120:
-	.asciz	"pcQueueGetName"                @ string offset=1998
+	.asciz	"pcQueueGetName"                @ string offset=2035
 .Linfo_string121:
-	.asciz	"vQueueWaitForMessageRestricted" @ string offset=2013
+	.asciz	"vQueueWaitForMessageRestricted" @ string offset=2050
 .Linfo_string122:
-	.asciz	"xNewQueue"                     @ string offset=2044
+	.asciz	"xNewQueue"                     @ string offset=2081
 .Linfo_string123:
-	.asciz	"xSize"                         @ string offset=2054
+	.asciz	"xSize"                         @ string offset=2091
 .Linfo_string124:
-	.asciz	"pxStaticQueue"                 @ string offset=2060
+	.asciz	"pxStaticQueue"                 @ string offset=2097
 .Linfo_string125:
-	.asciz	"pvDummy1"                      @ string offset=2074
+	.asciz	"pvDummy1"                      @ string offset=2111
 .Linfo_string126:
-	.asciz	"pvDummy2"                      @ string offset=2083
+	.asciz	"pvDummy2"                      @ string offset=2120
 .Linfo_string127:
-	.asciz	"uxDummy2"                      @ string offset=2092
+	.asciz	"uxDummy2"                      @ string offset=2129
 .Linfo_string128:
-	.asciz	"xDummy3"                       @ string offset=2101
+	.asciz	"xDummy3"                       @ string offset=2138
 .Linfo_string129:
-	.asciz	"pvDummy3"                      @ string offset=2109
+	.asciz	"pvDummy3"                      @ string offset=2146
 .Linfo_string130:
-	.asciz	"xDummy4"                       @ string offset=2118
+	.asciz	"xDummy4"                       @ string offset=2155
 .Linfo_string131:
-	.asciz	"xDummy2"                       @ string offset=2126
+	.asciz	"xDummy2"                       @ string offset=2163
 .Linfo_string132:
-	.asciz	"xSTATIC_MINI_LIST_ITEM"        @ string offset=2134
+	.asciz	"xSTATIC_MINI_LIST_ITEM"        @ string offset=2171
 .Linfo_string133:
-	.asciz	"StaticMiniListItem_t"          @ string offset=2157
+	.asciz	"StaticMiniListItem_t"          @ string offset=2194
 .Linfo_string134:
-	.asciz	"xSTATIC_LIST"                  @ string offset=2178
+	.asciz	"xSTATIC_LIST"                  @ string offset=2215
 .Linfo_string135:
-	.asciz	"StaticList_t"                  @ string offset=2191
+	.asciz	"StaticList_t"                  @ string offset=2228
 .Linfo_string136:
-	.asciz	"uxDummy4"                      @ string offset=2204
+	.asciz	"uxDummy4"                      @ string offset=2241
 .Linfo_string137:
-	.asciz	"ucDummy5"                      @ string offset=2213
+	.asciz	"ucDummy5"                      @ string offset=2250
 .Linfo_string138:
-	.asciz	"ucDummy6"                      @ string offset=2222
+	.asciz	"ucDummy6"                      @ string offset=2259
 .Linfo_string139:
-	.asciz	"uxDummy8"                      @ string offset=2231
+	.asciz	"uxDummy8"                      @ string offset=2268
 .Linfo_string140:
-	.asciz	"ucDummy9"                      @ string offset=2240
+	.asciz	"ucDummy9"                      @ string offset=2277
 .Linfo_string141:
-	.asciz	"xSTATIC_QUEUE"                 @ string offset=2249
+	.asciz	"xSTATIC_QUEUE"                 @ string offset=2286
 .Linfo_string142:
-	.asciz	"StaticQueue_t"                 @ string offset=2263
+	.asciz	"StaticQueue_t"                 @ string offset=2300
 .Linfo_string143:
-	.asciz	"xQueueSizeInBytes"             @ string offset=2277
+	.asciz	"xQueueSizeInBytes"             @ string offset=2314
 .Linfo_string144:
-	.asciz	"uxMutexSize"                   @ string offset=2295
+	.asciz	"uxMutexSize"                   @ string offset=2332
 .Linfo_string145:
-	.asciz	"uxMutexLength"                 @ string offset=2307
+	.asciz	"uxMutexLength"                 @ string offset=2344
 .Linfo_string146:
-	.asciz	"pxSemaphore"                   @ string offset=2321
+	.asciz	"pxSemaphore"                   @ string offset=2358
 .Linfo_string147:
-	.asciz	"pxReturn"                      @ string offset=2333
+	.asciz	"pxReturn"                      @ string offset=2370
 .Linfo_string148:
-	.asciz	"xMutex"                        @ string offset=2342
+	.asciz	"xMutex"                        @ string offset=2379
 .Linfo_string149:
-	.asciz	"pxMutex"                       @ string offset=2349
+	.asciz	"pxMutex"                       @ string offset=2386
 .Linfo_string150:
-	.asciz	"xTimeOut"                      @ string offset=2357
+	.asciz	"xTimeOut"                      @ string offset=2394
 .Linfo_string151:
-	.asciz	"xOverflowCount"                @ string offset=2366
+	.asciz	"xOverflowCount"                @ string offset=2403
 .Linfo_string152:
-	.asciz	"xTimeOnEntering"               @ string offset=2381
+	.asciz	"xTimeOnEntering"               @ string offset=2418
 .Linfo_string153:
-	.asciz	"xTIME_OUT"                     @ string offset=2397
+	.asciz	"xTIME_OUT"                     @ string offset=2434
 .Linfo_string154:
-	.asciz	"TimeOut_t"                     @ string offset=2407
+	.asciz	"TimeOut_t"                     @ string offset=2444
 .Linfo_string155:
-	.asciz	"pvItemToQueue"                 @ string offset=2417
+	.asciz	"pvItemToQueue"                 @ string offset=2454
 .Linfo_string156:
-	.asciz	"xTicksToWait"                  @ string offset=2431
+	.asciz	"xTicksToWait"                  @ string offset=2468
 .Linfo_string157:
-	.asciz	"xCopyPosition"                 @ string offset=2444
+	.asciz	"xCopyPosition"                 @ string offset=2481
 .Linfo_string158:
-	.asciz	"xEntryTimeSet"                 @ string offset=2458
+	.asciz	"xEntryTimeSet"                 @ string offset=2495
 .Linfo_string159:
-	.asciz	"xYieldRequired"                @ string offset=2472
+	.asciz	"xYieldRequired"                @ string offset=2509
 .Linfo_string160:
-	.asciz	"xInheritanceOccurred"          @ string offset=2487
+	.asciz	"xInheritanceOccurred"          @ string offset=2524
 .Linfo_string161:
-	.asciz	"uxSemaphoreCount"              @ string offset=2508
+	.asciz	"uxSemaphoreCount"              @ string offset=2545
 .Linfo_string162:
-	.asciz	"uxHighestWaitingPriority"      @ string offset=2525
+	.asciz	"uxHighestWaitingPriority"      @ string offset=2562
 .Linfo_string163:
-	.asciz	"uxMaxCount"                    @ string offset=2550
+	.asciz	"uxMaxCount"                    @ string offset=2587
 .Linfo_string164:
-	.asciz	"uxInitialCount"                @ string offset=2561
+	.asciz	"uxInitialCount"                @ string offset=2598
 .Linfo_string165:
-	.asciz	"xPosition"                     @ string offset=2576
+	.asciz	"xPosition"                     @ string offset=2613
 .Linfo_string166:
-	.asciz	"pxHigherPriorityTaskWoken"     @ string offset=2586
+	.asciz	"pxHigherPriorityTaskWoken"     @ string offset=2623
 .Linfo_string167:
-	.asciz	"uxSavedInterruptStatus"        @ string offset=2612
+	.asciz	"uxSavedInterruptStatus"        @ string offset=2649
 .Linfo_string168:
-	.asciz	"uxPreviousMessagesWaiting"     @ string offset=2635
+	.asciz	"uxPreviousMessagesWaiting"     @ string offset=2672
 .Linfo_string169:
-	.asciz	"pcOriginalReadPosition"        @ string offset=2661
+	.asciz	"pcOriginalReadPosition"        @ string offset=2698
 .Linfo_string170:
-	.asciz	"uxReturn"                      @ string offset=2684
+	.asciz	"uxReturn"                      @ string offset=2721
 .Linfo_string171:
-	.asciz	"pcReturn"                      @ string offset=2693
+	.asciz	"pcReturn"                      @ string offset=2730
 .Linfo_string172:
-	.asciz	"xWaitIndefinitely"             @ string offset=2702
-	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
+	.asciz	"xWaitIndefinitely"             @ string offset=2739
+	.ident	"Component: Arm Compiler for Embedded 6.21 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals
 	.ARM_attribute	16, 1	@ Tag_AV_eba

@@ -18,11 +18,11 @@
 	.eabi_attribute	26, 2	@ Tag_ABI_enum_size
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"event_groups.c"
-	.file	1 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
-	.file	2 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\\portmacro.h"
-	.file	3 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\event_groups.h"
-	.file	4 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/event_groups.c"
-	.file	5 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/list.h"
+	.file	1 "C:\\" "Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include\\stdint.h"
+	.file	2 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\\portmacro.h"
+	.file	3 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\event_groups.h"
+	.file	4 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/event_groups.c"
+	.file	5 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/list.h"
 	.section	.text.xEventGroupCreateStatic,"ax",%progbits
 	.hidden	xEventGroupCreateStatic         @ -- Begin function xEventGroupCreateStatic
 	.globl	xEventGroupCreateStatic
@@ -113,8 +113,8 @@ xEventGroupCreateStatic:
 	str	r4, [sp]
 	bl	__2printf
 .Ltmp14:
-	.file	6 "C:/Users\\P350\\AppData\\Local\\Arm\\Packs\\ARM\\CMSIS\\5.8.0\\CMSIS\\Core\\Include" "cmsis_armclang.h"
-	.loc	6 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.file	6 "C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile" "cmsis_armclang_m.h"
+	.loc	6 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -141,7 +141,7 @@ xEventGroupCreateStatic:
 	str	r4, [sp]
 	bl	__2printf
 .Ltmp18:
-	.loc	6 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	6 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -298,7 +298,7 @@ xEventGroupSync:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp36:
-	.loc	6 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	6 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -389,7 +389,7 @@ xEventGroupSync:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp48:
-	.loc	6 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	6 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -433,7 +433,7 @@ xEventGroupSync:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp54:
-	.loc	6 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	6 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -736,7 +736,7 @@ xEventGroupSetBits:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp91:
-	.loc	6 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	6 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -773,7 +773,7 @@ xEventGroupSetBits:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp96:
-	.loc	6 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	6 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -1062,7 +1062,7 @@ xEventGroupWaitBits:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp128:
-	.loc	6 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	6 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -1111,7 +1111,7 @@ xEventGroupWaitBits:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp135:
-	.loc	6 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	6 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -1210,7 +1210,7 @@ xEventGroupWaitBits:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp146:
-	.loc	6 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	6 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -1258,7 +1258,7 @@ xEventGroupWaitBits:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp152:
-	.loc	6 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	6 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -1625,7 +1625,7 @@ xEventGroupClearBits:
 	str	r6, [sp]
 	bl	__2printf
 .Ltmp194:
-	.loc	6 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	6 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -1658,7 +1658,7 @@ xEventGroupClearBits:
 	str	r6, [sp]
 	bl	__2printf
 .Ltmp199:
-	.loc	6 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	6 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -1744,7 +1744,7 @@ xEventGroupClearBitsFromISR:
 .Lfunc_end6:
 	.size	xEventGroupClearBitsFromISR, .Lfunc_end6-xEventGroupClearBitsFromISR
 	.cfi_endproc
-	.file	7 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/timers.h"
+	.file	7 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/timers.h"
 	.cantunwind
 	.fnend
                                         @ -- End function
@@ -1944,7 +1944,7 @@ vEventGroupDelete:
 	str	r5, [sp]
 	bl	__2printf
 .Ltmp230:
-	.loc	6 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	6 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -1966,7 +1966,7 @@ vEventGroupDelete:
 .Lfunc_end9:
 	.size	vEventGroupDelete, .Lfunc_end9-vEventGroupDelete
 	.cfi_endproc
-	.file	8 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/task.h"
+	.file	8 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/task.h"
 	.cantunwind
 	.fnend
                                         @ -- End function
@@ -2179,8 +2179,8 @@ vEventGroupSetNumber:
 	.hidden	_printf_d
 	.hidden	_printf_int_dec
 	.hidden	_printf_str
-	.file	9 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdlib.h"
-	.file	10 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\FreeRTOS.h"
+	.file	9 "C:\\" "Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include\\stdlib.h"
+	.file	10 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\FreeRTOS.h"
 	.section	.debug_loc,"",%progbits
 .Ldebug_loc0:
 	.long	-1
@@ -4124,7 +4124,7 @@ vEventGroupSetNumber:
 	.byte	10                              @ Abbrev [10] 0x1b6:0x9 DW_TAG_subprogram
 	.long	.Linfo_string33                 @ DW_AT_name
 	.byte	6                               @ DW_AT_decl_file
-	.short	750                             @ DW_AT_decl_line
+	.short	706                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.byte	1                               @ DW_AT_inline
 	.byte	11                              @ Abbrev [11] 0x1bf:0x68 DW_TAG_subprogram
@@ -5145,208 +5145,208 @@ vEventGroupSetNumber:
 	.long	0
 	.section	.debug_str,"MS",%progbits,1
 .Linfo_string0:
-	.asciz	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]" @ string offset=0
+	.asciz	"Component: Arm Compiler for Embedded 6.21 Tool: armclang [5dfeb700]" @ string offset=0
 .Linfo_string1:
-	.asciz	"../../../components/platform/soc/rt582/rt582_freertos\\event_groups.c" @ string offset=55
+	.asciz	"../../../components/platform/soc/rt582/rt582_freertos\\event_groups.c" @ string offset=68
 .Linfo_string2:
-	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=124
+	.asciz	"C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" @ string offset=137
 .Linfo_string3:
-	.asciz	"uxEventBits"                   @ string offset=185
+	.asciz	"uxEventBits"                   @ string offset=222
 .Linfo_string4:
-	.asciz	"unsigned int"                  @ string offset=197
+	.asciz	"unsigned int"                  @ string offset=234
 .Linfo_string5:
-	.asciz	"uint32_t"                      @ string offset=210
+	.asciz	"uint32_t"                      @ string offset=247
 .Linfo_string6:
-	.asciz	"TickType_t"                    @ string offset=219
+	.asciz	"TickType_t"                    @ string offset=256
 .Linfo_string7:
-	.asciz	"EventBits_t"                   @ string offset=230
+	.asciz	"EventBits_t"                   @ string offset=267
 .Linfo_string8:
-	.asciz	"xTasksWaitingForBits"          @ string offset=242
+	.asciz	"xTasksWaitingForBits"          @ string offset=279
 .Linfo_string9:
-	.asciz	"uxNumberOfItems"               @ string offset=263
+	.asciz	"uxNumberOfItems"               @ string offset=300
 .Linfo_string10:
-	.asciz	"long unsigned int"             @ string offset=279
+	.asciz	"long unsigned int"             @ string offset=316
 .Linfo_string11:
-	.asciz	"UBaseType_t"                   @ string offset=297
+	.asciz	"UBaseType_t"                   @ string offset=334
 .Linfo_string12:
-	.asciz	"pxIndex"                       @ string offset=309
+	.asciz	"pxIndex"                       @ string offset=346
 .Linfo_string13:
-	.asciz	"xItemValue"                    @ string offset=317
+	.asciz	"xItemValue"                    @ string offset=354
 .Linfo_string14:
-	.asciz	"pxNext"                        @ string offset=328
+	.asciz	"pxNext"                        @ string offset=365
 .Linfo_string15:
-	.asciz	"pxPrevious"                    @ string offset=335
+	.asciz	"pxPrevious"                    @ string offset=372
 .Linfo_string16:
-	.asciz	"pvOwner"                       @ string offset=346
+	.asciz	"pvOwner"                       @ string offset=383
 .Linfo_string17:
-	.asciz	"pvContainer"                   @ string offset=354
+	.asciz	"pvContainer"                   @ string offset=391
 .Linfo_string18:
-	.asciz	"xLIST_ITEM"                    @ string offset=366
+	.asciz	"xLIST_ITEM"                    @ string offset=403
 .Linfo_string19:
-	.asciz	"ListItem_t"                    @ string offset=377
+	.asciz	"ListItem_t"                    @ string offset=414
 .Linfo_string20:
-	.asciz	"xListEnd"                      @ string offset=388
+	.asciz	"xListEnd"                      @ string offset=425
 .Linfo_string21:
-	.asciz	"xMINI_LIST_ITEM"               @ string offset=397
+	.asciz	"xMINI_LIST_ITEM"               @ string offset=434
 .Linfo_string22:
-	.asciz	"MiniListItem_t"                @ string offset=413
+	.asciz	"MiniListItem_t"                @ string offset=450
 .Linfo_string23:
-	.asciz	"xLIST"                         @ string offset=428
+	.asciz	"xLIST"                         @ string offset=465
 .Linfo_string24:
-	.asciz	"List_t"                        @ string offset=434
+	.asciz	"List_t"                        @ string offset=471
 .Linfo_string25:
-	.asciz	"uxEventGroupNumber"            @ string offset=441
+	.asciz	"uxEventGroupNumber"            @ string offset=478
 .Linfo_string26:
-	.asciz	"ucStaticallyAllocated"         @ string offset=460
+	.asciz	"ucStaticallyAllocated"         @ string offset=497
 .Linfo_string27:
-	.asciz	"unsigned char"                 @ string offset=482
+	.asciz	"unsigned char"                 @ string offset=519
 .Linfo_string28:
-	.asciz	"uint8_t"                       @ string offset=496
+	.asciz	"uint8_t"                       @ string offset=533
 .Linfo_string29:
-	.asciz	"EventGroupDef_t"               @ string offset=504
+	.asciz	"EventGroupDef_t"               @ string offset=541
 .Linfo_string30:
-	.asciz	"EventGroup_t"                  @ string offset=520
+	.asciz	"EventGroup_t"                  @ string offset=557
 .Linfo_string31:
-	.asciz	"long int"                      @ string offset=533
+	.asciz	"long int"                      @ string offset=570
 .Linfo_string32:
-	.asciz	"BaseType_t"                    @ string offset=542
+	.asciz	"BaseType_t"                    @ string offset=579
 .Linfo_string33:
-	.asciz	"__disable_irq"                 @ string offset=553
+	.asciz	"__disable_irq"                 @ string offset=590
 .Linfo_string34:
-	.asciz	"prvTestWaitCondition"          @ string offset=567
+	.asciz	"prvTestWaitCondition"          @ string offset=604
 .Linfo_string35:
-	.asciz	"uxCurrentEventBits"            @ string offset=588
+	.asciz	"uxCurrentEventBits"            @ string offset=625
 .Linfo_string36:
-	.asciz	"uxBitsToWaitFor"               @ string offset=607
+	.asciz	"uxBitsToWaitFor"               @ string offset=644
 .Linfo_string37:
-	.asciz	"xWaitForAllBits"               @ string offset=623
+	.asciz	"xWaitForAllBits"               @ string offset=660
 .Linfo_string38:
-	.asciz	"xWaitConditionMet"             @ string offset=639
+	.asciz	"xWaitConditionMet"             @ string offset=676
 .Linfo_string39:
-	.asciz	"xTimerPendFunctionCallFromISR" @ string offset=657
+	.asciz	"xTimerPendFunctionCallFromISR" @ string offset=694
 .Linfo_string40:
-	.asciz	"ulPortRaiseBASEPRI"            @ string offset=687
+	.asciz	"ulPortRaiseBASEPRI"            @ string offset=724
 .Linfo_string41:
-	.asciz	"ulOriginalBASEPRI"             @ string offset=706
+	.asciz	"ulOriginalBASEPRI"             @ string offset=743
 .Linfo_string42:
-	.asciz	"ulNewBASEPRI"                  @ string offset=724
+	.asciz	"ulNewBASEPRI"                  @ string offset=761
 .Linfo_string43:
-	.asciz	"vPortSetBASEPRI"               @ string offset=737
+	.asciz	"vPortSetBASEPRI"               @ string offset=774
 .Linfo_string44:
-	.asciz	"ulNewMaskValue"                @ string offset=753
+	.asciz	"ulNewMaskValue"                @ string offset=790
 .Linfo_string45:
-	.asciz	"xTaskResumeAll"                @ string offset=768
+	.asciz	"xTaskResumeAll"                @ string offset=805
 .Linfo_string46:
-	.asciz	"xEventGroupCreateStatic"       @ string offset=783
+	.asciz	"xEventGroupCreateStatic"       @ string offset=820
 .Linfo_string47:
-	.asciz	"EventGroupHandle_t"            @ string offset=807
+	.asciz	"EventGroupHandle_t"            @ string offset=844
 .Linfo_string48:
-	.asciz	"xEventGroupCreate"             @ string offset=826
+	.asciz	"xEventGroupCreate"             @ string offset=863
 .Linfo_string49:
-	.asciz	"xEventGroupSync"               @ string offset=844
+	.asciz	"xEventGroupSync"               @ string offset=881
 .Linfo_string50:
-	.asciz	"xEventGroupSetBits"            @ string offset=860
+	.asciz	"xEventGroupSetBits"            @ string offset=897
 .Linfo_string51:
-	.asciz	"xEventGroupWaitBits"           @ string offset=879
+	.asciz	"xEventGroupWaitBits"           @ string offset=916
 .Linfo_string52:
-	.asciz	"xEventGroupClearBits"          @ string offset=899
+	.asciz	"xEventGroupClearBits"          @ string offset=936
 .Linfo_string53:
-	.asciz	"xEventGroupClearBitsFromISR"   @ string offset=920
+	.asciz	"xEventGroupClearBitsFromISR"   @ string offset=957
 .Linfo_string54:
-	.asciz	"vEventGroupClearBitsCallback"  @ string offset=948
+	.asciz	"vEventGroupClearBitsCallback"  @ string offset=985
 .Linfo_string55:
-	.asciz	"xEventGroupGetBitsFromISR"     @ string offset=977
+	.asciz	"xEventGroupGetBitsFromISR"     @ string offset=1014
 .Linfo_string56:
-	.asciz	"vEventGroupDelete"             @ string offset=1003
+	.asciz	"vEventGroupDelete"             @ string offset=1040
 .Linfo_string57:
-	.asciz	"vEventGroupSetBitsCallback"    @ string offset=1021
+	.asciz	"vEventGroupSetBitsCallback"    @ string offset=1058
 .Linfo_string58:
-	.asciz	"xEventGroupSetBitsFromISR"     @ string offset=1048
+	.asciz	"xEventGroupSetBitsFromISR"     @ string offset=1085
 .Linfo_string59:
-	.asciz	"uxEventGroupGetNumber"         @ string offset=1074
+	.asciz	"uxEventGroupGetNumber"         @ string offset=1111
 .Linfo_string60:
-	.asciz	"vEventGroupSetNumber"          @ string offset=1096
+	.asciz	"vEventGroupSetNumber"          @ string offset=1133
 .Linfo_string61:
-	.asciz	"xSize"                         @ string offset=1117
+	.asciz	"xSize"                         @ string offset=1154
 .Linfo_string62:
-	.asciz	"size_t"                        @ string offset=1123
+	.asciz	"size_t"                        @ string offset=1160
 .Linfo_string63:
-	.asciz	"pxEventGroupBuffer"            @ string offset=1130
+	.asciz	"pxEventGroupBuffer"            @ string offset=1167
 .Linfo_string64:
-	.asciz	"xDummy1"                       @ string offset=1149
+	.asciz	"xDummy1"                       @ string offset=1186
 .Linfo_string65:
-	.asciz	"xDummy2"                       @ string offset=1157
+	.asciz	"xDummy2"                       @ string offset=1194
 .Linfo_string66:
-	.asciz	"uxDummy2"                      @ string offset=1165
+	.asciz	"uxDummy2"                      @ string offset=1202
 .Linfo_string67:
-	.asciz	"pvDummy3"                      @ string offset=1174
+	.asciz	"pvDummy3"                      @ string offset=1211
 .Linfo_string68:
-	.asciz	"xDummy4"                       @ string offset=1183
+	.asciz	"xDummy4"                       @ string offset=1220
 .Linfo_string69:
-	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=1191
+	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=1228
 .Linfo_string70:
-	.asciz	"xSTATIC_MINI_LIST_ITEM"        @ string offset=1211
+	.asciz	"xSTATIC_MINI_LIST_ITEM"        @ string offset=1248
 .Linfo_string71:
-	.asciz	"StaticMiniListItem_t"          @ string offset=1234
+	.asciz	"StaticMiniListItem_t"          @ string offset=1271
 .Linfo_string72:
-	.asciz	"xSTATIC_LIST"                  @ string offset=1255
+	.asciz	"xSTATIC_LIST"                  @ string offset=1292
 .Linfo_string73:
-	.asciz	"StaticList_t"                  @ string offset=1268
+	.asciz	"StaticList_t"                  @ string offset=1305
 .Linfo_string74:
-	.asciz	"uxDummy3"                      @ string offset=1281
+	.asciz	"uxDummy3"                      @ string offset=1318
 .Linfo_string75:
-	.asciz	"ucDummy4"                      @ string offset=1290
+	.asciz	"ucDummy4"                      @ string offset=1327
 .Linfo_string76:
-	.asciz	"xSTATIC_EVENT_GROUP"           @ string offset=1299
+	.asciz	"xSTATIC_EVENT_GROUP"           @ string offset=1336
 .Linfo_string77:
-	.asciz	"StaticEventGroup_t"            @ string offset=1319
+	.asciz	"StaticEventGroup_t"            @ string offset=1356
 .Linfo_string78:
-	.asciz	"pxEventBits"                   @ string offset=1338
+	.asciz	"pxEventBits"                   @ string offset=1375
 .Linfo_string79:
-	.asciz	"xEventGroup"                   @ string offset=1350
+	.asciz	"xEventGroup"                   @ string offset=1387
 .Linfo_string80:
-	.asciz	"uxBitsToSet"                   @ string offset=1362
+	.asciz	"uxBitsToSet"                   @ string offset=1399
 .Linfo_string81:
-	.asciz	"xTicksToWait"                  @ string offset=1374
+	.asciz	"xTicksToWait"                  @ string offset=1411
 .Linfo_string82:
-	.asciz	"xTimeoutOccurred"              @ string offset=1387
+	.asciz	"xTimeoutOccurred"              @ string offset=1424
 .Linfo_string83:
-	.asciz	"uxOriginalBitValue"            @ string offset=1404
+	.asciz	"uxOriginalBitValue"            @ string offset=1441
 .Linfo_string84:
-	.asciz	"uxReturn"                      @ string offset=1423
+	.asciz	"uxReturn"                      @ string offset=1460
 .Linfo_string85:
-	.asciz	"xAlreadyYielded"               @ string offset=1432
+	.asciz	"xAlreadyYielded"               @ string offset=1469
 .Linfo_string86:
-	.asciz	"xMatchFound"                   @ string offset=1448
+	.asciz	"xMatchFound"                   @ string offset=1485
 .Linfo_string87:
-	.asciz	"uxBitsToClear"                 @ string offset=1460
+	.asciz	"uxBitsToClear"                 @ string offset=1497
 .Linfo_string88:
-	.asciz	"pxList"                        @ string offset=1474
+	.asciz	"pxList"                        @ string offset=1511
 .Linfo_string89:
-	.asciz	"pxListEnd"                     @ string offset=1481
+	.asciz	"pxListEnd"                     @ string offset=1518
 .Linfo_string90:
-	.asciz	"pxListItem"                    @ string offset=1491
+	.asciz	"pxListItem"                    @ string offset=1528
 .Linfo_string91:
-	.asciz	"uxControlBits"                 @ string offset=1502
+	.asciz	"uxControlBits"                 @ string offset=1539
 .Linfo_string92:
-	.asciz	"uxBitsWaitedFor"               @ string offset=1516
+	.asciz	"uxBitsWaitedFor"               @ string offset=1553
 .Linfo_string93:
-	.asciz	"xClearOnExit"                  @ string offset=1532
+	.asciz	"xClearOnExit"                  @ string offset=1569
 .Linfo_string94:
-	.asciz	"xReturn"                       @ string offset=1545
+	.asciz	"xReturn"                       @ string offset=1582
 .Linfo_string95:
-	.asciz	"pvEventGroup"                  @ string offset=1553
+	.asciz	"pvEventGroup"                  @ string offset=1590
 .Linfo_string96:
-	.asciz	"ulBitsToClear"                 @ string offset=1566
+	.asciz	"ulBitsToClear"                 @ string offset=1603
 .Linfo_string97:
-	.asciz	"uxSavedInterruptStatus"        @ string offset=1580
+	.asciz	"uxSavedInterruptStatus"        @ string offset=1617
 .Linfo_string98:
-	.asciz	"pxTasksWaitingForBits"         @ string offset=1603
+	.asciz	"pxTasksWaitingForBits"         @ string offset=1640
 .Linfo_string99:
-	.asciz	"ulBitsToSet"                   @ string offset=1625
+	.asciz	"ulBitsToSet"                   @ string offset=1662
 .Linfo_string100:
-	.asciz	"pxHigherPriorityTaskWoken"     @ string offset=1637
-	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
+	.asciz	"pxHigherPriorityTaskWoken"     @ string offset=1674
+	.ident	"Component: Arm Compiler for Embedded 6.21 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals
 	.ARM_attribute	16, 1	@ Tag_AV_eba

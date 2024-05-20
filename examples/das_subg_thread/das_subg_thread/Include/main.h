@@ -30,10 +30,16 @@
 #define DEMO_UDP            1
 #define DEMO_COAP           2
 
+#define EVK_READ_BOARDCAST_START 1
+#define EVK_READ_START      1
+#define EVK_NOT_READ        0
+
 #define APP_EVENT_NOTIFY_ISR(ebit)                 (g_app_task_evt_var |= ebit); __app_task_signal()
 #define APP_EVENT_NOTIFY(ebit)                     enter_critical_section(); g_app_task_evt_var |= ebit; leave_critical_section(); __app_task_signal()
 #define APP_EVENT_GET_NOTIFY(ebit)                 enter_critical_section(); ebit = g_app_task_evt_var; g_app_task_evt_var = EVENT_NONE; ; leave_critical_section()
 
+#define OPEN 1
+#define CLOSE 0
 typedef enum
 {
     EVENT_NONE                       = 0,
@@ -50,6 +56,7 @@ typedef enum
     EVENT_ELS61_BLOCK_QUEUE                = 0x00000080,
 
     EVENT_SEND_QUEUE                       = 0x00000100,
+
     EVENT_REGISTER                         = 0x00000200,
     EVENT_ALL                              = 0xffffffff,
 } app_task_event_t;
@@ -58,7 +65,9 @@ extern app_task_event_t g_app_task_evt_var;
 void __app_task_signal(void);
 void app_task (void) ;
 int8_t app_get_parent_rssi();
-
+extern uint8_t UART2DEBUG;
+extern uint8_t EVK_READ_FLAG;
+extern uint8_t EVK_BOARDCAST_READ_FLAG;
 /*network_management*/
 otError nwk_mgm_init(otInstance *aInstance);
 void nwk_mgm_neighbor_Change_Callback(otNeighborTableEvent aEvent, const otNeighborTableEntryInfo *aEntryInfo);

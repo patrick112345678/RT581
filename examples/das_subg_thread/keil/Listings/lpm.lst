@@ -18,12 +18,12 @@
 	.eabi_attribute	26, 2	@ Tag_ABI_enum_size
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"lpm.c"
-	.file	1 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
-	.file	2 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Src/lpm.c"
-	.file	3 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/lpm.h"
-	.file	4 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/rt569_rf/include\\comm_subsystem_ahb_reg.h"
-	.file	5 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/sysctrl_reg.h"
-	.file	6 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/pmu_reg.h"
+	.file	1 "C:\\" "Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include\\stdint.h"
+	.file	2 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Src/lpm.c"
+	.file	3 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/lpm.h"
+	.file	4 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/network/rt569_rf/include\\comm_subsystem_ahb_reg.h"
+	.file	5 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/sysctrl_reg.h"
+	.file	6 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/pmu_reg.h"
 	.section	.text.Lpm_Low_Power_Mask,"ax",%progbits
 	.hidden	Lpm_Low_Power_Mask              @ -- Begin function Lpm_Low_Power_Mask
 	.globl	Lpm_Low_Power_Mask
@@ -762,7 +762,7 @@ Lpm_Set_Platform_Low_Power_Wakeup:
 	ldr	r3, [r3]
 .Ltmp82:
 	@DEBUG_VALUE: set_deepsleep_wakeup_pin:value <- $r3
-	.file	7 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/sysctrl.h"
+	.file	7 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/sysctrl.h"
 	.loc	7 431 31                        @ ../../../components/platform/soc/rt582/rt582_driver/Inc/sysctrl.h:431:31
 	str	r3, [r1, #124]
 .Ltmp83:
@@ -6913,1004 +6913,1004 @@ low_power_wakeup:
 	.long	0
 	.section	.debug_str,"MS",%progbits,1
 .Linfo_string0:
-	.asciz	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]" @ string offset=0
+	.asciz	"Component: Arm Compiler for Embedded 6.21 Tool: armclang [5dfeb700]" @ string offset=0
 .Linfo_string1:
-	.asciz	"../../../components/platform/soc/rt582/rt582_driver/Src\\lpm.c" @ string offset=55
+	.asciz	"../../../components/platform/soc/rt582/rt582_driver/Src\\lpm.c" @ string offset=68
 .Linfo_string2:
-	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=117
+	.asciz	"C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" @ string offset=130
 .Linfo_string3:
-	.asciz	"low_power_mask_status"         @ string offset=178
+	.asciz	"low_power_mask_status"         @ string offset=215
 .Linfo_string4:
-	.asciz	"unsigned int"                  @ string offset=200
+	.asciz	"unsigned int"                  @ string offset=237
 .Linfo_string5:
-	.asciz	"uint32_t"                      @ string offset=213
+	.asciz	"uint32_t"                      @ string offset=250
 .Linfo_string6:
-	.asciz	"comm_subsystem_wakeup_mask_status" @ string offset=222
+	.asciz	"comm_subsystem_wakeup_mask_status" @ string offset=259
 .Linfo_string7:
-	.asciz	"low_power_level"               @ string offset=256
+	.asciz	"low_power_level"               @ string offset=293
 .Linfo_string8:
-	.asciz	"LOW_POWER_LEVEL_NORMAL"        @ string offset=272
+	.asciz	"LOW_POWER_LEVEL_NORMAL"        @ string offset=309
 .Linfo_string9:
-	.asciz	"LOW_POWER_LEVEL_SLEEP0"        @ string offset=295
+	.asciz	"LOW_POWER_LEVEL_SLEEP0"        @ string offset=332
 .Linfo_string10:
-	.asciz	"LOW_POWER_LEVEL_SLEEP1"        @ string offset=318
+	.asciz	"LOW_POWER_LEVEL_SLEEP1"        @ string offset=355
 .Linfo_string11:
-	.asciz	"LOW_POWER_LEVEL_SLEEP2"        @ string offset=341
+	.asciz	"LOW_POWER_LEVEL_SLEEP2"        @ string offset=378
 .Linfo_string12:
-	.asciz	"LOW_POWER_LEVEL_SLEEP3"        @ string offset=364
+	.asciz	"LOW_POWER_LEVEL_SLEEP3"        @ string offset=401
 .Linfo_string13:
-	.asciz	"low_power_level_cfg_t"         @ string offset=387
+	.asciz	"low_power_level_cfg_t"         @ string offset=424
 .Linfo_string14:
-	.asciz	"low_power_wakeup_update"       @ string offset=409
+	.asciz	"low_power_wakeup_update"       @ string offset=446
 .Linfo_string15:
-	.asciz	"low_power_wakeup_gpio"         @ string offset=433
+	.asciz	"low_power_wakeup_gpio"         @ string offset=470
 .Linfo_string16:
-	.asciz	"low_power_wakeup_uart"         @ string offset=455
+	.asciz	"low_power_wakeup_uart"         @ string offset=492
 .Linfo_string17:
-	.asciz	"low_power_wakeup"              @ string offset=477
+	.asciz	"low_power_wakeup"              @ string offset=514
 .Linfo_string18:
-	.asciz	"LOW_POWER_WAKEUP_NULL"         @ string offset=494
+	.asciz	"LOW_POWER_WAKEUP_NULL"         @ string offset=531
 .Linfo_string19:
-	.asciz	"LOW_POWER_WAKEUP_RTC_TIMER"    @ string offset=516
+	.asciz	"LOW_POWER_WAKEUP_RTC_TIMER"    @ string offset=553
 .Linfo_string20:
-	.asciz	"LOW_POWER_WAKEUP_GPIO"         @ string offset=543
+	.asciz	"LOW_POWER_WAKEUP_GPIO"         @ string offset=580
 .Linfo_string21:
-	.asciz	"LOW_POWER_WAKEUP_COMPARATOR"   @ string offset=565
+	.asciz	"LOW_POWER_WAKEUP_COMPARATOR"   @ string offset=602
 .Linfo_string22:
-	.asciz	"LOW_POWER_WAKEUP_32K_TIMER"    @ string offset=593
+	.asciz	"LOW_POWER_WAKEUP_32K_TIMER"    @ string offset=630
 .Linfo_string23:
-	.asciz	"LOW_POWER_WAKEUP_UART_RX"      @ string offset=620
+	.asciz	"LOW_POWER_WAKEUP_UART_RX"      @ string offset=657
 .Linfo_string24:
-	.asciz	"LOW_POWER_WAKEUP_GPIO0"        @ string offset=645
+	.asciz	"LOW_POWER_WAKEUP_GPIO0"        @ string offset=682
 .Linfo_string25:
-	.asciz	"LOW_POWER_WAKEUP_GPIO1"        @ string offset=668
+	.asciz	"LOW_POWER_WAKEUP_GPIO1"        @ string offset=705
 .Linfo_string26:
-	.asciz	"LOW_POWER_WAKEUP_GPIO2"        @ string offset=691
+	.asciz	"LOW_POWER_WAKEUP_GPIO2"        @ string offset=728
 .Linfo_string27:
-	.asciz	"LOW_POWER_WAKEUP_GPIO3"        @ string offset=714
+	.asciz	"LOW_POWER_WAKEUP_GPIO3"        @ string offset=751
 .Linfo_string28:
-	.asciz	"LOW_POWER_WAKEUP_GPIO4"        @ string offset=737
+	.asciz	"LOW_POWER_WAKEUP_GPIO4"        @ string offset=774
 .Linfo_string29:
-	.asciz	"LOW_POWER_WAKEUP_GPIO5"        @ string offset=760
+	.asciz	"LOW_POWER_WAKEUP_GPIO5"        @ string offset=797
 .Linfo_string30:
-	.asciz	"LOW_POWER_WAKEUP_GPIO6"        @ string offset=783
+	.asciz	"LOW_POWER_WAKEUP_GPIO6"        @ string offset=820
 .Linfo_string31:
-	.asciz	"LOW_POWER_WAKEUP_GPIO7"        @ string offset=806
+	.asciz	"LOW_POWER_WAKEUP_GPIO7"        @ string offset=843
 .Linfo_string32:
-	.asciz	"LOW_POWER_WAKEUP_GPIO8"        @ string offset=829
+	.asciz	"LOW_POWER_WAKEUP_GPIO8"        @ string offset=866
 .Linfo_string33:
-	.asciz	"LOW_POWER_WAKEUP_GPIO9"        @ string offset=852
+	.asciz	"LOW_POWER_WAKEUP_GPIO9"        @ string offset=889
 .Linfo_string34:
-	.asciz	"LOW_POWER_WAKEUP_GPIO10"       @ string offset=875
+	.asciz	"LOW_POWER_WAKEUP_GPIO10"       @ string offset=912
 .Linfo_string35:
-	.asciz	"LOW_POWER_WAKEUP_GPIO11"       @ string offset=899
+	.asciz	"LOW_POWER_WAKEUP_GPIO11"       @ string offset=936
 .Linfo_string36:
-	.asciz	"LOW_POWER_WAKEUP_GPIO12"       @ string offset=923
+	.asciz	"LOW_POWER_WAKEUP_GPIO12"       @ string offset=960
 .Linfo_string37:
-	.asciz	"LOW_POWER_WAKEUP_GPIO13"       @ string offset=947
+	.asciz	"LOW_POWER_WAKEUP_GPIO13"       @ string offset=984
 .Linfo_string38:
-	.asciz	"LOW_POWER_WAKEUP_GPIO14"       @ string offset=971
+	.asciz	"LOW_POWER_WAKEUP_GPIO14"       @ string offset=1008
 .Linfo_string39:
-	.asciz	"LOW_POWER_WAKEUP_GPIO15"       @ string offset=995
+	.asciz	"LOW_POWER_WAKEUP_GPIO15"       @ string offset=1032
 .Linfo_string40:
-	.asciz	"LOW_POWER_WAKEUP_GPIO16"       @ string offset=1019
+	.asciz	"LOW_POWER_WAKEUP_GPIO16"       @ string offset=1056
 .Linfo_string41:
-	.asciz	"LOW_POWER_WAKEUP_GPIO17"       @ string offset=1043
+	.asciz	"LOW_POWER_WAKEUP_GPIO17"       @ string offset=1080
 .Linfo_string42:
-	.asciz	"LOW_POWER_WAKEUP_GPIO18"       @ string offset=1067
+	.asciz	"LOW_POWER_WAKEUP_GPIO18"       @ string offset=1104
 .Linfo_string43:
-	.asciz	"LOW_POWER_WAKEUP_GPIO19"       @ string offset=1091
+	.asciz	"LOW_POWER_WAKEUP_GPIO19"       @ string offset=1128
 .Linfo_string44:
-	.asciz	"LOW_POWER_WAKEUP_GPIO20"       @ string offset=1115
+	.asciz	"LOW_POWER_WAKEUP_GPIO20"       @ string offset=1152
 .Linfo_string45:
-	.asciz	"LOW_POWER_WAKEUP_GPIO21"       @ string offset=1139
+	.asciz	"LOW_POWER_WAKEUP_GPIO21"       @ string offset=1176
 .Linfo_string46:
-	.asciz	"LOW_POWER_WAKEUP_GPIO22"       @ string offset=1163
+	.asciz	"LOW_POWER_WAKEUP_GPIO22"       @ string offset=1200
 .Linfo_string47:
-	.asciz	"LOW_POWER_WAKEUP_GPIO23"       @ string offset=1187
+	.asciz	"LOW_POWER_WAKEUP_GPIO23"       @ string offset=1224
 .Linfo_string48:
-	.asciz	"LOW_POWER_WAKEUP_GPIO24"       @ string offset=1211
+	.asciz	"LOW_POWER_WAKEUP_GPIO24"       @ string offset=1248
 .Linfo_string49:
-	.asciz	"LOW_POWER_WAKEUP_GPIO25"       @ string offset=1235
+	.asciz	"LOW_POWER_WAKEUP_GPIO25"       @ string offset=1272
 .Linfo_string50:
-	.asciz	"LOW_POWER_WAKEUP_GPIO26"       @ string offset=1259
+	.asciz	"LOW_POWER_WAKEUP_GPIO26"       @ string offset=1296
 .Linfo_string51:
-	.asciz	"LOW_POWER_WAKEUP_GPIO27"       @ string offset=1283
+	.asciz	"LOW_POWER_WAKEUP_GPIO27"       @ string offset=1320
 .Linfo_string52:
-	.asciz	"LOW_POWER_WAKEUP_GPIO28"       @ string offset=1307
+	.asciz	"LOW_POWER_WAKEUP_GPIO28"       @ string offset=1344
 .Linfo_string53:
-	.asciz	"LOW_POWER_WAKEUP_GPIO29"       @ string offset=1331
+	.asciz	"LOW_POWER_WAKEUP_GPIO29"       @ string offset=1368
 .Linfo_string54:
-	.asciz	"LOW_POWER_WAKEUP_GPIO30"       @ string offset=1355
+	.asciz	"LOW_POWER_WAKEUP_GPIO30"       @ string offset=1392
 .Linfo_string55:
-	.asciz	"LOW_POWER_WAKEUP_GPIO31"       @ string offset=1379
+	.asciz	"LOW_POWER_WAKEUP_GPIO31"       @ string offset=1416
 .Linfo_string56:
-	.asciz	"LOW_POWER_WAKEUP_UART0_RX"     @ string offset=1403
+	.asciz	"LOW_POWER_WAKEUP_UART0_RX"     @ string offset=1440
 .Linfo_string57:
-	.asciz	"LOW_POWER_WAKEUP_UART1_RX"     @ string offset=1429
+	.asciz	"LOW_POWER_WAKEUP_UART1_RX"     @ string offset=1466
 .Linfo_string58:
-	.asciz	"LOW_POWER_WAKEUP_UART2_RX"     @ string offset=1455
+	.asciz	"LOW_POWER_WAKEUP_UART2_RX"     @ string offset=1492
 .Linfo_string59:
-	.asciz	"low_power_wakeup_cfg_t"        @ string offset=1481
+	.asciz	"low_power_wakeup_cfg_t"        @ string offset=1518
 .Linfo_string60:
-	.asciz	"LOW_POWER_PLATFORM_ENTER_SLEEP" @ string offset=1504
+	.asciz	"LOW_POWER_PLATFORM_ENTER_SLEEP" @ string offset=1541
 .Linfo_string61:
-	.asciz	"LOW_POWER_PLATFORM_ENTER_DEEP_SLEEP" @ string offset=1535
+	.asciz	"LOW_POWER_PLATFORM_ENTER_DEEP_SLEEP" @ string offset=1572
 .Linfo_string62:
-	.asciz	"COMM_SUBSYSTEM_AHB_ADDR"       @ string offset=1571
+	.asciz	"COMM_SUBSYSTEM_AHB_ADDR"       @ string offset=1608
 .Linfo_string63:
-	.asciz	"COMM_SUBSYSTEM_DMA1"           @ string offset=1595
+	.asciz	"COMM_SUBSYSTEM_DMA1"           @ string offset=1632
 .Linfo_string64:
-	.asciz	"COMM_SUBSYSTEM_DMA_TYPE"       @ string offset=1615
+	.asciz	"COMM_SUBSYSTEM_DMA_TYPE"       @ string offset=1652
 .Linfo_string65:
-	.asciz	"COMM_SUBSYSTEM_HOST"           @ string offset=1639
+	.asciz	"COMM_SUBSYSTEM_HOST"           @ string offset=1676
 .Linfo_string66:
-	.asciz	"COMM_SUBSYSTEM_INTR_EN"        @ string offset=1659
+	.asciz	"COMM_SUBSYSTEM_INTR_EN"        @ string offset=1696
 .Linfo_string67:
-	.asciz	"COMM_SUBSYSTEM_INTR_CLR"       @ string offset=1682
+	.asciz	"COMM_SUBSYSTEM_INTR_CLR"       @ string offset=1719
 .Linfo_string68:
-	.asciz	"COMM_SUBSYSTEM_INTR_STATUS"    @ string offset=1706
+	.asciz	"COMM_SUBSYSTEM_INTR_STATUS"    @ string offset=1743
 .Linfo_string69:
-	.asciz	"COMM_SUBSYSTEM_RX_INFO"        @ string offset=1733
+	.asciz	"COMM_SUBSYSTEM_RX_INFO"        @ string offset=1770
 .Linfo_string70:
-	.asciz	"COMM_SUBSYSTEM_TX_INFO"        @ string offset=1756
+	.asciz	"COMM_SUBSYSTEM_TX_INFO"        @ string offset=1793
 .Linfo_string71:
-	.asciz	"COMM_SUBSYSTEM_INFO"           @ string offset=1779
+	.asciz	"COMM_SUBSYSTEM_INFO"           @ string offset=1816
 .Linfo_string72:
-	.asciz	"COMM_SUBSYSTEM_AHB_T"          @ string offset=1799
+	.asciz	"COMM_SUBSYSTEM_AHB_T"          @ string offset=1836
 .Linfo_string73:
-	.asciz	"POWER_STATE_CTRL"              @ string offset=1820
+	.asciz	"POWER_STATE_CTRL"              @ string offset=1857
 .Linfo_string74:
-	.asciz	"SYS_CLK_CTRL"                  @ string offset=1837
+	.asciz	"SYS_CLK_CTRL"                  @ string offset=1874
 .Linfo_string75:
-	.asciz	"SYS_LOWPOWER_CTRL"             @ string offset=1850
+	.asciz	"SYS_LOWPOWER_CTRL"             @ string offset=1887
 .Linfo_string76:
-	.asciz	"RESV"                          @ string offset=1868
+	.asciz	"RESV"                          @ string offset=1905
 .Linfo_string77:
-	.asciz	"GPIO_MAP0"                     @ string offset=1873
+	.asciz	"GPIO_MAP0"                     @ string offset=1910
 .Linfo_string78:
-	.asciz	"GPIO_MAP1"                     @ string offset=1883
+	.asciz	"GPIO_MAP1"                     @ string offset=1920
 .Linfo_string79:
-	.asciz	"GPIO_MAP2"                     @ string offset=1893
+	.asciz	"GPIO_MAP2"                     @ string offset=1930
 .Linfo_string80:
-	.asciz	"GPIO_MAP3"                     @ string offset=1903
+	.asciz	"GPIO_MAP3"                     @ string offset=1940
 .Linfo_string81:
-	.asciz	"GPIO_PULL_CTRL"                @ string offset=1913
+	.asciz	"GPIO_PULL_CTRL"                @ string offset=1950
 .Linfo_string82:
-	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=1928
+	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=1965
 .Linfo_string83:
-	.asciz	"GPIO_DRV_CTRL"                 @ string offset=1948
+	.asciz	"GPIO_DRV_CTRL"                 @ string offset=1985
 .Linfo_string84:
-	.asciz	"GPIO_OD_CTRL"                  @ string offset=1962
+	.asciz	"GPIO_OD_CTRL"                  @ string offset=1999
 .Linfo_string85:
-	.asciz	"GPIO_AIO_CTRL"                 @ string offset=1975
+	.asciz	"GPIO_AIO_CTRL"                 @ string offset=2012
 .Linfo_string86:
-	.asciz	"TRNG0"                         @ string offset=1989
+	.asciz	"TRNG0"                         @ string offset=2026
 .Linfo_string87:
-	.asciz	"TRNG1"                         @ string offset=1995
+	.asciz	"TRNG1"                         @ string offset=2032
 .Linfo_string88:
-	.asciz	"TRNG2"                         @ string offset=2001
+	.asciz	"TRNG2"                         @ string offset=2038
 .Linfo_string89:
-	.asciz	"TRNG3"                         @ string offset=2007
+	.asciz	"TRNG3"                         @ string offset=2044
 .Linfo_string90:
-	.asciz	"SRAM_SD_NM"                    @ string offset=2013
+	.asciz	"SRAM_SD_NM"                    @ string offset=2050
 .Linfo_string91:
-	.asciz	"SRAM_SD_SL"                    @ string offset=2024
+	.asciz	"SRAM_SD_SL"                    @ string offset=2061
 .Linfo_string92:
-	.asciz	"RESV2"                         @ string offset=2035
+	.asciz	"RESV2"                         @ string offset=2072
 .Linfo_string93:
-	.asciz	"SYS_SCRATCH"                   @ string offset=2041
+	.asciz	"SYS_SCRATCH"                   @ string offset=2078
 .Linfo_string94:
-	.asciz	"DEEPSLEEP_WAKEUP"              @ string offset=2053
+	.asciz	"DEEPSLEEP_WAKEUP"              @ string offset=2090
 .Linfo_string95:
-	.asciz	"DEEPSLEEP_INV"                 @ string offset=2070
+	.asciz	"DEEPSLEEP_INV"                 @ string offset=2107
 .Linfo_string96:
-	.asciz	"RESV3"                         @ string offset=2084
+	.asciz	"RESV3"                         @ string offset=2121
 .Linfo_string97:
-	.asciz	"CHIP_INFO"                     @ string offset=2090
+	.asciz	"CHIP_INFO"                     @ string offset=2127
 .Linfo_string98:
-	.asciz	"SYSCTRL_T"                     @ string offset=2100
+	.asciz	"SYSCTRL_T"                     @ string offset=2137
 .Linfo_string99:
-	.asciz	"PMU_COMP0"                     @ string offset=2110
+	.asciz	"PMU_COMP0"                     @ string offset=2147
 .Linfo_string100:
-	.asciz	"bit"                           @ string offset=2120
+	.asciz	"bit"                           @ string offset=2157
 .Linfo_string101:
-	.asciz	"AUX_COMP_SELREF"               @ string offset=2124
+	.asciz	"AUX_COMP_SELREF"               @ string offset=2161
 .Linfo_string102:
-	.asciz	"AUX_COMP_INT_EN"               @ string offset=2140
+	.asciz	"AUX_COMP_INT_EN"               @ string offset=2177
 .Linfo_string103:
-	.asciz	"AUX_COMP_INT_POL"              @ string offset=2156
+	.asciz	"AUX_COMP_INT_POL"              @ string offset=2193
 .Linfo_string104:
-	.asciz	"AUX_COMP_EN_NM"                @ string offset=2173
+	.asciz	"AUX_COMP_EN_NM"                @ string offset=2210
 .Linfo_string105:
-	.asciz	"AUX_COMP_EN_SP"                @ string offset=2188
+	.asciz	"AUX_COMP_EN_SP"                @ string offset=2225
 .Linfo_string106:
-	.asciz	"AUX_COMP_EN_DS"                @ string offset=2203
+	.asciz	"AUX_COMP_EN_DS"                @ string offset=2240
 .Linfo_string107:
-	.asciz	"AUX_COMP_SELINPUT"             @ string offset=2218
+	.asciz	"AUX_COMP_SELINPUT"             @ string offset=2255
 .Linfo_string108:
-	.asciz	"AUX_COMP_VSEL"                 @ string offset=2236
+	.asciz	"AUX_COMP_VSEL"                 @ string offset=2273
 .Linfo_string109:
-	.asciz	"AUX_COMP_REFSEL"               @ string offset=2250
+	.asciz	"AUX_COMP_REFSEL"               @ string offset=2287
 .Linfo_string110:
-	.asciz	"AUX_COMP_CHSEL"                @ string offset=2266
+	.asciz	"AUX_COMP_CHSEL"                @ string offset=2303
 .Linfo_string111:
-	.asciz	"AUX_COMP_PW"                   @ string offset=2281
+	.asciz	"AUX_COMP_PW"                   @ string offset=2318
 .Linfo_string112:
-	.asciz	"AUX_COMP_SELHYS"               @ string offset=2293
+	.asciz	"AUX_COMP_SELHYS"               @ string offset=2330
 .Linfo_string113:
-	.asciz	"AUX_COMP_SWDIV"                @ string offset=2309
+	.asciz	"AUX_COMP_SWDIV"                @ string offset=2346
 .Linfo_string114:
-	.asciz	"AUX_COMP_PSRR"                 @ string offset=2324
+	.asciz	"AUX_COMP_PSRR"                 @ string offset=2361
 .Linfo_string115:
-	.asciz	"AUX_COMP_TC"                   @ string offset=2338
+	.asciz	"AUX_COMP_TC"                   @ string offset=2375
 .Linfo_string116:
-	.asciz	"RESERVED"                      @ string offset=2350
+	.asciz	"RESERVED"                      @ string offset=2387
 .Linfo_string117:
-	.asciz	"AUX_COMP_DS_WAKEUP_EN"         @ string offset=2359
+	.asciz	"AUX_COMP_DS_WAKEUP_EN"         @ string offset=2396
 .Linfo_string118:
-	.asciz	"AUX_COMP_DS_INV"               @ string offset=2381
+	.asciz	"AUX_COMP_DS_INV"               @ string offset=2418
 .Linfo_string119:
-	.asciz	"AUX_EN_START"                  @ string offset=2397
+	.asciz	"AUX_EN_START"                  @ string offset=2434
 .Linfo_string120:
-	.asciz	"pmu_comp0_b"                   @ string offset=2410
+	.asciz	"pmu_comp0_b"                   @ string offset=2447
 .Linfo_string121:
-	.asciz	"reg"                           @ string offset=2422
+	.asciz	"reg"                           @ string offset=2459
 .Linfo_string122:
-	.asciz	"pmu_comp0_s"                   @ string offset=2426
+	.asciz	"pmu_comp0_s"                   @ string offset=2463
 .Linfo_string123:
-	.asciz	"pmu_comp0_t"                   @ string offset=2438
+	.asciz	"pmu_comp0_t"                   @ string offset=2475
 .Linfo_string124:
-	.asciz	"PMU_COMP1"                     @ string offset=2450
+	.asciz	"PMU_COMP1"                     @ string offset=2487
 .Linfo_string125:
-	.asciz	"AUX_COMP_INT_CLR"              @ string offset=2460
+	.asciz	"AUX_COMP_INT_CLR"              @ string offset=2497
 .Linfo_string126:
-	.asciz	"RESERVED1"                     @ string offset=2477
+	.asciz	"RESERVED1"                     @ string offset=2514
 .Linfo_string127:
-	.asciz	"BOD_INT_CLR"                   @ string offset=2487
+	.asciz	"BOD_INT_CLR"                   @ string offset=2524
 .Linfo_string128:
-	.asciz	"RESERVED2"                     @ string offset=2499
+	.asciz	"RESERVED2"                     @ string offset=2536
 .Linfo_string129:
-	.asciz	"pmu_comp1_b"                   @ string offset=2509
+	.asciz	"pmu_comp1_b"                   @ string offset=2546
 .Linfo_string130:
-	.asciz	"pmu_comp1_s"                   @ string offset=2521
+	.asciz	"pmu_comp1_s"                   @ string offset=2558
 .Linfo_string131:
-	.asciz	"pmu_comp1_t"                   @ string offset=2533
+	.asciz	"pmu_comp1_t"                   @ string offset=2570
 .Linfo_string132:
-	.asciz	"PMU_COMP2"                     @ string offset=2545
+	.asciz	"PMU_COMP2"                     @ string offset=2582
 .Linfo_string133:
-	.asciz	"AUX_COMP_INT_STA"              @ string offset=2555
+	.asciz	"AUX_COMP_INT_STA"              @ string offset=2592
 .Linfo_string134:
-	.asciz	"AUX_COMP_OUT"                  @ string offset=2572
+	.asciz	"AUX_COMP_OUT"                  @ string offset=2609
 .Linfo_string135:
-	.asciz	"BOD_INT_STA"                   @ string offset=2585
+	.asciz	"BOD_INT_STA"                   @ string offset=2622
 .Linfo_string136:
-	.asciz	"BOD_OUT"                       @ string offset=2597
+	.asciz	"BOD_OUT"                       @ string offset=2634
 .Linfo_string137:
-	.asciz	"VDD_DET"                       @ string offset=2605
+	.asciz	"VDD_DET"                       @ string offset=2642
 .Linfo_string138:
-	.asciz	"RESERVED3"                     @ string offset=2613
+	.asciz	"RESERVED3"                     @ string offset=2650
 .Linfo_string139:
-	.asciz	"pmu_comp2_b"                   @ string offset=2623
+	.asciz	"pmu_comp2_b"                   @ string offset=2660
 .Linfo_string140:
-	.asciz	"pmu_comp2_s"                   @ string offset=2635
+	.asciz	"pmu_comp2_s"                   @ string offset=2672
 .Linfo_string141:
-	.asciz	"pmu_comp2_t"                   @ string offset=2647
+	.asciz	"pmu_comp2_t"                   @ string offset=2684
 .Linfo_string142:
-	.asciz	"PMU_RESERVED0C"                @ string offset=2659
+	.asciz	"PMU_RESERVED0C"                @ string offset=2696
 .Linfo_string143:
-	.asciz	"PMU_TS"                        @ string offset=2674
+	.asciz	"PMU_TS"                        @ string offset=2711
 .Linfo_string144:
-	.asciz	"RESERVED0"                     @ string offset=2681
+	.asciz	"RESERVED0"                     @ string offset=2718
 .Linfo_string145:
-	.asciz	"TS_VX"                         @ string offset=2691
+	.asciz	"TS_VX"                         @ string offset=2728
 .Linfo_string146:
-	.asciz	"RESERVED19"                    @ string offset=2697
+	.asciz	"RESERVED19"                    @ string offset=2734
 .Linfo_string147:
-	.asciz	"TS_S"                          @ string offset=2708
+	.asciz	"TS_S"                          @ string offset=2745
 .Linfo_string148:
-	.asciz	"RESERVED23"                    @ string offset=2713
+	.asciz	"RESERVED23"                    @ string offset=2750
 .Linfo_string149:
-	.asciz	"TS_EN"                         @ string offset=2724
+	.asciz	"TS_EN"                         @ string offset=2761
 .Linfo_string150:
-	.asciz	"TS_RST"                        @ string offset=2730
+	.asciz	"TS_RST"                        @ string offset=2767
 .Linfo_string151:
-	.asciz	"TS_CLK_EN"                     @ string offset=2737
+	.asciz	"TS_CLK_EN"                     @ string offset=2774
 .Linfo_string152:
-	.asciz	"RESERVED27"                    @ string offset=2747
+	.asciz	"RESERVED27"                    @ string offset=2784
 .Linfo_string153:
-	.asciz	"TS_CLK_SEL"                    @ string offset=2758
+	.asciz	"TS_CLK_SEL"                    @ string offset=2795
 .Linfo_string154:
-	.asciz	"TEST_AIO_SEL"                  @ string offset=2769
+	.asciz	"TEST_AIO_SEL"                  @ string offset=2806
 .Linfo_string155:
-	.asciz	"pmu_ts_b"                      @ string offset=2782
+	.asciz	"pmu_ts_b"                      @ string offset=2819
 .Linfo_string156:
-	.asciz	"pmu_ts_s"                      @ string offset=2791
+	.asciz	"pmu_ts_s"                      @ string offset=2828
 .Linfo_string157:
-	.asciz	"pmu_ts_t"                      @ string offset=2800
+	.asciz	"pmu_ts_t"                      @ string offset=2837
 .Linfo_string158:
-	.asciz	"PMU_RVD0"                      @ string offset=2809
+	.asciz	"PMU_RVD0"                      @ string offset=2846
 .Linfo_string159:
-	.asciz	"PMU_RVD1"                      @ string offset=2818
+	.asciz	"PMU_RVD1"                      @ string offset=2855
 .Linfo_string160:
-	.asciz	"PMU_RESERVED1C"                @ string offset=2827
+	.asciz	"PMU_RESERVED1C"                @ string offset=2864
 .Linfo_string161:
-	.asciz	"PMU_PWR_CTRL"                  @ string offset=2842
+	.asciz	"PMU_PWR_CTRL"                  @ string offset=2879
 .Linfo_string162:
-	.asciz	"BOD_INT_EN"                    @ string offset=2855
+	.asciz	"BOD_INT_EN"                    @ string offset=2892
 .Linfo_string163:
-	.asciz	"BOD_INT_POL"                   @ string offset=2866
+	.asciz	"BOD_INT_POL"                   @ string offset=2903
 .Linfo_string164:
-	.asciz	"CFG_EN_VREF1_XTAL"             @ string offset=2878
+	.asciz	"CFG_EN_VREF1_XTAL"             @ string offset=2915
 .Linfo_string165:
-	.asciz	"CFG_SEL_XBUFLOAD"              @ string offset=2896
+	.asciz	"CFG_SEL_XBUFLOAD"              @ string offset=2933
 .Linfo_string166:
-	.asciz	"CFG_SEL_XBUFIN"                @ string offset=2913
+	.asciz	"CFG_SEL_XBUFIN"                @ string offset=2950
 .Linfo_string167:
-	.asciz	"CFG_DS_32K_OFF"                @ string offset=2928
+	.asciz	"CFG_DS_32K_OFF"                @ string offset=2965
 .Linfo_string168:
-	.asciz	"CFG_BYP_XBUF_LDO"              @ string offset=2943
+	.asciz	"CFG_BYP_XBUF_LDO"              @ string offset=2980
 .Linfo_string169:
-	.asciz	"EN_XBUF"                       @ string offset=2960
+	.asciz	"EN_XBUF"                       @ string offset=2997
 .Linfo_string170:
-	.asciz	"EN_D_XTALIN"                   @ string offset=2968
+	.asciz	"EN_D_XTALIN"                   @ string offset=3005
 .Linfo_string171:
-	.asciz	"pmu_pwr_ctrl_b"                @ string offset=2980
+	.asciz	"pmu_pwr_ctrl_b"                @ string offset=3017
 .Linfo_string172:
-	.asciz	"pmu_pwr_ctrl_s"                @ string offset=2995
+	.asciz	"pmu_pwr_ctrl_s"                @ string offset=3032
 .Linfo_string173:
-	.asciz	"pmu_pwr_ctrl_t"                @ string offset=3010
+	.asciz	"pmu_pwr_ctrl_t"                @ string offset=3047
 .Linfo_string174:
-	.asciz	"PMU_XTAL"                      @ string offset=3025
+	.asciz	"PMU_XTAL"                      @ string offset=3062
 .Linfo_string175:
-	.asciz	"CFG_XTAL_SETTLE_TIME"          @ string offset=3034
+	.asciz	"CFG_XTAL_SETTLE_TIME"          @ string offset=3071
 .Linfo_string176:
-	.asciz	"CFG_PW_XTAL"                   @ string offset=3055
+	.asciz	"CFG_PW_XTAL"                   @ string offset=3092
 .Linfo_string177:
-	.asciz	"CFG_BYPASS_XTAL_SETTLE"        @ string offset=3067
+	.asciz	"CFG_BYPASS_XTAL_SETTLE"        @ string offset=3104
 .Linfo_string178:
-	.asciz	"CFG_XTAL_FAST"                 @ string offset=3090
+	.asciz	"CFG_XTAL_FAST"                 @ string offset=3127
 .Linfo_string179:
-	.asciz	"CFG_XTAL_FAST_AUTO"            @ string offset=3104
+	.asciz	"CFG_XTAL_FAST_AUTO"            @ string offset=3141
 .Linfo_string180:
-	.asciz	"CFG_EN_XTAL"                   @ string offset=3123
+	.asciz	"CFG_EN_XTAL"                   @ string offset=3160
 .Linfo_string181:
-	.asciz	"CFG_EN_XTAL_AUTO"              @ string offset=3135
+	.asciz	"CFG_EN_XTAL_AUTO"              @ string offset=3172
 .Linfo_string182:
-	.asciz	"CFG_XTAL_CAP_SEL"              @ string offset=3152
+	.asciz	"CFG_XTAL_CAP_SEL"              @ string offset=3189
 .Linfo_string183:
-	.asciz	"pmu_xtal_b"                    @ string offset=3169
+	.asciz	"pmu_xtal_b"                    @ string offset=3206
 .Linfo_string184:
-	.asciz	"pmu_xtal_s"                    @ string offset=3180
+	.asciz	"pmu_xtal_s"                    @ string offset=3217
 .Linfo_string185:
-	.asciz	"pmu_xtal_t"                    @ string offset=3191
+	.asciz	"pmu_xtal_t"                    @ string offset=3228
 .Linfo_string186:
-	.asciz	"PMU_MEM_CTRL"                  @ string offset=3202
+	.asciz	"PMU_MEM_CTRL"                  @ string offset=3239
 .Linfo_string187:
-	.asciz	"CFG_SRAM_TEST1"                @ string offset=3215
+	.asciz	"CFG_SRAM_TEST1"                @ string offset=3252
 .Linfo_string188:
-	.asciz	"CFG_SRAM_RME"                  @ string offset=3230
+	.asciz	"CFG_SRAM_RME"                  @ string offset=3267
 .Linfo_string189:
-	.asciz	"CFG_SRAM_RM"                   @ string offset=3243
+	.asciz	"CFG_SRAM_RM"                   @ string offset=3280
 .Linfo_string190:
-	.asciz	"DLY"                           @ string offset=3255
+	.asciz	"DLY"                           @ string offset=3292
 .Linfo_string191:
-	.asciz	"PWMF"                          @ string offset=3259
+	.asciz	"PWMF"                          @ string offset=3296
 .Linfo_string192:
-	.asciz	"CM"                            @ string offset=3264
+	.asciz	"CM"                            @ string offset=3301
 .Linfo_string193:
-	.asciz	"HG"                            @ string offset=3267
+	.asciz	"HG"                            @ string offset=3304
 .Linfo_string194:
-	.asciz	"EN_BOD"                        @ string offset=3270
+	.asciz	"EN_BOD"                        @ string offset=3307
 .Linfo_string195:
-	.asciz	"EN_DECT"                       @ string offset=3277
+	.asciz	"EN_DECT"                       @ string offset=3314
 .Linfo_string196:
-	.asciz	"RESERVED4"                     @ string offset=3285
+	.asciz	"RESERVED4"                     @ string offset=3322
 .Linfo_string197:
-	.asciz	"MG"                            @ string offset=3295
+	.asciz	"MG"                            @ string offset=3332
 .Linfo_string198:
-	.asciz	"SIN"                           @ string offset=3298
+	.asciz	"SIN"                           @ string offset=3335
 .Linfo_string199:
-	.asciz	"pmu_mem_ctrl_b"                @ string offset=3302
+	.asciz	"pmu_mem_ctrl_b"                @ string offset=3339
 .Linfo_string200:
-	.asciz	"pmu_mem_ctrl_s"                @ string offset=3317
+	.asciz	"pmu_mem_ctrl_s"                @ string offset=3354
 .Linfo_string201:
-	.asciz	"pmu_mem_ctrl_t"                @ string offset=3332
+	.asciz	"pmu_mem_ctrl_t"                @ string offset=3369
 .Linfo_string202:
-	.asciz	"PMU_RESERVED2C"                @ string offset=3347
+	.asciz	"PMU_RESERVED2C"                @ string offset=3384
 .Linfo_string203:
-	.asciz	"PMU_BOD"                       @ string offset=3362
+	.asciz	"PMU_BOD"                       @ string offset=3399
 .Linfo_string204:
-	.asciz	"PMU_RCO32K"                    @ string offset=3370
+	.asciz	"PMU_RCO32K"                    @ string offset=3407
 .Linfo_string205:
-	.asciz	"RN_32K"                        @ string offset=3381
+	.asciz	"RN_32K"                        @ string offset=3418
 .Linfo_string206:
-	.asciz	"RESERVED11"                    @ string offset=3388
+	.asciz	"RESERVED11"                    @ string offset=3425
 .Linfo_string207:
-	.asciz	"PW32KXOSC"                     @ string offset=3399
+	.asciz	"PW32KXOSC"                     @ string offset=3436
 .Linfo_string208:
-	.asciz	"EN_32KXOSC"                    @ string offset=3409
+	.asciz	"EN_32KXOSC"                    @ string offset=3446
 .Linfo_string209:
-	.asciz	"EN_LDO32K"                     @ string offset=3420
+	.asciz	"EN_LDO32K"                     @ string offset=3457
 .Linfo_string210:
-	.asciz	"RESERVED21"                    @ string offset=3430
+	.asciz	"RESERVED21"                    @ string offset=3467
 .Linfo_string211:
-	.asciz	"C_32K"                         @ string offset=3441
+	.asciz	"C_32K"                         @ string offset=3478
 .Linfo_string212:
-	.asciz	"TC_32K"                        @ string offset=3447
+	.asciz	"TC_32K"                        @ string offset=3484
 .Linfo_string213:
-	.asciz	"PW_32K"                        @ string offset=3454
+	.asciz	"PW_32K"                        @ string offset=3491
 .Linfo_string214:
-	.asciz	"PSRR_32K"                      @ string offset=3461
+	.asciz	"PSRR_32K"                      @ string offset=3498
 .Linfo_string215:
-	.asciz	"SEL_32K"                       @ string offset=3470
+	.asciz	"SEL_32K"                       @ string offset=3507
 .Linfo_string216:
-	.asciz	"pmu_rco32k_b"                  @ string offset=3478
+	.asciz	"pmu_rco32k_b"                  @ string offset=3515
 .Linfo_string217:
-	.asciz	"pmu_rco32k_s"                  @ string offset=3491
+	.asciz	"pmu_rco32k_s"                  @ string offset=3528
 .Linfo_string218:
-	.asciz	"pmu_rco32k_t"                  @ string offset=3504
+	.asciz	"pmu_rco32k_t"                  @ string offset=3541
 .Linfo_string219:
-	.asciz	"PMU_DEBUG_CTRL"                @ string offset=3517
+	.asciz	"PMU_DEBUG_CTRL"                @ string offset=3554
 .Linfo_string220:
-	.asciz	"PMU_CLK_CTRL"                  @ string offset=3532
+	.asciz	"PMU_CLK_CTRL"                  @ string offset=3569
 .Linfo_string221:
-	.asciz	"EN_CLOCKMODEM"                 @ string offset=3545
+	.asciz	"EN_CLOCKMODEM"                 @ string offset=3582
 .Linfo_string222:
-	.asciz	"CFG_CHIP_EN"                   @ string offset=3559
+	.asciz	"CFG_CHIP_EN"                   @ string offset=3596
 .Linfo_string223:
-	.asciz	"CFG_CHIP_EN_AUTO"              @ string offset=3571
+	.asciz	"CFG_CHIP_EN_AUTO"              @ string offset=3608
 .Linfo_string224:
-	.asciz	"pmu_clk_ctrl_b"                @ string offset=3588
+	.asciz	"pmu_clk_ctrl_b"                @ string offset=3625
 .Linfo_string225:
-	.asciz	"pmu_clk_ctrl_s"                @ string offset=3603
+	.asciz	"pmu_clk_ctrl_s"                @ string offset=3640
 .Linfo_string226:
-	.asciz	"pmu_clk_ctrl_t"                @ string offset=3618
+	.asciz	"pmu_clk_ctrl_t"                @ string offset=3655
 .Linfo_string227:
-	.asciz	"PMU_GPIO_DRV"                  @ string offset=3633
+	.asciz	"PMU_GPIO_DRV"                  @ string offset=3670
 .Linfo_string228:
-	.asciz	"PMU_RESERVED44"                @ string offset=3646
+	.asciz	"PMU_RESERVED44"                @ string offset=3683
 .Linfo_string229:
-	.asciz	"PMU_PM_SEL"                    @ string offset=3661
+	.asciz	"PMU_PM_SEL"                    @ string offset=3698
 .Linfo_string230:
-	.asciz	"XOCAP_UPDATE_MODE"             @ string offset=3672
+	.asciz	"XOCAP_UPDATE_MODE"             @ string offset=3709
 .Linfo_string231:
-	.asciz	"RESERVED17"                    @ string offset=3690
+	.asciz	"RESERVED17"                    @ string offset=3727
 .Linfo_string232:
-	.asciz	"CFG_PWRX_SETTLE_TIME"          @ string offset=3701
+	.asciz	"CFG_PWRX_SETTLE_TIME"          @ string offset=3738
 .Linfo_string233:
-	.asciz	"RESERVED31"                    @ string offset=3722
+	.asciz	"RESERVED31"                    @ string offset=3759
 .Linfo_string234:
-	.asciz	"pmu_pm_sel_b"                  @ string offset=3733
+	.asciz	"pmu_pm_sel_b"                  @ string offset=3770
 .Linfo_string235:
-	.asciz	"pmu_pm_sel_s"                  @ string offset=3746
+	.asciz	"pmu_pm_sel_s"                  @ string offset=3783
 .Linfo_string236:
-	.asciz	"pmu_pm_sel_t"                  @ string offset=3759
+	.asciz	"pmu_pm_sel_t"                  @ string offset=3796
 .Linfo_string237:
-	.asciz	"PMU_RESERVED4C"                @ string offset=3772
+	.asciz	"PMU_RESERVED4C"                @ string offset=3809
 .Linfo_string238:
-	.asciz	"PMU_CAL32K_CFG0"               @ string offset=3787
+	.asciz	"PMU_CAL32K_CFG0"               @ string offset=3824
 .Linfo_string239:
-	.asciz	"CFG_CAL32K_TARGET"             @ string offset=3803
+	.asciz	"CFG_CAL32K_TARGET"             @ string offset=3840
 .Linfo_string240:
-	.asciz	"RESERVED18"                    @ string offset=3821
+	.asciz	"RESERVED18"                    @ string offset=3858
 .Linfo_string241:
-	.asciz	"CFG_CAL32K_EN"                 @ string offset=3832
+	.asciz	"CFG_CAL32K_EN"                 @ string offset=3869
 .Linfo_string242:
-	.asciz	"RESERVED25"                    @ string offset=3846
+	.asciz	"RESERVED25"                    @ string offset=3883
 .Linfo_string243:
-	.asciz	"pmu_cal32k_cfg0_b"             @ string offset=3857
+	.asciz	"pmu_cal32k_cfg0_b"             @ string offset=3894
 .Linfo_string244:
-	.asciz	"pmu_cal32k_cfg0_s"             @ string offset=3875
+	.asciz	"pmu_cal32k_cfg0_s"             @ string offset=3912
 .Linfo_string245:
-	.asciz	"pmu_cal32k_cfg0_t"             @ string offset=3893
+	.asciz	"pmu_cal32k_cfg0_t"             @ string offset=3930
 .Linfo_string246:
-	.asciz	"PMU_CAL32K_CFG1"               @ string offset=3911
+	.asciz	"PMU_CAL32K_CFG1"               @ string offset=3948
 .Linfo_string247:
-	.asciz	"CFG_CAL32K_LOCK_ERR"           @ string offset=3927
+	.asciz	"CFG_CAL32K_LOCK_ERR"           @ string offset=3964
 .Linfo_string248:
-	.asciz	"CFG_CAL32K_AVG_COARSE"         @ string offset=3947
+	.asciz	"CFG_CAL32K_AVG_COARSE"         @ string offset=3984
 .Linfo_string249:
-	.asciz	"CFG_CAL32K_AVG_FINE"           @ string offset=3969
+	.asciz	"CFG_CAL32K_AVG_FINE"           @ string offset=4006
 .Linfo_string250:
-	.asciz	"CFG_CAL32K_AVG_LOCK"           @ string offset=3989
+	.asciz	"CFG_CAL32K_AVG_LOCK"           @ string offset=4026
 .Linfo_string251:
-	.asciz	"CFG_CAL32K_DLY"                @ string offset=4009
+	.asciz	"CFG_CAL32K_DLY"                @ string offset=4046
 .Linfo_string252:
-	.asciz	"CFG_CAL32K_FINE_GAIN"          @ string offset=4024
+	.asciz	"CFG_CAL32K_FINE_GAIN"          @ string offset=4061
 .Linfo_string253:
-	.asciz	"CFG_CAL32K_SKIP_COARSE"        @ string offset=4045
+	.asciz	"CFG_CAL32K_SKIP_COARSE"        @ string offset=4082
 .Linfo_string254:
-	.asciz	"CFG_CAL32K_LOCK_GAIN"          @ string offset=4068
+	.asciz	"CFG_CAL32K_LOCK_GAIN"          @ string offset=4105
 .Linfo_string255:
-	.asciz	"CFG_CAL32K_BOUND_MODE"         @ string offset=4089
+	.asciz	"CFG_CAL32K_BOUND_MODE"         @ string offset=4126
 .Linfo_string256:
-	.asciz	"CFG_CAL32K_TRACK_EN"           @ string offset=4111
+	.asciz	"CFG_CAL32K_TRACK_EN"           @ string offset=4148
 .Linfo_string257:
-	.asciz	"EN_CK_CAL32K"                  @ string offset=4131
+	.asciz	"EN_CK_CAL32K"                  @ string offset=4168
 .Linfo_string258:
-	.asciz	"CFG_32K_EST_EN"                @ string offset=4144
+	.asciz	"CFG_32K_EST_EN"                @ string offset=4181
 .Linfo_string259:
-	.asciz	"CFG_32K_RC_SEL"                @ string offset=4159
+	.asciz	"CFG_32K_RC_SEL"                @ string offset=4196
 .Linfo_string260:
-	.asciz	"CFG_32K_EST_MODE"              @ string offset=4174
+	.asciz	"CFG_32K_EST_MODE"              @ string offset=4211
 .Linfo_string261:
-	.asciz	"CFG_32K_EST_TIME"              @ string offset=4191
+	.asciz	"CFG_32K_EST_TIME"              @ string offset=4228
 .Linfo_string262:
-	.asciz	"pmu_cal32k_cfg1_b"             @ string offset=4208
+	.asciz	"pmu_cal32k_cfg1_b"             @ string offset=4245
 .Linfo_string263:
-	.asciz	"pmu_cal32k_cfg1_s"             @ string offset=4226
+	.asciz	"pmu_cal32k_cfg1_s"             @ string offset=4263
 .Linfo_string264:
-	.asciz	"pmu_cal32k_cfg1_t"             @ string offset=4244
+	.asciz	"pmu_cal32k_cfg1_t"             @ string offset=4281
 .Linfo_string265:
-	.asciz	"PMU_CAL32K_RESULT0"            @ string offset=4262
+	.asciz	"PMU_CAL32K_RESULT0"            @ string offset=4299
 .Linfo_string266:
-	.asciz	"EST_32K_RESULT"                @ string offset=4281
+	.asciz	"EST_32K_RESULT"                @ string offset=4318
 .Linfo_string267:
-	.asciz	"EST_32K_RESULT_VALID"          @ string offset=4296
+	.asciz	"EST_32K_RESULT_VALID"          @ string offset=4333
 .Linfo_string268:
-	.asciz	"CAL32K_BUSY"                   @ string offset=4317
+	.asciz	"CAL32K_BUSY"                   @ string offset=4354
 .Linfo_string269:
-	.asciz	"CAL32K_LOCK"                   @ string offset=4329
+	.asciz	"CAL32K_LOCK"                   @ string offset=4366
 .Linfo_string270:
-	.asciz	"CAL32K_TIMEOUT"                @ string offset=4341
+	.asciz	"CAL32K_TIMEOUT"                @ string offset=4378
 .Linfo_string271:
-	.asciz	"pmu_cal32k_r0_b"               @ string offset=4356
+	.asciz	"pmu_cal32k_r0_b"               @ string offset=4393
 .Linfo_string272:
-	.asciz	"pmu_cal32k_r0_s"               @ string offset=4372
+	.asciz	"pmu_cal32k_r0_s"               @ string offset=4409
 .Linfo_string273:
-	.asciz	"pmu_cal32k_r0_t"               @ string offset=4388
+	.asciz	"pmu_cal32k_r0_t"               @ string offset=4425
 .Linfo_string274:
-	.asciz	"PMU_RESERVED5C"                @ string offset=4404
+	.asciz	"PMU_RESERVED5C"                @ string offset=4441
 .Linfo_string275:
-	.asciz	"PMU_RESERVED60"                @ string offset=4419
+	.asciz	"PMU_RESERVED60"                @ string offset=4456
 .Linfo_string276:
-	.asciz	"PMU_RESERVED64"                @ string offset=4434
+	.asciz	"PMU_RESERVED64"                @ string offset=4471
 .Linfo_string277:
-	.asciz	"PMU_RESERVED68"                @ string offset=4449
+	.asciz	"PMU_RESERVED68"                @ string offset=4486
 .Linfo_string278:
-	.asciz	"PMU_RESERVED6C"                @ string offset=4464
+	.asciz	"PMU_RESERVED6C"                @ string offset=4501
 .Linfo_string279:
-	.asciz	"PMU_RESERVED70"                @ string offset=4479
+	.asciz	"PMU_RESERVED70"                @ string offset=4516
 .Linfo_string280:
-	.asciz	"PMU_RESERVED74"                @ string offset=4494
+	.asciz	"PMU_RESERVED74"                @ string offset=4531
 .Linfo_string281:
-	.asciz	"PMU_RESERVED78"                @ string offset=4509
+	.asciz	"PMU_RESERVED78"                @ string offset=4546
 .Linfo_string282:
-	.asciz	"PMU_RESERVED7C"                @ string offset=4524
+	.asciz	"PMU_RESERVED7C"                @ string offset=4561
 .Linfo_string283:
-	.asciz	"PMU_RESERVED80"                @ string offset=4539
+	.asciz	"PMU_RESERVED80"                @ string offset=4576
 .Linfo_string284:
-	.asciz	"PMU_RESERVED84"                @ string offset=4554
+	.asciz	"PMU_RESERVED84"                @ string offset=4591
 .Linfo_string285:
-	.asciz	"PMU_RESERVED88"                @ string offset=4569
+	.asciz	"PMU_RESERVED88"                @ string offset=4606
 .Linfo_string286:
-	.asciz	"PMU_RESERVED8C"                @ string offset=4584
+	.asciz	"PMU_RESERVED8C"                @ string offset=4621
 .Linfo_string287:
-	.asciz	"PMU_VOUT_SEL0"                 @ string offset=4599
+	.asciz	"PMU_VOUT_SEL0"                 @ string offset=4636
 .Linfo_string288:
-	.asciz	"DCDC_VOSEL_NM"                 @ string offset=4613
+	.asciz	"DCDC_VOSEL_NM"                 @ string offset=4650
 .Linfo_string289:
-	.asciz	"DCDC_VOSEL_SP"                 @ string offset=4627
+	.asciz	"DCDC_VOSEL_SP"                 @ string offset=4664
 .Linfo_string290:
-	.asciz	"DCDC_VOSEL_DS"                 @ string offset=4641
+	.asciz	"DCDC_VOSEL_DS"                 @ string offset=4678
 .Linfo_string291:
-	.asciz	"RESERVED12"                    @ string offset=4655
+	.asciz	"RESERVED12"                    @ string offset=4692
 .Linfo_string292:
-	.asciz	"LLDO_VOSEL_NM"                 @ string offset=4666
+	.asciz	"LLDO_VOSEL_NM"                 @ string offset=4703
 .Linfo_string293:
-	.asciz	"LLDO_VOSEL_SP"                 @ string offset=4680
+	.asciz	"LLDO_VOSEL_SP"                 @ string offset=4717
 .Linfo_string294:
-	.asciz	"LLDO_VOSEL_DS"                 @ string offset=4694
+	.asciz	"LLDO_VOSEL_DS"                 @ string offset=4731
 .Linfo_string295:
-	.asciz	"RESERVED28"                    @ string offset=4708
+	.asciz	"RESERVED28"                    @ string offset=4745
 .Linfo_string296:
-	.asciz	"pmu_vout_sel0_b"               @ string offset=4719
+	.asciz	"pmu_vout_sel0_b"               @ string offset=4756
 .Linfo_string297:
-	.asciz	"pmu_vout_sel0_s"               @ string offset=4735
+	.asciz	"pmu_vout_sel0_s"               @ string offset=4772
 .Linfo_string298:
-	.asciz	"pmu_vout_sel0_t"               @ string offset=4751
+	.asciz	"pmu_vout_sel0_t"               @ string offset=4788
 .Linfo_string299:
-	.asciz	"PMU_VOUT_SEL1"                 @ string offset=4767
+	.asciz	"PMU_VOUT_SEL1"                 @ string offset=4804
 .Linfo_string300:
-	.asciz	"SLDO_VOSEL_NM"                 @ string offset=4781
+	.asciz	"SLDO_VOSEL_NM"                 @ string offset=4818
 .Linfo_string301:
-	.asciz	"SLDO_VOSEL_SP"                 @ string offset=4795
+	.asciz	"SLDO_VOSEL_SP"                 @ string offset=4832
 .Linfo_string302:
-	.asciz	"SLDO_VOSEL_DS"                 @ string offset=4809
+	.asciz	"SLDO_VOSEL_DS"                 @ string offset=4846
 .Linfo_string303:
-	.asciz	"pmu_vout_sel1_b"               @ string offset=4823
+	.asciz	"pmu_vout_sel1_b"               @ string offset=4860
 .Linfo_string304:
-	.asciz	"pmu_vout_sel1_s"               @ string offset=4839
+	.asciz	"pmu_vout_sel1_s"               @ string offset=4876
 .Linfo_string305:
-	.asciz	"pmu_vout_sel1_t"               @ string offset=4855
+	.asciz	"pmu_vout_sel1_t"               @ string offset=4892
 .Linfo_string306:
-	.asciz	"PMU_VOUT_SEL2"                 @ string offset=4871
+	.asciz	"PMU_VOUT_SEL2"                 @ string offset=4908
 .Linfo_string307:
-	.asciz	"IOLDO_VOSEL_NM"                @ string offset=4885
+	.asciz	"IOLDO_VOSEL_NM"                @ string offset=4922
 .Linfo_string308:
-	.asciz	"IOLDO_VOSEL_SP"                @ string offset=4900
+	.asciz	"IOLDO_VOSEL_SP"                @ string offset=4937
 .Linfo_string309:
-	.asciz	"IOLDO_VOSEL_DS"                @ string offset=4915
+	.asciz	"IOLDO_VOSEL_DS"                @ string offset=4952
 .Linfo_string310:
-	.asciz	"IOLDO_RET_VOSEL_NM"            @ string offset=4930
+	.asciz	"IOLDO_RET_VOSEL_NM"            @ string offset=4967
 .Linfo_string311:
-	.asciz	"IOLDO_RET_VOSEL_SP"            @ string offset=4949
+	.asciz	"IOLDO_RET_VOSEL_SP"            @ string offset=4986
 .Linfo_string312:
-	.asciz	"IOLDO_RET_VOSEL_DS"            @ string offset=4968
+	.asciz	"IOLDO_RET_VOSEL_DS"            @ string offset=5005
 .Linfo_string313:
-	.asciz	"pmu_vout_sel2_b"               @ string offset=4987
+	.asciz	"pmu_vout_sel2_b"               @ string offset=5024
 .Linfo_string314:
-	.asciz	"pmu_vout_sel2_s"               @ string offset=5003
+	.asciz	"pmu_vout_sel2_s"               @ string offset=5040
 .Linfo_string315:
-	.asciz	"pmu_vout_sel2_t"               @ string offset=5019
+	.asciz	"pmu_vout_sel2_t"               @ string offset=5056
 .Linfo_string316:
-	.asciz	"PMU_BOD_SEL"                   @ string offset=5035
+	.asciz	"PMU_BOD_SEL"                   @ string offset=5072
 .Linfo_string317:
-	.asciz	"BOD_R"                         @ string offset=5047
+	.asciz	"BOD_R"                         @ string offset=5084
 .Linfo_string318:
-	.asciz	"BOD_F"                         @ string offset=5053
+	.asciz	"BOD_F"                         @ string offset=5090
 .Linfo_string319:
-	.asciz	"VDECT"                         @ string offset=5059
+	.asciz	"VDECT"                         @ string offset=5096
 .Linfo_string320:
-	.asciz	"RESERVED5"                     @ string offset=5065
+	.asciz	"RESERVED5"                     @ string offset=5102
 .Linfo_string321:
-	.asciz	"APMU_TEST"                     @ string offset=5075
+	.asciz	"APMU_TEST"                     @ string offset=5112
 .Linfo_string322:
-	.asciz	"POR_VTH"                       @ string offset=5085
+	.asciz	"POR_VTH"                       @ string offset=5122
 .Linfo_string323:
-	.asciz	"PMU_RESERVED_1"                @ string offset=5093
+	.asciz	"PMU_RESERVED_1"                @ string offset=5130
 .Linfo_string324:
-	.asciz	"pmu_bod_sel_b"                 @ string offset=5108
+	.asciz	"pmu_bod_sel_b"                 @ string offset=5145
 .Linfo_string325:
-	.asciz	"pmu_bod_sel_s"                 @ string offset=5122
+	.asciz	"pmu_bod_sel_s"                 @ string offset=5159
 .Linfo_string326:
-	.asciz	"pmu_bod_sel_t"                 @ string offset=5136
+	.asciz	"pmu_bod_sel_t"                 @ string offset=5173
 .Linfo_string327:
-	.asciz	"PMU_DCDC_CTRL0"                @ string offset=5150
+	.asciz	"PMU_DCDC_CTRL0"                @ string offset=5187
 .Linfo_string328:
-	.asciz	"DCDC_PPOWER_HEAVY"             @ string offset=5165
+	.asciz	"DCDC_PPOWER_HEAVY"             @ string offset=5202
 .Linfo_string329:
-	.asciz	"DCDC_EN_COMP_HEAVY"            @ string offset=5183
+	.asciz	"DCDC_EN_COMP_HEAVY"            @ string offset=5220
 .Linfo_string330:
-	.asciz	"DCDC_NPOWER_HEAVY"             @ string offset=5202
+	.asciz	"DCDC_NPOWER_HEAVY"             @ string offset=5239
 .Linfo_string331:
-	.asciz	"DCDC_EN_ZCD_HEAVY"             @ string offset=5220
+	.asciz	"DCDC_EN_ZCD_HEAVY"             @ string offset=5257
 .Linfo_string332:
-	.asciz	"DCDC_PDRIVE_HEAVY"             @ string offset=5238
+	.asciz	"DCDC_PDRIVE_HEAVY"             @ string offset=5275
 .Linfo_string333:
-	.asciz	"DCDC_MG_HEAVY"                 @ string offset=5256
+	.asciz	"DCDC_MG_HEAVY"                 @ string offset=5293
 .Linfo_string334:
-	.asciz	"DCDC_NDRIVE_HEAVY"             @ string offset=5270
+	.asciz	"DCDC_NDRIVE_HEAVY"             @ string offset=5307
 .Linfo_string335:
-	.asciz	"DCDC_CM_HEAVY"                 @ string offset=5288
+	.asciz	"DCDC_CM_HEAVY"                 @ string offset=5325
 .Linfo_string336:
-	.asciz	"DCDC_PW_HEAVY"                 @ string offset=5302
+	.asciz	"DCDC_PW_HEAVY"                 @ string offset=5339
 .Linfo_string337:
-	.asciz	"DCDC_C_SC_HEAVY"               @ string offset=5316
+	.asciz	"DCDC_C_SC_HEAVY"               @ string offset=5353
 .Linfo_string338:
-	.asciz	"DCDC_C_HG_HEAVY"               @ string offset=5332
+	.asciz	"DCDC_C_HG_HEAVY"               @ string offset=5369
 .Linfo_string339:
-	.asciz	"DCDC_PWMF_HEAVY"               @ string offset=5348
+	.asciz	"DCDC_PWMF_HEAVY"               @ string offset=5385
 .Linfo_string340:
-	.asciz	"DCDC_OS_PN_HEAVY"              @ string offset=5364
+	.asciz	"DCDC_OS_PN_HEAVY"              @ string offset=5401
 .Linfo_string341:
-	.asciz	"DCDC_OS_HEAVY"                 @ string offset=5381
+	.asciz	"DCDC_OS_HEAVY"                 @ string offset=5418
 .Linfo_string342:
-	.asciz	"DCDC_HG_HEAVY"                 @ string offset=5395
+	.asciz	"DCDC_HG_HEAVY"                 @ string offset=5432
 .Linfo_string343:
-	.asciz	"DCDC_DLY_HEAVY"                @ string offset=5409
+	.asciz	"DCDC_DLY_HEAVY"                @ string offset=5446
 .Linfo_string344:
-	.asciz	"pmu_dcdc_ctrl0_b"              @ string offset=5424
+	.asciz	"pmu_dcdc_ctrl0_b"              @ string offset=5461
 .Linfo_string345:
-	.asciz	"pmu_dcdc_ctrl0_s"              @ string offset=5441
+	.asciz	"pmu_dcdc_ctrl0_s"              @ string offset=5478
 .Linfo_string346:
-	.asciz	"pmu_dcdc_ctrl0_t"              @ string offset=5458
+	.asciz	"pmu_dcdc_ctrl0_t"              @ string offset=5495
 .Linfo_string347:
-	.asciz	"PMU_DCDC_CTRL1"                @ string offset=5475
+	.asciz	"PMU_DCDC_CTRL1"                @ string offset=5512
 .Linfo_string348:
-	.asciz	"DCDC_PPOWER_LIGHT"             @ string offset=5490
+	.asciz	"DCDC_PPOWER_LIGHT"             @ string offset=5527
 .Linfo_string349:
-	.asciz	"DCDC_EN_COMP_LIGHT"            @ string offset=5508
+	.asciz	"DCDC_EN_COMP_LIGHT"            @ string offset=5545
 .Linfo_string350:
-	.asciz	"DCDC_NPOWER_LIGHT"             @ string offset=5527
+	.asciz	"DCDC_NPOWER_LIGHT"             @ string offset=5564
 .Linfo_string351:
-	.asciz	"DCDC_EN_ZCD_LIGHT"             @ string offset=5545
+	.asciz	"DCDC_EN_ZCD_LIGHT"             @ string offset=5582
 .Linfo_string352:
-	.asciz	"DCDC_PDRIVE_LIGHT"             @ string offset=5563
+	.asciz	"DCDC_PDRIVE_LIGHT"             @ string offset=5600
 .Linfo_string353:
-	.asciz	"DCDC_MG_LIGHT"                 @ string offset=5581
+	.asciz	"DCDC_MG_LIGHT"                 @ string offset=5618
 .Linfo_string354:
-	.asciz	"DCDC_NDRIVE_LIGHT"             @ string offset=5595
+	.asciz	"DCDC_NDRIVE_LIGHT"             @ string offset=5632
 .Linfo_string355:
-	.asciz	"DCDC_CM_LIGHT"                 @ string offset=5613
+	.asciz	"DCDC_CM_LIGHT"                 @ string offset=5650
 .Linfo_string356:
-	.asciz	"DCDC_PW_LIGHT"                 @ string offset=5627
+	.asciz	"DCDC_PW_LIGHT"                 @ string offset=5664
 .Linfo_string357:
-	.asciz	"DCDC_C_SC_LIGHT"               @ string offset=5641
+	.asciz	"DCDC_C_SC_LIGHT"               @ string offset=5678
 .Linfo_string358:
-	.asciz	"DCDC_C_HG_LIGHT"               @ string offset=5657
+	.asciz	"DCDC_C_HG_LIGHT"               @ string offset=5694
 .Linfo_string359:
-	.asciz	"DCDC_PWMF_LIGHT"               @ string offset=5673
+	.asciz	"DCDC_PWMF_LIGHT"               @ string offset=5710
 .Linfo_string360:
-	.asciz	"DCDC_OS_PN_LIGHT"              @ string offset=5689
+	.asciz	"DCDC_OS_PN_LIGHT"              @ string offset=5726
 .Linfo_string361:
-	.asciz	"DCDC_OS_LIGHT"                 @ string offset=5706
+	.asciz	"DCDC_OS_LIGHT"                 @ string offset=5743
 .Linfo_string362:
-	.asciz	"DCDC_HG_LIGHT"                 @ string offset=5720
+	.asciz	"DCDC_HG_LIGHT"                 @ string offset=5757
 .Linfo_string363:
-	.asciz	"DCDC_DLY_LIGHT"                @ string offset=5734
+	.asciz	"DCDC_DLY_LIGHT"                @ string offset=5771
 .Linfo_string364:
-	.asciz	"pmu_dcdc_ctrl1_b"              @ string offset=5749
+	.asciz	"pmu_dcdc_ctrl1_b"              @ string offset=5786
 .Linfo_string365:
-	.asciz	"pmu_dcdc_ctrl1_s"              @ string offset=5766
+	.asciz	"pmu_dcdc_ctrl1_s"              @ string offset=5803
 .Linfo_string366:
-	.asciz	"pmu_dcdc_ctrl1_t"              @ string offset=5783
+	.asciz	"pmu_dcdc_ctrl1_t"              @ string offset=5820
 .Linfo_string367:
-	.asciz	"PMU_RESERVEDA8"                @ string offset=5800
+	.asciz	"PMU_RESERVEDA8"                @ string offset=5837
 .Linfo_string368:
-	.asciz	"PMU_OTHER_CTRL"                @ string offset=5815
+	.asciz	"PMU_OTHER_CTRL"                @ string offset=5852
 .Linfo_string369:
-	.asciz	"LLDO_SIN"                      @ string offset=5830
+	.asciz	"LLDO_SIN"                      @ string offset=5867
 .Linfo_string370:
-	.asciz	"LLDO_LOUT"                     @ string offset=5839
+	.asciz	"LLDO_LOUT"                     @ string offset=5876
 .Linfo_string371:
-	.asciz	"LLDO_IOC"                      @ string offset=5849
+	.asciz	"LLDO_IOC"                      @ string offset=5886
 .Linfo_string372:
-	.asciz	"LLDO_EN_OCP"                   @ string offset=5858
+	.asciz	"LLDO_EN_OCP"                   @ string offset=5895
 .Linfo_string373:
-	.asciz	"IOLDO_SIN"                     @ string offset=5870
+	.asciz	"IOLDO_SIN"                     @ string offset=5907
 .Linfo_string374:
-	.asciz	"IOLDO_LOUT"                    @ string offset=5880
+	.asciz	"IOLDO_LOUT"                    @ string offset=5917
 .Linfo_string375:
-	.asciz	"IOLDO_CM"                      @ string offset=5891
+	.asciz	"IOLDO_CM"                      @ string offset=5928
 .Linfo_string376:
-	.asciz	"IOLDO_RET_SIN"                 @ string offset=5900
+	.asciz	"IOLDO_RET_SIN"                 @ string offset=5937
 .Linfo_string377:
-	.asciz	"IOLDO_RET_LOUT"                @ string offset=5914
+	.asciz	"IOLDO_RET_LOUT"                @ string offset=5951
 .Linfo_string378:
-	.asciz	"DCDC_IOC"                      @ string offset=5929
+	.asciz	"DCDC_IOC"                      @ string offset=5966
 .Linfo_string379:
-	.asciz	"DCDC_EN_OCP"                   @ string offset=5938
+	.asciz	"DCDC_EN_OCP"                   @ string offset=5975
 .Linfo_string380:
-	.asciz	"DCDC_SW_HEAVY"                 @ string offset=5950
+	.asciz	"DCDC_SW_HEAVY"                 @ string offset=5987
 .Linfo_string381:
-	.asciz	"DCDC_AUTO_HEAVY"               @ string offset=5964
+	.asciz	"DCDC_AUTO_HEAVY"               @ string offset=6001
 .Linfo_string382:
-	.asciz	"RESERVED22"                    @ string offset=5980
+	.asciz	"RESERVED22"                    @ string offset=6017
 .Linfo_string383:
-	.asciz	"IOLDO_IOC"                     @ string offset=5991
+	.asciz	"IOLDO_IOC"                     @ string offset=6028
 .Linfo_string384:
-	.asciz	"IOLDO_EN_OCP"                  @ string offset=6001
+	.asciz	"IOLDO_EN_OCP"                  @ string offset=6038
 .Linfo_string385:
-	.asciz	"SEL_BG0P6"                     @ string offset=6014
+	.asciz	"SEL_BG0P6"                     @ string offset=6051
 .Linfo_string386:
-	.asciz	"SEL_BG0P95"                    @ string offset=6024
+	.asciz	"SEL_BG0P95"                    @ string offset=6061
 .Linfo_string387:
-	.asciz	"SEL_BG1P2"                     @ string offset=6035
+	.asciz	"SEL_BG1P2"                     @ string offset=6072
 .Linfo_string388:
-	.asciz	"SEL_IREF"                      @ string offset=6045
+	.asciz	"SEL_IREF"                      @ string offset=6082
 .Linfo_string389:
-	.asciz	"pmu_other_ctrl_b"              @ string offset=6054
+	.asciz	"pmu_other_ctrl_b"              @ string offset=6091
 .Linfo_string390:
-	.asciz	"pmu_other_ctrl_s"              @ string offset=6071
+	.asciz	"pmu_other_ctrl_s"              @ string offset=6108
 .Linfo_string391:
-	.asciz	"pmu_other_ctrl_t"              @ string offset=6088
+	.asciz	"pmu_other_ctrl_t"              @ string offset=6125
 .Linfo_string392:
-	.asciz	"PMU_EN_CTRL"                   @ string offset=6105
+	.asciz	"PMU_EN_CTRL"                   @ string offset=6142
 .Linfo_string393:
-	.asciz	"EN_DCDC_NM"                    @ string offset=6117
+	.asciz	"EN_DCDC_NM"                    @ string offset=6154
 .Linfo_string394:
-	.asciz	"EN_LLDO_NM"                    @ string offset=6128
+	.asciz	"EN_LLDO_NM"                    @ string offset=6165
 .Linfo_string395:
-	.asciz	"EN_IOLDO_NM"                   @ string offset=6139
+	.asciz	"EN_IOLDO_NM"                   @ string offset=6176
 .Linfo_string396:
-	.asciz	"EN_BG1_NM"                     @ string offset=6151
+	.asciz	"EN_BG1_NM"                     @ string offset=6188
 .Linfo_string397:
-	.asciz	"EN_BG2_NM"                     @ string offset=6161
+	.asciz	"EN_BG2_NM"                     @ string offset=6198
 .Linfo_string398:
-	.asciz	"EN_BOD_NM"                     @ string offset=6171
+	.asciz	"EN_BOD_NM"                     @ string offset=6208
 .Linfo_string399:
-	.asciz	"EN_DECT_NM"                    @ string offset=6181
+	.asciz	"EN_DECT_NM"                    @ string offset=6218
 .Linfo_string400:
-	.asciz	"EN_DCDC_SP"                    @ string offset=6192
+	.asciz	"EN_DCDC_SP"                    @ string offset=6229
 .Linfo_string401:
-	.asciz	"EN_LLDO_SP"                    @ string offset=6203
+	.asciz	"EN_LLDO_SP"                    @ string offset=6240
 .Linfo_string402:
-	.asciz	"EN_IOLDO_SP"                   @ string offset=6214
+	.asciz	"EN_IOLDO_SP"                   @ string offset=6251
 .Linfo_string403:
-	.asciz	"EN_BG1_SP"                     @ string offset=6226
+	.asciz	"EN_BG1_SP"                     @ string offset=6263
 .Linfo_string404:
-	.asciz	"EN_BG2_SP"                     @ string offset=6236
+	.asciz	"EN_BG2_SP"                     @ string offset=6273
 .Linfo_string405:
-	.asciz	"EN_BOD_SP"                     @ string offset=6246
+	.asciz	"EN_BOD_SP"                     @ string offset=6283
 .Linfo_string406:
-	.asciz	"EN_DECT_SP"                    @ string offset=6256
+	.asciz	"EN_DECT_SP"                    @ string offset=6293
 .Linfo_string407:
-	.asciz	"EN_DCDC_DS"                    @ string offset=6267
+	.asciz	"EN_DCDC_DS"                    @ string offset=6304
 .Linfo_string408:
-	.asciz	"EN_LLDO_DS"                    @ string offset=6278
+	.asciz	"EN_LLDO_DS"                    @ string offset=6315
 .Linfo_string409:
-	.asciz	"EN_IOLDO_DS"                   @ string offset=6289
+	.asciz	"EN_IOLDO_DS"                   @ string offset=6326
 .Linfo_string410:
-	.asciz	"EN_BG1_DS"                     @ string offset=6301
+	.asciz	"EN_BG1_DS"                     @ string offset=6338
 .Linfo_string411:
-	.asciz	"EN_BG2_DS"                     @ string offset=6311
+	.asciz	"EN_BG2_DS"                     @ string offset=6348
 .Linfo_string412:
-	.asciz	"EN_BOD_DS"                     @ string offset=6321
+	.asciz	"EN_BOD_DS"                     @ string offset=6358
 .Linfo_string413:
-	.asciz	"EN_DECT_DS"                    @ string offset=6331
+	.asciz	"EN_DECT_DS"                    @ string offset=6368
 .Linfo_string414:
-	.asciz	"RESERVED24"                    @ string offset=6342
+	.asciz	"RESERVED24"                    @ string offset=6379
 .Linfo_string415:
-	.asciz	"DIS_IOLOD_RET"                 @ string offset=6353
+	.asciz	"DIS_IOLOD_RET"                 @ string offset=6390
 .Linfo_string416:
-	.asciz	"UVH_DISABLE"                   @ string offset=6367
+	.asciz	"UVH_DISABLE"                   @ string offset=6404
 .Linfo_string417:
-	.asciz	"DIS_POR_NM"                    @ string offset=6379
+	.asciz	"DIS_POR_NM"                    @ string offset=6416
 .Linfo_string418:
-	.asciz	"DIS_POR_SP"                    @ string offset=6390
+	.asciz	"DIS_POR_SP"                    @ string offset=6427
 .Linfo_string419:
-	.asciz	"DIS_POR_DS"                    @ string offset=6401
+	.asciz	"DIS_POR_DS"                    @ string offset=6438
 .Linfo_string420:
-	.asciz	"pmu_en_ctrl_b"                 @ string offset=6412
+	.asciz	"pmu_en_ctrl_b"                 @ string offset=6449
 .Linfo_string421:
-	.asciz	"pmu_en_ctrl_s"                 @ string offset=6426
+	.asciz	"pmu_en_ctrl_s"                 @ string offset=6463
 .Linfo_string422:
-	.asciz	"pmu_en_ctrl_t"                 @ string offset=6440
+	.asciz	"pmu_en_ctrl_t"                 @ string offset=6477
 .Linfo_string423:
-	.asciz	"PMU_RESERVEDB4"                @ string offset=6454
+	.asciz	"PMU_RESERVEDB4"                @ string offset=6491
 .Linfo_string424:
-	.asciz	"PMU_RESERVEDB8"                @ string offset=6469
+	.asciz	"PMU_RESERVEDB8"                @ string offset=6506
 .Linfo_string425:
-	.asciz	"PMU_BBPLLR"                    @ string offset=6484
+	.asciz	"PMU_BBPLLR"                    @ string offset=6521
 .Linfo_string426:
-	.asciz	"BBPLL_BANK_VCO"                @ string offset=6495
+	.asciz	"BBPLL_BANK_VCO"                @ string offset=6532
 .Linfo_string427:
-	.asciz	"BBPLL_VTBIT"                   @ string offset=6510
+	.asciz	"BBPLL_VTBIT"                   @ string offset=6547
 .Linfo_string428:
-	.asciz	"RESERVED30"                    @ string offset=6522
+	.asciz	"RESERVED30"                    @ string offset=6559
 .Linfo_string429:
-	.asciz	"pmu_bbpllr_b"                  @ string offset=6533
+	.asciz	"pmu_bbpllr_b"                  @ string offset=6570
 .Linfo_string430:
-	.asciz	"pmu_bbpllr_s"                  @ string offset=6546
+	.asciz	"pmu_bbpllr_s"                  @ string offset=6583
 .Linfo_string431:
-	.asciz	"pmu_bbpllr_t"                  @ string offset=6559
+	.asciz	"pmu_bbpllr_t"                  @ string offset=6596
 .Linfo_string432:
-	.asciz	"PMU_RESERVEDC0"                @ string offset=6572
+	.asciz	"PMU_RESERVEDC0"                @ string offset=6609
 .Linfo_string433:
-	.asciz	"PMU_BBPLL"                     @ string offset=6587
+	.asciz	"PMU_BBPLL"                     @ string offset=6624
 .Linfo_string434:
-	.asciz	"BBPLL_HI"                      @ string offset=6597
+	.asciz	"BBPLL_HI"                      @ string offset=6634
 .Linfo_string435:
-	.asciz	"BBPLL_INI_BANK"                @ string offset=6606
+	.asciz	"BBPLL_INI_BANK"                @ string offset=6643
 .Linfo_string436:
-	.asciz	"BBPLL_PW"                      @ string offset=6621
+	.asciz	"BBPLL_PW"                      @ string offset=6658
 .Linfo_string437:
-	.asciz	"BBPLL_BYP_LDO"                 @ string offset=6630
+	.asciz	"BBPLL_BYP_LDO"                 @ string offset=6667
 .Linfo_string438:
-	.asciz	"BBPLL_MANUBANK"                @ string offset=6644
+	.asciz	"BBPLL_MANUBANK"                @ string offset=6681
 .Linfo_string439:
-	.asciz	"BBPLL_TRIGGER_BG"              @ string offset=6659
+	.asciz	"BBPLL_TRIGGER_BG"              @ string offset=6696
 .Linfo_string440:
-	.asciz	"BBPLL_TP_VT"                   @ string offset=6676
+	.asciz	"BBPLL_TP_VT"                   @ string offset=6713
 .Linfo_string441:
-	.asciz	"BBPLL_SEL_DLY"                 @ string offset=6688
+	.asciz	"BBPLL_SEL_DLY"                 @ string offset=6725
 .Linfo_string442:
-	.asciz	"BBPLL_SEL_ICP"                 @ string offset=6702
+	.asciz	"BBPLL_SEL_ICP"                 @ string offset=6739
 .Linfo_string443:
-	.asciz	"BBPLL_SEL_TC"                  @ string offset=6716
+	.asciz	"BBPLL_SEL_TC"                  @ string offset=6753
 .Linfo_string444:
-	.asciz	"BBPLL_SEL_VTH"                 @ string offset=6729
+	.asciz	"BBPLL_SEL_VTH"                 @ string offset=6766
 .Linfo_string445:
-	.asciz	"BBPLL_RESETN_MAN"              @ string offset=6743
+	.asciz	"BBPLL_RESETN_MAN"              @ string offset=6780
 .Linfo_string446:
-	.asciz	"BBPLL_RESETN_AUTO"             @ string offset=6760
+	.asciz	"BBPLL_RESETN_AUTO"             @ string offset=6797
 .Linfo_string447:
-	.asciz	"BBPLL_EN_START"                @ string offset=6778
+	.asciz	"BBPLL_EN_START"                @ string offset=6815
 .Linfo_string448:
-	.asciz	"BBPLL_BYP"                     @ string offset=6793
+	.asciz	"BBPLL_BYP"                     @ string offset=6830
 .Linfo_string449:
-	.asciz	"BBPLL_BANK1_MAN"               @ string offset=6803
+	.asciz	"BBPLL_BANK1_MAN"               @ string offset=6840
 .Linfo_string450:
-	.asciz	"BBPLL_BANK1_AUTO"              @ string offset=6819
+	.asciz	"BBPLL_BANK1_AUTO"              @ string offset=6856
 .Linfo_string451:
-	.asciz	"EN_UVL"                        @ string offset=6836
+	.asciz	"EN_UVL"                        @ string offset=6873
 .Linfo_string452:
-	.asciz	"UVL_OUT_VALID"                 @ string offset=6843
+	.asciz	"UVL_OUT_VALID"                 @ string offset=6880
 .Linfo_string453:
-	.asciz	"RESERVED26"                    @ string offset=6857
+	.asciz	"RESERVED26"                    @ string offset=6894
 .Linfo_string454:
-	.asciz	"UVL_VTH"                       @ string offset=6868
+	.asciz	"UVL_VTH"                       @ string offset=6905
 .Linfo_string455:
-	.asciz	"pmu_bbpll_b"                   @ string offset=6876
+	.asciz	"pmu_bbpll_b"                   @ string offset=6913
 .Linfo_string456:
-	.asciz	"pmu_bbpll_s"                   @ string offset=6888
+	.asciz	"pmu_bbpll_s"                   @ string offset=6925
 .Linfo_string457:
-	.asciz	"pmu_bbpll_t"                   @ string offset=6900
+	.asciz	"pmu_bbpll_t"                   @ string offset=6937
 .Linfo_string458:
-	.asciz	"PMU_RESERVEDC8"                @ string offset=6912
+	.asciz	"PMU_RESERVEDC8"                @ string offset=6949
 .Linfo_string459:
-	.asciz	"PMU_RESERVEDCC"                @ string offset=6927
+	.asciz	"PMU_RESERVEDCC"                @ string offset=6964
 .Linfo_string460:
-	.asciz	"pmu_t"                         @ string offset=6942
+	.asciz	"pmu_t"                         @ string offset=6979
 .Linfo_string461:
-	.asciz	"set_deepsleep_wakeup_pin"      @ string offset=6948
+	.asciz	"set_deepsleep_wakeup_pin"      @ string offset=6985
 .Linfo_string462:
-	.asciz	"value"                         @ string offset=6973
+	.asciz	"value"                         @ string offset=7010
 .Linfo_string463:
-	.asciz	"set_deepsleep_wakeup_invert"   @ string offset=6979
+	.asciz	"set_deepsleep_wakeup_invert"   @ string offset=7016
 .Linfo_string464:
-	.asciz	"set_sram_shutdown_normal"      @ string offset=7007
+	.asciz	"set_sram_shutdown_normal"      @ string offset=7044
 .Linfo_string465:
-	.asciz	"set_sram_shutdown_sleep"       @ string offset=7032
+	.asciz	"set_sram_shutdown_sleep"       @ string offset=7069
 .Linfo_string466:
-	.asciz	"Lpm_Comm_Subsystem_Check_System_Ready" @ string offset=7056
+	.asciz	"Lpm_Comm_Subsystem_Check_System_Ready" @ string offset=7093
 .Linfo_string467:
-	.asciz	"status"                        @ string offset=7094
+	.asciz	"status"                        @ string offset=7131
 .Linfo_string468:
-	.asciz	"Lpm_Comm_Subsystem_Check_System_DeepSleep" @ string offset=7101
+	.asciz	"Lpm_Comm_Subsystem_Check_System_DeepSleep" @ string offset=7138
 .Linfo_string469:
-	.asciz	"Lpm_Set_Sram_Sleep_Deepsleep_Shutdown" @ string offset=7143
+	.asciz	"Lpm_Set_Sram_Sleep_Deepsleep_Shutdown" @ string offset=7180
 .Linfo_string470:
-	.asciz	"sys_set_retention_reg"         @ string offset=7181
+	.asciz	"sys_set_retention_reg"         @ string offset=7218
 .Linfo_string471:
-	.asciz	"index"                         @ string offset=7203
+	.asciz	"index"                         @ string offset=7240
 .Linfo_string472:
-	.asciz	"Lpm_Low_Power_Mask"            @ string offset=7209
+	.asciz	"Lpm_Low_Power_Mask"            @ string offset=7246
 .Linfo_string473:
-	.asciz	"Lpm_Low_Power_Unmask"          @ string offset=7228
+	.asciz	"Lpm_Low_Power_Unmask"          @ string offset=7265
 .Linfo_string474:
-	.asciz	"Lpm_Get_Low_Power_Mask_Status" @ string offset=7249
+	.asciz	"Lpm_Get_Low_Power_Mask_Status" @ string offset=7286
 .Linfo_string475:
-	.asciz	"Lpm_Comm_Subsystem_Wakeup_Mask" @ string offset=7279
+	.asciz	"Lpm_Comm_Subsystem_Wakeup_Mask" @ string offset=7316
 .Linfo_string476:
-	.asciz	"Lpm_Comm_Subsystem_Wakeup_Unmask" @ string offset=7310
+	.asciz	"Lpm_Comm_Subsystem_Wakeup_Unmask" @ string offset=7347
 .Linfo_string477:
-	.asciz	"Lpm_Comm_Subsystem_Disable_Wait_32k_Done" @ string offset=7343
+	.asciz	"Lpm_Comm_Subsystem_Disable_Wait_32k_Done" @ string offset=7380
 .Linfo_string478:
-	.asciz	"Lpm_Get_Comm_Subsystem_Wakeup_Mask_Status" @ string offset=7384
+	.asciz	"Lpm_Get_Comm_Subsystem_Wakeup_Mask_Status" @ string offset=7421
 .Linfo_string479:
-	.asciz	"Lpm_Set_Low_Power_Level"       @ string offset=7426
+	.asciz	"Lpm_Set_Low_Power_Level"       @ string offset=7463
 .Linfo_string480:
-	.asciz	"Lpm_Enable_Low_Power_Wakeup"   @ string offset=7450
+	.asciz	"Lpm_Enable_Low_Power_Wakeup"   @ string offset=7487
 .Linfo_string481:
-	.asciz	"Lpm_Disable_Low_Power_Wakeup"  @ string offset=7478
+	.asciz	"Lpm_Disable_Low_Power_Wakeup"  @ string offset=7515
 .Linfo_string482:
-	.asciz	"Lpm_Set_Platform_Low_Power_Wakeup" @ string offset=7507
+	.asciz	"Lpm_Set_Platform_Low_Power_Wakeup" @ string offset=7544
 .Linfo_string483:
-	.asciz	"Lpm_Set_GPIO_Deepsleep_Wakeup_Invert" @ string offset=7541
+	.asciz	"Lpm_Set_GPIO_Deepsleep_Wakeup_Invert" @ string offset=7578
 .Linfo_string484:
-	.asciz	"Lpm_Set_Comparator_Deepsleep_Wakeup_Invert" @ string offset=7578
+	.asciz	"Lpm_Set_Comparator_Deepsleep_Wakeup_Invert" @ string offset=7615
 .Linfo_string485:
-	.asciz	"Lpm_Set_Sram_Normal_Shutdown"  @ string offset=7621
+	.asciz	"Lpm_Set_Sram_Normal_Shutdown"  @ string offset=7658
 .Linfo_string486:
-	.asciz	"Lpm_Enter_Low_Power_Mode"      @ string offset=7650
+	.asciz	"Lpm_Enter_Low_Power_Mode"      @ string offset=7687
 .Linfo_string487:
-	.asciz	"mask"                          @ string offset=7675
+	.asciz	"mask"                          @ string offset=7712
 .Linfo_string488:
-	.asciz	"unmask"                        @ string offset=7680
+	.asciz	"unmask"                        @ string offset=7717
 .Linfo_string489:
-	.asciz	"reg_buf"                       @ string offset=7687
+	.asciz	"reg_buf"                       @ string offset=7724
 .Linfo_string490:
-	.asciz	"unsigned char"                 @ string offset=7695
+	.asciz	"unsigned char"                 @ string offset=7732
 .Linfo_string491:
-	.asciz	"uint8_t"                       @ string offset=7709
+	.asciz	"uint8_t"                       @ string offset=7746
 .Linfo_string492:
-	.asciz	"low_power_level_cfg"           @ string offset=7717
+	.asciz	"low_power_level_cfg"           @ string offset=7754
 .Linfo_string493:
-	.asciz	"low_power_wakeup_cfg"          @ string offset=7737
+	.asciz	"low_power_wakeup_cfg"          @ string offset=7774
 .Linfo_string494:
-	.asciz	"wakeup_source"                 @ string offset=7758
+	.asciz	"wakeup_source"                 @ string offset=7795
 .Linfo_string495:
-	.asciz	"wakeup_source_index"           @ string offset=7772
+	.asciz	"wakeup_source_index"           @ string offset=7809
 .Linfo_string496:
-	.asciz	"platform_low_power_mode"       @ string offset=7792
+	.asciz	"platform_low_power_mode"       @ string offset=7829
 .Linfo_string497:
-	.asciz	"low_power_platform_enter_mode_cfg_t" @ string offset=7816
+	.asciz	"low_power_platform_enter_mode_cfg_t" @ string offset=7853
 .Linfo_string498:
-	.asciz	"pmu_cdcd_ctrl1_buf"            @ string offset=7852
-	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
+	.asciz	"pmu_cdcd_ctrl1_buf"            @ string offset=7889
+	.ident	"Component: Arm Compiler for Embedded 6.21 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals
 	.ARM_attribute	16, 1	@ Tag_AV_eba

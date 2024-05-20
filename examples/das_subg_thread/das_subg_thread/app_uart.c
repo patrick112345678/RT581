@@ -231,7 +231,10 @@ void __uart2_data_parse()
     if (tmp_buff)
     {
         len = __uart2_read(tmp_buff);
-        //log_info_hexdump("uart 2 parse", g_tmp_buff, len);
+        if (UART2DEBUG)
+        {
+            log_info_hexdump("uart 2 parse", tmp_buff, len);
+        }
         udf_Meter_received_task(tmp_buff, len);
         mem_free(tmp_buff);
     }
@@ -315,6 +318,6 @@ void app_uart_init(void)
     hosal_uart_ioctl(&uart1_dev, HOSAL_UART_MODE_SET, (void *)HOSAL_UART_MODE_INT_RX);
     hosal_uart_ioctl(&uart2_dev, HOSAL_UART_MODE_SET, (void *)HOSAL_UART_MODE_INT_RX);
 
-    __NVIC_SetPriority(Uart1_IRQn, 2);
-    __NVIC_SetPriority(Uart2_IRQn, 2);
+    __NVIC_SetPriority(Uart1_IRQn, 6);
+    __NVIC_SetPriority(Uart2_IRQn, 6);
 }

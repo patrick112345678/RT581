@@ -18,9 +18,9 @@
 	.eabi_attribute	26, 2	@ Tag_ABI_enum_size
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"rt_ecjpake.c"
-	.file	1 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
-	.file	2 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_crypto/rt_ecjpake.c"
-	.file	3 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_crypto/Inc/rt_ecc.h"
+	.file	1 "C:\\" "Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include\\stdint.h"
+	.file	2 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_crypto/rt_ecjpake.c"
+	.file	3 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_crypto/Inc/rt_ecc.h"
 	.section	.text.ecjpake_generate_zkp,"ax",%progbits
 	.hidden	ecjpake_generate_zkp            @ -- Begin function ecjpake_generate_zkp
 	.globl	ecjpake_generate_zkp
@@ -557,7 +557,7 @@ ecjpake_generate_zkp:
 .Lfunc_end0:
 	.size	ecjpake_generate_zkp, .Lfunc_end0-ecjpake_generate_zkp
 	.cfi_endproc
-	.file	4 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_crypto/Inc/rt_hmac_drbg.h"
+	.file	4 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_crypto/Inc/rt_hmac_drbg.h"
 	.cantunwind
 	.fnend
                                         @ -- End function
@@ -1626,8 +1626,8 @@ self_test_rngX.remain_length:
 	.long	0                               @ 0x0
 	.size	self_test_rngX.remain_length, 4
 
-	.file	5 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_crypto/Inc/rt_sha256.h"
-	.file	6 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_crypto/Inc/rt_ecjpake.h"
+	.file	5 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_crypto/Inc/rt_sha256.h"
+	.file	6 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_crypto/Inc/rt_ecjpake.h"
 	.section	.debug_loc,"",%progbits
 .Ldebug_loc0:
 	.long	-1
@@ -3280,182 +3280,182 @@ self_test_rngX.remain_length:
 	.long	0
 	.section	.debug_str,"MS",%progbits,1
 .Linfo_string0:
-	.asciz	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]" @ string offset=0
+	.asciz	"Component: Arm Compiler for Embedded 6.21 Tool: armclang [5dfeb700]" @ string offset=0
 .Linfo_string1:
-	.asciz	"../../../components/platform/soc/rt582/rt582_crypto\\rt_ecjpake.c" @ string offset=55
+	.asciz	"../../../components/platform/soc/rt582/rt582_crypto\\rt_ecjpake.c" @ string offset=68
 .Linfo_string2:
-	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=120
+	.asciz	"C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" @ string offset=133
 .Linfo_string3:
-	.asciz	"length_key"                    @ string offset=181
+	.asciz	"length_key"                    @ string offset=218
 .Linfo_string4:
-	.asciz	"unsigned char"                 @ string offset=192
+	.asciz	"unsigned char"                 @ string offset=229
 .Linfo_string5:
-	.asciz	"uint8_t"                       @ string offset=206
+	.asciz	"uint8_t"                       @ string offset=243
 .Linfo_string6:
-	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=214
+	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=251
 .Linfo_string7:
-	.asciz	"length_id"                     @ string offset=234
+	.asciz	"length_id"                     @ string offset=271
 .Linfo_string8:
-	.asciz	"client_string"                 @ string offset=244
+	.asciz	"client_string"                 @ string offset=281
 .Linfo_string9:
-	.asciz	"server_string"                 @ string offset=258
+	.asciz	"server_string"                 @ string offset=295
 .Linfo_string10:
-	.asciz	"entropy_input"                 @ string offset=272
+	.asciz	"entropy_input"                 @ string offset=309
 .Linfo_string11:
-	.asciz	"nonce"                         @ string offset=286
+	.asciz	"nonce"                         @ string offset=323
 .Linfo_string12:
-	.asciz	"entropy_input_reseed"          @ string offset=292
+	.asciz	"entropy_input_reseed"          @ string offset=329
 .Linfo_string13:
-	.asciz	"additional_input_reseed"       @ string offset=313
+	.asciz	"additional_input_reseed"       @ string offset=350
 .Linfo_string14:
-	.asciz	"additional_input"              @ string offset=337
+	.asciz	"additional_input"              @ string offset=374
 .Linfo_string15:
-	.asciz	"result"                        @ string offset=354
+	.asciz	"result"                        @ string offset=391
 .Linfo_string16:
-	.asciz	"temp_entropy_input_index"      @ string offset=361
+	.asciz	"temp_entropy_input_index"      @ string offset=398
 .Linfo_string17:
-	.asciz	"unsigned int"                  @ string offset=386
+	.asciz	"unsigned int"                  @ string offset=423
 .Linfo_string18:
-	.asciz	"uint32_t"                      @ string offset=399
+	.asciz	"uint32_t"                      @ string offset=436
 .Linfo_string19:
-	.asciz	"p_current"                     @ string offset=408
+	.asciz	"p_current"                     @ string offset=445
 .Linfo_string20:
-	.asciz	"remain_length"                 @ string offset=418
+	.asciz	"remain_length"                 @ string offset=455
 .Linfo_string21:
-	.asciz	"x"                             @ string offset=432
+	.asciz	"x"                             @ string offset=469
 .Linfo_string22:
-	.asciz	"y"                             @ string offset=434
+	.asciz	"y"                             @ string offset=471
 .Linfo_string23:
-	.asciz	"ECPoint_P256"                  @ string offset=436
+	.asciz	"ECPoint_P256"                  @ string offset=473
 .Linfo_string24:
-	.asciz	"self_test_rngX"                @ string offset=449
+	.asciz	"self_test_rngX"                @ string offset=486
 .Linfo_string25:
-	.asciz	"out"                           @ string offset=464
+	.asciz	"out"                           @ string offset=501
 .Linfo_string26:
-	.asciz	"length"                        @ string offset=468
+	.asciz	"length"                        @ string offset=505
 .Linfo_string27:
-	.asciz	"hmac_drbg_ctx"                 @ string offset=475
+	.asciz	"hmac_drbg_ctx"                 @ string offset=512
 .Linfo_string28:
-	.asciz	"key"                           @ string offset=489
+	.asciz	"key"                           @ string offset=526
 .Linfo_string29:
-	.asciz	"v"                             @ string offset=493
+	.asciz	"v"                             @ string offset=530
 .Linfo_string30:
-	.asciz	"hmac_drbg_state_struct"        @ string offset=495
+	.asciz	"hmac_drbg_state_struct"        @ string offset=532
 .Linfo_string31:
-	.asciz	"hmac_drbg_state"               @ string offset=518
+	.asciz	"hmac_drbg_state"               @ string offset=555
 .Linfo_string32:
-	.asciz	"seed_material"                 @ string offset=534
+	.asciz	"seed_material"                 @ string offset=571
 .Linfo_string33:
-	.asciz	"i"                             @ string offset=548
+	.asciz	"i"                             @ string offset=585
 .Linfo_string34:
-	.asciz	"temp_ptr"                      @ string offset=550
+	.asciz	"temp_ptr"                      @ string offset=587
 .Linfo_string35:
-	.asciz	"p_result"                      @ string offset=559
+	.asciz	"p_result"                      @ string offset=596
 .Linfo_string36:
-	.asciz	"pb_ptr"                        @ string offset=568
+	.asciz	"pb_ptr"                        @ string offset=605
 .Linfo_string37:
-	.asciz	"ecjpake_generate_zkp"          @ string offset=575
+	.asciz	"ecjpake_generate_zkp"          @ string offset=612
 .Linfo_string38:
-	.asciz	"ecjpake_verify_zkp"            @ string offset=596
+	.asciz	"ecjpake_verify_zkp"            @ string offset=633
 .Linfo_string39:
-	.asciz	"ecjpake_generate_step2_zkp"    @ string offset=615
+	.asciz	"ecjpake_generate_step2_zkp"    @ string offset=652
 .Linfo_string40:
-	.asciz	"ecjpake_verify_step2_zkp"      @ string offset=642
+	.asciz	"ecjpake_verify_step2_zkp"      @ string offset=679
 .Linfo_string41:
-	.asciz	"ecjpake_compute_key"           @ string offset=667
+	.asciz	"ecjpake_compute_key"           @ string offset=704
 .Linfo_string42:
-	.asciz	"random_number_le"              @ string offset=687
+	.asciz	"random_number_le"              @ string offset=724
 .Linfo_string43:
-	.asciz	"private_key_le"                @ string offset=704
+	.asciz	"private_key_le"                @ string offset=741
 .Linfo_string44:
-	.asciz	"random_number"                 @ string offset=719
+	.asciz	"random_number"                 @ string offset=756
 .Linfo_string45:
-	.asciz	"point"                         @ string offset=733
+	.asciz	"point"                         @ string offset=770
 .Linfo_string46:
-	.asciz	"generator_le"                  @ string offset=739
+	.asciz	"generator_le"                  @ string offset=776
 .Linfo_string47:
-	.asciz	"sha_cnxt"                      @ string offset=752
+	.asciz	"sha_cnxt"                      @ string offset=789
 .Linfo_string48:
-	.asciz	"total"                         @ string offset=761
+	.asciz	"total"                         @ string offset=798
 .Linfo_string49:
-	.asciz	"state"                         @ string offset=767
+	.asciz	"state"                         @ string offset=804
 .Linfo_string50:
-	.asciz	"buffer"                        @ string offset=773
+	.asciz	"buffer"                        @ string offset=810
 .Linfo_string51:
-	.asciz	"sha256_context"                @ string offset=780
+	.asciz	"sha256_context"                @ string offset=817
 .Linfo_string52:
-	.asciz	"sha256_digest"                 @ string offset=795
+	.asciz	"sha256_digest"                 @ string offset=832
 .Linfo_string53:
-	.asciz	"sha256_digest_le"              @ string offset=809
+	.asciz	"sha256_digest_le"              @ string offset=846
 .Linfo_string54:
-	.asciz	"ctx"                           @ string offset=826
+	.asciz	"ctx"                           @ string offset=863
 .Linfo_string55:
-	.asciz	"ecc_point_X1"                  @ string offset=830
+	.asciz	"ecc_point_X1"                  @ string offset=867
 .Linfo_string56:
-	.asciz	"ecc_point_X2"                  @ string offset=843
+	.asciz	"ecc_point_X2"                  @ string offset=880
 .Linfo_string57:
-	.asciz	"ecc_point_X3"                  @ string offset=856
+	.asciz	"ecc_point_X3"                  @ string offset=893
 .Linfo_string58:
-	.asciz	"ecc_point_X4"                  @ string offset=869
+	.asciz	"ecc_point_X4"                  @ string offset=906
 .Linfo_string59:
-	.asciz	"private_key_x1"                @ string offset=882
+	.asciz	"private_key_x1"                @ string offset=919
 .Linfo_string60:
-	.asciz	"private_key_x2"                @ string offset=897
+	.asciz	"private_key_x2"                @ string offset=934
 .Linfo_string61:
-	.asciz	"share_key"                     @ string offset=912
+	.asciz	"share_key"                     @ string offset=949
 .Linfo_string62:
-	.asciz	"role"                          @ string offset=922
+	.asciz	"role"                          @ string offset=959
 .Linfo_string63:
-	.asciz	"secret"                        @ string offset=927
+	.asciz	"secret"                        @ string offset=964
 .Linfo_string64:
-	.asciz	"ecjpake_context"               @ string offset=934
+	.asciz	"ecjpake_context"               @ string offset=971
 .Linfo_string65:
-	.asciz	"ECJPAKE_CTX"                   @ string offset=950
+	.asciz	"ECJPAKE_CTX"                   @ string offset=987
 .Linfo_string66:
-	.asciz	"X"                             @ string offset=962
+	.asciz	"X"                             @ string offset=999
 .Linfo_string67:
-	.asciz	"zkp"                           @ string offset=964
+	.asciz	"zkp"                           @ string offset=1001
 .Linfo_string68:
-	.asciz	"V"                             @ string offset=968
+	.asciz	"V"                             @ string offset=1005
 .Linfo_string69:
-	.asciz	"r"                             @ string offset=970
+	.asciz	"r"                             @ string offset=1007
 .Linfo_string70:
-	.asciz	"ECJPAKE_ZKP"                   @ string offset=972
+	.asciz	"ECJPAKE_ZKP"                   @ string offset=1009
 .Linfo_string71:
-	.asciz	"ECJPAKEKeyKP"                  @ string offset=984
+	.asciz	"ECJPAKEKeyKP"                  @ string offset=1021
 .Linfo_string72:
-	.asciz	"gen"                           @ string offset=997
+	.asciz	"gen"                           @ string offset=1034
 .Linfo_string73:
-	.asciz	"private_key"                   @ string offset=1001
+	.asciz	"private_key"                   @ string offset=1038
 .Linfo_string74:
-	.asciz	"point_X"                       @ string offset=1013
+	.asciz	"point_X"                       @ string offset=1050
 .Linfo_string75:
-	.asciz	"point_Gr"                      @ string offset=1021
+	.asciz	"point_Gr"                      @ string offset=1058
 .Linfo_string76:
-	.asciz	"point_Xh"                      @ string offset=1030
+	.asciz	"point_Xh"                      @ string offset=1067
 .Linfo_string77:
-	.asciz	"zkp_r_le"                      @ string offset=1039
+	.asciz	"zkp_r_le"                      @ string offset=1076
 .Linfo_string78:
-	.asciz	"generator"                     @ string offset=1048
+	.asciz	"generator"                     @ string offset=1085
 .Linfo_string79:
-	.asciz	"status"                        @ string offset=1058
+	.asciz	"status"                        @ string offset=1095
 .Linfo_string80:
-	.asciz	"temp_point"                    @ string offset=1065
+	.asciz	"temp_point"                    @ string offset=1102
 .Linfo_string81:
-	.asciz	"new_generator_le"              @ string offset=1076
+	.asciz	"new_generator_le"              @ string offset=1113
 .Linfo_string82:
-	.asciz	"secret_number_le"              @ string offset=1093
+	.asciz	"secret_number_le"              @ string offset=1130
 .Linfo_string83:
-	.asciz	"secret_number"                 @ string offset=1110
+	.asciz	"secret_number"                 @ string offset=1147
 .Linfo_string84:
-	.asciz	"secret_x2_le"                  @ string offset=1124
+	.asciz	"secret_x2_le"                  @ string offset=1161
 .Linfo_string85:
-	.asciz	"temp_point2"                   @ string offset=1137
+	.asciz	"temp_point2"                   @ string offset=1174
 .Linfo_string86:
-	.asciz	"key_le"                        @ string offset=1149
+	.asciz	"key_le"                        @ string offset=1186
 .Linfo_string87:
-	.asciz	"pms"                           @ string offset=1156
-	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
+	.asciz	"pms"                           @ string offset=1193
+	.ident	"Component: Arm Compiler for Embedded 6.21 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals
 	.ARM_attribute	16, 1	@ Tag_AV_eba

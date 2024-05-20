@@ -18,16 +18,16 @@
 	.eabi_attribute	26, 2	@ Tag_ABI_enum_size
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"network_management.c"
-	.file	1 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../das_subg_thread/network_management.c"
-	.file	2 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/coap.h"
-	.file	3 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/message.h"
-	.file	4 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
-	.file	5 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/ip6.h"
-	.file	6 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\timers.h"
-	.file	7 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/thread.h"
-	.file	8 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/error.h"
-	.file	9 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/thread_ftd.h"
-	.file	10 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\\portmacro.h"
+	.file	1 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das -0515\\examples\\das_subg_thread\\keil" "../das_subg_thread/network_management.c"
+	.file	2 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das -0515\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/coap.h"
+	.file	3 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das -0515\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/message.h"
+	.file	4 "C:\\" "Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include\\stdint.h"
+	.file	5 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das -0515\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/ip6.h"
+	.file	6 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das -0515\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\timers.h"
+	.file	7 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das -0515\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/thread.h"
+	.file	8 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das -0515\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/error.h"
+	.file	9 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das -0515\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/thread_ftd.h"
+	.file	10 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das -0515\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\\portmacro.h"
 	.section	.text.nwk_mgm_debug_level,"ax",%progbits
 	.hidden	nwk_mgm_debug_level             @ -- Begin function nwk_mgm_debug_level
 	.globl	nwk_mgm_debug_level
@@ -636,8 +636,8 @@ nwk_mgm_child_reg_table_display:
 @ %bb.16:
 	@DEBUG_VALUE: nwk_mgm_child_reg_table_display:count <- $r6
 	.loc	1 373 9 is_stmt 1               @ ../das_subg_thread/network_management.c:373:9
-	movw	r0, :lower16:.Lstr.37
-	movt	r0, :upper16:.Lstr.37
+	movw	r0, :lower16:.Lstr.36
+	movt	r0, :upper16:.Lstr.36
 	bl	puts
 .Ltmp63:
 	.loc	1 374 9                         @ ../das_subg_thread/network_management.c:374:9
@@ -1515,8 +1515,8 @@ nwk_mgm_ack_process:
 	@DEBUG_VALUE: nwk_mgm_ack_process:aMessageInfo <- [DW_OP_LLVM_entry_value 1] $r2
 	@DEBUG_VALUE: nwk_mgm_ack_process:aContext <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 738 41 is_stmt 1              @ ../das_subg_thread/network_management.c:738:41
-	movw	r0, :lower16:.Lstr.46
-	movt	r0, :upper16:.Lstr.46
+	movw	r0, :lower16:.Lstr.45
+	movt	r0, :upper16:.Lstr.45
 	bl	puts
 .Ltmp172:
 .LBB7_22:
@@ -1537,19 +1537,19 @@ nwk_mgm_ack_process:
 	.p2align	2
 @ %bb.23:
 .LCPI7_0:
-.L.str.16:
+.L.str.15:
 	.asciz	"ack state %u\n\r\n"
 .LCPI7_1:
-.L.str.17:
+.L.str.16:
 	.asciz	"kick %04x, %02X%02X%02X%02X%02X%02X%02X%02X, %d \n\r\n"
 .LCPI7_2:
-.Lstr.43:
+.Lstr.42:
 	.asciz	"kick self \n\r\000\000\000"
 .Lfunc_end7:
 	.size	nwk_mgm_ack_process, .Lfunc_end7-nwk_mgm_ack_process
 	.cfi_endproc
-	.file	11 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/instance.h"
-	.file	12 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/platform/radio.h"
+	.file	11 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das -0515\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/instance.h"
+	.file	12 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das -0515\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/platform/radio.h"
 	.cantunwind
 	.fnend
                                         @ -- End function
@@ -2313,10 +2313,10 @@ nwk_mgm_neighbor_Change_Callback:
 .L.str.9:
 	.asciz	"malloc table %u \r\n\000"
 .LCPI9_1:
-.Lstr.38:
+.Lstr.37:
 	.asciz	"leader remove \n\r\000\000\000"
 .LCPI9_2:
-.Lstr.39:
+.Lstr.38:
 	.asciz	"leader add fail \n\r\000"
 .Lfunc_end9:
 	.size	nwk_mgm_neighbor_Change_Callback, .Lfunc_end9-nwk_mgm_neighbor_Change_Callback
@@ -2679,10 +2679,10 @@ nwk_mgm_child_reg_table_add:
 @ %bb.17:
 	.loc	1 0 5                           @ ../das_subg_thread/network_management.c:0:5
 .LCPI10_0:
-.L.str.24:
+.L.str.23:
 	.asciz	"updata %02X%02X%02X%02X%02X%02X%02X%02X \n\r\n"
 .LCPI10_1:
-.L.str.25:
+.L.str.24:
 	.asciz	"add %s %04X %02X%02X%02X%02X%02X%02X%02X%02X %d \n\r\n"
 .Lfunc_end10:
 	.size	nwk_mgm_child_reg_table_add, .Lfunc_end10-nwk_mgm_child_reg_table_add
@@ -2908,7 +2908,7 @@ nwk_mgm_kick_child_post:
 @ %bb.6:
 	.loc	1 0 1 is_stmt 0                 @ ../das_subg_thread/network_management.c:0:1
 .LCPI11_0:
-.L.str.26:
+.L.str.25:
 	.asciz	"kick %s %u \n\r\n\000"
 .Lfunc_end11:
 	.size	nwk_mgm_kick_child_post, .Lfunc_end11-nwk_mgm_kick_child_post
@@ -3089,12 +3089,12 @@ nwk_mgm_child_reg_table_remove:
 @ %bb.11:
 	.loc	1 0 1 is_stmt 0                 @ ../das_subg_thread/network_management.c:0:1
 .LCPI12_0:
-.L.str.27:
+.L.str.26:
 	.asciz	"remove %s %04X %02X%02X%02X%02X%02X%02X%02X%02X %d \n\r\n\000"
 .Lfunc_end12:
 	.size	nwk_mgm_child_reg_table_remove, .Lfunc_end12-nwk_mgm_child_reg_table_remove
 	.cfi_endproc
-	.file	13 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/sysfun.h"
+	.file	13 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das -0515\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/sysfun.h"
 	.cantunwind
 	.fnend
                                         @ -- End function
@@ -3194,30 +3194,22 @@ nwk_mgm_init:
 .LBB13_3:
 	@DEBUG_VALUE: nwk_mgm_init:error <- 0
 	.loc	1 1216 5                        @ ../das_subg_thread/network_management.c:1216:5
-	adr	r0, .LCPI13_3
-	movs	r1, #0
-	bl	__2printf
-.Ltmp378:
-	.loc	1 1217 5                        @ ../das_subg_thread/network_management.c:1217:5
 	movs	r0, #0
 	add	sp, #8
 	pop	{r4, r5, r6, pc}
-.Ltmp379:
+.Ltmp378:
 	.p2align	2
 @ %bb.4:
 	.loc	1 0 5 is_stmt 0                 @ ../das_subg_thread/network_management.c:0:5
 .LCPI13_0:
-.Lstr.40:
+.Lstr.39:
 	.asciz	"nwk_mgm_init \r\000"
 .LCPI13_1:
-.Lstr.41:
+.Lstr.40:
 	.asciz	"nwk_mgm_timer exist\n\r\000\000"
 .LCPI13_2:
 .L.str.13:
 	.asciz	"nwk_mgm_timer\000\000"
-.LCPI13_3:
-.L.str.15:
-	.asciz	"nwk_mgm_init error %u \r\n\000\000\000"
 .Lfunc_end13:
 	.size	nwk_mgm_init, .Lfunc_end13-nwk_mgm_init
 	.cfi_endproc
@@ -3255,7 +3247,7 @@ nwk_mgm_request_proccess:
 	.cfi_def_cfa_offset 952
 	mov	r5, r2
 	mov	r7, r1
-.Ltmp380:
+.Ltmp379:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aMessage <- $r7
 	@DEBUG_VALUE: nwk_mgm_request_proccess:nwk_mgm_data_type <- -1
 	@DEBUG_VALUE: nwk_mgm_request_proccess:buf <- 0
@@ -3263,31 +3255,31 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aMessage <- $r7
 	.loc	1 800 41 prologue_end           @ ../das_subg_thread/network_management.c:800:41
 	add.w	r0, r2, #16
-.Ltmp381:
+.Ltmp380:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aContext <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 0 41 is_stmt 0                @ ../das_subg_thread/network_management.c:0:41
 	add	r1, sp, #64
 	.loc	1 800 5                         @ ../das_subg_thread/network_management.c:800:5
 	movs	r2, #40
 	bl	otIp6AddressToString
-.Ltmp382:
+.Ltmp381:
 	.loc	1 801 14 is_stmt 1              @ ../das_subg_thread/network_management.c:801:14
 	mov	r0, r7
 	bl	otMessageGetLength
-.Ltmp383:
+.Ltmp382:
 	mov	r4, r0
 	.loc	1 801 45 is_stmt 0              @ ../das_subg_thread/network_management.c:801:45
 	mov	r0, r7
 	bl	otMessageGetOffset
-.Ltmp384:
+.Ltmp383:
 	.loc	1 801 43                        @ ../das_subg_thread/network_management.c:801:43
 	subs	r0, r4, r0
-.Ltmp385:
+.Ltmp384:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:length <- $r0
 	.loc	1 805 13 is_stmt 1              @ ../das_subg_thread/network_management.c:805:13
 	lsls	r1, r0, #16
 	beq.w	.LBB14_70
-.Ltmp386:
+.Ltmp385:
 @ %bb.1:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aMessage <- $r7
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aMessageInfo <- $r5
@@ -3297,20 +3289,20 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:nwk_mgm_data_type <- -1
 	.loc	1 805 13 is_stmt 0              @ ../das_subg_thread/network_management.c:805:13
 	uxth	r6, r0
-.Ltmp387:
+.Ltmp386:
 	.loc	1 807 19 is_stmt 1              @ ../das_subg_thread/network_management.c:807:19
 	movw	r1, :lower16:.L__FUNCTION__.nwk_mgm_request_proccess
 	movt	r1, :upper16:.L__FUNCTION__.nwk_mgm_request_proccess
 	mov	r0, r6
-.Ltmp388:
+.Ltmp387:
 	movw	r2, #807
 	bl	mem_malloc_fn
-.Ltmp389:
+.Ltmp388:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:buf <- $r0
 	.loc	1 808 17                        @ ../das_subg_thread/network_management.c:808:17
 	cmp	r0, #0
 	beq.w	.LBB14_70
-.Ltmp390:
+.Ltmp389:
 @ %bb.2:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aMessage <- $r7
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aMessageInfo <- $r5
@@ -3319,28 +3311,28 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:nwk_mgm_data_type <- -1
 	.loc	1 0 0 is_stmt 0                 @ ../das_subg_thread/network_management.c:0:0
 	mov	r4, r0
-.Ltmp391:
+.Ltmp390:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:buf <- $r4
 	@DEBUG_VALUE: nwk_mgm_request_proccess:buf <- $r4
 	.loc	1 810 41 is_stmt 1              @ ../das_subg_thread/network_management.c:810:41
 	mov	r0, r7
 	bl	otMessageGetOffset
-.Ltmp392:
+.Ltmp391:
 	mov	r1, r0
 	.loc	1 810 17 is_stmt 0              @ ../das_subg_thread/network_management.c:810:17
 	mov	r0, r7
 	mov	r2, r4
 	mov	r3, r6
 	bl	otMessageRead
-.Ltmp393:
+.Ltmp392:
 	.loc	1 811 37 is_stmt 1              @ ../das_subg_thread/network_management.c:811:37
 	ldrb	r0, [r4]
-.Ltmp394:
+.Ltmp393:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:nwk_mgm_data_type <- undef
 	.loc	1 812 17                        @ ../das_subg_thread/network_management.c:812:17
 	cmp	r0, #2
 	beq	.LBB14_12
-.Ltmp395:
+.Ltmp394:
 @ %bb.3:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aMessage <- $r7
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aMessageInfo <- $r5
@@ -3348,7 +3340,7 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aContext <- [DW_OP_LLVM_entry_value 1] $r0
 	cmp	r0, #0
 	bne.w	.LBB14_69
-.Ltmp396:
+.Ltmp395:
 @ %bb.4:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aMessage <- $r7
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aMessageInfo <- $r5
@@ -3367,12 +3359,12 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:k <- 0
 	.loc	1 527 28                        @ ../das_subg_thread/network_management.c:527:28
 	bl	otrGetInstance
-.Ltmp397:
+.Ltmp396:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:instance <- $r0
 	.loc	1 528 9                         @ ../das_subg_thread/network_management.c:528:9
 	cmp	r0, #0
 	beq.w	.LBB14_69
-.Ltmp398:
+.Ltmp397:
 @ %bb.5:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:aMessage <- $r7
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aMessage <- $r7
@@ -3391,22 +3383,22 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aContext <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 0 0 is_stmt 0                 @ ../das_subg_thread/network_management.c:0:0
 	mov	r10, r0
-.Ltmp399:
+.Ltmp398:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:instance <- $r10
 	.loc	1 530 17 is_stmt 1              @ ../das_subg_thread/network_management.c:530:17
 	bl	otThreadGetDeviceRole
-.Ltmp400:
+.Ltmp399:
 	mov	r11, r0
-.Ltmp401:
+.Ltmp400:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:mRole <- $r11
 	.loc	1 537 25                        @ ../das_subg_thread/network_management.c:537:25
 	mov	r0, r7
 	bl	otCoapMessageGetType
-.Ltmp402:
+.Ltmp401:
 	.loc	1 537 25 is_stmt 0              @ ../das_subg_thread/network_management.c:537:25
 	cmp	r0, #0
 	bne.w	.LBB14_69
-.Ltmp403:
+.Ltmp402:
 @ %bb.6:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:mRole <- $r11
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:instance <- $r10
@@ -3429,12 +3421,12 @@ nwk_mgm_request_proccess:
 	mov	r0, r10
 	movs	r1, #0
 	bl	otCoapNewMessage
-.Ltmp404:
+.Ltmp403:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:responseMessage <- $r0
 	.loc	1 542 29                        @ ../das_subg_thread/network_management.c:542:29
 	cmp	r0, #0
 	beq.w	.LBB14_69
-.Ltmp405:
+.Ltmp404:
 @ %bb.7:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:mRole <- $r11
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:instance <- $r10
@@ -3458,16 +3450,16 @@ nwk_mgm_request_proccess:
 	movs	r3, #67
 	.loc	1 0 0 is_stmt 0                 @ ../das_subg_thread/network_management.c:0:0
 	mov	r9, r0
-.Ltmp406:
+.Ltmp405:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:responseMessage <- $r9
 	.loc	1 547 33                        @ ../das_subg_thread/network_management.c:547:33
 	bl	otCoapMessageInitResponse
-.Ltmp407:
+.Ltmp406:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:error <- $r0
 	.loc	1 548 29 is_stmt 1              @ ../das_subg_thread/network_management.c:548:29
 	cmp	r0, #0
 	bne.w	.LBB14_68
-.Ltmp408:
+.Ltmp407:
 @ %bb.8:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:mRole <- $r11
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:instance <- $r10
@@ -3487,17 +3479,17 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aContext <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 0 29 is_stmt 0                @ ../das_subg_thread/network_management.c:0:29
 	add	r0, sp, #104
-.Ltmp409:
+.Ltmp408:
 	.loc	1 552 25 is_stmt 1              @ ../das_subg_thread/network_management.c:552:25
 	mov.w	r1, #400
 	bl	__aeabi_memclr4
-.Ltmp410:
+.Ltmp409:
 	.loc	1 0 25 is_stmt 0                @ ../das_subg_thread/network_management.c:0:25
 	movs	r0, #1
 	.loc	1 556 43 is_stmt 1              @ ../das_subg_thread/network_management.c:556:43
 	movw	r1, :lower16:reg_table_is_full
 	movw	r7, :lower16:nwk_mgm_debug_flags
-.Ltmp411:
+.Ltmp410:
 	.loc	1 553 54                        @ ../das_subg_thread/network_management.c:553:54
 	strb.w	r0, [sp, #104]
 	.loc	1 556 43                        @ ../das_subg_thread/network_management.c:556:43
@@ -3510,7 +3502,7 @@ nwk_mgm_request_proccess:
 	strb	r0, [r1]
 	.loc	1 558 29                        @ ../das_subg_thread/network_management.c:558:29
 	bne	.LBB14_23
-.Ltmp412:
+.Ltmp411:
 @ %bb.9:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:mRole <- $r11
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:instance <- $r10
@@ -3527,18 +3519,18 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aContext <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 0 29 is_stmt 0                @ ../das_subg_thread/network_management.c:0:29
 	add.w	r8, sp, #504
-.Ltmp413:
+.Ltmp412:
 	.loc	1 560 33 is_stmt 1              @ ../das_subg_thread/network_management.c:560:33
 	movs	r0, #0
 	mov	r1, r4
 	mov	r2, r6
 	mov	r3, r8
 	bl	nwk_mgm_data_parse
-.Ltmp414:
+.Ltmp413:
 	.loc	1 560 33 is_stmt 0              @ ../das_subg_thread/network_management.c:560:33
 	cmp	r0, #0
 	bne.w	.LBB14_69
-.Ltmp415:
+.Ltmp414:
 @ %bb.10:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:mRole <- $r11
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:instance <- $r10
@@ -3555,14 +3547,14 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aContext <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 564 29 is_stmt 1              @ ../das_subg_thread/network_management.c:564:29
 	ldr	r0, [r7]
-.Ltmp416:
+.Ltmp415:
 	.loc	1 0 0 is_stmt 0                 @ ../das_subg_thread/network_management.c:0:0
 	ldrh.w	r11, [sp, #506]
-.Ltmp417:
+.Ltmp416:
 	.loc	1 564 29                        @ ../das_subg_thread/network_management.c:564:29
 	cmp	r0, #0
 	beq	.LBB14_26
-.Ltmp418:
+.Ltmp417:
 @ %bb.11:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:instance <- $r10
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:responseMessage <- $r9
@@ -3593,10 +3585,10 @@ nwk_mgm_request_proccess:
 	str.w	r8, [sp, #24]
 	add.w	r8, sp, #504
 	bl	__2printf
-.Ltmp419:
+.Ltmp418:
 	.loc	1 0 29                          @ ../das_subg_thread/network_management.c:0:29
 	b	.LBB14_27
-.Ltmp420:
+.Ltmp419:
 .LBB14_12:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aMessage <- $r7
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aMessageInfo <- $r5
@@ -3606,12 +3598,12 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_kick_child_proccess:length <- undef
 	.loc	1 763 28 is_stmt 1              @ ../das_subg_thread/network_management.c:763:28
 	bl	otrGetInstance
-.Ltmp421:
+.Ltmp420:
 	@DEBUG_VALUE: nwk_mgm_kick_child_proccess:instance <- $r0
 	.loc	1 764 9                         @ ../das_subg_thread/network_management.c:764:9
 	cmp	r0, #0
 	beq.w	.LBB14_69
-.Ltmp422:
+.Ltmp421:
 @ %bb.13:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aMessage <- $r7
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aMessageInfo <- $r5
@@ -3621,14 +3613,14 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aContext <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 0 0 is_stmt 0                 @ ../das_subg_thread/network_management.c:0:0
 	mov	r5, r0
-.Ltmp423:
+.Ltmp422:
 	@DEBUG_VALUE: nwk_mgm_kick_child_proccess:instance <- $r5
 	.loc	1 766 30 is_stmt 1              @ ../das_subg_thread/network_management.c:766:30
 	bl	otThreadGetDeviceRole
-.Ltmp424:
+.Ltmp423:
 	.loc	1 452 9                         @ ../das_subg_thread/network_management.c:452:9
 	cmp	r6, #5
-.Ltmp425:
+.Ltmp424:
 	@DEBUG_VALUE: nwk_mgm_kick_child_proccess:kick_child_data <- [DW_OP_LLVM_fragment 32 16] undef
 	@DEBUG_VALUE: nwk_mgm_kick_child_proccess:kick_child_data <- [DW_OP_LLVM_fragment 16 16] undef
 	@DEBUG_VALUE: nwk_mgm_kick_child_proccess:kick_child_data <- [DW_OP_LLVM_fragment 0 8] undef
@@ -3642,7 +3634,7 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_data_parse:type <- 2
 	@DEBUG_VALUE: mRole <- $r0
 	bne	.LBB14_21
-.Ltmp426:
+.Ltmp425:
 @ %bb.14:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aMessage <- $r7
 	@DEBUG_VALUE: nwk_mgm_kick_child_proccess:instance <- $r5
@@ -3652,11 +3644,11 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aContext <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 0 9 is_stmt 0                 @ ../das_subg_thread/network_management.c:0:9
 	bic	r0, r0, #1
-.Ltmp427:
+.Ltmp426:
 	.loc	1 774 25 is_stmt 1              @ ../das_subg_thread/network_management.c:774:25
 	cmp	r0, #2
 	bne.w	.LBB14_69
-.Ltmp428:
+.Ltmp427:
 @ %bb.15:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aMessage <- $r7
 	@DEBUG_VALUE: nwk_mgm_kick_child_proccess:instance <- $r5
@@ -3665,14 +3657,14 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aContext <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 780 25                        @ ../das_subg_thread/network_management.c:780:25
 	movw	r7, :lower16:nwk_mgm_debug_flags
-.Ltmp429:
+.Ltmp428:
 	movt	r7, :upper16:nwk_mgm_debug_flags
 	ldr	r0, [r7]
 	ldrh.w	r6, [r4, #3]
-.Ltmp430:
+.Ltmp429:
 	.loc	1 780 25 is_stmt 0              @ ../das_subg_thread/network_management.c:780:25
 	cbz	r0, .LBB14_17
-.Ltmp431:
+.Ltmp430:
 @ %bb.16:
 	@DEBUG_VALUE: nwk_mgm_kick_child_proccess:instance <- $r5
 	@DEBUG_VALUE: nwk_mgm_kick_child_proccess:buf <- $r4
@@ -3682,7 +3674,7 @@ nwk_mgm_request_proccess:
 	adr	r0, .LCPI14_0
 	mov	r1, r6
 	bl	__2printf
-.Ltmp432:
+.Ltmp431:
 .LBB14_17:
 	@DEBUG_VALUE: nwk_mgm_kick_child_proccess:instance <- $r5
 	@DEBUG_VALUE: nwk_mgm_kick_child_proccess:buf <- $r4
@@ -3692,10 +3684,10 @@ nwk_mgm_request_proccess:
 	mov	r0, r5
 	mov	r1, r6
 	bl	otLinkBlackListAddPanId
-.Ltmp433:
+.Ltmp432:
 	.loc	1 782 29 is_stmt 0              @ ../das_subg_thread/network_management.c:782:29
 	cbz	r0, .LBB14_20
-.Ltmp434:
+.Ltmp433:
 @ %bb.18:
 	@DEBUG_VALUE: nwk_mgm_kick_child_proccess:instance <- $r5
 	@DEBUG_VALUE: nwk_mgm_kick_child_proccess:buf <- $r4
@@ -3705,17 +3697,17 @@ nwk_mgm_request_proccess:
 	ldr	r0, [r7]
 	.loc	1 782 29                        @ ../das_subg_thread/network_management.c:782:29
 	cbz	r0, .LBB14_20
-.Ltmp435:
+.Ltmp434:
 @ %bb.19:
 	@DEBUG_VALUE: nwk_mgm_kick_child_proccess:instance <- $r5
 	@DEBUG_VALUE: nwk_mgm_kick_child_proccess:buf <- $r4
 	@DEBUG_VALUE: nwk_mgm_request_proccess:buf <- $r4
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aContext <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 784 29 is_stmt 1              @ ../das_subg_thread/network_management.c:784:29
-	movw	r0, :lower16:.Lstr.46
-	movt	r0, :upper16:.Lstr.46
+	movw	r0, :lower16:.Lstr.45
+	movt	r0, :upper16:.Lstr.45
 	bl	puts
-.Ltmp436:
+.Ltmp435:
 .LBB14_20:
 	@DEBUG_VALUE: nwk_mgm_kick_child_proccess:instance <- $r5
 	@DEBUG_VALUE: nwk_mgm_kick_child_proccess:buf <- $r4
@@ -3723,10 +3715,10 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aContext <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 786 25                        @ ../das_subg_thread/network_management.c:786:25
 	bl	nwk_mgm_reset
-.Ltmp437:
+.Ltmp436:
 	.loc	1 0 25 is_stmt 0                @ ../das_subg_thread/network_management.c:0:25
 	b	.LBB14_69
-.Ltmp438:
+.Ltmp437:
 .LBB14_21:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aMessage <- $r7
 	@DEBUG_VALUE: nwk_mgm_kick_child_proccess:instance <- $r5
@@ -3741,14 +3733,14 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aContext <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 454 9 is_stmt 1               @ ../das_subg_thread/network_management.c:454:9
 	movw	r0, :lower16:nwk_mgm_debug_flags
-.Ltmp439:
+.Ltmp438:
 	movt	r0, :upper16:nwk_mgm_debug_flags
 	ldr	r0, [r0]
-.Ltmp440:
+.Ltmp439:
 	.loc	1 454 9 is_stmt 0               @ ../das_subg_thread/network_management.c:454:9
 	cmp	r0, #0
 	beq.w	.LBB14_69
-.Ltmp441:
+.Ltmp440:
 @ %bb.22:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aMessage <- $r7
 	@DEBUG_VALUE: nwk_mgm_kick_child_proccess:instance <- $r5
@@ -3761,16 +3753,16 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_data_parse:child_reg_data_ack <- 0
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aContext <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 454 9                         @ ../das_subg_thread/network_management.c:454:9
-	movw	r0, :lower16:.L.str.21
-	movt	r0, :upper16:.L.str.21
+	movw	r0, :lower16:.L.str.20
+	movt	r0, :upper16:.L.str.20
 	movs	r1, #2
 	movs	r2, #5
 	mov	r3, r6
 	bl	__2printf
-.Ltmp442:
+.Ltmp441:
 	.loc	1 0 9                           @ ../das_subg_thread/network_management.c:0:9
 	b	.LBB14_69
-.Ltmp443:
+.Ltmp442:
 .LBB14_23:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:mRole <- $r11
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:instance <- $r10
@@ -3787,10 +3779,10 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aContext <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 656 29 is_stmt 1              @ ../das_subg_thread/network_management.c:656:29
 	ldr	r0, [r7]
-.Ltmp444:
+.Ltmp443:
 	.loc	1 656 29 is_stmt 0              @ ../das_subg_thread/network_management.c:656:29
 	cbz	r0, .LBB14_25
-.Ltmp445:
+.Ltmp444:
 @ %bb.24:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:mRole <- $r11
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:instance <- $r10
@@ -3808,13 +3800,13 @@ nwk_mgm_request_proccess:
 	.loc	1 656 29                        @ ../das_subg_thread/network_management.c:656:29
 	adr	r0, .LCPI14_1
 	bl	puts
-.Ltmp446:
+.Ltmp445:
 	.loc	1 0 29                          @ ../das_subg_thread/network_management.c:0:29
 	mov.w	r11, #0
-.Ltmp447:
+.Ltmp446:
 	mov.w	r8, #0
 	b	.LBB14_57
-.Ltmp448:
+.Ltmp447:
 .LBB14_25:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:mRole <- $r11
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:instance <- $r10
@@ -3831,9 +3823,9 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aContext <- [DW_OP_LLVM_entry_value 1] $r0
 	mov.w	r8, #0
 	mov.w	r11, #0
-.Ltmp449:
+.Ltmp448:
 	b	.LBB14_59
-.Ltmp450:
+.Ltmp449:
 .LBB14_26:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:instance <- $r10
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:responseMessage <- $r9
@@ -3849,7 +3841,7 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aContext <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 579 76 is_stmt 1              @ ../das_subg_thread/network_management.c:579:76
 	ldrh.w	r6, [sp, #508]
-.Ltmp451:
+.Ltmp450:
 .LBB14_27:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:instance <- $r10
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:responseMessage <- $r9
@@ -3873,11 +3865,11 @@ nwk_mgm_request_proccess:
 	mov	r3, r7
 	str.w	r12, [sp]
 	bl	nwk_mgm_child_reg_table_add
-.Ltmp452:
+.Ltmp451:
 	.loc	1 577 33 is_stmt 0              @ ../das_subg_thread/network_management.c:577:33
 	strd	r10, r9, [sp, #36]              @ 8-byte Folded Spill
 	cbz	r0, .LBB14_31
-.Ltmp453:
+.Ltmp452:
 @ %bb.28:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:instance <- $r10
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:responseMessage <- $r9
@@ -3895,10 +3887,10 @@ nwk_mgm_request_proccess:
 	movw	r0, :lower16:nwk_mgm_debug_flags
 	movt	r0, :upper16:nwk_mgm_debug_flags
 	ldr	r0, [r0]
-.Ltmp454:
+.Ltmp453:
 	.loc	1 582 33 is_stmt 0              @ ../das_subg_thread/network_management.c:582:33
 	cbz	r0, .LBB14_30
-.Ltmp455:
+.Ltmp454:
 @ %bb.29:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:instance <- $r10
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:responseMessage <- $r9
@@ -3915,7 +3907,7 @@ nwk_mgm_request_proccess:
 	.loc	1 582 33                        @ ../das_subg_thread/network_management.c:582:33
 	adr	r0, .LCPI14_3
 	bl	puts
-.Ltmp456:
+.Ltmp455:
 .LBB14_30:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:instance <- $r10
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:responseMessage <- $r9
@@ -3957,7 +3949,7 @@ nwk_mgm_request_proccess:
 	str	r0, [sp, #56]                   @ 4-byte Spill
 	strh.w	r2, [sp, #106]
 	b	.LBB14_32
-.Ltmp457:
+.Ltmp456:
 .LBB14_31:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:instance <- $r10
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:responseMessage <- $r9
@@ -3977,7 +3969,7 @@ nwk_mgm_request_proccess:
 	movs	r0, #0
 	.loc	1 577 33 is_stmt 1              @ ../das_subg_thread/network_management.c:577:33
 	str	r0, [sp, #56]                   @ 4-byte Spill
-.Ltmp458:
+.Ltmp457:
 .LBB14_32:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:instance <- $r10
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:responseMessage <- $r9
@@ -3995,12 +3987,12 @@ nwk_mgm_request_proccess:
 	.loc	1 0 33 is_stmt 0                @ ../das_subg_thread/network_management.c:0:33
 	ldrh.w	r0, [sp, #518]
 	mov.w	r10, #0
-.Ltmp459:
+.Ltmp458:
 	.loc	1 591 29 is_stmt 1              @ ../das_subg_thread/network_management.c:591:29
 	str	r0, [sp, #48]                   @ 4-byte Spill
 	add.w	r0, r8, #18
 	str	r0, [sp, #44]                   @ 4-byte Spill
-.Ltmp460:
+.Ltmp459:
 .LBB14_33:                              @ =>This Loop Header: Depth=1
                                         @     Child Loop BB14_37 Depth 2
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:aMessageInfo <- $r5
@@ -4020,11 +4012,11 @@ nwk_mgm_request_proccess:
 	add.w	r0, r10, r10, lsl #3
 	str	r0, [sp, #60]                   @ 4-byte Spill
 	ldrb.w	r0, [r6, r0, lsl #1]
-.Ltmp461:
+.Ltmp460:
 	.loc	1 593 37                        @ ../das_subg_thread/network_management.c:593:37
 	cmp	r0, #0
 	beq	.LBB14_42
-.Ltmp462:
+.Ltmp461:
 @ %bb.34:                               @   in Loop: Header=BB14_33 Depth=1
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:i <- $r10
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:aMessageInfo <- $r5
@@ -4037,18 +4029,18 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aContext <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 595 68 is_stmt 1              @ ../das_subg_thread/network_management.c:595:68
 	ldr	r0, [sp, #60]                   @ 4-byte Reload
-.Ltmp463:
+.Ltmp462:
 	.loc	1 595 41 is_stmt 0              @ ../das_subg_thread/network_management.c:595:41
 	ldr	r1, [sp, #52]                   @ 4-byte Reload
-.Ltmp464:
+.Ltmp463:
 	.loc	1 595 68                        @ ../das_subg_thread/network_management.c:595:68
 	add.w	r9, r6, r0, lsl #1
 	ldrh.w	r0, [r9, #2]
-.Ltmp465:
+.Ltmp464:
 	.loc	1 595 41                        @ ../das_subg_thread/network_management.c:595:41
 	cmp	r0, r1
 	bne	.LBB14_42
-.Ltmp466:
+.Ltmp465:
 @ %bb.35:                               @   in Loop: Header=BB14_33 Depth=1
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:i <- $r10
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:aMessageInfo <- $r5
@@ -4063,7 +4055,7 @@ nwk_mgm_request_proccess:
 	.loc	1 597 41 is_stmt 1              @ ../das_subg_thread/network_management.c:597:41
 	ldr	r0, [sp, #48]                   @ 4-byte Reload
 	cbz	r0, .LBB14_39
-.Ltmp467:
+.Ltmp466:
 @ %bb.36:                               @   in Loop: Header=BB14_33 Depth=1
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:i <- $r10
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:aMessageInfo <- $r5
@@ -4078,7 +4070,7 @@ nwk_mgm_request_proccess:
 	.loc	1 0 41 is_stmt 0                @ ../das_subg_thread/network_management.c:0:41
 	ldrd	r8, r11, [sp, #44]              @ 8-byte Folded Reload
 	add.w	r7, r9, #6
-.Ltmp468:
+.Ltmp467:
 .LBB14_37:                              @   Parent Loop BB14_33 Depth=1
                                         @ =>  This Inner Loop Header: Depth=2
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:i <- $r10
@@ -4096,11 +4088,11 @@ nwk_mgm_request_proccess:
 	mov	r1, r8
 	movs	r2, #8
 	bl	memcmp
-.Ltmp469:
+.Ltmp468:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:k <- [DW_OP_plus_uconst 1, DW_OP_stack_value] undef
 	.loc	1 599 49 is_stmt 0              @ ../das_subg_thread/network_management.c:599:49
 	cbz	r0, .LBB14_42
-.Ltmp470:
+.Ltmp469:
 @ %bb.38:                               @   in Loop: Header=BB14_37 Depth=2
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:i <- $r10
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:aMessageInfo <- $r5
@@ -4115,10 +4107,10 @@ nwk_mgm_request_proccess:
 	.loc	1 597 55 is_stmt 1              @ ../das_subg_thread/network_management.c:597:55
 	subs.w	r11, r11, #1
 	add.w	r8, r8, #12
-.Ltmp471:
+.Ltmp470:
 	.loc	1 597 41 is_stmt 0              @ ../das_subg_thread/network_management.c:597:41
 	bne	.LBB14_37
-.Ltmp472:
+.Ltmp471:
 .LBB14_39:                              @   in Loop: Header=BB14_33 Depth=1
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:i <- $r10
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:aMessageInfo <- $r5
@@ -4133,10 +4125,10 @@ nwk_mgm_request_proccess:
 	movw	r0, :lower16:nwk_mgm_debug_flags
 	movt	r0, :upper16:nwk_mgm_debug_flags
 	ldr	r0, [r0]
-.Ltmp473:
+.Ltmp472:
 	.loc	1 607 45 is_stmt 0              @ ../das_subg_thread/network_management.c:607:45
 	cbz	r0, .LBB14_41
-.Ltmp474:
+.Ltmp473:
 @ %bb.40:                               @   in Loop: Header=BB14_33 Depth=1
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:i <- $r10
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:aMessageInfo <- $r5
@@ -4160,17 +4152,17 @@ nwk_mgm_request_proccess:
 	stm.w	sp, {r0, r1, r7}
 	add	r0, sp, #12
 	stm.w	r0, {r6, r12, lr}
-	movw	r0, :lower16:.L.str.30
+	movw	r0, :lower16:.L.str.29
 	ldr	r1, [sp, #52]                   @ 4-byte Reload
-	movt	r0, :upper16:.L.str.30
+	movt	r0, :upper16:.L.str.29
 	str.w	r8, [sp, #24]
 	bl	__2printf
-.Ltmp475:
+.Ltmp474:
 	.loc	1 618 109 is_stmt 1             @ ../das_subg_thread/network_management.c:618:109
 	movw	r0, :lower16:nwk_mgm_child_reg_table
 	movt	r0, :upper16:nwk_mgm_child_reg_table
 	ldr	r6, [r0]
-.Ltmp476:
+.Ltmp475:
 .LBB14_41:                              @   in Loop: Header=BB14_33 Depth=1
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:i <- $r10
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:aMessageInfo <- $r5
@@ -4186,7 +4178,7 @@ nwk_mgm_request_proccess:
 	adds	r0, #6
 	.loc	1 618 45 is_stmt 0              @ ../das_subg_thread/network_management.c:618:45
 	bl	nwk_mgm_child_reg_table_remove
-.Ltmp477:
+.Ltmp476:
 .LBB14_42:                              @   in Loop: Header=BB14_33 Depth=1
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:i <- $r10
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:aMessageInfo <- $r5
@@ -4199,12 +4191,12 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aContext <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 591 76 is_stmt 1              @ ../das_subg_thread/network_management.c:591:76
 	add.w	r10, r10, #1
-.Ltmp478:
+.Ltmp477:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:i <- $r10
 	.loc	1 591 29 is_stmt 0              @ ../das_subg_thread/network_management.c:591:29
 	cmp.w	r10, #30
 	bne	.LBB14_33
-.Ltmp479:
+.Ltmp478:
 @ %bb.43:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:i <- $r10
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:aMessageInfo <- $r5
@@ -4218,14 +4210,14 @@ nwk_mgm_request_proccess:
 	.loc	1 0 29                          @ ../das_subg_thread/network_management.c:0:29
 	movw	r7, :lower16:nwk_mgm_debug_flags
 	movt	r7, :upper16:nwk_mgm_debug_flags
-.Ltmp480:
+.Ltmp479:
 	.loc	1 624 29 is_stmt 1              @ ../das_subg_thread/network_management.c:624:29
 	ldr	r0, [r7]
 	ldr	r6, [sp, #48]                   @ 4-byte Reload
-.Ltmp481:
+.Ltmp480:
 	.loc	1 624 29 is_stmt 0              @ ../das_subg_thread/network_management.c:624:29
 	cbz	r0, .LBB14_45
-.Ltmp482:
+.Ltmp481:
 @ %bb.44:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:i <- $r10
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:aMessageInfo <- $r5
@@ -4240,7 +4232,7 @@ nwk_mgm_request_proccess:
 	adr	r0, .LCPI14_4
 	mov	r1, r6
 	bl	__2printf
-.Ltmp483:
+.Ltmp482:
 .LBB14_45:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:i <- $r10
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:aMessageInfo <- $r5
@@ -4254,11 +4246,11 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:i <- 0
 	.loc	1 0 29                          @ ../das_subg_thread/network_management.c:0:29
 	ldr.w	r8, [sp, #56]                   @ 4-byte Reload
-.Ltmp484:
+.Ltmp483:
 	.loc	1 625 29 is_stmt 1              @ ../das_subg_thread/network_management.c:625:29
 	cmp	r6, #0
 	beq.w	.LBB14_55
-.Ltmp485:
+.Ltmp484:
 @ %bb.46:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:aMessageInfo <- $r5
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aMessageInfo <- $r5
@@ -4273,7 +4265,7 @@ nwk_mgm_request_proccess:
 	add.w	r11, r0, #26
 	mov.w	r10, #0
 	str.w	r8, [sp, #48]                   @ 4-byte Spill
-.Ltmp486:
+.Ltmp485:
 .LBB14_47:                              @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:aMessageInfo <- $r5
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aMessageInfo <- $r5
@@ -4286,14 +4278,14 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:i <- $r10
 	.loc	1 627 33                        @ ../das_subg_thread/network_management.c:627:33
 	ldr	r0, [r7]
-.Ltmp487:
+.Ltmp486:
 	.loc	1 0 0 is_stmt 0                 @ ../das_subg_thread/network_management.c:0:0
 	ldrh.w	r1, [sp, #508]
-.Ltmp488:
+.Ltmp487:
 	.loc	1 627 33                        @ ../das_subg_thread/network_management.c:627:33
 	str.w	r8, [sp, #56]                   @ 4-byte Spill
 	cbz	r0, .LBB14_49
-.Ltmp489:
+.Ltmp488:
 @ %bb.48:                               @   in Loop: Header=BB14_47 Depth=1
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:i <- $r10
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:aMessageInfo <- $r5
@@ -4323,19 +4315,19 @@ nwk_mgm_request_proccess:
 	ldrh	r6, [r11, #-10]
 	ldrsb.w	r9, [r11]
 	strd	r1, r0, [sp, #20]
-	movw	r0, :lower16:.L.str.32
+	movw	r0, :lower16:.L.str.31
 	ldr	r3, [sp, #60]                   @ 4-byte Reload
-	movt	r0, :upper16:.L.str.32
+	movt	r0, :upper16:.L.str.31
 	mov	r1, r7
 	mov	r2, r6
 	uxtb.w	r8, r9
 	str.w	r9, [sp, #28]
 	bl	__2printf
-.Ltmp490:
+.Ltmp489:
 	.loc	1 0 33                          @ ../das_subg_thread/network_management.c:0:33
 	mov	r1, r7
 	b	.LBB14_50
-.Ltmp491:
+.Ltmp490:
 .LBB14_49:                              @   in Loop: Header=BB14_47 Depth=1
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:i <- $r10
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:aMessageInfo <- $r5
@@ -4350,7 +4342,7 @@ nwk_mgm_request_proccess:
 	ldrh	r6, [r11, #-10]
 	.loc	1 643 94                        @ ../das_subg_thread/network_management.c:643:94
 	ldrb.w	r8, [r11]
-.Ltmp492:
+.Ltmp491:
 .LBB14_50:                              @   in Loop: Header=BB14_47 Depth=1
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:i <- $r10
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:aMessageInfo <- $r5
@@ -4368,10 +4360,10 @@ nwk_mgm_request_proccess:
 	mov	r2, r6
 	str	r7, [sp]
 	bl	nwk_mgm_child_reg_table_add
-.Ltmp493:
+.Ltmp492:
 	.loc	1 639 37 is_stmt 0              @ ../das_subg_thread/network_management.c:639:37
 	cbz	r0, .LBB14_52
-.Ltmp494:
+.Ltmp493:
 @ %bb.51:                               @   in Loop: Header=BB14_47 Depth=1
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:i <- $r10
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:aMessageInfo <- $r5
@@ -4384,7 +4376,7 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aContext <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 0 37                          @ ../das_subg_thread/network_management.c:0:37
 	ldr.w	r8, [sp, #56]                   @ 4-byte Reload
-.Ltmp495:
+.Ltmp494:
 	.loc	1 645 55 is_stmt 1              @ ../das_subg_thread/network_management.c:645:55
 	movw	r0, :lower16:reg_table_is_full
 	movs	r1, #1
@@ -4418,7 +4410,7 @@ nwk_mgm_request_proccess:
 	.loc	1 649 101                       @ ../das_subg_thread/network_management.c:649:101
 	strb	r0, [r1, #14]
 	b	.LBB14_53
-.Ltmp496:
+.Ltmp495:
 .LBB14_52:                              @   in Loop: Header=BB14_47 Depth=1
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:i <- $r10
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:aMessageInfo <- $r5
@@ -4433,7 +4425,7 @@ nwk_mgm_request_proccess:
 	movw	r7, :lower16:nwk_mgm_debug_flags
 	ldr.w	r8, [sp, #56]                   @ 4-byte Reload
 	movt	r7, :upper16:nwk_mgm_debug_flags
-.Ltmp497:
+.Ltmp496:
 .LBB14_53:                              @   in Loop: Header=BB14_47 Depth=1
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:i <- $r10
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:aMessageInfo <- $r5
@@ -4448,17 +4440,17 @@ nwk_mgm_request_proccess:
 	ldrh.w	r0, [sp, #518]
 	.loc	1 625 66 is_stmt 0              @ ../das_subg_thread/network_management.c:625:66
 	add.w	r10, r10, #1
-.Ltmp498:
+.Ltmp497:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:i <- $r10
 	.loc	1 625 29                        @ ../das_subg_thread/network_management.c:625:29
 	cmp	r10, r0
-.Ltmp499:
+.Ltmp498:
 	.loc	1 625 43                        @ ../das_subg_thread/network_management.c:625:43
 	add.w	r11, r11, #12
-.Ltmp500:
+.Ltmp499:
 	.loc	1 625 29                        @ ../das_subg_thread/network_management.c:625:29
 	blo	.LBB14_47
-.Ltmp501:
+.Ltmp500:
 @ %bb.54:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:i <- $r10
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:aMessageInfo <- $r5
@@ -4471,12 +4463,12 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aContext <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 0 29                          @ ../das_subg_thread/network_management.c:0:29
 	ldr.w	r11, [sp, #48]                  @ 4-byte Reload
-.Ltmp502:
+.Ltmp501:
 	strh.w	r8, [sp, #106]
 	.loc	1 646 62 is_stmt 1              @ ../das_subg_thread/network_management.c:646:62
 	strb.w	r11, [sp, #105]
 	b	.LBB14_56
-.Ltmp503:
+.Ltmp502:
 .LBB14_55:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:aMessageInfo <- $r5
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aMessageInfo <- $r5
@@ -4489,7 +4481,7 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aContext <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 0 62 is_stmt 0                @ ../das_subg_thread/network_management.c:0:62
 	mov	r11, r8
-.Ltmp504:
+.Ltmp503:
 .LBB14_56:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:aMessageInfo <- $r5
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aMessageInfo <- $r5
@@ -4500,7 +4492,7 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:ack_rloc <- 0
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aContext <- [DW_OP_LLVM_entry_value 1] $r0
 	ldrd	r10, r9, [sp, #36]              @ 8-byte Folded Reload
-.Ltmp505:
+.Ltmp504:
 .LBB14_57:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:aMessageInfo <- $r5
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aMessageInfo <- $r5
@@ -4512,10 +4504,10 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aContext <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 658 25 is_stmt 1              @ ../das_subg_thread/network_management.c:658:25
 	ldr	r0, [r7]
-.Ltmp506:
+.Ltmp505:
 	.loc	1 658 25 is_stmt 0              @ ../das_subg_thread/network_management.c:658:25
 	cbz	r0, .LBB14_59
-.Ltmp507:
+.Ltmp506:
 @ %bb.58:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:aMessageInfo <- $r5
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aMessageInfo <- $r5
@@ -4529,7 +4521,7 @@ nwk_mgm_request_proccess:
 	uxth.w	r1, r8
 	adr	r0, .LCPI14_5
 	bl	__2printf
-.Ltmp508:
+.Ltmp507:
 .LBB14_59:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:aMessageInfo <- $r5
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aMessageInfo <- $r5
@@ -4545,11 +4537,11 @@ nwk_mgm_request_proccess:
 	mov.w	r0, #400
 	movw	r2, #659
 	bl	mem_malloc_fn
-.Ltmp509:
+.Ltmp508:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:payload <- $r0
 	.loc	1 660 29                        @ ../das_subg_thread/network_management.c:660:29
 	cbz	r0, .LBB14_66
-.Ltmp510:
+.Ltmp509:
 @ %bb.60:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:aMessageInfo <- $r5
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aMessageInfo <- $r5
@@ -4561,12 +4553,12 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aContext <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 0 0 is_stmt 0                 @ ../das_subg_thread/network_management.c:0:0
 	mov	r6, r0
-.Ltmp511:
+.Ltmp510:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:payload <- $r6
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:payload <- $r6
 	@DEBUG_VALUE: nwk_mgm_data_piece:payloadlength <- undef
 	movs	r0, #1
-.Ltmp512:
+.Ltmp511:
 	@DEBUG_VALUE: nwk_mgm_data_piece:tmp <- [DW_OP_plus_uconst 1, DW_OP_stack_value] $r6
 	@DEBUG_VALUE: nwk_mgm_data_piece:kick_child_data <- 0
 	@DEBUG_VALUE: nwk_mgm_data_piece:child_reg_data_ack <- 0
@@ -4575,25 +4567,25 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_data_piece:type <- 1
 	.loc	1 467 12 is_stmt 1              @ ../das_subg_thread/network_management.c:467:12
 	strb	r0, [r6]
-.Ltmp513:
+.Ltmp512:
 	@DEBUG_VALUE: nwk_mgm_data_piece:tmp <- [DW_OP_plus_uconst 2, DW_OP_stack_value] $r6
 	.loc	1 490 16                        @ ../das_subg_thread/network_management.c:490:16
 	strb.w	r11, [r6, #1]
 	.loc	1 493 13                        @ ../das_subg_thread/network_management.c:493:13
 	lsls.w	r0, r8, #16
-.Ltmp514:
+.Ltmp513:
 	@DEBUG_VALUE: nwk_mgm_data_piece:ptr <- [DW_OP_plus_uconst 104, DW_OP_stack_value] $sp
 	@DEBUG_VALUE: nwk_mgm_data_piece:data <- [DW_OP_plus_uconst 104, DW_OP_stack_value] $sp
 	@DEBUG_VALUE: nwk_mgm_data_piece:child_reg_data_ack <- [DW_OP_plus_uconst 104, DW_OP_stack_value] $sp
 	.loc	1 492 13                        @ ../das_subg_thread/network_management.c:492:13
 	add.w	r11, r6, #4
-.Ltmp515:
+.Ltmp514:
 	@DEBUG_VALUE: nwk_mgm_data_piece:tmp <- $r11
 	.loc	1 491 9                         @ ../das_subg_thread/network_management.c:491:9
 	strh.w	r8, [r6, #2]
 	.loc	1 493 13                        @ ../das_subg_thread/network_management.c:493:13
 	beq	.LBB14_62
-.Ltmp516:
+.Ltmp515:
 @ %bb.61:
 	@DEBUG_VALUE: nwk_mgm_data_piece:tmp <- $r11
 	@DEBUG_VALUE: nwk_mgm_data_piece:payload <- $r6
@@ -4613,7 +4605,7 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aContext <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 493 13 is_stmt 0              @ ../das_subg_thread/network_management.c:493:13
 	uxth.w	r0, r8
-.Ltmp517:
+.Ltmp516:
 	.loc	1 495 46 is_stmt 1              @ ../das_subg_thread/network_management.c:495:46
 	add	r1, sp, #104
 	.loc	1 495 88 is_stmt 0              @ ../das_subg_thread/network_management.c:495:88
@@ -4625,10 +4617,10 @@ nwk_mgm_request_proccess:
 	.loc	1 495 13                        @ ../das_subg_thread/network_management.c:495:13
 	mov	r0, r11
 	bl	__aeabi_memcpy
-.Ltmp518:
+.Ltmp517:
 	.loc	1 496 17 is_stmt 1              @ ../das_subg_thread/network_management.c:496:17
 	add.w	r11, r11, r7, lsl #2
-.Ltmp519:
+.Ltmp518:
 	@DEBUG_VALUE: nwk_mgm_data_piece:tmp <- $r11
 	@DEBUG_VALUE: nwk_mgm_data_piece:child_reg_data_ack <- [DW_OP_plus_uconst 104, DW_OP_stack_value] $sp
 .LBB14_62:
@@ -4643,13 +4635,13 @@ nwk_mgm_request_proccess:
 	.loc	1 663 37                        @ ../das_subg_thread/network_management.c:663:37
 	mov	r0, r9
 	bl	otCoapMessageSetPayloadMarker
-.Ltmp520:
+.Ltmp519:
 	mov	r7, r0
-.Ltmp521:
+.Ltmp520:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:error <- $r7
 	.loc	1 664 33                        @ ../das_subg_thread/network_management.c:664:33
 	cbnz	r0, .LBB14_65
-.Ltmp522:
+.Ltmp521:
 @ %bb.63:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:error <- $r7
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:payload <- $r6
@@ -4662,21 +4654,21 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aContext <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 512 27                        @ ../das_subg_thread/network_management.c:512:27
 	sub.w	r0, r11, r6
-.Ltmp523:
+.Ltmp522:
 	.loc	1 668 37                        @ ../das_subg_thread/network_management.c:668:37
 	uxth	r2, r0
-.Ltmp524:
+.Ltmp523:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:payloadlength <- $r2
 	mov	r0, r9
 	mov	r1, r6
 	bl	otMessageAppend
-.Ltmp525:
+.Ltmp524:
 	mov	r7, r0
-.Ltmp526:
+.Ltmp525:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:error <- $r7
 	.loc	1 669 33                        @ ../das_subg_thread/network_management.c:669:33
 	cbnz	r0, .LBB14_65
-.Ltmp527:
+.Ltmp526:
 @ %bb.64:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:error <- $r7
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:payload <- $r6
@@ -4693,9 +4685,9 @@ nwk_mgm_request_proccess:
 	mov	r2, r5
 	movs	r3, #0
 	bl	otCoapSendResponseWithParameters
-.Ltmp528:
+.Ltmp527:
 	mov	r7, r0
-.Ltmp529:
+.Ltmp528:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:payload <- $r6
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:responseMessage <- $r9
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:error <- $r7
@@ -4715,10 +4707,10 @@ nwk_mgm_request_proccess:
 	mov	r0, r6
 	movw	r2, #685
 	bl	mem_free_fn
-.Ltmp530:
+.Ltmp529:
 	.loc	1 0 13 is_stmt 0                @ ../das_subg_thread/network_management.c:0:13
 	b	.LBB14_67
-.Ltmp531:
+.Ltmp530:
 .LBB14_66:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:aMessageInfo <- $r5
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aMessageInfo <- $r5
@@ -4730,14 +4722,14 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aContext <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 674 33 is_stmt 1              @ ../das_subg_thread/network_management.c:674:33
 	mov	r0, r10
-.Ltmp532:
+.Ltmp531:
 	mov	r1, r9
 	mov	r2, r5
 	movs	r3, #0
 	bl	otCoapSendResponseWithParameters
-.Ltmp533:
+.Ltmp532:
 	mov	r7, r0
-.Ltmp534:
+.Ltmp533:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:payload <- undef
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:responseMessage <- $r9
 .LBB14_67:
@@ -4750,7 +4742,7 @@ nwk_mgm_request_proccess:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aContext <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 687 36                        @ ../das_subg_thread/network_management.c:687:36
 	cbz	r7, .LBB14_69
-.Ltmp535:
+.Ltmp534:
 .LBB14_68:
 	@DEBUG_VALUE: nwk_mgm_childs_register_proccess:aMessageInfo <- $r5
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aMessageInfo <- $r5
@@ -4762,7 +4754,7 @@ nwk_mgm_request_proccess:
 	.loc	1 689 13                        @ ../das_subg_thread/network_management.c:689:13
 	mov	r0, r9
 	bl	otMessageFree
-.Ltmp536:
+.Ltmp535:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:buf <- $r4
 .LBB14_69:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:buf <- $r4
@@ -4773,33 +4765,33 @@ nwk_mgm_request_proccess:
 	mov	r0, r4
 	movw	r2, #829
 	bl	mem_free_fn
-.Ltmp537:
+.Ltmp536:
 .LBB14_70:
 	@DEBUG_VALUE: nwk_mgm_request_proccess:aContext <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 831 1                         @ ../das_subg_thread/network_management.c:831:1
 	add.w	sp, sp, #916
 	pop.w	{r4, r5, r6, r7, r8, r9, r10, r11, pc}
-.Ltmp538:
+.Ltmp537:
 	.p2align	2
 @ %bb.71:
 	.loc	1 0 1 is_stmt 0                 @ ../das_subg_thread/network_management.c:0:1
 .LCPI14_0:
-.L.str.35:
+.L.str.34:
 	.asciz	"kick %04x \n\r\n\000\000"
 .LCPI14_1:
-.Lstr.44:
+.Lstr.43:
 	.asciz	"isn't leader \n\r"
 .LCPI14_2:
-.L.str.28:
+.L.str.27:
 	.asciz	"self %04x,%04x, %02X%02X%02X%02X%02X%02X%02X%02X \n\r\n\000\000\000"
 .LCPI14_3:
-.Lstr.45:
+.Lstr.44:
 	.asciz	"unexpected router add fail\n\r\000\000\000"
 .LCPI14_4:
-.L.str.31:
+.L.str.30:
 	.asciz	"rece %u \n\r\n"
 .LCPI14_5:
-.L.str.34:
+.L.str.33:
 	.asciz	"ack send %u \n\r\n"
 .Lfunc_end14:
 	.size	nwk_mgm_request_proccess, .Lfunc_end14-nwk_mgm_request_proccess
@@ -4834,53 +4826,53 @@ nwk_mgm_timer_handler:
 	.pad	#68
 	sub	sp, #68
 	.cfi_def_cfa_offset 104
-.Ltmp539:
+.Ltmp538:
 	.loc	1 1171 10 prologue_end          @ ../das_subg_thread/network_management.c:1171:10
 	movw	r0, :lower16:mgm_reg_send_timer
-.Ltmp540:
+.Ltmp539:
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	movt	r0, :upper16:mgm_reg_send_timer
 	ldrh	r1, [r0]
 	.loc	1 1171 33 is_stmt 0             @ ../das_subg_thread/network_management.c:1171:33
 	cbz	r1, .LBB15_4
-.Ltmp541:
+.Ltmp540:
 @ %bb.1:
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 1171 37                       @ ../das_subg_thread/network_management.c:1171:37
 	subs	r1, #1
-.Ltmp542:
+.Ltmp541:
 	.loc	1 1171 9                        @ ../das_subg_thread/network_management.c:1171:9
 	lsls	r2, r1, #16
-.Ltmp543:
+.Ltmp542:
 	.loc	1 1171 37                       @ ../das_subg_thread/network_management.c:1171:37
 	strh	r1, [r0]
-.Ltmp544:
+.Ltmp543:
 	.loc	1 1171 9                        @ ../das_subg_thread/network_management.c:1171:9
 	bne	.LBB15_4
-.Ltmp545:
+.Ltmp544:
 @ %bb.2:
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 1108 28 is_stmt 1             @ ../das_subg_thread/network_management.c:1108:28
 	bl	otrGetInstance
-.Ltmp546:
+.Ltmp545:
 	@DEBUG_VALUE: nwk_mgm_child_register_post_resend:instance <- $r0
 	.loc	1 1109 9                        @ ../das_subg_thread/network_management.c:1109:9
 	cbz	r0, .LBB15_4
-.Ltmp547:
+.Ltmp546:
 @ %bb.3:
 	@DEBUG_VALUE: nwk_mgm_child_register_post_resend:instance <- $r0
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 1111 30                       @ ../das_subg_thread/network_management.c:1111:30
 	bl	otThreadGetDeviceRole
-.Ltmp548:
+.Ltmp547:
 	@DEBUG_VALUE: mRole <- $r0
 	.loc	1 1113 13                       @ ../das_subg_thread/network_management.c:1113:13
 	cmp	r0, #3
-.Ltmp549:
+.Ltmp548:
 	.loc	1 1115 13                       @ ../das_subg_thread/network_management.c:1115:13
 	it	eq
 	bleq	nwk_mgm_child_register_post
-.Ltmp550:
+.Ltmp549:
 .LBB15_4:
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 1175 9                        @ ../das_subg_thread/network_management.c:1175:9
@@ -4892,66 +4884,66 @@ nwk_mgm_timer_handler:
 	cmp	r0, #0
 	movt	r10, :upper16:nwk_mgm_child_reg_table
 	beq	.LBB15_21
-.Ltmp551:
+.Ltmp550:
 @ %bb.5:
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 1175 37                       @ ../das_subg_thread/network_management.c:1175:37
 	subs	r0, #1
-.Ltmp552:
+.Ltmp551:
 	.loc	1 1175 9                        @ ../das_subg_thread/network_management.c:1175:9
 	lsls	r1, r0, #16
-.Ltmp553:
+.Ltmp552:
 	.loc	1 1175 37                       @ ../das_subg_thread/network_management.c:1175:37
 	strh.w	r0, [r9]
-.Ltmp554:
+.Ltmp553:
 	.loc	1 1175 9                        @ ../das_subg_thread/network_management.c:1175:9
 	bne	.LBB15_21
-.Ltmp555:
+.Ltmp554:
 @ %bb.6:
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 1123 28 is_stmt 1             @ ../das_subg_thread/network_management.c:1123:28
 	bl	otrGetInstance
-.Ltmp556:
+.Ltmp555:
 	@DEBUG_VALUE: mgm_router_update_timer_handler:instance <- $r0
 	.loc	1 1124 9                        @ ../das_subg_thread/network_management.c:1124:9
 	cmp	r0, #0
 	beq	.LBB15_21
-.Ltmp557:
+.Ltmp556:
 @ %bb.7:
 	@DEBUG_VALUE: mgm_router_update_timer_handler:instance <- $r0
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 0 0 is_stmt 0                 @ ../das_subg_thread/network_management.c:0:0
 	mov	r4, r0
-.Ltmp558:
+.Ltmp557:
 	@DEBUG_VALUE: mgm_router_update_timer_handler:instance <- $r4
 	.loc	1 1126 30 is_stmt 1             @ ../das_subg_thread/network_management.c:1126:30
 	bl	otThreadGetDeviceRole
-.Ltmp559:
+.Ltmp558:
 	@DEBUG_VALUE: mRole <- $r0
 	.loc	1 1128 13                       @ ../das_subg_thread/network_management.c:1128:13
 	cmp	r0, #4
 	beq	.LBB15_11
-.Ltmp560:
+.Ltmp559:
 @ %bb.8:
 	@DEBUG_VALUE: mgm_router_update_timer_handler:instance <- $r4
 	@DEBUG_VALUE: mRole <- $r0
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	cmp	r0, #3
 	bne	.LBB15_17
-.Ltmp561:
+.Ltmp560:
 @ %bb.9:
 	@DEBUG_VALUE: mgm_router_update_timer_handler:instance <- $r4
 	@DEBUG_VALUE: mRole <- $r0
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 1130 13                       @ ../das_subg_thread/network_management.c:1130:13
 	bl	nwk_mgm_child_register_post
-.Ltmp562:
+.Ltmp561:
 	.loc	1 1131 17                       @ ../das_subg_thread/network_management.c:1131:17
 	ldr.w	r0, [r10]
-.Ltmp563:
+.Ltmp562:
 	.loc	1 1131 17 is_stmt 0             @ ../das_subg_thread/network_management.c:1131:17
 	cbz	r0, .LBB15_20
-.Ltmp564:
+.Ltmp563:
 @ %bb.10:
 	@DEBUG_VALUE: mgm_router_update_timer_handler:instance <- $r4
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
@@ -4960,21 +4952,21 @@ nwk_mgm_timer_handler:
 	movt	r1, :upper16:.L__FUNCTION__.mgm_router_update_timer_handler
 	movw	r2, #1133
 	b	.LBB15_19
-.Ltmp565:
+.Ltmp564:
 .LBB15_11:
 	@DEBUG_VALUE: mgm_router_update_timer_handler:instance <- $r4
 	@DEBUG_VALUE: mRole <- $r0
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 1140 36                       @ ../das_subg_thread/network_management.c:1140:36
 	mov	r0, r4
-.Ltmp566:
+.Ltmp565:
 	bl	otThreadGetMaxAllowedChildren
-.Ltmp567:
+.Ltmp566:
 	@DEBUG_VALUE: i <- 0
 	@DEBUG_VALUE: childernmax <- $r0
 	.loc	1 1142 13                       @ ../das_subg_thread/network_management.c:1142:13
 	cbz	r0, .LBB15_20
-.Ltmp568:
+.Ltmp567:
 @ %bb.12:
 	@DEBUG_VALUE: mgm_router_update_timer_handler:instance <- $r4
 	@DEBUG_VALUE: childernmax <- $r0
@@ -4982,12 +4974,12 @@ nwk_mgm_timer_handler:
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 0 13 is_stmt 0                @ ../das_subg_thread/network_management.c:0:13
 	mov	r5, r0
-.Ltmp569:
+.Ltmp568:
 	@DEBUG_VALUE: childernmax <- $r5
 	@DEBUG_VALUE: childernmax <- $r5
 	movs	r6, #0
 	add.w	r8, sp, #32
-.Ltmp570:
+.Ltmp569:
 	.p2align	2
 .LBB15_13:                              @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: childernmax <- $r5
@@ -4999,10 +4991,10 @@ nwk_mgm_timer_handler:
 	mov	r0, r4
 	mov	r2, r8
 	bl	otThreadGetChildInfoByIndex
-.Ltmp571:
+.Ltmp570:
 	.loc	1 1144 93 is_stmt 0             @ ../das_subg_thread/network_management.c:1144:93
 	cbnz	r0, .LBB15_16
-.Ltmp572:
+.Ltmp571:
 @ %bb.14:                               @   in Loop: Header=BB15_13 Depth=1
 	@DEBUG_VALUE: i <- $r6
 	@DEBUG_VALUE: childernmax <- $r5
@@ -5010,11 +5002,11 @@ nwk_mgm_timer_handler:
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 1145 35 is_stmt 1             @ ../das_subg_thread/network_management.c:1145:35
 	ldrb.w	r0, [sp, #65]
-.Ltmp573:
+.Ltmp572:
 	.loc	1 1144 21                       @ ../das_subg_thread/network_management.c:1144:21
 	lsls	r0, r0, #28
 	bmi	.LBB15_16
-.Ltmp574:
+.Ltmp573:
 @ %bb.15:                               @   in Loop: Header=BB15_13 Depth=1
 	@DEBUG_VALUE: i <- $r6
 	@DEBUG_VALUE: childernmax <- $r5
@@ -5023,7 +5015,7 @@ nwk_mgm_timer_handler:
 	.loc	1 1151 45                       @ ../das_subg_thread/network_management.c:1151:45
 	mov	r0, r4
 	bl	otThreadGetRloc16
-.Ltmp575:
+.Ltmp574:
 	.loc	1 1152 55                       @ ../das_subg_thread/network_management.c:1152:55
 	ldrh.w	r2, [sp, #48]
 	.loc	1 1154 55                       @ ../das_subg_thread/network_management.c:1154:55
@@ -5035,7 +5027,7 @@ nwk_mgm_timer_handler:
 	mov	r3, r8
 	str.w	r12, [sp]
 	bl	nwk_mgm_child_reg_table_add
-.Ltmp576:
+.Ltmp575:
 	.p2align	2
 .LBB15_16:                              @   in Loop: Header=BB15_13 Depth=1
 	@DEBUG_VALUE: i <- $r6
@@ -5044,25 +5036,25 @@ nwk_mgm_timer_handler:
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 1142 52                       @ ../das_subg_thread/network_management.c:1142:52
 	adds	r6, #1
-.Ltmp577:
+.Ltmp576:
 	@DEBUG_VALUE: i <- $r6
 	uxth	r0, r6
-.Ltmp578:
+.Ltmp577:
 	.loc	1 1142 13 is_stmt 0             @ ../das_subg_thread/network_management.c:1142:13
 	cmp	r0, r5
 	blo	.LBB15_13
 	b	.LBB15_20
-.Ltmp579:
+.Ltmp578:
 .LBB15_17:
 	@DEBUG_VALUE: mgm_router_update_timer_handler:instance <- $r4
 	@DEBUG_VALUE: mRole <- $r0
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 1159 17 is_stmt 1             @ ../das_subg_thread/network_management.c:1159:17
 	ldr.w	r0, [r10]
-.Ltmp580:
+.Ltmp579:
 	.loc	1 1159 17 is_stmt 0             @ ../das_subg_thread/network_management.c:1159:17
 	cbz	r0, .LBB15_20
-.Ltmp581:
+.Ltmp580:
 @ %bb.18:
 	@DEBUG_VALUE: mgm_router_update_timer_handler:instance <- $r4
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
@@ -5070,56 +5062,56 @@ nwk_mgm_timer_handler:
 	movw	r1, :lower16:.L__FUNCTION__.mgm_router_update_timer_handler
 	movt	r1, :upper16:.L__FUNCTION__.mgm_router_update_timer_handler
 	movw	r2, #1161
-.Ltmp582:
+.Ltmp581:
 .LBB15_19:
 	@DEBUG_VALUE: mgm_router_update_timer_handler:instance <- $r4
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 0 0 is_stmt 0                 @ ../das_subg_thread/network_management.c:0:0
 	bl	mem_free_fn
-.Ltmp583:
+.Ltmp582:
 	movs	r0, #0
 	str.w	r0, [r10]
-.Ltmp584:
+.Ltmp583:
 .LBB15_20:
 	@DEBUG_VALUE: mgm_router_update_timer_handler:instance <- $r4
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	movs	r0, #101
-.Ltmp585:
+.Ltmp584:
 	@DEBUG_VALUE: nwk_mgm_router_update_timer_set:time <- 101
 	.loc	1 134 25 is_stmt 1              @ ../das_subg_thread/network_management.c:134:25
 	strh.w	r0, [r9]
-.Ltmp586:
+.Ltmp585:
 .LBB15_21:
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 233 9                         @ ../das_subg_thread/network_management.c:233:9
 	ldr.w	r0, [r10]
-.Ltmp587:
+.Ltmp586:
 	.loc	1 233 9 is_stmt 0               @ ../das_subg_thread/network_management.c:233:9
 	cmp	r0, #0
 	beq	.LBB15_31
-.Ltmp588:
+.Ltmp587:
 @ %bb.22:
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 235 9 is_stmt 1               @ ../das_subg_thread/network_management.c:235:9
 	bl	enter_critical_section
-.Ltmp589:
+.Ltmp588:
 	@DEBUG_VALUE: i <- 0
 	.loc	1 238 17                        @ ../das_subg_thread/network_management.c:238:17
 	ldr.w	r4, [r10]
 	movw	r9, :lower16:nwk_mgm_debug_flags
 	movs	r5, #0
 	movt	r9, :upper16:nwk_mgm_debug_flags
-.Ltmp590:
+.Ltmp589:
 	.p2align	2
 .LBB15_23:                              @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: i <- undef
 	.loc	1 238 44 is_stmt 0              @ ../das_subg_thread/network_management.c:238:44
 	ldrb	r0, [r4, r5]
-.Ltmp591:
+.Ltmp590:
 	.loc	1 238 17                        @ ../das_subg_thread/network_management.c:238:17
 	cbz	r0, .LBB15_29
-.Ltmp592:
+.Ltmp591:
 @ %bb.24:                               @   in Loop: Header=BB15_23 Depth=1
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 240 48 is_stmt 1              @ ../das_subg_thread/network_management.c:240:48
@@ -5127,35 +5119,35 @@ nwk_mgm_timer_handler:
 	ldrh	r1, [r0, #16]
 	.loc	1 240 62 is_stmt 0              @ ../das_subg_thread/network_management.c:240:62
 	cbz	r1, .LBB15_29
-.Ltmp593:
+.Ltmp592:
 @ %bb.25:                               @   in Loop: Header=BB15_23 Depth=1
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 240 65                        @ ../das_subg_thread/network_management.c:240:65
 	subs	r1, #1
-.Ltmp594:
+.Ltmp593:
 	.loc	1 240 21                        @ ../das_subg_thread/network_management.c:240:21
 	lsls	r2, r1, #16
-.Ltmp595:
+.Ltmp594:
 	.loc	1 240 65                        @ ../das_subg_thread/network_management.c:240:65
 	strh	r1, [r0, #16]
-.Ltmp596:
+.Ltmp595:
 	.loc	1 240 21                        @ ../das_subg_thread/network_management.c:240:21
 	bne	.LBB15_29
-.Ltmp597:
+.Ltmp596:
 @ %bb.26:                               @   in Loop: Header=BB15_23 Depth=1
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 242 21 is_stmt 1              @ ../das_subg_thread/network_management.c:242:21
 	ldr.w	r1, [r9]
-.Ltmp598:
+.Ltmp597:
 	.loc	1 242 21 is_stmt 0              @ ../das_subg_thread/network_management.c:242:21
 	cbz	r1, .LBB15_28
-.Ltmp599:
+.Ltmp598:
 @ %bb.27:                               @   in Loop: Header=BB15_23 Depth=1
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 242 21                        @ ../das_subg_thread/network_management.c:242:21
 	ldrb	r0, [r0, #1]
 	bl	otThreadDeviceRoleToString
-.Ltmp600:
+.Ltmp599:
 	ldr.w	r1, [r10]
 	add	r1, r5
 	ldrb	r6, [r1, #9]
@@ -5175,33 +5167,33 @@ nwk_mgm_timer_handler:
 	str.w	r11, [sp, #20]
 	str.w	r8, [sp, #24]
 	bl	__2printf
-.Ltmp601:
+.Ltmp600:
 	.loc	1 253 29 is_stmt 1              @ ../das_subg_thread/network_management.c:253:29
 	ldr.w	r4, [r10]
-.Ltmp602:
+.Ltmp601:
 .LBB15_28:                              @   in Loop: Header=BB15_23 Depth=1
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 253 21 is_stmt 0              @ ../das_subg_thread/network_management.c:253:21
 	adds	r0, r4, r5
 	movs	r1, #18
 	bl	__aeabi_memclr
-.Ltmp603:
+.Ltmp602:
 	.p2align	2
 .LBB15_29:                              @   in Loop: Header=BB15_23 Depth=1
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	@DEBUG_VALUE: i <- [DW_OP_plus_uconst 1, DW_OP_stack_value] undef
 	.loc	1 236 32 is_stmt 1              @ ../das_subg_thread/network_management.c:236:32
 	adds	r5, #18
-.Ltmp604:
+.Ltmp603:
 	.loc	1 236 9 is_stmt 0               @ ../das_subg_thread/network_management.c:236:9
 	cmp.w	r5, #540
 	bne	.LBB15_23
-.Ltmp605:
+.Ltmp604:
 @ %bb.30:
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 257 9 is_stmt 1               @ ../das_subg_thread/network_management.c:257:9
 	bl	leave_critical_section
-.Ltmp606:
+.Ltmp605:
 .LBB15_31:
 	@DEBUG_VALUE: nwk_mgm_timer_handler:xTimer <- [DW_OP_LLVM_entry_value 1] $r0
 	.loc	1 1182 5                        @ ../das_subg_thread/network_management.c:1182:5
@@ -5209,7 +5201,7 @@ nwk_mgm_timer_handler:
 	movt	r0, :upper16:nwk_mgm_timer
 	ldr	r4, [r0]
 	bl	xTaskGetTickCount
-.Ltmp607:
+.Ltmp606:
 	mov	r2, r0
 	movs	r7, #0
 	mov	r0, r4
@@ -5217,16 +5209,16 @@ nwk_mgm_timer_handler:
 	movs	r3, #0
 	str	r7, [sp]
 	bl	xTimerGenericCommand
-.Ltmp608:
+.Ltmp607:
 	.loc	1 1183 1                        @ ../das_subg_thread/network_management.c:1183:1
 	add	sp, #68
 	pop.w	{r4, r5, r6, r7, r8, r9, r10, r11, pc}
-.Ltmp609:
+.Ltmp608:
 	.p2align	2
 @ %bb.32:
 	.loc	1 0 1 is_stmt 0                 @ ../das_subg_thread/network_management.c:0:1
 .LCPI15_0:
-.L.str.36:
+.L.str.35:
 	.asciz	"timeout %s %04X %02X%02X%02X%02X%02X%02X%02X%02X \n\r\n\000\000\000"
 .Lfunc_end15:
 	.size	nwk_mgm_timer_handler, .Lfunc_end15-nwk_mgm_timer_handler
@@ -5258,13 +5250,13 @@ nwk_mgm_data_parse:
 	.cfi_offset r6, -16
 	.cfi_offset r5, -20
 	.cfi_offset r4, -24
-.Ltmp610:
+.Ltmp609:
 	@DEBUG_VALUE: nwk_mgm_data_parse:tmp <- $r1
 	mov	r8, r2
-.Ltmp611:
+.Ltmp610:
 	@DEBUG_VALUE: nwk_mgm_data_parse:payloadlength <- $r8
 	mov	r5, r0
-.Ltmp612:
+.Ltmp611:
 	@DEBUG_VALUE: nwk_mgm_data_parse:kick_child_data <- 0
 	@DEBUG_VALUE: nwk_mgm_data_parse:child_reg_data_ack <- 0
 	@DEBUG_VALUE: nwk_mgm_data_parse:child_reg_data <- 0
@@ -5274,12 +5266,12 @@ nwk_mgm_data_parse:
 	.loc	1 408 9 prologue_end            @ ../das_subg_thread/network_management.c:408:9
 	cmp	r0, #1
 	mov	r6, r1
-.Ltmp613:
+.Ltmp612:
 	@DEBUG_VALUE: nwk_mgm_data_parse:payload <- $r6
 	@DEBUG_VALUE: nwk_mgm_data_parse:tmp <- $r6
 	@DEBUG_VALUE: nwk_mgm_data_parse:payload <- $r6
 	beq	.LBB16_4
-.Ltmp614:
+.Ltmp613:
 @ %bb.1:
 	@DEBUG_VALUE: nwk_mgm_data_parse:payloadlength <- $r8
 	@DEBUG_VALUE: nwk_mgm_data_parse:tmp <- $r6
@@ -5290,7 +5282,7 @@ nwk_mgm_data_parse:
 	@DEBUG_VALUE: nwk_mgm_data_parse:child_reg_data_ack <- 0
 	@DEBUG_VALUE: nwk_mgm_data_parse:kick_child_data <- 0
 	cbnz	r5, .LBB16_7
-.Ltmp615:
+.Ltmp614:
 @ %bb.2:
 	@DEBUG_VALUE: nwk_mgm_data_parse:payloadlength <- $r8
 	@DEBUG_VALUE: nwk_mgm_data_parse:tmp <- $r6
@@ -5306,33 +5298,33 @@ nwk_mgm_data_parse:
 	ldrb	r0, [r6]
 	.loc	1 419 13                        @ ../das_subg_thread/network_management.c:419:13
 	add.w	r7, r6, #15
-.Ltmp616:
+.Ltmp615:
 	@DEBUG_VALUE: nwk_mgm_data_parse:tmp <- $r7
 	.loc	1 411 35                        @ ../das_subg_thread/network_management.c:411:35
 	strb	r0, [r3]
 	.loc	1 412 9                         @ ../das_subg_thread/network_management.c:412:9
 	ldrh.w	r0, [r6, #1]
 	strh	r0, [r3, #2]
-.Ltmp617:
+.Ltmp616:
 	@DEBUG_VALUE: nwk_mgm_data_parse:tmp <- [DW_OP_plus_uconst 3, DW_OP_stack_value] $r6
 	.loc	1 414 9                         @ ../das_subg_thread/network_management.c:414:9
 	ldrh.w	r0, [r6, #3]
 	strh	r0, [r3, #4]
-.Ltmp618:
+.Ltmp617:
 	@DEBUG_VALUE: nwk_mgm_data_parse:tmp <- [DW_OP_plus_uconst 5, DW_OP_stack_value] $r6
 	.loc	1 416 9                         @ ../das_subg_thread/network_management.c:416:9
 	ldr.w	r0, [r6, #9]
 	ldr.w	r1, [r6, #5]
 	str.w	r0, [r3, #10]
 	str.w	r1, [r3, #6]
-.Ltmp619:
+.Ltmp618:
 	@DEBUG_VALUE: nwk_mgm_data_parse:tmp <- [DW_OP_plus_uconst 13, DW_OP_stack_value] $r6
 	.loc	1 418 9                         @ ../das_subg_thread/network_management.c:418:9
 	ldrh.w	r1, [r6, #13]
 	strh	r1, [r3, #14]
 	.loc	1 420 13                        @ ../das_subg_thread/network_management.c:420:13
 	cbz	r1, .LBB16_8
-.Ltmp620:
+.Ltmp619:
 @ %bb.3:
 	@DEBUG_VALUE: nwk_mgm_data_parse:payloadlength <- $r8
 	@DEBUG_VALUE: nwk_mgm_data_parse:tmp <- [DW_OP_plus_uconst 13, DW_OP_stack_value] $r6
@@ -5346,7 +5338,7 @@ nwk_mgm_data_parse:
 	.loc	1 422 37                        @ ../das_subg_thread/network_management.c:422:37
 	add.w	r0, r3, #16
 	b	.LBB16_6
-.Ltmp621:
+.Ltmp620:
 .LBB16_4:
 	@DEBUG_VALUE: nwk_mgm_data_parse:payloadlength <- $r8
 	@DEBUG_VALUE: nwk_mgm_data_parse:tmp <- $r6
@@ -5362,11 +5354,11 @@ nwk_mgm_data_parse:
 	ldrb	r0, [r6]
 	.loc	1 432 13                        @ ../das_subg_thread/network_management.c:432:13
 	adds	r7, r6, #4
-.Ltmp622:
+.Ltmp621:
 	@DEBUG_VALUE: nwk_mgm_data_parse:tmp <- $r7
 	.loc	1 429 39                        @ ../das_subg_thread/network_management.c:429:39
 	strb	r0, [r3]
-.Ltmp623:
+.Ltmp622:
 	@DEBUG_VALUE: nwk_mgm_data_parse:tmp <- [DW_OP_plus_uconst 2, DW_OP_stack_value] $r6
 	.loc	1 430 37                        @ ../das_subg_thread/network_management.c:430:37
 	ldrb	r0, [r6, #1]
@@ -5377,7 +5369,7 @@ nwk_mgm_data_parse:
 	strh	r1, [r3, #2]
 	.loc	1 433 13                        @ ../das_subg_thread/network_management.c:433:13
 	cbz	r1, .LBB16_8
-.Ltmp624:
+.Ltmp623:
 @ %bb.5:
 	@DEBUG_VALUE: nwk_mgm_data_parse:payloadlength <- $r8
 	@DEBUG_VALUE: nwk_mgm_data_parse:tmp <- [DW_OP_plus_uconst 2, DW_OP_stack_value] $r6
@@ -5390,7 +5382,7 @@ nwk_mgm_data_parse:
 	@DEBUG_VALUE: nwk_mgm_data_parse:child_reg_data_ack <- $r3
 	.loc	1 435 41                        @ ../das_subg_thread/network_management.c:435:41
 	adds	r0, r3, #4
-.Ltmp625:
+.Ltmp624:
 .LBB16_6:
 	@DEBUG_VALUE: nwk_mgm_data_parse:payloadlength <- $r8
 	@DEBUG_VALUE: nwk_mgm_data_parse:payload <- $r6
@@ -5402,13 +5394,13 @@ nwk_mgm_data_parse:
 	lsls	r2, r4, #2
 	mov	r1, r7
 	bl	__aeabi_memcpy
-.Ltmp626:
+.Ltmp625:
 	@DEBUG_VALUE: nwk_mgm_data_parse:data <- [DW_OP_LLVM_entry_value 1] $r3
 	add.w	r7, r7, r4, lsl #2
-.Ltmp627:
+.Ltmp626:
 	@DEBUG_VALUE: nwk_mgm_data_parse:tmp <- $r7
 	b	.LBB16_8
-.Ltmp628:
+.Ltmp627:
 .LBB16_7:
 	@DEBUG_VALUE: nwk_mgm_data_parse:payloadlength <- $r8
 	@DEBUG_VALUE: nwk_mgm_data_parse:tmp <- $r6
@@ -5424,19 +5416,19 @@ nwk_mgm_data_parse:
 	ldrb	r0, [r6]
 	.loc	1 446 13                        @ ../das_subg_thread/network_management.c:446:13
 	adds	r7, r6, #5
-.Ltmp629:
+.Ltmp628:
 	@DEBUG_VALUE: nwk_mgm_data_parse:tmp <- $r7
 	.loc	1 442 36                        @ ../das_subg_thread/network_management.c:442:36
 	strb	r0, [r3]
 	.loc	1 443 9                         @ ../das_subg_thread/network_management.c:443:9
 	ldrh.w	r0, [r6, #1]
 	strh	r0, [r3, #2]
-.Ltmp630:
+.Ltmp629:
 	@DEBUG_VALUE: nwk_mgm_data_parse:tmp <- [DW_OP_plus_uconst 3, DW_OP_stack_value] $r6
 	.loc	1 445 9                         @ ../das_subg_thread/network_management.c:445:9
 	ldrh.w	r0, [r6, #3]
 	strh	r0, [r3, #4]
-.Ltmp631:
+.Ltmp630:
 .LBB16_8:
 	@DEBUG_VALUE: nwk_mgm_data_parse:payloadlength <- $r8
 	@DEBUG_VALUE: nwk_mgm_data_parse:payload <- $r6
@@ -5445,41 +5437,41 @@ nwk_mgm_data_parse:
 	@DEBUG_VALUE: nwk_mgm_data_parse:tmp <- $r7
 	.loc	1 452 14                        @ ../das_subg_thread/network_management.c:452:14
 	subs	r2, r7, r6
-.Ltmp632:
+.Ltmp631:
 	.loc	1 452 9 is_stmt 0               @ ../das_subg_thread/network_management.c:452:9
 	cmp	r2, r8
 	itt	eq
 	moveq	r0, #0
 	.loc	1 458 1 is_stmt 1               @ ../das_subg_thread/network_management.c:458:1
 	popeq.w	{r4, r5, r6, r7, r8, pc}
-.Ltmp633:
+.Ltmp632:
 .LBB16_9:
 	@DEBUG_VALUE: nwk_mgm_data_parse:payloadlength <- $r8
 	.loc	1 454 9                         @ ../das_subg_thread/network_management.c:454:9
 	movw	r0, :lower16:nwk_mgm_debug_flags
 	movt	r0, :upper16:nwk_mgm_debug_flags
 	ldr	r0, [r0]
-.Ltmp634:
+.Ltmp633:
 	.loc	1 454 9 is_stmt 0               @ ../das_subg_thread/network_management.c:454:9
 	cbz	r0, .LBB16_11
-.Ltmp635:
+.Ltmp634:
 @ %bb.10:
 	@DEBUG_VALUE: nwk_mgm_data_parse:payloadlength <- $r8
 	@DEBUG_VALUE: nwk_mgm_data_parse:payloadlength <- $r8
 	.loc	1 454 9                         @ ../das_subg_thread/network_management.c:454:9
-	movw	r0, :lower16:.L.str.21
-	movt	r0, :upper16:.L.str.21
+	movw	r0, :lower16:.L.str.20
+	movt	r0, :upper16:.L.str.20
 	mov	r1, r5
 	mov	r3, r8
 	bl	__2printf
-.Ltmp636:
+.Ltmp635:
 .LBB16_11:
 	@DEBUG_VALUE: nwk_mgm_data_parse:payloadlength <- $r8
 	.loc	1 0 9                           @ ../das_subg_thread/network_management.c:0:9
 	movs	r0, #1
 	.loc	1 458 1 is_stmt 1               @ ../das_subg_thread/network_management.c:458:1
 	pop.w	{r4, r5, r6, r7, r8, pc}
-.Ltmp637:
+.Ltmp636:
 .Lfunc_end16:
 	.size	nwk_mgm_data_parse, .Lfunc_end16-nwk_mgm_data_parse
 	.cfi_endproc
@@ -5507,88 +5499,88 @@ nwk_mgm_reset:
 	.pad	#120
 	sub	sp, #120
 	.cfi_def_cfa_offset 136
-.Ltmp638:
+.Ltmp637:
 	.loc	1 380 28 prologue_end           @ ../das_subg_thread/network_management.c:380:28
 	bl	otrGetInstance
-.Ltmp639:
+.Ltmp638:
 	@DEBUG_VALUE: nwk_mgm_reset:instance <- $r0
 	.loc	1 381 9                         @ ../das_subg_thread/network_management.c:381:9
 	cbz	r0, .LBB17_8
-.Ltmp640:
+.Ltmp639:
 @ %bb.1:
 	@DEBUG_VALUE: nwk_mgm_reset:instance <- $r0
 	.loc	1 0 0 is_stmt 0                 @ ../das_subg_thread/network_management.c:0:0
 	mov	r4, r0
-.Ltmp641:
+.Ltmp640:
 	@DEBUG_VALUE: nwk_mgm_reset:instance <- $r4
 	.loc	1 383 30 is_stmt 1              @ ../das_subg_thread/network_management.c:383:30
 	bl	otThreadGetDeviceRole
-.Ltmp642:
+.Ltmp641:
 	@DEBUG_VALUE: mRole <- $r0
 	.loc	1 384 44                        @ ../das_subg_thread/network_management.c:384:44
 	bic	r0, r0, #1
-.Ltmp643:
+.Ltmp642:
 	cmp	r0, #2
 	bne	.LBB17_8
-.Ltmp644:
+.Ltmp643:
 @ %bb.2:
 	@DEBUG_VALUE: nwk_mgm_reset:instance <- $r4
 	.loc	1 0 44 is_stmt 0                @ ../das_subg_thread/network_management.c:0:44
 	mov	r5, sp
-.Ltmp645:
+.Ltmp644:
 	.loc	1 391 47 is_stmt 1              @ ../das_subg_thread/network_management.c:391:47
 	mov	r0, r5
 	movs	r1, #120
 	bl	__aeabi_memclr8
-.Ltmp646:
+.Ltmp645:
 	.loc	1 393 13                        @ ../das_subg_thread/network_management.c:393:13
 	mov	r0, r4
 	mov	r1, r5
 	bl	otDatasetSetActive
-.Ltmp647:
+.Ltmp646:
 	.loc	1 393 13 is_stmt 0              @ ../das_subg_thread/network_management.c:393:13
 	cbz	r0, .LBB17_5
-.Ltmp648:
+.Ltmp647:
 @ %bb.3:
 	@DEBUG_VALUE: nwk_mgm_reset:instance <- $r4
 	.loc	1 393 13                        @ ../das_subg_thread/network_management.c:393:13
-	movw	r0, :lower16:.L.str.22
-	movt	r0, :upper16:.L.str.22
+	movw	r0, :lower16:.L.str.21
+	movt	r0, :upper16:.L.str.21
 	movw	r1, #393
 	bl	otPlatAssertFail
-.Ltmp649:
+.Ltmp648:
 	.p2align	2
 .LBB17_4:                               @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: nwk_mgm_reset:instance <- $r4
 	b	.LBB17_4
-.Ltmp650:
+.Ltmp649:
 .LBB17_5:
 	@DEBUG_VALUE: nwk_mgm_reset:instance <- $r4
 	.loc	1 396 13 is_stmt 1              @ ../das_subg_thread/network_management.c:396:13
 	mov	r0, r4
 	bl	otThreadBecomeDetached
-.Ltmp651:
+.Ltmp650:
 	.loc	1 396 13 is_stmt 0              @ ../das_subg_thread/network_management.c:396:13
 	cbz	r0, .LBB17_8
-.Ltmp652:
+.Ltmp651:
 @ %bb.6:
 	@DEBUG_VALUE: nwk_mgm_reset:instance <- $r4
 	.loc	1 396 13                        @ ../das_subg_thread/network_management.c:396:13
-	movw	r0, :lower16:.L.str.22
-	movt	r0, :upper16:.L.str.22
+	movw	r0, :lower16:.L.str.21
+	movt	r0, :upper16:.L.str.21
 	mov.w	r1, #396
 	bl	otPlatAssertFail
-.Ltmp653:
+.Ltmp652:
 	.p2align	2
 .LBB17_7:                               @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: nwk_mgm_reset:instance <- $r4
 	b	.LBB17_7
-.Ltmp654:
+.Ltmp653:
 .LBB17_8:
 	.loc	1 399 1 is_stmt 1               @ ../das_subg_thread/network_management.c:399:1
 	add	sp, #120
 	pop	{r4, r5, r7, pc}
-.Ltmp655:
+.Ltmp654:
 .Lfunc_end17:
 	.size	nwk_mgm_reset, .Lfunc_end17-nwk_mgm_reset
 	.cfi_endproc
@@ -5674,15 +5666,15 @@ nwk_mgm_timer:
 	.asciz	"nwk_mgm_ack_process"
 	.size	.L__FUNCTION__.nwk_mgm_ack_process, 20
 
+	.type	.L.str.20,%object               @ @.str.20
+.L.str.20:
+	.asciz	"parse fail %u (%u/%u)\n\r\n"
+	.size	.L.str.20, 25
+
 	.type	.L.str.21,%object               @ @.str.21
 .L.str.21:
-	.asciz	"parse fail %u (%u/%u)\n\r\n"
-	.size	.L.str.21, 25
-
-	.type	.L.str.22,%object               @ @.str.22
-.L.str.22:
 	.asciz	"../das_subg_thread/network_management.c"
-	.size	.L.str.22, 40
+	.size	.L.str.21, 40
 
 	.type	.L__FUNCTION__.nwk_mgm_kick_child_post,%object @ @__FUNCTION__.nwk_mgm_kick_child_post
 .L__FUNCTION__.nwk_mgm_kick_child_post:
@@ -5694,15 +5686,15 @@ nwk_mgm_timer:
 	.asciz	"nwk_mgm_request_proccess"
 	.size	.L__FUNCTION__.nwk_mgm_request_proccess, 25
 
-	.type	.L.str.30,%object               @ @.str.30
-.L.str.30:
+	.type	.L.str.29,%object               @ @.str.29
+.L.str.29:
 	.asciz	"data rm %04x %04x %02X%02X%02X%02X%02X%02X%02X%02X\n\r\n"
-	.size	.L.str.30, 54
+	.size	.L.str.29, 54
 
-	.type	.L.str.32,%object               @ @.str.32
-.L.str.32:
+	.type	.L.str.31,%object               @ @.str.31
+.L.str.31:
 	.asciz	"child %04x,%04x, %02X%02X%02X%02X%02X%02X%02X%02X, %d \n\r\n"
-	.size	.L.str.32, 58
+	.size	.L.str.31, 58
 
 	.type	.L__FUNCTION__.nwk_mgm_childs_register_proccess,%object @ @__FUNCTION__.nwk_mgm_childs_register_proccess
 .L__FUNCTION__.nwk_mgm_childs_register_proccess:
@@ -5714,15 +5706,15 @@ nwk_mgm_timer:
 	.asciz	"mgm_router_update_timer_handler"
 	.size	.L__FUNCTION__.mgm_router_update_timer_handler, 32
 
-	.type	.Lstr.37,%object                @ @str.37
-.Lstr.37:
+	.type	.Lstr.36,%object                @ @str.36
+.Lstr.36:
 	.asciz	"=============================================== \n\r"
-	.size	.Lstr.37, 51
+	.size	.Lstr.36, 51
 
-	.type	.Lstr.46,%object                @ @str.46
-.Lstr.46:
+	.type	.Lstr.45,%object                @ @str.45
+.Lstr.45:
 	.asciz	"black add fill \n\r"
-	.size	.Lstr.46, 18
+	.size	.Lstr.45, 18
 
 	.globl	_printf_percent
 	.globl	_printf_flags
@@ -5746,7 +5738,7 @@ nwk_mgm_timer:
 	.hidden	_printf_int_dec
 	.hidden	_printf_longlong_hex
 	.hidden	_printf_str
-	.file	14 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/dataset.h"
+	.file	14 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das -0515\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/include\\openthread/dataset.h"
 	.section	.debug_loc,"",%progbits
 .Ldebug_loc0:
 	.long	-1
@@ -6898,11 +6890,11 @@ nwk_mgm_timer:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
 	.long	.Lfunc_begin14-.Lfunc_begin14
-	.long	.Ltmp381-.Lfunc_begin14
+	.long	.Ltmp380-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	80                              @ DW_OP_reg0
-	.long	.Ltmp381-.Lfunc_begin14
-	.long	.Ltmp538-.Lfunc_begin14
+	.long	.Ltmp380-.Lfunc_begin14
+	.long	.Ltmp537-.Lfunc_begin14
 	.short	4                               @ Loc expr size
 	.byte	243                             @ DW_OP_GNU_entry_value
 	.byte	1                               @ 1
@@ -6914,19 +6906,19 @@ nwk_mgm_timer:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
 	.long	.Lfunc_begin14-.Lfunc_begin14
-	.long	.Ltmp380-.Lfunc_begin14
+	.long	.Ltmp379-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	81                              @ DW_OP_reg1
-	.long	.Ltmp380-.Lfunc_begin14
-	.long	.Ltmp411-.Lfunc_begin14
+	.long	.Ltmp379-.Lfunc_begin14
+	.long	.Ltmp410-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	87                              @ DW_OP_reg7
-	.long	.Ltmp420-.Lfunc_begin14
-	.long	.Ltmp429-.Lfunc_begin14
+	.long	.Ltmp419-.Lfunc_begin14
+	.long	.Ltmp428-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	87                              @ DW_OP_reg7
-	.long	.Ltmp438-.Lfunc_begin14
-	.long	.Ltmp443-.Lfunc_begin14
+	.long	.Ltmp437-.Lfunc_begin14
+	.long	.Ltmp442-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	87                              @ DW_OP_reg7
 	.long	0
@@ -6935,15 +6927,15 @@ nwk_mgm_timer:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
 	.long	.Lfunc_begin14-.Lfunc_begin14
-	.long	.Ltmp380-.Lfunc_begin14
+	.long	.Ltmp379-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	82                              @ DW_OP_reg2
-	.long	.Ltmp380-.Lfunc_begin14
-	.long	.Ltmp423-.Lfunc_begin14
+	.long	.Ltmp379-.Lfunc_begin14
+	.long	.Ltmp422-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	85                              @ DW_OP_reg5
-	.long	.Ltmp443-.Lfunc_begin14
-	.long	.Ltmp536-.Lfunc_begin14
+	.long	.Ltmp442-.Lfunc_begin14
+	.long	.Ltmp535-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	85                              @ DW_OP_reg5
 	.long	0
@@ -6951,8 +6943,8 @@ nwk_mgm_timer:
 .Ldebug_loc63:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
-	.long	.Ltmp380-.Lfunc_begin14
-	.long	.Ltmp394-.Lfunc_begin14
+	.long	.Ltmp379-.Lfunc_begin14
+	.long	.Ltmp393-.Lfunc_begin14
 	.short	3                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	32                              @ DW_OP_not
@@ -6962,17 +6954,17 @@ nwk_mgm_timer:
 .Ldebug_loc64:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
-	.long	.Ltmp380-.Lfunc_begin14
-	.long	.Ltmp389-.Lfunc_begin14
+	.long	.Ltmp379-.Lfunc_begin14
+	.long	.Ltmp388-.Lfunc_begin14
 	.short	2                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	159                             @ DW_OP_stack_value
-	.long	.Ltmp389-.Lfunc_begin14
-	.long	.Ltmp391-.Lfunc_begin14
+	.long	.Ltmp388-.Lfunc_begin14
+	.long	.Ltmp390-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	80                              @ DW_OP_reg0
-	.long	.Ltmp391-.Lfunc_begin14
-	.long	.Ltmp537-.Lfunc_begin14
+	.long	.Ltmp390-.Lfunc_begin14
+	.long	.Ltmp536-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	84                              @ DW_OP_reg4
 	.long	0
@@ -6980,8 +6972,8 @@ nwk_mgm_timer:
 .Ldebug_loc65:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
-	.long	.Ltmp385-.Lfunc_begin14
-	.long	.Ltmp388-.Lfunc_begin14
+	.long	.Ltmp384-.Lfunc_begin14
+	.long	.Ltmp387-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	80                              @ DW_OP_reg0
 	.long	0
@@ -6989,8 +6981,8 @@ nwk_mgm_timer:
 .Ldebug_loc66:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
-	.long	.Ltmp396-.Lfunc_begin14
-	.long	.Ltmp411-.Lfunc_begin14
+	.long	.Ltmp395-.Lfunc_begin14
+	.long	.Ltmp410-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	87                              @ DW_OP_reg7
 	.long	0
@@ -6998,12 +6990,12 @@ nwk_mgm_timer:
 .Ldebug_loc67:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
-	.long	.Ltmp396-.Lfunc_begin14
-	.long	.Ltmp420-.Lfunc_begin14
+	.long	.Ltmp395-.Lfunc_begin14
+	.long	.Ltmp419-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	85                              @ DW_OP_reg5
-	.long	.Ltmp443-.Lfunc_begin14
-	.long	.Ltmp536-.Lfunc_begin14
+	.long	.Ltmp442-.Lfunc_begin14
+	.long	.Ltmp535-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	85                              @ DW_OP_reg5
 	.long	0
@@ -7011,12 +7003,12 @@ nwk_mgm_timer:
 .Ldebug_loc68:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
-	.long	.Ltmp396-.Lfunc_begin14
-	.long	.Ltmp420-.Lfunc_begin14
+	.long	.Ltmp395-.Lfunc_begin14
+	.long	.Ltmp419-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	84                              @ DW_OP_reg4
-	.long	.Ltmp443-.Lfunc_begin14
-	.long	.Ltmp536-.Lfunc_begin14
+	.long	.Ltmp442-.Lfunc_begin14
+	.long	.Ltmp535-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	84                              @ DW_OP_reg4
 	.long	0
@@ -7024,17 +7016,17 @@ nwk_mgm_timer:
 .Ldebug_loc69:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
-	.long	.Ltmp396-.Lfunc_begin14
-	.long	.Ltmp407-.Lfunc_begin14
+	.long	.Ltmp395-.Lfunc_begin14
+	.long	.Ltmp406-.Lfunc_begin14
 	.short	2                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	159                             @ DW_OP_stack_value
-	.long	.Ltmp407-.Lfunc_begin14
-	.long	.Ltmp409-.Lfunc_begin14
+	.long	.Ltmp406-.Lfunc_begin14
+	.long	.Ltmp408-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	80                              @ DW_OP_reg0
-	.long	.Ltmp521-.Lfunc_begin14
-	.long	.Ltmp531-.Lfunc_begin14
+	.long	.Ltmp520-.Lfunc_begin14
+	.long	.Ltmp530-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	87                              @ DW_OP_reg7
 	.long	0
@@ -7042,21 +7034,21 @@ nwk_mgm_timer:
 .Ldebug_loc70:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
-	.long	.Ltmp396-.Lfunc_begin14
-	.long	.Ltmp404-.Lfunc_begin14
+	.long	.Ltmp395-.Lfunc_begin14
+	.long	.Ltmp403-.Lfunc_begin14
 	.short	2                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	159                             @ DW_OP_stack_value
-	.long	.Ltmp404-.Lfunc_begin14
-	.long	.Ltmp406-.Lfunc_begin14
+	.long	.Ltmp403-.Lfunc_begin14
+	.long	.Ltmp405-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	80                              @ DW_OP_reg0
-	.long	.Ltmp406-.Lfunc_begin14
-	.long	.Ltmp420-.Lfunc_begin14
+	.long	.Ltmp405-.Lfunc_begin14
+	.long	.Ltmp419-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	89                              @ DW_OP_reg9
-	.long	.Ltmp443-.Lfunc_begin14
-	.long	.Ltmp460-.Lfunc_begin14
+	.long	.Ltmp442-.Lfunc_begin14
+	.long	.Ltmp459-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	89                              @ DW_OP_reg9
 	.long	0
@@ -7064,19 +7056,19 @@ nwk_mgm_timer:
 .Ldebug_loc71:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
-	.long	.Ltmp396-.Lfunc_begin14
-	.long	.Ltmp403-.Lfunc_begin14
+	.long	.Ltmp395-.Lfunc_begin14
+	.long	.Ltmp402-.Lfunc_begin14
 	.short	2                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	159                             @ DW_OP_stack_value
-	.long	.Ltmp403-.Lfunc_begin14
-	.long	.Ltmp420-.Lfunc_begin14
+	.long	.Ltmp402-.Lfunc_begin14
+	.long	.Ltmp419-.Lfunc_begin14
 	.short	3                               @ Loc expr size
 	.byte	16                              @ DW_OP_constu
 	.byte	67                              @ 67
 	.byte	159                             @ DW_OP_stack_value
-	.long	.Ltmp443-.Lfunc_begin14
-	.long	.Ltmp536-.Lfunc_begin14
+	.long	.Ltmp442-.Lfunc_begin14
+	.long	.Ltmp535-.Lfunc_begin14
 	.short	3                               @ Loc expr size
 	.byte	16                              @ DW_OP_constu
 	.byte	67                              @ 67
@@ -7086,13 +7078,13 @@ nwk_mgm_timer:
 .Ldebug_loc72:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
-	.long	.Ltmp396-.Lfunc_begin14
-	.long	.Ltmp420-.Lfunc_begin14
+	.long	.Ltmp395-.Lfunc_begin14
+	.long	.Ltmp419-.Lfunc_begin14
 	.short	2                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	159                             @ DW_OP_stack_value
-	.long	.Ltmp443-.Lfunc_begin14
-	.long	.Ltmp536-.Lfunc_begin14
+	.long	.Ltmp442-.Lfunc_begin14
+	.long	.Ltmp535-.Lfunc_begin14
 	.short	2                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	159                             @ DW_OP_stack_value
@@ -7101,26 +7093,26 @@ nwk_mgm_timer:
 .Ldebug_loc73:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
-	.long	.Ltmp396-.Lfunc_begin14
-	.long	.Ltmp420-.Lfunc_begin14
+	.long	.Ltmp395-.Lfunc_begin14
+	.long	.Ltmp419-.Lfunc_begin14
 	.short	2                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	159                             @ DW_OP_stack_value
-	.long	.Ltmp443-.Lfunc_begin14
-	.long	.Ltmp509-.Lfunc_begin14
+	.long	.Ltmp442-.Lfunc_begin14
+	.long	.Ltmp508-.Lfunc_begin14
 	.short	2                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	159                             @ DW_OP_stack_value
-	.long	.Ltmp509-.Lfunc_begin14
-	.long	.Ltmp511-.Lfunc_begin14
+	.long	.Ltmp508-.Lfunc_begin14
+	.long	.Ltmp510-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	80                              @ DW_OP_reg0
-	.long	.Ltmp511-.Lfunc_begin14
-	.long	.Ltmp531-.Lfunc_begin14
+	.long	.Ltmp510-.Lfunc_begin14
+	.long	.Ltmp530-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	86                              @ DW_OP_reg6
+	.long	.Ltmp530-.Lfunc_begin14
 	.long	.Ltmp531-.Lfunc_begin14
-	.long	.Ltmp532-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	80                              @ DW_OP_reg0
 	.long	0
@@ -7128,31 +7120,31 @@ nwk_mgm_timer:
 .Ldebug_loc74:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
-	.long	.Ltmp396-.Lfunc_begin14
-	.long	.Ltmp420-.Lfunc_begin14
+	.long	.Ltmp395-.Lfunc_begin14
+	.long	.Ltmp419-.Lfunc_begin14
 	.short	2                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	159                             @ DW_OP_stack_value
-	.long	.Ltmp443-.Lfunc_begin14
-	.long	.Ltmp460-.Lfunc_begin14
+	.long	.Ltmp442-.Lfunc_begin14
+	.long	.Ltmp459-.Lfunc_begin14
 	.short	2                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	159                             @ DW_OP_stack_value
-	.long	.Ltmp460-.Lfunc_begin14
-	.long	.Ltmp483-.Lfunc_begin14
+	.long	.Ltmp459-.Lfunc_begin14
+	.long	.Ltmp482-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	90                              @ DW_OP_reg10
-	.long	.Ltmp483-.Lfunc_begin14
-	.long	.Ltmp486-.Lfunc_begin14
+	.long	.Ltmp482-.Lfunc_begin14
+	.long	.Ltmp485-.Lfunc_begin14
 	.short	2                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	159                             @ DW_OP_stack_value
-	.long	.Ltmp486-.Lfunc_begin14
-	.long	.Ltmp503-.Lfunc_begin14
+	.long	.Ltmp485-.Lfunc_begin14
+	.long	.Ltmp502-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	90                              @ DW_OP_reg10
+	.long	.Ltmp502-.Lfunc_begin14
 	.long	.Ltmp503-.Lfunc_begin14
-	.long	.Ltmp504-.Lfunc_begin14
 	.short	2                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	159                             @ DW_OP_stack_value
@@ -7161,18 +7153,18 @@ nwk_mgm_timer:
 .Ldebug_loc75:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
-	.long	.Ltmp396-.Lfunc_begin14
-	.long	.Ltmp420-.Lfunc_begin14
+	.long	.Ltmp395-.Lfunc_begin14
+	.long	.Ltmp419-.Lfunc_begin14
 	.short	2                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	159                             @ DW_OP_stack_value
-	.long	.Ltmp443-.Lfunc_begin14
-	.long	.Ltmp460-.Lfunc_begin14
+	.long	.Ltmp442-.Lfunc_begin14
+	.long	.Ltmp459-.Lfunc_begin14
 	.short	2                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	159                             @ DW_OP_stack_value
-	.long	.Ltmp466-.Lfunc_begin14
-	.long	.Ltmp468-.Lfunc_begin14
+	.long	.Ltmp465-.Lfunc_begin14
+	.long	.Ltmp467-.Lfunc_begin14
 	.short	2                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	159                             @ DW_OP_stack_value
@@ -7181,16 +7173,16 @@ nwk_mgm_timer:
 .Ldebug_loc76:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
-	.long	.Ltmp397-.Lfunc_begin14
-	.long	.Ltmp399-.Lfunc_begin14
+	.long	.Ltmp396-.Lfunc_begin14
+	.long	.Ltmp398-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	80                              @ DW_OP_reg0
-	.long	.Ltmp399-.Lfunc_begin14
-	.long	.Ltmp420-.Lfunc_begin14
+	.long	.Ltmp398-.Lfunc_begin14
+	.long	.Ltmp419-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	90                              @ DW_OP_reg10
-	.long	.Ltmp443-.Lfunc_begin14
-	.long	.Ltmp459-.Lfunc_begin14
+	.long	.Ltmp442-.Lfunc_begin14
+	.long	.Ltmp458-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	90                              @ DW_OP_reg10
 	.long	0
@@ -7198,16 +7190,16 @@ nwk_mgm_timer:
 .Ldebug_loc77:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
-	.long	.Ltmp401-.Lfunc_begin14
-	.long	.Ltmp417-.Lfunc_begin14
+	.long	.Ltmp400-.Lfunc_begin14
+	.long	.Ltmp416-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	91                              @ DW_OP_reg11
-	.long	.Ltmp443-.Lfunc_begin14
+	.long	.Ltmp442-.Lfunc_begin14
+	.long	.Ltmp446-.Lfunc_begin14
+	.short	1                               @ Loc expr size
+	.byte	91                              @ DW_OP_reg11
 	.long	.Ltmp447-.Lfunc_begin14
-	.short	1                               @ Loc expr size
-	.byte	91                              @ DW_OP_reg11
 	.long	.Ltmp448-.Lfunc_begin14
-	.long	.Ltmp449-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	91                              @ DW_OP_reg11
 	.long	0
@@ -7215,12 +7207,12 @@ nwk_mgm_timer:
 .Ldebug_loc78:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
-	.long	.Ltmp421-.Lfunc_begin14
-	.long	.Ltmp423-.Lfunc_begin14
+	.long	.Ltmp420-.Lfunc_begin14
+	.long	.Ltmp422-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	80                              @ DW_OP_reg0
-	.long	.Ltmp423-.Lfunc_begin14
-	.long	.Ltmp443-.Lfunc_begin14
+	.long	.Ltmp422-.Lfunc_begin14
+	.long	.Ltmp442-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	85                              @ DW_OP_reg5
 	.long	0
@@ -7228,14 +7220,14 @@ nwk_mgm_timer:
 .Ldebug_loc79:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
+	.long	.Ltmp424-.Lfunc_begin14
 	.long	.Ltmp425-.Lfunc_begin14
-	.long	.Ltmp426-.Lfunc_begin14
 	.short	3                               @ Loc expr size
 	.byte	116                             @ DW_OP_breg4
 	.byte	5                               @ 5
 	.byte	159                             @ DW_OP_stack_value
-	.long	.Ltmp438-.Lfunc_begin14
-	.long	.Ltmp443-.Lfunc_begin14
+	.long	.Ltmp437-.Lfunc_begin14
+	.long	.Ltmp442-.Lfunc_begin14
 	.short	3                               @ Loc expr size
 	.byte	116                             @ DW_OP_breg4
 	.byte	5                               @ 5
@@ -7245,13 +7237,13 @@ nwk_mgm_timer:
 .Ldebug_loc80:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
+	.long	.Ltmp424-.Lfunc_begin14
 	.long	.Ltmp425-.Lfunc_begin14
-	.long	.Ltmp426-.Lfunc_begin14
 	.short	2                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	159                             @ DW_OP_stack_value
-	.long	.Ltmp438-.Lfunc_begin14
-	.long	.Ltmp443-.Lfunc_begin14
+	.long	.Ltmp437-.Lfunc_begin14
+	.long	.Ltmp442-.Lfunc_begin14
 	.short	2                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	159                             @ DW_OP_stack_value
@@ -7260,13 +7252,13 @@ nwk_mgm_timer:
 .Ldebug_loc81:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
+	.long	.Ltmp424-.Lfunc_begin14
 	.long	.Ltmp425-.Lfunc_begin14
-	.long	.Ltmp426-.Lfunc_begin14
 	.short	2                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	159                             @ DW_OP_stack_value
-	.long	.Ltmp438-.Lfunc_begin14
-	.long	.Ltmp443-.Lfunc_begin14
+	.long	.Ltmp437-.Lfunc_begin14
+	.long	.Ltmp442-.Lfunc_begin14
 	.short	2                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	159                             @ DW_OP_stack_value
@@ -7275,12 +7267,12 @@ nwk_mgm_timer:
 .Ldebug_loc82:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
+	.long	.Ltmp424-.Lfunc_begin14
 	.long	.Ltmp425-.Lfunc_begin14
-	.long	.Ltmp426-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	84                              @ DW_OP_reg4
-	.long	.Ltmp438-.Lfunc_begin14
-	.long	.Ltmp443-.Lfunc_begin14
+	.long	.Ltmp437-.Lfunc_begin14
+	.long	.Ltmp442-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	84                              @ DW_OP_reg4
 	.long	0
@@ -7288,13 +7280,13 @@ nwk_mgm_timer:
 .Ldebug_loc83:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
+	.long	.Ltmp424-.Lfunc_begin14
 	.long	.Ltmp425-.Lfunc_begin14
-	.long	.Ltmp426-.Lfunc_begin14
 	.short	2                               @ Loc expr size
 	.byte	50                              @ DW_OP_lit2
 	.byte	159                             @ DW_OP_stack_value
-	.long	.Ltmp438-.Lfunc_begin14
-	.long	.Ltmp443-.Lfunc_begin14
+	.long	.Ltmp437-.Lfunc_begin14
+	.long	.Ltmp442-.Lfunc_begin14
 	.short	2                               @ Loc expr size
 	.byte	50                              @ DW_OP_lit2
 	.byte	159                             @ DW_OP_stack_value
@@ -7303,12 +7295,12 @@ nwk_mgm_timer:
 .Ldebug_loc84:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
-	.long	.Ltmp425-.Lfunc_begin14
-	.long	.Ltmp427-.Lfunc_begin14
+	.long	.Ltmp424-.Lfunc_begin14
+	.long	.Ltmp426-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	80                              @ DW_OP_reg0
+	.long	.Ltmp437-.Lfunc_begin14
 	.long	.Ltmp438-.Lfunc_begin14
-	.long	.Ltmp439-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	80                              @ DW_OP_reg0
 	.long	0
@@ -7316,20 +7308,20 @@ nwk_mgm_timer:
 .Ldebug_loc85:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
+	.long	.Ltmp511-.Lfunc_begin14
 	.long	.Ltmp512-.Lfunc_begin14
-	.long	.Ltmp513-.Lfunc_begin14
 	.short	3                               @ Loc expr size
 	.byte	118                             @ DW_OP_breg6
 	.byte	1                               @ 1
 	.byte	159                             @ DW_OP_stack_value
-	.long	.Ltmp513-.Lfunc_begin14
-	.long	.Ltmp515-.Lfunc_begin14
+	.long	.Ltmp512-.Lfunc_begin14
+	.long	.Ltmp514-.Lfunc_begin14
 	.short	3                               @ Loc expr size
 	.byte	118                             @ DW_OP_breg6
 	.byte	2                               @ 2
 	.byte	159                             @ DW_OP_stack_value
-	.long	.Ltmp515-.Lfunc_begin14
-	.long	.Ltmp519-.Lfunc_begin14
+	.long	.Ltmp514-.Lfunc_begin14
+	.long	.Ltmp518-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	91                              @ DW_OP_reg11
 	.long	0
@@ -7337,8 +7329,8 @@ nwk_mgm_timer:
 .Ldebug_loc86:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
-	.long	.Ltmp512-.Lfunc_begin14
-	.long	.Ltmp519-.Lfunc_begin14
+	.long	.Ltmp511-.Lfunc_begin14
+	.long	.Ltmp518-.Lfunc_begin14
 	.short	2                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	159                             @ DW_OP_stack_value
@@ -7347,13 +7339,13 @@ nwk_mgm_timer:
 .Ldebug_loc87:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
-	.long	.Ltmp512-.Lfunc_begin14
-	.long	.Ltmp514-.Lfunc_begin14
+	.long	.Ltmp511-.Lfunc_begin14
+	.long	.Ltmp513-.Lfunc_begin14
 	.short	2                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	159                             @ DW_OP_stack_value
-	.long	.Ltmp514-.Lfunc_begin14
-	.long	.Ltmp519-.Lfunc_begin14
+	.long	.Ltmp513-.Lfunc_begin14
+	.long	.Ltmp518-.Lfunc_begin14
 	.short	4                               @ Loc expr size
 	.byte	125                             @ DW_OP_breg13
 	.byte	232                             @ 104
@@ -7364,8 +7356,8 @@ nwk_mgm_timer:
 .Ldebug_loc88:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
-	.long	.Ltmp512-.Lfunc_begin14
-	.long	.Ltmp519-.Lfunc_begin14
+	.long	.Ltmp511-.Lfunc_begin14
+	.long	.Ltmp518-.Lfunc_begin14
 	.short	2                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	159                             @ DW_OP_stack_value
@@ -7374,8 +7366,8 @@ nwk_mgm_timer:
 .Ldebug_loc89:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
-	.long	.Ltmp512-.Lfunc_begin14
-	.long	.Ltmp519-.Lfunc_begin14
+	.long	.Ltmp511-.Lfunc_begin14
+	.long	.Ltmp518-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	86                              @ DW_OP_reg6
 	.long	0
@@ -7383,8 +7375,8 @@ nwk_mgm_timer:
 .Ldebug_loc90:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
-	.long	.Ltmp512-.Lfunc_begin14
-	.long	.Ltmp519-.Lfunc_begin14
+	.long	.Ltmp511-.Lfunc_begin14
+	.long	.Ltmp518-.Lfunc_begin14
 	.short	2                               @ Loc expr size
 	.byte	49                              @ DW_OP_lit1
 	.byte	159                             @ DW_OP_stack_value
@@ -7393,8 +7385,8 @@ nwk_mgm_timer:
 .Ldebug_loc91:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
-	.long	.Ltmp514-.Lfunc_begin14
-	.long	.Ltmp519-.Lfunc_begin14
+	.long	.Ltmp513-.Lfunc_begin14
+	.long	.Ltmp518-.Lfunc_begin14
 	.short	4                               @ Loc expr size
 	.byte	125                             @ DW_OP_breg13
 	.byte	232                             @ 104
@@ -7405,8 +7397,8 @@ nwk_mgm_timer:
 .Ldebug_loc92:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
-	.long	.Ltmp514-.Lfunc_begin14
-	.long	.Ltmp519-.Lfunc_begin14
+	.long	.Ltmp513-.Lfunc_begin14
+	.long	.Ltmp518-.Lfunc_begin14
 	.short	4                               @ Loc expr size
 	.byte	125                             @ DW_OP_breg13
 	.byte	232                             @ 104
@@ -7417,8 +7409,8 @@ nwk_mgm_timer:
 .Ldebug_loc93:
 	.long	-1
 	.long	.Lfunc_begin14                  @   base address
+	.long	.Ltmp523-.Lfunc_begin14
 	.long	.Ltmp524-.Lfunc_begin14
-	.long	.Ltmp525-.Lfunc_begin14
 	.short	1                               @ Loc expr size
 	.byte	82                              @ DW_OP_reg2
 	.long	0
@@ -7427,11 +7419,11 @@ nwk_mgm_timer:
 	.long	-1
 	.long	.Lfunc_begin15                  @   base address
 	.long	.Lfunc_begin15-.Lfunc_begin15
-	.long	.Ltmp540-.Lfunc_begin15
+	.long	.Ltmp539-.Lfunc_begin15
 	.short	1                               @ Loc expr size
 	.byte	80                              @ DW_OP_reg0
-	.long	.Ltmp540-.Lfunc_begin15
-	.long	.Ltmp609-.Lfunc_begin15
+	.long	.Ltmp539-.Lfunc_begin15
+	.long	.Ltmp608-.Lfunc_begin15
 	.short	4                               @ Loc expr size
 	.byte	243                             @ DW_OP_GNU_entry_value
 	.byte	1                               @ 1
@@ -7442,8 +7434,8 @@ nwk_mgm_timer:
 .Ldebug_loc95:
 	.long	-1
 	.long	.Lfunc_begin15                  @   base address
-	.long	.Ltmp546-.Lfunc_begin15
-	.long	.Ltmp548-.Lfunc_begin15
+	.long	.Ltmp545-.Lfunc_begin15
+	.long	.Ltmp547-.Lfunc_begin15
 	.short	1                               @ Loc expr size
 	.byte	80                              @ DW_OP_reg0
 	.long	0
@@ -7451,8 +7443,8 @@ nwk_mgm_timer:
 .Ldebug_loc96:
 	.long	-1
 	.long	.Lfunc_begin15                  @   base address
-	.long	.Ltmp548-.Lfunc_begin15
-	.long	.Ltmp550-.Lfunc_begin15
+	.long	.Ltmp547-.Lfunc_begin15
+	.long	.Ltmp549-.Lfunc_begin15
 	.short	1                               @ Loc expr size
 	.byte	80                              @ DW_OP_reg0
 	.long	0
@@ -7460,12 +7452,12 @@ nwk_mgm_timer:
 .Ldebug_loc97:
 	.long	-1
 	.long	.Lfunc_begin15                  @   base address
-	.long	.Ltmp556-.Lfunc_begin15
-	.long	.Ltmp558-.Lfunc_begin15
+	.long	.Ltmp555-.Lfunc_begin15
+	.long	.Ltmp557-.Lfunc_begin15
 	.short	1                               @ Loc expr size
 	.byte	80                              @ DW_OP_reg0
-	.long	.Ltmp558-.Lfunc_begin15
-	.long	.Ltmp586-.Lfunc_begin15
+	.long	.Ltmp557-.Lfunc_begin15
+	.long	.Ltmp585-.Lfunc_begin15
 	.short	1                               @ Loc expr size
 	.byte	84                              @ DW_OP_reg4
 	.long	0
@@ -7473,16 +7465,16 @@ nwk_mgm_timer:
 .Ldebug_loc98:
 	.long	-1
 	.long	.Lfunc_begin15                  @   base address
-	.long	.Ltmp559-.Lfunc_begin15
-	.long	.Ltmp562-.Lfunc_begin15
+	.long	.Ltmp558-.Lfunc_begin15
+	.long	.Ltmp561-.Lfunc_begin15
 	.short	1                               @ Loc expr size
 	.byte	80                              @ DW_OP_reg0
+	.long	.Ltmp564-.Lfunc_begin15
 	.long	.Ltmp565-.Lfunc_begin15
-	.long	.Ltmp566-.Lfunc_begin15
 	.short	1                               @ Loc expr size
 	.byte	80                              @ DW_OP_reg0
+	.long	.Ltmp578-.Lfunc_begin15
 	.long	.Ltmp579-.Lfunc_begin15
-	.long	.Ltmp580-.Lfunc_begin15
 	.short	1                               @ Loc expr size
 	.byte	80                              @ DW_OP_reg0
 	.long	0
@@ -7490,13 +7482,13 @@ nwk_mgm_timer:
 .Ldebug_loc99:
 	.long	-1
 	.long	.Lfunc_begin15                  @   base address
-	.long	.Ltmp567-.Lfunc_begin15
-	.long	.Ltmp570-.Lfunc_begin15
+	.long	.Ltmp566-.Lfunc_begin15
+	.long	.Ltmp569-.Lfunc_begin15
 	.short	2                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	159                             @ DW_OP_stack_value
-	.long	.Ltmp570-.Lfunc_begin15
-	.long	.Ltmp579-.Lfunc_begin15
+	.long	.Ltmp569-.Lfunc_begin15
+	.long	.Ltmp578-.Lfunc_begin15
 	.short	1                               @ Loc expr size
 	.byte	86                              @ DW_OP_reg6
 	.long	0
@@ -7504,12 +7496,12 @@ nwk_mgm_timer:
 .Ldebug_loc100:
 	.long	-1
 	.long	.Lfunc_begin15                  @   base address
-	.long	.Ltmp567-.Lfunc_begin15
-	.long	.Ltmp569-.Lfunc_begin15
+	.long	.Ltmp566-.Lfunc_begin15
+	.long	.Ltmp568-.Lfunc_begin15
 	.short	1                               @ Loc expr size
 	.byte	80                              @ DW_OP_reg0
-	.long	.Ltmp569-.Lfunc_begin15
-	.long	.Ltmp579-.Lfunc_begin15
+	.long	.Ltmp568-.Lfunc_begin15
+	.long	.Ltmp578-.Lfunc_begin15
 	.short	1                               @ Loc expr size
 	.byte	85                              @ DW_OP_reg5
 	.long	0
@@ -7517,8 +7509,8 @@ nwk_mgm_timer:
 .Ldebug_loc101:
 	.long	-1
 	.long	.Lfunc_begin15                  @   base address
+	.long	.Ltmp588-.Lfunc_begin15
 	.long	.Ltmp589-.Lfunc_begin15
-	.long	.Ltmp590-.Lfunc_begin15
 	.short	2                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	159                             @ DW_OP_stack_value
@@ -7528,11 +7520,11 @@ nwk_mgm_timer:
 	.long	-1
 	.long	.Lfunc_begin16                  @   base address
 	.long	.Lfunc_begin16-.Lfunc_begin16
-	.long	.Ltmp612-.Lfunc_begin16
+	.long	.Ltmp611-.Lfunc_begin16
 	.short	1                               @ Loc expr size
 	.byte	80                              @ DW_OP_reg0
-	.long	.Ltmp612-.Lfunc_begin16
-	.long	.Ltmp633-.Lfunc_begin16
+	.long	.Ltmp611-.Lfunc_begin16
+	.long	.Ltmp632-.Lfunc_begin16
 	.short	1                               @ Loc expr size
 	.byte	85                              @ DW_OP_reg5
 	.long	0
@@ -7541,11 +7533,11 @@ nwk_mgm_timer:
 	.long	-1
 	.long	.Lfunc_begin16                  @   base address
 	.long	.Lfunc_begin16-.Lfunc_begin16
-	.long	.Ltmp613-.Lfunc_begin16
+	.long	.Ltmp612-.Lfunc_begin16
 	.short	1                               @ Loc expr size
 	.byte	81                              @ DW_OP_reg1
-	.long	.Ltmp613-.Lfunc_begin16
-	.long	.Ltmp633-.Lfunc_begin16
+	.long	.Ltmp612-.Lfunc_begin16
+	.long	.Ltmp632-.Lfunc_begin16
 	.short	1                               @ Loc expr size
 	.byte	86                              @ DW_OP_reg6
 	.long	0
@@ -7554,11 +7546,11 @@ nwk_mgm_timer:
 	.long	-1
 	.long	.Lfunc_begin16                  @   base address
 	.long	.Lfunc_begin16-.Lfunc_begin16
-	.long	.Ltmp611-.Lfunc_begin16
+	.long	.Ltmp610-.Lfunc_begin16
 	.short	1                               @ Loc expr size
 	.byte	82                              @ DW_OP_reg2
-	.long	.Ltmp611-.Lfunc_begin16
-	.long	.Ltmp637-.Lfunc_begin16
+	.long	.Ltmp610-.Lfunc_begin16
+	.long	.Ltmp636-.Lfunc_begin16
 	.short	1                               @ Loc expr size
 	.byte	88                              @ DW_OP_reg8
 	.long	0
@@ -7567,18 +7559,18 @@ nwk_mgm_timer:
 	.long	-1
 	.long	.Lfunc_begin16                  @   base address
 	.long	.Lfunc_begin16-.Lfunc_begin16
-	.long	.Ltmp626-.Lfunc_begin16
+	.long	.Ltmp625-.Lfunc_begin16
 	.short	1                               @ Loc expr size
 	.byte	83                              @ DW_OP_reg3
-	.long	.Ltmp626-.Lfunc_begin16
-	.long	.Ltmp628-.Lfunc_begin16
+	.long	.Ltmp625-.Lfunc_begin16
+	.long	.Ltmp627-.Lfunc_begin16
 	.short	4                               @ Loc expr size
 	.byte	243                             @ DW_OP_GNU_entry_value
 	.byte	1                               @ 1
 	.byte	83                              @ DW_OP_reg3
 	.byte	159                             @ DW_OP_stack_value
-	.long	.Ltmp628-.Lfunc_begin16
-	.long	.Ltmp631-.Lfunc_begin16
+	.long	.Ltmp627-.Lfunc_begin16
+	.long	.Ltmp630-.Lfunc_begin16
 	.short	1                               @ Loc expr size
 	.byte	83                              @ DW_OP_reg3
 	.long	0
@@ -7586,80 +7578,80 @@ nwk_mgm_timer:
 .Ldebug_loc106:
 	.long	-1
 	.long	.Lfunc_begin16                  @   base address
-	.long	.Ltmp610-.Lfunc_begin16
-	.long	.Ltmp613-.Lfunc_begin16
+	.long	.Ltmp609-.Lfunc_begin16
+	.long	.Ltmp612-.Lfunc_begin16
 	.short	1                               @ Loc expr size
 	.byte	81                              @ DW_OP_reg1
-	.long	.Ltmp613-.Lfunc_begin16
-	.long	.Ltmp615-.Lfunc_begin16
+	.long	.Ltmp612-.Lfunc_begin16
+	.long	.Ltmp614-.Lfunc_begin16
 	.short	1                               @ Loc expr size
 	.byte	86                              @ DW_OP_reg6
+	.long	.Ltmp614-.Lfunc_begin16
 	.long	.Ltmp615-.Lfunc_begin16
-	.long	.Ltmp616-.Lfunc_begin16
 	.short	3                               @ Loc expr size
 	.byte	118                             @ DW_OP_breg6
 	.byte	1                               @ 1
 	.byte	159                             @ DW_OP_stack_value
+	.long	.Ltmp615-.Lfunc_begin16
 	.long	.Ltmp616-.Lfunc_begin16
-	.long	.Ltmp617-.Lfunc_begin16
 	.short	1                               @ Loc expr size
 	.byte	87                              @ DW_OP_reg7
+	.long	.Ltmp616-.Lfunc_begin16
 	.long	.Ltmp617-.Lfunc_begin16
-	.long	.Ltmp618-.Lfunc_begin16
 	.short	3                               @ Loc expr size
 	.byte	118                             @ DW_OP_breg6
 	.byte	3                               @ 3
 	.byte	159                             @ DW_OP_stack_value
+	.long	.Ltmp617-.Lfunc_begin16
 	.long	.Ltmp618-.Lfunc_begin16
-	.long	.Ltmp619-.Lfunc_begin16
 	.short	3                               @ Loc expr size
 	.byte	118                             @ DW_OP_breg6
 	.byte	5                               @ 5
 	.byte	159                             @ DW_OP_stack_value
-	.long	.Ltmp619-.Lfunc_begin16
-	.long	.Ltmp621-.Lfunc_begin16
+	.long	.Ltmp618-.Lfunc_begin16
+	.long	.Ltmp620-.Lfunc_begin16
 	.short	3                               @ Loc expr size
 	.byte	118                             @ DW_OP_breg6
 	.byte	13                              @ 13
 	.byte	159                             @ DW_OP_stack_value
+	.long	.Ltmp620-.Lfunc_begin16
 	.long	.Ltmp621-.Lfunc_begin16
-	.long	.Ltmp622-.Lfunc_begin16
 	.short	3                               @ Loc expr size
 	.byte	118                             @ DW_OP_breg6
 	.byte	1                               @ 1
 	.byte	159                             @ DW_OP_stack_value
+	.long	.Ltmp621-.Lfunc_begin16
 	.long	.Ltmp622-.Lfunc_begin16
-	.long	.Ltmp623-.Lfunc_begin16
 	.short	1                               @ Loc expr size
 	.byte	87                              @ DW_OP_reg7
-	.long	.Ltmp623-.Lfunc_begin16
-	.long	.Ltmp625-.Lfunc_begin16
+	.long	.Ltmp622-.Lfunc_begin16
+	.long	.Ltmp624-.Lfunc_begin16
 	.short	3                               @ Loc expr size
 	.byte	118                             @ DW_OP_breg6
 	.byte	2                               @ 2
 	.byte	159                             @ DW_OP_stack_value
+	.long	.Ltmp626-.Lfunc_begin16
 	.long	.Ltmp627-.Lfunc_begin16
-	.long	.Ltmp628-.Lfunc_begin16
 	.short	1                               @ Loc expr size
 	.byte	87                              @ DW_OP_reg7
+	.long	.Ltmp627-.Lfunc_begin16
 	.long	.Ltmp628-.Lfunc_begin16
-	.long	.Ltmp629-.Lfunc_begin16
 	.short	3                               @ Loc expr size
 	.byte	118                             @ DW_OP_breg6
 	.byte	1                               @ 1
 	.byte	159                             @ DW_OP_stack_value
+	.long	.Ltmp628-.Lfunc_begin16
 	.long	.Ltmp629-.Lfunc_begin16
-	.long	.Ltmp630-.Lfunc_begin16
 	.short	1                               @ Loc expr size
 	.byte	87                              @ DW_OP_reg7
+	.long	.Ltmp629-.Lfunc_begin16
 	.long	.Ltmp630-.Lfunc_begin16
-	.long	.Ltmp631-.Lfunc_begin16
 	.short	3                               @ Loc expr size
 	.byte	118                             @ DW_OP_breg6
 	.byte	3                               @ 3
 	.byte	159                             @ DW_OP_stack_value
-	.long	.Ltmp631-.Lfunc_begin16
-	.long	.Ltmp633-.Lfunc_begin16
+	.long	.Ltmp630-.Lfunc_begin16
+	.long	.Ltmp632-.Lfunc_begin16
 	.short	1                               @ Loc expr size
 	.byte	87                              @ DW_OP_reg7
 	.long	0
@@ -7667,13 +7659,13 @@ nwk_mgm_timer:
 .Ldebug_loc107:
 	.long	-1
 	.long	.Lfunc_begin16                  @   base address
-	.long	.Ltmp612-.Lfunc_begin16
-	.long	.Ltmp628-.Lfunc_begin16
+	.long	.Ltmp611-.Lfunc_begin16
+	.long	.Ltmp627-.Lfunc_begin16
 	.short	2                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	159                             @ DW_OP_stack_value
-	.long	.Ltmp628-.Lfunc_begin16
-	.long	.Ltmp631-.Lfunc_begin16
+	.long	.Ltmp627-.Lfunc_begin16
+	.long	.Ltmp630-.Lfunc_begin16
 	.short	1                               @ Loc expr size
 	.byte	83                              @ DW_OP_reg3
 	.long	0
@@ -7681,17 +7673,17 @@ nwk_mgm_timer:
 .Ldebug_loc108:
 	.long	-1
 	.long	.Lfunc_begin16                  @   base address
-	.long	.Ltmp612-.Lfunc_begin16
-	.long	.Ltmp621-.Lfunc_begin16
+	.long	.Ltmp611-.Lfunc_begin16
+	.long	.Ltmp620-.Lfunc_begin16
 	.short	2                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	159                             @ DW_OP_stack_value
-	.long	.Ltmp621-.Lfunc_begin16
-	.long	.Ltmp625-.Lfunc_begin16
+	.long	.Ltmp620-.Lfunc_begin16
+	.long	.Ltmp624-.Lfunc_begin16
 	.short	1                               @ Loc expr size
 	.byte	83                              @ DW_OP_reg3
-	.long	.Ltmp628-.Lfunc_begin16
-	.long	.Ltmp631-.Lfunc_begin16
+	.long	.Ltmp627-.Lfunc_begin16
+	.long	.Ltmp630-.Lfunc_begin16
 	.short	2                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	159                             @ DW_OP_stack_value
@@ -7700,22 +7692,22 @@ nwk_mgm_timer:
 .Ldebug_loc109:
 	.long	-1
 	.long	.Lfunc_begin16                  @   base address
-	.long	.Ltmp612-.Lfunc_begin16
-	.long	.Ltmp615-.Lfunc_begin16
+	.long	.Ltmp611-.Lfunc_begin16
+	.long	.Ltmp614-.Lfunc_begin16
 	.short	2                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	159                             @ DW_OP_stack_value
-	.long	.Ltmp615-.Lfunc_begin16
-	.long	.Ltmp621-.Lfunc_begin16
+	.long	.Ltmp614-.Lfunc_begin16
+	.long	.Ltmp620-.Lfunc_begin16
 	.short	1                               @ Loc expr size
 	.byte	83                              @ DW_OP_reg3
-	.long	.Ltmp621-.Lfunc_begin16
-	.long	.Ltmp625-.Lfunc_begin16
+	.long	.Ltmp620-.Lfunc_begin16
+	.long	.Ltmp624-.Lfunc_begin16
 	.short	2                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	159                             @ DW_OP_stack_value
-	.long	.Ltmp628-.Lfunc_begin16
-	.long	.Ltmp631-.Lfunc_begin16
+	.long	.Ltmp627-.Lfunc_begin16
+	.long	.Ltmp630-.Lfunc_begin16
 	.short	2                               @ Loc expr size
 	.byte	48                              @ DW_OP_lit0
 	.byte	159                             @ DW_OP_stack_value
@@ -7724,12 +7716,12 @@ nwk_mgm_timer:
 .Ldebug_loc110:
 	.long	-1
 	.long	.Lfunc_begin17                  @   base address
-	.long	.Ltmp639-.Lfunc_begin17
-	.long	.Ltmp641-.Lfunc_begin17
+	.long	.Ltmp638-.Lfunc_begin17
+	.long	.Ltmp640-.Lfunc_begin17
 	.short	1                               @ Loc expr size
 	.byte	80                              @ DW_OP_reg0
-	.long	.Ltmp641-.Lfunc_begin17
-	.long	.Ltmp654-.Lfunc_begin17
+	.long	.Ltmp640-.Lfunc_begin17
+	.long	.Ltmp653-.Lfunc_begin17
 	.short	1                               @ Loc expr size
 	.byte	84                              @ DW_OP_reg4
 	.long	0
@@ -7737,8 +7729,8 @@ nwk_mgm_timer:
 .Ldebug_loc111:
 	.long	-1
 	.long	.Lfunc_begin17                  @   base address
+	.long	.Ltmp641-.Lfunc_begin17
 	.long	.Ltmp642-.Lfunc_begin17
-	.long	.Ltmp643-.Lfunc_begin17
 	.short	1                               @ Loc expr size
 	.byte	80                              @ DW_OP_reg0
 	.long	0
@@ -10889,8 +10881,8 @@ nwk_mgm_timer:
 	.byte	0                               @ End Of Children Mark
 	.byte	57                              @ Abbrev [57] 0x1254:0x89 DW_TAG_inlined_subroutine
 	.long	4128                            @ DW_AT_abstract_origin
-	.long	.Ltmp420                        @ DW_AT_low_pc
-	.long	.Ltmp443-.Ltmp420               @ DW_AT_high_pc
+	.long	.Ltmp419                        @ DW_AT_low_pc
+	.long	.Ltmp442-.Ltmp419               @ DW_AT_high_pc
 	.byte	1                               @ DW_AT_call_file
 	.short	818                             @ DW_AT_call_line
 	.byte	21                              @ DW_AT_call_column
@@ -10906,8 +10898,8 @@ nwk_mgm_timer:
 	.byte	64                              @ Abbrev [64] 0x127a:0x5 DW_TAG_variable
 	.long	4173                            @ DW_AT_abstract_origin
 	.byte	51                              @ Abbrev [51] 0x127f:0x5d DW_TAG_lexical_block
-	.long	.Ltmp423                        @ DW_AT_low_pc
-	.long	.Ltmp443-.Ltmp423               @ DW_AT_high_pc
+	.long	.Ltmp422                        @ DW_AT_low_pc
+	.long	.Ltmp442-.Ltmp422               @ DW_AT_high_pc
 	.byte	48                              @ Abbrev [48] 0x1288:0x9 DW_TAG_variable
 	.long	.Ldebug_loc84                   @ DW_AT_location
 	.long	4186                            @ DW_AT_abstract_origin
@@ -11167,8 +11159,8 @@ nwk_mgm_timer:
 	.long	974                             @ DW_AT_type
 	.byte	57                              @ Abbrev [57] 0x1489:0x2e DW_TAG_inlined_subroutine
 	.long	4830                            @ DW_AT_abstract_origin
-	.long	.Ltmp545                        @ DW_AT_low_pc
-	.long	.Ltmp550-.Ltmp545               @ DW_AT_high_pc
+	.long	.Ltmp544                        @ DW_AT_low_pc
+	.long	.Ltmp549-.Ltmp544               @ DW_AT_high_pc
 	.byte	1                               @ DW_AT_call_file
 	.short	1173                            @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
@@ -11176,8 +11168,8 @@ nwk_mgm_timer:
 	.long	.Ldebug_loc95                   @ DW_AT_location
 	.long	4839                            @ DW_AT_abstract_origin
 	.byte	51                              @ Abbrev [51] 0x14a3:0x13 DW_TAG_lexical_block
-	.long	.Ltmp547                        @ DW_AT_low_pc
-	.long	.Ltmp550-.Ltmp547               @ DW_AT_high_pc
+	.long	.Ltmp546                        @ DW_AT_low_pc
+	.long	.Ltmp549-.Ltmp546               @ DW_AT_high_pc
 	.byte	48                              @ Abbrev [48] 0x14ac:0x9 DW_TAG_variable
 	.long	.Ldebug_loc96                   @ DW_AT_location
 	.long	4852                            @ DW_AT_abstract_origin
@@ -11185,8 +11177,8 @@ nwk_mgm_timer:
 	.byte	0                               @ End Of Children Mark
 	.byte	57                              @ Abbrev [57] 0x14b7:0x74 DW_TAG_inlined_subroutine
 	.long	4866                            @ DW_AT_abstract_origin
-	.long	.Ltmp555                        @ DW_AT_low_pc
-	.long	.Ltmp586-.Ltmp555               @ DW_AT_high_pc
+	.long	.Ltmp554                        @ DW_AT_low_pc
+	.long	.Ltmp585-.Ltmp554               @ DW_AT_high_pc
 	.byte	1                               @ DW_AT_call_file
 	.short	1177                            @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
@@ -11194,14 +11186,14 @@ nwk_mgm_timer:
 	.long	.Ldebug_loc97                   @ DW_AT_location
 	.long	4875                            @ DW_AT_abstract_origin
 	.byte	51                              @ Abbrev [51] 0x14d1:0x59 DW_TAG_lexical_block
-	.long	.Ltmp558                        @ DW_AT_low_pc
-	.long	.Ltmp586-.Ltmp558               @ DW_AT_high_pc
+	.long	.Ltmp557                        @ DW_AT_low_pc
+	.long	.Ltmp585-.Ltmp557               @ DW_AT_high_pc
 	.byte	48                              @ Abbrev [48] 0x14da:0x9 DW_TAG_variable
 	.long	.Ldebug_loc98                   @ DW_AT_location
 	.long	4888                            @ DW_AT_abstract_origin
 	.byte	51                              @ Abbrev [51] 0x14e3:0x2e DW_TAG_lexical_block
-	.long	.Ltmp565                        @ DW_AT_low_pc
-	.long	.Ltmp579-.Ltmp565               @ DW_AT_high_pc
+	.long	.Ltmp564                        @ DW_AT_low_pc
+	.long	.Ltmp578-.Ltmp564               @ DW_AT_high_pc
 	.byte	50                              @ Abbrev [50] 0x14ec:0x8 DW_TAG_variable
 	.byte	2                               @ DW_AT_location
 	.byte	145
@@ -11211,8 +11203,8 @@ nwk_mgm_timer:
 	.long	.Ldebug_loc100                  @ DW_AT_location
 	.long	4913                            @ DW_AT_abstract_origin
 	.byte	51                              @ Abbrev [51] 0x14fd:0x13 DW_TAG_lexical_block
-	.long	.Ltmp567                        @ DW_AT_low_pc
-	.long	.Ltmp579-.Ltmp567               @ DW_AT_high_pc
+	.long	.Ltmp566                        @ DW_AT_low_pc
+	.long	.Ltmp578-.Ltmp566               @ DW_AT_high_pc
 	.byte	48                              @ Abbrev [48] 0x1506:0x9 DW_TAG_variable
 	.long	.Ldebug_loc99                   @ DW_AT_location
 	.long	4926                            @ DW_AT_abstract_origin
@@ -11220,8 +11212,8 @@ nwk_mgm_timer:
 	.byte	0                               @ End Of Children Mark
 	.byte	57                              @ Abbrev [57] 0x1511:0x18 DW_TAG_inlined_subroutine
 	.long	2815                            @ DW_AT_abstract_origin
-	.long	.Ltmp585                        @ DW_AT_low_pc
-	.long	.Ltmp586-.Ltmp585               @ DW_AT_high_pc
+	.long	.Ltmp584                        @ DW_AT_low_pc
+	.long	.Ltmp585-.Ltmp584               @ DW_AT_high_pc
 	.byte	1                               @ DW_AT_call_file
 	.short	1165                            @ DW_AT_call_line
 	.byte	9                               @ DW_AT_call_column
@@ -11233,14 +11225,14 @@ nwk_mgm_timer:
 	.byte	0                               @ End Of Children Mark
 	.byte	57                              @ Abbrev [57] 0x152b:0x25 DW_TAG_inlined_subroutine
 	.long	5201                            @ DW_AT_abstract_origin
-	.long	.Ltmp586                        @ DW_AT_low_pc
-	.long	.Ltmp606-.Ltmp586               @ DW_AT_high_pc
+	.long	.Ltmp585                        @ DW_AT_low_pc
+	.long	.Ltmp605-.Ltmp585               @ DW_AT_high_pc
 	.byte	1                               @ DW_AT_call_file
 	.short	1180                            @ DW_AT_call_line
 	.byte	5                               @ DW_AT_call_column
 	.byte	51                              @ Abbrev [51] 0x153c:0x13 DW_TAG_lexical_block
-	.long	.Ltmp589                        @ DW_AT_low_pc
-	.long	.Ltmp605-.Ltmp589               @ DW_AT_high_pc
+	.long	.Ltmp588                        @ DW_AT_low_pc
+	.long	.Ltmp604-.Ltmp588               @ DW_AT_high_pc
 	.byte	48                              @ Abbrev [48] 0x1545:0x9 DW_TAG_variable
 	.long	.Ldebug_loc101                  @ DW_AT_location
 	.long	5210                            @ DW_AT_abstract_origin
@@ -11295,8 +11287,8 @@ nwk_mgm_timer:
 	.short	380                             @ DW_AT_decl_line
 	.long	2393                            @ DW_AT_type
 	.byte	51                              @ Abbrev [51] 0x15cb:0x33 DW_TAG_lexical_block
-	.long	.Ltmp641                        @ DW_AT_low_pc
-	.long	.Ltmp654-.Ltmp641               @ DW_AT_high_pc
+	.long	.Ltmp640                        @ DW_AT_low_pc
+	.long	.Ltmp653-.Ltmp640               @ DW_AT_high_pc
 	.byte	35                              @ Abbrev [35] 0x15d4:0x10 DW_TAG_variable
 	.long	.Ldebug_loc111                  @ DW_AT_location
 	.long	.Linfo_string167                @ DW_AT_name
@@ -11304,8 +11296,8 @@ nwk_mgm_timer:
 	.short	383                             @ DW_AT_decl_line
 	.long	2414                            @ DW_AT_type
 	.byte	51                              @ Abbrev [51] 0x15e4:0x19 DW_TAG_lexical_block
-	.long	.Ltmp645                        @ DW_AT_low_pc
-	.long	.Ltmp654-.Ltmp645               @ DW_AT_high_pc
+	.long	.Ltmp644                        @ DW_AT_low_pc
+	.long	.Ltmp653-.Ltmp644               @ DW_AT_high_pc
 	.byte	39                              @ Abbrev [39] 0x15ed:0xf DW_TAG_variable
 	.byte	2                               @ DW_AT_location
 	.byte	145
@@ -12078,24 +12070,24 @@ nwk_mgm_timer:
 	.long	0
 	.long	0
 .Ldebug_ranges6:
-	.long	.Ltmp396
-	.long	.Ltmp420
-	.long	.Ltmp443
-	.long	.Ltmp536
+	.long	.Ltmp395
+	.long	.Ltmp419
+	.long	.Ltmp442
+	.long	.Ltmp535
 	.long	0
 	.long	0
 .Ldebug_ranges7:
-	.long	.Ltmp512
-	.long	.Ltmp519
+	.long	.Ltmp511
+	.long	.Ltmp518
+	.long	.Ltmp521
 	.long	.Ltmp522
-	.long	.Ltmp523
 	.long	0
 	.long	0
 .Ldebug_ranges8:
-	.long	.Ltmp424
-	.long	.Ltmp426
-	.long	.Ltmp438
-	.long	.Ltmp443
+	.long	.Ltmp423
+	.long	.Ltmp425
+	.long	.Ltmp437
+	.long	.Ltmp442
 	.long	0
 	.long	0
 .Ldebug_ranges9:
@@ -12139,662 +12131,662 @@ nwk_mgm_timer:
 	.long	0
 	.section	.debug_str,"MS",%progbits,1
 .Linfo_string0:
-	.asciz	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]" @ string offset=0
+	.asciz	"Component: Arm Compiler for Embedded 6.21 Tool: armclang [5dfeb700]" @ string offset=0
 .Linfo_string1:
-	.asciz	"../das_subg_thread\\network_management.c" @ string offset=55
+	.asciz	"../das_subg_thread\\network_management.c" @ string offset=68
 .Linfo_string2:
-	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=95
+	.asciz	"C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das -0515\\examples\\das_subg_thread\\keil" @ string offset=108
 .Linfo_string3:
-	.asciz	"nwk_mgm_debug_flags"           @ string offset=156
+	.asciz	"nwk_mgm_debug_flags"           @ string offset=186
 .Linfo_string4:
-	.asciz	"unsigned int"                  @ string offset=176
+	.asciz	"unsigned int"                  @ string offset=206
 .Linfo_string5:
-	.asciz	"nwk_mgm_resource"              @ string offset=189
+	.asciz	"nwk_mgm_resource"              @ string offset=219
 .Linfo_string6:
-	.asciz	"mUriPath"                      @ string offset=206
+	.asciz	"mUriPath"                      @ string offset=236
 .Linfo_string7:
-	.asciz	"char"                          @ string offset=215
+	.asciz	"char"                          @ string offset=245
 .Linfo_string8:
-	.asciz	"mHandler"                      @ string offset=220
+	.asciz	"mHandler"                      @ string offset=250
 .Linfo_string9:
-	.asciz	"otMessage"                     @ string offset=229
+	.asciz	"otMessage"                     @ string offset=259
 .Linfo_string10:
-	.asciz	"mSockAddr"                     @ string offset=239
+	.asciz	"mSockAddr"                     @ string offset=269
 .Linfo_string11:
-	.asciz	"mFields"                       @ string offset=249
+	.asciz	"mFields"                       @ string offset=279
 .Linfo_string12:
-	.asciz	"m8"                            @ string offset=257
+	.asciz	"m8"                            @ string offset=287
 .Linfo_string13:
-	.asciz	"unsigned char"                 @ string offset=260
+	.asciz	"unsigned char"                 @ string offset=290
 .Linfo_string14:
-	.asciz	"uint8_t"                       @ string offset=274
+	.asciz	"uint8_t"                       @ string offset=304
 .Linfo_string15:
-	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=282
+	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=312
 .Linfo_string16:
-	.asciz	"m16"                           @ string offset=302
+	.asciz	"m16"                           @ string offset=332
 .Linfo_string17:
-	.asciz	"unsigned short"                @ string offset=306
+	.asciz	"unsigned short"                @ string offset=336
 .Linfo_string18:
-	.asciz	"uint16_t"                      @ string offset=321
+	.asciz	"uint16_t"                      @ string offset=351
 .Linfo_string19:
-	.asciz	"m32"                           @ string offset=330
+	.asciz	"m32"                           @ string offset=360
 .Linfo_string20:
-	.asciz	"uint32_t"                      @ string offset=334
+	.asciz	"uint32_t"                      @ string offset=364
 .Linfo_string21:
-	.asciz	"mComponents"                   @ string offset=343
+	.asciz	"mComponents"                   @ string offset=373
 .Linfo_string22:
-	.asciz	"mNetworkPrefix"                @ string offset=355
+	.asciz	"mNetworkPrefix"                @ string offset=385
 .Linfo_string23:
-	.asciz	"otIp6NetworkPrefix"            @ string offset=370
+	.asciz	"otIp6NetworkPrefix"            @ string offset=400
 .Linfo_string24:
-	.asciz	"mIid"                          @ string offset=389
+	.asciz	"mIid"                          @ string offset=419
 .Linfo_string25:
-	.asciz	"otIp6InterfaceIdentifier"      @ string offset=394
+	.asciz	"otIp6InterfaceIdentifier"      @ string offset=424
 .Linfo_string26:
-	.asciz	"otIp6AddressComponents"        @ string offset=419
+	.asciz	"otIp6AddressComponents"        @ string offset=449
 .Linfo_string27:
-	.asciz	"otIp6Address"                  @ string offset=442
+	.asciz	"otIp6Address"                  @ string offset=472
 .Linfo_string28:
-	.asciz	"mPeerAddr"                     @ string offset=455
+	.asciz	"mPeerAddr"                     @ string offset=485
 .Linfo_string29:
-	.asciz	"mSockPort"                     @ string offset=465
+	.asciz	"mSockPort"                     @ string offset=495
 .Linfo_string30:
-	.asciz	"mPeerPort"                     @ string offset=475
+	.asciz	"mPeerPort"                     @ string offset=505
 .Linfo_string31:
-	.asciz	"mLinkInfo"                     @ string offset=485
+	.asciz	"mLinkInfo"                     @ string offset=515
 .Linfo_string32:
-	.asciz	"mHopLimit"                     @ string offset=495
+	.asciz	"mHopLimit"                     @ string offset=525
 .Linfo_string33:
-	.asciz	"mEcn"                          @ string offset=505
+	.asciz	"mEcn"                          @ string offset=535
 .Linfo_string34:
-	.asciz	"mIsHostInterface"              @ string offset=510
+	.asciz	"mIsHostInterface"              @ string offset=540
 .Linfo_string35:
-	.asciz	"_Bool"                         @ string offset=527
+	.asciz	"_Bool"                         @ string offset=557
 .Linfo_string36:
-	.asciz	"mAllowZeroHopLimit"            @ string offset=533
+	.asciz	"mAllowZeroHopLimit"            @ string offset=563
 .Linfo_string37:
-	.asciz	"mMulticastLoop"                @ string offset=552
+	.asciz	"mMulticastLoop"                @ string offset=582
 .Linfo_string38:
-	.asciz	"otMessageInfo"                 @ string offset=567
+	.asciz	"otMessageInfo"                 @ string offset=597
 .Linfo_string39:
-	.asciz	"otCoapRequestHandler"          @ string offset=581
+	.asciz	"otCoapRequestHandler"          @ string offset=611
 .Linfo_string40:
-	.asciz	"mContext"                      @ string offset=602
+	.asciz	"mContext"                      @ string offset=632
 .Linfo_string41:
-	.asciz	"mNext"                         @ string offset=611
+	.asciz	"mNext"                         @ string offset=641
 .Linfo_string42:
-	.asciz	"otCoapResource"                @ string offset=617
+	.asciz	"otCoapResource"                @ string offset=647
 .Linfo_string43:
-	.asciz	"mgm_reg_send_timer"            @ string offset=632
+	.asciz	"mgm_reg_send_timer"            @ string offset=662
 .Linfo_string44:
-	.asciz	"mgm_router_up_timer"           @ string offset=651
+	.asciz	"mgm_router_up_timer"           @ string offset=681
 .Linfo_string45:
-	.asciz	"nwk_mgm_child_reg_table"       @ string offset=671
+	.asciz	"nwk_mgm_child_reg_table"       @ string offset=701
 .Linfo_string46:
-	.asciz	"used"                          @ string offset=695
+	.asciz	"used"                          @ string offset=725
 .Linfo_string47:
-	.asciz	"role"                          @ string offset=700
+	.asciz	"role"                          @ string offset=730
 .Linfo_string48:
-	.asciz	"parent"                        @ string offset=705
+	.asciz	"parent"                        @ string offset=735
 .Linfo_string49:
-	.asciz	"rloc"                          @ string offset=712
+	.asciz	"rloc"                          @ string offset=742
 .Linfo_string50:
-	.asciz	"extaddr"                       @ string offset=717
+	.asciz	"extaddr"                       @ string offset=747
 .Linfo_string51:
-	.asciz	"rssi"                          @ string offset=725
+	.asciz	"rssi"                          @ string offset=755
 .Linfo_string52:
-	.asciz	"signed char"                   @ string offset=730
+	.asciz	"signed char"                   @ string offset=760
 .Linfo_string53:
-	.asciz	"int8_t"                        @ string offset=742
+	.asciz	"int8_t"                        @ string offset=772
 .Linfo_string54:
-	.asciz	"validtime"                     @ string offset=749
+	.asciz	"validtime"                     @ string offset=779
 .Linfo_string55:
-	.asciz	"nwk_mgm_child_reg_table_t"     @ string offset=759
+	.asciz	"nwk_mgm_child_reg_table_t"     @ string offset=789
 .Linfo_string56:
-	.asciz	"reg_table_is_full"             @ string offset=785
+	.asciz	"reg_table_is_full"             @ string offset=815
 .Linfo_string57:
-	.asciz	"nwk_mgm_timer"                 @ string offset=803
+	.asciz	"nwk_mgm_timer"                 @ string offset=833
 .Linfo_string58:
-	.asciz	"tmrTimerControl"               @ string offset=817
+	.asciz	"tmrTimerControl"               @ string offset=847
 .Linfo_string59:
-	.asciz	"TimerHandle_t"                 @ string offset=833
+	.asciz	"TimerHandle_t"                 @ string offset=863
 .Linfo_string60:
-	.asciz	"OT_DEVICE_ROLE_DISABLED"       @ string offset=847
+	.asciz	"OT_DEVICE_ROLE_DISABLED"       @ string offset=877
 .Linfo_string61:
-	.asciz	"OT_DEVICE_ROLE_DETACHED"       @ string offset=871
+	.asciz	"OT_DEVICE_ROLE_DETACHED"       @ string offset=901
 .Linfo_string62:
-	.asciz	"OT_DEVICE_ROLE_CHILD"          @ string offset=895
+	.asciz	"OT_DEVICE_ROLE_CHILD"          @ string offset=925
 .Linfo_string63:
-	.asciz	"OT_DEVICE_ROLE_ROUTER"         @ string offset=916
+	.asciz	"OT_DEVICE_ROLE_ROUTER"         @ string offset=946
 .Linfo_string64:
-	.asciz	"OT_DEVICE_ROLE_LEADER"         @ string offset=938
+	.asciz	"OT_DEVICE_ROLE_LEADER"         @ string offset=968
 .Linfo_string65:
-	.asciz	"OT_ERROR_NONE"                 @ string offset=960
+	.asciz	"OT_ERROR_NONE"                 @ string offset=990
 .Linfo_string66:
-	.asciz	"OT_ERROR_FAILED"               @ string offset=974
+	.asciz	"OT_ERROR_FAILED"               @ string offset=1004
 .Linfo_string67:
-	.asciz	"OT_ERROR_DROP"                 @ string offset=990
+	.asciz	"OT_ERROR_DROP"                 @ string offset=1020
 .Linfo_string68:
-	.asciz	"OT_ERROR_NO_BUFS"              @ string offset=1004
+	.asciz	"OT_ERROR_NO_BUFS"              @ string offset=1034
 .Linfo_string69:
-	.asciz	"OT_ERROR_NO_ROUTE"             @ string offset=1021
+	.asciz	"OT_ERROR_NO_ROUTE"             @ string offset=1051
 .Linfo_string70:
-	.asciz	"OT_ERROR_BUSY"                 @ string offset=1039
+	.asciz	"OT_ERROR_BUSY"                 @ string offset=1069
 .Linfo_string71:
-	.asciz	"OT_ERROR_PARSE"                @ string offset=1053
+	.asciz	"OT_ERROR_PARSE"                @ string offset=1083
 .Linfo_string72:
-	.asciz	"OT_ERROR_INVALID_ARGS"         @ string offset=1068
+	.asciz	"OT_ERROR_INVALID_ARGS"         @ string offset=1098
 .Linfo_string73:
-	.asciz	"OT_ERROR_SECURITY"             @ string offset=1090
+	.asciz	"OT_ERROR_SECURITY"             @ string offset=1120
 .Linfo_string74:
-	.asciz	"OT_ERROR_ADDRESS_QUERY"        @ string offset=1108
+	.asciz	"OT_ERROR_ADDRESS_QUERY"        @ string offset=1138
 .Linfo_string75:
-	.asciz	"OT_ERROR_NO_ADDRESS"           @ string offset=1131
+	.asciz	"OT_ERROR_NO_ADDRESS"           @ string offset=1161
 .Linfo_string76:
-	.asciz	"OT_ERROR_ABORT"                @ string offset=1151
+	.asciz	"OT_ERROR_ABORT"                @ string offset=1181
 .Linfo_string77:
-	.asciz	"OT_ERROR_NOT_IMPLEMENTED"      @ string offset=1166
+	.asciz	"OT_ERROR_NOT_IMPLEMENTED"      @ string offset=1196
 .Linfo_string78:
-	.asciz	"OT_ERROR_INVALID_STATE"        @ string offset=1191
+	.asciz	"OT_ERROR_INVALID_STATE"        @ string offset=1221
 .Linfo_string79:
-	.asciz	"OT_ERROR_NO_ACK"               @ string offset=1214
+	.asciz	"OT_ERROR_NO_ACK"               @ string offset=1244
 .Linfo_string80:
-	.asciz	"OT_ERROR_CHANNEL_ACCESS_FAILURE" @ string offset=1230
+	.asciz	"OT_ERROR_CHANNEL_ACCESS_FAILURE" @ string offset=1260
 .Linfo_string81:
-	.asciz	"OT_ERROR_DETACHED"             @ string offset=1262
+	.asciz	"OT_ERROR_DETACHED"             @ string offset=1292
 .Linfo_string82:
-	.asciz	"OT_ERROR_FCS"                  @ string offset=1280
+	.asciz	"OT_ERROR_FCS"                  @ string offset=1310
 .Linfo_string83:
-	.asciz	"OT_ERROR_NO_FRAME_RECEIVED"    @ string offset=1293
+	.asciz	"OT_ERROR_NO_FRAME_RECEIVED"    @ string offset=1323
 .Linfo_string84:
-	.asciz	"OT_ERROR_UNKNOWN_NEIGHBOR"     @ string offset=1320
+	.asciz	"OT_ERROR_UNKNOWN_NEIGHBOR"     @ string offset=1350
 .Linfo_string85:
-	.asciz	"OT_ERROR_INVALID_SOURCE_ADDRESS" @ string offset=1346
+	.asciz	"OT_ERROR_INVALID_SOURCE_ADDRESS" @ string offset=1376
 .Linfo_string86:
-	.asciz	"OT_ERROR_ADDRESS_FILTERED"     @ string offset=1378
+	.asciz	"OT_ERROR_ADDRESS_FILTERED"     @ string offset=1408
 .Linfo_string87:
-	.asciz	"OT_ERROR_DESTINATION_ADDRESS_FILTERED" @ string offset=1404
+	.asciz	"OT_ERROR_DESTINATION_ADDRESS_FILTERED" @ string offset=1434
 .Linfo_string88:
-	.asciz	"OT_ERROR_NOT_FOUND"            @ string offset=1442
+	.asciz	"OT_ERROR_NOT_FOUND"            @ string offset=1472
 .Linfo_string89:
-	.asciz	"OT_ERROR_ALREADY"              @ string offset=1461
+	.asciz	"OT_ERROR_ALREADY"              @ string offset=1491
 .Linfo_string90:
-	.asciz	"OT_ERROR_IP6_ADDRESS_CREATION_FAILURE" @ string offset=1478
+	.asciz	"OT_ERROR_IP6_ADDRESS_CREATION_FAILURE" @ string offset=1508
 .Linfo_string91:
-	.asciz	"OT_ERROR_NOT_CAPABLE"          @ string offset=1516
+	.asciz	"OT_ERROR_NOT_CAPABLE"          @ string offset=1546
 .Linfo_string92:
-	.asciz	"OT_ERROR_RESPONSE_TIMEOUT"     @ string offset=1537
+	.asciz	"OT_ERROR_RESPONSE_TIMEOUT"     @ string offset=1567
 .Linfo_string93:
-	.asciz	"OT_ERROR_DUPLICATED"           @ string offset=1563
+	.asciz	"OT_ERROR_DUPLICATED"           @ string offset=1593
 .Linfo_string94:
-	.asciz	"OT_ERROR_REASSEMBLY_TIMEOUT"   @ string offset=1583
+	.asciz	"OT_ERROR_REASSEMBLY_TIMEOUT"   @ string offset=1613
 .Linfo_string95:
-	.asciz	"OT_ERROR_NOT_TMF"              @ string offset=1611
+	.asciz	"OT_ERROR_NOT_TMF"              @ string offset=1641
 .Linfo_string96:
-	.asciz	"OT_ERROR_NOT_LOWPAN_DATA_FRAME" @ string offset=1628
+	.asciz	"OT_ERROR_NOT_LOWPAN_DATA_FRAME" @ string offset=1658
 .Linfo_string97:
-	.asciz	"OT_ERROR_LINK_MARGIN_LOW"      @ string offset=1659
+	.asciz	"OT_ERROR_LINK_MARGIN_LOW"      @ string offset=1689
 .Linfo_string98:
-	.asciz	"OT_ERROR_INVALID_COMMAND"      @ string offset=1684
+	.asciz	"OT_ERROR_INVALID_COMMAND"      @ string offset=1714
 .Linfo_string99:
-	.asciz	"OT_ERROR_PENDING"              @ string offset=1709
+	.asciz	"OT_ERROR_PENDING"              @ string offset=1739
 .Linfo_string100:
-	.asciz	"OT_ERROR_REJECTED"             @ string offset=1726
+	.asciz	"OT_ERROR_REJECTED"             @ string offset=1756
 .Linfo_string101:
-	.asciz	"OT_NUM_ERRORS"                 @ string offset=1744
+	.asciz	"OT_NUM_ERRORS"                 @ string offset=1774
 .Linfo_string102:
-	.asciz	"OT_ERROR_GENERIC"              @ string offset=1758
+	.asciz	"OT_ERROR_GENERIC"              @ string offset=1788
 .Linfo_string103:
-	.asciz	"otError"                       @ string offset=1775
+	.asciz	"otError"                       @ string offset=1805
 .Linfo_string104:
-	.asciz	"OT_COAP_CODE_EMPTY"            @ string offset=1783
+	.asciz	"OT_COAP_CODE_EMPTY"            @ string offset=1813
 .Linfo_string105:
-	.asciz	"OT_COAP_CODE_GET"              @ string offset=1802
+	.asciz	"OT_COAP_CODE_GET"              @ string offset=1832
 .Linfo_string106:
-	.asciz	"OT_COAP_CODE_POST"             @ string offset=1819
+	.asciz	"OT_COAP_CODE_POST"             @ string offset=1849
 .Linfo_string107:
-	.asciz	"OT_COAP_CODE_PUT"              @ string offset=1837
+	.asciz	"OT_COAP_CODE_PUT"              @ string offset=1867
 .Linfo_string108:
-	.asciz	"OT_COAP_CODE_DELETE"           @ string offset=1854
+	.asciz	"OT_COAP_CODE_DELETE"           @ string offset=1884
 .Linfo_string109:
-	.asciz	"OT_COAP_CODE_RESPONSE_MIN"     @ string offset=1874
+	.asciz	"OT_COAP_CODE_RESPONSE_MIN"     @ string offset=1904
 .Linfo_string110:
-	.asciz	"OT_COAP_CODE_CREATED"          @ string offset=1900
+	.asciz	"OT_COAP_CODE_CREATED"          @ string offset=1930
 .Linfo_string111:
-	.asciz	"OT_COAP_CODE_DELETED"          @ string offset=1921
+	.asciz	"OT_COAP_CODE_DELETED"          @ string offset=1951
 .Linfo_string112:
-	.asciz	"OT_COAP_CODE_VALID"            @ string offset=1942
+	.asciz	"OT_COAP_CODE_VALID"            @ string offset=1972
 .Linfo_string113:
-	.asciz	"OT_COAP_CODE_CHANGED"          @ string offset=1961
+	.asciz	"OT_COAP_CODE_CHANGED"          @ string offset=1991
 .Linfo_string114:
-	.asciz	"OT_COAP_CODE_CONTENT"          @ string offset=1982
+	.asciz	"OT_COAP_CODE_CONTENT"          @ string offset=2012
 .Linfo_string115:
-	.asciz	"OT_COAP_CODE_CONTINUE"         @ string offset=2003
+	.asciz	"OT_COAP_CODE_CONTINUE"         @ string offset=2033
 .Linfo_string116:
-	.asciz	"OT_COAP_CODE_BAD_REQUEST"      @ string offset=2025
+	.asciz	"OT_COAP_CODE_BAD_REQUEST"      @ string offset=2055
 .Linfo_string117:
-	.asciz	"OT_COAP_CODE_UNAUTHORIZED"     @ string offset=2050
+	.asciz	"OT_COAP_CODE_UNAUTHORIZED"     @ string offset=2080
 .Linfo_string118:
-	.asciz	"OT_COAP_CODE_BAD_OPTION"       @ string offset=2076
+	.asciz	"OT_COAP_CODE_BAD_OPTION"       @ string offset=2106
 .Linfo_string119:
-	.asciz	"OT_COAP_CODE_FORBIDDEN"        @ string offset=2100
+	.asciz	"OT_COAP_CODE_FORBIDDEN"        @ string offset=2130
 .Linfo_string120:
-	.asciz	"OT_COAP_CODE_NOT_FOUND"        @ string offset=2123
+	.asciz	"OT_COAP_CODE_NOT_FOUND"        @ string offset=2153
 .Linfo_string121:
-	.asciz	"OT_COAP_CODE_METHOD_NOT_ALLOWED" @ string offset=2146
+	.asciz	"OT_COAP_CODE_METHOD_NOT_ALLOWED" @ string offset=2176
 .Linfo_string122:
-	.asciz	"OT_COAP_CODE_NOT_ACCEPTABLE"   @ string offset=2178
+	.asciz	"OT_COAP_CODE_NOT_ACCEPTABLE"   @ string offset=2208
 .Linfo_string123:
-	.asciz	"OT_COAP_CODE_REQUEST_INCOMPLETE" @ string offset=2206
+	.asciz	"OT_COAP_CODE_REQUEST_INCOMPLETE" @ string offset=2236
 .Linfo_string124:
-	.asciz	"OT_COAP_CODE_PRECONDITION_FAILED" @ string offset=2238
+	.asciz	"OT_COAP_CODE_PRECONDITION_FAILED" @ string offset=2268
 .Linfo_string125:
-	.asciz	"OT_COAP_CODE_REQUEST_TOO_LARGE" @ string offset=2271
+	.asciz	"OT_COAP_CODE_REQUEST_TOO_LARGE" @ string offset=2301
 .Linfo_string126:
-	.asciz	"OT_COAP_CODE_UNSUPPORTED_FORMAT" @ string offset=2302
+	.asciz	"OT_COAP_CODE_UNSUPPORTED_FORMAT" @ string offset=2332
 .Linfo_string127:
-	.asciz	"OT_COAP_CODE_INTERNAL_ERROR"   @ string offset=2334
+	.asciz	"OT_COAP_CODE_INTERNAL_ERROR"   @ string offset=2364
 .Linfo_string128:
-	.asciz	"OT_COAP_CODE_NOT_IMPLEMENTED"  @ string offset=2362
+	.asciz	"OT_COAP_CODE_NOT_IMPLEMENTED"  @ string offset=2392
 .Linfo_string129:
-	.asciz	"OT_COAP_CODE_BAD_GATEWAY"      @ string offset=2391
+	.asciz	"OT_COAP_CODE_BAD_GATEWAY"      @ string offset=2421
 .Linfo_string130:
-	.asciz	"OT_COAP_CODE_SERVICE_UNAVAILABLE" @ string offset=2416
+	.asciz	"OT_COAP_CODE_SERVICE_UNAVAILABLE" @ string offset=2446
 .Linfo_string131:
-	.asciz	"OT_COAP_CODE_GATEWAY_TIMEOUT"  @ string offset=2449
+	.asciz	"OT_COAP_CODE_GATEWAY_TIMEOUT"  @ string offset=2479
 .Linfo_string132:
-	.asciz	"OT_COAP_CODE_PROXY_NOT_SUPPORTED" @ string offset=2478
+	.asciz	"OT_COAP_CODE_PROXY_NOT_SUPPORTED" @ string offset=2508
 .Linfo_string133:
-	.asciz	"otCoapCode"                    @ string offset=2511
+	.asciz	"otCoapCode"                    @ string offset=2541
 .Linfo_string134:
-	.asciz	"OT_COAP_TYPE_CONFIRMABLE"      @ string offset=2522
+	.asciz	"OT_COAP_TYPE_CONFIRMABLE"      @ string offset=2552
 .Linfo_string135:
-	.asciz	"OT_COAP_TYPE_NON_CONFIRMABLE"  @ string offset=2547
+	.asciz	"OT_COAP_TYPE_NON_CONFIRMABLE"  @ string offset=2577
 .Linfo_string136:
-	.asciz	"OT_COAP_TYPE_ACKNOWLEDGMENT"   @ string offset=2576
+	.asciz	"OT_COAP_TYPE_ACKNOWLEDGMENT"   @ string offset=2606
 .Linfo_string137:
-	.asciz	"OT_COAP_TYPE_RESET"            @ string offset=2604
+	.asciz	"OT_COAP_TYPE_RESET"            @ string offset=2634
 .Linfo_string138:
-	.asciz	"otCoapType"                    @ string offset=2623
+	.asciz	"otCoapType"                    @ string offset=2653
 .Linfo_string139:
-	.asciz	"NWK_MGM_TYPE_CHILD_REG"        @ string offset=2634
+	.asciz	"NWK_MGM_TYPE_CHILD_REG"        @ string offset=2664
 .Linfo_string140:
-	.asciz	"NWK_MGM_TYPE_CHILD_REG_ACK"    @ string offset=2657
+	.asciz	"NWK_MGM_TYPE_CHILD_REG_ACK"    @ string offset=2687
 .Linfo_string141:
-	.asciz	"NWK_MGM_TYPE_CHILD_KICK"       @ string offset=2684
+	.asciz	"NWK_MGM_TYPE_CHILD_KICK"       @ string offset=2714
 .Linfo_string142:
-	.asciz	"OT_NEIGHBOR_TABLE_EVENT_CHILD_ADDED" @ string offset=2708
+	.asciz	"OT_NEIGHBOR_TABLE_EVENT_CHILD_ADDED" @ string offset=2738
 .Linfo_string143:
-	.asciz	"OT_NEIGHBOR_TABLE_EVENT_CHILD_REMOVED" @ string offset=2744
+	.asciz	"OT_NEIGHBOR_TABLE_EVENT_CHILD_REMOVED" @ string offset=2774
 .Linfo_string144:
-	.asciz	"OT_NEIGHBOR_TABLE_EVENT_CHILD_MODE_CHANGED" @ string offset=2782
+	.asciz	"OT_NEIGHBOR_TABLE_EVENT_CHILD_MODE_CHANGED" @ string offset=2812
 .Linfo_string145:
-	.asciz	"OT_NEIGHBOR_TABLE_EVENT_ROUTER_ADDED" @ string offset=2825
+	.asciz	"OT_NEIGHBOR_TABLE_EVENT_ROUTER_ADDED" @ string offset=2855
 .Linfo_string146:
-	.asciz	"OT_NEIGHBOR_TABLE_EVENT_ROUTER_REMOVED" @ string offset=2862
+	.asciz	"OT_NEIGHBOR_TABLE_EVENT_ROUTER_REMOVED" @ string offset=2892
 .Linfo_string147:
-	.asciz	"long int"                      @ string offset=2901
+	.asciz	"long int"                      @ string offset=2931
 .Linfo_string148:
-	.asciz	"BaseType_t"                    @ string offset=2910
+	.asciz	"BaseType_t"                    @ string offset=2940
 .Linfo_string149:
-	.asciz	"data_type"                     @ string offset=2921
+	.asciz	"data_type"                     @ string offset=2951
 .Linfo_string150:
-	.asciz	"self_rloc"                     @ string offset=2931
+	.asciz	"self_rloc"                     @ string offset=2961
 .Linfo_string151:
-	.asciz	"self_extaddr"                  @ string offset=2941
+	.asciz	"self_extaddr"                  @ string offset=2971
 .Linfo_string152:
-	.asciz	"num"                           @ string offset=2954
+	.asciz	"num"                           @ string offset=2984
 .Linfo_string153:
-	.asciz	"child_info"                    @ string offset=2958
+	.asciz	"child_info"                    @ string offset=2988
 .Linfo_string154:
-	.asciz	"nwk_mgm_child_info_t"          @ string offset=2969
+	.asciz	"nwk_mgm_child_info_t"          @ string offset=2999
 .Linfo_string155:
-	.asciz	"nwk_mgm_child_reg_data_t"      @ string offset=2990
+	.asciz	"nwk_mgm_child_reg_data_t"      @ string offset=3020
 .Linfo_string156:
-	.asciz	"state"                         @ string offset=3015
+	.asciz	"state"                         @ string offset=3045
 .Linfo_string157:
-	.asciz	"kick_num"                      @ string offset=3021
+	.asciz	"kick_num"                      @ string offset=3051
 .Linfo_string158:
-	.asciz	"nwk_mgm_child_reg_ack_info_t"  @ string offset=3030
+	.asciz	"nwk_mgm_child_reg_ack_info_t"  @ string offset=3060
 .Linfo_string159:
-	.asciz	"panid"                         @ string offset=3059
+	.asciz	"panid"                         @ string offset=3089
 .Linfo_string160:
-	.asciz	"nwk_mgm_kick_child_info_t"     @ string offset=3065
+	.asciz	"nwk_mgm_kick_child_info_t"     @ string offset=3095
 .Linfo_string161:
-	.asciz	"nwk_mgm_childs_register_ack_proccess" @ string offset=3091
+	.asciz	"nwk_mgm_childs_register_ack_proccess" @ string offset=3121
 .Linfo_string162:
-	.asciz	"buf"                           @ string offset=3128
+	.asciz	"buf"                           @ string offset=3158
 .Linfo_string163:
-	.asciz	"length"                        @ string offset=3132
+	.asciz	"length"                        @ string offset=3162
 .Linfo_string164:
-	.asciz	"instance"                      @ string offset=3139
+	.asciz	"instance"                      @ string offset=3169
 .Linfo_string165:
-	.asciz	"otInstance"                    @ string offset=3148
+	.asciz	"otInstance"                    @ string offset=3178
 .Linfo_string166:
-	.asciz	"child_reg_data_ack"            @ string offset=3159
+	.asciz	"child_reg_data_ack"            @ string offset=3189
 .Linfo_string167:
-	.asciz	"mRole"                         @ string offset=3178
+	.asciz	"mRole"                         @ string offset=3208
 .Linfo_string168:
-	.asciz	"otDeviceRole"                  @ string offset=3184
+	.asciz	"otDeviceRole"                  @ string offset=3214
 .Linfo_string169:
-	.asciz	"aExtAddress"                   @ string offset=3197
+	.asciz	"aExtAddress"                   @ string offset=3227
 .Linfo_string170:
-	.asciz	"otExtAddress"                  @ string offset=3209
+	.asciz	"otExtAddress"                  @ string offset=3239
 .Linfo_string171:
-	.asciz	"i"                             @ string offset=3222
+	.asciz	"i"                             @ string offset=3252
 .Linfo_string172:
-	.asciz	"nwk_mgm_data_piece"            @ string offset=3224
+	.asciz	"nwk_mgm_data_piece"            @ string offset=3254
 .Linfo_string173:
-	.asciz	"type"                          @ string offset=3243
+	.asciz	"type"                          @ string offset=3273
 .Linfo_string174:
-	.asciz	"payload"                       @ string offset=3248
+	.asciz	"payload"                       @ string offset=3278
 .Linfo_string175:
-	.asciz	"payloadlength"                 @ string offset=3256
+	.asciz	"payloadlength"                 @ string offset=3286
 .Linfo_string176:
-	.asciz	"data"                          @ string offset=3270
+	.asciz	"data"                          @ string offset=3300
 .Linfo_string177:
-	.asciz	"tmp"                           @ string offset=3275
+	.asciz	"tmp"                           @ string offset=3305
 .Linfo_string178:
-	.asciz	"kick_child_data"               @ string offset=3279
+	.asciz	"kick_child_data"               @ string offset=3309
 .Linfo_string179:
-	.asciz	"child_reg_data"                @ string offset=3295
+	.asciz	"child_reg_data"                @ string offset=3325
 .Linfo_string180:
-	.asciz	"ptr"                           @ string offset=3310
+	.asciz	"ptr"                           @ string offset=3340
 .Linfo_string181:
-	.asciz	"nwk_mgm_router_update_timer_set" @ string offset=3314
+	.asciz	"nwk_mgm_router_update_timer_set" @ string offset=3344
 .Linfo_string182:
-	.asciz	"time"                          @ string offset=3346
+	.asciz	"time"                          @ string offset=3376
 .Linfo_string183:
-	.asciz	"nwk_mgm_reg_send_timer_set"    @ string offset=3351
+	.asciz	"nwk_mgm_reg_send_timer_set"    @ string offset=3381
 .Linfo_string184:
-	.asciz	"leave_critical_section"        @ string offset=3378
+	.asciz	"leave_critical_section"        @ string offset=3408
 .Linfo_string185:
-	.asciz	"nwk_mgm_childs_register_proccess" @ string offset=3401
+	.asciz	"nwk_mgm_childs_register_proccess" @ string offset=3431
 .Linfo_string186:
-	.asciz	"aMessage"                      @ string offset=3434
+	.asciz	"aMessage"                      @ string offset=3464
 .Linfo_string187:
-	.asciz	"aMessageInfo"                  @ string offset=3443
+	.asciz	"aMessageInfo"                  @ string offset=3473
 .Linfo_string188:
-	.asciz	"error"                         @ string offset=3456
+	.asciz	"error"                         @ string offset=3486
 .Linfo_string189:
-	.asciz	"responseMessage"               @ string offset=3462
+	.asciz	"responseMessage"               @ string offset=3492
 .Linfo_string190:
-	.asciz	"responseCode"                  @ string offset=3478
+	.asciz	"responseCode"                  @ string offset=3508
 .Linfo_string191:
-	.asciz	"ack_rloc"                      @ string offset=3491
+	.asciz	"ack_rloc"                      @ string offset=3521
 .Linfo_string192:
-	.asciz	"k"                             @ string offset=3500
+	.asciz	"k"                             @ string offset=3530
 .Linfo_string193:
-	.asciz	"nwk_mgm_kick_child_proccess"   @ string offset=3502
+	.asciz	"nwk_mgm_kick_child_proccess"   @ string offset=3532
 .Linfo_string194:
-	.asciz	"nwk_mgm_data_parse"            @ string offset=3530
+	.asciz	"nwk_mgm_data_parse"            @ string offset=3560
 .Linfo_string195:
-	.asciz	"int"                           @ string offset=3549
+	.asciz	"int"                           @ string offset=3579
 .Linfo_string196:
-	.asciz	"nwk_mgm_child_register_post_resend" @ string offset=3553
+	.asciz	"nwk_mgm_child_register_post_resend" @ string offset=3583
 .Linfo_string197:
-	.asciz	"mgm_router_update_timer_handler" @ string offset=3588
+	.asciz	"mgm_router_update_timer_handler" @ string offset=3618
 .Linfo_string198:
-	.asciz	"childInfo"                     @ string offset=3620
+	.asciz	"childInfo"                     @ string offset=3650
 .Linfo_string199:
-	.asciz	"mExtAddress"                   @ string offset=3630
+	.asciz	"mExtAddress"                   @ string offset=3660
 .Linfo_string200:
-	.asciz	"mTimeout"                      @ string offset=3642
+	.asciz	"mTimeout"                      @ string offset=3672
 .Linfo_string201:
-	.asciz	"mAge"                          @ string offset=3651
+	.asciz	"mAge"                          @ string offset=3681
 .Linfo_string202:
-	.asciz	"mRloc16"                       @ string offset=3656
+	.asciz	"mRloc16"                       @ string offset=3686
 .Linfo_string203:
-	.asciz	"mChildId"                      @ string offset=3664
+	.asciz	"mChildId"                      @ string offset=3694
 .Linfo_string204:
-	.asciz	"mNetworkDataVersion"           @ string offset=3673
+	.asciz	"mNetworkDataVersion"           @ string offset=3703
 .Linfo_string205:
-	.asciz	"mLinkQualityIn"                @ string offset=3693
+	.asciz	"mLinkQualityIn"                @ string offset=3723
 .Linfo_string206:
-	.asciz	"mAverageRssi"                  @ string offset=3708
+	.asciz	"mAverageRssi"                  @ string offset=3738
 .Linfo_string207:
-	.asciz	"mLastRssi"                     @ string offset=3721
+	.asciz	"mLastRssi"                     @ string offset=3751
 .Linfo_string208:
-	.asciz	"mFrameErrorRate"               @ string offset=3731
+	.asciz	"mFrameErrorRate"               @ string offset=3761
 .Linfo_string209:
-	.asciz	"mMessageErrorRate"             @ string offset=3747
+	.asciz	"mMessageErrorRate"             @ string offset=3777
 .Linfo_string210:
-	.asciz	"mQueuedMessageCnt"             @ string offset=3765
+	.asciz	"mQueuedMessageCnt"             @ string offset=3795
 .Linfo_string211:
-	.asciz	"mSupervisionInterval"          @ string offset=3783
+	.asciz	"mSupervisionInterval"          @ string offset=3813
 .Linfo_string212:
-	.asciz	"mVersion"                      @ string offset=3804
+	.asciz	"mVersion"                      @ string offset=3834
 .Linfo_string213:
-	.asciz	"mRxOnWhenIdle"                 @ string offset=3813
+	.asciz	"mRxOnWhenIdle"                 @ string offset=3843
 .Linfo_string214:
-	.asciz	"mFullThreadDevice"             @ string offset=3827
+	.asciz	"mFullThreadDevice"             @ string offset=3857
 .Linfo_string215:
-	.asciz	"mFullNetworkData"              @ string offset=3845
+	.asciz	"mFullNetworkData"              @ string offset=3875
 .Linfo_string216:
-	.asciz	"mIsStateRestoring"             @ string offset=3862
+	.asciz	"mIsStateRestoring"             @ string offset=3892
 .Linfo_string217:
-	.asciz	"mIsCslSynced"                  @ string offset=3880
+	.asciz	"mIsCslSynced"                  @ string offset=3910
 .Linfo_string218:
-	.asciz	"otChildInfo"                   @ string offset=3893
+	.asciz	"otChildInfo"                   @ string offset=3923
 .Linfo_string219:
-	.asciz	"childernmax"                   @ string offset=3905
+	.asciz	"childernmax"                   @ string offset=3935
 .Linfo_string220:
-	.asciz	"nwk_mgm_child_reg_table_time_handler" @ string offset=3917
+	.asciz	"nwk_mgm_child_reg_table_time_handler" @ string offset=3947
 .Linfo_string221:
-	.asciz	"nwk_mgm_debug_level"           @ string offset=3954
+	.asciz	"nwk_mgm_debug_level"           @ string offset=3984
 .Linfo_string222:
-	.asciz	"otPlatFindNwkMgmChildRegTable" @ string offset=3974
+	.asciz	"otPlatFindNwkMgmChildRegTable" @ string offset=4004
 .Linfo_string223:
-	.asciz	"otPlatNwkMgmIsFull"            @ string offset=4004
+	.asciz	"otPlatNwkMgmIsFull"            @ string offset=4034
 .Linfo_string224:
-	.asciz	"nwk_mgm_child_reg_table_display" @ string offset=4023
+	.asciz	"nwk_mgm_child_reg_table_display" @ string offset=4053
 .Linfo_string225:
-	.asciz	"nwk_mgm_coap_request"          @ string offset=4055
+	.asciz	"nwk_mgm_coap_request"          @ string offset=4085
 .Linfo_string226:
-	.asciz	"nwk_mgm_ack_process"           @ string offset=4076
+	.asciz	"nwk_mgm_ack_process"           @ string offset=4106
 .Linfo_string227:
-	.asciz	"nwk_mgm_child_register_post"   @ string offset=4096
+	.asciz	"nwk_mgm_child_register_post"   @ string offset=4126
 .Linfo_string228:
-	.asciz	"nwk_mgm_neighbor_Change_Callback" @ string offset=4124
+	.asciz	"nwk_mgm_neighbor_Change_Callback" @ string offset=4154
 .Linfo_string229:
-	.asciz	"nwk_mgm_child_reg_table_add"   @ string offset=4157
+	.asciz	"nwk_mgm_child_reg_table_add"   @ string offset=4187
 .Linfo_string230:
-	.asciz	"nwk_mgm_kick_child_post"       @ string offset=4185
+	.asciz	"nwk_mgm_kick_child_post"       @ string offset=4215
 .Linfo_string231:
-	.asciz	"nwk_mgm_child_reg_table_remove" @ string offset=4209
+	.asciz	"nwk_mgm_child_reg_table_remove" @ string offset=4239
 .Linfo_string232:
-	.asciz	"nwk_mgm_init"                  @ string offset=4240
+	.asciz	"nwk_mgm_init"                  @ string offset=4270
 .Linfo_string233:
-	.asciz	"nwk_mgm_request_proccess"      @ string offset=4253
+	.asciz	"nwk_mgm_request_proccess"      @ string offset=4283
 .Linfo_string234:
-	.asciz	"nwk_mgm_timer_handler"         @ string offset=4278
+	.asciz	"nwk_mgm_timer_handler"         @ string offset=4308
 .Linfo_string235:
-	.asciz	"nwk_mgm_reset"                 @ string offset=4300
+	.asciz	"nwk_mgm_reset"                 @ string offset=4330
 .Linfo_string236:
-	.asciz	"level"                         @ string offset=4314
+	.asciz	"level"                         @ string offset=4344
 .Linfo_string237:
-	.asciz	"ret"                           @ string offset=4320
+	.asciz	"ret"                           @ string offset=4350
 .Linfo_string238:
-	.asciz	"count"                         @ string offset=4324
+	.asciz	"count"                         @ string offset=4354
 .Linfo_string239:
-	.asciz	"messageInfo"                   @ string offset=4330
+	.asciz	"messageInfo"                   @ string offset=4360
 .Linfo_string240:
-	.asciz	"aCoapCode"                     @ string offset=4342
+	.asciz	"aCoapCode"                     @ string offset=4372
 .Linfo_string241:
-	.asciz	"message"                       @ string offset=4352
+	.asciz	"message"                       @ string offset=4382
 .Linfo_string242:
-	.asciz	"coapDestinationIp"             @ string offset=4360
+	.asciz	"coapDestinationIp"             @ string offset=4390
 .Linfo_string243:
-	.asciz	"payloadLength"                 @ string offset=4378
+	.asciz	"payloadLength"                 @ string offset=4408
 .Linfo_string244:
-	.asciz	"coap_Path"                     @ string offset=4392
+	.asciz	"coap_Path"                     @ string offset=4422
 .Linfo_string245:
-	.asciz	"coapType"                      @ string offset=4402
+	.asciz	"coapType"                      @ string offset=4432
 .Linfo_string246:
-	.asciz	"string"                        @ string offset=4411
+	.asciz	"string"                        @ string offset=4441
 .Linfo_string247:
-	.asciz	"aContext"                      @ string offset=4418
+	.asciz	"aContext"                      @ string offset=4448
 .Linfo_string248:
-	.asciz	"aResult"                       @ string offset=4427
+	.asciz	"aResult"                       @ string offset=4457
 .Linfo_string249:
-	.asciz	"nwk_mgm_data_type"             @ string offset=4435
+	.asciz	"nwk_mgm_data_type"             @ string offset=4465
 .Linfo_string250:
-	.asciz	"parentInfo"                    @ string offset=4453
+	.asciz	"parentInfo"                    @ string offset=4483
 .Linfo_string251:
-	.asciz	"mRouterId"                     @ string offset=4464
+	.asciz	"mRouterId"                     @ string offset=4494
 .Linfo_string252:
-	.asciz	"mNextHop"                      @ string offset=4474
+	.asciz	"mNextHop"                      @ string offset=4504
 .Linfo_string253:
-	.asciz	"mPathCost"                     @ string offset=4483
+	.asciz	"mPathCost"                     @ string offset=4513
 .Linfo_string254:
-	.asciz	"mLinkQualityOut"               @ string offset=4493
+	.asciz	"mLinkQualityOut"               @ string offset=4523
 .Linfo_string255:
-	.asciz	"mAllocated"                    @ string offset=4509
+	.asciz	"mAllocated"                    @ string offset=4539
 .Linfo_string256:
-	.asciz	"mLinkEstablished"              @ string offset=4520
+	.asciz	"mLinkEstablished"              @ string offset=4550
 .Linfo_string257:
-	.asciz	"mCslClockAccuracy"             @ string offset=4537
+	.asciz	"mCslClockAccuracy"             @ string offset=4567
 .Linfo_string258:
-	.asciz	"mCslUncertainty"               @ string offset=4555
+	.asciz	"mCslUncertainty"               @ string offset=4585
 .Linfo_string259:
-	.asciz	"otRouterInfo"                  @ string offset=4571
+	.asciz	"otRouterInfo"                  @ string offset=4601
 .Linfo_string260:
-	.asciz	"CoapCode"                      @ string offset=4584
+	.asciz	"CoapCode"                      @ string offset=4614
 .Linfo_string261:
-	.asciz	"aEvent"                        @ string offset=4593
+	.asciz	"aEvent"                        @ string offset=4623
 .Linfo_string262:
-	.asciz	"otNeighborTableEvent"          @ string offset=4600
+	.asciz	"otNeighborTableEvent"          @ string offset=4630
 .Linfo_string263:
-	.asciz	"aEntryInfo"                    @ string offset=4621
+	.asciz	"aEntryInfo"                    @ string offset=4651
 .Linfo_string264:
-	.asciz	"mInstance"                     @ string offset=4632
+	.asciz	"mInstance"                     @ string offset=4662
 .Linfo_string265:
-	.asciz	"mInfo"                         @ string offset=4642
+	.asciz	"mInfo"                         @ string offset=4672
 .Linfo_string266:
-	.asciz	"mChild"                        @ string offset=4648
+	.asciz	"mChild"                        @ string offset=4678
 .Linfo_string267:
-	.asciz	"mRouter"                       @ string offset=4655
+	.asciz	"mRouter"                       @ string offset=4685
 .Linfo_string268:
-	.asciz	"mLinkFrameCounter"             @ string offset=4663
+	.asciz	"mLinkFrameCounter"             @ string offset=4693
 .Linfo_string269:
-	.asciz	"mMleFrameCounter"              @ string offset=4681
+	.asciz	"mMleFrameCounter"              @ string offset=4711
 .Linfo_string270:
-	.asciz	"mLinkMargin"                   @ string offset=4698
+	.asciz	"mLinkMargin"                   @ string offset=4728
 .Linfo_string271:
-	.asciz	"mIsChild"                      @ string offset=4710
+	.asciz	"mIsChild"                      @ string offset=4740
 .Linfo_string272:
-	.asciz	"otNeighborInfo"                @ string offset=4719
+	.asciz	"otNeighborInfo"                @ string offset=4749
 .Linfo_string273:
-	.asciz	"otNeighborTableEntryInfo"      @ string offset=4734
+	.asciz	"otNeighborTableEntryInfo"      @ string offset=4764
 .Linfo_string274:
-	.asciz	"aInstance"                     @ string offset=4759
+	.asciz	"aInstance"                     @ string offset=4789
 .Linfo_string275:
-	.asciz	"xTimer"                        @ string offset=4769
+	.asciz	"xTimer"                        @ string offset=4799
 .Linfo_string276:
-	.asciz	"dataset"                       @ string offset=4776
+	.asciz	"dataset"                       @ string offset=4806
 .Linfo_string277:
-	.asciz	"mActiveTimestamp"              @ string offset=4784
+	.asciz	"mActiveTimestamp"              @ string offset=4814
 .Linfo_string278:
-	.asciz	"mSeconds"                      @ string offset=4801
+	.asciz	"mSeconds"                      @ string offset=4831
 .Linfo_string279:
-	.asciz	"long long unsigned int"        @ string offset=4810
+	.asciz	"long long unsigned int"        @ string offset=4840
 .Linfo_string280:
-	.asciz	"uint64_t"                      @ string offset=4833
+	.asciz	"uint64_t"                      @ string offset=4863
 .Linfo_string281:
-	.asciz	"mTicks"                        @ string offset=4842
+	.asciz	"mTicks"                        @ string offset=4872
 .Linfo_string282:
-	.asciz	"mAuthoritative"                @ string offset=4849
+	.asciz	"mAuthoritative"                @ string offset=4879
 .Linfo_string283:
-	.asciz	"otTimestamp"                   @ string offset=4864
+	.asciz	"otTimestamp"                   @ string offset=4894
 .Linfo_string284:
-	.asciz	"mPendingTimestamp"             @ string offset=4876
+	.asciz	"mPendingTimestamp"             @ string offset=4906
 .Linfo_string285:
-	.asciz	"mNetworkKey"                   @ string offset=4894
+	.asciz	"mNetworkKey"                   @ string offset=4924
 .Linfo_string286:
-	.asciz	"otNetworkKey"                  @ string offset=4906
+	.asciz	"otNetworkKey"                  @ string offset=4936
 .Linfo_string287:
-	.asciz	"mNetworkName"                  @ string offset=4919
+	.asciz	"mNetworkName"                  @ string offset=4949
 .Linfo_string288:
-	.asciz	"otNetworkName"                 @ string offset=4932
+	.asciz	"otNetworkName"                 @ string offset=4962
 .Linfo_string289:
-	.asciz	"mExtendedPanId"                @ string offset=4946
+	.asciz	"mExtendedPanId"                @ string offset=4976
 .Linfo_string290:
-	.asciz	"otExtendedPanId"               @ string offset=4961
+	.asciz	"otExtendedPanId"               @ string offset=4991
 .Linfo_string291:
-	.asciz	"mMeshLocalPrefix"              @ string offset=4977
+	.asciz	"mMeshLocalPrefix"              @ string offset=5007
 .Linfo_string292:
-	.asciz	"otMeshLocalPrefix"             @ string offset=4994
+	.asciz	"otMeshLocalPrefix"             @ string offset=5024
 .Linfo_string293:
-	.asciz	"mDelay"                        @ string offset=5012
+	.asciz	"mDelay"                        @ string offset=5042
 .Linfo_string294:
-	.asciz	"mPanId"                        @ string offset=5019
+	.asciz	"mPanId"                        @ string offset=5049
 .Linfo_string295:
-	.asciz	"otPanId"                       @ string offset=5026
+	.asciz	"otPanId"                       @ string offset=5056
 .Linfo_string296:
-	.asciz	"mChannel"                      @ string offset=5034
+	.asciz	"mChannel"                      @ string offset=5064
 .Linfo_string297:
-	.asciz	"mPskc"                         @ string offset=5043
+	.asciz	"mPskc"                         @ string offset=5073
 .Linfo_string298:
-	.asciz	"otPskc"                        @ string offset=5049
+	.asciz	"otPskc"                        @ string offset=5079
 .Linfo_string299:
-	.asciz	"mSecurityPolicy"               @ string offset=5056
+	.asciz	"mSecurityPolicy"               @ string offset=5086
 .Linfo_string300:
-	.asciz	"mRotationTime"                 @ string offset=5072
+	.asciz	"mRotationTime"                 @ string offset=5102
 .Linfo_string301:
-	.asciz	"mObtainNetworkKeyEnabled"      @ string offset=5086
+	.asciz	"mObtainNetworkKeyEnabled"      @ string offset=5116
 .Linfo_string302:
-	.asciz	"mNativeCommissioningEnabled"   @ string offset=5111
+	.asciz	"mNativeCommissioningEnabled"   @ string offset=5141
 .Linfo_string303:
-	.asciz	"mRoutersEnabled"               @ string offset=5139
+	.asciz	"mRoutersEnabled"               @ string offset=5169
 .Linfo_string304:
-	.asciz	"mExternalCommissioningEnabled" @ string offset=5155
+	.asciz	"mExternalCommissioningEnabled" @ string offset=5185
 .Linfo_string305:
-	.asciz	"mCommercialCommissioningEnabled" @ string offset=5185
+	.asciz	"mCommercialCommissioningEnabled" @ string offset=5215
 .Linfo_string306:
-	.asciz	"mAutonomousEnrollmentEnabled"  @ string offset=5217
+	.asciz	"mAutonomousEnrollmentEnabled"  @ string offset=5247
 .Linfo_string307:
-	.asciz	"mNetworkKeyProvisioningEnabled" @ string offset=5246
+	.asciz	"mNetworkKeyProvisioningEnabled" @ string offset=5276
 .Linfo_string308:
-	.asciz	"mTobleLinkEnabled"             @ string offset=5277
+	.asciz	"mTobleLinkEnabled"             @ string offset=5307
 .Linfo_string309:
-	.asciz	"mNonCcmRoutersEnabled"         @ string offset=5295
+	.asciz	"mNonCcmRoutersEnabled"         @ string offset=5325
 .Linfo_string310:
-	.asciz	"mVersionThresholdForRouting"   @ string offset=5317
+	.asciz	"mVersionThresholdForRouting"   @ string offset=5347
 .Linfo_string311:
-	.asciz	"otSecurityPolicy"              @ string offset=5345
+	.asciz	"otSecurityPolicy"              @ string offset=5375
 .Linfo_string312:
-	.asciz	"mChannelMask"                  @ string offset=5362
+	.asciz	"mChannelMask"                  @ string offset=5392
 .Linfo_string313:
-	.asciz	"otChannelMask"                 @ string offset=5375
+	.asciz	"otChannelMask"                 @ string offset=5405
 .Linfo_string314:
-	.asciz	"mIsActiveTimestampPresent"     @ string offset=5389
+	.asciz	"mIsActiveTimestampPresent"     @ string offset=5419
 .Linfo_string315:
-	.asciz	"mIsPendingTimestampPresent"    @ string offset=5415
+	.asciz	"mIsPendingTimestampPresent"    @ string offset=5445
 .Linfo_string316:
-	.asciz	"mIsNetworkKeyPresent"          @ string offset=5442
+	.asciz	"mIsNetworkKeyPresent"          @ string offset=5472
 .Linfo_string317:
-	.asciz	"mIsNetworkNamePresent"         @ string offset=5463
+	.asciz	"mIsNetworkNamePresent"         @ string offset=5493
 .Linfo_string318:
-	.asciz	"mIsExtendedPanIdPresent"       @ string offset=5485
+	.asciz	"mIsExtendedPanIdPresent"       @ string offset=5515
 .Linfo_string319:
-	.asciz	"mIsMeshLocalPrefixPresent"     @ string offset=5509
+	.asciz	"mIsMeshLocalPrefixPresent"     @ string offset=5539
 .Linfo_string320:
-	.asciz	"mIsDelayPresent"               @ string offset=5535
+	.asciz	"mIsDelayPresent"               @ string offset=5565
 .Linfo_string321:
-	.asciz	"mIsPanIdPresent"               @ string offset=5551
+	.asciz	"mIsPanIdPresent"               @ string offset=5581
 .Linfo_string322:
-	.asciz	"mIsChannelPresent"             @ string offset=5567
+	.asciz	"mIsChannelPresent"             @ string offset=5597
 .Linfo_string323:
-	.asciz	"mIsPskcPresent"                @ string offset=5585
+	.asciz	"mIsPskcPresent"                @ string offset=5615
 .Linfo_string324:
-	.asciz	"mIsSecurityPolicyPresent"      @ string offset=5600
+	.asciz	"mIsSecurityPolicyPresent"      @ string offset=5630
 .Linfo_string325:
-	.asciz	"mIsChannelMaskPresent"         @ string offset=5625
+	.asciz	"mIsChannelMaskPresent"         @ string offset=5655
 .Linfo_string326:
-	.asciz	"otOperationalDatasetComponents" @ string offset=5647
+	.asciz	"otOperationalDatasetComponents" @ string offset=5677
 .Linfo_string327:
-	.asciz	"otOperationalDataset"          @ string offset=5678
-	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
+	.asciz	"otOperationalDataset"          @ string offset=5708
+	.ident	"Component: Arm Compiler for Embedded 6.21 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals
 	.ARM_attribute	16, 1	@ Tag_AV_eba

@@ -18,10 +18,10 @@
 	.eabi_attribute	26, 2	@ Tag_ABI_enum_size
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"uart_stdio.c"
-	.file	1 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
-	.file	2 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/hosal/rt582_hosal/Inc\\hosal_uart.h"
-	.file	3 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/utility/uart_stdio/uart_stdio.c"
-	.file	4 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/uart_reg.h"
+	.file	1 "C:\\" "Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include\\stdint.h"
+	.file	2 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/hosal/rt582_hosal/Inc\\hosal_uart.h"
+	.file	3 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/utility/uart_stdio/uart_stdio.c"
+	.file	4 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/uart_reg.h"
 	.section	.text.uart_stdio_write,"ax",%progbits
 	.hidden	uart_stdio_write                @ -- Begin function uart_stdio_write
 	.globl	uart_stdio_write
@@ -923,8 +923,8 @@ bsp_c_g_msg:
 	.asciz	"0x"
 	.size	.L.str.4, 3
 
-	.file	5 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/utility/uart_stdio\\uart_stdio.c"
-	.file	6 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdarg.h"
+	.file	5 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/utility/uart_stdio\\uart_stdio.c"
+	.file	6 "C:\\" "Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include\\stdarg.h"
 	.section	.debug_loc,"",%progbits
 .Ldebug_loc0:
 	.long	-1
@@ -2888,298 +2888,298 @@ bsp_c_g_msg:
 	.long	0
 	.section	.debug_str,"MS",%progbits,1
 .Linfo_string0:
-	.asciz	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]" @ string offset=0
+	.asciz	"Component: Arm Compiler for Embedded 6.21 Tool: armclang [5dfeb700]" @ string offset=0
 .Linfo_string1:
-	.asciz	"../../../components/utility/uart_stdio\\uart_stdio.c" @ string offset=55
+	.asciz	"../../../components/utility/uart_stdio\\uart_stdio.c" @ string offset=68
 .Linfo_string2:
-	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=107
+	.asciz	"C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" @ string offset=120
 .Linfo_string3:
-	.asciz	"uartstdio"                     @ string offset=168
+	.asciz	"uartstdio"                     @ string offset=205
 .Linfo_string4:
-	.asciz	"port"                          @ string offset=178
+	.asciz	"port"                          @ string offset=215
 .Linfo_string5:
-	.asciz	"unsigned char"                 @ string offset=183
+	.asciz	"unsigned char"                 @ string offset=220
 .Linfo_string6:
-	.asciz	"uint8_t"                       @ string offset=197
+	.asciz	"uint8_t"                       @ string offset=234
 .Linfo_string7:
-	.asciz	"config"                        @ string offset=205
+	.asciz	"config"                        @ string offset=242
 .Linfo_string8:
-	.asciz	"uart_id"                       @ string offset=212
+	.asciz	"uart_id"                       @ string offset=249
 .Linfo_string9:
-	.asciz	"tx_pin"                        @ string offset=220
+	.asciz	"tx_pin"                        @ string offset=257
 .Linfo_string10:
-	.asciz	"rx_pin"                        @ string offset=227
+	.asciz	"rx_pin"                        @ string offset=264
 .Linfo_string11:
-	.asciz	"cts_pin"                       @ string offset=234
+	.asciz	"cts_pin"                       @ string offset=271
 .Linfo_string12:
-	.asciz	"rts_pin"                       @ string offset=242
+	.asciz	"rts_pin"                       @ string offset=279
 .Linfo_string13:
-	.asciz	"baud_rate"                     @ string offset=250
+	.asciz	"baud_rate"                     @ string offset=287
 .Linfo_string14:
-	.asciz	"unsigned int"                  @ string offset=260
+	.asciz	"unsigned int"                  @ string offset=297
 .Linfo_string15:
-	.asciz	"UART_BAUDRATE_2400"            @ string offset=273
+	.asciz	"UART_BAUDRATE_2400"            @ string offset=310
 .Linfo_string16:
-	.asciz	"UART_BAUDRATE_4800"            @ string offset=292
+	.asciz	"UART_BAUDRATE_4800"            @ string offset=329
 .Linfo_string17:
-	.asciz	"UART_BAUDRATE_9600"            @ string offset=311
+	.asciz	"UART_BAUDRATE_9600"            @ string offset=348
 .Linfo_string18:
-	.asciz	"UART_BAUDRATE_14400"           @ string offset=330
+	.asciz	"UART_BAUDRATE_14400"           @ string offset=367
 .Linfo_string19:
-	.asciz	"UART_BAUDRATE_19200"           @ string offset=350
+	.asciz	"UART_BAUDRATE_19200"           @ string offset=387
 .Linfo_string20:
-	.asciz	"UART_BAUDRATE_28800"           @ string offset=370
+	.asciz	"UART_BAUDRATE_28800"           @ string offset=407
 .Linfo_string21:
-	.asciz	"UART_BAUDRATE_38400"           @ string offset=390
+	.asciz	"UART_BAUDRATE_38400"           @ string offset=427
 .Linfo_string22:
-	.asciz	"UART_BAUDRATE_57600"           @ string offset=410
+	.asciz	"UART_BAUDRATE_57600"           @ string offset=447
 .Linfo_string23:
-	.asciz	"UART_BAUDRATE_76800"           @ string offset=430
+	.asciz	"UART_BAUDRATE_76800"           @ string offset=467
 .Linfo_string24:
-	.asciz	"UART_BAUDRATE_115200"          @ string offset=450
+	.asciz	"UART_BAUDRATE_115200"          @ string offset=487
 .Linfo_string25:
-	.asciz	"UART_BAUDRATE_500000"          @ string offset=471
+	.asciz	"UART_BAUDRATE_500000"          @ string offset=508
 .Linfo_string26:
-	.asciz	"UART_BAUDRATE_1000000"         @ string offset=492
+	.asciz	"UART_BAUDRATE_1000000"         @ string offset=529
 .Linfo_string27:
-	.asciz	"UART_BAUDRATE_2000000"         @ string offset=514
+	.asciz	"UART_BAUDRATE_2000000"         @ string offset=551
 .Linfo_string28:
-	.asciz	"hosal_uart_baudrate_t"         @ string offset=536
+	.asciz	"hosal_uart_baudrate_t"         @ string offset=573
 .Linfo_string29:
-	.asciz	"data_width"                    @ string offset=558
+	.asciz	"data_width"                    @ string offset=595
 .Linfo_string30:
-	.asciz	"UART_DATA_BITS_5"              @ string offset=569
+	.asciz	"UART_DATA_BITS_5"              @ string offset=606
 .Linfo_string31:
-	.asciz	"UART_DATA_BITS_6"              @ string offset=586
+	.asciz	"UART_DATA_BITS_6"              @ string offset=623
 .Linfo_string32:
-	.asciz	"UART_DATA_BITS_7"              @ string offset=603
+	.asciz	"UART_DATA_BITS_7"              @ string offset=640
 .Linfo_string33:
-	.asciz	"UART_DATA_BITS_8"              @ string offset=620
+	.asciz	"UART_DATA_BITS_8"              @ string offset=657
 .Linfo_string34:
-	.asciz	"hosal_uart_databits_t"         @ string offset=637
+	.asciz	"hosal_uart_databits_t"         @ string offset=674
 .Linfo_string35:
-	.asciz	"parity"                        @ string offset=659
+	.asciz	"parity"                        @ string offset=696
 .Linfo_string36:
-	.asciz	"UART_PARITY_NONE"              @ string offset=666
+	.asciz	"UART_PARITY_NONE"              @ string offset=703
 .Linfo_string37:
-	.asciz	"UART_PARITY_EVEN"              @ string offset=683
+	.asciz	"UART_PARITY_EVEN"              @ string offset=720
 .Linfo_string38:
-	.asciz	"UART_PARITY_ODD"               @ string offset=700
+	.asciz	"UART_PARITY_ODD"               @ string offset=737
 .Linfo_string39:
-	.asciz	"UART_PARITY_SPACE"             @ string offset=716
+	.asciz	"UART_PARITY_SPACE"             @ string offset=753
 .Linfo_string40:
-	.asciz	"UART_PARITY_MARK"              @ string offset=734
+	.asciz	"UART_PARITY_MARK"              @ string offset=771
 .Linfo_string41:
-	.asciz	"hosal_uart_parity_t"           @ string offset=751
+	.asciz	"hosal_uart_parity_t"           @ string offset=788
 .Linfo_string42:
-	.asciz	"stop_bits"                     @ string offset=771
+	.asciz	"stop_bits"                     @ string offset=808
 .Linfo_string43:
-	.asciz	"UART_STOPBIT_ONE"              @ string offset=781
+	.asciz	"UART_STOPBIT_ONE"              @ string offset=818
 .Linfo_string44:
-	.asciz	"UART_STOPBIT_TWO"              @ string offset=798
+	.asciz	"UART_STOPBIT_TWO"              @ string offset=835
 .Linfo_string45:
-	.asciz	"hosal_uart_stopbit_t"          @ string offset=815
+	.asciz	"hosal_uart_stopbit_t"          @ string offset=852
 .Linfo_string46:
-	.asciz	"flow_control"                  @ string offset=836
+	.asciz	"flow_control"                  @ string offset=873
 .Linfo_string47:
-	.asciz	"UART_HWFC_DISABLED"            @ string offset=849
+	.asciz	"UART_HWFC_DISABLED"            @ string offset=886
 .Linfo_string48:
-	.asciz	"UART_HWFC_ENABLED"             @ string offset=868
+	.asciz	"UART_HWFC_ENABLED"             @ string offset=905
 .Linfo_string49:
-	.asciz	"hosal_uart_hwfc_t"             @ string offset=886
+	.asciz	"hosal_uart_hwfc_t"             @ string offset=923
 .Linfo_string50:
-	.asciz	"mode"                          @ string offset=904
+	.asciz	"mode"                          @ string offset=941
 .Linfo_string51:
-	.asciz	"HOSAL_UART_MODE_POLL"          @ string offset=909
+	.asciz	"HOSAL_UART_MODE_POLL"          @ string offset=946
 .Linfo_string52:
-	.asciz	"HOSAL_UART_MODE_INT_TX"        @ string offset=930
+	.asciz	"HOSAL_UART_MODE_INT_TX"        @ string offset=967
 .Linfo_string53:
-	.asciz	"HOSAL_UART_MODE_INT_RX"        @ string offset=953
+	.asciz	"HOSAL_UART_MODE_INT_RX"        @ string offset=990
 .Linfo_string54:
-	.asciz	"HOSAL_UART_MODE_INT"           @ string offset=976
+	.asciz	"HOSAL_UART_MODE_INT"           @ string offset=1013
 .Linfo_string55:
-	.asciz	"hosal_uart_mode_t"             @ string offset=996
+	.asciz	"hosal_uart_mode_t"             @ string offset=1033
 .Linfo_string56:
-	.asciz	"hosal_uart_config_t"           @ string offset=1014
+	.asciz	"hosal_uart_config_t"           @ string offset=1051
 .Linfo_string57:
-	.asciz	"tx_cb"                         @ string offset=1034
+	.asciz	"tx_cb"                         @ string offset=1071
 .Linfo_string58:
-	.asciz	"int"                           @ string offset=1040
+	.asciz	"int"                           @ string offset=1077
 .Linfo_string59:
-	.asciz	"hosal_uart_callback_t"         @ string offset=1044
+	.asciz	"hosal_uart_callback_t"         @ string offset=1081
 .Linfo_string60:
-	.asciz	"p_tx_arg"                      @ string offset=1066
+	.asciz	"p_tx_arg"                      @ string offset=1103
 .Linfo_string61:
-	.asciz	"rx_cb"                         @ string offset=1075
+	.asciz	"rx_cb"                         @ string offset=1112
 .Linfo_string62:
-	.asciz	"p_rx_arg"                      @ string offset=1081
+	.asciz	"p_rx_arg"                      @ string offset=1118
 .Linfo_string63:
-	.asciz	"txdma_cb"                      @ string offset=1090
+	.asciz	"txdma_cb"                      @ string offset=1127
 .Linfo_string64:
-	.asciz	"p_txdma_arg"                   @ string offset=1099
+	.asciz	"p_txdma_arg"                   @ string offset=1136
 .Linfo_string65:
-	.asciz	"rxdma_cb"                      @ string offset=1111
+	.asciz	"rxdma_cb"                      @ string offset=1148
 .Linfo_string66:
-	.asciz	"p_rxdma_arg"                   @ string offset=1120
+	.asciz	"p_rxdma_arg"                   @ string offset=1157
 .Linfo_string67:
-	.asciz	"priv"                          @ string offset=1132
+	.asciz	"priv"                          @ string offset=1169
 .Linfo_string68:
-	.asciz	"hosal_uart_dev_t"              @ string offset=1137
+	.asciz	"hosal_uart_dev_t"              @ string offset=1174
 .Linfo_string69:
-	.asciz	"__exi_ctxt"                    @ string offset=1154
+	.asciz	"__exi_ctxt"                    @ string offset=1191
 .Linfo_string70:
-	.asciz	"exp_vect"                      @ string offset=1165
+	.asciz	"exp_vect"                      @ string offset=1202
 .Linfo_string71:
-	.asciz	"uint32_t"                      @ string offset=1174
+	.asciz	"uint32_t"                      @ string offset=1211
 .Linfo_string72:
-	.asciz	"exp_addr"                      @ string offset=1183
+	.asciz	"exp_addr"                      @ string offset=1220
 .Linfo_string73:
-	.asciz	"spsr"                          @ string offset=1192
+	.asciz	"spsr"                          @ string offset=1229
 .Linfo_string74:
-	.asciz	"cpsr"                          @ string offset=1197
+	.asciz	"cpsr"                          @ string offset=1234
 .Linfo_string75:
-	.asciz	"r"                             @ string offset=1202
+	.asciz	"r"                             @ string offset=1239
 .Linfo_string76:
-	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=1204
+	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=1241
 .Linfo_string77:
-	.asciz	"execption_ctxt"                @ string offset=1224
+	.asciz	"execption_ctxt"                @ string offset=1261
 .Linfo_string78:
-	.asciz	"exception_ctxt_t"              @ string offset=1239
+	.asciz	"exception_ctxt_t"              @ string offset=1276
 .Linfo_string79:
-	.asciz	"g_uart_rx_io"                  @ string offset=1256
+	.asciz	"g_uart_rx_io"                  @ string offset=1293
 .Linfo_string80:
-	.asciz	"start"                         @ string offset=1269
+	.asciz	"start"                         @ string offset=1306
 .Linfo_string81:
-	.asciz	"unsigned short"                @ string offset=1275
+	.asciz	"unsigned short"                @ string offset=1312
 .Linfo_string82:
-	.asciz	"uint16_t"                      @ string offset=1290
+	.asciz	"uint16_t"                      @ string offset=1327
 .Linfo_string83:
-	.asciz	"end"                           @ string offset=1299
+	.asciz	"end"                           @ string offset=1336
 .Linfo_string84:
-	.asciz	"recvLen"                       @ string offset=1303
+	.asciz	"recvLen"                       @ string offset=1340
 .Linfo_string85:
-	.asciz	"uart_cache"                    @ string offset=1311
+	.asciz	"uart_cache"                    @ string offset=1348
 .Linfo_string86:
-	.asciz	"uart_io"                       @ string offset=1322
+	.asciz	"uart_io"                       @ string offset=1359
 .Linfo_string87:
-	.asciz	"uart_io_t"                     @ string offset=1330
+	.asciz	"uart_io_t"                     @ string offset=1367
 .Linfo_string88:
-	.asciz	"bsp_c_g_msg"                   @ string offset=1340
+	.asciz	"bsp_c_g_msg"                   @ string offset=1377
 .Linfo_string89:
-	.asciz	"char"                          @ string offset=1352
+	.asciz	"char"                          @ string offset=1389
 .Linfo_string90:
-	.asciz	"RBR"                           @ string offset=1357
+	.asciz	"RBR"                           @ string offset=1394
 .Linfo_string91:
-	.asciz	"IER"                           @ string offset=1361
+	.asciz	"IER"                           @ string offset=1398
 .Linfo_string92:
-	.asciz	"FCR"                           @ string offset=1365
+	.asciz	"FCR"                           @ string offset=1402
 .Linfo_string93:
-	.asciz	"LCR"                           @ string offset=1369
+	.asciz	"LCR"                           @ string offset=1406
 .Linfo_string94:
-	.asciz	"MCR"                           @ string offset=1373
+	.asciz	"MCR"                           @ string offset=1410
 .Linfo_string95:
-	.asciz	"LSR"                           @ string offset=1377
+	.asciz	"LSR"                           @ string offset=1414
 .Linfo_string96:
-	.asciz	"MSR"                           @ string offset=1381
+	.asciz	"MSR"                           @ string offset=1418
 .Linfo_string97:
-	.asciz	"SPR"                           @ string offset=1385
+	.asciz	"SPR"                           @ string offset=1422
 .Linfo_string98:
-	.asciz	"xDMA_RX_ADDR"                  @ string offset=1389
+	.asciz	"xDMA_RX_ADDR"                  @ string offset=1426
 .Linfo_string99:
-	.asciz	"xDMA_RX_LEN"                   @ string offset=1402
+	.asciz	"xDMA_RX_LEN"                   @ string offset=1439
 .Linfo_string100:
-	.asciz	"xDMA_TX_ADDR"                  @ string offset=1414
+	.asciz	"xDMA_TX_ADDR"                  @ string offset=1451
 .Linfo_string101:
-	.asciz	"xDMA_TX_LEN"                   @ string offset=1427
+	.asciz	"xDMA_TX_LEN"                   @ string offset=1464
 .Linfo_string102:
-	.asciz	"xDMA_RX_RLEN"                  @ string offset=1439
+	.asciz	"xDMA_RX_RLEN"                  @ string offset=1476
 .Linfo_string103:
-	.asciz	"xDMA_TX_RLEN"                  @ string offset=1452
+	.asciz	"xDMA_TX_RLEN"                  @ string offset=1489
 .Linfo_string104:
-	.asciz	"xDMA_IER"                      @ string offset=1465
+	.asciz	"xDMA_IER"                      @ string offset=1502
 .Linfo_string105:
-	.asciz	"xDMA_INT_STATUS"               @ string offset=1474
+	.asciz	"xDMA_INT_STATUS"               @ string offset=1511
 .Linfo_string106:
-	.asciz	"xDMA_RX_ENABLE"                @ string offset=1490
+	.asciz	"xDMA_RX_ENABLE"                @ string offset=1527
 .Linfo_string107:
-	.asciz	"xDMA_TX_ENABLE"                @ string offset=1505
+	.asciz	"xDMA_TX_ENABLE"                @ string offset=1542
 .Linfo_string108:
-	.asciz	"UART_T"                        @ string offset=1520
+	.asciz	"UART_T"                        @ string offset=1557
 .Linfo_string109:
-	.asciz	"hosal_uart_send"               @ string offset=1527
+	.asciz	"hosal_uart_send"               @ string offset=1564
 .Linfo_string110:
-	.asciz	"hosal_uart_ioctl"              @ string offset=1543
+	.asciz	"hosal_uart_ioctl"              @ string offset=1580
 .Linfo_string111:
-	.asciz	"_exp_dump_init"                @ string offset=1560
+	.asciz	"_exp_dump_init"                @ string offset=1597
 .Linfo_string112:
-	.asciz	"pCSR"                          @ string offset=1575
+	.asciz	"pCSR"                          @ string offset=1612
 .Linfo_string113:
-	.asciz	"_exp_dump_out"                 @ string offset=1580
+	.asciz	"_exp_dump_out"                 @ string offset=1617
 .Linfo_string114:
-	.asciz	"pMsg"                          @ string offset=1594
+	.asciz	"pMsg"                          @ string offset=1631
 .Linfo_string115:
-	.asciz	"len"                           @ string offset=1599
+	.asciz	"len"                           @ string offset=1636
 .Linfo_string116:
-	.asciz	"table"                         @ string offset=1603
+	.asciz	"table"                         @ string offset=1640
 .Linfo_string117:
-	.asciz	"_uint2strhex"                  @ string offset=1609
+	.asciz	"_uint2strhex"                  @ string offset=1646
 .Linfo_string118:
-	.asciz	"pStr"                          @ string offset=1622
+	.asciz	"pStr"                          @ string offset=1659
 .Linfo_string119:
-	.asciz	"number"                        @ string offset=1627
+	.asciz	"number"                        @ string offset=1664
 .Linfo_string120:
-	.asciz	"nibbles_to_print"              @ string offset=1634
+	.asciz	"nibbles_to_print"              @ string offset=1671
 .Linfo_string121:
-	.asciz	"nibbles"                       @ string offset=1651
+	.asciz	"nibbles"                       @ string offset=1688
 .Linfo_string122:
-	.asciz	"nibble"                        @ string offset=1659
+	.asciz	"nibble"                        @ string offset=1696
 .Linfo_string123:
-	.asciz	"uart_stdio_write"              @ string offset=1666
+	.asciz	"uart_stdio_write"              @ string offset=1703
 .Linfo_string124:
-	.asciz	"uart_stdio_read"               @ string offset=1683
+	.asciz	"uart_stdio_read"               @ string offset=1720
 .Linfo_string125:
-	.asciz	"uart_stdio_en_int_mode"        @ string offset=1699
+	.asciz	"uart_stdio_en_int_mode"        @ string offset=1736
 .Linfo_string126:
-	.asciz	"uart_stdio_init"               @ string offset=1722
+	.asciz	"uart_stdio_init"               @ string offset=1759
 .Linfo_string127:
-	.asciz	"__uartstdio_rx_callback"       @ string offset=1738
+	.asciz	"__uartstdio_rx_callback"       @ string offset=1775
 .Linfo_string128:
-	.asciz	"my_fault_handler_c"            @ string offset=1762
+	.asciz	"my_fault_handler_c"            @ string offset=1799
 .Linfo_string129:
-	.asciz	"_exp_log_out"                  @ string offset=1781
+	.asciz	"_exp_log_out"                  @ string offset=1818
 .Linfo_string130:
-	.asciz	"HardFault_Handler"             @ string offset=1794
+	.asciz	"HardFault_Handler"             @ string offset=1831
 .Linfo_string131:
-	.asciz	"p_data"                        @ string offset=1812
+	.asciz	"p_data"                        @ string offset=1849
 .Linfo_string132:
-	.asciz	"length"                        @ string offset=1819
+	.asciz	"length"                        @ string offset=1856
 .Linfo_string133:
-	.asciz	"byte_cnt"                      @ string offset=1826
+	.asciz	"byte_cnt"                      @ string offset=1863
 .Linfo_string134:
-	.asciz	"p_arg"                         @ string offset=1835
+	.asciz	"p_arg"                         @ string offset=1872
 .Linfo_string135:
-	.asciz	"sp"                            @ string offset=1841
+	.asciz	"sp"                            @ string offset=1878
 .Linfo_string136:
-	.asciz	"lr_value"                      @ string offset=1844
+	.asciz	"lr_value"                      @ string offset=1881
 .Linfo_string137:
-	.asciz	"va"                            @ string offset=1853
+	.asciz	"va"                            @ string offset=1890
 .Linfo_string138:
-	.asciz	"__ap"                          @ string offset=1856
+	.asciz	"__ap"                          @ string offset=1893
 .Linfo_string139:
-	.asciz	"__va_list"                     @ string offset=1861
+	.asciz	"__va_list"                     @ string offset=1898
 .Linfo_string140:
-	.asciz	"__builtin_va_list"             @ string offset=1871
+	.asciz	"__builtin_va_list"             @ string offset=1908
 .Linfo_string141:
-	.asciz	"va_list"                       @ string offset=1889
+	.asciz	"va_list"                       @ string offset=1926
 .Linfo_string142:
-	.asciz	"format"                        @ string offset=1897
+	.asciz	"format"                        @ string offset=1934
 .Linfo_string143:
-	.asciz	"pch"                           @ string offset=1904
+	.asciz	"pch"                           @ string offset=1941
 .Linfo_string144:
-	.asciz	"j"                             @ string offset=1908
+	.asciz	"j"                             @ string offset=1945
 .Linfo_string145:
-	.asciz	"string"                        @ string offset=1910
-	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
+	.asciz	"string"                        @ string offset=1947
+	.ident	"Component: Arm Compiler for Embedded 6.21 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals
 	.ARM_attribute	16, 1	@ Tag_AV_eba

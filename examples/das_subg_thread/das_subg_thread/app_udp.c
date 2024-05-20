@@ -11,7 +11,6 @@
 
 #include <openthread/udp.h>
 #include <openthread/thread.h>
-#include <openthread_port.h>
 
 #include "FreeRTOS.h"
 
@@ -116,6 +115,7 @@ void __udp_task(app_task_event_t sevent)
         if (xQueueReceive(app_udp_handle, (void *)&u_data, 0) == pdPASS)
         {
             log_info_hexdump("Received Message ", u_data.pdata, u_data.dlen);
+
             evaluate_commandAM1(u_data.pdata, u_data.dlen);
             if (u_data.pdata)
             {

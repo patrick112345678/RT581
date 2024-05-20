@@ -18,12 +18,12 @@
 	.eabi_attribute	26, 2	@ Tag_ABI_enum_size
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"dma.c"
-	.file	1 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
-	.file	2 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/dma.h"
-	.file	3 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Src/dma.c"
-	.file	4 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/cm3_mcu.h"
-	.file	5 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/dma_reg.h"
-	.file	6 "C:/Users\\P350\\AppData\\Local\\Arm\\Packs\\ARM\\CMSIS\\5.8.0\\CMSIS\\Core\\Include" "core_cm3.h"
+	.file	1 "C:\\" "Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include\\stdint.h"
+	.file	2 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/dma.h"
+	.file	3 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Src/dma.c"
+	.file	4 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/cm3_mcu.h"
+	.file	5 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/dma_reg.h"
+	.file	6 "C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include" "core_cm3.h"
 	.section	.text.dma_register_isr,"ax",%progbits
 	.hidden	dma_register_isr                @ -- Begin function dma_register_isr
 	.globl	dma_register_isr
@@ -84,18 +84,18 @@ dma_register_isr:
 	movs	r1, #1
 .Ltmp6:
 	@DEBUG_VALUE: dma_register_isr:app_dma_callback <- [DW_OP_LLVM_entry_value 1] $r1
-	.loc	6 1513 60 is_stmt 1             @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm3.h:1513:60
+	.loc	6 1516 60 is_stmt 1             @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include\core_cm3.h:1516:60
 	lsl.w	r0, r1, r0
 .Ltmp7:
-	.loc	6 0 60 is_stmt 0                @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm3.h:0:60
+	.loc	6 0 60 is_stmt 0                @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include\core_cm3.h:0:60
 	movw	r1, #57600
 	movt	r1, #57344
-	.loc	6 1512 5 is_stmt 1              @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm3.h:1512:5
+	.loc	6 1515 5 is_stmt 1              @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include\core_cm3.h:1515:5
 	@APP
 	@NO_APP
-	.loc	6 1513 43                       @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm3.h:1513:43
+	.loc	6 1516 43                       @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include\core_cm3.h:1516:43
 	str	r0, [r1]
-	.loc	6 1514 5                        @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm3.h:1514:5
+	.loc	6 1517 5                        @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include\core_cm3.h:1517:5
 	@APP
 	@NO_APP
 .Ltmp8:
@@ -2117,88 +2117,88 @@ dma_usr_isr_cb:
 	.long	652                             @ DW_AT_type
 	.long	.Linfo_string83                 @ DW_AT_name
 	.byte	6                               @ DW_AT_decl_file
-	.short	360                             @ DW_AT_decl_line
+	.short	361                             @ DW_AT_decl_line
 	.byte	18                              @ Abbrev [18] 0x28c:0xb9 DW_TAG_structure_type
 	.short	3588                            @ DW_AT_byte_size
 	.byte	6                               @ DW_AT_decl_file
-	.short	345                             @ DW_AT_decl_line
+	.short	346                             @ DW_AT_decl_line
 	.byte	19                              @ Abbrev [19] 0x292:0xd DW_TAG_member
 	.long	.Linfo_string68                 @ DW_AT_name
 	.long	837                             @ DW_AT_type
 	.byte	6                               @ DW_AT_decl_file
-	.short	347                             @ DW_AT_decl_line
+	.short	348                             @ DW_AT_decl_line
 	.byte	0                               @ DW_AT_data_member_location
 	.byte	19                              @ Abbrev [19] 0x29f:0xd DW_TAG_member
 	.long	.Linfo_string69                 @ DW_AT_name
 	.long	849                             @ DW_AT_type
 	.byte	6                               @ DW_AT_decl_file
-	.short	348                             @ DW_AT_decl_line
+	.short	349                             @ DW_AT_decl_line
 	.byte	32                              @ DW_AT_data_member_location
 	.byte	19                              @ Abbrev [19] 0x2ac:0xd DW_TAG_member
 	.long	.Linfo_string70                 @ DW_AT_name
 	.long	837                             @ DW_AT_type
 	.byte	6                               @ DW_AT_decl_file
-	.short	349                             @ DW_AT_decl_line
+	.short	350                             @ DW_AT_decl_line
 	.byte	128                             @ DW_AT_data_member_location
 	.byte	19                              @ Abbrev [19] 0x2b9:0xd DW_TAG_member
 	.long	.Linfo_string71                 @ DW_AT_name
 	.long	849                             @ DW_AT_type
 	.byte	6                               @ DW_AT_decl_file
-	.short	350                             @ DW_AT_decl_line
+	.short	351                             @ DW_AT_decl_line
 	.byte	160                             @ DW_AT_data_member_location
 	.byte	20                              @ Abbrev [20] 0x2c6:0xe DW_TAG_member
 	.long	.Linfo_string72                 @ DW_AT_name
 	.long	837                             @ DW_AT_type
 	.byte	6                               @ DW_AT_decl_file
-	.short	351                             @ DW_AT_decl_line
+	.short	352                             @ DW_AT_decl_line
 	.short	256                             @ DW_AT_data_member_location
 	.byte	20                              @ Abbrev [20] 0x2d4:0xe DW_TAG_member
 	.long	.Linfo_string73                 @ DW_AT_name
 	.long	849                             @ DW_AT_type
 	.byte	6                               @ DW_AT_decl_file
-	.short	352                             @ DW_AT_decl_line
+	.short	353                             @ DW_AT_decl_line
 	.short	288                             @ DW_AT_data_member_location
 	.byte	20                              @ Abbrev [20] 0x2e2:0xe DW_TAG_member
 	.long	.Linfo_string74                 @ DW_AT_name
 	.long	837                             @ DW_AT_type
 	.byte	6                               @ DW_AT_decl_file
-	.short	353                             @ DW_AT_decl_line
+	.short	354                             @ DW_AT_decl_line
 	.short	384                             @ DW_AT_data_member_location
 	.byte	20                              @ Abbrev [20] 0x2f0:0xe DW_TAG_member
 	.long	.Linfo_string75                 @ DW_AT_name
 	.long	849                             @ DW_AT_type
 	.byte	6                               @ DW_AT_decl_file
-	.short	354                             @ DW_AT_decl_line
+	.short	355                             @ DW_AT_decl_line
 	.short	416                             @ DW_AT_data_member_location
 	.byte	20                              @ Abbrev [20] 0x2fe:0xe DW_TAG_member
 	.long	.Linfo_string76                 @ DW_AT_name
 	.long	837                             @ DW_AT_type
 	.byte	6                               @ DW_AT_decl_file
-	.short	355                             @ DW_AT_decl_line
+	.short	356                             @ DW_AT_decl_line
 	.short	512                             @ DW_AT_data_member_location
 	.byte	20                              @ Abbrev [20] 0x30c:0xe DW_TAG_member
 	.long	.Linfo_string77                 @ DW_AT_name
 	.long	861                             @ DW_AT_type
 	.byte	6                               @ DW_AT_decl_file
-	.short	356                             @ DW_AT_decl_line
+	.short	357                             @ DW_AT_decl_line
 	.short	544                             @ DW_AT_data_member_location
 	.byte	20                              @ Abbrev [20] 0x31a:0xe DW_TAG_member
 	.long	.Linfo_string78                 @ DW_AT_name
 	.long	873                             @ DW_AT_type
 	.byte	6                               @ DW_AT_decl_file
-	.short	357                             @ DW_AT_decl_line
+	.short	358                             @ DW_AT_decl_line
 	.short	768                             @ DW_AT_data_member_location
 	.byte	20                              @ Abbrev [20] 0x328:0xe DW_TAG_member
 	.long	.Linfo_string81                 @ DW_AT_name
 	.long	908                             @ DW_AT_type
 	.byte	6                               @ DW_AT_decl_file
-	.short	358                             @ DW_AT_decl_line
+	.short	359                             @ DW_AT_decl_line
 	.short	1008                            @ DW_AT_data_member_location
 	.byte	20                              @ Abbrev [20] 0x336:0xe DW_TAG_member
 	.long	.Linfo_string82                 @ DW_AT_name
 	.long	603                             @ DW_AT_type
 	.byte	6                               @ DW_AT_decl_file
-	.short	359                             @ DW_AT_decl_line
+	.short	360                             @ DW_AT_decl_line
 	.short	3584                            @ DW_AT_data_member_location
 	.byte	0                               @ End Of Children Mark
 	.byte	3                               @ Abbrev [3] 0x345:0xc DW_TAG_array_type
@@ -2245,13 +2245,13 @@ dma_usr_isr_cb:
 	.byte	22                              @ Abbrev [22] 0x399:0x16 DW_TAG_subprogram
 	.long	.Linfo_string84                 @ DW_AT_name
 	.byte	6                               @ DW_AT_decl_file
-	.short	1508                            @ DW_AT_decl_line
+	.short	1511                            @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.byte	1                               @ DW_AT_inline
 	.byte	23                              @ Abbrev [23] 0x3a2:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string85                 @ DW_AT_name
 	.byte	6                               @ DW_AT_decl_file
-	.short	1508                            @ DW_AT_decl_line
+	.short	1511                            @ DW_AT_decl_line
 	.long	613                             @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	24                              @ Abbrev [24] 0x3af:0x59 DW_TAG_subprogram
@@ -2890,270 +2890,270 @@ dma_usr_isr_cb:
 	.long	0
 	.section	.debug_str,"MS",%progbits,1
 .Linfo_string0:
-	.asciz	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]" @ string offset=0
+	.asciz	"Component: Arm Compiler for Embedded 6.21 Tool: armclang [5dfeb700]" @ string offset=0
 .Linfo_string1:
-	.asciz	"../../../components/platform/soc/rt582/rt582_driver/Src\\dma.c" @ string offset=55
+	.asciz	"../../../components/platform/soc/rt582/rt582_driver/Src\\dma.c" @ string offset=68
 .Linfo_string2:
-	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=117
+	.asciz	"C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" @ string offset=130
 .Linfo_string3:
-	.asciz	"dma_usr_isr_cb"                @ string offset=178
+	.asciz	"dma_usr_isr_cb"                @ string offset=215
 .Linfo_string4:
-	.asciz	"unsigned int"                  @ string offset=193
+	.asciz	"unsigned int"                  @ string offset=230
 .Linfo_string5:
-	.asciz	"uint32_t"                      @ string offset=206
+	.asciz	"uint32_t"                      @ string offset=243
 .Linfo_string6:
-	.asciz	"dma_proc_cb_t"                 @ string offset=215
+	.asciz	"dma_proc_cb_t"                 @ string offset=252
 .Linfo_string7:
-	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=229
+	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=266
 .Linfo_string8:
-	.asciz	"dma_addr"                      @ string offset=249
+	.asciz	"dma_addr"                      @ string offset=286
 .Linfo_string9:
-	.asciz	"int"                           @ string offset=258
+	.asciz	"int"                           @ string offset=295
 .Linfo_string10:
-	.asciz	"NonMaskableInt_IRQn"           @ string offset=262
+	.asciz	"NonMaskableInt_IRQn"           @ string offset=299
 .Linfo_string11:
-	.asciz	"HardFault_IRQn"                @ string offset=282
+	.asciz	"HardFault_IRQn"                @ string offset=319
 .Linfo_string12:
-	.asciz	"MemoryManagement_IRQn"         @ string offset=297
+	.asciz	"MemoryManagement_IRQn"         @ string offset=334
 .Linfo_string13:
-	.asciz	"BusFault_IRQn"                 @ string offset=319
+	.asciz	"BusFault_IRQn"                 @ string offset=356
 .Linfo_string14:
-	.asciz	"UsageFault_IRQn"               @ string offset=333
+	.asciz	"UsageFault_IRQn"               @ string offset=370
 .Linfo_string15:
-	.asciz	"SVCall_IRQn"                   @ string offset=349
+	.asciz	"SVCall_IRQn"                   @ string offset=386
 .Linfo_string16:
-	.asciz	"DebugMonitor_IRQn"             @ string offset=361
+	.asciz	"DebugMonitor_IRQn"             @ string offset=398
 .Linfo_string17:
-	.asciz	"PendSV_IRQn"                   @ string offset=379
+	.asciz	"PendSV_IRQn"                   @ string offset=416
 .Linfo_string18:
-	.asciz	"SysTick_IRQn"                  @ string offset=391
+	.asciz	"SysTick_IRQn"                  @ string offset=428
 .Linfo_string19:
-	.asciz	"Gpio_IRQn"                     @ string offset=404
+	.asciz	"Gpio_IRQn"                     @ string offset=441
 .Linfo_string20:
-	.asciz	"Timer0_IRQn"                   @ string offset=414
+	.asciz	"Timer0_IRQn"                   @ string offset=451
 .Linfo_string21:
-	.asciz	"Timer1_IRQn"                   @ string offset=426
+	.asciz	"Timer1_IRQn"                   @ string offset=463
 .Linfo_string22:
-	.asciz	"Wdt_IRQn"                      @ string offset=438
+	.asciz	"Wdt_IRQn"                      @ string offset=475
 .Linfo_string23:
-	.asciz	"Uart0_IRQn"                    @ string offset=447
+	.asciz	"Uart0_IRQn"                    @ string offset=484
 .Linfo_string24:
-	.asciz	"I2cm_IRQn"                     @ string offset=458
+	.asciz	"I2cm_IRQn"                     @ string offset=495
 .Linfo_string25:
-	.asciz	"FlashCtl_IRQn"                 @ string offset=468
+	.asciz	"FlashCtl_IRQn"                 @ string offset=505
 .Linfo_string26:
-	.asciz	"Uart1_IRQn"                    @ string offset=482
+	.asciz	"Uart1_IRQn"                    @ string offset=519
 .Linfo_string27:
-	.asciz	"Rtc_IRQn"                      @ string offset=493
+	.asciz	"Rtc_IRQn"                      @ string offset=530
 .Linfo_string28:
-	.asciz	"Dma0_C0_IRQn"                  @ string offset=502
+	.asciz	"Dma0_C0_IRQn"                  @ string offset=539
 .Linfo_string29:
-	.asciz	"Dma0_C1_IRQn"                  @ string offset=515
+	.asciz	"Dma0_C1_IRQn"                  @ string offset=552
 .Linfo_string30:
-	.asciz	"Dma0_C2_IRQn"                  @ string offset=528
+	.asciz	"Dma0_C2_IRQn"                  @ string offset=565
 .Linfo_string31:
-	.asciz	"Dma0_C3_IRQn"                  @ string offset=541
+	.asciz	"Dma0_C3_IRQn"                  @ string offset=578
 .Linfo_string32:
-	.asciz	"Qspi0_IRQn"                    @ string offset=554
+	.asciz	"Qspi0_IRQn"                    @ string offset=591
 .Linfo_string33:
-	.asciz	"I2s0_IRQn"                     @ string offset=565
+	.asciz	"I2s0_IRQn"                     @ string offset=602
 .Linfo_string34:
-	.asciz	"Timer3_IRQn"                   @ string offset=575
+	.asciz	"Timer3_IRQn"                   @ string offset=612
 .Linfo_string35:
-	.asciz	"Timer4_IRQn"                   @ string offset=587
+	.asciz	"Timer4_IRQn"                   @ string offset=624
 .Linfo_string36:
-	.asciz	"Dma1_C2_IRQn"                  @ string offset=599
+	.asciz	"Dma1_C2_IRQn"                  @ string offset=636
 .Linfo_string37:
-	.asciz	"Bod_IRQn"                      @ string offset=612
+	.asciz	"Bod_IRQn"                      @ string offset=649
 .Linfo_string38:
-	.asciz	"Uart2_IRQn"                    @ string offset=621
+	.asciz	"Uart2_IRQn"                    @ string offset=658
 .Linfo_string39:
-	.asciz	"CommSubsystem_IRQn"            @ string offset=632
+	.asciz	"CommSubsystem_IRQn"            @ string offset=669
 .Linfo_string40:
-	.asciz	"Pwm0_IRQn"                     @ string offset=651
+	.asciz	"Pwm0_IRQn"                     @ string offset=688
 .Linfo_string41:
-	.asciz	"Pwm1_IRQn"                     @ string offset=661
+	.asciz	"Pwm1_IRQn"                     @ string offset=698
 .Linfo_string42:
-	.asciz	"Pwm2_IRQn"                     @ string offset=671
+	.asciz	"Pwm2_IRQn"                     @ string offset=708
 .Linfo_string43:
-	.asciz	"Pwm3_IRQn"                     @ string offset=681
+	.asciz	"Pwm3_IRQn"                     @ string offset=718
 .Linfo_string44:
-	.asciz	"Pwm4_IRQn"                     @ string offset=691
+	.asciz	"Pwm4_IRQn"                     @ string offset=728
 .Linfo_string45:
-	.asciz	"Sadc_IRQn"                     @ string offset=701
+	.asciz	"Sadc_IRQn"                     @ string offset=738
 .Linfo_string46:
-	.asciz	"Crypto_IRQn"                   @ string offset=711
+	.asciz	"Crypto_IRQn"                   @ string offset=748
 .Linfo_string47:
-	.asciz	"Timer2_IRQn"                   @ string offset=723
+	.asciz	"Timer2_IRQn"                   @ string offset=760
 .Linfo_string48:
-	.asciz	"Qspi1_IRQn"                    @ string offset=735
+	.asciz	"Qspi1_IRQn"                    @ string offset=772
 .Linfo_string49:
-	.asciz	"Soft_IRQn"                     @ string offset=746
+	.asciz	"Soft_IRQn"                     @ string offset=783
 .Linfo_string50:
-	.asciz	"Trng_IRQn"                     @ string offset=756
+	.asciz	"Trng_IRQn"                     @ string offset=793
 .Linfo_string51:
-	.asciz	"Comp_IRQn"                     @ string offset=766
+	.asciz	"Comp_IRQn"                     @ string offset=803
 .Linfo_string52:
-	.asciz	"IRQn_Type"                     @ string offset=776
+	.asciz	"IRQn_Type"                     @ string offset=813
 .Linfo_string53:
-	.asciz	"DMA_CTRL"                      @ string offset=786
+	.asciz	"DMA_CTRL"                      @ string offset=823
 .Linfo_string54:
-	.asciz	"DMA_STATUS"                    @ string offset=795
+	.asciz	"DMA_STATUS"                    @ string offset=832
 .Linfo_string55:
-	.asciz	"DMA_SOURCE_DESC"               @ string offset=806
+	.asciz	"DMA_SOURCE_DESC"               @ string offset=843
 .Linfo_string56:
-	.asciz	"DMA_DEST_DESC"                 @ string offset=822
+	.asciz	"DMA_DEST_DESC"                 @ string offset=859
 .Linfo_string57:
-	.asciz	"DMA_Xfer_LEN"                  @ string offset=836
+	.asciz	"DMA_Xfer_LEN"                  @ string offset=873
 .Linfo_string58:
-	.asciz	"DMA_CUR_SRC_ADDR"              @ string offset=849
+	.asciz	"DMA_CUR_SRC_ADDR"              @ string offset=886
 .Linfo_string59:
-	.asciz	"DMA_CUR_DEST_ADDR"             @ string offset=866
+	.asciz	"DMA_CUR_DEST_ADDR"             @ string offset=903
 .Linfo_string60:
-	.asciz	"DMA_INTR_CTRL"                 @ string offset=884
+	.asciz	"DMA_INTR_CTRL"                 @ string offset=921
 .Linfo_string61:
-	.asciz	"DMA_INTR_CLEAR"                @ string offset=898
+	.asciz	"DMA_INTR_CLEAR"                @ string offset=935
 .Linfo_string62:
-	.asciz	"DMA_ENABLE"                    @ string offset=913
+	.asciz	"DMA_ENABLE"                    @ string offset=950
 .Linfo_string63:
-	.asciz	"DMA_Lli_NEXT_Ptr"              @ string offset=924
+	.asciz	"DMA_Lli_NEXT_Ptr"              @ string offset=961
 .Linfo_string64:
-	.asciz	"DMA_REPEAT_VALUE"              @ string offset=941
+	.asciz	"DMA_REPEAT_VALUE"              @ string offset=978
 .Linfo_string65:
-	.asciz	"DMA_REPEAT_STATUS"             @ string offset=958
+	.asciz	"DMA_REPEAT_STATUS"             @ string offset=995
 .Linfo_string66:
-	.asciz	"DMA_T"                         @ string offset=976
+	.asciz	"DMA_T"                         @ string offset=1013
 .Linfo_string67:
-	.asciz	"int32_t"                       @ string offset=982
+	.asciz	"int32_t"                       @ string offset=1019
 .Linfo_string68:
-	.asciz	"ISER"                          @ string offset=990
+	.asciz	"ISER"                          @ string offset=1027
 .Linfo_string69:
-	.asciz	"RESERVED0"                     @ string offset=995
+	.asciz	"RESERVED0"                     @ string offset=1032
 .Linfo_string70:
-	.asciz	"ICER"                          @ string offset=1005
+	.asciz	"ICER"                          @ string offset=1042
 .Linfo_string71:
-	.asciz	"RESERVED1"                     @ string offset=1010
+	.asciz	"RESERVED1"                     @ string offset=1047
 .Linfo_string72:
-	.asciz	"ISPR"                          @ string offset=1020
+	.asciz	"ISPR"                          @ string offset=1057
 .Linfo_string73:
-	.asciz	"RESERVED2"                     @ string offset=1025
+	.asciz	"RESERVED2"                     @ string offset=1062
 .Linfo_string74:
-	.asciz	"ICPR"                          @ string offset=1035
+	.asciz	"ICPR"                          @ string offset=1072
 .Linfo_string75:
-	.asciz	"RESERVED3"                     @ string offset=1040
+	.asciz	"RESERVED3"                     @ string offset=1077
 .Linfo_string76:
-	.asciz	"IABR"                          @ string offset=1050
+	.asciz	"IABR"                          @ string offset=1087
 .Linfo_string77:
-	.asciz	"RESERVED4"                     @ string offset=1055
+	.asciz	"RESERVED4"                     @ string offset=1092
 .Linfo_string78:
-	.asciz	"IP"                            @ string offset=1065
+	.asciz	"IPR"                           @ string offset=1102
 .Linfo_string79:
-	.asciz	"unsigned char"                 @ string offset=1068
+	.asciz	"unsigned char"                 @ string offset=1106
 .Linfo_string80:
-	.asciz	"uint8_t"                       @ string offset=1082
+	.asciz	"uint8_t"                       @ string offset=1120
 .Linfo_string81:
-	.asciz	"RESERVED5"                     @ string offset=1090
+	.asciz	"RESERVED5"                     @ string offset=1128
 .Linfo_string82:
-	.asciz	"STIR"                          @ string offset=1100
+	.asciz	"STIR"                          @ string offset=1138
 .Linfo_string83:
-	.asciz	"NVIC_Type"                     @ string offset=1105
+	.asciz	"NVIC_Type"                     @ string offset=1143
 .Linfo_string84:
-	.asciz	"__NVIC_EnableIRQ"              @ string offset=1115
+	.asciz	"__NVIC_EnableIRQ"              @ string offset=1153
 .Linfo_string85:
-	.asciz	"IRQn"                          @ string offset=1132
+	.asciz	"IRQn"                          @ string offset=1170
 .Linfo_string86:
-	.asciz	"dma_isr_handle"                @ string offset=1137
+	.asciz	"dma_isr_handle"                @ string offset=1175
 .Linfo_string87:
-	.asciz	"dma_channel_id"                @ string offset=1152
+	.asciz	"dma_channel_id"                @ string offset=1190
 .Linfo_string88:
-	.asciz	"status"                        @ string offset=1167
+	.asciz	"status"                        @ string offset=1205
 .Linfo_string89:
-	.asciz	"DMA"                           @ string offset=1174
+	.asciz	"DMA"                           @ string offset=1212
 .Linfo_string90:
-	.asciz	"dma_register_isr"              @ string offset=1178
+	.asciz	"dma_register_isr"              @ string offset=1216
 .Linfo_string91:
-	.asciz	"dma_config"                    @ string offset=1195
+	.asciz	"dma_config"                    @ string offset=1233
 .Linfo_string92:
-	.asciz	"dma_enable"                    @ string offset=1206
+	.asciz	"dma_enable"                    @ string offset=1244
 .Linfo_string93:
-	.asciz	"dma_set_link_list"             @ string offset=1217
+	.asciz	"dma_set_link_list"             @ string offset=1255
 .Linfo_string94:
-	.asciz	"create_dma_link_list"          @ string offset=1235
+	.asciz	"create_dma_link_list"          @ string offset=1273
 .Linfo_string95:
-	.asciz	"dma_get_status"                @ string offset=1256
+	.asciz	"dma_get_status"                @ string offset=1294
 .Linfo_string96:
-	.asciz	"dma_get_repeatstatus"          @ string offset=1271
+	.asciz	"dma_get_repeatstatus"          @ string offset=1309
 .Linfo_string97:
-	.asciz	"dma_finish"                    @ string offset=1292
+	.asciz	"dma_finish"                    @ string offset=1330
 .Linfo_string98:
-	.asciz	"dma_init"                      @ string offset=1303
+	.asciz	"dma_init"                      @ string offset=1341
 .Linfo_string99:
-	.asciz	"dma0_c0_handler"               @ string offset=1312
+	.asciz	"dma0_c0_handler"               @ string offset=1350
 .Linfo_string100:
-	.asciz	"dma0_c1_handler"               @ string offset=1328
+	.asciz	"dma0_c1_handler"               @ string offset=1366
 .Linfo_string101:
-	.asciz	"dma0_c2_handler"               @ string offset=1344
+	.asciz	"dma0_c2_handler"               @ string offset=1382
 .Linfo_string102:
-	.asciz	"dma0_c3_handler"               @ string offset=1360
+	.asciz	"dma0_c3_handler"               @ string offset=1398
 .Linfo_string103:
-	.asciz	"app_dma_callback"              @ string offset=1376
+	.asciz	"app_dma_callback"              @ string offset=1414
 .Linfo_string104:
-	.asciz	"mode"                          @ string offset=1393
+	.asciz	"mode"                          @ string offset=1431
 .Linfo_string105:
-	.asciz	"dma_control_setting"           @ string offset=1398
+	.asciz	"dma_control_setting"           @ string offset=1436
 .Linfo_string106:
-	.asciz	"dma_src_addr"                  @ string offset=1418
+	.asciz	"dma_src_addr"                  @ string offset=1456
 .Linfo_string107:
-	.asciz	"dma_dest_addr"                 @ string offset=1431
+	.asciz	"dma_dest_addr"                 @ string offset=1469
 .Linfo_string108:
-	.asciz	"dma_xfer_length"               @ string offset=1445
+	.asciz	"dma_xfer_length"               @ string offset=1483
 .Linfo_string109:
-	.asciz	"dma_repeat_setting"            @ string offset=1461
+	.asciz	"dma_repeat_setting"            @ string offset=1499
 .Linfo_string110:
-	.asciz	"dma_int_enable"                @ string offset=1480
+	.asciz	"dma_int_enable"                @ string offset=1518
 .Linfo_string111:
-	.asciz	"dma_config_t"                  @ string offset=1495
+	.asciz	"dma_config_t"                  @ string offset=1533
 .Linfo_string112:
-	.asciz	"dma_lli"                       @ string offset=1508
+	.asciz	"dma_lli"                       @ string offset=1546
 .Linfo_string113:
-	.asciz	"src_addr"                      @ string offset=1516
+	.asciz	"src_addr"                      @ string offset=1554
 .Linfo_string114:
-	.asciz	"dest_addr"                     @ string offset=1525
+	.asciz	"dest_addr"                     @ string offset=1563
 .Linfo_string115:
-	.asciz	"transfer_length"               @ string offset=1535
+	.asciz	"transfer_length"               @ string offset=1573
 .Linfo_string116:
-	.asciz	"control_set"                   @ string offset=1551
+	.asciz	"control_set"                   @ string offset=1589
 .Linfo_string117:
-	.asciz	"next_ptr_addr"                 @ string offset=1563
+	.asciz	"next_ptr_addr"                 @ string offset=1601
 .Linfo_string118:
-	.asciz	"repeat_set"                    @ string offset=1577
+	.asciz	"repeat_set"                    @ string offset=1615
 .Linfo_string119:
-	.asciz	"resv"                          @ string offset=1588
+	.asciz	"resv"                          @ string offset=1626
 .Linfo_string120:
-	.asciz	"dma_linklist_entry_t"          @ string offset=1593
+	.asciz	"dma_linklist_entry_t"          @ string offset=1631
 .Linfo_string121:
-	.asciz	"dma_linklist_request"          @ string offset=1614
+	.asciz	"dma_linklist_request"          @ string offset=1652
 .Linfo_string122:
-	.asciz	"src_ptr"                       @ string offset=1635
+	.asciz	"src_ptr"                       @ string offset=1673
 .Linfo_string123:
-	.asciz	"dest_ptr"                      @ string offset=1643
+	.asciz	"dest_ptr"                      @ string offset=1681
 .Linfo_string124:
-	.asciz	"size"                          @ string offset=1652
+	.asciz	"size"                          @ string offset=1690
 .Linfo_string125:
-	.asciz	"dma_linklist_request_t"        @ string offset=1657
+	.asciz	"dma_linklist_request_t"        @ string offset=1695
 .Linfo_string126:
-	.asciz	"entry_number"                  @ string offset=1680
+	.asciz	"entry_number"                  @ string offset=1718
 .Linfo_string127:
-	.asciz	"DMA_link_list"                 @ string offset=1693
+	.asciz	"DMA_link_list"                 @ string offset=1731
 .Linfo_string128:
-	.asciz	"control_mode"                  @ string offset=1707
+	.asciz	"control_mode"                  @ string offset=1745
 .Linfo_string129:
-	.asciz	"cur_DMA_link_list"             @ string offset=1720
+	.asciz	"cur_DMA_link_list"             @ string offset=1758
 .Linfo_string130:
-	.asciz	"cur_dma_list"                  @ string offset=1738
+	.asciz	"cur_dma_list"                  @ string offset=1776
 .Linfo_string131:
-	.asciz	"i"                             @ string offset=1751
-	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
+	.asciz	"i"                             @ string offset=1789
+	.ident	"Component: Arm Compiler for Embedded 6.21 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals
 	.ARM_attribute	16, 1	@ Tag_AV_eba

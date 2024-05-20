@@ -18,10 +18,10 @@
 	.eabi_attribute	26, 2	@ Tag_ABI_enum_size
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"rt_crypto.c"
-	.file	1 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
-	.file	2 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_crypto/rt_crypto.c"
-	.file	3 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_crypto/Inc/rt_ecc.h"
-	.file	4 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/crypto_reg.h"
+	.file	1 "C:\\" "Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include\\stdint.h"
+	.file	2 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_crypto/rt_crypto.c"
+	.file	3 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_crypto/Inc/rt_ecc.h"
+	.file	4 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/crypto_reg.h"
 	.section	.text.crypto_start,"ax",%progbits
 	.hidden	crypto_start                    @ -- Begin function crypto_start
 	.globl	crypto_start
@@ -401,7 +401,7 @@ aes_encryption:
 .Lfunc_end4:
 	.size	aes_encryption, .Lfunc_end4-aes_encryption
 	.cfi_endproc
-	.file	5 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_crypto/Inc/rt_crypto_util.h"
+	.file	5 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_crypto/Inc/rt_crypto_util.h"
 	.cantunwind
 	.fnend
                                         @ -- End function
@@ -6717,254 +6717,254 @@ gfp_scalar_modmult_bin:
 	.long	0
 	.section	.debug_str,"MS",%progbits,1
 .Linfo_string0:
-	.asciz	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]" @ string offset=0
+	.asciz	"Component: Arm Compiler for Embedded 6.21 Tool: armclang [5dfeb700]" @ string offset=0
 .Linfo_string1:
-	.asciz	"../../../components/platform/soc/rt582/rt582_crypto\\rt_crypto.c" @ string offset=55
+	.asciz	"../../../components/platform/soc/rt582/rt582_crypto\\rt_crypto.c" @ string offset=68
 .Linfo_string2:
-	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=119
+	.asciz	"C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" @ string offset=132
 .Linfo_string3:
-	.asciz	"aes_cipher_bin"                @ string offset=180
+	.asciz	"aes_cipher_bin"                @ string offset=217
 .Linfo_string4:
-	.asciz	"unsigned int"                  @ string offset=195
+	.asciz	"unsigned int"                  @ string offset=232
 .Linfo_string5:
-	.asciz	"uint32_t"                      @ string offset=208
+	.asciz	"uint32_t"                      @ string offset=245
 .Linfo_string6:
-	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=217
+	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=254
 .Linfo_string7:
-	.asciz	"aes_cipher_inv_bin"            @ string offset=237
+	.asciz	"aes_cipher_inv_bin"            @ string offset=274
 .Linfo_string8:
-	.asciz	"aes_enc_boot_bin"              @ string offset=256
+	.asciz	"aes_enc_boot_bin"              @ string offset=293
 .Linfo_string9:
-	.asciz	"aes_cbc_enc_bin"               @ string offset=273
+	.asciz	"aes_cbc_enc_bin"               @ string offset=310
 .Linfo_string10:
-	.asciz	"aes_ctr_bin"                   @ string offset=289
+	.asciz	"aes_ctr_bin"                   @ string offset=326
 .Linfo_string11:
-	.asciz	"Curve_Gx_p256"                 @ string offset=301
+	.asciz	"Curve_Gx_p256"                 @ string offset=338
 .Linfo_string12:
-	.asciz	"x"                             @ string offset=315
+	.asciz	"x"                             @ string offset=352
 .Linfo_string13:
-	.asciz	"unsigned char"                 @ string offset=317
+	.asciz	"unsigned char"                 @ string offset=354
 .Linfo_string14:
-	.asciz	"uint8_t"                       @ string offset=331
+	.asciz	"uint8_t"                       @ string offset=368
 .Linfo_string15:
-	.asciz	"y"                             @ string offset=339
+	.asciz	"y"                             @ string offset=376
 .Linfo_string16:
-	.asciz	"ECPoint_P256"                  @ string offset=341
+	.asciz	"ECPoint_P256"                  @ string offset=378
 .Linfo_string17:
-	.asciz	"Curve_Gx_p256_BE"              @ string offset=354
+	.asciz	"Curve_Gx_p256_BE"              @ string offset=391
 .Linfo_string18:
-	.asciz	"gfp_double_jacobian_p256_bin"  @ string offset=371
+	.asciz	"gfp_double_jacobian_p256_bin"  @ string offset=408
 .Linfo_string19:
-	.asciz	"gfp_applyz_p256_bin"           @ string offset=400
+	.asciz	"gfp_applyz_p256_bin"           @ string offset=437
 .Linfo_string20:
-	.asciz	"gfp_xyczadd_p256_bin"          @ string offset=420
+	.asciz	"gfp_xyczadd_p256_bin"          @ string offset=457
 .Linfo_string21:
-	.asciz	"gfp_xyczaddc_p256_bin"         @ string offset=441
+	.asciz	"gfp_xyczaddc_p256_bin"         @ string offset=478
 .Linfo_string22:
-	.asciz	"gfp_modMultFast_p256_bin"      @ string offset=463
+	.asciz	"gfp_modMultFast_p256_bin"      @ string offset=500
 .Linfo_string23:
-	.asciz	"gfp_point_mult_p256_bin1"      @ string offset=488
+	.asciz	"gfp_point_mult_p256_bin1"      @ string offset=525
 .Linfo_string24:
-	.asciz	"gfp_point_mult_p256_bin2"      @ string offset=513
+	.asciz	"gfp_point_mult_p256_bin2"      @ string offset=550
 .Linfo_string25:
-	.asciz	"gfp_inv_p256_bin"              @ string offset=538
+	.asciz	"gfp_inv_p256_bin"              @ string offset=575
 .Linfo_string26:
-	.asciz	"gfp_ecdsa_verify_p256_bin"     @ string offset=555
+	.asciz	"gfp_ecdsa_verify_p256_bin"     @ string offset=592
 .Linfo_string27:
-	.asciz	"gfp_point_add_p256_bin"        @ string offset=581
+	.asciz	"gfp_point_add_p256_bin"        @ string offset=618
 .Linfo_string28:
-	.asciz	"gfp_valid_point_p256_bin"      @ string offset=604
+	.asciz	"gfp_valid_point_p256_bin"      @ string offset=641
 .Linfo_string29:
-	.asciz	"polynomial_p256"               @ string offset=629
+	.asciz	"polynomial_p256"               @ string offset=666
 .Linfo_string30:
-	.asciz	"const_0_p256"                  @ string offset=645
+	.asciz	"const_0_p256"                  @ string offset=682
 .Linfo_string31:
-	.asciz	"const_1_p256"                  @ string offset=658
+	.asciz	"const_1_p256"                  @ string offset=695
 .Linfo_string32:
-	.asciz	"order_sub1_p256"               @ string offset=671
+	.asciz	"order_sub1_p256"               @ string offset=708
 .Linfo_string33:
-	.asciz	"order_p256"                    @ string offset=687
+	.asciz	"order_p256"                    @ string offset=724
 .Linfo_string34:
-	.asciz	"gfp_ecdsa_signature_p256_bin"  @ string offset=698
+	.asciz	"gfp_ecdsa_signature_p256_bin"  @ string offset=735
 .Linfo_string35:
-	.asciz	"param_a_p256"                  @ string offset=727
+	.asciz	"param_a_p256"                  @ string offset=764
 .Linfo_string36:
-	.asciz	"param_b_p256"                  @ string offset=740
+	.asciz	"param_b_p256"                  @ string offset=777
 .Linfo_string37:
-	.asciz	"gfp_scalar_vxh_bin"            @ string offset=753
+	.asciz	"gfp_scalar_vxh_bin"            @ string offset=790
 .Linfo_string38:
-	.asciz	"gfp_scalar_modmult_bin"        @ string offset=772
+	.asciz	"gfp_scalar_modmult_bin"        @ string offset=809
 .Linfo_string39:
-	.asciz	"CRYPTO_CFG"                    @ string offset=795
+	.asciz	"CRYPTO_CFG"                    @ string offset=832
 .Linfo_string40:
-	.asciz	"bit"                           @ string offset=806
+	.asciz	"bit"                           @ string offset=843
 .Linfo_string41:
-	.asciz	"vlw_op_num"                    @ string offset=810
+	.asciz	"vlw_op_num"                    @ string offset=847
 .Linfo_string42:
-	.asciz	"vlw_sb_num"                    @ string offset=821
+	.asciz	"vlw_sb_num"                    @ string offset=858
 .Linfo_string43:
-	.asciz	"reserved1"                     @ string offset=832
+	.asciz	"reserved1"                     @ string offset=869
 .Linfo_string44:
-	.asciz	"en_crypto"                     @ string offset=842
+	.asciz	"en_crypto"                     @ string offset=879
 .Linfo_string45:
-	.asciz	"enable_sha"                    @ string offset=852
+	.asciz	"enable_sha"                    @ string offset=889
 .Linfo_string46:
-	.asciz	"reserved2"                     @ string offset=863
+	.asciz	"reserved2"                     @ string offset=900
 .Linfo_string47:
-	.asciz	"crypto_done"                   @ string offset=873
+	.asciz	"crypto_done"                   @ string offset=910
 .Linfo_string48:
-	.asciz	"sha_done"                      @ string offset=885
+	.asciz	"sha_done"                      @ string offset=922
 .Linfo_string49:
-	.asciz	"crypto_busy"                   @ string offset=894
+	.asciz	"crypto_busy"                   @ string offset=931
 .Linfo_string50:
-	.asciz	"sha_busy"                      @ string offset=906
+	.asciz	"sha_busy"                      @ string offset=943
 .Linfo_string51:
-	.asciz	"reserved3"                     @ string offset=915
+	.asciz	"reserved3"                     @ string offset=952
 .Linfo_string52:
-	.asciz	"clr_crypto_int"                @ string offset=925
+	.asciz	"clr_crypto_int"                @ string offset=962
 .Linfo_string53:
-	.asciz	"crypto_ctrl_b"                 @ string offset=940
+	.asciz	"crypto_ctrl_b"                 @ string offset=977
 .Linfo_string54:
-	.asciz	"reg"                           @ string offset=954
+	.asciz	"reg"                           @ string offset=991
 .Linfo_string55:
-	.asciz	"crypto_ctrl_struct"            @ string offset=958
+	.asciz	"crypto_ctrl_struct"            @ string offset=995
 .Linfo_string56:
-	.asciz	"crypto_ctrl_t"                 @ string offset=977
+	.asciz	"crypto_ctrl_t"                 @ string offset=1014
 .Linfo_string57:
-	.asciz	"CRYPTO_T"                      @ string offset=991
+	.asciz	"CRYPTO_T"                      @ string offset=1028
 .Linfo_string58:
-	.asciz	"crypto_start"                  @ string offset=1000
+	.asciz	"crypto_start"                  @ string offset=1037
 .Linfo_string59:
-	.asciz	"op_num"                        @ string offset=1013
+	.asciz	"op_num"                        @ string offset=1050
 .Linfo_string60:
-	.asciz	"sb_num"                        @ string offset=1020
+	.asciz	"sb_num"                        @ string offset=1057
 .Linfo_string61:
-	.asciz	"crypto_copy"                   @ string offset=1027
+	.asciz	"crypto_copy"                   @ string offset=1064
 .Linfo_string62:
-	.asciz	"gfp_inv_p256"                  @ string offset=1039
+	.asciz	"gfp_inv_p256"                  @ string offset=1076
 .Linfo_string63:
-	.asciz	"target_addr"                   @ string offset=1052
+	.asciz	"target_addr"                   @ string offset=1089
 .Linfo_string64:
-	.asciz	"gfp_modMultFast_p256"          @ string offset=1064
+	.asciz	"gfp_modMultFast_p256"          @ string offset=1101
 .Linfo_string65:
-	.asciz	"gfp_applyz_p256"               @ string offset=1085
+	.asciz	"gfp_applyz_p256"               @ string offset=1122
 .Linfo_string66:
-	.asciz	"gfp_double_jacobian_p256"      @ string offset=1101
+	.asciz	"gfp_double_jacobian_p256"      @ string offset=1138
 .Linfo_string67:
-	.asciz	"gfp_xyczadd_p256"              @ string offset=1126
+	.asciz	"gfp_xyczadd_p256"              @ string offset=1163
 .Linfo_string68:
-	.asciz	"gfp_xyczaddc_p256"             @ string offset=1143
+	.asciz	"gfp_xyczaddc_p256"             @ string offset=1180
 .Linfo_string69:
-	.asciz	"vli_isZero"                    @ string offset=1161
+	.asciz	"vli_isZero"                    @ string offset=1198
 .Linfo_string70:
-	.asciz	"int"                           @ string offset=1172
+	.asciz	"int"                           @ string offset=1209
 .Linfo_string71:
-	.asciz	"p_vli"                         @ string offset=1176
+	.asciz	"p_vli"                         @ string offset=1213
 .Linfo_string72:
-	.asciz	"i"                             @ string offset=1182
+	.asciz	"i"                             @ string offset=1219
 .Linfo_string73:
-	.asciz	"vli_cmp"                       @ string offset=1184
+	.asciz	"vli_cmp"                       @ string offset=1221
 .Linfo_string74:
-	.asciz	"p_left"                        @ string offset=1192
+	.asciz	"p_left"                        @ string offset=1229
 .Linfo_string75:
-	.asciz	"p_right"                       @ string offset=1199
+	.asciz	"p_right"                       @ string offset=1236
 .Linfo_string76:
-	.asciz	"gfp_ecdsa_p256_load_bins"      @ string offset=1207
+	.asciz	"gfp_ecdsa_p256_load_bins"      @ string offset=1244
 .Linfo_string77:
-	.asciz	"gfp_ecdsa_p256_verify_bin"     @ string offset=1232
+	.asciz	"gfp_ecdsa_p256_verify_bin"     @ string offset=1269
 .Linfo_string78:
-	.asciz	"gfp_point_add_p256_load_bin"   @ string offset=1258
+	.asciz	"gfp_point_add_p256_load_bin"   @ string offset=1295
 .Linfo_string79:
-	.asciz	"crypto_mutex_lock"             @ string offset=1286
+	.asciz	"crypto_mutex_lock"             @ string offset=1323
 .Linfo_string80:
-	.asciz	"crypto_mutex_unlock"           @ string offset=1304
+	.asciz	"crypto_mutex_unlock"           @ string offset=1341
 .Linfo_string81:
-	.asciz	"aes_fw_load"                   @ string offset=1324
+	.asciz	"aes_fw_load"                   @ string offset=1361
 .Linfo_string82:
-	.asciz	"aes_encryption"                @ string offset=1336
+	.asciz	"aes_encryption"                @ string offset=1373
 .Linfo_string83:
-	.asciz	"aes_decryption"                @ string offset=1351
+	.asciz	"aes_decryption"                @ string offset=1388
 .Linfo_string84:
-	.asciz	"gfp_point_p256_mult"           @ string offset=1366
+	.asciz	"gfp_point_p256_mult"           @ string offset=1403
 .Linfo_string85:
-	.asciz	"gfp_ecc_curve_p256_init"       @ string offset=1386
+	.asciz	"gfp_ecc_curve_p256_init"       @ string offset=1423
 .Linfo_string86:
-	.asciz	"gfp_ecdsa_p256_verify"         @ string offset=1410
+	.asciz	"gfp_ecdsa_p256_verify"         @ string offset=1447
 .Linfo_string87:
-	.asciz	"gfp_ecdsa_p256_verify_init"    @ string offset=1432
+	.asciz	"gfp_ecdsa_p256_verify_init"    @ string offset=1469
 .Linfo_string88:
-	.asciz	"gfp_ecdsa_p256_signature"      @ string offset=1459
+	.asciz	"gfp_ecdsa_p256_signature"      @ string offset=1496
 .Linfo_string89:
-	.asciz	"gfp_point_p256_add"            @ string offset=1484
+	.asciz	"gfp_point_p256_add"            @ string offset=1521
 .Linfo_string90:
-	.asciz	"gfp_valid_point_p256_verify"   @ string offset=1503
+	.asciz	"gfp_valid_point_p256_verify"   @ string offset=1540
 .Linfo_string91:
-	.asciz	"gfp_scalar_vxh_p256"           @ string offset=1531
+	.asciz	"gfp_scalar_vxh_p256"           @ string offset=1568
 .Linfo_string92:
-	.asciz	"gfp_scalar_modmult_p256"       @ string offset=1551
+	.asciz	"gfp_scalar_modmult_p256"       @ string offset=1588
 .Linfo_string93:
-	.asciz	"gfp_point_p256_invert"         @ string offset=1575
+	.asciz	"gfp_point_p256_invert"         @ string offset=1612
 .Linfo_string94:
-	.asciz	"round"                         @ string offset=1597
+	.asciz	"round"                         @ string offset=1634
 .Linfo_string95:
-	.asciz	"in_buf"                        @ string offset=1603
+	.asciz	"in_buf"                        @ string offset=1640
 .Linfo_string96:
-	.asciz	"out_buf"                       @ string offset=1610
+	.asciz	"out_buf"                       @ string offset=1647
 .Linfo_string97:
-	.asciz	"p_result_point"                @ string offset=1618
+	.asciz	"p_result_point"                @ string offset=1655
 .Linfo_string98:
-	.asciz	"p_based_point"                 @ string offset=1633
+	.asciz	"p_based_point"                 @ string offset=1670
 .Linfo_string99:
-	.asciz	"p_target_k"                    @ string offset=1647
+	.asciz	"p_target_k"                    @ string offset=1684
 .Linfo_string100:
-	.asciz	"p_signature"                   @ string offset=1658
+	.asciz	"p_signature"                   @ string offset=1695
 .Linfo_string101:
-	.asciz	"r"                             @ string offset=1670
+	.asciz	"r"                             @ string offset=1707
 .Linfo_string102:
-	.asciz	"s"                             @ string offset=1672
+	.asciz	"s"                             @ string offset=1709
 .Linfo_string103:
-	.asciz	"Signature_P256"                @ string offset=1674
+	.asciz	"Signature_P256"                @ string offset=1711
 .Linfo_string104:
-	.asciz	"p_hash"                        @ string offset=1689
+	.asciz	"p_hash"                        @ string offset=1726
 .Linfo_string105:
-	.asciz	"p_public_key"                  @ string offset=1696
+	.asciz	"p_public_key"                  @ string offset=1733
 .Linfo_string106:
-	.asciz	"point"                         @ string offset=1709
+	.asciz	"point"                         @ string offset=1746
 .Linfo_string107:
-	.asciz	"p_hash_message"                @ string offset=1715
+	.asciz	"p_hash_message"                @ string offset=1752
 .Linfo_string108:
-	.asciz	"p_private_key"                 @ string offset=1730
+	.asciz	"p_private_key"                 @ string offset=1767
 .Linfo_string109:
-	.asciz	"p_random_k"                    @ string offset=1744
+	.asciz	"p_random_k"                    @ string offset=1781
 .Linfo_string110:
-	.asciz	"status"                        @ string offset=1755
+	.asciz	"status"                        @ string offset=1792
 .Linfo_string111:
-	.asciz	"p_point_result"                @ string offset=1762
+	.asciz	"p_point_result"                @ string offset=1799
 .Linfo_string112:
-	.asciz	"p_point_x1"                    @ string offset=1777
+	.asciz	"p_point_x1"                    @ string offset=1814
 .Linfo_string113:
-	.asciz	"p_point_x2"                    @ string offset=1788
+	.asciz	"p_point_x2"                    @ string offset=1825
 .Linfo_string114:
-	.asciz	"p_point"                       @ string offset=1799
+	.asciz	"p_point"                       @ string offset=1836
 .Linfo_string115:
-	.asciz	"p_result"                      @ string offset=1807
+	.asciz	"p_result"                      @ string offset=1844
 .Linfo_string116:
-	.asciz	"p_x"                           @ string offset=1816
+	.asciz	"p_x"                           @ string offset=1853
 .Linfo_string117:
-	.asciz	"p_v"                           @ string offset=1820
+	.asciz	"p_v"                           @ string offset=1857
 .Linfo_string118:
-	.asciz	"p_y"                           @ string offset=1824
+	.asciz	"p_y"                           @ string offset=1861
 .Linfo_string119:
-	.asciz	"p_invert"                      @ string offset=1828
+	.asciz	"p_invert"                      @ string offset=1865
 .Linfo_string120:
-	.asciz	"carry"                         @ string offset=1837
+	.asciz	"carry"                         @ string offset=1874
 .Linfo_string121:
-	.asciz	"p_output"                      @ string offset=1843
+	.asciz	"p_output"                      @ string offset=1880
 .Linfo_string122:
-	.asciz	"p_poly"                        @ string offset=1852
+	.asciz	"p_poly"                        @ string offset=1889
 .Linfo_string123:
-	.asciz	"next_carry"                    @ string offset=1859
-	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
+	.asciz	"next_carry"                    @ string offset=1896
+	.ident	"Component: Arm Compiler for Embedded 6.21 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals
 	.ARM_attribute	16, 1	@ Tag_AV_eba

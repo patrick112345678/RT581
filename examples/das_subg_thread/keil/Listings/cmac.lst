@@ -18,7 +18,7 @@
 	.eabi_attribute	26, 2	@ Tag_ABI_enum_size
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"cmac.c"
-	.file	1 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/include\\mbedtls/cipher.h"
+	.file	1 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das -0515\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/include\\mbedtls/cipher.h"
 	.section	.text.mbedtls_cipher_cmac_starts,"ax",%progbits
 	.hidden	mbedtls_cipher_cmac_starts      @ -- Begin function mbedtls_cipher_cmac_starts
 	.globl	mbedtls_cipher_cmac_starts
@@ -28,7 +28,7 @@
 	.thumb_func
 mbedtls_cipher_cmac_starts:
 .Lfunc_begin0:
-	.file	2 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/cmac.c"
+	.file	2 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das -0515\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/cmac.c"
 	.loc	2 187 0                         @ ../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/cmac.c:187:0
 	.fnstart
 	.cfi_sections .debug_frame
@@ -642,7 +642,7 @@ mbedtls_cipher_cmac_update:
 .Lfunc_end1:
 	.size	mbedtls_cipher_cmac_update, .Lfunc_end1-mbedtls_cipher_cmac_update
 	.cfi_endproc
-	.file	3 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdio.h"
+	.file	3 "C:\\" "Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include\\stdio.h"
 	.cantunwind
 	.fnend
                                         @ -- End function
@@ -1217,7 +1217,7 @@ mbedtls_cipher_cmac_finish:
 .Lfunc_end2:
 	.size	mbedtls_cipher_cmac_finish, .Lfunc_end2-mbedtls_cipher_cmac_finish
 	.cfi_endproc
-	.file	4 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/include\\mbedtls/cmac.h"
+	.file	4 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das -0515\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/include\\mbedtls/cmac.h"
 	.cantunwind
 	.fnend
                                         @ -- End function
@@ -4542,354 +4542,354 @@ cmac_multiply_by_u:
 	.long	0
 	.section	.debug_str,"MS",%progbits,1
 .Linfo_string0:
-	.asciz	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]" @ string offset=0
+	.asciz	"Component: Arm Compiler for Embedded 6.21 Tool: armclang [5dfeb700]" @ string offset=0
 .Linfo_string1:
-	.asciz	"../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library\\cmac.c" @ string offset=55
+	.asciz	"../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library\\cmac.c" @ string offset=68
 .Linfo_string2:
-	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=146
+	.asciz	"C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das -0515\\examples\\das_subg_thread\\keil" @ string offset=159
 .Linfo_string3:
-	.asciz	"unsigned int"                  @ string offset=207
+	.asciz	"unsigned int"                  @ string offset=237
 .Linfo_string4:
-	.asciz	"MBEDTLS_CIPHER_NONE"           @ string offset=220
+	.asciz	"MBEDTLS_CIPHER_NONE"           @ string offset=250
 .Linfo_string5:
-	.asciz	"MBEDTLS_CIPHER_NULL"           @ string offset=240
+	.asciz	"MBEDTLS_CIPHER_NULL"           @ string offset=270
 .Linfo_string6:
-	.asciz	"MBEDTLS_CIPHER_AES_128_ECB"    @ string offset=260
+	.asciz	"MBEDTLS_CIPHER_AES_128_ECB"    @ string offset=290
 .Linfo_string7:
-	.asciz	"MBEDTLS_CIPHER_AES_192_ECB"    @ string offset=287
+	.asciz	"MBEDTLS_CIPHER_AES_192_ECB"    @ string offset=317
 .Linfo_string8:
-	.asciz	"MBEDTLS_CIPHER_AES_256_ECB"    @ string offset=314
+	.asciz	"MBEDTLS_CIPHER_AES_256_ECB"    @ string offset=344
 .Linfo_string9:
-	.asciz	"MBEDTLS_CIPHER_AES_128_CBC"    @ string offset=341
+	.asciz	"MBEDTLS_CIPHER_AES_128_CBC"    @ string offset=371
 .Linfo_string10:
-	.asciz	"MBEDTLS_CIPHER_AES_192_CBC"    @ string offset=368
+	.asciz	"MBEDTLS_CIPHER_AES_192_CBC"    @ string offset=398
 .Linfo_string11:
-	.asciz	"MBEDTLS_CIPHER_AES_256_CBC"    @ string offset=395
+	.asciz	"MBEDTLS_CIPHER_AES_256_CBC"    @ string offset=425
 .Linfo_string12:
-	.asciz	"MBEDTLS_CIPHER_AES_128_CFB128" @ string offset=422
+	.asciz	"MBEDTLS_CIPHER_AES_128_CFB128" @ string offset=452
 .Linfo_string13:
-	.asciz	"MBEDTLS_CIPHER_AES_192_CFB128" @ string offset=452
+	.asciz	"MBEDTLS_CIPHER_AES_192_CFB128" @ string offset=482
 .Linfo_string14:
-	.asciz	"MBEDTLS_CIPHER_AES_256_CFB128" @ string offset=482
+	.asciz	"MBEDTLS_CIPHER_AES_256_CFB128" @ string offset=512
 .Linfo_string15:
-	.asciz	"MBEDTLS_CIPHER_AES_128_CTR"    @ string offset=512
+	.asciz	"MBEDTLS_CIPHER_AES_128_CTR"    @ string offset=542
 .Linfo_string16:
-	.asciz	"MBEDTLS_CIPHER_AES_192_CTR"    @ string offset=539
+	.asciz	"MBEDTLS_CIPHER_AES_192_CTR"    @ string offset=569
 .Linfo_string17:
-	.asciz	"MBEDTLS_CIPHER_AES_256_CTR"    @ string offset=566
+	.asciz	"MBEDTLS_CIPHER_AES_256_CTR"    @ string offset=596
 .Linfo_string18:
-	.asciz	"MBEDTLS_CIPHER_AES_128_GCM"    @ string offset=593
+	.asciz	"MBEDTLS_CIPHER_AES_128_GCM"    @ string offset=623
 .Linfo_string19:
-	.asciz	"MBEDTLS_CIPHER_AES_192_GCM"    @ string offset=620
+	.asciz	"MBEDTLS_CIPHER_AES_192_GCM"    @ string offset=650
 .Linfo_string20:
-	.asciz	"MBEDTLS_CIPHER_AES_256_GCM"    @ string offset=647
+	.asciz	"MBEDTLS_CIPHER_AES_256_GCM"    @ string offset=677
 .Linfo_string21:
-	.asciz	"MBEDTLS_CIPHER_CAMELLIA_128_ECB" @ string offset=674
+	.asciz	"MBEDTLS_CIPHER_CAMELLIA_128_ECB" @ string offset=704
 .Linfo_string22:
-	.asciz	"MBEDTLS_CIPHER_CAMELLIA_192_ECB" @ string offset=706
+	.asciz	"MBEDTLS_CIPHER_CAMELLIA_192_ECB" @ string offset=736
 .Linfo_string23:
-	.asciz	"MBEDTLS_CIPHER_CAMELLIA_256_ECB" @ string offset=738
+	.asciz	"MBEDTLS_CIPHER_CAMELLIA_256_ECB" @ string offset=768
 .Linfo_string24:
-	.asciz	"MBEDTLS_CIPHER_CAMELLIA_128_CBC" @ string offset=770
+	.asciz	"MBEDTLS_CIPHER_CAMELLIA_128_CBC" @ string offset=800
 .Linfo_string25:
-	.asciz	"MBEDTLS_CIPHER_CAMELLIA_192_CBC" @ string offset=802
+	.asciz	"MBEDTLS_CIPHER_CAMELLIA_192_CBC" @ string offset=832
 .Linfo_string26:
-	.asciz	"MBEDTLS_CIPHER_CAMELLIA_256_CBC" @ string offset=834
+	.asciz	"MBEDTLS_CIPHER_CAMELLIA_256_CBC" @ string offset=864
 .Linfo_string27:
-	.asciz	"MBEDTLS_CIPHER_CAMELLIA_128_CFB128" @ string offset=866
+	.asciz	"MBEDTLS_CIPHER_CAMELLIA_128_CFB128" @ string offset=896
 .Linfo_string28:
-	.asciz	"MBEDTLS_CIPHER_CAMELLIA_192_CFB128" @ string offset=901
+	.asciz	"MBEDTLS_CIPHER_CAMELLIA_192_CFB128" @ string offset=931
 .Linfo_string29:
-	.asciz	"MBEDTLS_CIPHER_CAMELLIA_256_CFB128" @ string offset=936
+	.asciz	"MBEDTLS_CIPHER_CAMELLIA_256_CFB128" @ string offset=966
 .Linfo_string30:
-	.asciz	"MBEDTLS_CIPHER_CAMELLIA_128_CTR" @ string offset=971
+	.asciz	"MBEDTLS_CIPHER_CAMELLIA_128_CTR" @ string offset=1001
 .Linfo_string31:
-	.asciz	"MBEDTLS_CIPHER_CAMELLIA_192_CTR" @ string offset=1003
+	.asciz	"MBEDTLS_CIPHER_CAMELLIA_192_CTR" @ string offset=1033
 .Linfo_string32:
-	.asciz	"MBEDTLS_CIPHER_CAMELLIA_256_CTR" @ string offset=1035
+	.asciz	"MBEDTLS_CIPHER_CAMELLIA_256_CTR" @ string offset=1065
 .Linfo_string33:
-	.asciz	"MBEDTLS_CIPHER_CAMELLIA_128_GCM" @ string offset=1067
+	.asciz	"MBEDTLS_CIPHER_CAMELLIA_128_GCM" @ string offset=1097
 .Linfo_string34:
-	.asciz	"MBEDTLS_CIPHER_CAMELLIA_192_GCM" @ string offset=1099
+	.asciz	"MBEDTLS_CIPHER_CAMELLIA_192_GCM" @ string offset=1129
 .Linfo_string35:
-	.asciz	"MBEDTLS_CIPHER_CAMELLIA_256_GCM" @ string offset=1131
+	.asciz	"MBEDTLS_CIPHER_CAMELLIA_256_GCM" @ string offset=1161
 .Linfo_string36:
-	.asciz	"MBEDTLS_CIPHER_DES_ECB"        @ string offset=1163
+	.asciz	"MBEDTLS_CIPHER_DES_ECB"        @ string offset=1193
 .Linfo_string37:
-	.asciz	"MBEDTLS_CIPHER_DES_CBC"        @ string offset=1186
+	.asciz	"MBEDTLS_CIPHER_DES_CBC"        @ string offset=1216
 .Linfo_string38:
-	.asciz	"MBEDTLS_CIPHER_DES_EDE_ECB"    @ string offset=1209
+	.asciz	"MBEDTLS_CIPHER_DES_EDE_ECB"    @ string offset=1239
 .Linfo_string39:
-	.asciz	"MBEDTLS_CIPHER_DES_EDE_CBC"    @ string offset=1236
+	.asciz	"MBEDTLS_CIPHER_DES_EDE_CBC"    @ string offset=1266
 .Linfo_string40:
-	.asciz	"MBEDTLS_CIPHER_DES_EDE3_ECB"   @ string offset=1263
+	.asciz	"MBEDTLS_CIPHER_DES_EDE3_ECB"   @ string offset=1293
 .Linfo_string41:
-	.asciz	"MBEDTLS_CIPHER_DES_EDE3_CBC"   @ string offset=1291
+	.asciz	"MBEDTLS_CIPHER_DES_EDE3_CBC"   @ string offset=1321
 .Linfo_string42:
-	.asciz	"MBEDTLS_CIPHER_BLOWFISH_ECB"   @ string offset=1319
+	.asciz	"MBEDTLS_CIPHER_BLOWFISH_ECB"   @ string offset=1349
 .Linfo_string43:
-	.asciz	"MBEDTLS_CIPHER_BLOWFISH_CBC"   @ string offset=1347
+	.asciz	"MBEDTLS_CIPHER_BLOWFISH_CBC"   @ string offset=1377
 .Linfo_string44:
-	.asciz	"MBEDTLS_CIPHER_BLOWFISH_CFB64" @ string offset=1375
+	.asciz	"MBEDTLS_CIPHER_BLOWFISH_CFB64" @ string offset=1405
 .Linfo_string45:
-	.asciz	"MBEDTLS_CIPHER_BLOWFISH_CTR"   @ string offset=1405
+	.asciz	"MBEDTLS_CIPHER_BLOWFISH_CTR"   @ string offset=1435
 .Linfo_string46:
-	.asciz	"MBEDTLS_CIPHER_ARC4_128"       @ string offset=1433
+	.asciz	"MBEDTLS_CIPHER_ARC4_128"       @ string offset=1463
 .Linfo_string47:
-	.asciz	"MBEDTLS_CIPHER_AES_128_CCM"    @ string offset=1457
+	.asciz	"MBEDTLS_CIPHER_AES_128_CCM"    @ string offset=1487
 .Linfo_string48:
-	.asciz	"MBEDTLS_CIPHER_AES_192_CCM"    @ string offset=1484
+	.asciz	"MBEDTLS_CIPHER_AES_192_CCM"    @ string offset=1514
 .Linfo_string49:
-	.asciz	"MBEDTLS_CIPHER_AES_256_CCM"    @ string offset=1511
+	.asciz	"MBEDTLS_CIPHER_AES_256_CCM"    @ string offset=1541
 .Linfo_string50:
-	.asciz	"MBEDTLS_CIPHER_CAMELLIA_128_CCM" @ string offset=1538
+	.asciz	"MBEDTLS_CIPHER_CAMELLIA_128_CCM" @ string offset=1568
 .Linfo_string51:
-	.asciz	"MBEDTLS_CIPHER_CAMELLIA_192_CCM" @ string offset=1570
+	.asciz	"MBEDTLS_CIPHER_CAMELLIA_192_CCM" @ string offset=1600
 .Linfo_string52:
-	.asciz	"MBEDTLS_CIPHER_CAMELLIA_256_CCM" @ string offset=1602
+	.asciz	"MBEDTLS_CIPHER_CAMELLIA_256_CCM" @ string offset=1632
 .Linfo_string53:
-	.asciz	"MBEDTLS_CIPHER_ARIA_128_ECB"   @ string offset=1634
+	.asciz	"MBEDTLS_CIPHER_ARIA_128_ECB"   @ string offset=1664
 .Linfo_string54:
-	.asciz	"MBEDTLS_CIPHER_ARIA_192_ECB"   @ string offset=1662
+	.asciz	"MBEDTLS_CIPHER_ARIA_192_ECB"   @ string offset=1692
 .Linfo_string55:
-	.asciz	"MBEDTLS_CIPHER_ARIA_256_ECB"   @ string offset=1690
+	.asciz	"MBEDTLS_CIPHER_ARIA_256_ECB"   @ string offset=1720
 .Linfo_string56:
-	.asciz	"MBEDTLS_CIPHER_ARIA_128_CBC"   @ string offset=1718
+	.asciz	"MBEDTLS_CIPHER_ARIA_128_CBC"   @ string offset=1748
 .Linfo_string57:
-	.asciz	"MBEDTLS_CIPHER_ARIA_192_CBC"   @ string offset=1746
+	.asciz	"MBEDTLS_CIPHER_ARIA_192_CBC"   @ string offset=1776
 .Linfo_string58:
-	.asciz	"MBEDTLS_CIPHER_ARIA_256_CBC"   @ string offset=1774
+	.asciz	"MBEDTLS_CIPHER_ARIA_256_CBC"   @ string offset=1804
 .Linfo_string59:
-	.asciz	"MBEDTLS_CIPHER_ARIA_128_CFB128" @ string offset=1802
+	.asciz	"MBEDTLS_CIPHER_ARIA_128_CFB128" @ string offset=1832
 .Linfo_string60:
-	.asciz	"MBEDTLS_CIPHER_ARIA_192_CFB128" @ string offset=1833
+	.asciz	"MBEDTLS_CIPHER_ARIA_192_CFB128" @ string offset=1863
 .Linfo_string61:
-	.asciz	"MBEDTLS_CIPHER_ARIA_256_CFB128" @ string offset=1864
+	.asciz	"MBEDTLS_CIPHER_ARIA_256_CFB128" @ string offset=1894
 .Linfo_string62:
-	.asciz	"MBEDTLS_CIPHER_ARIA_128_CTR"   @ string offset=1895
+	.asciz	"MBEDTLS_CIPHER_ARIA_128_CTR"   @ string offset=1925
 .Linfo_string63:
-	.asciz	"MBEDTLS_CIPHER_ARIA_192_CTR"   @ string offset=1923
+	.asciz	"MBEDTLS_CIPHER_ARIA_192_CTR"   @ string offset=1953
 .Linfo_string64:
-	.asciz	"MBEDTLS_CIPHER_ARIA_256_CTR"   @ string offset=1951
+	.asciz	"MBEDTLS_CIPHER_ARIA_256_CTR"   @ string offset=1981
 .Linfo_string65:
-	.asciz	"MBEDTLS_CIPHER_ARIA_128_GCM"   @ string offset=1979
+	.asciz	"MBEDTLS_CIPHER_ARIA_128_GCM"   @ string offset=2009
 .Linfo_string66:
-	.asciz	"MBEDTLS_CIPHER_ARIA_192_GCM"   @ string offset=2007
+	.asciz	"MBEDTLS_CIPHER_ARIA_192_GCM"   @ string offset=2037
 .Linfo_string67:
-	.asciz	"MBEDTLS_CIPHER_ARIA_256_GCM"   @ string offset=2035
+	.asciz	"MBEDTLS_CIPHER_ARIA_256_GCM"   @ string offset=2065
 .Linfo_string68:
-	.asciz	"MBEDTLS_CIPHER_ARIA_128_CCM"   @ string offset=2063
+	.asciz	"MBEDTLS_CIPHER_ARIA_128_CCM"   @ string offset=2093
 .Linfo_string69:
-	.asciz	"MBEDTLS_CIPHER_ARIA_192_CCM"   @ string offset=2091
+	.asciz	"MBEDTLS_CIPHER_ARIA_192_CCM"   @ string offset=2121
 .Linfo_string70:
-	.asciz	"MBEDTLS_CIPHER_ARIA_256_CCM"   @ string offset=2119
+	.asciz	"MBEDTLS_CIPHER_ARIA_256_CCM"   @ string offset=2149
 .Linfo_string71:
-	.asciz	"MBEDTLS_CIPHER_AES_128_OFB"    @ string offset=2147
+	.asciz	"MBEDTLS_CIPHER_AES_128_OFB"    @ string offset=2177
 .Linfo_string72:
-	.asciz	"MBEDTLS_CIPHER_AES_192_OFB"    @ string offset=2174
+	.asciz	"MBEDTLS_CIPHER_AES_192_OFB"    @ string offset=2204
 .Linfo_string73:
-	.asciz	"MBEDTLS_CIPHER_AES_256_OFB"    @ string offset=2201
+	.asciz	"MBEDTLS_CIPHER_AES_256_OFB"    @ string offset=2231
 .Linfo_string74:
-	.asciz	"MBEDTLS_CIPHER_AES_128_XTS"    @ string offset=2228
+	.asciz	"MBEDTLS_CIPHER_AES_128_XTS"    @ string offset=2258
 .Linfo_string75:
-	.asciz	"MBEDTLS_CIPHER_AES_256_XTS"    @ string offset=2255
+	.asciz	"MBEDTLS_CIPHER_AES_256_XTS"    @ string offset=2285
 .Linfo_string76:
-	.asciz	"MBEDTLS_CIPHER_CHACHA20"       @ string offset=2282
+	.asciz	"MBEDTLS_CIPHER_CHACHA20"       @ string offset=2312
 .Linfo_string77:
-	.asciz	"MBEDTLS_CIPHER_CHACHA20_POLY1305" @ string offset=2306
+	.asciz	"MBEDTLS_CIPHER_CHACHA20_POLY1305" @ string offset=2336
 .Linfo_string78:
-	.asciz	"MBEDTLS_CIPHER_AES_128_KW"     @ string offset=2339
+	.asciz	"MBEDTLS_CIPHER_AES_128_KW"     @ string offset=2369
 .Linfo_string79:
-	.asciz	"MBEDTLS_CIPHER_AES_192_KW"     @ string offset=2365
+	.asciz	"MBEDTLS_CIPHER_AES_192_KW"     @ string offset=2395
 .Linfo_string80:
-	.asciz	"MBEDTLS_CIPHER_AES_256_KW"     @ string offset=2391
+	.asciz	"MBEDTLS_CIPHER_AES_256_KW"     @ string offset=2421
 .Linfo_string81:
-	.asciz	"MBEDTLS_CIPHER_AES_128_KWP"    @ string offset=2417
+	.asciz	"MBEDTLS_CIPHER_AES_128_KWP"    @ string offset=2447
 .Linfo_string82:
-	.asciz	"MBEDTLS_CIPHER_AES_192_KWP"    @ string offset=2444
+	.asciz	"MBEDTLS_CIPHER_AES_192_KWP"    @ string offset=2474
 .Linfo_string83:
-	.asciz	"MBEDTLS_CIPHER_AES_256_KWP"    @ string offset=2471
+	.asciz	"MBEDTLS_CIPHER_AES_256_KWP"    @ string offset=2501
 .Linfo_string84:
-	.asciz	"MBEDTLS_MODE_NONE"             @ string offset=2498
+	.asciz	"MBEDTLS_MODE_NONE"             @ string offset=2528
 .Linfo_string85:
-	.asciz	"MBEDTLS_MODE_ECB"              @ string offset=2516
+	.asciz	"MBEDTLS_MODE_ECB"              @ string offset=2546
 .Linfo_string86:
-	.asciz	"MBEDTLS_MODE_CBC"              @ string offset=2533
+	.asciz	"MBEDTLS_MODE_CBC"              @ string offset=2563
 .Linfo_string87:
-	.asciz	"MBEDTLS_MODE_CFB"              @ string offset=2550
+	.asciz	"MBEDTLS_MODE_CFB"              @ string offset=2580
 .Linfo_string88:
-	.asciz	"MBEDTLS_MODE_OFB"              @ string offset=2567
+	.asciz	"MBEDTLS_MODE_OFB"              @ string offset=2597
 .Linfo_string89:
-	.asciz	"MBEDTLS_MODE_CTR"              @ string offset=2584
+	.asciz	"MBEDTLS_MODE_CTR"              @ string offset=2614
 .Linfo_string90:
-	.asciz	"MBEDTLS_MODE_GCM"              @ string offset=2601
+	.asciz	"MBEDTLS_MODE_GCM"              @ string offset=2631
 .Linfo_string91:
-	.asciz	"MBEDTLS_MODE_STREAM"           @ string offset=2618
+	.asciz	"MBEDTLS_MODE_STREAM"           @ string offset=2648
 .Linfo_string92:
-	.asciz	"MBEDTLS_MODE_CCM"              @ string offset=2638
+	.asciz	"MBEDTLS_MODE_CCM"              @ string offset=2668
 .Linfo_string93:
-	.asciz	"MBEDTLS_MODE_XTS"              @ string offset=2655
+	.asciz	"MBEDTLS_MODE_XTS"              @ string offset=2685
 .Linfo_string94:
-	.asciz	"MBEDTLS_MODE_CHACHAPOLY"       @ string offset=2672
+	.asciz	"MBEDTLS_MODE_CHACHAPOLY"       @ string offset=2702
 .Linfo_string95:
-	.asciz	"MBEDTLS_MODE_KW"               @ string offset=2696
+	.asciz	"MBEDTLS_MODE_KW"               @ string offset=2726
 .Linfo_string96:
-	.asciz	"MBEDTLS_MODE_KWP"              @ string offset=2712
+	.asciz	"MBEDTLS_MODE_KWP"              @ string offset=2742
 .Linfo_string97:
-	.asciz	"int"                           @ string offset=2729
+	.asciz	"int"                           @ string offset=2759
 .Linfo_string98:
-	.asciz	"MBEDTLS_OPERATION_NONE"        @ string offset=2733
+	.asciz	"MBEDTLS_OPERATION_NONE"        @ string offset=2763
 .Linfo_string99:
-	.asciz	"MBEDTLS_DECRYPT"               @ string offset=2756
+	.asciz	"MBEDTLS_DECRYPT"               @ string offset=2786
 .Linfo_string100:
-	.asciz	"MBEDTLS_ENCRYPT"               @ string offset=2772
+	.asciz	"MBEDTLS_ENCRYPT"               @ string offset=2802
 .Linfo_string101:
-	.asciz	"cmac_xor_block"                @ string offset=2788
+	.asciz	"cmac_xor_block"                @ string offset=2818
 .Linfo_string102:
-	.asciz	"output"                        @ string offset=2803
+	.asciz	"output"                        @ string offset=2833
 .Linfo_string103:
-	.asciz	"unsigned char"                 @ string offset=2810
+	.asciz	"unsigned char"                 @ string offset=2840
 .Linfo_string104:
-	.asciz	"input1"                        @ string offset=2824
+	.asciz	"input1"                        @ string offset=2854
 .Linfo_string105:
-	.asciz	"input2"                        @ string offset=2831
+	.asciz	"input2"                        @ string offset=2861
 .Linfo_string106:
-	.asciz	"block_size"                    @ string offset=2838
+	.asciz	"block_size"                    @ string offset=2868
 .Linfo_string107:
-	.asciz	"size_t"                        @ string offset=2849
+	.asciz	"size_t"                        @ string offset=2879
 .Linfo_string108:
-	.asciz	"idx"                           @ string offset=2856
+	.asciz	"idx"                           @ string offset=2886
 .Linfo_string109:
-	.asciz	"cmac_generate_subkeys"         @ string offset=2860
+	.asciz	"cmac_generate_subkeys"         @ string offset=2890
 .Linfo_string110:
-	.asciz	"ctx"                           @ string offset=2882
+	.asciz	"ctx"                           @ string offset=2912
 .Linfo_string111:
-	.asciz	"cipher_info"                   @ string offset=2886
+	.asciz	"cipher_info"                   @ string offset=2916
 .Linfo_string112:
-	.asciz	"type"                          @ string offset=2898
+	.asciz	"type"                          @ string offset=2928
 .Linfo_string113:
-	.asciz	"mbedtls_cipher_type_t"         @ string offset=2903
+	.asciz	"mbedtls_cipher_type_t"         @ string offset=2933
 .Linfo_string114:
-	.asciz	"mode"                          @ string offset=2925
+	.asciz	"mode"                          @ string offset=2955
 .Linfo_string115:
-	.asciz	"mbedtls_cipher_mode_t"         @ string offset=2930
+	.asciz	"mbedtls_cipher_mode_t"         @ string offset=2960
 .Linfo_string116:
-	.asciz	"key_bitlen"                    @ string offset=2952
+	.asciz	"key_bitlen"                    @ string offset=2982
 .Linfo_string117:
-	.asciz	"name"                          @ string offset=2963
+	.asciz	"name"                          @ string offset=2993
 .Linfo_string118:
-	.asciz	"char"                          @ string offset=2968
+	.asciz	"char"                          @ string offset=2998
 .Linfo_string119:
-	.asciz	"iv_size"                       @ string offset=2973
+	.asciz	"iv_size"                       @ string offset=3003
 .Linfo_string120:
-	.asciz	"flags"                         @ string offset=2981
+	.asciz	"flags"                         @ string offset=3011
 .Linfo_string121:
-	.asciz	"base"                          @ string offset=2987
+	.asciz	"base"                          @ string offset=3017
 .Linfo_string122:
-	.asciz	"mbedtls_cipher_base_t"         @ string offset=2992
+	.asciz	"mbedtls_cipher_base_t"         @ string offset=3022
 .Linfo_string123:
-	.asciz	"mbedtls_cipher_info_t"         @ string offset=3014
+	.asciz	"mbedtls_cipher_info_t"         @ string offset=3044
 .Linfo_string124:
-	.asciz	"operation"                     @ string offset=3036
+	.asciz	"operation"                     @ string offset=3066
 .Linfo_string125:
-	.asciz	"mbedtls_operation_t"           @ string offset=3046
+	.asciz	"mbedtls_operation_t"           @ string offset=3076
 .Linfo_string126:
-	.asciz	"unprocessed_data"              @ string offset=3066
+	.asciz	"unprocessed_data"              @ string offset=3096
 .Linfo_string127:
-	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=3083
+	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=3113
 .Linfo_string128:
-	.asciz	"unprocessed_len"               @ string offset=3103
+	.asciz	"unprocessed_len"               @ string offset=3133
 .Linfo_string129:
-	.asciz	"iv"                            @ string offset=3119
+	.asciz	"iv"                            @ string offset=3149
 .Linfo_string130:
-	.asciz	"cipher_ctx"                    @ string offset=3122
+	.asciz	"cipher_ctx"                    @ string offset=3152
 .Linfo_string131:
-	.asciz	"cmac_ctx"                      @ string offset=3133
+	.asciz	"cmac_ctx"                      @ string offset=3163
 .Linfo_string132:
-	.asciz	"state"                         @ string offset=3142
+	.asciz	"state"                         @ string offset=3172
 .Linfo_string133:
-	.asciz	"unprocessed_block"             @ string offset=3148
+	.asciz	"unprocessed_block"             @ string offset=3178
 .Linfo_string134:
-	.asciz	"mbedtls_cmac_context_t"        @ string offset=3166
+	.asciz	"mbedtls_cmac_context_t"        @ string offset=3196
 .Linfo_string135:
-	.asciz	"mbedtls_cipher_context_t"      @ string offset=3189
+	.asciz	"mbedtls_cipher_context_t"      @ string offset=3219
 .Linfo_string136:
-	.asciz	"K1"                            @ string offset=3214
+	.asciz	"K1"                            @ string offset=3244
 .Linfo_string137:
-	.asciz	"K2"                            @ string offset=3217
+	.asciz	"K2"                            @ string offset=3247
 .Linfo_string138:
-	.asciz	"L"                             @ string offset=3220
+	.asciz	"L"                             @ string offset=3250
 .Linfo_string139:
-	.asciz	"ret"                           @ string offset=3222
+	.asciz	"ret"                           @ string offset=3252
 .Linfo_string140:
-	.asciz	"olen"                          @ string offset=3226
+	.asciz	"olen"                          @ string offset=3256
 .Linfo_string141:
-	.asciz	"exit"                          @ string offset=3231
+	.asciz	"exit"                          @ string offset=3261
 .Linfo_string142:
-	.asciz	"cmac_pad"                      @ string offset=3236
+	.asciz	"cmac_pad"                      @ string offset=3266
 .Linfo_string143:
-	.asciz	"padded_block"                  @ string offset=3245
+	.asciz	"padded_block"                  @ string offset=3275
 .Linfo_string144:
-	.asciz	"padded_block_len"              @ string offset=3258
+	.asciz	"padded_block_len"              @ string offset=3288
 .Linfo_string145:
-	.asciz	"last_block"                    @ string offset=3275
+	.asciz	"last_block"                    @ string offset=3305
 .Linfo_string146:
-	.asciz	"last_block_len"                @ string offset=3286
+	.asciz	"last_block_len"                @ string offset=3316
 .Linfo_string147:
-	.asciz	"j"                             @ string offset=3301
+	.asciz	"j"                             @ string offset=3331
 .Linfo_string148:
-	.asciz	"mbedtls_cipher_cmac_starts"    @ string offset=3303
+	.asciz	"mbedtls_cipher_cmac_starts"    @ string offset=3333
 .Linfo_string149:
-	.asciz	"mbedtls_cipher_cmac_update"    @ string offset=3330
+	.asciz	"mbedtls_cipher_cmac_update"    @ string offset=3360
 .Linfo_string150:
-	.asciz	"mbedtls_cipher_cmac_finish"    @ string offset=3357
+	.asciz	"mbedtls_cipher_cmac_finish"    @ string offset=3387
 .Linfo_string151:
-	.asciz	"mbedtls_cipher_cmac_reset"     @ string offset=3384
+	.asciz	"mbedtls_cipher_cmac_reset"     @ string offset=3414
 .Linfo_string152:
-	.asciz	"mbedtls_cipher_cmac"           @ string offset=3410
+	.asciz	"mbedtls_cipher_cmac"           @ string offset=3440
 .Linfo_string153:
-	.asciz	"mbedtls_aes_cmac_prf_128"      @ string offset=3430
+	.asciz	"mbedtls_aes_cmac_prf_128"      @ string offset=3460
 .Linfo_string154:
-	.asciz	"cmac_multiply_by_u"            @ string offset=3455
+	.asciz	"cmac_multiply_by_u"            @ string offset=3485
 .Linfo_string155:
-	.asciz	"key"                           @ string offset=3474
+	.asciz	"key"                           @ string offset=3504
 .Linfo_string156:
-	.asciz	"keybits"                       @ string offset=3478
+	.asciz	"keybits"                       @ string offset=3508
 .Linfo_string157:
-	.asciz	"retval"                        @ string offset=3486
+	.asciz	"retval"                        @ string offset=3516
 .Linfo_string158:
-	.asciz	"input"                         @ string offset=3493
+	.asciz	"input"                         @ string offset=3523
 .Linfo_string159:
-	.asciz	"ilen"                          @ string offset=3499
+	.asciz	"ilen"                          @ string offset=3529
 .Linfo_string160:
-	.asciz	"n"                             @ string offset=3504
+	.asciz	"n"                             @ string offset=3534
 .Linfo_string161:
-	.asciz	"M_last"                        @ string offset=3506
+	.asciz	"M_last"                        @ string offset=3536
 .Linfo_string162:
-	.asciz	"keylen"                        @ string offset=3513
+	.asciz	"keylen"                        @ string offset=3543
 .Linfo_string163:
-	.asciz	"zero_key"                      @ string offset=3520
+	.asciz	"zero_key"                      @ string offset=3550
 .Linfo_string164:
-	.asciz	"int_key"                       @ string offset=3529
+	.asciz	"int_key"                       @ string offset=3559
 .Linfo_string165:
-	.asciz	"key_length"                    @ string offset=3537
+	.asciz	"key_length"                    @ string offset=3567
 .Linfo_string166:
-	.asciz	"in_len"                        @ string offset=3548
+	.asciz	"in_len"                        @ string offset=3578
 .Linfo_string167:
-	.asciz	"blocksize"                     @ string offset=3555
+	.asciz	"blocksize"                     @ string offset=3585
 .Linfo_string168:
-	.asciz	"overflow"                      @ string offset=3565
+	.asciz	"overflow"                      @ string offset=3595
 .Linfo_string169:
-	.asciz	"R_64"                          @ string offset=3574
+	.asciz	"R_64"                          @ string offset=3604
 .Linfo_string170:
-	.asciz	"R_128"                         @ string offset=3579
+	.asciz	"R_128"                         @ string offset=3609
 .Linfo_string171:
-	.asciz	"R_n"                           @ string offset=3585
+	.asciz	"R_n"                           @ string offset=3615
 .Linfo_string172:
-	.asciz	"i"                             @ string offset=3589
+	.asciz	"i"                             @ string offset=3619
 .Linfo_string173:
-	.asciz	"mask"                          @ string offset=3591
-	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
+	.asciz	"mask"                          @ string offset=3621
+	.ident	"Component: Arm Compiler for Embedded 6.21 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals
 	.ARM_attribute	16, 1	@ Tag_AV_eba

@@ -18,7 +18,7 @@
 	.eabi_attribute	26, 2	@ Tag_ABI_enum_size
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"heap.cpp"
-	.file	1 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
+	.file	1 "C:\\" "Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include\\stdint.h"
 	.section	.debug_abbrev,"",%progbits
 	.byte	1                               @ Abbreviation Code
 	.byte	17                              @ DW_TAG_compile_unit
@@ -372,84 +372,84 @@
 .Ldebug_info_end0:
 	.section	.debug_str,"MS",%progbits,1
 .Linfo_string0:
-	.asciz	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]" @ string offset=0
+	.asciz	"Component: Arm Compiler for Embedded 6.21 Tool: armclang [5dfeb700]" @ string offset=0
 .Linfo_string1:
-	.asciz	"../../../components/network/thread/subg_openthread/src/core/utils\\heap.cpp" @ string offset=55
+	.asciz	"../../../components/network/thread/subg_openthread/src/core/utils\\heap.cpp" @ string offset=68
 .Linfo_string2:
-	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=130
+	.asciz	"C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das -0515\\examples\\das_subg_thread\\keil" @ string offset=143
 .Linfo_string3:
-	.asciz	"signed char"                   @ string offset=191
+	.asciz	"signed char"                   @ string offset=221
 .Linfo_string4:
-	.asciz	"int8_t"                        @ string offset=203
+	.asciz	"int8_t"                        @ string offset=233
 .Linfo_string5:
-	.asciz	"short"                         @ string offset=210
+	.asciz	"short"                         @ string offset=240
 .Linfo_string6:
-	.asciz	"int16_t"                       @ string offset=216
+	.asciz	"int16_t"                       @ string offset=246
 .Linfo_string7:
-	.asciz	"int"                           @ string offset=224
+	.asciz	"int"                           @ string offset=254
 .Linfo_string8:
-	.asciz	"int32_t"                       @ string offset=228
+	.asciz	"int32_t"                       @ string offset=258
 .Linfo_string9:
-	.asciz	"long long int"                 @ string offset=236
+	.asciz	"long long int"                 @ string offset=266
 .Linfo_string10:
-	.asciz	"int64_t"                       @ string offset=250
+	.asciz	"int64_t"                       @ string offset=280
 .Linfo_string11:
-	.asciz	"unsigned char"                 @ string offset=258
+	.asciz	"unsigned char"                 @ string offset=288
 .Linfo_string12:
-	.asciz	"uint8_t"                       @ string offset=272
+	.asciz	"uint8_t"                       @ string offset=302
 .Linfo_string13:
-	.asciz	"unsigned short"                @ string offset=280
+	.asciz	"unsigned short"                @ string offset=310
 .Linfo_string14:
-	.asciz	"uint16_t"                      @ string offset=295
+	.asciz	"uint16_t"                      @ string offset=325
 .Linfo_string15:
-	.asciz	"unsigned int"                  @ string offset=304
+	.asciz	"unsigned int"                  @ string offset=334
 .Linfo_string16:
-	.asciz	"uint32_t"                      @ string offset=317
+	.asciz	"uint32_t"                      @ string offset=347
 .Linfo_string17:
-	.asciz	"long long unsigned int"        @ string offset=326
+	.asciz	"long long unsigned int"        @ string offset=356
 .Linfo_string18:
-	.asciz	"uint64_t"                      @ string offset=349
+	.asciz	"uint64_t"                      @ string offset=379
 .Linfo_string19:
-	.asciz	"int_least8_t"                  @ string offset=358
+	.asciz	"int_least8_t"                  @ string offset=388
 .Linfo_string20:
-	.asciz	"int_least16_t"                 @ string offset=371
+	.asciz	"int_least16_t"                 @ string offset=401
 .Linfo_string21:
-	.asciz	"int_least32_t"                 @ string offset=385
+	.asciz	"int_least32_t"                 @ string offset=415
 .Linfo_string22:
-	.asciz	"int_least64_t"                 @ string offset=399
+	.asciz	"int_least64_t"                 @ string offset=429
 .Linfo_string23:
-	.asciz	"uint_least8_t"                 @ string offset=413
+	.asciz	"uint_least8_t"                 @ string offset=443
 .Linfo_string24:
-	.asciz	"uint_least16_t"                @ string offset=427
+	.asciz	"uint_least16_t"                @ string offset=457
 .Linfo_string25:
-	.asciz	"uint_least32_t"                @ string offset=442
+	.asciz	"uint_least32_t"                @ string offset=472
 .Linfo_string26:
-	.asciz	"uint_least64_t"                @ string offset=457
+	.asciz	"uint_least64_t"                @ string offset=487
 .Linfo_string27:
-	.asciz	"int_fast8_t"                   @ string offset=472
+	.asciz	"int_fast8_t"                   @ string offset=502
 .Linfo_string28:
-	.asciz	"int_fast16_t"                  @ string offset=484
+	.asciz	"int_fast16_t"                  @ string offset=514
 .Linfo_string29:
-	.asciz	"int_fast32_t"                  @ string offset=497
+	.asciz	"int_fast32_t"                  @ string offset=527
 .Linfo_string30:
-	.asciz	"int_fast64_t"                  @ string offset=510
+	.asciz	"int_fast64_t"                  @ string offset=540
 .Linfo_string31:
-	.asciz	"uint_fast8_t"                  @ string offset=523
+	.asciz	"uint_fast8_t"                  @ string offset=553
 .Linfo_string32:
-	.asciz	"uint_fast16_t"                 @ string offset=536
+	.asciz	"uint_fast16_t"                 @ string offset=566
 .Linfo_string33:
-	.asciz	"uint_fast32_t"                 @ string offset=550
+	.asciz	"uint_fast32_t"                 @ string offset=580
 .Linfo_string34:
-	.asciz	"uint_fast64_t"                 @ string offset=564
+	.asciz	"uint_fast64_t"                 @ string offset=594
 .Linfo_string35:
-	.asciz	"intptr_t"                      @ string offset=578
+	.asciz	"intptr_t"                      @ string offset=608
 .Linfo_string36:
-	.asciz	"uintptr_t"                     @ string offset=587
+	.asciz	"uintptr_t"                     @ string offset=617
 .Linfo_string37:
-	.asciz	"intmax_t"                      @ string offset=597
+	.asciz	"intmax_t"                      @ string offset=627
 .Linfo_string38:
-	.asciz	"uintmax_t"                     @ string offset=606
-	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
+	.asciz	"uintmax_t"                     @ string offset=636
+	.ident	"Component: Arm Compiler for Embedded 6.21 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.ARM_attribute	16, 1	@ Tag_AV_eba
 	.section	.debug_line,"",%progbits

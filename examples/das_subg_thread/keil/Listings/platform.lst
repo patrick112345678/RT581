@@ -18,8 +18,8 @@
 	.eabi_attribute	26, 2	@ Tag_ABI_enum_size
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"platform.c"
-	.file	1 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdio.h"
-	.file	2 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/platform.c"
+	.file	1 "C:\\" "Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include\\stdio.h"
+	.file	2 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das -0515\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library/platform.c"
 	.section	.text.mbedtls_calloc,"ax",%progbits
 	.hidden	mbedtls_calloc                  @ -- Begin function mbedtls_calloc
 	.globl	mbedtls_calloc
@@ -186,7 +186,7 @@ mbedtls_free_func:
 	.long	otPlatFree
 	.size	mbedtls_free_func, 4
 
-	.file	3 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/include\\mbedtls/platform.h"
+	.file	3 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das -0515\\examples\\das_subg_thread\\keil" "../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/include\\mbedtls/platform.h"
 	.section	.debug_loc,"",%progbits
 .Ldebug_loc0:
 	.long	-1
@@ -746,50 +746,50 @@ mbedtls_free_func:
 	.long	0
 	.section	.debug_str,"MS",%progbits,1
 .Linfo_string0:
-	.asciz	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]" @ string offset=0
+	.asciz	"Component: Arm Compiler for Embedded 6.21 Tool: armclang [5dfeb700]" @ string offset=0
 .Linfo_string1:
-	.asciz	"../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library\\platform.c" @ string offset=55
+	.asciz	"../../../components/network/thread/subg_openthread/third_party/mbedtls/repo/library\\platform.c" @ string offset=68
 .Linfo_string2:
-	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=150
+	.asciz	"C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das -0515\\examples\\das_subg_thread\\keil" @ string offset=163
 .Linfo_string3:
-	.asciz	"mbedtls_calloc_func"           @ string offset=211
+	.asciz	"mbedtls_calloc_func"           @ string offset=241
 .Linfo_string4:
-	.asciz	"unsigned int"                  @ string offset=231
+	.asciz	"unsigned int"                  @ string offset=261
 .Linfo_string5:
-	.asciz	"size_t"                        @ string offset=244
+	.asciz	"size_t"                        @ string offset=274
 .Linfo_string6:
-	.asciz	"mbedtls_free_func"             @ string offset=251
+	.asciz	"mbedtls_free_func"             @ string offset=281
 .Linfo_string7:
-	.asciz	"mbedtls_calloc"                @ string offset=269
+	.asciz	"mbedtls_calloc"                @ string offset=299
 .Linfo_string8:
-	.asciz	"mbedtls_free"                  @ string offset=284
+	.asciz	"mbedtls_free"                  @ string offset=314
 .Linfo_string9:
-	.asciz	"mbedtls_platform_set_calloc_free" @ string offset=297
+	.asciz	"mbedtls_platform_set_calloc_free" @ string offset=327
 .Linfo_string10:
-	.asciz	"int"                           @ string offset=330
+	.asciz	"int"                           @ string offset=360
 .Linfo_string11:
-	.asciz	"mbedtls_platform_setup"        @ string offset=334
+	.asciz	"mbedtls_platform_setup"        @ string offset=364
 .Linfo_string12:
-	.asciz	"mbedtls_platform_teardown"     @ string offset=357
+	.asciz	"mbedtls_platform_teardown"     @ string offset=387
 .Linfo_string13:
-	.asciz	"nmemb"                         @ string offset=383
+	.asciz	"nmemb"                         @ string offset=413
 .Linfo_string14:
-	.asciz	"size"                          @ string offset=389
+	.asciz	"size"                          @ string offset=419
 .Linfo_string15:
-	.asciz	"ptr"                           @ string offset=394
+	.asciz	"ptr"                           @ string offset=424
 .Linfo_string16:
-	.asciz	"calloc_func"                   @ string offset=398
+	.asciz	"calloc_func"                   @ string offset=428
 .Linfo_string17:
-	.asciz	"free_func"                     @ string offset=410
+	.asciz	"free_func"                     @ string offset=440
 .Linfo_string18:
-	.asciz	"ctx"                           @ string offset=420
+	.asciz	"ctx"                           @ string offset=450
 .Linfo_string19:
-	.asciz	"dummy"                         @ string offset=424
+	.asciz	"dummy"                         @ string offset=454
 .Linfo_string20:
-	.asciz	"char"                          @ string offset=430
+	.asciz	"char"                          @ string offset=460
 .Linfo_string21:
-	.asciz	"mbedtls_platform_context"      @ string offset=435
-	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
+	.asciz	"mbedtls_platform_context"      @ string offset=465
+	.ident	"Component: Arm Compiler for Embedded 6.21 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals
 	.ARM_attribute	16, 1	@ Tag_AV_eba

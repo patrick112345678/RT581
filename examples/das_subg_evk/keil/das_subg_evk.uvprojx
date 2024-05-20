@@ -10,14 +10,14 @@
       <TargetName>das_subg_thread</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>6160000::V6.16::ARMCLANG</pCCUsed>
+      <pCCUsed>6210000::V6.21::ARMCLANG</pCCUsed>
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
           <Device>ARMCM3</Device>
           <Vendor>ARM</Vendor>
-          <PackID>ARM.CMSIS.5.8.0</PackID>
-          <PackURL>http://www.keil.com/pack/</PackURL>
+          <PackID>ARM.Cortex_DFP.1.0.0</PackID>
+          <PackURL>https://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x20000000,0x00020000) IROM(0x00000000,0x00040000) CPUTYPE("Cortex-M3") CLOCK(12000000) ESEL ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
@@ -186,6 +186,7 @@
             <RvdsVP>0</RvdsVP>
             <RvdsMve>0</RvdsMve>
             <RvdsCdeCp>0</RvdsCdeCp>
+            <nBranchProt>0</nBranchProt>
             <hadIRAM2>0</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
@@ -337,7 +338,7 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls> -fno-exceptions -fdata-sections -ffunction-sections</MiscControls>
-              <Define>NDEBUG, CHIP_NAME='\"RT581\"',CONFIG_TARGET_BOARD='\"dongle\"',CONFIG_TARGET_CUSTOMER='\"das\"', OT_FREERTOS_ENABLE=1, CONFIG_CLI_CMD_ENABLE=1, CONFIG_UART_STDIO_BAUDRATE=UART_BAUDRATE_115200, RAFAEL_SDK_VER='\"1.0.3\"</Define>
+              <Define>NDEBUG, CHIP_NAME='\"RT581\"',CONFIG_TARGET_BOARD='\"dongle\"',CONFIG_TARGET_CUSTOMER='\"das\"', OT_FREERTOS_ENABLE=1, CONFIG_CLI_CMD_ENABLE=1, CONFIG_UART_STDIO_BAUDRATE=UART_BAUDRATE_115200, RAFAEL_SDK_VER='\"1.0.4\"</Define>
               <Undefine></Undefine>
               <IncludePath>..\..\..\components\network\lmac15p4\Inc;..\..\..\components\network\rt569_rf\include;..\..\..\components\network\rt569mp\include;..\..\..\components\network\subg_ctrl\Inc;..\..\..\components\network\ruci\include;..\..\..\components\platform\hosal\rt582_hosal\Inc;..\..\..\components\platform\soc\rt582\rt582_crypto\Inc;..\..\..\components\platform\soc\rt582\rt582_driver\Inc;..\..\..\components\platform\soc\rt582\rt582_freertos\config;..\..\..\components\platform\soc\rt582\rt582_freertos\Inc;..\..\..\components\platform\soc\rt582\rt582_dongle\dongle\src;..\..\..\components\platform\soc\rt582\rt582_freertos\portable\GCC\ARM_CM3;..\..\..\components\utility\cli\Inc;..\..\..\components\utility\EnhancedFlashDataset\Inc;..\..\..\components\utility\log;..\..\..\components\utility\uart_stdio\Inc;..\..\..\components\utility\utility\Inc;..\..\..\components\utility\MemoryMgmt\Inc;..\Include</IncludePath>
             </VariousControls>

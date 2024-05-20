@@ -4,12 +4,13 @@
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\cm3_mcu.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\chip_define.h \
-  C:\Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm3.h \
+  C:\Keil_v5\ARM\Pack\ARM\CMSIS\6.0.0\CMSIS\Core\Include\core_cm3.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \
-  C:\Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_version.h \
-  C:\Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_compiler.h \
-  C:\Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h \
-  C:\Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\mpu_armv7.h \
+  C:\Keil_v5\ARM\Pack\ARM\CMSIS\6.0.0\CMSIS\Core\Include\cmsis_version.h \
+  C:\Keil_v5\ARM\Pack\ARM\CMSIS\6.0.0\CMSIS\Core\Include\cmsis_compiler.h \
+  C:\Keil_v5\ARM\Pack\ARM\CMSIS\6.0.0\CMSIS\Core\Include\.\m-profile\cmsis_armclang_m.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\arm_acle.h \
+  C:\Keil_v5\ARM\Pack\ARM\CMSIS\6.0.0\CMSIS\Core\Include\m-profile\armv7m_mpu.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\system_cm3_mcu.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\status.h \
   ..\..\..\components\platform\soc\rt582\rt582_driver\Inc\assert_help.h \
@@ -63,12 +64,6 @@
   ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\mpu_wrappers.h \
   ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\task.h \
   ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\list.h \
-  ..\..\..\components\network\thread\openthread_port\include\openthread_port.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\instance.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\error.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\toolchain.h \
-  ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\logging.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdarg.h \
   ..\..\..\components\platform\hosal\rt582_hosal\Inc\hosal_rf.h \
   ..\..\..\components\network\lmac15p4\Inc\lmac15p4.h \
   ..\..\..\components\utility\cli\Inc\cli.h \
@@ -80,6 +75,11 @@
   ..\das_subg_thread\Include\main.h \
   ..\..\..\components\network\thread\subg_openthread\include\openthread\thread.h \
   ..\..\..\components\network\thread\subg_openthread\include\openthread\dataset.h \
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\instance.h \
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\error.h \
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\toolchain.h \
+  ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\logging.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdarg.h \
   ..\..\..\components\network\thread\subg_openthread\include\openthread\ip6.h \
   ..\..\..\components\network\thread\subg_openthread\include\openthread\message.h \
   ..\..\..\components\network\thread\subg_openthread\include\openthread\platform\radio.h \
@@ -92,6 +92,7 @@
   ..\..\..\components\network\thread\subg_openthread\include\openthread\cli.h \
   ..\..\..\components\network\thread\subg_openthread\include\openthread\ncp.h \
   ..\..\..\components\network\thread\subg_openthread\include\openthread\coap.h \
+  ..\..\..\components\network\thread\openthread_port\include\openthread_port.h \
   ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\semphr.h \
   ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\queue.h \
   ..\..\..\components\platform\soc\rt582\rt582_freertos\Inc\task.h \

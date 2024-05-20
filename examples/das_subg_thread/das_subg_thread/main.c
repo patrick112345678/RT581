@@ -5,13 +5,13 @@
 #include "cm3_mcu.h"
 #include "FreeRTOS.h"
 #include "task.h"
-#include "openthread_port.h"
 #include "hosal_rf.h"
 #include "lmac15p4.h"
 #include "cli.h"
 #include "log.h"
 #include "main.h"
-
+uint8_t EVK_READ_FLAG = 0;
+uint8_t EVK_BOARDCAST_READ_FLAG = 0;
 void wdt_isr(void)
 {
     Wdt_Kick();

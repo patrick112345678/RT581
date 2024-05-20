@@ -18,9 +18,9 @@
 	.eabi_attribute	26, 2	@ Tag_ABI_enum_size
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"shell.c"
-	.file	1 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/utility/cli/Inc/shell.h"
-	.file	2 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
-	.file	3 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/utility/cli/shell.c"
+	.file	1 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/utility/cli/Inc/shell.h"
+	.file	2 "C:\\" "Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include\\stdint.h"
+	.file	3 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/utility/cli/shell.c"
 	.section	.text._sh_cmd_help,"ax",%progbits
 	.p2align	2                               @ -- Begin function _sh_cmd_help
 	.type	_sh_cmd_help,%function
@@ -6180,274 +6180,274 @@ _shell_log.log_buf:
 	.long	0
 	.section	.debug_str,"MS",%progbits,1
 .Linfo_string0:
-	.asciz	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]" @ string offset=0
+	.asciz	"Component: Arm Compiler for Embedded 6.21 Tool: armclang [5dfeb700]" @ string offset=0
 .Linfo_string1:
-	.asciz	"../../../components/utility/cli\\shell.c" @ string offset=55
+	.asciz	"../../../components/utility/cli\\shell.c" @ string offset=68
 .Linfo_string2:
-	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=95
+	.asciz	"C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" @ string offset=108
 .Linfo_string3:
-	.asciz	"g_sh_cmd_desc_help"            @ string offset=156
+	.asciz	"g_sh_cmd_desc_help"            @ string offset=193
 .Linfo_string4:
-	.asciz	"next"                          @ string offset=175
+	.asciz	"next"                          @ string offset=212
 .Linfo_string5:
-	.asciz	"pCmd_name"                     @ string offset=180
+	.asciz	"pCmd_name"                     @ string offset=217
 .Linfo_string6:
-	.asciz	"char"                          @ string offset=190
+	.asciz	"char"                          @ string offset=227
 .Linfo_string7:
-	.asciz	"cmd_name_len"                  @ string offset=195
+	.asciz	"cmd_name_len"                  @ string offset=232
 .Linfo_string8:
-	.asciz	"unsigned int"                  @ string offset=208
+	.asciz	"unsigned int"                  @ string offset=245
 .Linfo_string9:
-	.asciz	"uint32_t"                      @ string offset=221
+	.asciz	"uint32_t"                      @ string offset=258
 .Linfo_string10:
-	.asciz	"pDescription"                  @ string offset=230
+	.asciz	"pDescription"                  @ string offset=267
 .Linfo_string11:
-	.asciz	"pExtra"                        @ string offset=243
+	.asciz	"pExtra"                        @ string offset=280
 .Linfo_string12:
-	.asciz	"cmd_exec"                      @ string offset=250
+	.asciz	"cmd_exec"                      @ string offset=287
 .Linfo_string13:
-	.asciz	"int"                           @ string offset=259
+	.asciz	"int"                           @ string offset=296
 .Linfo_string14:
-	.asciz	"cb_shell_out_t"                @ string offset=263
+	.asciz	"cb_shell_out_t"                @ string offset=300
 .Linfo_string15:
-	.asciz	"sh_cmd"                        @ string offset=278
+	.asciz	"sh_cmd"                        @ string offset=315
 .Linfo_string16:
-	.asciz	"sh_cmd_t"                      @ string offset=285
+	.asciz	"sh_cmd_t"                      @ string offset=322
 .Linfo_string17:
-	.asciz	"is_line_head"                  @ string offset=294
+	.asciz	"is_line_head"                  @ string offset=331
 .Linfo_string18:
-	.asciz	"g_sh_dev"                      @ string offset=307
+	.asciz	"g_sh_dev"                      @ string offset=344
 .Linfo_string19:
-	.asciz	"pIO"                           @ string offset=316
+	.asciz	"pIO"                           @ string offset=353
 .Linfo_string20:
-	.asciz	"cb_read"                       @ string offset=320
+	.asciz	"cb_read"                       @ string offset=357
 .Linfo_string21:
-	.asciz	"unsigned char"                 @ string offset=328
+	.asciz	"unsigned char"                 @ string offset=365
 .Linfo_string22:
-	.asciz	"uint8_t"                       @ string offset=342
+	.asciz	"uint8_t"                       @ string offset=379
 .Linfo_string23:
-	.asciz	"cb_write"                      @ string offset=350
+	.asciz	"cb_write"                      @ string offset=387
 .Linfo_string24:
-	.asciz	"sh_io_desc"                    @ string offset=359
+	.asciz	"sh_io_desc"                    @ string offset=396
 .Linfo_string25:
-	.asciz	"sh_io_desc_t"                  @ string offset=370
+	.asciz	"sh_io_desc_t"                  @ string offset=407
 .Linfo_string26:
-	.asciz	"pLine_buf"                     @ string offset=383
+	.asciz	"pLine_buf"                     @ string offset=420
 .Linfo_string27:
-	.asciz	"line_buf_len"                  @ string offset=393
+	.asciz	"line_buf_len"                  @ string offset=430
 .Linfo_string28:
-	.asciz	"rd_pos"                        @ string offset=406
+	.asciz	"rd_pos"                        @ string offset=443
 .Linfo_string29:
-	.asciz	"wr_pos"                        @ string offset=413
+	.asciz	"wr_pos"                        @ string offset=450
 .Linfo_string30:
-	.asciz	"cursor_pos"                    @ string offset=420
+	.asciz	"cursor_pos"                    @ string offset=457
 .Linfo_string31:
-	.asciz	"esc_buf"                       @ string offset=431
+	.asciz	"esc_buf"                       @ string offset=468
 .Linfo_string32:
-	.asciz	"esc_u32_buf"                   @ string offset=439
+	.asciz	"esc_u32_buf"                   @ string offset=476
 .Linfo_string33:
-	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=451
+	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=488
 .Linfo_string34:
-	.asciz	"esc_op_buf"                    @ string offset=471
+	.asciz	"esc_op_buf"                    @ string offset=508
 .Linfo_string35:
-	.asciz	"esc_input_cumulation"          @ string offset=482
+	.asciz	"esc_input_cumulation"          @ string offset=519
 .Linfo_string36:
-	.asciz	"pUser_data"                    @ string offset=503
+	.asciz	"pUser_data"                    @ string offset=540
 .Linfo_string37:
-	.asciz	"pHistory_buf"                  @ string offset=514
+	.asciz	"pHistory_buf"                  @ string offset=551
 .Linfo_string38:
-	.asciz	"line_size"                     @ string offset=527
+	.asciz	"line_size"                     @ string offset=564
 .Linfo_string39:
-	.asciz	"unsigned short"                @ string offset=537
+	.asciz	"unsigned short"                @ string offset=574
 .Linfo_string40:
-	.asciz	"uint16_t"                      @ string offset=552
+	.asciz	"uint16_t"                      @ string offset=589
 .Linfo_string41:
-	.asciz	"cmd_deep"                      @ string offset=561
+	.asciz	"cmd_deep"                      @ string offset=598
 .Linfo_string42:
-	.asciz	"ppLine_list"                   @ string offset=570
+	.asciz	"ppLine_list"                   @ string offset=607
 .Linfo_string43:
-	.asciz	"row_index"                     @ string offset=582
+	.asciz	"row_index"                     @ string offset=619
 .Linfo_string44:
-	.asciz	"sh_dev"                        @ string offset=592
+	.asciz	"sh_dev"                        @ string offset=629
 .Linfo_string45:
-	.asciz	"sh_dev_t"                      @ string offset=599
+	.asciz	"sh_dev_t"                      @ string offset=636
 .Linfo_string46:
-	.asciz	"g_pCmd_head"                   @ string offset=608
+	.asciz	"g_pCmd_head"                   @ string offset=645
 .Linfo_string47:
-	.asciz	"g_esc_code_table"              @ string offset=620
+	.asciz	"g_esc_code_table"              @ string offset=657
 .Linfo_string48:
-	.asciz	"esc_code"                      @ string offset=637
+	.asciz	"esc_code"                      @ string offset=674
 .Linfo_string49:
-	.asciz	"SH_ESC_CODE_UNKNOWN"           @ string offset=646
+	.asciz	"SH_ESC_CODE_UNKNOWN"           @ string offset=683
 .Linfo_string50:
-	.asciz	"SH_ESC_CODE_HOME"              @ string offset=666
+	.asciz	"SH_ESC_CODE_HOME"              @ string offset=703
 .Linfo_string51:
-	.asciz	"SH_ESC_CODE_INSERT"            @ string offset=683
+	.asciz	"SH_ESC_CODE_INSERT"            @ string offset=720
 .Linfo_string52:
-	.asciz	"SH_ESC_CODE_DELETE"            @ string offset=702
+	.asciz	"SH_ESC_CODE_DELETE"            @ string offset=739
 .Linfo_string53:
-	.asciz	"SH_ESC_CODE_END"               @ string offset=721
+	.asciz	"SH_ESC_CODE_END"               @ string offset=758
 .Linfo_string54:
-	.asciz	"SH_ESC_CODE_PAGE_UP"           @ string offset=737
+	.asciz	"SH_ESC_CODE_PAGE_UP"           @ string offset=774
 .Linfo_string55:
-	.asciz	"SH_ESC_CODE_PAGE_DOWN"         @ string offset=757
+	.asciz	"SH_ESC_CODE_PAGE_DOWN"         @ string offset=794
 .Linfo_string56:
-	.asciz	"SH_ESC_CODE_UP"                @ string offset=779
+	.asciz	"SH_ESC_CODE_UP"                @ string offset=816
 .Linfo_string57:
-	.asciz	"SH_ESC_CODE_DOWN"              @ string offset=794
+	.asciz	"SH_ESC_CODE_DOWN"              @ string offset=831
 .Linfo_string58:
-	.asciz	"SH_ESC_CODE_LEFT"              @ string offset=811
+	.asciz	"SH_ESC_CODE_LEFT"              @ string offset=848
 .Linfo_string59:
-	.asciz	"SH_ESC_CODE_RIGHT"             @ string offset=828
+	.asciz	"SH_ESC_CODE_RIGHT"             @ string offset=865
 .Linfo_string60:
-	.asciz	"SH_ESC_CODE_BACKSPACE"         @ string offset=846
+	.asciz	"SH_ESC_CODE_BACKSPACE"         @ string offset=883
 .Linfo_string61:
-	.asciz	"SH_ESC_CODE_TAB"               @ string offset=868
+	.asciz	"SH_ESC_CODE_TAB"               @ string offset=905
 .Linfo_string62:
-	.asciz	"SH_ESC_CODE_CTRL_C"            @ string offset=884
+	.asciz	"SH_ESC_CODE_CTRL_C"            @ string offset=921
 .Linfo_string63:
-	.asciz	"SH_ESC_CODE_TOTAL"             @ string offset=903
+	.asciz	"SH_ESC_CODE_TOTAL"             @ string offset=940
 .Linfo_string64:
-	.asciz	"sh_esc_code"                   @ string offset=921
+	.asciz	"sh_esc_code"                   @ string offset=958
 .Linfo_string65:
-	.asciz	"sh_esc_code_t"                 @ string offset=933
+	.asciz	"sh_esc_code_t"                 @ string offset=970
 .Linfo_string66:
-	.asciz	"esc_code_len"                  @ string offset=947
+	.asciz	"esc_code_len"                  @ string offset=984
 .Linfo_string67:
-	.asciz	"pEsc_ascii"                    @ string offset=960
+	.asciz	"pEsc_ascii"                    @ string offset=997
 .Linfo_string68:
-	.asciz	"sh_esc_item"                   @ string offset=971
+	.asciz	"sh_esc_item"                   @ string offset=1008
 .Linfo_string69:
-	.asciz	"sh_esc_item_t"                 @ string offset=983
+	.asciz	"sh_esc_item_t"                 @ string offset=1020
 .Linfo_string70:
-	.asciz	"log_buf"                       @ string offset=997
+	.asciz	"log_buf"                       @ string offset=1034
 .Linfo_string71:
-	.asciz	"SH_STATE_GET_LINE"             @ string offset=1005
+	.asciz	"SH_STATE_GET_LINE"             @ string offset=1042
 .Linfo_string72:
-	.asciz	"SH_STATE_OK"                   @ string offset=1023
+	.asciz	"SH_STATE_OK"                   @ string offset=1060
 .Linfo_string73:
-	.asciz	"SH_STATE_ERR"                  @ string offset=1035
+	.asciz	"SH_STATE_ERR"                  @ string offset=1072
 .Linfo_string74:
-	.asciz	"sh_state"                      @ string offset=1048
+	.asciz	"sh_state"                      @ string offset=1085
 .Linfo_string75:
-	.asciz	"uintptr_t"                     @ string offset=1057
+	.asciz	"uintptr_t"                     @ string offset=1094
 .Linfo_string76:
-	.asciz	"_shell_read_line"              @ string offset=1067
+	.asciz	"_shell_read_line"              @ string offset=1104
 .Linfo_string77:
-	.asciz	"sh_state_t"                    @ string offset=1084
+	.asciz	"sh_state_t"                    @ string offset=1121
 .Linfo_string78:
-	.asciz	"rval"                          @ string offset=1095
+	.asciz	"rval"                          @ string offset=1132
 .Linfo_string79:
-	.asciz	"c"                             @ string offset=1100
+	.asciz	"c"                             @ string offset=1137
 .Linfo_string80:
-	.asciz	"pos"                           @ string offset=1102
+	.asciz	"pos"                           @ string offset=1139
 .Linfo_string81:
-	.asciz	"len"                           @ string offset=1106
+	.asciz	"len"                           @ string offset=1143
 .Linfo_string82:
-	.asciz	"i"                             @ string offset=1110
+	.asciz	"i"                             @ string offset=1147
 .Linfo_string83:
-	.asciz	"str_buf"                       @ string offset=1112
+	.asciz	"str_buf"                       @ string offset=1149
 .Linfo_string84:
-	.asciz	"_shell_push_to_history"        @ string offset=1120
+	.asciz	"_shell_push_to_history"        @ string offset=1157
 .Linfo_string85:
-	.asciz	"pLine"                         @ string offset=1143
+	.asciz	"pLine"                         @ string offset=1180
 .Linfo_string86:
-	.asciz	"pAct_line"                     @ string offset=1149
+	.asciz	"pAct_line"                     @ string offset=1186
 .Linfo_string87:
-	.asciz	"_shell_get_esc_code"           @ string offset=1159
+	.asciz	"_shell_get_esc_code"           @ string offset=1196
 .Linfo_string88:
-	.asciz	"character"                     @ string offset=1179
+	.asciz	"character"                     @ string offset=1216
 .Linfo_string89:
-	.asciz	"pEsc_code"                     @ string offset=1189
+	.asciz	"pEsc_code"                     @ string offset=1226
 .Linfo_string90:
-	.asciz	"pEsc_item_cur"                 @ string offset=1199
+	.asciz	"pEsc_item_cur"                 @ string offset=1236
 .Linfo_string91:
-	.asciz	"_shell_esc_code_proc"          @ string offset=1213
+	.asciz	"_shell_esc_code_proc"          @ string offset=1250
 .Linfo_string92:
-	.asciz	"pWr_pos"                       @ string offset=1234
+	.asciz	"pWr_pos"                       @ string offset=1271
 .Linfo_string93:
-	.asciz	"pCursor_pos"                   @ string offset=1242
+	.asciz	"pCursor_pos"                   @ string offset=1279
 .Linfo_string94:
-	.asciz	"line_len"                      @ string offset=1254
+	.asciz	"line_len"                      @ string offset=1291
 .Linfo_string95:
-	.asciz	"_shell_erase_line"             @ string offset=1263
+	.asciz	"_shell_erase_line"             @ string offset=1300
 .Linfo_string96:
-	.asciz	"_shell_pop_history"            @ string offset=1281
+	.asciz	"_shell_pop_history"            @ string offset=1318
 .Linfo_string97:
-	.asciz	"pRow_index"                    @ string offset=1300
+	.asciz	"pRow_index"                    @ string offset=1337
 .Linfo_string98:
-	.asciz	"_sh_cmd_help"                  @ string offset=1311
+	.asciz	"_sh_cmd_help"                  @ string offset=1348
 .Linfo_string99:
-	.asciz	"shell_init"                    @ string offset=1324
+	.asciz	"shell_init"                    @ string offset=1361
 .Linfo_string100:
-	.asciz	"shell_deinit"                  @ string offset=1335
+	.asciz	"shell_deinit"                  @ string offset=1372
 .Linfo_string101:
-	.asciz	"shell_register_cmd"            @ string offset=1348
+	.asciz	"shell_register_cmd"            @ string offset=1385
 .Linfo_string102:
-	.asciz	"shell_proc"                    @ string offset=1367
+	.asciz	"shell_proc"                    @ string offset=1404
 .Linfo_string103:
-	.asciz	"_shell_log"                    @ string offset=1378
+	.asciz	"_shell_log"                    @ string offset=1415
 .Linfo_string104:
-	.asciz	"argc"                          @ string offset=1389
+	.asciz	"argc"                          @ string offset=1426
 .Linfo_string105:
-	.asciz	"argv"                          @ string offset=1394
+	.asciz	"argv"                          @ string offset=1431
 .Linfo_string106:
-	.asciz	"log_out"                       @ string offset=1399
+	.asciz	"log_out"                       @ string offset=1436
 .Linfo_string107:
-	.asciz	"pCur"                          @ string offset=1407
+	.asciz	"pCur"                          @ string offset=1444
 .Linfo_string108:
-	.asciz	"cli_cmd_pool_start"            @ string offset=1412
+	.asciz	"cli_cmd_pool_start"            @ string offset=1449
 .Linfo_string109:
-	.asciz	"cli_cmd_pool_end"              @ string offset=1431
+	.asciz	"cli_cmd_pool_end"              @ string offset=1468
 .Linfo_string110:
-	.asciz	"pDesc"                         @ string offset=1448
+	.asciz	"pDesc"                         @ string offset=1485
 .Linfo_string111:
-	.asciz	"pSet_info"                     @ string offset=1454
+	.asciz	"pSet_info"                     @ string offset=1491
 .Linfo_string112:
-	.asciz	"pIO_cache"                     @ string offset=1464
+	.asciz	"pIO_cache"                     @ string offset=1501
 .Linfo_string113:
-	.asciz	"io_cache_len"                  @ string offset=1474
+	.asciz	"io_cache_len"                  @ string offset=1511
 .Linfo_string114:
-	.asciz	"history_buf_size"              @ string offset=1487
+	.asciz	"history_buf_size"              @ string offset=1524
 .Linfo_string115:
-	.asciz	"sh_set"                        @ string offset=1504
+	.asciz	"sh_set"                        @ string offset=1541
 .Linfo_string116:
-	.asciz	"sh_set_t"                      @ string offset=1511
+	.asciz	"sh_set_t"                      @ string offset=1548
 .Linfo_string117:
-	.asciz	"pInfo"                         @ string offset=1520
+	.asciz	"pInfo"                         @ string offset=1557
 .Linfo_string118:
-	.asciz	"pCmd"                          @ string offset=1526
+	.asciz	"pCmd"                          @ string offset=1563
 .Linfo_string119:
-	.asciz	"pCmd_args"                     @ string offset=1531
+	.asciz	"pCmd_args"                     @ string offset=1568
 .Linfo_string120:
-	.asciz	"pArg"                          @ string offset=1541
+	.asciz	"pArg"                          @ string offset=1578
 .Linfo_string121:
-	.asciz	"is_blocking"                   @ string offset=1546
+	.asciz	"is_blocking"                   @ string offset=1583
 .Linfo_string122:
-	.asciz	"delay_time_ms"                 @ string offset=1558
+	.asciz	"delay_time_ms"                 @ string offset=1595
 .Linfo_string123:
-	.asciz	"exec_result"                   @ string offset=1572
+	.asciz	"exec_result"                   @ string offset=1609
 .Linfo_string124:
-	.asciz	"cb_regular_alarm"              @ string offset=1584
+	.asciz	"cb_regular_alarm"              @ string offset=1621
 .Linfo_string125:
-	.asciz	"pTunnel_info"                  @ string offset=1601
+	.asciz	"pTunnel_info"                  @ string offset=1638
 .Linfo_string126:
-	.asciz	"sh_args"                       @ string offset=1614
+	.asciz	"sh_args"                       @ string offset=1651
 .Linfo_string127:
-	.asciz	"sh_args_t"                     @ string offset=1622
+	.asciz	"sh_args_t"                     @ string offset=1659
 .Linfo_string128:
-	.asciz	"arg_cnt"                       @ string offset=1632
+	.asciz	"arg_cnt"                       @ string offset=1669
 .Linfo_string129:
-	.asciz	"is_arg_head"                   @ string offset=1640
+	.asciz	"is_arg_head"                   @ string offset=1677
 .Linfo_string130:
-	.asciz	"pEnd"                          @ string offset=1652
+	.asciz	"pEnd"                          @ string offset=1689
 .Linfo_string131:
-	.asciz	"pCmd_cur"                      @ string offset=1657
+	.asciz	"pCmd_cur"                      @ string offset=1694
 .Linfo_string132:
-	.asciz	"pCmd_act"                      @ string offset=1666
+	.asciz	"pCmd_act"                      @ string offset=1703
 .Linfo_string133:
-	.asciz	"fmt"                           @ string offset=1675
-	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
+	.asciz	"fmt"                           @ string offset=1712
+	.ident	"Component: Arm Compiler for Embedded 6.21 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals
 	.ARM_attribute	16, 1	@ Tag_AV_eba

@@ -18,12 +18,12 @@
 	.eabi_attribute	26, 2	@ Tag_ABI_enum_size
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"gpio.c"
-	.file	1 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
-	.file	2 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/gpio.h"
-	.file	3 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Src/gpio.c"
-	.file	4 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/cm3_mcu.h"
-	.file	5 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/gpio_reg.h"
-	.file	6 "C:/Users\\P350\\AppData\\Local\\Arm\\Packs\\ARM\\CMSIS\\5.8.0\\CMSIS\\Core\\Include" "core_cm3.h"
+	.file	1 "C:\\" "Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include\\stdint.h"
+	.file	2 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/gpio.h"
+	.file	3 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Src/gpio.c"
+	.file	4 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/cm3_mcu.h"
+	.file	5 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_driver/Inc/gpio_reg.h"
+	.file	6 "C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include" "core_cm3.h"
 	.section	.text.gpio_cfg,"ax",%progbits
 	.hidden	gpio_cfg                        @ -- Begin function gpio_cfg
 	.globl	gpio_cfg
@@ -232,12 +232,12 @@ gpio_register_isr:
 	movs	r1, #1
 .Ltmp24:
 	@DEBUG_VALUE: gpio_register_isr:app_gpio_callback <- [DW_OP_LLVM_entry_value 1] $r1
-	.loc	6 1512 5 is_stmt 1              @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm3.h:1512:5
+	.loc	6 1515 5 is_stmt 1              @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include\core_cm3.h:1515:5
 	@APP
 	@NO_APP
-	.loc	6 1513 43                       @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm3.h:1513:43
+	.loc	6 1516 43                       @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include\core_cm3.h:1516:43
 	str	r1, [r0]
-	.loc	6 1514 5                        @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm3.h:1514:5
+	.loc	6 1517 5                        @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include\core_cm3.h:1517:5
 	@APP
 	@NO_APP
 .Ltmp25:
@@ -1259,88 +1259,88 @@ user_isr:
 	.long	775                             @ DW_AT_type
 	.long	.Linfo_string98                 @ DW_AT_name
 	.byte	6                               @ DW_AT_decl_file
-	.short	360                             @ DW_AT_decl_line
+	.short	361                             @ DW_AT_decl_line
 	.byte	20                              @ Abbrev [20] 0x307:0xb9 DW_TAG_structure_type
 	.short	3588                            @ DW_AT_byte_size
 	.byte	6                               @ DW_AT_decl_file
-	.short	345                             @ DW_AT_decl_line
+	.short	346                             @ DW_AT_decl_line
 	.byte	21                              @ Abbrev [21] 0x30d:0xd DW_TAG_member
 	.long	.Linfo_string83                 @ DW_AT_name
 	.long	960                             @ DW_AT_type
 	.byte	6                               @ DW_AT_decl_file
-	.short	347                             @ DW_AT_decl_line
+	.short	348                             @ DW_AT_decl_line
 	.byte	0                               @ DW_AT_data_member_location
 	.byte	21                              @ Abbrev [21] 0x31a:0xd DW_TAG_member
 	.long	.Linfo_string84                 @ DW_AT_name
 	.long	972                             @ DW_AT_type
 	.byte	6                               @ DW_AT_decl_file
-	.short	348                             @ DW_AT_decl_line
+	.short	349                             @ DW_AT_decl_line
 	.byte	32                              @ DW_AT_data_member_location
 	.byte	21                              @ Abbrev [21] 0x327:0xd DW_TAG_member
 	.long	.Linfo_string85                 @ DW_AT_name
 	.long	960                             @ DW_AT_type
 	.byte	6                               @ DW_AT_decl_file
-	.short	349                             @ DW_AT_decl_line
+	.short	350                             @ DW_AT_decl_line
 	.byte	128                             @ DW_AT_data_member_location
 	.byte	21                              @ Abbrev [21] 0x334:0xd DW_TAG_member
 	.long	.Linfo_string86                 @ DW_AT_name
 	.long	972                             @ DW_AT_type
 	.byte	6                               @ DW_AT_decl_file
-	.short	350                             @ DW_AT_decl_line
+	.short	351                             @ DW_AT_decl_line
 	.byte	160                             @ DW_AT_data_member_location
 	.byte	22                              @ Abbrev [22] 0x341:0xe DW_TAG_member
 	.long	.Linfo_string87                 @ DW_AT_name
 	.long	960                             @ DW_AT_type
 	.byte	6                               @ DW_AT_decl_file
-	.short	351                             @ DW_AT_decl_line
+	.short	352                             @ DW_AT_decl_line
 	.short	256                             @ DW_AT_data_member_location
 	.byte	22                              @ Abbrev [22] 0x34f:0xe DW_TAG_member
 	.long	.Linfo_string88                 @ DW_AT_name
 	.long	972                             @ DW_AT_type
 	.byte	6                               @ DW_AT_decl_file
-	.short	352                             @ DW_AT_decl_line
+	.short	353                             @ DW_AT_decl_line
 	.short	288                             @ DW_AT_data_member_location
 	.byte	22                              @ Abbrev [22] 0x35d:0xe DW_TAG_member
 	.long	.Linfo_string89                 @ DW_AT_name
 	.long	960                             @ DW_AT_type
 	.byte	6                               @ DW_AT_decl_file
-	.short	353                             @ DW_AT_decl_line
+	.short	354                             @ DW_AT_decl_line
 	.short	384                             @ DW_AT_data_member_location
 	.byte	22                              @ Abbrev [22] 0x36b:0xe DW_TAG_member
 	.long	.Linfo_string90                 @ DW_AT_name
 	.long	972                             @ DW_AT_type
 	.byte	6                               @ DW_AT_decl_file
-	.short	354                             @ DW_AT_decl_line
+	.short	355                             @ DW_AT_decl_line
 	.short	416                             @ DW_AT_data_member_location
 	.byte	22                              @ Abbrev [22] 0x379:0xe DW_TAG_member
 	.long	.Linfo_string91                 @ DW_AT_name
 	.long	960                             @ DW_AT_type
 	.byte	6                               @ DW_AT_decl_file
-	.short	355                             @ DW_AT_decl_line
+	.short	356                             @ DW_AT_decl_line
 	.short	512                             @ DW_AT_data_member_location
 	.byte	22                              @ Abbrev [22] 0x387:0xe DW_TAG_member
 	.long	.Linfo_string92                 @ DW_AT_name
 	.long	984                             @ DW_AT_type
 	.byte	6                               @ DW_AT_decl_file
-	.short	356                             @ DW_AT_decl_line
+	.short	357                             @ DW_AT_decl_line
 	.short	544                             @ DW_AT_data_member_location
 	.byte	22                              @ Abbrev [22] 0x395:0xe DW_TAG_member
 	.long	.Linfo_string93                 @ DW_AT_name
 	.long	996                             @ DW_AT_type
 	.byte	6                               @ DW_AT_decl_file
-	.short	357                             @ DW_AT_decl_line
+	.short	358                             @ DW_AT_decl_line
 	.short	768                             @ DW_AT_data_member_location
 	.byte	22                              @ Abbrev [22] 0x3a3:0xe DW_TAG_member
 	.long	.Linfo_string96                 @ DW_AT_name
 	.long	1031                            @ DW_AT_type
 	.byte	6                               @ DW_AT_decl_file
-	.short	358                             @ DW_AT_decl_line
+	.short	359                             @ DW_AT_decl_line
 	.short	1008                            @ DW_AT_data_member_location
 	.byte	22                              @ Abbrev [22] 0x3b1:0xe DW_TAG_member
 	.long	.Linfo_string97                 @ DW_AT_name
 	.long	730                             @ DW_AT_type
 	.byte	6                               @ DW_AT_decl_file
-	.short	359                             @ DW_AT_decl_line
+	.short	360                             @ DW_AT_decl_line
 	.short	3584                            @ DW_AT_data_member_location
 	.byte	0                               @ End Of Children Mark
 	.byte	3                               @ Abbrev [3] 0x3c0:0xc DW_TAG_array_type
@@ -1423,13 +1423,13 @@ user_isr:
 	.byte	27                              @ Abbrev [27] 0x462:0x16 DW_TAG_subprogram
 	.long	.Linfo_string99                 @ DW_AT_name
 	.byte	6                               @ DW_AT_decl_file
-	.short	1508                            @ DW_AT_decl_line
+	.short	1511                            @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.byte	1                               @ DW_AT_inline
 	.byte	28                              @ Abbrev [28] 0x46b:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string100                @ DW_AT_name
 	.byte	6                               @ DW_AT_decl_file
-	.short	1508                            @ DW_AT_decl_line
+	.short	1511                            @ DW_AT_decl_line
 	.long	1144                            @ DW_AT_type
 	.byte	0                               @ End Of Children Mark
 	.byte	5                               @ Abbrev [5] 0x478:0xb DW_TAG_typedef
@@ -1539,238 +1539,238 @@ user_isr:
 	.long	0
 	.section	.debug_str,"MS",%progbits,1
 .Linfo_string0:
-	.asciz	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]" @ string offset=0
+	.asciz	"Component: Arm Compiler for Embedded 6.21 Tool: armclang [5dfeb700]" @ string offset=0
 .Linfo_string1:
-	.asciz	"../../../components/platform/soc/rt582/rt582_driver/Src\\gpio.c" @ string offset=55
+	.asciz	"../../../components/platform/soc/rt582/rt582_driver/Src\\gpio.c" @ string offset=68
 .Linfo_string2:
-	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=118
+	.asciz	"C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" @ string offset=131
 .Linfo_string3:
-	.asciz	"user_isr"                      @ string offset=179
+	.asciz	"user_isr"                      @ string offset=216
 .Linfo_string4:
-	.asciz	"gpio_handler"                  @ string offset=188
+	.asciz	"gpio_handler"                  @ string offset=225
 .Linfo_string5:
-	.asciz	"unsigned int"                  @ string offset=201
+	.asciz	"unsigned int"                  @ string offset=238
 .Linfo_string6:
-	.asciz	"uint32_t"                      @ string offset=214
+	.asciz	"uint32_t"                      @ string offset=251
 .Linfo_string7:
-	.asciz	"gpio_isr_handler_t"            @ string offset=223
+	.asciz	"gpio_isr_handler_t"            @ string offset=260
 .Linfo_string8:
-	.asciz	"p_context"                     @ string offset=242
+	.asciz	"p_context"                     @ string offset=279
 .Linfo_string9:
-	.asciz	"gpio_config_t"                 @ string offset=252
+	.asciz	"gpio_config_t"                 @ string offset=289
 .Linfo_string10:
-	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=266
+	.asciz	"__ARRAY_SIZE_TYPE__"           @ string offset=303
 .Linfo_string11:
-	.asciz	"GPIO_PIN_DIR_INPUT"            @ string offset=286
+	.asciz	"GPIO_PIN_DIR_INPUT"            @ string offset=323
 .Linfo_string12:
-	.asciz	"GPIO_PIN_DIR_OUTPUT"           @ string offset=305
+	.asciz	"GPIO_PIN_DIR_OUTPUT"           @ string offset=342
 .Linfo_string13:
-	.asciz	"GPIO_PIN_DIR_INVALID"          @ string offset=325
+	.asciz	"GPIO_PIN_DIR_INVALID"          @ string offset=362
 .Linfo_string14:
-	.asciz	"GPIO_PIN_NOINT"                @ string offset=346
+	.asciz	"GPIO_PIN_NOINT"                @ string offset=383
 .Linfo_string15:
-	.asciz	"GPIO_PIN_INT_LEVEL_LOW"        @ string offset=361
+	.asciz	"GPIO_PIN_INT_LEVEL_LOW"        @ string offset=398
 .Linfo_string16:
-	.asciz	"GPIO_PIN_INT_LEVEL_HIGH"       @ string offset=384
+	.asciz	"GPIO_PIN_INT_LEVEL_HIGH"       @ string offset=421
 .Linfo_string17:
-	.asciz	"GPIO_PIN_INT_EDGE_RISING"      @ string offset=408
+	.asciz	"GPIO_PIN_INT_EDGE_RISING"      @ string offset=445
 .Linfo_string18:
-	.asciz	"GPIO_PIN_INT_EDGE_FALLING"     @ string offset=433
+	.asciz	"GPIO_PIN_INT_EDGE_FALLING"     @ string offset=470
 .Linfo_string19:
-	.asciz	"GPIO_PIN_INT_BOTH_EDGE"        @ string offset=459
+	.asciz	"GPIO_PIN_INT_BOTH_EDGE"        @ string offset=496
 .Linfo_string20:
-	.asciz	"int"                           @ string offset=482
+	.asciz	"int"                           @ string offset=519
 .Linfo_string21:
-	.asciz	"NonMaskableInt_IRQn"           @ string offset=486
+	.asciz	"NonMaskableInt_IRQn"           @ string offset=523
 .Linfo_string22:
-	.asciz	"HardFault_IRQn"                @ string offset=506
+	.asciz	"HardFault_IRQn"                @ string offset=543
 .Linfo_string23:
-	.asciz	"MemoryManagement_IRQn"         @ string offset=521
+	.asciz	"MemoryManagement_IRQn"         @ string offset=558
 .Linfo_string24:
-	.asciz	"BusFault_IRQn"                 @ string offset=543
+	.asciz	"BusFault_IRQn"                 @ string offset=580
 .Linfo_string25:
-	.asciz	"UsageFault_IRQn"               @ string offset=557
+	.asciz	"UsageFault_IRQn"               @ string offset=594
 .Linfo_string26:
-	.asciz	"SVCall_IRQn"                   @ string offset=573
+	.asciz	"SVCall_IRQn"                   @ string offset=610
 .Linfo_string27:
-	.asciz	"DebugMonitor_IRQn"             @ string offset=585
+	.asciz	"DebugMonitor_IRQn"             @ string offset=622
 .Linfo_string28:
-	.asciz	"PendSV_IRQn"                   @ string offset=603
+	.asciz	"PendSV_IRQn"                   @ string offset=640
 .Linfo_string29:
-	.asciz	"SysTick_IRQn"                  @ string offset=615
+	.asciz	"SysTick_IRQn"                  @ string offset=652
 .Linfo_string30:
-	.asciz	"Gpio_IRQn"                     @ string offset=628
+	.asciz	"Gpio_IRQn"                     @ string offset=665
 .Linfo_string31:
-	.asciz	"Timer0_IRQn"                   @ string offset=638
+	.asciz	"Timer0_IRQn"                   @ string offset=675
 .Linfo_string32:
-	.asciz	"Timer1_IRQn"                   @ string offset=650
+	.asciz	"Timer1_IRQn"                   @ string offset=687
 .Linfo_string33:
-	.asciz	"Wdt_IRQn"                      @ string offset=662
+	.asciz	"Wdt_IRQn"                      @ string offset=699
 .Linfo_string34:
-	.asciz	"Uart0_IRQn"                    @ string offset=671
+	.asciz	"Uart0_IRQn"                    @ string offset=708
 .Linfo_string35:
-	.asciz	"I2cm_IRQn"                     @ string offset=682
+	.asciz	"I2cm_IRQn"                     @ string offset=719
 .Linfo_string36:
-	.asciz	"FlashCtl_IRQn"                 @ string offset=692
+	.asciz	"FlashCtl_IRQn"                 @ string offset=729
 .Linfo_string37:
-	.asciz	"Uart1_IRQn"                    @ string offset=706
+	.asciz	"Uart1_IRQn"                    @ string offset=743
 .Linfo_string38:
-	.asciz	"Rtc_IRQn"                      @ string offset=717
+	.asciz	"Rtc_IRQn"                      @ string offset=754
 .Linfo_string39:
-	.asciz	"Dma0_C0_IRQn"                  @ string offset=726
+	.asciz	"Dma0_C0_IRQn"                  @ string offset=763
 .Linfo_string40:
-	.asciz	"Dma0_C1_IRQn"                  @ string offset=739
+	.asciz	"Dma0_C1_IRQn"                  @ string offset=776
 .Linfo_string41:
-	.asciz	"Dma0_C2_IRQn"                  @ string offset=752
+	.asciz	"Dma0_C2_IRQn"                  @ string offset=789
 .Linfo_string42:
-	.asciz	"Dma0_C3_IRQn"                  @ string offset=765
+	.asciz	"Dma0_C3_IRQn"                  @ string offset=802
 .Linfo_string43:
-	.asciz	"Qspi0_IRQn"                    @ string offset=778
+	.asciz	"Qspi0_IRQn"                    @ string offset=815
 .Linfo_string44:
-	.asciz	"I2s0_IRQn"                     @ string offset=789
+	.asciz	"I2s0_IRQn"                     @ string offset=826
 .Linfo_string45:
-	.asciz	"Timer3_IRQn"                   @ string offset=799
+	.asciz	"Timer3_IRQn"                   @ string offset=836
 .Linfo_string46:
-	.asciz	"Timer4_IRQn"                   @ string offset=811
+	.asciz	"Timer4_IRQn"                   @ string offset=848
 .Linfo_string47:
-	.asciz	"Dma1_C2_IRQn"                  @ string offset=823
+	.asciz	"Dma1_C2_IRQn"                  @ string offset=860
 .Linfo_string48:
-	.asciz	"Bod_IRQn"                      @ string offset=836
+	.asciz	"Bod_IRQn"                      @ string offset=873
 .Linfo_string49:
-	.asciz	"Uart2_IRQn"                    @ string offset=845
+	.asciz	"Uart2_IRQn"                    @ string offset=882
 .Linfo_string50:
-	.asciz	"CommSubsystem_IRQn"            @ string offset=856
+	.asciz	"CommSubsystem_IRQn"            @ string offset=893
 .Linfo_string51:
-	.asciz	"Pwm0_IRQn"                     @ string offset=875
+	.asciz	"Pwm0_IRQn"                     @ string offset=912
 .Linfo_string52:
-	.asciz	"Pwm1_IRQn"                     @ string offset=885
+	.asciz	"Pwm1_IRQn"                     @ string offset=922
 .Linfo_string53:
-	.asciz	"Pwm2_IRQn"                     @ string offset=895
+	.asciz	"Pwm2_IRQn"                     @ string offset=932
 .Linfo_string54:
-	.asciz	"Pwm3_IRQn"                     @ string offset=905
+	.asciz	"Pwm3_IRQn"                     @ string offset=942
 .Linfo_string55:
-	.asciz	"Pwm4_IRQn"                     @ string offset=915
+	.asciz	"Pwm4_IRQn"                     @ string offset=952
 .Linfo_string56:
-	.asciz	"Sadc_IRQn"                     @ string offset=925
+	.asciz	"Sadc_IRQn"                     @ string offset=962
 .Linfo_string57:
-	.asciz	"Crypto_IRQn"                   @ string offset=935
+	.asciz	"Crypto_IRQn"                   @ string offset=972
 .Linfo_string58:
-	.asciz	"Timer2_IRQn"                   @ string offset=947
+	.asciz	"Timer2_IRQn"                   @ string offset=984
 .Linfo_string59:
-	.asciz	"Qspi1_IRQn"                    @ string offset=959
+	.asciz	"Qspi1_IRQn"                    @ string offset=996
 .Linfo_string60:
-	.asciz	"Soft_IRQn"                     @ string offset=970
+	.asciz	"Soft_IRQn"                     @ string offset=1007
 .Linfo_string61:
-	.asciz	"Trng_IRQn"                     @ string offset=980
+	.asciz	"Trng_IRQn"                     @ string offset=1017
 .Linfo_string62:
-	.asciz	"Comp_IRQn"                     @ string offset=990
+	.asciz	"Comp_IRQn"                     @ string offset=1027
 .Linfo_string63:
-	.asciz	"IRQn_Type"                     @ string offset=1000
+	.asciz	"IRQn_Type"                     @ string offset=1037
 .Linfo_string64:
-	.asciz	"STATE"                         @ string offset=1010
+	.asciz	"STATE"                         @ string offset=1047
 .Linfo_string65:
-	.asciz	"INT_STATUS"                    @ string offset=1016
+	.asciz	"INT_STATUS"                    @ string offset=1053
 .Linfo_string66:
-	.asciz	"OUTPUT_EN"                     @ string offset=1027
+	.asciz	"OUTPUT_EN"                     @ string offset=1064
 .Linfo_string67:
-	.asciz	"INPUT_EN"                      @ string offset=1037
+	.asciz	"INPUT_EN"                      @ string offset=1074
 .Linfo_string68:
-	.asciz	"ENABLE_INT"                    @ string offset=1046
+	.asciz	"ENABLE_INT"                    @ string offset=1083
 .Linfo_string69:
-	.asciz	"DISABLE_INT"                   @ string offset=1057
+	.asciz	"DISABLE_INT"                   @ string offset=1094
 .Linfo_string70:
-	.asciz	"EDGE_TRIG"                     @ string offset=1069
+	.asciz	"EDGE_TRIG"                     @ string offset=1106
 .Linfo_string71:
-	.asciz	"LEVEL_TRIG"                    @ string offset=1079
+	.asciz	"LEVEL_TRIG"                    @ string offset=1116
 .Linfo_string72:
-	.asciz	"POSTITIVE"                     @ string offset=1090
+	.asciz	"POSTITIVE"                     @ string offset=1127
 .Linfo_string73:
-	.asciz	"NEGATIVE"                      @ string offset=1100
+	.asciz	"NEGATIVE"                      @ string offset=1137
 .Linfo_string74:
-	.asciz	"BOTH_EDGE_EN"                  @ string offset=1109
+	.asciz	"BOTH_EDGE_EN"                  @ string offset=1146
 .Linfo_string75:
-	.asciz	"BOTH_EDGE_CLR"                 @ string offset=1122
+	.asciz	"BOTH_EDGE_CLR"                 @ string offset=1159
 .Linfo_string76:
-	.asciz	"EDGE_INT_CLR"                  @ string offset=1136
+	.asciz	"EDGE_INT_CLR"                  @ string offset=1173
 .Linfo_string77:
-	.asciz	"Reserve"                       @ string offset=1149
+	.asciz	"Reserve"                       @ string offset=1186
 .Linfo_string78:
-	.asciz	"DEBOUCE_EN"                    @ string offset=1157
+	.asciz	"DEBOUCE_EN"                    @ string offset=1194
 .Linfo_string79:
-	.asciz	"DEBOUCE_DIS"                   @ string offset=1168
+	.asciz	"DEBOUCE_DIS"                   @ string offset=1205
 .Linfo_string80:
-	.asciz	"DEBOUNCE_TIME"                 @ string offset=1180
+	.asciz	"DEBOUNCE_TIME"                 @ string offset=1217
 .Linfo_string81:
-	.asciz	"GPIO_T"                        @ string offset=1194
+	.asciz	"GPIO_T"                        @ string offset=1231
 .Linfo_string82:
-	.asciz	"int32_t"                       @ string offset=1201
+	.asciz	"int32_t"                       @ string offset=1238
 .Linfo_string83:
-	.asciz	"ISER"                          @ string offset=1209
+	.asciz	"ISER"                          @ string offset=1246
 .Linfo_string84:
-	.asciz	"RESERVED0"                     @ string offset=1214
+	.asciz	"RESERVED0"                     @ string offset=1251
 .Linfo_string85:
-	.asciz	"ICER"                          @ string offset=1224
+	.asciz	"ICER"                          @ string offset=1261
 .Linfo_string86:
-	.asciz	"RESERVED1"                     @ string offset=1229
+	.asciz	"RESERVED1"                     @ string offset=1266
 .Linfo_string87:
-	.asciz	"ISPR"                          @ string offset=1239
+	.asciz	"ISPR"                          @ string offset=1276
 .Linfo_string88:
-	.asciz	"RESERVED2"                     @ string offset=1244
+	.asciz	"RESERVED2"                     @ string offset=1281
 .Linfo_string89:
-	.asciz	"ICPR"                          @ string offset=1254
+	.asciz	"ICPR"                          @ string offset=1291
 .Linfo_string90:
-	.asciz	"RESERVED3"                     @ string offset=1259
+	.asciz	"RESERVED3"                     @ string offset=1296
 .Linfo_string91:
-	.asciz	"IABR"                          @ string offset=1269
+	.asciz	"IABR"                          @ string offset=1306
 .Linfo_string92:
-	.asciz	"RESERVED4"                     @ string offset=1274
+	.asciz	"RESERVED4"                     @ string offset=1311
 .Linfo_string93:
-	.asciz	"IP"                            @ string offset=1284
+	.asciz	"IPR"                           @ string offset=1321
 .Linfo_string94:
-	.asciz	"unsigned char"                 @ string offset=1287
+	.asciz	"unsigned char"                 @ string offset=1325
 .Linfo_string95:
-	.asciz	"uint8_t"                       @ string offset=1301
+	.asciz	"uint8_t"                       @ string offset=1339
 .Linfo_string96:
-	.asciz	"RESERVED5"                     @ string offset=1309
+	.asciz	"RESERVED5"                     @ string offset=1347
 .Linfo_string97:
-	.asciz	"STIR"                          @ string offset=1319
+	.asciz	"STIR"                          @ string offset=1357
 .Linfo_string98:
-	.asciz	"NVIC_Type"                     @ string offset=1324
+	.asciz	"NVIC_Type"                     @ string offset=1362
 .Linfo_string99:
-	.asciz	"__NVIC_EnableIRQ"              @ string offset=1334
+	.asciz	"__NVIC_EnableIRQ"              @ string offset=1372
 .Linfo_string100:
-	.asciz	"IRQn"                          @ string offset=1351
+	.asciz	"IRQn"                          @ string offset=1389
 .Linfo_string101:
-	.asciz	"gpio_cfg"                      @ string offset=1356
+	.asciz	"gpio_cfg"                      @ string offset=1394
 .Linfo_string102:
-	.asciz	"gpio_register_isr"             @ string offset=1365
+	.asciz	"gpio_register_isr"             @ string offset=1403
 .Linfo_string103:
-	.asciz	"pin_number"                    @ string offset=1383
+	.asciz	"pin_number"                    @ string offset=1421
 .Linfo_string104:
-	.asciz	"dir"                           @ string offset=1394
+	.asciz	"dir"                           @ string offset=1432
 .Linfo_string105:
-	.asciz	"gpio_pin_dir_t"                @ string offset=1398
+	.asciz	"gpio_pin_dir_t"                @ string offset=1436
 .Linfo_string106:
-	.asciz	"int_mode"                      @ string offset=1413
+	.asciz	"int_mode"                      @ string offset=1451
 .Linfo_string107:
-	.asciz	"gpio_pin_int_mode_t"           @ string offset=1422
+	.asciz	"gpio_pin_int_mode_t"           @ string offset=1460
 .Linfo_string108:
-	.asciz	"MASK"                          @ string offset=1442
+	.asciz	"MASK"                          @ string offset=1480
 .Linfo_string109:
-	.asciz	"pin"                           @ string offset=1447
+	.asciz	"pin"                           @ string offset=1485
 .Linfo_string110:
-	.asciz	"app_gpio_callback"             @ string offset=1451
+	.asciz	"app_gpio_callback"             @ string offset=1489
 .Linfo_string111:
-	.asciz	"param"                         @ string offset=1469
+	.asciz	"param"                         @ string offset=1507
 .Linfo_string112:
-	.asciz	"Mask"                          @ string offset=1475
+	.asciz	"Mask"                          @ string offset=1513
 .Linfo_string113:
-	.asciz	"i"                             @ string offset=1480
+	.asciz	"i"                             @ string offset=1518
 .Linfo_string114:
-	.asciz	"irq_state"                     @ string offset=1482
+	.asciz	"irq_state"                     @ string offset=1520
 .Linfo_string115:
-	.asciz	"app_isr"                       @ string offset=1492
-	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
+	.asciz	"app_isr"                       @ string offset=1530
+	.ident	"Component: Arm Compiler for Embedded 6.21 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals
 	.ARM_attribute	16, 1	@ Tag_AV_eba

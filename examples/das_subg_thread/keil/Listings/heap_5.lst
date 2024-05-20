@@ -18,9 +18,9 @@
 	.eabi_attribute	26, 2	@ Tag_ABI_enum_size
 	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
 	.file	"heap_5.c"
-	.file	1 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdlib.h"
-	.file	2 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c"
-	.file	3 "C:\\Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
+	.file	1 "C:\\" "Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include\\stdlib.h"
+	.file	2 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang/heap_5.c"
+	.file	3 "C:\\" "Keil_v5\\ARM\\ARMCLANG\\Bin\\..\\include\\stdint.h"
 	.section	.text.pvPortMalloc,"ax",%progbits
 	.hidden	pvPortMalloc                    @ -- Begin function pvPortMalloc
 	.globl	pvPortMalloc
@@ -200,8 +200,8 @@ pvPortMalloc:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp22:
-	.file	4 "C:/Users\\P350\\AppData\\Local\\Arm\\Packs\\ARM\\CMSIS\\5.8.0\\CMSIS\\Core\\Include" "cmsis_armclang.h"
-	.loc	4 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.file	4 "C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile" "cmsis_armclang_m.h"
+	.loc	4 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -851,7 +851,7 @@ vPortFree:
 	str	r5, [sp]
 	bl	__2printf
 .Ltmp110:
-	.loc	4 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	4 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -883,7 +883,7 @@ vPortFree:
 	str	r5, [sp]
 	bl	__2printf
 .Ltmp114:
-	.loc	4 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	4 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -936,7 +936,7 @@ vPortFree:
 .Lfunc_end4:
 	.size	vPortFree, .Lfunc_end4-vPortFree
 	.cfi_endproc
-	.file	5 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\task.h"
+	.file	5 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc\\task.h"
 	.cantunwind
 	.fnend
                                         @ -- End function
@@ -1049,7 +1049,7 @@ vPortDefineHeapRegions:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp127:
-	.loc	4 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	4 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -1301,7 +1301,7 @@ vPortDefineHeapRegions:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp158:
-	.loc	4 752 3                         @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	4 708 3                         @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -1337,7 +1337,7 @@ vPortDefineHeapRegions:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp164:
-	.loc	4 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	4 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -1375,7 +1375,7 @@ vPortDefineHeapRegions:
 	str	r7, [sp]
 	bl	__2printf
 .Ltmp170:
-	.loc	4 752 3 is_stmt 1               @ C:/Users\P350\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h:752:3
+	.loc	4 708 3 is_stmt 1               @ C:/Keil_v5/ARM/Pack/ARM/CMSIS/6.0.0/CMSIS/Core/Include/./m-profile/cmsis_armclang_m.h:708:3
 	@APP
 	cpsid i
 	@NO_APP
@@ -1476,8 +1476,8 @@ xMinimumEverFreeBytesRemaining:
 	.hidden	_printf_d
 	.hidden	_printf_int_dec
 	.hidden	_printf_str
-	.file	6 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/portable.h"
-	.file	7 "D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\\portmacro.h"
+	.file	6 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/Inc/portable.h"
+	.file	7 "C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" "../../../components/platform/soc/rt582/rt582_freertos/portable/GCC/ARM_CM3\\portmacro.h"
 	.section	.debug_loc,"",%progbits
 .Ldebug_loc0:
 	.long	-1
@@ -2715,7 +2715,7 @@ xMinimumEverFreeBytesRemaining:
 	.byte	11                              @ Abbrev [11] 0xf8:0x9 DW_TAG_subprogram
 	.long	.Linfo_string17                 @ DW_AT_name
 	.byte	4                               @ DW_AT_decl_file
-	.short	750                             @ DW_AT_decl_line
+	.short	706                             @ DW_AT_decl_line
                                         @ DW_AT_prototyped
 	.byte	1                               @ DW_AT_inline
 	.byte	12                              @ Abbrev [12] 0x101:0x71 DW_TAG_subprogram
@@ -3148,116 +3148,116 @@ xMinimumEverFreeBytesRemaining:
 	.long	0
 	.section	.debug_str,"MS",%progbits,1
 .Linfo_string0:
-	.asciz	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]" @ string offset=0
+	.asciz	"Component: Arm Compiler for Embedded 6.21 Tool: armclang [5dfeb700]" @ string offset=0
 .Linfo_string1:
-	.asciz	"../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang\\heap_5.c" @ string offset=55
+	.asciz	"../../../components/platform/soc/rt582/rt582_freertos/portable/MemMang\\heap_5.c" @ string offset=68
 .Linfo_string2:
-	.asciz	"D:\\20240115\\rafael-iot-sdk-das\\examples\\das_subg_thread\\keil" @ string offset=135
+	.asciz	"C:\\Users\\testo\\Desktop\\rafael-iot-sdk-das - \350\244\207\350\243\275 (2)\\examples\\das_subg_thread\\keil" @ string offset=148
 .Linfo_string3:
-	.asciz	"xHeapStructSize"               @ string offset=196
+	.asciz	"xHeapStructSize"               @ string offset=233
 .Linfo_string4:
-	.asciz	"unsigned int"                  @ string offset=212
+	.asciz	"unsigned int"                  @ string offset=249
 .Linfo_string5:
-	.asciz	"size_t"                        @ string offset=225
+	.asciz	"size_t"                        @ string offset=262
 .Linfo_string6:
-	.asciz	"xStart"                        @ string offset=232
+	.asciz	"xStart"                        @ string offset=269
 .Linfo_string7:
-	.asciz	"pxNextFreeBlock"               @ string offset=239
+	.asciz	"pxNextFreeBlock"               @ string offset=276
 .Linfo_string8:
-	.asciz	"xBlockSize"                    @ string offset=255
+	.asciz	"xBlockSize"                    @ string offset=292
 .Linfo_string9:
-	.asciz	"A_BLOCK_LINK"                  @ string offset=266
+	.asciz	"A_BLOCK_LINK"                  @ string offset=303
 .Linfo_string10:
-	.asciz	"BlockLink_t"                   @ string offset=279
+	.asciz	"BlockLink_t"                   @ string offset=316
 .Linfo_string11:
-	.asciz	"pxEnd"                         @ string offset=291
+	.asciz	"pxEnd"                         @ string offset=328
 .Linfo_string12:
-	.asciz	"xBlockAllocatedBit"            @ string offset=297
+	.asciz	"xBlockAllocatedBit"            @ string offset=334
 .Linfo_string13:
-	.asciz	"xFreeBytesRemaining"           @ string offset=316
+	.asciz	"xFreeBytesRemaining"           @ string offset=353
 .Linfo_string14:
-	.asciz	"xMinimumEverFreeBytesRemaining" @ string offset=336
+	.asciz	"xMinimumEverFreeBytesRemaining" @ string offset=373
 .Linfo_string15:
-	.asciz	"unsigned char"                 @ string offset=367
+	.asciz	"unsigned char"                 @ string offset=404
 .Linfo_string16:
-	.asciz	"uint8_t"                       @ string offset=381
+	.asciz	"uint8_t"                       @ string offset=418
 .Linfo_string17:
-	.asciz	"__disable_irq"                 @ string offset=389
+	.asciz	"__disable_irq"                 @ string offset=426
 .Linfo_string18:
-	.asciz	"pvPortCalloc"                  @ string offset=403
+	.asciz	"pvPortCalloc"                  @ string offset=440
 .Linfo_string19:
-	.asciz	"numElements"                   @ string offset=416
+	.asciz	"numElements"                   @ string offset=453
 .Linfo_string20:
-	.asciz	"sizeOfElement"                 @ string offset=428
+	.asciz	"sizeOfElement"                 @ string offset=465
 .Linfo_string21:
-	.asciz	"pv"                            @ string offset=442
+	.asciz	"pv"                            @ string offset=479
 .Linfo_string22:
-	.asciz	"xTaskResumeAll"                @ string offset=445
+	.asciz	"xTaskResumeAll"                @ string offset=482
 .Linfo_string23:
-	.asciz	"long int"                      @ string offset=460
+	.asciz	"long int"                      @ string offset=497
 .Linfo_string24:
-	.asciz	"pvPortMalloc"                  @ string offset=469
+	.asciz	"pvPortMalloc"                  @ string offset=506
 .Linfo_string25:
-	.asciz	"prvInsertBlockIntoFreeList"    @ string offset=482
+	.asciz	"prvInsertBlockIntoFreeList"    @ string offset=519
 .Linfo_string26:
-	.asciz	"pvPortRealloc"                 @ string offset=509
+	.asciz	"pvPortRealloc"                 @ string offset=546
 .Linfo_string27:
-	.asciz	"vPortFree"                     @ string offset=523
+	.asciz	"vPortFree"                     @ string offset=560
 .Linfo_string28:
-	.asciz	"xPortGetFreeHeapSize"          @ string offset=533
+	.asciz	"xPortGetFreeHeapSize"          @ string offset=570
 .Linfo_string29:
-	.asciz	"xPortGetMinimumEverFreeHeapSize" @ string offset=554
+	.asciz	"xPortGetMinimumEverFreeHeapSize" @ string offset=591
 .Linfo_string30:
-	.asciz	"vPortDefineHeapRegions"        @ string offset=586
+	.asciz	"vPortDefineHeapRegions"        @ string offset=623
 .Linfo_string31:
-	.asciz	"xWantedSize"                   @ string offset=609
+	.asciz	"xWantedSize"                   @ string offset=646
 .Linfo_string32:
-	.asciz	"pvReturn"                      @ string offset=621
+	.asciz	"pvReturn"                      @ string offset=658
 .Linfo_string33:
-	.asciz	"pxPreviousBlock"               @ string offset=630
+	.asciz	"pxPreviousBlock"               @ string offset=667
 .Linfo_string34:
-	.asciz	"pxBlock"                       @ string offset=646
+	.asciz	"pxBlock"                       @ string offset=683
 .Linfo_string35:
-	.asciz	"pxNewBlockLink"                @ string offset=654
+	.asciz	"pxNewBlockLink"                @ string offset=691
 .Linfo_string36:
-	.asciz	"pxBlockToInsert"               @ string offset=669
+	.asciz	"pxBlockToInsert"               @ string offset=706
 .Linfo_string37:
-	.asciz	"pxIterator"                    @ string offset=685
+	.asciz	"pxIterator"                    @ string offset=722
 .Linfo_string38:
-	.asciz	"puc"                           @ string offset=696
+	.asciz	"puc"                           @ string offset=733
 .Linfo_string39:
-	.asciz	"pxLink"                        @ string offset=700
+	.asciz	"pxLink"                        @ string offset=737
 .Linfo_string40:
-	.asciz	"block_size"                    @ string offset=707
+	.asciz	"block_size"                    @ string offset=744
 .Linfo_string41:
-	.asciz	"pxHeapRegions"                 @ string offset=718
+	.asciz	"pxHeapRegions"                 @ string offset=755
 .Linfo_string42:
-	.asciz	"pucStartAddress"               @ string offset=732
+	.asciz	"pucStartAddress"               @ string offset=769
 .Linfo_string43:
-	.asciz	"xSizeInBytes"                  @ string offset=748
+	.asciz	"xSizeInBytes"                  @ string offset=785
 .Linfo_string44:
-	.asciz	"HeapRegion"                    @ string offset=761
+	.asciz	"HeapRegion"                    @ string offset=798
 .Linfo_string45:
-	.asciz	"HeapRegion_t"                  @ string offset=772
+	.asciz	"HeapRegion_t"                  @ string offset=809
 .Linfo_string46:
-	.asciz	"xDefinedRegions"               @ string offset=785
+	.asciz	"xDefinedRegions"               @ string offset=822
 .Linfo_string47:
-	.asciz	"BaseType_t"                    @ string offset=801
+	.asciz	"BaseType_t"                    @ string offset=838
 .Linfo_string48:
-	.asciz	"xTotalHeapSize"                @ string offset=812
+	.asciz	"xTotalHeapSize"                @ string offset=849
 .Linfo_string49:
-	.asciz	"pxFirstFreeBlockInRegion"      @ string offset=827
+	.asciz	"pxFirstFreeBlockInRegion"      @ string offset=864
 .Linfo_string50:
-	.asciz	"pxHeapRegion"                  @ string offset=852
+	.asciz	"pxHeapRegion"                  @ string offset=889
 .Linfo_string51:
-	.asciz	"xTotalRegionSize"              @ string offset=865
+	.asciz	"xTotalRegionSize"              @ string offset=902
 .Linfo_string52:
-	.asciz	"xAddress"                      @ string offset=882
+	.asciz	"xAddress"                      @ string offset=919
 .Linfo_string53:
-	.asciz	"xAlignedHeap"                  @ string offset=891
+	.asciz	"xAlignedHeap"                  @ string offset=928
 .Linfo_string54:
-	.asciz	"pxPreviousFreeBlock"           @ string offset=904
-	.ident	"Component: ARM Compiler 6.16 Tool: armclang [5dfeb700]"
+	.asciz	"pxPreviousFreeBlock"           @ string offset=941
+	.ident	"Component: Arm Compiler for Embedded 6.21 Tool: armclang [5dfeb700]"
 	.section	".note.GNU-stack","",%progbits
 	.eabi_attribute	30, 3	@ Tag_ABI_optimization_goals
 	.ARM_attribute	16, 1	@ Tag_AV_eba
